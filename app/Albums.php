@@ -1,3 +1,12 @@
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Albums extends Model
+{
+   
+   protected $table = 'album';
+
    protected $fillable = [
              'id',
       'seller_id',
