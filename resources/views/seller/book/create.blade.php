@@ -41,6 +41,68 @@
 
     </style>
 
+    <style>
+        /*prueba*/
+
+        .glyphicon {
+            margin-right: 5px;
+        }
+
+        .thumbnail {
+            margin-bottom: 20px;
+            padding: 0px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+        }
+
+        .item.list-group-item {
+            float: none;
+            width: 100%;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+            background: #428bca;
+        }
+
+        .item.list-group-item .list-group-image {
+            margin-right: 10px;
+        }
+
+        .item.list-group-item .thumbnail {
+            margin-bottom: 0px;
+        }
+
+        .item.list-group-item .caption {
+            padding: 9px 9px 0px 9px;
+        }
+
+        .item.list-group-item:nth-of-type(odd) {
+            background: #eeeeee;
+        }
+
+        .item.list-group-item:before, .item.list-group-item:after {
+            display: table;
+            content: " ";
+        }
+
+        .item.list-group-item img {
+            float: left;
+        }
+
+        .item.list-group-item:after {
+            clear: both;
+        }
+
+        .list-group-item-text {
+            margin: 0 0 11px;
+        }
+
+        /*prueba*/
+    </style>
+
 @endsection
 
 @section('content')
@@ -77,7 +139,7 @@
 
                 <div class="box box-primary ">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Libro</h3>
+                        <h3 class="box-title">Libros</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -96,8 +158,12 @@
                             <label for="exampleInputFile" class="control-label">Nombre de autor</label>
                             <br/>
                             {!! Form::select('author_id',$author,null,['class'=>'form-control select-author','placeholder'=>'selecione autor del libro'],['id'=>'exampleInputFile']) !!}
+                            <a class="btn btn-app btn-sm">
+                                <i class="fa ion-person-add"></i> Autor
+                            </a>
                             <br/>
                             <br/>
+
 
                             {{--titulo del libro--}}
                             <label for="exampleInputFile" class="control-label">Titulo</label>
@@ -120,10 +186,57 @@
 
                         <div class="form-group col-md-4">
                             {{--saga del libro--}}
-                            <label for="exampleInputFile" class="control-label">Saga del libro</label>
+                            {{--<label for="exampleInputFile" class="control-label">Saga del libro</label>--}}
+                            {{--<br/>--}}
+{{--                            {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'selecione saga de libro','id'=>'sagas'],['id'=>'exampleInputFile']) !!}--}}
+                            {{--<a class="btn btn-app">--}}
+                                {{--<i class="fa ion-ios-bookmarks"></i> Agregar Saga--}}
+                            {{--</a>--}}
+                            {{--<br/>--}}
+                            {{--<br/>--}}
+
+                            {{--otra prueba--}}
+
+                            <label class="control-label"> El libro pertenece a una saga </label>
                             <br/>
-                            {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'selecione saga de libro'],['id'=>'exampleInputFile']) !!}
+                            <div class="radio-inline">
+                                <label class="control-label" for="option-1">
+                                    <input type="radio" id="option-1" class="flat-red"
+                                           onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                    <span class="mdl-radio__label">Si</span>
+                                </label>
+                            </div>
+
+                            <div class="radio-inline">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                    <input type="radio" id="option-2" class="mdl-radio__button"
+                                           onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                    <span class="mdl-radio__label">No</span>
+                                </label>
+
+                            </div>
                             <br/>
+
+                            <div class="radio-inline" style="display:none" id="if_no">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <label class="mdl-textfield__label" for="razon">Explique La Razon</label>
+                                    <textarea name="message" class="mdl-textfield__input" type="text" rows="6" id="razon">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="" style="display:none" id="if_si">
+                                <label for="exampleInputFile" class="control-label">Saga del libro</label>
+                                <br/>
+                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'selecione saga de libro','id'=>'sagas'],['id'=>'sagas']) !!}
+                                <a class="btn btn-app">
+                                    <i class="fa ion-ios-bookmarks"></i> Agregar Saga
+                                </a>
+                                <br/>
+                                <br/>
+                            </div>
+
+                            {{--otra prueba--}}
                             <br/>
 
                             {{--no se de que va --}}
@@ -136,7 +249,8 @@
 
                             {{--año de salida del libro --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            {!! Form::number('release_year',null,['class'=>'form-control','placeholder'=>'debe ser tipo text o date'],['id'=>'exampleInputFile']) !!}
+                            {{--                            {!! Form::text('release_year',null,['class'=>'form-control','placeholder'=>'debe ser tipo text o date'],['id'=>'datepicker']) !!}--}}
+                            <input type="numbre" id="datepicker" name="release_year" class="form-control">
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Precio</label>
@@ -145,6 +259,17 @@
 
                     </div>
                     <!-- /.box-body -->
+
+
+                    {{--esta de prueba --}}
+
+
+
+                    {{--</div>--}}
+
+
+                    {{--fin de prueba --}}
+
 
                 </div>
                 <div class="text-center">
@@ -183,5 +308,34 @@
                 label_field: "#image-label"
             });
         });
+    </script>
+
+    <script>
+
+        // prueba de algo importante
+        function yesnoCheck() {
+            if (document.getElementById('option-1').checked) {
+                $('#if_si').show();
+                $('#sagas').val('');
+            }
+            // else if(document.getElementById('option-2').checked) {
+            //     $('#if_no').hide();
+            //     $('#sagas').val('3');
+            // }
+            else{
+                $('#if_si').hide();
+                $('#sagas').val('');
+            }
+
+        }
+
+    </script>
+
+    <script>
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true,
+            language: 'es'
+        })
     </script>
 @endsection

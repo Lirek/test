@@ -16,8 +16,8 @@ class CreateMusicMTMTagsTable extends Migration
         //
     Schema::create('music_tags', function (Blueprint $table){
     
-    $table->integer('music_id')->unsigned()->default(0);
-    $table->integer('tags_id')->unsigned()->default(0);
+    $table->integer('music_id')->unsigned()->default();
+    $table->integer('tags_id')->unsigned()->default();
     
 
     

@@ -179,6 +179,9 @@ return [
         Acekyd\LaravelMP3\LaravelMP3ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+
+        // redes sociales
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -230,6 +233,9 @@ return [
         'LaravelMP3' => Acekyd\LaravelMP3\LaravelMP3Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        //redes sociales
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

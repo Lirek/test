@@ -96,17 +96,17 @@
 
                         <div class="form-group col-md-4">
                             {{--nombre de la radio--}}
-                            <label for="exampleInputFile" class="control-label">Nombre de la radio</label>
-                            {!! Form::text('name_r',null,['class'=>'form-control autofocus','placeholder'=>'nombre de la radio'],['id'=>'exampleInputFile']) !!}
+                            <label for="exampleInputFile" class="control-label">Nombre del canal</label>
+                            {!! Form::text('name_r',null,['class'=>'form-control autofocus','placeholder'=>'nombre del canal'],['id'=>'exampleInputFile']) !!}
 
                             {{--link de la radio--}}
-                            <label for="exampleInputPassword1" class="control-label">Url de la radio</label>
-                            {!! Form::text('streaming',null,['class'=>'form-control','placeholder'=>'url de la radio'],['id'=>'exampleInputFile']) !!}
+                            <label for="exampleInputPassword1" class="control-label">Url del canal</label>
+                            {!! Form::text('streaming',null,['class'=>'form-control','placeholder'=>'https://www.youtube.com/embed/IUWOk1fxD-Y'],['id'=>'exampleInputFile']) !!}
 
                             {{--correo o email de la radio--}}
-                            <label for="exampleInputEmail1">Email address</label>
+                            <label for="exampleInputEmail1">Correo electronico</label>
                             <input type="email" name="email_c" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Enter email">
+                                   placeholder="example@gmail.com">
                         </div>
                         <br />
 

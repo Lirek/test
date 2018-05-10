@@ -32,6 +32,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+
+Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
+
 Route::resource('users', 'UserController');
 
 Route::get('/admin','AdminController@index');

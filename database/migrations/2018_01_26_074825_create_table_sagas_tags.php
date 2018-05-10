@@ -16,8 +16,8 @@ class CreateTableSagasTags extends Migration
          //
      Schema::create('saga_tags', function (Blueprint $table){
 
-     $table->integer('saga_id')->unsigned()->default(0);
-     $table->integer('tags_id')->unsigned()->default(0);
+     $table->integer('saga_id')->unsigned()->default();
+     $table->integer('tags_id')->unsigned()->default();
 
 
 

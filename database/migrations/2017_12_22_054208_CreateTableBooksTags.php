@@ -16,8 +16,8 @@ class CreateTableBooksTags extends Migration
         //
     Schema::create('books_tags', function (Blueprint $table){
     
-    $table->integer('books_id')->unsigned()->default(0);
-    $table->integer('tags_id')->unsigned()->default(0);
+    $table->integer('books_id')->unsigned()->default();
+    $table->integer('tags_id')->unsigned()->default();
     
 
     

@@ -44,7 +44,7 @@
                                       
                                       <td>{{$apply->phone_s}}</td>
                                       
-                                      <td>{{$apply->email}}</td>
+                                      <td>{{$apply->email_c}}</td>
                                       
                                       <td id="apply_td{{$apply->id}}">
                                         @if($apply->promoter_id != NULL)
@@ -414,7 +414,7 @@ $(document).on('click', '#tt3', function() {
                       id.innerHTML = result['id'];
                       name.innerHTML = result['name_c'];
                       phone.innerHTML = result['phone_s'];
-                      email.innerHTML = result['email'];
+                      email.innerHTML = result['email_c'];
                     
                     },
 

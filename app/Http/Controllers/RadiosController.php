@@ -12,7 +12,7 @@ class RadiosController extends Controller
 {
     public function index()
     {
-        $radios = Radio::orderBy('id','DESC')->paginate(8);
+        $radios = Radio::orderBy('id','DESC')->paginate('8');
         return view('seller.radio.index')->with('radio',$radios);
     }
 

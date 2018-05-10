@@ -89,12 +89,12 @@
 
                                 {{--link de la radio--}}
                                 <label for="exampleInputPassword1" class="control-label">Url de la radio</label>
-                                {!! Form::text('streaming',$radio->streaming,['class'=>'form-control','placeholder'=>'url de la radio'],['id'=>'exampleInputFile']) !!}
+                                {!! Form::text('streaming',$radio->streaming,['class'=>'form-control','placeholder'=>'http://listen.shoutcast.com/rcr750canal2'],['id'=>'exampleInputFile']) !!}
 
                                 {{--correo o email de la radio--}}
-                                <label for="exampleInputEmail1">Email address</label>
+                                <label for="exampleInputEmail1">Correo electronico</label>
                                 <input type="email" name="email_c" class="form-control" value="{{ $radio->email_c }}"
-                                       placeholder="Enter email">
+                                       placeholder="example@gmail">
                             </div>
 
                             {{--link d google+--}}

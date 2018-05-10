@@ -13,7 +13,7 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->first()->paginate(10);
+        $books = Book::orderBy('id', 'DESC')->paginate('10');
         $books->each(function ($books) {
             $books->author;
             $books->seller;

@@ -39,6 +39,13 @@
             text-align: center;
         }
 
+        input:invalid {
+            border: 1px solid red;
+        }
+
+        input:valid {
+            border: 1px solid green;
+        }
     </style>
 
 @endsection
@@ -96,39 +103,68 @@
                         <div class="form-group col-md-4">
                             {{--nombre de la radio--}}
                             <label for="exampleInputFile" class="control-label">Nombre de la radio</label>
-                            {!! Form::text('name_r',null,['class'=>'form-control autofocus','placeholder'=>'nombre de la radio'],['id'=>'exampleInputFile']) !!}
+                            {{--                            {!! Form::text('name_r',null,['class'=>'form-control ','placeholder'=>'nombre de la radio'],['id'=>'exampleInputFile']) !!}--}}
+                            <input type="text" value="{{ old('name_r') }}" name="name_r" class="form-control"
+                                   autofocus="autofocus"
+                                   placeholder="nombre de la radio" required pattern="[Aa-Zz]">
 
                             {{--link de la radio--}}
                             <label for="exampleInputPassword1" class="control-label">Url de la radio</label>
-                            {!! Form::text('streaming',null,['class'=>'form-control','placeholder'=>'url de la radio'],['id'=>'exampleInputFile']) !!}
+                            {{--                            {!! Form::text('streaming',null,['class'=>'form-control','placeholder'=>'http://listen.shoutcast.com/rcr750canal2'],['id'=>'exampleInputFile']) !!}--}}
+                            <input type="url" value="{{ old('streaming') }}" name="streaming" class="form-control"
+                                   placeholder="http://listen.shoutcast.com/rcr750canal2" autofocus="autofocus"
+                                   required>
 
                             {{--correo o email de la radio--}}
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email_c" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Enter email">
+                            <label for="exampleInputEmail1">Correo electronio</label>
+                            <input type="email" value="{{ old('email') }}" name="email_c" class="form-control" required
+                                   placeholder="example@gmail.com" autofocus="autofocus">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
                         </div>
-
+                        {{--https://www.youtube.com/channel/UCNCjXUrgMHpHCoQmCcEzlzg?view_as=subscriber--}}
+                        {{--https://www.instagram.com/eric_drz--}}
+                        {{--https://twitter.com/EricD_R--}}
 
                         {{--link d google+--}}
                         <div class="input-group col-md-3">
                             <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                            {!! Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+'],['id'=>'exampleInputFile']) !!}
+                            <input type="text" class="form-control" id="google" autofocus="autofocus" name="google"
+                                   placeholder="Google+"
+                                   pattern="https?:\/\/(www\.)?youtube\.com/channel/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
+                                   required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
+                                   oninput="setCustomValidity('')">
+
                         </div>
                         {{--lin de instagram--}}
                         <div class="input-group col-md-3">
                             <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                            {!! Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram'],['id'=>'exampleInputFile']) !!}
+                            <input id="instagram"
+                                   pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
+                                   type="text" name="instagram" class="form-control" placeholder="Instagram" required
+                                   oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
+                                   oninput="setCustomValidity('')">
                         </div>
                         {{--link de facebook--}}
                         <div class="input-group col-md-3">
                             <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
-                            {!! Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook']) !!}
+                            <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook"
+                                   pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\/(A-z 0-9 _ - \.)\/?" required
+                                   oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
+                                   oninput="setCustomValidity('')">
                         </div>
 
                         {{--lind de twitter--}}
                         <div class="input-group col-md-3">
                             <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                            {!! Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter'],['id'=>'twitter']) !!}
+                            <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text"
+                                   name="twitter"
+                                   class="form-control" placeholder="Twitter" required
+                                   oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
+                                   oninput="setCustomValidity('')">
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -157,4 +193,5 @@
             });
         });
     </script>
+
 @endsection

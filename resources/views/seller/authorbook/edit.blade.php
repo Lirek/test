@@ -48,7 +48,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Registro
+            Editando
         </h1>
         {{--<ol class="breadcrumb">--}}
         {{--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
@@ -67,7 +67,7 @@
 
                     <div class="box box-primary ">
                         <div class="box-header with-border bg bg-black-gradient">
-                            <h3 class="box-title">Canal o Tv</h3>
+                            <h3 class="box-title">Autor</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -86,14 +86,14 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                {{--nombre de la radio--}}
+                                {{--nombre de la autor--}}
                                 <label for="exampleInputFile" class="control-label">Nombres y Apellidos</label>
-                                {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'nombre de la radio'],['id'=>'exampleInputFile']) !!}
+                                {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'nombre completo del autor'],['id'=>'exampleInputFile']) !!}
 
                                 {{--correo o email de la radio--}}
-                                <label for="exampleInputEmail1">Email address</label>
+                                <label for="exampleInputEmail1">Correo electronico</label>
                                 <input type="email" name="email_c" class="form-control" id="exampleInputEmail1"
-                                       placeholder="Enter email" value="{{ $author->email }}">
+                                       placeholder="example@gmail.com" value="{{ $author->email }}">
 
                             </div>
                             <br/>

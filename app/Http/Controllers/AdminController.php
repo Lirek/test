@@ -402,7 +402,7 @@ class AdminController extends Controller
 
       $applys->save();
       
-      Mail::to($applys->email)->send(new PromoterAssing($applys));
+      Mail::to($applys->email_c)->send(new PromoterAssing($applys));
 
 			return response()->json($applys); 
 		}
@@ -440,13 +440,13 @@ class AdminController extends Controller
 				
 				$applys->save();
 				
-				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+				Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
 
 				return response()->json($applys);	
 			}
       else
       {
-        Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+        Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
         $applys->save();  
       }
 			

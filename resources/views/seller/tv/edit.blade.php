@@ -86,17 +86,17 @@
 
                             <div class="form-group col-md-4">
                                 {{--nombre de la radio--}}
-                                <label for="exampleInputFile" class="control-label">Nombre de la radio</label>
-                                {!! Form::text('name_r',$tv->name_r,['class'=>'form-control autofocus','placeholder'=>'nombre de la radio'],['id'=>'exampleInputFile']) !!}
+                                <label for="exampleInputFile" class="control-label">Nombre del canal</label>
+                                {!! Form::text('name_r',$tv->name_r,['class'=>'form-control autofocus','placeholder'=>'nombre del canal'],['id'=>'exampleInputFile']) !!}
 
                                 {{--link de la radio--}}
-                                <label for="exampleInputPassword1" class="control-label">Url de la radio</label>
-                                {!! Form::text('streaming',$tv->streaming,['class'=>'form-control','placeholder'=>'url de la radio'],['id'=>'exampleInputFile']) !!}
+                                <label for="exampleInputPassword1" class="control-label">Url del canal</label>
+                                {!! Form::text('streaming',$tv->streaming,['class'=>'form-control','placeholder'=>'https://www.dailymotion.com/embed/video/xio7e2'],['id'=>'exampleInputFile']) !!}
 
-                                {{--correo o email de la radio--}}
-                                <label for="exampleInputEmail1">Email address</label>
+                                {{--correo o email del canal--}}
+                                <label for="exampleInputEmail1">Correo electronico</label>
                                 <input type="email" name="email_c" class="form-control" value="{{ $tv->email_c }}"
-                                       placeholder="Enter email">
+                                       placeholder="example@gmail.com">
                             </div>
 
                             {{--link d google+--}}

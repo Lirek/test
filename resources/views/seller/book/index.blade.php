@@ -15,7 +15,7 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header bg bg-black-gradient">
-                        <h3 class="box-title">Data Table With Full Features</h3>
+                        <h3 class="box-title"><b> <i> Libros </i> </b></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -107,7 +107,32 @@
 
     <script>
         $(function () {
-            $('#example1').DataTable()
+            $('#example1').DataTable({
+                "language": {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
             $('#example2').DataTable({
                 'paging': true,
                 'lengthChange': false,
