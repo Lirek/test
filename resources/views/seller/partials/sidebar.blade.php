@@ -108,26 +108,18 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{ url('/albums') }}">
+                                    <a href="{{ url('/movies') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar peliculas
+                                            Registro de peliculas
                                         {{--</p>--}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/artist_form') }}">
-                                        <i class="fa fa-circle-o"></i>
+                                    <a href="{{ url('/movies/create') }}">
+                                        <i class="fa fa-circle-o text-aqua"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Actores
-                                        {{--</p>--}}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/single_registration') }}">
-                                        <i class="fa fa-circle-o"></i>
-                                        {{--<p class="text-justify">--}}
-                                            Mis Peliculas
+                                            Registrar pelicula
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -299,6 +291,33 @@
                             </ul>
                         </li>
                     @endif
+
+                    {{--saga--}}
+                        @if($mod->name == 'Libros')
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="material-icons " style="font-size: 18px">data_usage</i>
+                                    <span>Saga</span>
+                                    <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="{{ url('/sagas') }}">
+                                            <i class="fa fa-circle-o"></i>
+                                            Index
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('sagas/create') }}">
+                                            <i class="fa fa-circle-o text-aqua"></i>
+                                            Registrar saga
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
 
                     {{--Tvs--}}
                     @if($mod->name == 'TV')

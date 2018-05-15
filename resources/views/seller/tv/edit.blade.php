@@ -99,27 +99,33 @@
                                        placeholder="example@gmail.com">
                             </div>
 
-                            {{--link d google+--}}
-                            <div class="input-group col-md-3">
-                                <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                {!! Form::text('google',$tv->google,['class'=>'form-control','placeholder'=>'Google+'],['id'=>'exampleInputFile']) !!}
-                            </div>
-                            {{--lin de instagram--}}
-                            <div class="input-group col-md-3">
-                                <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                {!! Form::text('instagram',$tv->instagram,['class'=>'form-control','placeholder'=>'Instagram'],['id'=>'exampleInputFile']) !!}
-                            </div>
-                            {{--link de facebook--}}
-                            <div class="input-group col-md-3">
-                                <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
-                                {!! Form::text('facebook',$tv->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook']) !!}
-                            </div>
+                            {{--inicio de la agrupacion--}}
+                            <div class="form-group col-sm-3">
 
-                            {{--lind de twitter--}}
-                            <div class="input-group col-md-3">
-                                <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                {!! Form::text('twitter',$tv->twitter,['class'=>'form-control','placeholder'=>'Twitter'],['id'=>'twitter']) !!}
+                                {{--link d google+--}}
+                                <div class="input-group col-xs-12">
+                                    <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
+                                    {!! Form::text('google',$tv->google,['class'=>'form-control','placeholder'=>'Google+'],['id'=>'exampleInputFile']) !!}
+                                </div>
+                                {{--lin de instagram--}}
+                                <div class="input-group col-xs-12">
+                                    <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                                    {!! Form::text('instagram',$tv->instagram,['class'=>'form-control','placeholder'=>'Instagram'],['id'=>'exampleInputFile']) !!}
+                                </div>
+                                {{--link de facebook--}}
+                                <div class="input-group col-xs-12">
+                                    <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
+                                    {!! Form::text('facebook',$tv->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook']) !!}
+                                </div>
+
+                                {{--lind de twitter--}}
+                                <div class="input-group col-xs-12">
+                                    <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
+                                    {!! Form::text('twitter',$tv->twitter,['class'=>'form-control','placeholder'=>'Twitter'],['id'=>'twitter']) !!}
+                                </div>
+
                             </div>
+                            {{--final de la agrupacion--}}
 
                         </div>
                         <!-- /.box-body -->

@@ -129,43 +129,52 @@
                         {{--https://www.instagram.com/eric_drz--}}
                         {{--https://twitter.com/EricD_R--}}
 
-                        {{--link d google+--}}
-                        <div class="input-group col-md-3">
-                            <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                            <input type="text" class="form-control" id="google" autofocus="autofocus" name="google"
-                                   placeholder="Google+"
-                                   pattern="https?:\/\/(www\.)?youtube\.com/channel/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
-                                   required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
-                                   oninput="setCustomValidity('')">
+                        {{--inicio de la agrupacion--}}
+                        <div class="form-group col-sm-3">
+
+                            {{--link d google+--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon btn-google active"><i class="fa fa-google-plus"></i></span>
+                                <input type="text" class="form-control" id="google" autofocus="autofocus" name="google"
+                                       placeholder="Google+"
+                                       pattern="https?:\/\/(www\.)?youtube\.com/channel/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
+                                       required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
+                                       oninput="setCustomValidity('')">
+
+                            </div>
+                            {{--lin de instagram--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon btn-instagram active"><i class="fa fa-instagram"></i></span>
+                                <input id="instagram"
+                                       pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
+                                       type="text" name="instagram" class="form-control" placeholder="Instagram"
+                                       required
+                                       oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+                            {{--link de facebook--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook-official"></i></span>
+                                <input type="text" class="form-control" id="facebook" name="facebook"
+                                       placeholder="Facebook"
+                                       pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\/(A-z 0-9 _ - \.)\/?" required
+                                       oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
+                                       oninput="setCustomValidity('')">
+                            </div>
+
+                            {{--lind de twitter--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon btn-twitter active"><i class="fa fa-twitter"></i></span>
+                                <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?"
+                                       type="text"
+                                       name="twitter"
+                                       class="form-control" placeholder="Twitter" required
+                                       oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
+                                       oninput="setCustomValidity('')">
+                            </div>
 
                         </div>
-                        {{--lin de instagram--}}
-                        <div class="input-group col-md-3">
-                            <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                            <input id="instagram"
-                                   pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
-                                   type="text" name="instagram" class="form-control" placeholder="Instagram" required
-                                   oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-                        {{--link de facebook--}}
-                        <div class="input-group col-md-3">
-                            <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
-                            <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook"
-                                   pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\/(A-z 0-9 _ - \.)\/?" required
-                                   oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
-                                   oninput="setCustomValidity('')">
-                        </div>
-
-                        {{--lind de twitter--}}
-                        <div class="input-group col-md-3">
-                            <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                            <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text"
-                                   name="twitter"
-                                   class="form-control" placeholder="Twitter" required
-                                   oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
-                                   oninput="setCustomValidity('')">
-                        </div>
+                        {{--final de la agrupacion--}}
                     </div>
                     <!-- /.box-body -->
                 </div>

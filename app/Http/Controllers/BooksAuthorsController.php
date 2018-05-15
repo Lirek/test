@@ -156,4 +156,24 @@ class BooksAuthorsController extends Controller
 
         }
     }
+
+    public function register(Request $request)
+    {
+        $file = $request->file('photo');
+        $name = 'author_' . time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path() . '/images/authorbook/';
+        $file->move($path, $name);
+
+        $author = new BookAuthor($request->all());
+        $author->seller_id = \Auth::guard('web_seller')->user()->id;
+        $author->photo = $name;
+//        dd($author->photo);
+//        dd($author,$author->photo,$file);
+        $author->save();
+
+        Flash::info('Se ha registrado ' . $author->full_name . ' de forma sastisfactoria')->important();
+
+        return redirect()->route('tbook.create');
+    }
+
 }
