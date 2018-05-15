@@ -38,8 +38,8 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID','310370796775-ljofrqkqjmalt0v5dughqbcrebfeb5k2.apps.googleusercontent.com'),         // Your GitHub Client ID
         'client_secret' => env('GOOGLE_CLIENT_SECRET','dM1lQonXg2WP_-wQxHAUnGQX'), // Your GitHub Client Secret
-//        'redirect' => 'http://leipel.com.test/login/google/callback',
-        'redirect' => 'http://localhost/leipel.com/public/login/google/callback',
+        'redirect' => 'http://prueba.leipel.com.automatis.com.ec/public/login/google/callback',
+//        'redirect' => 'http://localhost/leipel.com/public/login/google/callback',
     ],
 
     'github' => [
@@ -59,8 +59,8 @@ return [
     'twitter' => [
         'client_id'     => env('TWITTER_ID','3ViUyES1FTvFurw0Ge8ncu6QZ'),
         'client_secret' => env('TWITTER_SECRET','	Lup0XAw3DrXbfq2HpZuuyrkBXGso1L45EDoGsXpul44bVlLJzz'),
-//        'redirect' => 'http://leipel.com.test/login/twitter/callback',
-        'redirect' => 'http://localhost/leipel.com/public/login/twitter/callback',
+        'redirect' => 'http://prueba.leipel.com.automatis.com.ec/public/login/twitter/callback',
+//        'redirect' => 'http://localhost/leipel.com/public/login/twitter/callback',
     ],
 
 ];
