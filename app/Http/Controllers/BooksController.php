@@ -6,6 +6,7 @@ use App\Saga;
 use Illuminate\Http\Request;
 use App\BookAuthor;
 use App\Book;
+use App\Rating;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\BookRequest;
 
@@ -27,13 +28,15 @@ class BooksController extends Controller
     {
         $authors = BookAuthor::orderBy('id', 'DESC')->pluck('full_name', 'id');
         $sagas = Saga::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
 //        $sagas = Saga::all();
 //        $y = New saga;
 //        $x = $sagas::where('type_saga', '=', 'libros');
 
         return view('seller.book.create')
             ->with('author', $authors)
-            ->with('saga', $sagas);
+            ->with('saga', $sagas)
+            ->with('ratin',$rating);
     }
 
     public function store(BookRequest $request)
@@ -88,7 +91,7 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         $book = Book::find($id);
-        $book->seller_id = \Auth::guard('web_seller')->user()->id;;
+        $book->seller_id = \Auth::guard('web_seller')->user()->id;
         $book->author_id = $request->author_id;
         $book->title = $request->title;
         $book->original_title = $request->original_title;

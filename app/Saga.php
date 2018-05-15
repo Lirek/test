@@ -12,8 +12,9 @@ class Saga extends Model
     protected $table = 'saga';
 
     protected $fillable = [
+        'id', 'seller_id', 'rating_id',
         'sag_name', 'sag_description',
-        'status', 'type_saga', 'id'
+        'img_saga', 'status', 'type_saga',
     ];
 
     public function book()
