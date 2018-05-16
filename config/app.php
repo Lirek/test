@@ -182,6 +182,9 @@ return [
 
         // redes sociales
         Laravel\Socialite\SocialiteServiceProvider::class,
+
+        //QR GENERATOR
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -236,6 +239,9 @@ return [
 
         //redes sociales
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        //Qr Generator
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
 
     ],
 

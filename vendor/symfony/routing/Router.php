@@ -226,8 +226,6 @@ class Router implements RouterInterface, RequestMatcherInterface
 
     /**
      * Sets the ConfigCache factory to use.
-     *
-     * @param ConfigCacheFactoryInterface $configCacheFactory The factory to use
      */
     public function setConfigCacheFactory(ConfigCacheFactoryInterface $configCacheFactory)
     {
@@ -304,7 +302,9 @@ class Router implements RouterInterface, RequestMatcherInterface
             }
         );
 
-        require_once $cache->getPath();
+        if (!class_exists($this->options['matcher_cache_class'], false)) {
+            require_once $cache->getPath();
+        }
 
         return $this->matcher = new $this->options['matcher_cache_class']($this->context);
     }
@@ -336,7 +336,9 @@ class Router implements RouterInterface, RequestMatcherInterface
                 }
             );
 
-            require_once $cache->getPath();
+            if (!class_exists($this->options['generator_cache_class'], false)) {
+                require_once $cache->getPath();
+            }
 
             $this->generator = new $this->options['generator_cache_class']($this->context, $this->logger);
         }
