@@ -79,12 +79,12 @@
                         Login con Google
                     </a>
 
-                    {{--<a href="login/github" class="btn btn-github">--}}
-                        {{--<i class="fa fa-github"></i>--}}
-                        {{--<i class="fa fa-github-alt"></i>--}}
-                        {{--<i class="fa fa-github-square"></i>--}}
-                        {{--Login con Github--}}
-                    {{--</a>--}}
+                    <a href="login/github" class="btn btn-github">
+                        <i class="fa fa-github"></i>
+                        <i class="fa fa-github-alt"></i>
+                        <i class="fa fa-github-square"></i>
+                        Login con Github
+                    </a>
                 </div>
                 {{--fin de footer--}}
 
