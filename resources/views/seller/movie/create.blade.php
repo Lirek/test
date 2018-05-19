@@ -204,9 +204,9 @@
                             <br/>
 
                             {{--acrchivo de la pelicula--}}
-                            {{--<label for="exampleInputFile" class="control-label">cargar el libro</label>--}}
-                            {{--{!! Form::file('books_file',['class'=>'form-control-file','control-label']) !!}--}}
-                            {{--<br/>--}}
+                            <label for="exampleInputFile" class="control-label">cargar la pelicula(falta en la tabla )</label>
+                            {!! Form::file('books_file',['class'=>'form-control-file','control-label']) !!}
+                            <br/>
 
                             {{--selecionar pais--}}
                             <label class="control-label"> Pais</label>
@@ -448,6 +448,7 @@
                                 <option value="ZW">Zimbabue</option>
                                 <option value="" selected>Seleccione una Opcion</option>
                             </select>
+                            <br />
                             <br />
 
                             {{--Basado en un libro o no --}}

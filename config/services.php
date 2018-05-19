@@ -52,7 +52,6 @@ return [
     'facebook' => [
         'client_id'     => env('FACEBOOK_ID','196009587789318'),
         'client_secret' => env('FACEBOOK_SECRET','30a7707c5762f77be28f1fe0480a672a'),
-
         'redirect'      => 'http://prueba.leipel.com.automatis.com.ec/public/login/facebook/callback',
 //        'redirect' => 'http://localhost/leipel.com/public/login/facebook/callback',
     ],
