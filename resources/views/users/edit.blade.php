@@ -6,17 +6,6 @@
 
     <div class="row">
 
-        <div class="text-center">
-            <h2>
-                <b>
-                    <i>
-                        <u> Editar {{ $user->name }}</u>
-                    </i>
-                </b>
-            </h2>
-        </div>
-        <br/>
-        <br/>
 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -26,7 +15,7 @@
 
                 <div class="panel-body">
 
-                    {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'file'=>true,'class'=>'form-horizontal']) !!}
+                    {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal']) !!}
                     {{ Form::token() }}
 
                     {{--Nombre--}}
@@ -59,15 +48,6 @@
                         </div>
                     </div>
 
-                    {{--Codigo Referido--}}
-                    <div class="form-group ">
-                        <div class="col-md-4 control-label">
-                            {!! Form::label('codigo_ref','Codigo Referido',['class'=>'control-label']) !!}
-                        </div>
-                        <div class="col-md-6 control-label">
-                            {!! Form::text('codigo_ref',$user->codigo_ref,['class'=>'form-control']) !!}
-                        </div>
-                    </div>
 
                     {{--Cedula Nota no es un select--}}
                     <div class="form-group ">
@@ -80,15 +60,6 @@
                         </div>
                     </div>
 
-                    {{--Numero de documento Nota no se documento--}}
-                    <div class="form-group ">
-                        <div class="col-md-4 control-label">
-                            {!! Form::label('num_doc','Numero Documento',['class'=>'control-label']) !!}
-                        </div>
-                        <div class="col-md-6 control-label">
-                            {!! Form::text('num_doc',$user->num_doc,['class'=>'form-control']) !!}
-                        </div>
-                    </div>
 
                     {{--Imagen Documento--}}{{-- esto me da error corregir--}}
                     <div class="form-group ">
@@ -103,7 +74,7 @@
                     {{--Genero --}}
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('num_doc','Numero Documento',['class'=>'control-label']) !!}
+                            {!! Form::label('num_doc','Genero',['class'=>'control-label']) !!}
                         </div>
                         <div class="col-md-6 control-label">
                             {!! Form::select('type',['M'=>'Masculino', 'F'=>'Femenino'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']) !!}
@@ -116,29 +87,19 @@
                             {!! Form::label('alias','Alias',['class'=>'control-label']) !!}
                         </div>
                         <div class="col-md-6 control-label">
-                            {!! Form::text('alias',$user->alias,['class'=>'form-control','control-label']) !!}
+                            {!! Form::text('alias',$user->alias,['class'=>'form-control']) !!}
                         </div>
                     </div>
 
-                    {{--Imagen Perfil--}}{{-- da error corregir--}}
+                    {{--Imagen Perfil--}}
                     <div class="form-group ">
-                    <div class="col-md-4 control-label">
-                    {!! Form::label('img_perf','Imagen del Perfil',['class'=>'control-label']) !!}
-                    </div>
-                    <div class="col-md-6 control-label">
-                    {!! Form::file('img_perf',$user->img_perf,['class'=>'form-control-file','control-label']) !!}
-                    </div>
+                         <div id="image-preview" style="border:#000000 1px solid; background-image={{asset($user->img_perf})}; background-size:240px 240px;" class="col-md-6">
+                             <label for="image-upload" id="image-label">Imagen de Perfil</label>
+                             <input type="file" name="img_perf" id="image-upload" accept=".jpg" required>
+                         </div>
                     </div>
 
-                    {{--Credito--}}
-                    <div class="form-group ">
-                        <div class="col-md-4 control-label">
-                            {!! Form::label('credito','Credito',['class'=>'control-label']) !!}
-                        </div>
-                        <div class="col-md-6 control-label">
-                            {!! Form::number('credito',$user->credito,['class'=>'form-control','readonly']) !!}
-                        </div>
-                    </div>
+                   
 
                     {{--Fecha Nacimiento--}}
                     <div class="form-group ">
@@ -173,5 +134,21 @@
         </div>
 
     </div>
+
+@endsection
+
+@section('js')
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $.uploadPreview({
+    input_field: "#image-upload",
+    preview_box: "#image-preview",
+    label_field: "#image-label"
+  });
+});
+
+</script>
 
 @endsection

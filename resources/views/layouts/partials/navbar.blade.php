@@ -15,7 +15,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-tasks"></i>
-                    <span class="badge bg-success">8</span>
+                    <span class="badge bg-alert">8</span>
                 </a>
                 <ul class="dropdown-menu extended tasks-bar">
                     <li>
@@ -199,13 +199,12 @@
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="" src="images/2.png">
-                    <span class="username">John Doe</span>
+                    <img alt="user" src="{{asset(Auth::user()->img_perf)}}">
+                    <span class="username">{{Auth::user()->name}}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="{{ route('users.edit',Auth::user()->id) }}"><i class="fa fa-cog"></i> Editar</a></li>
+                    <li><a href="{{ route('users.edit',Auth::user()->id) }}"><i class="fa fa-cog"></i>Perfil</a></li>
                     <li>
                         <a href="{{ url('/logout') }}"
                            onclick="event.preventDefault();

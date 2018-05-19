@@ -356,7 +356,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
 
-
+    Route::get('messages','SellerController@ShowMessages');
 
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use auth;
 
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
@@ -38,18 +38,11 @@ class SellerController extends Controller
     {
     	
     	$id=$request->id;
-    	
         $image =$request->file('adj_ruc');
-    
         $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-
         $destinationPath = public_path('/productor/'.$id);
-        
-
-
     	$seller = Seller::find($id);
         $seller_modules;
-        
         
 
         $seller->tlf = $request->tlf;
@@ -59,11 +52,15 @@ class SellerController extends Controller
         $seller->adj_ruc =$image->move($destinationPath, $input['imagename']);
         $seller->save();
     
-		
     	return view('seller.home');
     }
 
-
+    public function ShowMessages()
+    {
+        $user=Auth::guard('web_seller')->user()->id;
+        
+        return view('seller.messages');
+    }
     
 }
 	

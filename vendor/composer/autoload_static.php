@@ -3087,6 +3087,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SellerMessages' => __DIR__ . '/../..' . '/database/migrations/2018_05_17_061208_SellerMessages.php',
         'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
         'SimpleSoftwareIO\\QrCode\\BaconQrCodeGenerator' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/BaconQrCodeGenerator.php',
         'SimpleSoftwareIO\\QrCode\\DataTypes\\BTC' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/BTC.php',

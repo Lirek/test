@@ -16,9 +16,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <title>{{ config('app.name', 'LEIPEL') }}</title>
 
     <!-- Styles -->
-    {{--<link href="{{ asset("css/app.css") }}" rel="stylesheet">--}}
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-
+    
+    
     <!-- Styles del AdminLTE-->
 
     <!--                                 del template de vistor Bootstrap               -->
@@ -67,7 +66,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {{--del template visitor--}}
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     {{--del template visitor--}}
-    <!-- Styles del AdminLTE-->
+    <style type="text/css">
+#image-preview {
+  width: 280px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: #ecf0f1;
+}
+#image-preview input {
+  line-height: 200px;
+  font-size: 200px;
+  position: absolute;
+  opacity: 0;
+  z-index: 10;
+}
+#image-preview label {
+  position: absolute;
+  z-index: 5;
+  opacity: 0.8;
+  cursor: pointer;
+  background-color: #bdc3c7;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+}
+ * {
+    box-sizing: border-box;
+}
+
+.zoom {
+    padding: 50px;
+    background-color: transparent;
+    transition: transform .2s;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+</style>
 
     <!-- Scripts -->
     <script>
@@ -75,6 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
 </head>
 <body>
 <section id="container">
@@ -83,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--logo start-->
         <div class="brand">
             <a href="{{ url('/') }}" class="logo">
-                VISITORS
+                
             </a>
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars"></div>
@@ -113,8 +165,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </section>
         <!-- footer -->
         <div class="footer ">
-            <div class="wthree-copyright">
-                <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+            <div class="">
+                <p>Leipel 2018</p>
             </div>
         </div>
         <!-- / footer -->
@@ -123,14 +175,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 
 <!-- Scripts -->
+
 {{--<script src="/js/app.js"></script>--}}
-<script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
-{{--<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>--}}
+<script src="{{ asset('plugins/visitor/js/jquery2.0.3.min.js') }}"></script>
+
 <script src="{{ asset('plugins/visitor/js/bootstrap.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/jquery.dcjqaccordion.2.7.js') }}"></script>
 
+<script src="{{ asset('plugins/visitor/js/scripts.js') }}"></script>
+
 <script src="{{ asset('plugins/visitor/js/script.js') }}"></script>
+
+<script src="{{ asset('plugins/upload/jquery.uploadPreview.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/jquery.slimscroll.js') }}"></script>
 
@@ -146,96 +203,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 {{--<script src="{{ asset('plugins/LzTE/thema/raphael/raphael.min.js') }}"></script>--}}
 {{--<script src="{{ asset('plugins/LTE/thema/morris.js/morris.min.js') }}"></script>--}}
 
-<!-- morris JavaScript -->
-<script>
-    $(document).ready(function() {
-        //BOX BUTTON SHOW AND CLOSE
-        jQuery('.small-graph-box').hover(function() {
-            jQuery(this).find('.box-button').fadeIn('fast');
-        }, function() {
-            jQuery(this).find('.box-button').fadeOut('fast');
-        });
-        jQuery('.small-graph-box .box-close').click(function() {
-            jQuery(this).closest('.small-graph-box').fadeOut(200);
-            return false;
-        });
-
-        //CHARTS
-        function gd(year, day, month) {
-            return new Date(year, month - 1, day).getTime();
-        }
-
-        graphArea2 = Morris.Area({
-            element: 'hero-area',
-            padding: 10,
-            behaveLikeLine: true,
-            gridEnabled: false,
-            gridLineColor: '#dddddd',
-            axes: true,
-            resize: true,
-            smooth:true,
-            pointSize: 0,
-            lineWidth: 0,
-            fillOpacity:0.85,
-            data: [
-                {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-
-            ],
-            lineColors:['#eb6f6f','#926383','#eb6f6f'],
-            xkey: 'period',
-            redraw: true,
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-            pointSize: 2,
-            hideHover: 'auto',
-            resize: true
-        });
-
-
-    });
-</script>
-
-<!-- calendar -->
-<script type="text/javascript" src="js/monthly.js"></script>
-<script type="text/javascript">
-    $(window).load( function() {
-
-        $('#mycalendar').monthly({
-            mode: 'event',
-
-        });
-
-        $('#mycalendar2').monthly({
-            mode: 'picker',
-            target: '#mytarget',
-            setWidth: '250px',
-            startHidden: true,
-            showTrigger: '#mytarget',
-            stylePast: true,
-            disablePast: true
-        });
-
-        switch(window.location.protocol) {
-            case 'http:':
-            case 'https:':
-                // running on a server, should be good.
-                break;
-            case 'file:':
-                alert('Just a heads-up, events will not work when run locally.');
-        }
-
-    });
-</script>
-<!-- //calendar -->
 @yield('js')
+
+
 
 </body>
 </html>

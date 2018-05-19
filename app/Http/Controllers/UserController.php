@@ -82,13 +82,32 @@ class UserController extends Controller
         $user->img_doc = $request->img_doc;
         $user->type= $request->type;
         $user->alias = $request->alias;
-        $user->img_perf = $request->img_perf;
+        
+        if ($request->hasFile('img_perf'))
+        {
+
+
+         $store_path = public_path().'/user/'.$user->id.'/profile/';
+         
+         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+
+         $request->file('img_perf')->move($store_path,$name);
+
+         $real_path='/user/'.$user->id.'/profile/'.$name;
+         
+         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
+        }
+        else
+        {
+            $user->img_perf= NULL;
+        }
         $user->credito = $request->credito;
         $user->fech_nac = $request->fech_nac;
-//        dd($user);
+     
+        //dd($user);
         $user->save();
-
-        return redirect()->route('users.index');
+        Flash('Se Han Modificado Sus Datos Con Exito')->success();
+        return view('home');
     }
 
     /**
