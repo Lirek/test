@@ -13,8 +13,8 @@ html, body{
 	font-family: 'Roboto', sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    background: url('../images/Leipel.png') repeat;
-	background-size:150px 150px;
+    background: url('../images/bg.jpeg') no-repeat 0px 0px;
+    background-size:cover;
 }
 body a{
 	transition: 0.5s all ease;
@@ -42,7 +42,7 @@ body a:hover{
     width:240px;
     height:100%;
     position:fixed;
-    background:#2899d5;
+    background:#2899d5 no-repeat;
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;

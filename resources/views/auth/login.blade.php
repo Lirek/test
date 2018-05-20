@@ -126,40 +126,7 @@
                     </div>
                 </div>
 
-                {{--footer para integrar las redes sociales--}}
-<<<<<<< HEAD
-                    
-=======
-                <div class="panel-footer text-center">
-                    <a href="login/facebook" class="btn btn-facebook">
-                        <i class="fa fa-facebook"></i>
-                        Login con Facebook
-                    </a>
 
-                    <a href="login/twitter" class="btn btn-twitter">
-                        <i class="fa fa-twitter"></i>
-                        Login con Twitter
-                    </a>
-
-                    <a href="login/google" class="btn btn-google">
-                        <i class="fa fa-google-plus"></i>
-                        Login con Google
-                    </a>
-
-                    {{--<a href="login/github" class="btn btn-github">--}}
-                        {{--<i class="fa fa-github"></i>--}}
-                        {{--<i class="fa fa-github-alt"></i>--}}
-                        {{--<i class="fa fa-github-square"></i>--}}
-                        {{--Login con Github--}}
-                    {{--</a>--}}
-                </div>
->>>>>>> f78ccd04bdc4f55506397e1d1eca75905d4ad6e6
-                {{--fin de footer--}}
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--Seccion de Scripts-->
        <script src="{{ asset('plugins/js/bootstrap.min.js') }}"></script>

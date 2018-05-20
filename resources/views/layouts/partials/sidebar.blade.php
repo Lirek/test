@@ -48,9 +48,8 @@
                         <span>Mis Redes</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="gallery.html">Ver Redes</a></li>
-                        <li><a href="404.html">Mis Referidos</a></li>
-                        <li><a href="registration.html">Referir</a></li>
+                        <li><a href="{{url('WebsUser')}}">Ver Redes</a></li>                        
+                        <li><a href="{{url('Referals')}}">Referir</a></li>
                     </ul>
                 </li>
             </ul>            

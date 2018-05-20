@@ -99,10 +99,10 @@
             </div>
         </div>
     </div>
-    <div class="row" style="background-color: #3871b9">
-      <center style="">
+    <div class="row">
+      <center>
              <div class="col-md-4 zoom"> 
-                <a class="button" href="#"><img src="<?php echo e(asset('sistem_images/logo-icon-2.png')); ?>" width="200" height="150" alt=""></a></div>
+                <a class="button" href="<?php echo e(url('MusicContent')); ?>"><img src="<?php echo e(asset('sistem_images/logo-icon-2.png')); ?>" width="200" height="150" alt=""></a></div>
              <div class="col-md-4 zoom"> 
                 <a class="button" href="#"><img src="<?php echo e(asset('sistem_images/logo-icon-4.png')); ?>" width="200" height="150" alt=""></a></div> 
              <div class="col-md-4 zoom" style="margin-bottom: 15px">   

@@ -38,6 +38,12 @@ Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCal
 
 Route::resource('users', 'UserController');
 
+Route::get('MusicContent','ContentController@ShowMusic');
+
+Route::get('WebsUser','ReferalsController@ShowWebs');
+
+Route::get('Referals','ReferalsController@ShowReferals');
+
 Route::get('/admin','AdminController@index');
 
 /*------------------------------------------------------------------
