@@ -36,7 +36,8 @@
                             <li style="height: 90px">
                                 <a href="#">Libro
                                     <span class="pull-right ">
-                                        <img class="img-rounded img-responsive av" src="/images/bookcover/{{ $book->cover }}"
+                                        <img class="img-rounded img-responsive av"
+                                             src="/images/bookcover/{{ $book->cover }}"
                                              style="width:70px;height:70px;" alt="User Avatar" data-toggle="modal"
                                              data-target="#modal-default">
                                     </span>
@@ -44,7 +45,15 @@
                                 <br/>
                             </li>
                             <li>
-                                <a href="#">Titulo original <span class="pull-right ">{{ $book->original_title }}</span></a>
+                                <a href="#"> Titulo original
+                                    <span class="pull-right ">
+                                        {{ $book->original_title }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"> Categoria <span class="pull-right"> {{ $book->rating->r_name }} </span>
+                                </a>
                             </li>
                             <li>
                                 <a href="#">Saga <span class="pull-right ">{{ $book->saga->sag_name }}</span></a>
@@ -66,7 +75,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        {{--<h4 class="modal-title text-center">{{ $book->original_title }}</h4>--}}
+                        <h4 class="modal-title text-center">{{ $book->original_title }}</h4>
                     </div>
                     <div class="modal-body text-center ">
                         {{--<p>One fine body&hellip;</p>--}}

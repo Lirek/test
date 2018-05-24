@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Saga;
+//use App\Saga;
+use App\Sagas;
 use Illuminate\Http\Request;
 use App\BookAuthor;
 use App\Book;
@@ -18,6 +19,7 @@ class BooksController extends Controller
         $books->each(function ($books) {
             $books->author;
             $books->seller;
+            $books->saga;
         });
 
 //        dd($books->author->full_name);
@@ -27,7 +29,7 @@ class BooksController extends Controller
     public function create()
     {
         $authors = BookAuthor::orderBy('id', 'DESC')->pluck('full_name', 'id');
-        $sagas = Saga::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
 //        $sagas = Saga::all();
 //        $y = New saga;
@@ -72,7 +74,7 @@ class BooksController extends Controller
             $books->author;
             $books->saga;
             $authors = BookAuthor::orderBy('id', 'ASC')->pluck('full_name', 'id');
-            $sagas = Saga::orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
+            $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
 
             return view('seller.book.edit')
                 ->with('book', $books)
@@ -130,6 +132,7 @@ class BooksController extends Controller
         $books->each(function ($books) {
             $books->author;
             $books->saga;
+            $books->rating;
         });
 
         return view('seller.book.show')->with('book',$books);

@@ -128,7 +128,7 @@
 
                 {{--footer para integrar las redes sociales--}}
 <<<<<<< HEAD
-                    
+
 =======
                 <div class="panel-footer text-center">
                     <a href="login/facebook" class="btn btn-facebook">

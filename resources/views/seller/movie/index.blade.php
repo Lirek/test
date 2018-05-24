@@ -4,7 +4,7 @@
 
     <section class="content-header">
         <h1>
-            Saga
+            Registro
         </h1>
     </section>
 
@@ -15,7 +15,7 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header bg bg-black-gradient">
-                        <h3 class="box-title"><b> <i> Sagas </i> </b></h3>
+                        <h3 class="box-title"><b> <i> Peliculas </i> </b></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -23,43 +23,44 @@
                             <thead>
                             <tr>
                                 <th class="text-center">Codigo</th>
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Imgen de la saga</th>
+                                <th class="text-center">Titulo</th>
                                 <th class="text-center">Rating</th>
-                                <th class="text-center">Tipo de saga</th>
+                                <th class="text-center">Categoria</th>
+                                <th class="text-center">Portada</th>
                                 {{--<th class="text-center">Productora</th>--}}
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($saga as $s)
-                                @if(Auth::guard('web_seller')->user()->id === $s->seller_id)
+                            @foreach($movie as $m)
+                                {{--{{ dd($m) }}--}}
+                                @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
 
                                     <tr>
-                                        <td class="text-center"> {{ $s->id }} </td>
-                                        <td class="text-center"> {{ $s->sag_name }} </td>
+                                        <td class="text-center"> {{ $m->id }} </td>
+                                        <td class="text-center"> {{ $m->title }} </td>
+                                        <td class="text-center"> {{ $m->rating->r_name }} </td>
+                                        <td class="text-center"> {{ $m->saga->sag_name }} </td>
+                                        {{--<td class="text-center"> {{ $s->seller->name }} </td>--}}
                                         <td class="text-center ">
                                             <a href="#">
-                                                <img class=" img-circle " src="/images/sagas/{{ $s->img_saga }}"
+                                                <img class=" img-circle " src="/movie/poster/{{ $m->img_poster }}"
                                                      style="width:50px;height:50px;" alt="Portada">
                                             </a>
                                         </td>
-                                        <td class="text-center"> {{ $s->rating->r_name }} </td>
-                                        <td class="text-center"> {{ $s->type_saga }} </td>
-                                        {{--<td class="text-center"> {{ $s->seller->name }} </td>--}}
                                         <td class="text-center ">
-                                            <a href="{{ route('sagas.destroy',$s->id) }}"
-                                               onclick="return confirm('¿ Desea eliminar el libro  {{ $s->title }}?')"
+                                            <a href="{{ route('movies.destroy',$m->id) }}"
+                                               onclick="return confirm('¿ Desea eliminar el libro  {{ $m->title }}?')"
                                                class="btn btn-danger active ">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                             </a>
                                             &nbsp;
-                                            <a href="{{ route('sagas.edit', $s->id) }}"
+                                            <a href="{{ route('movies.edit', $m->id) }}"
                                                class="btn btn-warning active">
                                                 <span class="glyphicon glyphicon-wrench"></span>
                                             </a>
                                             &nbsp;
-                                            <a href="{{ route('tbook.show', $s->id) }}"
+                                            <a href="{{ route('movies.show', $m->id) }}"
                                                class="btn btn-info active">
                                                 <span class="fa fa-play-circle" aria-hidden="true"></span>
                                             </a>
@@ -72,10 +73,10 @@
                             <tfoot>
                             <tr>
                                 <th class="text-center">Codigo</th>
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Imgen de la saga</th>
+                                <th class="text-center">Titulo</th>
                                 <th class="text-center">Rating</th>
-                                <th class="text-center">Tipo de saga</th>
+                                <th class="text-center">Categoria</th>
+                                <th class="text-center">Portada</th>
                                 {{--<th class="text-center">Productora</th>--}}
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -90,7 +91,7 @@
         </div>
 
         <div class="col-md-offset-10">
-            <a href="{{ route('sagas.create') }}" class="btn btn-info">
+            <a href="{{ route('movies.create') }}" class="btn btn-info">
                 <span class="fa fa-address-book-o">&nbsp;
                     <b>
                         <i> Agregar </i>

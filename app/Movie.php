@@ -17,4 +17,14 @@ class Movie extends Model
         'rating_id', 'cost','status',
         'trailer_url'
     ];
+
+    public function saga()
+    {
+        return $this->belongsTo('App\Sagas');
+    }
+
+    public function rating()
+    {
+        return $this->belongsTo('App\Rating');
+    }
 }
