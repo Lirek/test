@@ -42,8 +42,8 @@ class MoviesController extends Controller
         $file->move($path1, $name);
 
         $files = $request->file('duration');
-        $names = 'movie' . $request->duration . '_' . time() . '.' . $files->getClientOriginalExtension();
-        $path2 = public_path() . '/movie/movies';
+        $names = $request->title . '_' . time() . '.' . $files->getClientOriginalExtension();
+        $path2 = public_path() . '/movie/film';
         $files->move($path2, $names);
 
         $movie = new Movie($request->all());
@@ -100,16 +100,18 @@ class MoviesController extends Controller
         $movie->story = $request->story;
         $movie->country = $request->country;
         $movie->based_on = $request->based_on;
-        if ($request->img_poster <> null) {
+        if ($request->duration <> null) {
             $files = $request->file('duration');
-            $names = 'movie' . $request->duration . '_' . time() . '.' . $files->getClientOriginalExtension();
-            $path2 = public_path() . '/movie/movies';
+            $names = $request->title . '_' . time() . '.' . $files->getClientOriginalExtension();
+            $path2 = public_path() . '/movie/film';
             $files->move($path2, $names);
             $movie->duration = $names;
         }
         $movie->rating_id = $request->rating_id;
         $movie->cost = $request->cost;
         $movie->trailer_url = $request->trailer_url;
+
+//        dd($movie,$movie->duration,$movie->file, $file,$files);
         $movie->save();
 
         Flash::warning('Se ha modificado ' . $movie->title . ' de forma exitosa')->important();

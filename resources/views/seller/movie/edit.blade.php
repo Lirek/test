@@ -180,7 +180,7 @@
                         {{--Poster de la pelicula--}}
                         <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
                             <label for="image-upload" id="image-label"> Portada </label>
-                            {!! Form::file('img_postet',['class'=>'form-control-file','control-label','id'=>'image-upload'],['style'=>'border:#000000','1px solid ;']) !!}
+                            {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload'],['style'=>'border:#000000','1px solid ;']) !!}
                         </div>
 
                         {{--Selecion tipo de publico de la pelicula--}}
@@ -198,11 +198,6 @@
                             {{--acrchivo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">cargar pelicula</label>
                             {!! Form::file('duration',['class'=>'form-control-file','control-label']) !!}
-                            <br/>
-
-                            {{--acrchivo de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">cargar la pelicula(falta en la tabla )</label>
-                            {!! Form::file('books_file',['class'=>'form-control-file','control-label']) !!}
                             <br/>
 
                             {{--selecionar pais--}}
