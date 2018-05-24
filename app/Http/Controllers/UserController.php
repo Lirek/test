@@ -3,7 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Http\Requests\UserRequest;
+
 use App\User;
+use App\Megazines;
+use App\Tags;
+use App\Albums;
+use App\Songs;
+use App\Seller;
+use App\Radio;
+use App\BookAuthor;
+use App\Book;
+use App\Tv;
+use App\music_authors;
+use App\Transactions;
+use App\Referals;
 
 class UserController extends Controller
 {
@@ -33,9 +48,47 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = new User;
+        
+        $user->email = $request->email;
+        
+        $user->name = $request->name;
+        
+        $user->password = $request->password;
+                 
+                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                 $charactersLength = strlen($characters);
+                 $randomString = '';
+        
+                   for ($i = 0; $i < 6; $i++) 
+                      {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                      }
+
+
+            $code=$randomString;
+
+        $user->codigo_ref = $code;
+       
+        $user->save();
+
+        $referal_user = User::where('codigo_ref','=',$request->user_code)->first();
+      
+        $refered = new Referals;
+
+        $refered->user_id = $referal_user->id;
+
+        $refered->refered = $user->id;
+
+        $refered->my_code = $request->user_code;
+
+        $refered->save();
+
+        Auth::login($user);
+
+        return view('home');
     }
 
     /**
@@ -46,7 +99,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user= User::where('codigo_ref','=',$id)->get();
+
+        return view('users.register')->with('user_code',$id);
     }
 
     /**
@@ -76,7 +131,6 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
-        $user->codigo_ref = $request->codigo_ref;
         $user->ci = $request->ci;
         $user->num_doc = $request->num_doc;
         $user->img_doc = $request->img_doc;
@@ -101,7 +155,7 @@ class UserController extends Controller
         {
             $user->img_perf= NULL;
         }
-        $user->credito = $request->credito;
+        
         $user->fech_nac = $request->fech_nac;
      
         //dd($user);
@@ -120,4 +174,40 @@ class UserController extends Controller
     {
         //
     }
+
+    public function BuySingle($id,Request $request)
+    {
+        $Single= Songs::find($id);
+        
+        $user = User::find(Auth::user()->id);
+
+        if ($Single->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+        
+        $check = Transactions::where('song_id','=',$Single->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->song_id=$Single->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $Single->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$Single->cost;
+            $user->save(); 
+
+            return response()->json($Transaction);
+        }
+
+    }
+
+    
 }

@@ -45,6 +45,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--        //calendar          -->
 
     <!--       del template visitor     //font-awesome icons -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/regular.css" integrity="sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
+
+
 {{--    <script src="{{ asset('plugins/visitor/js/jquery2.0.3.min.js') }}"></script>--}}
     <script src="{{ asset('plugins/visitor/js/raphael-min.js') }}"></script>
     <script src="{{ asset('plugins/visitor/js/morris.js') }}"></script>
@@ -118,6 +122,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     -webkit-transform: scale(1.5); /* Safari 3-8 */
     transform: scale(1.5); 
 }
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
 </style>
 
     <!-- Scripts -->
@@ -192,6 +213,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('plugins/visitor/js/jquery.slimscroll.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/jquery.nicescroll.js') }}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <!--[if lte IE 8]>
 <script language="javascript" type="text/javascript" src="{{ asset('plugins/visitor/js/flot-chart/excanvas.min.js')}}"></script>

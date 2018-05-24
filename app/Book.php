@@ -13,7 +13,8 @@ class Book extends Model
         'seller_id', 'author_id', 'title', 'id',
         'original_title', 'cover', 'sinopsis',
         'books_file', 'country', 'after', 'before',
-        'saga_id', 'release_year', 'cost', 'status'
+        'saga_id', 'release_year', 'cost', 'status',
+        'rating_id'
     ];
 
     public function author()
@@ -28,7 +29,12 @@ class Book extends Model
 
     public function saga()
     {
-        return $this->belongsTo('App\Saga');
+        return $this->belongsTo('App\Sagas');
+    }
+
+    public function rating()
+    {
+        return $this->belongsTo('App\Rating');
     }
 
 }

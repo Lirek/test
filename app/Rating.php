@@ -19,4 +19,13 @@ class Rating extends Model
         return $this->hasMany('App\Sagas','id');
     }
 
+    public function movies()
+    {
+        return $this->hasMany('App\Movie', 'rating_id');
+    }
+
+    public function books()
+    {
+        return $this->hasMany('App\Book','rating_id');
+    }
 }

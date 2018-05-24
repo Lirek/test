@@ -19,6 +19,6 @@ class Saga extends Model
 
     public function book()
     {
-        return $this->hasOne('App\Book');
+        return $this->hasOne('App\Book','saga_id');
     }
 }

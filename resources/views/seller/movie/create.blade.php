@@ -179,8 +179,8 @@
 
                         {{--Poster de la pelicula--}}
                         <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
-                            <label for="image-upload" id="image-label"> Portada </label>
-                            {!! Form::file('img_postet',['class'=>'form-control-file','control-label','id'=>'image-upload'],['style'=>'border:#000000','1px solid ;']) !!}
+                            <label for="image-upload" id="image-label"> Portadas </label>
+                            {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload'],['style'=>'border:#000000','1px solid ;']) !!}
                         </div>
 
                         {{--Selecion tipo de publico de la pelicula--}}
@@ -204,8 +204,8 @@
                             <br/>
 
                             {{--acrchivo de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">cargar la pelicula(falta en la tabla )</label>
-                            {!! Form::file('books_file',['class'=>'form-control-file','control-label']) !!}
+                            <label for="exampleInputFile" class="control-label">cargar pelicula</label>
+                            {!! Form::file('duration',['class'=>'form-control-file','control-label']) !!}
                             <br/>
 
                             {{--selecionar pais--}}
@@ -507,11 +507,11 @@
                             {{--año de salida de la pelicula --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             {{--                            {!! Form::text('release_year',null,['class'=>'form-control','placeholder'=>'debe ser tipo text o date','id'=>'datepicker']) !!}--}}
-                            <input type="numbre" id="datepicker" name="release_year" class="form-control">
+                            <input type="number" {{--id="datepicker" --}}name="release_year" class="form-control">
 
                             {{--duracion de la pelicula--}}
-                            <label for="exampleInputPassword1" class="control-label">Precio</label>
-                            {!! Form::text('duration',null,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}
+                            {{--<label for="exampleInputPassword1" class="control-label">Duracion</label>--}}
+{{--                            {!! Form::text('duration',null,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}--}}
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Precio</label>

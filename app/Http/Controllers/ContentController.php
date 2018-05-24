@@ -22,13 +22,26 @@ use App\Transactions;
 class ContentController extends Controller
 {
     
-  public function ShowMusic()
+  	public function ShowMusic()
     {
     	$MusicAuthors = music_authors::all();
-    	$Singles = Songs::whereNull('album')->get();
-    	$Albums = Albums::all();
+    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
+    	$Albums = Albums::where('status','=','Aprobado')->get();
 		
+			
 		return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums); 
+    }
+
+    public function ShowAllSingles()
+    {
+    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
+		return response()->json($Singles); 
+    }
+
+    public function ShowAllAlbum()
+    {
+    	$Albums = Albums::where('status','=','Aprobado')->get();
+    	return response()->json($Albums);
     }
 }
 

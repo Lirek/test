@@ -30,9 +30,9 @@ class Sagas extends Model
         return $this->hasMany('App\Megazines','saga_id');
     }
 
-    public function book()
+    public function books()
     {
-        return $this->hasOne('App\Book');
+        return $this->belongsTo('App\Book','saga_id');
     }
 
     public function seller()
@@ -43,5 +43,10 @@ class Sagas extends Model
     public function rating()
     {
     return $this->belongsTo('App\Rating', 'rating_id');
+    }
+
+    public function movies()
+    {
+        return $this->hasMany('App\Movie','saga_id');
     }
 }

@@ -18,7 +18,7 @@ class User extends Authenticatable
         'name', 'last_name','email', 'password',
         'codigo_ref', 'type_doc', 'num_doc',
         'img_doc', 'genero', 'alias', 'img_perf',
-        'credito', 'fech_nac','status',
+        'credito', 'fech_nac','status','id',
     ];
 
     /**
@@ -29,4 +29,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+     public function Referals()
+    {
+    return $this->hasMany('App\Referals', 'user_id');
+    }
 }

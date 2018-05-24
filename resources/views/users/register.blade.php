@@ -40,23 +40,40 @@
         </div>
       </div>
     </nav>
-<div class="container">
+  
+  <!--HEADER END-->
+
+
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        
+          <div class="col-md-8 col-md-offset-2">  
+            
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Registro</div>
+
                 <div class="panel-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Nombre</label>
+                            <input type="text" name="user_code" value="{{$user_code}}" hidden>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+                            <label for="email" class="col-md-4 control-label">Direccion de Correo</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -81,84 +98,30 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    Registrarse
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
                             </div>
                         </div>
-                                </form>
-                            </div>
-                            </div>
-                            <div class="row">
-                                <a href="login/facebook" class="btn btn-facebook">
-                                    <i class="fa fa-facebook"></i>
-                                    Inicio de Sesion con Facebook
-                                </a>
-
-                                <a href="login/twitter" class="btn btn-twitter">
-                                     <i class="fa fa-twitter"></i>
-                                        Inicio de Sesion con Twitter
-                                </a>
-
-                                <a href="login/google" class="btn btn-google">
-                                    <i class="fa fa-google-plus"></i>
-                                        Inicio de Sesion con Google
-                                </a>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+            
+            </div>
+            
+          </div>
 
-<<<<<<< HEAD
-=======
-                {{--footer para integrar las redes sociales--}}
-<<<<<<< HEAD
-
-=======
-                <div class="panel-footer text-center">
-                    <a href="login/facebook" class="btn btn-facebook">
-                        <i class="fa fa-facebook"></i>
-                        Login con Facebook
-                    </a>
-
-                    <a href="login/twitter" class="btn btn-twitter">
-                        <i class="fa fa-twitter"></i>
-                        Login con Twitter
-                    </a>
-
-                    <a href="login/google" class="btn btn-google">
-                        <i class="fa fa-google-plus"></i>
-                        Login con Google
-                    </a>
-
-                    {{--<a href="login/github" class="btn btn-github">--}}
-                        {{--<i class="fa fa-github"></i>--}}
-                        {{--<i class="fa fa-github-alt"></i>--}}
-                        {{--<i class="fa fa-github-square"></i>--}}
-                        {{--Login con Github--}}
-                    {{--</a>--}}
-                </div>
->>>>>>> f78ccd04bdc4f55506397e1d1eca75905d4ad6e6
-                {{--fin de footer--}}
->>>>>>> c6d11194f506b8715de35a5106629965b6de24fe
-
+    </div>
+    
+</div>
 
 <!--Seccion de Scripts-->
        <script src="{{ asset('plugins/js/bootstrap.min.js') }}"></script>
@@ -169,5 +132,7 @@
        <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+
+
 
 

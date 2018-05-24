@@ -4,10 +4,10 @@
 	<div class="row">
 	
 		<div class="market-updates">
-                <div class="col-md-3">
+                <div class="col-lg-4">
                     <div class="market-update-block clr-block-2">
                         <div class="col-md-4 market-update-right">
-                            <i class="fa fa-eye"> </i>
+                            <i class="far fa-eye fa-3x"> </i>
                         </div>
                         <div class="col-md-8 market-update-left">
                             <h4>Mi Codigo de Referido</h4>
@@ -19,10 +19,10 @@
                 </div>
 	
 		<div class="market-updates">
-                <div class="col-md-3">
+                <div class="col-lg-4">
                     <div class="market-update-block clr-block-2">
                         <div class="col-md-4 market-update-right">
-                            <i class="fa fa-envelope"> </i>
+                            <i class="far fa-envelope fa-3x"> </i>
                         </div>
                         <div class="col-md-8 market-update-left">
                             <h4>Invitar Por Correo</h4>
@@ -39,16 +39,33 @@
 			</div>
 		</div>
 
-	</div>
+        <div class="market-updates">
+                <div class="col-lg-4">
+                    <div class="market-update-block clr-block-2">
+                        <div class="col-md-4 market-update-right">
+                            <i class="far fa-eye fa-3x"> </i>
+                        </div>
+                        <div class="col-lg-8 market-update-left">
+                            <h4>Mi Enlace </h4>
+                            <p><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></p>
+                            
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+    
+<div class="col-lg-4">
+    
+
+
+    <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+
+    </div>
+	
+<br>
 <br>
 	<div class="row">
-	<div class="col-lg-6">
 	
-
-
-	<?php echo QrCode::size(300)->generate('https://www.leipel.com/register/'.Auth::user()->codigo_ref);; ?>
-
-	</div>
 	</div>
 
 </div>

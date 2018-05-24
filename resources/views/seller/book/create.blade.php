@@ -204,6 +204,13 @@
                             {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo del libro']) !!}
                             <br/>
 
+                            {{--seleccion de rating--}}
+                            <label for="exampleInputFile" class="control-label">Tipo de rating</label>
+                            <br/>
+                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']) !!}
+                            <br/>
+                            <br/>
+
                             {{--ac}rchivo del libro--}}
                             <label for="exampleInputFile" class="control-label">cargar el libro</label>
                             {!! Form::file('books_file',['class'=>'form-control-file','control-label']) !!}
@@ -505,7 +512,7 @@
                             {{--año de salida del libro --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             {{--                            {!! Form::text('release_year',null,['class'=>'form-control','placeholder'=>'debe ser tipo text o date','id'=>'datepicker']) !!}--}}
-                            <input type="numbre" id="datepicker" name="release_year" class="form-control">
+                            <input type="number" {{--  id="datepicker" --}} name="release_year" class="form-control">
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Precio</label>

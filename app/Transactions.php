@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transactions extends Model
 {
-    use Notifiable;
 
     protected $table = 'transactions';
 
