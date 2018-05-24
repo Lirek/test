@@ -14,10 +14,10 @@
 
     <!-- Main content -->
     <section class="content">
+                {{ dd($movie->duration) }}
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
                 <div class="box box-widget widget-user ">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-black">

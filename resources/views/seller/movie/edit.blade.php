@@ -187,10 +187,7 @@
                         <div class="form-group col-md-4">
                             <label for="exampleInputFile" class="control-label">Categoria</label>
                             <br/>
-                            {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'selecione...'],['id'=>'exampleInputFile']) !!}
-                            {{--<a class="btn btn-app btn-sm" data-toggle="modal" data-target="#modal-defaultMA">--}}
-                            {{--<i class="material-icons"> add_circle</i>--}}
-                            {{--</a>--}}
+                            {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']) !!}
                             <br/>
                             <br/>
 
@@ -198,9 +195,9 @@
                             <label for="exampleInputFile" class="control-label">Titulo</label>
                             {!! Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Titulo de la pelicula']) !!}
 
-                            {{--titulo original de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">Titulo Original </label>
-                            {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo del libro']) !!}
+                            {{--acrchivo de la pelicula--}}
+                            <label for="exampleInputFile" class="control-label">cargar pelicula</label>
+                            {!! Form::file('duration',['class'=>'form-control-file','control-label']) !!}
                             <br/>
 
                             {{--acrchivo de la pelicula--}}
