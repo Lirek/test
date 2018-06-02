@@ -4,7 +4,7 @@
         <!-- settings start -->
     <?php if(Auth::guest()): ?>
         <!--Seller Login and registration Links -->
-            <div class="pull-right top-menu">
+            <div class="pull-left top-menu">
 
                 <li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
                 <li><a href="<?php echo e(url('/register')); ?>">Register</a></li>
@@ -15,7 +15,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-tasks"></i>
-                    <span class="badge bg-alert">8</span>
+                    <span class="badge bg-alert"></span>
                 </a>
                 <ul class="dropdown-menu extended tasks-bar">
                     <li>
@@ -84,7 +84,7 @@
             <li id="header_inbox_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-important">4</span>
+                    <span class="badge bg-important"></span>
                 </a>
                 <ul class="dropdown-menu extended inbox">
                     <li>
@@ -149,7 +149,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                     <i class="fa fa-bell-o"></i>
-                    <span class="badge bg-warning">3</span>
+                    <span class="badge bg-warning"></span>
                 </a>
                 <ul class="dropdown-menu extended notification">
                     <li>

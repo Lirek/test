@@ -56,7 +56,7 @@ class UserController extends Controller
         
         $user->name = $request->name;
         
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
                  
                  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                  $charactersLength = strlen($characters);
@@ -72,6 +72,8 @@ class UserController extends Controller
 
         $user->codigo_ref = $code;
        
+        $user->credito=0;
+
         $user->save();
 
         $referal_user = User::where('codigo_ref','=',$request->user_code)->first();
@@ -175,6 +177,10 @@ class UserController extends Controller
         //
     }
 
+//---------------------Iniicio de Compra, Muestra de Musica------------------
+    
+
+    //Funcion que recive el single a comprar y lo registra en la tabla Transacciones
     public function BuySingle($id,Request $request)
     {
         $Single= Songs::find($id);
@@ -206,8 +212,64 @@ class UserController extends Controller
 
             return response()->json($Transaction);
         }
-
+    
     }
 
-    
+    //funcion que se encarga de buscar el contenido musical del usuario 
+    public function MyMusic()
+    {
+        $TransactionMusic= Transactions::where('user_id','=',Auth::user()->id)->get();
+        
+        if($TransactionMusic->count() > 0)
+            {
+            
+                foreach ($TransactionMusic as $key) 
+                    {
+                        $Single[] = $key->Songs;
+                        $Albums[] = $key->Albums;    
+                    }
+            }
+        else
+        {
+            $Single = 0;
+            $Albums = 0;
+        }
+
+        return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
+        
+    }
+//-------------------------------------------------------------------------
+
+    public function BuyBook(Request $request,$id)
+    {
+        $book= Book::find($id);
+        $user = User::find(Auth::user()->id);
+
+        if ($book->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
+        $check = Transactions::where('books_id','=',$book->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->books_id=$book->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $book->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$book->cost;
+            $user->save(); 
+
+            return response()->json($Transaction);
+        }
+
+    }
 }

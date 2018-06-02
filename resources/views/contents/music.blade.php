@@ -99,6 +99,30 @@
 	 </div>
 
  </div>
+<div class="col-md-1"></div>
+<h1>Todos los Singles</h1>
+
+ <div class="row">
+  
+  @foreach($Singles as $Single)
+      <div class="col-md-3">   
+   <div class="card">
+    <img src="{{asset($Single->autors->photo)}}" alt="Autor Single" style="width:100%">
+        <div class="container-card" style="background-color: gray">
+          <h4><b>{{$Single->song_name}}</b></h4> 
+            <p>·Costo{{$Single->cost}}</p>
+             <p>·Artista {{$Single->autors->name}}</p>
+               @foreach($Single->tags()->get() as $tags)
+                <p>· {{$tags->tags_name}}</p> 
+                    @endforeach
+                  <button value1="{{$Single->id}}" value2="{{$Single->song_name}}" value3="{{$Single->cost}}" data-toggle="modal" data-target="#BuySingle" class="btn btn-primary btn-xs" id="Single" style="background-color: #13ec58"><i class="fa fa-ticket"></i> {{$Single->cost}}  Comprar</button>
+            </div>
+        </div>
+
+      </div>
+  @endforeach
+
+ </div>
 
 
 </div>
@@ -141,6 +165,8 @@
       
     </div>
   </div>
+
+
 @endsection
 
 @section('js')
@@ -150,7 +176,7 @@
 	
 		$(document).on('click', '#Single',function() {
 		  
-  		  var SongId = $(this).attr('value1');
+  		var SongId = $(this).attr('value1');
 		  var SongName = $(this).attr('value2');
 		  var SongCost = $(this).attr('value3');
 		  var modal = $('#BuySingle').modal();

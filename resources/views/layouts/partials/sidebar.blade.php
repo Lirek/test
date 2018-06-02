@@ -11,8 +11,7 @@
                         <span>Mi Musica</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="form_component.html">Mis Albumes</a></li>
-                        <li><a href="form_validation.html">Mis Singles</a></li>
+                        <li><a href="{{url('MyMusic')}}">Mi Playlist</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

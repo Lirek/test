@@ -126,12 +126,6 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-=======
-                {{--footer para integrar las redes sociales--}}
-<<<<<<< HEAD
-
-=======
                 <div class="panel-footer text-center">
                     <a href="login/facebook" class="btn btn-facebook">
                         <i class="fa fa-facebook"></i>
@@ -155,9 +149,6 @@
                         {{--Login con Github--}}
                     {{--</a>--}}
                 </div>
->>>>>>> f78ccd04bdc4f55506397e1d1eca75905d4ad6e6
-                {{--fin de footer--}}
->>>>>>> c6d11194f506b8715de35a5106629965b6de24fe
 
 
 <!--Seccion de Scripts-->

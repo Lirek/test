@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('new_panel', function() {
+   return view('new_home');
+});
 
 /* ------------------------------------------------------------------
 ---------------------------------------------------------------------
@@ -37,7 +40,10 @@ Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 Route::resource('users', 'UserController');
+
 Route::post('BuySong/{id}','UserController@BuySingle');
+
+Route::post('BuyBook/{id}','UserController@BuyBook');
 
 Route::get('/register/{user_code}','UserController@show');
 
@@ -47,11 +53,13 @@ Route::get('AllSingles','ContentController@ShowAllSingles');
 
 Route::get('AllAlbums','ContentController@ShowAllAlbum');
 
+Route::get('MyMusic','UserController@MyMusic');
+
 Route::get('WebsUser','ReferalsController@ShowWebs');
 
 Route::get('Referals','ReferalsController@ShowReferals');
 
-
+Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
 
 Route::get('/admin','AdminController@index');
 

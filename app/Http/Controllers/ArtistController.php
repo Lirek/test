@@ -21,7 +21,7 @@ class ArtistController extends Controller
        
        	$id=$request->id;
     	
-    	  $store_path='Music/'.$request->art_name.'/profileArtist';     	
+    	  $store_path='Music/'.$id.'/profileArtist';     	
         $path = $request->file('photo')->storeAs($store_path,$request->art_name.'.'.$request->file('photo')->getClientOriginalExtension());
 
     	

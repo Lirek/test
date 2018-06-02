@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{--del tema visitor--}}
-    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     {{--del tema visitor--}}
 
@@ -33,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 {{--    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">--}}
     <!--        del template visitor font-awesome icons         -->
     <link rel="stylesheet" href="{{ asset('plugins/visitor/css/font.css') }}" type="text/css"/>
-    <link href="{{ asset('plugins/visitor/css/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/visitor/css/font-awesome.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('plugins/visitor/css/morris.css') }}" type="text/css"/>
 
                         <!-- Ionicons -->
@@ -43,17 +42,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--    del template visitor calendar   -->
     <link rel="stylesheet" href="{{ asset('plugins/visitor/css/monthly.css') }}">
     <!--        //calendar          -->
-
+    
     <!--       del template visitor     //font-awesome icons -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/regular.css" integrity="sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/regular.css" integrity="sha384-EWu6DiBz01XlR6XGsVuabDMbDN6RT8cwNoY+3tIH+6pUCfaNldJYJQfQlbEIWLyA" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
 
 
 {{--    <script src="{{ asset('plugins/visitor/js/jquery2.0.3.min.js') }}"></script>--}}
     <script src="{{ asset('plugins/visitor/js/raphael-min.js') }}"></script>
-    <script src="{{ asset('plugins/visitor/js/morris.js') }}"></script>
     <!-- del template admin del seller Morris chart -->
-{{--    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/morris.js/morris.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('plugins/visitor/css/morris.css') }}">--}}
+    
 
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/jvectormap/jquery-jvectormap.css') }}">
@@ -198,7 +199,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Scripts -->
 
 {{--<script src="/js/app.js"></script>--}}
-<script src="{{ asset('plugins/visitor/js/jquery2.0.3.min.js') }}"></script>
+
+<script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/bootstrap.js') }}"></script>
 
@@ -206,15 +208,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script src="{{ asset('plugins/visitor/js/scripts.js') }}"></script>
 
-<script src="{{ asset('plugins/visitor/js/script.js') }}"></script>
-
 <script src="{{ asset('plugins/upload/jquery.uploadPreview.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/jquery.slimscroll.js') }}"></script>
 
 <script src="{{ asset('plugins/visitor/js/jquery.nicescroll.js') }}"></script>
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <!--[if lte IE 8]>

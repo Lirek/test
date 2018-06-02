@@ -112,7 +112,7 @@ class MegazineController extends Controller
 
     public function AddPType(Request $request)
     {
-        $store_path = '/megazine/'.$request->id.'/sagas/'.$request->title;
+        $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$request->title;
 	
     	$file = $request->file('image');
     
@@ -143,7 +143,7 @@ class MegazineController extends Controller
     {
         $saga= Sagas::find($request->type_megazine);
         
-        $store_path = '/megazine/'.$request->id.'/sagas/'.$saga->sag_name;
+        $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$saga->sag_name;
     	
     	$file1 = $request->file('pdf_file');
     	$file2 = $request->file('photo');
@@ -162,7 +162,7 @@ class MegazineController extends Controller
       
       
       $megazine = new Megazines;
-      $megazine->seller_id=$request->id;
+      $megazine->seller_id=$request->seller_id;
       $megazine->title=$request->title; 
       $megazine->cover=$path2;
       $megazine->num_pages=0;
@@ -186,7 +186,7 @@ class MegazineController extends Controller
     {
         
         
-        $store_path = '/megazine/'.$request->id.'/one_shot';
+        $store_path = '/megazine/'.$request->seller_id.'/one_shot';
     	
     	$file1 = $request->file('pdf_file');
     	$file2 = $request->file('photo');
@@ -205,7 +205,7 @@ class MegazineController extends Controller
       
       
       $megazine = new Megazines;
-      $megazine->seller_id=$request->id;
+      $megazine->seller_id=$request->seller_id;
       $megazine->title=$request->title; 
       $megazine->cover=$path2;
       $megazine->num_pages=0;
@@ -247,7 +247,7 @@ class MegazineController extends Controller
         
         $file2=$request->file('photo');
         
-        $store_path = '/megazine/'.$request->id.'/sagas/'.$saga->sag_name;
+        $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$saga->sag_name;
 
         File::delete(public_path().$megazine->cover);
 

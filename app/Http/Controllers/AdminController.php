@@ -186,7 +186,7 @@ class AdminController extends Controller
    		public function ShowMegazine()
     	{
 			  $megazines= Megazines::where('status','=','En Revision')->paginate(10);
-    		return view('admin.Megazine')->with('megazines',$megazines);
+        return view('admin.Megazine')->with('megazines',$megazines);
    		}
 
       public function ShowAllMegazine()

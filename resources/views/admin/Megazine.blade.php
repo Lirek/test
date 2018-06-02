@@ -39,9 +39,9 @@
                                  style="width:70px;height:70px;" alt="User Avatar">
                                       </td>
 
-                                      <td>{{$megazine->Rating()->first()->r_name}}</td>
+                                      <td>{{$megazine->Rating->r_name}}</td>
                                       
-                                      <td>{{$megazine->Seller()->first()->name}}</td>
+                                      <td>{{$megazine->Seller->name}}</td>
                                       
                                       <td>{{$megazine->descripcion}}</td>
 
@@ -51,7 +51,7 @@
 
                                           @else
 
-                                          {{$megazine->sagas()->first()->sag_name}}
+                                          {{$megazine->sagas->get()->sag_name}}
 
                                           @endif
                                       </td>

@@ -1,0 +1,40 @@
+nav
+{
+	background: linear-gradient(to left, #bbc7ca , #2899d5);
+}
+
+.side-nav{
+	background: linear-gradient(to left, #bbc7ca , #2899d5);
+}
+
+.page-footer{
+	position: fixed;
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+	background: linear-gradient(to right,#23b5e6 , #fff);
+}
+
+.logo-side-nav
+{
+	background-size:220px 100px;
+    background-repeat: no-repeat;
+    float:left;
+    width:240px;
+    height:80px;
+    position:relative;
+}
+
+.profile-pic
+{
+	float:left;
+    width:120px;
+    height:100px;
+    position:relative;
+    margin:40px 0 0px 50px;
+}
+
+.user-acctions
+{
+	margin-left: 20px
+}

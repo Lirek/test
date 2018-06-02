@@ -17,7 +17,8 @@
                         <div class="clearfix"> </div>
                     </div>
                 </div>
-	
+	       </div>
+
 		<div class="market-updates">
                 <div class="col-lg-4">
                     <div class="market-update-block clr-block-2">
@@ -37,9 +38,8 @@
                     </div>
 				</div>				
 			</div>
-		</div>
 
-        <div class="market-updates">
+         <div class="market-updates">
                 <div class="col-lg-4">
                     <div class="market-update-block clr-block-2">
                         <div class="col-md-4 market-update-right">
@@ -53,20 +53,25 @@
                         <div class="clearfix"> </div>
                     </div>
                 </div>
-    
-<div class="col-lg-4">
+            </div>
+    </div>
     
 
 
-    <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+    
+  
+	
+    <br>
+    <br>
+	<div class="row">
+    
+    <div class="col-md-4">
+	   <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
 
     </div>
-	
-<br>
-<br>
-	<div class="row">
-	
-	</div>
+
+    </div>
+
 
 </div>
 

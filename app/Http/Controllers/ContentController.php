@@ -43,5 +43,12 @@ class ContentController extends Controller
     	$Albums = Albums::where('status','=','Aprobado')->get();
     	return response()->json($Albums);
     }
+
+    public function ShowReadingsBooks()
+    {
+        $Books= Book::where('status','=','Aprobado')->get();
+
+        return view('contents.Readings')->with('Books',$Books);
+    }
 }
 

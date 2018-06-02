@@ -98,6 +98,30 @@
 	 </div>
 
  </div>
+<div class="col-md-1"></div>
+<h1>Todos los Singles</h1>
+
+ <div class="row">
+  
+  <?php $__currentLoopData = $Singles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Single): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <div class="col-md-3">   
+   <div class="card">
+    <img src="<?php echo e(asset($Single->autors->photo)); ?>" alt="Autor Single" style="width:100%">
+        <div class="container-card" style="background-color: gray">
+          <h4><b><?php echo e($Single->song_name); ?></b></h4> 
+            <p>·Costo<?php echo e($Single->cost); ?></p>
+             <p>·Artista <?php echo e($Single->autors->name); ?></p>
+               <?php $__currentLoopData = $Single->tags()->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <p>· <?php echo e($tags->tags_name); ?></p> 
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <button value1="<?php echo e($Single->id); ?>" value2="<?php echo e($Single->song_name); ?>" value3="<?php echo e($Single->cost); ?>" data-toggle="modal" data-target="#BuySingle" class="btn btn-primary btn-xs" id="Single" style="background-color: #13ec58"><i class="fa fa-ticket"></i> <?php echo e($Single->cost); ?>  Comprar</button>
+            </div>
+        </div>
+
+      </div>
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+ </div>
 
 
 </div>
@@ -141,6 +165,8 @@
       
     </div>
   </div>
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
@@ -150,7 +176,7 @@
 	
 		$(document).on('click', '#Single',function() {
 		  
-  		  var SongId = $(this).attr('value1');
+  		var SongId = $(this).attr('value1');
 		  var SongName = $(this).attr('value2');
 		  var SongCost = $(this).attr('value3');
 		  var modal = $('#BuySingle').modal();

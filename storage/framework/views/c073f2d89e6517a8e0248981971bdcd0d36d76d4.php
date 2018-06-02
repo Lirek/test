@@ -127,6 +127,29 @@
                     </div>
                 </div>
 
+                <div class="panel-footer text-center">
+                    <a href="login/facebook" class="btn btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                        Login con Facebook
+                    </a>
+
+                    <a href="login/twitter" class="btn btn-twitter">
+                        <i class="fa fa-twitter"></i>
+                        Login con Twitter
+                    </a>
+
+                    <a href="login/google" class="btn btn-google">
+                        <i class="fa fa-google-plus"></i>
+                        Login con Google
+                    </a>
+
+                    
+                        
+                        
+                        
+                        
+                    
+                </div>
 
 
 <!--Seccion de Scripts-->

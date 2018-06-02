@@ -25,7 +25,7 @@ class CreateTableTransacctions extends Migration
             $table->integer('episodes_id')->unsigned()->default('0');
             $table->integer('movies_id')->unsigned()->default('0');
             $table->integer('megazines_id')->unsigned()->default('0');
-            $table->integer('tickets')->unsigned()->default('0');
+            $table->integer('tickets')->default('0');
             $table->timestamps();
 
             $table->foreign('megazines_id')->references('id')->on('megazines');
