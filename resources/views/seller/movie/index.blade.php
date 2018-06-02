@@ -24,7 +24,6 @@
                             <tr>
                                 <th class="text-center">Codigo</th>
                                 <th class="text-center">Titulo</th>
-                                <th class="text-center">Rating</th>
                                 <th class="text-center">Categoria</th>
                                 <th class="text-center">Portada</th>
                                 {{--<th class="text-center">Productora</th>--}}
@@ -40,7 +39,7 @@
                                         <td class="text-center"> {{ $m->id }} </td>
                                         <td class="text-center"> {{ $m->title }} </td>
                                         <td class="text-center"> {{ $m->rating->r_name }} </td>
-                                        <td class="text-center"> {{ $m->saga->sag_name }} </td>
+{{--                                        <td class="text-center"> {{ $m->saga->sag_name }} </td>--}}
                                         {{--<td class="text-center"> {{ $s->seller->name }} </td>--}}
                                         <td class="text-center ">
                                             <a href="#">
@@ -74,7 +73,6 @@
                             <tr>
                                 <th class="text-center">Codigo</th>
                                 <th class="text-center">Titulo</th>
-                                <th class="text-center">Rating</th>
                                 <th class="text-center">Categoria</th>
                                 <th class="text-center">Portada</th>
                                 {{--<th class="text-center">Productora</th>--}}

@@ -108,18 +108,18 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{ url('/albums') }}">
+                                    <a href="{{ url('/movies') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar peliculas
+                                            Registro peliculas
                                         {{--</p>--}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/artist_form') }}">
-                                        <i class="fa fa-circle-o"></i>
+                                    <a href="{{ url('/movies/create') }}">
+                                        <i class="fa fa-circle-o text-aqua"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Actores
+                                            Registrar Pelicula
                                         {{--</p>--}}
                                     </a>
                                 </li>

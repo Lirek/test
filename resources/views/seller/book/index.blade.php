@@ -25,6 +25,7 @@
                                 <th class="text-center">Codigo</th>
                                 <th class="text-center">Titulo</th>
                                 <th class="text-center">Portada</th>
+                                <th class="text-center">Categoria</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Autor</th>
                                 {{--<th class="text-center">Productora</th>--}}
@@ -44,6 +45,7 @@
                                                      style="width:50px;height:50px;" alt="Portada">
                                             </a>
                                         </td>
+                                        <td class="text-center"> {{ $b->rating->r_name }} </td>
                                         <td class="text-center"> {{ $b->release_year }} </td>
                                         <td class="text-center"> {{ $b->author->full_name }} </td>
                                         {{--<td class="text-center"> {{ $b->seller->name }} </td>--}}
@@ -74,6 +76,7 @@
                                 <th class="text-center">Codigo</th>
                                 <th class="text-center">Titulo</th>
                                 <th class="text-center">Portada</th>
+                                <th class="text-center">Categoria</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Autor</th>
                                 {{--<th class="text-center">Productora</th>--}}

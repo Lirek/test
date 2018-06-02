@@ -20,6 +20,7 @@ class BooksController extends Controller
             $books->author;
             $books->seller;
             $books->saga;
+            $books->rating;
         });
 
 //        dd($books->author->full_name);
@@ -73,13 +74,16 @@ class BooksController extends Controller
 
             $books->author;
             $books->saga;
+            $books->rating;
             $authors = BookAuthor::orderBy('id', 'ASC')->pluck('full_name', 'id');
             $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
+            $ratings = Rating::orderBy('id','ASC')->pluck('r_name','id');
 
             return view('seller.book.edit')
                 ->with('book', $books)
                 ->with('saga', $sagas)
-                ->with('author', $authors);
+                ->with('author', $authors)
+                ->with('rating',$ratings);
 
         }else {
 
@@ -117,6 +121,7 @@ class BooksController extends Controller
         $book->before = $request->before;
         $book->saga_id = $request->saga_id;
         $book->release_year = $request->release_year;
+        $book->rating_id = $request->rating_id;
         $book->cost = $request->cost;
 //        dd($book,$book->cover,$book->book_file);
         $book->save();
