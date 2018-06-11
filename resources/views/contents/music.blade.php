@@ -49,11 +49,60 @@
       </div>
     </div>
  </div>
+ 
+ <div class="row">
+  
+ <div class="col s6 offset-s2">
+      <div class="card-panel teal">
+        <h3><span class="black-text">Albums Mas Vendidos</span></h3>
+        <div class="divider"></div>
+         <div class="carousel">
+          @foreach($Singles as $Single)
+            <div class="carousel-item">
+              <p>{{$Single->song_name}}</p>
+            <a href=""><img src="{{asset($Single->autors->photo)}}"></a>
+            
+            <a class="waves-effect waves-light btn blue" value="{{$Single->cost}}" value1="{{$Single->song_name}}" value2="{{$Single->id}}" id="modal">
+              <span class="white-text">   
+                <i class="fas fa-ticket-alt"></i>
+                {{$Single->cost}}
+              </span>            
+            </a>
+
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+ </div>
 
 <div class="row">
+  <div class="col s12">
+      <div class="card-panel white">
+        <h3>Busqueda de Singles</h3>
+        <div class="divider"></div>
+        <table id="singles" class="responsive-table">
+          <thead>
+          
+          <tr>
+              <th>Nombre</th>
+              <th>Duracion</th>
+              <th>Artista</th>
+              <th>Costo</th>
+          </tr>
+        </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+  </div>
+
   <div class="col s7">
       <div class="card-panel white">
-        <table id="singles">
+        <h3>Busqueda de Albums</h3>
+        <div class="divider"></div>
+        <table id="albums">
           <thead>
           
           <tr>
@@ -207,7 +256,7 @@
                 },
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ url('AllSingles') }}",
+                "ajax": "{{ url('AllAlbums') }}",
                 "columns": [
                              {data: 'song_name', name: 'song_name'},
                              {data: 'duration', name: 'duration'},

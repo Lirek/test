@@ -43,8 +43,8 @@ class ContentController extends Controller
 
     public function ShowAllAlbum()
     {
-    	$Albums = Albums::where('status','=','Aprobado')->get();
-    	return response()->json($Albums);
+    	$Albums = Albums::where('status','=','Aprobado')->with('autors')->with('songs')->get();
+        return Datatables::of($Albums)->make(true);
     }
 
     public function ShowReadingsBooks()

@@ -47,11 +47,61 @@
       </div>
     </div>
  </div>
+ 
+ <div class="row">
+  
+ <div class="col s6 offset-s2">
+      <div class="card-panel teal">
+        <h3><span class="black-text">Albums Mas Vendidos</span></h3>
+        <div class="divider"></div>
+         <div class="carousel">
+          <?php $__currentLoopData = $Singles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Single): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="carousel-item">
+              <p><?php echo e($Single->song_name); ?></p>
+            <a href=""><img src="<?php echo e(asset($Single->autors->photo)); ?>"></a>
+            
+            <a class="waves-effect waves-light btn blue" value="<?php echo e($Single->cost); ?>" value1="<?php echo e($Single->song_name); ?>" value2="<?php echo e($Single->id); ?>" id="modal">
+              <span class="white-text">   
+                <i class="fas fa-ticket-alt"></i>
+                <?php echo e($Single->cost); ?>
+
+              </span>            
+            </a>
+
+            </div>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+      </div>
+    </div>
+ </div>
 
 <div class="row">
+  <div class="col s12">
+      <div class="card-panel white">
+        <h3>Busqueda de Singles</h3>
+        <div class="divider"></div>
+        <table id="singles" class="responsive-table">
+          <thead>
+          
+          <tr>
+              <th>Nombre</th>
+              <th>Duracion</th>
+              <th>Artista</th>
+              <th>Costo</th>
+          </tr>
+        </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+  </div>
+
   <div class="col s7">
       <div class="card-panel white">
-        <table id="singles">
+        <h3>Busqueda de Albums</h3>
+        <div class="divider"></div>
+        <table id="albums">
           <thead>
           
           <tr>
@@ -206,7 +256,7 @@
                 },
                 "processing": true,
                 "serverSide": true,
-                "ajax": "<?php echo e(url('AllSingles')); ?>",
+                "ajax": "<?php echo e(url('AllAlbums')); ?>",
                 "columns": [
                              {data: 'song_name', name: 'song_name'},
                              {data: 'duration', name: 'duration'},
