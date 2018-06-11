@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Datatables;
 use Illuminate\Http\Request;
 
 use App\Megazines;
@@ -34,8 +35,10 @@ class ContentController extends Controller
 
     public function ShowAllSingles()
     {
-    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
-		return response()->json($Singles); 
+    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->with('autors')->get();
+		
+        return Datatables::of($Singles)->make(true);
+ 
     }
 
     public function ShowAllAlbum()
@@ -47,8 +50,16 @@ class ContentController extends Controller
     public function ShowReadingsBooks()
     {
         $Books= Book::where('status','=','Aprobado')->get();
+        $Megazines= Megazines::where('status','=','Aprobado')->get();
+        
+        return view('contents.Readings')->with('Books',$Books)->with('Megazines',$Megazines);
+    }
 
-        return view('contents.Readings')->with('Books',$Books);
+     public function ShowReadingsMegazines()
+    {
+        $Megazines= Megazines::where('status','=','Aprobado')->get();
+
+        return view('contents.Megazines')->with('Megazines',$Megazines);
     }
 }
 

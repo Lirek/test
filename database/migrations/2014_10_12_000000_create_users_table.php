@@ -22,11 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('ci')->nullable();
             $table->string('num_doc')->nullable();
             $table->string('img_doc')->nullable();
-            $table->enum('type',['M','F','default'])->default('default');
+            $table->enum('type',['M','F','Indefinido'])->default('Indefinido');
             $table->enum('status',['admin','client'])->default('client');
             $table->string('alias')->nullable();
             $table->string('img_perf')->nullable();
             $table->integer('credito')->nullable();
+            $table->boolean('verify')->default(FALSE);
             $table->date('fech_nac')->nullable();
             $table->string('password');
             $table->rememberToken();

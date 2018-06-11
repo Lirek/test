@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
 
 use App\User;
 use App\Megazines;
@@ -218,25 +219,69 @@ class UserController extends Controller
     //funcion que se encarga de buscar el contenido musical del usuario 
     public function MyMusic()
     {
-        $TransactionMusic= Transactions::where('user_id','=',Auth::user()->id)->get();
+        $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
         
-        if($TransactionMusic->count() > 0)
+        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
+
+
+        if($TransactionSingle->count() > 0)
             {
             
-                foreach ($TransactionMusic as $key) 
+                foreach ($TransactionSingle as $key) 
                     {
-                        $Single[] = $key->Songs;
-                        $Albums[] = $key->Albums;    
+                        $Single[] = $key->Songs;    
                     }
             }
-        else
-        {
-            $Single = 0;
-            $Albums = 0;
-        }
+            else
+             {
+                $Single = 0;
+                
+             }
 
+        if($TransactionAlbum->count() > 0)
+            {
+            
+                foreach ($TransactionAlbum as $key) 
+                    {
+                        $Albums[] = $key->Songs;    
+                    }
+            }
+            else
+             {
+                $Albums = 0;
+             }
+
+
+        
         return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
         
+    }
+
+    public function AddElementPlaylist($song_id)
+    {
+        $Songs= Songs::find($song_id);
+        
+        $file= $Songs->song_file;
+        
+        if($Songs->album==0 or $Songs->album==NULL)
+        {
+            $img= $Songs->autors->photo;
+        }
+        else
+        {
+            $img=$Songs->album->cover;    
+        }
+        
+        $title=$Songs->song_name;
+        $artist=$Songs->autors->name;
+
+        $insert='{"title":'.$title.',"artist:":'.$artist.',"img":'.$img.', "file":'.$file.'}';
+
+        $Playlist= Storage::putFileAs('Playlist', new File('/user/'.Auth::id().'Playlist'), 'public');
+
+
+        return response()->json($Playlist);
+
     }
 //-------------------------------------------------------------------------
 
@@ -272,4 +317,57 @@ class UserController extends Controller
         }
 
     }
+
+    public function ShowMyReadings()
+    {
+
+        $MyBooks= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->get();
+
+        $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
+
+        if ($MyBooks->count() == 0) 
+        {
+            $Books=0;
+        }
+        else
+        {
+            foreach ($MyBooks as $key) 
+            {
+                $Books[]= Book::find($key->books_id);
+            }
+        }
+
+        if ($MyMegazines->count() == 0) 
+        {
+            $Megazine= 0;
+        }
+        else
+        {
+            foreach ($MyMegazines as $key) 
+            {
+                $Megazine[]= Megazines::find($key->megazines_id);        
+            }
+        }
+
+        
+
+        return view('users.MyReadings')->with('Megazines', $Megazine)->with('Books',$Books);
+    }
+
+    public function SendRead($id)
+    {
+        $Book=Book::find($id);
+        $Megazine= Megazines::find($id);
+
+        if ($Book->count() == 0) 
+        {
+            return view('users.MyLecture')->with('pdf',$Megazine->megazine_file);
+        }
+        else
+        {
+            return view('users.MyLecture')->with('pdf','/book/'.$Book->books_file);
+        }
+
+    }
+
 }

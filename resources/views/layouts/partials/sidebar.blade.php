@@ -1,62 +1,67 @@
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse" style="    background-color: transparent;
-">
-        <!-- sidebar menu start-->
-        <div class="leftside-navigation">
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
-                        <span>Mi Musica</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="{{url('MyMusic')}}">Mi Playlist</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-envelope"></i>
-                        <span>Mis Lecturas</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="mail.html">Mis Libros</a></li>
-                        <li><a href="mail.html">Mis Revistas</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Mis Peliculas</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="chartjs.html">Mis Peliculas</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Mis Series</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="google_map.html">Mis Series</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-glass"></i>
-                        <span>Mis Redes</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="{{url('WebsUser')}}">Ver Redes</a></li>                        
-                        <li><a href="{{url('Referals')}}">Referir</a></li>
-                    </ul>
-                </li>
-            </ul>            
+  <ul id="slide-out" class="side-nav fixed z-depth-2 light-blue darken-4">
+    <li class="center no-padding">
+      <div class="blue-grey white-text" style="height: 180px;">
+        <div class="row">
+          <img style="margin-top: 5%;" width="150" height="150" src="{{asset(Auth::user()->img_perf)}}  " class="circle responsive-img" />
+
+          <p style="margin-top: -13%;">
+            {{ Auth::user()->name }}
+          </p>
         </div>
-        <!-- sidebar menu end-->
-      
-    </div>
- 
-</aside>
-<!--sidebar end-->
+      </div>
+    </li>
+
+    <li id="dash_dashboard"><b style="margin-left: 100px"><i class="fas fa-ticket-alt"></i> {{Auth::user()->credito}}</b></li>
+
+    <ul class="collapsible" data-collapsible="accordion">
+      <li id="dash_users">
+        <div id="dash_users_header" class="collapsible-header waves-effect"><b>Mi Contenido</b></div>
+        <div id="dash_users_body" class="collapsible-body">
+          <ul>
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Peliculas</a>
+            </li>
+
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="{{url('MyMusic')}}">Mi Musica</a>
+            </li>
+
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="{{url('MyReads')}}">Mis Lecturas</a>
+            </li>
+            
+            <li id="users_customer">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Streams</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li id="dash_products">
+        <div id="dash_products_header" class="collapsible-header waves-effect"><b>Referidos</b></div>
+        <div id="dash_products_body" class="collapsible-body">
+          <ul>
+            <li id="products_product">
+              <a class="waves-effect" style="text-decoration: none;" href="{{url('WebsUser')}}">Mis Redes</a>
+              <a class="waves-effect" style="text-decoration: none;" href="{{url('Referals')}}">Referir</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li id="dash_categories">
+        <div id="dash_categories_header" class="collapsible-header waves-effect"><b>Seguidos</b></div>
+        <div id="dash_categories_body" class="collapsible-body">
+          <ul>
+            <li id="categories_category">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Seguidos</a>
+            </li>
+
+            <li id="categories_sub_category">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Proveedores</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </ul>

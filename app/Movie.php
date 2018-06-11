@@ -27,4 +27,9 @@ class Movie extends Model
     {
         return $this->belongsTo('App\Rating');
     }
+
+    public function Seller()
+    {
+        return $this->belongsTo('App\Seller', 'seller_id');
+    }
 }

@@ -185,7 +185,12 @@ return [
 
         //QR GENERATOR
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+        //DATA TABLES CUCHI
+        Yajra\DataTables\DataTablesServiceProvider::class
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -241,6 +246,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         //Qr Generator
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        //DataTables Cuchi
+        'Datatables' => Yajra\DataTables\Facades\DataTables::class
 
 
     ],

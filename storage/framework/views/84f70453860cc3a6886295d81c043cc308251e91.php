@@ -1,228 +1,283 @@
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Los iconitos de  Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--EL materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+<!--              Awesome                                                -->
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css')); ?>">
 
-       <link rel="stylesheet" href="<?php echo e(asset('sistem_images/MaterialAdmin.css')); ?>">
-      <!--Escala del navegador-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <body>
-
-<nav>
-    <div class="nav-wrapper">
-      <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i>
-      </a>
-      <a href="<?php echo e(url('/home')); ?>" class="brand-logo center"><img src="<?php echo e(asset('sistem_images/Logo-Leipel.png')); ?>" class="img-responsive" style="width:35%;"></a>
-       <ul class="right hide">
-      <?php if(Auth::guest()): ?>      
-            <li><a href="/login">Iniciar Sesion</a></li>
-            <li><a href="">Registrarse</a></li>
-      <?php endif; ?>
-        </ul>
-      <ul class="side-nav" id="mobile-demo">
-        
-        <div class="row">
-          <div class="col s12">
-            <img src="https://gravatar.com/avatar/961997eb7fd5c22b3e12fb3c8ca14e11?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" class="circle responsive-img profile-pic">
-            <p style="font-size: 20px; position: relative; margin-left: 40px"> Jesus Ovalles</p>
-          </div>
-        </div>
-        
-        <div class="row user-acctions">
-          
-          <div class="col s2">
-            <a class="waves-effect waves-light btn-floating bnt btn-small transparent"><i class="material-icons left">perm_identity</i>Mi Perfil</a>
-          </div>
-
-          <div class="col s2" style="margin-left: 5px; ">
-            <a class="waves-effect waves-light btn-floating btn-small transparent"><i class="material-icons left">settings</i>Mis Transferencias</a>
-          </div>
-
-          <div class="col s2" style="margin-left: 5px">
-            <a class="waves-effect waves-light btn-floating btn-small transparent"><i class="material-icons left">power_settings_new</i>Cerrar Sesion</a>
-          </div>
-        </div>
-
-        <div class="row">
-              <li>
-              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">queue_music</i>Mi Musica</a>
-              </li>
-        </div>
-
-        <div class="row">
-        
-          <li>
-            <ul class="collapsible collapsible-accordion">
-               <li>
-                  <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">library_books</i>Mis Lecturas <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
-                   <div class="collapsible-body">
-                     <ul>
-                       <li>
-                          <a class="waves-effect waves-blue" href="#"><i class="material-icons">collections_bookmark</i>Libros</a>
-                       </li>
-                     <li>
-                        <a class="waves-effect waves-blue" href="#"><i class="material-icons">picture_as_pdf</i>Revistas
-                        </a>
-                    </li>
-                   </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-        </div>
-
-        <div class="row">
-          <li>
-            <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">ondemand_video</i>Mis Series</a>
-          </li>
-        </div>
-        
-        <div class="row">
-          <li>
-            <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">theaters</i>Mis Peliculas</a>
-          </li>
-        </div>
-
-        <div>
-                    <li>
-            <ul class="collapsible collapsible-accordion">
-               <li>
-                  <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">view_stream</i>Mis Streams <i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
-                   <div class="collapsible-body">
-                     <ul>
-                       <li>
-                          <a class="waves-effect waves-blue" href="#"><i class="material-icons">radio</i>Radios</a>
-                       </li>
-                     <li>
-                        <a class="waves-effect waves-blue" href="#"><i class="material-icons">tv</i>Tvs
-                        </a>
-                    </li>
-                   </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-        </div>
-
-    </div>
-  </nav>
-
-
-  <div class="container">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/LTE/thema/Ionicons/css/ionicons.min.css')); ?>">
+  <style type="text/css">
     
-    <div class = "row">
-         <div class = "col s12 m6">
-            <div class = "card blue-grey lighten-4">
-               <div class = "card-content">
-                  <span class = "card-title"><h3>Learn HTML5</h3></span>
-                  <p>HTML5 is the next major revision of the HTML standard superseding
-                     HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
-                     structuring and presenting content on the World Wide Web.</p>
-               </div>
-               
-               <div class = "card-action">
-                  <button class = "btn waves-effect waves-light blue-grey">
-                     <i class = "material-icons">share</i></button>
-                  <a class = "right blue-grey-text" href = "http://www.tutorialspoint.com">
-                     www.tutorialspoint.com</a>
-               </div>
-            </div>
-         </div>
-         
-         <div class = "col s12 m6">
-            <div class = "card blue-grey lighten-4">
-               <div class = "card-image">
-                  <img src = "html5-mini-logo.jpg">                
-               </div>
-               
-               <div class = "card-content">                  
-                  <p>HTML5 is the next major revision of the HTML standard superseding
-                     HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
-                     structuring and presenting content on the World Wide Web.</p>
-               </div>
-               
-               <div class = "card-action">
-                  <button class = "btn waves-effect waves-light blue-grey">
-                     <i class = "material-icons">share</i></button>
-                  <a class = "right blue-grey-text" href = "http://www.tutorialspoint.com">
-                     www.tutorialspoint.com</a>
-               </div>
-            </div>
-         </div>
+  
+  footer 
+  {
+    padding-left: 240px;
+
+  }
+  main
+  {
+    flex: 1 0 auto;
+
+  }
+  header
+        {
+        min-height: 100vh;
+        }
+
+  body {
+    min-height: 100vh;
+    flex-direction: column;
+    display: flex;
+    background: linear-gradient(to bottom right, #22bded, #3871b9);
+}
+;
+  }
+
+  @media  only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+      padding-left: 0;
+    }
+  }
+
+  #credits li,
+  #credits li a {
+    color: white;
+  }
+
+  #credits li a {
+    font-weight: bold;
+  }
+
+  .footer-copyright .container,
+  .footer-copyright .container a {
+    color: #BCC2E2;
+  }
+
+  .fab-tip {
+    position: fixed;
+    right: 85px;
+    padding: 0px 0.5rem;
+    text-align: right;
+    background-color: #323232;
+    border-radius: 2px;
+    color: #FFF;
+    width: auto;
+  }
+  </style>
+</head>
+
+<body>
+
+  <ul id="slide-out" class="side-nav fixed z-depth-2 light-blue darken-4">
+    <li class="center no-padding">
+      <div class="blue-grey white-text" style="height: 180px;">
+        <div class="row">
+          <img style="margin-top: 5%;" width="150" height="150" src="<?php echo e(asset(Auth::user()->img_perf)); ?>  " class="circle responsive-img" />
+
+          <p style="margin-top: -13%;">
+            <?php echo e(Auth::user()->name); ?>
+
+          </p>
+        </div>
       </div>
-      
-      <div class = "row">
-         <div class = "col s12 m6">
-            <div class = "card blue-grey lighten-4">
-               <div class = "card-image waves-effect waves-block waves-light">
-                  <img class = "activator" src = "html5-mini-logo.jpg">                
-               </div>
-               
-               <div class = "card-content activator">                  
-                  <p>Click the image to reveal more information.</p>
-               </div>
-               
-               <div class = "card-reveal">
-                  <span class = "card-title grey-text text-darken-4">HTML5
-                     <i class = "material-icons right">close</i></span>
-                  <p>HTML5 is the next major revision of the HTML standard superseding
-                     HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
-                     structuring and presenting content on the World Wide Web.</p>
-               </div>
-               
-               <div class = "card-action">
-                  <button class = "btn waves-effect waves-light blue-grey">
-                     <i class = "material-icons">share</i></button>
-                  <a class = "right blue-grey-text" href = "http://www.tutorialspoint.com">
-                     www.tutorialspoint.com</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      
-         
+    </li>
 
+    <li id="dash_dashboard"><b style="margin-left: 100px"><i class="material-icons">local_offer</i> <?php echo e(Auth::user()->credito); ?></b></li>
 
+    <ul class="collapsible" data-collapsible="accordion">
+      <li id="dash_users">
+        <div id="dash_users_header" class="collapsible-header waves-effect"><b>Mi Contenido</b></div>
+        <div id="dash_users_body" class="collapsible-body">
+          <ul>
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Peliculas</a>
+            </li>
 
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="<?php echo e(url('MyMusic')); ?>">Mi Musica</a>
+            </li>
 
-  </div>
-
-
-
-
-
-
-
-      <!--Librerias Js en Cdn-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    
-<script>
-       $(document).ready(function(){
-            $('.button-collapse').sideNav({
-                menuWidth: 250, 
-                edge: 'left',
-                closeOnClick: false,
-                draggable: true 
-              });
-
-              $('.button-collapse').sideNav('show');
-
-                                });
-</script>
-
-<footer class="page-footer">
-
-  © 2018 Leipel
-               
+            <li id="users_seller">
+              <a class="waves-effect" style="text-decoration: none;" href="<?php echo e(url('MyReads')); ?>">Mis Lecturas</a>
+            </li>
             
+            <li id="users_customer">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Streams</a>
+            </li>
+          </ul>
+        </div>
+      </li>
 
-</footer>
-    </body>
+      <li id="dash_products">
+        <div id="dash_products_header" class="collapsible-header waves-effect"><b>Referidos</b></div>
+        <div id="dash_products_body" class="collapsible-body">
+          <ul>
+            <li id="products_product">
+              <a class="waves-effect" style="text-decoration: none;" href="<?php echo e(url('WebsUser')); ?>">Mis Redes</a>
+              <a class="waves-effect" style="text-decoration: none;" href="<?php echo e(url('Referals')); ?>">Referir</a>
+            </li>
+          </ul>
+        </div>
+      </li>
 
-  </html>
+      <li id="dash_categories">
+        <div id="dash_categories_header" class="collapsible-header waves-effect"><b>Seguidos</b></div>
+        <div id="dash_categories_body" class="collapsible-body">
+          <ul>
+            <li id="categories_category">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Mis Seguidos</a>
+            </li>
+
+            <li id="categories_sub_category">
+              <a class="waves-effect" style="text-decoration: none;" href="#!">Proveedores</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </ul>
+
+  <header>
+
+    <ul class="dropdown-content" id="user_tickets">
+      <li>
+          <a class="indigo-text tooltipped" data-position="left" data-tooltip="Comprar Tickets" href="#!">
+           <i class="material-icons">add_shopping_cart</i>
+          </a>
+      </li>
+      
+      <li>
+        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Ver Transacciones" href="#!">
+          <i class="material-icons">
+          account_balance
+          </i>
+        </a>
+      </li>   
+    </ul>
+
+    <ul class="dropdown-content" id="user_dropdown">
+      <li>
+        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Editar Datos de Perfil" href="#!">
+          <i class="material-icons">
+                settings
+          </i>
+      </a>
+    </li>
+      
+      <li>
+        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" href="#!">
+          <i class="material-icons">
+          power_settings_new
+          </i>
+        </a>
+      </li>
+    
+    </ul>
+
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper">
+        <a data-activates="slide-out" class="button-collapse show-on-large" href="#!"><img style="margin-top: 5px; width:30%; margin-left: 5px;" src="<?php echo e(asset('sistem_images/Logo-Leipel.png')); ?>"/></a>
+
+        <ul class="right hide-on-med-and-down">
+          
+          <li>
+            <a class='right dropdown-button' href='' data-activates='user_dropdown'><i class='material-icons' style="color: #3871b9">account_circle</i></a>
+          </li>
+
+          <li>
+            <a class='right dropdown-button' href='' data-activates='user_tickets'><i class='material-icons' style="color: #3871b9">local_offer</i></a>
+          </li>
+        </ul>
+
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+
+    <div class="fixed-action-btn click-to-toggle" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large blue waves-effect waves-light tooltipped" data-position="left" data-tooltip="Ver Contenido">
+        <i class="large material-icons">add</i>
+      </a>
+
+      <ul>
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">video_library</i></a>
+          <a href="" class="btn-floating fab-tip">Series</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">book</i></a>
+          <a href="" class="btn-floating fab-tip">Libos</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">collections_bookmark</i></a>
+          <a href="" class="btn-floating fab-tip">Revistas</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">live_tv</i></a>
+          <a href="" class="btn-floating fab-tip">Televisoras</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">radio</i></a>
+          <a href="" class="btn-floating fab-tip">Radios</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">theaters</i></a>
+          <a href="" class="btn-floating fab-tip">Peliculas</a>
+        </li>
+
+        <li>
+          <a class="btn-floating blue"><i class="material-icons">music_note</i></a>
+          <a href="" class="btn-floating fab-tip">Musica</a>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="blue-grey page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="white-text">Leipel</h5>
+          <ul id='credits'>
+            <li>
+              Disfrute del mejor contenido digital al alcanze de sus manos dentro de nuestra plataforma 
+            </li>
+            <li>
+              <a href="https://material.io/icons/">Terminos y Condiciones del Servicio </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <span>Leipel 2018</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.button-collapse').sideNav();
+    $('.collapsible').collapsible();
+    $('select').material_select();
+    });
+  </script>
+
+</body>
+</html>

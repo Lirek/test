@@ -18,7 +18,7 @@ class User extends Authenticatable
         'name', 'last_name','email', 'password',
         'codigo_ref', 'type_doc', 'num_doc',
         'img_doc', 'genero', 'alias', 'img_perf',
-        'credito', 'fech_nac','status','id',
+        'credito', 'fech_nac','status','id','verify'
     ];
 
     /**

@@ -1,123 +1,224 @@
-<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('main'); ?>
+<div class="container">
+   <div class="row">
+    
 
-    <div class="container">
-        <div class="row">
-
-
-            <!-- //market-->
-
-            <div class="market-updates">
-                <div class="col-md-3 market-update-gd">
-                    <div class="market-update-block clr-block-2">
-                        <div class="col-md-4 market-update-right">
-                            <i class="fa fa-eye"> </i>
-                        </div>
-                        <div class="col-md-8 market-update-left">
-                            <h4>Proveedores Seguidos</h4>
-                            <h3>0</h3>
-                            
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
-                <div class="col-md-3 market-update-gd">
-                    <div class="market-update-block clr-block-1">
-                        <div class="col-md-4 market-update-right">
-                            <i class="fa fa-users" ></i>
-                        </div>
-                        <div class="col-md-8 market-update-left">
-                            <h4>Contenido Adquirido</h4>
-                            <h3>0</h3>
-                            
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
-                <div class="col-md-3 market-update-gd">
-                    <div class="market-update-block clr-block-3">
-                        <div class="col-md-4 market-update-right">
-                            <i class="fa fa-usd"></i>
-                        </div>
-                        <div class="col-md-8 market-update-left">
-                            <h4>Balance de Tickets</h4>
-                            <h3><?php echo e(Auth::user()->credito); ?></h3>
-                            
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
-                
-                <div class="clearfix"> </div>
-            </div>
-            <!-- //market-->
+    <?php if(Auth::user()->verify==FALSE): ?>
+    <div class="col s4">
+      <div class="card teal">
+        <div class="card-content white-text">
+          <span class="card-title">Finalize Su Registro</span>
+          <p>Le Recordamos que Aun Faltan Documentos que Adjuntar para Disfrutar de Todo Lo Que Puede Ofrecer Nuestra Plataforma, Le Invitamos a Completarlo</p> 
         </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="notifications">
-                <!--notification start-->
-                
-                    <header class="panel-heading">
-                        Notificaciones 
-                    </header>
-                    <div class="notify-w3ls">
-                        <div class="alert alert-info clearfix">
-                            <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
-                            <div class="notification-info">
-                                <ul class="clearfix notification-meta">
-                                    <li class="pull-left notification-sender"><span>Usted No Ha Confirmado su Cuenta</span> Recuerde que debe Confirmar su Cuenta </li>
-                                    
-                                </ul>
-                                <p>
-                                    Confirmela ahora <a href="">Aqui</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="alert alert-danger">
-                            <span class="alert-icon"><i class="fa fa-facebook"></i></span>
-                            <div class="notification-info">
-                                <ul class="clearfix notification-meta">
-                                    <li class="pull-left notification-sender"><span>Invite a mas personas a ser parte de leipel</span></li>                                    
-                                </ul>
-                                <p>
-                                    Consulte los terminos de leipel acerca de los referidos <a href="">Aqui</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="alert alert-success ">
-                            <span class="alert-icon"><i class="fa fa-comments-o"></i></span>
-                            <div class="notification-info">
-                                <ul class="clearfix notification-meta">
-                                    <li class="pull-left notification-sender">Si Desea Saber Todo lo necesario para ser parte de nuestros Proveedores puede Informarse <a href="">Aqui</a>
-                                    </li>
-                                </ul>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="card-action">
+          <a href="#">Finalizar Registro</a>
         </div>
+      </div>
     </div>
-    <div class="row">
-      <center>
-             <div class="col-md-4 zoom"> 
-                <a class="button" href="#"><img src="<?php echo e(asset('sistem_images/logo-icon-2.png')); ?>" width="200" height="150" alt=""></a></div>
+    <?php endif; ?>
+    
+    <div class="col s6">
+      <div class="card white">
+        <div class="card-content black-text">
+          <span class="card-title">Contenido Reciente</span>
+           <table>
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Costo</th>
+              <th>Proveedor</th>
+          </tr>
+        </thead>
 
-             <div class="col-md-4 zoom"> 
-                <a class="button" href="<?php echo e(url('MusicContent')); ?>"><img src="<?php echo e(asset('sistem_images/logo-icon-4.png')); ?>" width="200" height="150" alt=""></a></div>
+        <tbody>
+          
+          <?php if($Songs): ?>
+            <tr>
+                <td><?php echo e($Songs->song_name); ?></td>
+                <td>Single</td>
+                <td><?php echo e($Songs->cost); ?></td>
+                <td><?php echo e($Songs->Seller->name); ?></td>
+                <td><i class="material-icons circle">forward</i></td>
+            </tr>
+          <?php endif; ?>
+          
+          <?php if($Albums): ?>
+            <tr>
+                <td><?php echo e($Albums->name_alb); ?></td>
+                <td>Album Musical</td>
+                <td><?php echo e($Albums->cost); ?></td>
+                <td><?php echo e($Albums->Seller->name); ?></td>
+                <td><i class="material-icons circle">forward</i></td>
+            </tr>
+          <?php endif; ?>
 
-             <div class="col-md-4 zoom" style="margin-bottom: 15px">   
-                <a class="button" href="<?php echo e(url('ReadingsBooks')); ?>"><img src="<?php echo e(asset('sistem_images/logo-icon.png')); ?>" width="200" height="150" alt=""></a></div>
-              <div class="col-md-4 zoom">
-                <a class="button" href="#"><img src="<?php echo e(asset('sistem_images/logo-icon-5.png')); ?>" width="200" height="150" alt=""></a>
-              </div>
-              <div class="col-md-4 zoom">
-                <a class="button" href="#"><img src="<?php echo e(asset('sistem_images/logo-icon-3.png')); ?>" width="200" height="150" alt=""></a>
-              </div> 
-             </center>
+         <?php if($Tv): ?>
+            <tr>
+                <td><?php echo e($Tv->name_r); ?></td>
+                <td>TV Online</td>
+                <td>Gratis</td>
+                <td><?php echo e($Tv->Seller->name); ?></td>
+                <td><i class="material-icons circle">forward</i></td>
+            </tr>
+          <?php endif; ?>
+
+          <?php if($Book): ?>
+          <tr>
+            <td><?php echo e($Book->title); ?></td>
+            <td>Libro</td>
+            <td><?php echo e($Book->cost); ?></td>
+            <td><?php echo e($Book->seller->name); ?></td>
+            <td><i class="material-icons circle">forward</i></td>
+          </tr>
+          <?php endif; ?>
+          
+          <?php if($Megazines): ?>
+          <tr>
+            <td><?php echo e($Megazines->title); ?></td>
+            <td>Revista</td>
+            <td><?php echo e($Megazines->cost); ?></td>
+            <td><?php echo e($Megazines->Seller->name); ?></td>
+            <td><i class="material-icons circle">forward</i></td>
+          </tr>
+          <?php endif; ?>
+          
+          <?php if($Radio): ?>
+          <tr>
+            <td><?php echo e($Radio->name_r); ?></td>
+            <td>Radio Online</td>
+            <td>Gratis</td>
+            <td><?php echo e($Radio->Seller->name); ?></td>
+            <td><i class="material-icons circle">forward</i></td>
+          </tr>
+          <?php endif; ?>
+         
+         <?php if($Movies): ?>
+          <tr>
+            <td><?php echo e($Movies->title); ?></td>
+            <td>Pelicula</td>
+            <td><?php echo e($Movies->cost); ?></td>
+            <td><?php echo e($Radio->Seller->name); ?></td>
+            <td><i class="material-icons circle">forward</i></td>
+          </tr>
+         <?php endif; ?>
+
+        </tbody>
+      </table>
+        </div>
+        
+      </div>
     </div>
 
+    <div class="col s4">
+      <div class="card teal">
+        <div class="card-content white-text">
+          <span class="card-title">Tickets Disponibles</span>
+          <p><?php echo e(Auth::user()->credito); ?></p> 
+        </div>
+        <div class="card-action">
+          <a href="#">Recargar</a>
+        </div>
+      </div>
+    </div>
+
+        <div class="col s4">
+          <div class="card white">
+            <div class="card-content black-text">
+              <span class="card-title">Proveedores Populares</span>
+                <ul class="collection">
+                  <li class="collection-item avatar">
+                    <i class="material-icons circle green">folder</i>
+                        <span class="title">Tu Mejor Mp3</span>
+                        <p>Proveedor de Contenido Musical <br>
+                            Lo que deseas escuchar al mejor precio
+                        </p>
+                         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                     <li class="collection-item avatar">
+      <i class="material-icons circle green">folder</i>
+      <span class="title">LectuLandia</span>
+      <p>Los Mejores Libros En El Mejor Lugar<br>
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                     </li>
+
+
+
+                </ul>
+            </div>
+         </div>
+        </div>
+        <div class="col s4 white">
+            <canvas id="myChart" width="150" height="150"></canvas>
+        </div>
+         </div>
+  </div>
+
+  <div class="row">
+    
+  </div>
 <?php $__env->stopSection(); ?>
 
+
+
+<?php $__env->startSection('js'); ?>
+<script>
+$(document).ready(function(){
+
+   $.ajax({ 
+            url: 'ContentGraph',
+            type:'GET',
+            success: function(respuesta) {
+                    var data=respuesta;
+                       var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Musica", "Libros", "Revistas", "Peliculas", "Radios", "Tvs","Series"],
+        datasets: [{
+            label: '# De Contenido',
+            data: data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 102, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+    });
+                                        },
+                error: function() {
+                    console.log("No se ha podido obtener la información");
+                                  }
+           });
+
+
+ 
+});
+
+</script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

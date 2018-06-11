@@ -18,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('new_panel', function() {
-   return view('new_home');
-});
+
 
 /* ------------------------------------------------------------------
 ---------------------------------------------------------------------
@@ -34,34 +32,55 @@ Route::get('new_panel', function() {
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index');
-
-Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
-Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
-
-Route::resource('users', 'UserController');
-
-Route::post('BuySong/{id}','UserController@BuySingle');
-
-Route::post('BuyBook/{id}','UserController@BuyBook');
 
 Route::get('/register/{user_code}','UserController@show');
 
-Route::get('MusicContent','ContentController@ShowMusic');
 
-Route::get('AllSingles','ContentController@ShowAllSingles');
+//-----------------------Funciones del Homw---------------------------
 
-Route::get('AllAlbums','ContentController@ShowAllAlbum');
+Route::get('/home', 'HomeController@index');
+Route::get('ContentGraph', 'HomeController@DataContentGraph');
 
+//---------------------------------------------------------------------
+
+
+
+Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
+
+Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
+
+
+Route::resource('users', 'UserController');
+
+//-------------------Funciones del Usuarios----------------------------------
+
+Route::post('BuySong/{id}','UserController@BuySingle');
+Route::post('BuyBook/{id}','UserController@BuyBook');
 Route::get('MyMusic','UserController@MyMusic');
+Route::get('Read/{id}','UserController@SendRead');
+Route::get('MyReads','UserController@ShowMyReadings');
+Route::get('Read/{id}','UserController@SendRead');
+
+//---------------------------------------------------------------------------
+
+//______________________Funiciones de Contenido______________________________
+
+Route::get('MusicContent','ContentController@ShowMusic');
+Route::get('AllSingles','ContentController@ShowAllSingles');
+Route::get('AllAlbums','ContentController@ShowAllAlbum');
+Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
+Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+
+//---------------------------------------------------------------------------
+
+
+//-------------------------Funiciones de Referidos---------------------------
 
 Route::get('WebsUser','ReferalsController@ShowWebs');
-
 Route::get('Referals','ReferalsController@ShowReferals');
 
-Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
+//---------------------------------------------------------------------------
 
-Route::get('/admin','AdminController@index');
 
 /*------------------------------------------------------------------
 -------------------------------------------------------------------
@@ -69,6 +88,7 @@ Route::get('/admin','AdminController@index');
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
+Route::get('/admin','AdminController@index');
 
 Route::get('/admin_albums','AdminController@ShowAlbums');
 Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
