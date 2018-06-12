@@ -1,36 +1,36 @@
 {{--<aside class="main-sidebar">--}}
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://lorempixel.com/400/400/sports" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::guard('web_seller')->user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>En Linea</a>
-            </div>
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="http://lorempixel.com/400/400/sports" class="img-circle" alt="User Image">
         </div>
+        <div class="pull-left info">
+            <p>{{ Auth::guard('web_seller')->user()->name }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i>En Linea</a>
+        </div>
+    </div>
 
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header text-center">Modulos</li>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+        <li class="header text-center">Modulos</li>
 
-            {{--escritorio--}}
-            <li class="active menu-open">
-                <a href="{{ url('seller_home') }}">
-                    <i class="glyphicon glyphicon-home"></i>
-                    <span>Escritorio</span>
-                </a>
-            </li>
+        {{--escritorio--}}
+        <li class="active menu-open">
+            <a href="{{ url('seller_home') }}">
+                <i class="glyphicon glyphicon-home"></i>
+                <span>Escritorio</span>
+            </a>
+        </li>
 
-            @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
+        @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
 
-                {{--Accesos a los modulos --}}
-               
-                
-                @if($modulos==FALSE)
-                    <li class="treeview">
+            {{--Accesos a los modulos --}}
+
+
+            @if($modulos==FALSE)
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-warning"></i>
                         <span>
@@ -41,8 +41,8 @@
                         </span>
                     </a>
                 </li>
-                @else
-                
+            @else
+
                 @foreach($modulos as $mod)
 
                     {{--musica--}}
@@ -60,7 +60,7 @@
                                     <a href="{{ url('/albums') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Album
+                                        Registrar Album
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -68,8 +68,8 @@
                                     <a href="{{ url('/artist_form') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Grupo
-                                            Musical o Solista
+                                        Registrar Grupo
+                                        Musical o Solista
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -77,7 +77,7 @@
                                     <a href="{{ url('/single_registration') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Singles
+                                        Registrar Singles
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -85,7 +85,7 @@
                                     <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Mi Musica
+                                        Mi Musica
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -111,7 +111,7 @@
                                     <a href="{{ url('/movies') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registro peliculas
+                                        Registro peliculas
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -119,7 +119,7 @@
                                     <a href="{{ url('/movies/create') }}">
                                         <i class="fa fa-circle-o text-aqua"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Pelicula
+                                        Registrar Pelicula
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -127,7 +127,7 @@
                                     <a href="{{ url('/single_registration') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Mis Peliculas
+                                        Mis Peliculas
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -151,7 +151,7 @@
                                     <a href="{{ url('/megazine_i') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Revista independiente
+                                        Registrar Revista independiente
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -159,8 +159,8 @@
                                     <a href="{{ url('/megazine_form') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Agregar Revistas a
-                                            Cadenas de Publicacion
+                                        Agregar Revistas a
+                                        Cadenas de Publicacion
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -168,8 +168,8 @@
                                     <a href="{{ url('/type') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p>--}}
-                                            Registrar cadena de
-                                            publicaciones
+                                        Registrar cadena de
+                                        publicaciones
                                         {{--</p>--}}
                                     </a>
                                 </li>
@@ -196,36 +196,19 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{ url('/megazine_i') }}">
+                                    <a href="{{ url('/series') }}">
                                         <i class="fa fa-circle-o"></i>
                                         {{--<p class="text-justify">--}}
-                                            Registrar Revista
-                                            independiente
+                                        Registro de series
                                         {{--</p>--}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/megazine_form') }}">
-                                        <i class="fa fa-circle-o"></i>
+                                    <a href="{{ url('/series/create') }}">
+                                        <i class="fa fa-circle-o text-aqua"></i>
                                         {{--<p class="text-justify">--}}
-                                            Agregar Revistas a
-                                            Cadenas de Publicacion
+                                        Registrar Serie
                                         {{--</p>--}}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/type') }}">
-                                        <i class="fa fa-circle-o"></i>
-                                        {{--<p class="text-justify">--}}
-                                            Registrar cadena de
-                                            publicaciones
-                                        {{--</p>--}}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">
-                                        <i class="fa fa-circle-o"></i>
-                                        Mis Revistas
                                     </a>
                                 </li>
                             </ul>
@@ -328,54 +311,54 @@
                     @endif
                 @endforeach
 
-                
-                 @endif
+
+            @endif
 
 
 
 
-                
-
-                
 
 
-                
-                
+
+
+
+
+
 
 
 
 
             {{--cuente en proceso de revision--}}
-            @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-warning"></i>
-                        <span>
+        @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-warning"></i>
+                    <span>
                             Su solicitud de cuenta como <br/>
                             productora se en proceso de <br/>
                             analisis por Parte de <br/>
                             nuestros analistas pronto nos<br/>
                             comunicaremos con utedesds
                         </span>
-                    </a>
-                </li>
+                </a>
+            </li>
 
             {{--en proceso de pre-aprobado--}}
-            @else(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-warning"></i>
-                        <span>
+        @else(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
+            <li class="treeview active">
+                <a href="#">
+                    <i class="fa fa-warning"></i>
+                    <span>
                             Su solicitud de cuenta como<br/>
                             productora esta en proceso <br/>
                             por favor finalice el <br/>
                             registro para continuar
                         </span>
-                    </a>
-                </li>
-            @endif
+                </a>
+            </li>
+        @endif
 
-        </ul>
-    </section>
-    <!-- /.sidebar -->
+    </ul>
+</section>
+<!-- /.sidebar -->
 {{--</aside>--}}

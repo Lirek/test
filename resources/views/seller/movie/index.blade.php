@@ -39,11 +39,11 @@
                                         <td class="text-center"> {{ $m->id }} </td>
                                         <td class="text-center"> {{ $m->title }} </td>
                                         <td class="text-center"> {{ $m->rating->r_name }} </td>
-{{--                                        <td class="text-center"> {{ $m->saga->sag_name }} </td>--}}
+                                        {{--                                        <td class="text-center"> {{ $m->saga->sag_name }} </td>--}}
                                         {{--<td class="text-center"> {{ $s->seller->name }} </td>--}}
                                         <td class="text-center ">
                                             <a href="#">
-                                                <img class=" img-circle " src="/movie/poster/{{ $m->img_poster }}"
+                                                <img class=" img-circle " src="movie/poster/{{ $m->img_poster }}"
                                                      style="width:50px;height:50px;" alt="Portada">
                                             </a>
                                         </td>

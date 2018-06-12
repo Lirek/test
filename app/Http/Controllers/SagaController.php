@@ -110,4 +110,23 @@ class SagaController extends Controller
 
         return redirect()->route('tbook.create');
     }
+
+    public function registerSeries(Request $request)
+    {
+        $file = $request->file('img_saga');
+        $name = 'saga_' . time() . '.' . $file->getClientOriginalExtension();
+        $path = public_path() . '/images/sagas/';
+        $file->move($path, $name);
+
+        $saga = new Sagas($request->all());
+        $saga->seller_id = \Auth::guard('web_seller')->user()->id;
+        $saga->img_saga = $name;
+        $saga->status = 2;
+//        dd($saga,$saga->img_saga,$file);
+        $saga->save();
+
+        Flash::info('Se ha registrado ' . $saga->sag_name.'_' . ' de forma sastisfactoria')->important();
+
+        return redirect()->route('series.create');
+    }
 }
