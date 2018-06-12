@@ -68,6 +68,7 @@ Route::get('Read/{id}','UserController@SendRead');
 Route::get('MusicContent','ContentController@ShowMusic');
 Route::get('AllSingles','ContentController@ShowAllSingles');
 Route::get('AllAlbums','ContentController@ShowAllAlbum');
+Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
 Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
 Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 

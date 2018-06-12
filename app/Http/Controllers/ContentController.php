@@ -25,7 +25,7 @@ class ContentController extends Controller
     
   	public function ShowMusic()
     {
-    	$MusicAuthors = music_authors::all();
+    	$MusicAuthors = music_authors::where('status','=','Aprobado')->get();
     	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
     	$Albums = Albums::where('status','=','Aprobado')->get();
 		
@@ -39,6 +39,27 @@ class ContentController extends Controller
 		
         return Datatables::of($Singles)->make(true);
  
+    }
+
+    public function ShowArtist($id)
+    {
+        $Artist= music_authors::find($id);
+
+        $Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->where('autors_id','=',$id)->get();
+
+        $Albums = Albums::where('status','=','Aprobado')->where('autors_id','=',$id)->get();
+
+         if ($Albums->count()==0) 
+         {
+             $Albums=NULL;
+         }
+
+         if ($Singles->count()==0) 
+         {
+             $Singles=NULL;
+         }
+         
+        return view('contents.ArtistProfile')->with('Artist',$Artist)->with('Singles',$Singles)->with('Albums',$Albums);
     }
 
     public function ShowAllAlbum()

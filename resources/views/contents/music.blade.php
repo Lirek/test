@@ -57,15 +57,15 @@
         <h3><span class="black-text">Albums Mas Vendidos</span></h3>
         <div class="divider"></div>
          <div class="carousel">
-          @foreach($Singles as $Single)
+          @foreach($Albums as $Album)
             <div class="carousel-item">
-              <p>{{$Single->song_name}}</p>
-            <a href=""><img src="{{asset($Single->autors->photo)}}"></a>
+              <p>{{$Album->name_alb}}</p>
+            <a href=""><img src="{{asset($Album->cover)}}"></a>
             
-            <a class="waves-effect waves-light btn blue" value="{{$Single->cost}}" value1="{{$Single->song_name}}" value2="{{$Single->id}}" id="modal">
+            <a class="waves-effect waves-light btn blue" value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal">
               <span class="white-text">   
                 <i class="fas fa-ticket-alt"></i>
-                {{$Single->cost}}
+                {{$Album->cost}}
               </span>            
             </a>
 
@@ -106,6 +106,7 @@
           <thead>
           
           <tr>
+              <th></th>
               <th>Nombre</th>
               <th>Duracion</th>
               <th>Artista</th>
@@ -139,6 +140,27 @@
 
 @section('js')
 <script>
+
+
+            $('#albums tbody').on('click', 'td.details-control', function () {
+              
+             var table = $(this);
+
+              var tr = $(this).closest('tr');
+              var row = table.row( tr );
+ 
+              if ( row.child.isShown() ) {
+
+                row.child.hide();
+                tr.removeClass('shown');
+
+                }
+              else 
+              {       
+                  row.child( format(row.data()) ).show();
+                  tr.addClass('shown');
+              }
+           });
 
   $(document).on('click', '#modal', function() { 
 
@@ -191,7 +213,62 @@
   });
 
   $(document).ready(function(){
+    function format ( d ) {
+
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Nombre:</td>'+
+            '<td>'+d.song_name+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Duracion:</td>'+
+            '<td>'+d.duration+'</td>'+
+        '</tr>'+
+    '</table>';
+    }
+
     $('.carousel').carousel();
+            $('#albums').dataTable({
+               "language": {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ Albums",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "No Existen Albums Registrados",
+                    "sInfo":           "Mostrando Albums del _START_ al _END_ de un total de _TOTAL_ Albums",
+                    "sInfoEmpty":      "Mostrando Albums del 0 al 0 de un total de 0 Albums",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ Albums)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ url('AllAlbums') }}",
+                "columns": [
+                               {
+                                 "className":      'details-control',
+                                 "orderable":      false,
+                                 "data":           null,
+                                 "defaultContent": ''
+                               },
+                             {data: 'name_alb', name: 'name_alb'},
+                             {data: 'duration', name: 'duration'},
+                             {data: 'autors.name', name: 'autors.autors_id'},
+                             {data: 'cost', name: 'cost'}
+                           ],
+            });
 
             $('#singles').DataTable({
                 "language": {
@@ -229,41 +306,6 @@
                            ]
             });
 
-            $('#albums').DataTable({
-               "language": {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "No Existen Singles Registrados",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{ url('AllAlbums') }}",
-                "columns": [
-                             {data: 'song_name', name: 'song_name'},
-                             {data: 'duration', name: 'duration'},
-                             {data: 'autors.name', name: 'autors.autors_id'},
-                             {data: 'cost', name: 'cost'}
-                           ]
-            });
 
 
   });

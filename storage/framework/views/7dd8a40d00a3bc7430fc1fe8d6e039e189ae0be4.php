@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-
+  <link href="<?php echo e(asset('plugins/flag-icon-css-master/css/flag-icon.css')); ?>" rel="stylesheet">
 <style type="text/css">
       
         #image-preview 
@@ -121,6 +121,11 @@
 
 
 <body>
+  <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST"
+                                      style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
+                                </form>
     <?php echo $__env->make('layouts.partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
     <?php echo $__env->make('layouts.partials.navbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

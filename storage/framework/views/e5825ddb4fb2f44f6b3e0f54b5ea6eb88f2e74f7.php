@@ -108,18 +108,18 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="<?php echo e(url('/albums')); ?>">
+                                    <a href="<?php echo e(url('/movies')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar peliculas
+                                            Registro peliculas
                                         
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo e(url('/artist_form')); ?>">
-                                        <i class="fa fa-circle-o"></i>
+                                    <a href="<?php echo e(url('/movies/create')); ?>">
+                                        <i class="fa fa-circle-o text-aqua"></i>
                                         
-                                            Registrar Actores
+                                            Registrar Pelicula
                                         
                                     </a>
                                 </li>

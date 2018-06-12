@@ -25,7 +25,8 @@
     </li>
       
       <li>
-        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" href="#!">
+        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
           <i class="material-icons">
           power_settings_new
           </i>

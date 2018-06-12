@@ -2,12 +2,15 @@
     <li class="center no-padding">
       <div class="blue-grey white-text" style="height: 180px;">
         <div class="row">
-          <img style="margin-top: 5%;" width="150" height="150" src="<?php echo e(asset(Auth::user()->img_perf)); ?>  " class="circle responsive-img" />
-
+          <div class="center">
+          <img width="150" height="150" src="<?php echo e(asset(Auth::user()->img_perf)); ?>  " class="circle responsive-img" />
+          </div>
+          <div class="center">
           <p style="margin-top: -13%;">
             <?php echo e(Auth::user()->name); ?>
 
           </p>
+          </div>
         </div>
       </div>
     </li>
