@@ -35,24 +35,26 @@ class SellerController extends Controller
 	//Funcion Encargada de Cargar los datos del formulario a la BD para el Registro que completo
 
     public function CompleteRegistration(Request $request)
-    {
-    	
-    	$id=$request->id;
-        $image =$request->file('adj_ruc');
-        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/productor/'.$id);
-    	$seller = Seller::find($id);
-        $seller_modules;
+    {   
         
+        
+        $store_path='documents/sellers/';      
+        
+        $path = $request->file('adj_ruc')->storeAs($store_path,$request->name.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
+    	$Seller= new Seller;
+        $Seller->name = $request->name;
+        $Seller->email = $request->email;
+        $Seller->password = bcrypt($request->password);
+        $Seller->estatus = 'Pre-Aprobado';
+        $Seller->ruc_s = $request->ruc;
+        $Seller->descs_s = $request->dsc;
+        $Seller->adj_ruc = $path;
+        $Seller->tlf = $request->tlf;
+        $Seller->save();
+        Auth::guard('web_seller')->login($Seller);
 
-        $seller->tlf = $request->tlf;
-        $seller->descs_s = $request->dsc;
-        $seller->estatus = 'Pre-Aprobado';
-        $seller->ruc_s = $request->ruc;
-        $seller->adj_ruc =$image->move($destinationPath, $input['imagename']);
-        $seller->save();
     
-    	return view('seller.home');
+    	return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
     }
 
     public function ShowMessages()

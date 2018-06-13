@@ -34,7 +34,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/register/{user_code}','UserController@show');
-
+Route::post('SellerRegister','SellerController@CompleteRegistration');
 
 //-----------------------Funciones del Homw---------------------------
 
@@ -211,6 +211,8 @@ Route::get('seller_complete_f/{id}/{code}', 'SellerController@CompleteRegistrati
 
 
 
+
+
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
 --------------- FIN RUTAS DE MANEJO DE PROMOTORES  -----------------
@@ -222,7 +224,7 @@ Route::get('seller_complete_f/{id}/{code}', 'SellerController@CompleteRegistrati
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
---------------- FIN RUTAS DE MANEJO DE SOLICITUDES -----------------
+--------------- Inicio RUTAS DE MANEJO DE SOLICITUDES -----------------
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */

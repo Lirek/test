@@ -194,11 +194,11 @@
 
                       if (result==0) 
                         { 
-                          swal('No Posee Suficientes Creditos Por Favor Recargue','','error');  
+                          alert('No Posee Suficientes Creditos Por Favor Recargue','','error');  
                         }
                       if (result==1) 
                       {
-                        swal('La Cancion Ya Forma Parte de Su Coleccion','','error');
+                        alert('La Cancion Ya Forma Parte de Su Coleccion','','error');
                       }
                     },
                     error: function (result) 

@@ -125,8 +125,11 @@
                                       style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-    @include('layouts.partials.sidebar')
-    
+    @if(Auth::check())
+
+      @include('layouts.partials.sidebar')
+    @endif
+
     @include('layouts.partials.navbar')
   
     <main>

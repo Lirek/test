@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Leipel</title>
-    <link rel="stylesheet" href="{{ asset('plugins/bubbles/movingbubbles.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">    
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/bubbles/movingbubbles.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/LTE/thema/dist/css/AdminLTE.min.css')); ?>">    
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css')); ?>">
     <link rel="stylesheet"
-          href="{{ asset('plugins/LTE/thema/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.min.css') }}">
-          {{--<link href="/css/app.css" rel="stylesheet">--}}
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <script src="{{ asset('plugins/bubbles/movingbubbles.js') }}" type="text/javascript"></script>
+          href="<?php echo e(asset('plugins/LTE/thema/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.min.css')); ?>">
+          
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/bootstrapV3.3/css/bootstrap.min.css')); ?>">
+    <script src="<?php echo e(asset('plugins/bubbles/movingbubbles.js')); ?>" type="text/javascript"></script>
 </head>
 
 <body>
@@ -23,51 +23,52 @@
                 <div class="panel-heading">Registrar</div>
                 <div class="panel-body">
                     
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('SellerRegister') }}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('SellerRegister')); ?>" enctype="multipart/form-data">
+                        <?php echo e(csrf_field()); ?>
+
 
                             
-                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                         <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
 
-                                @if ($errors->has('name'))
+                                <?php if($errors->has('name')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong><?php echo e($errors->first('name')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                             <label for="email" class="col-md-4 control-label">Correo Electronico</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" required>
 
-                                @if ($errors->has('email'))
+                                <?php if($errors->has('email')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
 
                         
-                        <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
+                        <div class="form-group<?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
                             <label for="tlf" class="col-md-4 control-label">Telefono</label>
 
                             <div class="col-md-6">
-                                <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}" required autofocus>
+                                <input id="tlf" type="text" class="form-control" name="tlf" value="<?php echo e(old('tlf')); ?>" required autofocus>
 
-                                @if ($errors->has('tlf'))
+                                <?php if($errors->has('tlf')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tlf') }}</strong>
+                                        <strong><?php echo e($errors->first('tlf')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -89,11 +90,11 @@
                             <div class="col-md-6">
                                 <input id="ruc" type="text" class="form-control" name="ruc" required>
 
-                                @if ($errors->has('ruc'))
+                                <?php if($errors->has('ruc')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ruc') }}</strong>
+                                        <strong><?php echo e($errors->first('ruc')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -106,17 +107,17 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
 
-                                @if ($errors->has('password'))
+                                <?php if($errors->has('password')): ?>
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
 

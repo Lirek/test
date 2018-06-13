@@ -126,8 +126,11 @@
                                     <?php echo e(csrf_field()); ?>
 
                                 </form>
-    <?php echo $__env->make('layouts.partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    
+    <?php if(Auth::check()): ?>
+
+      <?php echo $__env->make('layouts.partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+
     <?php echo $__env->make('layouts.partials.navbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
   
     <main>

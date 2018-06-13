@@ -397,13 +397,16 @@ class AdminController extends Controller
 		{
 			$applys = ApplysSellers::find($id);
 
+      $promoter = Promoters::find($request->promoter_id);
+
 			$applys->promoter_id = $request->promoter_id;
 
 			$applys->assing_at = $current = Carbon::now();
 
+      Mail::to($applys->email)->send(new PromoterAssing($applys));
+
       $applys->save();
         
-      $mail=Mail::to($applys->email_c)->send(new PromoterAssing($applys));
 
       			
       return response()->json($applys); 
@@ -421,7 +424,7 @@ class AdminController extends Controller
 		{
 			$applys= ApplysSellers::find($id);
 			$applys->status = $request->status;
-			$applys->save();
+			
       
 			if ($request->status == 'Aprobado') 
 			{
@@ -442,21 +445,23 @@ class AdminController extends Controller
 				$applys->expires_at= $current->addDays(7);
 				
 				
-				
-				Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
+				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
 
+				$applys->save();
 				return response()->json($applys);	
 			}
       else
-      {
-        Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
+      {   
+          Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+          $applys->save();
+         return response()->json($applys);
           
       }
 			
 	
 			
 		
-			return response()->json($applys);
+			
 		}
 
     public function DeleteApplysFromPromoter($promoter,$applys)

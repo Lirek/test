@@ -29,6 +29,8 @@ class Seller extends Authenticatable
       'ruc_s',
       'descs_s',
       'adj_ruc',
+      'tlf',
+      'logo',
       'created_at',
       'updated_at',
     ];

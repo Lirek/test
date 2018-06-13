@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.leipel.com'),
+    'host' => env('MAIL_HOST', 'secure237.inmotionhosting.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'webmaster@leipel.com.ec'),
+        'address' => env('MAIL_FROM_ADDRESS', 'webmaster@leipel.com'),
         'name' => env('MAIL_FROM_NAME', 'LEIPEL'),
     ],
 
@@ -86,7 +86,7 @@ return [
 
     'username' => env('MAIL_USERNAME','webmaster@leipel.com'),
 
-    'password' => env('MAIL_PASSWORD','WebMaster1'),
+    'password' => env('MAIL_PASSWORD','Leipel2017'),
 
     /*
     |--------------------------------------------------------------------------
