@@ -535,7 +535,7 @@
 
 
         <!-- /.modal  de autor  -->
-        <div class="modal fade in modal-default" id="modal-defaultMA">
+        <div class="modal fade in modal-primary" id="modal-defaultMA">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -613,7 +613,7 @@
         <!-- /.modal -->
 
         <!-- /.modal  de sagas  -->
-        <div class="modal fade in modal-default" id="modal-defaultMS">
+        <div class="modal fade in modal-primary" id="modal-defaultMS">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">

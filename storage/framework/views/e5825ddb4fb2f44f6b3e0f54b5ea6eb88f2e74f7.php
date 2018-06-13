@@ -1,36 +1,36 @@
 
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://lorempixel.com/400/400/sports" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p><?php echo e(Auth::guard('web_seller')->user()->name); ?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i>En Linea</a>
-            </div>
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="http://lorempixel.com/400/400/sports" class="img-circle" alt="User Image">
         </div>
+        <div class="pull-left info">
+            <p><?php echo e(Auth::guard('web_seller')->user()->name); ?></p>
+            <a href="#"><i class="fa fa-circle text-success"></i>En Linea</a>
+        </div>
+    </div>
 
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header text-center">Modulos</li>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+        <li class="header text-center">Modulos</li>
+
+        
+        <li class="active menu-open">
+            <a href="<?php echo e(url('seller_home')); ?>">
+                <i class="glyphicon glyphicon-home"></i>
+                <span>Escritorio</span>
+            </a>
+        </li>
+
+        <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
 
             
-            <li class="active menu-open">
-                <a href="<?php echo e(url('seller_home')); ?>">
-                    <i class="glyphicon glyphicon-home"></i>
-                    <span>Escritorio</span>
-                </a>
-            </li>
 
-            <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
 
-                
-               
-                
-                <?php if($modulos==FALSE): ?>
-                    <li class="treeview">
+            <?php if($modulos==FALSE): ?>
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-warning"></i>
                         <span>
@@ -41,8 +41,8 @@
                         </span>
                     </a>
                 </li>
-                <?php else: ?>
-                
+            <?php else: ?>
+
                 <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                     
@@ -60,7 +60,7 @@
                                     <a href="<?php echo e(url('/albums')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar Album
+                                        Registrar Album
                                         
                                     </a>
                                 </li>
@@ -68,8 +68,8 @@
                                     <a href="<?php echo e(url('/artist_form')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar Grupo
-                                            Musical o Solista
+                                        Registrar Grupo
+                                        Musical o Solista
                                         
                                     </a>
                                 </li>
@@ -77,7 +77,7 @@
                                     <a href="<?php echo e(url('/single_registration')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar Singles
+                                        Registrar Singles
                                         
                                     </a>
                                 </li>
@@ -85,7 +85,7 @@
                                     <a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Mi Musica
+                                        Mi Musica
                                         
                                     </a>
                                 </li>
@@ -111,7 +111,7 @@
                                     <a href="<?php echo e(url('/movies')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registro peliculas
+                                        Registro peliculas
                                         
                                     </a>
                                 </li>
@@ -119,7 +119,7 @@
                                     <a href="<?php echo e(url('/movies/create')); ?>">
                                         <i class="fa fa-circle-o text-aqua"></i>
                                         
-                                            Registrar Pelicula
+                                        Registrar Pelicula
                                         
                                     </a>
                                 </li>
@@ -127,7 +127,7 @@
                                     <a href="<?php echo e(url('/single_registration')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Mis Peliculas
+                                        Mis Peliculas
                                         
                                     </a>
                                 </li>
@@ -151,7 +151,7 @@
                                     <a href="<?php echo e(url('/megazine_i')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar Revista independiente
+                                        Registrar Revista independiente
                                         
                                     </a>
                                 </li>
@@ -159,8 +159,8 @@
                                     <a href="<?php echo e(url('/megazine_form')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Agregar Revistas a
-                                            Cadenas de Publicacion
+                                        Agregar Revistas a
+                                        Cadenas de Publicacion
                                         
                                     </a>
                                 </li>
@@ -168,8 +168,8 @@
                                     <a href="<?php echo e(url('/type')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar cadena de
-                                            publicaciones
+                                        Registrar cadena de
+                                        publicaciones
                                         
                                     </a>
                                 </li>
@@ -196,36 +196,19 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="<?php echo e(url('/megazine_i')); ?>">
+                                    <a href="<?php echo e(url('/series')); ?>">
                                         <i class="fa fa-circle-o"></i>
                                         
-                                            Registrar Revista
-                                            independiente
+                                        Registro de series
                                         
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo e(url('/megazine_form')); ?>">
-                                        <i class="fa fa-circle-o"></i>
+                                    <a href="<?php echo e(url('/series/create')); ?>">
+                                        <i class="fa fa-circle-o text-aqua"></i>
                                         
-                                            Agregar Revistas a
-                                            Cadenas de Publicacion
+                                        Registrar Serie
                                         
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo e(url('/type')); ?>">
-                                        <i class="fa fa-circle-o"></i>
-                                        
-                                            Registrar cadena de
-                                            publicaciones
-                                        
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo e(url('/my_megazine',Auth::guard('web_seller')->user()->id)); ?>">
-                                        <i class="fa fa-circle-o"></i>
-                                        Mis Revistas
                                     </a>
                                 </li>
                             </ul>
@@ -328,54 +311,54 @@
                     <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                
-                 <?php endif; ?>
+
+            <?php endif; ?>
 
 
 
 
-                
-
-                
 
 
-                
-                
+
+
+
+
+
 
 
 
 
             
-            <?php elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado'): ?>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-warning"></i>
-                        <span>
+        <?php elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado'): ?>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-warning"></i>
+                    <span>
                             Su solicitud de cuenta como <br/>
                             productora se en proceso de <br/>
                             analisis por Parte de <br/>
                             nuestros analistas pronto nos<br/>
                             comunicaremos con utedesds
                         </span>
-                    </a>
-                </li>
+                </a>
+            </li>
 
             
-            <?php else: ?>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-warning"></i>
-                        <span>
+        <?php else: ?>
+            <li class="treeview active">
+                <a href="#">
+                    <i class="fa fa-warning"></i>
+                    <span>
                             Su solicitud de cuenta como<br/>
                             productora esta en proceso <br/>
                             por favor finalice el <br/>
                             registro para continuar
                         </span>
-                    </a>
-                </li>
-            <?php endif; ?>
+                </a>
+            </li>
+        <?php endif; ?>
 
-        </ul>
-    </section>
-    <!-- /.sidebar -->
+    </ul>
+</section>
+<!-- /.sidebar -->
 

@@ -109,7 +109,12 @@ class Seller extends Authenticatable
         return $this->hasMany('App\Tv', 'seller_id');
     }
 
+    public function movies()
+    {
+        return $this->hasMany('App\Movies', 'seller_id');
+    }
 
+//https://prueba.leipel.com.automatis.com.ec
     public function followers()
     {
         return $this->hasMany('App\Followers', 'seller_id');

@@ -57,45 +57,6 @@
 
     {{--es es del modal de autor--}}
     <style>
-        #imageAM-preview {
-            width: 300px;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #2b81af;
-        }
-
-        #imageAM-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #imageAM-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 200px;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
-    </style>
-
-    {{--es es del modal de autor--}}
-    <style>
         #imageSM-preview {
             width: 300px;
             height: 400px;
@@ -189,7 +150,7 @@
                             <br/>
                             {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione...'],['id'=>'exampleInputFile']) !!}
                             {{--<a class="btn btn-app btn-sm" data-toggle="modal" data-target="#modal-defaultMA">--}}
-                                {{--<i class="material-icons"> add_circle</i>--}}
+                            {{--<i class="material-icons"> add_circle</i>--}}
                             {{--</a>--}}
                             <br/>
                             <br/>
@@ -511,7 +472,7 @@
 
                             {{--duracion de la pelicula--}}
                             {{--<label for="exampleInputPassword1" class="control-label">Duracion</label>--}}
-{{--                            {!! Form::text('duration',null,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}--}}
+                            {{--                            {!! Form::text('duration',null,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}--}}
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Precio</label>
@@ -537,87 +498,8 @@
             </div>
         </div>
 
-
-        <!-- /.modal  de autor  -->
-        <div class="modal fade in modal-default" id="modal-defaultMA">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title text-center">Agregar autor</h4>
-                    </div>
-                    <div class="modal-body ">
-                        {!! Form::open(['route'=>'authors_books.register', 'method'=>'POST','files' => 'true' ]) !!}
-                        {{ Form::token() }}
-                        <div class="box-body ">
-
-                            {{--Imagen--}}
-                            <div id="imageAM-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
-                                <label for="image-upload" id="image-label"> Foto del autor </label>
-                                {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'imageAM-upload'],['style'=>'border:#000000','1px solid ;']) !!}
-
-                            </div>
-
-                            <div class="form-group col-sm-4">
-                                {{--nombre de la radio--}}
-                                <label for="exampleInputFile" class="control-label">Nombres y Apellidos</label>
-                                {!! Form::text('full_name',null,['class'=>'form-control autofocus','placeholder'=>'nombre completo del autor'],['id'=>'exampleInputFile']) !!}
-
-                                {{--correo o email de la radio--}}
-                                <label for="exampleInputEmail1">Correo electronico</label>
-                                <input type="email" name="email_c" class="form-control" id="exampleInputEmail1"
-                                       placeholder="example@gmail.com">
-
-                            </div>
-                            <br/>
-
-                            {{--inicio de la agrupacion--}}
-                            <div class="form-group col-sm-4">
-
-                                {{--link d google+--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                    {!! Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+'],['id'=>'exampleInputFile']) !!}
-                                </div>
-                                {{--lin de instagram--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    {!! Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram'],['id'=>'exampleInputFile']) !!}
-                                </div>
-                                {{--link de facebook--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
-                                    {!! Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook']) !!}
-                                </div>
-
-                                {{--lind de twitter--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                    {!! Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter'],['id'=>'twitter']) !!}
-                                </div>
-                            </div>
-                            {{--final de la agrupacion--}}
-
-                        </div>
-                        <!-- /.box-body -->
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                        {!! Form::submit('Guardar', ['class' => 'btn btn-primary active']) !!}
-
-                        {!! Form::close() !!}
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
         <!-- /.modal  de sagas  -->
-        <div class="modal fade in modal-default" id="modal-defaultMS">
+        <div class="modal fade in modal-primary" id="modal-defaultMS">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
