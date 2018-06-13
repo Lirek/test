@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 //use Laravel\Socialite;
 use Socialite;
 
-use Auth;
 class SocialAuthController extends Controller
 {
     public function redirectToProvider($provider)
@@ -21,30 +20,13 @@ class SocialAuthController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
 //            dd($user);
-
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-                $charactersLength = strlen($characters);
-                
-                $randomString = '';
-        
-              for ($i = 0; $i < 6; $i++) 
-                  {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
-                  }
-
-
-                    $code=$randomString;
-
             $createUser = User::firstOrCreate(
                 ['email' => $user->getEmail()],
-                ['name' => $user->getName()],
-                ['codigo_ref'=> $code],
-                ['credito'=>0]
+                ['name' => $user->getName()]
             );
 
-            Auth::login($createUser);
-            return view('home')
+            auth()->login($createUser);
+            return redirect('/home')
                 ->with('alert',"Bienvenido $createUser->name");
 
         }catch (\GuzzleHttp\Exception\ClientException $e){

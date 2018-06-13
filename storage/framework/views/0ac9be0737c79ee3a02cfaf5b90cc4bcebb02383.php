@@ -25,14 +25,15 @@
     </li>
       
       <li>
-        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" href="{{ url('/logout') }}"
+        <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" href="<?php echo e(url('/logout')); ?>"
            onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
           <i class="material-icons">
           power_settings_new
           </i>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+            <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST"
                   style="display: none;">
-                {{ csrf_field() }}
+                <?php echo e(csrf_field()); ?>
+
             </form>
         </a>
       </li>
@@ -41,7 +42,7 @@
 
     <nav class="white" role="navigation">
       <div class="nav-wrapper">
-        <a data-activates="slide-out" class="button-collapse show-on-large" href="#!"><img style="margin-top: 5px; width:30%; margin-left: 5px;" src="{{ asset('sistem_images/Logo-Leipel.png') }}"/></a>
+        <a data-activates="slide-out" class="button-collapse show-on-large" href="#!"><img style="margin-top: 5px; width:30%; margin-left: 5px;" src="<?php echo e(asset('sistem_images/Logo-Leipel.png')); ?>"/></a>
 
         <ul class="right hide-on-med-and-down">
           

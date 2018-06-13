@@ -43,12 +43,9 @@ Route::get('ContentGraph', 'HomeController@DataContentGraph');
 
 //---------------------------------------------------------------------
 
-
-
 Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
 
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
-
 
 Route::resource('users', 'UserController');
 
