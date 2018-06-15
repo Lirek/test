@@ -1,12 +1,24 @@
-@extends('seller.layouts')
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Leipel</title>
+    <link rel="stylesheet" href="{{ asset('plugins/bubbles/movingbubbles.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">    
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('plugins/LTE/thema/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.min.css') }}">
+          {{--<link href="/css/app.css" rel="stylesheet">--}}
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
+    <script src="{{ asset('plugins/bubbles/movingbubbles.js') }}" type="text/javascript"></script>
+</head>
 
-<!-- Main Content -->
-@section('content')
+<body>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" style="margin-top: 40px">
             <div class="panel panel-success">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Restablecer Contraseña</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -18,7 +30,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Correo Electronico</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -34,7 +46,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-success">
-                                    Send Password Reset Link
+                                    Enviar Link
                                 </button>
                             </div>
                         </div>
@@ -44,4 +56,5 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

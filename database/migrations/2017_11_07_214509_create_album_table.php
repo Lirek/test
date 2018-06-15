@@ -18,10 +18,10 @@ class CreateAlbumTable extends Migration
     $table->increments('id');
     $table->integer('seller_id')->unsigned();
     $table->integer('autors_id')->unsigned();
-    $table->integer('rating_id')->unsigned();
+    $table->integer('rating_id')->unsigned()->default(1);
     $table->string('name_alb')->nullable();
     $table->string('cover')->nullable();
-    $table->string('producer')->nullable();
+    $table->string('producer')->nullable()->default(NULL);
     $table->string('duration')->nullable()->default(NULL);        
     $table->integer('cost')->unsigned();
     $table->date('release_date')->nullable();
