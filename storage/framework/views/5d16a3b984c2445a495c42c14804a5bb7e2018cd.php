@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 <div class="container">
 	<div class="row">
@@ -14,7 +12,7 @@
            <div class="divider"></div>
            
            <div class="center">
-             <h3><spam class="white-text">{{Auth::user()->codigo_ref}}</spam></h3>  
+             <h3><spam class="white-text"><?php echo e(Auth::user()->codigo_ref); ?></spam></h3>  
            </div>
 
         </div>
@@ -46,7 +44,7 @@
              
 
            <div class="center">
-                <p><span class="white-text">{{url('/').'/register/'.Auth::user()->codigo_ref}}</span> </p>
+                <p><span class="white-text"><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></span> </p>
            </div>
 
         </div>
@@ -67,7 +65,8 @@
            <div class="divider"></div>
            <br>
            <div class="center">
-                {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+
            </div>
 
             </div>
@@ -76,8 +75,10 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
-@endsection 
+<?php $__env->stopSection(); ?> 
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

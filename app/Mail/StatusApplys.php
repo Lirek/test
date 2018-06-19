@@ -24,7 +24,7 @@ class StatusApplys extends Mailable
     public function __construct($applys,$x)
     {
         $this->applys = $applys; 
-        $this->url = 'http://prueba.leipel.com.automatis.com.ec/public/seller_complete_f/'.$this->applys->id.'/'.$this->applys->token;
+        $this->url = 'https://prueba.leipel.com/seller_complete_f/'.$this->applys->id.'/'.$this->applys->token;
         $this->x=$x;
     }
 

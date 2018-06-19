@@ -28,7 +28,6 @@
                                   <th class="mdl-data-table__cell--non-numeric">Nombre Del Contacto</th>
                                   <th class="mdl-data-table__cell--non-numeric">Telefono Del Contacto</th>
                                   <th class="mdl-data-table__cell--non-numeric">Correo Del Contacto</th>
-                                  <th class="mdl-data-table__cell--non-numeric">Descripcion</th>
                                   <th class="mdl-data-table__cell--non-numeric">Tipo Contenido</th>
                                   <th class="mdl-data-table__cell--non-numeric">Vendedor</th>
                                   <th class="mdl-data-table__cell--non-numeric">Solicitud</th>
@@ -45,8 +44,6 @@
                                       <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->phone_s); ?></td>
                                       
                                       <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->email); ?></td>
-                                      
-                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->dsc); ?></td>
                                       
                                       <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->desired_m); ?></td>
 

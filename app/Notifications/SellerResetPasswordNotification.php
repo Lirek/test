@@ -44,9 +44,9 @@ class SellerResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
       return (new MailMessage)
-        ->line('You are receiving this email because we received a password reset request for your account.')
-        ->action('Reset Password', url('seller_password/reset', $this->token))
-        ->line('If you did not request a password reset, no further action is required.');
+        ->line('Un Cordial Saludo queremos informarle que para reestablecer su contraseña debe hacer click en el siquiente enlace')
+        ->action('Reestablecer Contraseña', url('seller_password/reset', $this->token))
+        ->line('Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando.')->line();
     }
 
     /**
