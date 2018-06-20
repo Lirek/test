@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID','310370796775-ljofrqkqjmalt0v5dughqbcrebfeb5k2.apps.googleusercontent.com'),         // Your GitHub Client ID
         'client_secret' => env('GOOGLE_CLIENT_SECRET','dM1lQonXg2WP_-wQxHAUnGQX'), // Your GitHub Client Secret
-        'redirect' => 'http://prueba.leipel.com.automatis.com.ec/public/login/google/callback',
+        'redirect' => 'https://prueba.leipel.com/login/google/callback',
 //        'redirect' => 'http://localhost/test/public/login/google/callback',
     ],
 
@@ -52,14 +52,13 @@ return [
     'facebook' => [
         'client_id'     => env('FACEBOOK_ID','196009587789318'),
         'client_secret' => env('FACEBOOK_SECRET','30a7707c5762f77be28f1fe0480a672a'),
-        'redirect'      => 'http://prueba.leipel.com.automatis.com.ec/public/login/facebook/callback',
-//        'redirect' => 'https://localhost/test/public/login/facebook/callback',
+        'redirect'      => 'https://prueba.leipel.com/login/facebook/callback',
     ],
 
     'twitter' => [
         'client_id'     => env('TWITTER_ID','3ViUyES1FTvFurw0Ge8ncu6QZ'),
         'client_secret' => env('TWITTER_SECRET','	Lup0XAw3DrXbfq2HpZuuyrkBXGso1L45EDoGsXpul44bVlLJzz'),
-        'redirect' => 'http://prueba.leipel.com.automatis.com.ec/public/login/twitter/callback',
+        'redirect' => 'https://prueba.leipel.com/login/twitter/callback',
 //        'redirect' => 'http://localhost/test/public/login/twitter/callback',
     ],
 
