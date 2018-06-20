@@ -133,125 +133,19 @@
             </div>
 
             <div class="row" id="portfolio-wrapper">
+                @foreach($book as $b)
+                    {{--deben ser 12--}}
                 <div class="col-lg-3 col-md-6 portfolio-item filter-app">
+                    {{--{{ dd($b) }}--}}
                     <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/app1.jpg') }}" alt="">
+                        <img src="{{ asset('images/bookcover/'. $b->cover) }}" class="image img-responsive" alt="">
                         <div class="details">
-                            <h4>App 1</h4>
-                            <span>Alored dono par</span>
+                            <h4>{{ $b->title }}</h4>
+                            <span>{{ $b->seller->name }}</span>
                         </div>
                     </a>
                 </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/web2.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Web 2</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/app3.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>App 3</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/card1.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Card 1</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/card2.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Card 2</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/web3.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Web 3</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/card3.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Card 3</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/app2.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>App 2</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/logo1.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Logo 1</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/logo3.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Logo 3</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/web1.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Web 1</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-                    <a href="">
-                        <img src="{{ asset('plugins/img/portfolio/logo2.jpg') }}" alt="">
-                        <div class="details">
-                            <h4>Logo 2</h4>
-                            <span>Alored dono par</span>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -266,9 +160,9 @@
                 </div>
                 <div class="autoplay">
 
-                            {{--{{ dd($i) }}--}}
-                    {{--@foreach($a )--}}
-                        @foreach($seller as $s)
+                    {{--{{ dd($i) }}--}}
+                    @foreach($seller as $s)
+                        @if($s->id < 5 )
                             <div class="col-md-6">
                                 <div class="team-info">
                                     <div class="img-sec">
@@ -287,8 +181,8 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    {{--@endforeach--}}
+                        @endif
+                    @endforeach
 
                 </div>
             </div>
