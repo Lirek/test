@@ -35,16 +35,8 @@
 
         <tbody>
           
-          @if($Songs)
-            <tr>
-                <td>{{$Songs->song_name}}</td>
-                <td>Single</td>
-                <td>{{$Songs->cost}}</td>
-                <td>{{$Songs->Seller->name}}</td>
-                <td><i class="material-icons circle">forward</i></td>
-            </tr>
-          @endif
-          
+
+
           @if($Albums)
             <tr>
                 <td>{{$Albums->name_alb}}</td>
@@ -74,7 +66,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-          
+
           @if($Megazines)
           <tr>
             <td>{{$Megazines->title}}</td>
@@ -84,7 +76,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-          
+
           @if($Radio)
           <tr>
             <td>{{$Radio->name_r}}</td>
@@ -94,7 +86,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-         
+
          @if($Movies)
           <tr>
             <td>{{$Movies->title}}</td>
