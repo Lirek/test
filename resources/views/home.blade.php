@@ -35,16 +35,6 @@
 
         <tbody>
           
-          @if($Songs)
-            <tr>
-                <td>{{$Songs->song_name}}</td>
-                <td>Single</td>
-                <td>{{$Songs->cost}}</td>
-                <td>{{$Songs->Seller->name}}</td>
-                <td><i class="material-icons circle">forward</i></td>
-            </tr>
-          @endif
-          
           @if($Albums)
             <tr>
                 <td>{{$Albums->name_alb}}</td>
