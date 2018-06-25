@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
 
-
 @section('content')
 <main  class="mdl-layout__content">
 <div class="mdl-layout mdl-grid">
@@ -15,7 +14,7 @@
     <div id="applys" class="mdl-tabs__panel is-active mdl-cell mdl-cell--1-col">
        <div class="mdl-grid">
         
-            <div class="mdl-cell mdl-cell--1-col">
+            <div class="mdl-cell mdl-cell--6-col">
 
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -23,30 +22,33 @@
                         </div>
                     @endif
 
-                    <table class="mdl-data-table mdl-js-data-table ">            
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp">             
                         <thead>
                                 <tr>
-                                  <th>Nombre Comercial</th>
-                                  <th>Nombre Del Contacto</th>
-                                  <th>Telefono Del Contacto</th>
-                                  <th>Correo Del Contacto</th>
-                                  <th>Vendedor</th>
-                                  <th>Solicitud</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Nombre Comercial</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Nombre Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Telefono Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Correo Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Tipo Contenido</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Vendedor</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Solicitud</th>
                                 </tr>
                             </thead>
                                 <tbody>
                                     @foreach($applys as $apply)
                                     <tr id="apply{{$apply->id}}">
                                       
-                                      <td>{{$apply->name_c}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$apply->name_c}}</td>
                                       
-                                      <td>{{$apply->contact_s}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$apply->contact_s}}</td>
                                       
-                                      <td>{{$apply->phone_s}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$apply->phone_s}}</td>
                                       
-                                      <td>{{$apply->email}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$apply->email}}</td>
                                       
-                                      <td id="apply_td{{$apply->id}}">
+                                      <td class="mdl-data-table__cell--non-numeric">{{$apply->desired_m}}</td>
+
+                                      <td class="mdl-data-table__cell--non-numeric" id="apply_td{{$apply->id}}">
                                         @if($apply->promoter_id != NULL)
                                        <span class="mdl-chip mdl-chip--deletable" id="a_{{$apply->promoter_id}}_{{$apply->id}}">  <span class="mdl-chip__text" id="promoter_assing">{{$apply->Promoter->name_c}}</span> <button type="button" class="mdl-chip__action" value1="{{$apply->id}}" value2="{{$apply->promoter_id}}" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
                                         @else
@@ -61,7 +63,7 @@
                                         @endif
                                       </td>
                                       
-                                      <td>
+                                      <td class="mdl-data-table__cell--non-numeric">
                                           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifyApplys" value="{{$apply->id}}" data-toggle="modal" data-target="#myModal">
                                           {{$apply->status}}
                                         </button>
@@ -95,7 +97,7 @@
                                     @foreach($promoters as $promoter)
                                     <tr id="promoter{{$promoter->id}}">
                                       
-                                      <td> <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="{{$promoter->id}}">
+                                      <td class="mdl-data-table__cell--non-numeric"> <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="{{$promoter->id}}">
                                             <i class="material-icons">cancel</i>
                                            </button>
                                            <div class="mdl-tooltip" data-mdl-for="delete_promoter">
@@ -103,13 +105,13 @@
                                           </div>
                                       </td>
 
-                                      <td>{{$promoter->id}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$promoter->id}}</td>
                                       
-                                      <td>{{$promoter->name_c}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$promoter->name_c}}</td>
                                       
-                                      <td>{{$promoter->phone_s}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$promoter->phone_s}}</td>
                                       
-                                      <td>{{$promoter->email}}</td>
+                                      <td class="mdl-data-table__cell--non-numeric">{{$promoter->email}}</td>
                                       
                                       <td id="promoter_ap{{$promoter->id}}">
 

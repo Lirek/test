@@ -7,11 +7,37 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Auth;
+use App\Seller;
+use App\Book;
+use App\Radio;
+use App\Tv;
+use App\Movie;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
-  
+
+    public function welcome()
+    {
+//        $sellers = Seller::orderBy('id', 'DESC')->paginate('10');
+        $sellers = Seller::all();
+        $books = Book::all();
+        $books->each(function ($books) {
+            $books->author;
+            $books->seller;
+            $books->saga;
+            $books->rating;
+        });
+        $radios = Radio::all();
+        $tvs = Tv::all();
+        $movies = Movie::all();
+
+        return view('welcome')
+            ->with('seller', $sellers)
+            ->with('book',$books)
+            ->with('movie',$movies)
+            ->with('tv',$tvs)
+            ->with('radio',$radios);
+    }
 
 }

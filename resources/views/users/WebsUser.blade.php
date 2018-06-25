@@ -1,63 +1,67 @@
 @extends('layouts.app')
 
-@section('content')
+@section('main')
+
 <div class="container">
   <div class="row">
     
-    <div class="col-md-4">
-      <div class="panel panel-succes">
-        
-        <div class="panel-heading">
-                    Primer Nivel de Referidos
-                </div>
+    <div class="col s4">
+      <div class="card-panel teal">
+           
+           <div class="center">
+             <h3><spam class="white-text">Primer Nivel de Referidos</spam></h3>
+           </div>
                 
-           <div class="panel-body">
-
-                <h2>Posee:</h2> <h3>{{$referals1}}</h3>  
+           <div class="divider"></div>
+           
+           <div class="center">
+            <h3><spam class="white-text">{{$referals1}}</spam></h3>  
+           </div>
 
         </div>
-      </div>  
-    </div> 
+    </div>  
 
-      <div class="col-md-4">
-       <div class="panel panel-default">
-        
-        <div class="panel-heading">
-                    Segundo Nivel de Referidos
-                </div>
+    <div class="col s4">
+      <div class="card-panel teal">
+           
+        <div class="center">
+          <h4><spam class="white-text">Segundo Nivel de Referidos</spam></h4>
+        </div>
                 
-                <div class="panel-body">
-
-                 <h2>Posee:</h2> <h3>{{$referals2}}</h3>  
-
-                </div>
-       </div>
+           <div class="divider"></div>
+           
+        <div class="center">
+          <h3><spam class="white-text">{{$referals2}}</spam></h3>  
+        </div>
+           
+        </div>
     </div>
 
-        <div class="col-md-4">
-          <div class="panel panel-alert">
-        
-          <div class="panel-heading">
-                    Tercer Nivel de Referidos
-                </div>
-
-                <div class="panel-body">
-
-                 <h2>Posee:</h2> <h3>{{$referals3}}</h3>  
-            
-
-                </div>
-           </div>
+      <div class="col s4">
+        <div class="card-panel teal">
+           
+        <div class="center">
+          <h3><spam class="white-text">Tercer Nivel de Referidos</spam></h3>
         </div>
+                
+           <div class="divider"></div>
+           
+        <div class="center">
+          <h3><spam class="white-text">{{$referals3}}</spam></h3>  
+        </div>
+           
+        </div>
+      </div>
+
+    </div> 
 
   </div>
 
-  <div class="row">
   
-  </div>
 
-  <div class="row">
 
-  </div>
-</div>
+@endsection
+
+@section('js')
+
 @endsection

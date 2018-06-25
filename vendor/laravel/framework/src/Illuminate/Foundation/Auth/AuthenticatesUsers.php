@@ -4,6 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\AdminLoggedIn;
 
 trait AuthenticatesUsers
 {
@@ -113,7 +114,15 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        if(Auth::guard('web_seller')->check())
+                {
+                    $type = "seller";
+                }
+            elseif(Auth::guard()->check())
+                {
+                    $type = "user";
+                }
+        event(new AdminLoggedIn($user,$type, $request->ip()));
     }
 
     /**

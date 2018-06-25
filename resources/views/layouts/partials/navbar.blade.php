@@ -25,12 +25,11 @@
      </li>
       
       <li>
-<<<<<<< HEAD
+
         <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-=======
+
         <a class="indigo-text tooltipped" data-position="left" data-tooltip="Salir" href="{{ url('/logout') }}"
            onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
->>>>>>> 1ab232794164ded2d29b5e5779ca953fab7d3952
           <i class="material-icons">
           power_settings_new
           </i>

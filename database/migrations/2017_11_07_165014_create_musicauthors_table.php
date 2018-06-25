@@ -27,7 +27,7 @@ class CreateMusicauthorsTable extends Migration
     $table->string('photo')->nullable();
     $table->integer('seller_id')->unsigned();
     $table->timestamps();
-    $table->enum('status',['Aprobado','En Proceso','Denegado']);
+    $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
     
     $table->foreign('seller_id')->references('id')->on('sellers');
         });

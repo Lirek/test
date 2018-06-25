@@ -34,8 +34,6 @@
         </thead>
 
         <tbody>
-          
-
 
           @if($Albums)
             <tr>
@@ -66,7 +64,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-
+          
           @if($Megazines)
           <tr>
             <td>{{$Megazines->title}}</td>
@@ -76,7 +74,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-
+          
           @if($Radio)
           <tr>
             <td>{{$Radio->name_r}}</td>
@@ -86,7 +84,7 @@
             <td><i class="material-icons circle">forward</i></td>
           </tr>
           @endif
-
+         
          @if($Movies)
           <tr>
             <td>{{$Movies->title}}</td>

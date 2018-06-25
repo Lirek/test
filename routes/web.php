@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\View;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', 'Controller@welcome');
 
 
 
@@ -262,7 +263,7 @@ Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@Del
 Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
 
 Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
-Route::get('seller_complete_f/{id}/{code}', 'SellerController@CompleteRegistrationForm');
+
 
 
 
@@ -409,7 +410,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
 Route::group(['middleware' => 'seller_guest'], function () {
 
-    Route::get('seller_register', 'SellerAuth\RegisterController@showRegistrationForm');
+    Route::get('seller_complete_f/{id}/{code}', 'SellerController@CompleteRegistrationForm');
 
     Route::post('seller_register', 'SellerAuth\RegisterController@register');
 

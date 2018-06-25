@@ -27,6 +27,7 @@ class SellerController extends Controller
         }
         else
         {
+            flash()->error('El enlace procesado no corresponde a nuestors registros');
           return view('seller.auth.login');   
         }
         

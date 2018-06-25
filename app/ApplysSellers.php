@@ -17,6 +17,8 @@ class ApplysSellers extends Model
       'phone_s',
       'email',
       'status',
+      'dsc',
+      'desired_m',
       'assing_at',
       'created_at',
       'updated_at',
