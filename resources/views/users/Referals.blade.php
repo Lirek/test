@@ -1,118 +1,83 @@
 @extends('layouts.app')
-@section('content')
+
+@section('main')
 
 <div class="container">
 	<div class="row">
-	
-		<div class="market-updates">
-                <div class="col-lg-4">
-                    <div class="market-update-block clr-block-2">
-                        <div class="col-md-4 market-update-right">
-                            <i class="far fa-eye fa-3x"> </i>
-                        </div>
-                        <div class="col-md-8 market-update-left">
-                            <h4>Mi Codigo de Referido</h4>
-                            <h3>{{Auth::user()->codigo_ref}}</h3>
-                            
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
-	       </div>
+	   
+       <div class="col s4">
+         <div class="card-panel teal">  
+           <div class="center">
+             <h3><spam class="white-text">Mi Codigo de Referido</spam></h3>
+           </div>
+                
+           <div class="divider"></div>
+           
+           <div class="center">
+             <h3><spam class="white-text">{{Auth::user()->codigo_ref}}</spam></h3>  
+           </div>
 
-		<div class="market-updates">
-                <div class="col-lg-4">
-                    <div class="market-update-block clr-block-2">
-                        <div class="col-md-4 market-update-right">
-                            <i class="far fa-envelope fa-3x"> </i>
-                        </div>
-                        <div class="col-md-8 market-update-left">
-                            <h4>Invitar Por Correo</h4>
-                            <h3>
-                            	<a href="#myModal-1" data-toggle="modal" class="btn btn-success">
-                              		<i class="fa fa-envelope"> </i>      
-                                </a>
-							</h3>
-                            
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-				</div>				
-			</div>
+        </div>
+    </div>
 
-         <div class="market-updates">
-                <div class="col-lg-4">
-                    <div class="market-update-block clr-block-2">
-                        <div class="col-md-4 market-update-right">
-                            <i class="far fa-eye fa-3x"> </i>
-                        </div>
-                        <div class="col-lg-8 market-update-left">
-                            <h4>Mi Enlace </h4>
-                            <p>{{url('/').'/register/'.Auth::user()->codigo_ref}}</p>
+    <div class="col s4">
+         <div class="card-panel">  
+           <div class="center">
+             <h3><spam class="black-text">Invitar Por Correo</spam></h3>
+           </div>
+                
+           <div class="divider"></div>
+           
+           <div class="center">
+            <br>
+                <a class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons left">send</i>button</a>
+           </div>
+
+        </div>
+    </div>
+
+     <div class="col s4">
+         <div class="card-panel teal">  
+           <div class="center">
+             <h3><spam class="white-text">Mi Enlace</spam></h3>
+           </div>
+                
+           <div class="divider"></div>
+             
+
+           <div class="center">
+                <p><span class="white-text">{{url('/').'/register/'.Auth::user()->codigo_ref}}</span> </p>
+           </div>
+
+        </div>
+    </div>                
                             
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>
+                            
+    </div>                        
+         
+                            
+    <div class="row">
+
+        <div class="col s5">
+            <div class="card-panel">  
+           <div class="center">
+             <h3><spam class="black-text">Mi Codigo QR</spam></h3>
+           </div>
+                
+           <div class="divider"></div>
+           <br>
+           <div class="center">
+                {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+           </div>
+
             </div>
-    </div>
-    
-
-
-    
-  
-	
-    <br>
-    <br>
-	<div class="row">
-    
-    <div class="col-md-4">
-	   {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
-    </div>
-
+        </div>
     </div>
 
 
-</div>
-
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-1" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                        <h4 class="modal-title">Invitar</h4>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <form class="form-horizontal" role="form">
-                                            <div class="form-group">
-                                                <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Email</label>
-                                                <div class="col-lg-10">
-                                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Mensaje</label>
-                                                <div class="col-lg-10">
-                                                    
-                                                	<textarea class="form-control" id="inputPassword4"> 
-                                                		
-                                                	</textarea>
-                                                    
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="form-group">
-                                                <div class="col-lg-offset-2 col-lg-10">
-                                                    <button type="submit" class="btn btn-default"><i class="fa fa-mail-forward"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
 
 @endsection
+
+@section('js')
+
+@endsection 

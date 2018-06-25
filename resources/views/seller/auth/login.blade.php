@@ -31,6 +31,7 @@
         </ul>
     </div>
 @endif
+ @include('flash::message')
                     <form role="form" method="POST" action="{{ url('/seller_login') }}">
                     {{ csrf_field() }}
                         

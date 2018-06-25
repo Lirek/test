@@ -24,6 +24,8 @@ class CreateApplysTable extends Migration
     $table->string('contact_s')->nullable()->default(NULL);
     $table->string('phone_s')->nullable()->default(NULL);
     $table->string('email')->nullable()->default(NULL);
+    $table->longText('dsc')->nullable()->default(NULL);
+    $table->string('desired_m')->nullable()->default(NULL);
     $table->dateTime('expires_at')->nullable()->default(NULL);
     $table->dateTime('assing_at')->nullable()->default(NULL);
     $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');

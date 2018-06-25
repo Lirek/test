@@ -27,6 +27,7 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ url('ApplysSubmit') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
+       @include('flash::message')
 
         <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
             <label for="tlf" class="col-md-6 control-label">Nombre Comercial</label>
@@ -69,6 +70,45 @@
                 @endif
             </div>
         </div>
+
+        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+
+            <label for="description" class="col-md-6 control-label">Descripcion</label>
+            <div class="col-md-6">
+                <textarea name="description" id="description" required="">
+                    
+
+                </textarea>
+                @if ($errors->has('description'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('description') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content_type" class="col-md-6 control-label">Tipo de Contenido</label>
+
+            <div class="col-md-6">
+                <select name="content_type" id="content_type">
+                    <option value="Musica">Musica</option>
+                    <option value="Revistas">Revistas</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Radios">Radios</option>
+                    <option value="TV">Televisoras</option>
+                    <option value="Peliculas">Peliculas</option>
+                    <option value="Series">Series</option>
+                </select>
+
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('content_type') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="email" class="col-md-6 control-label">Email</label>
 

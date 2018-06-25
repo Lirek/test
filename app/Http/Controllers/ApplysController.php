@@ -20,6 +20,8 @@ class ApplysController extends Controller
         $applys->contact_s = $request->contact_name;
         $applys->phone_s = $request->tlf;
         $applys->email = $request->email;
+        $applys->desired_m = $request->content_type;
+        $applys->dsc = $request->description;
         $applys->save();
         flash('Su Solicitud Sera Procesada')->success();
         return view('seller.auth.applys');

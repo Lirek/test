@@ -34,7 +34,8 @@
         </thead>
 
         <tbody>
-          
+
+
           @if($Albums)
             <tr>
                 <td>{{$Albums->name_alb}}</td>

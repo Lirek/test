@@ -12,7 +12,7 @@
     <div id="applys" class="mdl-tabs__panel is-active mdl-cell mdl-cell--1-col">
        <div class="mdl-grid">
         
-            <div class="mdl-cell mdl-cell--1-col">
+            <div class="mdl-cell mdl-cell--6-col">
 
                     <?php if(session('status')): ?>
                         <div class="alert alert-success">
@@ -21,30 +21,33 @@
                         </div>
                     <?php endif; ?>
 
-                    <table class="mdl-data-table mdl-js-data-table ">            
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--4dp">             
                         <thead>
                                 <tr>
-                                  <th>Nombre Comercial</th>
-                                  <th>Nombre Del Contacto</th>
-                                  <th>Telefono Del Contacto</th>
-                                  <th>Correo Del Contacto</th>
-                                  <th>Vendedor</th>
-                                  <th>Solicitud</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Nombre Comercial</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Nombre Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Telefono Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Correo Del Contacto</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Tipo Contenido</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Vendedor</th>
+                                  <th class="mdl-data-table__cell--non-numeric">Solicitud</th>
                                 </tr>
                             </thead>
                                 <tbody>
                                     <?php $__currentLoopData = $applys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $apply): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="apply<?php echo e($apply->id); ?>">
                                       
-                                      <td><?php echo e($apply->name_c); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->name_c); ?></td>
                                       
-                                      <td><?php echo e($apply->contact_s); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->contact_s); ?></td>
                                       
-                                      <td><?php echo e($apply->phone_s); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->phone_s); ?></td>
                                       
-                                      <td><?php echo e($apply->email); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->email); ?></td>
                                       
-                                      <td id="apply_td<?php echo e($apply->id); ?>">
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($apply->desired_m); ?></td>
+
+                                      <td class="mdl-data-table__cell--non-numeric" id="apply_td<?php echo e($apply->id); ?>">
                                         <?php if($apply->promoter_id != NULL): ?>
                                        <span class="mdl-chip mdl-chip--deletable" id="a_<?php echo e($apply->promoter_id); ?>_<?php echo e($apply->id); ?>">  <span class="mdl-chip__text" id="promoter_assing"><?php echo e($apply->Promoter->name_c); ?></span> <button type="button" class="mdl-chip__action" value1="<?php echo e($apply->id); ?>" value2="<?php echo e($apply->promoter_id); ?>" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
                                         <?php else: ?>
@@ -59,7 +62,7 @@
                                         <?php endif; ?>
                                       </td>
                                       
-                                      <td>
+                                      <td class="mdl-data-table__cell--non-numeric">
                                           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifyApplys" value="<?php echo e($apply->id); ?>" data-toggle="modal" data-target="#myModal">
                                           <?php echo e($apply->status); ?>
 
@@ -94,7 +97,7 @@
                                     <?php $__currentLoopData = $promoters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promoter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="promoter<?php echo e($promoter->id); ?>">
                                       
-                                      <td> <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="<?php echo e($promoter->id); ?>">
+                                      <td class="mdl-data-table__cell--non-numeric"> <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="<?php echo e($promoter->id); ?>">
                                             <i class="material-icons">cancel</i>
                                            </button>
                                            <div class="mdl-tooltip" data-mdl-for="delete_promoter">
@@ -102,13 +105,13 @@
                                           </div>
                                       </td>
 
-                                      <td><?php echo e($promoter->id); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($promoter->id); ?></td>
                                       
-                                      <td><?php echo e($promoter->name_c); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($promoter->name_c); ?></td>
                                       
-                                      <td><?php echo e($promoter->phone_s); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($promoter->phone_s); ?></td>
                                       
-                                      <td><?php echo e($promoter->email); ?></td>
+                                      <td class="mdl-data-table__cell--non-numeric"><?php echo e($promoter->email); ?></td>
                                       
                                       <td id="promoter_ap<?php echo e($promoter->id); ?>">
 
