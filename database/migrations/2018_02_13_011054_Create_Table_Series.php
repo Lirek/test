@@ -25,7 +25,7 @@ class CreateTableSeries extends Migration
 
             $table->timestamps();
 
-            $table->foreign('seller_id')->references('id')->on('seller');
+            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->foreign('saga_id')->references('id')->on('saga');
             });
     }

@@ -18,7 +18,7 @@ class CreateApplysTable extends Migration
     {
     
     $table->increments('id');
-    $table->integer('promoter_id')->nullable()->default(NULL);
+    $table->integer('promoter_id')->nullable()->unsigned()->default(NULL);
     $table->string('name_c')->nullable()->default(NULL);
     $table->string('token')->nullable()->default(NULL);
     $table->string('contact_s')->nullable()->default(NULL);
