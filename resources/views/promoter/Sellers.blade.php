@@ -1,35 +1,29 @@
 @extends('promoter.layouts.app')
 
+@section('main')
 
-@section('content')
-<main  class="mdl-layout__content">
-<div class="mdl-layout mdl-grid">
-    <div class="mdl-grid">
-        
-            <div class="mdl-cell mdl-cell-1--col">
-
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <table class="mdl-data-table mdl-js-data-table ">            
-                        <thead>
-                                <tr>
+<h3><i class="fa fa-angle-right"></i>Proveedores Registrados</h3>
+          <div class="row mt">
+            <div class="col-lg-12">
+                      <div class="content-panel">
+                      <h4><i class="fa fa-angle-right"></i> Proveedores</h4>
+                          <section id="unseen">
+                            <table class="table table-bordered table-striped table-condensed">
+                              <thead>
+                              <tr>
                                   <th>Estatus</th>
                                   <th>Nombre</th>
                                   <th>Correo</th>
                                   <th>Ruc</th>
                                   <th>Descripcion</th>
                                   <th>Modulos</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                    @foreach($sellers as $seller)
-                                    <tr id="seller{{$seller->id}}">
-                                      <td>                          
-                                       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifySellers" value="{{$seller->id}}" data-toggle="modal" data-target="#myModal">
+                              </tr>
+                              </thead>
+                              <tbody>
+                              @foreach($sellers as $seller)
+                              <tr id="seller{{$seller->id}}">
+                                                                      <td>                          
+                                       <button id="ModifySellers" value="{{$seller->id}}" data-toggle="modal" data-target="#myModal">
                                           {{$seller->estatus}}
                                         </button>
                                       </td>
@@ -39,140 +33,56 @@
                                       <td>{{$seller->descs_s}}</td>
                                       <td id="modules_td{{$seller->id}}">@foreach($seller->roles()->get() as $modules) 
 
-                                  <span class="mdl-chip mdl-chip--deletable" id="m_{{$modules->id}}_{{$seller->id}}">
-                                  <span class="mdl-chip__text" id="modules">{{$modules->name}}</span>
-                                  <button type="button" class="mdl-chip__action" 
+                                  <span id="m_{{$modules->id}}_{{$seller->id}}">
+                                  <span id="modules">{{$modules->name}}</span>
+                                  <button type="button" 
                                   value1="{{$modules->id}}" value2="{{$seller->id}}" name="module" id="x"><i class="material-icons">cancel</i>
                                   </button>
                                   </span>
                                   @endforeach
-                                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" data-toggle="modal" data-target="#ModalModules" value="{{$seller->id}}" id="add_module" @if($seller->estatus!= 'Aprobado') disabled @endif>
+                                    <button class="" data-toggle="modal" data-target="#ModalModules" value="{{$seller->id}}" id="add_module" @if($seller->estatus!= 'Aprobado') disabled @endif>
                                     <i class="material-icons">add</i>
                                     </button>
                                      </td>
-                                      </tr>
+                                  
+                              </tr>
+                              @endforeach
+                              </tbody>
+                          </table>
+                          </section>
+                  </div><!-- /content-panel -->
+               </div><!-- /col-lg-4 -->     
+        </div><!-- /row -->
 
-                                    @endforeach
-                               </tbody>
-                       </table>
-                       {!! $sellers->render() !!}          
-            </div>
-
-        
-    </div>
-</div>
-</main>
- 
- <div class="modal fade" id="ModalModules" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
-        </div>
-        <div class="modal-body">
-         <p>Modifique el estatus de la Revista</p>
-        
-
-             <form method="POST" id="AddModules">
-                              {{ csrf_field() }}
-
-               <div class="form-group">
-
-                <label for="sel1">Modulos:</label>
-               <select class="form-control" id="sel1" name="acces">
-                  @foreach($acces_modules as $acces) <option value="{{$acces->id}}">{{$acces->name}}</option>  @endforeach                 
-               </select>
-               </div>
-
-              <div class="form-group">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-                </button>
-            </div>
-
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
- </div>
-  
-
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
-        </div>
-        <div class="modal-body">
-         <p>Modifique El Estatus De La Solicitud</p>
-        
-
-             <form method="POST" id="FormStatusSeller">
-                              {{ csrf_field() }}
-
-             <div class="radio-inline">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1
-                " class="mdl-radio__button"  onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                <span class="mdl-radio__label">Aprobar</span>
-                </label>
-             </div>
-
-             <div class="radio-inline">
-             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
-                <span class="mdl-radio__label">Rechazar</span>
-             </label>
-
-             </div>
-
-             <div class="radio-inline" style="display:none" id="if_no">
-              <div class="mdl-textfield mdl-js-textfield">
-               <textarea name="message" class="mdl-textfield__input" type="text" rows= "6" id="razon" ></textarea>
-               <label class="mdl-textfield__label" for="razon">Explique La Razon</label>
-              </div>
-             </div>
-
-             <div class="radio-inline">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-                </button>
-            </div>
-
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
- </div>
-
-
-
-
+            <h3><i class="fa fa-angle-right"></i> Modulos de Contenido</h3>
+          <div class="row mt">
+            <div class="col-lg-12">
+                      <div class="content-panel">
+                      <h4><i class="fa fa-angle-right"></i> Modulos</h4>
+                          <section id="unseen">
+                            <table class="table table-bordered table-striped table-condensed">
+                              <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Nombre</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                @foreach($acces_modules as $modules)
+                                    <tr>
+                                        <td>{{$modules->id}}</td>
+                                        <td>{{$modules->name}}</td>
+                                    </tr>
+                                @endforeach
+                              </tbody>
+                          </table>
+                          </section>
+                  </div><!-- /content-panel -->
+               </div><!-- /col-lg-4 -->     
+        </div><!-- /row -->
 
 
 @endsection
-
-@section('js')
 <script>
 
 $(document).on('click', '#x', function() {
@@ -284,7 +194,3 @@ $(document).on('click','#ModifySellers', function() {
 });
 
 </script>
-
-@endsection
-                            
-                                

@@ -36,11 +36,11 @@ class PromoterController extends Controller
     {
     	$promoter = Auth::guard('Promoter')->user()->id;
 
-    	$aplyss = ApplysSellers::where('promoter_id','=',$promoter)->count();
+    	$aplyss = ApplysSellers::where('status','=','En Proceso')->count();
     	
-    	$sellers = Seller::where('promoter_id','=',$promoter)->where('estatus','=','En Proceso')->count();
+    	$sellers = Seller::where('estatus','=','En Proceso')->count();
 
-    	$user = Seller::where('promoter_id','=',$promoter)->get();  
+    	$user = Seller::all();  
 
     	$content_total=0;
 
@@ -148,7 +148,7 @@ class PromoterController extends Controller
 		
 
 
-    	return view('promoter.home')->with('sellers',$sellers)->with('aplies',$aplyss)->with('content_total',$content_total);
+    	return view('promoter.home')->with('sellers',$sellers)->with('aplyss',$aplyss)->with('content_total',$content_total);
     }
 
     public function ShowSellers()

@@ -28,15 +28,15 @@ class SaveAdmin
     public function handle(AdminLoggedIn $event)
     {
         
-        if ($event->type == 'user') 
+        if ($event->type == 'promoter') 
         {
-            if ($event->user->status == 'admin') 
-            {
+                      
                 $insert= new LoginControl;
                 $insert->id_login=$event->user->id;
                 $insert->ip_log=$event->ip;
                 $insert->save();                
-            }
+            
+
         }
     }
 }

@@ -1,140 +1,212 @@
+
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
-    <title>Promotor Leipel</title>
+    <title>LEIPEL</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('plugins/tree-fy/bootstrap-treefy.css')}}">
-    <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-light_green.min.css" />
-<style type="text/css"> 
-                .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <!--external css-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-            .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
-        
-        }
-</style> 
-</head>
-<body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title"><img src="{{ asset('sistem_images/Logo-Leipel.png') }}"
-                                       class="img-responsive" style="width:30%;"></span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a  id="applies" class="mdl-navigation__link" href="{{url('/admin_sellers')}}"><i class="material-icons">receipt</i></a>
-        <a class="mdl-navigation__link"  id="sellers" href="{{url('/promoter_seller')}}"><i class="material-icons">shopping_basket</i></a>
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title"><span class="logo-mini"><img src="{{ asset('sistem_images/Leipel.png') }}"
-                                         class="img-responsive" style="width:70%; margin-right: :20px;"></span></span>
-    <nav class="mdl-navigation">
-        
-        <button id="music" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-        <i class="material-icons">music_note</i>
-        </button>
-        <ul class="mdl-menu mdl-js-menu" for="music">
-            <a href="{{url('/admin_albums')}}"><li class="mdl-menu__item">Albums por Revisar</li></a>
-            <a href="{{url('/admin_single')}}"><li class="mdl-menu__item">Single por Revisar</li></a>
-            <a href="{{url('/admin_musician')}}"><li class="mdl-menu__item">Musicos por Revisar</li></a>
-            <li class="mdl-menu__item">Musicos</li>
-            <li class="mdl-menu__item">Albums</li>
-            <li class="mdl-menu__item">Singles</li>
-        </ul>
-        
-        <button id="radio" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-        <i class="material-icons">radio</i>
-        </button>
-        <ul class="mdl-menu mdl-js-menu" for="radio">
-            <a href="{{url('/admin_radio')}}"><li class="mdl-menu__item">Radios por Revisar</li></a>
-            <a href="{{url('/admin_single')}}"><li class="mdl-menu__item">Radios</li></a>
-        </ul>
-
-        <button id="tv" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-        <i class="material-icons">tv</i>
-        </button>
-        <ul class="mdl-menu mdl-js-menu" for="tv">
-            <a href="{{url('/admin_tv')}}"><li class="mdl-menu__item">TVs por Revisar</li></a>
-            <a href="{{url('/admin_single')}}"><li class="mdl-menu__item">TVs</li></a>
-        </ul>
-        
-        <button id="megazine" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-        <i class="material-icons">library_books</i>
-        </button>
-        <ul class="mdl-menu mdl-js-menu" for="megazine">
-            <a href="{{url('/admin_chain')}}"><li class="mdl-menu__item">Cadenas de Publicacion Revisar</li></a>
-            <a href="{{url('/admin_megazine')}}"><li class="mdl-menu__item">Revistas por Revisar </li></a>
-            <a href="{{url('/admin')}}"><li class="mdl-menu__item">Cadenas de Publicaciones</li></a>
-            <a href="{{url('/admin')}}"><li class="mdl-menu__item">Revistas</li></a>
-        </ul>
-
-
-    </nav>
-
-  </div>
-<form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-
-
-
-
-           @yield('content')
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">    
     
-    <!-- Scripts -->
-    
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
-    {{--<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>--}}
-    <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
-    <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
-    <script src="{{ asset('plugins/tree-fy/bootstrap-treefy.js') }}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    @yield('js')
+    <!-- Custom styles for this template -->
+    <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
 
-    <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__rigth-section">
-            <button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">account_circle</i>
-            </button>
-                <ul class="mdl-menu mdl-js-menu mdl-menu--top-left" for="menu-speed">
-                 <li class="mdl-menu__item"><a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            Cerrar Sesion</a></li>
-                 <li class="mdl-menu__item" disabled>Mi Perfil</li>
+    <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+   <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="{{ url('/promoter_home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+               
+
+                <!--  notification start -->
+                <ul class="nav top-menu">
+
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge bg-theme">4</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 4 pending tasks</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">DashGum Admin Panel</div>
+                                        <div class="percent">40%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge bg-theme">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 5 new messages</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Zac Snider</span>
+                                    <span class="time">Just now</span>
+                                    </span>
+                                    <span class="message">
+                                        Hi mate, how is everything?
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- inbox dropdown end -->
                 </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-menu">
+                <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="{{ url('/promoter_logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </header>
+      <!--header end-->
+       <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU 
+      *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+                  <h5 class="centered">{{Auth::guard('Promoter')->user()->name_c}}</h5>
+                  <div class="card-content white-text">
+                      <span class="card-title centered"><h4><p>{{Auth::guard('Promoter')->user()->Roles()->first()->name}}</p></h4></span>
+                      
+                  </div>  
+                    
+                  <li class="mt">
+                      <a href="#">
+                          <i class="fa fa-user"></i>
+                          <span>Mi Perfil</span>
+                      </a>
+                  </li>
 
-                {{ Auth::guard('Promoter')->user()->name_c }}
-        </div>
-    </footer>
+                  <li class="mt">
+                      <a href="#">
+                          <i class="fas fa-suitcase"></i>
+                          <span>Contenido</span>
+                      </a>
+                  </li>
+
+                  <li class="mt">
+                      <a href="{{url('admin_sellers')}}">
+                          <i class="fas fa-user-tie"></i>
+                          <span>Proveedores</span>
+                      </a>
+                  </li>                  
+
+                  <li class="mt">
+                      <a href="#">
+                          <i class="fas fa-archive"></i>
+                          <span>Solicitudes</span>
+                      </a>
+                  </li>
+
+                  <li class="mt">
+                      <a href="#">
+                          <i class="fa fa-users"></i>
+                          <span>Clientes</span>
+                      </a>
+                  </li>                  
+                  
+                  @if(Auth::guard('Promoter')->user()->priority == 1 OR Auth::guard('Promoter')->user()->priority == 2)
+
+                    <li class="mt">
+                      <a href="#">
+                          <i class="fa fa-wrench"></i>
+                          <span>Usuarios Backend</span>
+                      </a>
+                  </li> 
+
+                  @if(Auth::guard('Promoter')->user()->priority == 1)
+
+                    <li class="mt">
+                      <a href="#">
+                          <i class="fa fa-wrench"></i>
+                          <span>Admins</span>
+                      </a>
+                  </li> 
+                  
+                  @endif
+
+                  @endif
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      <section id="main-content">
+          <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-9 main-chart">
+                        @yield('main')
+                    </div>
+                    <div class="col-lg-3 ds">
+                        @include('promoter.layouts.partials.siderRigth') 
+                    </div><!-- /col-lg-3 -->
+                </div>
+          </section>
+      </section> 
+@include('promoter.layouts.partials.footer')
+
 </body>
-
-<div class="mdl-tooltip" data-mdl-for="applies">
-                    <strong>Solicitudes Asignadas</strong>
-</div>
-
-<div class="mdl-tooltip" data-mdl-for="sellers">
-                    <strong>Proveedores Asignados</strong>
-</div>
-
 </html>
+

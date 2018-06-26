@@ -28,7 +28,21 @@
            
            <div class="center">
             <br>
-                <a class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons left">send</i>button</a>
+                <form action="<?php echo e(url('Invite')); ?>" method="POST">
+                  <?php echo e(csrf_field()); ?>
+
+                  <div class="input-field inline">
+                  
+                  <input id="email_inline" type="email" name="email" required class="validate">
+                  <label for="email_inline">Email</label>
+                                   
+                                   <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>            
+                  </div>
+                    
+
+                </form>
            </div>
 
         </div>
