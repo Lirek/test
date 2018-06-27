@@ -139,6 +139,12 @@
                           </div>
                       </div>
                       <!--custom chart end-->
+
           </div><!-- /row --> 
            
+
           @endsection
+
+@section('js')
+
+@endsection
