@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,23 +7,23 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 
     <title>LEIPEL</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
     <!--external css-->
-    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">    
+    <link href="<?php echo e(asset('assets/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
     
     <!-- Custom styles for this template -->
-    <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset ('assets/css/style.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset ('assets/css/style-responsive.css')); ?>" rel="stylesheet">
 
-    <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
+    <script src="<?php echo e(asset ('assets/js/chart-master/Chart.js')); ?>"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,7 +33,7 @@
   </head>
   
    <body>
-    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
+    <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;"> <?php echo e(csrf_field()); ?> </form>
 
   <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -46,7 +45,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
+            <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"></b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                
@@ -126,10 +125,10 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
-                  <h5 class="centered">{{Auth::user()->name}}</h5>
+                  <p class="centered"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="80"></a></p>
+                  <h5 class="centered"><?php echo e(Auth::user()->name); ?></h5>
                   <div class="card-content white-text">
-                      <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::user()->credito}}</p></h6></span>
+                      <span class="card-title centered"><h6>Tickets Disponibles: <p><?php echo e(Auth::user()->credito); ?></p></h6></span>
                       
                   </div>  
                     
@@ -182,36 +181,36 @@
           <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-9 main-chart">
-                        @yield('main')
+                        <?php echo $__env->yieldContent('main'); ?>
                     </div>
                     <div class="col-lg-3 ds">
-                        @include('layouts.partials.siderRigth') 
+                        <?php echo $__env->make('layouts.partials.siderRigth', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> 
                     </div><!-- /col-lg-3 -->
                 </div>
           </section>
       </section> 
-@extends('layouts.partials.footer')
+
 
 </body>
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset('assets/js/jquery.js') }}"></script>
-    <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery-1.8.3.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/bootstrap.min.js')); ?>"></script>
+    <script class="include" type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dcjqaccordion.2.7.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.scrollTo.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.nicescroll.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.sparkline.js')); ?>"></script>
 
    
     <!--common script for all pages-->
-    <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>
     
-    <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter/js/jquery.gritter.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter-conf.js')); ?>"></script>
 
     <!--script for this page-->
-    <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
-  <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
+    <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>    
+  <script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script> 
 
 
 <!--SCRIPS JS-->
@@ -250,9 +249,10 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-    @yield('js')
+    <?php echo $__env->yieldContent('js'); ?>
 
 
 </html>
 
   
+<?php echo $__env->make('layouts.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')     
+<?php $__env->startSection('main'); ?>     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -52,7 +50,7 @@
                     
                     <div class="row mt">
 
-                    @if(Auth::user()->verify==FALSE)
+                    <?php if(Auth::user()->verify==FALSE): ?>
                         
                     
                       <!-- SERVER STATUS PANELS -->
@@ -96,7 +94,7 @@
                         </div><!-- /col-md-12-->
 
                       
-                    @endif  
+                    <?php endif; ?>  
 
                         <div class="col-md-5 col-sm-5 mb">
                           <div class="white-panel re">
@@ -105,7 +103,7 @@
                             </div>
                             <div class="row white-size">
                                <div class="col-sm-6 col-xs-6 goleft">
-                                  <p><i class="fa fa-ticket"></i>{{Auth::user()->credito}}</p>
+                                  <p><i class="fa fa-ticket"></i><?php echo e(Auth::user()->credito); ?></p>
                                </div>
                                <div class="col-sm-6 col-xs-6"></div>
                                <p><a href="#" class="">Recargar</a></p>
@@ -175,8 +173,9 @@
           </div><!-- /row --> 
            
 
-          @endsection
+          <?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
