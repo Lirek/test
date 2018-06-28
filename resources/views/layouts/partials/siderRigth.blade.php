@@ -18,7 +18,7 @@
                       	</div>
                       </div>
                        <!-- USERS ONLINE SECTION -->
-						<h3>TEAM MEMBERS</h3>
+						<h3>Proveedores Populares</h3>
                       <!-- First Member -->
                       <div class="desc">
                       	<div class="thumb">

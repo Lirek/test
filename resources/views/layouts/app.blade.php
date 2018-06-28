@@ -34,6 +34,7 @@
   </head>
   
    <body>
+    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
 
   <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -111,7 +112,7 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="{{ url('/logout') }}">Salir</a></li>
+                    <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
                 </ul>
             </div>
         </header>
