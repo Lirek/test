@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Events\WelcomeEmailEvent;
 
 class RegisterController extends Controller
 {
@@ -73,13 +74,17 @@ class RegisterController extends Controller
 
 
             $code=$randomString;
-
-        return User::create([
+            
+            $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'codigo_ref' => $code,
             'credito'=> 0,
-        ]);
+                ]);
+            
+            event(new WelcomeEmailEvent($user));
+        
+        return $user;
     }
 }

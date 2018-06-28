@@ -27,4 +27,10 @@ class Promoters extends Authenticatable
         return $this->hasMany('App\ApplysSellers','promoter_id');
     
     }
+
+    public function Roles()
+    {
+        return $this->belongsToMany('App\PromotersRoles','promoter_acces','promoter_id','promoter_module_id');
+    
+    }
 }

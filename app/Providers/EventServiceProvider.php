@@ -17,6 +17,22 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\AdminLoggedIn' => [
             'App\Listeners\SaveAdmin',
         ],
+            'App\Events\WelcomeEmailEvent' => [
+            'App\Listeners\SendWelcomeEmail',
+        ],
+            'App\Events\ContentAprovalEvent' => [
+            'App\Listeners\SendAprovalEmail',
+        ],
+            'App\Events\ContentDenialEvent' => [
+            'App\Listeners\SendDenialEmail',
+        ],
+            'App\Events\InviteEvent' => [
+            'App\Listeners\SendInviteEmail',
+        ],
+            'App\Events\PasswordPromoter' => [
+            'App\Listeners\SendPasswordPromoterEmail',
+        ],
+
     ];
 
     /**
