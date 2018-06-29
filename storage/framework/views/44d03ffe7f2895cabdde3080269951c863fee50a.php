@@ -80,117 +80,130 @@
                </div><!-- /col-lg-4 -->     
         </div><!-- /row -->
 
-
+<?php echo $__env->make('promoter.modals.SellersViewsModals', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
 <script>
+    function yesnoCheck() {
+        if (document.getElementById('option-2').checked) 
+        {
+            $('#if_no').show();
+        } 
+        else 
+        {
+            $('#if_no').hide();
+            $('#razon').val('');
+        }
+      };
+    $(document).on('click', '#x', function() {
+      
+      var module = $(this).attr('value1'); ;
+      var seller = $(this).attr('value2');;
+      var url = 'delete_mod/'+seller+'/'+module;
+           $.ajax({
+             url: url,
+             type:'get',
+             data:"json",
 
-$(document).on('click', '#x', function() {
-  
-  var module = $(this).attr('value1'); ;
-  var seller = $(this).attr('value2');;
-  var url = 'delete_mod/'+seller+'/'+module;
-       $.ajax({
-         url: url,
-         type:'get',
-         data:"json",
+             success: function(data)
+             {
+               alert("Se Ha Retirado el Permiso del Modulo con exito");
+               $("#m_"+module+"_"+seller).fadeOut();
+             },
 
-         success: function(data)
-         {
-           alert("Se Ha Retirado el Permiso del Modulo con exito");
-           $("#m_"+module+"_"+seller).fadeOut();
-         },
+             error: function(data)
+             {
+               alert("NO Permitido Por Favor Recargue la Pagina");
+             },
 
-         error: function(data)
-         {
-           alert("NO Permitido Por Favor Recargue la Pagina");
-         },
-
-       });
-});
+           });
+    });
 
 
-$(document).on('click', '#add_module', function() {    
+    $(document).on('click', '#add_module', function() {    
 
-          var x = $(this).val();
+              var x = $(this).val();
 
-    $(document).ready(function (e){
+        $(document).ready(function (e){
 
-        $( "#AddModules" ).on( 'submit', function(e){
-          
-          var module = $("#sel1").val();
-          var url = 'add_module/'+x;
-          
-          var name = $( "#sel1 option:selected" ).text();
-          var row = $("#modules_td"+x);
-          var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+module+'_'+x+'">  <span class="mdl-chip__text" id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+module+'" value2="'+x+'" name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
-          e.preventDefault();
-            
-            $.ajax({
+            $( "#AddModules" ).on( 'submit', function(e){
+              
+              var module = $("#sel1").val();
+              var url = 'admin_add_module/'+x;
+              
+              var name = $( "#sel1 option:selected" ).text();
+              var row = $("#modules_td"+x);
+              var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+module+'_'+x+'">  <span class="mdl-chip__text" id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+module+'" value2="'+x+'" name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
+              e.preventDefault();
+                
+                $.ajax({
 
-              url: url,
-              type:'POST',
-              data:{
-                    _token: $('input[name=_token]').val(),
-                    acces: module,
-                    }, 
+                  url: url,
+                  type:'POST',
+                  data:{
+                        _token: $('input[name=_token]').val(),
+                        acces: module,
+                        }, 
 
-                    success: function (result) {
-                      alert('Acceso Concedido Con Exito');
-                     
-                     row.prepend(add);   
-                    },
+                        success: function (result) {
+                          alert('Acceso Concedido Con Exito');
+                         
+                         row.prepend(add);   
+                        },
 
-                    error: function (result) 
-                    {
-                      alert('Error en Su solicitud Por Favor Recargue la Pagina');
-                      console.log(result);
-                    }
+                        error: function (result) 
+                        {
+                          alert('Error en Su solicitud Por Favor Recargue la Pagina');
+                          console.log(result);
+                        }
 
+                });
+              
             });
-          
         });
     });
-});
 
-$(document).on('click','#ModifySellers', function() {
-  
-  var x = $(this).val();
-   console.log(x);
-   $( "#FormStatusSeller" ).on( 'submit', function(e){
+    $(document).on('click','#ModifySellers', function() {
+      
+      var x = $(this).val();
+       console.log(x);
+       $( "#FormStatusSeller" ).on( 'submit', function(e){
 
-        var s=$("input[type='radio'][name=status]:checked").val();
-        var message=$('#razon').val();
-        var url = 'update_status_seller/'+x;
+            var s=$("input[type='radio'][name=status]:checked").val();
+            var message=$('#razon').val();
+            var url = 'update_status_seller/'+x;
 
-        e.preventDefault(); 
-        
-                            $.ajax({
-                            url: url,
-                            type: 'POST',
-                            data: {
-                                    _token: $('input[name=_token]').val(),
-                                    status: s,
-                                    message: message,
-                                  }, 
-                            success: function (result) {
+            e.preventDefault(); 
+            
+                                $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: {
+                                        _token: $('input[name=_token]').val(),
+                                        status: s,
+                                        message: message,
+                                      }, 
+                                success: function (result) {
 
-                                                        $('#myModal').toggle();
-                                                        $('.modal-backdrop').remove();
-                                                        location.reload();
-                                                        swal("Se ha "+s+" con exito","","success");
-                                                        },
+                                                            $('#myModal').toggle();
+                                                            $('.modal-backdrop').remove();
+                                                            location.reload();
+                                                            swal("Se ha "+s+" con exito","","success");
+                                                            },
 
-                            error: function (result) {
-                            swal('Existe un Error en su Solicitud','','error');
-                            
-                            },
-                            });  
-                              
-                
-   });  
+                                error: function (result) {
+                                swal('Existe un Error en su Solicitud','','error');
+                                
+                                },
+                                });  
+                                  
+                    
+       });  
 
 
-});
+    });
 
 </script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

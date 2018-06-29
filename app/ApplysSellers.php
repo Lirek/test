@@ -11,7 +11,7 @@ class ApplysSellers extends Model
 
    protected $fillable = [
       'id',
-      'promoter_id',
+      'salesman_id',
       'name_c', 
       'contact_s',
       'phone_s',
@@ -28,7 +28,7 @@ class ApplysSellers extends Model
 
     public function Promoter()
     {
-        return $this->belongsTo('App\Promoters','promoter_id');
+        return $this->belongsTo('App\Salesman','salesman_id');
     }
 
 }

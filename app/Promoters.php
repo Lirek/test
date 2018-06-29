@@ -22,9 +22,9 @@ class Promoters extends Authenticatable
       'password',
     ];
 
-    public function Applys()
+    public function Sales()
     {
-        return $this->hasMany('App\ApplysSellers','promoter_id');
+        return $this->hasMany('App\Salesman','promoter_id');
     
     }
 

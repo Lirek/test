@@ -29,6 +29,8 @@ use App\music_authors;
 use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
+use App\Salesman;
+
 //--------------------------------------------------------
 
 class AdminController extends Controller
@@ -309,9 +311,8 @@ class AdminController extends Controller
     		
     		$acces_modules=SellersRoles::all();
 
-        $promoters= Promoters::all();
 
-    		return view('promoter.Sellers')->with('promoters',$promoters)->with('sellers',$sellers)->with('acces_modules',$acces_modules);
+    		return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
    		}
 
    		public function DeleteModule($id_seller,$id_module)
@@ -380,7 +381,7 @@ class AdminController extends Controller
     		
     		$promoters = Promoters::paginate(10);
     		
-    		return view('admin.Applys')->with('applys',$applys)->with('promoters',$promoters);
+    		return view('promoter.Applys')->with('applys',$applys)->with('promoters',$promoters);
    		}
 //-------------------------------------------------------------------------------
 
