@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')     
+<?php $__env->startSection('main'); ?>     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -14,7 +12,7 @@
             <div class="row white-size">
                 <div class="col-sm-6 col-xs-6 gocenter ">
                   <p>
-                    <h2>{{Auth::user()->codigo_ref}}</h2>
+                    <h2><?php echo e(Auth::user()->codigo_ref); ?></h2>
                   </p>
                 </div>
             </div>
@@ -48,7 +46,7 @@
             <div class="row white-size">
                 <div class="col-sm-12 col-xs-12 gocenterRef ">
                   <p>
-                    <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                    <h6><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>"><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></a></h6>
                   </p>
                 </div>
             </div>
@@ -64,7 +62,8 @@
           </div>
           <div class="Qr-panel">
             <div class="center">
-              {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+              <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+
             </div>}
           </div>
           </div>
@@ -80,7 +79,8 @@
                                                 <h4 class="modal-title">Complete sus datos</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" action="#">{{ csrf_field() }}
+                                                <form class="form-horizontal" method="POST" action="#"><?php echo e(csrf_field()); ?>
+
 
                                                 <div class="form-group">
                                                     <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Email</label>
@@ -116,8 +116,9 @@
                   
            
 
-          @endsection
+          <?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

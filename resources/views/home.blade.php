@@ -75,28 +75,152 @@
                                             <div class="modal-content">
                                               <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Modal Header</h4>
+                                                <h4 class="modal-title">Complete sus datos</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <p>Some text in the modal.</p>
-                                              </div>
+                                                <form class="form-horizontal" method="POST" action="#">{{ csrf_field() }}
+                                                   <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                                      <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                                                      <div class="col-md-6">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group{{ $errors->has('nDocument') ? ' has-error' : '' }}">
+                                                      <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group{{ $errors->has('imgdoc') ? ' has-error' : '' }}">
+                                                      <label for="imgdoc" class="col-md-4 control-label">Imagen del documento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="imgdoc" type="file" accept=".jpg"class="form-control" name="imgdoc" value="{{ old('imgdoc') }}">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group{{ $errors->has('dateN') ? ' has-error' : '' }}">
+                                                      <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-4">
+                                                      <button type="submit" class="btn btn-primary">Registrar datos</button>
+                                                    </div>
+                                                  </div>
+                                                  </form>
                                               <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                                               </div>
                                             </div>
                                           </div>
                                       </div>
+                                      </div>
                                       <!--FIN DEL MODAL-->
 
-                                  </div>
-                               </div>
+                                  </div><!--paragraph-->
+                               </div><!--golleft-->
 
-                            </div>
-                          </div><! --/grey-panel -->
+                            </div><!--row-->
+                          </div><!--/grey-panel -->
                         </div><!-- /col-md-12-->
 
-                      
                     @endif  
+
+                      <div class="col-md-12 col-sm-12 mb">
+                        <div class="white-panel panRf pe donut-chart">
+                          <div class="white-header">
+                            <h3><span class="card-title">Contenido Reciente</span></h3>                          
+                          </div>
+                          <div class="col-sm-12 col-xs-12 col-md-12 goleft">
+                            <table class="table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                  <th></th>
+                                  <th><i class="fa fa-bullhorn"></i>Nombre</th>
+                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>Tipo</th>
+                                  <th><i class="fa fa-money"></i>Costo</th>
+                                  <th class="hidden-phone"><i class=" fa fa-edit"></i>Proveedor</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                              @if($Songs)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="fa fa-music"></i></span></td>
+                                  <td><a href=""> {{$Songs->song_name}}</a></td>
+                                  <td class="hidden-phone">Single</td>
+                                  <td>{{$Songs->cost}}</td>
+                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
+                                </tr>
+                              @endif
+
+                              @if($Albums)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_vynil"></i></span></td>
+                                  <td><a href=""> {{$Albums->name_alb}}</a></td>
+                                  <td class="hidden-phone">Album Musical</td>
+                                  <td>{{$Albums->cost}}</td>
+                                  <td class="hidden-phone">{{$Albums->Seller->name}}</td>
+                                </tr>
+                              @endif
+
+                              @if($Tv)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_tv"></i></span></td>
+                                  <td><a href=""> {{$Tv->name_r}}</a></td>
+                                  <td class="hidden-phone">TV Online</td>
+                                  <td>Gratis</td>
+                                  <td class="hidden-phone">{{$Tv->Seller->name}}</td>
+                                </tr>
+                             @endif
+
+                            @if($Book)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-book"></i></span></td>
+                                <td><a href=""> {{$Book->title}}</a></td>
+                                <td class="hidden-phone">Libro</td>
+                                <td>{{$Book->cost}}</td>
+                                <td class="hidden-phone">{{$Book->seller->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Megazines)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="li_news"></i></span></td>
+                                <td><a href=""> {{$Megazines->title}}</a></td>
+                                <td class="hidden-phone">Revista</td>
+                                <td>{{$Megazines->cost}}</td>
+                                <td class="hidden-phone">{{$Megazines->Seller->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Radio)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-microphone"></i></span></td>
+                                <td><a href=""> {{$Radio->name_r}}</a></td>
+                                <td class="hidden-phone">Radio Online</td>
+                                <td>Gratis</td>
+                                <td class="hidden-phone">{{$Radio->Seller->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Movies)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-video-camera"></i></span></td>
+                                <td><a href=""> {{$Movies->title}}</a></td>
+                                <td class="hidden-phone">Pelicula</td>
+                                <td>{{$Movies->cost}}</td>
+                                <td class="hidden-phone">{{$Radio->Seller->name}}</td>
+                              </tr>
+                          @endif
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>            
+
+
 
                         <div class="col-md-5 col-sm-5 mb">
                           <div class="white-panel re">
@@ -115,19 +239,21 @@
                             </div>
                           </div>
                         </div><!-- /col-md-5 -->
-                        <div class="col-md-4 mb">
-                           <!-- INSTAGRAM PANEL -->
-                           <div class="instagram-panel pn">
-                              <i class="fa fa-instagram fa-4x"></i>
-                                  <p>@THISISYOU<br/>
-                                    5 min. ago
-                                  </p>
-                              <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                        <div class="col-md-1">
+                          
+                        </div>
+                        <div class="col-md-5 col-sm-5 mb">
+                           <!-- Qr PANEL -->
+                           <div class="Qr-panel pn">
+                              <div class="center">
+                                {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                              </div>
                           </div>
                        </div><!-- /col-md-4 -->
                   </div><!-- /row -->
                               
           <div class="row mt">
+            <div class="col-md-12 col-sm-12 mb">
                       <!--CUSTOM CHART START -->
                       <div class="border-head">
                           <h3>Número de contenido</h3>
@@ -171,7 +297,7 @@
                           </div>
                       </div>
                       <!--custom chart end-->
-
+            </div>
           </div><!-- /row --> 
            
 
