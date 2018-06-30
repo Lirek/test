@@ -462,6 +462,8 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 
+    Route::resource('sellers', 'SellerController');
+
 
     /*----------------------------------------------------------------------------
     ------------------------------------------------------------------------------

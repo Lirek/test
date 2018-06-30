@@ -122,30 +122,53 @@
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul id="portfolio-flters">
-                        <li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">
-                            All
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-12">--}}
+                    {{--<ul id="portfolio-flters">--}}
+                        {{--<li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">--}}
+                            {{--All--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <div class="row" id="portfolio-wrapper">
-                @foreach($book as $b)
-                    {{--deben ser 12--}}
-                <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-                    {{--{{ dd($b) }}--}}
-                    <a href="">
-                        <img src="{{ asset('images/bookcover/'. $b->cover) }}" class="image img-responsive" alt="">
-                        <div class="details">
-                            <h4>{{ $b->title }}</h4>
-                            <span>{{ $b->seller->name }}</span>
-                        </div>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px">
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        @foreach( $book as $b )
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"
+                                class="{{ $loop->first ? 'active' : '' }}"></li>
+                        @endforeach
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        @foreach( $book as $b )
+                            <div class="item {{ $loop->first ? ' active' : '' }}">
+                                <img src="{{ asset('images/bookcover/'. $b->cover) }}" class="img-responsive" alt="{{ $b->title }}"
+                                     style="width:100%; height:500px">
+                                <div class="carousel-caption">
+                                    <h2> {{ $b->seller->name }} </h2>
+                                    <h3>{{ $b->title }}</h3>
+                                    <p> {{ $b->sinopsis }} </p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
-                @endforeach
+
             </div>
         </div>
     </div>
@@ -166,7 +189,7 @@
                             <div class="col-md-6">
                                 <div class="team-info">
                                     <div class="img-sec">
-                                        <img src="{{ asset('plugins/img/agent1.jpg') }}" class="img-responsive">
+                                        <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive" style="width:255px;height:256px">
                                     </div>
                                     <div class="fig-caption">
                                         <h3>{{ $s->name }}</h3>
