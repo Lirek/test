@@ -10,6 +10,8 @@ use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
+use App\Events\PasswordPromoter;
+
 
 
 //-------------Modelos del sistema-----------------------
@@ -74,8 +76,7 @@ class AdminController extends Controller
         {
             Auth::logout();
             return redirect('/login');
-        }
-    	
+        }	
     }
 
 /*-------------------------------------------------------------------------------------------
@@ -287,9 +288,6 @@ class AdminController extends Controller
    			return response()->json($tv);
    		}
 
-
-
-
    		public function Books()
     	{
     	
@@ -330,7 +328,7 @@ class AdminController extends Controller
    			$seller= Seller::find($id);
    			$data = $seller->roles()->attach($request->acces);
 
-   		return response()->json($data);
+   		 return response()->json($data);
    		
    		}
 
@@ -347,7 +345,7 @@ class AdminController extends Controller
 
         $data = $seller->save();
 
-      return response()->json($data);
+        return response()->json($data);
       }
 
       public function RemovePromoterFromSeller($id_seller,$id_promoter)
@@ -374,14 +372,14 @@ class AdminController extends Controller
         }
           return response()->json($data);          
       }
-//-------------Mostrar Promotores y Solicitudes  ---------------------------------
+//-------------Mostrar Solicitudes  ---------------------------------
    		public function ShowApplys()
     	{
     		$applys= ApplysSellers::paginate(10);
     		
-    		$promoters = Promoters::paginate(10);
+    		$Salesmans = Salesman::all();
     		
-    		return view('promoter.Applys')->with('applys',$applys)->with('promoters',$promoters);
+    		return view('promoter.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
    		}
 //-------------------------------------------------------------------------------
 
@@ -429,83 +427,90 @@ class AdminController extends Controller
    		}
 //-----------------------------------------------------------------------------
 
-		public function AddPromoterToApllys(Request $request, $id)
-		{
-			$applys = ApplysSellers::find($id);
+  		public function AddSalesmanToApllys(Request $request, $id)
+  		{
+  			$applys = ApplysSellers::find($id);
 
-      $promoter = Promoters::find($request->promoter_id);
+        $Salesman = Salesman::find($request->promoter_n);
 
-			$applys->promoter_id = $request->promoter_id;
 
-			$applys->assing_at = $current = Carbon::now();
+  			$applys->salesman_id = $Salesman->id;
 
-      Mail::to($applys->email)->send(new PromoterAssing($applys));
+        $applys->promoter_id = Auth::guard('Promoter')->user()->id;
 
-      $applys->save();
-        
+  			$applys->assing_at = $current = Carbon::now();
+       
+        Mail::to($applys->email)->send(new PromoterAssing($applys));
 
-      			
-      return response()->json($applys); 
-		}
-
-		public function DeletePromoterFromApllys($id_apply,$id_promoter)
-		{
-			$applys= ApplysSellers::find($id_apply);
-			$applys->promoter_id= NULL;
-			$applys->save();
-			return response()->json($applys);	
-		}
-
-		public function StatusApllys($id,Request $request )
-		{
-			$applys= ApplysSellers::find($id);
-			$applys->status = $request->status;
-			
-      
-			if ($request->status == 'Aprobado') 
-			{
-			
-				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    			$charactersLength = strlen($characters);
-    			$randomString = '';
-    		
-    					for ($i = 0; $i < 10; $i++) 
-       						{
-        						$randomString .= $characters[rand(0, $charactersLength - 1)];
-   					 		  }
-	
-				$applys->token= $randomString;
-			
-				$current = Carbon::now();
-	
-				$applys->expires_at= $current->addDays(7);
-				
-				
-				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
-
-				$applys->save();
-				return response()->json($applys);	
-			}
-      else
-      {   
-          Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
-          $applys->save();
-         return response()->json($applys);
+        $applys->save();
           
-      }
-			
-	
-			
-		
-			
-		}
 
-    public function DeleteApplysFromPromoter($promoter,$applys)
-    {
-      $Applys = ApplysSellers::find($applys);
-      $Applys->promoter_id = NULL;
-      $Applys->save();
-      return response()->json($Applys);
-    }
+        			
+        return response()->json($applys); 
+  		}
+
+  		public function DeleteSalesmanFromApllys($id_apply,$id_promoter)
+  		{
+  			$applys= ApplysSellers::find($id_apply);
+  			$applys->salesman_id= NULL;
+  			$applys->save();
+  			return response()->json($applys);	
+  		}
+
+  		public function StatusApllys($id,Request $request )
+  		{
+  			$applys= ApplysSellers::find($id);
+  			$applys->status = $request->status;
+  			
+        
+  			if ($request->status == 'Aprobado') 
+  			{
+  			
+  				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      			$charactersLength = strlen($characters);
+      			$randomString = '';
+      		
+      					for ($i = 0; $i < 10; $i++) 
+         						{
+          						$randomString .= $characters[rand(0, $charactersLength - 1)];
+     					 		  }
+  	
+  				$applys->token= $randomString;
+  			
+  				$current = Carbon::now();
+  	
+  				$applys->expires_at= $current->addDays(7);
+  				
+  				
+  				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+
+  				$applys->save();
+  				return response()->json($applys);	
+  			}
+        else
+        {   
+            Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+            $applys->save();
+           return response()->json($applys);
+            
+        }	
+  		}
+
+      public function DeleteApplysFromPromoter($promoter,$applys)
+      {
+        $Applys = ApplysSellers::find($applys);
+        $Applys->promoter_id = NULL;
+        $Applys->save();
+        return response()->json($Applys);
+      }
+
+      public function ShowBackendUsers()
+      {
+        $promoters= Promoters::paginate(10)->where('priority','>',Auth::guard('Promoter')->user()->priority);
+        
+        $Salesmans = Salesman::all();
+        
+        return view('promoter.BackendUsers')->with('promoters',$promoters)->with('salesmans',$Salesmans);
+      }
 
 }

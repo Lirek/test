@@ -122,7 +122,8 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="<?php echo e(url('/promoter_logout')); ?>">Logout</a></li>
+                    <li><a class="logout" href="<?php echo e(url('/promoter_logout')); ?>" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a></li>
                 </ul>
             </div>
         </header>
@@ -142,7 +143,11 @@
                     
                         
                     
-                
+            <form id="logout-form" action="<?php echo e(url('/promoter_logout')); ?>" method="POST"
+                                      style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
+                                </form>    
           </section>
       </section> 
             <!--main content end-->

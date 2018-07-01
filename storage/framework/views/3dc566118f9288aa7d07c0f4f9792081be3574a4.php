@@ -1,10 +1,10 @@
 <?php $__env->startSection('main'); ?>                   
 
-<h3><i class="fa fa-angle-right"></i>Usuarios Administrativos</h3>
+<h3><i class="fa fa-angle-right"></i>Solicitudes</h3>
           <div class="row mt">
             <div class="col-lg-12">
              <div class="content-panel">
-                      <h4><i class="fa fa-angle-right"></i> Usuarios Administratios Registrados</h4>
+                      <h4><i class="fa fa-angle-right"></i>Solicitudes de Cuenta Proveedor </h4>
                           <section id="unseen">
 
              <table class="table table-bordered table-striped table-condensed">            
@@ -14,6 +14,7 @@
                                   <th class="non-numeric">Nombre Del Contacto</th>
                                   <th class="non-numeric">Telefono Del Contacto</th>
                                   <th class="non-numeric">Correo Del Contacto</th>
+                                  <th class="non-numeric">Tipo Contenido</th>
                                   <th class="non-numeric">Vendedor</th>
                                   <th class="non-numeric">Solicitud</th>
                                 </tr>
@@ -28,20 +29,18 @@
                                       
                                       <td class="non-numeric"><?php echo e($apply->phone_s); ?></td>
                                       
-                                      <td class="non-numeric"><?php echo e($apply->email_c); ?></td>
+                                      <td class="non-numeric"><?php echo e($apply->email); ?></td>
+
+                                      <td class="non-numeric"><?php echo e($apply->desired_m); ?></td>
 
                                       <td class="non-numeric" id="apply_td<?php echo e($apply->id); ?>">
                                         <?php if($apply->salesman_id != NULL): ?>
-                                       <span class="mdl-chip mdl-chip--deletable" id="a_<?php echo e($apply->salesman_id); ?>_<?php echo e($apply->id); ?>">  <span class="mdl-chip__text" id="promoter_assing"><?php echo e($apply->Promoter->name_c); ?></span> <button type="button" class="mdl-chip__action" value1="<?php echo e($apply->id); ?>" value2="<?php echo e($apply->salesman_id); ?>" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
+                                       <span class="mdl-chip mdl-chip--deletable" id="a_<?php echo e($apply->salesman_id); ?>_<?php echo e($apply->id); ?>">  <span class="mdl-chip__text" id="promoter_assing"><?php echo e($apply->Salesman->name); ?></span> <button type="button" class="mdl-chip__action" value1="<?php echo e($apply->id); ?>" value2="<?php echo e($apply->salesman_id); ?>" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
                                         <?php else: ?>
 
                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="<?php echo e($apply->id); ?>" data-toggle="modal" data-target="#AssingPromoter">
                                        <i class="material-icons">add</i>
                                         </button>
-
-                                         <div class="mdl-tooltip" data-mdl-for="add_promoter_to">
-                                             Asignar Promotor para la <strong>Gestion</strong>
-                                          </div>
                                         <?php endif; ?>
                                       </td>
                                     
@@ -191,6 +190,53 @@ $(document).on('click', '#delete_applys', function() {
           });
 
 });
+
+$(document).on('click', '#add_promoter_to', function() {
+
+    var apply = $(this).val();
+    console.log(apply); 
+     $(document).ready(function (e){
+
+       $( "#AssingPromoterForm" ).on( 'submit', function(e){
+
+        var promoter = $("#sel1").val();
+        var name = $( "#sel1 option:selected" ).text();
+        var url = 'add_salesman_to/'+apply;
+        console.log(promoter);
+        e.preventDefault();
+         $.ajax({
+                    url: url,
+                    type:'POST',
+                    data:{
+                            _token: $('input[name=_token]').val(),
+                            promoter_id: promoter,
+                    },                  
+
+                      success: function(result){
+
+                          swal('Promotor asignado con exito','','success');
+
+                         var add = '<span class="mdl-chip mdl-chip--deletable" id="a_'+promoter+'_'+apply+'">  <span class="mdl-chip__text" id="promoter_assing">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+apply+'" value2="'+promoter+'" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>';
+                         
+                         var row =  $("#apply_td"+apply);
+
+                         $("#add_promoter_to").fadeOut();
+                         row.prepend(add);
+
+
+                      },
+
+                      error: function(result){
+                        swal("NO Permitido Por Favor Recargue la Pagina","","error");
+                      },
+                });
+
+
+       });
+
+     });
+});
+
 </script>
 
 <?php $__env->stopSection(); ?>

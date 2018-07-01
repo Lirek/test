@@ -63,10 +63,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Asignar Promotor</h4>
+          <h4 class="modal-title">Asignar Vendedor</h4>
         </div>
         <div class="modal-body">
-         <p>Asigne Un Promotor A la Solicitud</p>
+         <p>Asigne Un Vendedor A la Solicitud</p>
         
 
              <form method="POST" id="AssingPromoterForm">
@@ -77,7 +77,7 @@
 
                 <label for="sel1">Promotor:</label>
                <select class="form-control" id="sel1" name="promoter_n">
-                  <?php $__currentLoopData = $promoters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promoter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <option value="<?php echo e($promoter->id); ?>"><?php echo e($promoter->name_c); ?></option>  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                 
+                  <?php $__currentLoopData = $salesmans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $salesman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <option value="<?php echo e($salesman->id); ?>"><?php echo e($salesman->name); ?></option>  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                 
                </select>
                </div>
 

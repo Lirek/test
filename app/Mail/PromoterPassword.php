@@ -16,9 +16,11 @@ class PromoterPassword extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $password;
+
+    public function __construct($password)
     {
-        //
+        $this->password= $password;
     }
 
     /**
@@ -28,6 +30,6 @@ class PromoterPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('admin.mails.promoter_pasword')->subject('Contraseña de Backend Leipel')->with('password',$this->password);
     }
 }

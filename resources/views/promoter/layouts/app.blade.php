@@ -122,7 +122,8 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="{{ url('/promoter_logout') }}">Logout</a></li>
+                    <li><a class="logout" href="{{ url('/promoter_logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a></li>
                 </ul>
             </div>
         </header>
@@ -142,7 +143,10 @@
                     
                         
                     
-                
+            <form id="logout-form" action="{{ url('/promoter_logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>    
           </section>
       </section> 
             <!--main content end-->

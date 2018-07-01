@@ -5,10 +5,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
+          <h4 class="modal-title">Asignar Modulos</h4>
         </div>
         <div class="modal-body">
-         <p>Modifique el estatus de la Revista</p>
+         <p>Asigne Un Modulo al Proveedor</p>
         
 
              <form method="POST" id="AddModules">

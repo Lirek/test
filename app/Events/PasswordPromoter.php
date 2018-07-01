@@ -14,14 +14,13 @@ class PasswordPromoter
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $email;
+    public $password;
+
+    public function __construct($email,$password)
     {
-        //
+        $this->email=$email;
+        $this->password=$password;
     }
 
     /**

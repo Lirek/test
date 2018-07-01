@@ -62,10 +62,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Asignar Promotor</h4>
+          <h4 class="modal-title">Asignar Vendedor</h4>
         </div>
         <div class="modal-body">
-         <p>Asigne Un Promotor A la Solicitud</p>
+         <p>Asigne Un Vendedor A la Solicitud</p>
         
 
              <form method="POST" id="AssingPromoterForm">
@@ -75,7 +75,7 @@
 
                 <label for="sel1">Promotor:</label>
                <select class="form-control" id="sel1" name="promoter_n">
-                  @foreach($promoters as $promoter) <option value="{{$promoter->id}}">{{$promoter->name_c}}</option>  @endforeach                 
+                  @foreach($salesmans as $salesman) <option value="{{$salesman->id}}">{{$salesman->name}}</option>  @endforeach                 
                </select>
                </div>
 
