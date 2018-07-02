@@ -131,12 +131,9 @@
                         <p class="centered">
                             <!--Revisar este enlace -->
                             <a href="{{ url('/home')}}">
-                                <img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80">
                             </a>
                         </p>
-                        <h5 class="centered">{{Auth::user()->name}}</h5>
                         <div class="card-content white-text">
-                            <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::user()->credito}}</p></h6></span>
                         </div>
                         <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
