@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
+        
 class OperatorMiddleware
 {
     /**
@@ -15,6 +16,11 @@ class OperatorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::guard('Promoter')->user()->priority <= 3) 
+        {   
+            return $next($request);    
+        }
+
+        return redirect('home')->with('error','No Esta Autorizado');
     }
 }

@@ -29,3 +29,5 @@
               </div><!-- /col-md-4 -->
           </div
 @endsection
+@section('js')
+@endsection

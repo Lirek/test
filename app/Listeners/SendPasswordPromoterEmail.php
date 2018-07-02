@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\PasswordPromoter;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\PromoterPassword;
 
 class SendPasswordPromoterEmail
 {
@@ -26,6 +27,6 @@ class SendPasswordPromoterEmail
      */
     public function handle(PasswordPromoter $event)
     {
-        //
+        Mail::to($event->email)->send(new PromoterPassword($event->password));
     }
 }

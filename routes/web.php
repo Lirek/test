@@ -258,12 +258,6 @@ Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
 Route::post('/promoter_c','AdminController@CreatePromoter');
 
 Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
-Route::post('/add_promoter_to/{id}','AdminController@AddPromoterToApllys');
-
-Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeletePromoterFromApllys');
-Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
-
-Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
 
 
 
@@ -339,6 +333,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::get('/promoter_home','PromoterController@index');
 
+  
    Route::group(['middleware' => ['Admin']], function (){
 
             Route::get('/admin_sellers','AdminController@ShowSellers');
@@ -353,9 +348,24 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
 
-            Route::get('/admin_applys','AdminController@ShowApplys');
+            Route::get('BackendUsers','AdminController@ShowBackendUsers');
+            
    });
+    
+       
+        Route::group(['middleware' => ['Operator']], function (){
 
+            Route::get('/admin_applys','AdminController@ShowApplys');
+
+            Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
+
+            Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
+            
+            Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
+
+            Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
+
+        });
 
 });
 
