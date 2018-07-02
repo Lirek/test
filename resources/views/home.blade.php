@@ -145,15 +145,7 @@
                               </thead>
                               <tbody>
 
-                              @if($Songs)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="fa fa-music"></i></span></td>
-                                  <td><a href=""> {{$Songs->song_name}}</a></td>
-                                  <td class="hidden-phone">Single</td>
-                                  <td>{{$Songs->cost}}</td>
-                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
-                                </tr>
-                              @endif
+
 
                               @if($Albums)
                                 <tr class="letters">
