@@ -73,28 +73,153 @@
                                             <div class="modal-content">
                                               <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Modal Header</h4>
+                                                <h4 class="modal-title">Complete sus datos</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <p>Some text in the modal.</p>
-                                              </div>
+                                                <form class="form-horizontal" method="POST" action="#"><?php echo e(csrf_field()); ?>
+
+                                                   <div class="form-group<?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
+                                                      <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                                                      <div class="col-md-6">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="<?php echo e(old('lastname')); ?>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group<?php echo e($errors->has('nDocument') ? ' has-error' : ''); ?>">
+                                                      <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="<?php echo e(old('nDocument')); ?>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group<?php echo e($errors->has('imgdoc') ? ' has-error' : ''); ?>">
+                                                      <label for="imgdoc" class="col-md-4 control-label">Imagen del documento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="imgdoc" type="file" accept=".jpg"class="form-control" name="imgdoc" value="<?php echo e(old('imgdoc')); ?>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group<?php echo e($errors->has('dateN') ? ' has-error' : ''); ?>">
+                                                      <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="dateN" type="date" max="<?php echo e(@date('Y-m-d')); ?>" class="form-control" name="dateN" value="<?php echo e(old('dateN')); ?>">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-4">
+                                                      <button type="submit" class="btn btn-primary">Registrar datos</button>
+                                                    </div>
+                                                  </div>
+                                                  </form>
                                               <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                                               </div>
                                             </div>
                                           </div>
                                       </div>
+                                      </div>
                                       <!--FIN DEL MODAL-->
 
-                                  </div>
-                               </div>
+                                  </div><!--paragraph-->
+                               </div><!--golleft-->
 
-                            </div>
-                          </div><! --/grey-panel -->
+                            </div><!--row-->
+                          </div><!--/grey-panel -->
                         </div><!-- /col-md-12-->
 
-                      
                     <?php endif; ?>  
+
+                      <div class="col-md-12 col-sm-12 mb">
+                        <div class="white-panel panRf pe donut-chart">
+                          <div class="white-header">
+                            <h3><span class="card-title">Contenido Reciente</span></h3>                          
+                          </div>
+                          <div class="col-sm-12 col-xs-12 col-md-12 goleft">
+                            <table class="table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                  <th></th>
+                                  <th><i class="fa fa-bullhorn"></i>Nombre</th>
+                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>Tipo</th>
+                                  <th><i class="fa fa-money"></i>Costo</th>
+                                  <th class="hidden-phone"><i class=" fa fa-edit"></i>Proveedor</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                              <?php if($Songs): ?>
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="fa fa-music"></i></span></td>
+                                  <td><a href=""> <?php echo e($Songs->song_name); ?></a></td>
+                                  <td class="hidden-phone">Single</td>
+                                  <td><?php echo e($Songs->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($Songs->Seller->name); ?></td>
+                                </tr>
+                              <?php endif; ?>
+
+                              <?php if($Albums): ?>
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_vynil"></i></span></td>
+                                  <td><a href=""> <?php echo e($Albums->name_alb); ?></a></td>
+                                  <td class="hidden-phone">Album Musical</td>
+                                  <td><?php echo e($Albums->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($Albums->Seller->name); ?></td>
+                                </tr>
+                              <?php endif; ?>
+
+                              <?php if($Tv): ?>
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_tv"></i></span></td>
+                                  <td><a href=""> <?php echo e($Tv->name_r); ?></a></td>
+                                  <td class="hidden-phone">TV Online</td>
+                                  <td>Gratis</td>
+                                  <td class="hidden-phone"><?php echo e($Tv->Seller->name); ?></td>
+                                </tr>
+                             <?php endif; ?>
+
+                            <?php if($Book): ?>
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-book"></i></span></td>
+                                <td><a href=""> <?php echo e($Book->title); ?></a></td>
+                                <td class="hidden-phone">Libro</td>
+                                <td><?php echo e($Book->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Book->seller->name); ?></td>
+                              </tr>
+                            <?php endif; ?>
+
+                            <?php if($Megazines): ?>
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="li_news"></i></span></td>
+                                <td><a href=""> <?php echo e($Megazines->title); ?></a></td>
+                                <td class="hidden-phone">Revista</td>
+                                <td><?php echo e($Megazines->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Megazines->Seller->name); ?></td>
+                              </tr>
+                            <?php endif; ?>
+
+                            <?php if($Radio): ?>
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-microphone"></i></span></td>
+                                <td><a href=""> <?php echo e($Radio->name_r); ?></a></td>
+                                <td class="hidden-phone">Radio Online</td>
+                                <td>Gratis</td>
+                                <td class="hidden-phone"><?php echo e($Radio->Seller->name); ?></td>
+                              </tr>
+                            <?php endif; ?>
+
+                            <?php if($Movies): ?>
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-video-camera"></i></span></td>
+                                <td><a href=""> <?php echo e($Movies->title); ?></a></td>
+                                <td class="hidden-phone">Pelicula</td>
+                                <td><?php echo e($Movies->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Radio->Seller->name); ?></td>
+                              </tr>
+                          <?php endif; ?>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>            
+
+
 
                         <div class="col-md-5 col-sm-5 mb">
                           <div class="white-panel re">
@@ -113,19 +238,22 @@
                             </div>
                           </div>
                         </div><!-- /col-md-5 -->
-                        <div class="col-md-4 mb">
-                           <!-- INSTAGRAM PANEL -->
-                           <div class="instagram-panel pn">
-                              <i class="fa fa-instagram fa-4x"></i>
-                                  <p>@THISISYOU<br/>
-                                    5 min. ago
-                                  </p>
-                              <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                        <div class="col-md-1">
+                          
+                        </div>
+                        <div class="col-md-5 col-sm-5 mb">
+                           <!-- Qr PANEL -->
+                           <div class="Qr-panel pn">
+                              <div class="center">
+                                <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+
+                              </div>
                           </div>
                        </div><!-- /col-md-4 -->
                   </div><!-- /row -->
                               
           <div class="row mt">
+            <div class="col-md-12 col-sm-12 mb">
                       <!--CUSTOM CHART START -->
                       <div class="border-head">
                           <h3>Número de contenido</h3>
@@ -169,7 +297,7 @@
                           </div>
                       </div>
                       <!--custom chart end-->
-
+            </div>
           </div><!-- /row --> 
            
 

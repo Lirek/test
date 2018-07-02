@@ -158,8 +158,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Mis Redes</a></li>
-                          <li><a  href="#">Referir</a></li>
+                          <li><a  href="<?php echo e(url('WebsUser')); ?>">Mis Redes</a></li>
+                          <li><a  href="<?php echo e(url('Referals')); ?>"">Referir</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

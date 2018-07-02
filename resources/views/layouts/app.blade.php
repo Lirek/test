@@ -159,8 +159,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Mis Redes</a></li>
-                          <li><a  href="#">Referir</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis Redes</a></li>
+                          <li><a  href="{{url('Referals')}}"">Referir</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
