@@ -33,7 +33,6 @@
   </head>
   
    <body>
-    <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;"> <?php echo e(csrf_field()); ?> </form>
 
   <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -111,7 +110,7 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
+                    <li><a class="logout" href="<?php echo e(url('/logout')); ?>">Salir</a></li>
                 </ul>
             </div>
         </header>

@@ -1,4 +1,3 @@
-@extends('seller.layouts')
 <style type="text/css">
   #image-preview {
     width: 280px;
@@ -43,21 +42,22 @@
   }
 </style>
 
-@section('content')
-  @include('flash::message')
-  @if ($errors->any())
+<?php $__env->startSection('content'); ?>
+  <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php if($errors->any()): ?>
     <div class="alert alert-danger">
       <ul>
-        @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
+        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <li><?php echo e($error); ?></li>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </ul>
     </div>
-  @endif
+  <?php endif; ?>
 
-  <form method="POST" action="{{ url('/albums') }}" enctype="multipart/form-data" id="formulario">
-    <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
-      {{ csrf_field() }}
+  <form method="POST" action="<?php echo e(url('/albums')); ?>" enctype="multipart/form-data" id="formulario">
+    <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
+      <?php echo e(csrf_field()); ?>
+
     <div class="row" style="margin-left: 30px;">
       <div class="col-sm-12">
         <div class="box box-primary">
@@ -82,11 +82,11 @@
                 Géneros
               </label>
               <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" id="genders" required>
-                @foreach($tags as $genders)
-                  @if($genders->type_tags=='Musica')
-                    <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
-                  @endif
-                @endforeach
+                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($genders->type_tags=='Musica'): ?>
+                    <option value="<?php echo e($genders->id); ?>"><?php echo e($genders->tags_name); ?></option>
+                  <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
               <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalgenero">
                 Agregar Género
@@ -97,9 +97,9 @@
               </label>
               <select name="artist" class="form-control js-example-basic-single" required oninvalid="this.setCustomValidity('Seleccione Un Artista')" oninput="setCustomValidity('')">
                 <option value="">Seleccione...</option>
-                @foreach($autors as $artist)
-                  <option value="{{$artist->id}}">{{$artist->name}}</option>
-                @endforeach
+                <?php $__currentLoopData = $autors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $artist): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <option value="<?php echo e($artist->id); ?>"><?php echo e($artist->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
             </div>
           </div>
@@ -147,7 +147,8 @@
         <div class="modal-body">
           <form id="Form1" method="POST">
             <input type="text" name="tag" id="new_tag" placeholder="Ingrese el Nuevo Género" class="form-control" required="required">
-              {{ csrf_field() }}
+              <?php echo e(csrf_field()); ?>
+
             <button id="save-resource" type="submit" class="ui mini grey button button-rounded save-btn btn btn-success"><i class="save icon"></i>
               Guardar
             </button>
@@ -159,9 +160,9 @@
       </div>
     </div>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
   <script>
 
     $(document).ready(function(){
@@ -320,4 +321,5 @@
       });
     }
   </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

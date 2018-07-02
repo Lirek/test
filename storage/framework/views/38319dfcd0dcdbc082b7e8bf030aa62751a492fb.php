@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('content')
+<?php $__env->startSection('content'); ?>
   <!-- 
   MAIN CONTENT
   -->
@@ -53,7 +52,7 @@
         </h2>
         <footer>
           <div class="centered">
-            <h5><i class="info-box-number"> {{ $followers }} </i></h5>
+            <h5><i class="info-box-number"> <?php echo e($followers); ?> </i></h5>
           </div>
         </footer>
       </div>
@@ -68,7 +67,7 @@
         </h2>
         <footer>
           <div class="centered">
-            <h5><i class="info-box-number"> {{ $total_content }} </i></h5>
+            <h5><i class="info-box-number"> <?php echo e($total_content); ?> </i></h5>
           </div>
         </footer>
       </div>
@@ -83,7 +82,7 @@
         </h2>
         <footer>
           <div class="centered">
-            <h5><i class="info-box-number"> {{ $aproved_content }} </i></h5>
+            <h5><i class="info-box-number"> <?php echo e($aproved_content); ?> </i></h5>
           </div>
         </footer>
       </div>
@@ -142,11 +141,13 @@
     </div>
   </div>
     
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
   <!--
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
   -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

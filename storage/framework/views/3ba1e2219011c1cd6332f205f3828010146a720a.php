@@ -7,25 +7,25 @@
         <meta name="author" content="Dashboard">
         <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 
         <title>LEIPEL</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
         <!--external css-->
-        <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">    
+        <link href="<?php echo e(asset('assets/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
 
         <!-- Custom styles for this template -->
-        <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
+        <link href="<?php echo e(asset ('assets/css/style.css')); ?>" rel="stylesheet">
+        <link href="<?php echo e(asset ('assets/css/style-responsive.css')); ?>" rel="stylesheet">
 
-        @yield('css')
+        <?php echo $__env->yieldContent('css'); ?>
 
-        <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
+        <script src="<?php echo e(asset ('assets/js/chart-master/Chart.js')); ?>"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -46,7 +46,7 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
                 <!--logo start-->
-                <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
+                <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"></b></a>
                 <!--logo end-->
                 <div class="nav notify-row" id="top_menu">
                     <!--  notification start -->
@@ -113,7 +113,7 @@
                 <div class="top-menu">
                     <ul class="nav pull-right top-menu">
                         <li>
-                            <a class="logout" href="{{ url('/logout') }}">Salir</a>
+                            <a class="logout" href="<?php echo e(url('/logout')); ?>">Salir</a>
                         </li>
                     </ul>
                 </div>
@@ -130,16 +130,16 @@
                     <ul class="sidebar-menu" id="nav-accordion">
                         <p class="centered">
                             <!--Revisar este enlace -->
-                            <a href="{{ url('/home')}}">
-                                <img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80">
+                            <a href="<?php echo e(url('/home')); ?>">
+                                <img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="80">
                             </a>
                         </p>
-                        <h5 class="centered">{{Auth::user()->name}}</h5>
+                        <h5 class="centered"><?php echo e(Auth::user()->name); ?></h5>
                         <div class="card-content white-text">
-                            <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::user()->credito}}</p></h6></span>
+                            <span class="card-title centered"><h6>Tickets Disponibles: <p><?php echo e(Auth::user()->credito); ?></p></h6></span>
                         </div>
                         <li class="mt">
-                            <a class="active" href="{{ url('seller_home') }}">
+                            <a class="active" href="<?php echo e(url('seller_home')); ?>">
                                 <i class="glyphicon glyphicon-home"></i>
                                 <span>Escritorio</span>
                             </a>
@@ -151,9 +151,9 @@
                             </a>
                         </li>
 
-                        @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
-                            {{--Accesos a los modulos --}}
-                            @if($modulos==false)
+                        <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
+                            
+                            <?php if($modulos==false): ?>
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-warning"></i>
@@ -164,121 +164,121 @@
                                         </span>
                                     </a>
                                 </li>
-                            @else
-                                @foreach($modulos as $mod)
-                                    {{--musica--}}
-                                    @if($mod->name === 'Musica')
+                            <?php else: ?>
+                                <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    
+                                    <?php if($mod->name === 'Musica'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="li_music"></i>
                                                 <span>Música</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/albums') }}">Registrar Álbum</a></li>
+                                                <li><a href="<?php echo e(url('/albums')); ?>">Registrar Álbum</a></li>
                                                 <!-- Validar que la frase quepa en el espacio -->
                                                 <li class="treeview">
-                                                    <a href="{{ url('/artist_form') }}">
+                                                    <a href="<?php echo e(url('/artist_form')); ?>">
                                                         <span>
                                                             Registrar Grupo Musical o Solista
                                                         </span>
                                                     </a>
                                                 </li>
                                                 <!-- Validar que la frase quepa en el espacio -->
-                                                <li><a href="{{ url('/single_registration') }}">Registrar Singles</a></li>
-                                                <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi Música</a></li>
+                                                <li><a href="<?php echo e(url('/single_registration')); ?>">Registrar Singles</a></li>
+                                                <li><a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>">Mi Música</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--peliculas--}}
-                                    @if($mod->name =='Peliculas')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name =='Peliculas'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="fa fa-film"></i>
                                                 <span>Películas</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/movies/create') }}">Registrar Película</a></li>
-                                                <li><a href="{{ url('/movies') }}">Mis Películas</a></li>
+                                                <li><a href="<?php echo e(url('/movies/create')); ?>">Registrar Película</a></li>
+                                                <li><a href="<?php echo e(url('/movies')); ?>">Mis Películas</a></li>
                                                 <!--Revisar este enlace porque es igual al registro de musica-->
                                                 <!--
-                                                <li><a href="{{ url('/single_registration') }}">Mis Películas</a></li>
+                                                <li><a href="<?php echo e(url('/single_registration')); ?>">Mis Películas</a></li>
                                                 -->
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--revistas--}}
-                                    @if($mod->name == 'Revistas')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name == 'Revistas'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="fa fa-archive"></i>
                                                 <span>Revistas</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/megazine_form') }}">Registrar Revista Independiente</a></li>
-                                                <li><a href="{{ url('/megazine_form') }}">Agregar Revistas a Cadenas de Publicacion</a></li>
-                                                <li><a href="{{ url('/type') }}">Registrar cadena de publicaciones</a></li>
-                                                <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis Revistas</a></li>
+                                                <li><a href="<?php echo e(url('/megazine_form')); ?>">Registrar Revista Independiente</a></li>
+                                                <li><a href="<?php echo e(url('/megazine_form')); ?>">Agregar Revistas a Cadenas de Publicacion</a></li>
+                                                <li><a href="<?php echo e(url('/type')); ?>">Registrar cadena de publicaciones</a></li>
+                                                <li><a href="<?php echo e(url('/my_megazine',Auth::guard('web_seller')->user()->id)); ?>">Mis Revistas</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--series--}}
-                                    @if($mod->name == 'Series')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name == 'Series'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="li_video"></i>
                                                 <span>Series</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/series') }}">Registro de Serie</a></li>
-                                                <li><a href="{{ url('/series/create') }}">Registrar Serie</a></li>
+                                                <li><a href="<?php echo e(url('/series')); ?>">Registro de Serie</a></li>
+                                                <li><a href="<?php echo e(url('/series/create')); ?>">Registrar Serie</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--libros--}}
-                                    @if($mod->name == 'Libros')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name == 'Libros'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="fa fa-book"></i>
                                                 <span>Libros</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/tbook') }}">Registro de Libros</a></li>
-                                                <li><a href="{{ url('/tbook/create') }}">Registrar Libro</a></li>
-                                                <li><a href="{{ url('/authors_books') }}">Registro de Autores</a></li>
-                                                <li><a href="{{ url('/authors_books/create') }}">Registrar un Autor</a></li>
+                                                <li><a href="<?php echo e(url('/tbook')); ?>">Registro de Libros</a></li>
+                                                <li><a href="<?php echo e(url('/tbook/create')); ?>">Registrar Libro</a></li>
+                                                <li><a href="<?php echo e(url('/authors_books')); ?>">Registro de Autores</a></li>
+                                                <li><a href="<?php echo e(url('/authors_books/create')); ?>">Registrar un Autor</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--radios--}}
-                                    @if($mod->name == 'Radios')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name == 'Radios'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="glyphicon glyphicon-stats"></i>
                                                 <span>Radio</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/radios') }}">Registro de Radios</a></li>
-                                                <li><a href="{{ url('/radios/create') }}">Registrar Radio</a></li>
+                                                <li><a href="<?php echo e(url('/radios')); ?>">Registro de Radios</a></li>
+                                                <li><a href="<?php echo e(url('/radios/create')); ?>">Registrar Radio</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                    {{--Tvs--}}
-                                    @if($mod->name == 'TV')
+                                    <?php endif; ?>
+                                    
+                                    <?php if($mod->name == 'TV'): ?>
                                         <li class="sub-menu">
                                             <a href="javascript:;">
                                                 <i class="fa fa-desktop"></i>
                                                 <span>TV</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/tvs') }}">Registro de TV's</a></li>
-                                                <li><a href="{{ url('/tvs/create') }}">Registrar TV's</a></li>
+                                                <li><a href="<?php echo e(url('/tvs')); ?>">Registro de TV's</a></li>
+                                                <li><a href="<?php echo e(url('/tvs/create')); ?>">Registrar TV's</a></li>
                                             </ul>
                                         </li>
-                                    @endif
-                                @endforeach
-                            @endif
-                            {{--Cuenta en proceso de Revision--}}
-                            @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                            
+                            <?php elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado'): ?>
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-warning"></i>
@@ -291,8 +291,8 @@
                                         </span>
                                     </a>
                                 </li>
-                            {{--Cuenta en proceso de Pre-Aprobación--}}
-                            @else(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
+                            
+                            <?php else: ?>
                                 <li class="treeview active">
                                     <a href="#">
                                         <span>
@@ -305,7 +305,7 @@
                                         </span>
                                     </a>
                                 </li>
-                        @endif
+                        <?php endif; ?>
                         <li class="sub-menu">
                             <a href="javascript:;" >
                                 <i class="fa fa-users"></i>
@@ -329,14 +329,15 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="<?php echo e(url('/seller_logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
                                     Salir
                                 </span>
                             </a>
-                            <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
+                            <form id="logout-form" action="<?php echo e(url('/seller_logout')); ?>" method="POST" style="display: none;">
+                                <?php echo e(csrf_field()); ?>
+
                             </form>
                         </li>
                     </ul>
@@ -348,36 +349,36 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-9 main-chart">
-                        @yield('content')
+                        <?php echo $__env->yieldContent('content'); ?>
                     </div>
                     <div class="col-lg-3 ds">
-                        @include('seller.partials.siderRigth') 
+                        <?php echo $__env->make('seller.partials.siderRigth', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> 
                     </div><!-- /col-lg-3 -->
                 </div>
             </section>
         </section> 
-    @extends('seller.partials.footer')
+    
 
 </body>
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset('assets/js/jquery.js') }}"></script>
-    <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery-1.8.3.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/bootstrap.min.js')); ?>"></script>
+    <script class="include" type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dcjqaccordion.2.7.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.scrollTo.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.nicescroll.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.sparkline.js')); ?>"></script>
 
    
     <!--common script for all pages-->
-    <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>
     
-    <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter/js/jquery.gritter.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter-conf.js')); ?>"></script>
 
     <!--script for this page-->
-    <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
-  <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
+    <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>    
+  <script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script> 
 
 
 <!--SCRIPS JS-->
@@ -416,7 +417,9 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-    @yield('js')
+    <?php echo $__env->yieldContent('js'); ?>
 
 
 </html>
+
+<?php echo $__env->make('seller.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
