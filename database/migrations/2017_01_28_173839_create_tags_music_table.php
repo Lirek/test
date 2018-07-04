@@ -19,7 +19,7 @@ class CreateTagsMusicTable extends Migration
     $table->string('tags_name')->nullable();
     $table->enum('type_tags',['Peliculas','Musica','Libros','Radios','TV','Series','Revistas']);
     $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
-    $table->integer('seller_id')->nullable()->default(NULL);    
+    $table->integer('seller_id')->unsigned()->nullable()->default(NULL);    
     $table->foreign('seller_id')->references('id')->on('sellers');
 
     $table->timestamps();

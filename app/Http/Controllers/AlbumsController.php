@@ -213,7 +213,6 @@ class AlbumsController extends Controller
     public function CreateAlbum(AlbumRequest $request)
     {   
         
-        
         $seg=0;
         $min=0;
         $hr=0;
