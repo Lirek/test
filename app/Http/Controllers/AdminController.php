@@ -442,9 +442,10 @@ class AdminController extends Controller
        
         Mail::to($applys->email)->send(new PromoterAssing($applys));
 
-        $applys->save();
+        $applys->save(); 
+        
           
-
+        
         			
         return response()->json($applys); 
   		}

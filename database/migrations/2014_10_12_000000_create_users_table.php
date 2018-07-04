@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->integer('credito')->nullable();
             $table->boolean('verify')->default(FALSE);
             $table->date('fech_nac')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable()->default(NULL);
             $table->rememberToken();
             $table->timestamps();
         });

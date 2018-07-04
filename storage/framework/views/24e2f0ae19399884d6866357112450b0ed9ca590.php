@@ -55,7 +55,7 @@
          <p>Modifique El Estatus De La Productora</p>
         
 
-             <form method="POST"  id="formStatus">
+             <form method="POST"  id="FormStatusSeller">
                               <?php echo e(csrf_field()); ?>
 
 

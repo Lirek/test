@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,17 +137,17 @@
       <section id="main-content">
           <section class="wrapper">
                 
-                    
-                        <?php echo $__env->yieldContent('main'); ?>
-                    
-                    
-                        
-                    
+                                        
             <form id="logout-form" action="<?php echo e(url('/promoter_logout')); ?>" method="POST"
                                       style="display: none;">
                                     <?php echo e(csrf_field()); ?>
 
-                                </form>    
+                                </form>
+                        <?php echo $__env->yieldContent('main'); ?>
+                    
+                    
+                        
+    
           </section>
       </section> 
             <!--main content end-->

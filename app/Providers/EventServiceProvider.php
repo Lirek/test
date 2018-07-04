@@ -25,13 +25,19 @@ class EventServiceProvider extends ServiceProvider
         ],
             'App\Events\ContentDenialEvent' => [
             'App\Listeners\SendDenialEmail',
-        ],
+        ],        
             'App\Events\InviteEvent' => [
             'App\Listeners\SendInviteEmail',
         ],
             'App\Events\PasswordPromoter' => [
             'App\Listeners\SendPasswordPromoterEmail',
         ],
+
+            'App\Events\CreateCodeSocialUserEvent' => [
+            'App\Listeners\CreateCodeSocialUser',
+        ],
+            
+
 
     ];
 

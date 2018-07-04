@@ -76,167 +76,173 @@
 <?php $__env->startSection('js'); ?>
 <script>
 
-$("#phone_s").intlTelInput();
-
-function yesnoCheck() {
-    if (document.getElementById('option-2').checked) 
-    {
-        $('#if_no').show();
-    } 
-    else 
-    {
-        $('#if_no').hide();
-        $('#razon').val('');
-    }
-  };
+$( document ).ready(function() {
+    
 
 
+      $("#phone_s").intlTelInput();
 
-$(document).on('click', '#ModifyApplys', function() {    
-        var x = $(this).val();
+      function yesnoCheck() {
+          if (document.getElementById('option-2').checked) 
+          {
+              $('#if_no').show();
+          } 
+          else 
+          {
+              $('#if_no').hide();
+              $('#razon').val('');
+          }
+        };
 
-            $(document).ready(function (e){
-            $( "#formStatus" ).on( 'submit', function(e)
-                {
-                    var s=$("input[type='radio'][name=status]:checked").val();
-                    var message=$('#razon').val();
-                    var url = 'modify_applys/'+x;
-                    console.log(s);
-                    e.preventDefault();
-                    $.ajax({
-                            url: url,
-                            type: 'post',
-                            data: {
-                                    _token: $('input[name=_token]').val(),
-                                    status: s,
-                                    message: message,
-                                  }, 
-                            success: function (result) {
 
-                                                        $('#myModal').toggle();
-                                                        $('.modal-backdrop').remove();
-                                                        swal("Se ha "+s+" con exito","","success");
-                                                        $('#album'+x).fadeOut();
-                                                        },
 
-                            error: function (result) {
-                            swal('Existe un Error en su Solicitud','','error');
-                            console.log(result);
-                            }
-                            });  
-                                            });
-                });
+      $(document).on('click', '#ModifyApplys', function() {    
+              var x = $(this).val();
 
-});
+                  $(document).ready(function (e){
+                  $( "#formStatus" ).on( 'submit', function(e)
+                      {
+                          var s=$("input[type='radio'][name=status]:checked").val();
+                          var message=$('#razon').val();
+                          var url = 'AdminAproveOrDenialApplys/'+x;
+                          console.log(s);
+                          e.preventDefault();
+                          $.ajax({
+                                  url: url,
+                                  type: 'post',
+                                  data: {
+                                          _token: $('input[name=_token]').val(),
+                                          status: s,
+                                          message: message,
+                                        }, 
+                                  success: function (result) {
 
-$(document).on('click', '#x', function() {
-  
-  var apply = $(this).attr('value1'); ;
-  var promoter = $(this).attr('value2');;
-  var url = 'delete_promoter_from/'+apply+'/'+promoter;
+                                                              $('#myModal').toggle();
+                                                              $('.modal-backdrop').remove();
+                                                              swal("Se ha "+s+" con exito","","success");
+                                                              $('#album'+x).fadeOut();
+                                                              },
+
+                                  error: function (result) {
+                                  swal('Existe un Error en su Solicitud','','error');
+                                  console.log(result);
+                                  }
+                                  });  
+                                                  });
+                      });
+
+      });
+
+      $(document).on('click', '#x', function() {
+        
+        var apply = $(this).attr('value1'); ;
+        var promoter = $(this).attr('value2');;
+        var url = 'delete_promoter_from/'+apply+'/'+promoter;
+
+             $.ajax({
+               url: url,
+               type:'get',
+               data:"json",
+
+               success: function(data)
+               {
+                
+                 swal("Se Ha Retirado el Promotor de la Solicitud con exito","","success");
+                 var button = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="'+apply+'" data-toggle="modal" data-target="#AssingPromoter"><i class="material-icons">add</i> </button><div class="mdl-tooltip" data-mdl-for="add_promoter_to">Asignar Promotor para la <strong>Gestion</strong></div>';
+                    $("#apply_td"+apply).prepend(button).hide().fadeIn();
+                    $("#a_"+promoter+"_"+apply).fadeOut();
+                    $("#a_"+promoter+"_"+apply).remove();
+                
+                                             
+
+                                               
+                                                   
+                                                
+               },
+
+               error: function(data)
+               {
+                 alert("NO Permitido Por Favor Recargue la Pagina");
+               },
+
+             });
+      });
+
+      $(document).on('click', '#delete_applys', function() {
+        var promoter = $(this).attr('value1'); 
+        var apply = $(this).attr('value2');
 
        $.ajax({
-         url: url,
-         type:'get',
-         data:"json",
 
-         success: function(data)
-         {
-          
-           swal("Se Ha Retirado el Promotor de la Solicitud con exito","","success");
-           var button = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="'+apply+'" data-toggle="modal" data-target="#AssingPromoter"><i class="material-icons">add</i> </button><div class="mdl-tooltip" data-mdl-for="add_promoter_to">Asignar Promotor para la <strong>Gestion</strong></div>';
-              $("#apply_td"+apply).prepend(button).hide().fadeIn();
-              $("#a_"+promoter+"_"+apply).fadeOut();
-              $("#a_"+promoter+"_"+apply).remove();
-          
-                                       
+                    url: 'delete_applys_from/'+promoter+'/'+apply,
+                    type:'GET',
+                    data: 'json',
 
-                                         
-                                             
-                                          
-         },
+                    success : function(data)
+                    {
+                      swal("Se Ha Retirado Con Exito La Solicitud","","success");
+                      $("#p_"+promoter+"_"+apply).fadeOut();
+                    },
 
-         error: function(data)
-         {
-           alert("NO Permitido Por Favor Recargue la Pagina");
-         },
-
-       });
-});
-
-$(document).on('click', '#delete_applys', function() {
-  var promoter = $(this).attr('value1'); 
-  var apply = $(this).attr('value2');
-
- $.ajax({
-
-              url: 'delete_applys_from/'+promoter+'/'+apply,
-              type:'GET',
-              data: 'json',
-
-              success : function(data)
-              {
-                swal("Se Ha Retirado Con Exito La Solicitud","","success");
-                $("#p_"+promoter+"_"+apply).fadeOut();
-              },
-
-              error: function(data) 
-              {
-                swal('Error en Solicitud Por Favor Recargue la Pagina','','error');
-              }
+                    error: function(data) 
+                    {
+                      swal('Error en Solicitud Por Favor Recargue la Pagina','','error');
+                    }
 
 
 
-          });
-
-});
-
-$(document).on('click', '#add_promoter_to', function() {
-
-    var apply = $(this).val();
-    console.log(apply); 
-     $(document).ready(function (e){
-
-       $( "#AssingPromoterForm" ).on( 'submit', function(e){
-
-        var promoter = $("#sel1").val();
-        var name = $( "#sel1 option:selected" ).text();
-        var url = 'add_salesman_to/'+apply;
-        console.log(promoter);
-        e.preventDefault();
-         $.ajax({
-                    url: url,
-                    type:'POST',
-                    data:{
-                            _token: $('input[name=_token]').val(),
-                            promoter_id: promoter,
-                    },                  
-
-                      success: function(result){
-
-                          swal('Promotor asignado con exito','','success');
-
-                         var add = '<span class="mdl-chip mdl-chip--deletable" id="a_'+promoter+'_'+apply+'">  <span class="mdl-chip__text" id="promoter_assing">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+apply+'" value2="'+promoter+'" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>';
-                         
-                         var row =  $("#apply_td"+apply);
-
-                         $("#add_promoter_to").fadeOut();
-                         row.prepend(add);
-
-
-                      },
-
-                      error: function(result){
-                        swal("NO Permitido Por Favor Recargue la Pagina","","error");
-                      },
                 });
 
+      });
 
-       });
+      $(document).on('click', '#add_promoter_to', function() {
 
-     });
+          var apply = $(this).val();
+         
+           $(document).ready(function (e){
+
+             $( "#AssingPromoterForm" ).on( 'submit', function(e){
+
+              var promoter = $("#sel1").val();
+              var name = $( "#sel1 option:selected" ).text();
+              var url_2 = 'AddSalesMan/'+apply;
+              console.log(url_2);
+              e.preventDefault();
+
+               $.ajax({
+                          url: url_2,
+                          type:'post',
+                          data:{
+                                  _token: $('input[name=_token]').val(),
+                                  promoter_n: promoter,
+                          },                  
+
+                            success: function(result){
+
+                                swal('Promotor asignado con exito','','success');
+
+                               var add = '<span class="mdl-chip mdl-chip--deletable" id="a_'+promoter+'_'+apply+'">  <span class="mdl-chip__text" id="promoter_assing">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+apply+'" value2="'+promoter+'" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>';
+                               
+                               var row =  $("#apply_td"+apply);
+
+                               $("#add_promoter_to").fadeOut();
+                               row.prepend(add);
+
+
+                            },
+
+                            error: function(result){
+
+                              swal("NO Permitido Por Favor Recargue la Pagina","","error");
+                            },
+                      });
+
+
+             });
+
+           });
+      });
 });
-
 </script>
 
 <?php $__env->stopSection(); ?>
