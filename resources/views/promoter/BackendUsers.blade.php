@@ -11,7 +11,6 @@
                             <table class="table table-bordered table-striped table-condensed" id="promoters_table">
                               <thead>
                               <tr>
-                                  <th></th>
                                   <th>Nombre</th>
                                   <th>Correo</th>
                                   <th>Direccion</th>
@@ -21,19 +20,28 @@
                               </thead>
                               <tbody>
                               @foreach($promoters as $promoter)
-                                <tr id="promoter{{$promoter->id}}">
-                                  <td></td>
-                              <td>{{$promoter->name}}</td>
-                              <td>{{$promoter->email}}</td>
-                              <td>{{$promoter->adress}}</td>
-                              <td>{{$promoter->Roles->first()->name}}</td>
-                              
-                              
-                              </tr>
+                                  
+                                  <tr id="promoter{{$promoter->id}}">
+                                    <td>{{$promoter->name_c}}</td>
+                                    <td>{{$promoter->email}}</td>
+                                    <td>{{$promoter->adress}}</td>
+                                    <td>{{$promoter->Roles->first()->name}}</td>
+                                    
+                                    @if($promoter->Logins->count()==0)
+
+                                     <td>No Ha Iniciado Sesion</td>
+                                     
+                                     @else
+                                     
+                                     <td>{{$promoter->Logins->first()->created_at}}</td>
+                                     
+                                     @endif
+                                    </tr>
+                                  
                               @endforeach
                               </tbody>
                           </table>
-                                  <button  id="tt3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-toggle="modal" data-target="#NewPromoter">
+                                  <button  id="tt3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-toggle="modal" data-target="#NewUser">
         <i class="material-icons">add</i>
         </button>
                           </section>
@@ -91,7 +99,8 @@
           var name_c = $('input[name=name_c]').val();
           var phone_s =  $("#phone_s").intlTelInput("getNumber");
           var email_c = $('input[name=email_c]').val();
-
+          var priority =$('#priority').val();
+          
           e.preventDefault();
             
             $.ajax({
@@ -103,6 +112,7 @@
                     name_c: name_c,
                     phone_s: phone_s,
                     email_c: email_c,
+                    priority: priority,
                     }, 
 
                     success: function (result) 

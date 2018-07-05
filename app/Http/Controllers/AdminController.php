@@ -32,6 +32,8 @@ use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
 use App\Salesman;
+use App\PromotersRoles;
+
 
 //--------------------------------------------------------
 
@@ -373,7 +375,8 @@ class AdminController extends Controller
           return response()->json($data);          
       }
 //-------------Mostrar Solicitudes  ---------------------------------
-   		public function ShowApplys()
+   		
+      public function ShowApplys()
     	{
     		$applys= ApplysSellers::paginate(10);
     		
@@ -388,26 +391,34 @@ class AdminController extends Controller
    		public function CreatePromoter(Request $request)
    		{
    			$promoter = new Promoters;
-   			$promoter->name_c =$request->name_c;
-   			$promoter->phone_s =$request->phone_s;
-   			$promoter->email= $request->email_c;
+   			
+        $promoter->name_c =$request->name_c;
+   			
+        $promoter->phone_s =$request->phone_s;
+   			
+        $promoter->email= $request->email_c;
 
+        $promoter->priority = $request->priority;
+          
           $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          
           $charactersLength = strlen($characters);
+          
           $randomString = '';
         
               for ($i = 0; $i < 6; $i++) 
                   {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
-                }
+                  }
 
 
-   			$promoter->password=$randomString;
-
-
+   			$promoter->password=bcrypt($randomString);
 
         $promoter->save();
-   			return response()->json($promoter);
+
+        $promoter->Roles()->attach($request->priority);   
+
+        return response()->json($promoter);
    		}
 
    		public function UpdatePromoter(Request $request, $id)
@@ -507,11 +518,29 @@ class AdminController extends Controller
 
       public function ShowBackendUsers()
       {
-        $promoters= Promoters::paginate(10)->where('priority','>',Auth::guard('Promoter')->user()->priority);
         
+        if (Auth::guard('Promoter')->user()->priority == 1) 
+        {
+          $promoters= Promoters::paginate(10);
+        }
+        
+        if (Auth::guard('Promoter')->user()->priority == 2) 
+        {
+          $promoters= Promoters::paginate(10)->where('priority','<>',1);  
+        }
+        
+
+                
+
+        $priority= PromotersRoles::all();
+
         $Salesmans = Salesman::all();
         
-        return view('promoter.BackendUsers')->with('promoters',$promoters)->with('salesmans',$Salesmans);
+
+        return view('promoter.BackendUsers')
+                                            ->with('promoters',$promoters)
+                                            ->with('salesmans',$Salesmans)
+                                            ->with('priority',$priority);
       }
 
 }
