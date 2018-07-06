@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{--carrusel--}}
+    <meta name="description" content="Circular Content Carousel with jQuery" />
+    <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3" />
+    <meta name="author" content="Codrops" />
+    {{--carrusel--}}
+<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Leipel') }}</title>
@@ -13,11 +18,16 @@
     <!-- Styles -->
     {{--<link href="/css/app.css" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/demo.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/jquery.jscrollpane.css') }}" media="all">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
 
     <!-- Scripts -->
     <script>
@@ -122,35 +132,102 @@
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul id="portfolio-flters">
-                        <li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">
-                            All
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {{--<div class="row">--}}
+            {{--<div class="col-lg-12">--}}
+            {{--<ul id="portfolio-flters">--}}
+            {{--<li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">--}}
+            {{--All--}}
+            {{--</li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
+            {{--</div>--}}
 
             <div class="row" id="portfolio-wrapper">
-                @foreach($book as $b)
-                    {{--deben ser 12--}}
-                <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-                    {{--{{ dd($b) }}--}}
-                    <a href="">
-                        <img src="{{ asset('images/bookcover/'. $b->cover) }}" class="image img-responsive" alt="">
-                        <div class="details">
-                            <h4>{{ $b->title }}</h4>
-                            <span>{{ $b->seller->name }}</span>
-                        </div>
-                    </a>
+                {{--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px">--}}
+
+                {{--<!-- Indicators -->--}}
+                {{--<ol class="carousel-indicators">--}}
+                {{--@foreach( $book as $b )--}}
+                {{--<li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"--}}
+                {{--class="{{ $loop->first ? 'active' : '' }}"></li>--}}
+                {{--@endforeach--}}
+                {{--</ol>--}}
+
+                {{--<!-- Wrapper for slides -->--}}
+                {{--<div class="carousel-inner" role="listbox">--}}
+                {{--@foreach( $book as $b )--}}
+                {{--<div class="item {{ $loop->first ? ' active' : '' }}">--}}
+                {{--<img src="{{ asset('images/bookcover/'. $b->cover) }}" class="img-responsive" alt="{{ $b->title }}"--}}
+                {{--style="width:100%; height:500px">--}}
+                {{--<div class="carousel-caption">--}}
+                {{--<h2> {{ $b->seller->name }} </h2>--}}
+                {{--<h3>{{ $b->title }}</h3>--}}
+                {{--<p> {{ $b->sinopsis }} </p>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--@endforeach--}}
+                {{--</div>--}}
+
+                {{--<!-- Controls -->--}}
+                {{--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">--}}
+                {{--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>--}}
+                {{--<span class="sr-only">Previous</span>--}}
+                {{--</a>--}}
+                {{--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">--}}
+                {{--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>--}}
+                {{--<span class="sr-only">Next</span>--}}
+                {{--</a>--}}
+                {{--</div>--}}
+
+                {{--prueba del carrusel --}}
+
+                <div id="ca-container" class="ca-container">
+                    <div class="ca-wrapper">
+                        @foreach( $book as $b)
+                            {{--imagen --}}
+                            <div class="ca-item" >
+                                <div class="ca-item-main">
+                                    <div class="ca-icon"  style="background-image:url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
+                                    <br />
+                                    <h3>{{ $b->title }}</h3>
+                                    <h4>
+                                        <span class="ca-quote">&ldquo;</span>
+                                        <span>
+                                        {{ $b->sinopsis }}
+                                    </span>
+                                    </h4>
+                                    <a href="#" class="ca-more">mas...</a>
+                                </div>
+                                <div class="ca-content-wrapper">
+                                    <div class="ca-content">
+                                        <h6>{{ $b->original_title }}</h6>
+                                        <a href="#" class="ca-close">close</a>
+                                        <div class="ca-content-text">
+                                            <p>
+                                                {{ $b->sinopsis }}
+                                            </p>
+                                        </div>
+                                        <ul>
+                                            <li><a href="#">{{ $b->seller->name }}</a></li>
+                                            <li><a href="#">{{ $b->author->full_name }}</a></li>
+                                            <li><a href="#">{{ $b->country }}</a></li>
+                                            <li><a href="#">{{ $b->release_year }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
                 </div>
-                @endforeach
+
+                {{--prueba del carrusel --}}
+
             </div>
         </div>
     </div>
 
-    <!--TEAM START-->
+    <!--TEAM START Proveedores-->
     <div id="about" class="section-padding">
         <div class="container">
             <div class="row">
@@ -166,7 +243,7 @@
                             <div class="col-md-6">
                                 <div class="team-info">
                                     <div class="img-sec">
-                                        <img src="{{ asset('plugins/img/agent1.jpg') }}" class="img-responsive">
+                                        <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive" style="width:255px;height:256px">
                                     </div>
                                     <div class="fig-caption">
                                         <h3>{{ $s->name }}</h3>
@@ -291,5 +368,13 @@
 <script src="{{ asset('plugins/js/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('plugins/js/jquery.min.js') }}"></script>
 <script src="{{ asset('plugins/js/slick.min.js') }}"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="{{ asset('plugins/carusel/js/jquery.easing.1.3.js') }}"></script>
+<!-- the jScrollPane script -->
+<script src="{{ asset('plugins/carusel/js/jquery.mousewheel.js') }}"></script>
+<script src="{{ asset('plugins/carusel/js/jquery.contentcarousel.js') }}"></script>
+<script type="text/javascript">
+    $('#ca-container').contentcarousel();
+</script>
 </body>
 </html>
