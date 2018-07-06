@@ -20,7 +20,7 @@ class CreateSalesmanTable extends Migration
             $table->string('name')->nullable()->default(NULL);
             $table->string('adress')->nullable()->default(NULL);
             $table->string('phone')->nullable()->default(NULL);
-            $table->string('email')->nullable()->default(NULL);
+            $table->string('email')->unique()->nullable()->default(NULL);
             $table->integer('promoter_id')->nullable()->default(NULL);
             $table->timestamps();
             

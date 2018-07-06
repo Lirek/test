@@ -348,6 +348,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
+
+            Route::post('AddSalesman','AdminController@RegisterSalesman');
             
    });
     

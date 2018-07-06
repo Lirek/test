@@ -414,6 +414,8 @@ class AdminController extends Controller
 
    			$promoter->password=bcrypt($randomString);
 
+        event( new PasswordPromoter($promoter->email,$randomString));
+
         $promoter->save();
 
         $promoter->Roles()->attach($request->priority);   
@@ -519,18 +521,9 @@ class AdminController extends Controller
       public function ShowBackendUsers()
       {
         
-        if (Auth::guard('Promoter')->user()->priority == 1) 
-        {
-          $promoters= Promoters::paginate(10);
-        }
-        
-        if (Auth::guard('Promoter')->user()->priority == 2) 
-        {
-          $promoters= Promoters::paginate(10)->where('priority','<>',1);  
-        }
-        
 
-                
+        $promoters= Promoters::paginate()->where('priority','>',Auth::guard('Promoter')->user()->priority);
+
 
         $priority= PromotersRoles::all();
 
@@ -541,6 +534,36 @@ class AdminController extends Controller
                                             ->with('promoters',$promoters)
                                             ->with('salesmans',$Salesmans)
                                             ->with('priority',$priority);
+      }
+
+      public function RegisterSalesman(Request $request)
+      {
+        $salesman = new Salesman;
+        $salesman->name = $request->name;
+        $salesman->adress = $request->adress;
+        $salesman->phone = $request->phone;
+        $salesman->email = $request->email;
+        $salesman->promoter_id =Auth::guard('Promoter')->user()->id;
+        $salesman->save();
+        
+        return response()->json($salesman->with('CreatedBy')->findOrFail(1));
+      }
+
+      public function DeleteSalesman($id)
+      {
+        $salesman= Salesman::find($id);
+        
+        $salesman->destroy();
+
+        return response()->json($salesman); 
+      }
+
+      public function UpdateSalesman($id)
+      {
+        $salesman= Salesman::find($id);
+
+        return response()->json($salesman);
+
       }
 
 }
