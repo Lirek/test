@@ -1,61 +1,57 @@
 @extends('layouts.app')
 
-	@section('content')
-	<div class="container">
-		
-		<div class="row">
-			
-		@foreach($Books as $Book)
-			<div class="col-md-4">
-			
-			  <div class="card">
-    		 	<img src="/images/bookcover/{{$Book->cover}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Book->title}}</b></h4> 
-            			<p>·Costo{{$Book->cost}}</p>
-             			<p>·Autor {{$Book->author->full_name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Book->sinopsis}}
-             			</p>
-                  	<a href="{{url('Read/'.$Book->id)}}"><button class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-book"></i>   Leer
-                  	</button></a>
-            	</div>
-       		 </div>
+@section('main')  
 
-     	    </div>
-		@endforeach
-		</div>	
-	@if($Megazines != 0)		
-		<div class="row">
-			@foreach($Megazines as $Megazine)
+<div class="row">
+    <div class="form-group"> 
+        <div class="row-edit">
+            <div class="col-md-12 col-sm-12 mb">
+                <div class="control-label">
+                <div class="white-header">
+                     <h3><span class="card-title"><i class="fa fa-angle-right"> Mis Libros</i></span></h3>           
+                </div>
+                <div class="col-md-12  control-label">
+                    <input id="myInput" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                </div>
+                </div>
+                 @if($Books != 0)
+                <!-- PROFILE 01 PANEL -->
+                @foreach($Books as $Book)
+                <div class="col-lg-5 col-md-5 col-sm-5 mb">
+                    <div class="content-panel pn-music">
+                        <div id="profile-01" style="">
+                            @if($Book->cover)
+                                <img src="images/bookcover/{{$Book->cover}}" width="100%" height="220" style="">
+                            @else
+                                <img src="#" width="100%" height="220" style="">
+                            @endif
+                        </div>
+                        <div class="profile-01 centered">
+                            <p><a href="{{url('Read/'.$Book->id)}}">Leer</p>
+                        </div>
+                        <div class="centered">
+                            <h3>{{$Book->title}}</h3>
+                            <h6>{{$Book->author->full_name}}</h6>
+                            <p>·Sinopsis: 
+                                {{$Book->sinopsis}}
+                            </p>
 
-			<div class="col-md-4">
-			
-			  <div class="card" style="margin-left: 12px; margin-top: 12px">
-    		 	<img src="{{asset($Megazine->cover)}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Megazine->title}}</b></h4> 
-            			<p>·Costo{{$Megazine->cost}}</p>
-             			<p>·Proveedor {{$Megazine->Seller->name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Megazine->descripcion}}
-             			</p>
-                  	<button value1="{{$Megazine->id}}" value2="{{$Megazine->title}}" value3="{{$Megazine->cost}}" data-toggle="modal" data-target="#BuyBook" class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-ticket"></i> {{$Megazine->cost}}  Comprar
-                  	</button>
-            	</div>
-       		  </div>
-     	    </div>
-			@endforeach
-		</div>
+                        </div>
+                    </div><!--/content-panel -->
+                </div><!--/col-md-4 -->
+                @endforeach
+                @else
+                    <h1>No Posee Libros</h1>
+                @endif
+            </div>
+        </div> 
+    </div> 
+</div> 
 
-	</div>
-  @endif
-	@endsection
+@endsection
+
+
 @section('js')
-<script>
 
-
-		
-</script>		
 
 @endsection

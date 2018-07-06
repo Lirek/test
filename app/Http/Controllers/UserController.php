@@ -114,10 +114,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
 //        dd($user);
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
+        
 
         return view('users.edit')->with('user', $user);
     }
@@ -155,12 +156,23 @@ class UserController extends Controller
          
          $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
-        else
-        {
-            $user->img_perf= NULL;
-        }
         
         $user->fech_nac = $request->fech_nac;
+
+        if ($request->hasFile('img_doc'))
+        {
+
+
+         $store_path = public_path().'/user/'.$user->id.'/profile/';
+         
+         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+
+         $request->file('img_doc')->move($store_path,$name);
+
+         $real_path='/user/'.$user->id.'/profile/'.$name;
+         
+         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
+        }
      
         //dd($user);
         $user->save();
@@ -366,7 +378,7 @@ class UserController extends Controller
         }
         else
         {
-            return view('users.MyLecture')->with('pdf','/book/'.$Book->books_file);
+            return view('users.MyLecture')->with('pdf','public/book/'.$Book->books_file);
         }
 
     }

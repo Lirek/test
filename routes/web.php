@@ -60,6 +60,9 @@ Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
 Route::post('Invite','UserController@Invite');
 
+    //Agregadas 4/7/18
+    Route::get('EditProfile','UserController@edit');
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________

@@ -133,11 +133,14 @@
                       
                   </div>  
                     
-                  <li class="mt">
+                  <li class="sub-menu">
                       <a class="active" href="#">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
+                      <ul class="sub">
+                        <li><a href="{{url('EditProfile')}}">Editar mi perfil</a></li>
+                      </ul>
                   </li>
 
                   <li class="sub-menu">
@@ -147,8 +150,8 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="#">Mis Peliculas</a></li>
-                          <li><a  href="#">Mi Musica</a></li>
-                          <li><a  href="#">Mis lecturas</a></li>
+                          <li><a  href="{{url('MyMusic')}}">Mi Musica</a></li>
+                          <li><a  href="{{url('MyReads')}}">Mis lecturas</a></li>
                           <li><a  href="#">Mis Streams</a></li>
                       </ul>
                   </li>
@@ -196,6 +199,7 @@
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{asset('assets/js/jquery.js') }}"></script>
     <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>
+    
     <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
     <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
     <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>

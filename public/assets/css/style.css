@@ -1043,6 +1043,10 @@ PANELS CONFIGURATIONS
     height: 190px;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
+.pn-musir{
+    height:  220%;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
 
 /*Grey Panel*/
 
@@ -1563,7 +1567,7 @@ PANELS CONFIGURATIONS
 /* PROFILE PANELS */
 /* Profile 01*/
 #profile-01 {
-	background: url(../img/profile-01.jpg) no-repeat center top;
+	/*background: url(../img/profile-01.jpg) no-repeat center top;*/
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
@@ -2317,4 +2321,8 @@ label {
     min-height: 900px;
 }
 
+.row-edit{
+    
+    margin-left: 10px;
+}
 
