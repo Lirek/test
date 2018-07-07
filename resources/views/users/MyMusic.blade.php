@@ -27,12 +27,19 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href=""> Añadir al Playlist</p>
+                            <p><a href=""> Añadir al Playlist</p></a>
                         </div>
-                        <div class="centered">
+<!--                         <div class="centered">
                             <h3>{{$Single->autors->name}}</h3>
                             <h6>{{$Single->song_name}}</h6>
                             <audio id="player" style="width:100%;" controls controlsList="nodownload">
+                                <source src="{{asset($Single->song_file)}}" type="audio/mp3">
+                            </audio>
+                        </div> -->
+                        <div class="centered">
+                            <h3>{{$Single->autors->name}}</h3>
+                            <h6>{{$Single->song_name}}</h6>
+                            <audio  id="player">
                                 <source src="{{asset($Single->song_file)}}" type="audio/mp3">
                             </audio>
                         </div>
@@ -52,5 +59,8 @@
 
 @section('js')
 
+<script type="text/javascript">
+    const player= new Plyr('#player');
+</script>
 
 @endsection

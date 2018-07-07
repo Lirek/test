@@ -25,6 +25,9 @@
     <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
 
     <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
+
+    <!--estilo plyr-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -216,6 +219,9 @@
     <!--script for this page-->
     <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
   <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
+
+  <!--Script Plyr-->
+  <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
 
 
 <!--SCRIPS JS-->

@@ -138,7 +138,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->ci = $request->ci;
         $user->num_doc = $request->num_doc;
-        $user->img_doc = $request->img_doc;
+
         $user->type= $request->type;
         $user->alias = $request->alias;
         
@@ -159,6 +159,7 @@ class UserController extends Controller
         
         $user->fech_nac = $request->fech_nac;
 
+       
         if ($request->hasFile('img_doc'))
         {
 
@@ -177,7 +178,8 @@ class UserController extends Controller
         //dd($user);
         $user->save();
         Flash('Se Han Modificado Sus Datos Con Exito')->success();
-        return view('home');
+        //return view('home');
+       return redirect()->action('HomeController@index');
     }
 
     /**
@@ -378,7 +380,7 @@ class UserController extends Controller
         }
         else
         {
-            return view('users.MyLecture')->with('pdf','public/book/'.$Book->books_file);
+            return view('users.MyLecture')->with('pdf','/book/'.$Book->books_file);
         }
 
     }

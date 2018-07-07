@@ -8,7 +8,7 @@
 	<h4><i class="fa fa-angle-right"></i> Modificar Perfil</h4>
 	<div class="col-md-12 col-sm-12 mb">
 		<div class="form-group">
-			{!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal']) !!}
+			{!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
              {{ Form::token() }}
 
                  {{--Nombre--}}
@@ -47,7 +47,11 @@
                         </div>
 
                         <div class="col-md-6 control-label">
+                            @if($user->ci)
                             {!! Form::text('ci',$user->ci,['class'=>'form-control','readonly']) !!}
+                            @else
+                            {!! Form::text('ci',$user->ci,['class'=>'form-control']) !!}
+                            @endif
                         </div>
                     </div>
 
@@ -59,10 +63,10 @@
                         </div>
                         <div  class="col-md-4">
                             @if ($user->img_doc != null)
-    							<img id="image_upload_preview" src="{{asset($user->img_doc)}}" alt="your image" width="180" height="180">
+    							<img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                             @endif
     							<div class="col-md-6 control-label">
-    							<input type='file' name="img_doc" id="inputFile" accept=".jpg" value="$user->img_doc">
+    							 <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
     							</div>
                          </div>
                     </div>
@@ -96,10 +100,10 @@
                         </div>
                         <div  class="col-md-4">
                              @if ($user->img_perf != null)
-    							<img id="image_upload_preview" src="{{asset($user->img_perf)}}" alt="your image" width="180" height="180">
+    							<img id="preview_img_perf" src="{{asset($user->img_perf)}}" name='perf' alt="your image" width="180" height="180" >
                             @endif
     							<div class="col-md-6 control-label">
-    							<input type='file' name="img_perf" id="inputFile" accept=".jpg" value="$user->img_perf">
+    							<input type='file' name="img_perf" id="img_perf" accept=".jpg" value="$user->img_perf" />
     							</div>
                          </div>
                     </div>
@@ -138,14 +142,16 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#image_upload_preview').attr('src', e.target.result);
+                imgId= '#preview_'+$(input).attr('id');
+                $(imgId).attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    $("#inputFile").change(function () {
+   
+    $("form#edit input[type='file' ]").change(function () {
         readURL(this);
     });
 </script>
