@@ -1,37 +1,53 @@
 @extends('promoter.layouts.app')
 
 
-@section('content')                   
+@section('main')                   
 
-<main  class="mdl-layout__content">
- <div class="mdl-layout mdl-grid">
-  <div class="mdl-grid">
+<h3><i class="fa fa-angle-right"></i>Solicitudes</h3>
+          <div class="row mt">
+            <div class="col-lg-12">
+             <div class="content-panel">
+                      <h4><i class="fa fa-angle-right"></i>Solicitudes de Cuenta Proveedor </h4>
+                          <section id="unseen">
 
-
-   <div class="mdl-cell--4-col">
-             <table class="mdl-data-table mdl-js-data-table ">            
+             <table class="table table-bordered table-striped table-condensed">            
                         <thead>
                                 <tr>
-                                  <th>Nombre Comercial</th>
-                                  <th>Nombre Del Contacto</th>
-                                  <th>Telefono Del Contacto</th>
-                                  <th>Correo Del Contacto</th>
-                                  <th>Solicitud</th>
+                                  <th class="non-numeric">Nombre Comercial</th>
+                                  <th class="non-numeric">Nombre Del Contacto</th>
+                                  <th class="non-numeric">Telefono Del Contacto</th>
+                                  <th class="non-numeric">Correo Del Contacto</th>
+                                  <th class="non-numeric">Tipo Contenido</th>
+                                  <th class="non-numeric">Vendedor</th>
+                                  <th class="non-numeric">Solicitud</th>
                                 </tr>
                             </thead>
                                 <tbody>
                                     @foreach($applys as $apply)
                                     <tr id="apply{{$apply->id}}">
                                       
-                                      <td>{{$apply->name_c}}</td>
+                                      <td class="non-numeric">{{$apply->name_c}}</td>
                                       
-                                      <td>{{$apply->contact_s}}</td>
+                                      <td class="non-numeric">{{$apply->contact_s}}</td>
                                       
-                                      <td>{{$apply->phone_s}}</td>
+                                      <td class="non-numeric">{{$apply->phone_s}}</td>
                                       
-                                      <td>{{$apply->email_c}}</td>
+                                      <td class="non-numeric">{{$apply->email}}</td>
 
-                                      <td>
+                                      <td class="non-numeric">{{$apply->desired_m}}</td>
+
+                                      <td class="non-numeric" id="apply_td{{$apply->id}}">
+                                        @if($apply->salesman_id != NULL)
+                                       <span class="mdl-chip mdl-chip--deletable" id="a_{{$apply->salesman_id}}_{{$apply->id}}">  <span class="mdl-chip__text" id="promoter_assing">{{$apply->Salesman->name}}</span> <button type="button" class="mdl-chip__action" value1="{{$apply->id}}" value2="{{$apply->salesman_id}}" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
+                                        @else
+
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="{{$apply->id}}" data-toggle="modal" data-target="#AssingPromoter">
+                                       <i class="material-icons">add</i>
+                                        </button>
+                                        @endif
+                                      </td>
+                                    
+                                      <td class="non-numeric">
                                           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifyApplys" value="{{$apply->id}}" data-toggle="modal" data-target="#myModal">
                                           {{$apply->status}}
                                         </button>
@@ -45,73 +61,17 @@
                        </table>
                        {!! $applys->render() !!}
 
-   </div>
-  
+
+                          </section>
 
 
- 
-  
-  </div>
- </div>
-</main>
+               </div><!-- /content-panel -->
+              </div><!-- /col-lg-4 -->     
+           </div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
-        </div>
-        <div class="modal-body">
-         <p>Modifique El Estatus De La Solicitud</p>
-        
 
-             <form method="POST"  id="formStatus">
-                              {{ csrf_field() }}
 
-             <div class="radio-inline">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button"  onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                <span class="mdl-radio__label">Aprobar</span>
-                </label>
-             </div>
-
-             <div class="radio-inline">
-             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
-                <span class="mdl-radio__label">Negar</span>
-             </label>
-
-             </div>
-
-             <div class="radio-inline" style="display:none" id="if_no">
-              <div class="mdl-textfield mdl-js-textfield">
-               <textarea name="message" class="mdl-textfield__input" type="text" rows= "6" id="razon" ></textarea>
-               <label class="mdl-textfield__label" for="razon">Explique La Razon</label>
-              </div>
-             </div>
-
-             <div class="radio-inline">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-                </button>
-            </div>
-
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
-</div>
-
+@include('promoter.modals.ApplysViewsModals')
 @endsection
 
 @section('js')
@@ -168,6 +128,114 @@ $(document).on('click', '#ModifyApplys', function() {
                                             });
                 });
 
+});
+
+$(document).on('click', '#x', function() {
+  
+  var apply = $(this).attr('value1'); ;
+  var promoter = $(this).attr('value2');;
+  var url = 'delete_promoter_from/'+apply+'/'+promoter;
+
+       $.ajax({
+         url: url,
+         type:'get',
+         data:"json",
+
+         success: function(data)
+         {
+          
+           swal("Se Ha Retirado el Promotor de la Solicitud con exito","","success");
+           var button = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="'+apply+'" data-toggle="modal" data-target="#AssingPromoter"><i class="material-icons">add</i> </button><div class="mdl-tooltip" data-mdl-for="add_promoter_to">Asignar Promotor para la <strong>Gestion</strong></div>';
+              $("#apply_td"+apply).prepend(button).hide().fadeIn();
+              $("#a_"+promoter+"_"+apply).fadeOut();
+              $("#a_"+promoter+"_"+apply).remove();
+          
+                                       
+
+                                         
+                                             
+                                          
+         },
+
+         error: function(data)
+         {
+           alert("NO Permitido Por Favor Recargue la Pagina");
+         },
+
+       });
+});
+
+$(document).on('click', '#delete_applys', function() {
+  var promoter = $(this).attr('value1'); 
+  var apply = $(this).attr('value2');
+
+ $.ajax({
+
+              url: 'delete_applys_from/'+promoter+'/'+apply,
+              type:'GET',
+              data: 'json',
+
+              success : function(data)
+              {
+                swal("Se Ha Retirado Con Exito La Solicitud","","success");
+                $("#p_"+promoter+"_"+apply).fadeOut();
+              },
+
+              error: function(data) 
+              {
+                swal('Error en Solicitud Por Favor Recargue la Pagina','','error');
+              }
+
+
+
+          });
+
+});
+
+$(document).on('click', '#add_promoter_to', function() {
+
+    var apply = $(this).val();
+    console.log(apply); 
+     $(document).ready(function (e){
+
+       $( "#AssingPromoterForm" ).on( 'submit', function(e){
+
+        var promoter = $("#sel1").val();
+        var name = $( "#sel1 option:selected" ).text();
+        var url = 'add_salesman_to/'+apply;
+        console.log(promoter);
+        e.preventDefault();
+         $.ajax({
+                    url: url,
+                    type:'POST',
+                    data:{
+                            _token: $('input[name=_token]').val(),
+                            promoter_id: promoter,
+                    },                  
+
+                      success: function(result){
+
+                          swal('Promotor asignado con exito','','success');
+
+                         var add = '<span class="mdl-chip mdl-chip--deletable" id="a_'+promoter+'_'+apply+'">  <span class="mdl-chip__text" id="promoter_assing">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+apply+'" value2="'+promoter+'" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>';
+                         
+                         var row =  $("#apply_td"+apply);
+
+                         $("#add_promoter_to").fadeOut();
+                         row.prepend(add);
+
+
+                      },
+
+                      error: function(result){
+                        swal("NO Permitido Por Favor Recargue la Pagina","","error");
+                      },
+                });
+
+
+       });
+
+     });
 });
 
 </script>

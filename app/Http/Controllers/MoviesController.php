@@ -130,4 +130,17 @@ class MoviesController extends Controller
 
         return view('seller.movie.show')->with('movie',$movies);
     }
+
+    public function destroy($id) {
+        $pelicula = Movie::find($id);
+        if (\Auth::guard('web_seller')->user()->id === $pelicula->seller_id) {
+            $pelicula->delete();
+            Flash::error('Se a eliminado la película con exito')->important();
+            return redirect()->route('movies.index');
+        } else {
+            Flash::error('No tienes los permisos necesarios para acceder')->important();
+            return redirect()->route('movies.index');
+        }
+
+    }
 }

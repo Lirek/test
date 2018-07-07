@@ -200,7 +200,7 @@
                                             </a>
                                             <ul class="sub">
                                                 <li><a href="<?php echo e(url('/movies/create')); ?>">Registrar Película</a></li>
-                                                <li><a href="<?php echo e(url('/movies')); ?>">Mis Películas</a></li>
+                                                <li><a href="<?php echo e(url('/movies')); ?>">Películas Registradas</a></li>
                                                 <!--Revisar este enlace porque es igual al registro de musica-->
                                                 <!--
                                                 <li><a href="<?php echo e(url('/single_registration')); ?>">Mis Películas</a></li>

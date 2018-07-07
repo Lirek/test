@@ -63,5 +63,8 @@ class Kernel extends HttpKernel
 
          'promoter_auth' => \App\Http\Middleware\AuthenticatePromoter::class,
          'promoter_guest' => \App\Http\Middleware\RedirectIfPromoterAuthenticated::class,
+
+         'Admin' => \App\Http\Middleware\AdminMiddleware::class,
+         'Operator' => \App\Http\Middleware\OperatorMiddleware::class,
     ];
 }

@@ -18,7 +18,8 @@ class CreateApplysTable extends Migration
     {
     
     $table->increments('id');
-    $table->integer('promoter_id')->nullable()->unsigned()->default(NULL);
+    $table->integer('promoter_id')->nullable()->default(NULL);
+    $table->integer('salesman_id')->nullable()->default(NULL);
     $table->string('name_c')->nullable()->default(NULL);
     $table->string('token')->nullable()->default(NULL);
     $table->string('contact_s')->nullable()->default(NULL);
@@ -31,6 +32,7 @@ class CreateApplysTable extends Migration
     $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
     $table->timestamps();
     $table->foreign('promoter_id')->references('id')->on('promoter');
+    $table->foreign('salesman_id')->references('id')->on('salesman');
     
     });
     }

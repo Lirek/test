@@ -122,30 +122,53 @@
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul id="portfolio-flters">
-                        <li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">
-                            All
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            
+                
+                    
+                        
+                            
+                        
+                    
+                
+            
 
             <div class="row" id="portfolio-wrapper">
-                <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
-                <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-                    
-                    <a href="">
-                        <img src="<?php echo e(asset('images/bookcover/'. $b->cover)); ?>" class="image img-responsive" alt="">
-                        <div class="details">
-                            <h4><?php echo e($b->title); ?></h4>
-                            <span><?php echo e($b->seller->name); ?></span>
-                        </div>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px">
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li data-target="#carousel-example-generic" data-slide-to="<?php echo e($loop->index); ?>"
+                                class="<?php echo e($loop->first ? 'active' : ''); ?>"></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="item <?php echo e($loop->first ? ' active' : ''); ?>">
+                                <img src="<?php echo e(asset('images/bookcover/'. $b->cover)); ?>" class="img-responsive" alt="<?php echo e($b->title); ?>"
+                                     style="width:100%; height:500px">
+                                <div class="carousel-caption">
+                                    <h2> <?php echo e($b->seller->name); ?> </h2>
+                                    <h3><?php echo e($b->title); ?></h3>
+                                    <p> <?php echo e($b->sinopsis); ?> </p>
+                                </div>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             </div>
         </div>
     </div>
@@ -166,7 +189,7 @@
                             <div class="col-md-6">
                                 <div class="team-info">
                                     <div class="img-sec">
-                                        <img src="<?php echo e(asset('plugins/img/agent1.jpg')); ?>" class="img-responsive">
+                                        <img src="<?php echo e(asset('images/producer/logo/'. $s->logo)); ?>" class="img-responsive" style="width:255px;height:256px">
                                     </div>
                                     <div class="fig-caption">
                                         <h3><?php echo e($s->name); ?></h3>

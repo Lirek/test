@@ -24,6 +24,8 @@ class CreatePromotersTable extends Migration
     $table->string('phone_s')->nullable()->default(NULL);
     $table->string('email')->nullable()->default(NULL);
     $table->string('password')->nullable()->default(NULL);
+    $table->integer('priority')->nullable()->default(NULL);
+    $table->rememberToken();
     $table->timestamps();
     
     });

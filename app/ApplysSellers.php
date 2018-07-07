@@ -11,7 +11,7 @@ class ApplysSellers extends Model
 
    protected $fillable = [
       'id',
-      'promoter_id',
+      'salesman_id',
       'name_c', 
       'contact_s',
       'phone_s',
@@ -20,15 +20,16 @@ class ApplysSellers extends Model
       'dsc',
       'desired_m',
       'assing_at',
+      'promoter_id',
       'created_at',
       'updated_at',
       'token',
       'expires_at'
     ];
 
-    public function Promoter()
+    public function Salesman()
     {
-        return $this->belongsTo('App\Promoters','promoter_id');
+        return $this->belongsTo('App\Salesman','salesman_id');
     }
 
 }

@@ -50,41 +50,41 @@
         <div class="col-lg-12" style="margin-left: 30px; margin-right: 30px;">
             <div class="box box-primary">
                 <div class="box-header with-border"> 
-                    <h3 class="box-title">Artista o Agrupacion Musical</h3>
+                    <h3 class="box-title">Registrar Artista o Agrupación Musical</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div id="image-preview" style="border:#000000 1px solid ;" class="col-md-1">
                                 <label for="image-upload" id="image-label">Foto o Logo</label>
-                                <input type="file" accept=".jpg" required  oninvalid="this.setCustomValidity('Seleccione Una Imagen de Perfil')" oninput="setCustomValidity('')" name="photo" id="image-upload"/>
+                                <input type="file" accept=".jpg" required="required"  oninvalid="this.setCustomValidity('Seleccione Una Imagen de Perfil')" oninput="setCustomValidity('')" name="photo" id="image-upload"/>
                                 <div id="list"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-12">
-                                <label for="art_name" class="control-label">Nombre del Artista o Agrupacion</label>
-                                <input id="art_name" type="text" class="form-control" name="art_name" required oninvalid="this.setCustomValidity('Inserte Un Nombre de Agrupacion Valido')" oninput="setCustomValidity('')">   
+                                <label for="art_name" class="control-label">Nombre del Artista o Agrupación</label>
+                                <input id="art_name" type="text" class="form-control" name="art_name" placeholder="Nombre del Artista o Agrupación" required="required" oninvalid="this.setCustomValidity('Inserte Un Nombre de Agrupacion Valido')" oninput="setCustomValidity('')">   
                                 <br>
                             </div>
                             <div class="col-md-12">
                                 <label for="desc" class="control-label">Descripción</label>
-                                <textarea class="form-control" name="dsc" oninvalid="this.setCustomValidity('Inserte Una Descripcion de  Valida')" oninput="setCustomValidity('')" required>
+                                <textarea class="form-control" name="dsc" placeholder="Descripción" oninvalid="this.setCustomValidity('Inserte Una Descripcion Valida')" oninput="setCustomValidity('')" required="required">
                                 </textarea>
                                 <br>
                             </div>
                             <div class="col-md-12">
                                 <label for="type_authors" class="control-label">Tipo</label>
-                                <select class="form-control" name="type_authors">
-                                    <option value="Agrupacion Musical">Agrupacion Musical</option>
+                                <select class="form-control" name="type_authors" required="required">
+                                    <option value="Agrupacion Musical">Agrupación Musical</option>
                                     <option value="Solista">Solista</option>
-                                    <option value="" selected>Seleccione una Opcion</option>
+                                    <option value="" selected>Seleccione una Opción</option>
                                 </select>
                                 <br>
                             </div>
                             <div class="col-md-12">
-                                <label for="country" class="control-label">Pais De Origen</label>
-                                <select  name="x12" class="form-control js-example-basic-single">
+                                <label for="country" class="control-label">País De Origen</label>
+                                <select  name="x12" class="form-control js-example-basic-single" required="required">
                                     <option value="AF">Afganistán</option>
                                     <option value="AL">Albania</option>
                                     <option value="DE">Alemania</option>
@@ -319,7 +319,7 @@
                                     <option value="YU">Yugoslavia</option>
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabue</option>
-                                    <option value="" selected>Seleccione una Opcion</option>
+                                    <option value="" selected>Seleccione una Opción</option>
                                 </select>
                                 <br>
                             </div>
@@ -327,19 +327,19 @@
                                 <label for="rrhh" class="control-label">Redes Sociales</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" required oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')" oninput="setCustomValidity('')" >
+                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" required="required" oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')" oninput="setCustomValidity('')" >
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
-                                    <input type="text" class="form-control" id="google" name="google" placeholder="Youtube" pattern="https?:\/\/(www\.)?youtube\.com\\/)" required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')" oninput="setCustomValidity('')">
+                                    <input type="text" class="form-control" id="google" name="google" placeholder="Youtube" pattern="https?:\/\/(www\.)?youtube\.com\\/)" required="required" oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="form-control" placeholder="Instagram" required oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')" oninput="setCustomValidity('')">
+                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="form-control" placeholder="Instagram" required="required" oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                    <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="form-control" placeholder="Twitter" required oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')" oninput="setCustomValidity('')">
+                                    <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="form-control" placeholder="Twitter" required="required" oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
                         </div>
@@ -349,7 +349,7 @@
             <br>
             <div align="center">
                 <button type="submit" class="btn btn-primary">
-                    Registrar Artísta o Agrupación
+                    Registrar Artista o Agrupación
                 </button>   
             </div>
         </div>

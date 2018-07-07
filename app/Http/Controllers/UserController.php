@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Events\InviteEvent;
 
 use App\User;
 use App\Megazines;
@@ -370,4 +371,19 @@ class UserController extends Controller
 
     }
 
+
+//----------------------------Invitar Personas------------------------------
+
+    public function Invite(Request $request)
+    {
+        
+        $url= url('/').'/register/'.Auth::user()->codigo_ref;
+        event(new InviteEvent(Auth::user()->name,$request->email,$url));
+        Flash('Se Ha Invitado con Exito')->success();
+        return redirect()->action('HomeController@index');
+
+    }
+
+
+//--------------------------------------------------------------------------
 }

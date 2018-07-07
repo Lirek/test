@@ -9,6 +9,7 @@ Premium: http://www.gridgum.com
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
+ 
 /* BASIC THEME CONFIGURATION */
 body {
     color: #797979;
@@ -72,6 +73,14 @@ a, a:hover, a:focus {
 
 
 /*Theme Backgrounds*/
+.letters{
+    color: #333;
+}
+.bg-r{
+    color: #23B5E6;
+    padding-right: 4px;
+    font-size: 14px;
+}
 
 .bg-theme {
 	background-color: #68dff0;
@@ -170,6 +179,24 @@ hr {
 
 
 /*Helpers*/
+.gocenterRed{
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 10px;
+    color: #333;
+}
+.gocenterRef{
+    text-align: center;
+    margin-left: 0%;
+    margin-top: 10px;
+    color: #333;
+}
+.gocenter {
+    text-align: center;
+    margin-left: 80px;
+    margin-top: 10px;
+    color: #333;
+}
 
 .centered {
 	text-align: center;
@@ -984,14 +1011,37 @@ PANELS CONFIGURATIONS
 
 /*Panel Size*/
 
+
+.pe{
+    height: 226px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.refe {
+    height: 160px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.re {
+    height: 120px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 .pn {
-	height: 250px;
+	height: 310px;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .pn:hover {
 	box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
 	
+}
+.pn2 {
+    height: 371px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.pn3 {
+    height: 190px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /*Grey Panel*/
@@ -1085,8 +1135,16 @@ PANELS CONFIGURATIONS
 .white-panel p {
 	margin-top: 5px;
 	font-weight: 700;
-	margin-left: 15px;
+	margin-left: 13px;
 }
+.paragraph {
+   color: #333;
+    margin-left: 10%;
+}
+.buttonCenter{
+    margin-left: 0px;
+}
+
 .white-panel .white-header {
 	background: #f4f4f4;
 	padding: 3px;
@@ -1102,6 +1160,9 @@ PANELS CONFIGURATIONS
 	color: #68dff0;
 	padding-right: 4px;
 	font-size: 14px;
+}
+.white-size{
+    font-size: 18px;
 }
 
 /*STOCK CARD Panel*/
@@ -1270,12 +1331,28 @@ PANELS CONFIGURATIONS
 	font-weight: 900;
 }
 
+/* QR panel */
+.Qr-panel2 {
+   
+    text-align: center;
 
+    margin-left: -7px;
+
+    margin-top: 0px;
+}
+
+.Qr-panel {
+   
+    text-align: center;
+
+    margin-left: -7px;
+}
 /* Instagram Panel*/
 .instagram-panel {
 	background: url(../img/instagram.jpg) no-repeat center top;
 	text-align: center;
 	background-position: center center;
+    margin-left: 100px;
 }
 .instagram-panel i {
 	color: white;

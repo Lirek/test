@@ -115,13 +115,18 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         if(Auth::guard('web_seller')->check())
+             {
+                $type = "seller";
+              }
+           elseif(Auth::guard()->check())
                 {
-                    $type = "seller";
-                }
-            elseif(Auth::guard()->check())
+                 $type = "user";
+                 }
+           elseif(Auth::guard('Promoter')->check())
                 {
-                    $type = "user";
-                }
+                 $type = "promoter";
+                 }
+
         event(new AdminLoggedIn($user,$type, $request->ip()));
     }
 

@@ -200,7 +200,7 @@
                                             </a>
                                             <ul class="sub">
                                                 <li><a href="{{ url('/movies/create') }}">Registrar Película</a></li>
-                                                <li><a href="{{ url('/movies') }}">Mis Películas</a></li>
+                                                <li><a href="{{ url('/movies') }}">Películas Registradas</a></li>
                                                 <!--Revisar este enlace porque es igual al registro de musica-->
                                                 <!--
                                                 <li><a href="{{ url('/single_registration') }}">Mis Películas</a></li>

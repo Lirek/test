@@ -58,6 +58,7 @@ Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
+Route::post('Invite','UserController@Invite');
 
 //---------------------------------------------------------------------------
 
@@ -257,12 +258,6 @@ Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
 Route::post('/promoter_c','AdminController@CreatePromoter');
 
 Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
-Route::post('/add_promoter_to/{id}','AdminController@AddPromoterToApllys');
-
-Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeletePromoterFromApllys');
-Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
-
-Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
 
 
 
@@ -285,19 +280,7 @@ Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteAppl
 --------------------------------------------------------------------
 */
 
-Route::get('/admin_sellers','AdminController@ShowSellers');
 
-Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
-
-Route::post('admin_add_module/{id}','AdminController@AddModule');
-
-Route::post('SellerAddPromoter/{id}','AdminController@AddPromoterToSeller');
-
-Route::get('RemovePromoterFromSeller/{id_seller}/{id_promoter}','AdminController@RemovePromoterFromSeller');
-
-Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
-
-Route::get('/admin_applys','AdminController@ShowApplys');
 
 
 
@@ -350,18 +333,39 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::get('/promoter_home','PromoterController@index');
 
-    Route::get('/promoter_seller','PromoterController@ShowSellers');
+  
+   Route::group(['middleware' => ['Admin']], function (){
 
+            Route::get('/admin_sellers','AdminController@ShowSellers');
 
-    Route::get('/delete_mod/{id_seller}/{id_module}','PromoterController@DeleteModule');
+            Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
+
+            Route::post('admin_add_module/{id}','AdminController@AddModule');
+
+            Route::post('SellerAddPromoter/{id}','AdminController@AddPromoterToSeller');
+
+            Route::get('RemovePromoterFromSeller/{id_seller}/{id_promoter}','AdminController@RemovePromoterFromSeller');
+
+            Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
+
+            Route::get('BackendUsers','AdminController@ShowBackendUsers');
+            
+   });
     
-    Route::post('/add_module/{id}','PromoterController@AddModule');
+       
+        Route::group(['middleware' => ['Operator']], function (){
 
-    Route::post('/update_status_seller/{id}','PromoterController@UpadteStatusSeller');
+            Route::get('/admin_applys','AdminController@ShowApplys');
 
-    Route::post('/modify_applys/{id}','PromoterController@StatusApllys');
+            Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
 
-    Route::get('/promoter_applys','PromoterController@ShowApplys');
+            Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
+            
+            Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
+
+            Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
+
+        });
 
 });
 
@@ -461,6 +465,8 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::get('messages','SellerController@ShowMessages');
 
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
+
+    Route::resource('sellers', 'SellerController');
 
 
     /*----------------------------------------------------------------------------
@@ -803,6 +809,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
     -----------------------------------------------------------------------------
     -----------------------------------------------------------------------------
     ----------------------------------------------------------------------------*/
+   
     Route::resource('authors_books', 'BooksAuthorsController');
     //para q guarde el modal
     Route::post('authors_books/register', [

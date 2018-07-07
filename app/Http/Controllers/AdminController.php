@@ -8,6 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
+use App\Events\ContentAprovalEvent;
+use App\Events\ContentDenialEvent;
+use App\Events\PasswordPromoter;
+
 
 
 //-------------Modelos del sistema-----------------------
@@ -27,13 +31,26 @@ use App\music_authors;
 use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
+use App\Salesman;
+
 //--------------------------------------------------------
 
 class AdminController extends Controller
 {
-	 public function __construct()
+	 
+
+    public function SendEmails($status,$name,$seller,$reason)
     {
-        $this->middleware('auth');
+      if ($status =='Aprobado') 
+        {
+          event(new ContentAprovalEvent($name,$seller));
+        }
+        else
+        {
+          event(new ContentDenialEvent($name,$seller,$reason));
+        }
+
+        return true;
     }
 
     public function index()
@@ -59,8 +76,7 @@ class AdminController extends Controller
         {
             Auth::logout();
             return redirect('/login');
-        }
-    	
+        }	
     }
 
 /*-------------------------------------------------------------------------------------------
@@ -93,8 +109,12 @@ class AdminController extends Controller
    		public function AlbumStatus(Request $request,$id)
    		{
    			$albums = Albums::find($id);
-   			$albums->status = $request->status; 
-			  $albums->save();
+        $albums->status = $request->status;
+        
+
+        $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
+			  
+        $albums->save();
    			return response()->json($albums);
    		}
 /*---------------------------------------------------------------------------------------------------
@@ -118,7 +138,10 @@ class AdminController extends Controller
    		public function SingleStatus(Request $request,$id)
    		{
    			$Single =Songs::find($id);
-   			$Single->status = $request->status; 
+   			$Single->status = $request->status;
+
+        $this->SendEmails($request->status,$Single->song_name,$Single->Seller->email,$request->reason);
+
 			  $Single->save();
    			return response()->json($Single);
    		}
@@ -146,6 +169,9 @@ class AdminController extends Controller
    		{
    			$musician =music_authors::find($id);
    			$musician->status = $request->status; 
+
+        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reazon);
+
 			  $musician->save();
    			return response()->json($musician);
    		}
@@ -173,6 +199,9 @@ class AdminController extends Controller
    		{
    			$radios =Radio::find($id);
    			$radios->status = $request->status; 
+          
+          $this->SendEmails($request->status,$radios->name,$radios->Seller->email);
+
 			  $radios->save();
    			return response()->json($radios);
    		}
@@ -210,7 +239,10 @@ class AdminController extends Controller
    		public function PublicationChainStatus(Request $request,$id)
     	{
     		$saga = Sagas::find($id);
-	   		$saga->status = $request->status; 
+	   		$saga->status = $request->status;
+
+        $this->SendEmails($request->status,$saga->sag_name,$saga->seller->email);
+
 			  $saga->save();
    			return response()->json($saga);
    		}
@@ -219,6 +251,9 @@ class AdminController extends Controller
     	{
 			  $megazines = Megazines::find($id);
 	   		$megazines->status = $request->status; 
+
+        $this->SendEmails($request->status,$megazines->title,$megazines->Seller->email);        
+
 			  $megazines->save();
    			return response()->json($megazines);
    		}
@@ -244,14 +279,14 @@ class AdminController extends Controller
 
    		public function TvStatus(Request $request,$id)
    		{
-   			$tv =Radio::find($id);
-   			$tv->status = $request->status; 
+   			$tv =TV::find($id);
+   			$tv->status = $request->status;
+
+        $this->SendEmails($request->status,$tv->name_r,$tv->Seller->email);
+
 			  $tv->save();
    			return response()->json($tv);
    		}
-
-
-
 
    		public function Books()
     	{
@@ -274,9 +309,8 @@ class AdminController extends Controller
     		
     		$acces_modules=SellersRoles::all();
 
-        $promoters= Promoters::all();
 
-    		return view('admin.Sellers')->with('promoters',$promoters)->with('sellers',$sellers)->with('acces_modules',$acces_modules);
+    		return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
    		}
 
    		public function DeleteModule($id_seller,$id_module)
@@ -294,7 +328,7 @@ class AdminController extends Controller
    			$seller= Seller::find($id);
    			$data = $seller->roles()->attach($request->acces);
 
-   		return response()->json($data);
+   		 return response()->json($data);
    		
    		}
 
@@ -311,7 +345,7 @@ class AdminController extends Controller
 
         $data = $seller->save();
 
-      return response()->json($data);
+        return response()->json($data);
       }
 
       public function RemovePromoterFromSeller($id_seller,$id_promoter)
@@ -338,14 +372,14 @@ class AdminController extends Controller
         }
           return response()->json($data);          
       }
-//-------------Mostrar Promotores y Solicitudes  ---------------------------------
+//-------------Mostrar Solicitudes  ---------------------------------
    		public function ShowApplys()
     	{
     		$applys= ApplysSellers::paginate(10);
     		
-    		$promoters = Promoters::paginate(10);
+    		$Salesmans = Salesman::all();
     		
-    		return view('admin.Applys')->with('applys',$applys)->with('promoters',$promoters);
+    		return view('promoter.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
    		}
 //-------------------------------------------------------------------------------
 
@@ -393,83 +427,90 @@ class AdminController extends Controller
    		}
 //-----------------------------------------------------------------------------
 
-		public function AddPromoterToApllys(Request $request, $id)
-		{
-			$applys = ApplysSellers::find($id);
+  		public function AddSalesmanToApllys(Request $request, $id)
+  		{
+  			$applys = ApplysSellers::find($id);
 
-      $promoter = Promoters::find($request->promoter_id);
+        $Salesman = Salesman::find($request->promoter_n);
 
-			$applys->promoter_id = $request->promoter_id;
 
-			$applys->assing_at = $current = Carbon::now();
+  			$applys->salesman_id = $Salesman->id;
 
-      Mail::to($applys->email)->send(new PromoterAssing($applys));
+        $applys->promoter_id = Auth::guard('Promoter')->user()->id;
 
-      $applys->save();
-        
+  			$applys->assing_at = $current = Carbon::now();
+       
+        Mail::to($applys->email)->send(new PromoterAssing($applys));
 
-      			
-      return response()->json($applys); 
-		}
-
-		public function DeletePromoterFromApllys($id_apply,$id_promoter)
-		{
-			$applys= ApplysSellers::find($id_apply);
-			$applys->promoter_id= NULL;
-			$applys->save();
-			return response()->json($applys);	
-		}
-
-		public function StatusApllys($id,Request $request )
-		{
-			$applys= ApplysSellers::find($id);
-			$applys->status = $request->status;
-			
-      
-			if ($request->status == 'Aprobado') 
-			{
-			
-				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    			$charactersLength = strlen($characters);
-    			$randomString = '';
-    		
-    					for ($i = 0; $i < 10; $i++) 
-       						{
-        						$randomString .= $characters[rand(0, $charactersLength - 1)];
-   					 		  }
-	
-				$applys->token= $randomString;
-			
-				$current = Carbon::now();
-	
-				$applys->expires_at= $current->addDays(7);
-				
-				
-				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
-
-				$applys->save();
-				return response()->json($applys);	
-			}
-      else
-      {   
-          Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
-          $applys->save();
-         return response()->json($applys);
+        $applys->save();
           
-      }
-			
-	
-			
-		
-			
-		}
 
-    public function DeleteApplysFromPromoter($promoter,$applys)
-    {
-      $Applys = ApplysSellers::find($applys);
-      $Applys->promoter_id = NULL;
-      $Applys->save();
-      return response()->json($Applys);
-    }
+        			
+        return response()->json($applys); 
+  		}
+
+  		public function DeleteSalesmanFromApllys($id_apply,$id_promoter)
+  		{
+  			$applys= ApplysSellers::find($id_apply);
+  			$applys->salesman_id= NULL;
+  			$applys->save();
+  			return response()->json($applys);	
+  		}
+
+  		public function StatusApllys($id,Request $request )
+  		{
+  			$applys= ApplysSellers::find($id);
+  			$applys->status = $request->status;
+  			
+        
+  			if ($request->status == 'Aprobado') 
+  			{
+  			
+  				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      			$charactersLength = strlen($characters);
+      			$randomString = '';
+      		
+      					for ($i = 0; $i < 10; $i++) 
+         						{
+          						$randomString .= $characters[rand(0, $charactersLength - 1)];
+     					 		  }
+  	
+  				$applys->token= $randomString;
+  			
+  				$current = Carbon::now();
+  	
+  				$applys->expires_at= $current->addDays(7);
+  				
+  				
+  				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+
+  				$applys->save();
+  				return response()->json($applys);	
+  			}
+        else
+        {   
+            Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+            $applys->save();
+           return response()->json($applys);
+            
+        }	
+  		}
+
+      public function DeleteApplysFromPromoter($promoter,$applys)
+      {
+        $Applys = ApplysSellers::find($applys);
+        $Applys->promoter_id = NULL;
+        $Applys->save();
+        return response()->json($Applys);
+      }
+
+      public function ShowBackendUsers()
+      {
+        $promoters= Promoters::paginate(10)->where('priority','>',Auth::guard('Promoter')->user()->priority);
+        
+        $Salesmans = Salesman::all();
+        
+        return view('promoter.BackendUsers')->with('promoters',$promoters)->with('salesmans',$Salesmans);
+      }
 
 }

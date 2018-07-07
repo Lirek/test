@@ -34,6 +34,7 @@
   </head>
   
    <body>
+    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
 
   <section id="container" >
       <!-- **********************************************************************************************************************************************************
@@ -111,7 +112,7 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="{{ url('/logout') }}">Salir</a></li>
+                    <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
                 </ul>
             </div>
         </header>
@@ -158,8 +159,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Mis Redes</a></li>
-                          <li><a  href="#">Referir</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis Redes</a></li>
+                          <li><a  href="{{url('Referals')}}"">Referir</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
