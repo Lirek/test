@@ -3,6 +3,8 @@
 
 @section('content')
 
+    {{--{{dd($book)}}--}}
+
     <section class="content-header" xmlns="">
         <h1>
             Libros
@@ -24,11 +26,11 @@
                     <div class="widget-user-header bg-navy">
                         <div class="widget-user-image">
                             <img class="img-rounded img-responsive av"
-                                 src="/images/authorbook/{{ $book->author->photo}}"
+                                 {{--src="/images/authorbook/{{ $book->author->photo}}"--}}
                                  style="width:70px;height:70px;" alt="User Avatar">
                         </div>
                         <!-- /.widget-user-image -->
-                        <h3 class="widget-user-username">{{ $book->author->full_name }}</h3>
+{{--                        <h3 class="widget-user-username">{{ $book->author->full_name }}</h3>--}}
                         <h5 class="widget-user-desc">{{ $book->title }}</h5>
                     </div>
                     <div class="box-footer no-padding">
@@ -52,14 +54,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"> Categoria <span class="pull-right"> {{ $book->rating->r_name }} </span>
-                                </a>
+                                {{--<a href="#"> Categoria <span class="pull-right"> {{ $book->rating->r_name }} </span>--}}
+                                {{--</a>--}}
                             </li>
                             <li>
-                                <a href="#">Saga <span class="pull-right ">{{ $book->saga->sag_name }}</span></a>
+{{--                                <a href="#">Saga <span class="pull-right ">{{ $book->saga->sag_name }}</span></a>--}}
                             </li>
                             <li>
-                                <a href="#">Sinopsis <span class="pull-right ">{{ $book->sinopsis }}</span></a>
+{{--                                <a href="#">Sinopsis <span class="pull-right ">{{ $book->sinopsis }}</span></a>--}}
                             </li>
                         </ul>
                     </div>
@@ -81,8 +83,7 @@
                         {{--<p>One fine body&hellip;</p>--}}
                         {{--inicio del ejemplo--}}
 
-                        <embed src='/book/{{ $book->books_file }}' class="text-center" width="1200" height="750"
-                               type='application/pdf'></embed>
+                        <embed src='/book/{{ $book->books_file }}'  class="text-center" width="1200" height="750" type='application/pdf'></embed>
 
                         {{--<h1>PDF.js Previous/Next example</h1>--}}
 

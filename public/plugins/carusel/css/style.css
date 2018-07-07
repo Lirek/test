@@ -122,7 +122,8 @@
 	text-indent:0px;
 }
 .ca-content-wrapper{
-	background:#23b5e6;
+	/*background:#23b5e6;*/
+	background-color: rgba(116, 223, 236, 0.4);
 	position:absolute;
 	width:0px; /* expands to width of the wrapper minus 1 element */
 	height:440px;
