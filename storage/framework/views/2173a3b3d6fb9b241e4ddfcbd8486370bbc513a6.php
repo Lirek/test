@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -17,41 +16,41 @@
                                     <th class="text-center">Titulo</th>
                                     <th class="text-center">Categoria</th>
                                     <th class="text-center">Portada</th>
-                                    {{-- <th class="text-center">Productora</th> --}}
+                                    
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($movie as $m)
-                                    {{--{{ dd($m) }}--}}
-                                    @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
+                                <?php $__currentLoopData = $movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    
+                                    <?php if(Auth::guard('web_seller')->user()->id === $m->seller_id): ?>
                                         <tr>
-                                            <td class="text-center"> {{ $m->id }} </td>
-                                            <td class="text-center"> {{ $m->title }} </td>
-                                            <td class="text-center"> {{ $m->rating->r_name }} </td>
-                                            {{-- <td class="text-center"> {{ $m->saga->sag_name }} </td> --}}
-                                            {{-- <td class="text-center"> {{ $s->seller->name }} </td> --}}
+                                            <td class="text-center"> <?php echo e($m->id); ?> </td>
+                                            <td class="text-center"> <?php echo e($m->title); ?> </td>
+                                            <td class="text-center"> <?php echo e($m->rating->r_name); ?> </td>
+                                            
+                                            
                                             <td class="text-center ">
                                                 <a href="#">
-                                                    <img class="img-circle " src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:50px; height:50px;" alt="Portada">
+                                                    <img class="img-circle " src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" style="width:50px; height:50px;" alt="Portada">
                                                 </a>
                                             </td>
                                             <td class="text-center ">
-                                                <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película: {{ $m->title }}?')" class="btn btn-danger">
+                                                <a href="<?php echo e(route('movies.destroy',$m->id)); ?>" onclick="return confirm('¿Realmente desea eliminar la película: <?php echo e($m->title); ?>?')" class="btn btn-danger">
                                                     <span class="glyphicon glyphicon-remove-circle"></span>
                                                 </a>
                                                 &nbsp;
-                                                <a href="{{ route('movies.edit', $m->id) }}" class="btn btn-warning">
+                                                <a href="<?php echo e(route('movies.edit', $m->id)); ?>" class="btn btn-warning">
                                                     <span class="glyphicon glyphicon-wrench"></span>
                                                 </a>
                                                 &nbsp;
-                                                <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info">
+                                                <a href="<?php echo e(route('movies.show', $m->id)); ?>" class="btn btn-info">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endif
-                                @endforeach
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -59,7 +58,7 @@
                                     <th class="text-center">Titulo</th>
                                     <th class="text-center">Categoria</th>
                                     <th class="text-center">Portada</th>
-                                    {{--<th class="text-center">Productora</th>--}}
+                                    
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -71,7 +70,7 @@
             </div>
         </div>
         <div class="col-md-offset-9">
-            <a href="{{ route('movies.create') }}" class="btn btn-info">
+            <a href="<?php echo e(route('movies.create')); ?>" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
                     <div class="box-title">
                         <i class="fa fa-film"></i>
@@ -83,9 +82,9 @@
             </a>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
     <script>
         $(function () {
@@ -126,4 +125,5 @@
         })
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

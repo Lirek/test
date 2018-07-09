@@ -848,7 +848,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::get('/seller_home', function () {
         $id = Auth::guard('web_seller')->user()->id;
-
         $seller = App\Seller::find($id);
         
         $tv_content=0;
@@ -876,6 +875,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
         foreach ($seller->roles as $role) 
         {
             $seller_modules[] = $role;
+// dd($role->name);
 
             switch ($role->name) 
             {

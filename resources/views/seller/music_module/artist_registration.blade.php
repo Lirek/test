@@ -1,107 +1,90 @@
 @extends('seller.layouts')
 <style type="text/css">
-#image-preview {
-  width: 400px;
-  height: 400px;
-  position: relative;
-  overflow: hidden;
-  background-color: #ffffff;
-  color: #ecf0f1;
-}
-#image-preview input {
-  line-height: 200px;
-  font-size: 200px;
-  position: absolute;
-  opacity: 0;
-  z-index: 10;
-}
-#image-preview label {
-  position: absolute;
-  z-index: 5;
-  opacity: 0.8;
-  cursor: pointer;
-  background-color: #bdc3c7;
-  width: 200px;
-  height: 50px;
-  font-size: 20px;
-  line-height: 50px;
-  text-transform: uppercase;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  text-align: center;
-}
-
+    #image-preview {
+        width: 100%;
+        height: 50%;
+        position: relative;
+        overflow: hidden;
+        background-color: #ffffff;
+        color: #ecf0f1;
+    }
+    #image-preview input {
+        line-height: 200px;
+        font-size: 200px;
+        position: absolute;
+        opacity: 0;
+        z-index: 10;
+    }
+    #image-preview label {
+        position: absolute;
+        z-index: 5;
+        opacity: 0.8;
+        cursor: pointer;
+        background-color: #bdc3c7;
+        width: 200px;
+        height: 50px;
+        font-size: 20px;
+        line-height: 50px;
+        text-transform: uppercase;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    text-align: center;
+    }
 </style>
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<form  method="POST" action="{{ url('/save_artist') }}" enctype="multipart/form-data">
-    {{ csrf_field() }}
-
-    <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
-
-    <div class="row">
-
-        <div class="col-lg-10" style="margin-left: 30px; margin-right: 30px;">
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form  method="POST" action="{{ url('/save_artist') }}" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
+        <div class="col-lg-12" style="margin-left: 30px; margin-right: 30px;">
             <div class="box box-primary">
-
-             <div class="box-header with-border"> 
-               <h3 class="box-title">Artista o Agrupacion Musical</h3>
-             </div>
-
+                <div class="box-header with-border"> 
+                    <h3 class="box-title">Registrar Artista o Agrupación Musical</h3>
+                </div>
                 <div class="box-body">
-
-                    <div id="image-preview" style="border:#000000 1px solid ;" class="col-md-1">
-                             <label for="image-upload" id="image-label">Foto o Logo</label>
-                             <input type="file" accept=".jpg" required  oninvalid="this.setCustomValidity('Seleccione Una Imagen de Perfil')"
-                                oninput="setCustomValidity('')" name="photo" id="image-upload"/>
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="col-md-7">
-                          <label for="art_name" class="control-label">Nombre del Artista o Agrupacion</label>
-                          <input id="art_name" type="text" class="form-control" name="art_name" required oninvalid="this.setCustomValidity('Inserte Un Nombre de Agrupacion Valido')"
-                            oninput="setCustomValidity('')">   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="image-preview" style="border:#000000 1px solid ;" class="col-md-1">
+                                <label for="image-upload" id="image-label">Foto o Logo</label>
+                                <input type="file" accept=".jpg" required="required"  oninvalid="this.setCustomValidity('Seleccione Una Imagen de Perfil')" oninput="setCustomValidity('')" name="photo" id="image-upload"/>
+                                <div id="list"></div>
+                            </div>
                         </div>
-
-                              <div class="col-md-7">
-                                 <label for="desc" class="control-label">Descripcion</label>
-                            
-                                    <textarea name="dsc" oninvalid="this.setCustomValidity('Inserte Una Descripcion de  Valida')"
-                            oninput="setCustomValidity('')" required>
-                                    
-                                    </textarea>
-                                </div>
-
-
-                                <div class="col-md-7">
-                                 <label for="type_authors" class="control-label">Tipo</label>
-            
-                                    <select class="form-control" name="type_authors">
-                                    <option value="Agrupacion Musical">Agrupacion Musical</option>
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <label for="art_name" class="control-label">Nombre del Artista o Agrupación</label>
+                                <input id="art_name" type="text" class="form-control" name="art_name" placeholder="Nombre del Artista o Agrupación" required="required" oninvalid="this.setCustomValidity('Inserte Un Nombre de Agrupacion Valido')" oninput="setCustomValidity('')">   
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="desc" class="control-label">Descripción</label>
+                                <textarea class="form-control" name="dsc" placeholder="Descripción" oninvalid="this.setCustomValidity('Inserte Una Descripcion Valida')" oninput="setCustomValidity('')" required="required">
+                                </textarea>
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="type_authors" class="control-label">Tipo</label>
+                                <select class="form-control" name="type_authors" required="required">
+                                    <option value="Agrupacion Musical">Agrupación Musical</option>
                                     <option value="Solista">Solista</option>
-                                    <option value="" selected>Seleccione una Opcion</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="col-md-7">
-                                    <label for="country" class="control-label">Pais De Origen</label>
-
-                                 <select  name="x12" class="form-control js-example-basic-single">
+                                    <option value="" selected>Seleccione una Opción</option>
+                                </select>
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="country" class="control-label">País De Origen</label>
+                                <select  name="x12" class="form-control js-example-basic-single" required="required">
                                     <option value="AF">Afganistán</option>
                                     <option value="AL">Albania</option>
                                     <option value="DE">Alemania</option>
@@ -336,76 +319,74 @@
                                     <option value="YU">Yugoslavia</option>
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabue</option>
-                                    <option value="" selected>Seleccione una Opcion</option>
-                                    </select>
-                                </div>          
-                
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-facebook-official"></i></span>
-                                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" required oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
-                          oninput="setCustomValidity('')" >
-                              </div>
-
+                                    <option value="" selected>Seleccione una Opción</option>
+                                </select>
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="rrhh" class="control-label">Redes Sociales</label>
                                 <div class="input-group">
-                                  <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
-                                 <input type="text" class="form-control" id="google" name="google" placeholder="Youtube" pattern="https?:\/\/(www\.)?youtube\.com\\/)" required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
-                          oninput="setCustomValidity('')">
+                                    <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" required="required" oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')" oninput="setCustomValidity('')" >
                                 </div>
-
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
+                                    <input type="text" class="form-control" id="google" name="google" placeholder="Youtube" pattern="https?:\/\/(www\.)?youtube\.com\\/)" required="required" oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')" oninput="setCustomValidity('')">
+                                </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="form-control" placeholder="Instagram" required oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
-                          oninput="setCustomValidity('')">
+                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="form-control" placeholder="Instagram" required="required" oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')" oninput="setCustomValidity('')">
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                    <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="form-control" placeholder="Twitter" required oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
-                                        oninput="setCustomValidity('')">
+                                    <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="form-control" placeholder="Twitter" required="required" oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')" oninput="setCustomValidity('')">
                                 </div>
-                    
-                            
-
-                        
-                                
-
-                   
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
-
+            </div>
+            <br>
+            <div align="center">
+                <button type="submit" class="btn btn-primary">
+                    Registrar Artista o Agrupación
+                </button>   
             </div>
         </div>
-        </div>
-        
-    </div>
-    <div align="center">
-                                <button type="submit" class="btn btn-primary">
-                                    Registrar
-                                </button>   
-                    </div>
-
-</form>
-
-
+    </form>
 @endsection
-
 @section('js')
-<script>
+    <script>
+        //---------------------------------------------------------------------------------------------------
+        // Para que se vea la imagen en el formulario
+            function archivo(evt) {
+              var files = evt.target.files;
+              for (var i = 0, f; f = files[i]; i++) {
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                     document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+                reader.readAsDataURL(f);
+              }
+          }
+          document.getElementById('image-upload').addEventListener('change', archivo, false);
+        // Para que se vea la imagen en el formulario
+        //---------------------------------------------------------------------------------------------------
+         $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
 
- $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-
-
-    
-$(document).ready(function() {
-  $.uploadPreview({
-    input_field: "#image-upload",
-    preview_box: "#image-preview",
-    label_field: "#image-label"
-  });
-});
-</script>
+         $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload",
+                preview_box: "#image-preview",
+                label_field: "#image-label"
+            });
+        });
+    </script>
 @endsection

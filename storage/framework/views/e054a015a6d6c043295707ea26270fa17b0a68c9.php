@@ -1,24 +1,24 @@
 <style type="text/css">
   #image-preview {
-    width: 280px;
-    height: 400px;
+    width: 100%;
+    height: 50%;
     position: relative;
     overflow: hidden;
     background-color: #ffffff;
     color: #ecf0f1;
   }
   #image-preview input {
-    line-height: 200px;
-    font-size: 200px;
+    line-height: 280px;
+    font-size: 400px;
     position: absolute;
     opacity: 0;
     z-index: 10;
   }
   #image-preview label {
+    cursor: pointer;
     position: absolute;
     z-index: 5;
     opacity: 0.8;
-    cursor: pointer;
     background-color: #bdc3c7;
     width: 200px;
     height: 50px;
@@ -40,6 +40,9 @@
   input.valid, select.valid textarea.valid{
     border: 2px solid green;
   }
+  #list div {
+    width:20%;
+  }
 </style>
 
 <?php $__env->startSection('content'); ?>
@@ -56,28 +59,34 @@
 
   <form method="POST" action="<?php echo e(url('/albums')); ?>" enctype="multipart/form-data" id="formulario">
     <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
-      <?php echo e(csrf_field()); ?>
+    <?php echo e(csrf_field()); ?>
 
-    <div class="row" style="margin-left: 30px;">
-      <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12" style="margin-left: 30px;">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Álbum</h3>
+            <h3 class="box-title">Registrar Álbum</h3>
           </div>
           <div class="box-body">
-            <div id="image-preview" style="border:#000000 1px solid;" class="col-md-1">
-              <label for="image-upload" id="image-label">Portada</label>
-              <input type="file" name="image" id="image-upload" accept=".jpg" class="form-control required" required oninvalid="this.setCustomValidity('Seleccione un Archivo de Portada')" oninput="setCustomValidity('')" />
+            <div class="col-md-6">
+              <div id="image-preview" style="border:#000000 1px solid;" class="col-md-1">
+                <label for="image-upload" id="image-label">Portada</label>
+                <input type="file" name="image" id="image-upload" accept=".jpg" class="form-control required" required oninvalid="this.setCustomValidity('Seleccione un Archivo de Portada')" oninput="setCustomValidity('')" />
+                <div id="list"></div>
+              </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-5">
               <label for="album"> 
                 Nombre del Álbum
               </label>
-              <input type="text" name="album" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte un Nombre de Álbum Valido')" oninput="setCustomValidity('')" required>
+              <input type="text" name="album" placeholder="Nombre del Álbum" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte un Nombre de Álbum Valido')" oninput="setCustomValidity('')" required>
+              <br>
               <label for="cost"> 
                 Costo en Tickets
               </label>
-              <input type="number" id="cost" min="0" max="100" pattern="{1-3}" name="cost" class="form-control"  onKeyPress="return checkIt(event)" oninvalid="this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 100')" oninput="setCustomValidity('')">
+              <div id="mensajeTickets"></div>
+              <input type="number" id="cost" min="0" pattern="{1-3}" name="cost" class="form-control" placeholder="Costo en Tickets" onKeyPress="return checkIt(event)" oninvalid="this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 100')" oninput="setCustomValidity('')">
+              <br>
               <label for="tags" required> 
                 Géneros
               </label>
@@ -105,7 +114,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12">
+      <div class="col-sm-12" style="margin-left: 30px;">
         <div class="box box-primary" style="margin-rigth: 30px;">
           <div class="box-header with-border">
             <h3 class="box-title">Canciones</h3>
@@ -119,7 +128,7 @@
                 <div class="field_wrapper">
                   <div class="row group">
                     <div class="col-sm-9">
-                      <input type="text" name="song_n[]" id="title" placeholder="Nombre de la Cancion" class="form-control" oninvalid="this.setCustomValidity('Ingrese Un Nombre a La Canción')" oninput="setCustomValidity('')" required>
+                      <input type="text" name="song_n[]" id="title" placeholder="Nombre de la Canción" class="form-control" oninvalid="this.setCustomValidity('Ingrese Un Nombre a La Canción')" oninput="setCustomValidity('')" required>
                       <input type="file" name="audio[]" accept=".mp3" id="audio" class="form-control">
                     </div>
                   </div>
@@ -132,7 +141,7 @@
     </div>
     <br>
     <div align="center">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" id="registrarAlbum" class="btn btn-primary">
         Registrar Álbum
       </button>
     </div>
@@ -164,44 +173,80 @@
 
 <?php $__env->startSection('js'); ?>
   <script>
-
+//---------------------------------------------------------------------------------------------------
+// Para que se vea la imagen en el formulario
+    function archivo(evt) {
+      var files = evt.target.files;
+      for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match('image.*')) {
+            continue;
+        }
+        var reader = new FileReader();
+        reader.onload = (function(theFile) {
+            return function(e) {
+             document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+            };
+        })(f);
+        reader.readAsDataURL(f);
+      }
+  }
+  document.getElementById('image-upload').addEventListener('change', archivo, false);
+// Para que se vea la imagen en el formulario
+//---------------------------------------------------------------------------------------------------
+// Para agregar y eliminar las canciones
     $(document).ready(function(){
-      var maxField = 1; //Input fields increment limitation
-      var addButton = $('.add_button'); //Add button selector
-      var wrapper = $('.field_wrapper'); //Input field wrapper
-      //New input field html 
+      var maxField = 1;
+      var addButton = $('.add_button');
+      var wrapper = $('.field_wrapper');
       var newHTML = 
       "<div class='row group'>"+
         "<br>"+
         "<div class='remove_button'>"+
           "<div class='col-sm-9'>"+
-            "<input type='text' name='song_n[]' id='title' placeholder='Nombre de la Cancion' class='form-control' oninvalid='this.setCustomValidity('Ingrese Un Nombre a La Canción')' oninput='setCustomValidity('')' required>"+
+            "<input type='text' name='song_n[]' id='title' placeholder='Nombre de la Canción' class='form-control' oninvalid='this.setCustomValidity('Ingrese Un Nombre a La Canción')' oninput='setCustomValidity('')' required>"+
             "<input type='file' name='audio[]' accept='.mp3' id='audio' class='form-control'>"+
           "</div>"+
-          "<div class='col-sm-2'>"+
-            "<button type='button' class='btn btn-danger btnRemove'>Eliminar Cancion</button>"+
+          "<div class='col-sm-2 eliminar'>"+
+            "<button type='button' class='btn btn-danger btnRemove'>Eliminar Canción</button>"+
           "</div>"+
         "</div>"+
       "</div>";
-      var x = 1; //Initial field counter is 1
-      $(addButton).click(function(){ //Once add button is clicked
+      var x = 1;
+      $(addButton).click(function(){
         maxField++;
-          if(x < maxField){ //Check maximum number of input fields
-              x++; //Increment field counter
-              $(wrapper).append(newHTML); // Add field html
+          if(x < maxField){
+              x++;
+              $(wrapper).append(newHTML);
           }
       });
-      $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+      $(wrapper).on('click', '.eliminar', function(e){
         e.preventDefault();
         var eliminar = confirm("¿Está seguro de Eliminar la Canción?");
         if (eliminar) {
-          $(this).parent('div').remove(); //Remove field html
-          x--; //Decrement field counter
+          $(this).parent('div').remove();
+          x--;
         }
       });
     });
-
-    //---------------------------------------------------------------------------------------------------
+// Para agregar y eliminar las canciones
+//---------------------------------------------------------------------------------------------------
+// Para validar la cantidad de Tickets
+    $(document).ready(function(){
+      $('#cost').keyup(function(evento){
+        var tickets = $('#cost').val();
+        if (tickets>100) {
+          $('#mensajeTickets').show();
+          $('#mensajeTickets').text('La cantidad de Tickets no deben exceder los 100 Tickets');
+          $('#mensajeTickets').css('color','red');
+          $('#registrarAlbum').attr('disabled',true);
+        } else {
+          $('#mensajeTickets').hide();
+          $('#registrarAlbum').attr('disabled',false);
+        }
+      });
+    });
+// Para validar la cantidad de Tickets
+//---------------------------------------------------------------------------------------------------
     $('#example-2').multifield({
       section: '.group',
       btnAdd:'#btnAdd-2',

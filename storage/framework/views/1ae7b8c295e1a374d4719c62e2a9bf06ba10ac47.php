@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
@@ -89,36 +88,36 @@
         }
     </style>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <!-- Content Header (Page header) -->
     <!-- <section class="content-header">
         <h1>
             Registro
         </h1>
-        {{--<ol class="breadcrumb">--}}
-        {{--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
-        {{--<li class="active">Dashboard</li>--}}
-        {{--</ol>--}}
+        
+        
+        
+        
     </section> -->
 
     <!-- Main content -->
     <section class="content">
 
-        @if (count($errors)>0)
+        <?php if(count($errors)>0): ?>
             <div class="col-md-6 col-md-offset-3">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <ul>
-                        @foreach($errors->all() as $error)
-                            <li> {{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li> <?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -129,42 +128,49 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}
-                    {{ Form::token() }}
+                    <?php echo Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]); ?>
+
+                    <?php echo e(Form::token()); ?>
+
                     <div class="box-body ">
 
-                        {{--Poster de la pelicula--}}
+                        
                         <div class="col-md-6">
                             <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                <?php echo Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']); ?>
+
                                 <div id="list"></div>
                             </div>
                         </div>
 
-                        {{--Selecion tipo de publico de la pelicula--}}
+                        
                         <div class="form-group col-md-6">
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione...','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione...','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--titulo de la pelicula--}}
+                            
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Título')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--titulo original de la pelicula--}}
+                            
                             <label for="exampleInputFile" class="control-label">Título Original </label>
-                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo Original','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el Título Original')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo Original','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el Título Original')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--archivo de la pelicula--}}
+                            
                             <label for="exampleInputFile" class="control-label">Cargar Película</label>
-                            {!! Form::file('duration',['class'=>'form-control-file','accept'=>'.mp4','control-label','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::file('duration',['class'=>'form-control-file','accept'=>'.mp4','control-label','placeholder'=>'Titulo de la Película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--selecionar pais--}}
+                            
                             <label class="control-label">País</label>
                             <br>
                             <select name="x12" id="paises" class="form-control js-example-basic-single" required="required" oninvalid="this.setCustomValidity('Seleccione un País')" oninput="setCustomValidity('')">
@@ -406,37 +412,39 @@
                             </select>
                             <br>
 
-                            {{--Basado en un libro o no --}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                            {!! Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la Película...','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una Sinopsis de la Película')",'oninput'=>"setCustomValidity('')",'id'=>'exampleInputFile']) !!}
+                            <?php echo Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la Película...','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una Sinopsis de la Película')",'oninput'=>"setCustomValidity('')",'id'=>'exampleInputFile']); ?>
+
                         </div>
 
                         <div class="form-group col-md-6">
-                            {{--historia de la pelicula --}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Película...','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una Historia de la Película')", 'oninput'=>"setCustomValidity('')",'id'=>'exampleInputFile']) !!}
+                            <?php echo Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Película...','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una Historia de la Película')", 'oninput'=>"setCustomValidity('')",'id'=>'exampleInputFile']); ?>
+
                             <br>
 
-                            {{--año de salida de la pelicula --}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Año de Lanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de Lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el Año de Lanzamiento')"]) !!}
+                            <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de Lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el Año de Lanzamiento')"]); ?>
+
                             <br>
 
-                            {{--duracion de la pelicula--}}
-                            {{--
-                                <label for="exampleInputPassword1" class="control-label">Duración</label>
-                                {!! Form::text('duration',null,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}
-                            --}}
+                            
+                            
 
-                            {{--precio--}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Precio</label>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Precio de la Película', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            <?php echo Form::number('cost',null,['class'=>'form-control','placeholder'=>'Precio de la Película', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']); ?>
+
                             <br>
 
-                            {{--link--}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Link del Trailer</label>
-                            {!! Form::url('text',null,['class'=>'form-control','placeholder'=>'Link del Trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            <?php echo Form::url('text',null,['class'=>'form-control','placeholder'=>'Link del Trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']); ?>
+
                             <br>
                         </div>
 
@@ -459,8 +467,9 @@
                             <br>
 
                             <div class="" style="display:none" id="if_si">
-                                {{--<label for="exampleInputFile" class="control-label">Saga del libro</label>--}}
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga de Libro','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                
+                                <?php echo Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga de Libro','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
                                     <i class="fa fa-book"></i> 
                                     Agregar Saga
@@ -468,27 +477,31 @@
                                 <br>
                                 <br>
 
-                                {{--no se de que va --}}
+                                
                                 <label for="exampleInputPassword1" class="control-label">Después</label>
-                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'aun no sé de que va este campo','id'=>'despues','required'=>'required']) !!}
+                                <?php echo Form::number('after',null,['class'=>'form-control','placeholder'=>'aun no sé de que va este campo','id'=>'despues','required'=>'required']); ?>
+
                                 <br>
 
-                                {{--no se de que va tampoco--}}
+                                
                                 <label for="exampleInputPassword1" class="control-label">Antes</label>
-                                {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'aun no sé de que va este campo','id'=>'antes','required'=>'required']) !!}
+                                <?php echo Form::number('before',null,['class'=>'form-control','placeholder'=>'aun no sé de que va este campo','id'=>'antes','required'=>'required']); ?>
+
                             </div>
                         </div>
                         <div class="form-group col-md-12">
                             <div class="text-center">
-                                {{--<button type="guardar" class="btn btn-primary">Submit</button>--}}
-                                {!! Form::submit('Registrar Película', ['class' => 'btn btn-primary active','id'=>'registrarPelicula']) !!}
+                                
+                                <?php echo Form::submit('Registrar Película', ['class' => 'btn btn-primary active','id'=>'registrarPelicula']); ?>
+
                             </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
-                    {{--</div>--}}
+                    
                 </div>
-            {!! Form::close() !!}
+            <?php echo Form::close(); ?>
+
         </div>
     </div>
 
@@ -502,50 +515,57 @@
                         <h4 class="modal-title text-center">Agregar saga</h4>
                     </div>
                     <div class="modal-body ">
-                        {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
-                        {{ Form::token() }}
+                        <?php echo Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]); ?>
+
+                        <?php echo e(Form::token()); ?>
+
                         <div class="box-body ">
 
-                            {{--Imagen--}}
+                            
                             <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Imagen de la saga</label>
-                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload'],['style'=>'border:#000000','1px solid ;']) !!}
+                                <?php echo Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload'],['style'=>'border:#000000','1px solid ;']); ?>
+
 
                             </div>
 
                             <div class="form-group col-md-4">
-                                {{--seleccion de rating--}}
+                                
                                 <label for="exampleInputFile" class="control-label">Tipo de rating</label>
                                 <br/>
-                                {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']) !!}
+                                <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']); ?>
+
                                 <br/>
                                 <br/>
 
 
-                                {{--Nombre de la saga--}}
+                                
                                 <label for="exampleInputFile" class="control-label">Nombre</label>
-                                {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga']) !!}
+                                <?php echo Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga']); ?>
+
                                 <br/>
 
-                                {{--tipo de saga--}}
+                                
                                 <label for="exampleInputFile" class="control-label">tipo de saga</label>
                                 <br/>
-                                {!! Form::select('type_saga',['1'=>'Libros','2'=>'Peliculas','3'=>'Series','4'=>'Revista'],null,
-                                ['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']) !!}
+                                <?php echo Form::select('type_saga',['1'=>'Libros','2'=>'Peliculas','3'=>'Series','4'=>'Revista'],null,
+                                ['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']); ?>
+
                                 <br/>
                                 <br/>
 
-                                {{--Aprovar contenido o no --}}
-                                {{--<label for="exampleInputFile" class="control-label">estados</label>--}}
-                                {{--<br/>--}}
-                                {{--{!! Form::select('status',['1'=>'Aprovado','2'=>'En Proceso','3'=>'Denegado'],null,--}}
-                                {{--['class'=>'form-control select-author','placeholder'=>'selecione....'],['id'=>'exampleInputFile']) !!}--}}
-                                {{--<br/>--}}
-                                {{--<br/>--}}
+                                
+                                
+                                
+                                
+                                
+                                
+                                
 
-                                {{--Descripcion de  la saga--}}
+                                
                                 <label for="exampleInputPassword1" class="control-label">Descripcion</label>
-                                {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripcion de la saga...'],['id'=>'exampleInputFile']) !!}
+                                <?php echo Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripcion de la saga...'],['id'=>'exampleInputFile']); ?>
+
                             </div>
                             <br/>
 
@@ -555,9 +575,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                        {!! Form::submit('Guardar', ['class' => 'btn btn-primary active']) !!}
+                        <?php echo Form::submit('Guardar', ['class' => 'btn btn-primary active']); ?>
 
-                        {!! Form::close() !!}
+
+                        <?php echo Form::close(); ?>
+
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -569,9 +591,9 @@
 
     </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
     <script>
 //---------------------------------------------------------------------------------------------------
@@ -677,7 +699,7 @@
         */
     </script>
 
-    {{--manejo de la imager precargada--}}
+    
     <script>
         /*
         $(document).ready(function () {
@@ -690,12 +712,12 @@
         */
     </script>
 
-    {{--la funcion de la saga--}}
+    
     <script>
 
     </script>
 
-    {{--Date picker--}}
+    
     <script>
         /*
         $('#datepicker').datepicker({
@@ -705,7 +727,7 @@
         */
     </script>
 
-    {{--imagen del model de autores --}}
+    
     <script>
         /*
         $(document).ready(function () {
@@ -718,7 +740,7 @@
         */
     </script>
 
-    {{--imagen del model de sagas --}}
+    
     <script>
         /*
         $(document).ready(function () {
@@ -731,4 +753,5 @@
         */
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

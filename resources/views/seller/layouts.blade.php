@@ -131,9 +131,12 @@
                         <p class="centered">
                             <!--Revisar este enlace -->
                             <a href="{{ url('/home')}}">
+                                <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="80">
                             </a>
                         </p>
+                        <h5 class="centered">{{Auth::guard('web_seller')->user()->name}}</h5>
                         <div class="card-content white-text">
+                            <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::guard('web_seller')->user()->credito}}</p></h6></span>
                         </div>
                         <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
@@ -176,12 +179,14 @@
                                                 <li class="treeview">
                                                     <a href="{{ url('/artist_form') }}">
                                                         <span>
-                                                            Registrar Grupo Musical o Solista
+                                                            Registrar Grupo Musical 
+                                                            <br>
+                                                            o Solista
                                                         </span>
                                                     </a>
                                                 </li>
                                                 <!-- Validar que la frase quepa en el espacio -->
-                                                <li><a href="{{ url('/single_registration') }}">Registrar Singles</a></li>
+                                                <li><a href="{{ url('/single_registration') }}">Registrar Canciones</a></li>
                                                 <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi Música</a></li>
                                             </ul>
                                         </li>
@@ -195,7 +200,7 @@
                                             </a>
                                             <ul class="sub">
                                                 <li><a href="{{ url('/movies/create') }}">Registrar Película</a></li>
-                                                <li><a href="{{ url('/movies') }}">Mis Películas</a></li>
+                                                <li><a href="{{ url('/movies') }}">Películas Registradas</a></li>
                                                 <!--Revisar este enlace porque es igual al registro de musica-->
                                                 <!--
                                                 <li><a href="{{ url('/single_registration') }}">Mis Películas</a></li>
