@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 //use Laravel\Socialite;
+use App\Events\PasswordPromoter;
+
 use Socialite;
 
 class SocialAuthController extends Controller
@@ -25,7 +27,10 @@ class SocialAuthController extends Controller
                 ['name' => $user->getName()]
             );
 
+            event(new CreateCodeSocialUserEvent($createUser));
+            
             auth()->login($createUser);
+            
             return redirect('/home')
                 ->with('alert',"Bienvenido $createUser->name");
 

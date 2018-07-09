@@ -131,7 +131,7 @@
               
               var module = $("#sel1").val();
               var url = 'admin_add_module/'+x;
-              
+              console.log(url);
               var name = $( "#sel1 option:selected" ).text();
               var row = $("#modules_td"+x);
               var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+module+'_'+x+'">  <span class="mdl-chip__text" id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+module+'" value2="'+x+'" name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
@@ -172,7 +172,7 @@
 
             var s=$("input[type='radio'][name=status]:checked").val();
             var message=$('#razon').val();
-            var url = 'update_status_seller/'+x;
+            var url = 'AproveOrDenialSeller/'+x;
 
             e.preventDefault(); 
             

@@ -32,6 +32,8 @@ use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
 use App\Salesman;
+use App\PromotersRoles;
+
 
 //--------------------------------------------------------
 
@@ -373,7 +375,8 @@ class AdminController extends Controller
           return response()->json($data);          
       }
 //-------------Mostrar Solicitudes  ---------------------------------
-   		public function ShowApplys()
+   		
+      public function ShowApplys()
     	{
     		$applys= ApplysSellers::paginate(10);
     		
@@ -388,26 +391,36 @@ class AdminController extends Controller
    		public function CreatePromoter(Request $request)
    		{
    			$promoter = new Promoters;
-   			$promoter->name_c =$request->name_c;
-   			$promoter->phone_s =$request->phone_s;
-   			$promoter->email= $request->email_c;
+   			
+        $promoter->name_c =$request->name_c;
+   			
+        $promoter->phone_s =$request->phone_s;
+   			
+        $promoter->email= $request->email_c;
 
+        $promoter->priority = $request->priority;
+          
           $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          
           $charactersLength = strlen($characters);
+          
           $randomString = '';
         
               for ($i = 0; $i < 6; $i++) 
                   {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
-                }
+                  }
 
 
-   			$promoter->password=$randomString;
+   			$promoter->password=bcrypt($randomString);
 
-
+        event( new PasswordPromoter($promoter->email,$randomString));
 
         $promoter->save();
-   			return response()->json($promoter);
+
+        $promoter->Roles()->attach($request->priority);   
+
+        return response()->json($promoter);
    		}
 
    		public function UpdatePromoter(Request $request, $id)
@@ -442,9 +455,10 @@ class AdminController extends Controller
        
         Mail::to($applys->email)->send(new PromoterAssing($applys));
 
-        $applys->save();
+        $applys->save(); 
+        
           
-
+        
         			
         return response()->json($applys); 
   		}
@@ -506,11 +520,50 @@ class AdminController extends Controller
 
       public function ShowBackendUsers()
       {
-        $promoters= Promoters::paginate(10)->where('priority','>',Auth::guard('Promoter')->user()->priority);
         
+
+        $promoters= Promoters::paginate()->where('priority','>',Auth::guard('Promoter')->user()->priority);
+
+
+        $priority= PromotersRoles::all();
+
         $Salesmans = Salesman::all();
         
-        return view('promoter.BackendUsers')->with('promoters',$promoters)->with('salesmans',$Salesmans);
+
+        return view('promoter.BackendUsers')
+                                            ->with('promoters',$promoters)
+                                            ->with('salesmans',$Salesmans)
+                                            ->with('priority',$priority);
+      }
+
+      public function RegisterSalesman(Request $request)
+      {
+        $salesman = new Salesman;
+        $salesman->name = $request->name;
+        $salesman->adress = $request->adress;
+        $salesman->phone = $request->phone;
+        $salesman->email = $request->email;
+        $salesman->promoter_id =Auth::guard('Promoter')->user()->id;
+        $salesman->save();
+        
+        return response()->json($salesman->with('CreatedBy')->findOrFail(1));
+      }
+
+      public function DeleteSalesman($id)
+      {
+        $salesman= Salesman::find($id);
+        
+        $salesman->destroy();
+
+        return response()->json($salesman); 
+      }
+
+      public function UpdateSalesman($id)
+      {
+        $salesman= Salesman::find($id);
+
+        return response()->json($salesman);
+
       }
 
 }

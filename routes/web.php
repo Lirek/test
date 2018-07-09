@@ -352,6 +352,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
+
+            Route::post('AddSalesman','AdminController@RegisterSalesman');
             
    });
     
@@ -360,7 +362,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/admin_applys','AdminController@ShowApplys');
 
-            Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
+            Route::post('AddSalesMan/{id}','AdminController@AddSalesmanToApllys');
 
             Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
             

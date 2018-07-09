@@ -73,7 +73,7 @@
 
                <div class="form-group">
 
-                <label for="sel1">Promotor:</label>
+                <label for="sel1">Vendedor:</label>
                <select class="form-control" id="sel1" name="promoter_n">
                   @foreach($salesmans as $salesman) <option value="{{$salesman->id}}">{{$salesman->name}}</option>  @endforeach                 
                </select>

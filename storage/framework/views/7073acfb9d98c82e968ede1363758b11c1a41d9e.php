@@ -75,7 +75,7 @@
 
                <div class="form-group">
 
-                <label for="sel1">Promotor:</label>
+                <label for="sel1">Vendedor:</label>
                <select class="form-control" id="sel1" name="promoter_n">
                   <?php $__currentLoopData = $salesmans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $salesman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <option value="<?php echo e($salesman->id); ?>"><?php echo e($salesman->name); ?></option>  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                 
                </select>

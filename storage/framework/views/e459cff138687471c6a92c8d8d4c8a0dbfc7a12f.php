@@ -6,7 +6,7 @@
 <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">
  <tr>
  	<td align="center">
- 		<img src="<?php echo e($message->embed(public_path().'\sistem_images\invite.png')); ?>" width="100%" height="100%">
+ 		<img src="<?php echo e($message->embed(public_path().'\sistem_images\promoter_assing.png')); ?>" width="100%" height="100%">
  	</td>
  </tr>
 
@@ -18,13 +18,17 @@
 
  <tr>
 	<td>
-	<p style="font-size: 14px;" align="justify"><?php echo e($name); ?> quiere invitarte GRATIUTAMENTE a unirte a LEIPEL, una red social de entretenimiento (CINE, MUSICA, LECTURA, RADIO y TV).</p>
+	<p style="font-size: 14px;" align="justify">Su Registro como Usuario Administrativo de Leipel fue Exitoso su Contraseña es la siguiente.</p>
  	</td>
  </tr>
- 
- 	<td align="center">
-		<a href="<?php echo e($url); ?>"><button class="btn">Registrarse</button></a>
-	</td>
+
+ <tr>
+ 	<td align="center"><h3><?php echo e($password); ?></h3></td>
+ </tr>
+
+<tr>
+	<td><p>Acceda a traves del siguiente enlace <?php echo e(url('/').'/promoter_login'); ?></p></td>
+</tr>
 
   <tr align="left">
  	<img src="<?php echo e($message->embed(public_path().'\sistem_images\signature.png')); ?>">
@@ -51,6 +55,3 @@
 </table>
 </body>
 </html>
-
-
-

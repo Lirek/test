@@ -33,4 +33,9 @@ class Promoters extends Authenticatable
         return $this->belongsToMany('App\PromotersRoles','promoter_acces','promoter_id','promoter_module_id');
     
     }
+
+    public function Logins()
+    {
+      return $this->hasMany('App\LoginControl','id_login');
+    }
 }

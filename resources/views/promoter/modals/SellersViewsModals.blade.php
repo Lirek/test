@@ -54,7 +54,7 @@
          <p>Modifique El Estatus De La Productora</p>
         
 
-             <form method="POST"  id="formStatus">
+             <form method="POST"  id="FormStatusSeller">
                               {{ csrf_field() }}
 
              <div class="radio-inline">
