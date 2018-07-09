@@ -41,7 +41,7 @@
                                         <td class="text-center"> {{ $b->title }} </td>
                                         <td class="text-center ">
                                             <a href="{{ route('tbook.show', $b->id) }}">
-                                                <img class=" img-circle " src="/images/bookcover/{{ $b->cover }}"
+                                                <img class=" img-circle " src="images/bookcover/{{ $b->cover }}"
                                                      style="width:50px;height:50px;" alt="Portada">
                                             </a>
                                         </td>
