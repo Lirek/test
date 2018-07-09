@@ -1,4 +1,6 @@
-<?php $__env->startSection('main'); ?>
+@extends('promoter.layouts.app')
+
+@section('main')
 
 <h3><i class="fa fa-angle-right"></i>Usuarios Administrativos</h3>
           <div class="row mt">
@@ -15,46 +17,46 @@
                                   
                                   <th>Nivel</th>
                                   
-                                  <?php if(Auth::guard('Promoter')->user()->priority == 1): ?>
+                                  @if(Auth::guard('Promoter')->user()->priority == 1)
                                   <th>Ultimo Inicio</th>
-                                  <?php endif; ?>
+                                  @endif
 
                                   <th>Acciones</th>
 
                               </tr>
                               </thead>
                               <tbody>
-                              <?php $__currentLoopData = $promoters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promoter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              @foreach($promoters as $promoter)
                                   
-                                  <tr id="promoter<?php echo e($promoter->id); ?>">
-                                    <td><?php echo e($promoter->name_c); ?></td>
-                                    <td><?php echo e($promoter->email); ?></td>
-                                    <td><?php echo e($promoter->Roles->first()->name); ?></td>
+                                  <tr id="promoter{{$promoter->id}}">
+                                    <td>{{$promoter->name_c}}</td>
+                                    <td>{{$promoter->email}}</td>
+                                    <td>{{$promoter->Roles->first()->name}}</td>
                                     
-                                    <?php if(Auth::guard('Promoter')->user()->priority == 1): ?>
+                                    @if(Auth::guard('Promoter')->user()->priority == 1)
                   
-                                            <?php if($promoter->Logins->count()==0): ?>
+                                            @if($promoter->Logins->count()==0)
 
                                                      <td>No Ha Iniciado Sesion</td>
                                                  
-                                                     <?php else: ?>
+                                                     @else
                                                  
-                                                     <td><?php echo e($promoter->Logins->first()->created_at); ?></td>
+                                                     <td>{{$promoter->Logins->first()->created_at}}</td>
                                                  
-                                            <?php endif; ?>
-                                    <?php endif; ?>
+                                            @endif
+                                    @endif
                                   
                                       <td>
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="<?php echo e($promoter->id); ?>">
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="{{$promoter->id}}">
                                             <i class="material-icons">cancel</i>
                                         </button>
-                                        <button value="<?php echo e($promoter->id); ?>">
+                                        <button value="{{$promoter->id}}">
                                           <i class="material-icons">settings</i>
                                         </button>
                                       </td>
                                   </tr>
                                   
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              @endforeach
                               </tbody>
                           </table>
                                   <button  id="tt3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-toggle="modal" data-target="#NewUser">
@@ -84,27 +86,27 @@
                               </tr>
                               </thead>
                               <tbody>
-                              <?php if($salesmans->count()>0): ?>  
-                                <?php $__currentLoopData = $salesmans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $salesman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr id="salesman<?php echo e($salesman->id); ?>">
-                                        <td><?php echo e($salesman->name); ?></td>
-                                        <td><?php echo e($salesman->email); ?></td>
-                                        <td><?php echo e($salesman->phone); ?></td>
-                                        <td><?php echo e($salesman->CreatedBy->name_c); ?></td>
+                              @if($salesmans->count()>0)  
+                                @foreach($salesmans as $salesman)
+                                    <tr id="salesman{{$salesman->id}}">
+                                        <td>{{$salesman->name}}</td>
+                                        <td>{{$salesman->email}}</td>
+                                        <td>{{$salesman->phone}}</td>
+                                        <td>{{$salesman->CreatedBy->name_c}}</td>
                                         <td>
-                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="<?php echo e($salesman->id); ?>">
+                                         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_salesman" value="{{$salesman->id}}">
                                             <i class="material-icons">cancel</i>
                                          </button>
                                         
-                                         <button value="<?php echo e($salesman->id); ?>">
+                                         <button value="{{$salesman->id}}">
                                           <i class="material-icons">settings</i>
                                          </button>
                                         </td>
                                     </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php else: ?>
+                                @endforeach
+                                @else
                                 <h5>No existen Vendedores Registrados</h5>
-                              <?php endif; ?>
+                              @endif
                               </tbody>
                           </table>
                             <button  id="SalesmanAdd" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" data-toggle="modal" data-target="#NewSalesman">
@@ -113,10 +115,10 @@
                   </div><!-- /content-panel -->
                </div><!-- /col-lg-4 -->     
         </div><!-- /row -->
-        <?php echo $__env->make('promoter.modals.BackendUsersViewsModals', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php $__env->stopSection(); ?>
+        @include('promoter.modals.BackendUsersViewsModals')
+@endsection
 
-<?php $__env->startSection('js'); ?>
+@section('js')
 <script>
   $("#phone").intlTelInput();
   $("#phone_s").intlTelInput();
@@ -257,6 +259,59 @@
     });
   
   });
+
+  $(document).on('click', '#delete_salesman', function() {
+
+    var salesman = $(this).val();
+    var url = 'salesman_delete/'+salesman;
+     
+    console.log(url);
+    $.ajax({
+             url: url,
+             type:'get',
+             data:"json",
+
+            success: function(data)
+            {
+              alert("Se Ha Eliminado el Vendedor con exito","","success");
+              
+              $("#salesman"+salesman).fadeOut();
+            },
+
+            error: function(data)
+            {
+             alert("NO Permitido Por Favor Recargue la Pagina","","error");
+            },
+
+       });
+
+  });
+
+  $(document).on('click', '#delete_promoter', function() {
+    
+    var promoter = $(this).val();
+    var url = 'promoter_delete/'+promoter;
+ 
+
+    $.ajax({
+             url: url,
+             type:'get',
+             data:"json",
+
+            success: function(data)
+            {
+              alert("Se Ha Eliminado el Promotor con exito");
+              console.log(data);
+              $("#promoter"+promoter).fadeOut();
+            },
+
+            error: function(data)
+            {
+             alert("NO Permitido Por Favor Recargue la Pagina");
+            },
+
+       });
+
+  });
 </script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

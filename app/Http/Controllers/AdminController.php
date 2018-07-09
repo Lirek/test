@@ -312,7 +312,7 @@ class AdminController extends Controller
     		$acces_modules=SellersRoles::all();
 
 
-    		return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
+    		return view('promoter.AdminModules.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
    		}
 
    		public function DeleteModule($id_seller,$id_module)
@@ -382,7 +382,7 @@ class AdminController extends Controller
     		
     		$Salesmans = Salesman::all();
     		
-    		return view('promoter.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+    		return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
    		}
 //-------------------------------------------------------------------------------
 
@@ -414,7 +414,7 @@ class AdminController extends Controller
 
    			$promoter->password=bcrypt($randomString);
 
-        event( new PasswordPromoter($promoter->email,$randomString));
+       // event( new PasswordPromoter($promoter->email,$randomString));
 
         $promoter->save();
 
@@ -530,7 +530,7 @@ class AdminController extends Controller
         $Salesmans = Salesman::all();
         
 
-        return view('promoter.BackendUsers')
+        return view('promoter.AdminModules.BackendUsers')
                                             ->with('promoters',$promoters)
                                             ->with('salesmans',$Salesmans)
                                             ->with('priority',$priority);
@@ -551,9 +551,9 @@ class AdminController extends Controller
 
       public function DeleteSalesman($id)
       {
-        $salesman= Salesman::find($id);
+        $salesman= Salesman::destroy($id);
         
-        $salesman->destroy();
+        
 
         return response()->json($salesman); 
       }

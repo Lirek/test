@@ -92,7 +92,9 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return view('home');
+        return redirect()->action('HomeController@index');
+
+
     }
 
     /**
@@ -138,7 +140,6 @@ class UserController extends Controller
         $user->ci = $request->ci;
         $user->num_doc = $request->num_doc;
         $user->img_doc = $request->img_doc;
-        $user->type= $request->type;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
@@ -165,6 +166,7 @@ class UserController extends Controller
         //dd($user);
         $user->save();
         Flash('Se Han Modificado Sus Datos Con Exito')->success();
+        
         return view('home');
     }
 

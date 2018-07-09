@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
                     $seller=\App\Seller::find($id);
                     $acces=$seller->roles->count();
                     
-                    if ($acces==0) 
+                    if ($acces == 0) 
                     {
                         $view->with('modulos',FALSE);   
                     }
@@ -38,8 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
                         $view->with('modulos',$seller_modules);
 
-                    }     
-                    
+                    }                         
                 });
 
 

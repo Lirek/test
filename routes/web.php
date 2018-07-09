@@ -254,52 +254,8 @@ Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
 */
 
 
-Route::post('/promoter_c','AdminController@CreatePromoter');
-
-Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
 
 
-
-
-
-
-/*------------------------------------------------------------------
---------------------------------------------------------------------
---------------- FIN RUTAS DE MANEJO DE PROMOTORES  -----------------
---------------------------------------------------------------------
---------------------------------------------------------------------
-*/
-
-
-
-/*------------------------------------------------------------------
---------------------------------------------------------------------
---------------- Inicio RUTAS DE MANEJO DE SOLICITUDES -----------------
---------------------------------------------------------------------
---------------------------------------------------------------------
-*/
-
-
-
-
-
-
-/*------------------------------------------------------------------
---------------------------------------------------------------------
---------------- FIN RUTAS DE MANEJO DE SOLICITUDES -----------------
---------------------------------------------------------------------
---------------------------------------------------------------------
-*/
-
-
-
-
-/*------------------------------------------------------------------
---------------------------------------------------------------------
------------- FIN DE LAS RUTAS DE USUARIOS O ADMIN ------------------
---------------------------------------------------------------------
---------------------------------------------------------------------
-*/
 
 
 
@@ -335,6 +291,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
   
    Route::group(['middleware' => ['Admin']], function (){
 
+        //__________________Rutas de Manejo de Proovedores_______________________
+            
             Route::get('/admin_sellers','AdminController@ShowSellers');
 
             Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
@@ -346,11 +304,22 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('RemovePromoterFromSeller/{id_seller}/{id_promoter}','AdminController@RemovePromoterFromSeller');
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
+        
+        //_________________FIN de RUtas de Proveedores____________________________
+
+        //___________________RUTAS DE DE USUARIOS_______________________
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
 
             Route::post('AddSalesman','AdminController@RegisterSalesman');
-            
+
+            Route::get('salesman_delete/{id}','AdminController@DeleteSalesman');
+
+            Route::post('/promoter_c','AdminController@CreatePromoter');
+
+            Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
+
+        //_____________________FIN DE RUTAS DE USUARIOS____________________________
    });
     
        

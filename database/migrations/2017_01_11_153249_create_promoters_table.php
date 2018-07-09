@@ -22,7 +22,7 @@ class CreatePromotersTable extends Migration
     $table->string('name_c')->nullable()->default(NULL);
     $table->string('contact_s')->nullable()->default(NULL);
     $table->string('phone_s')->nullable()->default(NULL);
-    $table->string('email')->nullable()->default(NULL);
+    $table->string('email')->unique()->nullable()->default(NULL);
     $table->string('password')->nullable()->default(NULL);
     $table->integer('priority')->nullable()->default(NULL);
     $table->rememberToken();
