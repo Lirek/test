@@ -23,19 +23,88 @@
                       </div>
 
 
+
+
+
+</div>
+<div class="row mt">
+	<h3><i class="fa fa-angle-right"></i>Pendientes</h3>
+</div>
+<div class="row mt">
+   
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-compact-disc fa-4x"></i>
+			<p>Albumes</p>
+			<p><?php echo e($albums); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+	   </div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-music fa-4x"></i>
+			<p>Singles</p>
+			<p><?php echo e($singles); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+	   </div>
+   </div>
+   
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-book-open fa-4x"></i>
+			<p>Revistas</p>
+			<p><?php echo e($megazines); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-book fa-4x"></i>
+			<p>Libros</p>
+			<p><?php echo e($books); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
 </div>
 
-
 <div class="row mt">
-                        <div class="col-lg-6">
-                          <div class="content-panel">
-							  <h4><i class="fa fa-angle-right"></i>Etiquetas</h4>
-                              <div class="panel-body text-center">
-                                  <canvas id="myChart" height="300" width="400"></canvas>
-                              </div>
-                          </div>
-                      </div>	                    
-                      
+	<div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-tv fa-4x"></i>
+			<p>Tvs</p>
+			<p><?php echo e($tv); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-broadcast-tower fa-4x"></i>
+			<p>Radios</p>
+			<p><?php echo e($radios); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-video fa-4x"></i>
+			<p>Series</p>
+			<p><?php echo e($series); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-film fa-4x"></i>
+			<p>Peliculas</p>
+			<p><?php echo e($movies); ?></p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
 </div>
 
 <?php $__env->stopSection(); ?>
@@ -158,7 +227,7 @@ $(document).ready(function(){
 
 
 
-		  });
+});
 });
 </script>
 <?php $__env->stopSection(); ?>

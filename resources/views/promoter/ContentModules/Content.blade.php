@@ -25,12 +25,88 @@
                       </div>
 
 
+
+
+
+</div>
+<div class="row mt">
+	<h3><i class="fa fa-angle-right"></i>Pendientes</h3>
+</div>
+<div class="row mt">
+   
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-compact-disc fa-4x"></i>
+			<p>Albumes</p>
+			<p>{{$albums}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+	   </div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-music fa-4x"></i>
+			<p>Singles</p>
+			<p>{{$singles}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+	   </div>
+   </div>
+   
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-book-open fa-4x"></i>
+			<p>Revistas</p>
+			<p>{{$megazines}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-book fa-4x"></i>
+			<p>Libros</p>
+			<p>{{$books}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
 </div>
 
-
 <div class="row mt">
-	                    
-                      
+	<div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-tv fa-4x"></i>
+			<p>Tvs</p>
+			<p>{{$tv}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-broadcast-tower fa-4x"></i>
+			<p>Radios</p>
+			<p>{{$radios}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-video fa-4x"></i>
+			<p>Series</p>
+			<p>{{$series}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
+
+   <div class="col-md-3">                      
+	   <div class="twitter-panel pn">
+			<i class="fas fa-film fa-4x"></i>
+			<p>Peliculas</p>
+			<p>{{$movies}}</p>
+			<p class="user"><button type="button" class="btn btn-theme">Revisar</button type="button" class="btn btn-theme"></p>
+		</div>
+   </div>
 </div>
 
 @endsection
@@ -150,7 +226,10 @@ $(document).ready(function(){
 		error:function() {
 			console.log('erro');
 		}
-	});	
+
+
+
+});
 });
 </script>
 @endsection

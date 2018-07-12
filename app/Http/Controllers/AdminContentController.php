@@ -21,6 +21,7 @@ use App\SellersRoles;
 use App\Promoters;
 use App\PromotersRoles;
 use App\Movie;
+use App\Series;
 
 class AdminContentController extends Controller
 {
@@ -28,14 +29,15 @@ class AdminContentController extends Controller
   public function Home()
     {
 
-            $albums= Albums::where('status','=','En Revision')->get();
-            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
-            $radios= Radio::where('status','=','En Revision')->get();
-            $tv= Radio::where('status','=','En Revision')->get();
-            $books= Book::where('status','=','En Revision')->get();
-            $megazines= Megazines::where('status','=','En Revision')->get();
-            $tags= Tags::where('status','=','En Revision')->get();
-
+            $albums= Albums::where('status','=','En Revision')->count();
+            $singles= Songs::where('status','=','En Revision')->whereNull('album')->count();
+            $radios= Radio::where('status','=','En Revision')->count();
+            $tv= Radio::where('status','=','En Revision')->count();
+            $books= Book::where('status','=','En Revision')->count();
+            $megazines= Megazines::where('status','=','En Revision')->count();
+            $tags= Tags::where('status','=','En Revision')->count();
+            $movies = Movie::where('status','=','En Revision')->count();
+            $series = 0;
 
             
             
@@ -46,7 +48,9 @@ class AdminContentController extends Controller
             ->with('tv', $tv)
             ->with('radios', $radios)
             ->with('singles', $singles)
-            ->with('albums', $albums);
+            ->with('albums', $albums)
+            ->with('movies', $movies)
+            ->with('series', $series);
     }
 
   public function ContentAdminGraph()
