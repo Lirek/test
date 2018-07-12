@@ -16,7 +16,7 @@
                   </li>
 
                   <li class="mt">
-                      <a href="#">
+                      <a href="{{url('AdminContent')}}">
                           <i class="fas fa-suitcase"></i>
                           <span>Contenido</span>
                       </a>

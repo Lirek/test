@@ -26,7 +26,7 @@
     <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
 
-    <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

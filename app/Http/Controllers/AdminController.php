@@ -55,32 +55,6 @@ class AdminController extends Controller
         return true;
     }
 
-    public function index()
-    {
-    	$user= User::find(Auth::user()->id);      
-    	
-      if($user['status']=='admin')
-        {
-
-            $albums= Albums::where('status','=','En Revision')->get();
-            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
-            $radios= Radio::where('status','=','En Revision')->get();
-            $tv= Radio::where('status','=','En Revision')->get();
-            $books= Book::where('status','=','En Revision')->get();
-            $megazines= Megazines::where('status','=','En Revision')->get();
-            $tags= Tags::all();
-
-            $sellers=ApplysSellers::all();
-            
-            return view('admin.Dashboard')->with('tags', $tags)->with('megazines', $megazines)->with('books', $books)->with('tv', $tv)->with('radios', $radios)->with('singles', $singles)->with('albums', $albums);
-         }
-         else
-        {
-            Auth::logout();
-            return redirect('/login');
-        }	
-    }
-
 /*-------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 --------------------                             .............................................
@@ -290,10 +264,7 @@ class AdminController extends Controller
    			return response()->json($tv);
    		}
 
-   		public function Books()
-    	{
-    	
-   		}
+   		
 
 
 
@@ -414,7 +385,7 @@ class AdminController extends Controller
 
    			$promoter->password=bcrypt($randomString);
 
-       // event( new PasswordPromoter($promoter->email,$randomString));
+        event( new PasswordPromoter($promoter->email,$randomString));
 
         $promoter->save();
 

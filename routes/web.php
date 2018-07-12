@@ -87,7 +87,7 @@ Route::get('Referals','ReferalsController@ShowReferals');
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
-Route::get('/admin','AdminController@index');
+
 
 Route::get('/admin_albums','AdminController@ShowAlbums');
 Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
@@ -325,6 +325,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
        
         Route::group(['middleware' => ['Operator']], function (){
 
+        //______________________RUTAS DE SOLICITUDES:_____________________________
+
             Route::get('/admin_applys','AdminController@ShowApplys');
 
             Route::post('AddSalesMan/{id}','AdminController@AddSalesmanToApllys');
@@ -334,6 +336,16 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
 
             Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
+
+        //__________________FIN DE RUTAS DE SOLICITUDES_____________________________
+        
+        //___________________RUTAS DE CONTENIDO_____________________________________
+
+            Route::get('AdminContent','AdminContentController@Home');
+
+            Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
+            Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
+        //__________________________________________________________________________
 
         });
 
