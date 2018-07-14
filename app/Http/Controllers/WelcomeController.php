@@ -24,8 +24,19 @@ class WelcomeController extends Controller
             $books->rating;
         });
         $radios = Radio::all();
+        $radios->each(function ($radios){
+            $radios->seller;
+        });
         $tvs = Tv::all();
+        $tvs->each(function ($tvs){
+            $tvs->seller;
+        });
         $movies = Movie::all();
+        $movies->each(function ($movies) {
+            $movies->seller;
+            $movies->saga;
+            $movies->rating;
+        });
 
         return view('welcome')
             ->with('seller', $sellers)

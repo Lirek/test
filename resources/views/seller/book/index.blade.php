@@ -93,6 +93,7 @@
         </div>
 
         <div class="col-md-offset-10">
+            {!! $book->render !!}
             <a href="{{ route('tbook.create') }}" class="btn btn-info">
                 <span class="fa fa-address-book-o">&nbsp;
                     <b>
