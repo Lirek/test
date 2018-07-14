@@ -17,7 +17,7 @@
                  @if($Singles != 0)
                 <!-- PROFILE 01 PANEL -->
                 @foreach($Singles as $Single)
-                <div class="col-lg-5 col-md-5 col-sm-5 mb">
+                <div class="col-lg-4 col-md-4 col-sm-4 mb">
                     <div class="content-panel pn-music">
                         <div id="profile-01" style="">
                             @if($Single->autors->photo)
@@ -27,15 +27,8 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href=""> Añadir al Playlist</p></a>
+                            <p><a href="{{url('PlayList/' .$Single->id)}}"> Añadir al Playlist</a></p>
                         </div>
-<!--                         <div class="centered">
-                            <h3>{{$Single->autors->name}}</h3>
-                            <h6>{{$Single->song_name}}</h6>
-                            <audio id="player" style="width:100%;" controls controlsList="nodownload">
-                                <source src="{{asset($Single->song_file)}}" type="audio/mp3">
-                            </audio>
-                        </div> -->
                         <div class="centered">
                             <h3>{{$Single->autors->name}}</h3>
                             <h6>{{$Single->song_name}}</h6>
@@ -60,7 +53,9 @@
 @section('js')
 
 <script type="text/javascript">
-    const player= new Plyr('#player');
+
+const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
 </script>
+
 
 @endsection

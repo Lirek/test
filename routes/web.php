@@ -63,6 +63,16 @@ Route::post('Invite','UserController@Invite');
     //Agregadas 4/7/18
     Route::get('EditProfile','UserController@edit');
 
+    //Agregada 11/7/18
+    Route::get('PlayList/{id}','UserController@AddElementPlaylist');
+
+    //Agregada12/7/18
+    Route::get('MyAlbums','UserController@MyAlbums');
+
+    //Agregada 13/7/28 
+    Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
+
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________

@@ -175,7 +175,11 @@ hr {
   border: 0;
   border-top: 1px solid #797979;
 }
-
+.sinopsis{
+    text-align: justify;
+    margin-left: 3%;
+    margin-right: 3%;
+}
 
 
 /*Helpers*/

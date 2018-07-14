@@ -27,13 +27,12 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href="{{url('Read/'.$Book->id)}}">Leer</p>
+                            <p><a href="{{url('Read/'.$Book->id)}}">Leer</p></a>
                         </div>
                         <div class="centered">
                             <h3>{{$Book->title}}</h3>
                             <h6>{{$Book->author->full_name}}</h6>
-                            <p>·Sinopsis: 
-                                {{$Book->sinopsis}}
+                            <p class="sinopsis"><b>Sinopsis:</b>{{$Book->sinopsis}}
                             </p>
 
                         </div>
@@ -52,6 +51,42 @@
 
 
 @section('js')
-
+<script src="jquery-1.10.2.js"></script>
+<script>
+   $(document).ready(function() {
+      var showChar = 300;
+      var ellipsestext = "...";
+      var moretext = "Seguir leyendo >";
+      var lesstext = "Mostrar menos";       
+      var content = $('.sinopsis').html();
+      
+      if(content.length > showChar) {
+         var c = content.substr(0, showChar);
+         var html = '<div class="abstract">' + c + ellipsestext + '</div>' + '<div class="morecontent">' + content + '</div>' + '<p><span class="morelink">' + moretext + '</span></p>';
+          $('.sinopsis').html(html);
+       }
+         
+       $('.morelink').click(function() {
+          if($(this).hasClass('less')) {
+             $(this).removeClass('less');
+             $(this).html(moretext);
+             $('.abstract').removeClass('hidden');
+           } else {
+             $(this).addClass('less');
+                 $(this).html(lesstext);
+                 $('.abstract').addClass('hidden');
+           }
+           $(this).parent().prev().slideToggle('fast');
+           $(this).prev().slideToggle('fast');
+                return false;
+        });
+    });
+</script>
+<style>
+   .morecontent { display: none; }
+   .morelink { display: block; cursor: pointer; color:#2196f3; }
+   .morelink:hover { text-decoration:underline; }
+   .hidden { display:none; }
+</style>
 
 @endsection

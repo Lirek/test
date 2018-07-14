@@ -65,8 +65,8 @@
                             @if ($user->img_doc != null)
     							<img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                             @endif
-    							<div class="col-md-6 control-label">
-    							 <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
+    							<div class="col-md-10 control-label">
+    							     <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
     							</div>
                          </div>
                     </div>
@@ -102,7 +102,7 @@
                              @if ($user->img_perf != null)
     							<img id="preview_img_perf" src="{{asset($user->img_perf)}}" name='perf' alt="your image" width="180" height="180" >
                             @endif
-    							<div class="col-md-6 control-label">
+    							<div class="col-md-10 control-label">
     							<input type='file' name="img_perf" id="img_perf" accept=".jpg" value="$user->img_perf" />
     							</div>
                          </div>

@@ -7,6 +7,7 @@ use Auth;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
+use File;
 
 use App\User;
 use App\Megazines;
@@ -235,8 +236,6 @@ class UserController extends Controller
     public function MyMusic()
     {
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
-        
-        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
 
 
         if($TransactionSingle->count() > 0)
@@ -253,12 +252,23 @@ class UserController extends Controller
                 
              }
 
+
+        
+        return view('users.MyMusic')->with('Singles',$Single);
+        
+    }
+
+    public function MyAlbums()
+    {
+        
+        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
+
         if($TransactionAlbum->count() > 0)
             {
             
                 foreach ($TransactionAlbum as $key) 
                     {
-                        $Albums[] = $key->Songs;    
+                        $Albums[] = $key->Albums;    
                     }
             }
             else
@@ -267,10 +277,10 @@ class UserController extends Controller
              }
 
 
-        
-        return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
+        return view('users.MyAlbums')->with('Albums',$Albums);
         
     }
+
 
     public function AddElementPlaylist($song_id)
     {
@@ -338,7 +348,6 @@ class UserController extends Controller
 
         $MyBooks= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->get();
 
-        $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
 
         if ($MyBooks->count() == 0) 
         {
@@ -351,6 +360,16 @@ class UserController extends Controller
                 $Books[]= Book::find($key->books_id);
             }
         }
+
+        
+
+        return view('users.MyReadings')->with('Books',$Books);
+    }
+    public function ShowMyReadingsMegazines()
+    {
+
+        $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
+
 
         if ($MyMegazines->count() == 0) 
         {
@@ -366,8 +385,10 @@ class UserController extends Controller
 
         
 
-        return view('users.MyReadings')->with('Megazines', $Megazine)->with('Books',$Books);
+        return view('users.MyMagazine')->with('Megazines', $Megazine);
     }
+
+
 
     public function SendRead($id)
     {

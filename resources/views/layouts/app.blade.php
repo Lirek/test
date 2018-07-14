@@ -153,9 +153,27 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="#">Mis Peliculas</a></li>
-                          <li><a  href="{{url('MyMusic')}}">Mi Musica</a></li>
-                          <li><a  href="{{url('MyReads')}}">Mis lecturas</a></li>
-                          <li><a  href="#">Mis Streams</a></li>
+
+                          <li class="sub-menu">
+                              <a href="javascript:;" >
+                                <span>Mi musica</span>
+                              </a>
+                            <ul class="sub">
+                              <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
+                              <li><a  href="{{url('MyAlbums')}}">Albums</a></li>
+                            </ul>
+                          </li>
+
+                          <li class="sub-menu">
+                            <a href="javascript: ;">
+                              <span>Mis lecturas</span>
+                            </a>
+                            <ul class="sub">
+                              <li><a  href="{{url('MyReads')}}">Mis Libros</a></li>
+                              <li><a  href="{{url('MyMegazine')}}">Mis Megazines</a></li>
+                            </ul>
+                          </li>
+                           <li><a  href="#">Mis Streams</a></li>
                       </ul>
                   </li>
 
