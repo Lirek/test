@@ -55,11 +55,9 @@ class AdminContentController extends Controller
 
   public function ContentAdminGraph()
   {
-  	    $AllSongs=Songs::where('album','=',0)->count();
+  	    $AllSongs=Songs::whereNull('album')->count();
         
         $AllAlbums= Albums::all()->count();
-
-        $AllMusicAuthors = music_authors::all()->count();
         
         $AllMovies=Movie::all()->count();
         
@@ -144,5 +142,47 @@ class AdminContentController extends Controller
                          );
 
          return Response()->json($Content);       
+  }
+
+  public function TagsBarGraph()
+  {
+    $MusicTags = Tags::where('type_tags','=','Musica')->count();
+
+    $MoviesTags = Tags::where('type_tags','=','Peliculas')->count();
+
+    $RadiosTags = Tags::where('type_tags','=','Radios')->count();
+
+    $TVTags = Tags::where('type_tags','=','TV')->count();
+
+    $BooksTags = Tags::where('type_tags','=','Libros')->count();
+
+    $MegazineTags = Tags::where('type_tags','=','Revistas')->count();
+
+    $SeriesTags = Tags::where('type_tags','=','Series')->count();
+    
+    $Content=array(
+                    $MusicTags,
+                    $MoviesTags,
+                    $RadiosTags,
+                    $TVTags,
+                    $BooksTags,
+                    $MegazineTags,
+                    $SeriesTags,
+                         );  
+
+      return Response()->json($Content);  
+  }
+
+  public function TagsDountsGraph()
+  {
+    
+    $AprovedTags = Tags::where('status','=','Aprobado')->count();
+
+    $PendingTags = Tags::where('status','=','En Proceso')->count();
+
+
+    $Content=array($PendingTags, $AprovedTags);
+
+    return Response()->json($Content);
   }
 }

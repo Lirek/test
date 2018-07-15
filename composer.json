@@ -15,6 +15,7 @@
         "laravelcollective/html": "^5.4.0",
         "nesbot/carbon": "^1.25",
         "simplesoftwareio/simple-qrcode": "~2",
+        "tymon/jwt-auth": "^0.5.12",
         "wapmorgan/mp3info": "^0.0.2",
         "yajra/laravel-datatables-oracle": "~8.0"
     },

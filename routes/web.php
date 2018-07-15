@@ -41,6 +41,11 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 Route::get('/home', 'HomeController@index');
 Route::get('ContentGraph', 'HomeController@DataContentGraph');
 
+Route::get('admin', function() 
+{
+    return view('admin.login');
+});
+
 //---------------------------------------------------------------------
 
 Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
@@ -51,32 +56,32 @@ Route::resource('users', 'UserController');
 
 //-------------------Funciones del Usuarios----------------------------------
 
-Route::post('BuySong/{id}','UserController@BuySingle');
-Route::post('BuyBook/{id}','UserController@BuyBook');
-Route::get('MyMusic','UserController@MyMusic');
-Route::get('Read/{id}','UserController@SendRead');
-Route::get('MyReads','UserController@ShowMyReadings');
-Route::get('Read/{id}','UserController@SendRead');
-Route::post('Invite','UserController@Invite');
+    Route::post('BuySong/{id}','UserController@BuySingle');
+    Route::post('BuyBook/{id}','UserController@BuyBook');
+    Route::get('MyMusic','UserController@MyMusic');
+    Route::get('Read/{id}','UserController@SendRead');
+    Route::get('MyReads','UserController@ShowMyReadings');
+    Route::get('Read/{id}','UserController@SendRead');
+    Route::post('Invite','UserController@Invite');
 
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
 
-Route::get('MusicContent','ContentController@ShowMusic');
-Route::get('AllSingles','ContentController@ShowAllSingles');
-Route::get('AllAlbums','ContentController@ShowAllAlbum');
-Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
-Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
-Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+    Route::get('MusicContent','ContentController@ShowMusic');
+    Route::get('AllSingles','ContentController@ShowAllSingles');
+    Route::get('AllAlbums','ContentController@ShowAllAlbum');
+    Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
+    Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
+    Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
 //---------------------------------------------------------------------------
 
 
 //-------------------------Funiciones de Referidos---------------------------
 
-Route::get('WebsUser','ReferalsController@ShowWebs');
-Route::get('Referals','ReferalsController@ShowReferals');
+    Route::get('WebsUser','ReferalsController@ShowWebs');
+    Route::get('Referals','ReferalsController@ShowReferals');
 
 //---------------------------------------------------------------------------
 
@@ -89,19 +94,11 @@ Route::get('Referals','ReferalsController@ShowReferals');
 */
 
 
-Route::get('/admin_albums','AdminController@ShowAlbums');
-Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
 
-Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
-Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
-Route::get('/admin_single','AdminController@ShowSingles');
-Route::get('/AllAdminSingles','AdminController@ShowAllSingles');
-Route::post('/admin_single/{id}','AdminController@SingleStatus');
-
-Route::get('/admin_musician','AdminController@ShowMusician');
-Route::get('/AllAdminMusician','AdminController@ShowAllMusician');
-Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
+    Route::get('/admin_musician','AdminController@ShowMusician');
+    Route::get('/AllAdminMusician','AdminController@ShowAllMusician');
+    Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
 
 
 
@@ -123,9 +120,9 @@ Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
 */
 
 
-Route::get('/admin_radio','AdminController@ShowRadios');
-Route::get('/AllAdminRadio','AdminController@ShowAllRadios');
-Route::post('/admin_radio/{id}','AdminController@RadioStatus');
+    Route::get('/admin_radio','AdminController@ShowRadios');
+    Route::get('/AllAdminRadio','AdminController@ShowAllRadios');
+    Route::post('/admin_radio/{id}','AdminController@RadioStatus');
 
 
 
@@ -146,9 +143,9 @@ Route::post('/admin_radio/{id}','AdminController@RadioStatus');
 */
 
 
-Route::get('/admin_tv','AdminController@ShowTV');
-Route::get('/AllAdminTv','AdminController@ShowAllTV');
-Route::post('/admin_tv/{id}','AdminController@TvStatus');
+    Route::get('/admin_tv','AdminController@ShowTV');
+    Route::get('/AllAdminTv','AdminController@ShowAllTV');
+    Route::post('/admin_tv/{id}','AdminController@TvStatus');
 
 
 
@@ -167,18 +164,18 @@ Route::post('/admin_tv/{id}','AdminController@TvStatus');
 --------------------------------------------------------------------
 */
 
-Route::get('/admin_movie',[
-    'uses'  =>  'AdminController@showMovie',
-    'as'    =>  'admin_showMovies'
-]);
-Route::get('/admin_AllMovies',[
-    'uses'  =>  'AdminController@showAllMovie',
-    'as'    =>  'admin_allMovies'
-]);
-Route::post('/admin_movie/{id}',[
-    'uses'  =>  'AdminController@movieStatus',
-    'as'    =>  'admin_authorStatus'
-]);
+    Route::get('/admin_movie',[
+        'uses'  =>  'AdminController@showMovie',
+        'as'    =>  'admin_showMovies'
+    ]);
+    Route::get('/admin_AllMovies',[
+        'uses'  =>  'AdminController@showAllMovie',
+        'as'    =>  'admin_allMovies'
+    ]);
+    Route::post('/admin_movie/{id}',[
+        'uses'  =>  'AdminController@movieStatus',
+        'as'    =>  'admin_authorStatus'
+    ]);
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
@@ -195,18 +192,18 @@ Route::post('/admin_movie/{id}',[
 --------------------------------------------------------------------
 */
 
-Route::get('/admin_author',[
-    'uses'  =>  'AdminController@showAuthor',
-    'as'    =>  'admin_showAuthor'
-]);  //falta terminar
-Route::get('/admin_allAuthor',[
-    'uses'  =>  'AdminController@showAllAuthor',
-    'as'    =>  'admin_allAuthors'
-]);  //falta terminar
-Route::post('/admin_author/{id}',[
-    'uses'  =>  'AdminController@authorStatus',
-    'as'    =>  'admin_authorStatus'
-]); //falta terminar
+    Route::get('/admin_author',[
+        'uses'  =>  'AdminController@showAuthor',
+        'as'    =>  'admin_showAuthor'
+    ]);  //falta terminar
+    Route::get('/admin_allAuthor',[
+        'uses'  =>  'AdminController@showAllAuthor',
+        'as'    =>  'admin_allAuthors'
+    ]);  //falta terminar
+    Route::post('/admin_author/{id}',[
+        'uses'  =>  'AdminController@authorStatus',
+        'as'    =>  'admin_authorStatus'
+    ]); //falta terminar
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
@@ -226,15 +223,15 @@ Route::post('/admin_author/{id}',[
 */
 
 
-Route::get('/admin_chain','AdminController@ShowPublicationChain');
-Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
+    Route::get('/admin_chain','AdminController@ShowPublicationChain');
+    Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
 
-Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
+    Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
 
-Route::get('/admin_megazine','AdminController@ShowMegazine');
-Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
+    Route::get('/admin_megazine','AdminController@ShowMegazine');
+    Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
 
-Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
+    Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
 
 
 
@@ -341,10 +338,38 @@ Route::group(['middleware' => 'promoter_auth'], function(){
         
         //___________________RUTAS DE CONTENIDO_____________________________________
 
-            Route::get('AdminContent','AdminContentController@Home');
 
-            Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
-            Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
+
+          //___________________Graficas y datos del Home de Contenido-______________
+
+                Route::get('AdminContent','AdminContentController@Home');
+
+                Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
+                Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
+
+                Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
+
+                Route::get('TagsStatusGraphData','AdminContentController@TagsDountsGraph');
+          //________________________________________________________________________
+
+
+           //_______________________ALBUMES Y SINGLES________________________________
+
+                Route::get('/admin_albums','AdminController@ShowAlbums');
+                Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
+
+                Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
+                Route::post('/admin_album/{id}','AdminController@AlbumStatus');
+
+                Route::get('/admin_single','AdminController@ShowSingles');
+                Route::get('/AllAdminSingles','AdminController@ShowAllSingles');
+                Route::post('/admin_single/{id}','AdminController@SingleStatus');
+
+           //---------------------------------------------------------------------
+
+
+
+
         //__________________________________________________________________________
 
         });

@@ -88,7 +88,7 @@ class AdminController extends Controller
         $albums->status = $request->status;
         
 
-        $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
+       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
 			  
         $albums->save();
    			return response()->json($albums);
@@ -146,7 +146,7 @@ class AdminController extends Controller
    			$musician =music_authors::find($id);
    			$musician->status = $request->status; 
 
-        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reazon);
+        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reason);
 
 			  $musician->save();
    			return response()->json($musician);

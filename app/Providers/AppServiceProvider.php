@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
             Schema::defaultStringLength(191);
+           
             view()->composer('seller.layouts',function($view)
                 {
                     $id=Auth::guard('web_seller')->user()->id;
@@ -40,6 +41,8 @@ class AppServiceProvider extends ServiceProvider
 
                     }                         
                 });
+
+           
 
 
     }
