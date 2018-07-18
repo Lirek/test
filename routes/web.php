@@ -367,9 +367,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
            //---------------------------------------------------------------------
 
+           //---------------------------ETIQUETAS-----------------------------------
+                Route::get('TagsReview','TagController@ShowPendingTags');
+                Route::get('TagsData','TagController@DataTableRender');
+                Route::post('AprobalDenialTag/{id}','TagController@AprovalDenial');
+           //-----------------------------------------------------------------------
 
-
-
+           //------------------------MUSICOS Y ARTISTAS----------------------------
+                Route::get('/admin_musician','AdminController@ShowMusicianView');
+                Route::get('MusicianData','AdminController@MusicianDataTable');
+                Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
+           //----------------------------------------------------------------------
         //__________________________________________________________________________
 
         });

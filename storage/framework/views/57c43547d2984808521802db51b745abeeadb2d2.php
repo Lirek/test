@@ -8,25 +8,25 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
 
     <title>LEIPEL</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
     <!--external css-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">    
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
     
     <!-- Custom styles for this template -->
-    <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset ('assets/css/style.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset ('assets/css/style-responsive.css')); ?>" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     
@@ -37,10 +37,10 @@
     <![endif]-->
 
     <style type="text/css"> 
-                .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+                .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags.png')); ?>");}
 
-            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-            .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+            @media  only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+            .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags2x.png')); ?>");}
         
         }
 </style> 
@@ -58,7 +58,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="{{ url('/promoter_home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
+            <a href="<?php echo e(url('/promoter_home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"></b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                
@@ -124,7 +124,7 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="{{ url('/promoter_logout') }}" onclick="event.preventDefault();
+                    <li><a class="logout" href="<?php echo e(url('/promoter_logout')); ?>" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a></li>
                 </ul>
             </div>
@@ -134,17 +134,18 @@
       MAIN SIDEBAR MENU 
       *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
-@include('promoter.layouts.partials.Sidebar')
+<?php echo $__env->make('promoter.layouts.partials.Sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
       <!--sidebar end-->
       <section id="main-content">
           <section class="wrapper">
                 
                                         
-            <form id="logout-form" action="{{ url('/promoter_logout') }}" method="POST"
+            <form id="logout-form" action="<?php echo e(url('/promoter_logout')); ?>" method="POST"
                                       style="display: none;">
-                                    {{ csrf_field() }}
+                                    <?php echo e(csrf_field()); ?>
+
                                 </form>
-                        @yield('main')
+                        <?php echo $__env->yieldContent('main'); ?>
                     
                     
                         
@@ -161,29 +162,29 @@
       <!--footer end-->
   </section>
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset('assets/js/jquery.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
 <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script><script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
-    <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
+  crossorigin="anonymous"></script><script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>
+    <script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/bootstrap.min.js')); ?>"></script>
+    <script class="include" type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dcjqaccordion.2.7.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.scrollTo.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.nicescroll.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(asset('assets/js/jquery.sparkline.js')); ?>"></script>
 
 
     <!--common script for all pages-->
-    <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+    <script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>
     
-    <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter/js/jquery.gritter.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter-conf.js')); ?>"></script>
 
     <!--script for this page-->
-    <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
-  <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
+    <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>    
+  <script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script> 
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 
@@ -224,7 +225,7 @@
         }
     </script>
   
-@yield('js')
+<?php echo $__env->yieldContent('js'); ?>
 </body>
 </html>
 

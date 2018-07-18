@@ -11,6 +11,7 @@ use App\Mail\PromoterAssing;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
 use App\Events\PasswordPromoter;
+use Yajra\Datatables\Datatables;
 
 
 
@@ -100,10 +101,14 @@ class AdminController extends Controller
 -----------------------------------------------------------------------------------------------------
 */
    		public function ShowSingles()
-    	{
-    		$single= Songs::where('status','=','En Revision')->whereNull('album')->paginate(10);
-    		return view('admin.Single')->with('single',$single);
+    	{	
+        return view('promoter.ContentModules.Single');
    		}
+
+      public function SinglesDataTable()
+      {
+        
+      }
 
       public function ShowAllSingles()
       {
@@ -129,16 +134,91 @@ class AdminController extends Controller
 -----------------------------------------------------------------------------------------------------
 */
 
-   		public function ShowMusician()
+   		public function ShowMusicianView()
     	{
-    		$musician= music_authors::where('status','=','En Proceso')->paginate(10);
-    		return view('admin.Musician')->with('musician',$musician);
+    		return view('promoter.ContentModules.ExtraContent.Musician');
    		}
+
+      public function MusicianDataTable()
+      {
+      
+        $Musician = music_authors::where('status','=','En Proceso')
+                              ->with('Seller')
+                              ->get();
+
+
+
+        return Datatables::of($Musician)
+                    ->addColumn('Estatus',function($Musician){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
+                    })
+                    
+                    ->addColumn('SocialMedia',function($Musician){
+                      
+                      return 
+                      '<a target="_blank" href="http://'.$Musician->facebook.'>
+                        <i class="fas fa-facebook-square fa-3x">
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->google.'">
+                        <i class="fas fa-youtube fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->instagram.'">
+                         <i class="fas fa-instagram fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->twitter.'">
+                        <i class="fas fa-twitter fa-3x"></i>
+                       </a>';
+                    })
+                    
+                    ->editColumn('photo',function($Musician){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->rawColumns(['Estatus','photo','SocialMedia'])
+                    ->toJson();
+      }
 
       public function ShowAllMusician()
       {
-        $musician= music_authors::paginate(10);
-        return view('admin.Musician')->with('musician',$musician);
+       
+       $Musician = music_authors::where('status','=','Aprobado')
+                              ->with('Seller')
+                              ->get();
+
+
+
+        return Datatables::of($Musician)
+                    ->addColumn('Estatus',function($Musician){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
+                    })
+                    
+                    ->addColumn('SocialMedia',function($Musician){
+                      
+                      return 
+                      '<a target="_blank" href="http://'.$Musician->facebook.'>
+                        <i class="fas fa-facebook-square fa-3x">
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->google.'">
+                        <i class="fas fa-youtube fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->instagram.'">
+                         <i class="fas fa-instagram fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->twitter.'">
+                        <i class="fas fa-twitter fa-3x"></i>
+                       </a>';
+                    })
+                    
+                    ->editColumn('photo',function($Musician){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->rawColumns(['Estatus','photo','SocialMedia'])
+                    ->toJson();
       }
 
    		public function MusicianStatus(Request $request,$id)
@@ -146,7 +226,7 @@ class AdminController extends Controller
    			$musician =music_authors::find($id);
    			$musician->status = $request->status; 
 
-        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reason);
+        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reaon);
 
 			  $musician->save();
    			return response()->json($musician);

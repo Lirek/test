@@ -1,6 +1,4 @@
-@extends('promoter.layouts.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 
 
@@ -35,8 +33,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-compact-disc fa-4x"></i>
 			<p>Albumes</p>
-			<p>{{$albums}}</p>
-			<p class="user"><a href="{{url('/admin_albums')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($albums); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_albums')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 	   </div>
    </div>
 
@@ -44,8 +42,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-music fa-4x"></i>
 			<p>Singles</p>
-			<p>{{$singles}}</p>
-			<p class="user"><a href="{{url('/admin_single')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($singles); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_single')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 	   </div>
    </div>
    
@@ -53,8 +51,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-book-open fa-4x"></i>
 			<p>Revistas</p>
-			<p>{{$megazines}}</p>
-			<p class="user"><a href="{{url('/admin_megazine')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($megazines); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_megazine')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 
@@ -62,8 +60,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-book fa-4x"></i>
 			<p>Libros</p>
-			<p>{{$books}}</p>
-			<p class="user"><a href="{{url('/admin_albums')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($books); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_albums')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 </div>
@@ -73,8 +71,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-tv fa-4x"></i>
 			<p>Tvs</p>
-			<p>{{$tv}}</p>
-			<p class="user"><a href="{{url('/admin_tv')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($tv); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_tv')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 
@@ -82,8 +80,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-broadcast-tower fa-4x"></i>
 			<p>Radios</p>
-			<p>{{$radios}}</p>
-			<p class="user"><a href="{{url('/admin_radio')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($radios); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_radio')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 
@@ -91,8 +89,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-video fa-4x"></i>
 			<p>Series</p>
-			<p>{{$series}}</p>
-			<p class="user"><a href="{{url('/admin_albums')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($series); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_albums')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 
@@ -100,8 +98,8 @@
 	   <div class="twitter-panel pn">
 			<i class="fas fa-film fa-4x"></i>
 			<p>Peliculas</p>
-			<p>{{$movies}}</p>
-			<p class="user"><a href="{{url('/admin_movie')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p><?php echo e($movies); ?></p>
+			<p class="user"><a href="<?php echo e(url('/admin_movie')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 </div>
@@ -134,14 +132,14 @@
 
 <div class="row mt">
 	<center>
-	 <a href="{{url('TagsReview')}}">
+	 <a href="<?php echo e(url('TagsReview')); ?>">
 		<button type="button" class="btn btn-theme">Revisar Etiquetas</button type="button" class="btn btn-theme">
 	 </a>
 	</center>
 </div>	
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 $(document).ready(function(){
 
@@ -367,4 +365,5 @@ $(document).ready(function(){
 
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
