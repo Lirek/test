@@ -24,6 +24,7 @@
     <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
 
+     @yield('css')
     <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
 
     <!--estilo plyr-->
@@ -241,6 +242,8 @@
   <!--Script Plyr-->
   <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
 
+  <!--PDF.JS-->
+  <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 
 <!--SCRIPS JS-->
   

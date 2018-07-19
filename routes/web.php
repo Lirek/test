@@ -68,9 +68,20 @@ Route::post('Invite','UserController@Invite');
 
     //Agregada12/7/18
     Route::get('MyAlbums','UserController@MyAlbums');
+    Route::get('SongsAlbums/{id}','UserController@SongAlbum');
 
-    //Agregada 13/7/28 
+    //Agregada 13/7/18 
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
+
+    //Agregada 14/7/18
+    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
+
+    //Agregada 15/7/18
+    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
+
+    //Agregada 18/7/18
+    Route::post('CompleteProfile','UserController@CompleteProfile');
+    Route::post('Referals','UserController@referals');
 
 
 //---------------------------------------------------------------------------

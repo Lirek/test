@@ -119,8 +119,8 @@ class UserController extends Controller
     {
 //        dd($user);
         $user = User::find(Auth::user()->id);
-        
-
+         
+         
         return view('users.edit')->with('user', $user);
     }
 
@@ -138,9 +138,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->ci = $request->ci;
-        $user->num_doc = $request->num_doc;
+        //$user->num_doc = $request->num_doc;
 
-        $user->type= $request->type;
+        //$user->type= $request->type;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
@@ -193,6 +193,70 @@ class UserController extends Controller
     {
         //
     }
+
+    public function CompleteProfile (Request $request){
+        $user = User::find(Auth::user()->id);
+
+        $user->last_name = $request->lastname;
+        $user->ci = $request->nDocument;
+
+        if ($request->hasFile('img_doc'))
+        {
+
+
+         $store_path = public_path().'/user/'.$user->id.'/profile/';
+         
+         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+
+         $request->file('img_doc')->move($store_path,$name);
+
+         $real_path='/user/'.$user->id.'/profile/'.$name;
+         
+         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name; 
+
+        }
+        $user->fech_nac = $request->dateN;
+
+        if ($request->hasFile('img_perf'))
+        {
+
+
+         $store_path = public_path().'/user/'.$user->id.'/profile/';
+         
+         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+
+         $request->file('img_perf')->move($store_path,$name);
+
+         $real_path='/user/'.$user->id.'/profile/'.$name;
+         
+         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
+        }
+
+        $user->alias = $request->alias;
+        $user->save();
+        Flash('Completo Sus Datos Con Exito')->success();
+       return redirect()->action('HomeController@index');
+    }
+
+    public function referals(Request $request){
+        $user_id= User::where('codigo_ref','=',$request->codigo)->first();
+
+        if ($user_id) {
+            $referals=new Referals;
+            $referals->user_id=$user_id->id;
+            $referals->refered=Auth::user()->id;
+            $referals->my_code=$request->codigo;
+            $referals->save();
+            Flash('Referencia Completa')->success();
+                return redirect()->action('HomeController@index');
+        }else
+        Flash('Codigo invalido')->error();
+        return redirect()->action('HomeController@index');
+
+
+
+    }
+
 
 //---------------------Iniicio de Compra, Muestra de Musica------------------
     
@@ -268,7 +332,8 @@ class UserController extends Controller
             
                 foreach ($TransactionAlbum as $key) 
                     {
-                        $Albums[] = $key->Albums;    
+                        $Albums[] = $key->Albums; 
+                        $id=$key->Albums->id;
                     }
             }
             else
@@ -276,8 +341,20 @@ class UserController extends Controller
                 $Albums = 0;
              }
 
+             $song=Songs::where('rating_id','=',$id)->get();
 
-        return view('users.MyAlbums')->with('Albums',$Albums);
+        return view('users.MyAlbums')->with('Albums',$Albums)->with('Song',$song);
+        
+    }
+
+
+    public function SongAlbum($id)
+    {
+
+        $Song= Songs::where('rating_id','=',$id)->get(); 
+    
+             
+        return response()->json($Song);
         
     }
 
@@ -397,13 +474,27 @@ class UserController extends Controller
 
         if ($Book->count() == 0) 
         {
-            return view('users.MyLecture')->with('pdf',$Megazine->megazine_file);
+            return view('users.MyLecture')->with('book',$Megazine);
         }
         else
         {
-            return view('users.MyLecture')->with('pdf','/book/'.$Book->books_file);
+            return view('users.MyLecture')->with('book',$Book);
         }
 
+    }
+
+      public function ShowMyReadBook($id)
+    {
+        $Book=Book::find($id);
+
+            return view('users.show')->with('book',$Book);
+    }
+
+      public function ShowMyReadMegazine($id)
+    {
+        $Megazine= Megazines::find($id);
+
+        return view('users.showMegazine')->with('megazines',$Megazine);
     }
 
 
