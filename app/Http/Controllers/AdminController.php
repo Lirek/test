@@ -107,7 +107,7 @@ class AdminController extends Controller
 
       public function SinglesDataTable()
       {
-        
+         $single= Songs::whereNull('album')->where('status','=','En Proceso')->get();
       }
 
       public function ShowAllSingles()

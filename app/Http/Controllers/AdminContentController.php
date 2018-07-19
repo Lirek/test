@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 
 use App\Megazines;
 use App\Tags;
@@ -184,5 +185,21 @@ class AdminContentController extends Controller
     $Content=array($PendingTags, $AprovedTags);
 
     return Response()->json($Content);
+  }
+
+  public function Content()
+  {
+            $albums= Albums::where('status','=','En Revision')->get();
+            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
+            $radios= Radio::where('status','=','En Revision')->get();
+            $tv= Radio::where('status','=','En Revision')->get();
+            $books= Book::where('status','=','En Revision')->get();
+            $megazines= Megazines::where('status','=','En Revision')->get();
+            $tags= Tags::where('status','=','En Revision')->get();
+            $movies = Movie::where('status','=','En Revision')->get();
+            $series = 0;
+
+            return Response::json($singles,200);
+
   }
 }

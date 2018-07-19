@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
+Route::get('/TestContent', 'AdminContentController@Content');
 
 
 /* ------------------------------------------------------------------

@@ -12,6 +12,7 @@ class AuthController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
@@ -22,6 +23,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -29,7 +31,7 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
+        
         return $this->respondWithToken($token);
     }
 
@@ -38,6 +40,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function me()
     {
         return response()->json(auth()->user());
@@ -48,6 +51,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function logout()
     {
         auth()->logout();
@@ -60,6 +64,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
