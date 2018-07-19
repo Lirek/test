@@ -19,7 +19,7 @@
 <!-- First Member -->
 <div class="desc">
   <div class="thumb">
-    <img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
+    <img class="img-circle" src="{{asset('assets/img/ui-divya.jpg')}}" width="35px" height="35px" align="">
   </div>
   <div class="details">
     <p><a href="#">DIVYA MANIAN</a><br/>
@@ -30,7 +30,7 @@
 <!-- Second Member -->
 <div class="desc">
   <div class="thumb">
-    <img class="img-circle" src="assets/img/ui-sherman.jpg" width="35px" height="35px" align="">
+    <img class="img-circle" src="{{asset('assets/img/ui-sherman.jpg')}}" width="35px" height="35px" align="">
   </div>
   <div class="details">
     <p><a href="#">DJ SHERMAN</a><br/>
@@ -41,7 +41,7 @@
 <!-- Third Member -->
 <div class="desc">
   <div class="thumb">
-    <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+    <img class="img-circle" src="{{asset('assets/img/ui-danro.jpg')}}" width="35px" height="35px" align="">
   </div>
   <div class="details">
     <p><a href="#">DAN ROGERS</a><br/>
@@ -52,7 +52,7 @@
 <!-- Fourth Member -->
 <div class="desc">
   <div class="thumb">
-    <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
+    <img class="img-circle" src="{{asset('assets/img/ui-zac.jpg')}}" width="35px" height="35px" align="">
   </div>
   <div class="details">
     <p><a href="#">Zac Sniders</a><br/>
@@ -63,7 +63,7 @@
 <!-- Fifth Member -->
 <div class="desc">
   <div class="thumb">
-    <img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
+    <img class="img-circle" src="{{asset('assets/img/ui-sam.jpg')}}" width="35px" height="35px" align="">
   </div>
   <div class="details">
     <p><a href="#">Marcel Newman</a><br/>

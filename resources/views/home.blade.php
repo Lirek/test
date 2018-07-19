@@ -5,8 +5,8 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      
-
+      @include('flash::message')
+      <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
               
                   
                   
@@ -52,7 +52,7 @@
                     
                     <div class="row mt">
 
-                    @if(Auth::user()->verify==FALSE)
+                    @if(Auth::user()->alias==FALSE)
                         
                     
                       <!-- SERVER STATUS PANELS -->
@@ -78,31 +78,51 @@
                                                 <h4 class="modal-title">Complete sus datos</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" action="#">{{ csrf_field() }}
-                                                   <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                                <form class="form-horizontal" method="POST" action="{{url('CompleteProfile')}}" enctype="multipart/form-data">{{ csrf_field() }}
+
+                                                  <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                                       <label for="lastname" class="col-md-4 control-label">Apellido</label>
                                                       <div class="col-md-6">
-                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="required">
                                                       </div>
                                                   </div>
+
                                                   <div class="form-group{{ $errors->has('nDocument') ? ' has-error' : '' }}">
                                                       <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
                                                       <div class="col-md-6">
-                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}" required="required">
                                                       </div>
                                                   </div>
-                                                  <div class="form-group{{ $errors->has('imgdoc') ? ' has-error' : '' }}">
-                                                      <label for="imgdoc" class="col-md-4 control-label">Imagen del documento</label>
+
+                                                  <div class="form-group{{ $errors->has('img_doc') ? ' has-error' : '' }}">
+                                                      <label class="col-md-4 control-label">Imagen del documento</label>
                                                       <div class="col-md-6">
-                                                          <input id="imgdoc" type="file" accept=".jpg"class="form-control" name="imgdoc" value="{{ old('imgdoc') }}">
+                                                          <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
                                                       </div>
                                                   </div>
+
+
                                                   <div class="form-group{{ $errors->has('dateN') ? ' has-error' : '' }}">
                                                       <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
                                                       <div class="col-md-6">
-                                                          <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}">
+                                                          <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}" required="required">
                                                       </div>
                                                   </div>
+
+                                                  <div class="form-group{{ $errors->has('img_perf') ? ' has-error' : '' }}">
+                                                      <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
+                                                      <div class="col-md-6">
+                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="{{ old('img_perf') }}" required="required">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
+                                                      <label for="alias" class="col-md-4 control-label">Alias</label>
+                                                      <div class="col-md-6">
+                                                          <input id="alias" type="text" class="form-control" name="alias" value="{{ old('alias') }}"required="required">
+                                                      </div>
+                                                  </div>
+
                                                   <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-4">
                                                       <button type="submit" class="btn btn-primary">Registrar datos</button>
@@ -125,8 +145,60 @@
                           </div><!--/grey-panel -->
                         </div><!-- /col-md-12-->
 
-                    @endif  
+                    @endif 
+                    
+                    @if(Auth::user()->UserRefered()->first()==Null) 
+                    <div class="col-md-12 col-sm-12 mb" id="referir">
+                      <div class="white-panel panRf refe donut-chart">
+                        <div class="white-header">
+                            <h5>Agregar codigo referido</h5>
+                        </div>
+                          <div class="row">
+                            <div class="col-sm-10 col-xs-10 col-md-10 goleft">
+                              <p><i class="fa fa-user"></i></p>
+                              <div class="paragraph">
+                                <p class="center ">Usted cuenta con 15 dias para agregar un referido</p>
+                                 <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
 
+                                <!--MODAL-->
+                                  <div id="myModalRefe" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Ingrese el codigo</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data">{{ csrf_field() }}
+
+                                              <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
+                                                      <label for="codigo" class="col-md-4 control-label">Codigo</label>
+                                                      <div class="col-md-6">
+                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}">
+                                                      </div>
+                                              </div>
+                                               <div class="form-group">
+                                                  <div class="col-md-6 col-md-offset-4">
+                                                      <button type="submit" class="btn btn-primary">Ingresar</button>
+                                                  </div>
+                                                </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                   <!--FIN DEL MODAL-->
+
+                              </div> 
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
                       <div class="col-md-12 col-sm-12 mb">
                         <div class="white-panel panRf pe donut-chart">
                           <div class="white-header">
@@ -304,5 +376,27 @@
           @endsection
 
 @section('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+  var f1 = document.getElementById('id').value;
+  var f = new Date();
+  var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
 
+  var tiempo=restaFechas(f1,f2);
+  if (tiempo > 15){
+    document.getElementById('referir').style.display='none';
+  }
+});
+restaFechas = function(f1,f2)
+ {
+ var aFecha1 = f1.split('-');
+ var dFecha= aFecha1[2].split(' ');
+ var aFecha2 = f2.split('/');
+ var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,dFecha[0]);
+ var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+ var dif = fFecha2 - fFecha1;
+ var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+ return dias;
+ }
+</script>
 @endsection

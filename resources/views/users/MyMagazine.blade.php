@@ -8,32 +8,31 @@
             <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
                 <div class="white-header">
-                     <h3><span class="card-title"><i class="fa fa-angle-right"> Mis Libros</i></span></h3>           
+                     <h3><span class="card-title"><i class="fa fa-angle-right"> Mis Revistas</i></span></h3>           
                 </div>
                 <div class="col-md-12  control-label">
                     <input id="myInput" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
                 </div>
                 </div>
-                 @if($Books != 0)
+                @if($Megazines != 0)   
                 <!-- PROFILE 01 PANEL -->
-                @foreach($Books as $Book)
+                @foreach($Megazines as $Megazine)
                 <div class="col-lg-5 col-md-5 col-sm-5 mb">
                     <div class="content-panel pn-music">
                         <div id="profile-01" style="">
-                            @if($Book->cover)
-                                <img src="images/bookcover/{{$Book->cover}}" width="100%" height="220" style="">
-
+                            @if($Megazine->cover)
+                                <img src="{{$Megazine->cover}}" width="100%" height="220" style="">
                             @else
                                 <img src="#" width="100%" height="220" style="">
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href="{{url('ShowMyReadBook/'.$Book->id)}}">Ver mas</p></a>
+                            <p><a href="{{url('ShowMyReadMegazine/'.$Megazine->id)}}">Ver mas</p></a>
                         </div>
                         <div class="centered">
-                            <h3>{{$Book->title}}</h3>
-                            <h6>{{$Book->author->full_name}}</h6>
-                            <p class="sinopsis"><b>Sinopsis:</b>{{$Book->sinopsis}}
+                            <h3>{{$Megazine->title}}</h3>
+                            <h6>Proveedor {{$Megazine->Seller->name}}</h6>
+                            <p class="sinopsis"><b>Sinopsis:</b>{{$Megazine->descripcion}}
                             </p>
 
                         </div>
@@ -41,7 +40,7 @@
                 </div><!--/col-md-4 -->
                 @endforeach
                 @else
-                    <h1>No Posee Libros</h1>
+                    <h1>No Posee Magazines</h1>
                 @endif
             </div>
         </div> 

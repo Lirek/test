@@ -162,7 +162,7 @@ class MegazineController extends Controller
       
       
       $megazine = new Megazines;
-      $megazine->seller_id=$request->seller_id;
+      $megazine->seller_id=$request->id;
       $megazine->title=$request->title; 
       $megazine->cover=$path2;
       $megazine->num_pages=0;
