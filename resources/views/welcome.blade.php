@@ -206,54 +206,7 @@
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
-
-            {{--<div class="row" id="portfolio-wrapper">--}}
-
-            {{--<div id="ca-container" class="ca-container">--}}
-            {{--<div class="ca-wrapper">--}}
-
-            {{--@foreach( $book as $b)--}}
-            {{--imagen --}}
-            {{--<div class="ca-item">--}}
-            {{--<div class="ca-item-main">--}}
-            {{--<div class="ca-icon"--}}
-            {{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
-            {{--<br/>--}}
-            {{--<h3>{{ $b->title }}</h3>--}}
-            {{--<h4>--}}
-            {{--<span class="ca-quote">&ldquo;</span>--}}
-            {{--<span>--}}
-            {{--{{ $b->sinopsis }}--}}
-            {{--</span>--}}
-            {{--</h4>--}}
-            {{--<a href="#" class="ca-more">mas...</a>--}}
-            {{--</div>--}}
-            {{--<div class="ca-content-wrapper">--}}
-            {{--<div class="ca-content">--}}
-            {{--<h6>{{ $b->original_title }}</h6>--}}
-            {{--<a href="#" class="ca-close">close</a>--}}
-            {{--<div class="ca-content-text">--}}
-            {{--<p>--}}
-            {{--{{ $b->sinopsis }}--}}
-            {{--</p>--}}
-            {{--</div>--}}
-            {{--<ul>--}}
-            {{--<li><a href="#">{{ $b->seller->name }}</a></li>--}}
-            {{--<li><a href="#">{{ $b->author->full_name }}</a></li>--}}
-            {{--<li><a href="#">{{ $b->country }}</a></li>--}}
-            {{--<li><a href="#">{{ $b->release_year }}</a></li>--}}
-            {{--</ul>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--@endforeach--}}
-
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--prueba del carrusel --}}
-
-            {{--</div>--}}
-
+            {{--{{ dd($music) }}--}}
             {{--prueba de pestaña--}}
 
             <div class=" container text-center ">
@@ -316,7 +269,7 @@
                                     <div class="tab-inner" >
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerL" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $book as $b)
@@ -368,7 +321,7 @@
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerS" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $book as $b)
@@ -420,7 +373,7 @@
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerT" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $tv as $t)
@@ -472,7 +425,7 @@
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerR" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $radio as $r)
@@ -524,7 +477,7 @@
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerM" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $book as $b)
@@ -572,12 +525,11 @@
                                     </div>
                                 </div>
 
-
                                 <div role="tabpanel" class="tab-pane fade" id="revistas">
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerRe" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $book as $b)
@@ -629,7 +581,7 @@
                                     <div class="tab-inner">
                                         <div class="row" id="portfolio-wrapper">
 
-                                            <div id="ca-container" class="ca-container">
+                                            <div id="ca-containerP" class="ca-container">
                                                 <div class="ca-wrapper">
 
                                                     @foreach( $movie as $m)
@@ -727,7 +679,7 @@
     </div>
     <!--TEAM END-->
 
-    <!--CTA2 START-->
+    <!--CTA2 START Ingresar proveedor-->
     <div class="cta2">
         <div class="container">
             <div class="row white text-center">
@@ -739,7 +691,7 @@
     </div>
     <!--CTA2 END-->
 
-    <!--CONTACT START-->
+    <!--CONTACT START Comentario-->
     <div id="contact" class="section-padding">
         <div class="container">
             <div class="row">
@@ -834,7 +786,90 @@
 <script src="{{ asset('plugins/carusel/js/jquery.mousewheel.js') }}"></script>
 <script src="{{ asset('plugins/carusel/js/jquery.contentcarousel.js') }}"></script>
 <script type="text/javascript">
-    $('#ca-container').contentcarousel();
+    $('#ca-containerL').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerS').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerT').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerR').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerM').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerRe').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerP').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
 </script>
 </body>
 </html>

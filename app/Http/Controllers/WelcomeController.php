@@ -9,6 +9,7 @@ use App\Book;
 use App\Radio;
 use App\Tv;
 use App\Movie;
+use App\Albums;
 
 class WelcomeController extends Controller
 {
@@ -38,11 +39,18 @@ class WelcomeController extends Controller
             $movies->rating;
         });
 
+        $musica = Albums::all();
+        $musica->each(function ($musica){
+            $musica->seller;
+        });
+
+
         return view('welcome')
             ->with('seller', $sellers)
             ->with('book',$books)
             ->with('movie',$movies)
             ->with('tv',$tvs)
-            ->with('radio',$radios);
+            ->with('radio',$radios)
+            ->with('music',$musica);
     }
 }
