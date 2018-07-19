@@ -22,4 +22,9 @@ class Tags extends Model
     {
         return $this->belongsToMany('App\MusicTags','music_tags','music_id','tags_id');
     }
+ 
+ public function Seller()
+    {
+      return $this->belongsTo('App\Seller', 'seller_id');
+    }
 }

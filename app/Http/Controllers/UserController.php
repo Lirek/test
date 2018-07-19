@@ -92,7 +92,9 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return view('home');
+        return redirect()->action('HomeController@index');
+
+
     }
 
     /**
@@ -114,11 +116,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
 //        dd($user);
-        $user = User::find(Auth::user()->id);
-        
+        $user = User::find($id);
 
         return view('users.edit')->with('user', $user);
     }
@@ -138,8 +139,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->ci = $request->ci;
         $user->num_doc = $request->num_doc;
-
-        $user->type= $request->type;
+        $user->img_doc = $request->img_doc;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
@@ -156,30 +156,18 @@ class UserController extends Controller
          
          $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
+        else
+        {
+            $user->img_perf= NULL;
+        }
         
         $user->fech_nac = $request->fech_nac;
-
-       
-        if ($request->hasFile('img_doc'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
-
-         $request->file('img_doc')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
-        }
      
         //dd($user);
         $user->save();
         Flash('Se Han Modificado Sus Datos Con Exito')->success();
-        //return view('home');
-       return redirect()->action('HomeController@index');
+        
+        return view('home');
     }
 
     /**

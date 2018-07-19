@@ -11,6 +11,7 @@ use App\Mail\PromoterAssing;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
 use App\Events\PasswordPromoter;
+use Yajra\Datatables\Datatables;
 
 
 
@@ -55,32 +56,6 @@ class AdminController extends Controller
         return true;
     }
 
-    public function index()
-    {
-    	$user= User::find(Auth::user()->id);      
-    	
-      if($user['status']=='admin')
-        {
-
-            $albums= Albums::where('status','=','En Revision')->get();
-            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
-            $radios= Radio::where('status','=','En Revision')->get();
-            $tv= Radio::where('status','=','En Revision')->get();
-            $books= Book::where('status','=','En Revision')->get();
-            $megazines= Megazines::where('status','=','En Revision')->get();
-            $tags= Tags::all();
-
-            $sellers=ApplysSellers::all();
-            
-            return view('admin.Dashboard')->with('tags', $tags)->with('megazines', $megazines)->with('books', $books)->with('tv', $tv)->with('radios', $radios)->with('singles', $singles)->with('albums', $albums);
-         }
-         else
-        {
-            Auth::logout();
-            return redirect('/login');
-        }	
-    }
-
 /*-------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
 --------------------                             .............................................
@@ -114,7 +89,7 @@ class AdminController extends Controller
         $albums->status = $request->status;
         
 
-        $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
+       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
 			  
         $albums->save();
    			return response()->json($albums);
@@ -126,10 +101,14 @@ class AdminController extends Controller
 -----------------------------------------------------------------------------------------------------
 */
    		public function ShowSingles()
-    	{
-    		$single= Songs::where('status','=','En Revision')->whereNull('album')->paginate(10);
-    		return view('admin.Single')->with('single',$single);
+    	{	
+        return view('promoter.ContentModules.Single');
    		}
+
+      public function SinglesDataTable()
+      {
+        
+      }
 
       public function ShowAllSingles()
       {
@@ -155,16 +134,91 @@ class AdminController extends Controller
 -----------------------------------------------------------------------------------------------------
 */
 
-   		public function ShowMusician()
+   		public function ShowMusicianView()
     	{
-    		$musician= music_authors::where('status','=','En Proceso')->paginate(10);
-    		return view('admin.Musician')->with('musician',$musician);
+    		return view('promoter.ContentModules.ExtraContent.Musician');
    		}
+
+      public function MusicianDataTable()
+      {
+      
+        $Musician = music_authors::where('status','=','En Proceso')
+                              ->with('Seller')
+                              ->get();
+
+
+
+        return Datatables::of($Musician)
+                    ->addColumn('Estatus',function($Musician){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
+                    })
+                    
+                    ->addColumn('SocialMedia',function($Musician){
+                      
+                      return 
+                      '<a target="_blank" href="http://'.$Musician->facebook.'>
+                        <i class="fas fa-facebook-square fa-3x">
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->google.'">
+                        <i class="fas fa-youtube fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->instagram.'">
+                         <i class="fas fa-instagram fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->twitter.'">
+                        <i class="fas fa-twitter fa-3x"></i>
+                       </a>';
+                    })
+                    
+                    ->editColumn('photo',function($Musician){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->rawColumns(['Estatus','photo','SocialMedia'])
+                    ->toJson();
+      }
 
       public function ShowAllMusician()
       {
-        $musician= music_authors::paginate(10);
-        return view('admin.Musician')->with('musician',$musician);
+       
+       $Musician = music_authors::where('status','=','Aprobado')
+                              ->with('Seller')
+                              ->get();
+
+
+
+        return Datatables::of($Musician)
+                    ->addColumn('Estatus',function($Musician){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
+                    })
+                    
+                    ->addColumn('SocialMedia',function($Musician){
+                      
+                      return 
+                      '<a target="_blank" href="http://'.$Musician->facebook.'>
+                        <i class="fas fa-facebook-square fa-3x">
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->google.'">
+                        <i class="fas fa-youtube fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->instagram.'">
+                         <i class="fas fa-instagram fa-3x"></i>
+                       </a>
+                       <a target="_blank" href="http://'.$Musician->twitter.'">
+                        <i class="fas fa-twitter fa-3x"></i>
+                       </a>';
+                    })
+                    
+                    ->editColumn('photo',function($Musician){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->rawColumns(['Estatus','photo','SocialMedia'])
+                    ->toJson();
       }
 
    		public function MusicianStatus(Request $request,$id)
@@ -172,7 +226,7 @@ class AdminController extends Controller
    			$musician =music_authors::find($id);
    			$musician->status = $request->status; 
 
-        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reazon);
+        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reaon);
 
 			  $musician->save();
    			return response()->json($musician);
@@ -290,10 +344,7 @@ class AdminController extends Controller
    			return response()->json($tv);
    		}
 
-   		public function Books()
-    	{
-    	
-   		}
+   		
 
 
 
@@ -312,7 +363,7 @@ class AdminController extends Controller
     		$acces_modules=SellersRoles::all();
 
 
-    		return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
+    		return view('promoter.AdminModules.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
    		}
 
    		public function DeleteModule($id_seller,$id_module)
@@ -382,7 +433,7 @@ class AdminController extends Controller
     		
     		$Salesmans = Salesman::all();
     		
-    		return view('promoter.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+    		return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
    		}
 //-------------------------------------------------------------------------------
 
@@ -530,7 +581,7 @@ class AdminController extends Controller
         $Salesmans = Salesman::all();
         
 
-        return view('promoter.BackendUsers')
+        return view('promoter.AdminModules.BackendUsers')
                                             ->with('promoters',$promoters)
                                             ->with('salesmans',$Salesmans)
                                             ->with('priority',$priority);
@@ -551,9 +602,9 @@ class AdminController extends Controller
 
       public function DeleteSalesman($id)
       {
-        $salesman= Salesman::find($id);
+        $salesman= Salesman::destroy($id);
         
-        $salesman->destroy();
+        
 
         return response()->json($salesman); 
       }

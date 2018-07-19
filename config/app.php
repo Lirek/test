@@ -187,7 +187,10 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         //DATA TABLES CUCHI
-        Yajra\DataTables\DataTablesServiceProvider::class
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
+        //JWT AUTH
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 
@@ -247,7 +250,12 @@ return [
         //Qr Generator
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         //DataTables Cuchi
-        'Datatables' => Yajra\DataTables\Facades\DataTables::class
+        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+
+        //JWT AUTH
+
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class
+
 
 
     ],

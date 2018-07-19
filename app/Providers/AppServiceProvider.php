@@ -19,13 +19,14 @@ class AppServiceProvider extends ServiceProvider
         //
 
             Schema::defaultStringLength(191);
+           
             view()->composer('seller.layouts',function($view)
                 {
                     $id=Auth::guard('web_seller')->user()->id;
                     $seller=\App\Seller::find($id);
                     $acces=$seller->roles->count();
                     
-                    if ($acces==0) 
+                    if ($acces == 0) 
                     {
                         $view->with('modulos',FALSE);   
                     }
@@ -38,9 +39,10 @@ class AppServiceProvider extends ServiceProvider
 
                         $view->with('modulos',$seller_modules);
 
-                    }     
-                    
+                    }                         
                 });
+
+           
 
 
     }

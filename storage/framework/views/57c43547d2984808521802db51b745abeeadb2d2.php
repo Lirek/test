@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
     
@@ -26,7 +28,7 @@
     <link href="<?php echo e(asset ('assets/css/style.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset ('assets/css/style-responsive.css')); ?>" rel="stylesheet">
 
-    <script src="<?php echo e(asset ('assets/js/chart-master/Chart.js')); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -183,6 +185,7 @@
     <!--script for this page-->
     <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>    
   <script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script> 
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 
 <!--SCRIPS JS-->
