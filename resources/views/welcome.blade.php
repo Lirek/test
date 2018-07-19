@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{--carrusel--}}
-    <meta name="description" content="Circular Content Carousel with jQuery" />
-    <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3" />
-    <meta name="author" content="Codrops" />
+    <meta name="description" content="Circular Content Carousel with jQuery"/>
+    <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3"/>
+    <meta name="author" content="Codrops"/>
     {{--carrusel--}}
 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,17 +17,91 @@
 
     <!-- Styles -->
     {{--<link href="/css/app.css" rel="stylesheet">--}}
+    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+
     <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
+    {{--para el carrusel--}}
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/demo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/jquery.jscrollpane.css') }}" media="all">
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'/>
+
+    <style>
+        @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+
+        body {
+            padding-top: 60px;
+        }
+
+        .nav.nav-justified > li > a {
+            position: relative;
+        }
+
+        .nav.nav-justified > li > a:hover,
+        .nav.nav-justified > li > a:focus {
+            background-color: transparent;
+        }
+
+        .nav.nav-justified > li > a > .quote {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            opacity: 0;
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            background-color: #426fac;
+            border-radius: 15px;
+            color: #fff;
+        }
+
+        .nav.nav-justified > li.active > a > .quote {
+            opacity: 1;
+        }
+
+        .nav.nav-justified > li > a > img {
+            box-shadow: 0 0 0 5px #426fac;
+        }
+
+        .nav.nav-justified > li > a > img {
+            max-width: 100%;
+            opacity: .3;
+            -webkit-transform: scale(.8, .8);
+            transform: scale(.8, .8);
+            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav.nav-justified > li.active > a > img,
+        .nav.nav-justified > li:hover > a > img,
+        .nav.nav-justified > li:focus > a > img {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tab-pane .tab-inner {
+            padding: 45px 0 20px 10px;
+        }
+
+        @media (min-width: 768px) {
+            .nav.nav-justified > li > a > .quote {
+                left: auto;
+                top: auto;
+                right: 20px;
+                bottom: 0px;
+            }
+        }
+    </style>
 
     <!-- Scripts -->
     <script>
@@ -132,98 +206,435 @@
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
-            {{--<div class="row">--}}
-            {{--<div class="col-lg-12">--}}
-            {{--<ul id="portfolio-flters">--}}
-            {{--<li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">--}}
-            {{--All--}}
-            {{--</li>--}}
-            {{--</ul>--}}
-            {{--</div>--}}
-            {{--</div>--}}
+            {{--{{ dd($music) }}--}}
+            {{--prueba de pestaña--}}
 
-            <div class="row" id="portfolio-wrapper">
-                {{--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px">--}}
+            <div class=" container text-center ">
+                <div class=" row ">
+                    <div class="  col-md-10  " role="tabpanel">
+                        <div class="[ col-xs-12 col-sm-12 ]">
+                            <!-- Nav tabs -->
+                            <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#libros" aria-controls="libros" role="tab" data-toggle="tab">
+                                        <img class="img-circle"
+                                             src="{{asset('plugins/carusel/images/biblioteca.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#tvs" aria-controls="tvs" role="tab" data-toggle="tab">
+                                        <img class="img-circle"
+                                             src="{{asset('plugins/carusel/images/controlar.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#radios" aria-controls="radios" role="tab" data-toggle="tab">
+                                        <img class="img-circle"
+                                             src="{{asset('plugins/carusel/images/microfono.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#musica" aria-controls="musica" role="tab" data-toggle="tab">
+                                        <img class="img-circle" src="{{asset('plugins/carusel/images/musica.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#revistas" aria-controls="revistas" role="tab" data-toggle="tab">
+                                        <img class="img-circle" src="{{asset('plugins/carusel/images/revista.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#series" aria-controls="series" role="tab" data-toggle="tab">
+                                        <img class="img-circle" src="{{asset('plugins/carusel/images/tv.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#peliculas" aria-controls="peliculas" role="tab" data-toggle="tab">
+                                        <img class="img-circle" src="{{asset('plugins/carusel/images/camara.png')}}"/>
+                                        <span class="quote"><i class="fa fa-check-circle"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="[ col-xs-8 col-sm-12 ]">
+                            <!-- Tab panes -->
+                            <div class="tab-content" id="tabs-collapse">
+                                <div role="tabpanel" class="tab-pane fade in active" id="libros">
+                                    <div class="tab-inner" >
+                                        <div class="row" id="portfolio-wrapper">
 
-                {{--<!-- Indicators -->--}}
-                {{--<ol class="carousel-indicators">--}}
-                {{--@foreach( $book as $b )--}}
-                {{--<li data-target="#carousel-example-generic" data-slide-to="{{ $loop->index }}"--}}
-                {{--class="{{ $loop->first ? 'active' : '' }}"></li>--}}
-                {{--@endforeach--}}
-                {{--</ol>--}}
+                                            <div id="ca-containerL" class="ca-container">
+                                                <div class="ca-wrapper">
 
-                {{--<!-- Wrapper for slides -->--}}
-                {{--<div class="carousel-inner" role="listbox">--}}
-                {{--@foreach( $book as $b )--}}
-                {{--<div class="item {{ $loop->first ? ' active' : '' }}">--}}
-                {{--<img src="{{ asset('images/bookcover/'. $b->cover) }}" class="img-responsive" alt="{{ $b->title }}"--}}
-                {{--style="width:100%; height:500px">--}}
-                {{--<div class="carousel-caption">--}}
-                {{--<h2> {{ $b->seller->name }} </h2>--}}
-                {{--<h3>{{ $b->title }}</h3>--}}
-                {{--<p> {{ $b->sinopsis }} </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--@endforeach--}}
-                {{--</div>--}}
+                                                    @foreach( $book as $b)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $b->title }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $b->sinopsis }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $b->original_title }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $b->sinopsis }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $b->seller->name }}</a></li>
+                                                                        <li><a href="#">{{ $b->author->full_name }}</a>
+                                                                        </li>
+                                                                        <li><a href="#">{{ $b->country }}</a></li>
+                                                                        <li><a href="#">{{ $b->release_year }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
 
-                {{--<!-- Controls -->--}}
-                {{--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">--}}
-                {{--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>--}}
-                {{--<span class="sr-only">Previous</span>--}}
-                {{--</a>--}}
-                {{--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">--}}
-                {{--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>--}}
-                {{--<span class="sr-only">Next</span>--}}
-                {{--</a>--}}
-                {{--</div>--}}
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
 
-                {{--prueba del carrusel --}}
-
-                <div id="ca-container" class="ca-container">
-                    <div class="ca-wrapper">
-                        @foreach( $book as $b)
-                            {{--imagen --}}
-                            <div class="ca-item" >
-                                <div class="ca-item-main">
-                                    <div class="ca-icon"  style="background-image:url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
-                                    <br />
-                                    <h3>{{ $b->title }}</h3>
-                                    <h4>
-                                        <span class="ca-quote">&ldquo;</span>
-                                        <span>
-                                        {{ $b->sinopsis }}
-                                    </span>
-                                    </h4>
-                                    <a href="#" class="ca-more">mas...</a>
-                                </div>
-                                <div class="ca-content-wrapper">
-                                    <div class="ca-content">
-                                        <h6>{{ $b->original_title }}</h6>
-                                        <a href="#" class="ca-close">close</a>
-                                        <div class="ca-content-text">
-                                            <p>
-                                                {{ $b->sinopsis }}
-                                            </p>
                                         </div>
-                                        <ul>
-                                            <li><a href="#">{{ $b->seller->name }}</a></li>
-                                            <li><a href="#">{{ $b->author->full_name }}</a></li>
-                                            <li><a href="#">{{ $b->country }}</a></li>
-                                            <li><a href="#">{{ $b->release_year }}</a></li>
-                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="series">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerS" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $book as $b)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $b->title }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $b->sinopsis }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $b->original_title }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $b->sinopsis }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $b->seller->name }}</a></li>
+                                                                        <li><a href="#">{{ $b->author->full_name }}</a>
+                                                                        </li>
+                                                                        <li><a href="#">{{ $b->country }}</a></li>
+                                                                        <li><a href="#">{{ $b->release_year }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="tvs">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerT" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $tv as $t)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/tv/'. $t->logo) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $t->name_r }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $t->seller->name_r }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $t->name_r }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $t->seller->name }}
+                                                                            {{ $t->descs_s }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $t->google }}</a></li>
+                                                                        <li><a href="#">{{ $t->facebook }}</a></li>
+                                                                        <li><a href="#">{{ $t->instagram }}</a></li>
+                                                                        <li><a href="#">{{ $t->twitter }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="radios">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerR" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $radio as $r)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/radio/'. $r->logo) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $r->name_r }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $r->seller->name_r }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $r->name_r }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $r->seller->name }}
+                                                                            {{ $r->descs_s }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $r->google }}</a></li>
+                                                                        <li><a href="#">{{ $r->facebook }}</a></li>
+                                                                        <li><a href="#">{{ $r->instagram }}</a></li>
+                                                                        <li><a href="#">{{ $r->twitter }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="musica">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerM" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $book as $b)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $b->title }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $b->sinopsis }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $b->original_title }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $b->sinopsis }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $b->seller->name }}</a></li>
+                                                                        <li><a href="#">{{ $b->author->full_name }}</a>
+                                                                        </li>
+                                                                        <li><a href="#">{{ $b->country }}</a></li>
+                                                                        <li><a href="#">{{ $b->release_year }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="revistas">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerRe" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $book as $b)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
+                                                                <br/>
+                                                                <h3>{{ $b->title }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $b->sinopsis }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $b->original_title }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $b->sinopsis }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $b->seller->name }}</a></li>
+                                                                        <li><a href="#">{{ $b->author->full_name }}</a>
+                                                                        </li>
+                                                                        <li><a href="#">{{ $b->country }}</a></li>
+                                                                        <li><a href="#">{{ $b->release_year }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="peliculas">
+                                    <div class="tab-inner">
+                                        <div class="row" id="portfolio-wrapper">
+
+                                            <div id="ca-containerP" class="ca-container">
+                                                <div class="ca-wrapper">
+
+                                                    @foreach( $movie as $m)
+                                                        {{--imagen --}}
+                                                        <div class="ca-item">
+                                                            <div class="ca-item-main">
+                                                                <div class="ca-icon"
+                                                                     style="background-image: url({{ asset('movie/poster/'. $m->img_poster) }}); background-size: cover ">
+
+                                                                </div>
+                                                                <br/>
+                                                                <h3>{{ $m->title }}</h3>
+                                                                <h4>
+                                                                    <span class="ca-quote">&ldquo;</span>
+                                                                    <span>
+                                                                        {{ $m->based_on }}
+                                                                    </span>
+                                                                </h4>
+                                                                <a href="#" class="ca-more">mas...</a>
+                                                            </div>
+                                                            <div class="ca-content-wrapper">
+                                                                <div class="ca-content">
+                                                                    <h6>{{ $m->original_title }}</h6>
+                                                                    <a href="#" class="ca-close">close</a>
+                                                                    <div class="ca-content-text">
+                                                                        <p>
+                                                                            {{ $m->story }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li><a href="#">{{ $m->seller->name }}</a></li>
+                                                                        <li><a href="#">{{ $m->release_year }}</a></li>
+                                                                        <li><a href="#">{{ $m->trailer_url }}</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                            {{--prueba del carrusel --}}
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-
+                        </div>
                     </div>
                 </div>
-
-                {{--prueba del carrusel --}}
-
             </div>
+
+            {{--prueba de pestaña--}}
         </div>
     </div>
 
@@ -243,7 +654,8 @@
                             <div class="col-md-6">
                                 <div class="team-info">
                                     <div class="img-sec">
-                                        <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive" style="width:255px;height:256px">
+                                        <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive"
+                                             style="width:255px;height:256px">
                                     </div>
                                     <div class="fig-caption">
                                         <h3>{{ $s->name }}</h3>
@@ -267,7 +679,7 @@
     </div>
     <!--TEAM END-->
 
-    <!--CTA2 START-->
+    <!--CTA2 START Ingresar proveedor-->
     <div class="cta2">
         <div class="container">
             <div class="row white text-center">
@@ -279,7 +691,7 @@
     </div>
     <!--CTA2 END-->
 
-    <!--CONTACT START-->
+    <!--CONTACT START Comentario-->
     <div id="contact" class="section-padding">
         <div class="container">
             <div class="row">
@@ -374,7 +786,90 @@
 <script src="{{ asset('plugins/carusel/js/jquery.mousewheel.js') }}"></script>
 <script src="{{ asset('plugins/carusel/js/jquery.contentcarousel.js') }}"></script>
 <script type="text/javascript">
-    $('#ca-container').contentcarousel();
+    $('#ca-containerL').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerS').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerT').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerR').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerM').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerRe').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
+    $('#ca-containerP').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });
 </script>
 </body>
 </html>
