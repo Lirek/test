@@ -92,7 +92,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="photo">
-                                            <img alt="avatar" src="assets/img/ui-zac.jpg">
+                                            <img alt="avatar" src="{{ asset('assets/img/ui-zac.jpg') }}">
                                         </span>
                                         <span class="subject">
                                             <span class="from">Zac Snider</span>
@@ -175,6 +175,7 @@
                                             </a>
                                             <ul class="sub">
                                                 <li><a href="{{ url('/albums') }}">Registrar Álbum</a></li>
+                                                <li><a href="{{ url('/single_registration') }}">Registrar Canciones</a></li>
                                                 <!-- Validar que la frase quepa en el espacio -->
                                                 <li class="treeview">
                                                     <a href="{{ url('/artist_form') }}">
@@ -186,7 +187,6 @@
                                                     </a>
                                                 </li>
                                                 <!-- Validar que la frase quepa en el espacio -->
-                                                <li><a href="{{ url('/single_registration') }}">Registrar Canciones</a></li>
                                                 <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi Música</a></li>
                                             </ul>
                                         </li>
@@ -244,10 +244,10 @@
                                                 <span>Libros</span>
                                             </a>
                                             <ul class="sub">
-                                                <li><a href="{{ url('/tbook') }}">Registro de Libros</a></li>
                                                 <li><a href="{{ url('/tbook/create') }}">Registrar Libro</a></li>
-                                                <li><a href="{{ url('/authors_books') }}">Registro de Autores</a></li>
-                                                <li><a href="{{ url('/authors_books/create') }}">Registrar un Autor</a></li>
+                                                <li><a href="{{ url('/authors_books/create') }}">Registrar Autor</a></li>
+                                                <li><a href="{{ url('/tbook') }}">Libros Registrados</a></li>
+                                                <li><a href="{{ url('/authors_books') }}">Autores Registrados</a></li>
                                             </ul>
                                         </li>
                                     @endif
