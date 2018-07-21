@@ -79,15 +79,20 @@ const players = Array.from(document.querySelectorAll('#player')).map(p => new Pl
                 {
 
                     var audio=document.getElementById('player'); 
+                    var pista=0;
                     
                      $.each(data, function(i,song) {
-                        $('#Playlist').append('<li class="" id="'+i+'"><a href="#">'+song.song_name+'</a></li>')   
-                         $('#player').attr('src',data[0].song_file);       
+                        $('#Playlist').append('<li class="" id="'+i+'"><a href="#">'+song.song_name+'</a></li>');
+                        playSong(0);
+                        audio.pause();
+                               
                     });
 
                     $('#Playlist li').click(function(){
                         var selectedsong = $(this).attr('id');
+                        if(selectedsong){
                         playSong(selectedsong);
+                        }
                     }); 
 
                     function playSong(id){
