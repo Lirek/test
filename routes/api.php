@@ -30,3 +30,12 @@ Route::group([
     Route::get('me', 'AuthController@me');
 
 });
+
+//---------------Rustas de Contenido---------------------------------------
+
+Route::get('Singles','ApiController\ContentController@AllAprovedSingles');
+Route::get('Albums','ApiController\ContentController@AllAprovedAlbums');
+Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthors');
+Route::get('Books','ApiController\ContentController@AllAprovedBooks');
+Route::get('Megazines','ApiController\ContentController@AllAprovedMegazines');
+//---------------------------------------------------------------------------

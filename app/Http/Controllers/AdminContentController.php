@@ -189,17 +189,16 @@ class AdminContentController extends Controller
 
   public function Content()
   {
-            $albums= Albums::where('status','=','En Revision')->get();
-            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
-            $radios= Radio::where('status','=','En Revision')->get();
-            $tv= Radio::where('status','=','En Revision')->get();
-            $books= Book::where('status','=','En Revision')->get();
-            $megazines= Megazines::where('status','=','En Revision')->get();
-            $tags= Tags::where('status','=','En Revision')->get();
-            $movies = Movie::where('status','=','En Revision')->get();
-            $series = 0;
+            $albums= Albums::all();
+            $singles= Songs::whereNull('album');
+            $radios= Radio::all();
+            $tv= Radio::all();
+            $books= Book::all();
+            $megazines= Megazines::all();
+            $tags= Tags::all();
+            $movies = Movie::all();
+            $series = 0;            
 
-            return Response::json($singles,200);
-
+      return Response()->json($tags); 
   }
 }
