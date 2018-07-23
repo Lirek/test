@@ -82,15 +82,17 @@
 
                                                   <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                                       <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                                                      <div id="apellidoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="required">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="required" onkeypress="return controltagLet(event)">
                                                       </div>
                                                   </div>
 
                                                   <div class="form-group{{ $errors->has('nDocument') ? ' has-error' : '' }}">
                                                       <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
+                                                      <div id="documentoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}" required="required">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}" required="required" onkeypress="return controltagNum(event)">
                                                       </div>
                                                   </div>
 
@@ -104,6 +106,7 @@
 
                                                   <div class="form-group{{ $errors->has('dateN') ? ' has-error' : '' }}">
                                                       <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
+                                                      <div id="dateMen"></div>
                                                       <div class="col-md-6">
                                                           <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}" required="required">
                                                       </div>
@@ -118,6 +121,7 @@
 
                                                   <div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
                                                       <label for="alias" class="col-md-4 control-label">Alias</label>
+                                                      <div id="aliasMen"></div>
                                                       <div class="col-md-6">
                                                           <input id="alias" type="text" class="form-control" name="alias" value="{{ old('alias') }}"required="required">
                                                       </div>
@@ -125,7 +129,7 @@
 
                                                   <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary">Registrar datos</button>
+                                                      <button type="submit" class="btn btn-primary" id="registro">Registrar datos</button>
                                                     </div>
                                                   </div>
                                                   </form>
@@ -174,13 +178,14 @@
 
                                               <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                                                       <label for="codigo" class="col-md-4 control-label">Codigo</label>
+                                                      <div id="codigoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}">
+                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required="required">
                                                       </div>
                                               </div>
                                                <div class="form-group">
                                                   <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary">Ingresar</button>
+                                                      <button type="submit" class="btn btn-primary" id='ingresar'>Ingresar</button>
                                                   </div>
                                                 </div>
                                             </form>
@@ -398,5 +403,147 @@ restaFechas = function(f1,f2)
  var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
  return dias;
  }
+</script>
+<script type="text/javascript">
+  //---------VALIDACION PARA QUE EL CAMPO CODIGO NO ESTE VACIO---------------
+      $(document).ready(function(){
+        $('#codigo').keyup(function(evento){
+            var codigo = $('#codigo').val().trim();
+            console.log(codigo.length);
+            if (codigo.length==0) {
+                $('#codigoMen').show();
+                $('#codigoMen').text('El campo no debe estar vacio');
+                $('#codigoMen').css('color','red');
+                $('#ingresar').attr('disabled',true);
+            } else {
+                $('#codigoMen').hide();
+                $('#ingresar').attr('disabled',false);
+            }
+        });
+    });
+  //---------VALIDACION PARA QUE EL CAMPO APELLIDO NO ESTE VACIO---------------
+    $(document).ready(function(){
+        $('#lastname').keyup(function(evento){
+            var apellido = $('#lastname').val().trim();
+            console.log(apellido.length);
+            if (apellido.length==0) {
+                $('#apellidoMen').show();
+                $('#apellidoMen').text('El campo no debe estar vacio');
+                $('#apellidoMen').css('color','red');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#apellidoMen').hide();
+                $('#registro').attr('disabled',false);
+            }
+        });
+    });
+  //---------VALIDACION PARA QUE EL CAMPO CI NO ESTE VACIO---------------
+    $(document).ready(function(){
+        $('#nDocument').keyup(function(evento){
+            var documento = $('#nDocument').val().trim();
+            console.log(documento.length);
+            if (documento.length==0) {
+                $('#documentoMen').show();
+                $('#documentoMen').text('El campo no debe estar vacio');
+                $('#documentoMen').css('color','red');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#documentoMen').hide();
+                $('#registro').attr('disabled',false);
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO FECHA DE NACIMIENTO NO ESTE VACIO---------------
+       $(document).ready(function(){
+        $('#dateN').keyup(function(evento){
+            var nacimiento = $('#dateN').val().trim();
+            console.log(nacimiento.length);
+            if (nacimiento.length==0) {
+                $('#dateMen').show();
+                $('#dateMen').text('El campo no debe estar vacio');
+                $('#dateMen').css('color','red');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#dateMen').hide();
+                $('#registro').attr('disabled',false);
+            }
+        });
+      });
+//---------VALIDACION PARA QUE EL CAMPO FECHA NACIMINTO SEA MAYOR DE EDAD---------------
+        $(document).ready(function(){
+          $('#dateN').keyup(function(evento){
+            var fecha = $('#dateN').val().trim();
+        var values=fecha.split("-");
+        var dia = values[2];
+        var mes = values[1];
+        var ano = values[0];
+        
+        var f = new Date();
+        var diaAc=f.getDate();
+        var mesAc=(f.getMonth()+1 );
+        var anoAc=f.getFullYear();        
+ 
+        // realizamos el calculo
+        var edad = (anoAc + 1900) - ano;
+        if ( mesAc < mes )
+        {
+            edad--;
+        }
+        if ((mes == mesAc) && (diaAc < dia))
+        {
+            edad--;
+        }
+        if (edad > 1900)
+        {
+            edad -= 1900;
+        }
+          
+        if (edad < 18){
+        $('#dateMen').show();
+                $('#dateMen').text('Debe ser mayor de edad');
+                $('#dateMen').css('color','red');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#dateMen').hide();
+                $('#registro').attr('disabled',false);
+            }
+    })
+  })
+//---------VALIDACION PARA QUE EL CAMPO ALIAS NO ESTE VACIO---------------
+       $(document).ready(function(){
+        $('#alias').keyup(function(evento){
+            var nacimiento = $('#alias').val().trim();
+            console.log(nacimiento.length);
+            if (nacimiento.length==0) {
+                $('#aliasMen').show();
+                $('#aliasMen').text('El campo no debe estar vacio');
+                $('#aliasMen').css('color','red');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#aliasMen').hide();
+                $('#registro').attr('disabled',false);
+            }
+        });
+      });
+  //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
+    function controltagLet(e) {
+        tecla = (document.all) ? e.keyCode : e.which; 
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+        te = String.fromCharCode(tecla);
+        return patron.test(te); 
+    }
+  //---------VALIDACION PARA SOLO INTRODUCIR NUMEROS---------------
+    function controltagNum(e) {
+        tecla = (document.all) ? e.keyCode : e.which; 
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[0-9]/;// -> solo numeros
+        te = String.fromCharCode(tecla);
+        return patron.test(te); 
+    }
 </script>
 @endsection
