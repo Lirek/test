@@ -33,6 +33,7 @@
     <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'/>
 
+
     <style>
         @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
 
@@ -683,7 +684,7 @@
     <div class="cta2">
         <div class="container">
             <div class="row white text-center">
-                <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
+                <h3 class="wd75 fnt-24">多¿Quieres Vender Tus Obras?</h3>
                 <p class="cta-sub-title"></p>
                 <a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a>
             </div>
