@@ -684,7 +684,7 @@
     <div class="cta2">
         <div class="container">
             <div class="row white text-center">
-                <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
+                <h3 class="wd75 fnt-24">多¿Quieres Vender Tus Obras?</h3>
                 <p class="cta-sub-title"></p>
                 <a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a>
             </div>
