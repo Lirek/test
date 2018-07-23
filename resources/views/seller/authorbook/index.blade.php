@@ -1,21 +1,16 @@
 @extends('seller.layouts')
-
+@section('css')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+@endsection
 @section('content')
-
-    <section class="content-header">
-        <h1>
-            Autores
-        </h1>
-    </section>
-
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-
+                @include('flash::message')
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header bg bg-black-gradient">
-                        <h3 class="box-title">Autores</h3>
+                        <h3 class="box-title">Autores Registrados</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -23,8 +18,9 @@
                             <thead>
                             <tr>
                                 <th class="text-center">Productora</th>
-                                <th class="text-center">Nombre completo</th>
-                                <th class="text-center">Email</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center">Nombre Completo</th>
+                                <th class="text-center">Correo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -33,23 +29,20 @@
                                 @if(Auth::guard('web_seller')->user()->id === $author->seller_id)
                                     <tr>
                                         <td class="text-center"> {{ $author->seller->name }} </td>
+                                        <td class="text-center">
+                                            <img class="img-rounded text-center" src="{{ asset('images/authorbook')}}/{{ $author->photo }}"style="width:50px;height:50px;" alt="Foto de Perfil">
+                                        </td>
                                         <td class="text-center"> {{ $author->full_name }} </td>
                                         <td class="text-center"> {{ $author->email_c }} </td>
                                         <td class="text-center ">
-                                            <a href="{{ route('authors_books.destroy',$author->id) }}"
-                                               onclick="return confirm('¿ Desea eliminar la autor  {{ $author->full_name }}?')"
-                                               class="btn btn-danger active ">
-                                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <a href="{{ route('authors_books.show', $author->id) }}" class="btn btn-info btn-xs">
+                                                <span class="fa fa-eye"></span>
                                             </a>
-                                            &nbsp;
-                                            <a href="{{ route('authors_books.edit', $author->id) }}"
-                                               class="btn btn-warning active">
-                                                <span class="glyphicon glyphicon-wrench"></span>
+                                            <a href="{{ route('authors_books.edit', $author->id) }}" class="btn btn-warning btn-xs">
+                                                <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            &nbsp;
-                                            <a href="{{ route('authors_books.show', $author->id) }}"
-                                               class="btn btn-info active">
-                                                <span class="fa fa-play-circle" aria-hidden="true"></span>
+                                            <a href="{{ route('authors_books.destroy',$author->id) }}" onclick="return confirm('¿Desea eliminar el Autor: {{ $author->full_name }}?')" class="btn btn-danger btn-xs">
+                                               <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </td>
                                     </tr>
@@ -59,8 +52,9 @@
                             <tfoot>
                             <tr>
                                 <th class="text-center">Productora</th>
-                                <th class="text-center">Nombre completo</th>
-                                <th class="text-center">Email</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center">Nombre Completo</th>
+                                <th class="text-center">Correo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>
@@ -69,17 +63,19 @@
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
-
             </div>
         </div>
-
-        <div class="col-md-offset-10">
+        <br>
+        <div class="col-md-offset-9">
             <a href="{{ route('authors_books.create') }}" class="btn btn-info">
-                <span class="fa fa-address-book-o">&nbsp;
-                    <b>
-                        <i> Autor </i>
-                    </b>
-                </span>
+                <b class="box-header with-border bg bg-black-gradient">
+                    <div class="box-title">
+                        <i class="fa fa-user"></i>
+                        <span>
+                            Agregar más Autores
+                        </span>
+                    </div>
+                </b>
             </a>
         </div>
     </section>
@@ -87,7 +83,7 @@
 @endsection
 
 @section('js')
-
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
         $(function () {
             $('#example1').DataTable({
