@@ -49,6 +49,37 @@
 	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
 	        ]
 	    });
+
+	    $(document).on('click', '#Status', function() {
+
+	    	var x = $(this).val();
+	    	 $( "#formStatus" ).on( 'submit', function(e)
+	    	 	 {
+                    var s=$("input[type='radio'][name=status]:checked").val();
+                    var url = 'admin_musician/'+x;
+                    e.preventDefault();
+                    $.ajax({
+                            url: url,
+                            type: 'post',
+                            data: {
+                                    _token: $('input[name=_token]').val(),
+                                    status: s,
+                                  }, 
+                            success: function (result) {
+
+                                            $('#myModal').toggle();
+                                            $('.modal-backdrop').remove();
+                                            alert("Se ha "+s+" con exito");
+                                            $('#author'+x).fadeOut();
+                                                        },
+
+                            error: function (result) {
+				                            alert('Existe un Error en su Solicitud');
+				                            console.log(result);
+                            }
+                            });  
+                   });
+	    });
 	});
 </script>
 @endsection

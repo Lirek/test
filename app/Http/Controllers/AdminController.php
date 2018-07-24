@@ -66,9 +66,44 @@ class AdminController extends Controller
 */
     	public function ShowAlbums()
     	{	
-    		$albums= Albums::where('status','=','En Revision')->paginate(10);
-    		return view('admin.Albums')->with('albums',$albums);
+    		return view('promoter.ContentModules.MainContent.Albums');
    		}
+
+      public function AlbumsDataTable()
+      {
+          
+        $albums= Albums::where('status','=','En Revision')->get();
+
+          return Datatables::of($albums)
+                    ->addColumn('Estatus',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button';
+                    })
+
+                    ->addColumn('Autors_name',function($albums){
+                      
+                      return $albums->Seller()->first()->name;
+                    })
+
+                    ->addColumn('songs',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value="'.$albums->id.'" id="songs" >'.$albums->songs()->count().'</button';
+                    })                    
+
+                    ->editColumn('autors_id',function($albums){
+
+                      return $albums->Autors()->first()->name;
+                    })
+
+                    ->editColumn('cover',function($albums){
+                      
+
+                      return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';;
+                    })
+                    ->rawColumns(['Estatus','cover','songs'])
+                    ->toJson();        
+      }
 
       public function ShowAllAlbums()
       {
@@ -102,12 +137,38 @@ class AdminController extends Controller
 */
    		public function ShowSingles()
     	{	
-        return view('promoter.ContentModules.Single');
+        return view('promoter.ContentModules.MainContent.Single');
    		}
 
       public function SinglesDataTable()
       {
-         $single= Songs::whereNull('album')->where('status','=','En Proceso')->get();
+         $Single= Songs::whereNull('album')->where('status','=','En Revision')->get();
+
+                 return Datatables::of($Single)
+                    ->addColumn('Estatus',function($Single){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Single->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$Single->status.'</button';
+                    })
+
+                    ->addColumn('Autors_name',function($Single){
+                      
+                      return $Single->Seller()->first()->name;
+                    })                    
+
+                    ->editColumn('autors_id',function($Single){
+
+                      return $Single->autors()->first()->name;
+                    })
+
+                    ->editColumn('song_file',function($Single){
+                      
+
+                      return '<audio controls="" src="'.$Single->song_file.'">
+                                <source src="'.$Single->song_file.'" type="audio/mpeg">
+                                </audio>';
+                    })
+                    ->rawColumns(['Estatus','photo','song_file'])
+                    ->toJson();
       }
 
       public function ShowAllSingles()

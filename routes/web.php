@@ -345,11 +345,16 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('AdminContent','AdminContentController@Home');
 
                 Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
+                
                 Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
 
                 Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
 
                 Route::get('TagsStatusGraphData','AdminContentController@TagsDountsGraph');
+
+                Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
+
+                Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
           //________________________________________________________________________
 
 
@@ -357,12 +362,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_albums','AdminController@ShowAlbums');
                 Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
-
+                Route::get('AlbumDataTable','AdminController@AlbumsDataTable');
                 Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
                 Route::get('/admin_single','AdminController@ShowSingles');
-                Route::get('/AllAdminSingles','AdminController@ShowAllSingles');
+                Route::get('SingleData','AdminController@SinglesDataTable');
                 Route::post('/admin_single/{id}','AdminController@SingleStatus');
 
            //---------------------------------------------------------------------

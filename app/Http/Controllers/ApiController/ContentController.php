@@ -50,7 +50,7 @@ class ContentController extends Controller
     public function AllAprovedSingles()
     {
     	
-	    	$Songs=Songs::whereNull('id')
+	    	$Songs=Songs::whereNull('album')
 	    							  ->with('Seller')
 	    							  ->with('autors')
 	                                  ->where('status','=','Aprobado')

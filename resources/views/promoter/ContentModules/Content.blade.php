@@ -139,6 +139,39 @@
 	 </a>
 	</center>
 </div>	
+
+<div class="row mt">
+	<h2><i class="fa fa-angle-right"></i>Artistas Musicales</h2>	
+</div>
+
+<div class="row mt">
+	
+					<div class="col-lg-6">
+                          <div class="content-panel">
+							  <h4><i class="fa fa-angle-right"></i>Artistas o Agrupaciones Totales</h4>
+                              <div class="panel-body text-center">
+                                  <canvas id="MusicianBar" height="300" width="400"></canvas>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                          <div class="content-panel">
+							  <h4><i class="fa fa-angle-right"></i>Autores Musicales Totales</h4>
+                              <div class="panel-body text-center">
+                                  <canvas id="MusicianPie" height="300" width="400"></canvas>
+                              </div>
+                          </div>
+                      </div>
+</div>
+
+<div class="row mt">
+	<center>
+	 <a href="{{url('admin_musician')}}">
+		<button type="button" class="btn btn-theme">Revisar Musicos</button type="button" class="btn btn-theme">
+	 </a>
+	</center>
+</div>	
 @endsection
 
 @section('js')
@@ -364,6 +397,101 @@ $(document).ready(function(){
 
 	});
 
+	$.ajax({
+
+		url: 'MusicianStatusGraphData',
+		type: 'GET',
+
+		success:function(x) {
+			var ctx = document.getElementById("MusicianPie");
+
+			var data ={
+    					datasets: [{
+        							data: x,
+        							backgroundColor: [
+					                				'rgba(255, 99, 132)',
+					                				'rgba(54, 162, 235)',
+					                				],
+									borderColor: [
+					                				'rgba(255,99,132,1)',
+					                				'rgba(54, 162, 235, 1)'
+					                			],				                
+									
+									borderWidth: 1
+
+    							  }],
+    					labels: [
+							        'Por Aprobar',
+							        'Aprobado',
+							    ]
+                		
+						};
+
+			
+
+
+			var myPieChart = new Chart(ctx,{
+			    type: 'pie',
+			    data: data,
+			    
+			   
+			});
+		},
+
+		error:function() {
+			console.log('Error');
+		}
+
+	});
+
+	$.ajax({
+
+			url: 'MusicianGraphData',
+			type: 'GET',
+
+			success:function(x) {
+
+				var ctx = document.getElementById("MusicianBar");
+				var data = {
+						        labels: ["Solista", "Agrupacion Musical"],
+						        datasets: [{
+						            label: 'Musicos',
+						            data: x,
+						            backgroundColor: [
+						                'rgba(255, 99, 132, 0.2)',
+						                'rgba(54, 162, 235, 0.2)'
+						            ],
+						            borderColor: [
+						                'rgba(255,99,132,1)',
+						                'rgba(54, 162, 235, 1)'
+						            ],
+						            borderWidth: 1
+						        }]
+		    			   };
+		    	var options = {
+						        scales: {
+						            yAxes: [{
+								                ticks: {
+								                    beginAtZero:true
+								                }
+								            }]
+						        		}
+					    	  };
+
+				var MusicianBarr = new Chart(ctx,{
+				    type: 'bar',
+				    data: data,
+				    options: options
+				   
+				});
+
+			},
+
+			error:function() {
+				console.log('Error');
+			}
+
+	});
 
 });
 </script>

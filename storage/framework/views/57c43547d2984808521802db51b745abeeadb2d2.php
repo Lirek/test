@@ -13,6 +13,7 @@
     <title>LEIPEL</title>
 
     <!-- Bootstrap core CSS -->
+
     <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
     <!--external css-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -20,6 +21,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+
     
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
@@ -186,7 +190,7 @@
     <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>    
   <script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script> 
   <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
 
 <!--SCRIPS JS-->
   
