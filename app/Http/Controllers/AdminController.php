@@ -682,4 +682,13 @@ class AdminController extends Controller
       {
         return view('promoter.AdminModules.Clients');
       }
+
+      public function ClientsData()
+      {
+          $user=User::where('verify','=','0')
+                                             ->where('img_doc','<>','NULL')
+                                             ->where('num_doc','<>','NULL')
+                                             ->get(); 
+          dd($user);                                             
+      }
 }

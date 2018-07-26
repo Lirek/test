@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('codigo_ref')->nullable();
-            $table->string('ci')->nullable();
+            $table->string('type_doc')->nullable();
             $table->string('num_doc')->nullable();
             $table->string('img_doc')->nullable();
             $table->enum('type',['M','F','Indefinido'])->default('Indefinido');

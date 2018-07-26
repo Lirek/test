@@ -388,7 +388,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
         //______________________Rutas de Clientes___________________________________
 
                 Route::get('/admin_clients','AdminController@ShowPendingClients');
-
+                Route::get('ClientsDataTable','AdminController@ClientsData');
 
         //______________________Fin de las rutas de Clientes________________________
         });

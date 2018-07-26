@@ -28,7 +28,12 @@ class ContentController extends Controller
 {
     public function FormatJson($content)
     {
-    	return Response()->json($content->toArray(),200);
+        $json=[
+                "meta"=>'{ "status":"200"}',
+                "data"=>'{'.$content.'}'
+              ];
+
+    	return Response::json(["meta"=>'{ "status":"200"}',"data"=>'{'.$content.'}']);
 
     }
 
@@ -60,7 +65,7 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-			return Response()->json($Songs);
+			return $this->FormatJson($Songs);
     }
 
     public function AllAprovedAlbums()
@@ -73,7 +78,7 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-			return Response()->json($Albums);
+			return $this->FormatJson($Albums);
     }
 
     public function AllAprovedMusicAuthors()
@@ -84,7 +89,7 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-		return Response()->json($MusicAuthors);									
+		return $this->FormatJson($MusicAuthors);									
     }
 
     public function AllAprovedBooks()
@@ -98,7 +103,7 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-			return Response()->json($Books);
+			return $this->FormatJson($Books);
     }
 
     public function AllAprovedMegazines()
@@ -109,7 +114,7 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-			return Response()->json($Megazines);
+			return $this->FormatJson($Megazines);
     }
 
 }
