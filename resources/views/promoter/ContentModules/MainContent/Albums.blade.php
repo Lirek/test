@@ -15,6 +15,7 @@
 		          <th class="non-numeric">Autor</th>
 		          <th class="non-numeric">Duracion</th>
 				  <th class="non-numeric">Proveedor</th>
+				  <th class="non-numeric">Portada</th>
 		          <th class="non-numeric">Costo en Tickets</th>
 		          <th class="non-numeric">Numero de Canciones</th>
 		          <th class="non-numeric">Estatus</th>
@@ -24,8 +25,10 @@
 			</table>
 		</div>
 	</div>
+  </div>
 
-	    <div class="col-md-4">
+  <div class="row mt">
+  	<div class="col-md-10">
 		<div class="content-panel">
                 <table id="song_table" class="table table-bordered table-striped table-condensed">            
                         <thead>
@@ -47,7 +50,7 @@
 @endsection
 
 @section('js')
-@include('promoter.modals.SinglesViewModal')
+@include('promoter.modals.AlbumsViewModal')
 <script>
 	$(document).ready(function(){
 
@@ -58,12 +61,13 @@
 
 	        ajax: '{!! url('AlbumDataTable') !!}',
 	        columns: [
-	            {data: 'song_name', name: 'song_name'},
+	            {data: 'name_alb', name: 'name_alb'},
 	            {data: 'autors_id', name: 'autors_id'},
 	            {data: 'duration', name: 'duration'},
 	            {data: 'Autors_name', name: 'Autors_name'},
+	            {data: 'cover', name: 'cover'},
 	            {data: 'cost', name: 'cost'},
-	            {data: 'song_file', name: 'song_file'},
+	            {data: 'songs', name: 'songs'},
 	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
 	        ]
 	    });
@@ -73,34 +77,74 @@
         var x = $(this).val();
 
 
-        $( "#formStatus" ).on( 'submit', function(e)
-                {
-                    var s=$("input[type='radio'][name=status]:checked").val();
-                    var url = 'admin_single/'+x;
-                    e.preventDefault();
-                    $.ajax({
-                            url: url,
-                            type: 'post',
-                            data: {
-                                    _token: $('input[name=_token]').val(),
-                                    status: s,
-                                  }, 
-                            success: function (result) {
+       $( "#formStatus" ).on( 'submit', function(e)
+            {
+	            var s=$("input[type='radio'][name=status]:checked").val();
+	            var url = 'admin_album/'+x;
+	            console.log(s);
+	            e.preventDefault();
+	            $.ajax({
+	                    url: url,
+	                    type: 'post',
+	                    data: {
+	                            _token: $('input[name=_token]').val(),
+	                            status: s,
+	                          }, 
+	                    success: function (result) {
 
-                                                        $('#myModal').toggle();
-                                                        $('.modal-backdrop').remove();
-                                                        alert("Se ha "+s+" con exito");
-                                                        MusicianTable.ajax.reload();
-                                                        },
+	                                                $('#myModal').toggle();
+	                                                $('.modal-backdrop').remove();
+	                                                alert("Se ha "+s+" con exito");
+	                                                $('#album'+x).fadeOut();
+	                                                },
 
-                            error: function (result) {
-                            alert('Existe un Error en su Solicitud');
-                            console.log(result);
-                            }
-                            });  
-                                            });
+	                    error: function (result) {
+	                    alert('Existe un Error en su Solicitud');
+	                    console.log(result);
+	                    }
+	                    });  
+                                    });
 
        });
+		
+
+	 $(document).on('click', '#songs', function() {    
+        var x = $(this).val();
+        
+            $.ajax({ 
+                type    : "get",
+                url     : "admin_songs/"+x,
+                dataType: "json",
+                
+                success: function (data) 
+                {
+                    
+                    var table = document.getElementById("song_table");
+                    
+                    $("#song_table").find("tr:gt(0)").remove();
+
+                    
+                    $.each(data, function( index, value ) 
+                    {
+
+                        var row = table.insertRow();
+                        var name = row.insertCell();
+                        var dur = row.insertCell();
+                        var ar = row.insertCell();
+                        name.innerHTML = value['song_name'];
+                        dur.innerHTML = value['duration'];
+                        ar.innerHTML = '<audio controls="" src="'+value['song_file']+'"><source src="'+value['song_file']+'" type="audio/mpeg"></audio>';
+
+                    });
+
+                    
+                    
+                      //console.log(data);          
+                } 
+                });
+
+            });
+
 	});
 </script>
 @endsection

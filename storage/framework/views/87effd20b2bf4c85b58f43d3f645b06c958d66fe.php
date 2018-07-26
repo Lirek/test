@@ -37,7 +37,7 @@
                   </li>
 
                   <li class="mt">
-                      <a href="#">
+                      <a href="<?php echo e(url('admin_clients')); ?>">
                           <i class="fa fa-users"></i>
                           <span>Clientes</span>
                       </a>

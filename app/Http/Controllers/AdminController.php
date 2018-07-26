@@ -72,7 +72,7 @@ class AdminController extends Controller
       public function AlbumsDataTable()
       {
           
-        $albums= Albums::where('status','=','En Revision')->get();
+        $albums= Albums::where('status','=','En Revision');
 
           return Datatables::of($albums)
                     ->addColumn('Estatus',function($albums){
@@ -124,7 +124,7 @@ class AdminController extends Controller
         $albums->status = $request->status;
         
 
-       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
+       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
 			  
         $albums->save();
    			return response()->json($albums);
@@ -678,4 +678,8 @@ class AdminController extends Controller
 
       }
 
+      public function ShowPendingClients()
+      {
+        return view('promoter.AdminModules.Clients');
+      }
 }

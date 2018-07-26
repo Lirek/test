@@ -383,8 +383,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('MusicianData','AdminController@MusicianDataTable');
                 Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
            //----------------------------------------------------------------------
-        //__________________________________________________________________________
+        //________________Fin de las rutas de contenido_____________________________
 
+        //______________________Rutas de Clientes___________________________________
+
+                Route::get('/admin_clients','AdminController@ShowPendingClients');
+
+
+        //______________________Fin de las rutas de Clientes________________________
         });
 
 });
