@@ -1,6 +1,6 @@
 <?php $__env->startSection('main'); ?>
  <div class="row mt">
-	<h2><i class="fa fa-angle-right"></i>Singles</h2>
+	<h2><i class="fa fa-angle-right"></i>Albums</h2>
   </div>
   
   <div class="row mt">
@@ -52,7 +52,7 @@
 <script>
 	$(document).ready(function(){
 
-		var MusicianTable = $('#Album').DataTable({
+		var Albums = $('#Album').DataTable({
 	        processing: true,
 	        serverSide: true,
             responsive: true,

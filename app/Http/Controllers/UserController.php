@@ -167,7 +167,7 @@ class UserController extends Controller
         $user->save();
         Flash('Se Han Modificado Sus Datos Con Exito')->success();
         
-        return view('home');
+        return redirect()->action('HomeController@index');
     }
 
     /**

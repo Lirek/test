@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 //use Laravel\Socialite;
-use App\Events\PasswordPromoter;
+
+use App\Events\CreateCodeSocialUserEvent;
 
 use Socialite;
 
@@ -27,7 +28,7 @@ class SocialAuthController extends Controller
                 ['name' => $user->getName()]
             );
 
-            event(new CreateCodeSocialUserEvent($createUser));
+            event(new CreateCodeSocialUserEvent($createUser->id));
             
             auth()->login($createUser);
             

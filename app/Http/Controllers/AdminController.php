@@ -331,9 +331,54 @@ class AdminController extends Controller
 */
    		public function ShowMegazine()
     	{
-			  $megazines= Megazines::where('status','=','En Revision')->paginate(10);
-        return view('admin.Megazine')->with('megazines',$megazines);
+        return view('promoter.ContentModules.MainContent.Megazine');
    		}
+
+      public function MegazineDataTable()
+      {
+        $megazines= Megazines::where('status','=','En Revision')->get();
+
+        return Datatables::of($megazines)
+                    ->addColumn('Estatus',function($megazines){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$megazines->id.' data-toggle="modal" data-target="#myModal" id="status">'.$megazines->status.'</button';
+                    })
+                    ->editColumn('megazine_file',function($megazines){
+
+                      return '<button type="button" class="btn btn-theme" value='.$megazines->megazine_file.' data-toggle="modal" data-target="#file" id="file_b"></button';
+                    })
+                    ->editColumn('cover',function($megazines){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($megazines->cover).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('saga_id',function($megazines){
+                      
+                      if($megazines->saga_id == 0 or $megazines->saga_id == 'NULL')
+                          {
+                            return 'No';
+                          }
+                          else
+                          {
+                            return $megazines->sagas()->first()->sag_name;
+                          }
+    
+                    
+                    })
+                    ->editColumn('rating_id',function($megazines){
+
+                    return $megazines->Rating()->first()->r_name;
+
+                    })
+                    ->editColumn('seller_id',function($megazines){
+
+                    return $megazines->Seller()->first()->name;
+
+                    })
+                    ->rawColumns(['Estatus','megazine_file','cover'])
+                    ->toJson();
+
+      }
 
       public function ShowAllMegazine()
       {
@@ -343,8 +388,31 @@ class AdminController extends Controller
 
    		public function ShowPublicationChain()
     	{
-    		$saga = Sagas::where('status','=','En Proceso')->where('type_saga','=','Revistas')->paginate(10);
-    		return view('admin.PubChain')->with('sagas',$saga);
+    		
+        $saga = Sagas::where('status','=','En Proceso')->where('type_saga','=','Revistas')->get();
+
+        return Datatables::of($saga)
+                    ->addColumn('Estatus',function($saga){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$saga->id.' data-toggle="modal" data-target="#PubModal" id="Status">'.$saga->status.'</button';
+                    })
+                    ->editColumn('img_saga',function($saga){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($saga->img_saga).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('seller_id',function($saga){
+
+                      return $saga->Seller()->first()->name;
+                    })
+                    ->editColumn('rating_id',function($saga){
+
+                      return $saga->Rating()->first()->r_name;
+                    })
+                    ->rawColumns(['Estatus','img_saga'])
+                    ->toJson();
+
+    		
    		}
 
       public function ShowAllPublicationChain()
@@ -358,7 +426,7 @@ class AdminController extends Controller
     		$saga = Sagas::find($id);
 	   		$saga->status = $request->status;
 
-        $this->SendEmails($request->status,$saga->sag_name,$saga->seller->email);
+        $this->SendEmails($request->status,$saga->sag_name,$saga->seller->email,$request->message);
 
 			  $saga->save();
    			return response()->json($saga);
@@ -369,7 +437,7 @@ class AdminController extends Controller
 			  $megazines = Megazines::find($id);
 	   		$megazines->status = $request->status; 
 
-        $this->SendEmails($request->status,$megazines->title,$megazines->Seller->email);        
+        $this->SendEmails($request->status,$megazines->title,$megazines->Seller->email,$request->message);        
 
 			  $megazines->save();
    			return response()->json($megazines);
@@ -689,6 +757,39 @@ class AdminController extends Controller
                                              ->where('img_doc','<>','NULL')
                                              ->where('num_doc','<>','NULL')
                                              ->get(); 
-          dd($user);                                             
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
+                    })                    
+                    
+                    ->editColumn('img_doc',function($user){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name; 
+                    })
+                    ->rawColumns(['Estatus','img_doc'])
+                    ->toJson();                                           
+      }
+
+      public function ValidateUser(Request $request,$id)
+      {
+        $User= User::find($id);
+        
+        if ($request->status == 'Aprobado')
+          {
+            $User->verify=1;  
+          }
+           else
+          {
+          $User->verify=0; 
+          }
+
+        $User->save();
+
+        return response()->json($User);
       }
 }

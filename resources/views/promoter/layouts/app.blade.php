@@ -138,7 +138,7 @@
       MAIN SIDEBAR MENU 
       *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
-@include('promoter.layouts.partials.Sidebar')
+@include('promoter.layouts.partials.SideBar')
       <!--sidebar end-->
       <section id="main-content">
           <section class="wrapper">

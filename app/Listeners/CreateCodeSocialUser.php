@@ -27,7 +27,7 @@ class CreateCodeSocialUser
      */
     public function handle(CreateCodeSocialUserEvent $event)
     {
-        $user = User::find($event->id);
+        $user = User::find($event->user);
 
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                  $charactersLength = strlen($characters);

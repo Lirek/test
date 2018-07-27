@@ -138,7 +138,7 @@
       MAIN SIDEBAR MENU 
       *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
-<?php echo $__env->make('promoter.layouts.partials.Sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('promoter.layouts.partials.SideBar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
       <!--sidebar end-->
       <section id="main-content">
           <section class="wrapper">

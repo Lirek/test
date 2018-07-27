@@ -47,7 +47,7 @@
 @endif
        <form class="form-horizontal" role="form" method="POST" action="{{ url('megazine_save') }}" enctype="multipart/form-data">
          <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
-
+                     {{ csrf_field() }}
  <div class="row" style="margin-left: 30px;">         
     <div class="col-sm-7"> 
         <div class="box box-primary">
