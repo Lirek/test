@@ -219,16 +219,16 @@ class AdminController extends Controller
                       
                       return 
                       '<a target="_blank" href="http://'.$Musician->facebook.'>
-                        <i class="fas fa-facebook-square fa-3x">
+                       <i class="fa fa-facebook-official" style="font-size:24px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->google.'">
-                        <i class="fas fa-youtube fa-3x"></i>
+                        <i class="fa fa-youtube-play" style="font-size:36px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->instagram.'">
-                         <i class="fas fa-instagram fa-3x"></i>
+                         <i class="fa fa-instagram" style="font-size:36px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->twitter.'">
-                        <i class="fas fa-twitter fa-3x"></i>
+                        <i class="fa fa-twitter" style="font-size:36px"></i>
                        </a>';
                     })
                     
