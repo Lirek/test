@@ -4,6 +4,11 @@ namespace App\Http\Controllers\ApiController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+
+use App\Transformers\AlbumsTransformer;
+
 use Response;
 use App\Megazines;
 use App\Tags;
@@ -70,15 +75,25 @@ class ContentController extends Controller
 
     public function AllAprovedAlbums()
     {
-    	$Albums = Albums::where('status','=','Aprobado')	    							  									->with('Seller')
-	    							  					->with('autors')
+    	$Albums = Albums::where('status','=','Aprobado')	    					
 	    							  					->get();
 
     	if ($Albums->isEmpty()) { 
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-			return $this->FormatJson($Albums);
+
+		$Json = fractal()
+                           ->collection($Albums)
+                           ->transformWith(new AlbumsTransformer($Albums))
+                           ->includeSongs()
+                           ->includeAutors()
+                           ->includeSeller()
+                           ->toArray();
+
+        return Response::json($Json);
+
+
     }
 
     public function AllAprovedMusicAuthors()
