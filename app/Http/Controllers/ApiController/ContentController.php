@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
+use Spatie\Fractalistic\Fractal;
 
 use App\Transformers\AlbumsTransformer;
 
@@ -75,7 +76,10 @@ class ContentController extends Controller
 
     public function AllAprovedAlbums()
     {
-    	$Albums = Albums::where('status','=','Aprobado')	    					
+    	$Albums = Albums::where('status','=','Aprobado')
+                                                        ->with('Seller')
+                                                        ->with('Autors')
+                                                        ->with('tags_music')	
 	    							  					->get();
 
     	if ($Albums->isEmpty()) { 
@@ -83,12 +87,10 @@ class ContentController extends Controller
 									}
 
 
-		$Json = fractal()
+		$Json = Fractal::create()
                            ->collection($Albums)
-                           ->transformWith(new AlbumsTransformer($Albums))
-                           ->includeSongs()
-                           ->includeAutors()
-                           ->includeSeller()
+                           ->transformWith(new AlbumsTransformer)                  
+                           ->parseIncludes(['songs','Autors','Seller','tags_music'])
                            ->toArray();
 
         return Response::json($Json);

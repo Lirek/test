@@ -123,6 +123,11 @@ class AdminController extends Controller
    			$albums = Albums::find($id);
         $albums->status = $request->status;
         
+          foreach ($albums->songs as $track) 
+          {
+            $track->status = 'Aprobado';
+            $track->save();
+          }
 
        $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
 			  

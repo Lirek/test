@@ -7,9 +7,14 @@ use League\Fractal\TransformerAbstract;
 use App\Transformers\SongsTransformer;
 use App\Transformers\MusicAuthorTransformer;
 use App\Transformers\SellerTransformer;
+use App\Transformers\TagsTransformer;
+
 
 use App\Albums;
 use App\Songs;
+use App\music_authors;
+use App\Seller;
+
 
 class AlbumsTransformer extends TransformerAbstract
 {
@@ -19,14 +24,17 @@ class AlbumsTransformer extends TransformerAbstract
      * @return array
      */
 
-    protected $availableIncludes = [
+    protected $availableIncludes   = [
         'songs',
         'Autors',
         'Seller',
+        'tags_music'
     ];
 
     public function transform(Albums $Albums)
     {
+        
+
         return [
             
             'id' => (int) $Albums->id,
@@ -55,7 +63,7 @@ class AlbumsTransformer extends TransformerAbstract
 
     public function includeSongs(Albums $Albums)
     {
-        $Songs=$Albums->songs()->get();
+        $Songs=$Albums->songs;
 
         return $this->collection($Songs,new SongsTransformer);
     }
@@ -63,16 +71,32 @@ class AlbumsTransformer extends TransformerAbstract
     public function includeAutors(Albums $Albums)
     {
        $Author=$Albums->Autors()->first();
+       
+       if ($Author->count() > 0) 
+       {    
+            return $this->item($Author ,new MusicAuthorTransformer());    
+       }
 
-       return $this->collection($Author,new MusicAuthorTransformer);
     }
 
     public function includeSeller(Albums $Albums)
     {
-        $Seller=$Albums->Seller()->get();
+        $Seller=$Albums->Seller;
 
-        return $this->collection($Seller,new SellerTransformer);
+        if ($Seller->count() > 0)
+        {
+        return $this->item($Seller,new SellerTransformer);
+        }
     }
 
+    public function includeTagsMusic(Albums $Albums)
+    {
+        $Tags=$Albums->tags_music;
+         
+         if($Tags->count() <= 0)
+         {
+            return $this->collection($Tags,new TagsTransformer);
+         }
+    }
 
 }
