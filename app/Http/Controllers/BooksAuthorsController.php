@@ -22,6 +22,7 @@ class BooksAuthorsController extends Controller
             $author->seller;
             $author->books;
         });
+        //dd($author);
 
         return view('seller.authorbook.index')->with('authors', $author);
     }
@@ -77,7 +78,6 @@ class BooksAuthorsController extends Controller
         $books->each(function ($books){
             $books->author;
         });
-       
         return view('seller.authorbook.show')
             ->with('author',$authors)
             ->with('book',$books);
@@ -131,7 +131,7 @@ class BooksAuthorsController extends Controller
         $author->twitter = $request->twitter;
         $author->save();
 
-        Flash::warning('Se ha modificado ' . $author->full_name . ' de forma exitosa')->important();
+        Flash::success('Se ha modificado ' . $author->full_name . ' de forma sastisfactoria')->important();
 
         return redirect()->route('authors_books.index');
     }
@@ -139,12 +139,19 @@ class BooksAuthorsController extends Controller
     public function destroy($id)
     {
         $author = BookAuthor::find($id);
+        //dd($author->id);
+        $book = Book::find($author->id);
+        //dd($book);
 
         if (\Auth::guard('web_seller')->user()->id === $author->seller_id) {
 
-            $author->book()->delete();
+            //$author->book()->delete();
+            if ($book!=null) {
+                $book->delete();
+            }
+            $author->delete();
 
-            Flash::error('Se a eliminado el autor');
+            Flash::success('Se ha eliminado el autor de forma sastisfactoria');
 
             return redirect()->route('authors_books.index');
 
@@ -171,7 +178,7 @@ class BooksAuthorsController extends Controller
 //        dd($author,$author->photo,$file);
         $author->save();
 
-        Flash::info('Se ha registrado ' . $author->full_name . ' de forma sastisfactoria')->important();
+        Flash::success('Se ha registrado ' . $author->full_name . ' de forma sastisfactoria')->important();
 
         return redirect()->route('tbook.create');
     }

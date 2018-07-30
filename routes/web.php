@@ -492,7 +492,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Albums -------------------------- */
     Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
-    Route::post('/modify_album/{id}', 'AlbumsController@UpdateAlbum');
+    Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
     /*--------------------------------------------------------------*/
 
     /*------------------Borrar Albums-------------------------------*/
@@ -501,6 +501,10 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Mostrar Albums- ----------------------------*/
     Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
+    /*--------------------------------------------------------------*/
+
+    /*-------------Listar Canciones de los Albums-------------------*/
+    Route::get('/SongsAlbums/{id}','AlbumsController@SongAlbum');
     /*--------------------------------------------------------------*/
 
 
@@ -515,7 +519,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Single -------------------------- */
     Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
-    Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
+    Route::post('/modify_single', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */

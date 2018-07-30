@@ -24,12 +24,10 @@ class SingleRequest extends FormRequest
     public function rules()
     {
      $rules= [
-
-            
             'cost' =>'required|numeric',
             'tags' =>'required',
             'artist' =>'required',
-            'audio' =>'required|mimes:mpga',
+            //'audio' =>'required|mimes:mpga',
             'song_n' =>'required|max:255'
         ];
 
