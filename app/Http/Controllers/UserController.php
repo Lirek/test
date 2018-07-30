@@ -22,6 +22,7 @@ use App\Tv;
 use App\music_authors;
 use App\Transactions;
 use App\Referals;
+use App\Movie;
 
 class UserController extends Controller
 {
@@ -239,7 +240,7 @@ class UserController extends Controller
     }
 
     public function referals(Request $request){
-        $user_id= User::where('codigo_ref','=',$request->codigo)->first();
+        $user_id= User::where('codigo_ref','=',$request->codigo)->where('id','<>',Auth::user()->id)->first();
 
         if ($user_id) {
             $referals=new Referals;
@@ -496,7 +497,38 @@ class UserController extends Controller
 
         return view('users.showMegazine')->with('megazines',$Megazine);
     }
+//----------------------------Peliculas-------------------------------------
+    public function MyMovies()
+    {
+        $TransactionMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->get();
 
+
+        if($TransactionMovies->count() > 0)
+            {
+            
+                foreach ($TransactionMovies as $key) 
+                    {
+                        $Movies[] = $key->Movies;    
+                    }
+            }
+            else
+             {
+                $Movies = 0;
+                
+             }
+
+
+        
+       return view('users.MyMovies')->with('Movies',$Movies);
+        
+    }
+
+   public function ShowMyMovie($id)
+    {
+        $Movies=Movie::find($id);
+
+            return view('users.showMovie')->with('Movies',$Movies);
+    }
 
 //----------------------------Invitar Personas------------------------------
 

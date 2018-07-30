@@ -129,8 +129,11 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
-                  <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
+                  @if(Auth::user()->img_perf)
+                    <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
+                  @else
+                   <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></a></p>
+                  @endif
                   <h5 class="centered">{{Auth::user()->name}}</h5>
                   <div class="card-content white-text">
                       <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::user()->credito}}</p></h6></span>
@@ -138,7 +141,7 @@
                   </div>  
                     
                   <li class="sub-menu">
-                      <a class="active" href="#">
+                      <a class="sub" href="#">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
@@ -148,13 +151,23 @@
                   </li>
 
                   <li class="sub-menu">
+                    <a href="javascript:;">
+                      <i class="fa fa-money"></i>
+                      <span>Adquirir Contenido</span>
+                    </a>
+                    <ul class="sub">
+                      <li><a href="">Musica</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
                           <span>Mi Contenido</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Mis Peliculas</a></li>
-
+                          <li><a  href="{{url('MyMovies')}}">Mis Peliculas</a></li>
+                          <li><a href="#">Mis Series</a></li>
                           <li class="sub-menu">
                               <a href="javascript:;" >
                                 <span>Mi musica</span>
@@ -174,7 +187,16 @@
                               <li><a  href="{{url('MyMegazine')}}">Mis Megazines</a></li>
                             </ul>
                           </li>
-                           <li><a  href="#">Mis Streams</a></li>
+
+                          <li class="sub-menu">
+                            <a href="javascript: ;">
+                              <span>Mis Streams</span>
+                            </a>
+                            <ul class="sub">
+                              <li><a  href="#">Tv</a></li>
+                              <li><a href="#">Radio</a></li>
+                            </ul>
+                          </li>
                       </ul>
                   </li>
 

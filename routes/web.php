@@ -83,6 +83,10 @@ Route::post('Invite','UserController@Invite');
     Route::post('CompleteProfile','UserController@CompleteProfile');
     Route::post('Referals','UserController@referals');
 
+    //Agregada 23/7/2018
+    Route::get('MyMovies','UserController@MyMovies');
+    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
+
 
 //---------------------------------------------------------------------------
 

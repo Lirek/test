@@ -161,7 +161,7 @@
                             <div class="col-sm-10 col-xs-10 col-md-10 goleft">
                               <p><i class="fa fa-user"></i></p>
                               <div class="paragraph">
-                                <p class="center ">Usted cuenta con 15 dias para agregar un referido</p>
+                                <p class="center " id="mensaje"></p>
                                  <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
 
                                 <!--MODAL-->
@@ -288,7 +288,7 @@
                                 <td><a href=""> {{$Movies->title}}</a></td>
                                 <td class="hidden-phone">Pelicula</td>
                                 <td>{{$Movies->cost}}</td>
-                                <td class="hidden-phone">{{$Radio->Seller->name}}</td>
+                                <td class="hidden-phone">{{$Movies->Seller->name}}</td>
                               </tr>
                           @endif
                               </tbody>
@@ -389,8 +389,12 @@
 
   var tiempo=restaFechas(f1,f2);
   if (tiempo > 15){
-    document.getElementById('referir').style.display='none';
+    document.getElementById('referir').style.display='none';  
+  }else{
+    var total=15-tiempo;
+    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un referido';
   }
+
 });
 restaFechas = function(f1,f2)
  {
