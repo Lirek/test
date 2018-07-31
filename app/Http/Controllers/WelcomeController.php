@@ -41,7 +41,8 @@ class WelcomeController extends Controller
 
         $musica = Albums::all();
         $musica->each(function ($musica){
-            $musica->seller;
+            $musica->Seller;
+            $musica->Autors;
         });
 
 
