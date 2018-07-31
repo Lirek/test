@@ -142,7 +142,7 @@
 
     <!--Seccion de Scripts-->
     <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
-    <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/boot strapV3.3/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-1.11.1.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script>
@@ -162,7 +162,7 @@
                     },
                     password: {
                         required: true,
-                        minlength: 4
+                        minlength: 5
                     },
                     password_confirm: {
                         required: true,
