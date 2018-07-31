@@ -141,7 +141,7 @@
 
 
     <!--Seccion de Scripts-->
-    <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
+{{--    <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>--}}
     <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-1.11.1.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
