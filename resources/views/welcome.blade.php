@@ -113,7 +113,7 @@
 </head>
 <body>
 <div id="app">
-    <!--HEADER START-->
+    <!--HEADER START NavBar-->
     <div class="main-navigation">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -131,7 +131,7 @@
                         <li class="active"><a href="{{Request::url()}}">Inicio</a></li>
                         <li><a href="#portfolio">Destacados</a></li>
                         <li><a href="#about">Proveedores</a></li>
-                        <li><a href="{{ url('/login') }}">Iniciar Sesion</a></li>
+                        <li><a href="{{ url('/login') }}">Iniciar Sesi&oacute;n</a></li>
                     </ul>
                 </div>
             </div>
@@ -143,7 +143,7 @@
 <!--BANNER START-->
     <div id="banner" class="section-padding">
         <div class="container">
-            <div class="row">
+            <div class="container-fluid">
                 <div class="jumbotron">
                     <h1 class="small">Entretenimiento Al <span class="bold">M&aacute;ximo</span></h1>
                     <a href="{{ url('/register') }}" class="btn btn-banner">Registrate Gratis<i class="fa fa-send"></i></a>
@@ -201,8 +201,9 @@
     </div>
     <!--CTA1 END-->
 
-    <div id="portfolio">
-        <div class="container">
+    <!--CTA2 END portafolio de destacados-->
+    <div id="portfolio" class="[container text-center]">
+        <div class=" [container text-center] ">
             <div class="page-title text-center">
                 <h1>Destacados</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
@@ -210,10 +211,10 @@
             {{--{{ dd($music) }}--}}
             {{--prueba de pestaña--}}
 
-            <div class=" container text-center ">
-                <div class=" row ">
-                    <div class="  col-md-10  " role="tabpanel">
-                        <div class="[ col-xs-12 col-sm-12 ]">
+            <div class=" [container text-center] ">
+                <div class="row ">
+                    <div class=" [ col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 ] " role="tabpanel">
+                        <div class="[ col-xs-4 col-sm-12 ]">
                             <!-- Nav tabs -->
                             <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
                                 <li role="presentation" class="active">
@@ -263,9 +264,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="[ col-xs-8 col-sm-12 ]">
+                        <div class="[ col-xs-2 col-sm-6 col-sm-offset-1 ]">
                             <!-- Tab panes -->
                             <div class="tab-content" id="tabs-collapse">
+
                                 <div role="tabpanel" class="tab-pane fade in active" id="libros">
                                     <div class="tab-inner" >
                                         <div class="row" id="portfolio-wrapper">
@@ -629,6 +631,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

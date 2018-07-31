@@ -10,8 +10,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">--}}
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
     <link href="{{ asset('views/css/app.css') }}" rel="stylesheet">
@@ -20,7 +21,7 @@
 </head>
 <body>
 <!--HEADER START-->
-<div class="main-navigation navbar-fixed-top">
+<div class="main-navigation">
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -29,20 +30,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
+                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
+                                                                   width="150" height="50" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li><a href="{{ url('/login') }}">Iniciar Sesion</a></li>
                     <li><a href="{{ url('/register')}}">Registrarse</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">Iniciar sesión</div>
                     <div class="panel-body">
@@ -80,8 +83,8 @@
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}> Recuerdame
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            Recuerdame
                                         </label>
                                     </div>
                                 </div>
@@ -121,6 +124,7 @@
                     </div>
                     {{--fin de footer--}}
                 </div>
+
             </div>
         </div>
     </div>
@@ -133,6 +137,7 @@
     <script src="{{ asset('plugins/js/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/js/slick.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+</div>
 </body>
 </html>
 
