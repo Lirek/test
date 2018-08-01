@@ -10,17 +10,17 @@ class Albums extends Model
    protected $table = 'album';
 
    protected $fillable = [
-             'id',
-      'seller_id',
-      'autors_id', 
-      'name_alb',
-      'cover',
-      'producer',
-      'duration',
-      'cost',
-      'rating_id',
-      'publish_date',
-      'status'
+       'id',
+       'seller_id',
+       'autors_id',
+       'name_alb',
+       'cover',
+       'producer',
+       'duration',
+       'cost',
+       'rating_id',
+       'publish_date',
+       'status'
     ];
 
     public function tags_music()
