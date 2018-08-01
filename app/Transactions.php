@@ -48,7 +48,7 @@ class Transactions extends Model
 
     public function Movies()
     {
-    return $this->belongsTo('App\Movies', 'movies_id');
+    return $this->belongsTo('App\Movie', 'movies_id');
     }
 
     public function Megazines()
