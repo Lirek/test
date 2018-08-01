@@ -41,7 +41,7 @@
 	        columns: [
 	            {data: 'tags_name', name: 'tags_name'},
 	            {data: 'type_tags', name: 'type_tags'},
-	            {data: 'Seller.name', name: 'Seller.name'},
+	            {data: 'seller.name', name: 'seller.name'},
 	            {data: 'created_at', name: 'created_at'},
 	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
 	        ]

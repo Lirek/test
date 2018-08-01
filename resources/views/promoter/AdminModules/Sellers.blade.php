@@ -99,9 +99,9 @@
       };
     $(document).on('click', '#x', function() {
       
-      var module = $(this).attr('value1'); ;
+      var modules = $(this).attr('value1'); ;
       var seller = $(this).attr('value2');;
-      var url = 'delete_mod/'+seller+'/'+module;
+      var url = 'delete_mod/'+seller+'/'+modules;
            $.ajax({
              url: url,
              type:'get',
@@ -110,7 +110,7 @@
              success: function(data)
              {
                alert("Se Ha Retirado el Permiso del Modulo con exito");
-               $("#m_"+module+"_"+seller).fadeOut();
+               $("#m_"+modules+"_"+seller).fadeOut();
              },
 
              error: function(data)
@@ -130,12 +130,12 @@
 
             $( "#AddModules" ).on( 'submit', function(e){
               
-              var module = $("#sel1").val();
+              var modules = $("#sel1").val();
               var url = 'admin_add_module/'+x;
               console.log(url);
               var name = $( "#sel1 option:selected" ).text();
               var row = $("#modules_td"+x);
-              var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+module+'_'+x+'">  <span class="mdl-chip__text" id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+module+'" value2="'+x+'" name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
+              var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+modules+'_'+x+'">  <span class="mdl-chip__text" id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+modules+'" value2="'+x+'" name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
               e.preventDefault();
                 
                 $.ajax({
@@ -144,7 +144,7 @@
                   type:'POST',
                   data:{
                         _token: $('input[name=_token]').val(),
-                        acces: module,
+                        acces: modules,
                         }, 
 
                         success: function (result) {

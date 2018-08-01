@@ -66,9 +66,44 @@ class AdminController extends Controller
 */
     	public function ShowAlbums()
     	{	
-    		$albums= Albums::where('status','=','En Revision')->paginate(10);
-    		return view('admin.Albums')->with('albums',$albums);
+    		return view('promoter.ContentModules.MainContent.Albums');
    		}
+
+      public function AlbumsDataTable()
+      {
+          
+        $albums= Albums::where('status','=','En Revision');
+
+          return Datatables::of($albums)
+                    ->addColumn('Estatus',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button';
+                    })
+
+                    ->addColumn('Autors_name',function($albums){
+                      
+                      return $albums->Seller()->first()->name;
+                    })
+
+                    ->addColumn('songs',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value="'.$albums->id.'" id="songs" >'.$albums->songs()->count().'</button';
+                    })                    
+
+                    ->editColumn('autors_id',function($albums){
+
+                      return $albums->Autors()->first()->name;
+                    })
+
+                    ->editColumn('cover',function($albums){
+                      
+
+                      return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';;
+                    })
+                    ->rawColumns(['Estatus','cover','songs'])
+                    ->toJson();        
+      }
 
       public function ShowAllAlbums()
       {
@@ -88,8 +123,13 @@ class AdminController extends Controller
    			$albums = Albums::find($id);
         $albums->status = $request->status;
         
+          foreach ($albums->songs as $track) 
+          {
+            $track->status = 'Aprobado';
+            $track->save();
+          }
 
-       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email);
+       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
 			  
         $albums->save();
    			return response()->json($albums);
@@ -102,12 +142,38 @@ class AdminController extends Controller
 */
    		public function ShowSingles()
     	{	
-        return view('promoter.ContentModules.Single');
+        return view('promoter.ContentModules.MainContent.Single');
    		}
 
       public function SinglesDataTable()
       {
-         $single= Songs::whereNull('album')->where('status','=','En Proceso')->get();
+         $Single= Songs::whereNull('album')->where('status','=','En Revision')->get();
+
+                 return Datatables::of($Single)
+                    ->addColumn('Estatus',function($Single){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Single->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$Single->status.'</button';
+                    })
+
+                    ->addColumn('Autors_name',function($Single){
+                      
+                      return $Single->Seller()->first()->name;
+                    })                    
+
+                    ->editColumn('autors_id',function($Single){
+
+                      return $Single->autors()->first()->name;
+                    })
+
+                    ->editColumn('song_file',function($Single){
+                      
+
+                      return '<audio controls="" src="'.$Single->song_file.'">
+                                <source src="'.$Single->song_file.'" type="audio/mpeg">
+                                </audio>';
+                    })
+                    ->rawColumns(['Estatus','photo','song_file'])
+                    ->toJson();
       }
 
       public function ShowAllSingles()
@@ -158,16 +224,16 @@ class AdminController extends Controller
                       
                       return 
                       '<a target="_blank" href="http://'.$Musician->facebook.'>
-                        <i class="fas fa-facebook-square fa-3x">
+                       <i class="fa fa-facebook-official" style="font-size:24px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->google.'">
-                        <i class="fas fa-youtube fa-3x"></i>
+                        <i class="fa fa-youtube-play" style="font-size:36px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->instagram.'">
-                         <i class="fas fa-instagram fa-3x"></i>
+                         <i class="fa fa-instagram" style="font-size:36px"></i>
                        </a>
                        <a target="_blank" href="http://'.$Musician->twitter.'">
-                        <i class="fas fa-twitter fa-3x"></i>
+                        <i class="fa fa-twitter" style="font-size:36px"></i>
                        </a>';
                     })
                     
@@ -270,9 +336,54 @@ class AdminController extends Controller
 */
    		public function ShowMegazine()
     	{
-			  $megazines= Megazines::where('status','=','En Revision')->paginate(10);
-        return view('admin.Megazine')->with('megazines',$megazines);
+        return view('promoter.ContentModules.MainContent.Megazine');
    		}
+
+      public function MegazineDataTable()
+      {
+        $megazines= Megazines::where('status','=','En Revision')->get();
+
+        return Datatables::of($megazines)
+                    ->addColumn('Estatus',function($megazines){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$megazines->id.' data-toggle="modal" data-target="#myModal" id="status">'.$megazines->status.'</button';
+                    })
+                    ->editColumn('megazine_file',function($megazines){
+
+                      return '<button type="button" class="btn btn-theme" value='.$megazines->megazine_file.' data-toggle="modal" data-target="#file" id="file_b"></button';
+                    })
+                    ->editColumn('cover',function($megazines){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($megazines->cover).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('saga_id',function($megazines){
+                      
+                      if($megazines->saga_id == 0 or $megazines->saga_id == 'NULL')
+                          {
+                            return 'No';
+                          }
+                          else
+                          {
+                            return $megazines->sagas()->first()->sag_name;
+                          }
+    
+                    
+                    })
+                    ->editColumn('rating_id',function($megazines){
+
+                    return $megazines->Rating()->first()->r_name;
+
+                    })
+                    ->editColumn('seller_id',function($megazines){
+
+                    return $megazines->Seller()->first()->name;
+
+                    })
+                    ->rawColumns(['Estatus','megazine_file','cover'])
+                    ->toJson();
+
+      }
 
       public function ShowAllMegazine()
       {
@@ -282,8 +393,31 @@ class AdminController extends Controller
 
    		public function ShowPublicationChain()
     	{
-    		$saga = Sagas::where('status','=','En Proceso')->where('type_saga','=','Revistas')->paginate(10);
-    		return view('admin.PubChain')->with('sagas',$saga);
+    		
+        $saga = Sagas::where('status','=','En Proceso')->where('type_saga','=','Revistas')->get();
+
+        return Datatables::of($saga)
+                    ->addColumn('Estatus',function($saga){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$saga->id.' data-toggle="modal" data-target="#PubModal" id="Status">'.$saga->status.'</button';
+                    })
+                    ->editColumn('img_saga',function($saga){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($saga->img_saga).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('seller_id',function($saga){
+
+                      return $saga->Seller()->first()->name;
+                    })
+                    ->editColumn('rating_id',function($saga){
+
+                      return $saga->Rating()->first()->r_name;
+                    })
+                    ->rawColumns(['Estatus','img_saga'])
+                    ->toJson();
+
+    		
    		}
 
       public function ShowAllPublicationChain()
@@ -297,7 +431,7 @@ class AdminController extends Controller
     		$saga = Sagas::find($id);
 	   		$saga->status = $request->status;
 
-        $this->SendEmails($request->status,$saga->sag_name,$saga->seller->email);
+        $this->SendEmails($request->status,$saga->sag_name,$saga->seller->email,$request->message);
 
 			  $saga->save();
    			return response()->json($saga);
@@ -308,7 +442,7 @@ class AdminController extends Controller
 			  $megazines = Megazines::find($id);
 	   		$megazines->status = $request->status; 
 
-        $this->SendEmails($request->status,$megazines->title,$megazines->Seller->email);        
+        $this->SendEmails($request->status,$megazines->title,$megazines->Seller->email,$request->message);        
 
 			  $megazines->save();
    			return response()->json($megazines);
@@ -617,4 +751,50 @@ class AdminController extends Controller
 
       }
 
+      public function ShowPendingClients()
+      {
+        return view('promoter.AdminModules.Clients');
+      }
+
+      public function ClientsData()
+      {
+          $user=User::where('verify','=','0')
+                                             ->where('img_doc','<>','NULL')
+                                             ->where('num_doc','<>','NULL')
+                                             ->get(); 
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
+                    })                    
+                    
+                    ->editColumn('img_doc',function($user){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name; 
+                    })
+                    ->rawColumns(['Estatus','img_doc'])
+                    ->toJson();                                           
+      }
+
+      public function ValidateUser(Request $request,$id)
+      {
+        $User= User::find($id);
+        
+        if ($request->status == 'Aprobado')
+          {
+            $User->verify=1;  
+          }
+           else
+          {
+          $User->verify=0; 
+          }
+
+        $User->save();
+
+        return response()->json($User);
+      }
 }

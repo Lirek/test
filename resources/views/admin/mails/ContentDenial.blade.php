@@ -6,7 +6,7 @@
 <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">
  <tr>
  	<td align="center">
- 		<img src="{{$message->embed(public_path().'\sistem_images\content_denial.png')}}" width="100%" height="100%">
+ 		<img src="{{$message->embed(public_path().'/sistem_images/content_denial.png')}}" width="100%" height="100%">
  	</td>
  </tr>
 
@@ -26,7 +26,7 @@
 		
 
   <tr align="left">
- 	<img src="{{$message->embed(public_path().'\sistem_images\signature.png')}}">
+ 	<img src="{{$message->embed(public_path().'/sistem_images/signature.png')}}">
   </tr>
   
   <tr>
@@ -37,13 +37,13 @@
 
   <tr>
 	<td align="center">
-		<img src="{{$message->embed(public_path().'\sistem_images\Logo-Leipel.png')}}" style="height: 80px; width: 100px">
+		<img src="{{$message->embed(public_path().'/sistem_images/Logo-Leipel.png')}}" style="height: 80px; width: 100px">
 	</td>
   </tr>	
 
  <tr>
 	<td align="center">
-		<img src="{{$message->embed(public_path().'\sistem_images\Leipel.png')}}" style="height: 80px; width: 80px">
+		<img src="{{$message->embed(public_path().'/sistem_images/Leipel.png')}}" style="height: 80px; width: 80px">
 	</td>
  </tr>	
 	

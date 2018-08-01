@@ -187,19 +187,22 @@ class AdminContentController extends Controller
     return Response()->json($Content);
   }
 
-  public function Content()
+  public function MusicianPieGraphData()
   {
-            $albums= Albums::where('status','=','En Revision')->get();
-            $singles= Songs::where('status','=','En Revision')->whereNull('album')->get();
-            $radios= Radio::where('status','=','En Revision')->get();
-            $tv= Radio::where('status','=','En Revision')->get();
-            $books= Book::where('status','=','En Revision')->get();
-            $megazines= Megazines::where('status','=','En Revision')->get();
-            $tags= Tags::where('status','=','En Revision')->get();
-            $movies = Movie::where('status','=','En Revision')->get();
-            $series = 0;
+            $AprovedMusician= music_authors::where('status','=','En Proceso')->count();
+            $PendingMusician= music_authors::where('status','=','Aprobado')->count();               
+            $Content=array($AprovedMusician, $PendingMusician);
 
-            return Response::json($singles,200);
+      return Response()->json($Content); 
+  }
 
+  public function MusicianBarrGraphData()
+  {
+    
+            $Musician= music_authors::where('type_authors','=','Solista')->count();
+            $Band= music_authors::where('type_authors','=','Agrupacion Musical')->count();               
+            $Content=array($Musician, $Band);
+
+      return Response()->json($Content); 
   }
 }

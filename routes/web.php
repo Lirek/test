@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
-Route::get('/TestContent', 'AdminContentController@Content');
 
 
 /* ------------------------------------------------------------------
@@ -322,7 +321,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             
             Route::get('/admin_sellers','AdminController@ShowSellers');
 
-            Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
+            Route::get('/delete_mod/{id_seller}/{id_module}','AdminController@DeleteModule');
 
             Route::post('admin_add_module/{id}','AdminController@AddModule');
 
@@ -375,11 +374,16 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('AdminContent','AdminContentController@Home');
 
                 Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
+                
                 Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
 
                 Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
 
                 Route::get('TagsStatusGraphData','AdminContentController@TagsDountsGraph');
+
+                Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
+
+                Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
           //________________________________________________________________________
 
 
@@ -387,12 +391,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_albums','AdminController@ShowAlbums');
                 Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
-
+                Route::get('AlbumDataTable','AdminController@AlbumsDataTable');
                 Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
                 Route::get('/admin_single','AdminController@ShowSingles');
-                Route::get('/AllAdminSingles','AdminController@ShowAllSingles');
+                Route::get('SingleData','AdminController@SinglesDataTable');
                 Route::post('/admin_single/{id}','AdminController@SingleStatus');
 
            //---------------------------------------------------------------------
@@ -408,8 +412,37 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('MusicianData','AdminController@MusicianDataTable');
                 Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
            //----------------------------------------------------------------------
-        //__________________________________________________________________________
 
+           //-----------------REVISTAS Y CADENAS DE PUBLICAION-----------------------
+                
+                Route::get('/admin_megazine','AdminController@ShowMegazine');
+                
+                Route::get('MegazineDataTable','AdminController@MegazineDataTable');
+
+                Route::get('PubChainDataTable','AdminController@ShowPublicationChain');
+                
+                Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
+                
+                Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
+                
+                Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
+                
+                Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
+
+               
+
+        
+            //-----------------------------------------------------------------------
+        
+        //________________Fin de las rutas de contenido_____________________________
+
+        //______________________Rutas de Clientes___________________________________
+
+                Route::get('/admin_clients','AdminController@ShowPendingClients');
+                Route::get('ClientsDataTable','AdminController@ClientsData');
+                Route::post('ValidateUser/{id}','AdminController@ValidateUser');
+
+        //______________________Fin de las rutas de Clientes________________________
         });
 
 });

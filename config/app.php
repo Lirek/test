@@ -192,6 +192,9 @@ return [
         //JWT AUTH
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
+        //Json Fractal
+        Spatie\Fractal\FractalServiceProvider::class,
+
     ],
 
 
@@ -253,8 +256,10 @@ return [
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
 
         //JWT AUTH
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class
+        //Json Fractal
+        'Fractal' => Spatie\Fractal\FractalFacade::class
 
 
 

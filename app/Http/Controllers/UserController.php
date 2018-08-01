@@ -7,7 +7,6 @@ use Auth;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
-use File;
 
 use App\User;
 use App\Megazines;
@@ -22,7 +21,6 @@ use App\Tv;
 use App\music_authors;
 use App\Transactions;
 use App\Referals;
-use App\Movie;
 
 class UserController extends Controller
 {
@@ -94,7 +92,9 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return view('home');
+        return redirect()->action('HomeController@index');
+
+
     }
 
     /**
@@ -116,12 +116,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
 //        dd($user);
-        $user = User::find(Auth::user()->id);
-         
-         
+        $user = User::find($id);
+
         return view('users.edit')->with('user', $user);
     }
 
@@ -139,9 +138,8 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->ci = $request->ci;
-        //$user->num_doc = $request->num_doc;
-
-        //$user->type= $request->type;
+        $user->num_doc = $request->num_doc;
+        $user->img_doc = $request->img_doc;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
@@ -158,30 +156,18 @@ class UserController extends Controller
          
          $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
+        else
+        {
+            $user->img_perf= NULL;
+        }
         
         $user->fech_nac = $request->fech_nac;
-
-       
-        if ($request->hasFile('img_doc'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
-
-         $request->file('img_doc')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
-        }
      
         //dd($user);
         $user->save();
         Flash('Se Han Modificado Sus Datos Con Exito')->success();
-        //return view('home');
-       return redirect()->action('HomeController@index');
+        
+        return redirect()->action('HomeController@index');
     }
 
     /**
@@ -194,70 +180,6 @@ class UserController extends Controller
     {
         //
     }
-
-    public function CompleteProfile (Request $request){
-        $user = User::find(Auth::user()->id);
-
-        $user->last_name = $request->lastname;
-        $user->ci = $request->nDocument;
-
-        if ($request->hasFile('img_doc'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
-
-         $request->file('img_doc')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name; 
-
-        }
-        $user->fech_nac = $request->dateN;
-
-        if ($request->hasFile('img_perf'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
-
-         $request->file('img_perf')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
-        }
-
-        $user->alias = $request->alias;
-        $user->save();
-        Flash('Completo Sus Datos Con Exito')->success();
-       return redirect()->action('HomeController@index');
-    }
-
-    public function referals(Request $request){
-        $user_id= User::where('codigo_ref','=',$request->codigo)->where('id','<>',Auth::user()->id)->first();
-
-        if ($user_id) {
-            $referals=new Referals;
-            $referals->user_id=$user_id->id;
-            $referals->refered=Auth::user()->id;
-            $referals->my_code=$request->codigo;
-            $referals->save();
-            Flash('Referencia Completa')->success();
-                return redirect()->action('HomeController@index');
-        }else
-        Flash('Codigo invalido')->error();
-        return redirect()->action('HomeController@index');
-
-
-
-    }
-
 
 //---------------------Iniicio de Compra, Muestra de Musica------------------
     
@@ -301,6 +223,8 @@ class UserController extends Controller
     public function MyMusic()
     {
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
+        
+        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
 
 
         if($TransactionSingle->count() > 0)
@@ -317,24 +241,12 @@ class UserController extends Controller
                 
              }
 
-
-        
-        return view('users.MyMusic')->with('Singles',$Single);
-        
-    }
-
-    public function MyAlbums()
-    {
-        
-        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
-
         if($TransactionAlbum->count() > 0)
             {
             
                 foreach ($TransactionAlbum as $key) 
                     {
-                        $Albums[] = $key->Albums; 
-                        $id=$key->Albums->id;
+                        $Albums[] = $key->Songs;    
                     }
             }
             else
@@ -342,23 +254,11 @@ class UserController extends Controller
                 $Albums = 0;
              }
 
-             $song=Songs::where('rating_id','=',$id)->get();
 
-        return view('users.MyAlbums')->with('Albums',$Albums)->with('Song',$song);
+        
+        return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
         
     }
-
-
-    public function SongAlbum($id)
-    {
-
-        $Song= Songs::where('rating_id','=',$id)->get(); 
-    
-             
-        return response()->json($Song);
-        
-    }
-
 
     public function AddElementPlaylist($song_id)
     {
@@ -426,6 +326,7 @@ class UserController extends Controller
 
         $MyBooks= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->get();
 
+        $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
 
         if ($MyBooks->count() == 0) 
         {
@@ -438,16 +339,6 @@ class UserController extends Controller
                 $Books[]= Book::find($key->books_id);
             }
         }
-
-        
-
-        return view('users.MyReadings')->with('Books',$Books);
-    }
-    public function ShowMyReadingsMegazines()
-    {
-
-        $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
-
 
         if ($MyMegazines->count() == 0) 
         {
@@ -463,10 +354,8 @@ class UserController extends Controller
 
         
 
-        return view('users.MyMagazine')->with('Megazines', $Megazine);
+        return view('users.MyReadings')->with('Megazines', $Megazine)->with('Books',$Books);
     }
-
-
 
     public function SendRead($id)
     {
@@ -475,60 +364,15 @@ class UserController extends Controller
 
         if ($Book->count() == 0) 
         {
-            return view('users.MyLecture')->with('book',$Megazine);
+            return view('users.MyLecture')->with('pdf',$Megazine->megazine_file);
         }
         else
         {
-            return view('users.MyLecture')->with('book',$Book);
+            return view('users.MyLecture')->with('pdf','/book/'.$Book->books_file);
         }
 
     }
 
-      public function ShowMyReadBook($id)
-    {
-        $Book=Book::find($id);
-
-            return view('users.show')->with('book',$Book);
-    }
-
-      public function ShowMyReadMegazine($id)
-    {
-        $Megazine= Megazines::find($id);
-
-        return view('users.showMegazine')->with('megazines',$Megazine);
-    }
-//----------------------------Peliculas-------------------------------------
-    public function MyMovies()
-    {
-        $TransactionMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->get();
-
-
-        if($TransactionMovies->count() > 0)
-            {
-            
-                foreach ($TransactionMovies as $key) 
-                    {
-                        $Movies[] = $key->Movies;    
-                    }
-            }
-            else
-             {
-                $Movies = 0;
-                
-             }
-
-
-        
-       return view('users.MyMovies')->with('Movies',$Movies);
-        
-    }
-
-   public function ShowMyMovie($id)
-    {
-        $Movies=Movie::find($id);
-
-            return view('users.showMovie')->with('Movies',$Movies);
-    }
 
 //----------------------------Invitar Personas------------------------------
 

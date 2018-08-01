@@ -117,9 +117,9 @@
 <script>
         
 
-    $(document).on('click', '#status', function() {    
+    $(document).on('click', '#Status', function() {    
         var x = $(this).val();
-
+        console.log(x);
             $(document).ready(function (e){
             $( "#formStatus" ).on( 'submit', function(e)
                 {

@@ -35,12 +35,12 @@ class Sagas extends Model
         return $this->belongsTo('App\Book','saga_id');
     }
 
-    public function seller()
+    public function Seller()
     {
     return $this->belongsTo('App\Seller', 'seller_id');
     }
 
-    public function rating()
+    public function Rating()
     {
     return $this->belongsTo('App\Rating', 'rating_id');
     }
