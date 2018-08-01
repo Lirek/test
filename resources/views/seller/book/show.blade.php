@@ -105,21 +105,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title text-center">{{ $book->original_title }}</h4>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title text-center">{{ $book->title }}</h4>
                     </div>
-                    <div class="modal-body text-center ">
-                        {{--<p>One fine body&hellip;</p>--}}
-                        {{--inicio del ejemplo--}}
+                    <div class="modal-body text-center">
+                        <div class="pdf">
 
-                        <embed src='/book/{{ $book->books_file }}' class="text-center" width="1200" height="750"
-                               type='application/pdf'></embed>
+                            <div class="transparencia"></div>
+                            <div class="bloqueo"></div>
+                            <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
 
-                        {{--<h1>PDF.js Previous/Next example</h1>--}}
-
-
-                        {{--fin del ejemplo--}}
-
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger text-center" data-dismiss="modal">Cerrar</button>
@@ -135,7 +132,7 @@
 @section('js')
     <script>
 //---------------------------------------------------------------------------------------------------
-// Para evitar el click derecho sobre el modal del PDF
+// Para evitar el click derecho sobre el modal del PDF        
         document.getElementById('modal-default').oncontextmenu = function() {
             return false
         }
@@ -215,22 +212,18 @@
             pageNum--;
             queueRenderPage(pageNum);
         }
-
         document.getElementById('prev').addEventListener('click', onPrevPage);
-
         /**
          * Displays next page.
          */
-        function onNextPage() {
+         function onNextPage() {
             if (pageNum >= pdfDoc.numPages) {
                 return;
             }
             pageNum++;
             queueRenderPage(pageNum);
         }
-
         document.getElementById('next').addEventListener('click', onNextPage);
-
         /**
          * Asynchronously downloads PDF.
          */

@@ -33,11 +33,9 @@
                                     <tr>
                                         <td class="text-center"> {{ $b->id }} </td>
                                         <td class="text-center"> {{ $b->title }} </td>
-                                        <td class="text-center ">
+                                        <td class="text-center">
                                             <a href="{{ route('tbook.show', $b->id) }}">
                                                 <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;" alt="Portada">
-                                                <img class=" img-circle " src="images/bookcover/{{ $b->cover }}"
-                                                     style="width:50px;height:50px;" alt="Portada">
                                             </a>
                                         </td>
                                         <td class="text-center"> {{ $b->rating->r_name }} </td>
@@ -81,9 +79,6 @@
                 <!-- /.box -->
             </div>
         </div>
-
-        <div class="col-md-offset-10">
-            {!! $book->render !!}
         <br>
         <div class="col-md-offset-9">
             <a href="{{ route('tbook.create') }}" class="btn btn-info">
