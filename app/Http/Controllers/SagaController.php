@@ -38,7 +38,6 @@ class SagaController extends Controller
         $saga->seller_id = \Auth::guard('web_seller')->user()->id;
         $saga->img_saga = $name;
         $saga->status = 2;
-//        dd($saga,$saga->img_saga,$file);
         $saga->save();
 
         Flash::info('Se ha registrado ' . $saga->sag_name.'_' . ' de forma sastisfactoria')->important();
@@ -92,8 +91,8 @@ class SagaController extends Controller
 
     }
 
-    public function register(Request $request)
-    {
+    public function register(Request $request) {
+
         $file = $request->file('img_saga');
         $name = 'saga_' . time() . '.' . $file->getClientOriginalExtension();
         $path = public_path() . '/images/sagas/';
@@ -103,14 +102,33 @@ class SagaController extends Controller
         $saga->seller_id = \Auth::guard('web_seller')->user()->id;
         $saga->img_saga = $name;
         $saga->status = 2;
-//        dd($saga,$saga->img_saga,$file);
         $saga->save();
 
-        Flash::info('Se ha registrado ' . $saga->sag_name.'_' . ' de forma sastisfactoria')->important();
+        Flash::success('Se ha registrado '.$saga->sag_name.' de forma sastisfactoria')->important();
 
-        return redirect()->route('tbook.create');
+        switch ($request->type_saga) {
+            case '1':
+                $ruta = "tbook.create";
+                break;
+            case '2':
+                $ruta = "movies.create";
+                break;
+            case '3':
+                $ruta = "series.create";
+                break;
+            case '4':
+                dd('ruta no definida');
+                //$ruta = "series.create";
+                break;
+            default:
+                //dd('error en el tipo de variable');
+                break;
+        }
+
+        return redirect()->route($ruta);
     }
 
+/*
     public function registerSeries(Request $request)
     {
         $file = $request->file('img_saga');
@@ -129,4 +147,5 @@ class SagaController extends Controller
 
         return redirect()->route('series.create');
     }
+*/
 }

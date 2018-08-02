@@ -13,13 +13,13 @@ class MoviesController extends Controller
 {
     public function index()
     {
-        $movies = Movie::orderBy('id', 'DESC')->paginate('10');
+        $movies = Movie::orderBy('id', 'DESC')->get();
         $movies->each(function ($movies) {
             $movies->saga;
             $movies->rating;
         });
 
-//        dd($movies);
+       // dd($movies);
 
         return view('seller.movie.index')->with('movie',$movies);
     }
@@ -27,7 +27,7 @@ class MoviesController extends Controller
     public function create()
     {
         $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
-        $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $sagas = Sagas::where('type_saga','Peliculas')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
 
         return view('seller.movie.create')
             ->with('ratin', $rating)
@@ -51,10 +51,11 @@ class MoviesController extends Controller
         $movie->seller_id = \Auth::guard('web_seller')->user()->id;
         $movie->img_poster = $name;
         $movie->duration = $names;
+        $movie->trailer_url = $request->trailer_url;
 //        dd($movie);
         $movie->save();
 
-        Flash::info('Se ha registrado ' . $movie->title . ' de forma sastisfactoria')->important();
+        Flash::success('Se ha registrado ' . $movie->title . ' de forma sastisfactoria')->important();
 
         return redirect()->route('movies.index');
     }
@@ -69,7 +70,6 @@ class MoviesController extends Controller
             $movies->saga;
             $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
             $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
-
             return view('seller.movie.edit')
                 ->with('ratin', $rating)
                 ->with('saga', $sagas)
@@ -85,6 +85,7 @@ class MoviesController extends Controller
     }
     public function update(Request $request,$id)
     {
+        
         $movie = Movie::find($id);
         $movie->seller_id = \Auth::guard('web_seller')->user()->id;
         $movie->saga_id = $request->saga_id;
@@ -98,7 +99,11 @@ class MoviesController extends Controller
             $movie->img_poster = $name;
         }
         $movie->story = $request->story;
-        $movie->country = $request->country;
+        if ($request->country<>null) {
+            $movie->country = $request->country;
+        } else {
+            $movie->country = $request->country2;
+        }
         $movie->based_on = $request->based_on;
         if ($request->duration <> null) {
             $files = $request->file('duration');
@@ -114,7 +119,7 @@ class MoviesController extends Controller
 //        dd($movie,$movie->duration,$movie->file, $file,$files);
         $movie->save();
 
-        Flash::warning('Se ha modificado ' . $movie->title . ' de forma exitosa')->important();
+        Flash::success('Se ha modificado '.$movie->title.' de forma exitosa')->important();
 
         return redirect()->route('movies.index');
     }
@@ -127,7 +132,6 @@ class MoviesController extends Controller
             $movies->saga;
             $movies->rating;
         });
-
         return view('seller.movie.show')->with('movie',$movies);
     }
 
@@ -135,7 +139,7 @@ class MoviesController extends Controller
         $pelicula = Movie::find($id);
         if (\Auth::guard('web_seller')->user()->id === $pelicula->seller_id) {
             $pelicula->delete();
-            Flash::error('Se a eliminado la película con exito')->important();
+            Flash::error('Se ha eliminado la película con exito')->important();
             return redirect()->route('movies.index');
         } else {
             Flash::error('No tienes los permisos necesarios para acceder')->important();

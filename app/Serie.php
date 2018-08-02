@@ -9,13 +9,38 @@ class Serie extends Model
     protected $table = 'series';
 
     protected $fillable = [
+        'id',
         'seller_id',
         'saga_id',
         'cost',
         'trailer',
         'status',
         'status_series',
-        'id'
+        'title',
+        'img_poster',
+        'release_year',
+        'before',
+        'after'
     ];
+
+    public function Episode() {
+      return $this->hasMany('App\Episode','series_id');
+    }
+
+    public function Seller() {
+      return $this->belongsTo('App\Seller', 'seller_id');
+    }
+
+    public function Saga() {
+        return $this->belongsTo('App\Sagas', 'saga_id');
+    }
+
+    public function Rating() {
+      return $this->belongsTo('App\Rating', 'rating_id');
+    }
+
+    public function Transactions() {
+      return $this->hasMany('App\Transactions','series_id'); 
+    }
 
 }

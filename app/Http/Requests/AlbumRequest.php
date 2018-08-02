@@ -24,16 +24,16 @@ class AlbumRequest extends FormRequest
     public function rules()
     {
         $rules= [
-
+            /*
             'album' =>'required|max:255',
             'cost' =>'required|numeric',
             'tags' =>'required',
             'artist' =>'required',
             'image' =>'required|mimes:jpeg,bmp,png',
-            'audio.*' =>'required|mimes:mpga',
-            'song_n.*' =>'required|max:255'
+            */
+            'song_n.*' =>'required',
+            'audio.*' =>'required',
         ];
-
         
         return($rules);
     }

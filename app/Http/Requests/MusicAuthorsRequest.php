@@ -25,15 +25,17 @@ class MusicAuthorsRequest extends FormRequest
     {
             $rules= [
 
+            'x12' =>'required',
+            /*
             'art_name' =>'required|max:255',
             'dsc' =>'required|max:255',
             'type_authors' =>'required',
-            'x12' =>'required',
             'facebook' =>'required',
             'google' =>'required',
             'twitter' =>'required',
             'instagram' =>'required',
             'photo' => 'required|mimes:jpeg,bmp,png'
+            */
         ];
 
         

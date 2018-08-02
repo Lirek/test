@@ -3,7 +3,7 @@
     <style>
         #image-preview {
             width: 100%;
-            height: 450px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -162,12 +162,13 @@
 
                         {{--Poster de la pelicula--}}
                         <div class="col-md-6">
+                            <div id="mensajePortadaPelicula"></div>
                             <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                 Si no selecciona una Portada, se mantendrá la actual
                             </label>
-                            <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'.jpg', 'style'=>'border:#000000','1px solid ;']) !!}
+                                {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$movie->img_poster)!!}
                                 <div id="list">
                                     <img style="width:100%; height:100%; border-top:50%;" src="{{asset('movie/poster')}}/{{$movie->img_poster}}">
@@ -193,17 +194,18 @@
 
                             {{--archivo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Cargar Película</label>
-                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                            <div id='mensajeCargaPelicula'></div>
+                            <label for="cargaPelicula" id="mensajePelicula" class="control-label" style="color: green;">
                                 Si no selecciona una Película, se mantendrá la actual
                             </label>
-                            {!! Form::file('duration',['class'=>'form-control-file','control-label','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]) !!}
+                            {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'id'=>'pelicula','oninput'=>"setCustomValidity('')"]) !!}
                             <br>
                             {!! Form::hidden('durationOld',$movie->duration) !!}
 
                             {{--selecionar pais--}}
                             <label class="control-label">Pais</label>
                             <br>
-                            <select  name="x12" id="paises" class="form-control js-example-basic-single" required="required" oninvalid="this.setCustomValidity('Seleccione un País')" oninput="setCustomValidity('')">
+                            <select  name="country" id="paises" class="form-control">
                                 <option value="" selected>Seleccione una Opcion</option>
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
@@ -441,6 +443,7 @@
                                 <option value="ZM">Zambia</option>
                                 <option value="ZW">Zimbabue</option>
                             </select>
+                            {!! Form::hidden('country2',$movie->country)!!}
                             <br>
 
                             {{--Basado en un libro o no --}}
@@ -460,15 +463,11 @@
                             {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de Lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el Año de Lanzamiento')"]) !!}
                             <br>
 
-                            {{--duracion de la pelicula--}}
-                            {{--
-                            <label for="exampleInputPassword1" class="control-label">Precio</label>
-                            {!! Form::text('duration',$movie->duration,['class'=>'form-control','placeholder'=>'1:20:00'],['id'=>'exampleInputFile']) !!}
-                            --}}
-
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Precio</label>
+                            <div id="mensajePrecio"></div>
                             {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Precio de la Película', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            <br>
 
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del Trailer</label>
@@ -480,16 +479,14 @@
                             <br>
                             <div class="radio-inline">
                                 <label class="control-label" for="option-1">
-                                    <input type="radio" id="option-1" class="flat-red"
-                                           onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                    <input type="radio" id="option-1" class="flat-red" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
                                     <span class="mdl-radio__label">Si</span>
                                 </label>
                             </div>
 
                             <div class="radio-inline">
                                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                                    <input type="radio" id="option-2" class="mdl-radio__button"
-                                           onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                    <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
                                     <span class="mdl-radio__label">No</span>
                                 </label>
 
@@ -497,16 +494,18 @@
                             <br>
 
                             <div class="" style="display:none" id="if_si">
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga de Libro','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                {!! Form::select('saga_id',$saga,$movie->saga_id,['class'=>'form-control select-saga','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Nombre de la Saga de la Película')", 'oninput'=>"setCustomValidity('')"]) !!}
                                 <br>
 
                                 {{--no se de que va --}}
                                 <label for="exampleInputPassword1" class="control-label">Después</label>
-                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'aun no sé de que va este campo','id'=>'despues','required'=>'required']) !!}
+                                <div id="mensajeDespues"></div>
+                                {!! Form::number('after',$movie->after,['class'=>'form-control','placeholder'=>'Número del Capitulo que va después','min'=>'0','id'=>'despues','required'=>'required']) !!}
 
                                 {{--no se de que va tampoco--}}
                                 <label for="exampleInputPassword1" class="control-label">Antes</label>
-                                {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'discusion sobre este campo y si queda debe ser tipo text...','id'=>'antes', 'required'=>'required']) !!}
+                                <div id="mensajeAntes"></div>
+                                {!! Form::number('before',$movie->before,['class'=>'form-control','placeholder'=>'Número del Capitulo que va antes','min'=>'0','id'=>'antes','required'=>'required']) !!}
                             </div>
                         </div>
                         <div class="form-group col-md-12">
@@ -534,8 +533,6 @@
 @endsection
 
 @section('js')
-
-
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la imagen en el formulario
@@ -557,6 +554,46 @@
   document.getElementById('image-upload').addEventListener('change', archivo, false);
 // Para que se vea la imagen en el formulario
 //---------------------------------------------------------------------------------------------------
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
+        // Portada de la Pelicula
+        $(document).ready(function(){
+            $('#image-upload').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#cargaPelicula').hide();
+                    $('#mensajePortadaPelicula').show();
+                    $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePortadaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#cargaPelicula').show();
+                    $('#mensajePortadaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
+        });
+        // Portada de la Pelicula
+        // Archivo de la Pelicula
+        $(document).ready(function(){
+            $('#pelicula').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#mensajePelicula').hide();
+                    $('#mensajeCargaPelicula').show();
+                    $('#mensajeCargaPelicula').text('El archivo es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajeCargaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#mensajeCargaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
+        });
+        // Archivo de la Pelicula
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
+//---------------------------------------------------------------------------------------------------
 // Para validar la Fecha de Lanzamiento
     $(document).ready(function(){
         $('#fechaLanzamiento').keyup(function(evento){
@@ -575,12 +612,31 @@
     });
 // Para validar la Fecha de Lanzamiento
 //---------------------------------------------------------------------------------------------------
+// Para validar el precio
+    $(document).ready(function(){
+        $('#precio').keyup(function(evento) {
+            var precio = $('#precio').val();
+            if (precio<0) {
+                $('#mensajePrecio').show();
+                $('#mensajePrecio').text('El Precio debe ser mayor a cero');
+                $('#mensajePrecio').css('color','red');
+                $('#guardarCambios').attr('disabled',true);
+            } else {
+                $('#mensajePrecio').hide();
+                $('#guardarCambios').attr('disabled',false);
+            }
+        });
+    });
+// Para validar el precio
+//---------------------------------------------------------------------------------------------------
 // Para validar los radio boton
     $(document).ready(function(){
-        $('#option-2').prop('checked','checked');
-        $('#sagas').removeAttr('required');
-        $('#despues').removeAttr('required');
-        $('#antes').removeAttr('required');
+        $('#option-1').prop('checked','checked');
+        $('#if_si').show();
+        $('#sagas').attr('required','required');
+        $('#despues').attr('required','required');
+        $('#antes').attr('required','required');
+        $('#sagas').val('');
     });
 
     function yesnoCheck() {
@@ -599,6 +655,37 @@
         }
     }
 // Para validar los radio boton
+//---------------------------------------------------------------------------------------------------
+// Para validar los capitulos de las sagas
+    $(document).ready(function(){
+        $('#despues').keyup(function(evento) {
+            var despues = $('#despues').val();
+            if (despues<0) {
+                $('#mensajeDespues').show();
+                $('#mensajeDespues').text('El Número de la Saga debe ser mayor a cero');
+                $('#mensajeDespues').css('color','red');
+                $('#guardarCambios').attr('disabled',true);
+            } else {
+                $('#mensajeDespues').hide();
+                $('#guardarCambios').attr('disabled',false);
+            }
+        });
+    });
+    $(document).ready(function(){
+        $('#antes').keyup(function(evento) {
+            var antes = $('#antes').val();
+            if (antes<0) {
+                $('#mensajeAntes').show();
+                $('#mensajeAntes').text('El Número de la Saga debe ser mayor a cero');
+                $('#mensajeAntes').css('color','red');
+                $('#guardarCambios').attr('disabled',true);
+            } else {
+                $('#mensajeAntes').hide();
+                $('#guardarCambios').attr('disabled',false);
+            }
+        });
+    });
+// Para validar los capitulos de las sagas
 //---------------------------------------------------------------------------------------------------
 /*
         $('.select-author').chosen({

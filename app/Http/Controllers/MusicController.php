@@ -18,6 +18,12 @@ class MusicController extends Controller
     {
     	$albums = Albums::where('seller_id','=',$id)->simplePaginate(10);
     	$singles = Songs::where('seller_id','=',$id)->where('album','=',0)->orWhere('album','=',Null)->simplePaginate(10);
-       return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles);
+    	$x=0;
+       return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles)->with('x',$x);
+    }
+
+    public function ShowMusicOfMyPanel($id) {
+    	$singles = Songs::where('seller_id','=',$id)->where('album','=',0)->orWhere('album','=',Null)->get();
+    	return response()->json($singles);
     }
 }
