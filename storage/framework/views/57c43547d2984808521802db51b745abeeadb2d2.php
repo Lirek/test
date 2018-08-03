@@ -16,8 +16,7 @@
 
     <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
     <!--external css-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">   <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
@@ -226,6 +225,17 @@
             var nav = $("#" + id).data("navigation");
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+
+         function yesnoCheck() {
+        if (document.getElementById('option-2').checked) 
+        {
+            $('#if_no').show();
+        } 
+        else 
+        {
+            $('#if_no').hide();
+            $('#razon').val('');
         }
     </script>
   

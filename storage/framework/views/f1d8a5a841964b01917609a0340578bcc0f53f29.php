@@ -61,7 +61,7 @@
 			<i class="fas fa-book fa-4x"></i>
 			<p>Libros</p>
 			<p><?php echo e($books); ?></p>
-			<p class="user"><a href="<?php echo e(url('/admin_albums')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p class="user"><a href="<?php echo e(url('/admin_books')); ?>"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 </div>

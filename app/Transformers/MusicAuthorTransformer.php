@@ -8,6 +8,12 @@ use App\music_authors;
 
 class MusicAuthorTransformer extends TransformerAbstract
 {
+    
+    protected $availableIncludes   = [
+        'Seller',
+        'Singles',
+        'Albums',
+    ];
     /**
      * A Fractal transformer.
      *
@@ -29,5 +35,32 @@ class MusicAuthorTransformer extends TransformerAbstract
             'youtube' => $Authors->google,
             'seller_id' => $Authors->seller_id,
         ];
+    }
+
+
+    public function includeSeller(music_authors $Authors)
+    {
+        $Authors=$Authors->Seller;
+
+        if ($Authors->count() > 0)
+        {
+        return $this->item($Authors,new SellerTransformer);
+        }
+    }
+
+    public function includeSingles(music_authors $Authors)
+    {
+        $Singles = $Authors->songs()->where('cost','<>',Null)
+                                    ->where('status','=','Aprobado')
+                                    ->get(); 
+
+        return $this->collection($Singles,new SongsTransformer);
+    }
+
+    public function includeAlbums(music_authors $Authors)
+    {
+        $Albums = $Authors->albums()->where('status','=','Aprobado')->get();
+
+        return $this->collection($Albums,new AlbumsTransformer);   
     }
 }

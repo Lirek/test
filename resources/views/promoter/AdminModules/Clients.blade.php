@@ -80,6 +80,15 @@
                                   });  
                                                   });
          });
+
+    $(document).on('click', '#file_b', function() {
+    
+     var x = $(this).val();
+     console.log(x);
+     var file =$("#photo"+x).attr("src");
+     $("#ci_photo").attr("src", file);
+    
+     });
 	});
 </script>
 @endsection

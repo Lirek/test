@@ -150,6 +150,7 @@ Route::resource('users', 'UserController');
 
 
     Route::get('/admin_radio','AdminController@ShowRadios');
+    Route::get('RadioData','AdminController@RadioDataTable');
     Route::get('/AllAdminRadio','AdminController@ShowAllRadios');
     Route::post('/admin_radio/{id}','AdminController@RadioStatus');
 
@@ -173,6 +174,7 @@ Route::resource('users', 'UserController');
 
 
     Route::get('/admin_tv','AdminController@ShowTV');
+    Route::get('DataTv','AdminController@DataTableTv');
     Route::get('/AllAdminTv','AdminController@ShowAllTV');
     Route::post('/admin_tv/{id}','AdminController@TvStatus');
 
@@ -428,10 +430,27 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
                 
                 Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
+           //------------------------------------------------------------------------
 
-               
+           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
+              
+                Route::get('admin_books','AdminController@ShowBooks');
+                Route::get('BooksData','AdminController@BooksDataTable');
+                Route::post('books_status/{id}','AdminController@EstatusBooks');
+                
+                Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
+                Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
+           //------------------------------------------------------------------------
+
+           //--------------------AUTORES LITERARIOS----------------------------------
+                
+                Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
+                Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
+                Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
+           //------------------------------------------------------------------------
 
         
+
             //-----------------------------------------------------------------------
         
         //________________Fin de las rutas de contenido_____________________________
