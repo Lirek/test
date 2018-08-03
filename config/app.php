@@ -195,6 +195,9 @@ return [
         //Json Fractal
         Spatie\Fractal\FractalServiceProvider::class,
 
+        //Erorres en Json
+        Optimus\Heimdal\Provider\LaravelServiceProvider::class,
+
     ],
 
 

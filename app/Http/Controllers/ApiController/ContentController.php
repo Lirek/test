@@ -63,7 +63,7 @@ class ContentController extends Controller
                     $Json = Fractal::create()
                            ->collection($Songs)
                            ->transformWith(new SongsTransformer)                  
-                           ->parseIncludes(['autors','Seller','tags'])
+                           ->parseIncludes(['autors','Seller','Tags'])
                            ->toArray();          
 
 			return Response::json($Json);
@@ -157,7 +157,7 @@ class ContentController extends Controller
 
     public function Single($id)
     {
-        $Songs=Songs::find($id)->whereNull('album')
+        $Songs=Songs::findOrFail($id)->whereNull('album')
                                       ->with('Seller')
                                       ->with('autors')
                                       ->where('status','=','Aprobado')
@@ -177,7 +177,7 @@ class ContentController extends Controller
 
     public function Megazine($id)
     {
-        $Megazines= Megazines::find($id)->where('status','=','Aprobado')
+        $Megazines= Megazines::findOrFail($id)->where('status','=','Aprobado')
                                                             ->with('Seller')
                                                             ->with('sagas')
                                                             ->with('tags_megazines')
@@ -193,13 +193,13 @@ class ContentController extends Controller
                            ->transformWith(new MegazinesTransformer)                
                            ->parseIncludes(['Albums','Seller','Singles'])
                            ->toArray();
-                           
+
         return Response::json($Json);
     }
 
     public function Album($id)
     {
-        $Albums = Albums::find($id)->where('status','=','Aprobado')
+        $Albums = Albums::findOrFail($id)->where('status','=','Aprobado')
                                                         ->with('Seller')
                                                         ->with('Autors')
                                                         ->with('tags_music')    
@@ -221,7 +221,7 @@ class ContentController extends Controller
 
     public function Book($id)
     {
-        $Books= Book::find($id)->where('status','=','Aprobado')
+        $Books= Book::findOrFail($id)->where('status','=','Aprobado')
                                                     ->with('author')
                                                     ->with('seller')
                                                     ->get();

@@ -8,21 +8,21 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
-        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'ab9b68c5b1def6f80e89be13eb0a4be3' => __DIR__ . '/..' . '/spatie/laravel-fractal/src/helpers.php',
         '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
@@ -87,6 +87,10 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
+        ),
+        'O' => 
+        array (
+            'Optimus\\Heimdal\\' => 16,
         ),
         'N' => 
         array (
@@ -268,6 +272,10 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Optimus\\Heimdal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/optimus/heimdal/src',
         ),
         'Namshi\\JOSE\\' => 
         array (
@@ -534,6 +542,16 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\SongsTags' => __DIR__ . '/../..' . '/app/SongsTags.php',
         'App\\Tags' => __DIR__ . '/../..' . '/app/Tags.php',
         'App\\Transactions' => __DIR__ . '/../..' . '/app/Transactions.php',
+        'App\\Transformers\\AlbumsTransformer' => __DIR__ . '/../..' . '/app/Transformers/AlbumsTransformer.php',
+        'App\\Transformers\\BooksAuthorTransformer' => __DIR__ . '/../..' . '/app/Transformers/BooksAuthorTransformer.php',
+        'App\\Transformers\\BooksTransformer' => __DIR__ . '/../..' . '/app/Transformers/BooksTransformer.php',
+        'App\\Transformers\\MegazinesTransformer' => __DIR__ . '/../..' . '/app/Transformers/MegazinesTransformer.php',
+        'App\\Transformers\\MusicAuthorTransformer' => __DIR__ . '/../..' . '/app/Transformers/MusicAuthorTransformer.php',
+        'App\\Transformers\\RatingTransformer' => __DIR__ . '/../..' . '/app/Transformers/RatingTransformer.php',
+        'App\\Transformers\\SagaTransformer' => __DIR__ . '/../..' . '/app/Transformers/SagaTransformer.php',
+        'App\\Transformers\\SellerTransformer' => __DIR__ . '/../..' . '/app/Transformers/SellerTransformer.php',
+        'App\\Transformers\\SongsTransformer' => __DIR__ . '/../..' . '/app/Transformers/SongsTransformer.php',
+        'App\\Transformers\\TagsTransformer' => __DIR__ . '/../..' . '/app/Transformers/TagsTransformer.php',
         'App\\Tv' => __DIR__ . '/../..' . '/app/Tv.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\music_authors' => __DIR__ . '/../..' . '/app/music_authors.php',
@@ -2318,6 +2336,17 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Namshi\\JOSE\\Signer\\SecLib\\RSA' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SecLib/RSA.php',
         'Namshi\\JOSE\\Signer\\SignerInterface' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SignerInterface.php',
         'Namshi\\JOSE\\SimpleJWS' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/SimpleJWS.php',
+        'Optimus\\Heimdal\\ExceptionHandler' => __DIR__ . '/..' . '/optimus/heimdal/src/ExceptionHandler.php',
+        'Optimus\\Heimdal\\Formatters\\BaseFormatter' => __DIR__ . '/..' . '/optimus/heimdal/src/Formatters/BaseFormatter.php',
+        'Optimus\\Heimdal\\Formatters\\ExceptionFormatter' => __DIR__ . '/..' . '/optimus/heimdal/src/Formatters/ExceptionFormatter.php',
+        'Optimus\\Heimdal\\Formatters\\HttpExceptionFormatter' => __DIR__ . '/..' . '/optimus/heimdal/src/Formatters/HttpExceptionFormatter.php',
+        'Optimus\\Heimdal\\Formatters\\UnprocessableEntityHttpExceptionFormatter' => __DIR__ . '/..' . '/optimus/heimdal/src/Formatters/UnprocessableEntityHttpExceptionFormatter.php',
+        'Optimus\\Heimdal\\Provider\\LaravelServiceProvider' => __DIR__ . '/..' . '/optimus/heimdal/src/Provider/LaravelServiceProvider.php',
+        'Optimus\\Heimdal\\Reporters\\BugsnagReporter' => __DIR__ . '/..' . '/optimus/heimdal/src/Reporters/BugsnagReporter.php',
+        'Optimus\\Heimdal\\Reporters\\ReporterInterface' => __DIR__ . '/..' . '/optimus/heimdal/src/Reporters/ReporterInterface.php',
+        'Optimus\\Heimdal\\Reporters\\RollbarReporter' => __DIR__ . '/..' . '/optimus/heimdal/src/Reporters/RollbarReporter.php',
+        'Optimus\\Heimdal\\Reporters\\SentryReporter' => __DIR__ . '/..' . '/optimus/heimdal/src/Reporters/SentryReporter.php',
+        'Optimus\\Heimdal\\ResponseFactory' => __DIR__ . '/..' . '/optimus/heimdal/src/ResponseFactory.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',

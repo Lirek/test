@@ -16,7 +16,7 @@ class SongsTransformer extends TransformerAbstract
     protected $availableIncludes   = [
         'autors',
         'Seller',
-        'tags'
+        'Tags'
     ];
 
     public function transform(Songs $Songs)
