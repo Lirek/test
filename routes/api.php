@@ -39,3 +39,8 @@ Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthor
 Route::get('Books','ApiController\ContentController@AllAprovedBooks');
 Route::get('Megazines','ApiController\ContentController@AllAprovedMegazines');
 //---------------------------------------------------------------------------
+Route::get('Single/{id}','ApiController\ContentController@Single');
+Route::get('Megazine/{id}','ApiController\ContentController@Megazine');
+Route::get('Album/{id}','ApiController\ContentController@Album');
+Route::get('Book/{id}','ApiController\ContentController@Book');
+

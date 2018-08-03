@@ -56,13 +56,10 @@ class AdminController extends Controller
         return true;
     }
 
-/*-------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------
---------------------                             .............................................
---------------------- FUNCIONES DE APROBAR ALBUM --------------------------------------------
-----------------------                            ------------------------------------------
---------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------
+/* 
+-----------------------------------------------------------------
+--------------------- FUNCIONES DE APROBAR ALBUM ----------------------
+---------------------------------------------------------------
 */
     	public function ShowAlbums()
     	{	
@@ -134,11 +131,8 @@ class AdminController extends Controller
         $albums->save();
    			return response()->json($albums);
    		}
-/*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE SINGLE -------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+/*------------------------------------------------------------------------------------ ---------------------FUNCIONES DE SINGLE------------------------------
+-----------------------------------------------------------------------
 */
    		public function ShowSingles()
     	{	
@@ -193,11 +187,9 @@ class AdminController extends Controller
    			return response()->json($Single);
    		}
 
-/*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE ARTISTAS MUSICALES -------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+/*-------------------------------------------------------------------------
+-----------------FUNCIONES DE ARTISTAS MUSICALES---------------------------
+---------------------------------------------------------------------------
 */
 
    		public function ShowMusicianView()
@@ -298,18 +290,58 @@ class AdminController extends Controller
    			return response()->json($musician);
    		}
 
-/*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE RADIOS ----------- -------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------
+---------------------------FUNCIONES DE RADIOS--------------------------
+-----------------------------------------------------------------------
 */   		
   
    		public function ShowRadios()
     	{
-    		$radios= Radio::where('status','=','En Proceso')->paginate(10);
-    		return view('admin.Radio')->with('radios',$radios);
+        return view('promoter.ContentModules.MainContent.Radio');
    		}
+
+      public function RadioDataTable()
+      {
+        $radios= Radio::where('status','=','En Proceso')->with('Seller')->get();
+
+         return Datatables::of($radios)
+
+                          ->addColumn('Estatus',function($radios){
+
+                            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
+                          })
+                          ->editColumn('logo',function($radios){
+
+                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$radios->logo.'"
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          ->editColumn('streaming',function($radios){
+                      
+
+                          return '<audio controls="" src="'.$radios->streaming.'">
+                                    <source src="'.$radios->streaming.'" type="audio/mpeg">
+                                    </audio>';
+                         })
+                          ->addColumn('SocialMedia',function($radios){
+                      
+                            return 
+                            '<a target="_blank" href="http://'.$radios->facebook.'>
+                             <i class="fa fa-facebook-official" style="font-size:24px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->google.'">
+                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->instagram.'">
+                               <i class="fa fa-instagram" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->twitter.'">
+                              <i class="fa fa-twitter" style="font-size:36px"></i>
+                             </a>';
+                    })
+                          ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
+                          ->toJson();
+
+      }
 
       public function ShowAllRadios()
       {
@@ -328,11 +360,9 @@ class AdminController extends Controller
    			return response()->json($radios);
    		}
 
-/*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE REVISTAS ----------- -------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+/*--------------------------------------------------------------------------
+-----------------------------FUNCIONES DE REVISTAS----------- --------------
+----------------------------------------------------------------------------
 */
    		public function ShowMegazine()
     	{
@@ -448,19 +478,58 @@ class AdminController extends Controller
    			return response()->json($megazines);
    		}
  
- /*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE TV---- ----------- -------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+ /*-----------------------------------------------------------------------------------
+-----------------------------   FUNCIONES DE TV---- ----------- ----------
+------------------------------------------------------------------------
 */ 		
    		
 	   	public function ShowTV()
     	{
-    		$tv= TV::where('status','=','En Proceso')->paginate(10);
-    		return view('admin.TV')->with('TVS',$tv);
+    		return view('promoter.ContentModules.MainContent.Tv');
    		}
 
+      public function DataTableTv()
+      {
+        $tv= TV::where('status','=','En Proceso')->get();
+
+        return Datatables::of($tv)
+
+                          ->addColumn('Estatus',function($tv){
+
+                            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
+                          })
+                          ->editColumn('logo',function($tv){
+
+                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$radios->logo.'"
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          ->editColumn('streaming',function($tv){
+                      
+
+                          return '<audio controls="" src="'.$tv->streaming.'">
+                                    <source src="'.$tv->streaming.'" type="video/quicktime">
+                                    </audio>';
+                         })
+                          ->addColumn('SocialMedia',function($tv){
+                      
+                            return 
+                            '<a target="_blank" href="http://'.$radios->facebook.'>
+                             <i class="fa fa-facebook-official" style="font-size:24px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->google.'">
+                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->instagram.'">
+                               <i class="fa fa-instagram" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->twitter.'">
+                              <i class="fa fa-twitter" style="font-size:36px"></i>
+                             </a>';
+                    })
+                          ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
+                          ->toJson();
+
+      }
       public function ShowAllTV()
       {
         $tv= TV::paginate(10);
@@ -478,15 +547,104 @@ class AdminController extends Controller
    			return response()->json($tv);
    		}
 
-   		
+/*--------------------------------------------------------------------------------
+-----------------------FUNCIONES DE LIBROS-----------------------------------
+-----------------------------------------------------------------------
+*/   		
+  public function ShowBooks()
+  {
+        return view('promoter.ContentModules.MainContent.Books');
+  }
 
+  public function BooksDataTable()
+  {
+    $Books= Book::where('status','=','En Revision')->get();
+    return Datatables::of($Books)
+                    ->addColumn('Estatus',function($Books){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Books->id.' data-toggle="modal" data-target="#myModal" id="status">'.$Books->status.'</button';
+                    })
+                    ->editColumn('books_file',function($Books){
 
+                      return '<button type="button" class="btn btn-theme" value='.$Books->books_file.' data-toggle="modal" data-target="#file" id="file_b"></button';
+                    })
+                    ->editColumn('cover',function($Books){
 
+                      return '<img class="img-rounded img-responsive av" src="'.asset($Books->cover).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('saga_id',function($Books){
+                      
+                      if($Books->saga_id == 0 or $Books->saga_id == 'NULL')
+                          {
+                            return 'No';
+                          }
+                          else
+                          {
+                            return $Books->sagas->sag_name;
+                          }
+    
+                    
+                    })
+                    ->editColumn('author_id',function($Books){
+                      
+                        return $Books->author()->first()->full_name;
+
+                    })
+                    ->editColumn('rating_id',function($Books){
+
+                    return $Books->rating->r_name;
+
+                    })
+                    ->editColumn('seller_id',function($Books){
+
+                    return $Books->seller->name;
+
+                    })
+                    ->rawColumns(['Estatus','books_file','cover'])
+                    ->toJson();
+         
+  }
+
+  public function BooksSagasDataTable()
+  {
+    $saga = Sagas::where('status','=','En Proceso')->where('type_saga','=','Libros')->get();
+
+        return Datatables::of($saga)
+                    ->addColumn('Estatus',function($saga){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$saga->id.' data-toggle="modal" data-target="#PubModal" id="Status">'.$saga->status.'</button';
+                    })
+                    ->editColumn('img_saga',function($saga){
+
+                      return '<img class="img-rounded img-responsive av" src="'.asset($saga->img_saga).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                    })
+                    ->editColumn('seller_id',function($saga){
+
+                      return $saga->Seller()->first()->name;
+                    })
+                    ->editColumn('rating_id',function($saga){
+
+                      return $saga->Rating()->first()->r_name;
+                    })
+                    ->rawColumns(['Estatus','img_saga'])
+                    ->toJson();
+  }
+
+  public function EstatusBooks(Request $request,$id)
+  {
+        $Book = Book::find($id);
+        $Book->status = $request->status; 
+
+        $this->SendEmails($request->status,$Book->title,$Book->seller->email,$request->message);        
+
+        $Book->save();
+        return response()->json($Book);
+  }
  /*---------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------   FUNCIONES DE PROVEEDORES------ -------------------------------------
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------FUNCIONES DE PROVEEDORES----------------------------------
+--------------------------------------------------------------------------------------
 */
 
 
@@ -559,7 +717,7 @@ class AdminController extends Controller
         }
           return response()->json($data);          
       }
-//-------------Mostrar Solicitudes  ---------------------------------
+//-------------Mostrar Solicitudes ---------------------------------
    		
       public function ShowApplys()
     	{
@@ -638,7 +796,7 @@ class AdminController extends Controller
 
   			$applys->assing_at = $current = Carbon::now();
        
-        Mail::to($applys->email)->send(new PromoterAssing($applys));
+        Mail::to($applys->email)->subject('Estamos Procesando su Solicitud')->send(new PromoterAssing($applys));
 
         $applys->save(); 
         
@@ -681,14 +839,14 @@ class AdminController extends Controller
   				$applys->expires_at= $current->addDays(7);
   				
   				
-  				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+  				Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
 
   				$applys->save();
   				return response()->json($applys);	
   			}
         else
         {   
-            Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+            Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
             $applys->save();
            return response()->json($applys);
             
@@ -770,8 +928,10 @@ class AdminController extends Controller
                     
                     ->editColumn('img_doc',function($user){
 
-                      return '<img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
                     })
                     ->editColumn('name',function($user){
                        return $user->name.' '.$user->last_name; 

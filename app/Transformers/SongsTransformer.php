@@ -13,6 +13,12 @@ class SongsTransformer extends TransformerAbstract
      *
      * @return array
      */
+    protected $availableIncludes   = [
+        'autors',
+        'Seller',
+        'tags'
+    ];
+
     public function transform(Songs $Songs)
     {
         return [
@@ -27,12 +33,30 @@ class SongsTransformer extends TransformerAbstract
                 'duration'=> $Songs->duration,
                 'status'=> $Songs->status,
         ];
+
     }
 
     public function includeAutors(Songs $Songs)
     {
-       $Autors=$Songs->Autors()->get();
+       $Autors=$Songs->Autors()->first();
 
-       return $this->collection($Autors,new MusicAuthorTransformer);
+       return $this->item($Autors,new MusicAuthorTransformer);
+    }
+
+    public function includeSeller(Songs $Songs)
+    {
+       $Seller=$Songs->Seller()->first();
+
+       return $this->item($Seller,new SellerTransformer);
+    }
+
+    public function includeTags(Songs $Songs)
+    {
+        $Tags=$Songs->tags()->get();
+         
+         if($Tags->count() <= 0)
+         {
+            return $this->collection($Tags,new TagsTransformer);
+         }
     }
 }
