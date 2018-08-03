@@ -53,6 +53,7 @@ Route::resource('users', 'UserController');
 //-------------------Funciones del Usuarios----------------------------------
 
 Route::post('BuySong/{id}','UserController@BuySingle');
+Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
 Route::post('BuyBook/{id}','UserController@BuyBook');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
@@ -87,6 +88,12 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyMovies','UserController@MyMovies');
     Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
 
+    //Agregada 31/7/2018
+    Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));
+
+    //Agregada 3/8/2018
+    Route::get('DownloadQr','UserController@qrDownload');
+
 
 //---------------------------------------------------------------------------
 
@@ -98,6 +105,9 @@ Route::get('AllAlbums','ContentController@ShowAllAlbum');
 Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
 Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
 Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+
+//Agrega 3/8/2018
+    Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
 
 //---------------------------------------------------------------------------
 

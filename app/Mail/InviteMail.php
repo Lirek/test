@@ -34,7 +34,7 @@ class InviteMail extends Mailable
     {
         
         return $this->view('admin.mails.InvitePeople')
-        ->subject('Unete A Leipel')
+        ->subject($this->user.' te invita a unirte a Leipel')
         ->with('url',$this->url)
         ->with('name',$this->user);
     }

@@ -1,276 +1,170 @@
 @extends('layouts.app')
 
-
-@section('main')
-
-<div class="container">
- <div class="row">
- 
-    <div class="col s6">
-      <div class="card-panel teal">
-        <h3 class="whte"><span class="white-text">Artistas Y Agrupaciones</span></h3>
-        <div class="divider"></div>
-         <div class="carousel">
-           @foreach($MusicAuthors as $MusicAuthor)
-            <div class="carousel-item">
-            <a href=""><img src="{{asset($MusicAuthor->photo)}}"></a>
-            
-            <a href="{{url('ProfileMusicArtist/'.$MusicAuthor->id)}}" style="margin-left: 25px" class="waves-effect waves-light btn green center">
-              <span class="white-text">{{$MusicAuthor->name}}</span>
-            
-            </a>
-
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  
-    <div class="col s6" >
-      <div class="card-panel whithe">
-        <h3 class="whte"><span class="black-text">Singles Mas Sonados</span></h3>
-        <div class="divider"></div>
-         <div class="carousel">
-          @foreach($Singles as $Single)
-            <div class="carousel-item">
-              <p>{{$Single->song_name}}</p>
-            <a href=""><img src="{{asset($Single->autors->photo)}}"></a>
-            
-            <a class="waves-effect waves-light btn blue" value="{{$Single->cost}}" value1="{{$Single->song_name}}" value2="{{$Single->id}}" id="modal">
-              <span class="white-text">   
-                <i class="fas fa-ticket-alt"></i>
-                {{$Single->cost}}
-              </span>            
-            </a>
-
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
- </div>
- 
- <div class="row">
-  
- <div class="col s6 offset-s2">
-      <div class="card-panel teal">
-        <h3><span class="black-text">Albums Mas Vendidos</span></h3>
-        <div class="divider"></div>
-         <div class="carousel">
-          @foreach($Albums as $Album)
-            <div class="carousel-item">
-              <p>{{$Album->name_alb}}</p>
-            <a href=""><img src="{{asset($Album->cover)}}"></a>
-            
-            <a class="waves-effect waves-light btn blue" value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal">
-              <span class="white-text">   
-                <i class="fas fa-ticket-alt"></i>
-                {{$Album->cost}}
-              </span>            
-            </a>
-
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
- </div>
-
-<div class="row">
-  <div class="col s12">
-      <div class="card-panel white">
-        <h3>Busqueda de Singles</h3>
-        <div class="divider"></div>
-        <table id="singles" class="responsive-table">
-          <thead>
-          
-          <tr>
-              <th>Nombre</th>
-              <th>Duracion</th>
-              <th>Artista</th>
-              <th>Costo</th>
-          </tr>
-        </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-
-  <div class="col s7">
-      <div class="card-panel white">
-        <h3>Busqueda de Albums</h3>
-        <div class="divider"></div>
-        <table id="albums">
-          <thead>
-          
-          <tr>
-              <th></th>
-              <th>Nombre</th>
-              <th>Duracion</th>
-              <th>Artista</th>
-              <th>Costo</th>
-          </tr>
-        </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-</div>
+@section('css')
 
 @endsection
 
-  <div id="modal1" class="modal bottom-sheet">
-      <div class="modal-content teal">
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-footer teal">
-         <form method="POST"  id="SaveSong">
-                              {{ csrf_field() }}
-            <button class="btn waves-effect waves-light glyphicon-screenshot" type="submit" name="action">Comprar
-           <i class="material-icons right">send</i>
-          </button>
+@section('main')  
 
-        </form>
-      </div>
+<div class="row">
+    <div class="form-group"> 
+        <div class="row-edit">
+            <div class="col-md-12 col-sm-12 mb">
+            	<div class="control-label">
+            		<div class="white-header">
+            			<div class="col-sm-12 col-xs-12 col-md-12" id="principal">
+                     		<h3><span class="card-title"><i class="fa fa-angle-right"> Música</i></span></h3> 
+         						<div class="col-md-12  control-label">
+         						<form method="POST"  id="SaveSong" action="{{url('SearchProfileArtist')}}">{{ csrf_field() }}
+                    				<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                    				<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Artista...</button>
+                					
+       							</form>
+       							</div>
+       							<h4><span class="card-title"><i class="fa fa-angle-right" style="margin-top: 2%"> Nuevos álbums</i></span></h4> 
+
+       							@foreach($Albums as $Album)
+       							<!-- Spotify Panel -->
+								<div class="col-lg-4 col-md-4 col-sm-4 mb">
+									<div class="content-panel pnspoty">
+										<div id="spotify" style="
+											background: url('{{ asset($Album->cover)}}') no-repeat center top;
+											margin-top: -15px;
+											background-attachment: relative;
+											background-position: center center;
+											min-height: 220px;
+											width: 100%;
+    										-webkit-background-size: 100%;
+    										-moz-background-size: 100%;
+    										-o-background-size: 100%;
+    										background-size: 100%;
+    										-webkit-background-size: cover;
+    										-moz-background-size: cover;
+    										-o-background-size: cover;
+    										background-size: cover;">
+											<div class="col-xs-4 col-xs-offset-8">
+												<button class="btn btn-sm btn-clear-g" data-toggle="modal" data-target="#myModal">Ver mas</button>
+											</div>
+											<div class="sp-title">
+												<h3>{{$Album->autors->name}}</h3>
+												<h4>{{$Album->name_alb}}</h4>
+											</div>
+											<!-- <div class="play">
+												<i class="fa fa-play-circle"></i>
+											</div> -->
+										</div>
+										<p class="followers"><i class="fa fa-user"> {{$Album->autors->name}} - {{$Album->name_alb}}</i></p>
+									</div>
+								</div><!--/col-md-4-->
+								 
+
+								 <!--MODAL-->
+								 <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$Album->name_alb}}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        	<div id="panel" class="img-rounded img-responsive av text-center col-lg-6 col-md-6 col-sm-6 mb" style="-webkit-box-shadow: 8px 8px 15px #999;
+            									-moz-box-shadow: 8px 8px 15px #999;
+            									filter: shadow(color=#999999, direction=135, strength=8);
+            									/*Para la Sombra*/
+            									background-image: url('{{ asset($Album->cover)}}');
+            									margin-top: 5%;
+            									background-position: center center;
+            									width: 50%;
+            									min-height: 150px;
+            									-webkit-background-size: 100%;
+            									-moz-background-size: 100%;
+            									-o-background-size: 100%;
+            									background-size: 100%;
+            									-webkit-background-size: cover;
+            									-moz-background-size: cover;
+            									-o-background-size: cover;
+            									background-size: cover;">
+            									<button type="button" class="btn btn-primary" data-dismiss="modal"value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal-confirAlbum" style="margin-left: 70%">Adquirir</button>
+                    						</div>
+                    						<div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    							<h5><b>Canciones:</b></h5>
+                    							<ul>
+                    								@foreach($Album->Songs as $Song)
+                    								<li class="fa fa-angle-right">{{$Song->song_name}}</li>
+                    								@endforeach
+                    							</ul>
+                    							<h5><b>Costo:</b> {{$Album->cost}}</h5>
+                    						</div>
+                    						<div class="col-lg-12 col-md-12 col-sm-12 mb">
+                        						<h5><b>Artista:</b> {{$Album->autors->name}}</h5>
+                        						<h5><b>Album:</b> {{$Album->name_alb}}</h5>
+
+                        						<hr>
+                    						</div>
+                    						<div class="">
+                                            	<div class="modal-footer">
+                                            	
+                                              		<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                                            	</div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!--Fin modal-->
+                                @endforeach
+								<div class="col-md-12 col-sm-12 mb">
+									<hr>
+								</div>
+                     		<div class="col-md-12 col-sm-12 mb">
+                     			<div class="white-panel panRf pe donut-chart">
+                     					<div class="white-header">
+                            				<h3><span class="card-title">Singles</span></h3>                          
+                          				</div>
+                          			<div class="col-sm-12 col-xs-12 col-md-12 goleft">
+                          				<table class="table table-striped table-advance table-hover" id="myTable">
+                          					<thead>
+                          						<tr>
+                          							<th><i class="fa fa-music"></i>Nombre:</th>
+                          							<th><i class="fa fa-microphone"></i>Artista</th>
+                          							<th><i class="fa fa-money"></i>Costo</th>
+                          							<th><i class="fa fa-credit-card"></i></th>
+                          						</tr>
+                          					</thead>
+                          					<tbody>
+                          						@foreach ($Singles as $Single)
+                          						<tr class="letters">
+	                          							<td>{{$Single->song_name}}</td>
+                          							<td>{{$Single->autors->name}}</td>
+                          							<td>{{$Single->cost}}</td>
+                          							<td>
+                          								<a href="#" class="btn btn-primary a-btn-slide-text btn-xs" value="{{$Single->cost}}" value1="{{$Single->song_name}}" value2="{{$Single->id}}" id="modal-confir">
+                          								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
+                          								</a>
+                          							</td>
+                          						</tr>
+                          						@endforeach
+                          					</tbody>
+                          				</table>
+                          			</div>
+                     			</div>
+                     		</div>      
+                		</div>
+                	</div>
+            	</div>
+            </div>
+        </div>
     </div>
+</div>
+<div id="modal-confirmation"></div>
+
+@endsection
+
 
 @section('js')
-<script>
-
-
-            $('#albums tbody').on('click', 'td.details-control', function () {
-              
-             var table = $(this);
-
-              var tr = $(this).closest('tr');
-              var row = table.row( tr );
- 
-              if ( row.child.isShown() ) {
-
-                row.child.hide();
-                tr.removeClass('shown');
-
-                }
-              else 
-              {       
-                  row.child( format(row.data()) ).show();
-                  tr.addClass('shown');
-              }
-           });
-
-  $(document).on('click', '#modal', function() { 
-
-    var modal = document.getElementById('modal1');
-    var jquerymodal = $(modal);
-    var name;
-    var cost;
-
-     cost=$(this).attr('value');
-     name=$(this).attr('value1');
-     id=$(this).attr('value2');
-
-     jquerymodal.find('.modal-title').text( 'Desea Comprar '+name+' ¿Con Un Valor de '+cost+' tickets?');
-
-    jquerymodal.openModal();
-
-                 $( "#SaveSong" ).on( 'submit', function(e){
-                  e.preventDefault();
-                
-                $.ajax({
-                    
-                    url:'BuySong/'+id,
-                    type: 'POST',
-                    data: {
-                        _token: $('input[name=_token]').val()
-                        },
-                    
-                    success: function (result) 
-                    {
-                      swal('Cancion Comprada Con Exito','','success');
-
-                      if (result==0) 
-                        { 
-                          alert('No Posee Suficientes Creditos Por Favor Recargue','','error');  
-                        }
-                      if (result==1) 
-                      {
-                        alert('La Cancion Ya Forma Parte de Su Coleccion','','error');
-                      }
-                    },
-                    error: function (result) 
-                    {
-                      
-                    }
-
-                });
-
-
-             });
-  });
-
-  $(document).ready(function(){
-    function format ( d ) {
-
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Nombre:</td>'+
-            '<td>'+d.song_name+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Duracion:</td>'+
-            '<td>'+d.duration+'</td>'+
-        '</tr>'+
-    '</table>';
-    }
-
-    $('.carousel').carousel();
-            $('#albums').dataTable({
-               "language": {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ Albums",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "No Existen Albums Registrados",
-                    "sInfo":           "Mostrando Albums del _START_ al _END_ de un total de _TOTAL_ Albums",
-                    "sInfoEmpty":      "Mostrando Albums del 0 al 0 de un total de 0 Albums",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ Albums)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{ url('AllAlbums') }}",
-                "columns": [
-                               {
-                                 "className":      'details-control',
-                                 "orderable":      false,
-                                 "data":           null,
-                                 "defaultContent": ''
-                               },
-                             {data: 'name_alb', name: 'name_alb'},
-                             {data: 'duration', name: 'duration'},
-                             {data: 'autors.name', name: 'autors.autors_id'},
-                             {data: 'cost', name: 'cost'}
-                           ],
-            });
-
-            $('#singles').DataTable({
+<script type="text/javascript">
+	            $('#myTable').DataTable({
                 "language": {
                     "sProcessing":     "Procesando...",
                     "sLengthMenu":     "Mostrar _MENU_ Singles",
@@ -296,18 +190,187 @@
                     }
                 },
                 "processing": true,
-                "serverSide": true,
-                "ajax": "{{ url('AllSingles') }}",
-                "columns": [
-                             {data: 'song_name', name: 'song_name'},
-                             {data: 'duration', name: 'duration'},
-                             {data: 'autors.name', name: 'autors.autors_id'},
-                             {data: 'cost', name: 'cost'}
-                           ]
             });
 
+</script>
 
 
+<script>
+function fnOpenNormalDialog() {
+	 cost=$(this).attr('value');
+     name=$(this).attr('value1');
+     id=$(this).attr('value2');
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+        	my: "center top",
+			at: "center top",
+			of: $("#principal"),
+			within: $("#principal")
+        },
+        buttons: {
+            	"Si": function () {
+                $(this).dialog('close');
+                callback(true);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback(false);
+            }
+        }
+    });
+}
+
+$('#modal-confir').click(fnOpenNormalDialog);
+
+function callback(value) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuySong/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                    }
+                    if (result==1) 
+                    {
+                      swal('La canción ya forma parte de su colección','','error');
+                    }
+                    else
+                    {	
+                    	swal('Cancion comprada con exito','','success');
+                  		 console.log(result);
+                  	}	 
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#seach').keyup(function(evento){
+		$('#buscar').attr('disabled',true);
+	});
+	$('#buscar').attr('disabled',true);
+      $('#seach').autocomplete({
+      	source: "SearchArtist",
+      	minLength: 2,
+      	select: function(event, ui){		
+      		$('#seach').val(ui.item.value);
+      		var valor = ui.item.value;
+          console.log(valor);
+      		if (valor=='No se encuentra...'){
+      			$('#buscar').attr('disabled',true);
+      			swal('Artista no se encuentra regitrado','','error');
+      		}else{
+      			$('#buscar').attr('disabled',false);
+      		}
+      	}
+
+   });
   });
+</script>
+
+<script>
+function fnOpenNormalDialog2() {
+   cost=$(this).attr('value');
+     name=$(this).attr('value1');
+     id=$(this).attr('value2');
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+          my: "center top",
+      at: "center top",
+      of: $("#principal"),
+      within: $("#principal")
+        },
+        buttons: {
+              "Si": function () {
+                $(this).dialog('close');
+                callback2(true);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback2(false);
+            }
+        }
+    });
+}
+
+$('#modal-confirAlbum').click(fnOpenNormalDialog2);
+
+function callback2(value) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuyAlbum/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                    }
+                    if (result==1) 
+                    {
+                      swal('El album ya forma parte de su colección','','error');
+                    }
+                    else
+                    { 
+                      swal('Album comprado con exito','','success');
+                       console.log(result);
+                    }  
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
 </script>
 @endsection

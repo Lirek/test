@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
 use File;
+use QrCode;
 
 use App\User;
 use App\Megazines;
@@ -258,6 +259,15 @@ class UserController extends Controller
 
     }
 
+    public function qrDownload(){
+        $qr= QrCode::size(300)->format('png')->generate( url('/').'/register/'.Auth::user()->codigo_ref);
+        $png=base64_encode($qr);
+        $headers = array(
+              'Content-Type: application/png',
+            );
+        return response()::make($png,'qr.png',$headers);
+    }
+
 
 //---------------------Iniicio de Compra, Muestra de Musica------------------
     
@@ -323,6 +333,40 @@ class UserController extends Controller
         
     }
 
+    public function BuyAlbum($id,Request $request)
+    {
+        $Albums= Albums::find($id);
+        
+        $user = User::find(Auth::user()->id);
+
+        if ($Albums->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+        
+        $check = Transactions::where('album_id','=',$Albums->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        else
+        {
+            $TransactionAlbum= new Transactions;
+            $TransactionAlbum->Album_id=$Albums->id;
+            $TransactionAlbum->user_id=$user->id;
+            $TransactionAlbum->tickets= $Albums->cost*-1;
+            $TransactionAlbum->save();
+
+            $user->credito= $user->credito-$Albums->cost;
+            $user->save(); 
+
+            return response()->json($TransactionAlbum);
+        }
+    
+    }
+
     public function MyAlbums()
     {
         
@@ -342,7 +386,7 @@ class UserController extends Controller
                 $Albums = 0;
              }
 
-             $song=Songs::where('rating_id','=',$id)->get();
+             $song=Songs::where('album','=',$id)->get();
 
         return view('users.MyAlbums')->with('Albums',$Albums)->with('Song',$song);
         
@@ -352,7 +396,7 @@ class UserController extends Controller
     public function SongAlbum($id)
     {
 
-        $Song= Songs::where('rating_id','=',$id)->get(); 
+        $Song= Songs::where('album','=',$id)->get(); 
     
              
         return response()->json($Song);

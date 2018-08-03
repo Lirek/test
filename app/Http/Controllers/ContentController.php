@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Datatables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 use App\Megazines;
 use App\Tags;
@@ -27,7 +28,7 @@ class ContentController extends Controller
     {
     	$MusicAuthors = music_authors::where('status','=','Aprobado')->get();
     	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
-    	$Albums = Albums::where('status','=','Aprobado')->get();
+    	$Albums = Albums::where('status','=','Aprobado')->take(6)->get();
 		
 			
 		return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums); 
@@ -60,6 +61,38 @@ class ContentController extends Controller
          }
          
         return view('contents.ArtistProfile')->with('Artist',$Artist)->with('Singles',$Singles)->with('Albums',$Albums);
+    }
+
+    public function ShowProfileArtist(Request $request)
+    {
+        $Artist=music_authors::where('name','=',$request->seach)->get();
+
+        foreach ($Artist as $key) {
+
+            $prueba=$this->ShowArtist($key->id);
+        }
+
+        return $prueba;
+    }
+
+    public function seachArtist(){
+        $query=Input::get('term');
+        $Artist=music_authors::where('name','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Artist as $key) {
+           
+            $data[]=['id' => $key->id, 'value' => $key->name];
+        }
+        if(count($data))
+        {
+            return response()->json($data); 
+        }else
+        {
+         return ['value'=>'No se encuentra...','id'=>''];
+        }
+       
     }
 
     public function ShowAllAlbum()

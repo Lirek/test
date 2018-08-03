@@ -324,6 +324,7 @@
                            <div class="Qr-panel pn">
                               <div class="center">
                                 {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                                <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a>
                               </div>
                           </div>
                        </div><!-- /col-md-4 -->
