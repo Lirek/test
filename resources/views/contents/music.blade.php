@@ -16,8 +16,8 @@
                      		<h3><span class="card-title"><i class="fa fa-angle-right"> Música</i></span></h3> 
          						<div class="col-md-12  control-label">
          						<form method="POST"  id="SaveSong" action="{{url('SearchProfileArtist')}}">{{ csrf_field() }}
-                    				<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
-                    				<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Artista...</button>
+                    		<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                    		<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Artista...</button>
                 					
        							</form>
        							</div>
@@ -42,8 +42,8 @@
     										-moz-background-size: cover;
     										-o-background-size: cover;
     										background-size: cover;">
-											<div class="col-xs-4 col-xs-offset-8">
-												<button class="btn btn-sm btn-clear-g" data-toggle="modal" data-target="#myModal">Ver mas</button>
+											<div class="col-xs-4 col-xs-offset-7">
+												<button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#myModal">Ver mas</button>
 											</div>
 											<div class="sp-title">
 												<h3>{{$Album->autors->name}}</h3>
@@ -53,7 +53,8 @@
 												<i class="fa fa-play-circle"></i>
 											</div> -->
 										</div>
-										<p class="followers"><i class="fa fa-user"> {{$Album->autors->name}} - {{$Album->name_alb}}</i></p>
+										<p class="followers"><i class="fa fa-user"> {{$Album->autors->name}} - {{$Album->name_alb}}</i>
+                      <a href="#" class="" value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal-confirAlbum" style="margin-left: 25%">Adquirir</a></p>
 									</div>
 								</div><!--/col-md-4-->
 								 
@@ -89,11 +90,11 @@
                     						</div>
                     						<div class="col-lg-6 col-md-6 col-sm-6 mb">
                     							<h5><b>Canciones:</b></h5>
+                                  @foreach($Album->Songs as $Song)
                     							<ul>
-                    								@foreach($Album->Songs as $Song)
-                    								<li class="fa fa-angle-right">{{$Song->song_name}}</li>
-                    								@endforeach
+                    								<li class="fa fa-angle-right">{{$Song->song_name}}</li> 
                     							</ul>
+                                  @endforeach
                     							<h5><b>Costo:</b> {{$Album->cost}}</h5>
                     						</div>
                     						<div class="col-lg-12 col-md-12 col-sm-12 mb">
@@ -248,8 +249,9 @@ function callback(value) {
                    if (result==0) 
                     { 
                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                       console.log(result);
                     }
-                    if (result==1) 
+                    else if (result==1) 
                     {
                       swal('La canción ya forma parte de su colección','','error');
                     }
@@ -352,7 +354,7 @@ function callback2(value) {
                     { 
                        swal('No posee suficientes creditos, por favor recargue','','error');  
                     }
-                    if (result==1) 
+                    else if (result==1) 
                     {
                       swal('El album ya forma parte de su colección','','error');
                     }

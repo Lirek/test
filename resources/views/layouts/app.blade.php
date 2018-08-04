@@ -122,11 +122,11 @@
                 </ul>
                 <!--  notification end -->
             </div>
-            <div class="top-menu">
+<!--             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
                     <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
                 </ul>
-            </div>
+            </div> -->
         </header>
       <!--header end-->
        <!-- **********************************************************************************************************************************************************
@@ -227,6 +227,14 @@
                           <li><a  href="blank.html">Mis seguidos</a></li>
                           <li><a  href="login.html">Proveedores</a></li>
                       </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="#" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                      <span>
+                        <i class="glyphicon glyphicon-off"></i>
+                            Salir
+                        </span>
+                        </a>
                   </li>
               </ul>
               <!-- sidebar menu end-->
