@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use auth;
+use Auth;
 
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +16,144 @@ use Laracasts\Flash\Flash;
 
 class SellerController extends Controller
 {
+
+    public function homeSeller() {
+
+        $id = Auth::guard('web_seller')->user()->id;
+        $seller = Seller::find($id);
+        
+        $tv_content = 0;
+        $radio_content = 0;
+        $megazine_content = 0;
+        $serie_content = 0;
+        $book_content = 0;
+        $movie_content = 0;
+        $musical_content = 0;
+
+        $tv_aproved = 0;
+        $radio_aproved = 0;
+        $megazine_aproved = 0;
+        $serie_aproved = 0;
+        $book_aproved = 0;
+        $movie_aproved = 0;
+        $musical_aproved = 0;
+
+        $seller_modules = false;
+
+        /*
+        if($seller->roles())
+        {
+            $seller_modules;
+        }
+        */
+
+        foreach ($seller->roles as $role) 
+        {
+            $seller_modules[] = $role;
+            //dd($role->name);
+
+            switch ($role->name) 
+            {
+                
+                case 'Musica':
+                    $content_album = count($seller->albums()->get());
+                    $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
+
+                    $content_song = count($seller->songs()->where('album',0)->get());
+                    $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
+                    //dd($content_song);
+                    /*
+                    $songs=0;
+                    $aproved_song=0;
+
+                    foreach ($seller->songs()->get() as $key) 
+                    {
+                        if ($key->album =! NULL or $key->album =! 0) 
+                        {
+                            $songs++;
+
+                            if ($key->status == 'Aprobado') 
+                            {
+                                $aproved_song++;   
+                            }
+                        }  
+                    }
+                    */
+                    $musical_content = $content_album+$content_song;
+                    $musical_aproved = $aproved_album+$aproved_song;
+                    //dd($musical_content,$musical_aproved);
+                    break;
+
+                case 'Peliculas':
+                    $movie_content = count($seller->movies()->get());
+                    $movie_aproved = count($seller->movies()->where('status','Aprobado')->get());
+                    //dd($movie_content,$movie_aproved);
+                    break;
+                
+                case 'Libros':
+                    $book_content = count($seller->Books()->get());
+                    $book_aproved = count($seller->Books()->where('status','Aprobado')->get());
+                    //dd($book_content,$book_aproved);
+                    break;
+                
+                case 'Series':
+                    $serie_content = count($seller->series()->get());
+                    $serie_aproved = count($seller->series()->where('status','Aprobado')->get());
+                    //dd($serie_content,$serie_aproved);
+                    break;
+
+                case 'Revistas':
+                    $megazine_content = count($seller->Megazines()->get());
+                    $megazine_aproved = count($seller->Megazines()->where('status','Aprobado')->get());
+                    //dd($megazine_content,$megazine_aproved);
+                    break;
+
+                case 'Radios':
+                    $radio_content = count($seller->Radio()->get());
+                    $radio_aproved = count($seller->Radio()->where('status','Aprobado')->get());
+                    //dd($radio_content,$radio_aproved);
+                    break;
+
+                case 'TV':
+                    $tv_content = count($seller->Tv()->get());
+                    $tv_aproved = count($seller->Tv()->where('status','Aprobado')->get());
+                    //dd($tv_content,$tv_aproved);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            };
+
+        };
+        
+        $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
+        //dd($total_content);
+        $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+        //dd($total_aproved);
+        $followers=count($seller->followers()->get());
+        //dd($followers);
+        
+        return view('seller.home')
+                ->with('total_content',$total_content)
+                ->with('aproved_content',$total_aproved)
+                ->with('followers', $followers)
+                ->with('tv_content',$tv_content)
+                ->with('tv_aproved',$tv_aproved)
+                ->with('radio_content',$radio_content)
+                ->with('radio_aproved',$radio_aproved)
+                ->with('megazine_content',$megazine_content)
+                ->with('megazine_aproved',$megazine_aproved)
+                ->with('serie_content',$serie_content)
+                ->with('serie_aproved',$serie_aproved)
+                ->with('book_content',$book_content)
+                ->with('book_aproved',$book_aproved)
+                ->with('movie_content',$movie_content)
+                ->with('movie_aproved',$movie_aproved)
+                ->with('musical_content',$musical_content)
+                ->with('musical_aproved',$musical_aproved)
+                ->with('modulos',$seller_modules);
+    }
 
     //Funcion Encargada de Cargar el Formulario para el Registro que completo
     public function CompleteRegistrationForm($id,$code)

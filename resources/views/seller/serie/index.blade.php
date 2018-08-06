@@ -5,47 +5,51 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
 @endsection
 @section('content')
-    <section class="content">
+	<section class="content">
         <div class="row">
             <div class="col-xs-12">
                 @include('flash::message')
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Películas registradas</h3>
+                        <h3 class="box-title">Series registradas</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Código</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Categoría</th>
                                     <th class="text-center">Portada</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Costo</th>
+                                    <th class="text-center">Año de lanzamiento</th>
+                                    <th class="text-center">Episodios</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($movie as $m)
-                                    @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
+                                @foreach($serie as $s)
+                                    @if(Auth::guard('web_seller')->user()->id === $s->seller_id)
                                         <tr>
-                                            <td class="text-center"> {{ $m->id }} </td>
-                                            <td class="text-center"> {{ $m->title }} </td>
-                                            <td class="text-center"> {{ $m->rating->r_name }} </td>
+                                            <td class="text-center"> {{ $s->id }} </td>
+                                            <td class="text-center"> {{ $s->title }} </td>
                                             <td class="text-center">
-                                                <a href="{{ route('movies.show', $m->id) }}">
-                                                    <img class="img-rounded img-responsive text-center" src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:70px;height:70px;margin-left:25%;" alt="Portada">
+                                                <a href="{{ route('series.show', $s->id) }}">
+                                                    <img class="img-rounded img-responsive text-center" src="{{ asset($s->img_poster)}}" style="width:70px;height:70px;margin:8%;" alt="Portada">
                                                 </a>
                                             </td>
+                                            <td class="text-center"> {{ $s->cost }} </td>
+                                            <td class="text-center"> {{ $s->release_year }} </td>
+                                            <td class="text-center"> {{ count($s->episode) }} </td>
                                             <td class="text-center">
-                                                <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info btn-xs">
+                                                <a href="{{ route('series.show', $s->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
                                                 </a>
-                                                <a href="{{ route('movies.edit',$m->id) }}" class="btn btn-warning btn-xs">
+                                                <a href="{{ route('series.edit',$s->id) }}" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película {{ $m->title }}?')" class="btn btn-danger btn-xs">
+                                                <a href="{{ route('series.destroy',$s->id) }}" onclick="return confirm('¿Desea eliminar la serie {{ $s->title }}?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
                                                 </a>
                                             </td>
@@ -55,10 +59,12 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center">Código</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Categoría</th>
                                     <th class="text-center">Portada</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Costo</th>
+                                    <th class="text-center">Año de lanzamiento</th>
+                                    <th class="text-center">Episodios</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -70,12 +76,12 @@
             </div>
         </div>
         <div class="col-md-offset-9">
-            <a href="{{ route('movies.create') }}" class="btn btn-info">
+            <a href="{{ route('series.create') }}" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
                     <div class="box-title">
-                        <i class="fa fa-film"></i>
+                        <i class="li_video"></i>
                         <span>
-                            Agregar más películas
+                            Agregar más series
                         </span>
                     </div>
                 </b>
@@ -83,7 +89,6 @@
         </div>
     </section>
 @endsection
-
 @section('js')
     <!--DataTables-->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

@@ -111,7 +111,11 @@ class Seller extends Authenticatable
 
     public function movies()
     {
-        return $this->hasMany('App\Movies', 'seller_id');
+        return $this->hasMany('App\Movie', 'seller_id');
+    }
+    public function series()
+    {
+        return $this->hasMany('App\Serie', 'seller_id');
     }
 
 //https://prueba.leipel.com.automatis.com.ec

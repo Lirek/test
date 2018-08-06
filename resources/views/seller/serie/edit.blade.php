@@ -108,23 +108,28 @@
 
                 <div class="box box-primary ">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Registrar serie</h3>
+                        <h3 class="box-title">Editar serie</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true' ]) !!}
+                    {!! Form::open(['route'=>['series.update',$serie], 'method'=>'PUT','files' => 'true' ]) !!}
                     {{ Form::token() }}
                     {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
-                    <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
+                    {!! Form::hidden('serieId',$serie->id) !!}
                     <div class="box-body ">
 
                         <div class="col-md-6">
                             {{--Portada de la Serie--}}
-                            <div id="mensajePortadaPelicula"></div>
+                            <div id="mensajePortadaSerie"></div>
+                            <label for="cargaPortada" id="cargaPortada" class="control-label" style="color: green;">
+                                Si no selecciona una portada, se mantendrá la actual
+                            </label>
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
-                                <div id="list"></div>
+                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*']) !!}
+                                <div id="list">
+                                    <img style="width:100%; height:100%; border-top:50%;" src="{{asset($serie->img_poster)}}">
+                                </div>
                             </div>
                         </div>
                         
@@ -132,36 +137,36 @@
                             {{--titulo de la serie--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
                             <div id="mensajeTitulo"></div>
-                            {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Título de la serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
                             {{--Selecion tipo de publico de la serie--}}
                             <label for="exampleInputFile" class="control-label">Estado de la serie</label>
-                            {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],null,['class'=>'form-control select-author','placeholder'=>'Selecione una opción', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una opción')",'oninput'=>"setCustomValidity('')", 'id'=>'exampleInputFile']) !!}
+                            {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],$s,['class'=>'form-control','placeholder'=>'Selecione una opción', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una ppción')",'oninput'=>"setCustomValidity('')", 'id'=>'exampleInputFile']) !!}
                             <br>
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                             <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
+                            {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
                             <br>
 
                             {{--historia de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
                             <div id="mensajeHistoria"></div>
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
+                            {!! Form::textarea('story',$serie->story,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
                             <br>
 
                             {{--año de salida de la serie --}}
-                            <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                            <label for="exampleInputPassword1" class="control-label">Año de Llanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                             <br>
 
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
-                            {!! Form::url('trailer',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                             <br>
                         </div>
 
@@ -187,20 +192,20 @@
 
                                 <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="control-label">Nombre de la saga</label>
-                                    {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione la saga','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
-                                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
-                                        <i class="fa fa-book"></i> 
-                                        Agregar saga
-                                    </a>
+                                    @if($serie->saga_id==null)
+                                        {!! Form::select('saga_id',$sagas,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga','id'=>'sagas','oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                    @else
+                                        {!! Form::select('saga_id',$sagas,$serie->saga_id,['class'=>'form-control','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                    @endif
                                 </div>
                                 <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="control-label">Antes</label>
-                                    {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                    {!! Form::number('before',$serie->before,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0']) !!}
                                     <div id="mensajeAntes"></div>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="control-label">Después</label>
-                                    {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
+                                    {!! Form::number('after',$serie->after,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0']) !!}
                                     <div id="mensajeDespues"></div>
                                 </div>
                             </div>
@@ -214,32 +219,45 @@
                             </a>
                             <div class="field_wrapper">
                                 <div class="row group">
-                                    <div class="col-md-6">
-                                        <label for="nombre del episodio" class="control-label">Nombre del episodio</label>
-                                        <input type="text" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
-                                        <br>
+                                    @foreach($episodes as $e)
+                                        {!! Form::hidden('episodeId[]',$e->id) !!}
+                                        <div class="col-md-6">
+                                            <label for="nombre del episodio" class="control-label">Nombre del episodio</label>
+                                            <input type="text" value="{{ $e->episode_name }}" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
+                                            <br>
 
-                                        <label for="nombre del episodio" class="control-label">Cargar episodio</label>
-                                        <input type="file" name="episodio_file[]" accept=".mp4" id="episodio_file" class="form-control"required="required" oninvalid="this.setCustomValidity('Ingrese el episodio')" oninput="setCustomValidity('')">
-                                        <br>
+                                            {{--precio--}}
+                                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                            <input type="number" value="{{ $e->cost }}" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba el costo en tickets')" oninput="setCustomValidity('')">
+                                            <br>
 
-                                        {{--precio--}}
-                                        <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                        <input type="number" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba un Precio')" oninput="setCustomValidity('')">
-                                        <br>
-                                    </div>
-                                    <div class="col-md-6">
-                                        {{--sinopsis del episodio --}}
-                                        <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                                        <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="2" class="form-control" placeholder="Sinopsis del episodio" required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')"></textarea>
-                                        <br>
+                                            {{--link--}}
+                                            <label for="exampleInputPassword1" class="control-label">Trailer del episodio</label>
+                                            <input type="url" value="{{ $e->trailer_url }}" name="trailerEpisodio[]" id="trailerEpisodio" class="form-control" placeholder="Trailer del episodio" required="required" oninvalid="this.setCustomValidity('Link del trailer')" oninput="setCustomValidity('')">
+                                            <br>
 
-                                        {{--link--}}
-                                        <label for="exampleInputPassword1" class="control-label">Trailer del episodio</label>
-                                        <input type="url" name="trailerEpisodio[]" id="trailerEpisodio" class="form-control" placeholder="Trailer del episodio" required="required" oninvalid="this.setCustomValidity('Link del trailer')" oninput="setCustomValidity('')">
+                                            {{--
+                                            <label for="nombre del episodio" class="control-label">Cargar epísodio</label>
+                                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                                Si no selecciona un episodio, se mantendrá la actual
+                                            </label>
+                                            <input type="file" name="episodio_file[]" accept=".mp4" id="episodio_file" class="form-control">
+                                            <br>
+                                            --}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{--sinopsis del episodio --}}
+                                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                            <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="5" class="form-control" placeholder="Sinopsis del episodio" required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')">{{ $e->sinopsis }}</textarea>
+                                            <br>
+                                        </div>
+                                        <div class="col-sm-1" style="margin-bottom: 4%; margin-top: 3%;">
+                                            <a href="{{ route('destroyEpisode',[$e->id,$serie->id]) }}" class="btn btn-danger btn-sm btnRemove" onclick="return confirm('¿Desea eliminar el episodio {{ $e->episode_name }}?')">
+                                                <i class="material-icons"></i> Eliminar episodio 
+                                            </a>
+                                        </div>
                                         <br>
-                                    </div>
-                                    <br>
+                                    @endforeach
                                     <div class='col-md-12'>
                                         <div id='mensajenombreEpisodio'></div>
                                         <div id='mensajeEpisodio'></div>
@@ -254,79 +272,23 @@
                     <!-- /.box-body -->
                 </div>
             </div>
+            <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
+                    <div align="right">
+                        <a href="{{ url('/series') }}" class="btn btn-danger">Atrás</a>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div align="left">
+                        {!! Form::submit('Editar serie', ['class' => 'btn btn-primary','id'=>'modificarSerie']) !!}
+                    </div>
+                </div>
+            </div>
             <div class="text-center">
-                {!! Form::submit('Registrar serie', ['class' => 'btn btn-primary','id'=>'registrarSerie']) !!}
             </div>
             {!! Form::close() !!}
         </div>
-
-        <!-- /.modal  de sagas  -->
-        <div class="modal fade in modal-primary" id="modal-defaultMS">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h1 class="modal-title text-center">Agregar saga</h1>
-                    </div>
-                    <div class="modal-body">
-                        {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
-                        {{ Form::token() }}
-                        <div class="box-body ">
-
-                            <div class="col-md-6">
-                                {{--Imagen--}}
-                                <div id="mensajePortadaSaga"></div>
-                                <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group">
-                                    <label for="image-upload" id="image-label"> Imagen de la saga</label>
-                                    {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
-                                    <div id="listModal"></div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                {{--seleccion de rating--}}
-                                <label for="exampleInputFile" class="control-label">Categoría</label>
-                                {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categorpia','id'=>'exampleInputFile','required'=>'required']) !!}
-                                <br>
-
-                                {{--Nombre de la saga--}}
-                                <label for="exampleInputFile" class="control-label">Nombre</label>
-                                {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga']) !!}
-                                <br>
-
-                                {{--tipo de saga--}}
-                                <label for="exampleInputFile" class="control-label">Tipo de saga</label>
-                                {!! Form::select('type_saga',['3'=>'Series'],null,
-                                ['class'=>'form-control','id'=>'exampleInputFile','required'=>'required']) !!}
-                                <br>
-
-                                {{--Descripcion de  la saga--}}
-                                <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                                {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripcion de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
-                            </div>
-                            <br>
-                        </div>
-                        <!-- /.box-body -->
-                        <div align="center">
-                            {!! Form::submit('Agregar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="box-body">
-                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
-
+        
     </section>
 
 @endsection
@@ -354,6 +316,7 @@
     // Para que se vea la imagen en el formulario
 //---------------------------------------------------------------------------------------------------
     // Para que se vea la imagen en el modal
+    /*
         function modal(evt) {
             var files = evt.target.files;
             for (var i = 0, m; m = files[i]; i++) {
@@ -370,43 +333,29 @@
             }
         }
         document.getElementById('imageSM-upload').addEventListener('change', modal, false);
+    */
     // Para que se vea la imagen en el modal
 //---------------------------------------------------------------------------------------------------
-    // Para validar el tamaño maximo de las imagenes de la Saga y de la Serie y el archivo de la serie
+    // Para validar el tamaño maximo de las imagenes de la Serie y el archivo de la serie
         // Portada de la serie
         $(document).ready(function(){
             $('#image-upload').change(function(){
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
                 if (tamañoKb>2048) {
-                    $('#mensajePortadaPelicula').show();
-                    $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                    $('#mensajePortadaPelicula').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#cargaPortada').hide();
+                    $('#mensajePortadaSerie').show();
+                    $('#mensajePortadaSerie').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePortadaSerie').css('color','red');
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
-                    $('#mensajePortadaPelicula').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#cargaPortada').show();
+                    $('#mensajePortadaSerie').hide();
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
         // Portada de la serie
-        // Portada de la Saga
-        $(document).ready(function(){
-            $('#imageSM-upload').change(function(){
-                var tamaño = this.files[0].size;
-                var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
-                    $('#mensajePortadaSaga').show();
-                    $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                    $('#mensajePortadaSaga').css('color','red');
-                    $('#registrarSaga').attr('disabled',true);
-                } else {
-                    $('#mensajePortadaSaga').hide();
-                    $('#registrarSaga').attr('disabled',false);
-                }
-            });
-        });
-        // Portada de la Saga
         // Archivo de la Saga
         $(document).ready(function(){
             $('#episodio_file').change(function(){
@@ -426,7 +375,7 @@
             });
         });
         // Archivo de la Saga
-    // Para validar el tamaño maximo de las imagenes de la Saga y de la Serie y el archivo de la serie
+    // Para validar el tamaño maximo de las imagenes de la Serie y el archivo de la serie
 //---------------------------------------------------------------------------------------------------
     // Función que nos va a contar el número de caracteres
         // Para el titulo
@@ -439,10 +388,10 @@
                     $('#mensajeTitulo').show();
                     $('#mensajeTitulo').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                     $('#mensajeTitulo').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeTitulo').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -458,10 +407,10 @@
                     $('#mensajeHistoria').show();
                     $('#mensajeHistoria').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                     $('#mensajeHistoria').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeHistoria').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -477,11 +426,11 @@
                     $('#mensajenombreEpisodio').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                     $('#mensajenombreEpisodio').css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajenombreEpisodio').hide();
                     $('#btnAdd').attr('disabled',false);
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -498,11 +447,11 @@
                     $('#mensajeSinopsis').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                     $('#mensajeSinopsis').css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeSinopsis').hide();
                     $('#btnAdd').attr('disabled',false);
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -516,12 +465,12 @@
                 var año = $('#fechaLanzamiento').val();
                 if (año > fechaActual.getFullYear()) {
                     $('#mensajeFechaLanzamiento').show();
-                    $('#mensajeFechaLanzamiento').text('La Fecha de lanzamiento no debe exceder el año actual');
+                    $('#mensajeFechaLanzamiento').text('La fecha de lanzamiento no debe exceder el año actual');
                     $('#mensajeFechaLanzamiento').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeFechaLanzamiento').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -536,17 +485,17 @@
                     $('#mensajePrecioEpisodio').text('El costo de tickets no deben exceder los 999 Tickets');
                     $('#mensajePrecioEpisodio').css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else if (precio<0) {
                     $('#mensajePrecioEpisodio').show();
                     $('#mensajePrecioEpisodio').text('El costo de tickets debe ser mayor a 0');
                     $('#mensajePrecioEpisodio').css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajePrecioEpisodio').hide();
                     $('#btnAdd').attr('disabled',false);
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -554,10 +503,11 @@
 //---------------------------------------------------------------------------------------------------
     // Para validar los radio boton
         $(document).ready(function(){
-            $('#option-2').prop('checked','checked');
-            $('#sagas').removeAttr('required');
-            $('#despues').removeAttr('required');
-            $('#antes').removeAttr('required');
+            $('#option-1').prop('checked','checked');
+            $('#if_si').show();
+            $('#sagas').attr('required','required');
+            $('#despues').attr('required','required');
+            $('#antes').attr('required','required');
         });
 
         function yesnoCheck() {
@@ -566,13 +516,11 @@
                 $('#sagas').attr('required','required');
                 $('#despues').attr('required','required');
                 $('#antes').attr('required','required');
-                $('#sagas').val('');
             } else {
                 $('#if_si').hide();
                 $('#sagas').removeAttr('required');
                 $('#despues').removeAttr('required');
                 $('#antes').removeAttr('required');
-                $('#sagas').val('');
             }
         }
     // Para validar los radio boton
@@ -583,12 +531,12 @@
                 var despues = $('#despues').val();
                 if (despues<0) {
                     $('#mensajeDespues').show();
-                    $('#mensajeDespues').text('El Número de la Saga debe ser mayor a cero');
+                    $('#mensajeDespues').text('El número de la saga debe ser mayor a cero');
                     $('#mensajeDespues').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeDespues').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -597,12 +545,12 @@
                 var antes = $('#antes').val();
                 if (antes<0) {
                     $('#mensajeAntes').show();
-                    $('#mensajeAntes').text('El Número de la Saga debe ser mayor a cero');
+                    $('#mensajeAntes').text('El número de la saga debe ser mayor a cero');
                     $('#mensajeAntes').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $('#mensajeAntes').hide();
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         });
@@ -615,32 +563,32 @@
             "<div class='row'>"+
                 "<hr>"+
                 "<div class='col-md-6'>"+
-                    "<label for='nombre del episodio' class='control-label'>Nombre del Episodio</label>"+
-                    "<input type='text' name='episodio_name[]' id='episodio_name' placeholder='Nombre del episodio' class='episodio_name"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Nombre del Episodio')' oninput='setCustomValidity('')'>"+
+                    "<label for='nombre del episodio' class='control-label'>Nombre del episodio</label>"+
+                    "<input type='text' name='episodio_name[]' id='episodio_name' placeholder='Nombre del episodio' class='episodio_name"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Nombre del episodio')' oninput='setCustomValidity('')'>"+
                     "<br>"+
 
-                    "<label for='nombre del episodio' class='control-label'>Cargar Epísodio</label>"+
-                    "<input type='file' name='episodio_file[]' accept='.mp4' id='episodio_file' class='episodio_file"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese el Episodio')' oninput='setCustomValidity('')'>"+
+                    "<label for='nombre del episodio' class='control-label'>Cargar episodio</label>"+
+                    "<input type='file' name='episodio_file[]' accept='.mp4' id='episodio_file' class='episodio_file"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese el episodio')' oninput='setCustomValidity('')'>"+
                     "<br>"+
 
-                    "<label for='exampleInputPassword1' class='control-label'>Precio</label>"+
-                    "<input type='number' name='episodio_cost[]' id='precioEpisodio' class='precioEpisodio"+x+" form-control' placeholder='Ingrese el Precio del Episodio' min='0' required='required' oninvalid='this.setCustomValidity('Escriba un Precio')' oninput='setCustomValidity('')'>"+
+                    "<label for='exampleInputPassword1' class='control-label'>Costo en tickets</label>"+
+                    "<input type='number' name='episodio_cost[]' id='precioEpisodio' class='precioEpisodio"+x+" form-control' placeholder='Ingrese el costo en tickets' min='0' required='required' oninvalid='this.setCustomValidity('Escriba el costo en tickets')' oninput='setCustomValidity('')'>"+
                     "<br>"+
                 "</div>"+
                 "<div class='col-md-6'>"+
                     "<label for='exampleInputPassword1' class='control-label'>Sinopsis</label>"+
-                    "<textarea name='sinopsis[]' id='sinopsis' cols='3' rows='2' class='sinopsis"+x+" form-control' placeholder='Sinopsis del Episodio' required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'></textarea>"+
+                    "<textarea name='sinopsis[]' id='sinopsis' cols='3' rows='2' class='sinopsis"+x+" form-control' placeholder='Sinopsis del episodio' required='required' oninvalid='this.setCustomValidity('Escriba una sinopsis')' oninput='setCustomValidity('')'></textarea>"+
                     "<br>"+
 
-                    "<label for='exampleInputPassword1' class='control-label'>Trailer del Episodio</label>"+
-                    "<input type='url' name='trailerEpisodio[]' id='trailerEpisodio' class='trailerEpisodio"+x+" form-control' placeholder='Trailer del Episodio' required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'>"+
+                    "<label for='exampleInputPassword1' class='control-label'>Trailer del episodio</label>"+
+                    "<input type='url' name='trailerEpisodio[]' id='trailerEpisodio' class='trailerEpisodio"+x+" form-control' placeholder='Trailer del episodio' required='required' oninvalid='this.setCustomValidity('Escriba una sinopsis')' oninput='setCustomValidity('')'>"+
                     "<br>"+
                 "</div>"+
                 "<br>"+
 
                 "<div class='col-sm-1 eliminar' style='margin-top: 1%;'>"+
                     "<a class='btn btn-danger btn-sm btnRemove'>"+
-                        "<i class='material-icons'></i> Eliminar Episodio "+
+                        "<i class='material-icons'></i> Eliminar episodio "+
                     "</a>"+
                 "</div>"+
                 "<br>"+
@@ -663,11 +611,11 @@
                     $(mensajenombreEpisodio).text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                     $(mensajenombreEpisodio).css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $(mensajenombreEpisodio).hide();
                     $('#btnAdd').attr('disabled',false);
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
             // Para validar la longtud del campo 'nombre del episodio'
@@ -682,11 +630,11 @@
                     $(mensajeEpisodio).text('Uno de los episodio es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
                     $(mensajeEpisodio).css('color','red');
                     $('#btnAdd').attr('disabled',true);
-                    $('#registrarSerie').attr('disabled',true);
+                    $('#modificarSerie').attr('disabled',true);
                 } else {
                     $(mensajeEpisodio).hide();
                     $('#btnAdd').attr('disabled',false);
-                    $('#registrarSerie').attr('disabled',false);
+                    $('#modificarSerie').attr('disabled',false);
                 }
             });
         // Para validar el tamaño del episodio
@@ -700,17 +648,17 @@
                 $(mensajePrecioEpisodio).text('El costo de tickets no deben exceder los 999 Tickets');
                 $(mensajePrecioEpisodio).css('color','red');
                 $('#btnAdd').attr('disabled',true);
-                $('#registrarSerie').attr('disabled',true);
+                $('#modificarSerie').attr('disabled',true);
             } else if (precio<0) {
                 $(mensajePrecioEpisodio).show();
                 $(mensajePrecioEpisodio).text('El costo de tickets debe ser mayor a 0');
                 $(mensajePrecioEpisodio).css('color','red');
                 $('#btnAdd').attr('disabled',true);
-                $('#registrarSerie').attr('disabled',true);
+                $('#modificarSerie').attr('disabled',true);
             } else {
                 $(mensajePrecioEpisodio).hide();
                 $('#btnAdd').attr('disabled',false);
-                $('#registrarSerie').attr('disabled',false);
+                $('#modificarSerie').attr('disabled',false);
             }
         });
         // Para validar el precio
@@ -726,11 +674,11 @@
                 $(mensajeSinopsis).text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                 $(mensajeSinopsis).css('color','red');
                 $('#btnAdd').attr('disabled',true);
-                $('#registrarSerie').attr('disabled',true);
+                $('#modificarSerie').attr('disabled',true);
             } else {
                 $(mensajeSinopsis).hide();
                 $('#btnAdd').attr('disabled',false);
-                $('#registrarSerie').attr('disabled',false);
+                $('#modificarSerie').attr('disabled',false);
             }
         });
         // Para la sinopsis
@@ -738,7 +686,7 @@
         });
         $(wrapper).on('click','.eliminar', function(e){
             e.preventDefault();
-            var eliminar = confirm("¿Está seguro de Eliminar este Episodio?");
+            var eliminar = confirm("¿Desea eliminar este episodio?");
             if (eliminar) {
                 var uno = $(this).parent('div');
                 uno.remove();
@@ -751,105 +699,5 @@
         });
     });
 //---------------------------------------------------------------------------------------------------
-
     </script>
-
-    <script>
-        /*
-        $('.select-author').chosen({
-            allow_single_deselect: false,
-            no_results_text: "Registra el autor ya que no se encuentra en la base de datos y registrar el libro se necesita el autor",
-            width: "60%"
-        });
-
-        $('.select-saga').chosen({
-            allow_single_deselect: true,
-            no_results_text: "No se encuentra la saga",
-            width: "60%"
-        });
-
-        $('#paises').chosen({
-            allow_single_deselect: true,
-            no_results_text: "No se encuentra la saga",
-            width: "60%"
-        });
-        */
-    </script>
-
-    {{--manejo de la imager precargada--}}
-    <script>
-        /*
-        $(document).ready(function () {
-            $.uploadPreview({
-                input_field: "#image-upload",
-                preview_box: "#image-preview",
-                label_field: "#image-label"
-            });
-        });
-        */
-    </script>
-
-    {{--la funcion de la saga--}}
-    <script>
-        /*
-        function yesnoCheck() {
-            if (document.getElementById('option-1').checked) {
-                $('#if_si').show();
-                $('#sagas').val('');
-            }
-            // else if(document.getElementById('option-2').checked) {
-            //     $('#if_no').hide();
-            //     $('#sagas').val('3');
-            // }
-            else {
-                $('#if_si').hide();
-                $('#sagas').val('');
-            }
-
-        }
-        */
-
-    </script>
-
-    {{--imagen del model de sagas --}}
-    <script>
-        /*
-        $(document).ready(function () {
-            $.uploadPreview({
-                input_field: "#imageSM-upload",
-                preview_box: "#imageSM-preview",
-                label_field: "#imageSM-label"
-            });
-        });
-        */
-    </script>
-
-    {{--los episodio--}}
-    <script>
-        /*
-        $('#example-2').multifield({
-            section: '.group',
-            btnAdd: '#btnAdd-2',
-            btnRemove: '.btnRemove'
-        });
-        */
-    </script>
-
-    <script>
-        /*
-        $(document).ready(function (e) {
-            $('#title').on('input', function () {
-                var input = $(this);
-                var is_name = input.val();
-                if (is_name) {
-                    input.removeClass("invalid").addClass("valid");
-                }
-                else {
-                    input.removeClass("valid").addClass("invalid");
-                }
-            });
-        })
-        */
-    </script>
-
 @endsection
