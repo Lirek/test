@@ -22,6 +22,7 @@
                         <div class="content-panel pn-music">
                             <div id="profile-01" style="">
                              @foreach($Albums as $Album)
+                             <input type="hidden" name="id" id="id" value="{{$Album->id}}">
                                 @if($Album->cover)
                                     <img src="{{asset($Album->cover)}}?.{{rand(1,1000)}}" width="100%" height="160" style="">
                                  @else
@@ -69,9 +70,11 @@ const players = Array.from(document.querySelectorAll('#player')).map(p => new Pl
 <!-- LECTURA DE JSON Y REPRODUCTOR DE LISTAS PARA EL PLAYER -->
 <script>
     $(document).ready(function(){
+        var id = $('#id').val();
+        console.log(id);
         $.ajax({ 
                 
-                url     : 'SongsAlbums/'+{{$Album->id}},
+                url     : 'SongsAlbums/'+id,
                 type    : 'GET',
                 dataType: "json",
                 
@@ -85,7 +88,7 @@ const players = Array.from(document.querySelectorAll('#player')).map(p => new Pl
                         $('#Playlist').append('<li class="" id="'+i+'"><a href="#">'+song.song_name+'</a></li>');
                         playSong(0);
                         audio.pause();
-                               
+                        console.log(song.song_name);
                     });
 
                     $('#Playlist li').click(function(){

@@ -29,7 +29,15 @@
 
     <!--estilo plyr-->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
-    
+
+    <!--DataTables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+    <!--Modal-->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+
+    <!--Buscador-->
+    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -114,11 +122,11 @@
                 </ul>
                 <!--  notification end -->
             </div>
-            <div class="top-menu">
+<!--             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
                     <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
                 </ul>
-            </div>
+            </div> -->
         </header>
       <!--header end-->
        <!-- **********************************************************************************************************************************************************
@@ -156,21 +164,21 @@
                       <span>Adquirir Contenido</span>
                     </a>
                     <ul class="sub">
-                      <li><a href="">Musica</a></li>
+                      <li><a href="{{url('MusicContent')}}">Música</a></li>
                     </ul>
                   </li>
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
-                          <span>Mi Contenido</span>
+                          <span>Entretenimiento</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('MyMovies')}}">Mis Peliculas</a></li>
+                          <li><a  href="{{url('MyMovies')}}">Mis peliculas</a></li>
                           <li><a href="#">Mis Series</a></li>
                           <li class="sub-menu">
                               <a href="javascript:;" >
-                                <span>Mi musica</span>
+                                <span>Mi música</span>
                               </a>
                             <ul class="sub">
                               <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
@@ -183,14 +191,14 @@
                               <span>Mis lecturas</span>
                             </a>
                             <ul class="sub">
-                              <li><a  href="{{url('MyReads')}}">Mis Libros</a></li>
-                              <li><a  href="{{url('MyMegazine')}}">Mis Megazines</a></li>
+                              <li><a  href="{{url('MyReads')}}">Mis libros</a></li>
+                              <li><a  href="{{url('MyMegazine')}}">Mis megazines</a></li>
                             </ul>
                           </li>
 
                           <li class="sub-menu">
                             <a href="javascript: ;">
-                              <span>Mis Streams</span>
+                              <span>Mis streams</span>
                             </a>
                             <ul class="sub">
                               <li><a  href="#">Tv</a></li>
@@ -206,7 +214,7 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('WebsUser')}}">Mis Redes</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis redes</a></li>
                           <li><a  href="{{url('Referals')}}"">Referir</a></li>
                       </ul>
                   </li>
@@ -216,9 +224,17 @@
                           <span>Seguidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="blank.html">Mis Seguidos</a></li>
+                          <li><a  href="blank.html">Mis seguidos</a></li>
                           <li><a  href="login.html">Proveedores</a></li>
                       </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="#" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                      <span>
+                        <i class="glyphicon glyphicon-off"></i>
+                            Salir
+                        </span>
+                        </a>
                   </li>
               </ul>
               <!-- sidebar menu end-->
@@ -267,6 +283,15 @@
   <!--PDF.JS-->
   <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 
+  <!--Datatables-->
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
+
 <!--SCRIPS JS-->
   
   <script type="application/javascript">
@@ -303,6 +328,7 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
+    
     @yield('js')
 
 

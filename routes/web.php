@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\View;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', 'WelcomeController@welcome');
+Route::get('/', 'Controller@welcome');
 
 
 
@@ -42,11 +42,6 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 Route::get('/home', 'HomeController@index');
 Route::get('ContentGraph', 'HomeController@DataContentGraph');
 
-Route::get('admin', function() 
-{
-    return view('admin.login');
-});
-
 //---------------------------------------------------------------------
 
 Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
@@ -57,13 +52,14 @@ Route::resource('users', 'UserController');
 
 //-------------------Funciones del Usuarios----------------------------------
 
-    Route::post('BuySong/{id}','UserController@BuySingle');
-    Route::post('BuyBook/{id}','UserController@BuyBook');
-    Route::get('MyMusic','UserController@MyMusic');
-    Route::get('Read/{id}','UserController@SendRead');
-    Route::get('MyReads','UserController@ShowMyReadings');
-    Route::get('Read/{id}','UserController@SendRead');
-    Route::post('Invite','UserController@Invite');
+Route::post('BuySong/{id}','UserController@BuySingle');
+Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
+Route::post('BuyBook/{id}','UserController@BuyBook');
+Route::get('MyMusic','UserController@MyMusic');
+Route::get('Read/{id}','UserController@SendRead');
+Route::get('MyReads','UserController@ShowMyReadings');
+Route::get('Read/{id}','UserController@SendRead');
+Route::post('Invite','UserController@Invite');
 
     //Agregadas 4/7/18
     Route::get('EditProfile','UserController@edit');
@@ -92,25 +88,34 @@ Route::resource('users', 'UserController');
     Route::get('MyMovies','UserController@MyMovies');
     Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
 
+    //Agregada 31/7/2018
+    Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));
+
+    //Agregada 3/8/2018
+    Route::get('DownloadQr','UserController@qrDownload');
+
 
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
 
-    Route::get('MusicContent','ContentController@ShowMusic');
-    Route::get('AllSingles','ContentController@ShowAllSingles');
-    Route::get('AllAlbums','ContentController@ShowAllAlbum');
-    Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
-    Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
-    Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+Route::get('MusicContent','ContentController@ShowMusic');
+Route::get('AllSingles','ContentController@ShowAllSingles');
+Route::get('AllAlbums','ContentController@ShowAllAlbum');
+Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
+Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
+Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+
+//Agrega 3/8/2018
+    Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
 
 //---------------------------------------------------------------------------
 
 
 //-------------------------Funiciones de Referidos---------------------------
 
-    Route::get('WebsUser','ReferalsController@ShowWebs');
-    Route::get('Referals','ReferalsController@ShowReferals');
+Route::get('WebsUser','ReferalsController@ShowWebs');
+Route::get('Referals','ReferalsController@ShowReferals');
 
 //---------------------------------------------------------------------------
 
@@ -121,13 +126,21 @@ Route::resource('users', 'UserController');
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
+Route::get('/admin','AdminController@index');
 
+Route::get('/admin_albums','AdminController@ShowAlbums');
+Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
 
+Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
+Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
+Route::get('/admin_single','AdminController@ShowSingles');
+Route::get('/AllAdminSingles','AdminController@ShowAllSingles');
+Route::post('/admin_single/{id}','AdminController@SingleStatus');
 
-    Route::get('/admin_musician','AdminController@ShowMusician');
-    Route::get('/AllAdminMusician','AdminController@ShowAllMusician');
-    Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
+Route::get('/admin_musician','AdminController@ShowMusician');
+Route::get('/AllAdminMusician','AdminController@ShowAllMusician');
+Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
 
 
 
@@ -149,10 +162,9 @@ Route::resource('users', 'UserController');
 */
 
 
-    Route::get('/admin_radio','AdminController@ShowRadios');
-    Route::get('RadioData','AdminController@RadioDataTable');
-    Route::get('/AllAdminRadio','AdminController@ShowAllRadios');
-    Route::post('/admin_radio/{id}','AdminController@RadioStatus');
+Route::get('/admin_radio','AdminController@ShowRadios');
+Route::get('/AllAdminRadio','AdminController@ShowAllRadios');
+Route::post('/admin_radio/{id}','AdminController@RadioStatus');
 
 
 
@@ -173,10 +185,9 @@ Route::resource('users', 'UserController');
 */
 
 
-    Route::get('/admin_tv','AdminController@ShowTV');
-    Route::get('DataTv','AdminController@DataTableTv');
-    Route::get('/AllAdminTv','AdminController@ShowAllTV');
-    Route::post('/admin_tv/{id}','AdminController@TvStatus');
+Route::get('/admin_tv','AdminController@ShowTV');
+Route::get('/AllAdminTv','AdminController@ShowAllTV');
+Route::post('/admin_tv/{id}','AdminController@TvStatus');
 
 
 
@@ -195,18 +206,18 @@ Route::resource('users', 'UserController');
 --------------------------------------------------------------------
 */
 
-    Route::get('/admin_movie',[
-        'uses'  =>  'AdminController@showMovie',
-        'as'    =>  'admin_showMovies'
-    ]);
-    Route::get('/admin_AllMovies',[
-        'uses'  =>  'AdminController@showAllMovie',
-        'as'    =>  'admin_allMovies'
-    ]);
-    Route::post('/admin_movie/{id}',[
-        'uses'  =>  'AdminController@movieStatus',
-        'as'    =>  'admin_authorStatus'
-    ]);
+Route::get('/admin_movie',[
+    'uses'  =>  'AdminController@showMovie',
+    'as'    =>  'admin_showMovies'
+]);
+Route::get('/admin_AllMovies',[
+    'uses'  =>  'AdminController@showAllMovie',
+    'as'    =>  'admin_allMovies'
+]);
+Route::post('/admin_movie/{id}',[
+    'uses'  =>  'AdminController@movieStatus',
+    'as'    =>  'admin_authorStatus'
+]);
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
@@ -223,18 +234,18 @@ Route::resource('users', 'UserController');
 --------------------------------------------------------------------
 */
 
-    Route::get('/admin_author',[
-        'uses'  =>  'AdminController@showAuthor',
-        'as'    =>  'admin_showAuthor'
-    ]);  //falta terminar
-    Route::get('/admin_allAuthor',[
-        'uses'  =>  'AdminController@showAllAuthor',
-        'as'    =>  'admin_allAuthors'
-    ]);  //falta terminar
-    Route::post('/admin_author/{id}',[
-        'uses'  =>  'AdminController@authorStatus',
-        'as'    =>  'admin_authorStatus'
-    ]); //falta terminar
+Route::get('/admin_author',[
+    'uses'  =>  'AdminController@showAuthor',
+    'as'    =>  'admin_showAuthor'
+]);  //falta terminar
+Route::get('/admin_allAuthor',[
+    'uses'  =>  'AdminController@showAllAuthor',
+    'as'    =>  'admin_allAuthors'
+]);  //falta terminar
+Route::post('/admin_author/{id}',[
+    'uses'  =>  'AdminController@authorStatus',
+    'as'    =>  'admin_authorStatus'
+]); //falta terminar
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------
@@ -254,15 +265,15 @@ Route::resource('users', 'UserController');
 */
 
 
-    Route::get('/admin_chain','AdminController@ShowPublicationChain');
-    Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
+Route::get('/admin_chain','AdminController@ShowPublicationChain');
+Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
 
-    Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
+Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
 
-    Route::get('/admin_megazine','AdminController@ShowMegazine');
-    Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
+Route::get('/admin_megazine','AdminController@ShowMegazine');
+Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
 
-    Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
+Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
 
 
 
@@ -282,8 +293,52 @@ Route::resource('users', 'UserController');
 */
 
 
+Route::post('/promoter_c','AdminController@CreatePromoter');
+
+Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
 
 
+
+
+
+
+/*------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------- FIN RUTAS DE MANEJO DE PROMOTORES  -----------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+*/
+
+
+
+/*------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------- Inicio RUTAS DE MANEJO DE SOLICITUDES -----------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+*/
+
+
+
+
+
+
+/*------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------- FIN RUTAS DE MANEJO DE SOLICITUDES -----------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+*/
+
+
+
+
+/*------------------------------------------------------------------
+--------------------------------------------------------------------
+------------ FIN DE LAS RUTAS DE USUARIOS O ADMIN ------------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+*/
 
 
 
@@ -319,11 +374,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
   
    Route::group(['middleware' => ['Admin']], function (){
 
-        //__________________Rutas de Manejo de Proovedores_______________________
-            
             Route::get('/admin_sellers','AdminController@ShowSellers');
 
-            Route::get('/delete_mod/{id_seller}/{id_module}','AdminController@DeleteModule');
+            Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
 
             Route::post('admin_add_module/{id}','AdminController@AddModule');
 
@@ -332,32 +385,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('RemovePromoterFromSeller/{id_seller}/{id_promoter}','AdminController@RemovePromoterFromSeller');
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
-        
-        //_________________FIN de RUtas de Proveedores____________________________
-
-        //___________________RUTAS DE DE USUARIOS_______________________
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
-
-            Route::post('AddSalesman','AdminController@RegisterSalesman');
-
-            Route::get('salesman_delete/{id}','AdminController@DeleteSalesman');
-
-            Route::post('/promoter_c','AdminController@CreatePromoter');
-
-            Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
-
-        //_____________________FIN DE RUTAS DE USUARIOS____________________________
+            
    });
     
        
         Route::group(['middleware' => ['Operator']], function (){
 
-        //______________________RUTAS DE SOLICITUDES:_____________________________
-
             Route::get('/admin_applys','AdminController@ShowApplys');
 
-            Route::post('AddSalesMan/{id}','AdminController@AddSalesmanToApllys');
+            Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
 
             Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
             
@@ -365,103 +403,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
 
-        //__________________FIN DE RUTAS DE SOLICITUDES_____________________________
-        
-        //___________________RUTAS DE CONTENIDO_____________________________________
-
-
-
-          //___________________Graficas y datos del Home de Contenido-______________
-
-                Route::get('AdminContent','AdminContentController@Home');
-
-                Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
-                
-                Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
-
-                Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
-
-                Route::get('TagsStatusGraphData','AdminContentController@TagsDountsGraph');
-
-                Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
-
-                Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
-          //________________________________________________________________________
-
-
-           //_______________________ALBUMES Y SINGLES________________________________
-
-                Route::get('/admin_albums','AdminController@ShowAlbums');
-                Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
-                Route::get('AlbumDataTable','AdminController@AlbumsDataTable');
-                Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
-                Route::post('/admin_album/{id}','AdminController@AlbumStatus');
-
-                Route::get('/admin_single','AdminController@ShowSingles');
-                Route::get('SingleData','AdminController@SinglesDataTable');
-                Route::post('/admin_single/{id}','AdminController@SingleStatus');
-
-           //---------------------------------------------------------------------
-
-           //---------------------------ETIQUETAS-----------------------------------
-                Route::get('TagsReview','TagController@ShowPendingTags');
-                Route::get('TagsData','TagController@DataTableRender');
-                Route::post('AprobalDenialTag/{id}','TagController@AprovalDenial');
-           //-----------------------------------------------------------------------
-
-           //------------------------MUSICOS Y ARTISTAS----------------------------
-                Route::get('/admin_musician','AdminController@ShowMusicianView');
-                Route::get('MusicianData','AdminController@MusicianDataTable');
-                Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
-           //----------------------------------------------------------------------
-
-           //-----------------REVISTAS Y CADENAS DE PUBLICAION-----------------------
-                
-                Route::get('/admin_megazine','AdminController@ShowMegazine');
-                
-                Route::get('MegazineDataTable','AdminController@MegazineDataTable');
-
-                Route::get('PubChainDataTable','AdminController@ShowPublicationChain');
-                
-                Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
-                
-                Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
-                
-                Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
-                
-                Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
-           //------------------------------------------------------------------------
-
-           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
-              
-                Route::get('admin_books','AdminController@ShowBooks');
-                Route::get('BooksData','AdminController@BooksDataTable');
-                Route::post('books_status/{id}','AdminController@EstatusBooks');
-                
-                Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
-                Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
-           //------------------------------------------------------------------------
-
-           //--------------------AUTORES LITERARIOS----------------------------------
-                
-                Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
-                Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
-                Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
-           //------------------------------------------------------------------------
-
-        
-
-            //-----------------------------------------------------------------------
-        
-        //________________Fin de las rutas de contenido_____________________________
-
-        //______________________Rutas de Clientes___________________________________
-
-                Route::get('/admin_clients','AdminController@ShowPendingClients');
-                Route::get('ClientsDataTable','AdminController@ClientsData');
-                Route::post('ValidateUser/{id}','AdminController@ValidateUser');
-
-        //______________________Fin de las rutas de Clientes________________________
         });
 
 });
@@ -589,8 +530,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Albums -------------------------- */
     Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
-    Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
-    Route::get('/musicFromAlbum/{id}', 'AlbumsController@musicFromAlbum');
+    Route::post('/modify_album/{id}', 'AlbumsController@UpdateAlbum');
     /*--------------------------------------------------------------*/
 
     /*------------------Borrar Albums-------------------------------*/
@@ -599,10 +539,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Mostrar Albums- ----------------------------*/
     Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
-    /*--------------------------------------------------------------*/
-
-    /*-------------Listar Canciones de los Albums-------------------*/
-    Route::get('/SongsAlbums/{id}','AlbumsController@SongAlbum');
     /*--------------------------------------------------------------*/
 
 
@@ -617,19 +553,11 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Single -------------------------- */
     Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
-    Route::post('/modify_single', 'AlbumsController@UpdateSong');
-    /*--------------------------------------------------------------*/
-
-    /*----------------------Agregar Tags--------------------------- */
-    Route::resource('tags','TagController');
+    Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
-    /*--------------------------------------------------------------*/
-
-    /*---------Canciones del Panel "Mi Contenido Musical"------------*/
-    Route::get('/music_of_my_music_panel/{id}', 'MusicController@ShowMusicOfMyPanel');
     /*--------------------------------------------------------------*/
 
     /*--------------AJAX de Guardar Etiquetas---------------------- */
@@ -661,23 +589,15 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::resource('series', 'SeriesController');
 
-    Route::get('showEpisode/{idE}/{idS}',[
-        'uses'  => 'SeriesController@showEpisode',
-        'as'    => 'series.showEpisode'
-    ]);
-
-    /*
-    modificada de manera generica
     //para q guarde el modal
     Route::post('sagas/registerS', [
         'uses' => 'SagaController@registerSeries',
         'as' => 'sagas.registerS'
     ]);
-    */
 
-    Route::get('destroyEpisode/{idE}/{idS}', [
-        'uses' => 'SeriesController@destroyEpisode',
-        'as' => 'destroyEpisode'
+    Route::get('series/{id}/destroy', [
+        'uses' => 'SeriesController@destroy',
+        'as' => 'series.destroy'
     ]);
 
     /*-------------------------------------------------------------------------
@@ -963,6 +883,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::get('/seller_home', function () {
         $id = Auth::guard('web_seller')->user()->id;
+
         $seller = App\Seller::find($id);
         
         $tv_content=0;
@@ -990,7 +911,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
         foreach ($seller->roles as $role) 
         {
             $seller_modules[] = $role;
-// dd($role->name);
 
             switch ($role->name) 
             {

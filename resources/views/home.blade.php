@@ -151,7 +151,7 @@
 
                     @endif 
                     
-                    @if(Auth::user()->UserRefered()->first()==Null) 
+                    @if(Auth::user()->UserRefered()->count()==0) 
                     <div class="col-md-12 col-sm-12 mb" id="referir">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
@@ -324,6 +324,7 @@
                            <div class="Qr-panel pn">
                               <div class="center">
                                 {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                                <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a>
                               </div>
                           </div>
                        </div><!-- /col-md-4 -->

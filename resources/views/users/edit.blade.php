@@ -72,7 +72,7 @@
                     {{--Genero --}}
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('num_doc','Genero',['class'=>'control-label']) !!}
+                            {!! Form::label('num_doc','Sexo',['class'=>'control-label']) !!}
                         </div>
                         <div class="col-md-6 control-label">
                             {!! Form::select('type',['M'=>'Masculino', 'F'=>'Femenino'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']) !!}
