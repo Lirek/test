@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html"  charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -115,15 +115,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{Request::url()}}"><img
-                            src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
+                <a class="navbar-brand" href="{{Request::url()}}">
+                    <img src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="{{Request::url()}}">Inicio</a></li>
                     <li><a href="#portfolio">Destacados</a></li>
                     <li><a href="#about">Proveedores</a></li>
-                    <li><a href="{{ url('/login') }}">Iniciar Sesi&oacute;n</a></li>
+                    {{--<li>--}}
+                    {{--<a href="{{ url('/login') }}">Iniciar Sesi&oacute;n</a>--}}
+                    {{--</li>--}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Iniciar Sesi&oacute;n
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/login') }}">Usuario</a></li>
+                            <li><a href="{{ url('/seller_login') }}">Proveedor</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -137,12 +149,16 @@
     <div id="banner" class="section-padding">
         <div class="container-fluid">
             <div class="jumbotron">
-                <h1 class="small text-center">
-                    Entretenimiento Al<br/> M&aacute;ximo
-                </h1>
-                <a href="{{ url('/register') }}" class="btn btn-banner active">
-                    Registrate Gratis<i class="fa fa-send"></i>
-                </a>
+                <div class="text-center">
+                    <h1 class="small">
+                        Distracci&oacuten <br/>
+                        Al <br/>
+                        M&aacute;ximo
+                    </h1>
+                    <a href="{{ url('/register') }}" class="btn btn-banner ">
+                        Registrate Gratis<i class="fa fa-send"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -158,12 +174,11 @@
                     }
 
                     .zoom {
-                        padding: 50px;
+                        padding: 25px;
                         background-color: transparent;
                         transition: transform .2s;
                         width: 200px;
                         height: 200px;
-                        margin: 0 auto;
                     }
 
                     .zoom:hover {
@@ -174,21 +189,21 @@
                 </style>
                 <center>
                     <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-2.png')}}" width="200"
-                                                        height="150" alt=""></a></div>
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-2.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
                     <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-4.png')}}" width="200"
-                                                        height="150" alt=""></a></div>
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-4.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
                     <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon.png')}}" width="200"
-                                                        height="150" alt=""></a></div>
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
                     <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-5.png')}}" width="200"
-                                                        height="150" alt=""></a>
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-5.png')}}" width="150"
+                                                        height="100" alt=""></a>
                     </div>
                     <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-3.png')}}" width="200"
-                                                        height="150" alt=""></a>
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-3.png')}}" width="150"
+                                                        height="100" alt=""></a>
                     </div>
                 </center>
             </div>
@@ -198,463 +213,463 @@
 </div>
 
 <!--CTA2 STAR portafolio de destacados-->
-<div id="portfolio" class="[container text-center]">
-    <div class=" [container text-center] ">
-        <div class="page-title text-center">
-            <h1>Destacados</h1>
-            <hr class="pg-titl-bdr-btm"></hr>
-        </div>
-        {{--{{ dd($music) }}--}}
-        {{--prueba de pestaña--}}
+{{--<div id="portfolio" class="[container text-center]">--}}
+{{--<div class=" [container text-center] ">--}}
+{{--<div class="page-title text-center">--}}
+{{--<h1>Destacados</h1>--}}
+{{--<hr class="pg-titl-bdr-btm"></hr>--}}
+{{--</div>--}}
+{{--{{ dd($music) }}--}}
+{{--prueba de pestaña--}}
 
-        <div class=" [container text-center] ">
-            <div class="row ">
-                <div class=" [ col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 ] " role="tabpanel">
-                    <div class="[ col-xs-4 col-sm-12 ]">
-                        <!-- Nav tabs -->
-                        <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#libros" aria-controls="libros" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/biblioteca.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#tvs" aria-controls="tvs" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/controlar.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#radios" aria-controls="radios" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/microfono.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#musica" aria-controls="musica" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/musica.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#revistas" aria-controls="revistas" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/revista.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#series" aria-controls="series" role="tab" data-toggle="tab">
-                                    <img class="img-circle" src="{{asset('plugins/carusel/images/tv.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                            <li role="presentation" class="">
-                                <a href="#peliculas" aria-controls="peliculas" role="tab" data-toggle="tab">
-                                    <img class="img-circle"
-                                         src="{{asset('plugins/carusel/images/camara.png')}}"/>
-                                    <span class="quote"><i class="fa fa-check-circle"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="[ col-xs-2 col-sm-6 col-sm-offset-1 ]">
-                        <!-- Tab panes -->
-                        <div class="tab-content" id="tabs-collapse">
+{{--<div class=" [container text-center] ">--}}
+{{--<div class="row ">--}}
+{{--<div class=" [ col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 ] " role="tabpanel">--}}
+{{--<div class="[ col-xs-4 col-sm-12 ]">--}}
+{{--<!-- Nav tabs -->--}}
+{{--<ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">--}}
+{{--<li role="presentation" class="active">--}}
+{{--<a href="#libros" aria-controls="libros" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/biblioteca.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#tvs" aria-controls="tvs" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/controlar.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#radios" aria-controls="radios" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/microfono.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#musica" aria-controls="musica" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/musica.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#revistas" aria-controls="revistas" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/revista.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#series" aria-controls="series" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle" src="{{asset('plugins/carusel/images/tv.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#peliculas" aria-controls="peliculas" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/camara.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--<div class="[ col-xs-2 col-sm-6 col-sm-offset-1 ]">--}}
+{{--<!-- Tab panes -->--}}
+{{--<div class="tab-content" id="tabs-collapse">--}}
 
-                            <div role="tabpanel" class="tab-pane fade in active" id="libros">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade in active" id="libros">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerL" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerL" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $book as $b)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $b->title }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $b->sinopsis }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $b->original_title }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $b->sinopsis }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $b->seller->name }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#">{{ $b->author->full_name }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $b->country }}</a></li>
-                                                                    <li><a href="#">{{ $b->release_year }}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="series">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="series">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerS" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerS" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $book as $b)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $b->title }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $b->sinopsis }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $b->original_title }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $b->sinopsis }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $b->seller->name }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#">{{ $b->author->full_name }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $b->country }}</a></li>
-                                                                    <li><a href="#">{{ $b->release_year }}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="tvs">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="tvs">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerT" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerT" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $tv as $t)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/tv/'. $t->logo) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $t->name_r }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $t->seller->name_r }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $t->name_r }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $t->seller->name }}
-                                                                        {{ $t->descs_s }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $t->google }}</a></li>
-                                                                    <li><a href="#">{{ $t->facebook }}</a></li>
-                                                                    <li><a href="#">{{ $t->instagram }}</a></li>
-                                                                    <li><a href="#">{{ $t->twitter }}</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $tv as $t)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/tv/'. $t->logo) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $t->name_r }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $t->seller->name_r }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $t->name_r }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $t->seller->name }}--}}
+{{--{{ $t->descs_s }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $t->google }}</a></li>--}}
+{{--<li><a href="#">{{ $t->facebook }}</a></li>--}}
+{{--<li><a href="#">{{ $t->instagram }}</a></li>--}}
+{{--<li><a href="#">{{ $t->twitter }}</a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="radios">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="radios">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerR" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerR" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $radio as $r)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/radio/'. $r->logo) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $r->name_r }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $r->seller->name_r }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $r->name_r }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $r->seller->name }}
-                                                                        {{ $r->descs_s }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $r->google }}</a></li>
-                                                                    <li><a href="#">{{ $r->facebook }}</a></li>
-                                                                    <li><a href="#">{{ $r->instagram }}</a></li>
-                                                                    <li><a href="#">{{ $r->twitter }}</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $radio as $r)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/radio/'. $r->logo) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $r->name_r }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $r->seller->name_r }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $r->name_r }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $r->seller->name }}--}}
+{{--{{ $r->descs_s }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $r->google }}</a></li>--}}
+{{--<li><a href="#">{{ $r->facebook }}</a></li>--}}
+{{--<li><a href="#">{{ $r->instagram }}</a></li>--}}
+{{--<li><a href="#">{{ $r->twitter }}</a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="musica">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="musica">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerM" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerM" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $book as $b)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $b->title }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $b->sinopsis }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $b->original_title }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $b->sinopsis }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $b->seller->name }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#">{{ $b->author->full_name }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $b->country }}</a></li>
-                                                                    <li><a href="#">{{ $b->release_year }}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="revistas">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="revistas">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerRe" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerRe" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $book as $b)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>
-                                                            <br/>
-                                                            <h3>{{ $b->title }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $b->sinopsis }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $b->original_title }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $b->sinopsis }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $b->seller->name }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#">{{ $b->author->full_name }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $b->country }}</a></li>
-                                                                    <li><a href="#">{{ $b->release_year }}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                            <div role="tabpanel" class="tab-pane fade" id="peliculas">
-                                <div class="tab-inner">
-                                    <div class="row" id="portfolio-wrapper">
+{{--<div role="tabpanel" class="tab-pane fade" id="peliculas">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
 
-                                        <div id="ca-containerP" class="ca-container">
-                                            <div class="ca-wrapper">
+{{--<div id="ca-containerP" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
 
-                                                @foreach( $movie as $m)
-                                                    {{--imagen --}}
-                                                    <div class="ca-item">
-                                                        <div class="ca-item-main">
-                                                            <div class="ca-icon"
-                                                                 style="background-image: url({{ asset('movie/poster/'. $m->img_poster) }}); background-size: cover ">
+{{--@foreach( $movie as $m)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('movie/poster/'. $m->img_poster) }}); background-size: cover ">--}}
 
-                                                            </div>
-                                                            <br/>
-                                                            <h3>{{ $m->title }}</h3>
-                                                            <h4>
-                                                                <span class="ca-quote">&ldquo;</span>
-                                                                <span>
-                                                                        {{ $m->based_on }}
-                                                                    </span>
-                                                            </h4>
-                                                            <a href="#" class="ca-more">mas...</a>
-                                                        </div>
-                                                        <div class="ca-content-wrapper">
-                                                            <div class="ca-content">
-                                                                <h6>{{ $m->original_title }}</h6>
-                                                                <a href="#" class="ca-close">close</a>
-                                                                <div class="ca-content-text">
-                                                                    <p>
-                                                                        {{ $m->story }}
-                                                                    </p>
-                                                                </div>
-                                                                <ul>
-                                                                    <li><a href="#">{{ $m->seller->name }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $m->release_year }}</a>
-                                                                    </li>
-                                                                    <li><a href="#">{{ $m->trailer_url }}</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+{{--</div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $m->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $m->based_on }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $m->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $m->story }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $m->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $m->release_year }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $m->trailer_url }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
 
-                                            </div>
-                                        </div>
-                                        {{--prueba del carrusel --}}
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-        {{--prueba de pestaña--}}
-    </div>
-</div>
+{{--prueba de pestaña--}}
+{{--</div>--}}
+{{--</div>--}}
 <!--CTA2 END portafolio de destacados-->
 
 <!--TEAM START Proveedores-->
@@ -672,9 +687,9 @@
                     @if($s->id < 5 )
                         <div class="col-md-6">
                             <div class="team-info">
-                                <div class="img-sec" style="width:256px;height:256px">
-                                    <img src="{{ asset('images/producer/logo/'. $s->logo) }}"
-                                         class="img-responsive" style="width:256px;height:256px">
+                                <div class="img-sec">
+                                    <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive"
+                                         style="width:256px;height:256px">
                                 </div>
                                 <div class="fig-caption">
                                     <h3>{{ $s->name }}</h3>
@@ -714,15 +729,15 @@
     <div class="container">
         <div class="row white text-center">
             <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
-            <p class="cta-sub-title"></p>
-            <a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a>
+            {{--<a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a> mover a la barra  --}}
+            <a href="{{ url('/applys') }}" class="btn btn-default">Registrate Como Proveedor</a>
         </div>
     </div>
 </div>
 <!--CTA2 END-->
 
 <!--CONTACT START Comentario-->
-<div id="contact" class="section-padding"  style="background-color:#f4f4f4">
+<div id="contact" class="section-padding" style="background-color:#f4f4f4">
     <div class="container">
         <div class="row">
             <div class="page-title text-center">
@@ -756,8 +771,8 @@
                                       data-msg="Please write something for us" placeholder="Mensaje"></textarea>
                         <div class="validation"></div>
 
-                        <button class="button-medium" id="contact-submit" type="submit" name="contact">Enviar
-                            Ahora
+                        <button class="button-medium" id="contact-submit" type="submit" name="contact">
+                            Enviar Ahora
                         </button>
                     </div>
                 </form>
@@ -777,17 +792,17 @@
                     <ul>
                         <li>
                             <a class="f_twitter" href="#">
-                                <i class="fa fa-youtube"></i>
+                                <i class="fa fa-youtube fa-2x "></i>
                             </a>
                         </li>
                         <li>
                             <a class="f_facebook" href="#">
-                                <i class="fa fa-facebook"></i>
+                                <i class="fa fa-facebook fa-2x"></i>
                             </a>
                         </li>
                         <li>
                             <a class="f_google" href="#">
-                                <i class="fa fa-instagram"></i>
+                                <i class="fa fa-instagram fa-2x"></i>
                             </a>
                         </li>
                     </ul>
