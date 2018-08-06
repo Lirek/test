@@ -26,6 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lcobucci/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
@@ -34,6 +35,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/namshi/jose" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/optimus/heimdal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -61,6 +63,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/fractalistic" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
@@ -113,6 +117,7 @@
           <root url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
           <root url="file://$MODULE_DIR$/vendor/lcobucci/jwt" />
           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
+          <root url="file://$MODULE_DIR$/vendor/league/fractal" />
           <root url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
@@ -121,6 +126,7 @@
           <root url="file://$MODULE_DIR$/vendor/namshi/jose" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/optimus/heimdal" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -148,6 +154,8 @@
           <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+          <root url="file://$MODULE_DIR$/vendor/spatie/fractalistic" />
+          <root url="file://$MODULE_DIR$/vendor/spatie/laravel-fractal" />
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
@@ -196,6 +204,7 @@
           <root url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
           <root url="file://$MODULE_DIR$/vendor/lcobucci/jwt" />
           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
+          <root url="file://$MODULE_DIR$/vendor/league/fractal" />
           <root url="file://$MODULE_DIR$/vendor/league/oauth1-client" />
           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
@@ -204,6 +213,7 @@
           <root url="file://$MODULE_DIR$/vendor/namshi/jose" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/optimus/heimdal" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -231,6 +241,8 @@
           <root url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+          <root url="file://$MODULE_DIR$/vendor/spatie/fractalistic" />
+          <root url="file://$MODULE_DIR$/vendor/spatie/laravel-fractal" />
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/symfony/console" />
           <root url="file://$MODULE_DIR$/vendor/symfony/css-selector" />

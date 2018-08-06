@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="algunos modelos, controladores, vista">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/dist/additional-methods.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/dist/additional-methods.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/dist/jquery.validate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/dist/jquery.validate.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery-1.11.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery-1.7.2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery-1.8.3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery-1.9.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery-3.1.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.form.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.mockjax-1.5.3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.mockjax-2.2.1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.mockjax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/jquery.simulate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/plugins/jquery/jquery-validation/lib/require.js" />
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/02e690eb34f0841559eb9c15cbe74b5e22a74968.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/069a622f816074b8358838235265b0c3edee2f36.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/0c6a5495aff8e26a5a6a86f5ef473f72f47981a0.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/11989ed35f38ac9f420751bd6c41cb97ff289450.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/15cd30379f2811336f2c4930ebd5a0d2274d4789.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/1ae7b8c295e1a374d4719c62e2a9bf06ba10ac47.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/1c2b26a26a0cba6161b89b4bc96db08fdb8c3dea.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/1c6ef533b7bb6279e334da6f16b1f455fce129ca.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/1c775c7ce2373cbf9912940355e24465b3c8c120.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/2173a3b3d6fb9b241e4ddfcbd8486370bbc513a6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/21d19c8e122419c59fc70ab66f8b701f5e2d8455.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/22239e411f4a38eafdc23c8dc7381528792b1ee2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/24e2f0ae19399884d6866357112450b0ed9ca590.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/2506c1a13d2978d8439c949a59de5c70a64504d3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/283fe0f6383e4fed91d5df21444369d17cc66222.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/29241bd559832ea1bb2ed841c94f94e0e76eba5b.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/3b366dadc3181efc7139f88ec8b0f16d26f3f185.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4a6f01a17fea9ebbea4371453e22c5b9edd74a94.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4b2defc132924f0de1a05bfc83cd6bf678f65775.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5434aa040864300785420445e017cc9bdabd407a.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5590eb45b54bad03f6e88ed365a6612385b14244.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/57c43547d2984808521802db51b745abeeadb2d2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/59c6175dec289aa55b0bdea25ca2319aecd370ec.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5bdbf244daa6380ec270f45e3e2a9955be460047.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e4147a21cc90924b09f10ead58db78b999cb3f2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e6688663212cb730b06323bf0d139624851480d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/64c616d34f6fcae762851cc8391c722ce81866d6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/687c25ce0bd97ee3a00548aab3041059e8ee1991.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/692f8cee7ce2de811074048acfb00a8df5c571ff.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/6d6415270d4daa52714995ea77db0b5869d5bd3d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/6defc6cfe02887676e065c431fc99806e4d6f7d5.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/7073acfb9d98c82e968ede1363758b11c1a41d9e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/72eb046f32fd5359c7684df3cb7cc9b1b72ecac5.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/7bad4a9ecc393966cdb5a8a18dae0af22b54b249.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/7dd8a40d00a3bc7430fc1fe8d6e039e189ae0be4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/7ec64b07f8e2c4953c092ff9a6f67e30f0bcebdb.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/82f795f373f8fac6e6ccd14de8995ad124a3108d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/87effd20b2bf4c85b58f43d3f645b06c958d66fe.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8946ba3f40ada61000ebb45c98d3a3433365d4ca.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8995cc4312c02c34b86c52e3f762475cdc10f84c.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8a8aa51e25590779ca89f2850dbb6636bda97768.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8bc63cb089f94407c0d096e97b3a7d338acc537f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8c4702e6c462185492e18b90e61482a138c0fd5e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/8fb8c3192a4868bd9f0ae2de3582778122133d08.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9400fe51ad54b984795dc35da2f334f46c285c4b.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9907a035b5078ed497bde18b4a986c5dc4c484b6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/a2382cc52fa664310cbfa47844c2e1c9565acb7e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/a4280db1124374ee3d8004a3de90986b10768153.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/a9a29935953647eefd9fede9c7dc61930267c37e.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b4c12a9920311966866cddbcc6798430fef1f8e6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b4f1a727e6299d53cdc59b6a6c475df2ff12a7df.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b6e647782d78ccf5dfacc7be46a7723e99ef5ff1.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/bec1072df5815c944b5fbb300bf09d4848c22bc9.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c04b0b9fa58b5da7560a8b37073734990cbcfd53.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c073f2d89e6517a8e0248981971bdcd0d36d76d4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c78fc62176c0d50bd8c4ceea39c9717bcc2986d0.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c93703e4772f31f9f3bc3bc877698714668f467f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/cd6d2c108dcf00695cdb796954eba5172a3fa0ef.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/ce76dcd37c2da1df3d0fe31ab5fc539639bb4be0.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/d1257fefd1c5c8bfee9fff3de83092ada8339f9b.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/d819e02dd63569f8daf34fb274f1ea7bf4cca749.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/dacff8d3a654d46973b9d818c2ed8ee4bf4f3a5f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e054a015a6d6c043295707ea26270fa17b0a68c9.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e5825ddb4fb2f44f6b3e0f54b5ea6eb88f2e74f7.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e5fba06f3458cdcd92e46892716a85a70ff962e2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/ebcb67ed3b21e56fd9c81f75ffd6425a863f87f5.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/ec905ea5c702b6109e65b279bc27f36b72cebaaa.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/f1d8a5a841964b01917609a0340578bcc0f53f29.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/f8d165f8b25e4b0ca2b0ad01a697c34f53c3adbb.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/fb9bec8684713b34517a08ecf98d930f95c50b34.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/fbbae72bf3b25ee184879c2296d9e151b5434aca.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/fd6e61b8c8682e06ca5b8a12eb669c925bd7de15.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/fd74b2f38c4708160c04c53237f572a0f246409b.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/leipel.com.iml" afterPath="$PROJECT_DIR$/.idea/leipel.com.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Albums.php" afterPath="$PROJECT_DIR$/app/Albums.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/plugins/css/style.css" afterPath="$PROJECT_DIR$/public/plugins/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterPath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/2506c1a13d2978d8439c949a59de5c70a64504d3.php" afterPath="$PROJECT_DIR$/storage/framework/views/2506c1a13d2978d8439c949a59de5c70a64504d3.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,7 +147,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -136,14 +190,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Jesus" />
+        <entry key="$PROJECT_DIR$" value="eric" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RadiosController.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SocialAuthController.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
@@ -194,6 +247,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -222,7 +276,7 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
@@ -299,12 +353,23 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/optimus/heimdal" />
+      <path value="$PROJECT_DIR$/vendor/spatie/fractalistic" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-fractal" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="734" />
-    <option name="height" value="907" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -321,8 +386,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,11 +402,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dossier" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -478,11 +543,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531961711160</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merging pachecho breiddy">
+      <created>1533561253724</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1533561253724</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233563000" />
+    <option name="totallyTimeSpent" value="234182000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -494,38 +566,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26484376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,8 +605,9 @@
     <MESSAGE value="listo pelicula afro y otra vez la ruta en el sidebar" />
     <MESSAGE value="welcome" />
     <MESSAGE value="algunos modelos, controladores, vista" />
-    <MESSAGE value="Merging Eric index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merging Eric index" />
+    <MESSAGE value="Merging pachecho breiddy" />
+    <MESSAGE value="elimine chache" />
+    <option name="LAST_COMMIT_MESSAGE" value="elimine chache" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -554,6 +616,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.env" />
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2975">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1925">
@@ -676,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/book/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BooksController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -781,6 +844,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="45" column="57" lean-forward="false" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -804,6 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/partials/navbar.blade.php" />
     <entry file="file://$PROJECT_DIR$/../test2/resources/views/layouts/partials/navbar.blade.php" />
+    <entry file="file://$PROJECT_DIR$/.env" />
     <entry file="file://$PROJECT_DIR$/config/services.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -821,8 +892,8 @@
     <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/resources/views/seller/layouts.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="424" column="0" lean-forward="false" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+        <state relative-caret-position="7431">
+          <caret line="418" column="0" lean-forward="false" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -835,44 +906,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="175">
+          <caret line="153" column="63" lean-forward="false" selection-start-line="153" selection-start-column="63" selection-end-line="153" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/seller/book/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="346" column="15" lean-forward="false" selection-start-line="346" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
+        <state relative-caret-position="494">
+          <caret line="47" column="39" lean-forward="false" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/jwt.php">
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        <state relative-caret-position="433">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
