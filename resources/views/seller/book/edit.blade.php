@@ -72,9 +72,9 @@
                             <div class="col-md-6">
                                 {{--Imagen--}}
                                 <div id="mensajeFotoLibro"></div>
-                                <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-label"> Portada del Libro </label>
-                                    {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                    {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')"]) !!}
                                     <div id="list">
                                         <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset('images/bookcover/') }}/{{$book->cover }}"/>
                                     </div>

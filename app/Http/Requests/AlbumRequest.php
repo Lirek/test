@@ -34,7 +34,6 @@ class AlbumRequest extends FormRequest
             'song_n.*' =>'required',
             'audio.*' =>'required',
         ];
-
         
         return($rules);
     }

@@ -51,7 +51,7 @@
             background: transparent !important;
         }
 
-    /*es es del modal de autor*/
+        /*es es del modal de autor*/
         #imageSM-preview {
             width: 100%;
             height: 380px;
@@ -111,6 +111,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('flash::message')
 
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
@@ -125,9 +126,9 @@
                         {{--Poster de la pelicula--}}
                         <div class="col-md-6">
                             <div id="mensajePortadaPelicula"></div>
-                            <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <div id="list"></div>
                             </div>
                         </div>
@@ -148,13 +149,13 @@
                             {{--titulo original de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Título Original </label>
                             <div id="mensajeTitulOriginal"></div>
-                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo Original','placeholder'=>'Titulo de la Película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el Título Original')",'oninput'=>"setCustomValidity('')"]) !!}
+                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo Original de la Película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el Título Original')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
                             {{--archivo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Cargar Película</label>
                             <div id="mensajePelicula"></div>
-                            {!! Form::file('duration',['class'=>'form-control-file','accept'=>'.mp4','control-label','placeholder'=>'Cargar Película','id'=>'pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]) !!}
+                            {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','control-label','placeholder'=>'Cargar Película','id'=>'pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
                             {{--selecionar pais--}}
@@ -434,7 +435,7 @@
 
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del Trailer</label>
-                            {!! Form::url('text',null,['class'=>'form-control','placeholder'=>'Link del Trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            {!! Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del Trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Link del Trailer de la Película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                             <br>
                         </div>
 
@@ -457,8 +458,7 @@
                             <br>
 
                             <div class="" style="display:none" id="if_si">
-                                {{--<label for="exampleInputFile" class="control-label">Saga del libro</label>--}}
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga de Libro','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el Nombre de la Saga de la Película')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione Saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el Nombre de la Saga')", 'oninput'=>"setCustomValidity('')"]) !!}
                                 <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
                                     <i class="fa fa-book"></i> 
                                     Agregar Saga
@@ -466,16 +466,14 @@
                                 <br>
                                 <br>
 
-                                {{--no se de que va --}}
-                                <label for="exampleInputPassword1" class="control-label">Después</label>
-                                <div id="mensajeDespues"></div>
-                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
-                                <br>
-
-                                {{--no se de que va tampoco--}}
                                 <div id="mensajeAntes"></div>
                                 <label for="exampleInputPassword1" class="control-label">Antes</label>
                                 {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                <br>
+
+                                <label for="exampleInputPassword1" class="control-label">Después</label>
+                                <div id="mensajeDespues"></div>
+                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
                             </div>
                         </div>
                         <div class="form-group col-md-12">
@@ -506,9 +504,10 @@
                         <div class="col-md-6">
                             
                             {{--Imagen--}}
+                            <div id="mensajePortadaSaga"></div>
                             <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group">
                                 <label for="imageSM-upload" id="image-label"> Imagen de la Saga</label>
-                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
+                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
                                 <div id="listModal"></div>
                             </div>
 
@@ -526,8 +525,8 @@
 
                             {{--tipo de saga--}}
                             <label for="exampleInputFile" class="control-label">Tipo de Saga</label>
-                            {!! Form::select('type_saga',['1'=>'Libros','2'=>'Peliculas','3'=>'Series','4'=>'Revista'],null,
-                            ['class'=>'form-control select-author','placeholder'=>'Selecione....','id'=>'exampleInputFile','required'=>'required']) !!}
+                            {!! Form::select('type_saga',['2'=>'Peliculas'],null,
+                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
                             <br>
 
                             {{--Descripcion de  la saga--}}
@@ -537,7 +536,7 @@
                         <br>
                     </div>
                     <div align="center">
-                        {!! Form::submit('Guardar Saga', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Guardar Saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
                         {!! Form::close() !!}
                     </div>
                     <!-- /.box-body -->
@@ -635,6 +634,23 @@
         });
     });
     // Pelicula
+    // Portada de la Saga
+    $(document).ready(function(){
+        $('#imageSM-upload').change(function(){
+            var tamaño = this.files[0].size;
+            var tamañoKb = parseInt(tamaño/1024);
+            if (tamañoKb>2048) {
+                $('#mensajePortadaSaga').show();
+                $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                $('#mensajePortadaSaga').css('color','red');
+                $('#registrarSaga').attr('disabled',true);
+            } else {
+                $('#mensajePortadaSaga').hide();
+                $('#registrarSaga').attr('disabled',false);
+            }
+        });
+    });
+    // Portada de la Saga
 // Para validar el tamaño maximo de las imagenes y de la pelicula
 //---------------------------------------------------------------------------------------------------
     // Para evitar los espacios vacios
@@ -665,7 +681,6 @@
         $('#titulo').keyup(function(evento){
             var titulo = $('#titulo').val();
             numeroPalabras = titulo.length;
-            $('#cantidadTitulo').text(numeroPalabras+'/'+cantidadMaxima);
             if (numeroPalabras>cantidadMaxima) {
                 $('#mensajeTitulo').show();
                 $('#mensajeTitulo').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
@@ -684,7 +699,6 @@
         $('#titulOriginal').keyup(function(evento){
             var titulOriginal = $('#titulOriginal').val();
             numeroPalabras = titulOriginal.length;
-            $('#cantidadTitulOriginal').text(numeroPalabras+'/'+cantidadMaxima);
             if (numeroPalabras>cantidadMaxima) {
                 $('#mensajeTitulOriginal').show();
                 $('#mensajeTitulOriginal').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
@@ -790,6 +804,7 @@
         } else {
             $('#if_si').hide();
             $('#sagas').removeAttr('required');
+            $('#sagas').attr('novalidate',true);
             $('#despues').removeAttr('required');
             $('#antes').removeAttr('required');
             $('#sagas').val('');

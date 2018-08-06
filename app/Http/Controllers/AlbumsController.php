@@ -40,6 +40,12 @@ class AlbumsController extends Controller
        return view('seller.music_module.album_registration')->with('tags', $tags)->with('autors', $autors);
     }
 
+    public function musicFromAlbum($idAlbum) {
+        $album = Albums::find($idAlbum);
+        $song = $album->songs()->get();
+        return response()->json($song);
+    }
+
     public function ModifyAlbum($id)
     {
 
@@ -132,6 +138,10 @@ class AlbumsController extends Controller
                 $minT[]=$min;           
                 $i++;   
             }
+
+            foreach ($save as $data) {
+                $album->songs()->save($data);
+            }
         
         }
         
@@ -141,26 +151,15 @@ class AlbumsController extends Controller
         $album->cost=$request->cost;
         $album->status=2;
         $album->save();
-        
-        foreach ($save as $data) {
-            $album->songs()->save($data);
-        }
+
 
         Flash::success('Se ha modificado el Álbum con exito')->important();
         return redirect()->action(
             'MusicController@ShowMusicPanel',['id'=>Auth::guard('web_seller')->user()->id]
         );
-
-        /*
-      $albums = Albums::where('seller_id','=',$user)->simplePaginate(10);
-      $singles = Songs::where('seller_id','=',$user)->where('album','=',NULL)->simplePaginate(10);
-    
-       return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles);
-       */
     }
     
-    public function DeleteAlbum($id)
-    {
+    public function DeleteAlbum($id) {
 
         $album = Albums::find($id);
         $name = $album->Autors()->get();
@@ -180,17 +179,11 @@ class AlbumsController extends Controller
         rmdir(public_path()."/Music/".$name[0]->name."/albums/".$album->name_alb);
         $album->delete();
 
-        Flash::success('Se ha eliminado el Album con exito')->important();
+        Flash::success('Se ha eliminado el Álbum con éxito')->important();
 
         return redirect()->action(
             'MusicController@ShowMusicPanel',['id'=>$user]
         );
-        /*
-      $albums = Albums::where('seller_id','=',$user)->simplePaginate(10);
-      $singles = Songs::where('seller_id','=',$user)->where('album','=',NULL)->simplePaginate(10);
-    
-       return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles);
-       */
 
     }
 
@@ -199,7 +192,6 @@ class AlbumsController extends Controller
       $album =Albums::find($id);
       $singles = $album->songs()->get();
       $cover = $album->cover;
-      //dd($cover);
       $x=0;
       return view('seller.music_module.album')->with('album', $album)->with('songs', $singles)->with('cover',$cover)->with('x',$x);
       
@@ -210,11 +202,6 @@ class AlbumsController extends Controller
         $album =Albums::find($id);
         $singles = $album->songs()->get();
         return response()->json($singles);
-
-        /*
-        $Song= Songs::where('rating_id','=',$id)->get(); 
-        return response()->json($Song);
-        */
         
     }
     // Funcion que será llamada por al momento de ver un album y devolverá las canciones de dicho album
@@ -224,7 +211,7 @@ class AlbumsController extends Controller
         $seg=0;
         $min=0;
         $hr=0;
-        
+        //dd($request->all());
         $artist = $request->artist;
         $autors = music_authors::find($artist);
         $seller_id = $request->seller_id;
@@ -391,30 +378,36 @@ class AlbumsController extends Controller
         File::delete(public_path().$delete->song_file);
         $delete->delete();
 
-        if($album_id == NULL or $album_id == 0) {
+        if($album_id == NULL || $album_id == 0) {
             Flash::success('Se ha eliminado la canción con exito')->important();
-            /*
-            $albums = Albums::where('seller_id','=',$user)->simplePaginate(10);
-            $singles = Songs::where('seller_id','=',$user)->where('album','=',0)->where('album','=',NULL)->simplePaginate(10);
-            return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles);
-            */
             return redirect()->action(
                 'MusicController@ShowMusicPanel',['id'=>$user]
             );
         }
+
+        $album = Albums::find($album_id);
+        $songs=$album->songs()->get();
+        if (count($songs)!= 0) {
+
+            foreach($songs as $song) {
+                    
+                list($hr,$min,$seg)=explode(':',$song->duration);
+                $minT[]=$min;
+                $segT[]=$seg;
+            }
+            $AlbumTime = $this->GetAlbumDuration($minT,$segT);
+        } else {
+            $AlbumTime = "00:00:00";
+        }
+
+        $album->duration = $AlbumTime;
+        $album->seller_id = $album->seller_id;
+        $album->save();
+
+        Flash::success('Se ha eliminado la canción con exito')->important();
         return redirect()->action(
             'AlbumsController@ModifyAlbum',['id'=>$album_id]
         );
-        /*
-        $album = Albums::find($album_id);
-        $song = $album->songs()->get();
-        $tags = Tags::where('type_tags','=','Musica')->get();
-        $selected = $album->tags_music()->get();
-        $autors = $album->autors()->get();
-        $i=0;
-        $cover = $album->cover;
-        return view('seller.music_module.album_modify')->with('tags', $tags)->with('autors', $autors)->with('album', $album)->with('songs', $song)->with('s_tags',$selected)->with('cover',$cover)->with('i',$i)->with('id',$album_id);
-        */
       }
 
     public function UpdateSong(Request $request) {
@@ -456,11 +449,6 @@ class AlbumsController extends Controller
         $single->save();  
 
         Flash::success('Se ha Modificado la Canción con exito')->important();
-        /*
-        $albums = Albums::where('seller_id','=',$user)->simplePaginate(10);
-        $singles = Songs::where('seller_id','=',$user)->where('album','=',NULL)->simplePaginate(10);
-        return view('seller.music_module.music_panel')->with('albums', $albums)->with('singles', $singles);
-        */
         return redirect()->action(
             'MusicController@ShowMusicPanel',['id'=>$user]
         );

@@ -5,7 +5,6 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-        {{--{{ dd($movie->duration) }}--}}
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">

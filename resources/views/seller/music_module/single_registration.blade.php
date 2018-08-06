@@ -32,7 +32,7 @@
 
             <label for="Seleccione Música">Seleccione Música</label>
             <div id="mensajeCancion"></div>
-            {!! Form::file('audio',['class'=>'form-control-file','accept'=>'.mp3','id'=>'cancion','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una Canción')",'oninput'=>"setCustomValidity('')"]) !!}
+            {!! Form::file('audio',['class'=>'form-control','accept'=>'.mp3','id'=>'cancion','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una Canción')",'oninput'=>"setCustomValidity('')"]) !!}
             <br>
 
             <label for="tags">Géneros</label>

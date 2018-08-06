@@ -6,7 +6,7 @@
         position: relative;
         overflow: hidden;
         background-color: #ffffff;
-        color: #ecf0f1;
+        color: #2b81af;
     }
     #image-preview input {
         line-height: 200px;
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div id="mensajeFotoAlbun"></div>
-                            <div id="image-preview" style="border:#000000 1px solid ;" class="col-md-1">
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col-md-1">
                                 <label for="image-upload" id="image-label">Foto o Logo</label>
                                 <input type="file" name="photo" accept="image/*" required="required" oninvalid="this.setCustomValidity('Seleccione una Imagen o Logo')" oninput="setCustomValidity('')" id="image-upload"/>
                                 <div id="list"></div>
@@ -330,14 +330,14 @@
                                 <label for="rrhh" class="control-label">Redes Sociales</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
-                                    <input type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="https?:\/\/(www\.)?youtube\.com\\/)" oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')" oninput="setCustomValidity('')">
+                                    <input type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="http(s)?://(.*\.)?youtube\.com\/[A-z 0-9 _]+\/?" oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="form-control" placeholder="Instagram" oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')" oninput="setCustomValidity('')">
+                                    <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?" type="text" name="instagram" class="form-control" placeholder="Instagram" oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
                                     <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')" oninput="setCustomValidity('')" >
                                 </div>
                                 <div class="input-group">

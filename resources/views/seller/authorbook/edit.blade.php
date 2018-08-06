@@ -74,9 +74,9 @@
                             <div class="col-md-6">
                                 {{--Imagen--}}
                                 <div id="mensajeFotoLibro"></div>
-                                <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-label"> Foto del autor </label>
-                                    {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                    {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]) !!}
                                     <div id="list">
                                         <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset('images/authorbook') }}/{{$author->photo }}"/>
                                     </div>
@@ -99,17 +99,17 @@
                                 {{--link de google+--}}
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                    {!! Form::text('google',$author->google,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile','pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::text('google',$author->google,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile','pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
                                 {{--link de instagram--}}
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    {!! Form::text('instagram',$author->instagram,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile','pattern'=>'https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::text('instagram',$author->instagram,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile','pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
                                 {{--link de facebook--}}
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                                    {!! Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
 
                                 {{--link de twitter--}}

@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 use App\music_authors;
 use Illuminate\Http\Request;
 use App\Http\Requests\MusicAuthorsRequest;
+use Laracasts\Flash\Flash;
 
 class ArtistController extends Controller
 {
-    //
-
     public function ShowArtistForms()
     {
        return view('seller.music_module.artist_registration');
@@ -18,7 +17,7 @@ class ArtistController extends Controller
       
       $id=$request->id;
 
-      $store_path = public_path().'Music/'.$id.'/profileArtist';
+      $store_path = public_path().'/Music/'.$id.'/profileArtist';
       $photo = $request->file('photo');
       $name1 = $request->art_name.'.'.$photo->getClientOriginalExtension();
       list($e,$real_path)=explode(public_path(),$store_path);
@@ -39,7 +38,10 @@ class ArtistController extends Controller
       $music_authors->save();
 
       Flash::success('Se ha registrado '. $music_authors->name .' de forma sastisfactoria')->important();
-      return view('seller.music_module.artist_registration');
+      //return view('seller.music_module.artist_registration');
+      return redirect()->action(
+        'ArtistController@ShowArtistForms'
+      );
 
     }
 }

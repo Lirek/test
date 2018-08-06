@@ -590,6 +590,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
     /*------------------Modificar Albums -------------------------- */
     Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
     Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
+    Route::get('/musicFromAlbum/{id}', 'AlbumsController@musicFromAlbum');
     /*--------------------------------------------------------------*/
 
     /*------------------Borrar Albums-------------------------------*/
@@ -619,8 +620,16 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/modify_single', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
 
+    /*----------------------Agregar Tags--------------------------- */
+    Route::resource('tags','TagController');
+    /*--------------------------------------------------------------*/
+
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+    /*--------------------------------------------------------------*/
+
+    /*---------Canciones del Panel "Mi Contenido Musical"------------*/
+    Route::get('/music_of_my_music_panel/{id}', 'MusicController@ShowMusicOfMyPanel');
     /*--------------------------------------------------------------*/
 
     /*--------------AJAX de Guardar Etiquetas---------------------- */
@@ -652,15 +661,23 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::resource('series', 'SeriesController');
 
+    Route::get('showEpisode/{idE}/{idS}',[
+        'uses'  => 'SeriesController@showEpisode',
+        'as'    => 'series.showEpisode'
+    ]);
+
+    /*
+    modificada de manera generica
     //para q guarde el modal
     Route::post('sagas/registerS', [
         'uses' => 'SagaController@registerSeries',
         'as' => 'sagas.registerS'
     ]);
+    */
 
-    Route::get('series/{id}/destroy', [
-        'uses' => 'SeriesController@destroy',
-        'as' => 'series.destroy'
+    Route::get('destroyEpisode/{idE}/{idS}', [
+        'uses' => 'SeriesController@destroyEpisode',
+        'as' => 'destroyEpisode'
     ]);
 
     /*-------------------------------------------------------------------------

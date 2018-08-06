@@ -3,7 +3,7 @@
     <style>
         #image-preview {
             width: 100%;
-            height: 450px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -162,12 +162,13 @@
 
                         {{--Poster de la pelicula--}}
                         <div class="col-md-6">
+                            <div id="mensajePortadaPelicula"></div>
                             <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                 Si no selecciona una Portada, se mantendrá la actual
                             </label>
-                            <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'.jpg', 'style'=>'border:#000000','1px solid ;']) !!}
+                                {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$movie->img_poster)!!}
                                 <div id="list">
                                     <img style="width:100%; height:100%; border-top:50%;" src="{{asset('movie/poster')}}/{{$movie->img_poster}}">
@@ -193,10 +194,11 @@
 
                             {{--archivo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Cargar Película</label>
-                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                            <div id='mensajeCargaPelicula'></div>
+                            <label for="cargaPelicula" id="mensajePelicula" class="control-label" style="color: green;">
                                 Si no selecciona una Película, se mantendrá la actual
                             </label>
-                            {!! Form::file('duration',['class'=>'form-control-file','control-label','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'oninput'=>"setCustomValidity('')"]) !!}
+                            {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','oninvalid'=>"this.setCustomValidity('Seleccione la Película')",'id'=>'pelicula','oninput'=>"setCustomValidity('')"]) !!}
                             <br>
                             {!! Form::hidden('durationOld',$movie->duration) !!}
 
@@ -551,6 +553,46 @@
   }
   document.getElementById('image-upload').addEventListener('change', archivo, false);
 // Para que se vea la imagen en el formulario
+//---------------------------------------------------------------------------------------------------
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
+        // Portada de la Pelicula
+        $(document).ready(function(){
+            $('#image-upload').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#cargaPelicula').hide();
+                    $('#mensajePortadaPelicula').show();
+                    $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePortadaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#cargaPelicula').show();
+                    $('#mensajePortadaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
+        });
+        // Portada de la Pelicula
+        // Archivo de la Pelicula
+        $(document).ready(function(){
+            $('#pelicula').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#mensajePelicula').hide();
+                    $('#mensajeCargaPelicula').show();
+                    $('#mensajeCargaPelicula').text('El archivo es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajeCargaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#mensajeCargaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
+        });
+        // Archivo de la Pelicula
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
 //---------------------------------------------------------------------------------------------------
 // Para validar la Fecha de Lanzamiento
     $(document).ready(function(){

@@ -19,12 +19,12 @@ class Book extends Model
 
     public function author()
     {
-        return $this->belongsTo('App\BookAuthor');
+        return $this->belongsTo('App\BookAuthor', 'author_id');
     }
 
     public function seller()
     {
-        return $this->belongsTo('App\Seller');
+        return $this->belongsTo('App\Seller', 'seller_id');
     }
 
     public function saga()

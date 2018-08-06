@@ -62,7 +62,7 @@
                                     <h4>
                                         Titulo original:
                                         <span class="pull-right ">
-                                            "{{ $book->original_title }}""
+                                            "{{ $book->original_title }}"
                                         </span>
                                     </h4>
                                 </li>

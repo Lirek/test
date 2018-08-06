@@ -28,6 +28,11 @@ class mp3File extends Controller
     }
  
     //Read entire file, frame by frame... ie: Variable Bit Rate (VBR)
+
+    /**
+     * @param bool $use_cbr_estimate
+     * @return float|int
+     */
     public function getDuration($use_cbr_estimate=false)
     {
         $fd = fopen($this->filename, "rb");

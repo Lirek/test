@@ -13,7 +13,7 @@ class MoviesController extends Controller
 {
     public function index()
     {
-        $movies = Movie::orderBy('id', 'DESC')->paginate('10');
+        $movies = Movie::orderBy('id', 'DESC')->get();
         $movies->each(function ($movies) {
             $movies->saga;
             $movies->rating;
@@ -27,7 +27,7 @@ class MoviesController extends Controller
     public function create()
     {
         $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
-        $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $sagas = Sagas::where('type_saga','Peliculas')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
 
         return view('seller.movie.create')
             ->with('ratin', $rating)
@@ -51,6 +51,7 @@ class MoviesController extends Controller
         $movie->seller_id = \Auth::guard('web_seller')->user()->id;
         $movie->img_poster = $name;
         $movie->duration = $names;
+        $movie->trailer_url = $request->trailer_url;
 //        dd($movie);
         $movie->save();
 

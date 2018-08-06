@@ -51,10 +51,7 @@
             background: transparent !important;
         }
 
-    </style>
-
-    {{--es es del modal de autor--}}
-    <style>
+        /*es es del modal de autor*/
         #imageAM-preview {
             width: 100%;
             height: 305px;
@@ -90,10 +87,8 @@
             margin: auto;
             text-align: center;
         }
-    </style>
 
-    {{--es es del modal de autor--}}
-    <style>
+        /*es es del modal de autor*/
         #imageSM-preview {
             width: 100%;
             height: 380px;
@@ -151,6 +146,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('flash::message')
 
                 <div class="box box-primary ">
                     <div class="box-header with-border bg bg-black-gradient">
@@ -165,9 +161,9 @@
                         <div class="col-md-6">
                             {{--Imagen--}}
                             <div id="mensajeFotoLibro"></div>
-                            <div id="image-preview" style="border:#646464 1px solid ;" class="form-group col-md-1">
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada del Libro </label>
-                                {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Imagen de Portada')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <div id="list"></div>
                             </div>
                         </div>
@@ -200,11 +196,11 @@
                             {{--archivo del libro--}}
                             <label for="exampleInputFile" class="control-label">Cargar el Libro</label>
                             <div id="mensajeDocumento"></div>
-                            {!! Form::file('books_file',['class'=>'form-control-file','accept'=>'.pdf','control-label','placeholder'=>'Cargar Libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el Documento del Libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']) !!}
+                            {!! Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'Cargar Libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el Documento del Libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']) !!}
                             <br>
 
                             {{--selecione el pais--}}
-                            <label class="control-label"> Pais</label>
+                            <label class="control-label"> País</label>
                             <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un País')" oninput="setCustomValidity('')">
                                 <option value="">Seleccione una Opcion</option>
                                 <option value="AF">Afganistán</option>
@@ -488,21 +484,21 @@
                             <div style="display:none" id="if_si">
                                 {{--saga del libro--}}
                                 <label for="exampleInputFile" class="control-label">Saga del libro</label>
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'selecione saga de libro'],['id'=>'exampleInputFile']) !!}
+                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'selecione saga de libro','id'=>'sagas']) !!}
                                 <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
                                     <i class="fa fa-book"></i>
                                     Agregar Saga
                                 </a>
                                 <br><br>
 
-                                {{--capitulo que le sigue--}}
-                                <label for="exampleInputPassword1" class="control-label">Despues</label>
-                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
-                                <br>
-
                                 {{--capitulo que se le antepone--}}
                                 <label for="exampleInputPassword1" class="control-label">Antes</label>
                                 {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                <br>
+
+                                {{--capitulo que le sigue--}}
+                                <label for="exampleInputPassword1" class="control-label">Despúes</label>
+                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del Capitulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
 
                             </div>
                             <br>
@@ -558,17 +554,17 @@
                                 <label for="Redes Sociales" class="control-label">Redes Sociales</label>
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                    {!! Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
                                 {{--link de instagram--}}
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    {!! Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
                                 {{--link de facebook--}}
                                 <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                                    {!! Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+                                    {!! Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
 
                                 {{--link de twitter--}}
@@ -636,8 +632,8 @@
 
                                 {{--tipo de saga--}}
                                 <label for="exampleInputFile" class="control-label">Tipo de Saga</label>
-                                {!! Form::select('type_saga',['1'=>'Libros','2'=>'Peliculas','3'=>'Series','4'=>'Revista'],null,
-                                ['class'=>'form-control select-author','placeholder'=>'selecione....','id'=>'exampleInputFile','required'=>'required']) !!}
+                                {!! Form::select('type_saga',['1'=>'Libros'],null,
+                                ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
                                 <br>
 
                                 {{--Descripcion de  la saga--}}
