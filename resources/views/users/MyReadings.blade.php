@@ -1,61 +1,93 @@
 @extends('layouts.app')
 
-	@section('content')
-	<div class="container">
-		
-		<div class="row">
-			
-		@foreach($Books as $Book)
-			<div class="col-md-4">
-			
-			  <div class="card">
-    		 	<img src="/images/bookcover/{{$Book->cover}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Book->title}}</b></h4> 
-            			<p>·Costo{{$Book->cost}}</p>
-             			<p>·Autor {{$Book->author->full_name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Book->sinopsis}}
-             			</p>
-                  	<a href="{{url('Read/'.$Book->id)}}"><button class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-book"></i>   Leer
-                  	</button></a>
-            	</div>
-       		 </div>
+@section('main')  
 
-     	    </div>
-		@endforeach
-		</div>	
-	@if($Megazines != 0)		
-		<div class="row">
-			@foreach($Megazines as $Megazine)
+<div class="row">
+    <div class="form-group"> 
+        <div class="row-edit">
+            <div class="col-md-12 col-sm-12 mb">
+                <div class="control-label">
+                <div class="white-header">
+                     <h3><span class="card-title"><i class="fa fa-angle-right"> Mis Libros</i></span></h3>           
+                </div>
+                <div class="col-md-12  control-label">
+                    <input id="myInput" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                </div>
+                </div>
+                 @if($Books != 0)
+                <!-- PROFILE 01 PANEL -->
+                @foreach($Books as $Book)
+                <div class="col-lg-5 col-md-5 col-sm-5 mb">
+                    <div class="content-panel pn-music">
+                        <div id="profile-01" style="">
+                            @if($Book->cover)
+                                <img src="images/bookcover/{{$Book->cover}}" width="100%" height="220" style="">
 
-			<div class="col-md-4">
-			
-			  <div class="card" style="margin-left: 12px; margin-top: 12px">
-    		 	<img src="{{asset($Megazine->cover)}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Megazine->title}}</b></h4> 
-            			<p>·Costo{{$Megazine->cost}}</p>
-             			<p>·Proveedor {{$Megazine->Seller->name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Megazine->descripcion}}
-             			</p>
-                  	<button value1="{{$Megazine->id}}" value2="{{$Megazine->title}}" value3="{{$Megazine->cost}}" data-toggle="modal" data-target="#BuyBook" class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-ticket"></i> {{$Megazine->cost}}  Comprar
-                  	</button>
-            	</div>
-       		  </div>
-     	    </div>
-			@endforeach
-		</div>
+                            @else
+                                <img src="#" width="100%" height="220" style="">
+                            @endif
+                        </div>
+                        <div class="profile-01 centered">
+                            <p><a href="{{url('ShowMyReadBook/'.$Book->id)}}">Ver mas</p></a>
+                        </div>
+                        <div class="centered">
+                            <h3>{{$Book->title}}</h3>
+                            <h6>{{$Book->author->full_name}}</h6>
+                            <p class="sinopsis"><b>Sinopsis:</b>{{$Book->sinopsis}}
+                            </p>
 
-	</div>
-  @endif
-	@endsection
+                        </div>
+                    </div><!--/content-panel -->
+                </div><!--/col-md-4 -->
+                @endforeach
+                @else
+                    <h1>No Posee Libros</h1>
+                @endif
+            </div>
+        </div> 
+    </div> 
+</div> 
+
+@endsection
+
+
 @section('js')
+<script src="jquery-1.10.2.js"></script>
 <script>
-
-
-		
-</script>		
+   $(document).ready(function() {
+      var showChar = 300;
+      var ellipsestext = "...";
+      var moretext = "Seguir leyendo >";
+      var lesstext = "Mostrar menos";       
+      var content = $('.sinopsis').html();
+      
+      if(content.length > showChar) {
+         var c = content.substr(0, showChar);
+         var html = '<div class="abstract">' + c + ellipsestext + '</div>' + '<div class="morecontent">' + content + '</div>' + '<p><span class="morelink">' + moretext + '</span></p>';
+          $('.sinopsis').html(html);
+       }
+         
+       $('.morelink').click(function() {
+          if($(this).hasClass('less')) {
+             $(this).removeClass('less');
+             $(this).html(moretext);
+             $('.abstract').removeClass('hidden');
+           } else {
+             $(this).addClass('less');
+                 $(this).html(lesstext);
+                 $('.abstract').addClass('hidden');
+           }
+           $(this).parent().prev().slideToggle('fast');
+           $(this).prev().slideToggle('fast');
+                return false;
+        });
+    });
+</script>
+<style>
+   .morecontent { display: none; }
+   .morelink { display: block; cursor: pointer; color:#2196f3; }
+   .morelink:hover { text-decoration:underline; }
+   .hidden { display:none; }
+</style>
 
 @endsection

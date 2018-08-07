@@ -1,104 +1,152 @@
 @extends('seller.layouts')
-
 @section('content')
+  <!-- 
+  MAIN CONTENT
+  -->
+  <!--main content start-->
+  <div class="row mtbox">
+    <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
+      <div class="box1">
+        <span class="li_music"></span>
+        <h3>933</h3>
+      </div>
+      <p>933 People liked your page the last 24hs. Whoohoo!</p>
+    </div>
+    <div class="col-md-2 col-sm-2 box0">
+      <div class="box1">
+        <span class="li_tv"></span>
+        <h3>+48</h3>
+      </div>
+      <p>48 New files were added in your cloud storage.</p>
+    </div>
+    <div class="col-md-2 col-sm-2 box0">
+      <div class="box1">
+        <span class="li_sound"></span>
+        <h3>23</h3>
+      </div>
+      <p>You have 23 unread messages in your inbox.</p>
+    </div>
+    <div class="col-md-2 col-sm-2 box0">
+      <div class="box1">
+        <span class="li_video"></span>
+        <h3>+10</h3>
+      </div>
+      <p>More than 10 news were added in your reader.</p>
+    </div>
+    <div class="col-md-2 col-sm-2 box0">
+      <div class="box1">
+        <span class="li_vallet"></span>
+        <h3>OK!</h3>
+      </div>
+      <p>Your server is working perfectly. Relax & enjoy.</p>
+    </div>
+  </div><!-- /row mt -->
 
-<div class="row" style="margin-left: 30px">
-        
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Seguidores</span>
-              <span class="info-box-number">{{$followers}}</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
+  <div class="row mt">
+    <div class="col-md-4 col-sm-4 mb">
+      <div class="darkblue-panel pn" style="background-color: #DF7401;">
+        <div class="darkblue-header">
+          <h3 style="color: #fff;">Seguidores</h3>
         </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Contenido Creado</span>
-              <span class="info-box-number">{{$total_content}}</span>
-            </div>
-            <!-- /.info-box-content -->
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-flag-o fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class="info-box-number"> {{ $followers }} </i></h5>
           </div>
+        </footer>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mb">
+      <div class="darkblue-panel pn" style="background-color: #8A084B;">
+        <div class="darkblue-header">
+          <h3 style="color: #fff;">Contenido Creado</h3>
+        </div>
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-files-o fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class="info-box-number"> {{ $total_content }} </i></h5>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 mb">
+      <div class="darkblue-panel pn" style="background-color: #088A68;">
+        <div class="darkblue-header">
+          <h3 style="color: #fff;">Contenido Publicado</h3>
+        </div>
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-star-o fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class="info-box-number"> {{ $aproved_content }} </i></h5>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt">
+    <div class="col-md-5 col-sm-5 mb">
+      <div class="darkblue-panel pn" style="background-color: #04B486;">
+        <div class="darkblue-header">
+          <h1>Ventas</h1>
+        </div>
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-shopping-cart fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class=""> 0</i></h5>
+          </div>
+        </footer>
+      </div>
     </div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Contenido Publicado</span>
-              <span class="info-box-number">{{$aproved_content}}</span>
-            </div>
-            <!-- /.info-box-content -->
+    <div class="col-md-5 col-sm-5 mb">
+      <div class="darkblue-panel pn" style="background-color: #2ECCFA;">
+        <div class="darkblue-header">
+          <h2 style="color: #fff;">Balance de Tickets</h2>
+        </div>
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-tags fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class=""> 0</i></h5>
           </div>
-          <!-- /.info-box -->
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt">
+    <div class="col-md-5 col-sm-5 mb">
+      <div class="darkblue-panel pn" style="background-color: #FE2E2E;">
+        <div class="darkblue-header">
+          <h2 style="color: #fff;">Solicitudes Administrador</h2>
         </div>
-</div>
-
-<div class="row" style="margin-left: 30px">
-        
-        <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                        <h3>0</h3>
-
-                        <p>Ventas</p>
-                </div>
-                    <div class="icon">
-                    <i class="fa fa-shopping-cart"></i>
-                    </div>
-                     <a href="#" class="small-box-footer">
-                     Sumario <i class="fa fa-arrow-circle-right"></i>
-                    </a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>0</h3>
-
-              <p>Balance en tickets</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">
-               <i class="fa fa-arrow-circle-right"></i>
-            </a>
+        <h2 class="mt" style="color: #fff;">
+          <i class="fa fa-comments fa-3x"></i>
+        </h2>
+        <footer>
+          <div class="centered">
+            <h5><i class=""> 0</i></h5>
           </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>0</h3>
-
-              <p>Solicitudes Administrador</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-commenting"></i>
-            </div>
-            <a href="#" class="small-box-footer">
-               <i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
-
-</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+    
 @endsection
 @section('js')
+  <!--
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
+  -->
 @endsection

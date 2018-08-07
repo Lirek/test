@@ -1,66 +1,86 @@
 @extends('layouts.app')
 
-@section('main')
+@section('main')     
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+        
+        <div class="row mtbox">
+          <div class="col-md-12 col-sm-12 mb">
+          <div class="white-panel refe">
+            <div class="white-header">
+                <h5><i class="fa fa-user"></i>Primer nivel de referidos:</h5>
+            </div>
+            <div class="row white-size">
+                <div class="col-sm-6 col-xs-6 gocenterRed ">
+                  <p>
+                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
+                      {{$referals1}}
+                    </a></h2>
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div><!-- /col-md-5 -->
 
-<div class="container">
-  <div class="row">
-    
-    <div class="col s4">
-      <div class="card-panel teal">
+              <div class="col-md-6 mb">
+              <!-- WHITE PANEL - TOP USER -->
+              <div class="white-panel pn3">
+                <div class="white-header">
+                  <h5><i class="fa fa-user"></i>Segundo nivel de referidos:</h5>
+                </div>
+                <div class="row white-size">
+                <div class="col-sm-6 col-xs-6 gocenterRed ">
+                  <p>
+                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
+                      {{$referals2}}
+                    </a></h2>
+                  </p>
+                </div>
+                </div>
+              </div>
+            </div><!-- /col-md-4 -->
+
+            <div class="col-md-6 mb">
+              <!-- WHITE PANEL - TOP USER -->
+              <div class="white-panel pn3">
+                <div class="white-header">
+                  <h5><i class="fa fa-user"></i>Tercer nivel de referidos:</h5>
+                </div>
+                <div class="row white-size">
+                <div class="col-sm-6 col-xs-6 gocenterRed ">
+                  <p>
+                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
+                      {{$referals3}}
+                    </a></h2>
+                  </p>
+                </div>
+                </div>
+              </div>
+            </div><!-- /col-md-4 -->
+
+        <div class="col-md-12 col-sm-12 mb">
+          <div class="white-panel refe">
+            <div class="white-header">
+                <h5><i class="fa fa-user"></i>Total de referidos:</h5>
+            </div>
+            <div class="row white-size">
+                <div class="col-sm-6 col-xs-6 gocenterRed ">
+                  <p>
+                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
+                      {{$referals1+$referals2+$referals3}}
+                    </a></h2>
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div><!-- /col-md-5 -->
+                      
+        </div><!-- /row --> 
            
-           <div class="center">
-             <h3><spam class="white-text">Primer Nivel de Referidos</spam></h3>
-           </div>
-                
-           <div class="divider"></div>
-           
-           <div class="center">
-            <h3><spam class="white-text">{{$referals1}}</spam></h3>  
-           </div>
 
-        </div>
-    </div>  
-
-    <div class="col s4">
-      <div class="card-panel teal">
-           
-        <div class="center">
-          <h4><spam class="white-text">Segundo Nivel de Referidos</spam></h4>
-        </div>
-                
-           <div class="divider"></div>
-           
-        <div class="center">
-          <h3><spam class="white-text">{{$referals2}}</spam></h3>  
-        </div>
-           
-        </div>
-    </div>
-
-      <div class="col s4">
-        <div class="card-panel teal">
-           
-        <div class="center">
-          <h3><spam class="white-text">Tercer Nivel de Referidos</spam></h3>
-        </div>
-                
-           <div class="divider"></div>
-           
-        <div class="center">
-          <h3><spam class="white-text">{{$referals3}}</spam></h3>  
-        </div>
-           
-        </div>
-      </div>
-
-    </div> 
-
-  </div>
-
-  
-
-
-@endsection
+          @endsection
 
 @section('js')
 

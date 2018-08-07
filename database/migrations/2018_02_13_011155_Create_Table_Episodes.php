@@ -19,13 +19,15 @@ class CreateTableEpisodes extends Migration
             $table->integer('seller_id')->unsigned()->default('0');
             $table->integer('series_id')->unsigned()->default('0');
             $table->integer('cost')->unsigned()->default('0');
-            $table->longText('sipnopsis')->nullable()->default(NULL);
+            $table->text('episode_name');
+            $table->longText('sinopsis')->nullable()->default(NULL);
             $table->string('episode_file')->nullable()->default(NULL);
+            $table->string('trailer_url')->nullable();
             $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
 
             $table->timestamps();
 
-            $table->foreign('seller_id')->references('id')->on('seller');
+            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->foreign('series_id')->references('id')->on('series');
             });
     }

@@ -1,413 +1,929 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-    <head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
-        
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-        <title>Leipel</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
+    {{--carrusel--}}
+    <meta name="description" content="Circular Content Carousel with jQuery"/>
+    <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3"/>
+    <meta name="author" content="Codrops"/>
+    {{--carrusel--}}
+<!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    </head>
-    <body>
-       <!--HEADER START-->  
-  <div class="main-navigation navbar-fixed-top">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-          <a class="navbar-brand" href="{{Request::url()}}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
+    <title>{{ config('app.name', 'Leipel') }}</title>
+
+    <!-- Styles -->
+    {{--<link href="/css/app.css" rel="stylesheet">--}}
+    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
+    {{--para el carrusel--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/demo.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/jquery.jscrollpane.css') }}" media="all">
+
+    <style>
+        /*@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);*/
+
+        .nav.nav-justified > li > a {
+            position: relative;
+        }
+
+        .nav.nav-justified > li > a:hover,
+        .nav.nav-justified > li > a:focus {
+            background-color: transparent;
+        }
+
+        .nav.nav-justified > li > a > .quote {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            opacity: 0;
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            background-color: #426fac;
+            border-radius: 15px;
+            color: #fff;
+        }
+
+        .nav.nav-justified > li.active > a > .quote {
+            opacity: 1;
+        }
+
+        .nav.nav-justified > li > a > img {
+            box-shadow: 0 0 0 5px #426fac;
+        }
+
+        .nav.nav-justified > li > a > img {
+            max-width: 100%;
+            opacity: .3;
+            -webkit-transform: scale(.8, .8);
+            transform: scale(.8, .8);
+            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav.nav-justified > li.active > a > img,
+        .nav.nav-justified > li:hover > a > img,
+        .nav.nav-justified > li:focus > a > img {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tab-pane .tab-inner {
+            padding: 45px 0 20px 10px;
+        }
+
+        @media (min-width: 768px) {
+            .nav.nav-justified > li > a > .quote {
+                left: auto;
+                top: auto;
+                right: 20px;
+                bottom: 0px;
+            }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+</head>
+<body>
+<!--HEADER START NavBar-->
+<div class="main-navigation">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{Request::url()}}">
+                    <img src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{{Request::url()}}">Inicio</a></li>
+                    <li><a href="#portfolio">Destacados</a></li>
+                    <li><a href="#about">Proveedores</a></li>
+                    {{--<li>--}}
+                    {{--<a href="{{ url('/login') }}">Iniciar Sesi&oacute;n</a>--}}
+                    {{--</li>--}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Iniciar Sesi&oacute;n
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/login') }}">Usuario</a></li>
+                            <li><a href="{{ url('/seller_login') }}">Proveedor</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="{{Request::url()}}">Inicio</a></li>
-            <li><a href="#portfolio">Destacados</a></li>
-            <li><a href="#about">Proveedores</a></li>
-            <li><a href="{{ url('/login') }}">Iniciar Sesion</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
-  </div>
-  <!--HEADER END-->
+</div>
+<!--HEADER END-->
 
-<!--BANNER START-->
-  <div id="banner" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="jumbotron">
-          <h1 class="small">Entretenimiento Al <span class="bold">M&aacute;ximo</span></h1>
-          <a href="{{ url('/register') }}" class="btn btn-banner">Registrate Gratis<i class="fa fa-send"></i></a>
+{{--contenido de la pagina de inicio --}}
+<div class="main-navigation">
+    <!--BANNER START-->
+    <div id="banner" class="section-padding">
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <div class="text-center">
+                    <h1 class="small">
+                        Distracci&oacuten <br/>
+                        Al <br/>
+                        M&aacute;ximo
+                    </h1>
+                    <a href="{{ url('/register') }}" class="btn btn-banner ">
+                        Registrate Gratis<i class="fa fa-send"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!--BANNER END-->
+    <!--BANNER END-->
 
-  <!--CTA1 START-->
-  <div class="cta-1">
+    <!--CTA1 START-->
+    <div class="cta-1">
+        <div class="container">
+            <div class="row">
+                <style type="text/css">
+                    * {
+                        box-sizing: border-box;
+                    }
+
+                    .zoom {
+                        padding: 25px;
+                        background-color: transparent;
+                        transition: transform .2s;
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .zoom:hover {
+                        -ms-transform: scale(1.5); /* IE 9 */
+                        -webkit-transform: scale(1.5); /* Safari 3-8 */
+                        transform: scale(1.5);
+                    }
+                </style>
+                <center>
+                    <div class="col-md-4 zoom">
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-2.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
+                    <div class="col-md-4 zoom">
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-4.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
+                    <div class="col-md-4 zoom">
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon.png')}}" width="150"
+                                                        height="100" alt=""></a></div>
+                    <div class="col-md-4 zoom">
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-5.png')}}" width="150"
+                                                        height="100" alt=""></a>
+                    </div>
+                    <div class="col-md-4 zoom">
+                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-3.png')}}" width="150"
+                                                        height="100" alt=""></a>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <!--CTA1 END-->
+</div>
+
+<!--CTA2 STAR portafolio de destacados-->
+{{--<div id="portfolio" class="[container text-center]">--}}
+{{--<div class=" [container text-center] ">--}}
+{{--<div class="page-title text-center">--}}
+{{--<h1>Destacados</h1>--}}
+{{--<hr class="pg-titl-bdr-btm"></hr>--}}
+{{--</div>--}}
+{{--{{ dd($music) }}--}}
+{{--prueba de pestaña--}}
+
+{{--<div class=" [container text-center] ">--}}
+{{--<div class="row ">--}}
+{{--<div class=" [ col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 ] " role="tabpanel">--}}
+{{--<div class="[ col-xs-4 col-sm-12 ]">--}}
+{{--<!-- Nav tabs -->--}}
+{{--<ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">--}}
+{{--<li role="presentation" class="active">--}}
+{{--<a href="#libros" aria-controls="libros" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/biblioteca.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#tvs" aria-controls="tvs" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/controlar.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#radios" aria-controls="radios" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/microfono.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#musica" aria-controls="musica" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/musica.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#revistas" aria-controls="revistas" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/revista.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#series" aria-controls="series" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle" src="{{asset('plugins/carusel/images/tv.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li role="presentation" class="">--}}
+{{--<a href="#peliculas" aria-controls="peliculas" role="tab" data-toggle="tab">--}}
+{{--<img class="img-circle"--}}
+{{--src="{{asset('plugins/carusel/images/camara.png')}}"/>--}}
+{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--<div class="[ col-xs-2 col-sm-6 col-sm-offset-1 ]">--}}
+{{--<!-- Tab panes -->--}}
+{{--<div class="tab-content" id="tabs-collapse">--}}
+
+{{--<div role="tabpanel" class="tab-pane fade in active" id="libros">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerL" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="series">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerS" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="tvs">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerT" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $tv as $t)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/tv/'. $t->logo) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $t->name_r }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $t->seller->name_r }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $t->name_r }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $t->seller->name }}--}}
+{{--{{ $t->descs_s }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $t->google }}</a></li>--}}
+{{--<li><a href="#">{{ $t->facebook }}</a></li>--}}
+{{--<li><a href="#">{{ $t->instagram }}</a></li>--}}
+{{--<li><a href="#">{{ $t->twitter }}</a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="radios">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerR" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $radio as $r)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/radio/'. $r->logo) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $r->name_r }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $r->seller->name_r }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $r->name_r }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $r->seller->name }}--}}
+{{--{{ $r->descs_s }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $r->google }}</a></li>--}}
+{{--<li><a href="#">{{ $r->facebook }}</a></li>--}}
+{{--<li><a href="#">{{ $r->instagram }}</a></li>--}}
+{{--<li><a href="#">{{ $r->twitter }}</a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="musica">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerM" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="revistas">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerRe" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $book as $b)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $b->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $b->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $b->sinopsis }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li>--}}
+{{--<a href="#">{{ $b->author->full_name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $b->country }}</a></li>--}}
+{{--<li><a href="#">{{ $b->release_year }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--<div role="tabpanel" class="tab-pane fade" id="peliculas">--}}
+{{--<div class="tab-inner">--}}
+{{--<div class="row" id="portfolio-wrapper">--}}
+
+{{--<div id="ca-containerP" class="ca-container">--}}
+{{--<div class="ca-wrapper">--}}
+
+{{--@foreach( $movie as $m)--}}
+{{--imagen --}}
+{{--<div class="ca-item">--}}
+{{--<div class="ca-item-main">--}}
+{{--<div class="ca-icon"--}}
+{{--style="background-image: url({{ asset('movie/poster/'. $m->img_poster) }}); background-size: cover ">--}}
+
+{{--</div>--}}
+{{--<br/>--}}
+{{--<h3>{{ $m->title }}</h3>--}}
+{{--<h4>--}}
+{{--<span class="ca-quote">&ldquo;</span>--}}
+{{--<span>--}}
+{{--{{ $m->based_on }}--}}
+{{--</span>--}}
+{{--</h4>--}}
+{{--<a href="#" class="ca-more">mas...</a>--}}
+{{--</div>--}}
+{{--<div class="ca-content-wrapper">--}}
+{{--<div class="ca-content">--}}
+{{--<h6>{{ $m->original_title }}</h6>--}}
+{{--<a href="#" class="ca-close">close</a>--}}
+{{--<div class="ca-content-text">--}}
+{{--<p>--}}
+{{--{{ $m->story }}--}}
+{{--</p>--}}
+{{--</div>--}}
+{{--<ul>--}}
+{{--<li><a href="#">{{ $m->seller->name }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $m->release_year }}</a>--}}
+{{--</li>--}}
+{{--<li><a href="#">{{ $m->trailer_url }}</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--prueba del carrusel --}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--prueba de pestaña--}}
+{{--</div>--}}
+{{--</div>--}}
+<!--CTA2 END portafolio de destacados-->
+
+<!--TEAM START Proveedores-->
+<div id="about" class="section-padding" style="background-color:#f4f4f4">
     <div class="container">
         <div class="row">
-            <style type="text/css">
-                * {
-    box-sizing: border-box;
-}
+            <div class="page-title text-center">
+                <h1>Nuestros Proveedores</h1>
+                <hr class="pg-titl-bdr-btm"></hr>
+            </div>
+            <div class="autoplay">
 
-.zoom {
-    padding: 50px;
-    background-color: transparent;
-    transition: transform .2s;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-}
+                {{--{{ dd($i) }}--}}
+                @foreach($seller as $s)
+                    @if($s->id < 5 )
+                        <div class="col-md-6">
+                            <div class="team-info">
+                                <div class="img-sec">
+                                    <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive"
+                                         style="width:256px;height:256px">
+                                </div>
+                                <div class="fig-caption">
+                                    <h3>{{ $s->name }}</h3>
+                                    <p class="marb-20">{{ $s->descs_s }}</p>
+                                    <p>Follow me:</p>
+                                    <ul class="team-social">
+                                        <li class="bgblue-dark ">
+                                            <a href="#">
+                                                <i class="fa fa-youtube"></i>
+                                            </a>
+                                        </li>
+                                        <li class="bgblue-dark ">
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="bgblue-dark ">
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
 
-.zoom:hover {
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
-    transform: scale(1.5); 
-}
-            </style>
-            <center>
-             <div class="col-md-4 zoom"> 
-                <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-2.png')}}" width="200" height="150" alt=""></a></div>
-             <div class="col-md-4 zoom"> 
-                <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-4.png')}}" width="200" height="150" alt=""></a></div> 
-             <div class="col-md-4 zoom">   
-                <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon.png')}}" width="200" height="150" alt=""></a></div>
-              <div class="col-md-4 zoom">
-                <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-5.png')}}" width="200" height="150" alt=""></a>
-              </div>
-              <div class="col-md-4 zoom">
-                <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-3.png')}}" width="200" height="150" alt=""></a>
-              </div> 
-             </center>
+            </div>
         </div>
     </div>
-  </div>
-  <!--CTA1 END-->
+</div>
+<!--TEAM END-->
 
-  <div id="portfolio">
+<!--CTA2 START Ingresar proveedor-->
+<div class="cta2">
     <div class="container">
-      <div class="page-title text-center">
-        <h1>Destacados</h1>
-        <hr class="pg-titl-bdr-btm"></hr>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <ul id="portfolio-flters">
-            <li data-filter=".filter-app, .filter-card, .filter-logo, .filter-web" class="filter-active">All</li>
-          </ul>
+        <div class="row white text-center">
+            <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
+            {{--<a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a> mover a la barra  --}}
+            <a href="{{ url('/applys') }}" class="btn btn-default">Registrate Como Proveedor</a>
         </div>
-      </div>
-
-      <div class="row" id="portfolio-wrapper">
-        <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/app1.jpg') }}" alt="">
-            <div class="details">
-              <h4>App 1</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/web2.jpg') }}" alt="">
-            <div class="details">
-              <h4>Web 2</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/app3.jpg') }}" alt="">
-            <div class="details">
-              <h4>App 3</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/card1.jpg') }}" alt="">
-            <div class="details">
-              <h4>Card 1</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/card2.jpg') }}" alt="">
-            <div class="details">
-              <h4>Card 2</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/web3.jpg') }}" alt="">
-            <div class="details">
-              <h4>Web 3</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-card">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/card3.jpg') }}" alt="">
-            <div class="details">
-              <h4>Card 3</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-app">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/app2.jpg') }}" alt="">
-            <div class="details">
-              <h4>App 2</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/logo1.jpg') }}" alt="">
-            <div class="details">
-              <h4>Logo 1</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/logo3.jpg') }}" alt="">
-            <div class="details">
-              <h4>Logo 3</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-web">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/web1.jpg') }}" alt="">
-            <div class="details">
-              <h4>Web 1</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-lg-3 col-md-6 portfolio-item filter-logo">
-          <a href="">
-            <img src="{{ asset('plugins/img/portfolio/logo2.jpg') }}" alt="">
-            <div class="details">
-              <h4>Logo 2</h4>
-              <span>Alored dono par</span>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+<!--CTA2 END-->
 
-  <!--TEAM START-->
-  <div id="about" class="section-padding">
+<!--CONTACT START Comentario-->
+<div id="contact" class="section-padding" style="background-color:#f4f4f4">
     <div class="container">
-      <div class="row">
-        <div class="page-title text-center">
-          <h1>Nuestros Proveedores</h1>
-          <hr class="pg-titl-bdr-btm"></hr>
+        <div class="row">
+            <div class="page-title text-center">
+                <h1>Comentarios, Consultas & Sugerencias</h1>
+                <hr class="pg-titl-bdr-btm"></hr>
+            </div>
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+
+            <div class="form-sec">
+                <form action="" method="post" role="form" class="contactForm">
+                    <div class="col-md-4 form-group">
+                        <input type="text" name="name" class="form-control text-field-box" id="name"
+                               placeholder="Nombre" data-rule="minlen:4"
+                               data-msg="Please enter at least 4 chars"/>
+                        <div class="validation"></div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="email" class="form-control text-field-box" name="email" id="email"
+                               placeholder="Correo" data-rule="email" data-msg="Please enter a valid email"/>
+                        <div class="validation"></div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control text-field-box" name="subject" id="subject"
+                               placeholder="Asunto" data-rule="minlen:4"
+                               data-msg="Please enter at least 8 chars of subject"/>
+                        <div class="validation"></div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                            <textarea class="form-control text-field-box" name="message" rows="5" data-rule="required"
+                                      data-msg="Please write something for us" placeholder="Mensaje"></textarea>
+                        <div class="validation"></div>
+
+                        <button class="button-medium" id="contact-submit" type="submit" name="contact">
+                            Enviar Ahora
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="autoplay">
-          <div class="col-md-6">
-            <div class="team-info">
-              <div class="img-sec">
-                <img src="{{ asset('plugins/img/agent1.jpg') }}" class="img-responsive">
-              </div>
-              <div class="fig-caption">
-                <h3>Jesus Ovalles</h3>
-                <p class="marb-20">Sr. UI Developers</p>
-                <p>Follow me:</p>
-                <ul class="team-social">
-                  <li class="bgblue-dark"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li class="bgred"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="bgblue-light"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li class="bgblue-dark"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="team-info">
-              <div class="img-sec">
-                <img src="{{ asset('plugins/img/agent2.jpg') }}" class="img-responsive">
-              </div>
-              <div class="fig-caption">
-                <h3>Emmy Brown</h3>
-                <p class="marb-20">Jr. UI Designer</p>
-                <p>Follow me:</p>
-                <ul class="team-social">
-                  <li class="blue-dark"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li class="red"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="blue-light"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li class="blue-dark"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="team-info">
-              <div class="img-sec">
-                <img src="{{ asset('plugins/img/agent3.jpg') }}" class="img-responsive">
-              </div>
-              <div class="fig-caption">
-                <h3>Iain Dante</h3>
-                <p class="marb-20">Jr. UI Designer</p>
-                <p>Follow me:</p>
-                <ul class="team-social">
-                  <li class="blue-dark"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li class="red"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="blue-light"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li class="blue-dark"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="team-info">
-              <div class="img-sec">
-                <img src="{{ asset('plugins/img/agent4.jpg') }}" class="img-responsive">
-              </div>
-              <div class="fig-caption">
-                <h3>Kate Haris</h3>
-                <p class="marb-20">Jr. UI Designer</p>
-                <p>Follow me:</p>
-                <ul class="team-social">
-                  <li class="blue-dark"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li class="red"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="blue-light"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li class="blue-dark"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!--TEAM END-->
+</div>
+<!--CONTACT END-->
 
-  <!--CTA2 START-->
-  <div class="cta2">
+<!--FOOTER START-->
+<footer class="footer section-padding">
     <div class="container">
-      <div class="row white text-center">
-        <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
-        <p class="cta-sub-title"></p>
-        <a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a>
-      </div>
-    </div>
-  </div>
-  <!--CTA2 END-->
-
-  <!--CONTACT START-->
-  <div id="contact" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="page-title text-center">
-          <h1>Comentarios, Consultas & Sugerencias</h1>
-          <hr class="pg-titl-bdr-btm"></hr>
+        <div class="row">
+            <div style="visibility: visible; animation-name: zoomIn;" class="col-sm-12 text-center wow zoomIn">
+                <h3>Siguenos En</h3>
+                <div class="footer_social">
+                    <ul>
+                        <li>
+                            <a class="f_twitter" href="#">
+                                <i class="fa fa-youtube fa-2x "></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="f_facebook" href="#">
+                                <i class="fa fa-facebook fa-2x"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="f_google" href="#">
+                                <i class="fa fa-instagram fa-2x"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--- END COL -->
         </div>
-        <div id="sendmessage">Your message has been sent. Thank you!</div>
-        <div id="errormessage"></div>
-
-        <div class="form-sec">
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="col-md-4 form-group">
-              <input type="text" name="name" class="form-control text-field-box" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div class="validation"></div>
-            </div>
-            <div class="col-md-4 form-group">
-              <input type="email" class="form-control text-field-box" name="email" id="email" placeholder="Correo" data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validation"></div>
-            </div>
-            <div class="col-md-4 form-group">
-              <input type="text" class="form-control text-field-box" name="subject" id="subject" placeholder="Asunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-            <div class="col-md-12 form-group">
-              <textarea class="form-control text-field-box" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensaje"></textarea>
-              <div class="validation"></div>
-
-              <button class="button-medium" id="contact-submit" type="submit" name="contact">Enviar Ahora</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--CONTACT END-->
-
-  <!--FOOTER START-->
-  <footer class="footer section-padding">
-    <div class="container">
-      <div class="row">
-        <div style="visibility: visible; animation-name: zoomIn;" class="col-sm-12 text-center wow zoomIn">
-          <h3>Siguenos En</h3>
-          <div class="footer_social">
-            <ul>
-              <li><a class="f_facebook" href="https://www.facebook.com/LEIPELoficial"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="f_twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="f_google" href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a class="f_linkedin" href="https://www.linkedin.com/company/informeret-s.a.-leipel"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-        <!--- END COL -->
-      </div>
-      <!--- END ROW -->
+        <!--- END ROW -->
     </div>
     <!--- END CONTAINER -->
-  </footer>
-  <!--FOOTER END-->
-  <div class="footer-bottom">
+</footer>
+<!--FOOTER END-->
+<div class="footer-bottom">
     <div class="container">
-      <div style="visibility: visible; animation-name: zoomIn;" class="col-md-12 text-center wow zoomIn">
-        <div class="footer_copyright">
-          <p> Leipel &copy 2018. Todos los Derechos Reservados.</p>
+        <div style="visibility: visible; animation-name: zoomIn;" class="col-md-12 text-center wow zoomIn">
+            <div class="footer_copyright">
+                <p> Leipel &copy 2018. Todos los Derechos Reservados.</p>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-       <script src="{{ asset('plugins/js/bootstrap.min.js') }}"></script>
-       <script src="{{ asset('plugins/js/custom.js') }}"></script>
-       <script src="{{ asset('plugins/js/jquery.easing.min.js') }}"></script>
-       <script src="{{ asset('plugins/js/jquery.min.js') }}"></script>
-       <script src="{{ asset('plugins/js/slick.min.js') }}"></script>
-    </body>
+</div>
+{{--contenido de la pagina de inicio --}}
+
+<!-- Scripts -->
+{{--<script src="/js/app.js"></script>--}}
+<script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
+<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
+<script src="{{ asset('plugins/js/custom.js') }}"></script>
+<script src="{{ asset('plugins/js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('plugins/js/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/js/slick.min.js') }}"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="{{ asset('plugins/carusel/js/jquery.easing.1.3.js') }}"></script>
+<!-- the jScrollPane script -->
+<script src="{{ asset('plugins/carusel/js/jquery.mousewheel.js') }}"></script>
+<script src="{{ asset('plugins/carusel/js/jquery.contentcarousel.js') }}"></script>
+<script type="text/javascript">
+    $('#ca-containerL').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerS').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerT').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerR').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerM').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerRe').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+    $('#ca-containerP').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed: 500,
+        // easing for the sliding animation
+        sliderEasing: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed: 500,
+        // easing for the item animation (open / close)
+        itemEasing: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll: 1
+    });
+</script>
+</body>
 </html>

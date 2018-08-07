@@ -25,7 +25,7 @@ Header
 **************************************/
 .section-padding
 {
-	padding: 40px 0px;
+	padding: 0px 0px;
 }
 .main-navigation
 {
@@ -157,7 +157,7 @@ a.btn-banner:hover, a.btn-banner:focus
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
 }
 .container .jumbotron, .container-fluid .jumbotron {
-    padding-right: 60px;
+    padding-right: 0px;
     padding-left: 0px;
 }
 .bgblue-dark
@@ -526,6 +526,8 @@ margin-top: 5px;
 {
     background: url('../img/banner-bg.jpg') no-repeat;
     background-size: cover;
+    min-width: 1025px;
+    /*width: 100%;*/
     min-height: 500px;
 }
 .cta2 .btn-default,.cta2 .btn-default:hover,.cta2 .btn-default:focus

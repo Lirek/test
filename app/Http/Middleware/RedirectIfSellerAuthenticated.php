@@ -29,7 +29,6 @@ class RedirectIfSellerAuthenticated
           {  
               return redirect('/home');
           }
-
        //If request comes from logged in seller, he will
        //be redirected to seller's home page.
        if (Auth::guard('web_seller')->check()) {

@@ -253,7 +253,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">
+                                <a href="{{ route('sellers.edit',\Auth::guard('web_seller')->user()->id) }}" class="btn btn-default btn-flat">
                                     Perfil
                                 </a>
                             </div>

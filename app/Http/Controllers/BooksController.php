@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use App\Saga;
 use App\Sagas;
 use Illuminate\Http\Request;
 use App\BookAuthor;
@@ -15,26 +14,21 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->paginate('10');
+        $books = Book::orderBy('id', 'DESC')->get();
         $books->each(function ($books) {
             $books->author;
             $books->seller;
             $books->saga;
             $books->rating;
         });
-
-//        dd($books->author->full_name);
         return view('seller.book.index')->with('book', $books);
     }
 
     public function create()
     {
         $authors = BookAuthor::orderBy('id', 'DESC')->pluck('full_name', 'id');
-        $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $sagas = Sagas::where('type_saga','Libros')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
-//        $sagas = Saga::all();
-//        $y = New saga;
-//        $x = $sagas::where('type_saga', '=', 'libros');
 
         return view('seller.book.create')
             ->with('author', $authors)
@@ -58,10 +52,9 @@ class BooksController extends Controller
         $book->seller_id = \Auth::guard('web_seller')->user()->id;
         $book->cover = $name;
         $book->books_file = $names;
-//        dd($book,$book->cover,$file,$book->book_file,$files);
         $book->save();
 
-        Flash::info('Se ha registrado ' . $book->title.'_' . ' de forma sastisfactoria')->important();
+        Flash::success('Se ha registrado '.$book->title.' de forma sastisfactoria')->important();
 
         return redirect()->route('tbook.index');
     }
@@ -116,7 +109,7 @@ class BooksController extends Controller
             $files->move($path2, $names);
             $book->books_file = $names;
         }
-//        $book->contry = $request->contry;
+        $book->country = $request->country;
         $book->after = $request->after;
         $book->before = $request->before;
         $book->saga_id = $request->saga_id;
@@ -126,7 +119,7 @@ class BooksController extends Controller
 //        dd($book,$book->cover,$book->book_file);
         $book->save();
 
-        Flash::warning('Se ha modificado ' . $book->title . ' de forma exitosa')->important();
+        Flash::success('Se ha modificado ' . $book->title . ' de forma exitosa')->important();
 
         return redirect()->route('tbook.index');
     }
@@ -139,7 +132,7 @@ class BooksController extends Controller
             $books->saga;
             $books->rating;
         });
-
+        //dd($books->saga);
         return view('seller.book.show')->with('book',$books);
     }
 
@@ -151,7 +144,7 @@ class BooksController extends Controller
 
             $book->delete();
 
-            Flash::error('Se a eliminado la canal con exito')->important();
+            Flash::error('Se ha eliminado el libro con exito')->important();
 
             return redirect()->route('tbook.index');
 
