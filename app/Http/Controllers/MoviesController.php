@@ -98,7 +98,7 @@ class MoviesController extends Controller
             $file->move($path1, $name);
             $movie->img_poster = $name;
         }
-        $movie->story = $request->story;
+        //$movie->story = $request->story;
         if ($request->country<>null) {
             $movie->country = $request->country;
         } else {

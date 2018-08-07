@@ -91,14 +91,9 @@ class AlbumsController extends Controller
 
         if ($request->tags!=null) {
             $tags = $request->tags;
-            $tags_s = $album->tags_music()->get();
+            $album->tags_music()->detach();
             foreach($tags as $tag) {
-                foreach($tags_s as $old) {
-                    if($tag != $old->id) {
-                        $album->tags_music()->detach();
-                        $album->tags_music()->attach($tag);       
-                    }
-                }
+                $album->tags_music()->attach($tag);
             }
         }
 
@@ -149,11 +144,10 @@ class AlbumsController extends Controller
         
         $album->duration = $AlbumTime;
         $album->cost=$request->cost;
-        $album->status=2;
         $album->save();
 
 
-        Flash::success('Se ha modificado el Álbum con exito')->important();
+        Flash::success('Se ha modificado el álbum con exito')->important();
         return redirect()->action(
             'MusicController@ShowMusicPanel',['id'=>Auth::guard('web_seller')->user()->id]
         );
@@ -417,15 +411,12 @@ class AlbumsController extends Controller
         $single->song_name = $request->song_n;
         $single->cost = $request->cost;
         $single->status = 2;
+        
         if ($request->tags!=null) {
             $tags = $request->tags;
-            $tags_s = $single->tags()->get();
+            $single->tags()->detach();
             foreach($tags as $tag) {
-                foreach($tags_s as $old) {
-                    if($tag != $old->id) {
-                        $single->tags()->attach($tag);       
-                    }
-                }
+                $single->tags()->attach($tag);
             }
         }
 
@@ -459,9 +450,9 @@ class AlbumsController extends Controller
         {
             
             $song = Songs::find($id);
-            $tags = Tags::all();
             $artist = music_authors::all();
             $selected = $song->tags()->get();
+            $tags = Tags::where('type_tags','=','Musica')->where('status','=','Aprobado')->get();
             
             return view('seller.music_module.single_modify')->with('tags', $tags)->with('artist', $artist)->with('s_tags',$selected)->with('song',$song)->with('id',$id);
         }
