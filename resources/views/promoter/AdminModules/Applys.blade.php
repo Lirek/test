@@ -100,7 +100,7 @@ $( document ).ready(function() {
       $(document).on('click', '#ModifyApplys', function() {    
               var x = $(this).val();
 
-                  $(document).ready(function (e){
+                  
                   $( "#formStatus" ).on( 'submit', function(e)
                       {
                           var s=$("input[type='radio'][name=status]:checked").val();
@@ -130,7 +130,7 @@ $( document ).ready(function() {
                                   }
                                   });  
                                                   });
-                      });
+                      
 
       });
 
@@ -200,7 +200,7 @@ $( document ).ready(function() {
 
           var apply = $(this).val();
          
-           $(document).ready(function (e){
+           
 
              $( "#AssingPromoterForm" ).on( 'submit', function(e){
 
@@ -241,7 +241,7 @@ $( document ).ready(function() {
 
              });
 
-           });
+           
       });
 });
 </script>

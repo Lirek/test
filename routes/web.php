@@ -303,6 +303,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('RemovePromoterFromSeller/{id_seller}/{id_promoter}','AdminController@RemovePromoterFromSeller');
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
+
+            Route::get('FindSalesman/{id}','AdminController@FindSalesman');
+            Route::post('UpadateSalesman/{id}','AdminController@UpadateSalesman');
         
         //_________________FIN de RUtas de Proveedores____________________________
 
@@ -433,6 +436,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
         //______________________Fin de las rutas de Clientes________________________
+        
         });
 
 });

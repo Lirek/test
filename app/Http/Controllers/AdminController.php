@@ -878,7 +878,8 @@ class AdminController extends Controller
                                             ->with('salesmans',$Salesmans)
                                             ->with('priority',$priority);
       }
-
+//------------------SALESMAN CRUD--------------------------------------------
+      
       public function RegisterSalesman(Request $request)
       {
         $salesman = new Salesman;
@@ -894,20 +895,34 @@ class AdminController extends Controller
 
       public function DeleteSalesman($id)
       {
-        $salesman= Salesman::destroy($id);
-        
-        
+        $salesman= Salesman::destroy($id);        
 
         return response()->json($salesman); 
       }
 
-      public function UpdateSalesman($id)
+      public function FindSalesman($id)
       {
         $salesman= Salesman::find($id);
 
         return response()->json($salesman);
 
       }
+
+      public function UpadateSalesman(Request $request, $id)
+      {
+        $salesman= Salesman::find($id);
+        $salesman->name = $request->name;
+        $salesman->adress = $request->adress;
+        $salesman->phone = $request->phone;
+        $salesman->email = $request->email;
+        $salesman->save();
+
+        return response()->json($salesman);
+      }
+
+//-----------------------------------------------------------------------
+
+//-----------------------Users Acctions-------------------------
 
       public function ShowPendingClients()
       {
@@ -957,4 +972,8 @@ class AdminController extends Controller
 
         return response()->json($User);
       }
+
+//------------------------------------------------------------------
+
+
 }

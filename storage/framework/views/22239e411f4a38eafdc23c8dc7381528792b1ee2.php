@@ -96,7 +96,7 @@
                                             <i class="material-icons">cancel</i>
                                          </button>
                                         
-                                         <button value="<?php echo e($salesman->id); ?>">
+                                         <button value="<?php echo e($salesman->id); ?>"id="UpdateSalesman" data-toggle="modal" data-target="#USalesman">
                                           <i class="material-icons">settings</i>
                                          </button>
                                         </td>
@@ -120,6 +120,7 @@
 <script>
   $("#phone").intlTelInput();
   $("#phone_s").intlTelInput();
+  $("#phone_u").intlTelInput();
 
   $(document).on('click', '#tt3', function() {    
 
@@ -210,7 +211,7 @@
           var name = $('input[name=name]').val();
           var phone =  $("#phone").intlTelInput("getNumber");
           var email = $('input[name=email]').val();
-          var adress = $('input[name=adress]').val();
+          var adress = $('#adress').val();
 
           e.preventDefault();
             
@@ -285,6 +286,39 @@
 
   });
 
+  $(document).on('click', '#UpdateSalesman', function() {
+    
+    var salesman = $(this).val();
+    var url = 'FindSalesman/'+salesman;
+
+    $.ajax({
+             url: url,
+             type:'get',
+             data:"json",
+
+            success: function(data)
+            {
+              console.log(data);
+
+              $('#USalesman').modal('show');
+              $('[name=salesman_id]').val(data.id);
+              $('[name=name_u]').val(data.name);
+              $('[name=phone_u]').val(data.phone);
+              $('[name=email_u]').val(data.email);
+              $('[name=adress_u]').val(data.adress);              
+
+            },
+
+            error: function(data)
+            {
+             alert("Ha Ocurrido un Error","","error");
+            },
+
+       });
+
+
+  });
+
   $(document).on('click', '#delete_promoter', function() {
     
     var promoter = $(this).val();
@@ -311,6 +345,62 @@
        });
 
   });
+
+  $(document).on('click', '#close_1', function() {
+    $('#USalesman').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+
+  $(document).on('click', '#close_2', function() {
+    $('#USalesman').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+       
+
+
+  $( "#SalesmanUForm" ).on( 'submit', function(e){
+          
+          var name = $('input[name=name_u]').val();
+          var phone =  $("#phone_u").intlTelInput("getNumber");
+          var email = $('input[name=email_u]').val();
+          var adress = $('#adress_u').val();
+          var id = $('input[name=salesman_id]').val();      
+          e.preventDefault();
+            
+            $.ajax({
+
+              url: 'UpadateSalesman/'+id,
+              type:'POST',
+              data:{
+                    _token: $('input[name=_token]').val(),
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    adress: adress,
+                    }, 
+
+                    success: function (result) 
+                    {
+                      alert('Usuario Registrado con exito');              
+                      
+                      $('#USalesman').modal('hide');
+                      $('body').removeClass('modal-open');
+                      $('.modal-backdrop').remove();
+
+                      location.reload();
+                    },
+
+                    error: function (result) 
+                    {
+                      alert('Error en Su solicitud');
+                      console.log(result);
+                    }
+
+            });        
+  });
+
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

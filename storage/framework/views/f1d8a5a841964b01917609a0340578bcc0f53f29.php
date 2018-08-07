@@ -169,7 +169,26 @@
 		<button type="button" class="btn btn-theme">Revisar Musicos</button type="button" class="btn btn-theme">
 	 </a>
 	</center>
-</div>	
+</div>
+
+<div class="row mt">
+	<h2><i class="fa fa-angle-right"></i>Autores Literarios</h2>	
+</div>
+
+<div class="row mt">
+	
+	   <div class="col-md-3">
+			<div class="twitter-panel pn">
+				<i class="fas fa-book fa-4x"></i>
+				<p><?php echo e($BookAuthor); ?></p>
+				 
+				 <a href="<?php echo e(url('admin_autors')); ?>">
+					<button type="button" class="btn btn-theme">Revisar Autores</button type="button" class="btn btn-theme">
+				 </a>
+			</div>
+		</div>
+	
+</div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
@@ -345,7 +364,6 @@ $(document).ready(function(){
 		error:function() {
 			console.log('Error');
 		}
-
 	});
 
 	$.ajax({
@@ -392,7 +410,6 @@ $(document).ready(function(){
 		error:function() {
 			console.log('Error');
 		}
-
 	});
 
 	$.ajax({
@@ -439,7 +456,6 @@ $(document).ready(function(){
 		error:function() {
 			console.log('Error');
 		}
-
 	});
 
 	$.ajax({
@@ -488,7 +504,6 @@ $(document).ready(function(){
 			error:function() {
 				console.log('Error');
 			}
-
 	});
 
 });

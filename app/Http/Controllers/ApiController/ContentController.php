@@ -89,7 +89,6 @@ class ContentController extends Controller
                            ->toArray();
 
         return Response::json($Json);
-
     }
 
     public function AllAprovedMusicAuthors()
@@ -239,4 +238,24 @@ class ContentController extends Controller
         return Response::json($Json);
     }
 
+    public function MusicAuthor($id)
+    {
+        $MusicAuthor = music_authors::findOrFail($id)->where('status','=','Aprobado')
+                                                                    ->with('Seller')
+                                                                    ->with('songs')
+                                                                    ->with('albums')
+                                                                    ->get();
+
+        if ($MusicAuthor->isEmpty()) { 
+                                return Response::json(['error'=>'Esta Vacio'], 200);
+                                    }
+
+        $Json = Fractal::create()
+                           ->collection($MusicAuthor)
+                           ->transformWith(new MusicAuthorTransformer)                
+                           ->parseIncludes(['Albums','Seller','Singles'])
+                           ->toArray();          
+
+        return Response::json($Json);                                   
+    }
 }
