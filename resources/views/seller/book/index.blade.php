@@ -12,7 +12,7 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Libros Registrados</h3>
+                        <h3 class="box-title">Libros registrados</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -23,9 +23,8 @@
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
                                 <th class="text-center">Categoría</th>
-                                <th class="text-center">Año de Lanzamiento</th>
+                                <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Autor</th>
-                                {{--<th class="text-center">Productora</th>--}}
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -40,10 +39,12 @@
                                                 <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;" alt="Portada">
                                             </a>
                                         </td>
+                                        {{--
+                                            error en la pc de Breiddy
+                                        --}}
                                         <td class="text-center"> {{ $b->rating->r_name }} </td>
                                         <td class="text-center"> {{ $b->release_year }} </td>
                                         <td class="text-center"> {{ $b->author->full_name }} </td>
-                                        {{--<td class="text-center"> {{ $b->seller->name }} </td>--}}
                                         <td class="text-center ">
                                             <a href="{{ route('tbook.show', $b->id) }}"
                                                class="btn btn-info btn-xs">
@@ -54,7 +55,7 @@
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
                                             <a href="{{ route('tbook.destroy',$b->id) }}"
-                                               onclick="return confirm('¿Desea eliminar el libro: {{ $b->title }}?')" class="btn btn-danger btn-xs ">
+                                               onclick="return confirm('¿Desea eliminar el libro {{ $b->title }}?')" class="btn btn-danger btn-xs ">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </td>
@@ -68,9 +69,8 @@
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
                                 <th class="text-center">Categoría</th>
-                                <th class="text-center">Año de Lanzamiento</th>
+                                <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Autor</th>
-                                {{--<th class="text-center">Productora</th>--}}
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>
@@ -87,7 +87,7 @@
                     <div class="box-title">
                         <i class="fa fa-book"></i>
                         <span>
-                            Agregar más Libros
+                            Agregar más libros
                         </span>
                     </div>
                 </b>

@@ -12,7 +12,7 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header bg bg-black-gradient">
-                        <h3 class="box-title">Autores Registrados</h3>
+                        <h3 class="box-title">Autores registrados</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -21,7 +21,7 @@
                             <tr>
                                 <th class="text-center">Productora</th>
                                 <th class="text-center">Foto</th>
-                                <th class="text-center">Nombre Completo</th>
+                                <th class="text-center">Nombre completo</th>
                                 <th class="text-center">Correo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -32,7 +32,7 @@
                                     <tr>
                                         <td class="text-center"> {{ $author->seller->name }} </td>
                                         <td class="text-center">
-                                            <img class="img-rounded text-center" src="{{ asset('images/authorbook')}}/{{ $author->photo }}"style="width:50px;height:50px;" alt="Foto de Perfil">
+                                            <img class="img-rounded text-center" src="{{ asset('images/authorbook')}}/{{ $author->photo }}"style="width:50px;height:50px;" alt="Foto de perfil">
                                         </td>
                                         <td class="text-center"> {{ $author->full_name }} </td>
                                         <td class="text-center"> {{ $author->email_c }} </td>
@@ -43,7 +43,7 @@
                                             <a href="{{ route('authors_books.edit', $author->id) }}" class="btn btn-warning btn-xs">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <a href="{{ route('authors_books.destroy',$author->id) }}" onclick="return confirm('¿Desea eliminar el Autor: {{ $author->full_name }}?')" class="btn btn-danger btn-xs">
+                                            <a href="{{ route('authors_books.destroy',$author->id) }}" onclick="return confirm('¿Desea eliminar el autor {{ $author->full_name }}?')" class="btn btn-danger btn-xs">
                                                <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </td>
@@ -55,7 +55,7 @@
                             <tr>
                                 <th class="text-center">Productora</th>
                                 <th class="text-center">Foto</th>
-                                <th class="text-center">Nombre Completo</th>
+                                <th class="text-center">Nombre completo</th>
                                 <th class="text-center">Correo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -74,7 +74,7 @@
                     <div class="box-title">
                         <i class="fa fa-user"></i>
                         <span>
-                            Agregar más Autores
+                            Agregar más autores
                         </span>
                     </div>
                 </b>

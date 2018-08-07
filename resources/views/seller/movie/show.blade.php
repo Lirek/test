@@ -18,7 +18,7 @@
                         <br>
                         <ul class="nav">
                             <li class="text-center">
-                                <h1><b>Titulo:</b> {{$movie->title}}</h1>
+                                <h1><b>Título:</b> {{$movie->title}}</h1>
                                 <video poster="{{ asset('movie/poster')}}/{{ $movie->img_poster}}" id="player" controls>
                                     <source src="{{ asset('/movie/film')}}/{{ $movie->duration }}" type="video/mp4">
                                     <source src="{{ asset('/movie/film')}}/{{ $movie->duration }}" type="video/webm">
@@ -39,16 +39,23 @@
                                     </h4>
                                 </li>
                                 <li>
-                                    <h4>Sinopsis: <span class="pull-right "></span></h4>{{ $movie->story }}
+                                    <h4>Sinopsis: 
+                                        <span class="pull-right "></span>
+                                    </h4>
+                                    <div class="text-justify">    
+                                        {{ $movie->based_on }}
+                                    </div>
                                 </li>
+                                {{--
                                 <li>
-                                    <h4> Historia: <span class="pull-right"></span></h4>{{ $movie->based_on }}
+                                    <h4>Historia: <span class="pull-right"></span></h4>{{ $movie->story }}
                                 </li>
+                                --}}
                                 <li>
                                     @if($movie->trailer_url!=null)
-                                        <h4>Link del Trailer: <span class="pull-right"><a href="{{ $movie->trailer_url }}">{{ $movie->trailer_url }}</a></span></h4>
+                                        <h4>Link del trailer: <span class="pull-right"><a href="{{ $movie->trailer_url }}" target="_blank">{{ $movie->trailer_url }}</a></span></h4>
                                     @else
-                                        <h4>Link del Trailer: <span class="pull-right">No tiene Link</span></h4>
+                                        <h4>Link del trailer: <span class="pull-right">No tiene Link</span></h4>
                                     @endif
                                 </li>
                             </ul>

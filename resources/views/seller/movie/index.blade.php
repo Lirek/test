@@ -12,7 +12,7 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Películas Registradas</h3>
+                        <h3 class="box-title">Películas registradas</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -45,7 +45,7 @@
                                                 <a href="{{ route('movies.edit',$m->id) }}" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película: {{ $m->title }}?')" class="btn btn-danger btn-xs">
+                                                <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película {{ $m->title }}?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
                                                 </a>
                                             </td>
@@ -75,7 +75,7 @@
                     <div class="box-title">
                         <i class="fa fa-film"></i>
                         <span>
-                            Agregar más Películas
+                            Agregar más películas
                         </span>
                     </div>
                 </b>

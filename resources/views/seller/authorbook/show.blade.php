@@ -28,7 +28,7 @@
                                     <th class="text-center">Productora</th>
                                     <th class="text-center">Autor</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Portada del Libro</th>
+                                    <th class="text-center">Portada del libro</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +54,7 @@
                                     <th class="text-center">Productora</th>
                                     <th class="text-center">Autor</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Portada del Libro</th>
+                                    <th class="text-center">Portada del libro</th>
                                 </tr>
                                 </tfoot>
                             </table>

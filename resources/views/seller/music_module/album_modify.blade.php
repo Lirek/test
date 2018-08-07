@@ -58,16 +58,16 @@
         <div class="box box-primary">
 
           <div class="box-header with-border">
-            <h3 class="box-title">Editar Álbum</h3>
+            <h3 class="box-title">Editar álbum</h3>
           </div>
 
           <div class="box-body">
             <div class="col-md-6">
-              <label id="portadaActual" style="color: green;"> Si no selecciona una Portada, se mantendrá la actual </label>
+              <label id="portadaActual" style="color: green;"> Si no selecciona una portada, se mantendrá la actual </label>
               <div id="mensajePortadaAlbum"></div>
               <div id="image-preview" style="border:#bdc3c7 1px solid;" class="col-md-1">
                 <label for="image-upload" id="image-label">Portada</label>
-                <input type="file" name="image" id="image-upload" accept="image/*" oninvalid="this.setCustomValidity('Seleccione una Imagen de Portada')" oninput="setCustomValidity('')"/>
+                <input type="file" name="image" id="image-upload" accept="image/*" oninvalid="this.setCustomValidity('Seleccione una imagen de portada')" oninput="setCustomValidity('')"/>
                 <div id="list">
                     <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($album->cover) }}"/>
                 </div>
@@ -75,14 +75,14 @@
             </div>
 
             <div class="col-md-6">
-              <label for="album"> Nombre del Album </label>
+              <label for="album"> Nombre del álbum </label>
               <div id="mensajeNombreAlbum"></div>
-              <input type="text" name="album" value="{{$album->name_alb}}" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte Un Nombre de Album Valido')" oninput="setCustomValidity('')">
+              <input type="text" name="album" value="{{$album->name_alb}}" placeholder="Nombre del álbum" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte un nombre de álbum valido')" oninput="setCustomValidity('')">
               <br>
 
-              <label for="cost"> Costo en Tickets </label>
+              <label for="cost"> Costo en tickets </label>
               <div id="mensajeTickets"></div>
-              <input type="number" name="cost" id="cost" value="{{$album->cost}}" class="form-control"min="0" pattern="{3}" oninvalid="this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 999')" oninput="setCustomValidity('')">
+              <input type="number" name="cost" id="cost" value="{{$album->cost}}" placeholder="Costo en tickets" class="form-control"min="0" pattern="{3}" oninvalid="this.setCustomValidity('Ingrese un costo en tickets no mayor a 999')" oninput="setCustomValidity('')">
               <br>
 
               <label for="tags"> Generos </label>
@@ -102,7 +102,7 @@
               <br>
 
               <label for="artist"> Artista </label>
-              <select name="artist" class="form-control js-example-basic-single" required oninvalid="this.setCustomValidity('Seleccione Un Artista')" oninput="setCustomValidity('')">
+              <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
                 @foreach($autors as $artist)
                   <option value="{{$artist->id}}"
                     @if($artist->id==$album->autors_id)
@@ -128,7 +128,7 @@
           <div class="box-body">
             @foreach($songs as $song)
               <div class="col-md-6">
-                <input type="text" name="song_o[{{$i}}]" id="song_name{{$i}}" class="form-control">
+                <input type="text" name="song_o[{{$i}}]" id="song_name{{$i}}" class="form-control" placeholder="Nombre de la canción">
                 <input type="hidden" name="song_id[{{$i}}]" value="{{$song->id}}">
               </div>
               <div class="col-md-6">
@@ -159,7 +159,7 @@
                 </div>
                 <div class="col-sm-1">
                   <br>
-                  <a href="javascript:void(0);" class="btn btn-success add_button" title="Add field">Añadir Canciones</a>
+                  <a href="javascript:void(0);" class="btn btn-success add_button" title="Add field">Añadir canciones</a>
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@
     </div>
     <div class="col-md-6">
       <button type="submit" class="btn btn-primary" id="modificarAlbum">
-        Modificar Álbum
+        Editar álbum
       </button>
     </div>
   </form>
@@ -228,7 +228,7 @@
         var nombre = $('#title').val().length;
         if (nombre>=256) {
           $('#mensajeNombreAlbum').show();
-          $('#mensajeNombreAlbum').text('La longtud del Nombre del Album no debe exceder los 255 caracteres');
+          $('#mensajeNombreAlbum').text('La longtud del nombre del álbum no debe exceder los 255 caracteres');
           $('#mensajeNombreAlbum').css('color','red');
           $('#modificarAlbum').attr('disabled',true);
         } else {
@@ -243,7 +243,7 @@
         console.log(nombre);
         if (nombre>=256) {
           $('#mensajeNombreCancion').show();
-          $('#mensajeNombreCancion').text('El Nombre de una Canción no debe exceder los 255 caracteres');
+          $('#mensajeNombreCancion').text('El nombre de una canción no debe exceder los 255 caracteres');
           $('#mensajeNombreCancion').css('color','red');
           $('#modificarAlbum').attr('disabled',true);
         } else {
@@ -260,12 +260,12 @@
         var tickets = $('#cost').val();
         if (tickets>999) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets no deben exceder los 999 Tickets');
+          $('#mensajeTickets').text('El costo de tickets no deben exceder los 999 Tickets');
           $('#mensajeTickets').css('color','red');
           $('#modificarAlbum').attr('disabled',true);
         } else if (tickets<0) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets debe ser mayor a 0');
+          $('#mensajeTickets').text('El costo de Tickets debe ser mayor a 0');
           $('#mensajeTickets').css('color','red');
           $('#modificarAlbum').attr('disabled',true);
         } else {
@@ -284,11 +284,11 @@
           "<br>"+
           "<div class='remove_button'>"+
             "<div class='col-sm-9'>"+
-              "<input type='text' name='song_n[]' id='titleSong' class='titleSong"+x+" form-control' placeholder='Nombre de la Canción' oninvalid='this.setCustomValidity('Ingrese un Nombre a La Canción')' oninput='setCustomValidity('')' required='required'>"+
-              "<input type='file' name='audio[]' accept='.mp3' id='audio' class='audio"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese la Canción')' oninput='setCustomValidity('')'>"+
+              "<input type='text' name='song_n[]' id='titleSong' class='titleSong"+x+" form-control' placeholder='Nombre de la canción' oninvalid='this.setCustomValidity('Ingrese un nombre a la canción')' oninput='setCustomValidity('')' required='required'>"+
+              "<input type='file' name='audio[]' accept='.mp3' id='audio' class='audio"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese la canción')' oninput='setCustomValidity('')'>"+
             "</div>"+
             "<div class='col-sm-2 eliminar'>"+
-              "<button type='button' class='btn btn-danger btnRemove'>Eliminar Canción</button>"+
+              "<button type='button' class='btn btn-danger btnRemove'>Eliminar canción</button>"+
             "</div>"+
           "</div>"+
         "</div>";
@@ -306,7 +306,7 @@
           var nombre = $(campoTexto).val().length;
           if (nombre>=256) {
             $('#mensajeNombreCancion').show();
-            $('#mensajeNombreCancion').text('El Nombre de una Canción no debe exceder los 255 caracteres');
+            $('#mensajeNombreCancion').text('El nombre de una canción no debe exceder los 255 caracteres');
             $('#mensajeNombreCancion').css('color','red');
             $('#modificarAlbum').attr('disabled',true);
             $('.add_button').attr('disabled',true);
@@ -339,7 +339,7 @@
       });
       $(wrapper).on('click','.eliminar', function(e){
         e.preventDefault();
-        var eliminar = confirm("¿Está seguro de Eliminar la Canción?");
+        var eliminar = confirm("¿Está seguro de eliminar la canción?");
         if (eliminar) {
           var uno = $(this).parent('div');
           var dos = $(uno).parent('div');

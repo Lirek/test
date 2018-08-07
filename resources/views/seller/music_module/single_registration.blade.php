@@ -17,22 +17,22 @@
       <div class="col-sm-12">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Registrar Canción</h3>
+            <h3 class="box-title">Registrar canción</h3>
           </div>
           <div class="box-body">
-            <label for="Nombre de la Cancion">Nombre de la Canción</label>
+            <label for="Nombre de la Cancion">Nombre de la canción</label>
             <div id="mensajeNombreCancion"></div>
-            {!! Form::text('song_n',null,['class'=>'form-control','placeholder'=>'Nombre de la Canción','required'=>'required','id'=>'song_n' ,'oninvalid'=>"this.setCustomValidity('Ingrese un Nombre Valido')",'oninput'=>"setCustomValidity('')"]) !!}
+            {!! Form::text('song_n',null,['class'=>'form-control','placeholder'=>'Nombre de la canción','required'=>'required','id'=>'song_n' ,'oninvalid'=>"this.setCustomValidity('Ingrese un nombre valido')",'oninput'=>"setCustomValidity('')"]) !!}
             <br>
 
-            <label for="Costo en Tickets">Costo en Tickets</label>
+            <label for="Costo en Tickets">Costo en tickets</label>
             <div id="mensajeTickets"></div>
-            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en Tickets','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 999')", 'oninput'=>"setCustomValidity('')"]) !!}
+            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un costo en tickets no mayor a 999')", 'oninput'=>"setCustomValidity('')"]) !!}
             <br>
 
-            <label for="Seleccione Música">Seleccione Música</label>
+            <label for="Seleccione Música">Seleccione música</label>
             <div id="mensajeCancion"></div>
-            {!! Form::file('audio',['class'=>'form-control','accept'=>'.mp3','id'=>'cancion','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una Canción')",'oninput'=>"setCustomValidity('')"]) !!}
+            {!! Form::file('audio',['class'=>'form-control','accept'=>'.mp3','id'=>'cancion','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una canción')",'oninput'=>"setCustomValidity('')"]) !!}
             <br>
 
             <label for="tags">Géneros</label>
@@ -47,7 +47,7 @@
 
             <label for="artist">Artista</label>
             <select name="artist" class="form-control" required="required">
-              <option value="">Seleccione...</option>
+              <option value="">Seleccione un artista</option>
               @foreach($autors as $artist)
                 <option value="{{$artist->id}}">{{$artist->name}}</option>
               @endforeach
@@ -59,7 +59,7 @@
       </div>
     </div>
         <div align="center">
-          {!! Form::submit('Registar Canción',['class'=>'btn btn-primary','id'=>'registarCancion']) !!}
+          {!! Form::submit('Registar canción',['class'=>'btn btn-primary','id'=>'registarCancion']) !!}
         </div>
   {!! Form::close() !!}
 @endsection
@@ -110,12 +110,12 @@
         var tickets = $('#cost').val();
         if (tickets>999) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets no deben exceder los 999 Tickets');
+          $('#mensajeTickets').text('El costo de tickets no deben exceder los 999 Tickets');
           $('#mensajeTickets').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else if (tickets<0) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets debe ser mayor a 0');
+          $('#mensajeTickets').text('El costo de tickets debe ser mayor a 0');
           $('#mensajeTickets').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else {
@@ -126,22 +126,5 @@
     });
 // Para validar la cantidad de Tickets
 //---------------------------------------------------------------------------------------------------
-/*
-    $(document).ready(function() {
-      $('.js-example-basic-single').select2();
-    });
-    $(document).ready(function() {
-      $('.js-example-basic-multiple').select2();
-    });
-    var getFile = new selectFile;
-    getFile.targets('choose','selected');
-    $(document).ready(function() {
-      $.uploadPreview({
-        input_field: "#image-upload",
-        preview_box: "#image-preview",
-        label_field: "#image-label"
-      });
-    });
-*/
   </script>
 @endsection

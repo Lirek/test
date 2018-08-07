@@ -27,7 +27,7 @@
                             <ul class="nav nav-stacked">
                                 <li>
                                     <h4> Sinopsis:
-                                        <span class="pull-right "> {{ $episode->sinopsis }} </span>
+                                        <span class="pull-right text-justify"> {{ $episode->sinopsis }} </span>
                                     </h4>
                                 </li>
                                 <li>
@@ -36,7 +36,7 @@
                                     </h4>
                                 </li>
                                 <li>
-                                    <h4> Costo: 
+                                    <h4> Costo en tickets: 
                                         <span class="pull-right"> {{ $episode->cost }} </span>
                                     </h4>
                                 </li>

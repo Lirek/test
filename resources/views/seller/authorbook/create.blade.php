@@ -58,7 +58,7 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Registro de Autor</h3>
+                        <h3 class="box-title">Registrar autor</h3>
                     </div>
                     <!-- /.box-header -->
 
@@ -73,7 +73,7 @@
                             <div id="mensajeFotoAutor"></div>
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Foto del Autor </label>
-                                {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <div id="list"></div>
                             </div>
                         </div>
@@ -81,17 +81,17 @@
                         <div class="form-group col-md-6">
                             
                             {{--nombre del autor--}}
-                            <label for="exampleInputFile" class="control-label">Nombres y Apellidos</label>
-                            {!! Form::text('full_name',null,['class'=>'form-control','placeholder'=>'Nombre Completo del Autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y Apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
+                            {!! Form::text('full_name',null,['class'=>'form-control','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
                             {{--correo o email del autor--}}
-                            <label for="exampleInputEmail1">Correo Electrónico</label>
-                            {!! Form::email('email_c',null,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y Apellido')",'oninput'=>"setCustomValidity('')"])!!}
+                            <label for="exampleInputEmail1">Correo electrónico</label>
+                            {!! Form::email('email_c',null,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
                             <br>
 
                             {{--inicio de la agrupacion--}}
-                            <label for="Redes Sociales" class="control-label">Redes Sociales</label>
+                            <label for="Redes Sociales" class="control-label">Redes sociales</label>
                             {{--link de google+--}}
                             <div class="input-group col-xs-12">
                                 <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
@@ -120,7 +120,7 @@
                 <!-- /.box-body -->
             </div>
             <div align="center">
-                {!! Form::submit('Guardar Autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!}
+                {!! Form::submit('Registrar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -168,14 +168,5 @@
     });
     // Foto del Autor
 //---------------------------------------------------------------------------------------------------
-        /*
-        $(document).ready(function () {
-            $.uploadPreview({
-                input_field: "#image-upload",
-                preview_box: "#image-preview",
-                label_field: "#image-label"
-            });
-        });
-        */
     </script>
 @endsection

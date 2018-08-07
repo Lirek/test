@@ -55,7 +55,7 @@
       <div class="col-sm-12" style="margin-left: 30px;">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Registrar Álbum</h3>
+            <h3 class="box-title">Registrar álbum</h3>
           </div>
           <div class="box-body">
             <div class="col-md-6">
@@ -67,18 +67,18 @@
               </div>
             </div>
             <div class="col-md-5">
-              <label for="album"> Nombre del Álbum </label>
+              <label for="album"> Nombre del álbum </label>
               <div id="mensajeNombreAlbum"></div>
-              <input type="text" name="album" placeholder="Nombre del Álbum" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte un Nombre de Álbum Valido')" oninput="setCustomValidity('')" required>
+              <input type="text" name="album" placeholder="Nombre del álbum" class="form-control" id="title" oninvalid="this.setCustomValidity('Inserte un nombre de álbum valido')" oninput="setCustomValidity('')" required>
               <br>
 
-              <label for="cost"> Costo en Tickets </label>
+              <label for="cost"> Costo en tickets </label>
               <div id="mensajeTickets"></div>
-              <input type="number" id="cost" min="0" pattern="{1-3}" name="cost" class="form-control" placeholder="Costo en Tickets" oninvalid="this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 100')" oninput="setCustomValidity('')">
+              <input type="number" id="cost" min="0" pattern="{1-3}" name="cost" class="form-control" placeholder="Costo en tickets" oninvalid="this.setCustomValidity('Ingrese un costo en tickets no mayor a 999')" oninput="setCustomValidity('')">
               <br>
 
               <label for="tags"> Géneros </label>
-              <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" id="genders" required>
+              <select name="tags[]" multiple="true"  class="form-control" id="genders" required>
                 @foreach($tags as $genders)
                   @if($genders->type_tags=='Musica')
                     <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
@@ -87,14 +87,14 @@
               </select>
 
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
-                Agregar Género
+                Agregar género
               </button>
               <br>
               <br>
 
-              <label for="artist"> Ártista </label>
-              <select name="artist" class="form-control js-example-basic-single" required oninvalid="this.setCustomValidity('Seleccione Un Artista')" oninput="setCustomValidity('')">
-                <option value="">Seleccione...</option>
+              <label for="artist"> Artista </label>
+              <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                <option value="">Seleccione u artista</option>
                 @foreach($autors as $artist)
                   <option value="{{$artist->id}}">{{$artist->name}}</option>
                 @endforeach
@@ -111,7 +111,7 @@
           </div>
           <div class="box-body">
             <div class="col-sm-2">
-              <a href="javascript:void(0);" class="btn btn-success add_button" title="Add field">Añadir Canciones</a>
+              <a href="javascript:void(0);" class="btn btn-success add_button" title="Add field">Añadir canciones</a>
             </div>
             <div class="col-sm-10">
               <div id="mensajeCancion"></div>
@@ -119,8 +119,8 @@
                 <div class="row group">
                   <div class="col-sm-9">
                     <div id="mensajeNombreCancion"></div>
-                    <input type="text" name="song_n[]" id="titleSong" class="titleSong form-control" placeholder="Nombre de la Canción" oninvalid="this.setCustomValidity('Ingrese Un Nombre a La Canción')" oninput="setCustomValidity('')" required="required">
-                    <input type="file" name="audio[]" id="audio" class="form-control" accept=".mp3" required="required" oninvalid="this.setCustomValidity('Ingrese la Canción')" oninput="setCustomValidity('')">
+                    <input type="text" name="song_n[]" id="titleSong" class="titleSong form-control" placeholder="Nombre de la canción" oninvalid="this.setCustomValidity('Ingrese un nombre a la canción')" oninput="setCustomValidity('')" required="required">
+                    <input type="file" name="audio[]" id="audio" class="form-control" accept=".mp3" required="required" oninvalid="this.setCustomValidity('Ingrese la canción')" oninput="setCustomValidity('')">
                   </div>
                 </div>
               </div>
@@ -132,7 +132,7 @@
     <br>
     <div align="center">
       <button type="submit" id="registrarAlbum" class="btn btn-primary">
-        Registrar Álbum
+        Registrar álbum
       </button>
     </div>
   </form>
@@ -141,18 +141,18 @@
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h1 style="text-align: center; color: #fff;">Agregar Género</h1>
+          <h1 style="text-align: center; color: #fff;">Agregar género</h1>
         </div>
         <div class="modal-body">
           {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
             {{ Form::token() }}
             {!! Form::hidden('type_tags','Musica') !!}
             {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
-            <label for="exampleInputFile" class="control-label">Nuevo Género</label>
-            {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el Nuevo Género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el Nuevo Género')",'oninput'=>"setCustomValidity('')"]) !!}
+            <label for="exampleInputFile" class="control-label">Nuevo género</label>
+            {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
             <br>
             <div align="center">
-              {!! Form::submit('Guardar Género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
+              {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
             </div>
           {!! Form::close() !!}
         </div>
@@ -212,11 +212,11 @@
           "<br>"+
           "<div class='remove_button'>"+
             "<div class='col-sm-9'>"+
-              "<input type='text' name='song_n[]' id='titleSong' class='titleSong"+x+" form-control' placeholder='Nombre de la Canción' oninvalid='this.setCustomValidity('Ingrese un Nombre a La Canción')' oninput='setCustomValidity('')' required='required'>"+
-              "<input type='file' name='audio[]' accept='.mp3' id='audio' class='audio"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese la Canción')' oninput='setCustomValidity('')'>"+
+              "<input type='text' name='song_n[]' id='titleSong' class='titleSong"+x+" form-control' placeholder='Nombre de la canción' oninvalid='this.setCustomValidity('Ingrese un nombre a la canción')' oninput='setCustomValidity('')' required='required'>"+
+              "<input type='file' name='audio[]' accept='.mp3' id='audio' class='audio"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese la canción')' oninput='setCustomValidity('')'>"+
             "</div>"+
             "<div class='col-sm-2 eliminar'>"+
-              "<button type='button' class='btn btn-danger btnRemove'>Eliminar Canción</button>"+
+              "<button type='button' class='btn btn-danger btnRemove'>Eliminar canción</button>"+
             "</div>"+
           "</div>"+
         "</div>";
@@ -233,7 +233,7 @@
           var nombre = $(campoTexto).val().length;
           if (nombre>=256) {
             $('#mensajeNombreCancion').show();
-            $('#mensajeNombreCancion').text('El Nombre de una Canción no debe exceder los 255 caracteres');
+            $('#mensajeNombreCancion').text('El nombre de una canción no debe exceder los 255 caracteres');
             $('#mensajeNombreCancion').css('color','red');
             $('#registrarAlbum').attr('disabled',true);
           } else {
@@ -262,7 +262,7 @@
       });
       $(wrapper).on('click','.eliminar', function(e){
         e.preventDefault();
-        var eliminar = confirm("¿Está seguro de Eliminar la Canción?");
+        var eliminar = confirm("¿Está seguro de eliminar la canción?");
         if (eliminar) {
           var uno = $(this).parent('div');
           var dos = $(uno).parent('div');
@@ -278,12 +278,12 @@
         var tickets = $('#cost').val();
         if (tickets>999) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets no deben exceder los 999 Tickets');
+          $('#mensajeTickets').text('El costo de tickets no deben exceder los 999 Tickets');
           $('#mensajeTickets').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else if (tickets<0) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets debe ser mayor a 0');
+          $('#mensajeTickets').text('El costo de tickets debe ser mayor a 0');
           $('#mensajeTickets').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else {
@@ -300,7 +300,7 @@
         var nombre = $('#title').val().length;
         if (nombre>=256) {
           $('#mensajeNombreAlbum').show();
-          $('#mensajeNombreAlbum').text('La longtud del Nombre del Album no debe exceder los 255 caracteres');
+          $('#mensajeNombreAlbum').text('La longtud del nombre del álbum no debe exceder los 255 caracteres');
           $('#mensajeNombreAlbum').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else {
@@ -314,7 +314,7 @@
         var nombre = $('#titleSong').val().length;
         if (nombre>=256) {
           $('#mensajeNombreCancion').show();
-          $('#mensajeNombreCancion').text('El Nombre de una Canción no debe exceder los 255 caracteres');
+          $('#mensajeNombreCancion').text('El nombre de una canción no debe exceder los 255 caracteres');
           $('#mensajeNombreCancion').css('color','red');
           $('#registrarAlbum').attr('disabled',true);
         } else {
@@ -344,125 +344,5 @@
     });
 // Para validar el tamaño de la cancion
 //---------------------------------------------------------------------------------------------------
-/*
-    $('#example-2').multifield({
-      section: '.group',
-      btnAdd:'#btnAdd-2',
-      btnRemove:'.btnRemove'
-    });
-
-    var i=0;
-    function sum() {
-      i++;
-    };
-
-    $(document).ready(function() {
-      $('.js-example-basic-multiple').select2();
-    });
-
-    $(document).ready(function() {
-      $('.js-example-basic-single').select2();
-    });
-
-    $(".chosen1").chosen({
-      disable_search_threshold: 10,
-      no_results_text: "No se encuentra el Artista",
-      width: "45%",
-      placeholder_text_single:"Seleccione un Artista"
-    }); 
-
-    function readURL(input) {
-
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-          $('#blah').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    $("#imgInp").change(function() {
-      readURL(this);
-    });
-//---------------------------------------------------------------------------------------------------
-    $(document).ready(function() {
-      $.uploadPreview({
-        input_field: "#image-upload",
-        preview_box: "#image-preview",
-        label_field: "#image-label"
-      });
-    });
-
-    $(document).ready(function (e){
-      $('#title').on('input', function() {
-        var input=$(this);
-        var is_name=input.val();
-        if(is_name) {
-          input.removeClass("invalid").addClass("valid");
-        } else {
-          input.removeClass("valid").addClass("invalid");
-        }
-      });
-
-      $('#genders').on('input', function() {
-        var input=$(this);
-        var is_name=input.val();
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-
-      $('#cost').on('input', function() {
-        var input=$(this);
-        var is_name=input.val();
-        if(is_name <=100){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-      });
-
-      $( "#Form1" ).on( 'submit', function(e) {
-        e.preventDefault();
-        $.ajax({
-          url: 'tagMusic',
-          type: 'POST',
-          data: {
-              _token: $('input[name=_token]').val(),
-              name: $('input[name=tag]').val(),
-          }, 
-          success: function (result) {
-              alert("Guardado Con Exito");
-          },
-          error: function (result) {
-          alert('Existe un Error en su Solicitud Por Favor Revise Los Datos Ingresados');
-          console.log(result);
-          }
-        });  
-      });
-    });
-
-    function checkIt(evt) {
-      evt = (evt) ? evt : window.event
-      var charCode = (evt.which) ? evt.which : evt.keyCode
-      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        status = "This field accepts numbers only."
-        return false
-      }
-      status = ""
-      return true
-    };
-
-    function validarFormulario(){
-      jQuery.validator.messages.required = 'Esta campo es obligatorio.';
-      jQuery.validator.messages.number = 'Esta campo debe ser num&eacute;rico.';
-      jQuery.validator.messages.email = 'La direcci&oacute;n de correo es incorrecta.';
-      $("#enviar").click(function(){
-         var validado = $("#formulario").valid();
-         if(validado){
-            alert('El formulario es correcto.');
-         }
-      });
-    }
-  */
   </script>
 @endsection

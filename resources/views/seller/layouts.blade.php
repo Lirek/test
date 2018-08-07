@@ -151,7 +151,7 @@
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-user"></i>
-                                <span>Mi Perfil</span>
+                                <span>Mi perfil</span>
                             </a>
                         </li>
                         <li class="sub-menu">
@@ -160,8 +160,8 @@
                                 <span>Referidos</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="#">Mis Redes</a></li>
-                                <li><a href="#">Mis Amigos</a></li>
+                                <li><a href="#">Mis redes</a></li>
+                                <li><a href="#">Mis amigos</a></li>
                                 <li><a href="#">Referir</a></li>
                             </ul>
                         </li>
@@ -171,54 +171,51 @@
                                 <span>Seguidos</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="#">Mis Seguidos</a></li>
-                                <li><a href="#">Mis Seguidores</a></li>
+                                <li><a href="#">Mis seguidos</a></li>
+                                <li><a href="#">Mis seguidores</a></li>
                                 <li><a href="#">Proveedores</a></li>
                             </ul>
                         </li>
 
                         @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
+
                             {{--Accesos a los modulos --}}
                             <li class="sub-menu">
                                 <a href="javascript:;">
                                     <i class="li_stack"></i>
-                                    <span>Mi Contenido</span>
+                                    <span>Mi contenido</span>
                                 </a>
                                 <ul class="sub">
                                     @if($modulos==false)
-                                        <li class="treeview">
+                                        <li class="treeview" style="margin-bottom: 15%;">
                                             <a href="#">
-                                                <i class="fa fa-warning"></i>
-                                                <span>
-                                                    Aún no posee Módulos 
-                                                    <br>
-                                                    asignados.
-                                                </span>
+                                                Aún no posee módulos 
+                                                asignados.
                                             </a>
                                         </li>
                                     @else
                                         @foreach($modulos as $mod)
                                             {{--musica--}}
-                                            @if($mod->name === 'Musica')
+                                            @if($mod->name == 'Musica')
                                                 <li class="sub-menu">
                                                     <a href="javascript:;">
                                                         <i class="li_music"></i>
                                                         <span>Música</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/albums') }}">Registrar Álbum</a></li>
-                                                        <li><a href="{{ url('/single_registration') }}">Registrar Canciones</a></li>
+                                                        <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
+                                                        <li><a href="{{ url('/single_registration') }}">Registrar canciones</a></li>
                                                         <!-- Validar que la frase quepa en el espacio -->
                                                         <li class="treeview">
                                                             <a href="{{ url('/artist_form') }}">
                                                                 <span>
-                                                                    Registrar Grupo Musical <br>
-                                                                    o Solista
+                                                                    Registrar grupo musical
+                                                                    o solista
                                                                 </span>
                                                             </a>
                                                         </li>
                                                         <!-- Validar que la frase quepa en el espacio -->
-                                                        <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi Música</a></li>
+                                                        <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi música</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -230,8 +227,8 @@
                                                         <span>Películas</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/movies/create') }}">Registrar Película</a></li>
-                                                        <li><a href="{{ url('/movies') }}">Películas Registradas</a></li>
+                                                        <li><a href="{{ url('/movies/create') }}">Registrar película</a></li>
+                                                        <li><a href="{{ url('/movies') }}">Películas registradas</a></li>
                                                         <!--Revisar este enlace porque es igual al registro de musica-->
                                                         <!--
                                                         <li><a href="{{ url('/single_registration') }}">Mis Películas</a></li>
@@ -247,10 +244,10 @@
                                                         <span>Revistas</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/megazine_form') }}">Registrar Revista Independiente</a></li>
-                                                        <li><a href="{{ url('/megazine_form') }}">Agregar Revistas a Cadenas de Publicacion</a></li>
+                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li>
+                                                        <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li>
                                                         <li><a href="{{ url('/type') }}">Registrar cadena de publicaciones</a></li>
-                                                        <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis Revistas</a></li>
+                                                        <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -262,8 +259,8 @@
                                                         <span>Series</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/series/create') }}">Registrar Serie</a></li>
-                                                        <li><a href="{{ url('/series') }}">Series Registradas</a></li>
+                                                        <li><a href="{{ url('/series/create') }}">Registrar serie</a></li>
+                                                        <li><a href="{{ url('/series') }}">Series registradas</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -275,10 +272,10 @@
                                                         <span>Libros</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/tbook/create') }}">Registrar Libro</a></li>
-                                                        <li><a href="{{ url('/authors_books/create') }}">Registrar Autor</a></li>
-                                                        <li><a href="{{ url('/tbook') }}">Libros Registrados</a></li>
-                                                        <li><a href="{{ url('/authors_books') }}">Autores Registrados</a></li>
+                                                        <li><a href="{{ url('/tbook/create') }}">Registrar libro</a></li>
+                                                        <li><a href="{{ url('/authors_books/create') }}">Registrar autor</a></li>
+                                                        <li><a href="{{ url('/tbook') }}">Libros registrados</a></li>
+                                                        <li><a href="{{ url('/authors_books') }}">Autores registrados</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -290,8 +287,8 @@
                                                         <span>Radio</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/radios') }}">Registro de Radios</a></li>
-                                                        <li><a href="{{ url('/radios/create') }}">Registrar Radio</a></li>
+                                                        <li><a href="{{ url('/radios') }}">Registro de radios</a></li>
+                                                        <li><a href="{{ url('/radios/create') }}">Registrar radio</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -310,71 +307,86 @@
                                             @endif
                                         @endforeach
                                     @endif
-                                    {{--Cuenta en proceso de Revision--}}
-                                    @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-warning"></i>
-                                                <span>
-                                                    Su solicitud de cuenta como <br>
-                                                    productora está en proceso de <br>
-                                                    analisis por parte de <br>
-                                                    nuestros analistas, pronto nos <br>
-                                                    comunicaremos con ustedes.
-                                                </span>
-                                            </a>
-                                        </li>
-                                    {{--Cuenta en proceso de Pre-Aprobación--}}
-                                    @else(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
-                                        <li class="treeview active">
-                                            <a href="#">
-                                                <span>
-                                                <i class="fa fa-warning"></i>
-                                                <br>
-                                                    Su solicitud de cuenta como <br>
-                                                    productora está en proceso <br>
-                                                    por favor finalice el <br>
-                                                    registro para continuar
-                                                </span>
-                                            </a>
-                                        </li>
-                                    @endif
                                 </ul>
                             </li>
-                            <li class="sub-menu">
-                                <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{--Cuenta en proceso de Pre-Aprobación--}}
+                        @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
+                            <li class="treeview">
+                                <a href="#">
                                     <span>
-                                        <i class="glyphicon glyphicon-off"></i>
-                                        Salir
+                                        <i class="fa fa-warning"></i>
+                                        <br>
+                                        Su solicitud de cuenta como <br>
+                                        productora está en proceso de <br>
+                                        analisis por parte de <br>
+                                        nuestros analistas, pronto nos <br>
+                                        comunicaremos con ustedes.
                                     </span>
                                 </a>
-                                <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
                             </li>
-                        </ul>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
-        <section id="main-content">
-            <section class="wrapper">
-                <div class="row">
-                    <div class="col-lg-9 main-chart">
-                        @yield('content')
-                    </div>
-                    <div class="col-lg-3 ds">
-                        @include('seller.partials.siderRigth') 
-                    </div><!-- /col-lg-3 -->
+                        {{--Cuenta en proceso de revision--}}
+                        @elseif(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
+                            <li class="treeview">
+                                <a href="#">
+                                    <span>
+                                        <i class="fa fa-warning"></i>
+                                        <br>
+                                        Su solicitud de cuenta como <br>
+                                        productora está en proceso <br>
+                                        por favor finalice el <br>
+                                        registro para continuar
+                                    </span>
+                                </a>
+                            </li>
+                        {{--Cuenta con estatus de Rechazado--}}
+                        @else(Auth::guard('web_seller')->user()->estatus === 'Rechazado')
+                            <li class="treeview">
+                                <a href="#">
+                                    <span>
+                                        <i class="fa fa-warning"></i>
+                                        <br>
+                                        Su solicitud de cuenta como <br>
+                                        productora fue rechazada <br>
+                                        por favor pongase en contacto <br>
+                                        con el administrados de sistema
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+                        <li class="sub-menu">
+                            <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span>
+                                    <i class="glyphicon glyphicon-off"></i>
+                                    Salir
+                                </span>
+                            </a>
+                            <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end-->
                 </div>
-            </section>
-        </section> 
-    @extends('seller.partials.footer')
+            </aside>
+            <!--sidebar end-->
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="row">
+                        <div class="col-lg-9 main-chart">
+                            @yield('content')
+                        </div>
+                        <div class="col-lg-3 ds" style="margin-bottom: 50%;">
+                            @include('seller.partials.siderRigth') 
+                        </div><!-- /col-lg-3 -->
+                    </div>
+                </section>
+            </section> 
+        @extends('seller.partials.footer')
 
-</body>
+    </body>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{asset('assets/js/jquery.js') }}"></script>
-    <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>
+    {{--<script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>--}}
     <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
     <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
     <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
@@ -390,12 +402,13 @@
 
     <!--script for this page-->
     <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
-  <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
+    {{--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> --}}
 
 
 <!--SCRIPS JS-->
   
   <script type="application/javascript">
+    /*
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -428,6 +441,7 @@
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
+    */
     </script>
     @yield('js')
 

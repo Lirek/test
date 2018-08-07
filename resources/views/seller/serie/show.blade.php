@@ -43,12 +43,12 @@
                                     </h4>
                                 </li>
                                 <li>
-                                    <h4> Año de Lanzamiento: 
+                                    <h4> Año de lanzamiento: 
                                         <span class="pull-right"> {{ $serie->release_year }} </span>
                                     </h4>
                                 </li>
                                 <li>
-                                    <h4> Costo:
+                                    <h4> Costo en tickets:
                                         <span class="pull-right"> {{ $serie->cost }} </span>
                                     </h4>
                                 </li>
@@ -58,7 +58,7 @@
                                         <h4> Antes: <span class="pull-right"> {{ $serie->before }} </span> </h4>
                                         <h4> Después: <span class="pull-right"> {{ $serie->after }} </span> </h4>
                                     @else
-                                        <h4> Saga: <span class="pull-right ">No tiene Saga</span></h4>
+                                        <h4> Saga: <span class="pull-right ">No tiene saga</span></h4>
                                     @endif
                                 </li>
                                 <li>
@@ -72,10 +72,10 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Nombre del Episodio</th>
+                                                <th>Nombre del episodio</th>
                                                 <th>Sinopsis</th>
                                                 <th>Trailer</th>
-                                                <th>Ver Episodio</th>
+                                                <th>Ver episodio</th>
                                                 <th>Costo</th>
                                             </tr>
                                         </thead>
@@ -83,7 +83,7 @@
                                             <tbody class="text-center">
                                                 <tr>
                                                     <td> {{ $episode->episode_name }} </td>
-                                                    <td> {{ $episode->sinopsis }} </td>
+                                                    <td class="text-justify"> {{ $episode->sinopsis }} </td>
                                                     <td>
                                                         <a href="{{ $episode->trailer_url }}" target="_blank">
                                                         <span class="glyphicon glyphicon-link"></span>
@@ -101,7 +101,7 @@
                                     </table>
                                 </h4>
                             @else
-                                <span class="pull-right"> No tiene Episodios </span>
+                                <span class="pull-right"> No tiene episodios </span>
                             @endif
                         </div>
                     </div>
@@ -119,10 +119,4 @@
             </div>
         </div>
     </section>
-@endsection
-@section('js')
-    <script>
-
-    </script>
-
 @endsection

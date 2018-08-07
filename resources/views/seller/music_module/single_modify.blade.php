@@ -1,42 +1,4 @@
 @extends('seller.layouts')
-<style type="text/css">
-/*
-  #image-preview {
-    width: 400px;
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-    background-color: #ffffff;
-    color: #ecf0f1;
-  }
-  #image-preview input {
-    line-height: 200px;
-    font-size: 200px;
-    position: absolute;
-    opacity: 0;
-    z-index: 10;
-  }
-  #image-preview label {
-    position: absolute;
-    z-index: 5;
-    opacity: 0.8;
-    cursor: pointer;
-    background-color: #bdc3c7;
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
-    line-height: 50px;
-    text-transform: uppercase;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-  }
-*/
-</style>
-
 @section('content')
 
 @if ($errors->any())
@@ -60,33 +22,31 @@
 
       <div class="box box-primary">
         <div class="box-header with-border">
-             <h3 class="box-title">Editar Canción</h3>
+             <h3 class="box-title">Editar canción</h3>
         </div>
 
         <div class="box-body">
 
-          <label for="Nombre de la Cancion">Nombre de la Canción</label>
+          <label for="Nombre de la Cancion">Nombre de la canción</label>
           <div id="mensajeNombreCancion"></div>
-          {!! Form::text('song_n',$song->song_name,['class'=>'form-control','placeholder'=>'Nombre de la Canción','required'=>'required','id'=>'song_n','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre Valido')",'oninput'=>"setCustomValidity('')"]) !!}
+          {!! Form::text('song_n',$song->song_name,['class'=>'form-control','placeholder'=>'Nombre de la canción','required'=>'required','id'=>'song_n','oninvalid'=>"this.setCustomValidity('Ingrese un nombre valido')",'oninput'=>"setCustomValidity('')"]) !!}
           <br>
           
-          <label for="Costo en Tickets">Costo en Tickets</label>
+          <label for="Costo en Tickets">Costo en tickets</label>
           <div id="mensajeTickets"></div>
-          {!! Form::number('cost',$song->cost,['class'=>'form-control','placeholder'=>'Costo en Tickets','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Costo en Tickets No Mayor a 999')", 'oninput'=>"setCustomValidity('')"]) !!}
+          {!! Form::number('cost',$song->cost,['class'=>'form-control','placeholder'=>'Costo en tickets','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un costo en tickets No Mayor a 999')", 'oninput'=>"setCustomValidity('')"]) !!}
           <br>
 
-          <label for="Seleccione Música">Seleccione Música </label>
+          <label for="Seleccione Música">Seleccione música </label>
           <label style="color: green;">
-            Si no selecciona una Canción, se mantendrá la actual
+            Si no selecciona una canción, se mantendrá la actual.
           </label>
           <div id="mensajeCancion"></div>
-          {!! Form::file('audio',['class'=>'form-control-file','accept'=>'.mp3','id'=>'cancion', 'oninvalid'=>"this.setCustomValidity('Seleccione una Canción')",'oninput'=>"setCustomValidity('')"]) !!}
+          {!! Form::file('audio',['class'=>'form-control-file','accept'=>'.mp3','id'=>'cancion', 'oninvalid'=>"this.setCustomValidity('Seleccione una canción')",'oninput'=>"setCustomValidity('')"]) !!}
           <br>
 
           <label for="tags">Géneros</label>
-          <label style="color: green;">
-            Si no selecciona un Género, se mantendrá el actual
-          </label>
+          {{--
           <select name="tags[]" multiple="true" class="form-control">
             @foreach($tags as $genders)
               @if($genders->type_tags=='Musica')
@@ -94,14 +54,28 @@
               @endif
             @endforeach
           </select>
+          --}}
+          <select name="tags[]" multiple="true" class="form-control" required>
+            @foreach($tags as $genders)
+              <option value="{{$genders->id}}"
+                @foreach($s_tags as $s) 
+                  @if($s->id == $genders->id) 
+                    selected 
+                  @endif 
+                @endforeach 
+                >
+                {{$genders->tags_name}}
+              </option>
+            @endforeach
+          </select>
           <br>
 
           <label for="artist">Artista</label>
           <label style="color: green;">
-            Si no selecciona un Artista, se mantendrá el actual
+            Si no selecciona un artista, se mantendrá el actual.
           </label>
           <select name="artist" class="form-control">
-            <option value="">Seleccione...</option>
+            <option value="">Seleccione un artista</option>
             @foreach($artist as $author)
               <option value="{{$author->id}}">{{$author->name}}</option>
             @endforeach
@@ -114,7 +88,7 @@
   </div>
   <div align="center">
     <a href="{{ url('/my_music_panel',Auth::guard('web_seller')->user()->id) }}" class="btn btn-danger">Atrás</a>
-    {!! Form::submit('Editar Canción',['class'=>'btn btn-primary','id'=>'editarCancion']) !!}
+    {!! Form::submit('Editar canción',['class'=>'btn btn-primary','id'=>'editarCancion']) !!}
   </div>
 {!! Form::close() !!}
 
@@ -167,12 +141,12 @@
         var tickets = $('#cost').val();
         if (tickets>999) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets no deben exceder los 999 Tickets');
+          $('#mensajeTickets').text('El costo de Tickets no deben exceder los 999 Tickets');
           $('#mensajeTickets').css('color','red');
           $('#editarCancion').attr('disabled',true);
         } else if (tickets<0) {
           $('#mensajeTickets').show();
-          $('#mensajeTickets').text('La cantidad de Tickets debe ser mayor a 0');
+          $('#mensajeTickets').text('El costo de Tickets debe ser mayor a 0');
           $('#mensajeTickets').css('color','red');
           $('#editarCancion').attr('disabled',true);
         } else {
@@ -183,25 +157,5 @@
     });
 // Para validar la cantidad de Tickets
 //---------------------------------------------------------------------------------------------------
-    /*
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-
-    $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
-    });
-        
-    var getFile = new selectFile;
-    getFile.targets('choose','selected');
-
-    $(document).ready(function() {
-      $.uploadPreview({
-        input_field: "#image-upload",
-        preview_box: "#image-preview",
-        label_field: "#image-label"
-      });
-    });
-  */
   </script>
 @endsection

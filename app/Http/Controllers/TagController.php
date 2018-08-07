@@ -16,7 +16,7 @@ class TagController extends Controller
     	$tag->seller_id 	= $request->seller_id;
     	$tag->save();
 
-    	Flash::success('Se ha registrado '.$tag->tags_name.' de manera exitosa ')->important();
+    	Flash::success('Se ha registrado '.$tag->tags_name.' de manera exitosa, debe esperar su activación para poder utilizarlo')->important();
 
     	return redirect()->action(
             'AlbumsController@ShowAlbumstForms'

@@ -37,7 +37,7 @@
           <div class="col-md-6">
             <ul class="nav nav-stacked">
               <li>
-                <h4> Duración Total: 
+                <h4> Duración total: 
                   <span class="pull-right "> {{ $album->duration }} </span>
                 </h4>
               </li>
@@ -52,7 +52,7 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Nombre del Single</th>
+              <th>Nombre de la canción</th>
               <th>Audio</th>
             </tr>
           </thead>

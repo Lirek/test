@@ -3,28 +3,30 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
 @endsection
 @section('content')
-    <div class="container">
+    <section class="content">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-xs-12">
                 <div class="panel">
                     <div class="panel-heading">
                         <h3>
-                            Panel de Contenido Musical
+                            Contenido musical
                         </h3>
                     </div>
                     @include('flash::message')
                     <div class="panel-body">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>Mis Álbumes</h3>
+                                <h3>Mis álbumes</h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nombre del Álbum</th>
+                                            <th>Nombre del álbum</th>
+                                            {{--
                                             <th>Artista</th>
-                                            <th>Fecha de Publicación</th>
+                                            --}}
+                                            <th>Fecha de publicación</th>
                                             <th>Duración</th>
                                             <th>Costo</th>
                                             <th>Estatus</th>
@@ -35,7 +37,9 @@
                                         <tbody>
                                             <tr>
                                                 <th>{{$album->name_alb}}</th>
+                                                {{--
                                                 <th>{{$album->autors->name}}</th>
+                                                --}}
                                                 <th>{{$album->created_at}}</th>
                                                 <th>{{$album->duration}}</th>
                                                 <th>{{$album->cost}}</th>
@@ -47,7 +51,7 @@
                                                     <a href="{{ url('/modify_album/'.$album->id) }}" class="btn btn-warning btn-xs">
                                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                     </a>
-                                                    <a href="{{ url('/delete_album/'.$album->id) }}" onclick="return confirm('¿Desea eliminar el Álbum {{ $album->name_alb }}?')" class="btn btn-danger btn-xs">
+                                                    <a href="{{ url('/delete_album/'.$album->id) }}" onclick="return confirm('¿Desea eliminar el álbum {{ $album->name_alb }}?')" class="btn btn-danger btn-xs">
                                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                                     </a>
                                                 </th>
@@ -60,17 +64,19 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>Mis Canciones</h3>
+                                <h3>Mis canciones</h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nombre de la Canción</th>
+                                            <th>Nombre de la canción</th>
+                                            {{--
                                             <th>Artista</th>
                                             <th>Duración</th>
+                                            --}}
                                             <th>Costo</th>
-                                            <th>Fecha de Publicación</th>
+                                            <th>Fecha de publicación</th>
                                             <th>Estatus</th>
                                             <th>Audio</th>
                                             <th>Acciones</th>
@@ -80,8 +86,10 @@
                                         <tbody>
                                             <tr>
                                                 <th>{{$song->song_name}}</th>
+                                                {{--
                                                 <th>{{$song->autors->name}}</th>
                                                 <th>{{$song->duration}}</th>
+                                                --}}
                                                 <th>{{$song->cost}}</th>
                                                 <th>{{$song->created_at}}</th>
                                                 <th>{{$song->status}}</th>
@@ -112,7 +120,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 @section('js')
 <!----------------------------------- REPRODUCTOR PLYR -------------------------------------------->
@@ -129,8 +137,6 @@
       type    : "GET",
       dataType: "json",
       success: function (data) {
-
-        //console.log(data[0]);
 
         var audio=document.getElementById('player');
 

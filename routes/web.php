@@ -53,47 +53,12 @@ Route::resource('users', 'UserController');
 //-------------------Funciones del Usuarios----------------------------------
 
 Route::post('BuySong/{id}','UserController@BuySingle');
-Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
 Route::post('BuyBook/{id}','UserController@BuyBook');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
 Route::post('Invite','UserController@Invite');
-
-    //Agregadas 4/7/18
-    Route::get('EditProfile','UserController@edit');
-
-    //Agregada 11/7/18
-    Route::get('PlayList/{id}','UserController@AddElementPlaylist');
-
-    //Agregada12/7/18
-    Route::get('MyAlbums','UserController@MyAlbums');
-    Route::get('SongsAlbums/{id}','UserController@SongAlbum');
-
-    //Agregada 13/7/18 
-    Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
-
-    //Agregada 14/7/18
-    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
-
-    //Agregada 15/7/18
-    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
-
-    //Agregada 18/7/18
-    Route::post('CompleteProfile','UserController@CompleteProfile');
-    Route::post('Referals','UserController@referals');
-
-    //Agregada 23/7/2018
-    Route::get('MyMovies','UserController@MyMovies');
-    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
-
-    //Agregada 31/7/2018
-    Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));
-
-    //Agregada 3/8/2018
-    Route::get('DownloadQr','UserController@qrDownload');
-
 
 //---------------------------------------------------------------------------
 
@@ -105,9 +70,6 @@ Route::get('AllAlbums','ContentController@ShowAllAlbum');
 Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
 Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
 Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
-
-//Agrega 3/8/2018
-    Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
 
 //---------------------------------------------------------------------------
 
@@ -530,7 +492,8 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Albums -------------------------- */
     Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
-    Route::post('/modify_album/{id}', 'AlbumsController@UpdateAlbum');
+    Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
+    Route::get('/musicFromAlbum/{id}', 'AlbumsController@musicFromAlbum');
     /*--------------------------------------------------------------*/
 
     /*------------------Borrar Albums-------------------------------*/
@@ -539,6 +502,10 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Mostrar Albums- ----------------------------*/
     Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
+    /*--------------------------------------------------------------*/
+
+    /*-------------Listar Canciones de los Albums-------------------*/
+    Route::get('/SongsAlbums/{id}','AlbumsController@SongAlbum');
     /*--------------------------------------------------------------*/
 
 
@@ -553,11 +520,19 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Single -------------------------- */
     Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
-    Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
+    Route::post('/modify_single', 'AlbumsController@UpdateSong');
+    /*--------------------------------------------------------------*/
+
+    /*----------------------Agregar Tags--------------------------- */
+    Route::resource('tags','TagController');
     /*--------------------------------------------------------------*/
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+    /*--------------------------------------------------------------*/
+
+    /*---------Canciones del Panel "Mi Contenido Musical"------------*/
+    Route::get('/music_of_my_music_panel/{id}', 'MusicController@ShowMusicOfMyPanel');
     /*--------------------------------------------------------------*/
 
     /*--------------AJAX de Guardar Etiquetas---------------------- */
@@ -589,15 +564,23 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::resource('series', 'SeriesController');
 
+    Route::get('showEpisode/{idE}/{idS}',[
+        'uses'  => 'SeriesController@showEpisode',
+        'as'    => 'series.showEpisode'
+    ]);
+
+    /*
+    modificada de manera generica
     //para q guarde el modal
     Route::post('sagas/registerS', [
         'uses' => 'SagaController@registerSeries',
         'as' => 'sagas.registerS'
     ]);
+    */
 
-    Route::get('series/{id}/destroy', [
-        'uses' => 'SeriesController@destroy',
-        'as' => 'series.destroy'
+    Route::get('destroyEpisode/{idE}/{idS}', [
+        'uses' => 'SeriesController@destroyEpisode',
+        'as' => 'destroyEpisode'
     ]);
 
     /*-------------------------------------------------------------------------
@@ -881,115 +864,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 //----------------------------------------------------------------------
 
 
-    Route::get('/seller_home', function () {
-        $id = Auth::guard('web_seller')->user()->id;
-
-        $seller = App\Seller::find($id);
-        
-        $tv_content=0;
-        $radios_content=0;
-        $Megazine_content=0;
-        $series_content=0;
-        $Books_content=0;
-        $Movies_content=0;
-        $musical_content=0;
-
-        $aproved_radio=0;
-        $aproved_megazines=0;
-        $aproved_song=0;
-        $aproved_books=0;
-        $aproved_musica=0;
-        $aproved_tv=0;
-        
-        if($seller->roles())
-        {
-            $seller_modules;
-        }
-
-        
-
-        foreach ($seller->roles as $role) 
-        {
-            $seller_modules[] = $role;
-
-            switch ($role->name) 
-            {
-                
-                case 'Musica':
-                    $Musica = count($seller->albums()->get());
-                    $aproved_musica=count($seller->albums()->where('status','=','Aprobado')->get());
-                    
-                    $songs=0;
-                    $aproved_song=0;
-
-                    foreach ($seller->songs()->get() as $key) 
-                    {
-                        if ($key->album =! NULL or $key->album =! 0) 
-                        {
-                            $songs++;
-
-                            if ($key->status == 'Aprobado') 
-                            {
-                                $aproved_song++;   
-                            }
-                        }  
-                    }
-                    
-                    $musical_content=$Musica+$songs;
-                    
-
-                    break;
-
-                case 'Peliculas':
-                    $Movies_content=0;
-                    break;
-                
-                case 'Libros':
-                    $Books_content=count($seller->Books()->get());
-
-                    $aproved_books=count($seller->Books()->where('status','=','Aprobado')->get());
-                    break;
-                
-                case 'Series':
-                    $series_content=0;
-                    break;
-
-                case 'Revistas':
-                    $Megazine_content=count($seller->Megazines()->get());
-                    
-                    $aproved_megazines=count($seller->Megazines()->where('status','=','Aprobado')->get());
-                    break;
-
-                case 'Radios':
-                    $radios_content=count($seller->Radio()->get());
-                    
-                    $aproved_radio=count($seller->Radio()->where('status','=','Aprobado')->get());
-                    break;
-
-                case 'TV':
-                    $tv_content=count($seller->Tv()->get());
-                    $aproved_tv=count($seller->Tv()->where('status','=','Aprobado')->get());
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            };
-
-        };
-        
-        $total_content= $tv_content+$radios_content+$Megazine_content+$series_content+$Books_content+$Movies_content+$musical_content;
-        
-        $aproved_content= $aproved_radio+$aproved_megazines+$aproved_song+$aproved_books+$aproved_musica+$aproved_tv;
-
-        $followers=count($seller->followers()->get());
-        
-        return view('seller.home')->with('total_content', $total_content)->with('aproved_content', $aproved_content)->with('followers', $followers);
-    
-    });
-
-
-
+    Route::get('/seller_home','SellerController@homeSeller');
 
 
 });

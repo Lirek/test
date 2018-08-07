@@ -50,7 +50,7 @@
 
                 <div class="box box-widget widget-user-2">
                     <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Libro</a>
+                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
                     </div>
                     <div id="panel" class="img-rounded img-responsive av text-center">
                     </div>
@@ -67,17 +67,22 @@
                                     </h4>
                                 </li>
                                 <li>
-                                    <h4>Sinopsis: <span class="pull-right "></span></h4>{{ $book->sinopsis }}
+                                    <h4>Sinopsis: 
+                                        <span class="pull-right "></span>
+                                    </h4>
+                                    <div class="text-justify">
+                                        {{ $book->sinopsis }}
+                                    </div>
                                 </li>
                                 <li>
-                                    <h4> Categoría: <span class="pull-right"> {{ $book->rating->r_name }} </span>
+                                    <h4>Categoría: <span class="pull-right"> {{ $book->rating->r_name }} </span>
                                     </h4>
                                 </li>
                                 <li>
                                     @if($book->saga!=null)
                                         <h4>Saga: <span class="pull-right ">{{ $book->saga->sag_name }}</span></h4>
                                     @else
-                                        <h4>Saga: <span class="pull-right ">No tiene Saga</span></h4>
+                                        <h4>Saga: <span class="pull-right ">No tiene saga</span></h4>
                                     @endif
                                 </li>
                             </ul>

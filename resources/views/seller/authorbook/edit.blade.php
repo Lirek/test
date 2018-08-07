@@ -74,6 +74,9 @@
                             <div class="col-md-6">
                                 {{--Imagen--}}
                                 <div id="mensajeFotoLibro"></div>
+                                <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                    Si no selecciona una foto, se mantendrá la actual
+                                </label>
                                 <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-label"> Foto del autor </label>
                                     {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]) !!}
@@ -85,17 +88,17 @@
 
                             <div class="form-group col-md-6">
                                 {{--nombre de la autor--}}
-                                <label for="exampleInputFile" class="control-label">Nombres y Apellidos</label>
-                                {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'Nombre Completo del Autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y Apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
+                                {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <br>
 
                                 {{--correo o email del autor--}}
-                                <label for="exampleInputEmail1">Correo Electrónico</label>
-                                {!! Form::email('email_c',$author->email_c,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y Apellido')",'oninput'=>"setCustomValidity('')"])!!}
+                                <label for="exampleInputEmail1">Correo electrónico</label>
+                                {!! Form::email('email_c',$author->email_c,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
                                 <br>
 
                                 {{--inicio de la agrupacion--}}
-                                <label for="Redes Sociales" class="control-label">Redes Sociales</label>
+                                <label for="Redes Sociales" class="control-label">Redes sociales</label>
                                 {{--link de google+--}}
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
@@ -128,7 +131,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <div align="left">
-                                    {!! Form::submit('Guargar Cambios', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
+                                    {!! Form::submit('Editar autor', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
                                 </div>
                             </div>
                         </div>
