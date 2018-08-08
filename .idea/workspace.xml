@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/22239e411f4a38eafdc23c8dc7381528792b1ee2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4a6f01a17fea9ebbea4371453e22c5b9edd74a94.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4b2defc132924f0de1a05bfc83cd6bf678f65775.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/57c43547d2984808521802db51b745abeeadb2d2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/591f867b9cadc5ac661bb4c20c3789fd523542be.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e4147a21cc90924b09f10ead58db78b999cb3f2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e6688663212cb730b06323bf0d139624851480d.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/82f795f373f8fac6e6ccd14de8995ad124a3108d.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9400fe51ad54b984795dc35da2f334f46c285c4b.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9907a035b5078ed497bde18b4a986c5dc4c484b6.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b874259bf8cdef027a4c5b91ebf40948759ed35d.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c073f2d89e6517a8e0248981971bdcd0d36d76d4.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c93703e4772f31f9f3bc3bc877698714668f467f.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/df1192ccc5af27323fab5f684ed63d8e287a80b9.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e459cff138687471c6a92c8d8d4c8a0dbfc7a12f.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e5fba06f3458cdcd92e46892716a85a70ff962e2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/f1d8a5a841964b01917609a0340578bcc0f53f29.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,66 +15,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-430541041">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.105" value="1" />
-          <entry key="project.open.time.68" value="1" />
-          <entry key="project.open.time.88" value="1" />
-          <entry key="project.open.time.89" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.checkout.local" value="3" />
-          <entry key="git.branch.create.new" value="3" />
-          <entry key="git.branch.delete.local" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="9" />
-          <entry key="js" value="3" />
-          <entry key="php" value="20" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Blade" value="11" />
-          <entry key="CSS" value="9" />
-          <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="9" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Blade" value="1552" />
-          <entry key="PHP" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts" />
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="php" value="1554" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.php.rename.constructor" />
-      <usages-collector id="statistics.php.new.class" />
-      <usages-collector id="statistics.php.new.test" />
-      <usages-collector id="statistics.php.composer.actions" />
-      <usages-collector id="statistics.php.composer.command.options" />
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+            <state relative-caret-position="296">
+              <caret line="883" column="61" lean-forward="false" selection-start-line="883" selection-start-column="61" selection-end-line="883" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -106,56 +36,36 @@
       <find>$book</find>
       <find>movies/register</find>
       <find>movies</find>
-      <find>ca-content</find>
-      <find>ca-close</find>
-      <find>ca-item-main</find>
-      <find>ca-item</find>
-      <find>tab-content</find>
-      <find>tabs-collapse</find>
-      <find>fa fa-quote-left</find>
-      <find>$b</find>
-      <find>$t</find>
-      <find>contentcarousel</find>
-      <find>album_re</find>
-      <find>media</find>
-      <find>div</find>
-      <find>section-pad</find>
-      <find>conta</find>
-      <find>container-fluid</find>
-      <find>banner</find>
-      <find>#por</find>
-      <find>#ban</find>
-      <find>pas</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
-      <replace>#426fac</replace>
-      <replace>fa-check-circle</replace>
-      <replace>$m</replace>
-      <replace>$t</replace>
-      <replace>$r</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="breiddy" />
+        <entry key="$PROJECT_DIR$" value="Pacheco" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_01_28_151437_create_sellers_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2018_01_26_074825_create_table_sagas_tags.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_11_09_193745_create_music_m_t_m_tags_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_12_18_193929_CreateTableTagsMusic.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_12_22_054208_CreateTableBooksTags.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RadiosController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SocialAuthController.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/authorbook/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/radio/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/seller/radio/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/tv/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/tv/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/../../bin/php/php-7.1.14-Win32-VC14-x64/php.ini" />
@@ -164,9 +74,12 @@
         <option value="$PROJECT_DIR$/app/Book.php" />
         <option value="$PROJECT_DIR$/app/Saga.php" />
         <option value="$PROJECT_DIR$/app/Sagas.php" />
+        <option value="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SagaController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SeriesController.php" />
@@ -175,28 +88,14 @@
         <option value="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Seller.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/partials/navbar.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/services.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-        <option value="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/seller/radio/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/seller/music_module/album_registration.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" />
-        <option value="$PROJECT_DIR$/app/Albums.php" />
-        <option value="$PROJECT_DIR$/vendor/wapmorgan/mp3info/src/Mp3Info.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" />
-        <option value="$PROJECT_DIR$/public/plugins/css/style.css" />
-        <option value="$PROJECT_DIR$/public/plugins/carusel/css/style.css" />
-        <option value="$PROJECT_DIR$/public/plugins/css/login3.css" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
@@ -319,10 +218,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1468" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="713" />
+    <option name="width" value="734" />
+    <option name="height" value="907" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -410,24 +308,10 @@
       <workItem from="1528824442046" duration="1911000" />
       <workItem from="1528830858248" duration="8000000" />
       <workItem from="1528902207713" duration="7910000" />
-      <workItem from="1531155277627" duration="5380000" />
-      <workItem from="1531422230909" duration="5641000" />
-      <workItem from="1531439476977" duration="4861000" />
-      <workItem from="1531448877989" duration="6675000" />
-      <workItem from="1531531731231" duration="9058000" />
-      <workItem from="1531746831369" duration="16140000" />
-      <workItem from="1531961419825" duration="9833000" />
-      <workItem from="1532453326922" duration="2407000" />
-      <workItem from="1532549120970" duration="12147000" />
-      <workItem from="1532651909936" duration="5492000" />
-      <workItem from="1532770210293" duration="875000" />
-      <workItem from="1532772245626" duration="4036000" />
-      <workItem from="1532820981599" duration="10934000" />
-      <workItem from="1532911356700" duration="2142000" />
-      <workItem from="1532999501095" duration="1702000" />
-      <workItem from="1533681846781" duration="267000" />
-      <workItem from="1533682806192" duration="628000" />
-      <workItem from="1533733779176" duration="1854000" />
+      <workItem from="1529796183167" duration="477000" />
+      <workItem from="1529928910199" duration="1232000" />
+      <workItem from="1529931247125" duration="293000" />
+      <workItem from="1530551649876" duration="811000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -471,60 +355,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527152134915</updated>
     </task>
-    <task id="LOCAL-00007" summary="welcome">
-      <created>1530919935397</created>
+    <task id="LOCAL-00007" summary="Merge branch 'mauricio' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/users/Referals.blade.php&#10;#&#9;resources/views/users/WebsUser.blade.php">
+      <created>1530553337185</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1530919935397</updated>
+      <updated>1530553337185</updated>
     </task>
-    <task id="LOCAL-00008" summary="algunos modelos, controladores, vista">
-      <created>1530932212449</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1530932212478</updated>
-    </task>
-    <task id="LOCAL-00009" summary="algunos modelos, controladores, vista">
-      <created>1531542532854</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1531542532854</updated>
-    </task>
-    <task id="LOCAL-00010" summary="algunos modelos, controladores, vista">
-      <created>1531961711160</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1531961711160</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Merging pachecho breiddy">
-      <created>1533561253724</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1533561253724</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Merge branch 'master' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1533682834808</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1533682834808</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php">
-      <created>1533734511426</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1533734511426</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239122000" />
+    <option name="totallyTimeSpent" value="123119000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -541,6 +383,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.4" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.6" order="9" side_tool="false" content_ui="tabs" />
@@ -551,14 +394,25 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,15 +429,11 @@
     <MESSAGE value="pelicula y libros (creo)" />
     <MESSAGE value="solo falta mostrar la pelicula" />
     <MESSAGE value="listo pelicula afro y otra vez la ruta en el sidebar" />
-    <MESSAGE value="welcome" />
     <MESSAGE value="algunos modelos, controladores, vista" />
-    <MESSAGE value="Merging pachecho breiddy" />
-    <MESSAGE value="elimine chache" />
-    <MESSAGE value="Merge remote-tracking branch 'remotes/origin/Pacheco' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;app/Http/Controllers/AlbumsController.php&#10;#&#9;app/Http/Controllers/MoviesController.php&#10;#&#9;app/Http/Controllers/TagController.php&#10;#&#9;resources/views/seller/authorbook/create.blade.php&#10;#&#9;resources/views/seller/authorbook/edit.blade.php&#10;#&#9;resources/views/seller/authorbook/index.blade.php&#10;#&#9;resources/views/seller/authorbook/show.blade.php&#10;#&#9;resources/views/seller/book/create.blade.php&#10;#&#9;resources/views/seller/book/edit.blade.php&#10;#&#9;resources/views/seller/book/index.blade.php&#10;#&#9;resources/views/seller/book/show.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;resources/views/seller/movie/create.blade.php&#10;#&#9;resources/views/seller/movie/edit.blade.php&#10;#&#9;resources/views/seller/movie/index.blade.php&#10;#&#9;resources/views/seller/movie/show.blade.php&#10;#&#9;resources/views/seller/music_module/album.blade.php&#10;#&#9;resources/views/seller/music_module/album_modify.blade.php&#10;#&#9;resources/views/seller/music_module/album_registration.blade.php&#10;#&#9;resources/views/seller/music_module/artist_registration.blade.php&#10;#&#9;resources/views/seller/music_module/music_panel.blade.php&#10;#&#9;resources/views/seller/music_module/single_modify.blade.php&#10;#&#9;resources/views/seller/music_module/single_registration.blade.php&#10;#&#9;resources/views/seller/serie/create.blade.php&#10;#&#9;resources/views/seller/serie/edit.blade.php&#10;#&#9;resources/views/seller/serie/show.blade.php&#10;#&#9;resources/views/seller/serie/showEpisode.blade.php&#10;#&#9;routes/web.php" />
-    <MESSAGE value="cambio web.php error index" />
-    <MESSAGE value="Merge branch 'master' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <MESSAGE value="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="Merge branch 'mauricio' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/users/Referals.blade.php&#10;#&#9;resources/views/users/WebsUser.blade.php" />
+    <MESSAGE value="arreglo error index" />
+    <option name="LAST_COMMIT_MESSAGE" value="arreglo error index" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -592,6 +442,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Seller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.env" />
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -719,6 +576,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1242">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/seller/book/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -875,29 +739,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="153" column="63" lean-forward="false" selection-start-line="153" selection-start-column="63" selection-end-line="153" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/book/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="47" column="39" lean-forward="false" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="98">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state relative-caret-position="296">
+          <caret line="883" column="61" lean-forward="false" selection-start-line="883" selection-start-column="61" selection-end-line="883" selection-end-column="61" />
           <folding />
         </state>
       </provider>
