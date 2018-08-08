@@ -689,7 +689,7 @@
                             <div class="team-info">
                                 <div class="img-sec">
                                     <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive"
-                                         style="width:256px;height:256px">
+                                         >
                                 </div>
                                 <div class="fig-caption">
                                     <h3>{{ $s->name }}</h3>
@@ -729,8 +729,7 @@
     <div class="container">
         <div class="row white text-center">
             <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
-            {{--<a href="{{ url('/seller_login') }}" class="btn btn-default">Registrate Como Proveedor</a> mover a la barra  --}}
-            <a href="{{ url('/applys') }}" class="btn btn-default">Registrate Como Proveedor</a>
+            <a href="{{ url('/applys') }}" class="btn btn-default">Registrate </a>
         </div>
     </div>
 </div>
@@ -740,7 +739,7 @@
 <div id="contact" class="section-padding" style="background-color:#f4f4f4">
     <div class="container">
         <div class="row">
-            <div class="page-title text-center">
+            <div id="page-title" class="page-title text-center">
                 <h1>Comentarios, Consultas & Sugerencias</h1>
                 <hr class="pg-titl-bdr-btm"></hr>
             </div>
