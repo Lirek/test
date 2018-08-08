@@ -2,13 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/22239e411f4a38eafdc23c8dc7381528792b1ee2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4a6f01a17fea9ebbea4371453e22c5b9edd74a94.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4b2defc132924f0de1a05bfc83cd6bf678f65775.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/57c43547d2984808521802db51b745abeeadb2d2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/591f867b9cadc5ac661bb4c20c3789fd523542be.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e4147a21cc90924b09f10ead58db78b999cb3f2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e6688663212cb730b06323bf0d139624851480d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/82f795f373f8fac6e6ccd14de8995ad124a3108d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9400fe51ad54b984795dc35da2f334f46c285c4b.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9907a035b5078ed497bde18b4a986c5dc4c484b6.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b874259bf8cdef027a4c5b91ebf40948759ed35d.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c073f2d89e6517a8e0248981971bdcd0d36d76d4.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c93703e4772f31f9f3bc3bc877698714668f467f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/df1192ccc5af27323fab5f684ed63d8e287a80b9.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e459cff138687471c6a92c8d8d4c8a0dbfc7a12f.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/e5fba06f3458cdcd92e46892716a85a70ff962e2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/f1d8a5a841964b01917609a0340578bcc0f53f29.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Seller.php" afterPath="$PROJECT_DIR$/app/Seller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -74,12 +86,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+            <state relative-caret-position="450">
+              <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -128,7 +140,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="eric" />
+        <entry key="$PROJECT_DIR$" value="breiddy" />
       </map>
     </option>
   </component>
@@ -307,7 +319,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1468" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
@@ -327,6 +339,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -343,8 +357,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -414,6 +426,8 @@
       <workItem from="1532911356700" duration="2142000" />
       <workItem from="1532999501095" duration="1702000" />
       <workItem from="1533681846781" duration="267000" />
+      <workItem from="1533682806192" duration="628000" />
+      <workItem from="1533733779176" duration="1854000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -492,11 +506,25 @@
       <option name="project" value="LOCAL" />
       <updated>1533561253724</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Merge branch 'master' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1533682834808</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1533682834808</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php">
+      <created>1533734511426</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1533734511426</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236640000" />
+    <option name="totallyTimeSpent" value="239122000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -508,14 +536,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.4" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.6" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -553,7 +581,9 @@
     <MESSAGE value="elimine chache" />
     <MESSAGE value="Merge remote-tracking branch 'remotes/origin/Pacheco' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;app/Http/Controllers/AlbumsController.php&#10;#&#9;app/Http/Controllers/MoviesController.php&#10;#&#9;app/Http/Controllers/TagController.php&#10;#&#9;resources/views/seller/authorbook/create.blade.php&#10;#&#9;resources/views/seller/authorbook/edit.blade.php&#10;#&#9;resources/views/seller/authorbook/index.blade.php&#10;#&#9;resources/views/seller/authorbook/show.blade.php&#10;#&#9;resources/views/seller/book/create.blade.php&#10;#&#9;resources/views/seller/book/edit.blade.php&#10;#&#9;resources/views/seller/book/index.blade.php&#10;#&#9;resources/views/seller/book/show.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;resources/views/seller/movie/create.blade.php&#10;#&#9;resources/views/seller/movie/edit.blade.php&#10;#&#9;resources/views/seller/movie/index.blade.php&#10;#&#9;resources/views/seller/movie/show.blade.php&#10;#&#9;resources/views/seller/music_module/album.blade.php&#10;#&#9;resources/views/seller/music_module/album_modify.blade.php&#10;#&#9;resources/views/seller/music_module/album_registration.blade.php&#10;#&#9;resources/views/seller/music_module/artist_registration.blade.php&#10;#&#9;resources/views/seller/music_module/music_panel.blade.php&#10;#&#9;resources/views/seller/music_module/single_modify.blade.php&#10;#&#9;resources/views/seller/music_module/single_registration.blade.php&#10;#&#9;resources/views/seller/serie/create.blade.php&#10;#&#9;resources/views/seller/serie/edit.blade.php&#10;#&#9;resources/views/seller/serie/show.blade.php&#10;#&#9;resources/views/seller/serie/showEpisode.blade.php&#10;#&#9;routes/web.php" />
     <MESSAGE value="cambio web.php error index" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambio web.php error index" />
+    <MESSAGE value="Merge branch 'master' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'remotes/origin/Jesus' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;routes/web.php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -866,8 +896,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        <state relative-caret-position="450">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
           <folding />
         </state>
       </provider>
