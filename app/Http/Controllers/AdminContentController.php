@@ -39,6 +39,7 @@ class AdminContentController extends Controller
             $tags= Tags::where('status','=','En Revision')->count();
             $movies = Movie::where('status','=','En Revision')->count();
             $series = 0;
+            $BookAuthor= BookAuthor::where('status','=','En Revision')->count();
 
             
             
@@ -51,6 +52,7 @@ class AdminContentController extends Controller
             ->with('singles', $singles)
             ->with('albums', $albums)
             ->with('movies', $movies)
+            ->with('BookAuthor', $BookAuthor)
             ->with('series', $series);
     }
 

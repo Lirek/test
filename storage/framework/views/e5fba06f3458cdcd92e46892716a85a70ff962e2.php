@@ -1,7 +1,4 @@
-@extends('promoter.layouts.app')
-
-
-@section('main')                   
+<?php $__env->startSection('main'); ?>                   
 
 <h3><i class="fa fa-angle-right"></i>Solicitudes</h3>
           <div class="row mt">
@@ -23,43 +20,45 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                    @foreach($applys as $apply)
-                                    <tr id="apply{{$apply->id}}">
+                                    <?php $__currentLoopData = $applys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $apply): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr id="apply<?php echo e($apply->id); ?>">
                                       
-                                      <td class="non-numeric">{{$apply->name_c}}</td>
+                                      <td class="non-numeric"><?php echo e($apply->name_c); ?></td>
                                       
-                                      <td class="non-numeric">{{$apply->contact_s}}</td>
+                                      <td class="non-numeric"><?php echo e($apply->contact_s); ?></td>
                                       
-                                      <td class="non-numeric">{{$apply->phone_s}}</td>
+                                      <td class="non-numeric"><?php echo e($apply->phone_s); ?></td>
                                       
-                                      <td class="non-numeric">{{$apply->email}}</td>
+                                      <td class="non-numeric"><?php echo e($apply->email); ?></td>
 
-                                      <td class="non-numeric">{{$apply->desired_m}}</td>
+                                      <td class="non-numeric"><?php echo e($apply->desired_m); ?></td>
 
-                                      <td class="non-numeric" id="apply_td{{$apply->id}}">
-                                        @if($apply->salesman_id != NULL)
-                                       <span class="mdl-chip mdl-chip--deletable" id="a_{{$apply->salesman_id}}_{{$apply->id}}">  <span class="mdl-chip__text" id="promoter_assing">{{$apply->Salesman->name}}</span> <button type="button" class="mdl-chip__action" value1="{{$apply->id}}" value2="{{$apply->salesman_id}}" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
-                                        @else
+                                      <td class="non-numeric" id="apply_td<?php echo e($apply->id); ?>">
+                                        <?php if($apply->salesman_id != NULL): ?>
+                                       <span class="mdl-chip mdl-chip--deletable" id="a_<?php echo e($apply->salesman_id); ?>_<?php echo e($apply->id); ?>">  <span class="mdl-chip__text" id="promoter_assing"><?php echo e($apply->Salesman->name); ?></span> <button type="button" class="mdl-chip__action" value1="<?php echo e($apply->id); ?>" value2="<?php echo e($apply->salesman_id); ?>" name="apply" id="x"> <i class="material-icons">cancel</i> </button></span>
+                                        <?php else: ?>
 
-                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="{{$apply->id}}" data-toggle="modal" data-target="#AssingPromoter">
+                                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="add_promoter_to" value="<?php echo e($apply->id); ?>" data-toggle="modal" data-target="#AssingPromoter">
                                        <i class="material-icons">add</i>
                                         </button>
-                                        @endif
+                                        <?php endif; ?>
                                       </td>
                                     
                                       <td class="non-numeric">
-                                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifyApplys" value="{{$apply->id}}" data-toggle="modal" data-target="#myModal">
-                                          {{$apply->status}}
+                                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="ModifyApplys" value="<?php echo e($apply->id); ?>" data-toggle="modal" data-target="#myModal">
+                                          <?php echo e($apply->status); ?>
+
                                         </button>
                                         
                                       </td>
                                       
                                       </tr>
 
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                </tbody>
                        </table>
-                       {!! $applys->render() !!}
+                       <?php echo $applys->render(); ?>
+
 
 
                           </section>
@@ -71,10 +70,10 @@
 
 
 
-@include('promoter.modals.ApplysViewsModals')
-@endsection
+<?php echo $__env->make('promoter.modals.ApplysViewsModals', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 
 $( document ).ready(function() {
@@ -246,6 +245,8 @@ $( document ).ready(function() {
 });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
                             
 
+
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

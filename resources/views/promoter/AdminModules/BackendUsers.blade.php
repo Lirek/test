@@ -98,7 +98,7 @@
                                             <i class="material-icons">cancel</i>
                                          </button>
                                         
-                                         <button value="{{$salesman->id}}">
+                                         <button value="{{$salesman->id}}"id="UpdateSalesman" data-toggle="modal" data-target="#USalesman">
                                           <i class="material-icons">settings</i>
                                          </button>
                                         </td>
@@ -120,198 +120,285 @@
 
 @section('js')
 <script>
-  $("#phone").intlTelInput();
-  $("#phone_s").intlTelInput();
-
-  $(document).on('click', '#tt3', function() {    
-
-    $(document).ready(function (e){
-
-        $( "#PromotersForm" ).on( 'submit', function(e){
-          
-          var name_c = $('input[name=name_c]').val();
-          var phone_s =  $("#phone_s").intlTelInput("getNumber");
-          var email_c = $('input[name=email_c]').val();
-          var priority =$('#priority').val();
-
-          e.preventDefault();
-            
-            $.ajax({
-
-              url: 'promoter_c',
-              type:'POST',
-              data:{
-                    _token: $('input[name=_token]').val(),
-                    name_c: name_c,
-                    phone_s: phone_s,
-                    email_c: email_c,
-                    priority: priority,
-                    }, 
-
-                    success: function (result) 
-                    {
-                      alert('Usuario Registrado con exito');
-                    
-                      var table = document.getElementById("promoters_table");
-                      var row = table.insertRow();
-                      var name = row.insertCell();
-                      var email = row.insertCell();
-                      var priority =row.insertCell();
-                      var logins = row.insertCell();
-                      var buttonDelete = row.insertCell();
-                      var buttonUpdate = row.insertCell();
-
-                      row.id='promoter'+result['id'];
-
-                      
-                                            
-                                           
-                      name.innerHTML = result['name_c'];
-                      email.innerHTML = result['email'];
-                        
-                        if (result['priority'] == 1) 
-                          {
-                          priority.innerHTML = 'SuperAdmin';
-                          } 
-                        if (result['priority'] == 2) 
-                          {
-                            priority.innerHTML = 'Admin';
-                          }
-                        
-                        if (result['priority'] == 3)
-                          {
-                            priority.innerHTML = 'Operador';
-                          }
-
-                        logins.innerHTML = 'No ha Iniciado Sesion';
-
-                        buttonDelete.innerHTML = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="'+result['id']+'"> <i class="material-icons">cancel</i> </button>';
-
-                        buttonUpdate.innerHTML = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="'+result['id']+'"> <i class="material-icons">settings</i> </button>';
-                      },
-
-                    error: function (result) 
-                    {
-                      alert('Error en Su solicitud');
-                      console.log(result);
-                    }
-
-            });
-          
-        });
-    });
-  
-  });
-
-  $(document).on('click', '#SalesmanAdd', function() {    
-
-    $(document).ready(function (e){
-
-        $( "#SalesmanForm" ).on( 'submit', function(e){
-          
-          var name = $('input[name=name]').val();
-          var phone =  $("#phone").intlTelInput("getNumber");
-          var email = $('input[name=email]').val();
-          var adress = $('input[name=adress]').val();
-
-          e.preventDefault();
-            
-            $.ajax({
-
-              url: 'AddSalesman',
-              type:'POST',
-              data:{
-                    _token: $('input[name=_token]').val(),
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    adress: adress,
-                    }, 
-
-                    success: function (result) 
-                    {
-                      alert('Usuario Registrado con exito');
-                    
-                      var table = document.getElementById("SalesmanTable");
-                      var row = table.insertRow();
-                      var name = row.insertCell();
-                      var email = row.insertCell();
-                      var adress = row.insertCell();
-                      var RegisterBy = row.insertCell();
-                      var buttonDelete = row.insertCell();
-                      var buttonUpdate = row.insertCell();
-
-                      row.id='salesman'+result['id'];
-
-                      
-
-                      },
-
-                    error: function (result) 
-                    {
-                      alert('Error en Su solicitud');
-                      console.log(result);
-                    }
-
-            });
-          
-        });
-    });
-  
-  });
-
-  $(document).on('click', '#delete_salesman', function() {
-
-    var salesman = $(this).val();
-    var url = 'salesman_delete/'+salesman;
-     
-    console.log(url);
-    $.ajax({
-             url: url,
-             type:'get',
-             data:"json",
-
-            success: function(data)
-            {
-              alert("Se Ha Eliminado el Vendedor con exito","","success");
-              
-              $("#salesman"+salesman).fadeOut();
-            },
-
-            error: function(data)
-            {
-             alert("NO Permitido Por Favor Recargue la Pagina","","error");
-            },
-
-       });
-
-  });
-
-  $(document).on('click', '#delete_promoter', function() {
-    
-    var promoter = $(this).val();
-    var url = 'promoter_delete/'+promoter;
+ $(document).ready(function (e){
  
 
-    $.ajax({
-             url: url,
-             type:'get',
-             data:"json",
+      $("#phone").intlTelInput();
+      $("#phone_s").intlTelInput();
+      $("#phone_u").intlTelInput();
 
-            success: function(data)
-            {
-              alert("Se Ha Eliminado el Promotor con exito");
-              console.log(data);
-              $("#promoter"+promoter).fadeOut();
-            },
+      $(document).on('click', '#tt3', function() {    
 
-            error: function(data)
-            {
-             alert("NO Permitido Por Favor Recargue la Pagina");
-            },
+       
 
-       });
+            $( "#PromotersForm" ).on( 'submit', function(e){
+              
+              var name_c = $('input[name=name_c]').val();
+              var phone_s =  $("#phone_s").intlTelInput("getNumber");
+              var email_c = $('input[name=email_c]').val();
+              var priority =$('#priority').val();
 
-  });
+              e.preventDefault();
+                
+                $.ajax({
+
+                  url: 'promoter_c',
+                  type:'POST',
+                  data:{
+                        _token: $('input[name=_token]').val(),
+                        name_c: name_c,
+                        phone_s: phone_s,
+                        email_c: email_c,
+                        priority: priority,
+                        }, 
+
+                        success: function (result) 
+                        {
+                          alert('Usuario Registrado con exito');
+                        
+                          var table = document.getElementById("promoters_table");
+                          var row = table.insertRow();
+                          var name = row.insertCell();
+                          var email = row.insertCell();
+                          var priority =row.insertCell();
+                          var logins = row.insertCell();
+                          var buttonDelete = row.insertCell();
+                          var buttonUpdate = row.insertCell();
+
+                          row.id='promoter'+result['id'];
+
+                          
+                                                
+                                               
+                          name.innerHTML = result['name_c'];
+                          email.innerHTML = result['email'];
+                            
+                            if (result['priority'] == 1) 
+                              {
+                              priority.innerHTML = 'SuperAdmin';
+                              } 
+                            if (result['priority'] == 2) 
+                              {
+                                priority.innerHTML = 'Admin';
+                              }
+                            
+                            if (result['priority'] == 3)
+                              {
+                                priority.innerHTML = 'Operador';
+                              }
+
+                            logins.innerHTML = 'No ha Iniciado Sesion';
+
+                            buttonDelete.innerHTML = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="'+result['id']+'"> <i class="material-icons">cancel</i> </button>';
+
+                            buttonUpdate.innerHTML = '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="delete_promoter" value="'+result['id']+'"> <i class="material-icons">settings</i> </button>';
+                          },
+
+                        error: function (result) 
+                        {
+                          alert('Error en Su solicitud');
+                          console.log(result);
+                        }
+
+                });
+              
+            });
+        
+      
+      });
+
+      $(document).on('click', '#SalesmanAdd', function() {    
+
+            $( "#SalesmanForm" ).on( 'submit', function(e){
+              
+              var name = $('input[name=name]').val();
+              var phone =  $("#phone").intlTelInput("getNumber");
+              var email = $('input[name=email]').val();
+              var adress = $('#adress').val();
+
+              e.preventDefault();
+                
+                $.ajax({
+
+                  url: 'AddSalesman',
+                  type:'POST',
+                  data:{
+                        _token: $('input[name=_token]').val(),
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        adress: adress,
+                        }, 
+
+                        success: function (result) 
+                        {
+                          alert('Usuario Registrado con exito');
+                        
+                          var table = document.getElementById("SalesmanTable");
+                          var row = table.insertRow();
+                          var name = row.insertCell();
+                          var email = row.insertCell();
+                          var adress = row.insertCell();
+                          var RegisterBy = row.insertCell();
+                          var buttonDelete = row.insertCell();
+                          var buttonUpdate = row.insertCell();
+
+                          row.id='salesman'+result['id'];
+
+                          
+
+                          },
+
+                        error: function (result) 
+                        {
+                          alert('Error en Su solicitud');
+                          console.log(result);
+                        }
+
+                });
+              
+            })
+      
+      });
+
+      $(document).on('click', '#delete_salesman', function() {
+
+        var salesman = $(this).val();
+        var url = 'salesman_delete/'+salesman;
+         
+        console.log(url);
+        $.ajax({
+                 url: url,
+                 type:'get',
+                 data:"json",
+
+                success: function(data)
+                {
+                  alert("Se Ha Eliminado el Vendedor con exito","","success");
+                  
+                  $("#salesman"+salesman).fadeOut();
+                },
+
+                error: function(data)
+                {
+                 alert("NO Permitido Por Favor Recargue la Pagina","","error");
+                },
+
+           });
+
+      });
+
+      $(document).on('click', '#UpdateSalesman', function() {
+        
+        var salesman = $(this).val();
+        var url = 'FindSalesman/'+salesman;
+
+        $.ajax({
+                 url: url,
+                 type:'get',
+                 data:"json",
+
+                success: function(data)
+                {
+                  console.log(data);
+
+                  $('#USalesman').modal('show');
+                  $('[name=salesman_id]').val(data.id);
+                  $('[name=name_u]').val(data.name);
+                  $('[name=phone_u]').val(data.phone);
+                  $('[name=email_u]').val(data.email);
+                  $('[name=adress_u]').val(data.adress);              
+
+                },
+
+                error: function(data)
+                {
+                 alert("Ha Ocurrido un Error","","error");
+                },
+
+           });
+      });
+
+      $(document).on('click', '#delete_promoter', function() {
+        
+        var promoter = $(this).val();
+        var url = 'promoter_delete/'+promoter;
+     
+
+        $.ajax({
+                 url: url,
+                 type:'get',
+                 data:"json",
+
+                success: function(data)
+                {
+                  alert("Se Ha Eliminado el Promotor con exito");
+                  console.log(data);
+                  $("#promoter"+promoter).fadeOut();
+                },
+
+                error: function(data)
+                {
+                 alert("NO Permitido Por Favor Recargue la Pagina");
+                },
+
+           });
+
+      });
+
+      $(document).on('click', '#close_1', function() {
+        $('#USalesman').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+      });
+
+      $(document).on('click', '#close_2', function() {
+        $('#USalesman').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+      });
+           
+      $( "#SalesmanUForm" ).on( 'submit', function(e){
+              
+              var name = $('input[name=name_u]').val();
+              var phone =  $("#phone_u").intlTelInput("getNumber");
+              var email = $('input[name=email_u]').val();
+              var adress = $('#adress_u').val();
+              var id = $('input[name=salesman_id]').val();      
+              e.preventDefault();
+                
+                $.ajax({
+
+                  url: 'UpadateSalesman/'+id,
+                  type:'POST',
+                  data:{
+                        _token: $('input[name=_token]').val(),
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        adress: adress,
+                        }, 
+
+                        success: function (result) 
+                        {
+                          alert('Usuario Registrado con exito');              
+                          
+                          $('#USalesman').modal('hide');
+                          $('body').removeClass('modal-open');
+                          $('.modal-backdrop').remove();
+
+                          location.reload();
+                        },
+
+                        error: function (result) 
+                        {
+                          alert('Error en Su solicitud');
+                          console.log(result);
+                        }
+
+                });        
+      });
+
+});
 </script>
 @endsection

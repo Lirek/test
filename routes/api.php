@@ -31,7 +31,7 @@ Route::group([
 
 });
 
-//---------------Rustas de Contenido---------------------------------------
+//---------------Rutas de Contenido---------------------------------------
 
 Route::get('Singles','ApiController\ContentController@AllAprovedSingles');
 Route::get('Albums','ApiController\ContentController@AllAprovedAlbums');
@@ -39,8 +39,13 @@ Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthor
 Route::get('Books','ApiController\ContentController@AllAprovedBooks');
 Route::get('Megazines','ApiController\ContentController@AllAprovedMegazines');
 //---------------------------------------------------------------------------
+
+//---------------Rutas de Contenido Especifico----------------------------------
+
 Route::get('Single/{id}','ApiController\ContentController@Single');
 Route::get('Megazine/{id}','ApiController\ContentController@Megazine');
 Route::get('Album/{id}','ApiController\ContentController@Album');
 Route::get('Book/{id}','ApiController\ContentController@Book');
+Route::get('MusicAuthor/{id}','ApiController\ContentController@MusicAuthor');
 
+//-------------------------------------------------------------------------------

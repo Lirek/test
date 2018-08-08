@@ -33,6 +33,6 @@ class PromoterAssing extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mails.promoters_applyes_assing')->with('applys',$this->applys);
+        return $this->view('admin.mails.promoters_applyes_assing')->subject('Estatus De Solicitud')->with('applys',$this->applys);
     }
 }

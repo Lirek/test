@@ -12,7 +12,8 @@
       
 
            <form method="POST" id="PromotersForm">
-                            {{ csrf_field() }}
+                            <?php echo e(csrf_field()); ?>
+
 
             <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -35,13 +36,13 @@
 
             <div class="form-group">
                 <select name="priority" id="priority">
-                @foreach($priority as $p)
+                <?php $__currentLoopData = $priority; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                  @if($p->priority > Auth::guard('Promoter')->user()->priority)
-                    <option value="{{$p->id}}">{{$p->name}}</option>
-                  @endif
+                  <?php if($p->priority > Auth::guard('Promoter')->user()->priority): ?>
+                    <option value="<?php echo e($p->id); ?>"><?php echo e($p->name); ?></option>
+                  <?php endif; ?>
 
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
               <label class="mdl-textfield__label" for="priority">Tipo de Usuario</label>
                 </div>
@@ -79,7 +80,8 @@
       
 
            <form method="POST" id="SalesmanForm">
-                            {{ csrf_field() }}
+                            <?php echo e(csrf_field()); ?>
+
 
             <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -144,7 +146,8 @@
 
 
        <form method="POST" id="SalesmanUForm">
-                        {{ csrf_field() }}
+                        <?php echo e(csrf_field()); ?>
+
 
         <input type="text" name="salesman_id" hidden>
         <div class="form-group">

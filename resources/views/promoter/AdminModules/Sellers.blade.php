@@ -86,6 +86,8 @@
 
 @section('js')
 <script>
+$(document).ready(function (e){
+
     function yesnoCheck() {
         if (document.getElementById('option-2').checked) 
         {
@@ -124,9 +126,7 @@
 
     $(document).on('click', '#add_module', function() {    
 
-              var x = $(this).val();
-
-        $(document).ready(function (e){
+            var x = $(this).val();
 
             $( "#AddModules" ).on( 'submit', function(e){
               
@@ -160,9 +160,7 @@
                         }
 
                 });
-              
-            });
-        });
+            });     
     });
 
     $(document).on('click','#ModifySellers', function() {
@@ -204,6 +202,6 @@
 
 
     });
-
+});
 </script>
 @endsection
