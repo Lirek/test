@@ -254,8 +254,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
            //------------------------------------------------------------------------
 
-           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
-              
+           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------   
                 Route::get('admin_books','AdminController@ShowBooks');
                 Route::get('BooksData','AdminController@BooksDataTable');
                 Route::post('books_status/{id}','AdminController@EstatusBooks');
@@ -281,6 +280,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_clients','AdminController@ShowPendingClients');
                 Route::get('ClientsDataTable','AdminController@ClientsData');
+                Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
         //______________________Fin de las rutas de Clientes________________________

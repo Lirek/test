@@ -76,3 +76,34 @@
       
     </div>
   </div>
+
+
+ <div class="modal fade" id="webModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Redes</h4>
+        </div>
+        <div class="modal-body">      
+            <table class="table table-bordered table-striped table-condensed" id="WebsTable">            
+            <thead>
+                <tr>
+                  <th class="non-numeric">Nombre</th>
+                  <th class="non-numeric">Correo</th>
+                  <th class="non-numeric">Nivel</th>
+                </tr>
+              </thead>
+          
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

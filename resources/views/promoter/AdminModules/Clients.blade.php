@@ -16,6 +16,7 @@
 		          <th class="non-numeric">Imagen del Documento</th>
 		          <th class="non-numeric">Fecha de Nacimiento</th>
 		          <th class="non-numeric">Genero</th>
+              <th class="non-numeric">Redes</th>
 		          <th class="non-numeric">Estatus</th>
 		        </tr>
 		    	</thead>
@@ -43,6 +44,7 @@
 	            {data: 'img_doc', name: 'img_doc'},
 	            {data: 'fech_nac', name: 'fech_nac'},
 	            {data: 'type', name: 'type'},
+              {data: 'webs', name: 'webs'},
 	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
 	        ]
 	    });
@@ -89,6 +91,30 @@
      $("#ci_photo").attr("src", file);
     
      });
-	});
+	
+    $(document).on('click', '#webs', function() {
+        
+        var x = $(this).val();
+       
+        
+        var WebsDataTable = $('#WebsTable').DataTable({
+          processing: true,
+          serverSide: true,
+          responsive: true,
+
+          ajax:'ReferalsDataTable/'+x,
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'email', name: 'email'},
+              {data: 'level', name: 'level'}
+          ]
+      });
+
+        $('#webModal').on('hidden.bs.modal', function () {
+          WebsDataTable.destroy();
+         });
+
+    });
+  });
 </script>
 @endsection

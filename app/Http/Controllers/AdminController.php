@@ -12,7 +12,7 @@ use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
 use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
-
+use Illuminate\Support\Collection;
 
 
 //-------------Modelos del sistema-----------------------
@@ -939,7 +939,12 @@ class AdminController extends Controller
                     ->addColumn('Estatus',function($user){
                       
                       return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
-                    })                    
+                    })
+
+                    ->addColumn('webs',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+                    })                                        
                     
                     ->editColumn('img_doc',function($user){
 
@@ -951,7 +956,7 @@ class AdminController extends Controller
                     ->editColumn('name',function($user){
                        return $user->name.' '.$user->last_name; 
                     })
-                    ->rawColumns(['Estatus','img_doc'])
+                    ->rawColumns(['Estatus','img_doc','webs'])
                     ->toJson();                                           
       }
 
@@ -971,6 +976,77 @@ class AdminController extends Controller
         $User->save();
 
         return response()->json($User);
+      }
+
+      public function WebsDataTable($id)
+      {
+          $user= User::find($id);
+          $x=$user->Referals()->get();
+          $referals1 = [];
+          $referals2= [];
+          $referals3= [];
+          $WholeReferals = new Collection; 
+          
+          if ($user->Referals()->get()->isEmpty()) 
+          {
+            return Datatables::of($WholeReferals);
+          }
+          foreach ($user->Referals()->get() as $key) 
+          {
+              $referals1[]=$key->refered;
+              $WholeReferals->prepend(User::find($key->refered));
+          }
+
+          if (count($referals1)>0) 
+              { 
+                
+                foreach ($referals1 as $key2) 
+                 {  
+                    $joker = User::find($key2);
+                    
+                    foreach($joker->Referals()->get() as $key2)
+                     {
+                       $referals2[]=$key2->refered;
+                       $WholeReferals->prepend(User::find($key2->refered));
+                     }                  
+                 }
+              }
+          else
+              {
+                $referals2=0;
+              }   
+
+
+                               
+          if (count($referals2)>0) 
+              {
+                foreach ($referals2 as $key3) 
+                {
+                  $joker = User::find($key3);
+                    
+                    foreach($joker->Referals()->get() as $key3)
+                     {
+                       $referals3[]=$key3->refered;
+                       $WholeReferals->prepend(User::find($key3->refered));                       
+                     }         
+                }
+              }
+
+          else
+              {
+                $referals3=0;
+              }   
+
+                        
+                          
+            $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
+                        
+              if (in_array($item->id, $referals1)) { return $item->level=1;}
+              if (in_array($item->id, $referals2)) { return $item->level=2;}
+              if (in_array($item->id, $referals3)) { return $item->level=3;}
+                      });         
+              
+        return Datatables::of($WholeReferals)->toJson();              
       }
 
 //------------------------------------------------------------------
