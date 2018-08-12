@@ -110,7 +110,7 @@
           ]
       });
 
-        $('#webModal').on('hidden.bs.modal', function () {
+    $('#webModal').on('hidden.bs.modal', function () {
           WebsDataTable.destroy();
          });
 
