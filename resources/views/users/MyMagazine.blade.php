@@ -27,7 +27,7 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href="{{url('ShowMyReadMegazine/'.$Megazine->id)}}">Ver mas</p></a>
+                            <p><a href="{{url('ShowMyReadMegazine/'.$Megazine->id)}} style="color: #ffff"">Ver mas</p></a>
                         </div>
                         <div class="centered">
                             <h3>{{$Megazine->title}}</h3>

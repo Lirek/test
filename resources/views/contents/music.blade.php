@@ -53,8 +53,8 @@
 												<i class="fa fa-play-circle"></i>
 											</div> -->
 										</div>
-										<p class="followers"><i class="fa fa-user"> {{$Album->autors->name}} - {{$Album->name_alb}}</i>
-                      <a href="#" class="" value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal-confirAlbum" style="margin-left: 25%">Adquirir</a></p>
+										<p class="followers"><i class="fa fa-user"><a href="ProfileMusicArtist/{{$Album->id}}"> {{$Album->autors->name}}</a> - {{$Album->name_alb}}</i>
+                      <a href="#" class=""  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')" style="margin-left: 25%">Adquirir</a></p>
 									</div>
 								</div><!--/col-md-4-->
 								 
@@ -86,7 +86,7 @@
             									-moz-background-size: cover;
             									-o-background-size: cover;
             									background-size: cover;">
-            									<button type="button" class="btn btn-primary" data-dismiss="modal"value="{{$Album->cost}}" value1="{{$Album->name_alb}}" value2="{{$Album->id}}" id="modal-confirAlbum" style="margin-left: 70%">Adquirir</button>
+            									<button type="button" class="btn btn-primary" data-dismiss="modal"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')" id="modal-confirAlbumModal" style="margin-left: 70%">Adquirir</button>
                     						</div>
                     						<div class="col-lg-6 col-md-6 col-sm-6 mb">
                     							<h5><b>Canciones:</b></h5>
@@ -98,7 +98,7 @@
                     							<h5><b>Costo:</b> {{$Album->cost}}</h5>
                     						</div>
                     						<div class="col-lg-12 col-md-12 col-sm-12 mb">
-                        						<h5><b>Artista:</b> {{$Album->autors->name}}</h5>
+                        						<h5><b>Artista:</b>{{$Album->autors->name}}</h5>
                         						<h5><b>Album:</b> {{$Album->name_alb}}</h5>
 
                         						<hr>
@@ -115,32 +115,32 @@
                                   </div>
                                 <!--Fin modal-->
                                 @endforeach
-								<div class="col-md-12 col-sm-12 mb">
+								<div class="col-md-12 col-sm-12 col-xs-12 mb">
 									<hr>
 								</div>
-                     		<div class="col-md-12 col-sm-12 mb">
+                     		<div class="col-md-12 col-sm-12 col-xs-12 mb">
                      			<div class="white-panel panRf pe donut-chart">
                      					<div class="white-header">
                             				<h3><span class="card-title">Singles</span></h3>                          
-                          				</div>
+                          		</div>
                           			<div class="col-sm-12 col-xs-12 col-md-12 goleft">
                           				<table class="table table-striped table-advance table-hover" id="myTable">
                           					<thead>
                           						<tr>
-                          							<th><i class="fa fa-music"></i>Nombre:</th>
-                          							<th><i class="fa fa-microphone"></i>Artista</th>
-                          							<th><i class="fa fa-money"></i>Costo</th>
-                          							<th><i class="fa fa-credit-card"></i></th>
+                          							<th><i class="fa fa-music" style="color: #23B5E6"></i>Nombre:</th>
+                          							<th><i class="fa fa-microphone" style="color: #23B5E6"></i>Artista</th>
+                          							<th><i class="fa fa-money" style="color: #23B5E6"></i>Costo</th>
+                          							<th><i class="fa fa-credit-card" style="color: #23B5E6"></i></th>
                           						</tr>
                           					</thead>
                           					<tbody>
                           						@foreach ($Singles as $Single)
                           						<tr class="letters">
 	                          							<td>{{$Single->song_name}}</td>
-                          							<td>{{$Single->autors->name}}</td>
+                          							<td><a href="ProfileMusicArtist/{{$Single->autors->id}}">{{$Single->autors->name}}</a></td>
                           							<td>{{$Single->cost}}</td>
                           							<td>
-                          								<a href="#" class="btn btn-primary a-btn-slide-text btn-xs" value="{{$Single->cost}}" value1="{{$Single->song_name}}" value2="{{$Single->id}}" id="modal-confir">
+                          								<a href="#" class="btn btn-primary a-btn-slide-text btn-xs"  onclick="fnOpenNormalDialog('{!!$Single->cost!!}','{!!$Single->title!!}','{!!$Single->id!!}')" id="modal-confir">
                           								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
                           								</a>
                           							</td>
@@ -197,10 +197,8 @@
 
 
 <script>
-function fnOpenNormalDialog() {
-	 cost=$(this).attr('value');
-     name=$(this).attr('value1');
-     id=$(this).attr('value2');
+function fnOpenNormalDialog(cost,name,id) {
+
 
     $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
 
@@ -220,19 +218,18 @@ function fnOpenNormalDialog() {
         buttons: {
             	"Si": function () {
                 $(this).dialog('close');
-                callback(true);
+                callback(true,id);
             },
                 "No": function () {
                 $(this).dialog('close');
-                callback(false);
+                callback(false,id);
             }
         }
     });
 }
 
-$('#modal-confir').click(fnOpenNormalDialog);
 
-function callback(value) {
+function callback(value,id) {
     if (value) {
          $.ajax({
                     
@@ -254,11 +251,25 @@ function callback(value) {
                     else if (result==1) 
                     {
                       swal('La canción ya forma parte de su colección','','error');
+                 
                     }
                     else
                     {	
-                    	swal('Cancion comprada con exito','','success');
-                  		 console.log(result);
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : 'MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });
+                      
+                    swal('Cancion comprada con exito','','success');
+
                   	}	 
                 },
               error: function (result) 
@@ -272,7 +283,7 @@ function callback(value) {
     }
 }
 </script>
-
+ 
 
 <script type="text/javascript">
 
@@ -301,10 +312,7 @@ $(document).ready(function(){
 </script>
 
 <script>
-function fnOpenNormalDialog2() {
-   cost=$(this).attr('value');
-     name=$(this).attr('value1');
-     id=$(this).attr('value2');
+function fnOpenNormalDialog2(cost,name,id) {
 
     $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
 
@@ -324,19 +332,18 @@ function fnOpenNormalDialog2() {
         buttons: {
               "Si": function () {
                 $(this).dialog('close');
-                callback2(true);
+                callback2(true,id);
             },
                 "No": function () {
                 $(this).dialog('close');
-                callback2(false);
+                callback2(false,id);
             }
         }
     });
 }
 
-$('#modal-confirAlbum').click(fnOpenNormalDialog2);
 
-function callback2(value) {
+function callback2(value,id) {
     if (value) {
          $.ajax({
                     
@@ -360,6 +367,18 @@ function callback2(value) {
                     }
                     else
                     { 
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : 'MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });                      
                       swal('Album comprado con exito','','success');
                        console.log(result);
                     }  

@@ -28,7 +28,7 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href="{{url('ShowMyReadBook/'.$Book->id)}}">Ver mas</p></a>
+                            <p><a href="{{url('ShowMyReadBook/'.$Book->id)}}" style="color: #ffff">Ver mas</p></a>
                         </div>
                         <div class="centered">
                             <h3>{{$Book->title}}</h3>

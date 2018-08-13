@@ -1,146 +1,244 @@
 @extends('layouts.app')
 
-	@section('content')
-	<div class="container">
-		
-		<div class="row">
-			
-		@foreach($Books as $Book)
-			<div class="col-md-4">
-			
-			  <div class="card">
-    		 	<img src="/images/bookcover/{{$Book->cover}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Book->title}}</b></h4> 
-            			<p>·Costo{{$Book->cost}}</p>
-             			<p>·Autor {{$Book->author->full_name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Book->sinopsis}}
-             			</p>
-                  	<button value1="{{$Book->id}}" value2="{{$Book->title}}" value3="{{$Book->cost}}" data-toggle="modal" data-target="#BuyBook" class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-ticket"></i> {{$Book->cost}}  Comprar
-                  	</button>
+@section('css')
+
+@endsection
+
+@section('main')  
+
+<div class="row">
+    <div class="form-group"> 
+        <div class="row-edit">
+            <div class="col-md-12 col-sm-12 mb">
+            	<div class="control-label">
+            		<div class="white-header">
+            			<div class="col-sm-12 col-xs-12 col-md-12">
+            				<h3><span class="card-title"><i class="fa fa-angle-right"> Libros</i></span></h3> 
+            				<form method="POST"  id="SaveSong" action="{{url('SearchProfileAuthor')}}">{{ csrf_field() }}
+                    			<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                    			<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar...</button>
+       						</form>
+       						<div  class="col-sm-12 col-xs-12 col-md-12" id="principal">
+       						{{  $Books->links() }}
+       						</div>
+       						@if($Books != null)
+                			<!-- PROFILE 01 PANEL -->
+                			
+                			@foreach($Books as $Book)
+
+                			<div class="col-lg-4 col-md-4 col-sm-4 mb" style="margin-top: 2%">
+                    			<div class="content-panel pn-music">
+                        			<div id="profile-01" style="">
+                            		@if($Book->cover)
+                                		<img src="images/bookcover/{{$Book->cover}}" width="100%" height="220" style="">
+                            		@else
+                                		<img src="#" width="100%" height="220" style="">
+                            		@endif
+                        			</div>
+                        			<div class="profile-01 centered">
+                            			<p><a href="#" data-toggle="modal" data-target="#myModal-{{$Book->id}}" style="color: #ffff">Ver mas</p></a>
+                        			</div>
+                        			<div class="centered">
+                            			<h3>{{$Book->title}}</h3>
+                            			<h6>Autor: <a href="ProfileBookAuthor/{{$Book->id}}">{{$Book->author->full_name}}</a></h6>
+                            			<h6>Lanzamiento: {{$Book->release_year}}</h6>
+                            			<a href="#" class=""  id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')">Adquirir</a></p>
+                            		<!-- <p class="sinopsis"><b>Sinopsis:</b>{{$Book->sinopsis}}</p> -->
+                        			</div>
+                    			</div><!--/content-panel -->
+                			</div><!--/col-md-4 -->
+                			<!--MODAL-->
+								 <div id="myModal-{{$Book->id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$Book->title}}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        	<div id="panel" class="img-rounded img-responsive av text-center col-lg-12 col-md-12 col-sm-12 mb" style="-webkit-box-shadow: 8px 8px 15px #999;
+            									-moz-box-shadow: 8px 8px 15px #999;
+            									filter: shadow(color=#999999, direction=135, strength=8);
+            									/*Para la Sombra*/
+            									background-image: url('images/bookcover/{{$Book->cover}}');
+            									margin-top: 5%;
+            									background-position: center center;
+            									width: 100%;
+            									min-height: 150px;
+            									-webkit-background-size: 100%;
+            									-moz-background-size: 100%;
+            									-o-background-size: 100%;
+            									background-size: 100%;
+            									-webkit-background-size: cover;
+            									-moz-background-size: cover;
+            									-o-background-size: cover;
+            									background-size: cover;">
+            									<button type="button" class="btn btn-primary" data-dismiss="modal"   id="modal-confir" style="margin-left: 87%" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')">Adquirir</button>
+                    						</div>
+                    						<div class="col-lg-12 col-md-12 col-sm-12 mb">
+                    							<p class="sinopsis"><h5><b>Sinopsis:</b></h5>
+                    							{{ $Book->sinopsis }}</p>
+                                
+                    							
+                    						</div>
+
+                    						<div class="box-footer no-padding">
+                    							<div class="col-md-8 col-sm-8 col-lg-12">
+                    							<h5><b>Costo:</b> {{$Book->cost}}</h5>
+                        						<h5><b>Titulo original:</b> {{ $Book->original_title }} </h5>
+                        						<h5><b> Categoría:</b> {{ $Book->rating->r_name }} </h5>
+                        						@if($Book->sagas!=null)
+                                        			<h5><b>Saga:</b> {{ $Book->sagas->sag_name }}</h5>
+                                   			 	@else
+                                        			<h5><b>Saga:</b> No tiene Saga</span></h5>
+                                    			@endif
+                                    				<div class="widget-user-image">
+                                						<img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$Book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
+                            					</div>
+                            					<!-- /.widget-user-image -->
+                            					<h5 class="widget-user-username"><b>Autor:</b> {{ $Book->author->full_name }}</h5>
+                        						<hr>
+                    						</div>
+                    							</div>
+                    						<div class="">
+                                            	<div class="modal-footer">
+                                            	
+                                              		<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                                            	</div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <!--Fin modal-->
+                			
+                			@endforeach
+                			 <div  class="col-sm-12 col-xs-12 col-md-12">
+       						{{  $Books->links() }}
+       						</div>
+                			@else
+                    			<h1>No Posee Libros</h1>
+               				@endif
+            			</div>
+            		</div>
             	</div>
-       		 </div>
-
-     	    </div>
-		@endforeach
-		</div>	
-
-		<div class="row">
-			@foreach($Megazines as $Megazine)
-
-			<div class="col-md-4">
-			
-			  <div class="card" style="margin-left: 12px; margin-top: 12px">
-    		 	<img src="{{asset($Megazine->cover)}}" alt="portada" style="width:100%">
-        		<div class="container-card" style="background-color: gray">
-          			<h4><b>{{$Megazine->title}}</b></h4> 
-            			<p>·Costo{{$Megazine->cost}}</p>
-             			<p>·Proveedor {{$Megazine->Seller->name}}</p>
-             			<p>·Sinopsis: 
-             				{{$Megazine->descripcion}}
-             			</p>
-                  	<button value1="{{$Megazine->id}}" value2="{{$Megazine->title}}" value3="{{$Megazine->cost}}" data-toggle="modal" data-target="#BuyBook" class="btn btn-primary btn-xs" id="book" style="background-color: #13ec58"><i class="fa fa-ticket"></i> {{$Megazine->cost}}  Comprar
-                  	</button>
-            	</div>
-       		  </div>
-     	    </div>
-			@endforeach
-		</div>
-
-	</div>
-
-	<div class="modal modal-primary fade" id="BuyBook" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content" style="background-color: rgb(35,181,230,0.5);">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
+            </div>
         </div>
-        <div class="modal-body">
-
-         <p id="SingleName"></p>
-        
-
-             <form method="POST"  id="SaveBook">
-                              {{ csrf_field() }}
-
-
-			<button type="submit" class="btn btn-primary" style="background-color: rgb(19,236,88, 0.5)">
-                   Comprar
-            </button>
-
-             
-         
-
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
     </div>
-  </div>
-	@endsection
+</div>
+<div id="modal-confirmation"></div>
+@endsection
+
 @section('js')
-<script>
+<script type="text/javascript">
 
-	
-	$( document ).ready(function() {
-    
-
-		$(document).on('click', '#book',function() {
-		  
-  		  var BookId = $(this).attr('value1');
-		  var BookName = $(this).attr('value2');
-		  var BookCost = $(this).attr('value3');
-		  var modal = $('#BuyBook').modal();
-
-		  modal.find('.modal-title').text( 'Desea Comprar '+BookName+'¿Con Un Valor de '+BookCost+' tickets?');
-		
-		  		$( "#SaveBook" ).on( 'submit', function(e){
-		  			e.preventDefault();
-
-		  			$.ajax({
-
-		  				url: 'BuyBook/'+BookId,
-		  				type: 'POST',
-		  				data: {
-			       	  				_token: $('input[name=_token]').val()
-			       	  		   },
-		  				success: function (result) 
-			       	  		{
-			       	  			swal('Libro Comprado Con Exito','','success');
-
-			       	  			if (result==0) 
-			       	  				{	
-			       	  					swal('No Posee Suficientes Creditos Por Favor Recargue','','error');	
-			       	  				}
-			       	  			if (result==1) 
-			       	  			{
-			       	  				swal('El Libro Ya Forma Parte de Su Coleccion','','error');
-			       	  			}
-			       	  		},
-			       	  		error: function (result) 
-			       	  		{
-			       	  			
-			       	  		}
-
-		  			});
-		  		
-		  		});
-
-
-		});
+$(document).ready(function(){
+	$('#seach').keyup(function(evento){
+		$('#buscar').attr('disabled',true);
 	});
-		
-</script>		
+	$('#buscar').attr('disabled',true);
+      $('#seach').autocomplete({
+      	source: "SearchAuthor",
+      	minLength: 2,
+      	select: function(event, ui){		
+      		$('#seach').val(ui.item.value);
+      		var valor = ui.item.value;
+          console.log(ui.item.type);
+      		if (valor=='No se encuentra...'){
+      			$('#buscar').attr('disabled',true);
+      			swal('Artista no se encuentra regitrado','','error');
+      		}else{
+      			$('#buscar').attr('disabled',false);
+      		}
+      	}
 
+   });
+  });
+</script>
+
+<script>
+function fnOpenNormalDialog(cost,name,id) {
+
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+        	my: "center top",
+			at: "center top",
+			of: $("#principal"),
+			within: $("#principal")
+        },
+        buttons: {
+            	"Si": function () {
+                $(this).dialog('close');
+                callback(true,id);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback(false,id);
+            }
+        }
+    });
+}
+
+function callback(value,id) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuyBook/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('El libro ya forma parte de su colección','','error');
+                    }
+                    else
+                    {	
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : 'MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });
+                    	swal('Libro comprado con exito','','success');
+                  		 console.log(result);
+                  	}	 
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
 @endsection

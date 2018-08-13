@@ -386,9 +386,9 @@ class UserController extends Controller
                 $Albums = 0;
              }
 
-             $song=Songs::where('album','=',$id)->get();
+             
 
-        return view('users.MyAlbums')->with('Albums',$Albums)->with('Song',$song);
+        return view('users.MyAlbums')->with('Albums',$Albums);
         
     }
 

@@ -23,7 +23,8 @@ use App\Transactions;
 
 class ContentController extends Controller
 {
-    
+ 
+//------------------------------------------MUSICA------------------------------------------------------//   
   	public function ShowMusic()
     {
     	$MusicAuthors = music_authors::where('status','=','Aprobado')->get();
@@ -32,14 +33,6 @@ class ContentController extends Controller
 		
 			
 		return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums); 
-    }
-
-    public function ShowAllSingles()
-    {
-    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->with('autors')->get();
-		
-        return Datatables::of($Singles)->make(true);
- 
     }
 
     public function ShowArtist($id)
@@ -94,19 +87,29 @@ class ContentController extends Controller
         }
        
     }
-
+        
     public function ShowAllAlbum()
     {
     	$Albums = Albums::where('status','=','Aprobado')->with('autors')->with('songs')->get();
         return Datatables::of($Albums)->make(true);
     }
 
+    public function ShowAllSingles()
+    {
+        $Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->with('autors')->get();
+        
+        return Datatables::of($Singles)->make(true);
+ 
+    }
+
+
+//----------------------------------------LECTURA------------------------------------------------------
     public function ShowReadingsBooks()
     {
-        $Books= Book::where('status','=','Aprobado')->get();
-        $Megazines= Megazines::where('status','=','Aprobado')->get();
+        $Books= Book::where('status','=','Aprobado')->paginate(9);
+       
         
-        return view('contents.Readings')->with('Books',$Books)->with('Megazines',$Megazines);
+        return view('contents.Readings')->with('Books',$Books);
     }
 
      public function ShowReadingsMegazines()
@@ -114,6 +117,55 @@ class ContentController extends Controller
         $Megazines= Megazines::where('status','=','Aprobado')->get();
 
         return view('contents.Megazines')->with('Megazines',$Megazines);
+    }
+
+    public function seachAuthor(){
+        $query=Input::get('term');
+        $Author=BookAuthor::where('full_name','LIKE','%'.$query.'%')->get();
+        // $book=Book::where('title','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Author as $key) {
+           
+            $data[]=['id' => $key->id, 'value' => $key->full_name, 'type' => 'author'];
+        }
+        // foreach ($book as $key1 ) {
+        //     $data[]=['id' => $key1->id, 'value' => $key1->title];
+        // }
+        if(count($data))
+        {
+            return response()->json($data); 
+        }else
+        {
+         return ['value'=>'No se encuentra...','id'=>''];
+        }
+       
+    }
+    public function ShowAuthor($id)
+    {
+        $Author= BookAuthor::find($id);
+
+        $Books = Book::where('status','=','Aprobado')->where('author_id','=',$id)->get();
+
+
+         if ($Books->count()==0) 
+         {
+             $Books=NULL;
+         } 
+        return view('contents.AuthorProfile')->with('Author',$Author)->with('Books',$Books);
+    }
+
+    public function ShowProfileAuthor(Request $request)
+    {
+        $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
+
+        foreach ($Artist as $key) {
+
+            $prueba=$this->ShowAuthor($key->id);
+        }
+
+        return $prueba;
     }
 }
 
