@@ -131,8 +131,6 @@ Route::get('Referals','ReferalsController@ShowReferals');
 */
 Route::group(['middleware' => 'promoter_guest'], function() {
 
-
-
 Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
@@ -177,8 +175,106 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
 
-        });
 
+        //__________________FIN DE RUTAS DE SOLICITUDES_____________________________
+        
+        //___________________RUTAS DE CONTENIDO_____________________________________
+
+
+
+          //___________________Graficas y datos del Home de Contenido-______________
+
+                Route::get('AdminContent','AdminContentController@Home');
+
+                Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
+                
+                Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
+
+                Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
+
+                Route::get('TagsStatusGraphData','AdminContentController@TagsDountsGraph');
+
+                Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
+
+                Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
+          //________________________________________________________________________
+
+
+           //_______________________ALBUMES Y SINGLES________________________________
+
+                Route::get('/admin_albums','AdminController@ShowAlbums');
+                Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
+                Route::get('AlbumDataTable','AdminController@AlbumsDataTable');
+                Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
+                Route::post('/admin_album/{id}','AdminController@AlbumStatus');
+
+                Route::get('/admin_single','AdminController@ShowSingles');
+                Route::get('SingleData','AdminController@SinglesDataTable');
+                Route::post('/admin_single/{id}','AdminController@SingleStatus');
+
+           //---------------------------------------------------------------------
+
+           //---------------------------ETIQUETAS-----------------------------------
+                Route::get('TagsReview','TagController@ShowPendingTags');
+                Route::get('TagsData','TagController@DataTableRender');
+                Route::post('AprobalDenialTag/{id}','TagController@AprovalDenial');
+           //-----------------------------------------------------------------------
+
+           //------------------------MUSICOS Y ARTISTAS----------------------------
+                Route::get('/admin_musician','AdminController@ShowMusicianView');
+                Route::get('MusicianData','AdminController@MusicianDataTable');
+                Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
+           //----------------------------------------------------------------------
+
+           //-----------------REVISTAS Y CADENAS DE PUBLICAION-----------------------
+                
+                Route::get('/admin_megazine','AdminController@ShowMegazine');
+                
+                Route::get('MegazineDataTable','AdminController@MegazineDataTable');
+
+                Route::get('PubChainDataTable','AdminController@ShowPublicationChain');
+                
+                Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
+                
+                Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
+                
+                Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
+                
+                Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
+           //------------------------------------------------------------------------
+
+           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
+                Route::get('admin_books','AdminController@ShowBooks');
+                Route::get('BooksData','AdminController@BooksDataTable');
+                Route::post('books_status/{id}','AdminController@EstatusBooks');
+
+                Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
+                Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
+           //------------------------------------------------------------------------
+
+           //--------------------AUTORES LITERARIOS----------------------------------
+
+                Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
+                Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
+                Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
+           //------------------------------------------------------------------------
+
+
+
+            //-----------------------------------------------------------------------
+
+        //________________Fin de las rutas de contenido_____________________________
+
+        //______________________Rutas de Clientes___________________________________
+
+                Route::get('/admin_clients','AdminController@ShowPendingClients');
+                Route::get('ClientsDataTable','AdminController@ClientsData');
+                Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
+                Route::post('ValidateUser/{id}','AdminController@ValidateUser');
+
+        //______________________Fin de las rutas de Clientes________________________
+        
+    });
 });
 
 /*------------------------------------------------------------------

@@ -12,7 +12,8 @@
         
 
              <form method="POST" id="formStatus">
-                              {{ csrf_field() }}
+                              <?php echo e(csrf_field()); ?>
+
 
               <div class="radio-inline">
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">

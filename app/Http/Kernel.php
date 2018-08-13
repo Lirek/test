@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
 
          'Admin' => \App\Http\Middleware\AdminMiddleware::class,
          'Operator' => \App\Http\Middleware\OperatorMiddleware::class,
+         'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+         'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
     ];
 }

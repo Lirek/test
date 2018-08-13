@@ -1,6 +1,4 @@
-@extends('promoter.layouts.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
  <div class="row mt">
 	<h2><i class="fa fa-angle-right"></i>Usuarios Pendientes de Aprobacion</h2>
   </div>
@@ -25,10 +23,10 @@
 		</div>
 	</div>
   </div>
-@include('promoter.modals.ClientViewModal')
-@endsection
+<?php echo $__env->make('promoter.modals.ClientViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 	$(document).ready(function(){
 
@@ -37,7 +35,7 @@
 	        serverSide: true,
             responsive: true,
 
-	        ajax: '{!! url('ClientsDataTable') !!}',
+	        ajax: '<?php echo url('ClientsDataTable'); ?>',
 	        columns: [
 	            {data: 'name', name: 'name'},
 	            {data: 'num_doc', name: 'num_doc'},
@@ -117,4 +115,5 @@
     });
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
