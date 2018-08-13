@@ -9,6 +9,7 @@ use App\Sagas;
 use App\Rating;
 use App\Episode;
 use Laracasts\Flash\Flash;
+use File;
 
 class SeriesController extends Controller
 {
@@ -38,10 +39,10 @@ class SeriesController extends Controller
         $seller_id = $request->seller_id;
         $store_path = public_path().'/Serie/'.$request->title;
         $name = 'seriecover_'.$request->title.time().'.'.$request->file('img_poster')->getClientOriginalExtension();
-
-        list($e,$real_path)=explode(public_path(),$store_path);
-        $path = $real_path .'/'.$name;
         $request->file('img_poster')->move($store_path, $name);
+
+        list($e,$real_path) = explode(public_path(),$store_path);
+        $path = $real_path .'/'.$name;
 
         $i = 0;
         $status = 2;
@@ -142,11 +143,12 @@ class SeriesController extends Controller
         //dd($request->episodio_file[0]->getClientOriginalExtension());
         $serie = Serie::find($request->serieId);
         //rename(public_path().'/Serie/'.$serie->title,public_path().'/Serie/'.$request->title);
+        $store_path = public_path().'/Serie/'.$serie->title;
 
         if ($request->img_poster!=null) {
             //unlink(public_path().$serie->img_poster);
 
-            $store_path = public_path().'/Serie/'.$serie->title;
+            //$store_path = public_path().'/Serie/'.$serie->title;
 
             $name = 'seriecover_'.$serie->title.time().'.'.$request->file('img_poster')->getClientOriginalExtension();
 
@@ -200,21 +202,22 @@ class SeriesController extends Controller
 
                 $serieEpisodes = new Episode;
 
-                $name1 = 'episode_'.$name.time().'.'.$request->episodio_file[$x]->getClientOriginalExtension();
-                $x++;
+                $name1 = 'episode_'.$request->episodio_name[$x].time().'.'.$request->episodio_file[$x]->getClientOriginalExtension();
 
                 list($e,$real_path)=explode(public_path(),$store_path);
                 $path = $real_path .'/'.$name1;
-                $file = $request->episode_file[$i]->move($store_path, $name1);
+                $file = $request->episodio_file[$x]->move($store_path, $name1);
                 $serieEpisodes->episode_file= $path;
 
                 $serieEpisodes->seller_id   = $request->seller_id;
+                $serieEpisodes->series_id   = $request->serieId;
                 $serieEpisodes->cost        = $request->episodio_cost[$i];
                 $serieEpisodes->episode_name= $request->episodio_name[$i];
                 $serieEpisodes->sinopsis    = $request->sinopsis[$i];
                 $serieEpisodes->status      = $status;
                 $serieEpisodes->trailer_url = $request->trailerEpisodio[$i];
                 $serieEpisodes->save();
+                $x++;
             }
         }
         //$serie->Episode()->save($serieEpisodes);
@@ -238,14 +241,42 @@ class SeriesController extends Controller
 
     public function destroyEpisode($idE,$idS) {
 
-        $episode = Episode::find($idE);
-        unlink(public_path().$episode->episode_file);
-        $episode->delete();
+        $serie = Serie::find($id);
+        $episodios = $serie->Episode()->get();
 
-        Flash::success('Se ha eliminado el episodio con éxito')->important();
+        foreach ($episodios as $e) {
+            File::delete(public_path().$e->episode_file);
+            $e->delete();
+        }
+
+        File::delete(public_path().$serie->img_poster);
+        $serie->delete();
+
+        Flash::success('Se ha eliminado la serie de manera éxitosa')->important();
 
         return redirect()->action(
-            'SeriesController@edit',['id'=>$idS]
+            'SeriesController@index'
         );
+    }
+
+    public function destroy($id) {
+        
+        $serie = Serie::find($id);
+        $episodios = $serie->Episode()->get();
+
+        foreach ($episodios as $e) {
+            File::delete(public_path().$e->episode_file);
+            $e->delete();
+        }
+
+        File::delete(public_path().$serie->img_poster);
+        $serie->delete();
+
+        Flash::success('Se ha eliminado la serie de manera éxitosa')->important();
+
+        return redirect()->action(
+            'SeriesController@index'
+        );
+
     }
 }

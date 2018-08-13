@@ -170,13 +170,20 @@
 
                         <div class="form-group col-md-6">
                             {{--Selecion el autor--}}
-                            <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                            {!! Form::select('author_id',$author,null,['class'=>'form-control','placeholder'=>'Selecione el autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMA">
-                                <i class="fa fa-user"></i>
-                                Agregar autor
-                            </a>
-                            <br><br>
+                            @if(count($author)!=0)
+                                <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <br>
+                            @else
+                                <label id="faltaRegistro" style="color: red;"> 
+                                    Usted aun no tiene registros de sus datos como autor de libros, por favor agregue dichos datos primero 
+                                </label>
+                                <a class="btn btn-danger" data-toggle="modal" data-target="#modal-defaultMA">
+                                    <i class="fa fa-user"></i>
+                                    Agregar autor
+                                </a>
+                                <br><br>
+                            @endif
 
                             {{--titulo del libro--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
@@ -568,10 +575,12 @@
                                 </div>
 
                                 {{--link de twitter--}}
+                                {{--
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
                                     {!! Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
+                                --}}
                             </div>
                             {{--final de la agrupacion--}}
 

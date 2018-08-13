@@ -330,7 +330,7 @@
                                 <label for="rrhh" class="control-label">Redes sociales</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
-                                    <input type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="http(s)?://(.*\.)?youtube\.com\/[A-z 0-9 _]+\/?" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')">
+                                    <input type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="http(s)?://(.*\.)?youtube\.com\/[A-z 0-9 /_]+\/?" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
@@ -340,10 +340,12 @@
                                     <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
                                     <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" oninvalid="this.setCustomValidity('Ingrese una cuenta de Facebook valida')" oninput="setCustomValidity('')" >
                                 </div>
+                                {{--
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
                                     <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="form-control" placeholder="Twitter" oninvalid="this.setCustomValidity('Ingrese una cuenta de Twitter valida')" oninput="setCustomValidity('')">
                                 </div>
+                                --}}
                             </div>
                         </div>
                     </div>

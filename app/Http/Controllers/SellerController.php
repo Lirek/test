@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Seller;
 use App\ApplysSellers;
 use Laracasts\Flash\Flash;
+//use App\music_authors;
 
 class SellerController extends Controller
 {
@@ -50,7 +51,6 @@ class SellerController extends Controller
         foreach ($seller->roles as $role) 
         {
             $seller_modules[] = $role;
-            //dd($role->name);
 
             switch ($role->name) 
             {
@@ -61,24 +61,7 @@ class SellerController extends Controller
 
                     $content_song = count($seller->songs()->where('album',0)->get());
                     $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
-                    //dd($content_song);
-                    /*
-                    $songs=0;
-                    $aproved_song=0;
 
-                    foreach ($seller->songs()->get() as $key) 
-                    {
-                        if ($key->album =! NULL or $key->album =! 0) 
-                        {
-                            $songs++;
-
-                            if ($key->status == 'Aprobado') 
-                            {
-                                $aproved_song++;   
-                            }
-                        }  
-                    }
-                    */
                     $musical_content = $content_album+$content_song;
                     $musical_aproved = $aproved_album+$aproved_song;
                     //dd($musical_content,$musical_aproved);
@@ -133,6 +116,26 @@ class SellerController extends Controller
         //dd($total_aproved);
         $followers=count($seller->followers()->get());
         //dd($followers);
+
+        $user = Seller::find(Auth::guard('web_seller')->user()->id);
+        $referals1 = $user->referals()->count();
+        $referals2 = 0;
+        $referals3 = 0;
+        
+        foreach ($user->referals()->get() as $key) {
+
+            $referals = Seller::find($key->refered);
+            $referals2 = $referals->referals()->count()+$referals2;
+
+            foreach ($referals->referals()->get() as $key2) {
+
+                $referals = Seller::find($key2->refered);
+                $referals3 = $referals->referals()->count()+$referals3;
+            }
+        }
+
+        //$autor = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
+        //dd(count($autor));
         
         return view('seller.home')
                 ->with('total_content',$total_content)
@@ -152,7 +155,11 @@ class SellerController extends Controller
                 ->with('movie_aproved',$movie_aproved)
                 ->with('musical_content',$musical_content)
                 ->with('musical_aproved',$musical_aproved)
-                ->with('modulos',$seller_modules);
+                //->with('artist',$autor)
+                ->with('modulos',$seller_modules)
+                ->with('referals1',$referals1)
+                ->with('referals2',$referals2)
+                ->with('referals3',$referals3);
     }
 
     //Funcion Encargada de Cargar el Formulario para el Registro que completo

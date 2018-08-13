@@ -15,14 +15,14 @@
                         <h3 class="box-title">Películas registradas</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Código</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Categoría</th>
                                     <th class="text-center">Portada</th>
+                                    <th class="text-center">Categoría</th>
+                                    <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -30,14 +30,14 @@
                                 @foreach($movie as $m)
                                     @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
                                         <tr>
-                                            <td class="text-center"> {{ $m->id }} </td>
                                             <td class="text-center"> {{ $m->title }} </td>
-                                            <td class="text-center"> {{ $m->rating->r_name }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('movies.show', $m->id) }}">
                                                     <img class="img-rounded img-responsive text-center" src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:70px;height:70px;margin-left:25%;" alt="Portada">
                                                 </a>
                                             </td>
+                                            <td class="text-center"> {{ $m->rating->r_name }} </td>
+                                            <td class="text-center"> {{ $m->status }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -55,10 +55,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center">Código</th>
                                     <th class="text-center">Título</th>
-                                    <th class="text-center">Categoría</th>
                                     <th class="text-center">Portada</th>
+                                    <th class="text-center">Categoría</th>
+                                    <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>

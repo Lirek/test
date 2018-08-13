@@ -109,10 +109,12 @@
                             </div>
 
                             {{--link de twitter--}}
+                            {{--
                             <div class="input-group col-xs-12">
                                 <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
                                 {!! Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
                             </div>
+                            --}}
                             {{--final de la agrupacion--}}
                         </div>
                     </div>

@@ -5,17 +5,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
 @endsection
 @section('content')
-	<section class="content">
+    <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 @include('flash::message')
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Series Registradas</h3>
+                        <h3 class="box-title">Series registradas</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -23,8 +23,9 @@
                                     <th class="text-center">Portada</th>
                                     <th class="text-center">Estado</th>
                                     <th class="text-center">Costo</th>
-                                    <th class="text-center">Año de Lanzamiento</th>
+                                    <th class="text-center">Año de lanzamiento</th>
                                     <th class="text-center">Episodios</th>
+                                    <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -32,24 +33,25 @@
                                 @foreach($serie as $s)
                                     @if(Auth::guard('web_seller')->user()->id === $s->seller_id)
                                         <tr>
-                                            <td class="text-center"> {{ $s->id }} </td>
                                             <td class="text-center"> {{ $s->title }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('series.show', $s->id) }}">
                                                     <img class="img-rounded img-responsive text-center" src="{{ asset($s->img_poster)}}" style="width:70px;height:70px;margin:8%;" alt="Portada">
                                                 </a>
                                             </td>
+                                            <td class="text-center"> {{ $s->status_series }} </td>
                                             <td class="text-center"> {{ $s->cost }} </td>
                                             <td class="text-center"> {{ $s->release_year }} </td>
                                             <td class="text-center"> {{ count($s->episode) }} </td>
+                                            <td class="text-center"> {{ $s->status }} </td>
                                             <td class="text-center">
-                                                <a href="{{ route('series.show', $s->id) }}" class="btn btn-info btn-xs">
+                                                <a href="{{ route('series.show',$s->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
                                                 </a>
                                                 <a href="{{ route('series.edit',$s->id) }}" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="{{ route('series.destroy',$s->id) }}" onclick="return confirm('¿Realmente desea eliminar la película: {{ $s->title }}?')" class="btn btn-danger btn-xs">
+                                                <a href="{{ route('seriesDestroy', $s->id) }}" onclick="return confirm('¿Desea eliminar la serie {{ $s->title }}?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
                                                 </a>
                                             </td>
@@ -63,8 +65,9 @@
                                     <th class="text-center">Portada</th>
                                     <th class="text-center">Estado</th>
                                     <th class="text-center">Costo</th>
-                                    <th class="text-center">Año de Lanzamiento</th>
+                                    <th class="text-center">Año de lanzamiento</th>
                                     <th class="text-center">Episodios</th>
+                                    <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -81,7 +84,7 @@
                     <div class="box-title">
                         <i class="li_video"></i>
                         <span>
-                            Agregar más Series
+                            Agregar más series
                         </span>
                     </div>
                 </b>

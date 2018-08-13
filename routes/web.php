@@ -407,6 +407,15 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::get('/artist_form', 'ArtistController@ShowArtistForms');
     /*------------------------------------------------------------*/
 
+    // Rutas nuevas 09-08-2018
+    //es para modificar la informacion del artista o grupo musical que pertenece
+    /*---------- Registrar Artistas o Grupos Musicales ------------*/
+    Route::get('/modify_artist', 'ArtistController@modify_artist');
+    Route::post('/save_modify_artist', 'ArtistController@save_modify_artist');
+    /*------------------------------------------------------------*/
+    //es para modificar la informacion del artista o grupo musical que pertenece
+    // Rutas nuevas 09-08-2018
+
     /*---------- Registrar Albums -------------------------------*/
     Route::post('/albums', 'AlbumsController@CreateAlbum');
     Route::get('/albums', 'AlbumsController@ShowAlbumstForms');
@@ -414,7 +423,8 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Albums -------------------------- */
     Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
-    Route::post('/modify_album/{id}', 'AlbumsController@UpdateAlbum');
+    Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
+    Route::get('/musicFromAlbum/{id}', 'AlbumsController@musicFromAlbum');
     /*--------------------------------------------------------------*/
 
     /*------------------Borrar Albums-------------------------------*/
@@ -423,6 +433,10 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Mostrar Albums- ----------------------------*/
     Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
+    /*--------------------------------------------------------------*/
+
+    /*-------------Listar Canciones de los Albums-------------------*/
+    Route::get('/SongsAlbums/{id}','AlbumsController@SongAlbum');
     /*--------------------------------------------------------------*/
 
 
@@ -442,6 +456,18 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+    /*--------------------------------------------------------------*/
+
+    /*----------------------Agregar Tags--------------------------- */
+    Route::resource('tags','TagController');
+    /*--------------------------------------------------------------*/
+
+    /*--------------Panel de "Mi Contenido Musical"---------------- */
+    Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+    /*--------------------------------------------------------------*/
+
+    /*---------Canciones del Panel "Mi Contenido Musical"------------*/
+    Route::get('/music_of_my_music_panel/{id}', 'MusicController@ShowMusicOfMyPanel');
     /*--------------------------------------------------------------*/
 
     /*--------------AJAX de Guardar Etiquetas---------------------- */
@@ -475,16 +501,39 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     Route::resource('series', 'SeriesController');
 
+    Route::get('showEpisode/{idE}/{idS}',[
+        'uses'  => 'SeriesController@showEpisode',
+        'as'    => 'series.showEpisode'
+    ]);
+
+    Route::get('seriesDestroy/{id}', [
+        'uses' => 'SeriesController@destroy',
+        'as'   => 'seriesDestroy'
+    ]);
+
+    /*
+    modificada de manera generica
     //para q guarde el modal
     Route::post('sagas/registerS', [
         'uses' => 'SagaController@registerSeries',
         'as' => 'sagas.registerS'
     ]);
+    */
+
+    Route::get('destroyEpisode/{idE}/{idS}', [
+        'uses' => 'SeriesController@destroyEpisode',
+        'as' => 'destroyEpisode'
+    ]);
+
+    /*
+
+    PROBAR ESTA RUTA AL ELIMINAR
 
     Route::get('series/{id}/destroy', [
         'uses' => 'SeriesController@destroy',
         'as' => 'series.destroy'
     ]);
+    */
 
     /*-------------------------------------------------------------------------
     ---------------------------------------------------------------------------
@@ -744,6 +793,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
         'uses' => 'BooksAuthorsController@destroy',
         'as' => 'authors_books.destroy'
     ]);
+    //nueva ruta 09-08-2018
+    Route::get('show_books/', [
+        'uses' => 'BooksAuthorsController@showBooks',
+        'as' => 'authors_books.showBooks'
+    ]);
+    //nueva ruta 09-08-2018
 
     /*---------------------------------------------------------------------------
     -----------------------------------------------------------------------------
@@ -768,9 +823,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 
     Route::get('/seller_home','SellerController@homeSeller');
-
-
-
 
 
 });

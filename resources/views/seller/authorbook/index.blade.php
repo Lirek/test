@@ -37,7 +37,7 @@
                                         <td class="text-center"> {{ $author->full_name }} </td>
                                         <td class="text-center"> {{ $author->email_c }} </td>
                                         <td class="text-center ">
-                                            <a href="{{ route('authors_books.show', $author->id) }}" class="btn btn-info btn-xs">
+                                            <a href="{{ url('/tbook') }}" class="btn btn-info btn-xs">
                                                 <span class="fa fa-eye"></span>
                                             </a>
                                             <a href="{{ route('authors_books.edit', $author->id) }}" class="btn btn-warning btn-xs">
@@ -68,6 +68,7 @@
             </div>
         </div>
         <br>
+        {{--
         <div class="col-md-offset-9">
             <a href="{{ route('authors_books.create') }}" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
@@ -80,6 +81,7 @@
                 </b>
             </a>
         </div>
+        --}}
     </section>
 
 @endsection
