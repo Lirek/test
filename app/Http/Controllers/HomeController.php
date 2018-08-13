@@ -40,7 +40,11 @@ class HomeController extends Controller
     {
         $user= User::find(Auth::user()->id);
         
-        $Transacctions= Transactions::where('user_id','=',Auth::user()->id)->get(); 
+        $TransacctionsSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->count(); 
+        $TransacctionsAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->count();
+        $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
+        $TransacctionsMegazine= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->count(); 
+        $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();   
         
         $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->first();
         
@@ -72,9 +76,12 @@ class HomeController extends Controller
             return redirect('/admin');
         }
 
-
+        $TransacctionsMusic=$TransacctionsSingle+$TransacctionsAlbum;
+        $TransactionsLecture=$TransacctionsMegazine+$TransacctionsBook;
         return view('home')
-                             ->with('Transactions',$Transacctions)
+                             ->with('TransactionsMusic',$TransacctionsMusic)
+                             ->with('TransacctionsLecture',$TransactionsLecture)
+                             ->with('TransactionsMovies',$TransacctionsMovies)
                              ->with('Songs',$Songs)
                              ->with('Albums',$Albums)
                              ->with('Movies',$Movies)
@@ -118,5 +125,11 @@ class HomeController extends Controller
                          );
 
         return Response()->json($Content);
+    }
+
+    public function MyTickets($id)
+    {
+        $MyTickets=Auth::user()->credito;
+        return Response()->json($MyTickets);
     }
 }

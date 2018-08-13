@@ -27,7 +27,7 @@
                             @endif
                         </div>
                         <div class="profile-01 centered">
-                            <p><a href="{{url('PlayList/' .$Single->id)}}"> Añadir al Playlist</a></p>
+                            <p><a href="{{url('PlayList/' .$Single->id)}}" style="color: #ffff"> Añadir al Playlist</a></p>
                         </div>
                         <div class="centered">
                             <h3>{{$Single->autors->name}}</h3>

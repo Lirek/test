@@ -144,7 +144,7 @@
                   @endif
                   <h5 class="centered">{{Auth::user()->name}}</h5>
                   <div class="card-content white-text">
-                      <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::user()->credito}}</p></h6></span>
+                      <span class="card-title centered"><h6>Tickets Disponibles: <p id="Tickets"></p></h6></span>
                       
                   </div>  
                     
@@ -165,6 +165,7 @@
                     </a>
                     <ul class="sub">
                       <li><a href="{{url('MusicContent')}}">Música</a></li>
+                      <li><a href="{{url('ReadingsBooks')}}">Libros</a></li>
                     </ul>
                   </li>
 
@@ -247,7 +248,7 @@
                     <div class="col-lg-9 main-chart">
                         @yield('main')
                     </div>
-                    <div class="col-lg-3 ds">
+                    <div class="col-lg-3 ds" id="Rigth">
                         @include('layouts.partials.siderRigth') 
                     </div><!-- /col-lg-3 -->
                 </div>
@@ -327,6 +328,22 @@
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
+    </script>
+    <script>
+       $(document).ready(function(){
+        var id={!!Auth::user()->id!!};
+        $.ajax({ 
+                
+                url     : 'MyTickets/'+id,
+                type    : 'GET',
+                dataType: "json",
+                success: function (respuesta){
+                  console.log(respuesta);
+                  $('#Tickets').html(respuesta);
+                  
+                },
+              });
+      });
     </script>
     
     @yield('js')

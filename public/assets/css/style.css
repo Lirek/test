@@ -45,7 +45,7 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #68dff0;
+	background: #23B5E6;
 }
 
 .modal-title {
@@ -197,7 +197,7 @@ hr {
 }
 .gocenter {
     text-align: center;
-    margin-left: 80px;
+    margin-left: 26%;
     margin-top: 10px;
     color: #333;
 }
@@ -1159,10 +1159,10 @@ PANELS CONFIGURATIONS
 }
 
 .white-panel .white-header {
-	background: #f4f4f4;
+	background: #23B5E6;
 	padding: 3px;
 	margin-bottom: 15px;
-	color: #c6c6c6;
+	color: #f5f5f5;
 }
 .white-panel .small {
 	font-size: 10px;
@@ -1170,7 +1170,7 @@ PANELS CONFIGURATIONS
 }
 
 .white-panel i {
-	color: #68dff0;
+	color: #f5f5f5;
 	padding-right: 4px;
 	font-size: 14px;
 }
@@ -1604,7 +1604,7 @@ PANELS CONFIGURATIONS
 	font-weight: 900;
 }
 .profile-01 {
-	background: #68dff0;
+	background: #23B5E6;
 	height: 50px;
 }
 .profile-01:hover {

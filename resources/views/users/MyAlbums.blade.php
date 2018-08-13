@@ -16,7 +16,7 @@
 
                  
                 <!-- PROFILE 01 PANEL -->
-               
+               @if($Albums != 0)
                 <div class="form-panel">
                     <div class="col-lg-4 col-md-4 col-sm-4 mb">
                         <div class="content-panel pn-music">
@@ -46,9 +46,11 @@
                                 <source src="" type="audio/mp3" id="play"> 
                             </audio>
                     </div>
-
     
                 </div>
+                @else
+                    <h1>No Posee Albums</h1>
+                @endif
             </div>
         </div> 
     </div> 

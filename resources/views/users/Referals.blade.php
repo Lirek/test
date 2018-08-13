@@ -6,7 +6,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
     <div class="row mtbox">  
-        <div class="col-md-5 col-sm-5 mb">
+        <div class="col-md-6 col-sm-6 mb">
           <div class="white-panel refe">
             <div class="white-header">
                 <h5><i class="fa fa-user"></i>Mi Codigo de Referido:</h5>
@@ -21,7 +21,7 @@
           </div>
         </div><!-- /col-md-5 -->
 
-        <div class="col-md-5 col-sm-5 mb">
+        <div class="col-md-6 col-sm-6 mb">
           <div class="white-panel refe">
             <div class="white-header">
                 <h5><i class="fa fa-envelope-o"></i>Invitar por correo</h5>
@@ -48,7 +48,7 @@
             <div class="row white-size">
                 <div class="col-sm-12 col-xs-12 gocenterRef ">
                   <p>
-                    <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                    <h5><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h5>
                   </p>
                 </div>
             </div>

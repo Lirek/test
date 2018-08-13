@@ -41,6 +41,8 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 
 Route::get('/home', 'HomeController@index');
 Route::get('ContentGraph', 'HomeController@DataContentGraph');
+Route::get('MyTickets/{id}', 'HomeController@MyTickets');
+//Route::resource('App', 'TareasController');
 
 //---------------------------------------------------------------------
 
@@ -48,7 +50,13 @@ Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
 
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
-Route::resource('users', 'UserController');
+Route::get('app', function () {
+    return view('layouts.app');
+});
+Route::get('rigth', function () {
+    return view('layouts.partials.siderRigth');
+});
+
 
 //-------------------Funciones del Usuarios----------------------------------
 
@@ -94,6 +102,9 @@ Route::post('Invite','UserController@Invite');
     //Agregada 3/8/2018
     Route::get('DownloadQr','UserController@qrDownload');
 
+     //Agregada 8/8/2018
+    Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
+
 
 //---------------------------------------------------------------------------
 
@@ -108,6 +119,9 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
 //Agrega 3/8/2018
     Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
+//Agregada 09/8/2018
+    Route::post('SearchProfileAuthor','ContentController@ShowProfileAuthor');
+    Route::get('ProfileBookAuthor/{id}','ContentController@ShowAuthor');
 
 //---------------------------------------------------------------------------
 

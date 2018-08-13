@@ -10,42 +10,42 @@
               
                   
                   
-                    <div class="row mtbox">
+                    <div class="row mtbox" id="principal">
 
                       <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                         <div class="box1">
                           <span class="li_music"></span>
-                          <h3>933</h3>
+                          <h3>{{$TransactionsMusic}}</h3>
                         </div>
-                        <p>933 People liked your page the last 24hs. Whoohoo!</p>
+                       <!--  <p>933 People liked your page the last 24hs. Whoohoo!</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_tv"></span>
-                          <h3>+48</h3>
+                          <h3>0</h3>
                         </div>
-                        <p>48 New files were added in your cloud storage.</p>
+                        <!-- <p>48 New files were added in your cloud storage.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_sound"></span>
-                          <h3>23</h3>
+                          <h3>0</h3>
                         </div>
-                        <p>You have 23 unread messages in your inbox.</p>
+                        <!-- <p>You have 23 unread messages in your inbox.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_video"></span>
-                          <h3>+10</h3>
+                          <h3>{{$TransactionsMovies}}</h3>
                         </div>
-                        <p>More than 10 news were added in your reader.</p>
+                        <!-- <p>More than 10 news were added in your reader.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_vallet"></span>
-                          <h3>OK!</h3>
+                          <h3>{{$TransacctionsLecture}}</h3>
                         </div>
-                        <p>Your server is working perfectly. Relax & enjoy.</p>
+                       <!--  <p>Your server is working perfectly. Relax & enjoy.</p> -->
                       </div>
 
                     </div><!-- /row mt -->  
@@ -63,7 +63,7 @@
                             </div>
                             <div class="row">
                                <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                                  <p><i class="fa fa-user"></i></p>
+                                  <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
                                   <div class="paragraph">
                                     <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil</p>
                                       <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Finalizar Registro</a></p>
@@ -159,7 +159,7 @@
                         </div>
                           <div class="row">
                             <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                              <p><i class="fa fa-user"></i></p>
+                              <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
                               <div class="paragraph">
                                 <p class="center " id="mensaje"></p>
                                  <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
@@ -214,18 +214,18 @@
                                 <thead>
                                 <tr>
                                   <th></th>
-                                  <th><i class="fa fa-bullhorn"></i>Nombre</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>Tipo</th>
-                                  <th><i class="fa fa-money"></i>Costo</th>
-                                  <th class="hidden-phone"><i class=" fa fa-edit"></i>Proveedor</th>
+                                  <th><i class="fa fa-bullhorn" style="color: #23B5E6"></i>Nombre</th>
+                                  <th class="hidden-phone"><i class="fa fa-question-circle"  style="color: #23B5E6"></i>Tipo</th>
+                                  <th><i class="fa fa-money" style="color: #23B5E6"></i>Costo</th>
+                                  <th class="hidden-phone"><i class=" fa fa-edit"  style="color: #23B5E6"></i>Proveedor</th>
                                 </tr>
                               </thead>
                               <tbody>
 
                               @if($Songs)
                                 <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_music"></i></span></td>
-                                  <td><a href=""> {{$Songs->song_name}}</a></td>
+                                  <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->title!!}','{!!$Songs->id!!}')" id="modal-confir"> {{$Songs->song_name}}</a></td>
                                   <td class="hidden-phone">Single</td>
                                   <td>{{$Songs->cost}}</td>
                                   <td class="hidden-phone">{{$Songs->Seller->name}}</td>
@@ -234,8 +234,8 @@
 
                               @if($Albums)
                                 <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_vynil"></i></span></td>
-                                  <td><a href=""> {{$Albums->name_alb}}</a></td>
+                                  <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')" id="modal-confirAlbum"> {{$Albums->name_alb}}</a></td>
                                   <td class="hidden-phone">Album Musical</td>
                                   <td>{{$Albums->cost}}</td>
                                   <td class="hidden-phone">{{$Albums->Seller->name}}</td>
@@ -244,7 +244,7 @@
 
                               @if($Tv)
                                 <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_tv"></i></span></td>
+                                  <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
                                   <td><a href=""> {{$Tv->name_r}}</a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
@@ -254,8 +254,8 @@
 
                             @if($Book)
                               <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-book"></i></span></td>
-                                <td><a href=""> {{$Book->title}}</a></td>
+                                <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
+                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"> {{$Book->title}}</a></td>
                                 <td class="hidden-phone">Libro</td>
                                 <td>{{$Book->cost}}</td>
                                 <td class="hidden-phone">{{$Book->seller->name}}</td>
@@ -264,7 +264,7 @@
 
                             @if($Megazines)
                               <tr class="letters">
-                                <td><span class="bg-r"><i class="li_news"></i></span></td>
+                                <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
                                 <td><a href=""> {{$Megazines->title}}</a></td>
                                 <td class="hidden-phone">Revista</td>
                                 <td>{{$Megazines->cost}}</td>
@@ -274,7 +274,7 @@
 
                             @if($Radio)
                               <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-microphone"></i></span></td>
+                                <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
                                 <td><a href=""> {{$Radio->name_r}}</a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
@@ -284,7 +284,7 @@
 
                             @if($Movies)
                               <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-video-camera"></i></span></td>
+                                <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
                                 <td><a href=""> {{$Movies->title}}</a></td>
                                 <td class="hidden-phone">Pelicula</td>
                                 <td>{{$Movies->cost}}</td>
@@ -377,7 +377,7 @@
                       <!--custom chart end-->
             </div>
           </div><!-- /row --> 
-           
+          <div id="modal-confirmation"></div> 
 
           @endsection
 
@@ -550,5 +550,225 @@ restaFechas = function(f1,f2)
         te = String.fromCharCode(tecla);
         return patron.test(te); 
     }
+</script>
+  
+<script>
+  //-------------COMPRA DE SINGLES---------
+function fnOpenNormalDialog(cost,name,id) {
+
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+          my: "center top",
+      at: "center top",
+      of: $("#principal"),
+      within: $("#principal")
+        },
+        buttons: {
+              "Si": function () {
+                $(this).dialog('close');
+                callback(true,id);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback(false,id);
+            }
+        }
+    });
+}
+
+
+
+function callback(value,id) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuySong/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('La canción ya forma parte de su colección','','error');
+                    }
+                    else
+                    { 
+                      swal('Cancion comprada con exito','','success');
+                       console.log(result);
+                    }  
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
+<script>
+  //-----COMPRA DE ALBUMS-----------------
+function fnOpenNormalDialog2(cost,name,id) {
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+          my: "center top",
+      at: "center top",
+      of: $("#principal"),
+      within: $("#principal")
+        },
+        buttons: {
+              "Si": function () {
+                $(this).dialog('close');
+                callback2(true,id);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback2(false,id);
+            }
+        }
+    });
+}
+
+
+function callback2(value,id) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuyAlbum/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                    }
+                    else if (result==1) 
+                    {
+                      swal('El album ya forma parte de su colección','','error');
+                    }
+                    else
+                    { 
+                      swal('Album comprado con exito','','success');
+                       console.log(result);
+                    }  
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
+<script>
+function fnOpenNormalDialog3(cost,name,id) {
+
+
+    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
+
+    // Define the Dialog and its properties.
+    $("#modal-confirmation").dialog({
+        resizable: false,
+        modal: true,
+        title: "Confirmar",
+        height: 250,
+        width: 400,
+        position: {
+          my: "center top",
+      at: "center top",
+      of: $("#principal"),
+      within: $("#principal")
+        },
+        buttons: {
+              "Si": function () {
+                $(this).dialog('close');
+                callback(true,id);
+            },
+                "No": function () {
+                $(this).dialog('close');
+                callback(false,id);
+            }
+        }
+    });
+}
+
+function callback3(value,id) {
+    if (value) {
+         $.ajax({
+                    
+            url:'BuyBook/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('El libro ya forma parte de su colección','','error');
+                    }
+                    else
+                    { 
+                      swal('Libro comprada con exito','','success');
+                       console.log(result);
+                    }  
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
 </script>
 @endsection
