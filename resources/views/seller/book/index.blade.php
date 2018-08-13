@@ -15,16 +15,18 @@
                         <h3 class="box-title">Libros registrados</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th class="text-center">Código</th>
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center">Año de lanzamiento</th>
+                                {{--
                                 <th class="text-center">Autor</th>
+                                --}}
+                                <th class="text-center">Estatus</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -32,7 +34,6 @@
                             @foreach($book as $b)
                                 @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
                                     <tr>
-                                        <td class="text-center"> {{ $b->id }} </td>
                                         <td class="text-center"> {{ $b->title }} </td>
                                         <td class="text-center">
                                             <a href="{{ route('tbook.show', $b->id) }}">
@@ -44,7 +45,10 @@
                                         --}}
                                         <td class="text-center"> {{ $b->rating->r_name }} </td>
                                         <td class="text-center"> {{ $b->release_year }} </td>
+                                        {{--
                                         <td class="text-center"> {{ $b->author->full_name }} </td>
+                                        --}}
+                                        <td class="text-center"> {{ $b->status }} </td>
                                         <td class="text-center ">
                                             <a href="{{ route('tbook.show', $b->id) }}"
                                                class="btn btn-info btn-xs">
@@ -65,12 +69,14 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th class="text-center">Código</th>
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center">Año de lanzamiento</th>
+                                {{--
                                 <th class="text-center">Autor</th>
+                                --}}
+                                <th class="text-center">Estatus</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>

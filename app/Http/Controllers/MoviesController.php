@@ -8,6 +8,7 @@ use App\Seller;
 use App\Sagas;
 use App\Rating;
 use Laracasts\Flash\Flash;
+use File;
 
 class MoviesController extends Controller
 {
@@ -37,13 +38,13 @@ class MoviesController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('img_poster');
-        $name = 'poster' . time() . '.' . $file->getClientOriginalExtension();
-        $path1 = public_path() . '/movie/poster/';
+        $name = 'poster_'.time().'.'.$file->getClientOriginalExtension();
+        $path1 = public_path().'/movie/poster/';
         $file->move($path1, $name);
 
         $files = $request->file('duration');
-        $names = $request->title . '_' . time() . '.' . $files->getClientOriginalExtension();
-        $path2 = public_path() . '/movie/film';
+        $names = $request->title.'_'.time().'.'.$files->getClientOriginalExtension();
+        $path2 = public_path().'/movie/film';
         $files->move($path2, $names);
 
         $movie = new Movie($request->all());
@@ -52,11 +53,10 @@ class MoviesController extends Controller
         $movie->img_poster = $name;
         $movie->duration = $names;
         $movie->trailer_url = $request->trailer_url;
-//        dd($movie);
+        $movie->status = 2;
         $movie->save();
 
-        Flash::success('Se ha registrado ' . $movie->title . ' de forma sastisfactoria')->important();
-
+        Flash::success('Se ha registrado '.$movie->title.' de forma sastisfactoria')->important();
         return redirect()->route('movies.index');
     }
 
@@ -136,12 +136,18 @@ class MoviesController extends Controller
     }
 
     public function destroy($id) {
+        
         $pelicula = Movie::find($id);
         if (\Auth::guard('web_seller')->user()->id === $pelicula->seller_id) {
+
+            File::delete(public_path()."/movie/film/".$pelicula->duration);
+            File::delete(public_path()."/movie/poster/".$pelicula->img_poster);
             $pelicula->delete();
-            Flash::error('Se ha eliminado la película con exito')->important();
+            Flash::success('Se ha eliminado la película con exito')->important();
             return redirect()->route('movies.index');
+
         } else {
+
             Flash::error('No tienes los permisos necesarios para acceder')->important();
             return redirect()->route('movies.index');
         }

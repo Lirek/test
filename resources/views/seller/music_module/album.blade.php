@@ -105,8 +105,6 @@
       dataType: "json",
       success: function (data) {
 
-        console.log(data);
-
         var audio=document.getElementById('player');
 
         $.each(data, function(i,song) {

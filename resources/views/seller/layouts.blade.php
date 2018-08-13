@@ -180,14 +180,14 @@
                         @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
 
                             {{--Accesos a los modulos --}}
-                            <li class="sub-menu">
+                            <li class="sub-menu" style="margin-bottom: 25%;">
                                 <a href="javascript:;">
                                     <i class="li_stack"></i>
                                     <span>Mi contenido</span>
                                 </a>
                                 <ul class="sub">
                                     @if($modulos==false)
-                                        <li class="treeview" style="margin-bottom: 15%;">
+                                        <li class="treeview" style="">
                                             <a href="#">
                                                 Aún no posee módulos 
                                                 asignados.
@@ -205,7 +205,8 @@
                                                     <ul class="sub">
                                                         <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
                                                         <li><a href="{{ url('/single_registration') }}">Registrar canciones</a></li>
-                                                        <!-- Validar que la frase quepa en el espacio -->
+                                                        @if(count(App\music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                        <!-- Validar que las frases quepan en el espacio mostrado -->
                                                         <li class="treeview">
                                                             <a href="{{ url('/artist_form') }}">
                                                                 <span>
@@ -214,7 +215,14 @@
                                                                 </span>
                                                             </a>
                                                         </li>
-                                                        <!-- Validar que la frase quepa en el espacio -->
+                                                        @else
+                                                            <li>
+                                                                <a href="{{ url('/modify_artist') }}">
+                                                                    Modificar datos de artista
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                        <!-- Validar que las frases quepan en el espacio mostrado -->
                                                         <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi música</a></li>
                                                     </ul>
                                                 </li>
@@ -273,9 +281,12 @@
                                                     </a>
                                                     <ul class="sub">
                                                         <li><a href="{{ url('/tbook/create') }}">Registrar libro</a></li>
-                                                        <li><a href="{{ url('/authors_books/create') }}">Registrar autor</a></li>
                                                         <li><a href="{{ url('/tbook') }}">Libros registrados</a></li>
-                                                        <li><a href="{{ url('/authors_books') }}">Autores registrados</a></li>
+                                                        @if(count(App\BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                            <li><a href="{{ url('/authors_books/create') }}">Registrar autor</a></li>
+                                                        @else
+                                                            <li><a href="{{ route('authors_books.edit',Auth::guard('web_seller')->user()->id) }}">Modificar autor</a></li>
+                                                        @endif
                                                     </ul>
                                                 </li>
                                             @endif
@@ -353,7 +364,18 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu">
+                        <li class="sub-menu sidebar-menu hidden-xs" id="nav-accordion" style="position: fixed; bottom: 0px; width: 12%;">
+                            <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span>
+                                    <i class="glyphicon glyphicon-off"></i>
+                                    Salir
+                                </span>
+                            </a>
+                            <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                        <li class="sub-menu sidebar-menu hidden-sm hidden-md hidden-lg hidden-xg" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>

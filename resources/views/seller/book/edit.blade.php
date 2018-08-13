@@ -87,7 +87,7 @@
                             <div class="form-group col-md-6">
                                 {{--Selecion el autor--}}
                                 <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                                {!! Form::select('author_id',$author,$book->author_id,['class'=>'form-control','placeholder'=>'Selecione el autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                {!! Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <br>
 
                                 {{--titulo del libro--}}

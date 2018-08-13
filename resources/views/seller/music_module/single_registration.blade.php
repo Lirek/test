@@ -46,12 +46,21 @@
             <br>
 
             <label for="artist">Artista</label>
-            <select name="artist" class="form-control" required="required">
-              <option value="">Seleccione un artista</option>
-              @foreach($autors as $artist)
-                <option value="{{$artist->id}}">{{$artist->name}}</option>
-              @endforeach
-            </select>
+            <br>
+            @if(count($autors)!=0)
+              <select name="artist" class="form-control" required="required">
+                @foreach($autors as $artist)
+                  <option value="{{$artist->id}}">{{$artist->name}}</option>
+                @endforeach
+              </select>
+            @else
+              <label id="faltaRegistro" style="color: red;"> 
+                Usted aun no tiene registros de sus datos como artista o los datos de su grupo musical, por favor agregue dichos datos primero 
+              </label>
+              <a href="{{ url('/artist_form') }}" class="btn btn-danger">
+                Agregar artista o grupo musical
+              </a>
+            @endif
             <br>
 
           </div>
@@ -66,6 +75,18 @@
 @section('js')
   <script>
 //---------------------------------------------------------------------------------------------------
+// Para evitar el envio de datos si faltan los datos del grupo musical o artista
+    $(document).ready(function(){
+      if ($('#faltaRegistro').length) {
+        $('#registarCancion').attr('disabled',true);
+        //$('#registarCancion').hide();
+      } else {
+        $('#registarCancion').attr('disabled',false);
+        //$('#registarCancion').hide();
+      }
+    });
+// Para evitar el envio de datos si faltan los datos del grupo musical o artista
+//---------------------------------------------------------------------------------------------------
 // Para validar la longtud del nombre de la cancion
     $(document).ready(function(){
         var cantidadMaxima = 191;
@@ -77,10 +98,10 @@
                 $('#mensajeNombreCancion').show();
                 $('#mensajeNombreCancion').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
                 $('#mensajeNombreCancion').css('color','red');
-                $('#registrarAlbum').attr('disabled',true);
+                $('#registarCancion').attr('disabled',true);
             } else {
                 $('#mensajeNombreCancion').hide();
-                $('#registrarAlbum').attr('disabled',false);
+                $('#registarCancion').attr('disabled',false);
             }
         });
     });
@@ -95,10 +116,10 @@
               $('#mensajeCancion').show();
               $('#mensajeCancion').text('La canción es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
               $('#mensajeCancion').css('color','red');
-              $('#registrarAlbum').attr('disabled',true);
+              $('#registarCancion').attr('disabled',true);
           } else {
               $('#mensajeCancion').hide();
-              $('#registrarAlbum').attr('disabled',false);
+              $('#registarCancion').attr('disabled',false);
           }
       });
     });
@@ -112,15 +133,15 @@
           $('#mensajeTickets').show();
           $('#mensajeTickets').text('El costo de tickets no deben exceder los 999 Tickets');
           $('#mensajeTickets').css('color','red');
-          $('#registrarAlbum').attr('disabled',true);
+          $('#registarCancion').attr('disabled',true);
         } else if (tickets<0) {
           $('#mensajeTickets').show();
           $('#mensajeTickets').text('El costo de tickets debe ser mayor a 0');
           $('#mensajeTickets').css('color','red');
-          $('#registrarAlbum').attr('disabled',true);
+          $('#registarCancion').attr('disabled',true);
         } else {
           $('#mensajeTickets').hide();
-          $('#registrarAlbum').attr('disabled',false);
+          $('#registarCancion').attr('disabled',false);
         }
       });
     });

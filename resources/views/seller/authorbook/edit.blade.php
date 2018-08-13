@@ -55,6 +55,7 @@
         @endif
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('flash::message')
 
                 @if(\Auth::guard('web_seller')->user()->id === $author->seller_id)
 
@@ -111,32 +112,25 @@
                                 </div>
                                 {{--link de facebook--}}
                                 <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
                                     {!! Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
 
                                 {{--link de twitter--}}
+                                {{--
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
                                     {!! Form::text('twitter',$author->twitter,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
                                 </div>
+                                --}}
                                 {{--final de la agrupacion--}}
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="form-group col-md-6">
-                                <div align="right">
-                                    <a href="{{ url('/authors_books') }}" class="btn btn-danger">Atrás</a>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div align="left">
-                                    {!! Form::submit('Editar autor', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
-                                </div>
                             </div>
                         </div>
                         <!-- /.box-body -->
                     </div>
+                </div>
+                <div class="form-group text-center">
+                    {!! Form::submit('Editar autor', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
                 </div>
                 {!! Form::close() !!}
             @else

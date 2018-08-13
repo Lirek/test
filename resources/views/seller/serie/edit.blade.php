@@ -563,6 +563,7 @@
             "<div class='row'>"+
                 "<hr>"+
                 "<div class='col-md-6'>"+
+                    "<input type='hidden' name='episodeId[]' value="+0+">"+
                     "<label for='nombre del episodio' class='control-label'>Nombre del episodio</label>"+
                     "<input type='text' name='episodio_name[]' id='episodio_name' placeholder='Nombre del episodio' class='episodio_name"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Nombre del episodio')' oninput='setCustomValidity('')'>"+
                     "<br>"+

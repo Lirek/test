@@ -35,9 +35,9 @@ class AlbumsController extends Controller
     {
 
         $tags = Tags::where('status','=','Aprobado')->where('type_tags','=','Musica')->get();
-        $autors = music_authors::all();
+        $autors = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
                 
-       return view('seller.music_module.album_registration')->with('tags', $tags)->with('autors', $autors);
+        return view('seller.music_module.album_registration')->with('tags', $tags)->with('autors', $autors);
     }
 
     public function musicFromAlbum($idAlbum) {
@@ -57,7 +57,15 @@ class AlbumsController extends Controller
         $i=0;
         $cover = $album->cover;
 
-        return view('seller.music_module.album_modify')->with('tags', $tags)->with('autors', $autors)->with('album', $album)->with('songs', $song)->with('s_tags',$selected)->with('cover',$cover)->with('i',$i)->with('id',$id);
+        return view('seller.music_module.album_modify')
+                    ->with('tags', $tags)
+                    ->with('autors', $autors)
+                    ->with('album', $album)
+                    ->with('songs', $song)
+                    ->with('s_tags',$selected)
+                    ->with('cover',$cover)
+                    ->with('i',$i)
+                    ->with('id',$id);
     }
     
     public function UpdateAlbum(Request $request)
@@ -157,23 +165,21 @@ class AlbumsController extends Controller
 
         $album = Albums::find($id);
         $name = $album->Autors()->get();
-        $album->tags_music()->detach();
         $song = $album->songs()->get();
         $user= Auth::guard('web_seller')->user()->id;
 
-        foreach ($song as $file) {
+        foreach ($song as $s) {
 
-            $delete = Songs::find($file->id);
-            unlink(public_path().$delete->song_file);
-            $delete->delete();
+            File::delete(public_path().$s->song_file);
+            $s->delete();
 
         }
 
-        unlink(public_path().$album->cover);
-        rmdir(public_path()."/Music/".$name[0]->name."/albums/".$album->name_alb);
+        File::delete(public_path().$album->cover);
+        $album->tags_music()->detach();
         $album->delete();
 
-        Flash::success('Se ha eliminado el Álbum con éxito')->important();
+        Flash::success('Se ha eliminado el álbum con éxito')->important();
 
         return redirect()->action(
             'MusicController@ShowMusicPanel',['id'=>$user]
@@ -190,6 +196,7 @@ class AlbumsController extends Controller
       return view('seller.music_module.album')->with('album', $album)->with('songs', $singles)->with('cover',$cover)->with('x',$x);
       
     }
+
     // Funcion que será llamada por al momento de ver un album y devolverá las canciones de dicho album
     public function SongAlbum($id) {
 
@@ -296,12 +303,14 @@ class AlbumsController extends Controller
 
 
 
-    public function ShowSingleForms()
-    {
-      $tags = Tags::all();
-      $autors = music_authors::all();
+    public function ShowSingleForms() {
 
-       return view('seller.music_module.single_registration')->with('tags', $tags)->with('autors', $autors);
+        //$tags = Tags::all();
+        $tags = Tags::where('status','=','Aprobado')->where('type_tags','=','Musica')->get();
+        //$autors = music_authors::all();
+        $autors = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
+
+        return view('seller.music_module.single_registration')->with('tags', $tags)->with('autors', $autors);
     }
 
 

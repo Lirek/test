@@ -102,15 +102,9 @@
               <br>
 
               <label for="artist"> Artista </label>
-              <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+              <select name="artist" class="form-control">
                 @foreach($autors as $artist)
-                  <option value="{{$artist->id}}"
-                    @if($artist->id==$album->autors_id)
-                      selected
-                    @endif
-                    >
-                    {{$artist->name}}
-                  </option>
+                  <option value="{{$artist->id}}"> {{$artist->name}} </option>
                 @endforeach
               </select>
             </div>

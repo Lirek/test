@@ -93,12 +93,19 @@
               <br>
 
               <label for="artist"> Artista </label>
-              <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
-                <option value="">Seleccione u artista</option>
-                @foreach($autors as $artist)
-                  <option value="{{$artist->id}}">{{$artist->name}}</option>
-                @endforeach
-              </select>
+              @if(count($autors)!=0)
+                <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                  @foreach($autors as $artist)
+                    <option value="{{$artist->id}}">{{$artist->name}}</option>
+                  @endforeach
+                </select>
+              @else
+                <br>
+                <label id="faltaRegistro" style="color: red;"> Usted aun no tiene registros de sus datos como artista o los datos de su grupo musical, por favor agregue dichos datos primero </label>
+                <a href="{{ url('/artist_form') }}" class="btn btn-danger">
+                  Agregar artista o grupo musical
+                </a>
+              @endif
 
             </div>
           </div>
@@ -166,6 +173,18 @@
 
 @section('js')
   <script>
+//---------------------------------------------------------------------------------------------------
+// Para evitar el envio de datos si faltan los datos del grupo musical o artista
+    $(document).ready(function(){
+      if ($('#faltaRegistro').length) {
+        $('#registrarAlbum').attr('disabled',true);
+        //$('#registrarAlbum').hide();
+      } else {
+        $('#registrarAlbum').attr('disabled',false);
+        //$('#registrarAlbum').hide();
+      }
+    });
+// Para evitar el envio de datos si faltan los datos del grupo musical o artista
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la imagen en el formulario
     function archivo(evt) {
