@@ -32,6 +32,7 @@ class CreateMakeupMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('makeup_movies');
+        
     }
 }

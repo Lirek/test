@@ -1,7 +1,12 @@
 @extends('promoter.layouts.app')
 
 @section('main')     
-          <div class="row">
+       
+          <div class="row mt">
+            <h2><i class="fa fa-angle-right"></i>Contenido Por Aprobar</h2>
+          </div>
+
+          <div class="row mt">
               <!-- TWITTER PANEL -->
               <div class="col-lg-4 col-md-4 col-sm-4 mb">
                 <div class="twitter-panel pn">
@@ -28,6 +33,41 @@
                 </div>
               </div><!-- /col-md-4 -->
           </div
+          
+          <div class="row mt">
+            <h2><i class="fa fa-angle-right"></i>Paquetes de Tiquets</h2>
+          </div>
+
+          <div class="row mt">
+             <div class="col-md-6">
+              <div class="content-panel">
+              
+                  <table class="table table-bordered table-striped table-condensed">            
+                    <thead>
+                        <tr>
+                          <th class="non-numeric">Nombre Del Paquete</th>
+                          <th>Costo</th>
+                          <th>Cantidad de Tiquets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($TicketsPackage as $Package)
+                        <tr>
+                          <td>{{$Package->name}}</td>
+                          <td>{{$Package->cost}}$</td>
+                          <td>{{$Package->amount}}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+             
+               
+                 <button type="button" class="btn btn-theme">+</button>
+               
+              </div>
+         
+          </div>
+            </div>
 @endsection
 @section('js')
 @endsection

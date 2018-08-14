@@ -34,6 +34,7 @@ class CreateAccountBalanceTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('account_balance');
+        
     }
 }

@@ -41,6 +41,7 @@ class CreateTableMegazines extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('megazines');
+        
     }
 }

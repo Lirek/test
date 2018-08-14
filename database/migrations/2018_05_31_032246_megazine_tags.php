@@ -31,6 +31,7 @@ class MegazineTags extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('megazine_tags');
+        
     }
 }

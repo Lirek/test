@@ -15,6 +15,7 @@ use App\Mail\PromoterAssing;
 use App\Megazines;
 use App\Tags;
 use App\ApplysSellers;
+use App\TicketsPackage;
 use App\Albums;
 use App\Songs;
 use App\User;
@@ -43,6 +44,8 @@ class PromoterController extends Controller
     	$user = Seller::all();  
 
     	$content_total=0;
+
+      $TicketsPackage = TicketsPackage::all();
 
     	foreach ($user as $key1) 
     	{
@@ -148,7 +151,7 @@ class PromoterController extends Controller
 		
 
 
-    	return view('promoter.home')->with('sellers',$sellers)->with('aplyss',$aplyss)->with('content_total',$content_total);
+    	return view('promoter.home')->with('sellers',$sellers)->with('aplyss',$aplyss)->with('content_total',$content_total)->with('TicketsPackage',$TicketsPackage);
     }
 
     public function ShowSellers()

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesmanTable extends Migration
+class TicketPackTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateSalesmanTable extends Migration
      */
     public function up()
     {
-        Schema::create('salesman', function (Blueprint $table) 
-            {
-            
+       Schema::create('tickets_package', function (Blueprint $table){
             $table->increments('id');
+            $table->integer('amount')->unsigned()->default('0');
+            $table->integer('cost')->unsigned()->default('0');            
+            $table->string('photo')->nullable()->default(NULL);
             $table->string('name')->nullable()->default(NULL);
-            $table->string('adress')->nullable()->default(NULL);
-            $table->string('phone')->nullable()->default(NULL);
-            $table->string('email')->unique()->nullable()->default(NULL);
-            $table->integer('promoter_id')->nullable()->default(NULL);
+            $table->integer('promoter_id')->unsigned()->default('0');
             $table->timestamps();
-            
             $table->foreign('promoter_id')->references('id')->on('promoter');
             });
     }
@@ -35,7 +32,6 @@ class CreateSalesmanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salesman');
-        
+       Schema::dropIfExists('tickets_package');
     }
 }

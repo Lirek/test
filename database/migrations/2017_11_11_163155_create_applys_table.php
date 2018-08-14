@@ -45,6 +45,7 @@ class CreateApplysTable extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('applys_sellers');
+        
     }
 }

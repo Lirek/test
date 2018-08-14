@@ -43,6 +43,7 @@ class CreateTableGrade extends Migration
      */
     public function down()
     {
+       Schema::dropIfExists('content_grades');
         //
     }
 }

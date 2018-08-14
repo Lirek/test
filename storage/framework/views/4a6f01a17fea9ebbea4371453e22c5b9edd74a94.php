@@ -1,5 +1,10 @@
 <?php $__env->startSection('main'); ?>     
-          <div class="row">
+       
+          <div class="row mt">
+            <h2><i class="fa fa-angle-right"></i>Contenido Por Aprobar</h2>
+          </div>
+
+          <div class="row mt">
               <!-- TWITTER PANEL -->
               <div class="col-lg-4 col-md-4 col-sm-4 mb">
                 <div class="twitter-panel pn">
@@ -26,6 +31,41 @@
                 </div>
               </div><!-- /col-md-4 -->
           </div
+          
+          <div class="row mt">
+            <h2><i class="fa fa-angle-right"></i>Paquetes de Tiquets</h2>
+          </div>
+
+          <div class="row mt">
+             <div class="col-md-6">
+              <div class="content-panel">
+              
+                  <table class="table table-bordered table-striped table-condensed">            
+                    <thead>
+                        <tr>
+                          <th class="non-numeric">Nombre Del Paquete</th>
+                          <th>Costo</th>
+                          <th>Cantidad de Tiquets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <?php $__currentLoopData = $TicketsPackage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Package): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                          <td><?php echo e($Package->name); ?></td>
+                          <td><?php echo e($Package->cost); ?>$</td>
+                          <td><?php echo e($Package->amount); ?></td>
+                        </tr>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </tbody>
+                  </table>
+             
+               
+                 <button type="button" class="btn btn-theme">+</button>
+               
+              </div>
+         
+          </div>
+            </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <?php $__env->stopSection(); ?>
