@@ -149,7 +149,7 @@
 
 <footer class="footer container">
     <div class="row col-md-12">
-        <div class="col-md-3 row">
+        <div class="col-md-3 ">
             <img src="{{asset('plugins/img/Logo-Leipel.png')}}"
                  width="150" height="50" alt="">
             <p class="text-left">
@@ -159,17 +159,17 @@
                 distribution of letters
             </p>
             <br/>
-            <ul class="list">
-                <li style="padding: 15px 0px; line-height: 50%">
-                    <i class="fa fa-map-marker text-info fa-3x" style="padding-right: 30px"></i>
+            <ul id="list">
+                <li>
+                    <i class="fa fa-map-marker text-info "></i>
                     Quito, Ecuador
                 </li>
-                <li style="padding: 15px 0px">
-                    <i class="fa fa-phone text-info fa-3x" style="padding-right: 20px"></i>
+                <li>
+                    <i class="fa fa-phone text-info "></i>
                     +123 4567 987
                 </li>
-                <li style="padding: 15px 0px">
-                    <i class="fa fa-envelope-o text-info fa-2x" style="padding-right: 30px"></i>
+                <li>
+                    <i class="fa fa-envelope-o text-info" ></i>
                     leipel@gamil.com
                 </li>
             </ul>
@@ -242,15 +242,15 @@
                 Copyright © 2018 Todos lo derechos reservados
             </div>
             <div class="col-md-4 col-md-offset-4">
-                <a href="login/facebook" class="btn btn-facebook">
+                <a href="#" class="btn btn-facebook">
                     <i class="fa fa-facebook"></i>
                 </a>
 
-                <a href="login/twitter" class="btn btn-twitter">
+                <a href="#" class="btn btn-twitter">
                     <i class="fa fa-twitter"></i>
                 </a>
 
-                <a href="login/google" class="btn btn-google">
+                <a href="#" class="btn btn-google">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </div>

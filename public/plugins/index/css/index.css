@@ -217,6 +217,23 @@
     padding-top: 0px;
 }
 
+#list li text
+{
+    height: 50px;
+    padding-top: 0px;
+}
+
+#list li i
+{
+    margin: 15px 15px;
+    padding-right: 20px;
+    padding-top: 0px;
+    /*color: #ffffff;*/
+    border-style: solid;
+    border-color: #21a4de;
+    font-size: 30px;
+}
+
 .container-fluid > .row
 {
     /*background: #21a4de;*/
