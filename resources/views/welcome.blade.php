@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/bootstrap') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
+
     {{--carrusel--}}
     <meta name="description" content="Circular Content Carousel with jQuery"/>
     <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3"/>
@@ -21,81 +24,9 @@
     {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
 
     <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/index/css/index.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
-    {{--para el carrusel--}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/carusel/css/jquery.jscrollpane.css') }}" media="all">
-
-    <style>
-        /*@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);*/
-
-        .nav.nav-justified > li > a {
-            position: relative;
-        }
-
-        .nav.nav-justified > li > a:hover,
-        .nav.nav-justified > li > a:focus {
-            background-color: transparent;
-        }
-
-        .nav.nav-justified > li > a > .quote {
-            position: absolute;
-            left: 0px;
-            top: 0;
-            opacity: 0;
-            width: 30px;
-            height: 30px;
-            padding: 5px;
-            background-color: #426fac;
-            border-radius: 15px;
-            color: #fff;
-        }
-
-        .nav.nav-justified > li.active > a > .quote {
-            opacity: 1;
-        }
-
-        .nav.nav-justified > li > a > img {
-            box-shadow: 0 0 0 5px #426fac;
-        }
-
-        .nav.nav-justified > li > a > img {
-            max-width: 100%;
-            opacity: .3;
-            -webkit-transform: scale(.8, .8);
-            transform: scale(.8, .8);
-            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .nav.nav-justified > li.active > a > img,
-        .nav.nav-justified > li:hover > a > img,
-        .nav.nav-justified > li:focus > a > img {
-            opacity: 1;
-            -webkit-transform: none;
-            transform: none;
-            -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .tab-pane .tab-inner {
-            padding: 45px 0 20px 10px;
-        }
-
-        @media (min-width: 768px) {
-            .nav.nav-justified > li > a > .quote {
-                left: auto;
-                top: auto;
-                right: 20px;
-                bottom: 0px;
-            }
-        }
-    </style>
 
     <!-- Scripts -->
     <script>
@@ -103,826 +34,551 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+
+
 </head>
 <body>
-<!--HEADER START NavBar-->
-<div class="main-navigation">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{Request::url()}}">
-                    <img src="{{asset('plugins/img/Logo-Leipel.png')}}" width="150" height="50" alt=""></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{{Request::url()}}">Inicio</a></li>
-                    <li><a href="#portfolio">Destacados</a></li>
-                    <li><a href="#about">Proveedores</a></li>
-                    {{--<li>--}}
-                    {{--<a href="{{ url('/login') }}">Iniciar Sesi&oacute;n</a>--}}
-                    {{--</li>--}}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Iniciar Sesi&oacute;n
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url('/login') }}">Usuario</a></li>
-                            <li><a href="{{ url('/seller_login') }}">Proveedor</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<!--HEADER END-->
 
-{{--contenido de la pagina de inicio --}}
-<div class="main-navigation">
-    <!--BANNER START-->
-    <div id="banner" class="section-padding">
-        <div class="container-fluid">
-            <div class="jumbotron">
-                <div class="text-center">
-                    <h1 class="small">
-                        Distracci&oacuten <br/>
-                        Al <br/>
-                        M&aacute;ximo
-                    </h1>
-                    <a href="{{ url('/register') }}" class="btn btn-banner ">
-                        Registrate Gratis<i class="fa fa-send"></i>
-                    </a>
+<!-- NAVBAR STAR-->
+
+{{--<div class="main-navigation navbar">--}}
+<nav class="navbar ">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{Request::url()}}">
+                <img id="logo" src="{{asset('plugins/img/Logo-Leipel.png')}}">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
+                <li><a href="#portfolio">¿QUE ES LEIPEL?</a></li>
+                <li><a href="#modal-default" data-toggle="modal" data-target="#modal-default">INICIAR SESION</a></li>
+                <li><a href="{{ url('/register') }}">REGRISTRATE</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{{--</div>--}}
+
+<!-- NAVBAR END-->
+
+<!-- SLIDER STAR-->
+<div class=" col-md-12" id="banner">
+
+    <div id="containerS">
+        <ul id="slides">
+            <li class="slide">
+                <div class="slide-partial slide-left">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!--BANNER END-->
-
-    <!--CTA1 START-->
-    <div class="cta-1">
-        <div class="container">
-            <div class="row">
-                <style type="text/css">
-                    * {
-                        box-sizing: border-box;
-                    }
-
-                    .zoom {
-                        padding: 25px;
-                        background-color: transparent;
-                        transition: transform .2s;
-                        width: 200px;
-                        height: 200px;
-                    }
-
-                    .zoom:hover {
-                        -ms-transform: scale(1.5); /* IE 9 */
-                        -webkit-transform: scale(1.5); /* Safari 3-8 */
-                        transform: scale(1.5);
-                    }
-                </style>
-                <center>
-                    <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-2.png')}}" width="150"
-                                                        height="100" alt=""></a></div>
-                    <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-4.png')}}" width="150"
-                                                        height="100" alt=""></a></div>
-                    <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon.png')}}" width="150"
-                                                        height="100" alt=""></a></div>
-                    <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-5.png')}}" width="150"
-                                                        height="100" alt=""></a>
-                    </div>
-                    <div class="col-md-4 zoom">
-                        <a class="button" href="#"><img src="{{asset('sistem_images/logo-icon-3.png')}}" width="150"
-                                                        height="100" alt=""></a>
-                    </div>
-                </center>
-            </div>
-        </div>
-    </div>
-    <!--CTA1 END-->
-</div>
-
-<!--CTA2 STAR portafolio de destacados-->
-{{--<div id="portfolio" class="[container text-center]">--}}
-{{--<div class=" [container text-center] ">--}}
-{{--<div class="page-title text-center">--}}
-{{--<h1>Destacados</h1>--}}
-{{--<hr class="pg-titl-bdr-btm"></hr>--}}
-{{--</div>--}}
-{{--{{ dd($music) }}--}}
-{{--prueba de pestaña--}}
-
-{{--<div class=" [container text-center] ">--}}
-{{--<div class="row ">--}}
-{{--<div class=" [ col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 ] " role="tabpanel">--}}
-{{--<div class="[ col-xs-4 col-sm-12 ]">--}}
-{{--<!-- Nav tabs -->--}}
-{{--<ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">--}}
-{{--<li role="presentation" class="active">--}}
-{{--<a href="#libros" aria-controls="libros" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/biblioteca.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#tvs" aria-controls="tvs" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/controlar.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#radios" aria-controls="radios" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/microfono.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#musica" aria-controls="musica" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/musica.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#revistas" aria-controls="revistas" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/revista.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#series" aria-controls="series" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle" src="{{asset('plugins/carusel/images/tv.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--<li role="presentation" class="">--}}
-{{--<a href="#peliculas" aria-controls="peliculas" role="tab" data-toggle="tab">--}}
-{{--<img class="img-circle"--}}
-{{--src="{{asset('plugins/carusel/images/camara.png')}}"/>--}}
-{{--<span class="quote"><i class="fa fa-check-circle"></i></span>--}}
-{{--</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--<div class="[ col-xs-2 col-sm-6 col-sm-offset-1 ]">--}}
-{{--<!-- Tab panes -->--}}
-{{--<div class="tab-content" id="tabs-collapse">--}}
-
-{{--<div role="tabpanel" class="tab-pane fade in active" id="libros">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerL" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $book as $b)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $b->title }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $b->original_title }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
-{{--</li>--}}
-{{--<li>--}}
-{{--<a href="#">{{ $b->author->full_name }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $b->country }}</a></li>--}}
-{{--<li><a href="#">{{ $b->release_year }}</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="series">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerS" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $book as $b)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $b->title }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $b->original_title }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
-{{--</li>--}}
-{{--<li>--}}
-{{--<a href="#">{{ $b->author->full_name }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $b->country }}</a></li>--}}
-{{--<li><a href="#">{{ $b->release_year }}</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="tvs">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerT" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $tv as $t)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/tv/'. $t->logo) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $t->name_r }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $t->seller->name_r }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $t->name_r }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $t->seller->name }}--}}
-{{--{{ $t->descs_s }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $t->google }}</a></li>--}}
-{{--<li><a href="#">{{ $t->facebook }}</a></li>--}}
-{{--<li><a href="#">{{ $t->instagram }}</a></li>--}}
-{{--<li><a href="#">{{ $t->twitter }}</a></li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="radios">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerR" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $radio as $r)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/radio/'. $r->logo) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $r->name_r }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $r->seller->name_r }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $r->name_r }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $r->seller->name }}--}}
-{{--{{ $r->descs_s }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $r->google }}</a></li>--}}
-{{--<li><a href="#">{{ $r->facebook }}</a></li>--}}
-{{--<li><a href="#">{{ $r->instagram }}</a></li>--}}
-{{--<li><a href="#">{{ $r->twitter }}</a></li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="musica">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerM" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $book as $b)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $b->title }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $b->original_title }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
-{{--</li>--}}
-{{--<li>--}}
-{{--<a href="#">{{ $b->author->full_name }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $b->country }}</a></li>--}}
-{{--<li><a href="#">{{ $b->release_year }}</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="revistas">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerRe" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $book as $b)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('images/bookcover/'. $b->cover) }}); background-size: cover "></div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $b->title }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $b->original_title }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $b->sinopsis }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $b->seller->name }}</a>--}}
-{{--</li>--}}
-{{--<li>--}}
-{{--<a href="#">{{ $b->author->full_name }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $b->country }}</a></li>--}}
-{{--<li><a href="#">{{ $b->release_year }}</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div role="tabpanel" class="tab-pane fade" id="peliculas">--}}
-{{--<div class="tab-inner">--}}
-{{--<div class="row" id="portfolio-wrapper">--}}
-
-{{--<div id="ca-containerP" class="ca-container">--}}
-{{--<div class="ca-wrapper">--}}
-
-{{--@foreach( $movie as $m)--}}
-{{--imagen --}}
-{{--<div class="ca-item">--}}
-{{--<div class="ca-item-main">--}}
-{{--<div class="ca-icon"--}}
-{{--style="background-image: url({{ asset('movie/poster/'. $m->img_poster) }}); background-size: cover ">--}}
-
-{{--</div>--}}
-{{--<br/>--}}
-{{--<h3>{{ $m->title }}</h3>--}}
-{{--<h4>--}}
-{{--<span class="ca-quote">&ldquo;</span>--}}
-{{--<span>--}}
-{{--{{ $m->based_on }}--}}
-{{--</span>--}}
-{{--</h4>--}}
-{{--<a href="#" class="ca-more">mas...</a>--}}
-{{--</div>--}}
-{{--<div class="ca-content-wrapper">--}}
-{{--<div class="ca-content">--}}
-{{--<h6>{{ $m->original_title }}</h6>--}}
-{{--<a href="#" class="ca-close">close</a>--}}
-{{--<div class="ca-content-text">--}}
-{{--<p>--}}
-{{--{{ $m->story }}--}}
-{{--</p>--}}
-{{--</div>--}}
-{{--<ul>--}}
-{{--<li><a href="#">{{ $m->seller->name }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $m->release_year }}</a>--}}
-{{--</li>--}}
-{{--<li><a href="#">{{ $m->trailer_url }}</a>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endforeach--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--prueba del carrusel --}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--prueba de pestaña--}}
-{{--</div>--}}
-{{--</div>--}}
-<!--CTA2 END portafolio de destacados-->
-
-<!--TEAM START Proveedores-->
-<div id="about" class="section-padding" style="background-color:#f4f4f4">
-    <div class="container">
-        <div class="row">
-            <div class="page-title text-center">
-                <h1>Nuestros Proveedores</h1>
-                <hr class="pg-titl-bdr-btm"></hr>
-            </div>
-            <div class="autoplay">
-
-                {{--{{ dd($i) }}--}}
-                @foreach($seller as $s)
-                    @if($s->id < 5 )
-                        <div class="col-md-6">
-                            <div class="team-info">
-                                <div class="img-sec">
-                                    <img src="{{ asset('images/producer/logo/'. $s->logo) }}" class="img-responsive"
-                                         >
-                                </div>
-                                <div class="fig-caption">
-                                    <h3>{{ $s->name }}</h3>
-                                    <p class="marb-20">{{ $s->descs_s }}</p>
-                                    <p>Follow me:</p>
-                                    <ul class="team-social">
-                                        <li class="bgblue-dark ">
-                                            <a href="#">
-                                                <i class="fa fa-youtube"></i>
-                                            </a>
-                                        </li>
-                                        <li class="bgblue-dark ">
-                                            <a href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="bgblue-dark ">
-                                            <a href="#">
-                                                <i class="fa fa-instagram"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-</div>
-<!--TEAM END-->
-
-<!--CTA2 START Ingresar proveedor-->
-<div class="cta2">
-    <div class="container">
-        <div class="row white text-center">
-            <h3 class="wd75 fnt-24">多Quieres Vender Tus Obras?</h3>
-            <a href="{{ url('/applys') }}" class="btn btn-default">Registrate </a>
-        </div>
-    </div>
-</div>
-<!--CTA2 END-->
-
-<!--CONTACT START Comentario-->
-<div id="contact" class="section-padding" style="background-color:#f4f4f4">
-    <div class="container">
-        <div class="row">
-            <div id="page-title" class="page-title text-center">
-                <h1>Comentarios, Consultas & Sugerencias</h1>
-                <hr class="pg-titl-bdr-btm"></hr>
-            </div>
-            <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
-
-            <div class="form-sec">
-                <form action="" method="post" role="form" class="contactForm">
-                    <div class="col-md-4 form-group">
-                        <input type="text" name="name" class="form-control text-field-box" id="name"
-                               placeholder="Nombre" data-rule="minlen:4"
-                               data-msg="Please enter at least 4 chars"/>
-                        <div class="validation"></div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input type="email" class="form-control text-field-box" name="email" id="email"
-                               placeholder="Correo" data-rule="email" data-msg="Please enter a valid email"/>
-                        <div class="validation"></div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input type="text" class="form-control text-field-box" name="subject" id="subject"
-                               placeholder="Asunto" data-rule="minlen:4"
-                               data-msg="Please enter at least 8 chars of subject"/>
-                        <div class="validation"></div>
-                    </div>
-                    <div class="col-md-12 form-group">
-                            <textarea class="form-control text-field-box" name="message" rows="5" data-rule="required"
-                                      data-msg="Please write something for us" placeholder="Mensaje"></textarea>
-                        <div class="validation"></div>
-
-                        <button class="button-medium" id="contact-submit" type="submit" name="contact">
-                            Enviar Ahora
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--CONTACT END-->
-
-<!--FOOTER START-->
-<footer class="footer section-padding">
-    <div class="container">
-        <div class="row">
-            <div style="visibility: visible; animation-name: zoomIn;" class="col-sm-12 text-center wow zoomIn">
-                <h3>Siguenos En</h3>
-                <div class="footer_social">
-                    <ul>
-                        <li>
-                            <a class="f_twitter" href="#">
-                                <i class="fa fa-youtube fa-2x "></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="f_facebook" href="#">
-                                <i class="fa fa-facebook fa-2x"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="f_google" href="#">
-                                <i class="fa fa-instagram fa-2x"></i>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="slide-partial slide-right">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>
                 </div>
-            </div>
-            <!--- END COL -->
-        </div>
-        <!--- END ROW -->
+                <h1 class="title">
+                    <span class="title-text">Forest</span>
+                </h1>
+            </li>
+            <li class="slide">
+                <div class="slide-partial slide-left">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>
+                </div>
+                <div class="slide-partial slide-right">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>
+                </div>
+                <h1 class="title">
+                    <span class="title-text">Mountain</span>
+                </h1>
+            </li>
+            <li class="slide">
+                <div class="slide-partial slide-left">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>
+                </div>
+                <div class="slide-partial slide-right">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>
+                </div>
+                <h1 class="title">
+                    <span class="title-text">Ocean</span>
+                </h1>
+            </li>
+            <li class="slide">
+                <div class="slide-partial slide-left">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>
+                </div>
+                <div class="slide-partial slide-right">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>
+                </div>
+                <h1 class="title">
+                    <span class="title-text">Canyon</span>
+                </h1>
+            </li>
+            <li class="slide">
+                <div class="slide-partial slide-left"><img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/></div>
+                <h1 class="title"><span class="title-text">Lake</span></h1>
+            </li>
+        </ul>
+        <ul id="slide-select">
+            <li class="btn prev"><</li>
+            <li class="selector"></li>
+            <li class="selector"></li>
+            <li class="selector"></li>
+            <li class="selector"></li>
+            <li class="selector"></li>
+            <li class="btn next">></li>
+        </ul>
     </div>
-    <!--- END CONTAINER -->
+
+</div>
+
+
+<!-- SLIDER STAR-->
+
+<!--FOOTER STAR -->
+
+<footer class="footer container">
+    <div class="row col-md-12">
+        <div class="col-md-3 row">
+            <img src="{{asset('plugins/img/Logo-Leipel.png')}}"
+                 width="150" height="50" alt="">
+            <p class="text-left">
+                It is a long established fact that a reader will be distracted by
+                the readable content of page when lookong at its layout. The point
+                of using Lorem Ipsum is that it has a more-or-less normal
+                distribution of letters
+            </p>
+            <br/>
+            <ul class="list">
+                <li style="padding: 15px 0px; line-height: 50%">
+                    <i class="fa fa-map-marker text-info fa-3x" style="padding-right: 30px"></i>
+                    Quito, Ecuador
+                </li>
+                <li style="padding: 15px 0px">
+                    <i class="fa fa-phone text-info fa-3x" style="padding-right: 20px"></i>
+                    +123 4567 987
+                </li>
+                <li style="padding: 15px 0px">
+                    <i class="fa fa-envelope-o text-info fa-2x" style="padding-right: 30px"></i>
+                    leipel@gamil.com
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 ">
+            <h5>Sobre</h5>
+            <ul class="pages">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Nature</a></li>
+                <li><a href="#">Explores</a></li>
+                <li><a href="#">Science</a></li>
+                <li><a href="#">Advice</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h1> Descubrir</h1>
+            <ul class="list">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        {{--<div class="col-md-4 ">--}}
+        {{--<h4>Follow Us</h4>--}}
+        {{--<ul>--}}
+        {{--<li><a href="#">Facebook</a></li>--}}
+        {{--<li><a href="#">Twitter</a></li>--}}
+        {{--<li><a href="#">Instagram</a></li>--}}
+        {{--<li><a href="#">RSS</a></li>--}}
+        {{--</ul>--}}
+        {{--</div>--}}
+        <div class="col-md-3 ">
+            <h1>Dejanos tu opinion</h1>
+            <form action="" method="post" role="form" class="form-horizontal">
+                <div class="col-md-12 form-group">
+                    <input type="text" name="name" class="form-control " id="name" placeholder="Nombre"
+                           data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+                    <div class="validation"></div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <input type="email" class="form-control " name="email" id="email" placeholder="Correo"
+                           data-rule="email" data-msg="Please enter a valid email"/>
+                    <div class="validation"></div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control " name="subject" id="subject"
+                           placeholder="Asunto" data-rule="minlen:4"
+                           data-msg="Please enter at least 8 chars of subject"/>
+                    <div class="validation"></div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <textarea class="form-control " name="message" rows="5" data-rule="required"
+                              data-msg="Please write something for us" placeholder="Mensaje">
+                    </textarea>
+                </div>
+                <div class=" ">
+                    <a class="btn btn-info" name="contact">Enviar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </footer>
-<!--FOOTER END-->
-<div class="footer-bottom">
-    <div class="container">
-        <div style="visibility: visible; animation-name: zoomIn;" class="col-md-12 text-center wow zoomIn">
-            <div class="footer_copyright">
-                <p> Leipel &copy 2018. Todos los Derechos Reservados.</p>
+<hr/>
+<div class="container-fluid">
+    <div class="row">
+        <div id="container-fluidF">
+            <div class="col-md-4">
+                Copyright © 2018 Todos lo derechos reservados
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <a href="login/facebook" class="btn btn-facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+                <a href="login/twitter" class="btn btn-twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+
+                <a href="login/google" class="btn btn-google">
+                    <i class="fa fa-google-plus"></i>
+                </a>
             </div>
         </div>
-    </div>
+    </div> <!-- end .row -->
 </div>
-{{--contenido de la pagina de inicio --}}
+
+<!--FOOTER END -->
 
 <!-- Scripts -->
+
+<!-- /.LOGIN STAR -->
+
+<div class="modal fade in modal " id="modal-default">
+    <div class="modal-dialog ">
+        {{--<div class="col-md-8 align-center">--}}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">Inicia sesi&oacute;n</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    {{ csrf_field() }}
+
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
+
+                        <div class="col-md-11">
+                            <input id="email" type="email" class="form-control" name="email"
+                                   placeholder="correo" value="{{ old('email') }}" required autofocus>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
+
+                        <div class="col-md-11">
+                            <input id="password" type="password" class="form-control" name="password"
+                                   placeholder="contraseña" required>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-11">
+                            <button type="submit" class="btn btn-primary form-control">
+                                Inicia sesi&oacute;n
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 ">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    Recuerdame
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+
+                    <a href="login/facebook" class="btn btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                        Facebook
+                    </a>
+
+                    <a href="login/twitter" class="btn btn-twitter">
+                        <i class="fa fa-twitter"></i>
+                        Twitter
+                    </a>
+
+                    <a href="login/google" class="btn btn-google">
+                        <i class="fa fa-google-plus"></i>
+                        Google
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    {{--</div>--}}
+
+    <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- /.LOGIN END -->
+
+
 {{--<script src="/js/app.js"></script>--}}
 <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
 <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
-<script src="{{ asset('plugins/js/custom.js') }}"></script>
-<script src="{{ asset('plugins/js/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('plugins/js/jquery.min.js') }}"></script>
-<script src="{{ asset('plugins/js/slick.min.js') }}"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="{{ asset('plugins/carusel/js/jquery.easing.1.3.js') }}"></script>
-<!-- the jScrollPane script -->
-<script src="{{ asset('plugins/carusel/js/jquery.mousewheel.js') }}"></script>
-<script src="{{ asset('plugins/carusel/js/jquery.contentcarousel.js') }}"></script>
-<script type="text/javascript">
-    $('#ca-containerL').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerS').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerT').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerR').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerM').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerRe').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
-    $('#ca-containerP').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed: 500,
-        // easing for the sliding animation
-        sliderEasing: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed: 500,
-        // easing for the item animation (open / close)
-        itemEasing: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll: 1
-    });
+
+<script>
+    var curpage = 1;
+    var sliding = false;
+    var click = true;
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var pagePrefix = "slide";
+    var pageShift = 500;
+    var transitionPrefix = "circle";
+    var svg = true;
+
+    function leftSlide() {
+        if (click) {
+            if (curpage == 1) curpage = 5;
+            console.log("woek");
+            sliding = true;
+            curpage--;
+            svg = true;
+            click = false;
+            for (k = 1; k <= 4; k++) {
+                var a1 = document.getElementById(pagePrefix + k);
+                a1.className += " tran";
+            }
+            setTimeout(() => {
+                move();
+            }, 200);
+            setTimeout(() => {
+                for (k = 1; k <= 4; k++) {
+                    var a1 = document.getElementById(pagePrefix + k);
+                    a1.classList.remove("tran");
+                }
+            }, 1400);
+        }
+    }
+
+    function rightSlide() {
+        if (click) {
+            if (curpage == 4) curpage = 0;
+            console.log("woek");
+            sliding = true;
+            curpage++;
+            svg = false;
+            click = false;
+            for (k = 1; k <= 4; k++) {
+                var a1 = document.getElementById(pagePrefix + k);
+                a1.className += " tran";
+            }
+            setTimeout(() => {
+                move();
+            }, 200);
+            setTimeout(() => {
+                for (k = 1; k <= 4; k++) {
+                    var a1 = document.getElementById(pagePrefix + k);
+                    a1.classList.remove("tran");
+                }
+            }, 1400);
+        }
+    }
+
+    function move() {
+        if (sliding) {
+            sliding = false;
+            if (svg) {
+                for (j = 1; j <= 9; j++) {
+                    var c = document.getElementById(transitionPrefix + j);
+                    c.classList.remove("steap");
+                    c.setAttribute("class", transitionPrefix + j + " streak");
+                    console.log("streak");
+                }
+            } else {
+                for (j = 10; j <= 18; j++) {
+                    var c = document.getElementById(transitionPrefix + j);
+                    c.classList.remove("steap");
+                    c.setAttribute("class", transitionPrefix + j + " streak");
+                    console.log("streak");
+                }
+            }
+
+            // for(k=1;k<=4;k++){
+            //   var a1 = document.getElementById(pagePrefix + k);
+            //   a1.className += ' tran';
+            // }
+
+            setTimeout(() => {
+                for (i = 1; i <= 4; i++) {
+                    if (i == curpage) {
+                        var a = document.getElementById(pagePrefix + i);
+                        a.className += " up1";
+                    } else {
+                        var b = document.getElementById(pagePrefix + i);
+                        b.classList.remove("up1");
+                    }
+                }
+                sliding = true;
+            }, 600);
+            setTimeout(() => {
+                click = true;
+            }, 1700);
+
+            setTimeout(() => {
+                if (svg) {
+                    for (j = 1; j <= 9; j++) {
+                        var c = document.getElementById(transitionPrefix + j);
+                        c.classList.remove("streak");
+                        c.setAttribute("class", transitionPrefix + j + " steap");
+                    }
+                } else {
+                    for (j = 10; j <= 18; j++) {
+                        var c = document.getElementById(transitionPrefix + j);
+                        c.classList.remove("streak");
+                        c.setAttribute("class", transitionPrefix + j + " steap");
+                    }
+                    sliding = true;
+                }
+            }, 850);
+            setTimeout(() => {
+                click = true;
+            }, 1700);
+        }
+    }
+
+    left.onmousedown = () => {
+        leftSlide();
+    };
+
+    right.onmousedown = () => {
+        rightSlide();
+    };
+
+    document.onkeydown = e => {
+        if (e.keyCode == 37) {
+            leftSlide();
+        } else if (e.keyCode == 39) {
+            rightSlide();
+        }
+    };
+
+    //for codepen header
+    setTimeout(() => {
+        rightSlide();
+    }, 500);
+
 </script>
+
+
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script>"use strict";
+
+    var $slides = undefined,
+        interval = undefined,
+        $selectors = undefined,
+        $btns = undefined,
+        currentIndex = undefined,
+        nextIndex = undefined;
+
+    var cycle = function cycle(index) {
+        var $currentSlide = undefined,
+            $nextSlide = undefined,
+            $currentSelector = undefined,
+            $nextSelector = undefined;
+
+        nextIndex = index !== undefined ? index : nextIndex;
+
+        $currentSlide = $($slides.get(currentIndex));
+        $currentSelector = $($selectors.get(currentIndex));
+
+        $nextSlide = $($slides.get(nextIndex));
+        $nextSelector = $($selectors.get(nextIndex));
+
+        $currentSlide.removeClass("active").css("z-index", "0");
+
+        $nextSlide.addClass("active").css("z-index", "1");
+
+        $currentSelector.removeClass("current");
+        $nextSelector.addClass("current");
+
+        currentIndex = index !== undefined ? nextIndex : currentIndex < $slides.length - 1 ? currentIndex + 1 : 0;
+
+        nextIndex = currentIndex + 1 < $slides.length ? currentIndex + 1 : 0;
+    };
+
+    $(function () {
+        currentIndex = 0;
+        nextIndex = 1;
+
+        $slides = $(".slide");
+        $selectors = $(".selector");
+        $btns = $(".btn");
+
+        $slides.first().addClass("active");
+        $selectors.first().addClass("current");
+
+        interval = window.setInterval(cycle, 6000);
+
+        $selectors.on("click", function (e) {
+            var target = $selectors.index(e.target);
+            if (target !== currentIndex) {
+                window.clearInterval(interval);
+                cycle(target);
+                interval = window.setInterval(cycle, 6000);
+            }
+        });
+
+        $btns.on("click", function (e) {
+            window.clearInterval(interval);
+            if ($(e.target).hasClass("prev")) {
+                var target = currentIndex > 0 ? currentIndex - 1 : $slides.length - 1;
+                cycle(target);
+            } else if ($(e.target).hasClass("next")) {
+                cycle();
+            }
+            interval = window.setInterval(cycle, 6000);
+        });
+    });
+    //# sourceURL=pen.js
+</script>
+
+
 </body>
 </html>
