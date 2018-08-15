@@ -61,7 +61,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
-                <li><a href="#portfolio">¿QUE ES LEIPEL?</a></li>
+                <li><a href="#leipel">¿QUE ES LEIPEL?</a></li>
                 <li><a href="#modal-default" data-toggle="modal" data-target="#modal-default">INICIAR SESION</a></li>
                 <li><a href="{{ url('/register') }}">REGRISTRATE</a></li>
             </ul>
@@ -148,10 +148,11 @@
 <!--FOOTER STAR -->
 
 <footer class="footer container">
-    <div class="row col-md-12">
-        <div class="col-md-3 ">
-            <img src="{{asset('plugins/img/Logo-Leipel.png')}}"
-                 width="150" height="50" alt="">
+    <div class="row col-md-12" id="leipel">
+        <div class="col-md-3">
+            <h1>
+                <img src="{{asset('plugins/img/Logo-Leipel.png')}}" id="logo">
+            </h1>
             <p class="text-left">
                 It is a long established fact that a reader will be distracted by
                 the readable content of page when lookong at its layout. The point
@@ -160,51 +161,56 @@
             </p>
             <br/>
             <ul id="list">
-                <li>
+                <li class="lista">
                     <i class="fa fa-map-marker text-info "></i>
-                    Quito, Ecuador
+                    &nbsp;&nbsp;&nbsp;Quito, Ecuador
                 </li>
-                <li>
+                <li class="lista">
                     <i class="fa fa-phone text-info "></i>
-                    +123 4567 987
+                    &nbsp;&nbsp;+123 4567 987
                 </li>
-                <li>
-                    <i class="fa fa-envelope-o text-info" ></i>
-                    leipel@gamil.com
+                <li class="lista">
+                    <i class="fa fa-envelope-o text-info"></i>
+                    leipel@gmail.com
                 </li>
             </ul>
         </div>
-        <div class="col-md-3 ">
-            <h5>Sobre</h5>
+        <div class="col-md-2 " id="sobre">
+            <h1>Sobre</h1>
             <ul class="pages">
-                <li><a href="#">Travel</a></li>
-                <li><a href="#">Nature</a></li>
-                <li><a href="#">Explores</a></li>
-                <li><a href="#">Science</a></li>
-                <li><a href="#">Advice</a></li>
+                <li><a href="#">¿Que es Leipel?</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sing up</a></li>
+                <li><a href="#">Politica de Privacidad</a></li>
+                <li><a href="#">Leipel Plataforma</a></li>
+                <li><a href="#">Terminos de Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Preguntas Frecuente</a></li>
             </ul>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contacts</a></li>
-                <li><a href="#">Terms & Condition</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Activar Dispositivos</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">Peliculas</a></li>
+                <li><a href="#">F.A.Q</a></li>
             </ul>
         </div>
-        {{--<div class="col-md-4 ">--}}
-        {{--<h4>Follow Us</h4>--}}
-        {{--<ul>--}}
-        {{--<li><a href="#">Facebook</a></li>--}}
-        {{--<li><a href="#">Twitter</a></li>--}}
-        {{--<li><a href="#">Instagram</a></li>--}}
-        {{--<li><a href="#">RSS</a></li>--}}
-        {{--</ul>--}}
-        {{--</div>--}}
-        <div class="col-md-3 ">
-            <h1>Dejanos tu opinion</h1>
-            <form action="" method="post" role="form" class="form-horizontal">
+        <div class="col-md-2" id="social">
+            <h1>Social</h1>
+            <ul id=>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Youtube</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Google+</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 " id="opinion">
+            <h1>Deja tu opini&oacute;n</h1>
+            <form action="" method="post" role="form" class="form-horizontal" id="formOp">
                 <div class="col-md-12 form-group">
                     <input type="text" name="name" class="form-control " id="name" placeholder="Nombre"
                            data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
@@ -226,8 +232,8 @@
                               data-msg="Please write something for us" placeholder="Mensaje">
                     </textarea>
                 </div>
-                <div class=" ">
-                    <a class="btn btn-info" name="contact">Enviar</a>
+                <div class="col-md-offset-7">
+                    <a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>
                 </div>
 
             </form>
@@ -237,23 +243,16 @@
 <hr/>
 <div class="container-fluid">
     <div class="row">
-        <div id="container-fluidF">
-            <div class="col-md-4">
+        <div class="col-md-4">
+            <p>
                 Copyright © 2018 Todos lo derechos reservados
-            </div>
-            <div class="col-md-4 col-md-offset-4">
-                <a href="#" class="btn btn-facebook">
-                    <i class="fa fa-facebook"></i>
-                </a>
-
-                <a href="#" class="btn btn-twitter">
-                    <i class="fa fa-twitter"></i>
-                </a>
-
-                <a href="#" class="btn btn-google">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-            </div>
+            </p>
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+            <a href="">Inicio</a>
+            <a href="">Sobre nosotros</a>
+            <a href="">Servicios</a>
+            <a href="">Contacto</a>
         </div>
     </div> <!-- end .row -->
 </div>
@@ -263,90 +262,159 @@
 <!-- Scripts -->
 
 <!-- /.LOGIN STAR -->
-
-<div class="modal fade in modal " id="modal-default">
-    <div class="modal-dialog ">
+<div class="modal fade login-register-form row" id="modal-default">
+    <div class="modal-dialog modal-sm">
         {{--<div class="col-md-8 align-center">--}}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title text-center">Inicia sesi&oacute;n</h4>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#usuario">
+                            Usuario
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#proveedor">
+                            Proveedor
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                    {{ csrf_field() }}
+                <div class="tab-content">
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
+                    <div id="usuario" class="tab-pane fade in active">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            {{ csrf_field() }}
 
-                        <div class="col-md-11">
-                            <input id="email" type="email" class="form-control" name="email"
-                                   placeholder="correo" value="{{ old('email') }}" required autofocus>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
+
+                                <div class="col-md-11">
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
-                            @endif
-                        </div>
-                    </div>
+                                    @endif
+                                </div>
+                            </div>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
 
-                        <div class="col-md-11">
-                            <input id="password" type="password" class="form-control" name="password"
-                                   placeholder="contraseña" required>
-                            @if ($errors->has('password'))
-                                <span class="help-block">
+                                <div class="col-md-11">
+                                    <input id="password" type="password" class="form-control" name="password"
+                                           placeholder="contraseña" required>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                            @endif
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-11">
-                            <button type="submit" class="btn btn-primary form-control">
-                                Inicia sesi&oacute;n
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-4 ">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    Recuerdame
-                                </label>
+                                    @endif
+                                </div>
                             </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-11">
+                                    <button type="submit" class="btn btn-primary form-control">
+                                        Inicia sesi&oacute;n
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 ">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            Recuerdame
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer" id="modal_footer">
+                            <div class="text-center">
+
+                                <a href="login/facebook" class="btn btn-facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+
+                                <a href="login/twitter" class="btn btn-twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+
+                                <a href="login/google" class="btn btn-google">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                </form>
+                    <div id="proveedor" class="tab-pane fade">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
+                            {{ csrf_field() }}
 
-            </div>
-            <div class="modal-footer">
-                <div class="text-center">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
 
-                    <a href="login/facebook" class="btn btn-facebook">
-                        <i class="fa fa-facebook"></i>
-                        Facebook
-                    </a>
+                                <div class="col-md-11">
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
 
-                    <a href="login/twitter" class="btn btn-twitter">
-                        <i class="fa fa-twitter"></i>
-                        Twitter
-                    </a>
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
 
-                    <a href="login/google" class="btn btn-google">
-                        <i class="fa fa-google-plus"></i>
-                        Google
-                    </a>
+                                <div class="col-md-11">
+                                    <input id="password" type="password" class="form-control" name="password"
+                                           placeholder="contraseña" required>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-11">
+                                    <button type="submit" class="btn btn-primary form-control">
+                                        Inicia sesi&oacute;n
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 ">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            Recuerdame
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
 
             </div>
+
         </div>
     {{--</div>--}}
 
@@ -360,6 +428,7 @@
 {{--<script src="/js/app.js"></script>--}}
 <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
 <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
     var curpage = 1;
