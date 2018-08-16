@@ -164,6 +164,16 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('/promoter_c','AdminController@CreatePromoter');
 
             Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
+
+            Route::post('SavePackage','AdminController@SavePackage');
+
+            Route::post('UpdatePackage/{id}','AdminController@UpdatePackage');
+
+            Route::get('GetPackage/{id}','AdminController@GetPackage');
+
+            Route::delete('DeletePackage/{id}','AdminController@DeletePackage');
+
+
         
         //_________________FIN de RUtas de Proveedores____________________________
 
@@ -270,8 +280,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
            //------------------------------------------------------------------------
 
-        
-
+            //-----------------------RADIOS------------------------------------------
+                Route::get('/admin_radio','AdminController@ShowRadios');
+                Route::get('RadioData','AdminController@RadioDataTable');
+                Route::get('BackendRadios','AdminController@BackendRadioData');
+                Route::post('NewBackendRadios','AdminController@NewBackendRadios');
+                Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
+                Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
             //-----------------------------------------------------------------------
         
         //________________Fin de las rutas de contenido_____________________________

@@ -16,10 +16,12 @@
 
     <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet">
     <!--external css-->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">   <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">   <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/lineicons/style.css')); ?>">    
+    <link href="<?php echo e(asset('assets/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.css"/>
 
@@ -177,7 +179,7 @@
     <script src="<?php echo e(asset('assets/js/jquery.scrollTo.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/jquery.nicescroll.js')); ?>" type="text/javascript"></script>
     <script src="<?php echo e(asset('assets/js/jquery.sparkline.js')); ?>"></script>
-
+    <script src="<?php echo e(asset('plugins/upload/jquery.uploadPreview.js')); ?>"></script>
 
     <!--common script for all pages-->
     <script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>
@@ -237,6 +239,7 @@
             $('#if_no').hide();
             $('#razon').val('');
         }
+      }
     </script>
   
 <?php echo $__env->yieldContent('js'); ?>

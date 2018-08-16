@@ -3930,6 +3930,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'TicketPackTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_14_165619_TicketPackTable.php',
         'TicketSeeder' => __DIR__ . '/../..' . '/database/seeds/TicketSeeder.php',
+        'TicketsSalesTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_14_210057_TicketsSalesTable.php',
         'TijsVerkoyen\\CssToInlineStyles\\CssToInlineStyles' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/CssToInlineStyles.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Processor.php',

@@ -9,7 +9,7 @@
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
-        <title>LEIPEL</title>
+        <title>Leipel</title>
 
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">

@@ -3508,6 +3508,7 @@ return array(
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'TicketPackTable' => $baseDir . '/database/migrations/2018_08_14_165619_TicketPackTable.php',
     'TicketSeeder' => $baseDir . '/database/seeds/TicketSeeder.php',
+    'TicketsSalesTable' => $baseDir . '/database/migrations/2018_08_14_210057_TicketsSalesTable.php',
     'TijsVerkoyen\\CssToInlineStyles\\CssToInlineStyles' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/CssToInlineStyles.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Processor.php',

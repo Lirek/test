@@ -4,9 +4,9 @@
 
  <div class="row mt">
 	<h2>
-		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#home">Revistas</a></li>
-			<li><a data-toggle="tab" href="#menu1" id="pubTab">Publicaciones periódicas</a></li>		
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#home">Revistas</a></li>
+				<li><a data-toggle="tab" href="#menu1" id="pubTab">Publicaciones periódicas</a></li>		
 			</ul>
 	</h2>
   </div>

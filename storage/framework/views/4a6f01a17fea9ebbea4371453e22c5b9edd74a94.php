@@ -37,15 +37,15 @@
           </div>
 
           <div class="row mt">
-             <div class="col-md-6">
+             <div class="col-md-10">
               <div class="content-panel">
-              
                   <table class="table table-bordered table-striped table-condensed">            
                     <thead>
                         <tr>
                           <th class="non-numeric">Nombre Del Paquete</th>
                           <th>Costo</th>
                           <th>Cantidad de Tiquets</th>
+                          <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,20 +54,105 @@
                           <td><?php echo e($Package->name); ?></td>
                           <td><?php echo e($Package->cost); ?>$</td>
                           <td><?php echo e($Package->amount); ?></td>
+                          <td>
+                            <button type="button" class="btn btn-theme" id="edit" value="<?php echo e($Package->id); ?>">Editar
+                            </button>
+                            <button type="button" id="delete" class="btn-danger" value="<?php echo e($Package->id); ?>">Borrar
+                            </button>
+                          </td>
                         </tr>
                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                   </table>
              
                
-                 <button type="button" class="btn btn-theme">+</button>
+                 <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#NewPack">+</button>
                
               </div>
          
           </div>
-            </div>
+
+<?php echo $__env->make('promoter.modals.HomeViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>           
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script>
+   $(document).on('click', '#edit', function() {
+      
+      var x = $(this).val();
+
+      var url = 'GetPackage/'+x;
+
+      $.ajax({
+                 url: url,
+                 type:'get',
+                 data:"json",
+
+                success: function(data)
+                {
+                  console.log(data);
+
+                  $('#updatePack').modal('show');
+                  $('[name=name_u]').val(data.name);
+                  $('[name=cost_u]').val(data.cost);
+                  $('[name=ammount_u]').val(data.amount);
+                  $('[name=p_id]').val(x);                              
+
+                },
+
+                error: function(data)
+                {
+                 alert("Ha Ocurrido un Error","","error");
+                },
+
+              });
+
+   });
+
+    $(document).on('click', '#delete', function() {
+      var x = $(this).val();
+
+   });
+
+    $( "#UPackForm" ).on( 'submit', function(e){
+
+        var name = $('input[name=name_u]').val();
+        var cost = $('input[name=cost_u]').val();
+        var ammount = $('input[name=ammount_u]').val();
+        var id = $('[name=p_id]').val()
+        
+        e.preventDefault();
+         
+         $.ajax({
+
+                  url: 'UpdatePackage/'+id,
+                  type:'POST',
+                  data:{
+                        _token: $('input[name=_token]').val(),
+                        name: name,
+                        phone: cost,
+                        email: ammount,
+                        }, 
+
+                        success: function (result) 
+                        {
+                          alert('Paquete Mddificado con exito');              
+                          
+                          $('#updatePack').modal('hide');
+                          $('body').removeClass('modal-open');
+                          $('.modal-backdrop').remove();
+
+                          location.reload();
+                        },
+
+                        error: function (result) 
+                        {
+                          alert('Error en Su solicitud');
+                          console.log(result);
+                        }
+         });
+
+    });
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
