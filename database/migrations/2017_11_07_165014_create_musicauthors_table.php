@@ -41,6 +41,7 @@ class CreateMusicauthorsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('music_authors');
+        
     }
 }

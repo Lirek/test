@@ -28,6 +28,7 @@ class CreateSellersmoduleTable extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('sellers_modules');
+
     }
 }

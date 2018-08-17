@@ -13,7 +13,7 @@ use App\Events\ContentDenialEvent;
 use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
-
+use File;
 
 //-------------Modelos del sistema-----------------------
 use App\Megazines;
@@ -34,6 +34,7 @@ use App\Promoters;
 use App\LoginControl;
 use App\Salesman;
 use App\PromotersRoles;
+use App\TicketsPackage;
 
 
 //--------------------------------------------------------
@@ -312,7 +313,7 @@ class AdminController extends Controller
                           })
                           ->editColumn('logo',function($radios){
 
-                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$radios->logo.'"
+                          return '<img class="img-rounded img-responsive av" src="'.asset($radios->logo).'"
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
                           })
                           ->editColumn('streaming',function($radios){
@@ -325,8 +326,9 @@ class AdminController extends Controller
                           ->addColumn('SocialMedia',function($radios){
                       
                             return 
-                            '<a target="_blank" href="http://'.$radios->facebook.'>
-                             <i class="fa fa-facebook-official" style="font-size:24px"></i>
+                            '
+                             <a target="_blank" href="http://'.$radios->facebook.'>
+                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
                              </a>
                              <a target="_blank" href="http://'.$radios->google.'">
                               <i class="fa fa-youtube-play" style="font-size:36px"></i>
@@ -340,7 +342,134 @@ class AdminController extends Controller
                     })
                           ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
                           ->toJson();
+      }
 
+      public function BackendRadioData()
+      {
+        $radios= Radio::where('seller_id','=',0)->get();
+
+         return Datatables::of($radios)
+
+                          ->addColumn('Actions',function($radios){
+
+                            return '<button type="button" class="btn-danger" value='.$radios->id.' data-toggle="modal" data-target="#DeleteRadio" id="delete">Eliminar</button>
+
+                            <button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
+                          })
+                          ->editColumn('logo',function($radios){
+
+                          return '<img class="img-rounded img-responsive av" src="'.asset($radios->logo).'"
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          ->editColumn('streaming',function($radios){
+                      
+
+                          return '<audio controls="" src="'.$radios->streaming.'">
+                                    <source src="'.$radios->streaming.'" type="audio/mpeg">
+                                    </audio>';
+                         })
+                          ->addColumn('SocialMedia',function($radios){
+                      
+                            return 
+                            '<a target="_blank" href="http://'.$radios->facebook.'>
+                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->google.'">
+                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->instagram.'">
+                               <i class="fa fa-instagram" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$radios->twitter.'">
+                              <i class="fa fa-twitter" style="font-size:36px"></i>
+                             </a>';
+                    })
+                          ->rawColumns(['Actions','logo','streaming','SocialMedia'])
+                          ->toJson();
+
+      }
+
+      public function NewBackendRadios(Request $request)
+      {
+        $Radio = new Radio;
+        
+            $file = $request->file('logo');
+            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/radio/';
+            $file->move($path, $name);
+            $logos = '/images/radio/'.$name;
+
+        $Radio->seller_id = 0;
+
+        $Radio->name_r = $request->name_r;
+        
+        $Radio->streaming = $request->streaming;
+        
+        $Radio->email_c = $request->email_c;
+        
+        $Radio->google = $request->youtube;
+        
+        $Radio->instagram = $request->instagram;
+        
+        $Radio->facebook = $request->facebook;
+        
+        $Radio->twitter = $request->twitter;
+        
+        $Radio->logo = $logos;
+
+        $Radio->status ='Aprobado';
+        
+        $Radio->save();
+
+        return redirect()->action('AdminController@ShowRadios');
+
+      }
+
+      public function DeleteBackendRadio($id)
+      {
+        $radios = Radio::destroy($id);
+        return response()->json($radios);
+      }
+
+      public function GetBackendRadio($id)
+      {
+        $radios = Radio::find($id);
+        $radios->logo = asset($radios->logo);
+        return response()->json($radios);
+      }
+
+      public function UpdateBackendRadio(Request $request,$id)
+      {
+        $Radio= Radio::find($id);
+        //dd($request->all());
+        if($request->logo_u != null)
+        {
+            
+            $file = $request->file('logo_u');
+            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/radio/';
+            $file->move($path, $name);
+          
+            $Radio->logo = '/images/radio/'.$name;
+         }         
+
+        $Radio->name_r = $request->name_r_u;
+        
+        $Radio->streaming = $request->streaming_u;
+        
+        $Radio->email_c = $request->email_c_u;
+        
+        $Radio->google = $request->youtube_u;
+        
+        $Radio->instagram = $request->instagram_u;
+        
+        $Radio->facebook = $request->facebook_u;
+        
+        $Radio->twitter = $request->twitter_u;
+        
+        $Radio->save();
+
+        return redirect()->action('AdminController@ShowRadios');
       }
 
       public function ShowAllRadios()
@@ -1051,5 +1180,44 @@ class AdminController extends Controller
 
 //------------------------------------------------------------------
 
+//---------Pauetes de Tiques
+      
+      public function UpdatePackage($id, Request $request)
+      {
+        $Pack=TicketsPackage::find($id);
+        $Pack->name= $request->name;
+        $Pack->cost= $request->cost;
+        $Pack->amount= $request->ammount; 
+        $Pack->save();
+
+        return response()->json($Pack);
+      }
+
+      public function GetPackage($id)
+      {        
+        $Pack=TicketsPackage::find($id);
+
+          return response()->json($Pack); 
+      }
+
+      public function SavePackage(Request $request)
+      {
+        
+        $Pack= new TicketsPackage;
+        $Pack->name= $request->name;
+        $Pack->cost= $request->cost;
+        $Pack->amount= $request->ammount; 
+        $Pack->save();
+        
+        return response()->json($Pack);
+      }
+
+      public function DeletePackage($id)
+      {
+        $Pack=TicketsPackage::delete($id);
+        return response()->json($Pack);
+      }
+
+//--------------------------------
 
 }

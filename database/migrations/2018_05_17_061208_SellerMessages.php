@@ -34,6 +34,7 @@ class SellerMessages extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('seller_messages');
+        
     }
 }

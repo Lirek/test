@@ -32,6 +32,7 @@ class CreateSondMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sound_movies');
+        
     }
 }

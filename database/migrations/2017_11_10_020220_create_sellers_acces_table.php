@@ -33,6 +33,6 @@ class CreateSellersAccesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('seller_acces');
     }
 }

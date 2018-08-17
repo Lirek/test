@@ -174,6 +174,28 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
 
+            Route::get('FindSalesman/{id}','AdminController@FindSalesman');
+            Route::post('UpadateSalesman/{id}','AdminController@UpadateSalesman');
+
+            Route::post('/promoter_c','AdminController@CreatePromoter');
+
+            Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
+
+            Route::post('SavePackage','AdminController@SavePackage');
+
+            Route::post('UpdatePackage/{id}','AdminController@UpdatePackage');
+
+            Route::get('GetPackage/{id}','AdminController@GetPackage');
+
+            Route::delete('DeletePackage/{id}','AdminController@DeletePackage');
+
+
+
+        //_________________FIN de RUtas de Proveedores____________________________
+
+        //___________________RUTAS DE DE USUARIOS_______________________
+
+            Route::get('BackendUsers','AdminController@ShowBackendUsers');
    });
     
        

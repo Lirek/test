@@ -32,6 +32,7 @@ class CreateStorytellersMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('storytellers_movies');
+        
     }
 }

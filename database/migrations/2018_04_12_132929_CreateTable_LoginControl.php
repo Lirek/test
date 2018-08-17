@@ -28,6 +28,7 @@ class CreateTableLoginControl extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('login_control');
+        
     }
 }
