@@ -123,7 +123,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" id="submitF" class="btn btn-primary">
                                         Registrarse
                                     </button>
                                 </div>
@@ -141,13 +141,29 @@
 
 
     <!--Seccion de Scripts-->
-{{--    <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>--}}
+    <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
     <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-1.11.1.js') }}"></script>
+    {{--    <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>--}}
+    <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script>
 
         $(document).ready(function () {
+
+            $.mockjax({
+                url: "emails.action",
+                response: function (settings) {
+                    var email = settings.data.email, //original del archivo no cambiar
+                        emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
+                        // emails = mys;
+                    this.responseText = "true";
+                    if ($.inArray(email, emails) !== -1) {
+                        this.responseText = "false";
+                    }
+                },
+                responseTime: 500
+            });
+
 
             $("#formR").validate({
 
@@ -159,6 +175,7 @@
                     email: {
                         required: true,
                         email: true,
+                        remote: "emails.action"
                     },
                     password: {
                         required: true,
@@ -185,7 +202,11 @@
                         minlength: "Debe tener minimo 5 caracteres",
                         equalTo: "Ingrese la misma contraseña"
                     },
-                    email: "Ingresar un correo valido",
+                    email: {
+                        required: "Ingresar un correo valido",
+                        minlength: "debe tener mas caracteres",
+                        remote: ("Ya se ha registrado")
+                    }
                 },
 
                 errorElement: "em",
@@ -222,7 +243,10 @@
                 }
 
             })
+
+
         })
+
     </script>
 </div>
 </body>
