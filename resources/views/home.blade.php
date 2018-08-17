@@ -55,8 +55,8 @@
                     @if(Auth::user()->alias==FALSE)
                         
                     
-                      <!-- SERVER STATUS PANELS -->
-                        <div class="col-md-12 col-sm-12 mb">
+                      <!-- COMPLETAR PERFIL PANELS -->
+                        <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
                           <div class="white-panel panRf pe donut-chart">
                             <div class="white-header">
                                <h5>Finalice Su Registro</h5>
@@ -151,8 +151,9 @@
 
                     @endif 
                     
+                    <!--REFERIR-->
                     @if(Auth::user()->UserRefered()->count()==0) 
-                    <div class="col-md-12 col-sm-12 mb" id="referir">
+                    <div class="col-md-12 col-sm-12 mb" id="referir" style="margin-left: 2%">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
                             <h5>Agregar codigo referido</h5>
@@ -204,7 +205,9 @@
                         </div>
                       </div>
                       @endif
-                      <div class="col-md-12 col-sm-12 mb">
+
+                      <!--CONTENIDO RECIENTE-->
+                      <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
                         <div class="white-panel panRf pe donut-chart">
                           <div class="white-header">
                             <h3><span class="card-title">Contenido Reciente</span></h3>                          
@@ -299,7 +302,7 @@
 
 
 
-                        <div class="col-md-5 col-sm-5 mb">
+                        <div class="col-md-5 col-sm-5 mb" style="margin-left: 2%">
                           <div class="white-panel re">
                             <div class="white-header">
                                <h5>Tickets Disponible:</h5>
@@ -319,7 +322,7 @@
                         <div class="col-md-1">
                           
                         </div>
-                        <div class="col-md-5 col-sm-5 mb">
+                        <div class="col-md-4 col-sm-4 mb" style="margin-bottom: -10%">
                            <!-- Qr PANEL -->
                            <div class="Qr-panel pn">
                               <div class="center">
@@ -330,53 +333,7 @@
                        </div><!-- /col-md-4 -->
                   </div><!-- /row -->
                               
-          <div class="row mt">
-            <div class="col-md-12 col-sm-12 mb">
-                      <!--CUSTOM CHART START -->
-                      <div class="border-head">
-                          <h3>Número de contenido</h3>
-                      </div>
-                      <div class="custom-bar-chart">
-                          <ul class="y-axis">
-                              <li><span>10.000</span></li>
-                              <li><span>8.000</span></li>
-                              <li><span>6.000</span></li>
-                              <li><span>4.000</span></li>
-                              <li><span>2.000</span></li>
-                              <li><span>0</span></li>
-                          </ul>
-                          <div class="bar">
-                              <div class="title">Musica</div>
-                              <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">Libros</div>
-                              <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">Revistas</div>
-                              <div class="value tooltips" data-original-title="6.000" data-toggle="tooltip" data-placement="top">60%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">Peliculas</div>
-                              <div class="value tooltips" data-original-title="4.500" data-toggle="tooltip" data-placement="top">45%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">Radios</div>
-                              <div class="value tooltips" data-original-title="3.200" data-toggle="tooltip" data-placement="top">32%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">Tvs</div>
-                              <div class="value tooltips" data-original-title="6.200" data-toggle="tooltip" data-placement="top">62%</div>
-                          </div>
-                          <div class="bar">
-                              <div class="title">Series</div>
-                              <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
-                          </div>
-                      </div>
-                      <!--custom chart end-->
-            </div>
-          </div><!-- /row --> 
+   
           <div id="modal-confirmation"></div> 
 
           @endsection

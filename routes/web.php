@@ -51,13 +51,7 @@ Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
 
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
-Route::get('app', function () {
-    return view('layouts.app');
-});
-Route::get('rigth', function () {
-    return view('layouts.partials.siderRigth');
-});
-
+Route::resource('users', 'UserController');
 
 //-------------------Funciones del Usuarios----------------------------------
 
@@ -123,6 +117,11 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 //Agregada 09/8/2018
     Route::post('SearchProfileAuthor','ContentController@ShowProfileAuthor');
     Route::get('ProfileBookAuthor/{id}','ContentController@ShowAuthor');
+//Agregada 16/8/18
+    Route::get('ShowRadio','ContentController@ShowRadio');
+    Route::get('ListenRadio/{id}','ContentController@ListenRadio');
+    Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
+    Route::post('SearchListenRadio','ContentController@ShowListenRadio');
 
 //---------------------------------------------------------------------------
 

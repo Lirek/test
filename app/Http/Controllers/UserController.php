@@ -7,6 +7,7 @@ use Auth;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
+use App\Events\BuyContentEvent;
 use File;
 use QrCode;
 
@@ -24,6 +25,8 @@ use App\music_authors;
 use App\Transactions;
 use App\Referals;
 use App\Movie;
+use App\AccountBalance;
+
 
 class UserController extends Controller
 {
@@ -302,6 +305,13 @@ class UserController extends Controller
             $user->credito= $user->credito-$Single->cost;
             $user->save(); 
 
+            $account=new AccountBalance;
+            $account->seller_id=$Single->seller_id;
+            $account->balance=$Single->cost;
+            $account->save();
+
+            $this->SendMail($Single->song_name,$Single->cost);
+
             return response()->json($Transaction);
         }
     
@@ -360,7 +370,14 @@ class UserController extends Controller
             $TransactionAlbum->save();
 
             $user->credito= $user->credito-$Albums->cost;
-            $user->save(); 
+            $user->save();
+
+            $account=new AccountBalance;
+            $account->seller_id=$Albums->seller_id;
+            $account->balance=$Albums->cost;
+            $account->save();
+
+            $this->SendMail($Albums->name_alb,$Albums->cost);
 
             return response()->json($TransactionAlbum);
         }
@@ -459,6 +476,13 @@ class UserController extends Controller
 
             $user->credito= $user->credito-$book->cost;
             $user->save(); 
+
+            $account=new AccountBalance;
+            $account->seller_id=$book->seller_id;
+            $account->balance=$book->cost;
+            $account->save();
+
+            $this->SendMail($book->title,$book->cost);
 
             return response()->json($Transaction);
         }
@@ -588,4 +612,15 @@ class UserController extends Controller
 
 
 //--------------------------------------------------------------------------
+//-----------------------------Mail-----------------------------------------
+    public function SendMail($content,$cost)
+    {
+        
+        //$url= url('/').'/register/'.Auth::user()->codigo_ref;
+        event(new BuyContentEvent(Auth::user()->email,$content,$cost));
+        //Flash('Se Ha Invitado con Exito')->success();
+        return true;
+
+    }
+
 }

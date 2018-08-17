@@ -1,6 +1,6 @@
             <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer" style="z-index: -1; position: relative; bottom: 0%; width: 100%;">
+      <footer class="site-footer">
           <div class="text-center">
               Leipel &copy 2018. Todos los Derechos Reservados.
           </div>

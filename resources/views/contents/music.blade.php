@@ -43,7 +43,7 @@
     										-o-background-size: cover;
     										background-size: cover;">
 											<div class="col-xs-4 col-xs-offset-7">
-												<button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#myModal">Ver mas</button>
+												<button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#myModal-{{$Album->id}}">Ver mas</button>
 											</div>
 											<div class="sp-title">
 												<h3>{{$Album->autors->name}}</h3>
@@ -60,7 +60,7 @@
 								 
 
 								 <!--MODAL-->
-								 <div id="myModal" class="modal fade" role="dialog">
+								 <div id="myModal-{{$Album->id}}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                       <!-- Modal content-->
                                       <div class="modal-content">
@@ -231,6 +231,15 @@ function fnOpenNormalDialog(cost,name,id) {
 
 function callback(value,id) {
     if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
          $.ajax({
                     
             url:'BuySong/'+id,
@@ -345,6 +354,15 @@ function fnOpenNormalDialog2(cost,name,id) {
 
 function callback2(value,id) {
     if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
          $.ajax({
                     
             url:'BuyAlbum/'+id,

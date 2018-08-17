@@ -20,8 +20,10 @@ class Referals extends Model
     return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function UserRefered()
+    public function Refered()
     {
-    return $this->belongsTo('App\User', 'refered');
+        return $this->hasMany('App\User', 'refered');
     }
+
+    
 }

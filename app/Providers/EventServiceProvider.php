@@ -36,6 +36,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\CreateCodeSocialUserEvent' => [
             'App\Listeners\CreateCodeSocialUser',
         ],
+
+            'App\Events\BuyContentEvent' => [
+            'App\Listeners\SendBuyContent',
+        ],
             
 
 

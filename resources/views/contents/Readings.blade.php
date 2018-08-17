@@ -191,6 +191,15 @@ function fnOpenNormalDialog(cost,name,id) {
 
 function callback(value,id) {
     if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
          $.ajax({
                     
             url:'BuyBook/'+id,
