@@ -163,7 +163,7 @@
     </div>
   </div>
 
-<div class="modal fade" id="UpadeRadio" role="dialog">
+ <div class="modal fade" id="UpadeRadio" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -173,32 +173,30 @@
           <h4 class="modal-title">Modificar Radio</h4>
         </div>
         <div class="modal-body">
-         <p>Modifique la Radio</p>
+     
         
 
-             <form method="POST" id="UpdateRadioForm">
+             <form method="POST" id="UpdateRadioForm"  enctype="multipart/form-data" class="form-horizontal style-form" role="form">
                               {{ csrf_field() }}
-
-                                             {{ csrf_field() }}
 
                            <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nombre de La Radio</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="name_u" placeholder="Nombre de La Radio" name="name_u">
+                                  <input type="text" class="form-control" id="name_r_u" placeholder="Nombre de La Radio" name="name_r_u" required>
                               </div>
                           </div>
                           
                            <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Direccion del Streaming</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="streaming_u" placeholder="Direccion del Streaming" name="streaming_u">
+                                  <input type="text" class="form-control" id="streaming_u" placeholder="Direccion del Streaming" name="streaming_u" required>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Correo de Contacto</label>
                               <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="email_u" name="email_c" placeholder="Email">
+                                  <input type="email" class="form-control" id="email_c_u" name="email_c_u" placeholder="Email" required>
                               </div>
                           </div>
 
@@ -207,9 +205,9 @@
                             {{--link d google+--}}
                             <div class="input-group ">
                                 <span class="input-group-addon btn-google active"><i class="fa fa-youtube"></i></span>
-                                <input type="text" class="form-control" id="google" autofocus="autofocus" name="youtube_u"
+                                <input type="text" class="form-control" id="youtube_u" autofocus="autofocus" name="youtube_u"
                                        placeholder="Youtube"
-                                       pattern="https?:\/\/(www\.)?youtube\.com/channel/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
+                                       pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)"
                                        required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
                                        oninput="setCustomValidity('')">
 
@@ -229,7 +227,7 @@
                                 <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook"></i></span>
                                 <input type="text" class="form-control" id="facebook_u" name="facebook_u"
                                        placeholder="Facebook"
-                                       pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\/(A-z 0-9 _ - \.)\/?" required
+                                       pattern="http://www\.facebook\.com\/(.+)|https://www\.facebook\.com\/(.+)" required
                                        oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
                                        oninput="setCustomValidity('')">
                             </div>
@@ -245,12 +243,12 @@
                                        oninput="setCustomValidity('')">
                             </div>
 
-                        </div>
+                        
 
                           <div class="form-group">
                             <div id="image-preview_u" style="border:#000000 1px solid; margin-left: 20px" class="col-md-1">
-                                   <label for="image-upload_u" id="image-label_u">Logo</label>
-                                    <input type="file" name="photo_u" accept=".jpg" id="image-upload_u" oninvalid="this.setCustomValidity('Ingrese Una Portada')"
+                                   <label for="image-upload" id="image-label_u">Logo</label>
+                                    <input type="file" name="logo_u" accept=".jpg" id="image-upload_u" oninvalid="this.setCustomValidity('Ingrese Un Logo')"
                                      oninput="setCustomValidity('')" required/>
                             </div>
                           </div>

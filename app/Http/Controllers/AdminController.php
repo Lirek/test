@@ -354,7 +354,7 @@ class AdminController extends Controller
 
                             return '<button type="button" class="btn-danger" value='.$radios->id.' data-toggle="modal" data-target="#DeleteRadio" id="delete">Eliminar</button>
 
-                            <button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#UpadeRadio" id="status">Modificar</button';
+                            <button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
                           })
                           ->editColumn('logo',function($radios){
 
@@ -429,6 +429,47 @@ class AdminController extends Controller
       {
         $radios = Radio::destroy($id);
         return response()->json($radios);
+      }
+
+      public function GetBackendRadio($id)
+      {
+        $radios = Radio::find($id);
+        $radios->logo = asset($radios->logo);
+        return response()->json($radios);
+      }
+
+      public function UpdateBackendRadio(Request $request,$id)
+      {
+        $Radio= Radio::find($id);
+        //dd($request->all());
+        if($request->logo_u != null)
+        {
+            
+            $file = $request->file('logo_u');
+            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/radio/';
+            $file->move($path, $name);
+          
+            $Radio->logo = '/images/radio/'.$name;
+         }         
+
+        $Radio->name_r = $request->name_r_u;
+        
+        $Radio->streaming = $request->streaming_u;
+        
+        $Radio->email_c = $request->email_c_u;
+        
+        $Radio->google = $request->youtube_u;
+        
+        $Radio->instagram = $request->instagram_u;
+        
+        $Radio->facebook = $request->facebook_u;
+        
+        $Radio->twitter = $request->twitter_u;
+        
+        $Radio->save();
+
+        return redirect()->action('AdminController@ShowRadios');
       }
 
       public function ShowAllRadios()
@@ -1139,7 +1180,7 @@ class AdminController extends Controller
 
 //------------------------------------------------------------------
 
-//Pauetes de Tiques
+//---------Pauetes de Tiques
       
       public function UpdatePackage($id, Request $request)
       {

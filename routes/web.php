@@ -287,6 +287,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('NewBackendRadios','AdminController@NewBackendRadios');
                 Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
                 Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
+                Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
+
             //-----------------------------------------------------------------------
         
         //________________Fin de las rutas de contenido_____________________________

@@ -36,6 +36,42 @@
             text-align: center;
         }
 
+         #image-preview_u {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #2b81af;
+        }
+
+        #image-preview_u input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #image-preview_u label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
         input:invalid {
             border: 1px solid red;
         }
@@ -151,66 +187,92 @@ $(document).ready(function(){
                             }
                             });  
                                             });
-
     });
 
     $(document).on('click', '#backend_radios', function() {
       
-      var BackendRadio = $('#BackendRadio').DataTable({
-              processing: true,
-              serverSide: true,
-              ajax: '{!! url('BackendRadios') !!}',
-              columns: [
-                  {data: 'name_r', name: 'name_r'},
-                  {data: 'logo', name: 'logo',  orderable: false, searchable: false},
-                  {data: 'streaming', name: 'streaming'},
-                  {data: 'SocialMedia', name: 'SocialMedia',orderable: false, searchable: false},
-                  {data: 'Actions', name: 'Actions', orderable: false, searchable: false}
-              ]
-          });
+        var BackendRadio = $('#BackendRadio').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! url('BackendRadios') !!}',
+                columns: [
+                    {data: 'name_r', name: 'name_r'},
+                    {data: 'logo', name: 'logo',  orderable: false, searchable: false},
+                    {data: 'streaming', name: 'streaming'},
+                    {data: 'SocialMedia', name: 'SocialMedia',orderable: false, searchable: false},
+                    {data: 'Actions', name: 'Actions', orderable: false, searchable: false}
+                ]
+            });
 
-    $(document).on('click', '#all_radios', function() {
-        
-         BackendRadio.destroy();
-    });
-    
-      $(document).on('click', '#delete', function() {
-      var x = $(this).val();
-        
-        $( "#formDelete" ).on( 'submit', function(e){
-          var url = 'DeleteBackendRadio/'+x;
-        
-          e.preventDefault();
-          
-          $.ajax({
-                                  url: url,
-                                  type: 'POST',
-                                  data: {
-                                          _token: $('input[name=_token]').val()
-                                        },
-                                  success: function (result) {
-
-                                                              $('#DeleteRadio').toggle();
-                                                              $('.modal-backdrop').remove();
-                                                              BackendRadio.ajax.reload();
-
-
-                                                              },
-
-                                  error: function (result) {
-                                  swal('Existe un Error en su Solicitud','','error');
-                                  console.log(result);
-                                  }
-
-                });
-
+        $(document).on('click', '#all_radios', function() {
+            
+             BackendRadio.destroy();
         });
+      
+        $(document).on('click', '#delete', function() {
+            var x = $(this).val();
+          
+            $( "#formDelete" ).on( 'submit', function(e){
+                var url = 'DeleteBackendRadio/'+x;
+              
+                e.preventDefault();
+                
+                $.ajax({
+                                        url: url,
+                                        type: 'POST',
+                                        data: {
+                                                _token: $('input[name=_token]').val()
+                                              },
+                                        success: function (result) {
 
-    
-    });
-    
+                                                                    $('#DeleteRadio').toggle();
+                                                                    $('.modal-backdrop').remove();
+                                                                    BackendRadio.ajax.reload();
+
+
+                                                                    },
+
+                                        error: function (result) {
+                                        swal('Existe un Error en su Solicitud','','error');
+                                        console.log(result);
+                                        }
+
+                      });
+            });
+        });
     });
 
+    $(document).on('click', '#edit', function() {
+
+      var id = $(this).val();
+      var url = 'BackendRadio/'+id;
+
+        $.ajax({
+                  url: url,
+                  type: 'GET',
+                  success: function (data) {
+
+                                    var name_r = $('input[name=name_r_u]').val(data.name_r);
+                                    var streaming = $('input[name=streaming_u]').val(data.streaming);
+                                    var email_c = $('input[name=email_c_u]').val(data.email_c);
+                                    var youtube = $('input[name=youtube_u]').val(data.google);
+                                    var instagram = $('input[name=instagram_u]').val(data.instagram);
+                                    var facebook = $('input[name=facebook_u]').val(data.facebook);
+                                    var twitter = $('input[name=twitter_u]').val(data.twitter);
+                                    var logo = $('#image-preview_u').css('background-image', 'url(' + data.logo + ')');
+                                      $("#UpdateRadioForm").attr('action', 'UpdateBackendRadio/'+id);
+
+                                            },
+
+                  error: function (data) {
+                                            swal('Existe un Error en su Solicitud','','error');
+                                            console.log(data);
+                                           }   
+
+              });
+
+
+    });
     
 
    
@@ -219,6 +281,11 @@ $(document).ready(function(){
                 input_field: "#image-upload",
                 preview_box: "#image-preview",
                 label_field: "#image-label"
+            });
+     $.uploadPreview({
+                input_field: "#image-upload_u",
+                preview_box: "#image-preview_u",
+                label_field: "#image-label_u"
             });
 
 });

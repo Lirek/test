@@ -131,8 +131,8 @@
                   data:{
                         _token: $('input[name=_token]').val(),
                         name: name,
-                        phone: cost,
-                        email: ammount,
+                        cost: cost,
+                        ammount: ammount,
                         }, 
 
                         success: function (result) 
