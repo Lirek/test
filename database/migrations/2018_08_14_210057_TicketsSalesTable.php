@@ -18,6 +18,7 @@ class TicketsSalesTable extends Migration
             $table->integer('package_id')->unsigned()->default('0');
             $table->integer('cost')->unsigned()->default('0');            
             $table->integer('value')->nullable()->default('0');
+            $table->string('voucher')->nullable()->default('0');
             $table->integer('user_id')->unsigned()->default('0');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('user');
