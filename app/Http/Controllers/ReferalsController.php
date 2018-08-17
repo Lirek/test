@@ -16,12 +16,20 @@ class ReferalsController extends Controller
     	$referals1=$user->referals()->count();
     	$referals2=0;
     	$referals3=0;
+
+        $datos = $user->referals()->get();
+         foreach ($datos as $key) {
+             $id[]= $key->refered;
+         }
+         
+        $refered=User::find($id);
     	
     	foreach ($user->referals()->get() as $key) 
     	{
+
     		$referals=User::find($key->refered);
     		$referals2=$referals->referals()->count()+$referals2;
-
+        
     		foreach ($referals->referals()->get() as $key2) 
     		{
     			$referals=User::find($key2->refered);
@@ -29,11 +37,8 @@ class ReferalsController extends Controller
 
     		}
     	}
-    	
-
-    	
-
-    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3);
+    
+    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered);
     }
 
     public function ShowReferals()

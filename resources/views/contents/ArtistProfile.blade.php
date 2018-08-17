@@ -17,7 +17,7 @@
             				<div class="col-sm-6 col-xs-12 col-md-6" >
             					<div class="center-align">
 									<img src="{{asset($Artist->photo)}}" class="img-circle responsive-img" width="55%" height="150">
-									<div class="col-sm-7 col-xs-7 col-md-7">
+									<div class="col-sm-7 col-xs-6 col-md-7" style="margin-left: 7%">
 										<a class="waves-effect waves-light btn blue darken-3" href="{{$Artist->facebook}}" target="blank">
 										<i class="fa fa-facebook"></i>
 										</a>
@@ -27,9 +27,9 @@
 										<a class="waves-effect waves-light btn pink" href="{{$Artist->instagram}}" target="blank">
 										<i class="fa fa-instagram"></i>
 										</a>
-										<a class="waves-effect waves-light btn blue" href="{{$Artist->twitter}}" target="blank">
-										<i class="fa fa-twitter"></i>
-										</a>
+										<!-- <a class="waves-effect waves-light btn blue" href="{{$Artist->twitter}}" target="blank">
+										<i class="fa fa-twitter"></i> -->
+									<!-- 	</a> -->
 				  					</div>
 								</div>
 							</div>
@@ -180,6 +180,15 @@ function fnOpenNormalDialog(cost,name,id) {
 
 function callback(value,id) {
     if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
          $.ajax({
           
             url:"{{ URL('BuySong') }}"+'/'+id, 
@@ -266,6 +275,15 @@ function fnOpenNormalDialog2(cost,name,id) {
 
 function callback2(value,id) {
     if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
          $.ajax({
                     
             

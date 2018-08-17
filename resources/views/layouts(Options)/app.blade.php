@@ -61,8 +61,12 @@
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
-           <!--  notification (Barra Cabecera) -->
-                <!-- <ul class="nav top-menu">
+               
+
+                <!--  notification start -->
+                <ul class="nav top-menu">
+
+                    <!-- settings start -->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-tasks"></i>
@@ -88,6 +92,8 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                             <i class="fa fa-envelope-o"></i>
@@ -111,9 +117,9 @@
                                 </a>
                             </li>
                         </ul>
-                    </li> 
-                    
-                </ul>-->
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
                 <!--  notification end -->
             </div>
 <!--             <div class="top-menu">
@@ -158,10 +164,8 @@
                       <span>Adquirir Contenido</span>
                     </a>
                     <ul class="sub">
-                      <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
-                      <!-- <li><a href="{{url('ReadingsBooks')}}">Libros</a></li> -->
-                      <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Música</a></li>
-                      <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Libros</a></li>
+                      <li><a href="{{url('MusicContent')}}">Música</a></li>
+                      <li><a href="{{url('ReadingsBooks')}}">Libros</a></li>
                     </ul>
                   </li>
 
@@ -172,16 +176,14 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="{{url('MyMovies')}}">Mis peliculas</a></li>
-                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis peliculas</a></li>
+                          <li><a href="#">Mis Series</a></li>
                           <li class="sub-menu">
                               <a href="javascript:;" >
                                 <span>Mi música</span>
                               </a>
                             <ul class="sub">
-                             <!--  <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
-                              <li><a  href="{{url('MyAlbums')}}">Albums</a></li> -->
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Sencillos</a></li>
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Albums</a></li> -->
+                              <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
+                              <li><a  href="{{url('MyAlbums')}}">Albums</a></li>
                             </ul>
                           </li>
 
@@ -190,20 +192,18 @@
                               <span>Mis lecturas</span>
                             </a>
                             <ul class="sub">
-                              <!-- <li><a  href="{{url('MyReads')}}">Mis libros</a></li>
-                              <li><a  href="{{url('MyMegazine')}}">Mis megazines</a></li> -->
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis libros</a></li>
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis megazines</a></li>
+                              <li><a  href="{{url('MyReads')}}">Mis libros</a></li>
+                              <li><a  href="{{url('MyMegazine')}}">Mis megazines</a></li>
                             </ul>
                           </li>
 
                           <li class="sub-menu">
                             <a href="javascript: ;">
-                              <span>Streams</span>
+                              <span>Mis streams</span>
                             </a>
                             <ul class="sub">
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Tv</a></li>
-                              <li><a href="{{url('ShowRadio')}}">Radio</a></li>
+                              <li><a  href="#">Tv</a></li>
+                              <li><a href="#">Radio</a></li>
                             </ul>
                           </li>
                       </ul>
@@ -225,8 +225,8 @@
                           <span>Seguidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis seguidos</a></li>
-                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Proveedores</a></li>
+                          <li><a  href="blank.html">Mis seguidos</a></li>
+                          <li><a  href="login.html">Proveedores</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu sidebar-menu hidden-xs" id="nav-accordion" style="position: fixed; bottom: 0px; width: 12%;">
@@ -256,43 +256,16 @@
       <section id="main-content">
           <section class="wrapper">
                 <div class="row">
-                    <div class="col-lg-11 main-chart">
+                    <div class="col-lg-9 main-chart">
                         @yield('main')
                     </div>
-                    <!--BARRA OCULTA-->
-                     <div class="col-lg-3" style="margin-bottom: 280px"> 
-                       {{-- @include('layouts.partials.siderRigth') --}}<!--COMENTADO-->
-                     </div><!-- /col-lg-3 -->
-
+                    <div class="col-lg-3 ds" id="Rigth">
+                        @include('layouts.partials.siderRigth') 
+                    </div><!-- /col-lg-3 -->
                 </div>
           </section>
       </section> 
-      <div class="desc"></div>
 @extends('layouts.partials.footer')
-<!--MODAL-->
-<div id="myModalContenido" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <!-- Modal content-->
-      
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" align="center">PRÓXIMAMENTE!</h4>
-        </div>
-        <div style="background-image: url('{{asset('sistem_images/dsBuffer.png')}}'); 
-      background-size: 100% 100%;;" class="img-rounded img-responsive av text-center">
-          <!-- <img src="{{asset('assets/img/Logo-Leipel.png')}}" style="width: 45%;  margin-left: 10%; margin-top: 20%"> -->
-          <div>
-          <img src="{{asset('assets/img/wrench.png')}}" style=" z-index:1; width:10%;  margin-top: 40%">
-          </div>
-          <div align="center" style="margin-left: 20%; margin-right: 20%; margin-top: 2% ">
-            <p><h3>Estamos trabajando para su entretenimiento</h3></p>
-            <h4> visitenos pronto!!</h4>
-          </div>
-        </div>
-        
-      </div>
-  </div>
-<!--FIN DEL MODAL-->
 
 </body>
     <!-- js placed at the end of the document so the pages load faster -->

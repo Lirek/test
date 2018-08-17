@@ -167,5 +167,44 @@ class ContentController extends Controller
 
         return $prueba;
     }
+//-------------------------------------------RADIO---------------------------------------
+    public function ShowRadio(){
+        $Radio= Radio::where('status','=','Aprobado')->paginate(10);
+        return view('Contents.ShowRadios')->with('Radio',$Radio);
+    }
+
+    public function ListenRadio($id){
+        $Radio= Radio::where('id','=',$id)->get();
+        return view('Contents.listenRadio')->with('Radio',$Radio);
+    }
+
+    public function ShowListenRadio(Request $request){
+        $Radio= Radio::where('name_r','=',$request->seach)->get();
+        foreach ($Radio as $key) {
+            $prueba=$this->ListenRadio($key->id);
+        }
+        return $prueba;
+    }
+
+    public function seachRadio(){
+        $query=Input::get('term');
+        $Radio=Radio::where('name_r','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Radio as $key) {
+           
+            $data[]=['id' => $key->id, 'value' => $key->name_r];
+        }
+
+        if(count($data))
+        {
+            return response()->json($data); 
+        }else
+        {
+         return ['value'=>'No se encuentra...','id'=>''];
+        }
+       
+    }
 }
 
