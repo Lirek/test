@@ -25,7 +25,7 @@
                                     </a>
                                 </div>
                                 <div class="col-sm-4 col-xs-12 col-md-4"  >
-                                    <img src="{{asset('images/radio')}}/{{$radios->logo}}" class="img-responsive" width="70%" style="margin-top: 15%;">
+                                    <img src="{{asset($radios->logo)}}" class="img-responsive" width="70%" style="margin-top: 15%;">
                                 </div>
                                 <div class="col-sm-4 col-xs-12 col-md-4">
                                     <a class="waves-effect waves-light btn red" href="{{$radios->google}}" target="blank" style="margin-top: 40%; margin-left: 15%; font-size: 250%"> 

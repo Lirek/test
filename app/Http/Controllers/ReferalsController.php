@@ -18,12 +18,21 @@ class ReferalsController extends Controller
     	$referals3=0;
 
         $datos = $user->referals()->get();
+
+        if ($datos->count() != 0){
+
          foreach ($datos as $key) {
              $id[]= $key->refered;
+
          }
+    
          
         $refered=User::find($id);
-    	
+        }
+        else
+        {
+            $refered=null;
+        }
     	foreach ($user->referals()->get() as $key) 
     	{
 

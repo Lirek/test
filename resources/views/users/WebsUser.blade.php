@@ -77,8 +77,10 @@
             </div>
           </div>
         </div><!-- /col-md-5 -->
+        @if ($refered != null)
         <h5 style="margin-left: 3%">Mis referidos:</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
+          
           @foreach($refered as $refereds)
               <div class="col-sm-2 col-xs-3 col-md-1">
                 @if($refereds->img_perf)
@@ -92,6 +94,7 @@
               </div>
           @endforeach
         </div>
+        @endif
        
                       
         </div><!-- /row --> 

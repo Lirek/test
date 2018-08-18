@@ -100,7 +100,6 @@ Route::post('Invite','UserController@Invite');
      //Agregada 8/8/2018
     Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
 
-
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
