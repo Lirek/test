@@ -32,6 +32,7 @@ class CreateCastMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cast_movies');
+            
     }
 }

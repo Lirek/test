@@ -37,6 +37,7 @@ class CreateTableTagsMusic extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('songs_tags');
+        
     }
 }

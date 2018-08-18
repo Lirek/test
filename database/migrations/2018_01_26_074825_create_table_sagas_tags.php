@@ -36,6 +36,7 @@ class CreateTableSagasTags extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('saga_tags');
+        
     }
 }

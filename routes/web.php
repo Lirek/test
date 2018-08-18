@@ -42,8 +42,6 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 
 Route::get('/home', 'HomeController@index');
 Route::get('ContentGraph', 'HomeController@DataContentGraph');
-Route::get('MyTickets/{id}', 'HomeController@MyTickets');
-//Route::resource('App', 'TareasController');
 
 //---------------------------------------------------------------------
 
@@ -97,9 +95,6 @@ Route::post('Invite','UserController@Invite');
     //Agregada 3/8/2018
     Route::get('DownloadQr','UserController@qrDownload');
 
-     //Agregada 8/8/2018
-    Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
-
 
 //---------------------------------------------------------------------------
 
@@ -114,14 +109,6 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
 //Agrega 3/8/2018
     Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
-//Agregada 09/8/2018
-    Route::post('SearchProfileAuthor','ContentController@ShowProfileAuthor');
-    Route::get('ProfileBookAuthor/{id}','ContentController@ShowAuthor');
-//Agregada 16/8/18
-    Route::get('ShowRadio','ContentController@ShowRadio');
-    Route::get('ListenRadio/{id}','ContentController@ListenRadio');
-    Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
-    Route::post('SearchListenRadio','ContentController@ShowListenRadio');
 
 //---------------------------------------------------------------------------
 
@@ -171,13 +158,24 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
 
-            Route::get('BackendUsers','AdminController@ShowBackendUsers');
+            Route::get('FindSalesman/{id}','AdminController@FindSalesman');
+            Route::post('UpadateSalesman/{id}','AdminController@UpadateSalesman');
 
+            Route::post('/promoter_c','AdminController@CreatePromoter');
+
+            Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
+        
+        //_________________FIN de RUtas de Proveedores____________________________
+
+        //___________________RUTAS DE DE USUARIOS_______________________
+
+            Route::get('BackendUsers','AdminController@ShowBackendUsers');          
    });
     
        
-        Route::group(['middleware' => ['Operator']], function (){
+    Route::group(['middleware' => ['Operator']], function (){
 
+        //-----------------Rutas de Solicitudes------------------------------------- 
             Route::get('/admin_applys','AdminController@ShowApplys');
 
             Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
@@ -256,26 +254,26 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
            //------------------------------------------------------------------------
 
-           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
+           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------   
                 Route::get('admin_books','AdminController@ShowBooks');
                 Route::get('BooksData','AdminController@BooksDataTable');
                 Route::post('books_status/{id}','AdminController@EstatusBooks');
-
+                
                 Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
                 Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
            //------------------------------------------------------------------------
 
            //--------------------AUTORES LITERARIOS----------------------------------
-
+                
                 Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
                 Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
            //------------------------------------------------------------------------
 
-
+        
 
             //-----------------------------------------------------------------------
-
+        
         //________________Fin de las rutas de contenido_____________________________
 
         //______________________Rutas de Clientes___________________________________
@@ -381,450 +379,325 @@ Route::group(['middleware' => 'seller_guest'], function () {
 
 Route::group(['middleware' => 'seller_auth'], function () {
 
-    Route::post('seller_logout', 'SellerAuth\LoginController@logout');
-
-    Route::get('messages','SellerController@ShowMessages');
-
-    Route::post('/seller_complete', 'SellerController@CompleteRegistration');
-
-    Route::resource('sellers', 'SellerController');
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                   -----------------------
-    -----------------               DEL                    -----------------------
-    -----------------          MODULO DE MUSICA            ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-    /*---------- Registrar Artistas o Grupos Musicales ------------*/
-    Route::post('/save_artist', 'ArtistController@CreateArtist');
-    Route::get('/artist_form', 'ArtistController@ShowArtistForms');
-    /*------------------------------------------------------------*/
-
-    // Rutas nuevas 09-08-2018
-    //es para modificar la informacion del artista o grupo musical que pertenece
-    /*---------- Registrar Artistas o Grupos Musicales ------------*/
-    Route::get('/modify_artist', 'ArtistController@modify_artist');
-    Route::post('/save_modify_artist', 'ArtistController@save_modify_artist');
-    /*------------------------------------------------------------*/
-    //es para modificar la informacion del artista o grupo musical que pertenece
-    // Rutas nuevas 09-08-2018
-
-    /*---------- Registrar Albums -------------------------------*/
-    Route::post('/albums', 'AlbumsController@CreateAlbum');
-    Route::get('/albums', 'AlbumsController@ShowAlbumstForms');
-    /*------------------------------------------------------------*/
-
-    /*------------------Modificar Albums -------------------------- */
-    Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
-    Route::post('/modify_album', 'AlbumsController@UpdateAlbum');
-    Route::get('/musicFromAlbum/{id}', 'AlbumsController@musicFromAlbum');
-    /*--------------------------------------------------------------*/
-
-    /*------------------Borrar Albums-------------------------------*/
-    Route::get('/delete_album/{id}', 'AlbumsController@DeleteAlbum');
-    /*--------------------------------------------------------------*/
-
-    /*------------------Mostrar Albums- ----------------------------*/
-    Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
-    /*--------------------------------------------------------------*/
-
-    /*-------------Listar Canciones de los Albums-------------------*/
-    Route::get('/SongsAlbums/{id}','AlbumsController@SongAlbum');
-    /*--------------------------------------------------------------*/
-
-
-    /*---------- Registrar Singles -------------------------------*/
-    Route::post('/single_registration', 'AlbumsController@SongConfig');
-    Route::get('/single_registration', 'AlbumsController@ShowSingleForms');
-    /*--------------------------------------------------------*/
-
-    /*------------------Borrar Single-------------------------------*/
-    Route::get('/delete_song/{id}', 'AlbumsController@DeleteSong');
-    /*--------------------------------------------------------------*/
-
-    /*------------------Modificar Single -------------------------- */
-    Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
-    Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
-    /*--------------------------------------------------------------*/
-
-    /*--------------Panel de "Mi Contenido Musical"---------------- */
-    Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
-    /*--------------------------------------------------------------*/
-
-    /*----------------------Agregar Tags--------------------------- */
-    Route::resource('tags','TagController');
-    /*--------------------------------------------------------------*/
-
-    /*--------------Panel de "Mi Contenido Musical"---------------- */
-    Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
-    /*--------------------------------------------------------------*/
-
-    /*---------Canciones del Panel "Mi Contenido Musical"------------*/
-    Route::get('/music_of_my_music_panel/{id}', 'MusicController@ShowMusicOfMyPanel');
-    /*--------------------------------------------------------------*/
-
-    /*--------------AJAX de Guardar Etiquetas---------------------- */
-    Route::post('/tagMusic', 'AlbumsController@SaveTag');
-    /*--------------------------------------------------------------*/
-
-    /*----------------------Agregar Tags--------------------------- */
-    Route::resource('tags','TagController');
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          MUSICA                -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-  ------------------------------------------------------------------------------
-  ------------------------------------------------------------------------------
-  -----------------              RUTAS                   -----------------------
-  -----------------               DEL                    -----------------------
-  -----------------          MODULO DE SERIES            ----------------------
-  -----------------------------------------------------------------------------
-  -----------------------------------------------------------------------------
-  ----------------------------------------------------------------------------*/
-
-
-    Route::resource('series', 'SeriesController');
-
-    Route::get('showEpisode/{idE}/{idS}',[
-        'uses'  => 'SeriesController@showEpisode',
-        'as'    => 'series.showEpisode'
-    ]);
-
-    Route::get('seriesDestroy/{id}', [
-        'uses' => 'SeriesController@destroy',
-        'as'   => 'seriesDestroy'
-    ]);
-
-    /*
-    modificada de manera generica
-    //para q guarde el modal
-    Route::post('sagas/registerS', [
-        'uses' => 'SagaController@registerSeries',
-        'as' => 'sagas.registerS'
-    ]);
-    */
-
-    Route::get('destroyEpisode/{idE}/{idS}', [
-        'uses' => 'SeriesController@destroyEpisode',
-        'as' => 'destroyEpisode'
-    ]);
-
-    /*
-
-    PROBAR ESTA RUTA AL ELIMINAR
-
-    Route::get('series/{id}/destroy', [
-        'uses' => 'SeriesController@destroy',
-        'as' => 'series.destroy'
-    ]);
-    */
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          SERIES                -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                   -----------------------
-    -----------------               DEL                    -----------------------
-    -----------------          MODULO DE RADIOS            ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-    Route::resource('radios', 'RadiosController');
-
-    Route::get('radios/{id}/destroy', [
-        'uses' => 'RadiosController@destroy',
-        'as' => 'radios.destroy'
-    ]);
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          RADIOS                -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                   -----------------------
-    -----------------               DEL                    -----------------------
-    -----------------          MODULO DE TVS                ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-    Route::resource('tvs', 'TVController');
-
-    Route::get('tvs/{id}/destroy', [
-        'uses' => 'TVController@destroy',
-        'as' => 'tvs.destroy'
-    ]);
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          TVS                   -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                   -----------------------
-    -----------------               DEL                    -----------------------
-    -----------------          MODULO DE REVISTAS          ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-//------------Rutas de "Agregar Revista a Cadena de Publicaciones"------------
-    Route::get('/megazine_form', 'MegazineController@ShowMegazineForm');
-    Route::post('/megazine_save', 'MegazineController@AddMegazine');
-//-------------Fin de las Rutas-----------------------------------------------
-
-//------------Rutas de "Crear Cadena de Publicaciones"------------
-    Route::get('/type', 'MegazineController@ShowPTypeForm');
-    Route::post('/type', 'MegazineController@AddPType');
-//-------------Fin de las Rutas-----------------------------------------------
-
-//------------Rutas de Registrar Revista Independiente----------------------
-    Route::get('/megazine_i', 'MegazineController@ShowSingleMegazineForm');
-    Route::post('/megazine_i', 'MegazineController@AddMegazineI');
-//-----------Fin de las Rutas-----------------------------------------------
-
-//------------Rutas de Modificar "Revista a Cadena de Publicaciones"------------
-    Route::get('/megazine_update/{id}', 'MegazineController@ShowUpdateMegazineForm');
-    Route::post('/megazine_update/{id}', 'MegazineController@UpdateMegazine');
-//-------------Fin de las Rutas-----------------------------------------------
-
-//------------Rutas de Modificar "Cadena de Publicaciones"------------
-    Route::get('/type_update/{id}', 'MegazineController@ShowUpdatePTypeForm');
-    Route::post('/type_update/{id}', 'MegazineController@UpdatePType');
-//-------------Fin de las Rutas-----------------------------------------------
-
-//------------Rutas de Modificar Revista Independiente----------------------------
-    Route::get('/megazine_i_update/{id}', 'MegazineController@ShowUpdateSingleMegazineForm');
-    Route::post('/megazine_i_update/{id}', 'MegazineController@UpdateIdMegazine');
-//-----------Fin de las Rutas-----------------------------------------------------
-
-//------------Rutas de Borrar Revistas ----------------------------
-    Route::get('/delete_megazine/{id}', 'MegazineController@DeleteMegazine');
-//-----------Fin de las Rutas-----------------------------------------------------
-
-
-//------------Rutas de Borrar Cadenas de Publicacion ----------------------------
-    Route::get('/type_delete/{id}', 'MegazineController@DeleteType');
-//-----------Fin de las Rutas-----------------------------------------------------
-
-//-----------Mostrar Cadenas de Publicaion-----------------------------------------
-    Route::get('/show_pub/{id}', 'MegazineController@ShowType');
-//------------------------------------------------------------------------------
-
-//-----------Mostrar Revista-----------------------------------------
-    Route::get('/show_megazine/{id}', 'MegazineController@ShowMegazine');
-//-------------------------------------------------------------------------------
-
-//-----------Panel de Mis Revistas ------------------------------------------------------------
-    Route::get('/my_megazine/{id}', 'MegazineController@MyMegazine');
-//-------------------------------------------------------------------------------
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          REVISTAS              -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                   -----------------------
-    -----------------               DEL                    -----------------------
-    -----------------          MODULO DE LIBROS            ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-    Route::resource('tbook', 'BooksController');
-    Route::get('tbook/{id}/destroy',[
-        'uses' => 'BooksController@destroy',
-        'as' => 'tbook.destroy'
-    ]);
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          LIBROS                -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
------------------              RUTAS                   -----------------------
------------------               DEL                    -----------------------
------------------          MODULO DE SAGA            ----------------------
------------------------------------------------------------------------------
------------------------------------------------------------------------------
-----------------------------------------------------------------------------*/
-
-
-    Route::resource('sagas', 'SagaController');
-    //para q guarde el modal
-    Route::post('sagas/register', [
-        'uses' => 'SagaController@register',
-        'as' => 'sagas.register'
-    ]);
-    Route::get('saga/{id}/destroy', [
-        'uses' => 'SagaController@destroy',
-        'as' => 'sagas.destroy'
-    ]);
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          SAGA                -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    -----------------              RUTAS                  -----------------------
-    -----------------               DEL                   -----------------------
-    -----------------          MODULO DE PELICULA          ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-    Route::resource('movies', 'MoviesController');
-    //para q guarde el modal
-//    Route::post('movies/register', [
-//        'uses' => 'SagaController@register',
-//        'as' => 'sagas.register'
-//    ]);
-    Route::get('movies/{id}/destroy', [
-        'uses' => 'MoviesController@destroy',
-        'as' => 'movies.destroy'
-    ]);
-
-    /*-------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------
-    --------------------                                -----------------------
-    --------------------           FIN                  -----------------------
-    --------------------        DEL MODULO              -----------------------
-    --------------------          PELICULA              -----------------------
-    ---------------------------------------------------------------------------
-    ---------------------------------------------------------------------------*/
-
-
-    /*----------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------
-    -----------------              RUTAS                  -----------------------
-    -----------------               DEL                   -----------------------
-    -----------------          MODULO DE AUTORES           ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-    Route::resource('authors_books', 'BooksAuthorsController');
-    //para q guarde el modal
-    Route::post('authors_books/register', [
-        'uses' => 'BooksAuthorsController@register',
-        'as' => 'authors_books.register'
-    ]);
-    Route::get('authors_books/{id}/destroy', [
-        'uses' => 'BooksAuthorsController@destroy',
-        'as' => 'authors_books.destroy'
-    ]);
-    //nueva ruta 09-08-2018
-    Route::get('show_books/', [
-        'uses' => 'BooksAuthorsController@showBooks',
-        'as' => 'authors_books.showBooks'
-    ]);
-    //nueva ruta 09-08-2018
-
-    /*---------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    -----------------              RUTAS                  -----------------------
-    -----------------               DEL                   -----------------------
-    -----------------               FIN                   -----------------------
-    -----------------          MODULO DE AUTORES           ----------------------
-    -----------------------------------------------------------------------------
-    -----------------------------------------------------------------------------
-    ----------------------------------------------------------------------------*/
-
-
-    Route::get('/Series', 'SellerController@CompleteRegistrationForm');
-
-
-//----------------------------------------------------------------------
-//-----------Funcion encargada de determinar ---------------------------
-//-----------el acceso a los modulos del sistema-----------------------
-//-----------y Setear Las variabels en la Vista------------------------
-//----------------------------------------------------------------------
-
-
-    Route::get('/seller_home','SellerController@homeSeller');
+    //-----Rutas de Cosas Administrativas------------------------------------
+        Route::post('seller_logout', 'SellerAuth\LoginController@logout');
 
+        Route::get('messages','SellerController@ShowMessages');
 
+        Route::post('/seller_complete', 'SellerController@CompleteRegistration');
+
+        Route::resource('sellers', 'SellerController');
+    //------------------------------------------------------------------------
+
+
+    //-----------------------------MODULO DE MUSICA---------------------------
+
+        /*---------- Registrar Artistas o Grupos Musicales ------------*/
+        Route::post('/save_artist', 'ArtistController@CreateArtist');
+        Route::get('/artist_form', 'ArtistController@ShowArtistForms');
+        /*------------------------------------------------------------*/
+
+        /*---------- Registrar Albums -------------------------------*/
+        Route::post('/albums', 'AlbumsController@CreateAlbum');
+        Route::get('/albums', 'AlbumsController@ShowAlbumstForms');
+        /*------------------------------------------------------------*/
+
+        /*------------------Modificar Albums -------------------------- */
+        Route::get('/modify_album/{id}', 'AlbumsController@ModifyAlbum');
+        Route::post('/modify_album/{id}', 'AlbumsController@UpdateAlbum');
+        /*--------------------------------------------------------------*/
+
+        /*------------------Borrar Albums-------------------------------*/
+        Route::get('/delete_album/{id}', 'AlbumsController@DeleteAlbum');
+        /*--------------------------------------------------------------*/
+
+        /*------------------Mostrar Albums- ----------------------------*/
+        Route::get('/show_album/{id}', 'AlbumsController@ShowAlbum');
+        /*--------------------------------------------------------------*/
+
+
+        /*---------- Registrar Singles -------------------------------*/
+        Route::post('/single_registration', 'AlbumsController@SongConfig');
+        Route::get('/single_registration', 'AlbumsController@ShowSingleForms');
+        /*--------------------------------------------------------*/
+
+        /*------------------Borrar Single-------------------------------*/
+        Route::get('/delete_song/{id}', 'AlbumsController@DeleteSong');
+        /*--------------------------------------------------------------*/
+
+        /*------------------Modificar Single -------------------------- */
+        Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
+        Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
+        /*--------------------------------------------------------------*/
+
+        /*--------------Panel de "Mi Contenido Musical"---------------- */
+        Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+        /*--------------------------------------------------------------*/
+
+        /*--------------AJAX de Guardar Etiquetas---------------------- */
+        Route::post('/tagMusic', 'AlbumsController@SaveTag');
+        /*--------------------------------------------------------------*/
+    //-------------------------------------------------------------------------
+
+
+    //---------------------------MODULO DE SERIES------------------------------
+
+        Route::resource('series', 'SeriesController');
+
+        //para q guarde el modal
+        Route::post('sagas/registerS', [
+            'uses' => 'SagaController@registerSeries',
+            'as' => 'sagas.registerS'
+        ]);
+
+        Route::get('series/{id}/destroy', [
+            'uses' => 'SeriesController@destroy',
+            'as' => 'series.destroy'
+        ]);
+    //-------------------------------------------------------------------------
+
+
+    //--------------------------MODULO DE RADIOS---------------------------------
+
+           Route::resource('radios', 'RadiosController');
+
+            Route::get('radios/{id}/destroy', [
+            'uses' => 'RadiosController@destroy',
+            'as' => 'radios.destroy'
+         ]);
+    //----------------------------------------------------------------------------
+
+
+    //--------------------------MODULO DE REVISTAS---------------------------------
+
+        //------------Rutas de "Agregar Revista a Cadena de Publicaciones"------------
+            Route::get('/megazine_form', 'MegazineController@ShowMegazineForm');
+            Route::post('/megazine_save', 'MegazineController@AddMegazine');
+        //-------------Fin de las Rutas-----------------------------------------------
+
+        //------------Rutas de "Crear Cadena de Publicaciones"------------
+            Route::get('/type', 'MegazineController@ShowPTypeForm');
+            Route::post('/type', 'MegazineController@AddPType');
+        //-------------Fin de las Rutas-----------------------------------------------
+
+        //------------Rutas de Registrar Revista Independiente----------------------
+            Route::get('/megazine_i', 'MegazineController@ShowSingleMegazineForm');
+            Route::post('/megazine_i', 'MegazineController@AddMegazineI');
+        //-----------Fin de las Rutas-----------------------------------------------
+
+        //------------Rutas de Modificar "Revista a Cadena de Publicaciones"----------
+            Route::get('/megazine_update/{id}', 'MegazineController@ShowUpdateMegazineForm');
+            Route::post('/megazine_update/{id}', 'MegazineController@UpdateMegazine');
+        //-------------Fin de las Rutas-----------------------------------------------
+
+        //------------Rutas de Modificar "Cadena de Publicaciones"------------
+            Route::get('/type_update/{id}', 'MegazineController@ShowUpdatePTypeForm');
+            Route::post('/type_update/{id}', 'MegazineController@UpdatePType');
+        //-------------Fin de las Rutas-----------------------------------------------
+
+        //------------Rutas de Modificar Revista Independiente------------------------
+            Route::get('/megazine_i_update/{id}', 'MegazineController@ShowUpdateSingleMegazineForm');
+            Route::post('/megazine_i_update/{id}', 'MegazineController@UpdateIdMegazine');
+        //-----------Fin de las Rutas-------------------------------------------------
+
+        //------------Rutas de Borrar Revistas ----------------------------
+            Route::get('/delete_megazine/{id}', 'MegazineController@DeleteMegazine');
+        //-----------Fin de las Rutas-------------------------------------------
+
+
+        //------------Rutas de Borrar Cadenas de Publicacion -------------------------
+            Route::get('/type_delete/{id}', 'MegazineController@DeleteType');
+        //-----------Fin de las Rutas-------------------------------------------------
+
+        //-----------Mostrar Cadenas de Publicaion-----------------------------------
+            Route::get('/show_pub/{id}', 'MegazineController@ShowType');
+        //---------------------------------------------------------------------------
+
+        //-----------Mostrar Revista-----------------------------------------
+            Route::get('/show_megazine/{id}', 'MegazineController@ShowMegazine');
+        //---------------------------------------------------------------------------
+
+        //-----------Panel de Mis Revistas ------------------------------------------
+            Route::get('/my_megazine/{id}', 'MegazineController@MyMegazine');
+        //----------------------------------------------------------------------------
+    //------------------------------------------------------------------------------
+
+
+    //--------------------------MODULO DE TV--------------------------------------
+
+        Route::resource('tvs', 'TVController');
+
+        Route::get('tvs/{id}/destroy', [
+            'uses' => 'TVController@destroy',
+            'as' => 'tvs.destroy'
+        ]);
+    //-----------------------------------------------------------------------------
+
+
+    //-------------------------MODULO DE LIBROS------------------------------------
+        Route::resource('tbook', 'BooksController');
+        
+        Route::get('tbook/{id}/destroy',[
+            'uses' => 'BooksController@destroy',
+            'as' => 'tbook.destroy'
+        ]);
+    //-----------------------------------------------------------------------------
+
+    //-------------------------MODULO DE SAGA--------------------------------------
+        Route::resource('sagas', 'SagaController');
+        //para q guarde el modal
+        Route::post('sagas/register', [
+            'uses' => 'SagaController@register',
+            'as' => 'sagas.register'
+        ]);
+        Route::get('saga/{id}/destroy', [
+            'uses' => 'SagaController@destroy',
+            'as' => 'sagas.destroy'
+        ]);
+    //------------------------------------------------------------------------------
+
+    //------------------------MODULO DE AUTORES------------------------------------
+
+        Route::resource('authors_books', 'BooksAuthorsController');
+        //para q guarde el modal
+        Route::post('authors_books/register', [
+            'uses' => 'BooksAuthorsController@register',
+            'as' => 'authors_books.register'
+        ]);
+        Route::get('authors_books/{id}/destroy', [
+            'uses' => 'BooksAuthorsController@destroy',
+            'as' => 'authors_books.destroy'
+        ]);
+    //------------------------------------------------------------------------------
+
+    //------------------------MODULO DE PELICULAS----------------------------------
+            Route::resource('movies', 'MoviesController');
+            //para q guarde el modal
+            //   Route::post('movies/register', [
+            //       'uses' => 'SagaController@register',
+            //    'as' => 'sagas.register'
+            //    ]);
+            Route::get('movies/{id}/destroy', [
+                'uses' => 'MoviesController@destroy',
+                'as' => 'movies.destroy'
+            ]);
+    //------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------
+    //-----------Funcion encargada de determinar ---------------------------
+    //-----------el acceso a los modulos del sistema----------------------- 
+    //-----------y Setear Las variabels en la Vista------------------------
+    //----------------------------------------------------------------------
+
+
+    Route::get('/seller_home', function () {
+        $id = Auth::guard('web_seller')->user()->id;
+
+        $seller = App\Seller::find($id);
+        
+        $tv_content=0;
+        $radios_content=0;
+        $Megazine_content=0;
+        $series_content=0;
+        $Books_content=0;
+        $Movies_content=0;
+        $musical_content=0;
+
+        $aproved_radio=0;
+        $aproved_megazines=0;
+        $aproved_song=0;
+        $aproved_books=0;
+        $aproved_musica=0;
+        $aproved_tv=0;
+        
+        if($seller->roles())
+        {
+            $seller_modules;
+        };
+
+        
+
+        foreach ($seller->roles as $role) 
+        {
+            $seller_modules[] = $role;
+
+            switch ($role->name) 
+            {
+                
+                case 'Musica':
+                    $Musica = count($seller->albums()->get());
+                    $aproved_musica=count($seller->albums()->where('status','=','Aprobado')->get());
+                    
+                    $songs=0;
+                    $aproved_song=0;
+
+                    foreach ($seller->songs()->get() as $key) 
+                    {
+                        if ($key->album =! NULL or $key->album =! 0) 
+                        {
+                            $songs++;
+
+                            if ($key->status == 'Aprobado') 
+                            {
+                                $aproved_song++;   
+                            }
+                        }  
+                    }
+                    
+                    $musical_content=$Musica+$songs;
+                    
+
+                    break;
+
+                case 'Peliculas':
+                    $Movies_content=0;
+                    break;
+                
+                case 'Libros':
+                    $Books_content=count($seller->Books()->get());
+
+                    $aproved_books=count($seller->Books()->where('status','=','Aprobado')->get());
+                    break;
+                
+                case 'Series':
+                    $series_content=0;
+                    break;
+
+                case 'Revistas':
+                    $Megazine_content=count($seller->Megazines()->get());
+                    
+                    $aproved_megazines=count($seller->Megazines()->where('status','=','Aprobado')->get());
+                    break;
+
+                case 'Radios':
+                    $radios_content=count($seller->Radio()->get());
+                    
+                    $aproved_radio=count($seller->Radio()->where('status','=','Aprobado')->get());
+                    break;
+
+                case 'TV':
+                    $tv_content=count($seller->Tv()->get());
+                    $aproved_tv=count($seller->Tv()->where('status','=','Aprobado')->get());
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            };
+
+        };
+        
+        $total_content= $tv_content+$radios_content+$Megazine_content+$series_content+$Books_content+$Movies_content+$musical_content;
+        
+        $aproved_content= $aproved_radio+$aproved_megazines+$aproved_song+$aproved_books+$aproved_musica+$aproved_tv;
+
+        $followers=count($seller->followers()->get());
+        
+        return view('seller.home')->with('total_content', $total_content)->with('aproved_content', $aproved_content)->with('followers', $followers);
+    
+    });
 });
+
 
 
 

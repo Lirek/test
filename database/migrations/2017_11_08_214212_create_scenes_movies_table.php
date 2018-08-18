@@ -32,6 +32,7 @@ class CreateScenesMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sceneography_movies');
+        
     }
 }

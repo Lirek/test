@@ -32,6 +32,7 @@ class CreateTablePromoteAcces extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('promoter_acces');
+       
     }
 }

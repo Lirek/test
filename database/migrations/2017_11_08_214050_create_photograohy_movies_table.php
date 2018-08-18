@@ -32,6 +32,7 @@ class CreatePhotograohyMoviesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('photography_movies');
+        
     }
 }

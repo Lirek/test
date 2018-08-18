@@ -37,6 +37,7 @@ class CreateTableCastSeries extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('series_tags');
+        
     }
 }
