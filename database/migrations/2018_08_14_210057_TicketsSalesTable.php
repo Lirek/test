@@ -21,6 +21,7 @@ class TicketsSalesTable extends Migration
             $table->string('voucher')->nullable()->default('0');
             $table->integer('user_id')->unsigned()->default('0');
             $table->timestamps();
+            $table->enum('status',['Aprobado','En Revision','Denegado']);
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('package_id')->references('id')->on('tickets_package');
             });
