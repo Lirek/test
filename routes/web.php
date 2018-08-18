@@ -190,16 +190,20 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
 
 
+
         //_________________FIN de RUtas de Proveedores____________________________
 
         //___________________RUTAS DE DE USUARIOS_______________________
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
+
+            Route::get('BackendUsers','AdminController@ShowBackendUsers');
    });
     
        
-        Route::group(['middleware' => ['Operator']], function (){
+    Route::group(['middleware' => ['Operator']], function (){
 
+        //-----------------Rutas de Solicitudes-------------------------------------
             Route::get('/admin_applys','AdminController@ShowApplys');
 
             Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
@@ -303,6 +307,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
 
             //-----------------------------------------------------------------------
+
+
 
 
 
