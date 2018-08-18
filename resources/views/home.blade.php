@@ -281,7 +281,7 @@
                                 <td><a href=""> {{$Radio->name_r}}</a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
-                                <td class="hidden-phone">{{$Radio->Seller->name}}</td>
+                                <td class="hidden-phone">{{$Radio->name}}</td>
                               </tr>
                             @endif
 
