@@ -217,6 +217,15 @@
     padding-top: 0px;
 }
 
+#contentRadio h1
+{
+    background: #21a4de;
+    padding: 85px 0px;
+    font-size: 35px;
+    color: white;
+}
+
+
 #leipel h1
 {
     margin: 20px 0px;
@@ -285,6 +294,11 @@
     height: 50px;
     padding: 15px 0px;
     color: #ababab;
+}
+
+textarea
+{
+    resize: none;
 }
 
 .container-fluid > .row {
