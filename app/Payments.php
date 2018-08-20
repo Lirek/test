@@ -21,7 +21,7 @@ class Payments extends Model
         	return $this->belongsTo('App\TicketsPackage', 'package_id');
         }
 
-        public function Tickets()
+        public function TicketsUser()
         {
         	return $this->belongsTo('App\User', 'user_id');
         }

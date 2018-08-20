@@ -26,6 +26,7 @@ use App\Transactions;
 use App\Referals;
 use App\Movie;
 use App\AccountBalance;
+use App\Payments;
 
 
 class UserController extends Controller

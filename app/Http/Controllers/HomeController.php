@@ -18,6 +18,8 @@ use App\music_authors;
 use App\Transactions;
 use App\Referals;
 use App\Movie;
+use App\TicketsPackage;
+use App\Payments;
 
 class HomeController extends Controller
 {
@@ -131,5 +133,38 @@ class HomeController extends Controller
     {
         $MyTickets=Auth::user()->credito;
         return Response()->json($MyTickets);
+    }
+
+    public function SaleTickets(){
+        $package=TicketsPackage::all();
+        return view('users.SalesTickets')->with('package',$package);
+    }
+    public function BuyPlan(Request $request){
+        $Buy = new Payments;
+        $Buy->user_id=Auth::user()->id;
+        $Buy->package_id=$request->ticket_id;
+        $Buy->cost=$request->cost;
+        $Buy->value=$request->Cantidad;
+
+         if ($request->hasFile('voucher'))
+        {
+
+
+         $store_path = public_path().'/user/'.Auth::user()->id.'/ticketsDeposit/';
+         
+         $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
+
+         $request->file('voucher')->move($store_path,$name);
+
+         $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
+         
+         $Buy->voucher = $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name; 
+
+        }
+        $Buy->status=2;
+        $Buy->save();
+        Flash('Pago registrado, en proceso de validación')->success();
+       return redirect()->action('HomeController@index');
+
     }
 }

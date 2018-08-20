@@ -278,7 +278,7 @@
                             @if($Radio)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$Radio->name_r}}</a></td>
+                                <td><a href="{{url('ListenRadio/'.$Radio->id)}}"> {{$Radio->name_r}}</a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
                                 <td class="hidden-phone">{{$Radio->name}}</td>
@@ -312,7 +312,7 @@
                                   <p><i class="fa fa-ticket"></i>{{Auth::user()->credito}}</p>
                                </div>
                                <div class="col-sm-6 col-xs-6"></div>
-                               <p><a href="#" class="">Recargar</a></p>
+                               <p><a href="{{url('SaleTickets')}}" class="">Recargar</a></p>
                             </div>
                             <div class="centered">
                                 

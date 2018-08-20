@@ -43,7 +43,9 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 Route::get('/home', 'HomeController@index');
 Route::get('ContentGraph', 'HomeController@DataContentGraph');
 Route::get('MyTickets/{id}', 'HomeController@MyTickets');
-//Route::resource('App', 'TareasController');
+//Agregada 17/08/18
+    Route::get('SaleTickets','HomeController@SaleTickets');
+    Route::post('BuyPlan','HomeController@BuyPlan');
 
 //---------------------------------------------------------------------
 
