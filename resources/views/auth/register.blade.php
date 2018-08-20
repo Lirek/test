@@ -14,7 +14,7 @@
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
     {{--        <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/login3.css')}}">--}}
     {{--    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/slick-team-slider.css')}}">--}}
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('plugins/css/style.css')}}">--}}
     <link href="{{ asset('views/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

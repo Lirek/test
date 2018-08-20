@@ -24,7 +24,8 @@ class WelcomeController extends Controller
             $books->saga;
             $books->rating;
         });
-        $radios = Radio::all();
+//        $radios = Radio::all();
+        $radios = Radio::orderBy('id','DESC')->paginate('10');
         $radios->each(function ($radios){
             $radios->seller;
         });
