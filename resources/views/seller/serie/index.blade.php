@@ -26,6 +26,7 @@
                                     <th class="text-center">Año de lanzamiento</th>
                                     <th class="text-center">Episodios</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center" width="60">Género</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -44,6 +45,14 @@
                                             <td class="text-center"> {{ $s->release_year }} </td>
                                             <td class="text-center"> {{ count($s->episode) }} </td>
                                             <td class="text-center"> {{ $s->status }} </td>
+                                            <td class="text-center">
+                                                @php
+                                                    $tags = $s->tags_serie;
+                                                @endphp
+                                                @foreach($tags as $t)
+                                                    {{ $t->tags_name }}
+                                                @endforeach
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{ route('series.show',$s->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -68,6 +77,7 @@
                                     <th class="text-center">Año de lanzamiento</th>
                                     <th class="text-center">Episodios</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center">Género</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>

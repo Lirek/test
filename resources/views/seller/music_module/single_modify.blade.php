@@ -81,6 +81,11 @@
             @endforeach
           </select>
           <br>
+          @if(Auth::guard('web_seller')->user()->sub_desired_m == 'Productora')
+            <a href="{{ url('/artist_form') }}" class="btn btn-success">
+              Agregar artista o grupo musical
+            </a>
+          @endif
 
         </div>
       </div>

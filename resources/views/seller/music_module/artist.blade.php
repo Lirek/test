@@ -12,61 +12,68 @@
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Libros registrados</h3>
+                        <h3 class="box-title">Artistas o grupos registrados</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Portada</th>
-                                <th class="text-center">Autor</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center" width="80">Generos</th>
-                                <th class="text-center">Año de lanzamiento</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center" width="80">Descripción</th>
+                                <th class="text-center">Tipo de artista</th>
+                                <th class="text-center">Redes sociales</th>
                                 <th class="text-center">Estatus</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($book as $b)
-                                @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
+                            @foreach($artists as $a)
+                                @if(Auth::guard('web_seller')->user()->id === $a->seller_id)
                                     <tr>
-                                        <td class="text-center"> {{ $b->title }} </td>
+                                        <td class="text-center"> {{ $a->name }} </td>
                                         <td class="text-center">
-                                            <a href="{{ route('tbook.show', $b->id) }}">
-                                                <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
+                                            <a href="#">
+                                                <img class="img-rounded img-responsive text-center" src="{{ asset($a->photo) }}" style="width:70px;height:70px;margin-left:5%;" alt="Foto">
                                             </a>
                                         </td>
-                                        <td class="text-center"> {{ $b->author->full_name }} </td>
-                                        {{--
-                                            error en la pc de Breiddy
-                                        --}}
-                                        <td class="text-center"> {{ $b->rating->r_name }} </td>
+                                        <td class="text-center"> {{ $a->descripcion }} </td>
+                                        <td class="text-center"> {{ $a->type_authors }} </td>
                                         <td class="text-center">
-                                            @php
-                                                $tags = $b->tags_book;
-                                            @endphp
-                                            @foreach($tags as $t)
-                                                {{ $t->tags_name }}
-                                            @endforeach
+                                            @if($a->instagram!=null)
+                                                <a href="{{ $a->instagram }}" target="_blank">
+                                                    <h5>
+                                                        <span><i class="fa fa-instagram"></i></span>
+                                                        Instagram
+                                                    </h5>
+                                                </a>
+                                            @endif
+                                            @if($a->facebook!=null)
+                                                <a href="{{ $a->facebook }}" target="_blank">
+                                                    <h5>
+                                                        <span><i class="fa fa-facebook-square"></i></span>
+                                                        Facebook
+                                                    </h5>
+                                                </a>
+                                            @endif
+                                            @if($a->google!=null)
+                                                <a href="{{ $a->google }}" target="_blank">
+                                                    <h5>
+                                                        <span><i class="fa fa-youtube-square"></i></span>
+                                                        Youtube
+                                                    </h5>
+                                                </a>
+                                            @endif
                                         </td>
-                                        <td class="text-center"> {{ $b->release_year }} </td>
-                                        {{--
-                                        --}}
-                                        <td class="text-center"> {{ $b->status }} </td>
+                                        <td class="text-center"> {{ $a->status }} </td>
                                         <td class="text-center ">
-                                            <a href="{{ route('tbook.show', $b->id) }}"
-                                               class="btn btn-info btn-xs">
-                                                <span class="fa fa-eye" aria-hidden="true"></span>
-                                            </a>
-                                            <a href="{{ route('tbook.edit', $b->id) }}"
+                                            <a href="{{ url('/editArtist', $a->id) }}"
                                                class="btn btn-warning btn-xs">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <a href="{{ route('tbook.destroy',$b->id) }}"
-                                               onclick="return confirm('¿Desea eliminar el libro {{ $b->title }}?')" class="btn btn-danger btn-xs ">
+                                            <a href="{{ url('deleteArtist',$a->id) }}"
+                                               onclick="return confirm('¿Desea eliminar el artista {{ $a->name }}?')" class="btn btn-danger btn-xs ">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </a>
                                         </td>
@@ -76,12 +83,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Portada</th>
-                                <th class="text-center">Autor</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center" width="80">Generos</th>
-                                <th class="text-center">Año de lanzamiento</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Foto</th>
+                                <th class="text-center" width="80">Descripción</th>
+                                <th class="text-center">Tipo de artista</th>
+                                <th class="text-center">Redes sociales</th>
                                 <th class="text-center">Estatus</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -94,12 +100,12 @@
             </div>
         </div>
         <div class="col-md-offset-9">
-            <a href="{{ route('tbook.create') }}" class="btn btn-info">
+            <a href="{{ url('/artist_form') }}" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
                     <div class="box-title">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-user"></i>
                         <span>
-                            Agregar más libros
+                            Agregar más artistas
                         </span>
                     </div>
                 </b>

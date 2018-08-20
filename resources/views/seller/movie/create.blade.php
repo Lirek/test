@@ -3,7 +3,7 @@
     <style>
         #image-preview {
             width: 100%;
-            height: 420px;
+            height: 450px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -121,6 +121,7 @@
                     <!-- form start -->
                     {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}
                     {{ Form::token() }}
+                    {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                     <div class="box-body ">
 
                         {{--Poster de la pelicula--}}
@@ -148,9 +149,33 @@
                             {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
+                            {{--precio--}}
+                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                            <div id="mensajePrecio"></div>
+                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            <br>
+
                             <label for="exampleInputFile" class="control-label">Categoría</label>
                             {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
+
+                            {{--Categoria--}}
+                            <label for="tags"> Géneros </label>
+                            <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
+                                @foreach($tags as $genders)
+                                    @if($genders->type_tags=='Peliculas')
+                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
+                                Agregar género
+                            </button>
+                            <br>
+                            <br>
+                        </div>
+
+                        <div class="form-group col-md-6">
 
                             {{--archivo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Cargar película</label>
@@ -158,11 +183,32 @@
                             {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','control-label','placeholder'=>'Cargar película','id'=>'pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la película')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
-                            {{--selecionar pais--}}
-                            <label class="control-label">País</label>
+                            {{--historia de la pelicula --}}
+                            {{--
+                            <label for="exampleInputPassword1" class="control-label">Historia</label>
+                            <div id="cantidadHistoria"></div>
+                            <div id="mensajeHistoria"></div>
+                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la película')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
                             <br>
-                            <select name="x12" id="paises" class="form-control js-example-basic-single" required="required" oninvalid="this.setCustomValidity('Seleccione un País')" oninput="setCustomValidity('')">
-                                <option value="" selected>Seleccione una Opción</option>
+
+                            {{--año de salida de la pelicula --}}
+                            <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                            <div id="mensajeFechaLanzamiento"></div>
+                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            <br>
+
+                            {{--Basado en un libro o no --}}
+                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                            <div id="cantidadSinopsis"></div>
+                            <div id="mensajeSinopsis"></div>
+                            {!! Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            {{--selecionar pais--}}
+                            <label class="control-label">Pais</label>
+                            <select  name="country" id="paises" class="form-control">
+                                <option value="" selected>Seleccione una opción</option>
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
                                 <option value="DE">Alemania</option>
@@ -400,37 +446,6 @@
                             </select>
                             <br>
 
-                            {{--Basado en un libro o no --}}
-                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                            <div id="cantidadSinopsis"></div>
-                            <div id="mensajeSinopsis"></div>
-                            {!! Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            {{--historia de la pelicula --}}
-                            {{--
-                            <label for="exampleInputPassword1" class="control-label">Historia</label>
-                            <div id="cantidadHistoria"></div>
-                            <div id="mensajeHistoria"></div>
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la película')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
-                            <br>
-                            --}}
-
-                            {{--año de salida de la pelicula --}}
-                            <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            <div id="mensajeFechaLanzamiento"></div>
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
-                            <br>
-
-                            {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
-                            <br>
-                        </div>
-
-                        <div class="form-group col-md-6">
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             {!! Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
@@ -548,6 +563,36 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <!-- /.modal -->
+
+    <!-- /.modal  de generos  -->
+        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding:35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
+                        {{ Form::token() }}
+                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
+                        {!! Form::hidden('type_tags','Peliculas') !!}
+                        {!! Form::hidden('ruta','Peliculas') !!}
+                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
+                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <br>
+                        <div align="center">
+                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- /.modal -->
 
     </section>

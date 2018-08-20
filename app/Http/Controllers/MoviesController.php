@@ -7,6 +7,7 @@ use App\Movie;
 use App\Seller;
 use App\Sagas;
 use App\Rating;
+use App\Tags;
 use Laracasts\Flash\Flash;
 use File;
 
@@ -18,9 +19,10 @@ class MoviesController extends Controller
         $movies->each(function ($movies) {
             $movies->saga;
             $movies->rating;
+            $movies->tags_movie;
         });
 
-       // dd($movies);
+       //dd($movies);
 
         return view('seller.movie.index')->with('movie',$movies);
     }
@@ -29,14 +31,17 @@ class MoviesController extends Controller
     {
         $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
         $sagas = Sagas::where('type_saga','Peliculas')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $tags = Tags::where('status','Aprobado')->where('type_tags','Peliculas')->get();
 
         return view('seller.movie.create')
             ->with('ratin', $rating)
-            ->with('saga', $sagas);
+            ->with('saga', $sagas)
+            ->with('tags',$tags);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
+        //dd($request->all());
         $file = $request->file('img_poster');
         $name = 'poster_'.time().'.'.$file->getClientOriginalExtension();
         $path1 = public_path().'/movie/poster/';
@@ -49,12 +54,13 @@ class MoviesController extends Controller
 
         $movie = new Movie($request->all());
 
-        $movie->seller_id = \Auth::guard('web_seller')->user()->id;
         $movie->img_poster = $name;
         $movie->duration = $names;
-        $movie->trailer_url = $request->trailer_url;
         $movie->status = 2;
+
         $movie->save();
+
+        $movie->tags_movie()->attach($request->tags);
 
         Flash::success('Se ha registrado '.$movie->title.' de forma sastisfactoria')->important();
         return redirect()->route('movies.index');
@@ -69,11 +75,16 @@ class MoviesController extends Controller
             $movies->rating;
             $movies->saga;
             $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
-            $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id');
+            $sagas = Sagas::where('type_saga','Peliculas')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
+            $tags = Tags::where('type_tags','Peliculas')->where('status','Aprobado')->get();
+            $selected = $movies->tags_movie()->get();
+
             return view('seller.movie.edit')
                 ->with('ratin', $rating)
                 ->with('saga', $sagas)
-                ->with('movie', $movies);
+                ->with('movie', $movies)
+                ->with('tags', $tags)
+                ->with('s_tags', $selected);
 
         } else {
 
@@ -116,7 +127,14 @@ class MoviesController extends Controller
         $movie->cost = $request->cost;
         $movie->trailer_url = $request->trailer_url;
 
-//        dd($movie,$movie->duration,$movie->file, $file,$files);
+        if ($request->tags!=null) {
+            $tags = $request->tags;
+            $movie->tags_movie()->detach();
+            foreach($tags as $tag) {
+                $movie->tags_movie()->attach($tag);
+            }
+        }
+
         $movie->save();
 
         Flash::success('Se ha modificado '.$movie->title.' de forma exitosa')->important();
@@ -131,6 +149,7 @@ class MoviesController extends Controller
         $movies->each(function ($movies) {
             $movies->saga;
             $movies->rating;
+            $movies->tags_movie;
         });
         return view('seller.movie.show')->with('movie',$movies);
     }
@@ -142,6 +161,7 @@ class MoviesController extends Controller
 
             File::delete(public_path()."/movie/film/".$pelicula->duration);
             File::delete(public_path()."/movie/poster/".$pelicula->img_poster);
+            $pelicula->tags_movie()->detach();
             $pelicula->delete();
             Flash::success('Se ha eliminado la película con exito')->important();
             return redirect()->route('movies.index');

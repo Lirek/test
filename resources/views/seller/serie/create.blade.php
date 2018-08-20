@@ -146,19 +146,38 @@
                             {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
                             <br>
 
+                            {{--Categoria--}}
+                            <label for="tags"> Géneros </label>
+                            <select name="tags[]" multiple="true"  class="form-control" id="genders" required="required">
+                                @foreach($tags as $genders)
+                                    @if($genders->type_tags=='Peliculas')
+                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
+                                Agregar género
+                            </button>
+                            <br>
+                            <br>
+
                             {{--historia de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
                             <div id="mensajeHistoria"></div>
                             {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
-                            <br>
+                            <br><br>
+                        </div>
 
+                        <div class="col-md-6">
                             {{--año de salida de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
                             {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                             <br>
+                        </div>
 
+                        <div class="col-md-6">
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             {!! Form::url('trailer',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
@@ -323,6 +342,36 @@
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        
+        <!-- /.modal  de generos  -->
+        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding:35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
+                        {{ Form::token() }}
+                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
+                        {!! Form::hidden('type_tags','Series') !!}
+                        {!! Form::hidden('ruta','Series') !!}
+                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
+                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <br>
+                        <div align="center">
+                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.modal -->
 

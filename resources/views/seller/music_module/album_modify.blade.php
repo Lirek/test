@@ -102,11 +102,49 @@
               <br>
 
               <label for="artist"> Artista </label>
-              <select name="artist" class="form-control">
-                @foreach($autors as $artist)
-                  <option value="{{$artist->id}}"> {{$artist->name}} </option>
-                @endforeach
-              </select>
+              @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
+                @if($mod->name == 'Productora')
+                  @if(count($autors)!=0 )
+                    <label style="color: green;"> Si no selecciona un artista, se mantendrá el actual </label>
+                    <select name="artist" class="form-control">
+                      <option value="">Seleccione...</option>
+                      @foreach($autors as $artist)
+                        <option value="{{$artist->id}}"> {{$artist->name}} </option>
+                      @endforeach
+                    </select>
+                    <br>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @else
+                    <label id="faltaRegistro" style="color: red;"> 
+                      Usted aun no tiene registros de datos de artistas o de grupos musicales, por favor agregue dichos datos primero
+                    </label>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @endif
+                @elseif($mod->name == 'Artista')
+                  @if(count($autors)!=0 )
+                    <label style="color: green;"> Si no selecciona un artista, se mantendrá el actual </label>
+                    <select name="artist" class="form-control">
+                      <option value="">Seleccione...</option>
+                      @foreach($autors as $artist)
+                        <option value="{{$artist->id}}"> {{$artist->name}} </option>
+                      @endforeach
+                    </select>
+                  @else
+                    <br>
+                    <label id="faltaRegistro" style="color: red;"> 
+                      Usted aun no tiene registros de sus datos como artista o los datos de su grupo musical, por favor agregue dichos datos primero
+                    </label>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @endif
+                @endif
+              @endforeach
+              
             </div>
           </div>
         </div>

@@ -32,4 +32,7 @@ class Movie extends Model
     {
         return $this->belongsTo('App\Seller', 'seller_id');
     }
+    public function tags_movie() {
+      return $this->belongsToMany('App\Tags','movies_tags','movies_id','tags_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ApplysSellers;
+use Laracasts\Flash\Flash;
 
 class ApplysController extends Controller
 {
@@ -12,20 +13,30 @@ class ApplysController extends Controller
        return view('seller.auth.applys');
     }
 
-    public function SubmitApp (Request $request)
-    {
-        
+    public function SubmitApp (Request $request) {
+
     	$applys = new ApplysSellers;
+        
         $applys->name_c = $request->com_name;
         $applys->contact_s = $request->contact_name;
         $applys->phone_s = $request->tlf;
         $applys->email = $request->email;
         $applys->desired_m = $request->content_type;
+        if ($request->content_type=='Musica') {
+            $applys->sub_desired_m = $request->sub_desired_musica;
+        }
+        if ($request->content_type=='Libros') {
+            $applys->sub_desired_m = $request->sub_desired_libros;
+        }
         $applys->dsc = $request->description;
+        
         $applys->save();
-        flash('Su Solicitud Sera Procesada')->success();
-        return view('seller.auth.applys');
 
+        Flash::success('Su solicitud está siendo procesada')->important();
+        
+        return redirect()->action(
+            'ApplysController@ShowApplysForm'
+        );
     
     }
 

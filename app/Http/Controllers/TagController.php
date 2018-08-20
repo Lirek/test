@@ -9,6 +9,8 @@ use Laracasts\Flash\Flash;
 class TagController extends Controller
 {
     public function store(Request $request) {
+
+        //dd($request->all());
     	
     	$tag = new Tags;
     	$tag->tags_name 	= ucwords($request->tags_name);
@@ -18,8 +20,21 @@ class TagController extends Controller
 
     	Flash::success('Se ha registrado '.$tag->tags_name.' de manera exitosa, debe esperar su activación para poder utilizarlo')->important();
 
-    	return redirect()->action(
-            'AlbumsController@ShowAlbumstForms'
-        );
+        switch ($request->ruta) {
+            case 'Musica':
+                $ruta = 'AlbumsController@ShowAlbumstForms';
+                break;
+            case 'Series':
+                $ruta = 'SeriesController@create';
+                break;
+            case 'Peliculas':
+                $ruta = 'MoviesController@create';
+                break;
+            case 'Libros':
+                $ruta = 'BooksController@create';
+                break;
+        }
+
+    	return redirect()->action( $ruta );
     }
 }

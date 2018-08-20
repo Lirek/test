@@ -8,6 +8,7 @@ use App\Series_tag;
 use App\Sagas;
 use App\Rating;
 use App\Episode;
+use App\Tags;
 use Laracasts\Flash\Flash;
 use File;
 
@@ -15,11 +16,12 @@ class SeriesController extends Controller
 {
     public function index() {
 
-        $serie = Serie::orderBy('id','DESC')->paginate('10');
+        $serie = Serie::orderBy('id','DESC')->get();
         $serie->each(function($serie){
             $serie->episode;
             $serie->seller;
             $serie->saga;
+            $serie->tags_serie;
         });
         return view('seller.serie.index')->with('serie',$serie);
     }
@@ -28,10 +30,12 @@ class SeriesController extends Controller
 
         $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
         $sagas = Sagas::where('type_saga','Series')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $tags = Tags::where('status','Aprobado')->where('type_tags','Peliculas')->get();
 
         return view('seller.serie.create')
                     ->with('ratin', $rating)
-                    ->with('saga', $sagas);
+                    ->with('saga', $sagas)
+                    ->with('tags', $tags);
     }
 
     public function store(Request $request) {
@@ -74,6 +78,8 @@ class SeriesController extends Controller
         $serie->after       = $request->after;
         $serie->save();
 
+        $serie->tags_serie()->attach($request->tags);
+
         foreach ($save as $data ) {
             $serie->Episode()->save($data);
         }
@@ -111,7 +117,8 @@ class SeriesController extends Controller
         
         $serie = Serie::find($id);
         $episodes = $serie->Episode()->get();
-        return view('seller.serie.show')->with('serie',$serie)->with('episodes',$episodes);
+        $tags = $serie->tags_serie()->get();
+        return view('seller.serie.show')->with('serie',$serie)->with('episodes',$episodes)->with('tags',$tags);
     }
 
     public function showEpisode($idE,$idS) {
@@ -124,6 +131,9 @@ class SeriesController extends Controller
         $episodes = $serie->Episode()->get();
         $saga = $serie->Saga()->get();
         $sagas = Sagas::where('type_saga','Series')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
+        $tags = Tags::where('type_tags','Peliculas')->where('status','Aprobado')->get();
+        $selected = $serie->tags_serie()->get();
+
         $status = array(
                         1   => 'En Emision',
                         2   => 'Finalizado'
@@ -134,7 +144,9 @@ class SeriesController extends Controller
                 ->with('episodes',$episodes)
                 ->with('sagas',$sagas)
                 ->with('saga',$saga)
-                ->with('s',$s);
+                ->with('s',$s)
+                ->with('tags',$tags)
+                ->with('s_tags',$selected);
     }
 
     public function update(Request $request) {
@@ -229,6 +241,14 @@ class SeriesController extends Controller
         }
         */
 
+        if ($request->tags!=null) {
+            $tags = $request->tags;
+            $serie->tags_serie()->detach();
+            foreach($tags as $tag) {
+                $serie->tags_serie()->attach($tag);
+            }
+        }
+
         $serie->save();
 
         Flash::success('Se ha modificado '.$serie->title.' de manera éxitosa')->important();
@@ -270,6 +290,7 @@ class SeriesController extends Controller
         }
 
         File::delete(public_path().$serie->img_poster);
+        $serie->tags_serie()->detach();
         $serie->delete();
 
         Flash::success('Se ha eliminado la serie de manera éxitosa')->important();

@@ -92,20 +92,45 @@
               <br>
               <br>
 
-              <label for="artist"> Artista </label>
-              @if(count($autors)!=0)
-                <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
-                  @foreach($autors as $artist)
-                    <option value="{{$artist->id}}">{{$artist->name}}</option>
-                  @endforeach
-                </select>
-              @else
-                <br>
-                <label id="faltaRegistro" style="color: red;"> Usted aun no tiene registros de sus datos como artista o los datos de su grupo musical, por favor agregue dichos datos primero </label>
-                <a href="{{ url('/artist_form') }}" class="btn btn-danger">
-                  Agregar artista o grupo musical
-                </a>
-              @endif
+              <label for="artist"> Artista o Grupo musical </label>
+              @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
+                @if($mod->name == 'Productora')
+                    @if(count($autors)!=0 )
+                    <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                      @foreach($autors as $artist)
+                        <option value="{{$artist->id}}">{{$artist->name}}</option>
+                      @endforeach
+                    </select>
+                    <br>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @else
+                    <label id="faltaRegistro" style="color: red;"> 
+                      Usted aun no tiene registros de datos de artistas o de grupos musicales, por favor agregue dichos datos primero
+                    </label>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @endif
+                @elseif($mod->name == 'Artista')
+                  @if(count($autors)!=0 )
+                    <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                      @foreach($autors as $artist)
+                        <option value="{{$artist->id}}">{{$artist->name}}</option>
+                      @endforeach
+                    </select>
+                  @else
+                    <br>
+                    <label id="faltaRegistro" style="color: red;"> 
+                      Usted aun no tiene registros de sus datos como artista o los datos de su grupo musical, por favor agregue dichos datos primero
+                    </label>
+                    <a href="{{ url('/artist_form') }}" class="btn btn-success">
+                      Agregar artista o grupo musical
+                    </a>
+                  @endif
+                @endif
+              @endforeach
 
             </div>
           </div>
@@ -153,8 +178,9 @@
         <div class="modal-body">
           {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
             {{ Form::token() }}
-            {!! Form::hidden('type_tags','Musica') !!}
             {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
+            {!! Form::hidden('type_tags','Musica') !!}
+            {!! Form::hidden('ruta','Musica') !!}
             <label for="exampleInputFile" class="control-label">Nuevo género</label>
             {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
             <br>

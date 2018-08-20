@@ -3,7 +3,7 @@
     <style>
         #image-preview {
             width: 100%;
-            height: 430px;
+            height: 490px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -170,20 +170,43 @@
 
                         <div class="form-group col-md-6">
                             {{--Selecion el autor--}}
-                            @if(count($author)!=0)
-                                <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                                {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
-                                <br>
-                            @else
-                                <label id="faltaRegistro" style="color: red;"> 
-                                    Usted aun no tiene registros de sus datos como autor de libros, por favor agregue dichos datos primero 
-                                </label>
-                                <a class="btn btn-danger" data-toggle="modal" data-target="#modal-defaultMA">
-                                    <i class="fa fa-user"></i>
-                                    Agregar autor
-                                </a>
-                                <br><br>
-                            @endif
+                            @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
+                                @if($mod->name == 'Editorial')
+                                    @if(count($author)!=0)
+                                        <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                        {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                            <i class="fa fa-user"></i>
+                                            Agregar autor
+                                        </a>
+                                        <br><br>
+                                    @else
+                                        <label id="faltaRegistro" style="color: red;"> 
+                                            Usted aun no tiene registros de datos de autores de libros, por favor agregue dichos datos primero
+                                        </label>
+                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                            <i class="fa fa-user"></i>
+                                            Agregar autor
+                                        </a>
+                                        <br><br>
+                                    @endif
+                                @elseif($mod->name == 'Escritor')
+                                    @if(count($author)!=0)
+                                        <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                        {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        <br>
+                                    @else
+                                        <label id="faltaRegistro" style="color: red;"> 
+                                            Usted aun no tiene registros de sus datos como autor de libros, por favor agregue dichos datos primero
+                                        </label>
+                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                            <i class="fa fa-user"></i>
+                                            Agregar autor
+                                        </a>
+                                        <br><br>
+                                    @endif
+                                @endif
+                            @endforeach
 
                             {{--titulo del libro--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
@@ -195,10 +218,33 @@
                             {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Título original del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
 
+                            {{--precio--}}
+                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                            <div id="mensajePrecio"></div>
+                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            <br>
+
                             {{--seleccion de rating--}}
                             <label for="exampleInputFile" class="control-label">Categoría</label>
                             {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
+
+                            {{--Categoria--}}
+                            <label for="tags"> Géneros </label>
+                            <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
+                                @foreach($tags as $genders)
+                                    @if($genders->type_tags=='Peliculas')
+                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
+                                Agregar género
+                            </button>
+                            <br>
+                        </div>
+
+                        <div class="form-group col-md-6">
 
                             {{--archivo del libro--}}
                             <label for="exampleInputFile" class="control-label">Cargar el Libro</label>
@@ -446,9 +492,7 @@
                                 <option value="ZW">Zimbabue</option>
                             </select>
                             <br>
-                        </div>
 
-                        <div class="form-group col-md-6">
                             {{--sinopsis del libro--}}
                             <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                             <div id="cantidadPalabra"></div>
@@ -461,14 +505,12 @@
                             <div id="mensajeFechaLanzamiento"></div>
                             {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
                             <br>
+                            <br>
 
-                            {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
                         </div>
 
                         <div class="form-group col-md-6">
+
                             {{--tiene saga--}}
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
@@ -668,6 +710,36 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
+
+        <!-- /.modal  de generos  -->
+        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding:35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
+                        {{ Form::token() }}
+                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
+                        {!! Form::hidden('type_tags','Libros') !!}
+                        {!! Form::hidden('ruta','Libros') !!}
+                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
+                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <br>
+                        <div align="center">
+                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- /.modal -->
     </section>
 @endsection
 @section('js')

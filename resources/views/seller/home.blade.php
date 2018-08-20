@@ -20,11 +20,11 @@
                 </div>
                 <p>
                   @if($musical_content>0)
-                    Usted ha registrado {{ $musical_content }} contenidos musicales con nosotros, de los cuales 
+                    Usted ha registrado {{ $musical_content }} contenidos musicales con nosotros, 
                     @if($musical_aproved>0)
-                      {{ $musical_aproved }} están aprovados.
+                      {{ $musical_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido musical con nosotros, le invitamos a que lo haga.
@@ -42,14 +42,14 @@
                 </div>
                 <p>
                   @if($movie_content>0)
-                    Usted ha registrado {{ $movie_content }} contenidos de películas con nosotros, de los cuales 
+                    Usted ha registrado {{ $movie_content }} contenidos de películas con nosotros, 
                     @if($movie_aproved>0)
-                      {{ $movie_aproved }} están aprovados.
+                      {{ $movie_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
-                    Usted aun no ha registrado contenido de películas con nosotros, le invitamos a que lo haga.
+                    Usted aun no ha registrado películas con nosotros, le invitamos a que lo haga.
                   @endif
                 </p>
               </a>
@@ -64,11 +64,11 @@
                 </div>
                 <p>
                   @if($book_content>0)
-                    Usted ha registrado {{ $book_content }} contenidos de libros con nosotros, de los cuales 
+                    Usted ha registrado {{ $book_content }} contenidos de libros con nosotros, 
                     @if($book_aproved>0)
-                      {{ $book_aproved }} están aprovados.
+                      {{ $book_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido de libros con nosotros, le invitamos a que lo haga.
@@ -86,11 +86,11 @@
                 </div>
                 <p>
                   @if($serie_content>0)
-                    Usted ha registrado {{ $serie_content }} contenidos de series con nosotros, de los cuales 
+                    Usted ha registrado {{ $serie_content }} contenidos de series con nosotros, 
                     @if($serie_aproved>0)
-                      {{ $serie_aproved }} están aprovados.
+                      {{ $serie_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido de serie con nosotros, le invitamos a que lo haga.
@@ -108,11 +108,11 @@
                 </div>
                 <p>
                   @if($megazine_content>0)
-                    Usted ha registrado {{ $megazine_content }} contenidos revistas con nosotros, de los cuales 
+                    Usted ha registrado {{ $megazine_content }} contenidos revistas con nosotros, 
                     @if($megazine_aproved>0)
-                      {{ $megazine_aproved }} están aprovados.
+                      {{ $megazine_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido revista con nosotros, le invitamos a que lo haga.
@@ -130,11 +130,11 @@
                 </div>
                 <p>
                   @if($radio_content>0)
-                    Usted ha registrado {{ $radio_content }} contenidos de radio con nosotros, de los cuales 
+                    Usted ha registrado {{ $radio_content }} contenidos de radio con nosotros, 
                     @if($radio_aproved>0)
-                      {{ $radio_aproved }} están aprovados.
+                      {{ $radio_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido de radio con nosotros, le invitamos a que lo haga.
@@ -152,11 +152,11 @@
                 </div>
                 <p>
                   @if($tv_content>0)
-                    Usted ha registrado {{ $tv_content }} contenidos de TV's con nosotros, de los cuales 
+                    Usted ha registrado {{ $tv_content }} contenidos de TV's con nosotros, 
                     @if($tv_aproved>0)
-                      {{ $tv_aproved }} están aprovados.
+                      {{ $tv_aproved }} de los cuales están aprovados.
                     @else
-                      aun no hay ninguno aprovado.
+                      pero no han sido aprovado.
                     @endif
                   @else
                     Usted aun no ha registrado contenido de TV's con nosotros, le invitamos a que lo haga.

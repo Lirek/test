@@ -28,45 +28,67 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}"</h2>
+                <h2 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h2>
 
-                <div class="box box-widget widget-user-2">
+                <div class="col-md-7">
+                    <ul class="nav nav-stacked">
+                        <li>
+                            <h2> 
+                                <b>{{ $serie->cost }} tickets</b>
+                            </h2>
+                        </li>
+                        <li>
+                            <h3> <b>Estatus:</b> 
+                                <span class="pull-right ">{{ $serie->status_series }}</span>
+                            </h3>
+                        </li>
+                        <li>
+                            <h3> <b>Historia:</b>
+                                <br>
+                                <h4><p class="text-justify"> {{ $serie->story }} </p></h4>
+                            </h3>
+                        </li>
+                        <li>
+                            @if($serie->saga_id!=null)
+                                <h3> <b>Saga:</b> <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h3>
+                                <div class="col-xs-5">
+                                    <h3> <b>Antes:</b> <span class=""> {{ $serie->before }} </span> </h3>
+                                </div>
+                                <div class="col-xs-7">
+                                    <h3> <b>Después:</b> <span class=""> {{ $serie->after }} </span> </h3>
+                                    <br>
+                                </div>
+                            @else
+                                <h3> <b>Saga:</b> <span class="pull-right ">No tiene saga</span></h3>
+                            @endif
+                        </li>
+                        <li>
+                            <h3>
+                                <a href="{{ $serie->trailer }}" target="_blank"><span class="glyphicon glyphicon-link"></span><b> Ver trailer</b></a>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5">
                     <div id="panel" class="img-rounded img-responsive av text-center">
                     </div>
-                    <br>
+                    <ul class="nav nav-stacked">
+                        <li>
+                            <h6> <b>Categorias:</b> 
+                                @foreach($tags as $t)
+                                    <span>| {{ $t->tags_name }} |</span>
+                                @endforeach
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="box box-widget widget-user-2">
                     <div class="box-footer no-padding">
-                        <div class="col-md-8 col-md-offset-2">
-                            <ul class="nav nav-stacked">
-                                <li>
-                                    <h4> Historia: 
-                                        <p class="pull-right "> {{ $serie->story }} </p>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4> Año de lanzamiento: 
-                                        <span class="pull-right"> {{ $serie->release_year }} </span>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4> Costo en tickets:
-                                        <span class="pull-right"> {{ $serie->cost }} </span>
-                                    </h4>
-                                </li>
-                                <li>
-                                    @if($serie->saga_id!=null)
-                                        <h4> Saga: <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h4>
-                                        <h4> Antes: <span class="pull-right"> {{ $serie->before }} </span> </h4>
-                                        <h4> Después: <span class="pull-right"> {{ $serie->after }} </span> </h4>
-                                    @else
-                                        <h4> Saga: <span class="pull-right ">No tiene saga</span></h4>
-                                    @endif
-                                </li>
-                                <li>
-                                    <h4>Episodios:</h4>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 table-responsive">
+                            <h2><b>Episodios:</b></h2>
                             @if($episodes!=null)
                                 <h4>
                                     <table class="table table-hover">
@@ -105,12 +127,12 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <div align="right">
                             <a href="{{ url('/series') }}" class="btn btn-danger">Atrás</a>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <div align="left">
                             <a href="{{ route('series.edit',$serie->id) }}" class="btn btn-primary">Modificar</a>
                         </div>

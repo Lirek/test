@@ -22,6 +22,7 @@
                                     <th class="text-center">Título</th>
                                     <th class="text-center">Portada</th>
                                     <th class="text-center">Categoría</th>
+                                    <th class="text-center" width="300">Generos</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -33,10 +34,18 @@
                                             <td class="text-center"> {{ $m->title }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('movies.show', $m->id) }}">
-                                                    <img class="img-rounded img-responsive text-center" src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:70px;height:70px;margin-left:25%;" alt="Portada">
+                                                    <img class="img-rounded img-responsive text-center" src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
                                                 </a>
                                             </td>
                                             <td class="text-center"> {{ $m->rating->r_name }} </td>
+                                            <td class="text-center">
+                                                @php
+                                                    $tags = $m->tags_movie;
+                                                @endphp
+                                                @foreach($tags as $t)
+                                                    {{ $t->tags_name }}
+                                                @endforeach
+                                            </td>
                                             <td class="text-center"> {{ $m->status }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info btn-xs">
@@ -58,6 +67,7 @@
                                     <th class="text-center">Título</th>
                                     <th class="text-center">Portada</th>
                                     <th class="text-center">Categoría</th>
+                                    <th class="text-center">Generos</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>

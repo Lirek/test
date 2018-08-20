@@ -43,4 +43,8 @@ class Serie extends Model
       return $this->hasMany('App\Transactions','series_id'); 
     }
 
+    public function tags_serie() {
+      return $this->belongsToMany('App\Tags','series_tags','series_id','tags_id');
+    }
+
 }

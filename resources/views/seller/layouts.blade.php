@@ -11,6 +11,7 @@
 
         <title>LEIPEL</title>
 
+
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
         <!--external css-->
@@ -22,6 +23,13 @@
         <!-- Custom styles for this template -->
         <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
+        </style>
 
         @yield('css')
 
@@ -187,7 +195,7 @@
                                 </a>
                                 <ul class="sub">
                                     @if($modulos==false)
-                                        <li class="treeview" style="">
+                                        <li class="treeview">
                                             <a href="#">
                                                 Aún no posee módulos 
                                                 asignados.
@@ -205,24 +213,36 @@
                                                     <ul class="sub">
                                                         <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
                                                         <li><a href="{{ url('/single_registration') }}">Registrar canciones</a></li>
-                                                        @if(count(App\music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
-                                                        <!-- Validar que las frases quepan en el espacio mostrado -->
-                                                        <li class="treeview">
-                                                            <a href="{{ url('/artist_form') }}">
-                                                                <span>
-                                                                    Registrar grupo musical
-                                                                    o solista
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                        @else
-                                                            <li>
-                                                                <a href="{{ url('/modify_artist') }}">
-                                                                    Modificar datos de artista
-                                                                </a>
-                                                            </li>
-                                                        @endif
-                                                        <!-- Validar que las frases quepan en el espacio mostrado -->
+                                                        @foreach($modulos as $mod)
+                                                            @if($mod->name == 'Productora')
+                                                                <li class="treeview">
+                                                                    <a href="{{ url('/showArtist') }}">
+                                                                        <span>
+                                                                            Listar artistas
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            @elseif($mod->name == 'Artista')
+                                                                @if(count(App\music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                                    <!-- Validar que las frases quepan en el espacio mostrado -->
+                                                                    <li class="treeview">
+                                                                        <a href="{{ url('/artist_form') }}">
+                                                                            <span>
+                                                                                Registrar grupo musical
+                                                                                o solista
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <!-- Validar que las frases quepan en el espacio mostrado -->
+                                                                @else
+                                                                    <li>
+                                                                        <a href="{{ url('/modify_artist') }}">
+                                                                            Modificar datos de artista
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
                                                         <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi música</a></li>
                                                     </ul>
                                                 </li>
@@ -282,11 +302,26 @@
                                                     <ul class="sub">
                                                         <li><a href="{{ url('/tbook/create') }}">Registrar libro</a></li>
                                                         <li><a href="{{ url('/tbook') }}">Libros registrados</a></li>
-                                                        @if(count(App\BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
-                                                            <li><a href="{{ url('/authors_books/create') }}">Registrar autor</a></li>
-                                                        @else
-                                                            <li><a href="{{ route('authors_books.edit',Auth::guard('web_seller')->user()->id) }}">Modificar autor</a></li>
-                                                        @endif
+                                                        @foreach($modulos as $mod)
+                                                            @if($mod->name == 'Editorial')
+                                                                <li>
+                                                                    <a href="{{ url('/authors_books') }}">Listar autores</a>
+                                                                </li>
+                                                            @elseif($mod->name == 'Escritor')
+                                                                @if(count(App\BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                                    <li>
+                                                                        <a href="{{ url('/authors_books/create') }}">Registrar autor</a>
+                                                                    </li>
+                                                                @else
+                                                                    <li>
+                                                                        @php
+                                                                            $id = App\BookAuthor::where('seller_id',\Auth::guard('web_seller')->user()->id)->get()
+                                                                        @endphp
+                                                                        <a href="{{ route('authors_books.edit',$id[0]) }}">Modificar autor</a>
+                                                                    </li>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                             @endif
@@ -322,49 +357,49 @@
                             </li>
                         {{--Cuenta en proceso de Pre-Aprobación--}}
                         @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
-                            <li class="treeview">
+                            <li class="treeview" style="margin-bottom: 50%;">
                                 <a href="#">
                                     <span>
                                         <i class="fa fa-warning"></i>
                                         <br>
-                                        Su solicitud de cuenta como <br>
-                                        productora está en proceso de <br>
-                                        analisis por parte de <br>
-                                        nuestros analistas, pronto nos <br>
+                                        Su solicitud de cuenta como
+                                        productora está en proceso de
+                                        analisis por parte de
+                                        nuestros analistas, pronto nos
                                         comunicaremos con ustedes.
                                     </span>
                                 </a>
                             </li>
                         {{--Cuenta en proceso de revision--}}
                         @elseif(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
-                            <li class="treeview">
+                            <li class="treeview" style="margin-bottom: 50%;">
                                 <a href="#">
                                     <span>
                                         <i class="fa fa-warning"></i>
-                                        <br>
-                                        Su solicitud de cuenta como <br>
-                                        productora está en proceso <br>
-                                        por favor finalice el <br>
+                                        
+                                        Su solicitud de cuenta como 
+                                        productora está en proceso 
+                                        por favor finalice el 
                                         registro para continuar
                                     </span>
                                 </a>
                             </li>
                         {{--Cuenta con estatus de Rechazado--}}
                         @else(Auth::guard('web_seller')->user()->estatus === 'Rechazado')
-                            <li class="treeview">
+                            <li class="treeview" style="margin-bottom: 50%;">
                                 <a href="#">
                                     <span>
                                         <i class="fa fa-warning"></i>
-                                        <br>
-                                        Su solicitud de cuenta como <br>
-                                        productora fue rechazada <br>
-                                        por favor pongase en contacto <br>
+                                       
+                                        Su solicitud de cuenta como
+                                        productora fue rechazada
+                                        por favor pongase en contacto
                                         con el administrados de sistema
                                     </span>
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu sidebar-menu hidden-xs" id="nav-accordion" style="position: fixed; bottom: 0px; width: 12%;">
+                        <li class="sub-menu sidebar-menu hidden-xs hidden-sm" id="nav-accordion" style="position: fixed; bottom: 0px; width: 13.5%;">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -375,7 +410,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        <li class="sub-menu sidebar-menu hidden-sm hidden-md hidden-lg hidden-xg" id="nav-accordion">
+                        <li class="sub-menu sidebar-menu hidden-md hidden-lg hidden-xg" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
