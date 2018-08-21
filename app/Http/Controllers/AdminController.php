@@ -1203,18 +1203,18 @@ class AdminController extends Controller
       public function SavePackage(Request $request)
       {
         
-        $Pack= new TicketsPackage;
-        $Pack->name= $request->name;
-        $Pack->cost= $request->cost;
-        $Pack->amount= $request->ammount; 
-        $Pack->save();
+        $NPack= new TicketsPackage;
+        $NPack->name= $request->name;
+        $NPack->cost= $request->cost;
+        $NPack->amount= $request->ammount; 
+        $NPack->save();
         
-        return response()->json($Pack);
+        return response()->json($NPack);
       }
 
       public function DeletePackage($id)
       {
-        $Pack=TicketsPackage::delete($id);
+        $Pack=TicketsPackage::destroy($id);
         return response()->json($Pack);
       }
 
