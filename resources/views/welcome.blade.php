@@ -159,7 +159,7 @@
                 <figure class="snip1166 navy hover">
                     {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
                     {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                    <img class="img-responsive" src="{{ asset('/images/radio/'.$r->logo) }}" alt="sample73"/>
+                    <img class="img-responsive" src="{{ asset($r->logo) }}" alt="sample73"/>
                     <figcaption>
                         <h3>{{ $r->name_r }}</h3>
                         <div>
