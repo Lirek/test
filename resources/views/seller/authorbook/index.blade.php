@@ -11,11 +11,11 @@
                 @include('flash::message')
                 <!-- box -->
                 <div class="box box-primary">
-                    <div class="box-header bg bg-black-gradient">
+                    <div class="box-header with-border bg bg-black-gradient">
                         <h3 class="box-title">Autores registrados</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -37,7 +37,7 @@
                                         <td class="text-center"> {{ $author->full_name }} </td>
                                         <td class="text-center"> {{ $author->email_c }} </td>
                                         <td class="text-center ">
-                                            <a href="{{ url('/tbook') }}" class="btn btn-info btn-xs">
+                                            <a href="{{ route('authors_books.showBooks', $author->id) }}" class="btn btn-info btn-xs">
                                                 <span class="fa fa-eye"></span>
                                             </a>
                                             <a href="{{ route('authors_books.edit', $author->id) }}" class="btn btn-warning btn-xs">
@@ -67,8 +67,6 @@
                 <!-- /.box -->
             </div>
         </div>
-        <br>
-        {{--
         <div class="col-md-offset-9">
             <a href="{{ route('authors_books.create') }}" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
@@ -81,11 +79,8 @@
                 </b>
             </a>
         </div>
-        --}}
     </section>
-
 @endsection
-
 @section('js')
     <!--DataTables-->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

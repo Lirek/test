@@ -36,5 +36,8 @@ class Book extends Model
     {
         return $this->belongsTo('App\Rating');
     }
+    public function tags_book() {
+      return $this->belongsToMany('App\Tags','books_tags','books_id','tags_id');
+    }
 
 }

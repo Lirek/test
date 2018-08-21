@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\BookAuthor;
 use App\Book;
 use App\Rating;
+use App\Tags;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\BookRequest;
 use File;
@@ -33,11 +34,13 @@ class BooksController extends Controller
                     ->pluck('full_name', 'id');
         $sagas = Sagas::where('type_saga','Libros')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
+        $tags = Tags::where('status','Aprobado')->where('type_tags','Peliculas')->get();
 
         return view('seller.book.create')
             ->with('author', $author)
             ->with('saga', $sagas)
-            ->with('ratin',$rating);
+            ->with('ratin',$rating)
+            ->with('tags', $tags);
     }
 
     public function store(BookRequest $request)
@@ -48,17 +51,18 @@ class BooksController extends Controller
         $file->move($path1, $name);
 
         $files = $request->file('books_file');
-        $names = 'book_'.$request->title.'_' . time() . '.' . $files->getClientOriginalExtension();
+        $names = 'book_'.$request->title.'_'.time().'.'.$files->getClientOriginalExtension();
         $path2 = public_path() . '/book/';
         $files->move($path2, $names);
 
         $book = new Book($request->all());
         $book->seller_id = \Auth::guard('web_seller')->user()->id;
-        $book->author_id = $request->author_id;
         $book->cover = $name;
         $book->books_file = $names;
         $book->status = 2;
         $book->save();
+
+        $book->tags_book()->attach($request->tags);
 
         Flash::success('Se ha registrado '.$book->title.' de forma sastisfactoria')->important();
 
@@ -77,14 +81,18 @@ class BooksController extends Controller
             $author = BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)
                     ->orderBy('id', 'DESC')
                     ->pluck('full_name', 'id');
-            $sagas = Sagas::orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
+            $sagas = Sagas::where('type_saga','Libros')->orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
             $ratings = Rating::orderBy('id','ASC')->pluck('r_name','id');
+            $tags = Tags::where('type_tags','Peliculas')->where('status','Aprobado')->get();
+            $selected = $books->tags_book()->get();
 
             return view('seller.book.edit')
                 ->with('book', $books)
                 ->with('saga', $sagas)
                 ->with('author', $author)
-                ->with('rating',$ratings);
+                ->with('rating',$ratings)
+                ->with('tags', $tags)
+                ->with('s_tags', $selected);
 
         }else {
 
@@ -124,9 +132,18 @@ class BooksController extends Controller
         $book->release_year = $request->release_year;
         $book->rating_id = $request->rating_id;
         $book->cost = $request->cost;
+
+        if ($request->tags!=null) {
+            $tags = $request->tags;
+            $book->tags_book()->detach();
+            foreach($tags as $tag) {
+                $book->tags_book()->attach($tag);
+            }
+        }
+
         $book->save();
 
-        Flash::success('Se ha modificado ' . $book->title . ' de forma exitosa')->important();
+        Flash::success('Se ha modificado '.$book->title.' de forma exitosa')->important();
 
         return redirect()->route('tbook.index');
     }
@@ -138,6 +155,7 @@ class BooksController extends Controller
             $books->author;
             $books->saga;
             $books->rating;
+            $books->tags_book;
         });
         return view('seller.book.show')->with('book',$books);
     }
@@ -150,7 +168,9 @@ class BooksController extends Controller
             File::delete(public_path()."/images/bookcover/".$book->cover);
             File::delete(public_path()."/book/".$book->books_file);
 
+            $book->tags_book()->detach();
             $book->delete();
+
             Flash::success('Se ha eliminado el libro con exito')->important();
             return redirect()->route('tbook.index');
 

@@ -50,7 +50,7 @@
                                 <label for="tlf" class="col-md-6 control-label">Teléfono</label>
                                 <div class="col-md-6">
                                     <div id="mensajeTelefono"></div>
-                                    <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}" required="required">
+                                    <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}" required="required" onpaste="return false">
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('tlf') }}</strong>
@@ -62,8 +62,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="col-md-6 control-label">Descripción</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="description" id="description" required="required">
-                                    </textarea>
+                                    <textarea class="form-control" name="description" id="description" required="required"></textarea>
                                     @if ($errors->has('description'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -75,14 +74,14 @@
                             <div class="form-group">
                                 <label for="content_type" class="col-md-6 control-label">Tipo de contenido</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="content_type" id="content_type">
+                                    <select class="form-control" name="content_type" id="content_type" required="required">
                                         <option value="">Seleccione...</option>
-                                        <option value="Musica">Musica</option>
+                                        <option value="Musica">Música</option>
                                         <option value="Revistas">Revistas</option>
                                         <option value="Libros">Libros</option>
                                         <option value="Radios">Radios</option>
                                         <option value="TV">Televisoras</option>
-                                        <option value="Peliculas">Peliculas</option>
+                                        <option value="Peliculas">Películas</option>
                                         <option value="Series">Series</option>
                                     </select>
                                     @if ($errors->has('email'))
@@ -92,14 +91,14 @@
                                     @endif
                                     <div id="subMenuMusica">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
+                                        <select name="sub_desired_musica" id="sub_desired" class="form-control">
                                             <option value="Artista">Artista</option>
                                             <option value="Productora">Productora</option>
                                         </select>
                                     </div>
                                     <div id="subMenuLibro">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
+                                        <select name="sub_desired_libros" id="sub_desired" class="form-control">
                                             <option value="Escritor">Escritor</option>
                                             <option value="Editorial">Editorial</option>
                                         </select>
@@ -232,7 +231,7 @@
                 $('#solicitar').click(function() {
                     var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
                     if (regex.test($('#email').val().trim())) {
-                        $("#form").submit();
+                        //$("#form").submit();
                     } else {
                         $('#mensajeCorreo').show();
                         $('#mensajeCorreo').text('El correo introducido no es valido');

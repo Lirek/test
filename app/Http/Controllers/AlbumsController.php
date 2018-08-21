@@ -53,9 +53,10 @@ class AlbumsController extends Controller
         $song = $album->songs()->get();
         $tags = Tags::where('type_tags','=','Musica')->where('status','=','Aprobado')->get();
         $selected = $album->tags_music()->get();
-        $autors = $album->autors()->get();
+        $autors = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
         $i=0;
         $cover = $album->cover;
+        //dd($autors);
 
         return view('seller.music_module.album_modify')
                     ->with('tags', $tags)
@@ -103,6 +104,10 @@ class AlbumsController extends Controller
             foreach($tags as $tag) {
                 $album->tags_music()->attach($tag);
             }
+        }
+
+        if ($request->artist!=null) {
+            $artist = $request->artist;
         }
 
         $i=0;
@@ -459,9 +464,9 @@ class AlbumsController extends Controller
         {
             
             $song = Songs::find($id);
-            $artist = music_authors::all();
             $selected = $song->tags()->get();
             $tags = Tags::where('type_tags','=','Musica')->where('status','=','Aprobado')->get();
+            $artist = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
             
             return view('seller.music_module.single_modify')->with('tags', $tags)->with('artist', $artist)->with('s_tags',$selected)->with('song',$song)->with('id',$id);
         }

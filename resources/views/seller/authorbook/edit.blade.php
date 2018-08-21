@@ -57,92 +57,80 @@
             <div class="col-md-10 col-md-offset-1">
                 @include('flash::message')
 
-                @if(\Auth::guard('web_seller')->user()->id === $author->seller_id)
-
-                    <div class="box box-primary ">
-                        <div class="box-header with-border bg bg-black-gradient">
-                            <h3 class="box-title">Editar Autor</h3>
-                        </div>
-                        <!-- /.box-header -->
-
-                        <!-- form start -->
-                        {!! Form::open(['route'=>['authors_books.update',$author], 'method'=>'PUT','files' => 'true' ]) !!}
-                        {{--{!! Form::open(['route'=>'radios.store', 'method'=>'POST', 'files' => 'true']) !!}--}}
-                        {{ Form::token() }}
-
-                        <div class="box-body ">
-                            
-                            <div class="col-md-6">
-                                {{--Imagen--}}
-                                <div id="mensajeFotoLibro"></div>
-                                <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
-                                    Si no selecciona una foto, se mantendrá la actual
-                                </label>
-                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
-                                    <label for="image-upload" id="image-label"> Foto del autor </label>
-                                    {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]) !!}
-                                    <div id="list">
-                                        <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset('images/authorbook') }}/{{$author->photo }}"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                {{--nombre de la autor--}}
-                                <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
-                                {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
-                                <br>
-
-                                {{--correo o email del autor--}}
-                                <label for="exampleInputEmail1">Correo electrónico</label>
-                                {!! Form::email('email_c',$author->email_c,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
-                                <br>
-
-                                {{--inicio de la agrupacion--}}
-                                <label for="Redes Sociales" class="control-label">Redes sociales</label>
-                                {{--link de google+--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                    {!! Form::text('google',$author->google,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile','pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                                </div>
-                                {{--link de instagram--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    {!! Form::text('instagram',$author->instagram,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile','pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                                </div>
-                                {{--link de facebook--}}
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                                    {!! Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                                </div>
-
-                                {{--link de twitter--}}
-                                {{--
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                    {!! Form::text('twitter',$author->twitter,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                                </div>
-                                --}}
-                                {{--final de la agrupacion--}}
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
+                <div class="box box-primary ">
+                    <div class="box-header with-border bg bg-black-gradient">
+                        <h3 class="box-title">Editar Autor</h3>
                     </div>
+                    <!-- /.box-header -->
+
+                    <!-- form start -->
+                    {!! Form::open(['route'=>['authors_books.update',$author], 'method'=>'PUT','files' => 'true' ]) !!}
+                    {{ Form::token() }}
+
+                    <div class="box-body ">
+                        
+                        <div class="col-md-6">
+                            {{--Imagen--}}
+                            <div id="mensajeFotoLibro"></div>
+                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                Si no selecciona una foto, se mantendrá la actual
+                            </label>
+                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                                <label for="image-upload" id="image-label"> Foto del autor </label>
+                                {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <div id="list">
+                                    <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset('images/authorbook') }}/{{$author->photo }}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            {{--nombre de la autor--}}
+                            <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
+                            {!! Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <br>
+
+                            {{--correo o email del autor--}}
+                            <label for="exampleInputEmail1">Correo electrónico</label>
+                            {!! Form::email('email_c',$author->email_c,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
+                            <br>
+
+                            {{--inicio de la agrupacion--}}
+                            <label for="Redes Sociales" class="control-label">Redes sociales</label>
+                            {{--link de google+--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
+                                {!! Form::text('google',$author->google,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile','pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                            </div>
+                            {{--link de instagram--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                                {!! Form::text('instagram',$author->instagram,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile','pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                            </div>
+                            {{--link de facebook--}}
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+                                {!! Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                            </div>
+
+                            {{--link de twitter--}}
+                            {{--
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
+                                {!! Form::text('twitter',$author->twitter,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                            </div>
+                            --}}
+                            {{--final de la agrupacion--}}
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
                 </div>
                 <div class="form-group text-center">
                     {!! Form::submit('Editar autor', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
                 </div>
                 {!! Form::close() !!}
-            @else
-                <div class="text-center">
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <h1 class="text-danger">
-                        <strong>
-                            No tiene permitido el acceso...
-                        </strong>
-                    </h1>
-                </div>
-            @endif
+            
         </div>
     </section>
 @endsection

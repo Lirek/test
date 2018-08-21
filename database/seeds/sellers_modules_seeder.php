@@ -14,12 +14,17 @@ class sellers_modules_seeder extends Seeder
         //
         DB::table('sellers_modules')->insert([
         	['name' => 'Musica',],
+            ['name' => 'Musica',],
         	['name'=> 'Peliculas'],
         	['name'=> 'Libros'],
         	['name'=> 'Series'],
         	['name'=> 'Revistas'],
         	['name'=> 'Radios'],
-        	['name'=> 'TV']
+        	['name'=> 'TV'],
+            ['name' => 'Productora'],
+            ['name' => 'Artista'],
+            ['name' => 'Editorial'],
+            ['name' => 'Escritor']
        ]);
     }
 }

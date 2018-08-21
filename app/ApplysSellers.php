@@ -19,6 +19,7 @@ class ApplysSellers extends Model
       'status',
       'dsc',
       'desired_m',
+      'sub_desired_m',
       'assing_at',
       'promoter_id',
       'created_at',

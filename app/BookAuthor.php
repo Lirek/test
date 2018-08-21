@@ -19,7 +19,7 @@ class BookAuthor extends Model
 
     public function books()
     {
-        return $this->hasMany('App\Book','id');
+        return $this->hasMany('App\Book','author_id');
     }
 
     public function seller()

@@ -36,8 +36,8 @@ class music_authors extends Model
     }
 
 
-    public function Seller()
+    public function seller()
     {
-    return $this->belongsTo('App\Seller', 'seller_id');
+    return $this->belongsTo('App\Seller');
     }
 }

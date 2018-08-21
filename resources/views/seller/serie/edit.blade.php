@@ -151,19 +151,40 @@
                             {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
                             <br>
 
+                            {{--Categoria--}}
+                            <label for="tags"> Generos </label>
+                            <select name="tags[]" multiple="true" class="form-control" required>
+                                @foreach($tags as $genders)
+                                    <option value="{{$genders->id}}"
+                                        @foreach($s_tags as $s) 
+                                            @if($s->id == $genders->id) 
+                                                selected 
+                                            @endif 
+                                        @endforeach
+                                        >
+                                        {{$genders->tags_name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <br>
+
                             {{--historia de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
                             <div id="mensajeHistoria"></div>
-                            {!! Form::textarea('story',$serie->story,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
-                            <br>
+                            {!! Form::textarea('story',$serie->story,['class'=>'form-control','rows'=>'5','cols'=>'2','placeholder'=>'Historia de la serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
+                            <br><br>
+                        </div>
 
+                        <div class="col-md-6">
                             {{--año de salida de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Año de Llanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
                             {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                             <br>
+                        </div>
 
+                        <div class="col-md-6">
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}

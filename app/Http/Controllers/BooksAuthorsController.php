@@ -12,60 +12,15 @@ use File;
 class BooksAuthorsController extends Controller
 {
 
-    public function showBooks() {
+    public function showBooks($id) {
 
-        $id = BookAuthor::where('seller_id',\Auth::guard('web_seller')->user()->id)->get();
-        //dd($id[0]->id);
-        $authors = BookAuthor::find($id[0]->id);
-        //dd($authors);
-        //$books = Book::all();
-        $books = $authors->books()->get();
-        /*
-        $authors->each(function ($authors) {
-            $authors->seller;
-        });
-        $books->each(function ($books){
-            $books->author;
-        });
-        //dd($books);
-        //dd($authors->seller->name);
-        return view('seller.authorbook.show')
-            ->with('author',$authors)
-            ->with('book',$books);
-        $author = BookAuthor::orderBy('id', 'DESC')->get();
-        $author->each(function ($author) {
-            $author->seller;
-            $author->books;
-        });
-        dd($author);
-        */
+        $authors_books = BookAuthor::find($id);
+        $books = $authors_books->books()->get();
 
-        return view('seller.authorbook.show')->with('author', $authors)->with('book',$books);
+        return view('seller.authorbook.show')->with('author', $authors_books)->with('book',$books);
     }
 
-    public function create() {
-        return view('seller.authorbook.create');
-    }
-
-    public function store(Request $request) {
-        $file = $request->file('photo');
-        $name = 'author_'.time().'.'.$file->getClientOriginalExtension();
-        $path = public_path().'/images/authorbook/';
-        $file->move($path, $name);
-
-        $author = new BookAuthor($request->all());
-        $author->seller_id = \Auth::guard('web_seller')->user()->id;
-        $author->photo = $name;
-        $author->save();
-
-        Flash::success('Se ha registrado ' . $author->full_name . ' de forma sastisfactoria')->important();
-
-        return redirect()->action(
-            'BooksAuthorsController@edit',['id'=>\Auth::guard('web_seller')->user()->id]
-        );
-    }
-
-    public function show() {
+    public function index() {
 
         $author = BookAuthor::orderBy('id', 'DESC')->get();
         $author->each(function ($author) {
@@ -76,21 +31,33 @@ class BooksAuthorsController extends Controller
         return view('seller.authorbook.index')->with('authors', $author);
     }
 
+    public function create() {
+        return view('seller.authorbook.create');
+    }
+
+    public function store(Request $request) {
+        
+        $file = $request->file('photo');
+        $name = 'author_'.time().'.'.$file->getClientOriginalExtension();
+        $path = public_path().'/images/authorbook/';
+        $file->move($path, $name);
+
+        $author = new BookAuthor($request->all());
+        $author->seller_id = \Auth::guard('web_seller')->user()->id;
+        $author->photo = $name;
+        $author->save();
+
+        Flash::success('Se ha registrado '.$author->full_name.' de forma sastisfactoria')->important();
+
+        return redirect()->action(
+            'BooksAuthorsController@index',\Auth::guard('web_seller')->user()->id
+        );
+    }
+
     public function edit($id) {
 
-        $id = BookAuthor::where('seller_id',\Auth::guard('web_seller')->user()->id)->get();
-        $authors = BookAuthor::find($id[0]->id);
-
-        if (\Auth::guard('web_seller')->user()->id === $authors->seller_id) {
-
-            return view('seller.authorbook.edit')->with('author', $authors);
-
-        } else {
-
-            Flash::error(' No tienes los permisos necesarios para acceder ')->important();
-
-            return redirect()->route('authors_books.index');
-        }
+        $authors = BookAuthor::find($id);
+        return view('seller.authorbook.edit')->with('author', $authors);
     }
 
     public function update(Request $request, $id) {
@@ -108,7 +75,7 @@ class BooksAuthorsController extends Controller
 
         $author->full_name = $request->full_name;
         $author->seller_id = \Auth::guard('web_seller')->user()->id;
-        $author->email_c;
+        $author->email_c = $request->email_c;
         $author->google = $request->google;
         $author->instagram = $request->instagram;
         $author->facebook = $request->facebook;
@@ -117,31 +84,36 @@ class BooksAuthorsController extends Controller
 
         Flash::success('Se ha modificado ' . $author->full_name . ' de forma sastisfactoria')->important();
 
-        return redirect()->action(
-            'BooksAuthorsController@edit',[\Auth::guard('web_seller')->user()->id]
-          );
+        $seller = Seller::find(\Auth::guard('web_seller')->user()->id);
+
+        foreach($seller->roles as $mod) {
+            if($mod->name == 'Editorial') {
+                return redirect()->action(
+                    'BooksAuthorsController@index'
+                );
+            }
+            if($mod->name == 'Escritor') {
+                $id = BookAuthor::where('seller_id',\Auth::guard('web_seller')->user()->id)->get();
+                return redirect()->action(
+                    'BooksAuthorsController@edit',$id[0]
+                  );
+            }
+        }
     }
 
     public function destroy($id) {
 
         $author = BookAuthor::find($id);
-        $book = Book::all();
-        $book->each(function ($book){
-            $book->author;
-        });
-        dd($book);
-        //dd($author->photo);
-        //dd($author->id);
-        //$book = Book::find($author->id);
+
         $book = Book::where('author_id',$author->id)->get();
-        //dd(public_path()."/images/bookcover/".$book[0]->cover);
 
         if (\Auth::guard('web_seller')->user()->id === $author->seller_id) {
-
-            if ($book!=null) {
-                File::delete(public_path()."/images/bookcover/".$book[0]->cover);
-                File::delete(public_path()."/book/".$book[0]->books_file);
-                $book->delete();
+            for ($i=0; $i < count($book); $i++) {
+                if ($book!=null) {
+                    File::delete(public_path()."/images/bookcover/".$book[0]->cover);
+                    File::delete(public_path()."/book/".$book[0]->books_file);
+                    $book[$i]->delete();
+                }
             }
             File::delete(public_path()."/images/authorbook/".$author->photo);
             $author->delete();
@@ -155,23 +127,6 @@ class BooksAuthorsController extends Controller
             return redirect()->route('authors_books.index');
 
         }
-    }
-
-    public function register(Request $request) {
-        
-        $file = $request->file('photo');
-        $name = 'author_' . time() . '.' . $file->getClientOriginalExtension();
-        $path = public_path() . '/images/authorbook/';
-        $file->move($path, $name);
-
-        $author = new BookAuthor($request->all());
-        $author->seller_id = \Auth::guard('web_seller')->user()->id;
-        $author->photo = $name;
-        $author->save();
-
-        Flash::success('Se ha registrado ' . $author->full_name . ' de forma sastisfactoria')->important();
-
-        return redirect()->route('tbook.create');
     }
 
 }

@@ -447,14 +447,21 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::get('/artist_form', 'ArtistController@ShowArtistForms');
     /*------------------------------------------------------------*/
 
-    // Rutas nuevas 09-08-2018
-    //es para modificar la informacion del artista o grupo musical que pertenece
     /*---------- Registrar Artistas o Grupos Musicales ------------*/
     Route::get('/modify_artist', 'ArtistController@modify_artist');
     Route::post('/save_modify_artist', 'ArtistController@save_modify_artist');
     /*------------------------------------------------------------*/
-    //es para modificar la informacion del artista o grupo musical que pertenece
-    // Rutas nuevas 09-08-2018
+    // Ruta nueva 16-08-2018
+    /*---------- Listar artistas o grupos musicales ------------*/
+    Route::get('/showArtist', 'ArtistController@showArtist');
+    /*------------------------------------------------------------*/
+    /*---------- Editar un artista o grupo musical -------------*/
+    Route::get('/editArtist/{id}', 'ArtistController@editArtist');
+    /*------------------------------------------------------------*/
+    /*---------- Eliminar un artista o grupo musical ------------*/
+    Route::get('/deleteArtist/{id}', 'ArtistController@deleteArtist');
+    /*------------------------------------------------------------*/
+    // Ruta nueva 16-08-2018
 
     /*---------- Registrar Albums -------------------------------*/
     Route::post('/albums', 'AlbumsController@CreateAlbum');
@@ -491,7 +498,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*------------------Modificar Single -------------------------- */
     Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
-    Route::post('/modify_single/{id}', 'AlbumsController@UpdateSong');
+    Route::post('/modify_single', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
@@ -833,12 +840,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
         'uses' => 'BooksAuthorsController@destroy',
         'as' => 'authors_books.destroy'
     ]);
-    //nueva ruta 09-08-2018
-    Route::get('show_books/', [
+    //ruta modificada (colocar el id como parametro)
+    Route::get('show_books/{id}', [
         'uses' => 'BooksAuthorsController@showBooks',
         'as' => 'authors_books.showBooks'
     ]);
-    //nueva ruta 09-08-2018
+    //ruta modificada (colocar el id como parametro)
 
     /*---------------------------------------------------------------------------
     -----------------------------------------------------------------------------
