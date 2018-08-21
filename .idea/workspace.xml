@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/12f9301eb4d2edab9f4acd0474afa624fdde6d6b.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/2fb74364b10095e731cb0cd8ac85c21d6af866e8.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/3511bee9bdb0c54597df841a571537307a976ed0.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4a6f01a17fea9ebbea4371453e22c5b9edd74a94.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/4b2defc132924f0de1a05bfc83cd6bf678f65775.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/57c43547d2984808521802db51b745abeeadb2d2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/5e4147a21cc90924b09f10ead58db78b999cb3f2.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/7dd8a40d00a3bc7430fc1fe8d6e039e189ae0be4.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/9907a035b5078ed497bde18b4a986c5dc4c484b6.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/b874259bf8cdef027a4c5b91ebf40948759ed35d.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c073f2d89e6517a8e0248981971bdcd0d36d76d4.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/c78fc62176c0d50bd8c4ceea39c9717bcc2986d0.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/framework/views/df1192ccc5af27323fab5f684ed63d8e287a80b9.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
-              <caret line="286" column="0" lean-forward="true" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+              <caret line="286" column="0" lean-forward="false" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -349,7 +335,7 @@
       <workItem from="1529931247125" duration="293000" />
       <workItem from="1530551649876" duration="811000" />
       <workItem from="1534789990748" duration="1085000" />
-      <workItem from="1534854569295" duration="2439000" />
+      <workItem from="1534854569295" duration="3673000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -421,11 +407,25 @@
       <option name="project" value="LOCAL" />
       <updated>1534790475015</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Arreglo ruta de radios">
+      <created>1534857286572</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1534857286572</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Merge branch 'Pacheco' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/seller/auth/applys.blade.php">
+      <created>1534857858250</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1534857858250</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133532000" />
+    <option name="totallyTimeSpent" value="134766000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -438,7 +438,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -485,7 +484,8 @@
     <MESSAGE value="Merge branch 'eric' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;public/plugins/index/css/index.css&#10;#&#9;resources/views/seller/auth/login.blade.php&#10;#&#9;resources/views/welcome.blade.php" />
     <MESSAGE value="Merge branch 'eric' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Arreglo ruta de radios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglo ruta de radios" />
+    <MESSAGE value="Merge branch 'Pacheco' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/seller/auth/applys.blade.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Pacheco' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/seller/auth/applys.blade.php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -793,7 +793,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
-          <caret line="286" column="0" lean-forward="true" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+          <caret line="286" column="0" lean-forward="false" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
           <folding />
         </state>
       </provider>
