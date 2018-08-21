@@ -187,7 +187,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('GetPackage/{id}','AdminController@GetPackage');
 
-            Route::delete('DeletePackage/{id}','AdminController@DeletePackage');
+            Route::get('DeletePackage/{id}','AdminController@DeletePackage');
 
 
 
