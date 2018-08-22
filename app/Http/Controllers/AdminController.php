@@ -10,6 +10,8 @@ use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
+use App\Events\PayementAprovalEvent;
+use App\Events\PaymentDenialEvent;
 use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
@@ -35,6 +37,7 @@ use App\LoginControl;
 use App\Salesman;
 use App\PromotersRoles;
 use App\TicketsPackage;
+use App\Payments;
 
 
 //--------------------------------------------------------
@@ -1220,4 +1223,66 @@ class AdminController extends Controller
 
 //--------------------------------
 
+//-----------------Validacion de Pagos----------------------
+      public function DepsitDataTable()
+      {
+        $deposit = Payments::where('status','=','En Revision')->with('TicketsUser')->with('Tickets');
+
+        return Datatables::of($deposit)
+                                    ->editColumn('voucher',function($deposit){
+
+                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'" 
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                                 </button> ';
+                    })
+                    ->editColumn('user_id',function($deposit){
+
+                      return $deposit->TicketsUser->name;
+                    })
+                    ->addColumn('Estatus',function($deposit){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
+                      </button';
+                    })
+                     ->addColumn('total',function($deposit){
+                      
+                      return $deposit->value*$deposit->Tickets->cost.'$';
+                    })
+                      ->rawColumns(['Estatus','voucher'])
+                      ->toJson();
+
+      }
+
+      public function DepositStatus(Request $request,$id)
+      {
+        
+        $deposit = Payments::find($id);
+        
+        if($request->status == 'Aprobado')
+        {
+          $user = User::find($deposit->user_id);
+          $tickets =  $deposit->value*$deposit->Tickets->amount;
+
+          $user->credito =$user->credito + $tickets;
+          $user->save();
+          $deposit->status = 'Aprobado';
+          $deposit->save();
+          event(new PayementAprovalEvent($user->email));
+          return response()->json($user);
+        }
+        else
+        {
+           $user = User::find($deposit->user_id);
+           $deposit->status = 'Denegado';
+           $deposit->save();
+           event(new PayementAprovalEvent($user->email,$request->message));
+           return response()->json($deposit);
+
+        }
+
+
+
+      }
+//----------------------------------------------------------
 }

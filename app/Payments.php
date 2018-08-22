@@ -13,7 +13,8 @@ class Payments extends Model
         'package_id',
         'voucher',
         'cost',
-        'value', 
+        'value',
+        'status',
         ];
 
         public function Tickets()
