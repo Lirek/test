@@ -82,21 +82,21 @@
         <ul id="slides">
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>
                 </div>
                 <h1 class="title">
-                    <span class="title-text">Forest</span>
+                    <span  class="title-text">Forest</span>
                 </h1>
             </li>
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>
                 </div>
                 <h1 class="title">
                     <span class="title-text">Mountain</span>
@@ -104,10 +104,10 @@
             </li>
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>
                 </div>
                 <h1 class="title">
                     <span class="title-text">Ocean</span>
@@ -115,20 +115,22 @@
             </li>
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>
                 </div>
                 <h1 class="title">
                     <span class="title-text">Canyon</span>
                 </h1>
             </li>
             <li class="slide">
-                <div class="slide-partial slide-left"><img
-                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/></div>
-                <div class="slide-partial slide-right"><img
-                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/></div>
+                <div class="slide-partial slide-left">
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/>
+                </div>
+                <div class="slide-partial slide-right">
+                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/>
+                </div>
                 <h1 class="title"><span class="title-text">Lake</span></h1>
             </li>
         </ul>
@@ -152,25 +154,32 @@
 <div class="col-md-12" id="contentRadio">
     <div class="row">
         <h1 class="text-center"> RADIOS RECIENTES </h1>
+        {{--<div class="container">--}}
 
-        {{--            {{ dd($radio) }}--}}
         @foreach($radio as $r)
-{{--            @if(< 2)--}}
-                <figure class="snip1166 navy hover">
-                    {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                    {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                    <img class="img-responsive" src="{{ asset($r->logo) }}" alt="sample73"/>
-                    <figcaption>
-                        <h3>{{ $r->name_r }}</h3>
-                        <div>
-                            <p>{{ $r->email_c }}</p>
-                        </div>
-                        <a href="#"></a>
-                    </figcaption>
-                </figure>
+            {{--            @if(< 2)--}}
+            <figure class="snip1166 navy hover">
+                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
+                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
+                <img class="img-responsive" src="{{ asset('/images/radio/'.$r->logo) }}" alt="sample73"/>
+                <figcaption>
+                    <h3>
+                        {{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
+                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
+                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                    </h3>
+                    <div>
+                        <p>{{ $r->email_c }}</p>
+                    </div>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
             {{--@endif--}}
         @endforeach
 
+        {{--</div>--}}
 
     </div>
 </div>
@@ -271,14 +280,14 @@
     </div>
 </footer>
 <hr/>
-<div class="container-fluid text-warning">
-    <div class="row col-md-12">
-        <div class="col-md-4">
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-4" id="footer1">
             <p>
                 Copyright © 2018 Todos lo derechos reservados
             </p>
         </div>
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-4" id="footer2">
             <a href="">Inicio</a>
             <a href="">Sobre nosotros</a>
             <a href="">Servicios</a>
@@ -709,12 +718,11 @@
 <!-- /.LOGIN REGISTER END -->
 
 
-
 {{--<script src="/js/app.js"></script>--}}
 <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
 <script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
 {{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
-    <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>
+<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>
 
 {{--CONFIG DEL SLIDER STAR--}}
 
@@ -829,120 +837,119 @@
 {{--<script src="{{ asset('plugins/bubbles/movingbubbles.js') }}" type="text/javascript"></script>--}}
 <script>
     //---------------------------------------------------------------------------------------------------
-    $("#formRP")({
 
-        // funcion para mostrar el submenu de los modulos de libro y de musica
-        $(document).ready(function () {
-            $('#subMenuMusica').hide();
-            $('#subMenuLibro').hide();
-            $('#content_type').on('change', function () {
-                if (this.value == 'Musica') {
-                    $('#subMenuLibro').hide();
-                    $('#subMenuMusica').show();
-                } else if (this.value == 'Libros') {
-                    $('#subMenuMusica').hide();
-                    $('#subMenuLibro').show();
-                } else {
-                    $('#subMenuMusica').hide();
-                    $('#subMenuLibro').hide();
-                }
-            });
+    // funcion para mostrar el submenu de los modulos de libro y de musica
+    $(document).ready(function () {
+        $('#subMenuMusica').hide();
+        $('#subMenuLibro').hide();
+        $('#content_type').on('change', function () {
+            if (this.value == 'Musica') {
+                $('#subMenuLibro').hide();
+                $('#subMenuMusica').show();
+            } else if (this.value == 'Libros') {
+                $('#subMenuMusica').hide();
+                $('#subMenuLibro').show();
+            } else {
+                $('#subMenuMusica').hide();
+                $('#subMenuLibro').hide();
+            }
         });
-        // funcion para mostrar el submenu de los modulos de libro y de musica
-        //---------------------------------------------------------------------------------------------------
-        // Función que nos va a contar el número de caracteres
-        $(document).ready(function () {
-            var cantidadMaxima = 191;
-            $('#com_name').keyup(function (evento) {
-                var nombreComercial = $('#com_name').val();
-                numeroPalabras = nombreComercial.length;
-                if (numeroPalabras > cantidadMaxima) {
-                    $('#mensajeNombreComercial').show();
-                    $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                    $('#mensajeNombreComercial').css('color', 'red');
-                    $('#solicitar').attr('disabled', true);
-                } else {
-                    $('#mensajeNombreComercial').hide();
-                    $('#solicitar').attr('disabled', false);
-                }
-            });
+    })
+    // funcion para mostrar el submenu de los modulos de libro y de musica
+    //---------------------------------------------------------------------------------------------------
+    // Función que nos va a contar el número de caracteres
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#com_name').keyup(function (evento) {
+            var nombreComercial = $('#com_name').val();
+            numeroPalabras = nombreComercial.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#solicitar').attr('disabled', true);
+            } else {
+                $('#mensajeNombreComercial').hide();
+                $('#solicitar').attr('disabled', false);
+            }
         });
+    });
 
-        $(document).ready(function () {
-            var cantidadMaxima = 191;
-            $('#contact_name').keyup(function (evento) {
-                var nombreCotacto = $('#contact_name').val();
-                numeroPalabras = nombreCotacto.length;
-                if (numeroPalabras > cantidadMaxima) {
-                    $('#mensajeNombreContacto').show();
-                    $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                    $('#mensajeNombreContacto').css('color', 'red');
-                    $('#solicitar').attr('disabled', true);
-                } else {
-                    $('#mensajeNombreContacto').hide();
-                    $('#solicitar').attr('disabled', false);
-                }
-            });
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#contact_name').keyup(function (evento) {
+            var nombreCotacto = $('#contact_name').val();
+            numeroPalabras = nombreCotacto.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#solicitar').attr('disabled', true);
+            } else {
+                $('#mensajeNombreContacto').hide();
+                $('#solicitar').attr('disabled', false);
+            }
         });
+    });
 
-        $(document).ready(function () {
-            var cantidadMaxima = 191;
-            $('#tlf').keyup(function (evento) {
-                var telefono = $('#tlf').val();
-                numeroPalabras = telefono.length;
-                if (numeroPalabras > cantidadMaxima) {
-                    $('#mensajeTelefono').show();
-                    $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                    $('#mensajeTelefono').css('color', 'red');
-                    $('#solicitar').attr('disabled', true);
-                } else {
-                    $('#mensajeTelefono').hide();
-                    $('#solicitar').attr('disabled', false);
-                }
-            });
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#tlf').keyup(function (evento) {
+            var telefono = $('#tlf').val();
+            numeroPalabras = telefono.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeTelefono').show();
+                $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeTelefono').css('color', 'red');
+                $('#solicitar').attr('disabled', true);
+            } else {
+                $('#mensajeTelefono').hide();
+                $('#solicitar').attr('disabled', false);
+            }
         });
-        // Función que nos va a contar el número de caracteres
-        //---------------------------------------------------------------------------------------------------
-        // Funcion de solo numero
-        $(document).ready(function () {
-            $("#tlf").keypress(function (event) {
-                $(this).val($(this).val().replace(/[^\d].+/, ""));
-                if ((event.which < 48 || event.which > 57)) {
-                    event.preventDefault();
-                    $('#mensajeTelefono').show();
-                    $('#mensajeTelefono').text('Solo números');
-                    $('#mensajeTelefono').css('color', 'red');
-                    $('#solicitar').attr('disabled', true);
-                } else {
-                    $('#mensajeTelefono').hide();
-                    $('#solicitar').attr('disabled', false);
-                }
-            });
+    });
+    // Función que nos va a contar el número de caracteres
+    //---------------------------------------------------------------------------------------------------
+    // Funcion de solo numero
+    $(document).ready(function () {
+        $("#tlf").keypress(function (event) {
+            $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+                $('#mensajeTelefono').show();
+                $('#mensajeTelefono').text('Solo números');
+                $('#mensajeTelefono').css('color', 'red');
+                $('#solicitar').attr('disabled', true);
+            } else {
+                $('#mensajeTelefono').hide();
+                $('#solicitar').attr('disabled', false);
+            }
         });
-        // Funcion de solo numero
-        //---------------------------------------------------------------------------------------------------
-        // Funcion para validar el correo
-        $(document).ready(function () {
-            $('#solicitar').click(function () {
-                var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-                if (regex.test($('#email').val().trim())) {
-                    $("#form").submit();
-                } else {
-                    $('#mensajeCorreo').show();
-                    $('#mensajeCorreo').text('El correo introducido no es valido');
-                    $('#mensajeCorreo').css('color', 'red');
-                    event.preventDefault();
-                }
-            });
+    });
+    // Funcion de solo numero
+    //---------------------------------------------------------------------------------------------------
+    // Funcion para validar el correo
+    $(document).ready(function () {
+        $('#solicitar').click(function () {
+            var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+            if (regex.test($('#email').val().trim())) {
+                $("#form").submit();
+            } else {
+                $('#mensajeCorreo').show();
+                $('#mensajeCorreo').text('El correo introducido no es valido');
+                $('#mensajeCorreo').css('color', 'red');
+                event.preventDefault();
+            }
         });
-        // Funcion para validar el correo
-        //---------------------------------------------------------------------------------------------------
+    });
+    // Funcion para validar el correo
+    //---------------------------------------------------------------------------------------------------
 
-    )}
 </script>
 {{--registrar proveedor end--}}
 {{--validaciones --}}
 
+{{--CONFIG DEL SLIDER STAR--}}
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script>"use strict";

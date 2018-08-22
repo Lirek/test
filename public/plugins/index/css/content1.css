@@ -100,13 +100,13 @@ figure.snip1166 a {
     position: absolute;
 }
 figure.snip1166.blue h3 {
-    background-color: #2980b9;
+    background-color: #21a4de;
 }
 figure.snip1166.blue h3:after {
-    border-color: transparent transparent transparent #2980b9;
+    border-color: transparent transparent transparent #21a4de;
 }
 figure.snip1166.blue h3:before {
-    border-color: #123851 transparent transparent transparent;
+    border-color: #21a4de transparent transparent transparent;
 }
 figure.snip1166.red h3 {
     background-color: #c0392b;
@@ -136,10 +136,10 @@ figure.snip1166.orange h3:before {
     border-color: #7b410e transparent transparent transparent;
 }
 figure.snip1166.navy h3 {
-    background-color: #34495e;
+    background-color: #21a4de;
 }
 figure.snip1166.navy h3:after {
-    border-color: transparent transparent transparent #34495e;
+    border-color: transparent transparent transparent #21a4de;
 }
 figure.snip1166.navy h3:before {
     border-color: #07090c transparent transparent transparent;
