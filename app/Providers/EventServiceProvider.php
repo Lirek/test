@@ -40,7 +40,18 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\BuyContentEvent' => [
             'App\Listeners\SendBuyContent',
         ],
-            
+
+            'App\Events\PayementAprovalEvent' => [
+            'App\Listeners\SendPaymentAprovalEmail',
+        ],
+
+            'App\Events\PaymentDenialEvent' => [
+            'App\Listeners\SendPaymentDenialEmail',
+        ],
+        
+            'App\Events\UserValidateEvent' => [
+            'App\Listeners\SendUserValidateEmail',
+        ],
 
 
     ];

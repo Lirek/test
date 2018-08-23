@@ -299,18 +299,30 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
            //------------------------------------------------------------------------
             //-----------------------RADIOS------------------------------------------
-            Route::get('/admin_radio','AdminController@ShowRadios');
-            Route::get('RadioData','AdminController@RadioDataTable');
-            Route::get('BackendRadios','AdminController@BackendRadioData');
-            Route::post('NewBackendRadios','AdminController@NewBackendRadios');
-            Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
-            Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
-            Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
+                Route::get('/admin_radio','AdminController@ShowRadios');
+                Route::get('RadioData','AdminController@RadioDataTable');
+                Route::get('BackendRadios','AdminController@BackendRadioData');
+                Route::post('NewBackendRadios','AdminController@NewBackendRadios');
+                Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
+                Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
+                Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
 
             //-----------------------------------------------------------------------
 
+            //---------------------------TV----------------------------------------
+
+                Route::get('/admin_tv','AdminController@ShowTV');
+                Route::get('DataTableTv','AdminController@DataTableTv');
+                Route::get('BackendTV','AdminController@BackendTvData');
+                Route::post('NewBackendTv','AdminController@NewBackendTv');
+                Route::get('BackendTv/{id}','AdminController@GetBackendTv');
+                Route::post('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
+                Route::post('UpdateBackendTv/{id}','AdminController@UpdateBackendTv');
 
 
+            //--------------------------------------------------------------------
+
+            
 
 
 
@@ -326,6 +338,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
+           //-----------------Pagos-----------------------------------------
+
+                Route::get('DepsitDataTable','AdminController@DepsitDataTable');
+                Route::post('PaymemtsStatus/{id}','AdminController@DepositStatus');
+
+          //-------------------------
         //______________________Fin de las rutas de Clientes________________________
         
     });

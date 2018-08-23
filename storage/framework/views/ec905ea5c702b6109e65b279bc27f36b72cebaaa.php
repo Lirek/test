@@ -1,4 +1,3 @@
-@extends('promoter.layouts.app')
     <style>
         #image-preview {
             width: 400px;
@@ -80,13 +79,13 @@
             border: 1px solid green;
         }
     </style>
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 <div class="row mt">
     <h2>
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home" id="all_radios">Televisoras</a></li>
-        <li><a data-toggle="tab" href="#menu1" id="backend_radios">Televisoras del Sistema</a></li>    
+        <li class="active"><a data-toggle="tab" href="#home" id="all_radios">Proveedores Radiales</a></li>
+        <li><a data-toggle="tab" href="#menu1" id="backend_radios">Radios del Sistema</a></li>    
       </ul>
   </h2>
 </div>
@@ -136,10 +135,10 @@
           </div>
       </div>
     </div>
-@include('promoter.modals.TvViewModal')
-@endsection
+<?php echo $__env->make('promoter.modals.RadioViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 
 $(document).ready(function(){
@@ -147,7 +146,7 @@ $(document).ready(function(){
   var Radio = $('#Radio').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('DataTableTv') !!}',
+            ajax: '<?php echo url('RadioData'); ?>',
             columns: [
                 {data: 'name_r', name: 'name_r'},
                 {data: 'logo', name: 'logo',  orderable: false, searchable: false},
@@ -194,7 +193,7 @@ $(document).ready(function(){
         var BackendRadio = $('#BackendRadio').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url('BackendTV') !!}',
+                ajax: '<?php echo url('BackendRadios'); ?>',
                 columns: [
                     {data: 'name_r', name: 'name_r'},
                     {data: 'logo', name: 'logo',  orderable: false, searchable: false},
@@ -213,7 +212,7 @@ $(document).ready(function(){
             var x = $(this).val();
           
             $( "#formDelete" ).on( 'submit', function(e){
-                var url = 'DeleteBackendTv/'+x;
+                var url = 'DeleteBackendRadio/'+x;
               
                 e.preventDefault();
                 
@@ -245,7 +244,7 @@ $(document).ready(function(){
     $(document).on('click', '#edit', function() {
 
       var id = $(this).val();
-      var url = 'BackendTv/'+id;
+      var url = 'BackendRadio/'+id;
 
         $.ajax({
                   url: url,
@@ -260,7 +259,7 @@ $(document).ready(function(){
                                     var facebook = $('input[name=facebook_u]').val(data.facebook);
                                     var twitter = $('input[name=twitter_u]').val(data.twitter);
                                     var logo = $('#image-preview_u').css('background-image', 'url(' + data.logo + ')');
-                                      $("#UpdateRadioForm").attr('action', 'UpdateBackendTv/'+id);
+                                      $("#UpdateRadioForm").attr('action', 'UpdateBackendRadio/'+id);
 
                                             },
 
@@ -272,12 +271,7 @@ $(document).ready(function(){
               });
     });
     
-    $(document).on('click', '#view', function() {
-      var streaming = $(this).val();
 
-      $("#video").attr('src',streaming);
-      $("#control").attr('src',streaming);
-    });
    
 
     $.uploadPreview({
@@ -294,4 +288,5 @@ $(document).ready(function(){
 });
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

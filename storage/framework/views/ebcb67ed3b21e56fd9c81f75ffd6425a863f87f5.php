@@ -12,7 +12,8 @@
         
 
              <form method="POST" id="formStatus">
-                              {{ csrf_field() }}
+                              <?php echo e(csrf_field()); ?>
+
 
                            <div class="radio-inline">
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
@@ -67,8 +68,9 @@
      
         
 
-             <form method="POST" id="NewRadioForm" action="{{url('NewBackendTv')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-                              {{ csrf_field() }}
+             <form method="POST" id="NewRadioForm" action="<?php echo e(url('NewBackendTv')); ?>" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
+                              <?php echo e(csrf_field()); ?>
+
 
                            <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nombre de La Televisora</label>
@@ -93,7 +95,7 @@
 
                         <div class="form-group">
 
-                            {{--link d google+--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-google active"><i class="fa fa-youtube"></i></span>
                                 <input type="text" class="form-control" id="google" autofocus="autofocus" name="youtube"
@@ -103,7 +105,7 @@
                                        oninput="setCustomValidity('')">
 
                             </div>
-                            {{--lin de instagram--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-instagram active"><i class="fa fa-instagram"></i></span>
                                 <input id="instagram"
@@ -113,7 +115,7 @@
                                        oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
                                        oninput="setCustomValidity('')">
                             </div>
-                            {{--link de facebook--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook"></i></span>
                                 <input type="text" class="form-control" id="facebook" name="facebook"
@@ -123,7 +125,7 @@
                                        oninput="setCustomValidity('')">
                             </div>
 
-                            {{--lind de twitter--}}
+                            
                             <div class="input-group">
                                 <span class="input-group-addon btn-twitter active"><i class="fa fa-twitter"></i></span>
                                 <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?"
@@ -177,7 +179,8 @@
         
 
              <form method="POST" id="UpdateRadioForm"  enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-                              {{ csrf_field() }}
+                              <?php echo e(csrf_field()); ?>
+
 
                            <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nombre de La Televisora</label>
@@ -202,7 +205,7 @@
 
                         <div class="form-group">
 
-                            {{--link d google+--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-google active"><i class="fa fa-youtube"></i></span>
                                 <input type="text" class="form-control" id="youtube_u" autofocus="autofocus" name="youtube_u"
@@ -212,7 +215,7 @@
                                        oninput="setCustomValidity('')">
 
                             </div>
-                            {{--lin de instagram--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-instagram active"><i class="fa fa-instagram"></i></span>
                                 <input id="instagram_u"
@@ -222,7 +225,7 @@
                                        oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
                                        oninput="setCustomValidity('')">
                             </div>
-                            {{--link de facebook--}}
+                            
                             <div class="input-group ">
                                 <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook"></i></span>
                                 <input type="text" class="form-control" id="facebook_u" name="facebook_u"
@@ -232,7 +235,7 @@
                                        oninput="setCustomValidity('')">
                             </div>
 
-                            {{--lind de twitter--}}
+                            
                             <div class="input-group">
                                 <span class="input-group-addon btn-twitter active"><i class="fa fa-twitter"></i></span>
                                 <input id="twitter_u" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?"
@@ -286,7 +289,8 @@
         
 
              <form method="POST" id="formDelete">
-                              {{ csrf_field() }}
+                              <?php echo e(csrf_field()); ?>
+
 
              <div class="radio-inline">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Borrar

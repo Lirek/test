@@ -1,6 +1,4 @@
-@extends('promoter.layouts.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
  <div class="row mt">
     <h2>
       <ul class="nav nav-tabs">
@@ -60,10 +58,10 @@
   </div>
 </div>
 
-@include('promoter.modals.ClientViewModal')
-@endsection
+<?php echo $__env->make('promoter.modals.ClientViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 	$(document).ready(function(){
 
@@ -72,7 +70,7 @@
 	        serverSide: true,
             responsive: true,
 
-	        ajax: '{!! url('ClientsDataTable') !!}',
+	        ajax: '<?php echo url('ClientsDataTable'); ?>',
 	        columns: [
 	            {data: 'name', name: 'name'},
 	            {data: 'num_doc', name: 'num_doc'},
@@ -159,7 +157,7 @@
           serverSide: true,
           responsive: true,
 
-          ajax: '{!! url('DepsitDataTable') !!}',
+          ajax: '<?php echo url('DepsitDataTable'); ?>',
           columns: [
               {data: 'user_id', name: 'user_id'},
               {data: 'value', name: 'value'},
@@ -222,4 +220,5 @@
 
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
