@@ -309,6 +309,18 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             //-----------------------------------------------------------------------
 
+            //---------------------------TV----------------------------------------
+
+                Route::get('/admin_tv','AdminController@ShowTV');
+                Route::get('DataTableTv','AdminController@DataTableTv');
+                Route::get('BackendTV','AdminController@BackendTvData');
+                Route::post('NewBackendTv','AdminController@NewBackendTv');
+                Route::get('BackendTv/{id}','AdminController@GetBackendTv');
+                Route::post('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
+                Route::post('UpdateBackendTv/{id}','AdminController@UpdateBackendTv');
+
+
+            //--------------------------------------------------------------------
 
             
 

@@ -622,46 +622,172 @@ class AdminController extends Controller
 
       public function DataTableTv()
       {
-        $tv= TV::where('status','=','En Proceso')->get();
+        $tv= Tv::where('status','=','En Proceso')->get();
 
         return Datatables::of($tv)
 
                           ->addColumn('Estatus',function($tv){
 
-                            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
+                            return '<button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#myModal" id="status">'.$tv->status.'</button';
                           })
                           ->editColumn('logo',function($tv){
 
-                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$radios->logo.'"
+                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$tv->logo.'"
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
                           })
                           ->editColumn('streaming',function($tv){
                       
 
-                          return '<audio controls="" src="'.$tv->streaming.'">
-                                    <source src="'.$tv->streaming.'" type="video/quicktime">
-                                    </audio>';
+                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
                          })
                           ->addColumn('SocialMedia',function($tv){
                       
                             return 
-                            '<a target="_blank" href="http://'.$radios->facebook.'>
+                            '<a target="_blank" href="http://'.$tv->facebook.'>
                              <i class="fa fa-facebook-official" style="font-size:24px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->google.'">
+                             <a target="_blank" href="http://'.$tv->google.'">
                               <i class="fa fa-youtube-play" style="font-size:36px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->instagram.'">
+                             <a target="_blank" href="http://'.$tv->instagram.'">
                                <i class="fa fa-instagram" style="font-size:36px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->twitter.'">
+                             <a target="_blank" href="http://'.$tv->twitter.'">
                               <i class="fa fa-twitter" style="font-size:36px"></i>
                              </a>';
                     })
                           ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
                           ->toJson();
+      }
+
+      public function BackendTvData()
+      {
+        $tv= Tv::where('seller_id','=',0)->get();
+
+         return Datatables::of($tv)
+
+                          ->addColumn('Actions',function($tv){
+
+                            return '<button type="button" class="btn-danger" value='.$tv->id.' data-toggle="modal" data-target="#DeleteRadio" id="delete">Eliminar</button>
+
+                            <button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
+                          })
+                          ->editColumn('logo',function($tv){
+
+                          return '<img class="img-rounded img-responsive av" src="'.asset($tv->logo).'"
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          ->editColumn('streaming',function($tv){
+                      
+
+                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
+                          
+                         })
+                          ->addColumn('SocialMedia',function($tv){
+                      
+                            return 
+                            '<a target="_blank" href="http://'.$tv->facebook.'>
+                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->google.'">
+                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->instagram.'">
+                               <i class="fa fa-instagram" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->twitter.'">
+                              <i class="fa fa-twitter" style="font-size:36px"></i>
+                             </a>';
+                    })
+                          ->rawColumns(['Actions','logo','streaming','SocialMedia'])
+                          ->toJson();
 
       }
+
+       public function NewBackendTv(Request $request)
+      {
+        $Tv = new Tv;
+        
+            $file = $request->file('logo');
+            $name = 'Tvlogo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/Tv/';
+            $file->move($path, $name);
+            $logos = '/images/Tv/'.$name;
+
+        $Tv->seller_id = 0;
+
+        $Tv->name_r = $request->name_r;
+        
+        $Tv->streaming = $request->streaming;
+        
+        $Tv->email_c = $request->email_c;
+        
+        $Tv->google = $request->youtube;
+        
+        $Tv->instagram = $request->instagram;
+        
+        $Tv->facebook = $request->facebook;
+        
+        $Tv->twitter = $request->twitter;
+        
+        $Tv->logo = $logos;
+
+        $Tv->status ='Aprobado';
+        
+        $Tv->save();
+
+        return redirect()->action('AdminController@ShowTV');
+
+      }
+
+      public function DeleteBackendTv($id)
+      {
+        $Tv = Tv::destroy($id);
+        return response()->json($Tv);
+      }
+
+      public function GetBackendTv($id)
+      {
+        $Tv = Tv::find($id);
+        $Tv->logo = asset($Tv->logo);
+        return response()->json($Tv);
+      }
+
+      public function UpdateBackendTv(Request $request,$id)
+      {
+        $Tv= Tv::find($id);
+        //dd($request->all());
+        if($request->logo_u != null)
+        {
+            
+            $file = $request->file('logo_u');
+            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/Tv/';
+            $file->move($path, $name);
+          
+            $Tv->logo = '/images/Tv/'.$name;
+         }         
+
+        $Tv->name_r = $request->name_r_u;
+        
+        $Tv->streaming = $request->streaming_u;
+        
+        $Tv->email_c = $request->email_c_u;
+        
+        $Tv->google = $request->youtube_u;
+        
+        $Tv->instagram = $request->instagram_u;
+        
+        $Tv->facebook = $request->facebook_u;
+        
+        $Tv->twitter = $request->twitter_u;
+        
+        $Tv->save();
+
+        return redirect()->action('AdminController@ShowTV');
+      }
+
+
       public function ShowAllTV()
       {
         $tv= TV::paginate(10);
@@ -1284,5 +1410,5 @@ class AdminController extends Controller
 
 
       }
-//----------------------------------------------------------
+//------------------------------------------------------------
 }

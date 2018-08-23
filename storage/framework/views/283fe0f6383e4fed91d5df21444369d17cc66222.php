@@ -1,4 +1,3 @@
-@extends('promoter.layouts.app')
     <style>
         #image-preview {
             width: 400px;
@@ -80,7 +79,7 @@
             border: 1px solid green;
         }
     </style>
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 <div class="row mt">
     <h2>
@@ -136,10 +135,10 @@
           </div>
       </div>
     </div>
-@include('promoter.modals.TvViewModal')
-@endsection
+<?php echo $__env->make('promoter.modals.TvViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 
 $(document).ready(function(){
@@ -147,7 +146,7 @@ $(document).ready(function(){
   var Radio = $('#Radio').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! url('DataTableTv') !!}',
+            ajax: '<?php echo url('DataTableTv'); ?>',
             columns: [
                 {data: 'name_r', name: 'name_r'},
                 {data: 'logo', name: 'logo',  orderable: false, searchable: false},
@@ -194,7 +193,7 @@ $(document).ready(function(){
         var BackendRadio = $('#BackendRadio').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url('BackendTV') !!}',
+                ajax: '<?php echo url('BackendTV'); ?>',
                 columns: [
                     {data: 'name_r', name: 'name_r'},
                     {data: 'logo', name: 'logo',  orderable: false, searchable: false},
@@ -294,4 +293,5 @@ $(document).ready(function(){
 });
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
