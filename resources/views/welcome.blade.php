@@ -49,7 +49,7 @@
 <!-- NAVBAR STAR-->
 
 {{--<div class="main-navigation navbar">--}}
-<nav class="navbar ">
+<nav class="navbar navbar-default ">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -71,6 +71,8 @@
         </div>
     </div>
 </nav>
+
+
 {{--</div>--}}
 
 <!-- NAVBAR END-->
@@ -82,54 +84,70 @@
         <ul id="slides">
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider1-D.jpg') }}"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider1-I.jpg') }}"/>
                 </div>
                 <h1 class="title">
-                    <span  class="title-text">Forest</span>
+                    {{--<span class="title-text">Forest</span>--}}
                 </h1>
             </li>
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider2-D.jpg') }}"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider2-I.jpg') }}"/>
                 </div>
                 <h1 class="title">
-                    <span class="title-text">Mountain</span>
+                    {{--<span class="title-text">Mountain</span>--}}
                 </h1>
             </li>
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider3-D.jpg') }}"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>
+                    <img class="img-responsive"
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>--}}
+                         src="{{ asset('plugins/img/slider3-I.jpg') }}"/>
                 </div>
                 <h1 class="title">
-                    <span class="title-text">Ocean</span>
+                    {{--<span class="title-text">Ocean</span>--}}
                 </h1>
             </li>
+            {{--<li class="slide">--}}
+                {{--<div class="slide-partial slide-left">--}}
+                    {{--<img class="img-responsive"--}}
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>--}}
+                {{--</div>--}}
+                {{--<div class="slide-partial slide-right">--}}
+                    {{--<img class="img-responsive"--}}
+                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>--}}
+                {{--</div>--}}
+                {{--<h1 class="title">--}}
+                    {{--<span class="title-text">Canyon</span>--}}
+                {{--</h1>--}}
+            {{--</li>--}}
             <li class="slide">
                 <div class="slide-partial slide-left">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>
+                    <img class="img-responsive"
+                         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/>
                 </div>
                 <div class="slide-partial slide-right">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>
-                </div>
-                <h1 class="title">
-                    <span class="title-text">Canyon</span>
-                </h1>
-            </li>
-            <li class="slide">
-                <div class="slide-partial slide-left">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/>
-                </div>
-                <div class="slide-partial slide-right">
-                    <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/>
+                    <img class="img-responsive"
+                         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/>
                 </div>
                 <h1 class="title"><span class="title-text">Lake</span></h1>
             </li>
@@ -139,7 +157,7 @@
             <li class="selector"></li>
             <li class="selector"></li>
             <li class="selector"></li>
-            <li class="selector"></li>
+            {{--<li class="selector"></li>--}}
             <li class="selector"></li>
             <li class="btn next">></li>
         </ul>
@@ -158,10 +176,10 @@
 
         @foreach($radio as $r)
             {{--            @if(< 2)--}}
-            <figure class="snip1166 navy hover">
+            <figure class="snip1166 navy">
                 {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
                 {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset('/images/radio/'.$r->logo) }}" alt="sample73"/>
+                <img class="img-responsive" src="{{ asset('/images/radio/'.$r->logo) }}"/>
                 <figcaption>
                     <h3>
                         {{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -187,23 +205,20 @@
 
 <!--FOOTER STAR -->
 
-<footer class="footer container">
+<footer class="footer container-fluid">
     <div class="row col-md-12" id="leipel">
         <div class="col-md-3">
             <h1>
                 <img src="{{asset('plugins/img/Logo-Leipel.png')}}" id="logo">
             </h1>
             <p class="text-left">
-                It is a long established fact that a reader will be distracted by
-                the readable content of page when lookong at its layout. The point
-                of using Lorem Ipsum is that it has a more-or-less normal
-                distribution of letters
+                Red social de entretenimiento: Cine, m&uacute;sica, lectura, radio y tv
             </p>
             <br/>
             <ul id="list">
                 <li class="lista">
                     <i class="fa fa-map-marker text-info "></i>
-                    &nbsp;&nbsp;&nbsp;Quito, Ecuador
+                    &nbsp;&nbsp;&nbsp;Guayaquil, Ecuador
                 </li>
                 <li class="lista">
                     <i class="fa fa-phone text-info "></i>
@@ -211,76 +226,71 @@
                 </li>
                 <li class="lista">
                     <i class="fa fa-envelope-o text-info"></i>
-                    leipel@gmail.com
+                    info@leipel.com
                 </li>
             </ul>
         </div>
-        <div class="col-md-2 " id="sobre">
+        <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
                 <li><a href="#">¿Que es Leipel?</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sing up</a></li>
-                <li><a href="#">Politica de Privacidad</a></li>
-                <li><a href="#">Leipel Plataforma</a></li>
-                <li><a href="#">Terminos de Servicios</a></li>
+                <li><a href="#">Terminos y condiciones</a></li>
+                <li><a href="#">Reg&iacute;strate</a></li>
+                <li><a href="#">Beneficios adicionales</a></li>
                 <li><a href="#">Contacto</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Preguntas Frecuente</a></li>
             </ul>
         </div>
-        <div class="col-md-2" id="descubrir">
+        <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">Activar Dispositivos</a></li>
-                <li><a href="#">Series</a></li>
-                <li><a href="#">Peliculas</a></li>
-                <li><a href="#">F.A.Q</a></li>
+                <li><a href="#">Cine</a></li>
+                <li><a href="#">M&uacute;sica</a></li>
+                <li><a href="#">Lectura</a></li>
+                <li><a href="#">Radio</a></li>
+                <li><a href="#">Tv</a></li>
             </ul>
         </div>
-        <div class="col-md-2" id="social">
+        <div class="col-md-3" id="social">
             <h1>Social</h1>
             <ul id=>
-                <li><a href="#">Instagram</a></li>
                 <li><a href="#">Youtube</a></li>
                 <li><a href="#">Facebook</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Google+</a></li>
+                <li><a href="#">Instagram</a></li>
             </ul>
         </div>
-        <div class="col-md-3 " id="opinion">
-            <h1>Deja tu opini&oacute;n</h1>
-            <form action="" method="post" role="form" class="form-horizontal" id="formOp">
-                <div class="col-md-12 form-group">
-                    <input type="text" name="name" class="form-control " id="name" placeholder="Nombre"
-                           data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
-                    <div class="validation"></div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <input type="email" class="form-control " name="email" id="email" placeholder="Correo"
-                           data-rule="email" data-msg="Please enter a valid email"/>
-                    <div class="validation"></div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <input type="text" class="form-control " name="subject" id="subject"
-                           placeholder="Asunto" data-rule="minlen:4"
-                           data-msg="Please enter at least 8 chars of subject"/>
-                    <div class="validation"></div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <textarea class="form-control " name="message" rows="4" data-rule="required"
-                              data-msg="Please write something for us" placeholder="Mensaje"></textarea>
-                </div>
-                <div class="col-md-offset-7">
-                    <a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>
-                </div>
+        {{--<div class="col-md-3 " id="opinion">--}}
+            {{--<h1>Deja tu opini&oacute;n</h1>--}}
+            {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
+                           {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
+                           {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" class="form-control " name="subject" id="subject"--}}
+                           {{--placeholder="Asunto" data-rule="minlen:4"--}}
+                           {{--data-msg="Please enter at least 8 chars of subject"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
+                              {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-offset-7">--}}
+                    {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
+                {{--</div>--}}
 
-            </form>
-        </div>
+            {{--</form>--}}
+        {{--</div>--}}
     </div>
 </footer>
 <hr/>
-<div class="container-fluid" >
+<div class="container-fluidS">
     <div class="row">
         <div class="col-md-4" id="footer1">
             <p>
@@ -300,7 +310,7 @@
 
 <!-- Scripts -->
 
-<!-- /.LOGIN USER STAR -->
+<!-- /.LOGIN STAR -->
 <div class="modal fade login-register-form row" id="modal-login">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
@@ -308,8 +318,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center">Inicia sesi&oacute;n</h4>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center">&nbsp;</h4>
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a data-toggle="tab" href="#usuario">
@@ -392,7 +403,7 @@
                                     <i class="fa fa-twitter"></i>
                                 </a>
 
-                                <a href="login/google" class="btn btn-google">
+                                <a href="login/google" class="btn btn-google" style="font-size: 10px">
                                     <i class="fa fa-google-plus"></i>
                                 </a>
                             </div>
@@ -464,9 +475,9 @@
     </div>
     <!-- modal-dialog -->
 </div>
-<!-- /.LOGIN USER END -->
+<!-- /.LOGIN END -->
 
-<!-- /.LOGIN REGISTER STAR -->
+<!-- /. REGISTRARSE STAR -->
 <div class="modal fade login-register-form row" id="modal-register">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
@@ -474,8 +485,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center"></h4>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center">&nbsp;</h4>
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a data-toggle="tab" href="#new_usuario">
@@ -715,7 +727,7 @@
     </div>
     <!-- modal-dialog -->
 </div>
-<!-- /.LOGIN REGISTER END -->
+<!-- /. REGISTRARSE END -->
 
 
 {{--<script src="/js/app.js"></script>--}}
@@ -1028,6 +1040,7 @@
 <script>
 
     /* Demo purposes only */
+
     $(".hover").mouseleave(
         function () {
             $(this).removeClass("hover");
