@@ -18,7 +18,7 @@ use App\Book;
 use App\Tv;
 use App\music_authors;
 use App\Transactions;
-
+use App\Movie;
 
 
 class ContentController extends Controller
@@ -205,6 +205,87 @@ class ContentController extends Controller
          return ['value'=>'No se encuentra...','id'=>''];
         }
        
+    }
+//--------------------------------------Tvs-----------------------------------------------
+   public function ShowTv(){
+        $Tv= Tv::where('status','=','Aprobado')->paginate(10);
+        return view('Contents.ShowTv')->with('Tv',$Tv);
+    } 
+    public function PlayTv($id){
+        $Tv= Tv::where('id','=',$id)->get();
+        return view('Contents.playTv')->with('Tv',$Tv);
+    }
+     public function ShowPlayTv(Request $request){
+        $Tv= Tv::where('name_r','=',$request->seach)->get();
+        foreach ($Tv as $key) {
+            $prueba=$this->PlayTv($key->id);
+        }
+        return $prueba;
+    }
+
+    public function seachTv(){
+        $query=Input::get('term');
+        $Tv=Tv::where('name_r','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Tv as $key) {
+           
+            $data[]=['id' => $key->id, 'value' => $key->name_r];
+        }
+
+        if(count($data))
+        {
+            return response()->json($data); 
+        }else
+        {
+         return ['value'=>'No se encuentra...','id'=>''];
+        }
+       
+    }
+//--------------------------------------MOVIES--------------------------------------------
+
+    public function ShowMovies(){
+        $Movie= Movie::where('status','=','Aprobado')->get();
+
+        if ($Movie->count()==0) 
+         {
+             $Movie=NULL;
+         } 
+        return view('Contents.Movies')->with('Movie',$Movie);
+    }
+
+    public function seachMovie(){
+        $query=Input::get('term');
+        $Movie=Movie::where('title','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Movie as $key) {
+           
+            $data[]=['id' => $key->id, 'value' => $key->title];
+        }
+
+        if(count($data))
+        {
+            return response()->json($data); 
+        }else
+        {
+         return ['value'=>'No se encuentra...','id'=>''];
+        }
+       
+    }
+    public function MovieList($id){
+        $Movie= Movie::where('id','=',$id)->get();
+        return view('Contents.ShowMovies')->with('Movie',$Movie);
+    }
+
+    public function ShowMovieSeach(Request $request){
+        $Movie= Movie::where('title','=',$request->seach)->get();
+        foreach ($Movie as $key) {
+            $prueba=$this->MovieList($key->id);
+        }
+        return $prueba;
     }
 }
 

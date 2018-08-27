@@ -27,6 +27,9 @@ use App\Referals;
 use App\Movie;
 use App\AccountBalance;
 use App\Payments;
+use App\Serie;
+use App\Episode;
+use App\TicketsPackage;
 
 
 class UserController extends Controller
@@ -270,6 +273,75 @@ class UserController extends Controller
               'Content-Type: application/png',
             );
         return response()::make($png,'qr.png',$headers);
+    }
+
+    public function balance(){
+        $Transaction=Transactions::where('user_id','=',Auth::user()->id)->get();
+        if ($Transaction->count()!= 0) {
+            foreach ($Transaction as $key)  {
+                if($key->books_id != 0){
+                    $accionM=Book::find($key->books_id);
+                    $accion=$accionM->title;
+                    //$accion='Compra de libro';
+                            
+                }
+                elseif($key->album_id != 0){
+                    $accionM=Albums::find($key->album_id);
+                    $accion=$accionM->name_alb;
+                }
+                elseif($key->song_id != 0){
+                    $accionM=Songs::find($key->song_id);
+                    $accion=$accionM->song_name;
+                }
+                elseif($key->series_id != 0){
+                    $accionM=Serie::find($key->series_id);
+                    $accion=$accionM->title;
+                }
+                elseif($key->episodes_id != 0){
+                    $accionM=Episode::find($key->episodes_id);
+                    $accion=$accionM->episode_name;
+                }
+                elseif($key->movies_id != 0){
+                    $accionM=Movie::find($key->movies_id);
+                    $accion=$accionM->title;
+                }
+                elseif($key->megazines_id != 0){
+                    $accionM=Megazines::find($key->megazines_id);
+                    $accion=$accionM->title;
+                }
+                $Balance[]=array(
+                        'Id' => $key->user_id,
+                        'Date'=>$key->created_at->format('d/m/Y'),
+                        'Cant'=>$key->tickets,
+                        'Transaction'=>$accion,
+                        'Type' => 1,
+                    );
+            }
+        }
+        $Payment=Payments::where('user_id','=',Auth::user()->id)->get();
+        if ($Payment->count() != 0) {
+            foreach ($Payment as $key) {
+                $Balance[]=array(
+                    'Id' => $key->user_id,
+                    'Date' => $key->created_at->format('d/m/Y'),
+                    'Cant' => $this->tickets($key->package_id)*$key->value,
+                    'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
+                    'Type' => 2
+                );
+            }
+        }
+
+        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+        
+        return view('users.MyBalance')->with('Balance',$ordenBalance);
+    }
+    public function tickets($id){
+        $cantidad=TicketsPackage::find($id);
+        return $cantidad->amount;
+    }
+    public function packTicket($id){
+        $cantidad=TicketsPackage::find($id);
+        return $cantidad->name;
     }
 
 
@@ -597,6 +669,45 @@ class UserController extends Controller
         $Movies=Movie::find($id);
 
             return view('users.showMovie')->with('Movies',$Movies);
+    }
+    public function BuyMovie(Request $request,$id)
+    {
+        $movie= Movie::find($id);
+        $user = User::find(Auth::user()->id);
+
+        if ($movie->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
+        $check = Transactions::where('movies_id','=',$movie->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->movies_id=$movie->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $movie->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$movie->cost;
+            $user->save(); 
+
+            $account=new AccountBalance;
+            $account->seller_id=$movie->seller_id;
+            $account->balance=$movie->cost;
+            $account->save();
+
+            $this->SendMail($movie->title,$movie->cost);
+
+            return response()->json($Transaction);
+        }
+
     }
 
 //----------------------------Invitar Personas------------------------------

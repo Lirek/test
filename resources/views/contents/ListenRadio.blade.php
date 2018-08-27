@@ -37,8 +37,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-12 col-md-12" style="margin-top: 2%">
-                                <audio  id="player">
-                                    <source src="{{asset($radios->streaming)}}" type="audio/mp3">
+                                <audio  id="player" controls  autoplay >
+                                    <source src="{{asset($radios->streaming)}}" type="audio/mp3" allow="autoplay">
                                 </audio>
                             </div>
             				@endforeach
