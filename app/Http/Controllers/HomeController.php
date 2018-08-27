@@ -20,6 +20,8 @@ use App\Referals;
 use App\Movie;
 use App\TicketsPackage;
 use App\Payments;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionApproved;
 
 class HomeController extends Controller
 {
@@ -164,7 +166,59 @@ class HomeController extends Controller
         $Buy->status=2;
         $Buy->save();
         Flash('Pago registrado, en proceso de validación')->success();
-       return redirect()->action('HomeController@index');
+        return redirect()->action('HomeController@index');
 
+    }
+
+    public function BuyPayphone($id,$cost,$value) {
+        $Buy = new Payments;
+        $Buy->user_id       = Auth::user()->id;
+        $Buy->package_id    = $id;
+        $Buy->cost          = $cost;
+        $Buy->value         = $value;
+        $Buy->status        = 2;
+        $Buy->save();
+        $Buy = Payments::all();
+        $lastID = $Buy->last();
+        return Response()->json($lastID);
+    }
+
+    public function TransactionCanceled($id,$reference) {
+        $Buy = Payments::find($id);
+        $Buy->status    = 3;
+        $Buy->reference = $reference;
+        $Buy->save();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function TransactionApproved($id,$reference,$ticket) {
+        $Buy = Payments::find($id);
+        $Buy->status    = 1;
+        $Buy->reference = $reference;
+        $Buy->save();
+        $this->creditos($ticket);
+        $this->correo();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function creditos($ticket) {
+        $user = User::find(Auth::user()->id);
+        $user->credito = $user->credito + $ticket;
+        $user->save();
+    }
+
+    public function TransactionPending($id,$reference) {
+        $Buy = Payments::find($id);
+        $Buy->reference = $reference;
+        $Buy->save();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function correo() {
+        $user = User::find(Auth::user()->id);
+        Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));
     }
 }
