@@ -252,7 +252,7 @@
                                   <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
-                                  <td class="hidden-phone">{{$Tv->Seller->name}}</td>
+                                  <td class="hidden-phone"></td>
                                 </tr>
                              @endif
 

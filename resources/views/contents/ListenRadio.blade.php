@@ -10,11 +10,13 @@
     <div class="form-group"> 
         <div class="row-edit">
             <div class="col-md-12 col-sm-12 mb">
+                <div class="panel panel-default">
+                    <div class="panel-body">
             	<div class="control-label">
             		<div class="white-header">
             			<div class="col-sm-12 col-xs-12 col-md-12">
                             @foreach($Radio as $radios)
-                            <h3><span class="card-title"><i class="fa fa-angle-right"> {{$radios->name_r}}</i></span></h3>
+                            <h3><span class="card-title"><center><b><i class="fa fa-volume-up"></i> {{$radios->name_r}}</b></center></span></h3>
                             <div class="col-sm-12 col-xs-12 col-md-12">
                                 <div class="col-sm-4 col-xs-12 col-md-4">
                                     <a class="waves-effect waves-light btn blue darken-3" href="{{$radios->facebook}}" target="blank" style="margin-top: 40%; margin-left: 15%; font-size: 250%">
@@ -50,6 +52,8 @@
             			</div>
             		</div>
             	</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
