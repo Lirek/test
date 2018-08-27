@@ -25,6 +25,7 @@
                         </thead>
                         <tbody>
                         	@foreach ($Balance as $balance)
+                            @if($balance != 0)
                         	<tr class="letters">
 		                        <td>{{$balance['Date']}}</td>
 	                          	<td>{{$balance['Transaction']}}</td>
@@ -36,6 +37,7 @@
 	                         	<td></td>
 	                         @endif
                           	</tr>
+                            @endif
                           	@endforeach
                         </tbody>
                     </table>
