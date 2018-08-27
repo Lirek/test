@@ -46,6 +46,7 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
 //Agregada 17/08/18
     Route::get('SaleTickets','HomeController@SaleTickets');
     Route::post('BuyPlan','HomeController@BuyPlan');
+    Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
 
 //---------------------------------------------------------------------
 
@@ -123,6 +124,16 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ListenRadio/{id}','ContentController@ListenRadio');
     Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
     Route::post('SearchListenRadio','ContentController@ShowListenRadio');
+//Agregada 21/08/2018
+    Route::get('ShowMovies','ContentController@ShowMovies');
+    Route::get('/SearchMovie',array('as'=>'SearchMovie','uses'=>'ContentController@seachMovie'));
+    Route::post('SearchMovieList','ContentController@ShowMovieSeach');
+    Route::get('ShowMovies/{id}','ContentController@MovieList');
+//Agregada 24/08/2018
+    Route::get('ShowTv','ContentController@Showtv');
+    Route::get('PlayTv/{id}','ContentController@PlayTv');
+    Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
+    Route::post('SearchPlayTv','ContentController@ShowPlayTv');
 
 //---------------------------------------------------------------------------
 
@@ -322,7 +333,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             //--------------------------------------------------------------------
 
-            
+
 
 
 

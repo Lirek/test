@@ -53,6 +53,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendUserValidateEmail',
         ],
 
+            'App\Events\AssingPointsEvents' => [
+            'App\Listeners\AssingPoints',
+        ],
+
 
     ];
 

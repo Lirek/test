@@ -56,7 +56,7 @@
         </div><!-- /col-md-5 -->
 
 
-        <div class="col-md-5 col-sm-5 mb">
+        <div class="col-md-4 col-sm-4 mb">
             <!-- Qr PANEL -->
             <div class="white-panel  pn2">
           <div class="white-header">
@@ -66,7 +66,7 @@
             <div class="center">
               {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
               <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a>
-            </div>}
+            </div>
           </div>
           </div>
         </div><!-- /col-md-4 -->

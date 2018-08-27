@@ -72,13 +72,14 @@
                     <h2><a href="#">
                       {{$referals1+$referals2+$referals3}}
                     </a></h2>
+                    <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
                   </p>
                 </div>
             </div>
           </div>
         </div><!-- /col-md-5 -->
         @if ($refered != null)
-        <h5 style="margin-left: 3%">Mis referidos:</h5>
+        <h5 style="margin-left: 3%">Mis referidos directos:</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
           
           @foreach($refered as $refereds)

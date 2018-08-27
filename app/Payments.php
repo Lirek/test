@@ -15,6 +15,7 @@ class Payments extends Model
         'cost',
         'value',
         'status',
+        'references', 
         ];
 
         public function Tickets()

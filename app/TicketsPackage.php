@@ -13,6 +13,7 @@ class TicketsPackage extends Model
         'amount',
         'photo',
         'name',
+        'points',
         'cost',
         'promoter_id'  
         ];

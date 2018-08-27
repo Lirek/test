@@ -27,7 +27,8 @@ class ReferalsController extends Controller
          }
     
          
-        $refered=User::find($id);
+        $refered=User::find($id)->sortByDesc('id');
+        
         }
         else
         {
