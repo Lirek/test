@@ -103,6 +103,10 @@ Route::post('Invite','UserController@Invite');
      //Agregada 8/8/2018
     Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
 
+
+    //Agregada 8/8/2018
+    Route::get('MyBalance','UserController@balance');
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
