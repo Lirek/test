@@ -33,6 +33,6 @@ class MoviesTags extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('movies_tags');
     }
 }

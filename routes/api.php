@@ -16,9 +16,11 @@ use Illuminate\Http\Request;
 Route::post('register', 'ApiController\AuthController@register');
 Route::post('login', 'ApiController\AuthController@login');
 Route::post('recover', 'ApiController\AuthController@recover');
+
 Route::get('login', function(){
         return view('test_login');
     });
+
 Route::group(['middleware' => ['jwt.auth']], function() {
     
     Route::get('logout', 'ApiController\AuthController@logout');
