@@ -47,6 +47,8 @@ class HomeController extends Controller
         $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
         $TransacctionsMegazine= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->count(); 
         $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();   
+        $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
+        $TransactionsTv=Tv::where('status','=','Aprobado')->count();
         
         $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->first();
         
@@ -84,6 +86,8 @@ class HomeController extends Controller
                              ->with('TransactionsMusic',$TransacctionsMusic)
                              ->with('TransacctionsLecture',$TransactionsLecture)
                              ->with('TransactionsMovies',$TransacctionsMovies)
+                             ->with('TransactionsRadio',$TransactionsRadio)
+                             ->with('TransactionsTv',$TransactionsTv)
                              ->with('Songs',$Songs)
                              ->with('Albums',$Albums)
                              ->with('Movies',$Movies)
@@ -162,9 +166,23 @@ class HomeController extends Controller
 
         }
         $Buy->status=2;
+        $Buy->reference=$request->references;
         $Buy->save();
         Flash('Pago registrado, en proceso de validación')->success();
        return redirect()->action('HomeController@index');
 
+    }
+
+    public function BuyPayphone($id,$cost,$value) {
+        $Buy = new Payments;
+        $Buy->user_id       = Auth::user()->id;
+        $Buy->package_id    = $id;
+        $Buy->cost          = $cost;
+        $Buy->value         = $value;
+        $Buy->status        = 2;
+        $Buy->save();
+        $Buy = Payments::all();
+        $lastID = $Buy->last();
+        return Response()->json($lastID);
     }
 }

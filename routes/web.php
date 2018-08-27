@@ -46,6 +46,7 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
 //Agregada 17/08/18
     Route::get('SaleTickets','HomeController@SaleTickets');
     Route::post('BuyPlan','HomeController@BuyPlan');
+    Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
 
 //---------------------------------------------------------------------
 
@@ -60,6 +61,7 @@ Route::resource('users', 'UserController');
 Route::post('BuySong/{id}','UserController@BuySingle');
 Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
 Route::post('BuyBook/{id}','UserController@BuyBook');
+Route::post('BuyMovie/{id}','UserController@BuyMovie');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
@@ -102,6 +104,9 @@ Route::post('Invite','UserController@Invite');
     //Agregada 8/8/2018
     Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
 
+    //Agregada 26/8/2018
+    Route::get('MyBalance','UserController@balance');
+
 
 //---------------------------------------------------------------------------
 
@@ -124,6 +129,16 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ListenRadio/{id}','ContentController@ListenRadio');
     Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
     Route::post('SearchListenRadio','ContentController@ShowListenRadio');
+//Agregada 21/08/2018
+    Route::get('ShowMovies','ContentController@ShowMovies');
+    Route::get('/SearchMovie',array('as'=>'SearchMovie','uses'=>'ContentController@seachMovie'));
+    Route::post('SearchMovieList','ContentController@ShowMovieSeach');
+    Route::get('ShowMovies/{id}','ContentController@MovieList');
+//Agregada 24/08/2018
+    Route::get('ShowTv','ContentController@Showtv');
+    Route::get('PlayTv/{id}','ContentController@PlayTv');
+    Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
+    Route::post('SearchPlayTv','ContentController@ShowPlayTv');
 
 //---------------------------------------------------------------------------
 

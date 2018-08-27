@@ -138,7 +138,15 @@
                   @endif
                   <h5 class="centered">{{Auth::user()->name}}</h5>
                   <div class="card-content white-text">
-                      <span class="card-title centered"><h6>Tickets Disponibles: <p id="Tickets"></p></h6></span>
+                      <span class="card-title centered">
+                        <h6> 
+                          <a href="" style="color: #aeb2b7" data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
+                            <u>Tickets Disponibles: </u>
+                          </a>
+                          <p id="Tickets" style="color: #aeb2b7">
+                          </p>
+                        </h6>
+                      </span>
                       
                   </div>  
                     
@@ -162,6 +170,7 @@
                       <!-- <li><a href="{{url('ReadingsBooks')}}">Libros</a></li> -->
                       <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Música</a></li>
                       <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Libros</a></li>
+                      <!-- <li><a href="{{url('ShowMovies')}}">Peliculas</a></li> -->
                     </ul>
                   </li>
 
@@ -171,7 +180,7 @@
                           <span>Entretenimiento</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('MyMovies')}}">Mis peliculas</a></li>
+                         <!--  <li><a  href="{{url('MyMovies')}}">Mis peliculas</a></li> -->
                           <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis peliculas</a></li>
                           <li class="sub-menu">
                               <a href="javascript:;" >
@@ -181,7 +190,7 @@
                              <!--  <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
                               <li><a  href="{{url('MyAlbums')}}">Albums</a></li> -->
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Sencillos</a></li>
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Albums</a></li> -->
+                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Albums</a></li> 
                             </ul>
                           </li>
 
@@ -202,7 +211,7 @@
                               <span>Streams</span>
                             </a>
                             <ul class="sub">
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Tv</a></li>
+                              <li><a  href="{{url('ShowTv')}}">Tv</a></li>
                               <li><a href="{{url('ShowRadio')}}">Radio</a></li>
                             </ul>
                           </li>
@@ -292,6 +301,30 @@
         
       </div>
   </div>
+<!--FIN DEL MODAL-->
+<!--MODAL-->
+<!--MODAL-->
+<div id="myModalTotal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-ticket"></i> Mi Balance</h4>
+      </div>
+      <div class="modal-body">
+        <label class="control-label col-sm-12 col-xs-12 col-md-12">
+          <center><h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4></center>
+          <center><h4><b>Total de puntos:</b> </h4></center>
+        </label>
+        <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--FIN DEL MODAL-->
 
 </body>
