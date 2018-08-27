@@ -10,6 +10,7 @@ use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
 use File;
 use QrCode;
+use Carbon\Carbon;
 
 use App\User;
 use App\Megazines;
@@ -317,8 +318,11 @@ class UserController extends Controller
                         'Type' => 1,
                     );
             }
+        }else{
+
+            $Balance[]=0;
         }
-        $Payment=Payments::where('user_id','=',Auth::user()->id)->get();
+        $Payment=Payments::where('user_id','=',Auth::user()->id)->where('status','=','Aprobado')->get();
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
@@ -329,10 +333,12 @@ class UserController extends Controller
                     'Type' => 2
                 );
             }
+        }else{
+            $Balance[]=0;
         }
-
-        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
         
+        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+       
         return view('users.MyBalance')->with('Balance',$ordenBalance);
     }
     public function tickets($id){

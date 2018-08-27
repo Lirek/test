@@ -315,7 +315,7 @@
       <div class="modal-body">
         <label class="control-label col-sm-12 col-xs-12 col-md-12">
           <center><h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4></center>
-          <center><h4><b>Total de puntos:</b> </h4></center>
+          <center><h4><b>Total de puntos:</b> 0 </h4></center>
         </label>
         <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
       </div>
