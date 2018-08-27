@@ -181,11 +181,11 @@
               var  name = $('[name=name_c]').val();
               var  cost =  $('[name=cost]').val();
               var  ammount = $('[name=ammount]').val();
-              var url = 'SavePackage';
+             
 
                 $.ajax({
 
-                  url: url,
+                  url: 'SavePackage',
                   type:'POST',
                   data:{
                         _token: $('input[name=_token]').val(),

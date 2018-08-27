@@ -15,6 +15,7 @@ use App\Events\PaymentDenialEvent;
 use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
+use App\Events\AssingPointsEvents;
 use File;
 
 //-------------Modelos del sistema-----------------------
@@ -1385,16 +1386,36 @@ class AdminController extends Controller
         
         $deposit = Payments::find($id);
         
+        
         if($request->status == 'Aprobado')
         {
+
           $user = User::find($deposit->user_id);
+         
           $tickets =  $deposit->value*$deposit->Tickets->amount;
 
           $user->credito =$user->credito + $tickets;
+         
           $user->save();
+         
           $deposit->status = 'Aprobado';
+         
           $deposit->save();
+        
+          $revenueMonth = Payments::where('created_at', '>=', Carbon::now()->firstOfMonth()->toDateString());
+
+          if ($revenueMonth->count()<=1) 
+          {
+           event(new AssingPointsEvents($deposit->package_id,$user->id));
+          }
+          
+          
+            
+          
+
+
           event(new PayementAprovalEvent($user->email));
+          
           return response()->json($user);
         }
         else
@@ -1402,7 +1423,7 @@ class AdminController extends Controller
            $user = User::find($deposit->user_id);
            $deposit->status = 'Denegado';
            $deposit->save();
-           event(new PayementAprovalEvent($user->email,$request->message));
+           event(new PaymentDenialEvent($user->email,$request->message));
            return response()->json($deposit);
 
         }
