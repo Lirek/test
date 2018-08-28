@@ -47,6 +47,10 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
     Route::get('SaleTickets','HomeController@SaleTickets');
     Route::post('BuyPlan','HomeController@BuyPlan');
     Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
+    // agregadas por Pacheco
+    Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
+    Route::get('TransactionApproved/{id}/{reference}/{ticket}','HomeController@TransactionApproved');
+    Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
 
 //---------------------------------------------------------------------
 

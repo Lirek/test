@@ -20,6 +20,8 @@ use App\Referals;
 use App\Movie;
 use App\TicketsPackage;
 use App\Payments;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionApproved;
 
 class HomeController extends Controller
 {
@@ -49,7 +51,7 @@ class HomeController extends Controller
         $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();   
         $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
         $TransactionsTv=Tv::where('status','=','Aprobado')->count();
-        
+
         $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->first();
         
         $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
@@ -169,7 +171,7 @@ class HomeController extends Controller
         $Buy->reference=$request->references;
         $Buy->save();
         Flash('Pago registrado, en proceso de validación')->success();
-       return redirect()->action('HomeController@index');
+        return redirect()->action('HomeController@index');
 
     }
 
@@ -184,5 +186,44 @@ class HomeController extends Controller
         $Buy = Payments::all();
         $lastID = $Buy->last();
         return Response()->json($lastID);
+    }
+
+    public function TransactionCanceled($id,$reference) {
+        $Buy = Payments::find($id);
+        $Buy->status    = 3;
+        $Buy->reference = $reference;
+        $Buy->save();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function TransactionApproved($id,$reference,$ticket) {
+        $Buy = Payments::find($id);
+        $Buy->status    = 1;
+        $Buy->reference = $reference;
+        $Buy->save();
+        $this->creditos($ticket);
+        $this->correo();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function creditos($ticket) {
+        $user = User::find(Auth::user()->id);
+        $user->credito = $user->credito + $ticket;
+        $user->save();
+    }
+
+    public function TransactionPending($id,$reference) {
+        $Buy = Payments::find($id);
+        $Buy->reference = $reference;
+        $Buy->save();
+        $respuesta = true;
+        return Response()->json($respuesta);
+    }
+
+    public function correo() {
+        $user = User::find(Auth::user()->id);
+        Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));
     }
 }
