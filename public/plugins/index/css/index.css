@@ -215,18 +215,15 @@
 #banner {
     /*tamañodel slaider*/
     width: 100%;
-    height: 650px;
+    height: 450px;
     background-color: #0c0c0c;
     padding-top: 0px;
-    padding-bottom: 730px;
+    padding-bottom: 510px;
 }
 
-#contentRadio h1 {
+
+#barra {
     background: #21a4de;
-    font-family: Roboto;
-    padding: 20px 0px;
-    font-size: 35px;
-    color: white;
 }
 
 #leipel h1 {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
 
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
 
     {{--carrusel--}}
     <meta name="description" content="Circular Content Carousel with jQuery"/>
@@ -79,19 +80,17 @@
 
 <!-- SLIDER STAR-->
 
-<div class=" col-md-12" id="banner">
+<div class="col-xs-8 col-sm-7 col-md-8 col-lg-8" id="banner">
     <div id="containerS">
         <ul id="slides">
             <li class="slide">
                 <div class="slide-partial slide-left">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-left.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider1-D.jpg') }}"/>
+                         src='plugins/img/slider1-D.jpg'/>
                 </div>
                 <div class="slide-partial slide-right">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/forest-right.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider1-I.jpg') }}"/>
+                         src='plugins/img/slider1-I.jpg'/>
                 </div>
                 <h1 class="title">
                     {{--<span class="title-text">Forest</span>--}}
@@ -100,13 +99,11 @@
             <li class="slide">
                 <div class="slide-partial slide-left">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-left.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider2-D.jpg') }}"/>
+                         src='plugins/img/slider2-D.jpg'/>
                 </div>
                 <div class="slide-partial slide-right">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/mountain-right.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider2-I.jpg') }}"/>
+                         src='plugins/img/slider2-I.jpg'/>
                 </div>
                 <h1 class="title">
                     {{--<span class="title-text">Mountain</span>--}}
@@ -115,49 +112,21 @@
             <li class="slide">
                 <div class="slide-partial slide-left">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-left.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider3-D.jpg') }}"/>
+                         src='plugins/img/slider3-D.jpg'"/>
                 </div>
                 <div class="slide-partial slide-right">
                     <img class="img-responsive"
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/ocean-right.jpg"/>--}}
-                         src="{{ asset('plugins/img/slider3-I.jpg') }}"/>
+                         src='plugins/img/slider3-I.jpg'/>
                 </div>
                 <h1 class="title">
                     {{--<span class="title-text">Ocean</span>--}}
                 </h1>
-            </li>
-            {{--<li class="slide">--}}
-                {{--<div class="slide-partial slide-left">--}}
-                    {{--<img class="img-responsive"--}}
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-left.jpg"/>--}}
-                {{--</div>--}}
-                {{--<div class="slide-partial slide-right">--}}
-                    {{--<img class="img-responsive"--}}
-                         {{--src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/canyon-right.jpg"/>--}}
-                {{--</div>--}}
-                {{--<h1 class="title">--}}
-                    {{--<span class="title-text">Canyon</span>--}}
-                {{--</h1>--}}
-            {{--</li>--}}
-            <li class="slide">
-                <div class="slide-partial slide-left">
-                    <img class="img-responsive"
-                         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-left.jpg"/>
-                </div>
-                <div class="slide-partial slide-right">
-                    <img class="img-responsive"
-                         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544318/lake-right.jpg"/>
-                </div>
-                <h1 class="title"><span class="title-text">Lake</span></h1>
             </li>
         </ul>
         <ul id="slide-select">
             <li class="btn prev"><</li>
             <li class="selector"></li>
             <li class="selector"></li>
-            <li class="selector"></li>
-            {{--<li class="selector"></li>--}}
             <li class="selector"></li>
             <li class="btn next">></li>
         </ul>
@@ -169,31 +138,44 @@
 
 
 <!--CONTENIDO STAR-->
-<div class="col-md-12" id="contentRadio">
+<div class="" id="barra" class="text-center">
+    <center>
+        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
+        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
+        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon.png">
+        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-5.png">
+        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-3.png">
+    </center>
+</div>
+
+<div class="col-md-12" id="">
     <div class="row">
-        <h1 class="text-center"> RADIOS RECIENTES </h1>
         {{--<div class="container">--}}
 
         @foreach($radio as $r)
-            {{--            @if(< 2)--}}
-            <figure class="snip1166 navy">
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset($r->logo) }}"/>
-                <figcaption>
-                    <h3>
-                        {{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
-                    </h3>
-                    <div>
-                        <p>{{ $r->email_c }}</p>
-                    </div>
-                    <a href="#"></a>
-                </figcaption>
-            </figure>
+            {{-- @if(< 2)--}}
+            <div class="col-md-2 col-sm-8 col-lg-3" style="width: 265px">
+                <figure class="snip1166 navy">
+                    {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
+                    {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
+                    <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
+                    <figcaption>
+                        <h3>
+                            <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                            <div align="left">
+                                <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
+                                <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
+                                <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
+                                <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                            </div>
+                        </h3>
+                        <div>
+                            <p>{{ $r->email_c }}</p>
+                        </div>
+                        <a href="#"></a>
+                    </figcaption>
+                </figure>
+            </div>
             {{--@endif--}}
         @endforeach
 
@@ -234,9 +216,13 @@
             <h1>Sobre</h1>
             <ul class="pages">
                 <li><a href="#">¿Que es Leipel?</a></li>
+                <br>
                 <li><a href="#">Terminos y condiciones</a></li>
+                <br>
                 <li><a href="#">Reg&iacute;strate</a></li>
+                <br>
                 <li><a href="#">Beneficios adicionales</a></li>
+                <br>
                 <li><a href="#">Contacto</a></li>
             </ul>
         </div>
@@ -244,9 +230,13 @@
             <h1> Descubrir</h1>
             <ul class="list">
                 <li><a href="#">Cine</a></li>
+                <br>
                 <li><a href="#">M&uacute;sica</a></li>
+                <br>
                 <li><a href="#">Lectura</a></li>
+                <br>
                 <li><a href="#">Radio</a></li>
+                <br>
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
@@ -254,38 +244,40 @@
             <h1>Social</h1>
             <ul id=>
                 <li><a href="#">Youtube</a></li>
+                <br>
                 <li><a href="#">Facebook</a></li>
+                <br>
                 <li><a href="#">Instagram</a></li>
             </ul>
         </div>
         {{--<div class="col-md-3 " id="opinion">--}}
-            {{--<h1>Deja tu opini&oacute;n</h1>--}}
-            {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
-                           {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
-                           {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="text" class="form-control " name="subject" id="subject"--}}
-                           {{--placeholder="Asunto" data-rule="minlen:4"--}}
-                           {{--data-msg="Please enter at least 8 chars of subject"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
-                              {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-offset-7">--}}
-                    {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
-                {{--</div>--}}
+        {{--<h1>Deja tu opini&oacute;n</h1>--}}
+        {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
+        {{--<div class="col-md-12 form-group">--}}
+        {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
+        {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
+        {{--<div class="validation"></div>--}}
+        {{--</div>--}}
+        {{--<div class="col-md-12 form-group">--}}
+        {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
+        {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
+        {{--<div class="validation"></div>--}}
+        {{--</div>--}}
+        {{--<div class="col-md-12 form-group">--}}
+        {{--<input type="text" class="form-control " name="subject" id="subject"--}}
+        {{--placeholder="Asunto" data-rule="minlen:4"--}}
+        {{--data-msg="Please enter at least 8 chars of subject"/>--}}
+        {{--<div class="validation"></div>--}}
+        {{--</div>--}}
+        {{--<div class="col-md-12 form-group">--}}
+        {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
+        {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
+        {{--</div>--}}
+        {{--<div class="col-md-offset-7">--}}
+        {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
+        {{--</div>--}}
 
-            {{--</form>--}}
+        {{--</form>--}}
         {{--</div>--}}
     </div>
 </footer>
