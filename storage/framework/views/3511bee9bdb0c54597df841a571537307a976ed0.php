@@ -14,7 +14,8 @@
 
         <form method="POST" id="NewPackForm">
 
-                            {{ csrf_field() }}
+                            <?php echo e(csrf_field()); ?>
+
             
             <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -85,7 +86,8 @@
         
 
              <form method="POST" id="UPackForm">
-                            {{ csrf_field() }}
+                            <?php echo e(csrf_field()); ?>
+
                           <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                  <input class="mdl-textfield__input" type="text" name="name_u" id="name_u" required min="0">

@@ -1,6 +1,4 @@
-@extends('promoter.layouts.app')
-
-@section('main')     
+<?php $__env->startSection('main'); ?>     
        
           <div class="row mt">
             <h2><i class="fa fa-angle-right"></i>Contenido Por Aprobar</h2>
@@ -11,7 +9,7 @@
               <div class="col-lg-4 col-md-4 col-sm-4 mb">
                 <div class="twitter-panel pn">
                   <i class="fa fa-suitcase fa-4x"></i>
-                  <p>{{$content_total}}</p>
+                  <p><?php echo e($content_total); ?></p>
                   <p class="user">Contenido Por Aprobar</p>
                 </div>
               </div><!-- /col-md-4 -->
@@ -20,7 +18,7 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="twitter-panel pn">
                   <i class="fa fa-user-tie fa-4x"></i>
-                  <p>{{$sellers}}</p>
+                  <p><?php echo e($sellers); ?></p>
                   <p class="user">Proveedores por Validar</p>
                 </div>
               </div><!-- /col-md-4 -->
@@ -28,14 +26,14 @@
               <div class="col-lg-4 col-md-4 col-sm-4 mb">                
                 <div class="twitter-panel pn">
                   <i class="fas fa-archive fa-4x"></i>
-                  <p>{{$aplyss}}</p>
+                  <p><?php echo e($aplyss); ?></p>
                   <p class="user">Cuentas Proveedor Por Revisar</p>
                 </div>
               </div><!-- /col-md-4 -->
           </div
           
 
-          @if(Auth::guard('Promoter')->user()->priority == 1)
+          <?php if(Auth::guard('Promoter')->user()->priority == 1): ?>
           <div class="row mt">
             <h2><i class="fa fa-angle-right"></i>Paquetes de Tiquets</h2>
           </div>
@@ -53,19 +51,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach($TicketsPackage as $Package)
+                      <?php $__currentLoopData = $TicketsPackage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Package): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                          <td>{{$Package->name}}</td>
-                          <td>{{$Package->cost}}$</td>
-                          <td>{{$Package->amount}}</td>
+                          <td><?php echo e($Package->name); ?></td>
+                          <td><?php echo e($Package->cost); ?>$</td>
+                          <td><?php echo e($Package->amount); ?></td>
                           <td>
-                            <button type="button" class="btn btn-theme" id="edit" value="{{$Package->id}}">Editar
+                            <button type="button" class="btn btn-theme" id="edit" value="<?php echo e($Package->id); ?>">Editar
                             </button>
-                            <button type="button" id="delete" class="btn-danger" value="{{$Package->id}}">Borrar
+                            <button type="button" id="delete" class="btn-danger" value="<?php echo e($Package->id); ?>">Borrar
                             </button>
                           </td>
                         </tr>
-                      @endforeach
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                   </table>
              
@@ -75,10 +73,10 @@
               </div>
          
           </div>
-          @endif
-@include('promoter.modals.HomeViewModal')           
-@endsection
-@section('js')
+          <?php endif; ?>
+<?php echo $__env->make('promoter.modals.HomeViewModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>           
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script>
    $(document).on('click', '#edit', function() {
       
@@ -228,4 +226,6 @@
     });
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

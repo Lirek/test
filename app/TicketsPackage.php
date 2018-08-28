@@ -15,6 +15,7 @@ class TicketsPackage extends Model
         'name',
         'points',
         'cost',
-        'promoter_id'  
+        'promoter_id',
+        'points_cost'
         ];
 }

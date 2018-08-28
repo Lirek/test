@@ -10,6 +10,7 @@ use App\User;
 use App\TicketsPackage;
 use App\PointsAssings;
 use App\SistemBalance;
+use App\Referals;
 
 
 class AssingPoints
@@ -49,49 +50,77 @@ class AssingPoints
                 
                 $Assing->amount = $points;
                 
-                $Assing->from =  0;
+                $Assing->from =  $User->id;
                 
                 $Assing->to =  0;
                 
                 $Assing->save();
+         }
+        else
+        {      
+            $UserR = User::find($event->user_id);
 
-         }   
-        else                
-        {
-            while ($i <= $points) 
+            $id=$UserR->id;
+
+            $Refered= collect(new User);
+
+            while (true) 
             {
-                 $x = User::find($User->Refered->refered);
+              $pass = Referals::where('refered','=',$id)->first();
+               
+               if ($pass!=NULL) 
+               {
+                $id=$pass->user_id;
+                $Refered->push(User::find($id));
+               }
+               else
+               {
+                
+                break;
+               }   
+            }
+            
+            foreach ($Refered as $key) 
+            {
+               $key->points = $key->points + 1;
+               $key->save();
+               $Assing1 = new PointsAssings;
+               $Assing1->amount = 1;
+               $Assing1->from = $UserR->id; 
+               $Assing1->to =   $key->id;
+               $Assing1->save();
+            }
+            
+            $total=$points-$Refered->count();
+           
+            $balance=  SistemBalance::find(1);
 
-                 $x->points = $x->points + 1;
-                 
-                 $Assing = new PointsAssings;
-                 
-                 $Assing->amount = 1;
-                 
-                 $Assing->from =  $User->id;
-                 
-                 $Assing->to =  $x->id;
+            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
 
-                 $Assing->save();
+            $balance->points_solds = $balance->points_sold + $points;
 
-                 $y= $x->Refered->refered;
+            if ($total!=0)
+            {                      
+                $balance->my_points= $balance->my_points + $total; 
+                
+                $balance->save();
 
-                 unset($x);
+                $Assing = new PointsAssings;
+                
+                $Assing->amount = $total;
+                
+                $Assing->from =  $User->id;
+                
+                $Assing->to =  0;
 
-                 $x = User::find($y);
+                $Assing->save();
+                
+            }
+            else
+            {
+              $balance->save();
+            }
 
-                 if ($x->count()==0) 
-                 {  
-                    $total = $points-$i;
-                    
-                    $balance= SistemBalance::find(1);
-                    $balance->my_points= $balance->my_points + $total;
-                    $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
-                     break;
-                 }
-
-                 $i++;
-            }                 
         }
 
     }
