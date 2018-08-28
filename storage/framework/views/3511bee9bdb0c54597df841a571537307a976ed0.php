@@ -12,10 +12,11 @@
          <p>Datos Del Paquete</p>
         
 
-             <form method="POST" id="NewPackForm">
+        <form method="POST" id="NewPackForm">
+
                             <?php echo e(csrf_field()); ?>
 
-            <input type="text" name="p_id" hidden>
+            
             <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                  <input class="mdl-textfield__input" type="text" name="name_c" id="name_c" required min="0">
@@ -34,6 +35,20 @@
                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                  <input class="mdl-textfield__input" type="number" name="ammount" id="ammount" required min="0">
                  <label class="mdl-textfield__label" for="ammount">Cantidad De Tiquets  </label>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                 <input class="mdl-textfield__input" type="number" name="points_cost" id="points_cost" required min="0">
+                 <label class="mdl-textfield__label" for="points_cost">Costo en Puntos </label>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                 <input class="mdl-textfield__input" type="number" name="points" id="pointst" required min="0">
+                 <label class="mdl-textfield__label" for="points">Puntos Por Paquete </label>
                 </div>
             </div> 
 
@@ -64,10 +79,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
+          <h4 class="modal-title">Modificar Paquete de Tiquets</h4>
         </div>
         <div class="modal-body">
-         <p>Modifique el estatus de la Cadena de Publicacion</p>
+         <p>Modifique el Paquete de Tiquets</p>
         
 
              <form method="POST" id="UPackForm">
@@ -93,7 +108,21 @@
                  <label class="mdl-textfield__label" for="ammount_u">Cantidad De Tiquets  </label>
                 </div>
             </div> 
+           
+            <div class="form-group">
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                 <input class="mdl-textfield__input" type="number" name="points_cost_u" id="points_cost_u" required min="0">
+                 <label class="mdl-textfield__label" for="points_cost_u">Costo en Puntos </label>
+                </div>
+            </div> 
 
+            <div class="form-group">
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                 <input class="mdl-textfield__input" type="number" name="points_u" id="pointst_u" required min="0">
+                 <label class="mdl-textfield__label" for="points_u">Puntos Por Paquete </label>
+                </div>
+            </div> 
+            
              <div class="radio-inline">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
                 </button>

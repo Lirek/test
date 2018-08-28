@@ -39,7 +39,9 @@ use App\Salesman;
 use App\PromotersRoles;
 use App\TicketsPackage;
 use App\Payments;
-
+use App\Referals;
+use App\PointsAssings;
+use App\SistemBalance;
 
 //--------------------------------------------------------
 
@@ -1316,6 +1318,8 @@ class AdminController extends Controller
       {
         $Pack=TicketsPackage::find($id);
         $Pack->name= $request->name;
+        $Pack->points_cost=$request->pointsCost;
+        $Pack->points=$request->points;
         $Pack->cost= $request->cost;
         $Pack->amount= $request->ammount; 
         $Pack->save();
@@ -1335,6 +1339,8 @@ class AdminController extends Controller
         
         $NPack= new TicketsPackage;
         $NPack->name= $request->name;
+        $NPack->points_cost=$request->pointsCost;
+        $NPack->points=$request->points;
         $NPack->cost= $request->cost;
         $NPack->amount= $request->ammount; 
         $NPack->save();
@@ -1414,7 +1420,7 @@ class AdminController extends Controller
           
 
 
-          event(new PayementAprovalEvent($user->email));
+         // event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
@@ -1430,6 +1436,12 @@ class AdminController extends Controller
 
 
 
+      }
+
+      public function test()
+      {
+        
+       
       }
 //------------------------------------------------------------
 }

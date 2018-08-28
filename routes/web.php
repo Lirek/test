@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
+Route::get('Test','AdminController@test');
 
 
 /* ------------------------------------------------------------------
@@ -181,7 +182,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
 
-            Route::post('SavePackage','AdminController@SavePackage');
+            Route::post('SavePackage', 'AdminController@SavePackage');
 
             Route::post('UpdatePackage/{id}','AdminController@UpdatePackage');
 

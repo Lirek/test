@@ -97,6 +97,8 @@
                   $('[name=name_u]').val(data.name);
                   $('[name=cost_u]').val(data.cost);
                   $('[name=ammount_u]').val(data.amount);
+                  $('[name=points_u]').val(data.points);               
+                  $('[name=points_cost_u]').val(data.points_cost);
                   $('[name=p_id]').val(x);                              
 
                 },
@@ -140,6 +142,8 @@
         var cost = $('input[name=cost_u]').val();
         var ammount = $('input[name=ammount_u]').val();
         var id = $('[name=p_id]').val()
+        var  pointsCost = $('[name=points_cost_u]').val();
+        var  points = $('[name=points_u]').val();
         
         e.preventDefault();
          
@@ -152,6 +156,8 @@
                         name: name,
                         cost: cost,
                         ammount: ammount,
+                        pointsCost:pointsCost,
+                        points:points,
                         }, 
 
                         success: function (result) 
@@ -179,17 +185,22 @@
               var  name = $('[name=name_c]').val();
               var  cost =  $('[name=cost]').val();
               var  ammount = $('[name=ammount]').val();
+              var  pointsCost = $('[name=points_cost]').val();
+              var  points = $('[name=points]').val();
              
 
                 $.ajax({
 
-                  url: 'SavePackage',
+                  url: '/SavePackage',
                   type:'POST',
                   data:{
                         _token: $('input[name=_token]').val(),
                         name: name,
                         cost: cost,
                         ammount: ammount,
+                        pointsCost: pointsCost,
+                        points:points,
+
                         }, 
 
                         success: function (result) 
