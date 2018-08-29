@@ -82,7 +82,16 @@ class AssingPoints
             
             foreach ($Refered as $key) 
             {
-               $key->points = $key->points + 1;
+              if($key->points == $key->limit_points)
+               {
+                  $key->pending_points = $key->pending_points + 1;
+               }
+               else
+               {
+                $key->points = $key->points + 1; 
+               }
+               
+               
                $key->save();
                $Assing1 = new PointsAssings;
                $Assing1->amount = 1;
