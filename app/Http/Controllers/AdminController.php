@@ -1414,10 +1414,10 @@ class AdminController extends Controller
           {
            event(new AssingPointsEvents($deposit->package_id,$user->id));
           }
-          
-          
-            
-          
+
+
+
+
 
 
          // event(new PayementAprovalEvent($user->email));

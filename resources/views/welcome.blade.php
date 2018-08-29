@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
 
-    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
 
     {{--carrusel--}}
     <meta name="description" content="Circular Content Carousel with jQuery"/>
@@ -139,14 +139,16 @@
 
 <!--CONTENIDO STAR-->
 <div class="" id="barra" class="text-center">
-    <center>
-        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
-        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
-        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon.png">
-        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-5.png">
-        <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-3.png">
-    </center>
+        <center>
+            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
+            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
+            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon.png">
+            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-5.png">
+            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-3.png">
+        </center>
 </div>
+
+
 
 <div class="col-md-12" id="">
     <div class="row">
@@ -154,27 +156,71 @@
 
         @foreach($radio as $r)
             {{-- @if(< 2)--}}
-            <div class="col-md-2 col-sm-8 col-lg-3" style="width: 265px">
-                <figure class="snip1166 navy">
-                    {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                    {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                    <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
-                    <figcaption>
-                        <h3>
-                            <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                            <div align="left">
-                                <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                                <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                                <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                                <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
-                            </div>
-                        </h3>
-                        <div>
-                            <p>{{ $r->email_c }}</p>
+            <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
+            <figure class="snip1166 navy" style="display: block; ">
+                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
+                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
+                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
+                <figcaption style="width: 107%">
+                    <h3>
+                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
+                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
+                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
                         </div>
-                        <a href="#"></a>
-                    </figcaption>
-                </figure>
+                    </h3>
+                    <div>
+                        <p>{{ $r->email_c }}</p>
+                    </div>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
+            </div>
+            <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
+            <figure class="snip1166 navy" >
+                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
+                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
+                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
+                <figcaption style="width: 75%">
+                    <h3>
+                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
+                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
+                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                        </div>
+                    </h3>
+                    <div>
+                        <p>{{ $r->email_c }}</p>
+                    </div>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
+            </div>
+            <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
+            <figure class="snip1166 navy" >
+                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
+                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
+                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
+                <figcaption style="width: 90%">
+                    <h3>
+                        <small style="color: #fff; font-size: 50%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
+                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
+                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                        </div>
+                    </h3>
+                    <div>
+                        <p>{{ $r->email_c }}</p>
+                    </div>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
             </div>
             {{--@endif--}}
         @endforeach
@@ -187,7 +233,7 @@
 
 <!--FOOTER STAR -->
 
-<footer class="footer container-fluid">
+<footer class="footer">
     <div class="row col-md-12" id="leipel">
         <div class="col-md-3">
             <h1>
@@ -236,7 +282,7 @@
                 <li><a href="#">Lectura</a></li>
                 <br>
                 <li><a href="#">Radio</a></li>
-                <br>
+                <br>                
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
@@ -250,53 +296,100 @@
                 <li><a href="#">Instagram</a></li>
             </ul>
         </div>
-        {{--<div class="col-md-3 " id="opinion">--}}
-        {{--<h1>Deja tu opini&oacute;n</h1>--}}
-        {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
-        {{--<div class="col-md-12 form-group">--}}
-        {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
-        {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
-        {{--<div class="validation"></div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-12 form-group">--}}
-        {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
-        {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
-        {{--<div class="validation"></div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-12 form-group">--}}
-        {{--<input type="text" class="form-control " name="subject" id="subject"--}}
-        {{--placeholder="Asunto" data-rule="minlen:4"--}}
-        {{--data-msg="Please enter at least 8 chars of subject"/>--}}
-        {{--<div class="validation"></div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-12 form-group">--}}
-        {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
-        {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-offset-7">--}}
-        {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
-        {{--</div>--}}
-
-        {{--</form>--}}
-        {{--</div>--}}
-    </div>
-</footer>
-<hr/>
-<div class="container-fluidS">
-    <div class="row">
+        
+    <div class="col-md-12 hidden-sm hidden-xs" style=" font-family: Roboto;
+                                        background: #21a4de;
+                                        height: 40px;
+                                        padding-top: 8px;
+                                        text-align: center;
+                                        color: white;
+                                        width: 105%">
         <div class="col-md-4" id="footer1">
             <p>
                 Copyright © 2018 Todos lo derechos reservados
             </p>
         </div>
-        <div class="col-md-4 col-md-offset-4" id="footer2">
+        <div class="col-md-4" id="footer2">
             <a href="">Inicio</a>
             <a href="">Sobre nosotros</a>
             <a href="">Servicios</a>
             <a href="">Contacto</a>
         </div>
     </div>
-</div>
+    <div class="col-sm-12 hidden-lg hidden-md hidden-xs" style=" font-family: Roboto;
+                                        background: #21a4de;
+                                        height: 50px;
+                                        padding-top: 8px;
+                                        text-align: center;
+                                        color: white;
+                                        width: 102%;
+                                        margin-top: 1%">
+        <div class="col-md-4" id="footer1">
+            <p>
+                Copyright © 2018 Todos lo derechos reservados
+            </p>
+        </div>
+        <div class="col-md-6" id="footer2">
+            <a href="">Inicio</a>
+            <a href="">Sobre nosotros</a>
+            <a href="">Servicios</a>
+            <a href="">Contacto</a>
+        </div>
+    </div>
+    <div class="col-xs-12 hidden-lg hidden-md hidden-sm" style=" font-family: Roboto;
+                                        background: #21a4de;
+                                        height: 60px;
+                                        padding-top: 8px;
+                                        text-align: center;
+                                        color: white;
+                                        width: 102%;
+                                        margin-top: 5%">
+        <div class="col-md-4" id="footer1">
+            <p>
+                Copyright © 2018 Todos lo derechos reservados
+            </p>
+        </div>
+        <div class="col-md-6" id="footer2">
+            <a href="">Inicio</a>
+            <a href="">Sobre nosotros</a>
+            <a href="">Servicios</a>
+            <a href="">Contacto</a>
+        </div>
+    </div>
+
+
+        {{--<div class="col-md-3 " id="opinion">--}}
+            {{--<h1>Deja tu opini&oacute;n</h1>--}}
+            {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
+                           {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
+                           {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" class="form-control " name="subject" id="subject"--}}
+                           {{--placeholder="Asunto" data-rule="minlen:4"--}}
+                           {{--data-msg="Please enter at least 8 chars of subject"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
+                              {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-offset-7">--}}
+                    {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
+                {{--</div>--}}
+
+            {{--</form>--}}
+        {{--</div>--}}
+    </div>
+</footer>
+
 
 <!--FOOTER END -->
 
