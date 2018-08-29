@@ -1408,19 +1408,22 @@ class AdminController extends Controller
          
           $deposit->save();
         
-          $revenueMonth = Payments::where('created_at', '>=', Carbon::now()->firstOfMonth()->toDateString());
+          $Condition=Carbon::now()->firstOfMonth()->toDateString();
+
+          $revenueMonth = Payments::where('user_id','=',$deposit->user_id)
+            ->where('created_at', '>=',$Condition)
+            ->where('status', '=','Aprobado')
+            ->get();
+
 
           if ($revenueMonth->count()<=1) 
           {
            event(new AssingPointsEvents($deposit->package_id,$user->id));
           }
           
-          
-            
-          
 
 
-         // event(new PayementAprovalEvent($user->email));
+          event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
@@ -1441,7 +1444,6 @@ class AdminController extends Controller
       public function test()
       {
         
-       
       }
 //------------------------------------------------------------
 }
