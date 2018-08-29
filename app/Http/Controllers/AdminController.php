@@ -1384,7 +1384,6 @@ class AdminController extends Controller
                     })
                       ->rawColumns(['Estatus','voucher'])
                       ->toJson();
-
       }
 
       public function DepositStatus(Request $request,$id)
@@ -1436,12 +1435,13 @@ class AdminController extends Controller
            return response()->json($deposit);
 
         }
-
-
-
       }
 
-      public function test()
+
+//------------------------------------------------------------
+
+//--------------------------Funcion de Pruueba----------------
+    public function test()
       {
         $TicketsPackage = TicketsPackage::find(1);        
 
@@ -1454,7 +1454,7 @@ class AdminController extends Controller
        
          if ($User->UserRefered->count() == 0) 
          {
-                $balance= SistemBalance::find(4);
+                $balance= SistemBalance::find(1);
                 
                 $balance->my_points= $balance->my_points + $points;
                 
@@ -1551,5 +1551,7 @@ class AdminController extends Controller
 
         }
       }
-//------------------------------------------------------------
+//-------------------------------------------------------------
+
+
 }

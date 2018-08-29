@@ -54,6 +54,17 @@
 
                   <?php endif; ?>
 
+                  <?php if(Auth::guard('Promoter')->user()->priority == 1): ?>
+
+                    <li class="mt">
+                      <a href="<?php echo e(url('Business')); ?>">
+                          <i class="fa fa-university"></i>
+                          <span>Negocios y Otros</span>
+                      </a>
+                  </li> 
+
+                  <?php endif; ?>
+
               </ul>
               <!-- sidebar menu end-->
           </div>

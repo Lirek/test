@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
          'promoter_guest' => \App\Http\Middleware\RedirectIfPromoterAuthenticated::class,
 
          'Admin' => \App\Http\Middleware\AdminMiddleware::class,
+         'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class,
          'Operator' => \App\Http\Middleware\OperatorMiddleware::class,
          'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
          'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
