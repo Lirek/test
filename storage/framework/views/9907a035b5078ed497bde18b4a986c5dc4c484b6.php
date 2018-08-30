@@ -2,9 +2,9 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                  <h5 class="centered">{{Auth::guard('Promoter')->user()->name_c}}</h5>
+                  <h5 class="centered"><?php echo e(Auth::guard('Promoter')->user()->name_c); ?></h5>
                   <div class="card-content white-text">
-                      <span class="card-title centered"><h4><p>{{Auth::guard('Promoter')->user()->Roles()->first()->name}}</p></h4></span>
+                      <span class="card-title centered"><h4><p><?php echo e(Auth::guard('Promoter')->user()->Roles()->first()->name); ?></p></h4></span>
                       
                   </div>  
                     
@@ -16,54 +16,54 @@
                   </li>
 
                   <li class="mt">
-                      <a href="{{url('AdminContent')}}">
+                      <a href="<?php echo e(url('AdminContent')); ?>">
                           <i class="fas fa-suitcase"></i>
                           <span>Contenido</span>
                       </a>
                   </li>
 
                   <li class="mt">
-                      <a href="{{url('admin_sellers')}}">
+                      <a href="<?php echo e(url('admin_sellers')); ?>">
                           <i class="fas fa-user-tie"></i>
                           <span>Proveedores</span>
                       </a>
                   </li>                  
 
                   <li class="mt">
-                      <a href="{{url('admin_applys')}}">
+                      <a href="<?php echo e(url('admin_applys')); ?>">
                           <i class="fas fa-archive"></i>
                           <span>Solicitudes</span>
                       </a>
                   </li>
 
                   <li class="mt">
-                      <a href="{{url('admin_clients')}}">
+                      <a href="<?php echo e(url('admin_clients')); ?>">
                           <i class="fa fa-users"></i>
                           <span>Clientes</span>
                       </a>
                   </li>                  
                   
-                  @if(Auth::guard('Promoter')->user()->priority == 1 OR Auth::guard('Promoter')->user()->priority == 2)
+                  <?php if(Auth::guard('Promoter')->user()->priority == 1 OR Auth::guard('Promoter')->user()->priority == 2): ?>
 
                     <li class="mt">
-                      <a href="{{url('BackendUsers')}}">
+                      <a href="<?php echo e(url('BackendUsers')); ?>">
                           <i class="fa fa-wrench"></i>
                           <span>Usuarios Backend</span>
                       </a>
                   </li> 
 
-                  @endif
+                  <?php endif; ?>
 
-                  @if(Auth::guard('Promoter')->user()->priority == 1)
+                  <?php if(Auth::guard('Promoter')->user()->priority == 1): ?>
 
                     <li class="mt">
-                      <a href="{{url('Business')}}">
+                      <a href="<?php echo e(url('Business')); ?>">
                           <i class="fa fa-university"></i>
                           <span>Negocios y Otros</span>
                       </a>
                   </li> 
 
-                  @endif
+                  <?php endif; ?>
 
               </ul>
               <!-- sidebar menu end-->

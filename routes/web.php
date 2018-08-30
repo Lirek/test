@@ -209,9 +209,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
 
-
-
-
         //_________________FIN de RUtas de Proveedores____________________________
 
         //___________________RUTAS DE DE USUARIOS_______________________
@@ -219,6 +216,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
+        //----------------------------------------------------------------
    });
     
        
@@ -366,6 +364,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           //-------------------------
         //______________________Fin de las rutas de Clientes________________________
         
+    });
+
+    Route::group(['middleware' => ['SuperAdmin']], function (){
+        
+         Route::get('Business','SuperAdminController@ShowBusiness');
+         
+
+
     });
 });
 
