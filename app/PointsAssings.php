@@ -9,15 +9,21 @@ class PointsAssings extends Model
      protected $table = 'points_assing';
 
          protected $fillable = [
-        'amount', 
+        'amount',
+        'id', 
         'from',
         'to',
         'created_at',
         'updated_at',
         ];
 
-        public function TracePoints()
+        public function TracePointsFrom()
         {
-        	return $this->belongsTo('App\User', 'user_id');
+        	return $this->belongsTo('App\User', 'from');
+        }
+
+        public function TracePointsTo()
+        {
+            return $this->belongsTo('App\User', 'to');
         }
 }

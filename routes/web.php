@@ -351,6 +351,16 @@ Route::group(['middleware' => 'promoter_auth'], function(){
         
          Route::get('Business','SuperAdminController@ShowBusiness');
          
+         Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
+         Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
+         
+         
+         Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');
+         Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
+
+         Route::get('UserDetails','SuperAdminController@ShowUserDetails');
+         
+         
 
 
     });

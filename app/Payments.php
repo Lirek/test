@@ -9,7 +9,7 @@ class Payments extends Model
     protected $table = 'tickets_sales';
 
          protected $fillable = [
-            'id',
+        'id',
         'user_id', 
         'package_id',
         'voucher',
