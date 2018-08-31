@@ -32,8 +32,10 @@ Route::get('/', 'WelcomeController@welcome');
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 */
-
 Auth::routes();
+
+//Route::post('login', 'Auth\LoginController@login');
+
 
 Route::get('/register/{user_code}','UserController@show');
 Route::post('SellerRegister','SellerController@CompleteRegistration');

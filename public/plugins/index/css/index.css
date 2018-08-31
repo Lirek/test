@@ -1,6 +1,28 @@
 * {
     font-family: Roboto;
 }
+.fa-facebook-square:hover {
+    color:#3B5998;
+}
+.fa-twitter-square:hover {
+    color:#55acee;
+}
+.fa-google-plus-square:hover{
+    color:#dd4b39;
+}
+         
+.fa-facebook-square {
+    font-size: 32px;
+    color: gray;
+}
+.fa-twitter-square {
+    font-size: 32px;
+    color: gray;
+}
+.fa-google-plus-square {
+    font-size: 32px;
+    color: gray;
+}
 
 #containerS {
     position: absolute;
@@ -215,18 +237,15 @@
 #banner {
     /*tamañodel slaider*/
     width: 100%;
-    height: 650px;
+    height: 450px;
     background-color: #0c0c0c;
     padding-top: 0px;
-    padding-bottom: 730px;
+    padding-bottom: 510px;
 }
 
-#contentRadio h1 {
+
+#barra {
     background: #21a4de;
-    font-family: Roboto;
-    padding: 20px 0px;
-    font-size: 35px;
-    color: white;
 }
 
 #leipel h1 {
