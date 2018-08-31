@@ -46,6 +46,12 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
 //Agregada 17/08/18
     Route::get('SaleTickets','HomeController@SaleTickets');
     Route::post('BuyPlan','HomeController@BuyPlan');
+    Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
+    // agregadas por Pacheco
+    Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
+    Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
+    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending'); 
+    Route::get('factura/{id}/{medio}','HomeController@factura'); // la que firma
 
 //---------------------------------------------------------------------
 
