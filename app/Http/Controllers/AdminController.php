@@ -81,7 +81,7 @@ class AdminController extends Controller
           return Datatables::of($albums)
                     ->addColumn('Estatus',function($albums){
                       
-                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button';
+                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button>';
                     })
 
                     ->addColumn('Autors_name',function($albums){

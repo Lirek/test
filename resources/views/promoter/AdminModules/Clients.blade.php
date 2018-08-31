@@ -183,7 +183,7 @@
         
         $( "#formPayment" ).on( 'submit', function(e){
 
-          var url = 'PaymemtsStatus/'+x;
+          var url = 'DepositStatus/'+x;
           
           var s=$("input[type='radio'][name=status_p]:checked").val();
           
