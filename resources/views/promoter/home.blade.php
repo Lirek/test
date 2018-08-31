@@ -193,7 +193,7 @@
 
                 $.ajax({
 
-                  url: '/SavePackage',
+                  url: 'Save_Package',
                   type:'POST',
                   data:{
                         _token: $('input[name=_token]').val(),

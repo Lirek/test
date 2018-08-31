@@ -182,8 +182,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
 
-            Route::post('SavePackage', 'AdminController@SavePackage');
 
+            Route::post('Save_Package', 'AdminController@SavePackage');
             Route::post('UpdatePackage/{id}','AdminController@UpdatePackage');
 
             Route::get('GetPackage/{id}','AdminController@GetPackage');
@@ -340,8 +340,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
            //-----------------Pagos-----------------------------------------
 
                 Route::get('DepsitDataTable','AdminController@DepsitDataTable');
-                Route::post('PaymemtsStatus/{id}','AdminController@DepositStatus');
 
+                Route::post('DepositStatus/{id}','AdminController@DepositStatus');
           //-------------------------
         //______________________Fin de las rutas de Clientes________________________
         
