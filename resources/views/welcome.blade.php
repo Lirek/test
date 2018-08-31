@@ -55,7 +55,7 @@
 <!-- NAVBAR STAR-->
 
 {{--<div class="main-navigation navbar">--}}
-<nav class="navbar navbar-default ">
+<nav class="navbar navbar-default " style="width: 102%">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -143,7 +143,7 @@
 
 
 <!--CONTENIDO STAR-->
-<div class="" id="barra" class="text-center">
+<div class="" id="barra" class="text-center" style="width: 102%">
         <center>
             <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
             <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
@@ -263,7 +263,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-3" id="sobre">
+        <div class="col-md-12" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
                 <li><a href="#">¿Que es Leipel?</a></li>
@@ -277,7 +277,7 @@
                 <li><a href="#">Contacto</a></li>
             </ul>
         </div>
-        <div class="col-md-3" id="descubrir">
+        <div class="col-md-12" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
                 <li><a href="#">Cine</a></li>
@@ -291,7 +291,7 @@
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
-        <div class="col-md-3" id="social">
+        <div class="col-md-12" id="social">
             <h1>Social</h1>
             <ul id=>
                 <li><a href="#">Youtube</a></li>
@@ -308,7 +308,8 @@
                                         padding-top: 8px;
                                         text-align: center;
                                         color: white;
-                                        width: 105%">
+                                        width: 103%;
+                                        margin-top: 1%">
         <div class="col-md-4" id="footer1">
             <p>
                 Copyright © 2018 Todos lo derechos reservados
@@ -363,7 +364,7 @@
     </div>
 
 
-        {{--<div class="col-md-3 " id="opinion">--}}
+        {{--<div class="col-md-3" id="opinion">--}}
             {{--<h1>Deja tu opini&oacute;n</h1>--}}
             {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
                 {{--<div class="col-md-12 form-group">--}}
@@ -404,7 +405,7 @@
 <div class="modal fade login-register-form row" id="modal-login">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-8 align-center">--}}
+        {{--<div class="col-md-12 align-center">--}}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
