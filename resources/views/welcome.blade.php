@@ -50,7 +50,7 @@
 
 
 </head>
-<body>
+<body style="padding-right: 0px;">
 
 <!-- NAVBAR STAR-->
 
