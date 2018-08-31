@@ -50,7 +50,7 @@
 
 
 </head>
-<body>
+<body style="padding-right: 0px;">
 
 <!-- NAVBAR STAR-->
 
@@ -263,7 +263,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-12" id="sobre">
+        <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
                 <li><a href="#">¿Que es Leipel?</a></li>
@@ -277,7 +277,7 @@
                 <li><a href="#">Contacto</a></li>
             </ul>
         </div>
-        <div class="col-md-12" id="descubrir">
+        <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
                 <li><a href="#">Cine</a></li>
@@ -291,7 +291,7 @@
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
-        <div class="col-md-12" id="social">
+        <div class="col-md-3" id="social">
             <h1>Social</h1>
             <ul id=>
                 <li><a href="#">Youtube</a></li>
