@@ -1,6 +1,28 @@
 * {
     font-family: Roboto;
 }
+.fa-facebook-square:hover {
+    color:#3B5998;
+}
+.fa-twitter-square:hover {
+    color:#55acee;
+}
+.fa-google-plus-square:hover{
+    color:#dd4b39;
+}
+         
+.fa-facebook-square {
+    font-size: 32px;
+    color: gray;
+}
+.fa-twitter-square {
+    font-size: 32px;
+    color: gray;
+}
+.fa-google-plus-square {
+    font-size: 32px;
+    color: gray;
+}
 
 #containerS {
     position: absolute;

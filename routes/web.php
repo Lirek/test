@@ -33,8 +33,10 @@ Route::get('Test','AdminController@test');
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 */
-
 Auth::routes();
+
+//Route::post('login', 'Auth\LoginController@login');
+
 
 Route::get('/register/{user_code}','UserController@show');
 Route::post('SellerRegister','SellerController@CompleteRegistration');
