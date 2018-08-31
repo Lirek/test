@@ -55,7 +55,7 @@
 <!-- NAVBAR STAR-->
 
 {{--<div class="main-navigation navbar">--}}
-<nav class="navbar navbar-default " style="width: 102%">
+<nav class="navbar navbar-default ">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -143,7 +143,7 @@
 
 
 <!--CONTENIDO STAR-->
-<div class="" id="barra" class="text-center" style="width: 102%">
+<div class="" id="barra" class="text-center">
         <center>
             <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
             <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
@@ -263,7 +263,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-12" id="sobre">
+        <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
                 <li><a href="#">¿Que es Leipel?</a></li>
@@ -277,7 +277,7 @@
                 <li><a href="#">Contacto</a></li>
             </ul>
         </div>
-        <div class="col-md-12" id="descubrir">
+        <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
                 <li><a href="#">Cine</a></li>
@@ -291,7 +291,7 @@
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
-        <div class="col-md-12" id="social">
+        <div class="col-md-3" id="social">
             <h1>Social</h1>
             <ul id=>
                 <li><a href="#">Youtube</a></li>
@@ -308,8 +308,7 @@
                                         padding-top: 8px;
                                         text-align: center;
                                         color: white;
-                                        width: 103%;
-                                        margin-top: 1%">
+                                        width: 105%">
         <div class="col-md-4" id="footer1">
             <p>
                 Copyright © 2018 Todos lo derechos reservados
@@ -364,7 +363,7 @@
     </div>
 
 
-        {{--<div class="col-md-3" id="opinion">--}}
+        {{--<div class="col-md-3 " id="opinion">--}}
             {{--<h1>Deja tu opini&oacute;n</h1>--}}
             {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
                 {{--<div class="col-md-12 form-group">--}}
@@ -405,7 +404,7 @@
 <div class="modal fade login-register-form row" id="modal-login">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-12 align-center">--}}
+        {{--<div class="col-md-8 align-center">--}}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1152,8 +1151,6 @@ $(document).ready(function(){
             }
         });
     });
-
-
     // Funcion para validar el correo
     //---------------------------------------------------------------------------------------------------
 
@@ -1249,205 +1246,5 @@ $(document).ready(function(){
 
 </script>
 
-@if (count($errors) > 0)
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
-
-        $(document).ready(function(){
-
-            //var usuario = $('#usuario').attr('href');
-
-            $('#modal-login').modal('show');
-
-
-
-            // $('[href="#'+id+'"]').tab('show');
-
-
-            // #usuario
-            // #proveedor
-
-
-        });
-    </script>
-@endif
-<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
-<script type="text/javascript">
-
-    $(document).ready(function(){
-
-        // $('#proOculto').html('<input type="hidden" id="usuarioP" value="#proveedor">');
-        // $('#usuOcul').html('<input type="hidden" id="usuarioU" value="" >');
-        $('.nav-tabs a').on('show.bs.tab',function (e){
-            localStorage.setItem('activeTab',$(e.target).attr('href'));
-            console.log('hola');
-        });
-        var activeTab = localStorage.getItem('activeTab');
-            console.log(activeTab);
-
-    });
-
-</script>
-
-
-<script type="text/javascript">
-//-------------------------------VALIDACIONES PARA EL LOGIN DE USUARIO---------------------------------
-    //---------BLOQUEAR BOTON----------------------
-    $(document).ready(function(){
-        var email = $('#email').val().trim();
-        var password = $('#password').val().trim();
-
-        if (email.length==0 || password.length ==0){
-            $('#iniciar').attr('disabled',true);
-        }
-    });
-
-    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#email').keyup(function(evento){
-            var email = $('#email').val().trim();
-
-            if (email.length==0) {
-                $('#emailMen').show();
-                $('#emailMen').text('El campo no debe estar vacio');
-                $('#emailMen').css('color','red');
-                $('#emailMen').css('font-size','60%');
-                $('#iniciar').attr('disabled',true);
-                $('#iniciar').css('background-color','')
-                }else {
-                $('#emailMen').hide();
-                }
-                var password = $('#password').val().trim();
-
-                if (email.length !=0 && password.length !=0){
-                    $('#iniciar').attr('disabled',false);
-                }
-        });
-    });
-    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
-    $(document).ready(function(){
-        $('#email').keyup(function(evento){
-            var email = $('#email').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-            if (caract.test(email) == false){
-
-                $('#emailMen').show();
-                $('#emailMen').text('Formato email incorrecto');
-                $('#emailMen').css('color','red');
-                $('#emailMen').css('font-size','60%');
-                $('#iniciar').attr('disabled',true);
-                $('#iniciar').css('background-color','')
-
-            }else{
-
-                return true;
-            }
-        });
-    });
-    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#password').keyup(function(evento){
-            var password = $('#password').val().trim();
-
-            if (password.length==0) {
-                $('#passwordMen').show();
-                $('#passwordMen').text('El campo no debe estar vacio');
-                $('#passwordMen').css('color','red');
-                $('#passwordMen').css('font-size','60%');
-                $('#iniciar').attr('disabled',true);
-            } else {
-                $('#emailMen').hide();
-                $('#iniciar').attr('disabled',false);
-            }
-            var email = $('#email').val().trim();
-            if (email.length !=0 && password.length !=0){
-                $('#iniciar').attr('disabled',false);
-            }
-        });
-    });
-//------------------------------------------------------------------------------------------------------
-//-------------------------------------VALICACIONES LOGIN PROMOTOR--------------------------------------
-  //---------BLOQUEAR BOTON----------------------
-    $(document).ready(function(){
-        var email = $('#emailP').val().trim();
-        var password = $('#passwordP').val().trim();
-
-        if (email.length==0 || password.length ==0){
-            $('#iniciarP').attr('disabled',true);
-        }
-    });
-
-    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#emailP').keyup(function(evento){
-            var email = $('#emailP').val().trim();
-
-            if (email.length==0) {
-                $('#emailMenP').show();
-                $('#emailMenP').text('El campo no debe estar vacio');
-                $('#emailMenP').css('color','red');
-                $('#emailMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-                $('#iniciarP').css('background-color','')
-                }else {
-                $('#emailMenP').hide();
-                }
-                var password = $('#passwordP').val().trim();
-
-                if (email.length !=0 && password.length !=0){
-                    $('#iniciarP').attr('disabled',false);
-                }
-        });
-    });
-        //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
-    $(document).ready(function(){
-        $('#emailP').keyup(function(evento){
-            var email = $('#emailP').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-            if (caract.test(email) == false){
-
-                $('#emailMenP').show();
-                $('#emailMenP').text('Formato email incorrecto');
-                $('#emailMenP').css('color','red');
-                $('#emailMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-                $('#iniciarP').css('background-color','')
-
-            }else{
-
-                return true;
-            }
-        });
-    });
-    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#passwordP').keyup(function(evento){
-            var password = $('#passwordP').val().trim();
-
-            if (password.length==0) {
-                $('#passwordMenP').show();
-                $('#passwordMenP').text('El campo no debe estar vacio');
-                $('#passwordMenP').css('color','red');
-                $('#passwordMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-            } else {
-                $('#emailMenP').hide();
-                $('#iniciarP').attr('disabled',false);
-            }
-            var email = $('#emailP').val().trim();
-            if (email.length !=0 && password.length !=0){
-                $('#iniciarP').attr('disabled',false);
-            }
-        });
-    });
-//------------------------------------------------------------------------------------------------------
-</script>
 </body>
 </html>
