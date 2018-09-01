@@ -104,8 +104,6 @@ class AssingPoints
            
             $balance=  SistemBalance::find(1);
 
-            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
-
             $balance->points_solds = $balance->points_sold + $points;
 
             if ($total!=0)

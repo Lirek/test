@@ -28,7 +28,7 @@ class RegisterRadioTrace
      */
     public function handle(RadioTraceEvent $event)
     {
-        $new_trace = new SeriesTrace;
+        $new_trace = new RadiosTrace;
         $new_trace->user_id = $event->user_id;
         $new_trace->radio_id = $event->radio_id;
         $new_trace->save();

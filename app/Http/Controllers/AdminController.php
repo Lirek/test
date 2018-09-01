@@ -1413,7 +1413,12 @@ class AdminController extends Controller
             ->where('created_at', '>=',$Condition)
             ->where('status', '=','Aprobado')
             ->get();
+          
+          $balance=  SistemBalance::find(1);
 
+          $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+
+          $balance->save();
 
           if ($revenueMonth->count()<=1) 
           {
