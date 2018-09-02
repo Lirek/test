@@ -75,14 +75,12 @@ class SuperAdminController extends Controller
                     })
                     ->editColumn('voucher',function($TicketsSales){
                     	
-                    	if ($TicketsSales->voucher==0) 
+                    	if ($TicketsSales->voucher != NULL) 
                     	{
-                    		return 'PayPhone';
+                    		return 'Deposito';
                     	}
-                      	else
-                      	{
-                      		return 'Deposito';		
-                      	}
+                      	return 'PayPhone';		
+                      	
                       
                     })
                    ->editColumn('cost',function($TicketsSales){

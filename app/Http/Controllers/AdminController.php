@@ -1422,12 +1422,12 @@ class AdminController extends Controller
 
           if ($revenueMonth->count()<=1) 
           {
-           event(new AssingPointsEvents($deposit->package_id,$user->id));
+           event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
           
 
 
-          event(new PayementAprovalEvent($user->email));
+          //event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
