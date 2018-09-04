@@ -23,6 +23,7 @@ class TicketsSalesTable extends Migration
             $table->timestamps();
             $table->enum('status',['Aprobado','En Revision','Denegado']);
             $table->string('reference')->nullable()->default('0');
+            $table->string('factura_id')->nullable()->default(NULL);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('package_id')->references('id')->on('tickets_package');
             });

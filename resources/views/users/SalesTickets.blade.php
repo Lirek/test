@@ -37,7 +37,7 @@
                                               <div class="paragraph">
                                                 <p class="center " id="mensaje"></p>
 
-                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}"  onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})"><h5><i class="fa fa-ticket"></i> Comprar</h5></a>
+                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})"><h5><i class="fa fa-ticket"></i> Comprar</h5></a>
 
 
                                               </div>
@@ -65,7 +65,7 @@
                                                 <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
                                                 <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
                                                 <div id="cantidadTickets-{{$ticket->id}}">
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
@@ -119,9 +119,6 @@
                                                         </select>
                                                     </div>
                                                     <input type="number" id="numero-{{$ticket->id}}" min="1" name="numero" class="form-control" placeholder="Número de teléfono" onkeypress="return controltagNumForm(event,{!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
-                                                    {{--
-                                                        onpaste="return false"
-                                                    --}}
                                                 </div>
                                                 <div id="mensajeValidacion-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
                                                 </div>
@@ -129,7 +126,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center" style="margin-top: 2%">
-                                                        <a class="btn btn-primary" id='ingresarFalso' onclick="comprobar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
+                                                        <a class="btn btn-primary" id='ingresarFalso' onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,7 +151,23 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
+<script language="JavaScript1.1">
+
+</script>
+<script type="text/javascript" id="jsbin-javascript">
+    /*
+    // para bloquear el click izquierdo
+    function izquierda(e) {
+        if (navigator.appName == 'Netscape' && (e.which == 1 || e.which == 2)) {
+            alert('Botón izquierdo inhabilitado');
+            return false;
+        } else if (navigator.appName == 'Microsoft Internet Explorer' && (event.button == 1)){
+            alert('Botón izquierdo inhabilitado');
+            return false;
+        }
+    }
+    document.onmousedown=izquierda
+    */
 
     $(document).ready(function(){
 
@@ -183,7 +196,7 @@
     });
 
     function total(id,costo,cant){
-           
+
         var documento = $('#Cantidad-'+id).val();
         var total=parseFloat(costo*documento);
         var  ticket=parseFloat(cant*documento);
@@ -223,7 +236,7 @@
 
         $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
         $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
-    };
+    }
 
     function controltagNum(e) {
         tecla = (document.all) ? e.keyCode : e.which;
@@ -238,7 +251,7 @@
     function controltagNumForm(e,id,cost,cantidadTickets) {
         tecla = (document.all) ? e.keyCode : e.which;
         if (tecla==13) {
-            comprobar(id,cost,cantidadTickets);
+            comprar(id,cost,cantidadTickets);
             return false;
         }
         patron =/[0-9]/;
@@ -246,7 +259,7 @@
         return patron.test(te);
     }
 
-    function tipo(id){ 
+    function tipo(id){
 
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
@@ -254,6 +267,7 @@
             $("#payphone-"+id).hide();
             $('#voucher-'+id).attr('required','required');
             $('#references-'+id).attr('required','required');
+            $('#references-'+id).focus();
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
         }else{
@@ -262,6 +276,7 @@
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
             $('#pais-'+id).attr('required','required');
+            $('#numero-'+id).focus();
             $('#numero-'+id).attr('required','required');
             $('#codCountry-'+id).text("+593");
             $('#pais-'+id).on('change',function(){
@@ -275,13 +290,11 @@
                 });
             });
         }
-    };
+    }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
 <script id="jsbin-javascript">
-//---------------------------------------------------------------------------------------------------
-// Utilizacion de Promises
-    
+
     function bdd(id,cost,callback){
         var value = $('#Cantidad-'+id).val();
         var parametros = "/"+id+"/"+cost+"/"+value;
@@ -317,8 +330,8 @@
         return cancelar;
     }
 
-    function transactionApproved(reference,id,ticket,callback) {
-        var parametros = "/"+id+"/"+reference+"/"+ticket;
+    function transactionApproved(reference,id,ticket,idFactura,callback) {
+        var parametros = "/"+id+"/"+reference+"/"+ticket+"/"+idFactura;
         var ruta = "{{ url('/TransactionApproved/') }}"+parametros;
         var aprobar = true;
 
@@ -333,7 +346,7 @@
         });
         return aprobar;
     }
-
+    /*
     function transactionPending(reference,id,callback) {
         var parametros = "/"+id+"/"+reference;
         var ruta = "{{ url('/TransactionPending/') }}"+parametros;
@@ -350,6 +363,7 @@
         });
         return pendiente;
     }
+    */
 
     function getUserPayPhone(numberPhone,countryPrefix) {
 
@@ -358,6 +372,55 @@
             var TOKEN = "q8jIk_bqgpYLlYzB2G4REjao6S-JXJXqhV0MwhD8Mc7MJ2-u_OglDLHFCPON6XJ90kTHUaVw2kunvL6u4J2D7Y9L47OGDD7SYpYcknPrPq4jHO13JKVTFuJFoO5PoDIapk851dJp6YS_D2PfR3_Fh_eL5t8IyeWt9q6yzewSkpNN-VLyrJPbzApKcdqdjh7ca3HeEGHYlIFxaNQ8Qmy7nZ5ZqlxmEmiSYqt-7HdWUxzX2CPJnSITnEuwMPrp174opTpYtE4AKABOLAlwJRwh4CzzPaElqDA-mTDH14yVDNNz4blIo4FY2vrjdgczX2iJs3Mxhg";
             var headers    = "Bearer "+TOKEN;
             var url = "https://pay.payphonetodoesposible.com/api/Users/"+numberPhone+"/region/"+countryPrefix;
+
+            var req = new XMLHttpRequest();
+            req.open('GET', url);
+            req.setRequestHeader("Authorization",headers);
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req.response);
+                }
+                else {
+                    resolve(req.response);
+                }
+            };
+            req.onerror = function() {
+                reject(Error("Network Error"));
+            };
+            req.send();
+        });
+    }
+
+
+    function getDatil(idTicketSales,medio) {
+        return new Promise(function(resolve,reject) {
+            var parametros = "/"+idTicketSales+"/"+medio;
+            var url = "{{ url('/factura/') }}"+parametros;
+
+            var req = new XMLHttpRequest();
+            req.open("GET",url);
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req.response);
+                }
+                else {
+                    resolve(req.response);
+                }
+            };
+            req.onerror = function() {
+                reject(Error("Network Error"));
+            };
+            req.send();
+        });
+    }
+
+    function getSalePayPhone(transactionId) {
+
+        return new Promise(function(resolve, reject) {
+
+            var url = "https://pay.payphonetodoesposible.com/api/Sale/"+transactionId;
+            var TOKEN = "q8jIk_bqgpYLlYzB2G4REjao6S-JXJXqhV0MwhD8Mc7MJ2-u_OglDLHFCPON6XJ90kTHUaVw2kunvL6u4J2D7Y9L47OGDD7SYpYcknPrPq4jHO13JKVTFuJFoO5PoDIapk851dJp6YS_D2PfR3_Fh_eL5t8IyeWt9q6yzewSkpNN-VLyrJPbzApKcdqdjh7ca3HeEGHYlIFxaNQ8Qmy7nZ5ZqlxmEmiSYqt-7HdWUxzX2CPJnSITnEuwMPrp174opTpYtE4AKABOLAlwJRwh4CzzPaElqDA-mTDH14yVDNNz4blIo4FY2vrjdgczX2iJs3Mxhg";
+            var headers    = "Bearer "+TOKEN;
 
             var req = new XMLHttpRequest();
             req.open('GET', url);
@@ -433,35 +496,24 @@
         });
     }
 
-    function getSalePayPhone(transactionId, callback) {
-
-        var url = "https://pay.payphonetodoesposible.com/api/Sale/"+transactionId;
-        var TOKEN = "q8jIk_bqgpYLlYzB2G4REjao6S-JXJXqhV0MwhD8Mc7MJ2-u_OglDLHFCPON6XJ90kTHUaVw2kunvL6u4J2D7Y9L47OGDD7SYpYcknPrPq4jHO13JKVTFuJFoO5PoDIapk851dJp6YS_D2PfR3_Fh_eL5t8IyeWt9q6yzewSkpNN-VLyrJPbzApKcdqdjh7ca3HeEGHYlIFxaNQ8Qmy7nZ5ZqlxmEmiSYqt-7HdWUxzX2CPJnSITnEuwMPrp174opTpYtE4AKABOLAlwJRwh4CzzPaElqDA-mTDH14yVDNNz4blIo4FY2vrjdgczX2iJs3Mxhg";
-        var headers    = "Bearer "+TOKEN;
-
-        var req = new XMLHttpRequest();
-        req.open('GET', url);
-        req.setRequestHeader("Authorization",headers);
-        req.onload = function() {
-            if (req.status == 200) {
-                callback(req.response);
-            }
-            else {
-                resolve(req.response);
-            }
-        };
-        req.onerror = function() {
-            reject(Error("Network Error"));
-        };
-        req.send();
+    function comprobarEstatusPagoPayPhone(id,callback) {
+        var msn = "";
+        getSalePayPhone(id).then(function(response) {
+            var res = JSON.parse(response);
+            msn = res;
+        }, function(error) {
+            msn = error;
+        });
+        setTimeout(function() {
+            callback(msn);
+        },1000);
     }
 
-    function comprobar(id,cost,cantidadTickets){
-
+    function comprar(id,cost,cantidadTickets) {
         var numberPhone = $('#numero-'+id).val();
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
-        var ticket = parseFloat(cantidadTickets*cantidadPaquetes);
+        var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
         if (numberPhone=="" || countryPrefix=="") {
             $('#mensajePayPhone-'+id).hide();
             $('#mensajeValidacion-'+id).show();
@@ -472,17 +524,17 @@
             $('#mensajePayPhone-'+id).show();
             $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
         }
-
-        getUserPayPhone(numberPhone,countryPrefix).then(function(response) {
-            var res = JSON.parse(response);
-            if (res.message !== undefined) {
+        getUserPayPhone(numberPhone,countryPrefix).then(function(userPayPhone) {
+            $('#mensajePayPhone-'+id).hide();
+            var clientePayPhone = JSON.parse(userPayPhone);
+            if (clientePayPhone.name==undefined) {
                 swal({
                     title: "El usuario no existe en PayPhone",
                     text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
                     icon: "warning"
                 });
             } else {
-                var nombre = res.name+" "+res.lastName;
+                var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
                 swal({
                     title: "Confirmación de usuario",
                     text: "El número introducido, corresponde a "+nombre+", ¿es usted?",
@@ -493,11 +545,10 @@
                             text: "Si, soy yo",
                             value: true
                         }
-                    },
-                    dangerMode: false
+                    }
                 })
                 .then((confirmacion) => {
-                    if(confirmacion){
+                    if(confirmacion) {
                         var total = cantidadPaquetes*cost;
                         swal({
                             title: "Confirmación de pago a "+nombre,
@@ -509,35 +560,56 @@
                                     text: "Aceptar",
                                     value: true
                                 }
-                            },
-                            dangerMode: false
+                            }
                         })
                         .then((pagar) => {
-                            if (pagar) {
-                                $('#mensajePayPhone-'+id).show();
-                                $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
-                                bdd(id,cost,function(id) {
-                                    postSalePayPhone(numberPhone,countryPrefix,total,id).then(function(response) {
-                                        swal({
-                                            title: "¡Listo! Verifique su telefóno",
-                                            text: "Eliga una opción y luego seleccione el botón 'Continuar'.",
-                                            icon: "success",
-                                            buttons: {
-                                                accept: {
-                                                    text: "Continuar",
-                                                    value: true
+                            $('#mensajePayPhone-'+id).show();
+                            $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
+                            console.log("id: "+id+"cost: "+cost);
+                            bdd(id,cost,function(idTicketSales) {
+                                console.log("idTicketSales: "+idTicketSales);
+                                postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
+                                    var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+                                    swal({
+                                        title: "¡Listo! Estamos esperando su confirmación...",
+                                        text: "Verifique su teléfono y seleccione una opción.",
+                                        icon: gif,
+                                        buttons: false
+                                    });
+                                    var intento = 0;
+                                    var maxIntento = 90; // 1min y 1/2 de espera
+                                    var transaction = JSON.parse(response);
+                                    console.log(transaction.transactionId);
+                                    comprobarEstatusPagoPayPhone(transaction.transactionId,function callback(transactionInfo) {
+                                        $('#mensajePayPhone-'+id).show();
+                                        $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
+                                        if (intento <= maxIntento) {
+                                            console.log(transactionInfo);
+                                            if (transactionInfo!=" ") {
+                                                console.log(transactionInfo);
+                                                var status = transactionInfo.transactionStatus;
+                                                console.log(status);
+                                                if (status=="Pending") {
+                                                    console.log("intento "+intento+": "+status);
+                                                    comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
+                                                    intento++;
                                                 }
-                                            },
-                                            dangerMode: false
-                                        })
-                                        .then((validar) => {
-                                            if (validar) {
-                                                var transactionId = JSON.parse(response);
-                                                getSalePayPhone(transactionId.transactionId,function(transaccionInfo) {
-                                                    var transaction = JSON.parse(transaccionInfo);
-                                                    var status = transaction.transactionStatus;
-                                                    if (status=="Approved") {
-                                                        transactionApproved(transaction.transactionId,id,ticket,function(aprobar) {
+                                                else if (status=="Approved") {
+                                                    swal({
+                                                        title: "¡Ya casi terminamos!",
+                                                        text: "Estamos procesando su información...",
+                                                        icon: gif,
+                                                        buttons: false
+                                                    });
+                                                    console.log("intento "+intento+": "+status);
+                                                    console.log(transaction.transactionId);
+                                                    var medio = "dinero_electronico_ec";
+                                                    getDatil(idTicketSales,medio).then(function(infoFactura) {
+                                                        var infoFactura = JSON.parse(infoFactura);
+                                                        var idFactura = infoFactura.id;
+                                                        console.log(idFactura);
+                                                        transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
+                                                            console.log("boolean"+aprobar);
                                                             swal({
                                                                 title: "¡Pago exitoso!",
                                                                 text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
@@ -547,59 +619,82 @@
                                                                         text: "OK",
                                                                         value: true
                                                                     }
-                                                                },
-                                                                dangerMode: false
+                                                                }
                                                             })
                                                             .then((recarga) => {
                                                                 location.reload();
                                                             });
                                                         });
-                                                    }
-                                                    else if (status=="Canceled") {
-                                                        transactionCanceled(transaction.transactionId,id,function(cancelar) {
-                                                            swal({
-                                                                title: "¡Pago cancelado!",
-                                                                text: "Su pago fue cancelado.",
-                                                                icon: "error",
-                                                                buttons: {
-                                                                    accept: {
-                                                                        text: "OK",
-                                                                        value: true
-                                                                    }
-                                                                },
-                                                                dangerMode: false
-                                                            })
-                                                            .then((recarga) => {
-                                                                location.reload();
-                                                            });
+                                                    });
+                                                }
+                                                else if (status=="Canceled") {
+                                                    swal({
+                                                        title: "¡Ya casi terminamos!",
+                                                        text: "Estamos procesando su información...",
+                                                        icon: gif,
+                                                        buttons: false
+                                                    });
+                                                    console.log("intento "+intento+": "+status);
+                                                    console.log(transaction.transactionId);
+                                                    transactionCanceled(transaction.transactionId,idTicketSales,function(cancelar) {
+                                                        swal({
+                                                            title: "¡Pago cancelado!",
+                                                            text: "Su pago fue cancelado.",
+                                                            icon: "error",
+                                                            buttons: {
+                                                                accept: {
+                                                                    text: "OK",
+                                                                    value: true
+                                                                }
+                                                            }
+                                                        })
+                                                        .then((recarga) => {
+                                                            location.reload();
                                                         });
-                                                    }
-                                                    else if (status=="Pending"){
-                                                        postReverse(transactionId.transactionId).then(function(response) {
-                                                            transactionPending(transactionId.transactionId,id,function(pendiente) {
-                                                                swal({
-                                                                    title: "¡Algo fue mal!",
-                                                                    text: "Tranquilo, puede volver a intentarlo.",
-                                                                    icon: "warning"
-                                                                })
-                                                                .then((recarga) => {
-                                                                    location.reload();
-                                                                });
-                                                            });
-                                                        });
-                                                    }
-                                                });
+                                                    });
+                                                }
+                                                else if (status==undefined) {
+                                                    console.log("intento desde == undefined "+intento+": "+status);
+                                                    comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
+                                                    intento++;
+                                                }
                                             }
-                                        });
+                                        } else {
+                                            console.log("intento "+intento+" expiró el tiempo");
+                                            console.log(transaction.transactionId);
+                                            postReverse(transaction.transactionId).then(function(response) {
+                                                transactionCanceled(transaction.transactionId,idTicketSales,function(pendiente) {
+                                                    swal({
+                                                        title: "¡Ha expirado el tiempo de espera!",
+                                                        text: "No se pudo procesar el pago por exceder el límite del tiempo permitido.",
+                                                        icon: "warning",
+                                                        buttons: false
+                                                    })
+                                                    .then((recarga) => {
+                                                        location.reload();
+                                                    });
+                                                });
+                                            });
+                                        }
                                     }, function(error) {
-                                        return error;
+                                        swal({
+                                            title: "¡Error de conexión!",
+                                            text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
+                                            icon: "error"
+                                        });
                                         $('#mensajePayPhone-'+id).hide();
                                     });
-
+                                }, function(error) {
+                                    swal({
+                                        title: "¡Error de conexión!",
+                                        text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
+                                        icon: "error"
+                                    });
+                                    $('#mensajePayPhone-'+id).hide();
                                 });
-                            }
+                            });
                         });
-                    } else {
+                    }  else {
                         swal({
                             title: "Tranquilo no pasó nada",
                             text: "Verifique el número e intentelo de nuevo, por favor",
@@ -608,14 +703,15 @@
                     }
                 });
             }
-            $('#mensajePayPhone-'+id).hide();
         }, function(error) {
-            return error;
+            swal({
+                title: "¡Error de conexión!",
+                text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
+                icon: "error"
+            });
             $('#mensajePayPhone-'+id).hide();
         });
+        return false;
     }
-
-// Utilizacion de Promises
-//---------------------------------------------------------------------------------------------------
 </script>
 @endsection

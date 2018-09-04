@@ -52,8 +52,9 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
     Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
     // agregadas por Pacheco
     Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
-    Route::get('TransactionApproved/{id}/{reference}/{ticket}','HomeController@TransactionApproved');
-    Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
+    Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
+    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
+    Route::get('factura/{id}/{medio}','HomeController@factura'); // la que firma
 
 //---------------------------------------------------------------------
 
@@ -369,19 +370,19 @@ Route::group(['middleware' => 'promoter_auth'], function(){
     });
 
     Route::group(['middleware' => ['SuperAdmin']], function (){
-        
+
          Route::get('Business','SuperAdminController@ShowBusiness');
-         
+
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
          Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
-         
-         
+
+
          Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');
          Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
 
          Route::get('UserDetails','SuperAdminController@ShowUserDetails');
-         
-         
+
+
 
 
     });
