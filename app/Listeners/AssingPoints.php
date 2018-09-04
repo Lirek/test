@@ -40,9 +40,7 @@ class AssingPoints
                 
                 $balance->my_points= $balance->my_points + $points;
                 
-                $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
-
-                $balance->points_solds = $balance->points_sold + $points;
+                $balance->points_solds = $balance->points_solds + $points;
                 
                 $balance->save();
 
@@ -104,9 +102,7 @@ class AssingPoints
            
             $balance=  SistemBalance::find(1);
 
-            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
-
-            $balance->points_solds = $balance->points_sold + $points;
+            $balance->points_solds = $balance->points_solds + $points;
 
             if ($total!=0)
             {                      
@@ -129,7 +125,6 @@ class AssingPoints
             {
               $balance->save();
             }
-
         }
 
     }

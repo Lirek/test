@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Events\RadioTraceEvent; //Agrega el Evento 
+use Auth;//Agrega el facade de Auth para acceder al id
 
 use App\Megazines;
 use App\Tags;
@@ -175,6 +177,8 @@ class ContentController extends Controller
 
     public function ListenRadio($id){
         $Radio= Radio::where('id','=',$id)->get();
+          event(new RadioTraceEvent($id,Auth::user()->id));//Llama al evento asi y pasale el id del contenido y el id del usuario y listo se queda registrado
+
         return view('Contents.listenRadio')->with('Radio',$Radio);
     }
 
