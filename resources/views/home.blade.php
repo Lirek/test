@@ -14,31 +14,17 @@
 
                       <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                         <div class="box1">
-                          <span class="li_music"></span>
-                          <h3>{{$TransactionsMusic}}</h3>
-                        </div>
-                       <!--  <p>933 People liked your page the last 24hs. Whoohoo!</p> -->
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_tv"></span>
-                          <h3>0</h3>
-                        </div>
-                        <!-- <p>48 New files were added in your cloud storage.</p> -->
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_sound"></span>
-                          <h3>0</h3>
-                        </div>
-                        <!-- <p>You have 23 unread messages in your inbox.</p> -->
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
                           <span class="li_video"></span>
                           <h3>{{$TransactionsMovies}}</h3>
                         </div>
                         <!-- <p>More than 10 news were added in your reader.</p> -->
+                      </div>
+                      <div class="col-md-2 col-sm-2 box0">
+                        <div class="box1">
+                          <span class="li_music"></span>
+                          <h3>{{$TransactionsMusic}}</h3>
+                        </div>
+                       <!--  <p>933 People liked your page the last 24hs. Whoohoo!</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
@@ -47,6 +33,21 @@
                         </div>
                        <!--  <p>Your server is working perfectly. Relax & enjoy.</p> -->
                       </div>
+                      <div class="col-md-2 col-sm-2 box0">
+                        <div class="box1">
+                          <span class="li_sound"></span>
+                          <h3>{{$TransactionsRadio}}</h3>
+                        </div>
+                        <!-- <p>You have 23 unread messages in your inbox.</p> -->
+                      </div>
+                      <div class="col-md-2 col-sm-2 box0">
+                        <div class="box1">
+                          <span class="li_tv"></span>
+                          <h3>{{$TransactionsTv}}</h3>
+                        </div>
+                        <!-- <p>48 New files were added in your cloud storage.</p> -->
+                      </div>
+                      
 
                     </div><!-- /row mt -->  
                     
@@ -248,10 +249,10 @@
                               @if($Tv)
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href=""> {{$Tv->name_r}}</a></td>
+                                  <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
-                                  <td class="hidden-phone">{{$Tv->Seller->name}}</td>
+                                  <td class="hidden-phone"></td>
                                 </tr>
                              @endif
 
@@ -288,7 +289,7 @@
                             @if($Movies)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$Movies->title}}</a></td>
+                                <td><a href="{{url('ShowMovies/'.$Movies->id)}}"> {{$Movies->title}}</a></td>
                                 <td class="hidden-phone">Pelicula</td>
                                 <td>{{$Movies->cost}}</td>
                                 <td class="hidden-phone">{{$Movies->Seller->name}}</td>

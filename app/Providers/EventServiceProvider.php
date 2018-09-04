@@ -40,7 +40,54 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\BuyContentEvent' => [
             'App\Listeners\SendBuyContent',
         ],
+
+            'App\Events\PayementAprovalEvent' => [
+            'App\Listeners\SendPaymentAprovalEmail',
+        ],
+
+            'App\Events\PaymentDenialEvent' => [
+            'App\Listeners\SendPaymentDenialEmail',
+        ],
+        
+            'App\Events\UserValidateEvent' => [
+            'App\Listeners\SendUserValidateEmail',
+        ],
+
+            'App\Events\AssingPointsEvents' => [
+            'App\Listeners\AssingPoints',
+        ],
+
+            'App\Events\MovieTraceEvent' => [
+            'App\Listeners\RegisterMovieTrace',
+        ],
+
+            'App\Events\AlbumTraceEvent' => [
+            'App\Listeners\RegisterAlbumTrace',
+        ],
+
+            'App\Events\SongTraceEvent' => [
+            'App\Listeners\RegisterSongTrace',
+        ],
+
+            'App\Events\MegazineTraceEvent' => [
+            'App\Listeners\RegisterMegazineTrace',
+        ],
+
+            'App\Events\BookTraceEvent' => [
+            'App\Listeners\RegisterBookTrace',
+        ],
             
+            'App\Events\EpisodeTraceEvent' => [
+            'App\Listeners\RegisterEpisodeTrace',
+        ],
+            
+            'App\Events\RadioTraceEvent' => [
+            'App\Listeners\RegisterRadioTrace',
+        ],
+
+            'App\Events\TvTraceEvent' => [
+            'App\Listeners\RegisterTvTrace',
+        ],
 
 
     ];

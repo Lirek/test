@@ -65,7 +65,7 @@
                                                 <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
                                                 <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
                                                 <div id="cantidadTickets-{{$ticket->id}}">
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
@@ -152,7 +152,7 @@
 
 @section('js')
 <script language="JavaScript1.1">
-    
+
 </script>
 <script type="text/javascript" id="jsbin-javascript">
     /*
@@ -196,7 +196,7 @@
     });
 
     function total(id,costo,cant){
-           
+
         var documento = $('#Cantidad-'+id).val();
         var total=parseFloat(costo*documento);
         var  ticket=parseFloat(cant*documento);
@@ -259,7 +259,7 @@
         return patron.test(te);
     }
 
-    function tipo(id){ 
+    function tipo(id){
 
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
@@ -294,7 +294,7 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
 <script id="jsbin-javascript">
-    
+
     function bdd(id,cost,callback){
         var value = $('#Cantidad-'+id).val();
         var parametros = "/"+id+"/"+cost+"/"+value;

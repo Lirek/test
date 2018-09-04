@@ -54,6 +54,17 @@
 
                   @endif
 
+                  @if(Auth::guard('Promoter')->user()->priority == 1)
+
+                    <li class="mt">
+                      <a href="{{url('Business')}}">
+                          <i class="fa fa-university"></i>
+                          <span>Negocios y Otros</span>
+                      </a>
+                  </li> 
+
+                  @endif
+
               </ul>
               <!-- sidebar menu end-->
           </div>

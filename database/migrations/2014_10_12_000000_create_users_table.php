@@ -27,6 +27,9 @@ class CreateUsersTable extends Migration
             $table->string('alias')->nullable();
             $table->string('img_perf')->nullable();
             $table->integer('credito')->nullable();
+            $table->integer('points')->nullable();
+            $table->integer('limit_points')->nullable()->default(1000);
+            $table->integer('pending_points')->nullable()->default(0);
             $table->boolean('verify')->default(FALSE);
             $table->date('fech_nac')->nullable();
             $table->string('password')->nullable()->default(NULL);

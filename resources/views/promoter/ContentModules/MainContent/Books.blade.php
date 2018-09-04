@@ -9,7 +9,7 @@
 			<li><a data-toggle="tab" href="#menu1" id="pubTab">Saga,Trilogia u Otro</a></li>		
 			</ul>
 	</h2>
-  </div>
+ </div>
   
   <div class="row mt">			
 

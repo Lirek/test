@@ -13,7 +13,9 @@ class TicketsPackage extends Model
         'amount',
         'photo',
         'name',
+        'points',
         'cost',
-        'promoter_id'  
+        'promoter_id',
+        'points_cost'
         ];
 }

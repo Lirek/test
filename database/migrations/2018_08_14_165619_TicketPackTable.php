@@ -16,7 +16,9 @@ class TicketPackTable extends Migration
        Schema::create('tickets_package', function (Blueprint $table){
             $table->increments('id');
             $table->integer('amount')->unsigned()->default('0');
-            $table->integer('cost')->unsigned()->default('0');            
+            $table->integer('cost')->unsigned()->default('0');
+            $table->integer('points')->unsigned()->default('3');
+            $table->integer('points_cost')->unsigned()->default('20');
             $table->string('photo')->nullable()->default(NULL);
             $table->string('name')->nullable()->default(NULL);
             $table->integer('promoter_id')->unsigned()->default('0');

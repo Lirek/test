@@ -10,9 +10,12 @@ use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
+use App\Events\PayementAprovalEvent;
+use App\Events\PaymentDenialEvent;
 use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
+use App\Events\AssingPointsEvents;
 use File;
 
 //-------------Modelos del sistema-----------------------
@@ -35,7 +38,10 @@ use App\LoginControl;
 use App\Salesman;
 use App\PromotersRoles;
 use App\TicketsPackage;
-
+use App\Payments;
+use App\Referals;
+use App\PointsAssings;
+use App\SistemBalance;
 
 //--------------------------------------------------------
 
@@ -75,7 +81,7 @@ class AdminController extends Controller
           return Datatables::of($albums)
                     ->addColumn('Estatus',function($albums){
                       
-                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button';
+                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button>';
                     })
 
                     ->addColumn('Autors_name',function($albums){
@@ -619,46 +625,172 @@ class AdminController extends Controller
 
       public function DataTableTv()
       {
-        $tv= TV::where('status','=','En Proceso')->get();
+        $tv= Tv::where('status','=','En Proceso')->get();
 
         return Datatables::of($tv)
 
                           ->addColumn('Estatus',function($tv){
 
-                            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
+                            return '<button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#myModal" id="status">'.$tv->status.'</button';
                           })
                           ->editColumn('logo',function($tv){
 
-                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$radios->logo.'"
+                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$tv->logo.'"
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
                           })
                           ->editColumn('streaming',function($tv){
                       
 
-                          return '<audio controls="" src="'.$tv->streaming.'">
-                                    <source src="'.$tv->streaming.'" type="video/quicktime">
-                                    </audio>';
+                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
                          })
                           ->addColumn('SocialMedia',function($tv){
                       
                             return 
-                            '<a target="_blank" href="http://'.$radios->facebook.'>
+                            '<a target="_blank" href="http://'.$tv->facebook.'>
                              <i class="fa fa-facebook-official" style="font-size:24px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->google.'">
+                             <a target="_blank" href="http://'.$tv->google.'">
                               <i class="fa fa-youtube-play" style="font-size:36px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->instagram.'">
+                             <a target="_blank" href="http://'.$tv->instagram.'">
                                <i class="fa fa-instagram" style="font-size:36px"></i>
                              </a>
-                             <a target="_blank" href="http://'.$radios->twitter.'">
+                             <a target="_blank" href="http://'.$tv->twitter.'">
                               <i class="fa fa-twitter" style="font-size:36px"></i>
                              </a>';
                     })
                           ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
                           ->toJson();
+      }
+
+      public function BackendTvData()
+      {
+        $tv= Tv::where('seller_id','=',0)->get();
+
+         return Datatables::of($tv)
+
+                          ->addColumn('Actions',function($tv){
+
+                            return '<button type="button" class="btn-danger" value='.$tv->id.' data-toggle="modal" data-target="#DeleteRadio" id="delete">Eliminar</button>
+
+                            <button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
+                          })
+                          ->editColumn('logo',function($tv){
+
+                          return '<img class="img-rounded img-responsive av" src="'.asset($tv->logo).'"
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          ->editColumn('streaming',function($tv){
+                      
+
+                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
+                          
+                         })
+                          ->addColumn('SocialMedia',function($tv){
+                      
+                            return 
+                            '<a target="_blank" href="http://'.$tv->facebook.'>
+                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->google.'">
+                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->instagram.'">
+                               <i class="fa fa-instagram" style="font-size:36px"></i>
+                             </a>
+                             <a target="_blank" href="http://'.$tv->twitter.'">
+                              <i class="fa fa-twitter" style="font-size:36px"></i>
+                             </a>';
+                    })
+                          ->rawColumns(['Actions','logo','streaming','SocialMedia'])
+                          ->toJson();
 
       }
+
+       public function NewBackendTv(Request $request)
+      {
+        $Tv = new Tv;
+        
+            $file = $request->file('logo');
+            $name = 'Tvlogo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/Tv/';
+            $file->move($path, $name);
+            $logos = '/images/Tv/'.$name;
+
+        $Tv->seller_id = 0;
+
+        $Tv->name_r = $request->name_r;
+        
+        $Tv->streaming = $request->streaming;
+        
+        $Tv->email_c = $request->email_c;
+        
+        $Tv->google = $request->youtube;
+        
+        $Tv->instagram = $request->instagram;
+        
+        $Tv->facebook = $request->facebook;
+        
+        $Tv->twitter = $request->twitter;
+        
+        $Tv->logo = $logos;
+
+        $Tv->status ='Aprobado';
+        
+        $Tv->save();
+
+        return redirect()->action('AdminController@ShowTV');
+
+      }
+
+      public function DeleteBackendTv($id)
+      {
+        $Tv = Tv::destroy($id);
+        return response()->json($Tv);
+      }
+
+      public function GetBackendTv($id)
+      {
+        $Tv = Tv::find($id);
+        $Tv->logo = asset($Tv->logo);
+        return response()->json($Tv);
+      }
+
+      public function UpdateBackendTv(Request $request,$id)
+      {
+        $Tv= Tv::find($id);
+        //dd($request->all());
+        if($request->logo_u != null)
+        {
+            
+            $file = $request->file('logo_u');
+            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
+            $path = public_path(). '/images/Tv/';
+            $file->move($path, $name);
+          
+            $Tv->logo = '/images/Tv/'.$name;
+         }         
+
+        $Tv->name_r = $request->name_r_u;
+        
+        $Tv->streaming = $request->streaming_u;
+        
+        $Tv->email_c = $request->email_c_u;
+        
+        $Tv->google = $request->youtube_u;
+        
+        $Tv->instagram = $request->instagram_u;
+        
+        $Tv->facebook = $request->facebook_u;
+        
+        $Tv->twitter = $request->twitter_u;
+        
+        $Tv->save();
+
+        return redirect()->action('AdminController@ShowTV');
+      }
+
+
       public function ShowAllTV()
       {
         $tv= TV::paginate(10);
@@ -1186,6 +1318,8 @@ class AdminController extends Controller
       {
         $Pack=TicketsPackage::find($id);
         $Pack->name= $request->name;
+        $Pack->points_cost=$request->pointsCost;
+        $Pack->points=$request->points;
         $Pack->cost= $request->cost;
         $Pack->amount= $request->ammount; 
         $Pack->save();
@@ -1205,6 +1339,8 @@ class AdminController extends Controller
         
         $NPack= new TicketsPackage;
         $NPack->name= $request->name;
+        $NPack->points_cost=$request->pointsCost;
+        $NPack->points=$request->points;
         $NPack->cost= $request->cost;
         $NPack->amount= $request->ammount; 
         $NPack->save();
@@ -1219,5 +1355,208 @@ class AdminController extends Controller
       }
 
 //--------------------------------
+
+//-----------------Validacion de Pagos----------------------
+      public function DepsitDataTable()
+      {
+        $deposit = Payments::where('status','=','En Revision')->with('TicketsUser')->with('Tickets');
+
+        return Datatables::of($deposit)
+                                    ->editColumn('voucher',function($deposit){
+
+                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'" 
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                                 </button> ';
+                    })
+                    ->editColumn('user_id',function($deposit){
+
+                      return $deposit->TicketsUser->name;
+                    })
+                    ->addColumn('Estatus',function($deposit){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
+                      </button';
+                    })
+                     ->addColumn('total',function($deposit){
+                      
+                      return $deposit->value*$deposit->Tickets->cost.'$';
+                    })
+                      ->rawColumns(['Estatus','voucher'])
+                      ->toJson();
+      }
+
+      public function DepositStatus(Request $request,$id)
+      {
+        
+        $deposit = Payments::find($id);
+        
+        
+        if($request->status == 'Aprobado')
+        {
+
+          $user = User::find($deposit->user_id);
+         
+          $tickets =  $deposit->value*$deposit->Tickets->amount;
+
+          $user->credito =$user->credito + $tickets;
+         
+          $user->save();
+         
+          $deposit->status = 'Aprobado';
+         
+          $deposit->save();
+        
+          $Condition=Carbon::now()->firstOfMonth()->toDateString();
+
+          $revenueMonth = Payments::where('user_id','=',$deposit->user_id)
+            ->where('created_at', '>=',$Condition)
+            ->where('status', '=','Aprobado')
+            ->get();
+          
+          $balance=  SistemBalance::find(1);
+
+          $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+
+          $balance->save();
+
+          if ($revenueMonth->count()<=1) 
+          {
+           event(new AssingPointsEvents($user->id,$deposit->package_id));
+          }
+          
+
+
+          //event(new PayementAprovalEvent($user->email));
+          
+          return response()->json($user);
+        }
+        else
+        {
+           $user = User::find($deposit->user_id);
+           $deposit->status = 'Denegado';
+           $deposit->save();
+           event(new PaymentDenialEvent($user->email,$request->message));
+           return response()->json($deposit);
+
+        }
+      }
+
+
+//------------------------------------------------------------
+
+//--------------------------Funcion de Pruueba----------------
+    public function test()
+      {
+        $TicketsPackage = TicketsPackage::find(1);        
+
+        $User = User::find(4);
+
+        $points= $TicketsPackage->points;
+    
+        $i = 0;
+
+       
+         if ($User->UserRefered->count() == 0) 
+         {
+                $balance= SistemBalance::find(1);
+                
+                $balance->my_points= $balance->my_points + $points;
+                
+                $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
+
+                $balance->points_solds = $balance->points_sold + $points;
+                
+                $balance->save();
+
+                $Assing = new PointsAssings;
+                
+                $Assing->amount = $points;
+                
+                $Assing->from =  $User->id;
+                
+                $Assing->to =  0;
+                
+                $Assing->save();
+         }
+        else
+        {      
+            
+            $UserR = User::find(4);
+
+            $id=$UserR->id;
+
+            $Refered= collect(new User);
+
+            while (true) 
+            {
+              $pass = Referals::where('refered','=',$id)->first();
+               
+               if ($pass!=NULL) 
+               {
+                $id=$pass->user_id;
+                $Refered->push(User::find($id));
+               }
+               else
+               {
+                
+                break;
+               }   
+            }
+            
+            foreach ($Refered as $key) 
+            {
+               if($key->points == $key->limit_points)
+               {
+                  $key->pending_points = $key->pending_points + 1;
+               }
+               else
+               {
+                $key->points = $key->points + 1; 
+               }
+               
+               
+               $key->save();
+               $Assing1 = new PointsAssings;
+               $Assing1->amount = 1;
+               $Assing1->from = $UserR->id; 
+               $Assing1->to =   $key->id;
+               $Assing1->save();
+            }
+            
+            $total=$points-$Refered->count();
+           
+            $balance=  SistemBalance::find(1);
+
+            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
+
+            $balance->points_solds = $balance->points_sold + $points;
+
+            if ($total!=0)
+            {                      
+                $balance->my_points= $balance->my_points + $total; 
+                
+                $balance->save();
+
+                $Assing = new PointsAssings;
+                
+                $Assing->amount = $total;
+                
+                $Assing->from =  $User->id;
+                
+                $Assing->to =  0;
+
+                $Assing->save();
+                
+            }
+            else
+            {
+              $balance->save();
+            }
+
+        }
+      }
+//-------------------------------------------------------------
+
 
 }

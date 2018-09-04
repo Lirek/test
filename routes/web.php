@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
+Route::get('Test','AdminController@test');
 
 
 /* ------------------------------------------------------------------
@@ -32,8 +33,10 @@ Route::get('/', 'WelcomeController@welcome');
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 */
-
 Auth::routes();
+
+//Route::post('login', 'Auth\LoginController@login');
+
 
 Route::get('/register/{user_code}','UserController@show');
 Route::post('SellerRegister','SellerController@CompleteRegistration');
@@ -50,7 +53,7 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
     // agregadas por Pacheco
     Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
     Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
-    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending'); 
+    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
     Route::get('factura/{id}/{medio}','HomeController@factura'); // la que firma
 
 //---------------------------------------------------------------------
@@ -108,6 +111,10 @@ Route::post('Invite','UserController@Invite');
      //Agregada 8/8/2018
     Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
 
+
+    //Agregada 8/8/2018
+    Route::get('MyBalance','UserController@balance');
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
@@ -129,6 +136,16 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ListenRadio/{id}','ContentController@ListenRadio');
     Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
     Route::post('SearchListenRadio','ContentController@ShowListenRadio');
+//Agregada 21/08/2018
+    Route::get('ShowMovies','ContentController@ShowMovies');
+    Route::get('/SearchMovie',array('as'=>'SearchMovie','uses'=>'ContentController@seachMovie'));
+    Route::post('SearchMovieList','ContentController@ShowMovieSeach');
+    Route::get('ShowMovies/{id}','ContentController@MovieList');
+//Agregada 24/08/2018
+    Route::get('ShowTv','ContentController@Showtv');
+    Route::get('PlayTv/{id}','ContentController@PlayTv');
+    Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
+    Route::post('SearchPlayTv','ContentController@ShowPlayTv');
 
 //---------------------------------------------------------------------------
 
@@ -187,16 +204,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
 
-            Route::post('SavePackage','AdminController@SavePackage');
 
+            Route::post('Save_Package', 'AdminController@SavePackage');
             Route::post('UpdatePackage/{id}','AdminController@UpdatePackage');
 
             Route::get('GetPackage/{id}','AdminController@GetPackage');
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
-
-
-
 
         //_________________FIN de RUtas de Proveedores____________________________
 
@@ -205,6 +219,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
+        //----------------------------------------------------------------
    });
     
        
@@ -305,16 +320,28 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
            //------------------------------------------------------------------------
             //-----------------------RADIOS------------------------------------------
-            Route::get('/admin_radio','AdminController@ShowRadios');
-            Route::get('RadioData','AdminController@RadioDataTable');
-            Route::get('BackendRadios','AdminController@BackendRadioData');
-            Route::post('NewBackendRadios','AdminController@NewBackendRadios');
-            Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
-            Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
-            Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
+                Route::get('/admin_radio','AdminController@ShowRadios');
+                Route::get('RadioData','AdminController@RadioDataTable');
+                Route::get('BackendRadios','AdminController@BackendRadioData');
+                Route::post('NewBackendRadios','AdminController@NewBackendRadios');
+                Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
+                Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
+                Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
 
             //-----------------------------------------------------------------------
 
+            //---------------------------TV----------------------------------------
+
+                Route::get('/admin_tv','AdminController@ShowTV');
+                Route::get('DataTableTv','AdminController@DataTableTv');
+                Route::get('BackendTV','AdminController@BackendTvData');
+                Route::post('NewBackendTv','AdminController@NewBackendTv');
+                Route::get('BackendTv/{id}','AdminController@GetBackendTv');
+                Route::post('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
+                Route::post('UpdateBackendTv/{id}','AdminController@UpdateBackendTv');
+
+
+            //--------------------------------------------------------------------
 
 
 
@@ -332,8 +359,32 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
+           //-----------------Pagos-----------------------------------------
+
+                Route::get('DepsitDataTable','AdminController@DepsitDataTable');
+
+                Route::post('DepositStatus/{id}','AdminController@DepositStatus');
+          //-------------------------
         //______________________Fin de las rutas de Clientes________________________
         
+    });
+
+    Route::group(['middleware' => ['SuperAdmin']], function (){
+
+         Route::get('Business','SuperAdminController@ShowBusiness');
+
+         Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
+         Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
+
+
+         Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');
+         Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
+
+         Route::get('UserDetails','SuperAdminController@ShowUserDetails');
+
+
+
+
     });
 });
 

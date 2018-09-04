@@ -17,10 +17,25 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name','email', 'password',
-        'codigo_ref', 'type_doc', 'num_doc',
-        'img_doc', 'type', 'alias', 'img_perf',
-        'credito', 'fech_nac','status','id','verify'
+        'name', 
+        'last_name',
+        'email', 
+        'password',
+        'codigo_ref',
+        'type_doc',
+        'num_doc',
+        'img_doc',
+        'type',
+        'alias',
+        'img_perf',
+        'credito',
+        'fech_nac',
+        'status',
+        'id',
+        'verify',
+        'points',
+        'pending_points',
+        'limit_points',
     ];
 
     /**
@@ -71,5 +86,10 @@ class User extends Authenticatable implements JWTSubject
     public function Payments()
     {
         return $this->hasMany('App\Payments', 'user_id');
+    }
+
+    public function Assings()
+    {
+        return $this->hasMany('App\PointsAssings', 'from');   
     }
 }

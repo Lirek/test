@@ -49,7 +49,9 @@ class HomeController extends Controller
         $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
         $TransacctionsMegazine= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->count(); 
         $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();   
-        
+        $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
+        $TransactionsTv=Tv::where('status','=','Aprobado')->count();
+
         $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->first();
         
         $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
@@ -86,6 +88,8 @@ class HomeController extends Controller
                              ->with('TransactionsMusic',$TransacctionsMusic)
                              ->with('TransacctionsLecture',$TransactionsLecture)
                              ->with('TransactionsMovies',$TransacctionsMovies)
+                             ->with('TransactionsRadio',$TransactionsRadio)
+                             ->with('TransactionsTv',$TransactionsTv)
                              ->with('Songs',$Songs)
                              ->with('Albums',$Albums)
                              ->with('Movies',$Movies)
@@ -164,6 +168,7 @@ class HomeController extends Controller
 
         }
         $Buy->status=2;
+        $Buy->reference=$request->references;
         $Buy->save();
         Flash('Pago registrado, en proceso de validación')->success();
         return redirect()->action('HomeController@index');
@@ -241,7 +246,7 @@ class HomeController extends Controller
         "ambiente" => 1, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $idTickets, // Id de tickets_sales
-        "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z 
+        "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
         "emisor" => [
             "ruc" => "0992897171001",
             "obligado_contabilidad" => true,
@@ -260,7 +265,7 @@ class HomeController extends Controller
             "impuestos" => [[
                 "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
                 "valor" => $valor, //1.2, // 12% del precio del paquete
-                "codigo" => "2", // IVA 
+                "codigo" => "2", // IVA
                 "codigo_porcentaje" => "2" // 12%
             ]],
             "total_sin_impuestos" => $base_imponible, // 8.8,

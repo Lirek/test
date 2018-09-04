@@ -1,5 +1,5 @@
 figure.snip1166 {
-    /*font-family: 'Raleway', Arial, sans-serif;*/
+    font-family: Roboto;
     color: #fff;
     position: relative;
     float: left;
@@ -31,7 +31,7 @@ figure.snip1166 figcaption {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 17%;
 }
 figure.snip1166 figcaption > div {
     height: 70%;
@@ -47,12 +47,13 @@ figure.snip1166 p {
     right: 0;
 }
 figure.snip1166 h3 {
+    font-family: Roboto;
     padding: 0 30px 0 15px;
     color: #ffffff;
     background-color: #1a1a1a;
     display: inline-block;
     font-weight: 400;
-    line-height: 40px;
+    line-height: initial;
     text-transform: uppercase;
     top: 30%;
     right: 0;
@@ -84,8 +85,8 @@ figure.snip1166 h3:before {
 figure.snip1166 p {
     padding: 8px 45px;
     opacity: 0;
-    font-size: 0.9em;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 700;
     left: 0;
     -webkit-transform: translate3d(0%, -150%, 0);
     transform: translate3d(0%, -150%, 0);
@@ -100,13 +101,13 @@ figure.snip1166 a {
     position: absolute;
 }
 figure.snip1166.blue h3 {
-    background-color: #2980b9;
+    background-color: #21a4de;
 }
 figure.snip1166.blue h3:after {
-    border-color: transparent transparent transparent #2980b9;
+    border-color: transparent transparent transparent #21a4de;
 }
 figure.snip1166.blue h3:before {
-    border-color: #123851 transparent transparent transparent;
+    border-color: #21a4de transparent transparent transparent;
 }
 figure.snip1166.red h3 {
     background-color: #c0392b;
@@ -136,13 +137,13 @@ figure.snip1166.orange h3:before {
     border-color: #7b410e transparent transparent transparent;
 }
 figure.snip1166.navy h3 {
-    background-color: #34495e;
+    background-color: #21a4de;
 }
 figure.snip1166.navy h3:after {
-    border-color: transparent transparent transparent #34495e;
+    border-color: transparent transparent transparent #21a4de;
 }
 figure.snip1166.navy h3:before {
-    border-color: #07090c transparent transparent transparent;
+    border-color: #0000 transparent transparent transparent;
 }
 figure.snip1166:hover img,
 figure.snip1166.hover img {
