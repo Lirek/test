@@ -509,6 +509,19 @@
         },1000);
     }
 
+    function getDatilAgain(idTicketSales,medio,callback) {
+        var msn = "";
+        getDatil(idTicketSales,medio).then(function(response) {
+            var res = JSON.parse(response);
+            msn = res;
+        }, function(error) {
+            msn = error;
+        });
+        setTimeout(function() {
+            callback(msn);
+        },2000);
+    }
+
     function comprar(id,cost,cantidadTickets) {
         var numberPhone = $('#numero-'+id).val();
         var countryPrefix = $('#pais-'+id).val();
@@ -604,27 +617,31 @@
                                                     console.log("intento "+intento+": "+status);
                                                     console.log(transaction.transactionId);
                                                     var medio = "dinero_electronico_ec";
-                                                    getDatil(idTicketSales,medio).then(function(infoFactura) {
-                                                        var infoFactura = JSON.parse(infoFactura);
+                                                    getDatilAgain(idTicketSales,medio,function callback(infoFactura) {
+                                                        //var factura = JSON.parse(infoFactura);
                                                         var idFactura = infoFactura.id;
                                                         console.log(idFactura);
-                                                        transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
-                                                            console.log("boolean"+aprobar);
-                                                            swal({
-                                                                title: "¡Pago exitoso!",
-                                                                text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
-                                                                icon: "success",
-                                                                buttons: {
-                                                                    accept: {
-                                                                        text: "OK",
-                                                                        value: true
+                                                        if (idFactura!=undefined) {
+                                                            transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
+                                                                console.log("booleano "+aprobar);
+                                                                swal({
+                                                                    title: "¡Pago exitoso!",
+                                                                    text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
+                                                                    icon: "success",
+                                                                    buttons: {
+                                                                        accept: {
+                                                                            text: "OK",
+                                                                            value: true
+                                                                        }
                                                                     }
-                                                                }
-                                                            })
-                                                            .then((recarga) => {
-                                                                location.reload();
+                                                                })
+                                                                .then((recarga) => {
+                                                                    location.reload();
+                                                                });
                                                             });
-                                                        });
+                                                        } else {
+                                                            getDatilAgain(idTicketSales,medio,callback);
+                                                        }
                                                     });
                                                 }
                                                 else if (status=="Canceled") {
