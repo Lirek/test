@@ -11,16 +11,16 @@
                 
                   
                     <div class="row mtbox" id="principal">
-                      <div class="col-md-11 col-sm-11 mb" id="barra" style="margin-left: 2% ">
+                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
                         <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">
                           <div class="white">
                               <h3><span style="color: white" class="card-title">Contenido Reciente</span></h3>      
                           </div>
                         </div>
                       </div>
-
-                      <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                        <div class="box1">
+                    <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                      <div class="col-md-2 col-sm-2 box0">
+                        <div class="box1" style="margin-left: 5%">
                           <span class="li_video"></span>
                           <h3>{{$TransactionsMovies}}</h3>
                         </div>
@@ -54,8 +54,15 @@
                         </div>
                         <!-- <p>48 New files were added in your cloud storage.</p> -->
                       </div>
-                      
-
+                      <div class="col-md-2 col-sm-2 box0">
+                        <div class="box1">
+                          <h3>Total</h3>
+                          <br>
+                          <h3>{{$TransactionsMovies + $TransactionsMusic + $TransacctionsLecture + $TransactionsRadio + $TransactionsTv}}</h3>
+                        </div>
+                        <!-- <p>48 New files were added in your cloud storage.</p> -->
+                      </div>
+                    </div>
                     </div><!-- /row mt -->  
                     
                     <div class="row mt">
