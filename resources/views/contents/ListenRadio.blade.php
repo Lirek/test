@@ -4,118 +4,118 @@
 
 @endsection
 
-@section('main')  
+@section('main')
 
-<div class="row" style="">
-    <div class="form-group"> 
-        <div class="row-edit">
-            <div class="col-md-12 col-sm-12 mb">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-            	<div class="control-label">
-            		<div class="white-header">
-            			<div class="col-sm-12 col-xs-12 col-md-12">
-                            @foreach($Rad as $radios)
-                            <h3><span class="card-title"><center><b><i class=""></i> {{$radios->name_r}}</b></center></span></h3>
-                            <div class="col-sm-6 col-xs-6 col-md-6">
-                                
-                             
-                                    <img src="{{asset($radios->logo)}}" class="img-responsive" width="40%" style="margin-top: 5%; margin-left: 30%">
-                                
-                            </div>
-                            <div class="col-sm-12 col-xs-6 col-md-6" style="margin-top: 2%;">
-                                
-                                    <a class="waves-effect waves-light btn blue darken-3" href="{{$radios->facebook}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
-                                        <i class="fa fa-facebook" ></i>
-                                    </a>
-                                    <a class="waves-effect waves-light btn blue" href="{{$radios->twitter}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                    <a class="waves-effect waves-light btn red" href="{{$radios->google}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%"> 
-                                        <i class="fa fa-youtube"></i>
-                                    </a>    
-                                    <a class="waves-effect waves-light btn pink" href="{{$radios->instagram}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                
-                                
-                            </div>
-                            <div class="col-sm-12 col-xs-12 col-md-6">
-                                <audio  id="player" controls  autoplay >
-                                    <source src="{{asset($radios->streaming)}}" type="audio/mp3" allow="autoplay">
-                                </audio>
-                            </div>
+    <div class="row" style="">
+        <div class="form-group">
+            <div class="row-edit">
+                <div class="col-md-12 col-sm-12 mb">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="control-label">
+                                <div class="white-header">
+                                    <div class="col-sm-12 col-xs-12 col-md-12">
+                                        @foreach($Rad as $radios)
+                                            <h3><span class="card-title"><center><b><i class=""></i> {{$radios->name_r}}</b></center></span></h3>
+                                            <div class="col-sm-6 col-xs-6 col-md-6">
 
-            				@endforeach
-                            <div class="col-sm-12 col-xs-12 col-md-12">
-                                <hr>
-                                <h3><span class="card-title"><i class="fa fa-angle-right"> Radios</i></span></h3>
-                                <div class="col-md-12  control-label">
-                                    <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">{{ csrf_field() }}
-                                        <input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
-                                        <button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Radio...</button> 
-                                    </form>
-                                </div>
 
-                                @foreach($Radio as $radioss)
-                                <div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 3%">
-                                    <div class="content-panel pn-music">
-                                        <div id="profile-01" style="">
-                                            <img src="{{asset($radioss->logo)}}" width="100%" >
-                                        </div>
-                                        <div class="profile-01 centered">
-                                            <p><a href="{{url('ListenRadio/'.$radioss->id)}}" style="color: #ffff"><i class="fa fa-play-circle"> Escuchar</i></p></a>
+                                                <img src="{{asset($radios->logo)}}" class="img-responsive" width="40%" style="margin-top: 5%; margin-left: 30%">
+
+                                            </div>
+                                            <div class="col-sm-12 col-xs-6 col-md-6" style="margin-top: 2%;">
+
+                                                <a class="waves-effect waves-light btn blue darken-3" href="{{$radios->facebook}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                    <i class="fa fa-facebook" ></i>
+                                                </a>
+                                                <a class="waves-effect waves-light btn blue" href="{{$radios->twitter}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                                <a class="waves-effect waves-light btn red" href="{{$radios->google}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                    <i class="fa fa-youtube"></i>
+                                                </a>
+                                                <a class="waves-effect waves-light btn pink" href="{{$radios->instagram}}" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                    <i class="fa fa-instagram"></i>
+                                                </a>
+
+
+                                            </div>
+                                            <div class="col-sm-12 col-xs-12 col-md-6">
+                                                <audio  id="player" controls  autoplay >
+                                                    <source src="{{asset($radios->streaming)}}" type="audio/mp3" allow="autoplay">
+                                                </audio>
+                                            </div>
+
+                                        @endforeach
+                                        <div class="col-sm-12 col-xs-12 col-md-12">
+                                            <hr>
+                                            <h3><span class="card-title"><i class="fa fa-angle-right"> Radios</i></span></h3>
+                                            <div class="col-md-12  control-label">
+                                                <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">{{ csrf_field() }}
+                                                    <input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
+                                                    <button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Radio...</button>
+                                                </form>
+                                            </div>
+
+                                            @foreach($Radio as $radioss)
+                                                <div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 3%">
+                                                    <div class="content-panel pn-music">
+                                                        <div id="profile-01" style="">
+                                                            <img src="{{asset($radioss->logo)}}" width="100%" >
+                                                        </div>
+                                                        <div class="profile-01 centered">
+                                                            <p><a href="{{url('ListenRadio/'.$radioss->id)}}" style="color: #ffff"><i class="fa fa-play-circle"> Escuchar</i></p></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <div  class="col-sm-12 col-xs-12 col-md-12">
+                                                {{  $Radio->links() }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-                              <div  class="col-sm-12 col-xs-12 col-md-12">
-                                {{  $Radio->links() }}
                             </div>
                         </div>
-                            </div>
-            			</div>
-            		</div>
-            	</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 @endsection
 @section('js')
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
-</script>
+        const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
+    </script>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-$(document).ready(function(){
-    $('#seach').keyup(function(evento){
-        $('#buscar').attr('disabled',true);
-    });
-    $('#buscar').attr('disabled',true);
-      $('#seach').autocomplete({
-        source: "{{ url('SearchRadio') }}",
-        minLength: 2,
-        select: function(event, ui){        
-            $('#seach').val(ui.item.value);
-            var valor = ui.item.value;
-          console.log(valor);
-            if (valor=='No se encuentra...'){
+        $(document).ready(function(){
+            $('#seach').keyup(function(evento){
                 $('#buscar').attr('disabled',true);
-                swal('Radio no se encuentra regitrada','','error');
-            }else{
-                $('#buscar').attr('disabled',false);
-            }
-        }
+            });
+            $('#buscar').attr('disabled',true);
+            $('#seach').autocomplete({
+                source: "{{ url('SearchRadio') }}",
+                minLength: 2,
+                select: function(event, ui){
+                    $('#seach').val(ui.item.value);
+                    var valor = ui.item.value;
+                    console.log(valor);
+                    if (valor=='No se encuentra...'){
+                        $('#buscar').attr('disabled',true);
+                        swal('Radio no se encuentra regitrada','','error');
+                    }else{
+                        $('#buscar').attr('disabled',false);
+                    }
+                }
 
-   });
-  });
-</script>
+            });
+        });
+    </script>
 
 @endsection

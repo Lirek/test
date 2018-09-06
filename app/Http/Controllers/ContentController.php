@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Events\RadioTraceEvent; //Agrega el Evento
-use Auth;//Agrega el facade de Auth para acceder al id
 
 use App\Megazines;
 use App\Tags;
@@ -25,16 +23,16 @@ use App\Movie;
 
 class ContentController extends Controller
 {
- 
-//------------------------------------------MUSICA------------------------------------------------------//   
-  	public function ShowMusic()
+
+//------------------------------------------MUSICA------------------------------------------------------//
+    public function ShowMusic()
     {
-    	$MusicAuthors = music_authors::where('status','=','Aprobado')->get();
-    	$Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
-    	$Albums = Albums::where('status','=','Aprobado')->take(6)->get();
-		
-			
-		return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums); 
+        $MusicAuthors = music_authors::where('status','=','Aprobado')->get();
+        $Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->get();
+        $Albums = Albums::where('status','=','Aprobado')->take(6)->get();
+
+
+        return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums);
     }
 
     public function ShowArtist($id)
@@ -45,16 +43,16 @@ class ContentController extends Controller
 
         $Albums = Albums::where('status','=','Aprobado')->where('autors_id','=',$id)->get();
 
-         if ($Albums->count()==0) 
-         {
-             $Albums=NULL;
-         }
+        if ($Albums->count()==0)
+        {
+            $Albums=NULL;
+        }
 
-         if ($Singles->count()==0) 
-         {
-             $Singles=NULL;
-         }
-         
+        if ($Singles->count()==0)
+        {
+            $Singles=NULL;
+        }
+
         return view('contents.ArtistProfile')->with('Artist',$Artist)->with('Singles',$Singles)->with('Albums',$Albums);
     }
 
@@ -77,31 +75,31 @@ class ContentController extends Controller
         $data=array();
 
         foreach ($Artist as $key) {
-           
+
             $data[]=['id' => $key->id, 'value' => $key->name];
         }
         if(count($data))
         {
-            return response()->json($data); 
+            return response()->json($data);
         }else
         {
-         return ['value'=>'No se encuentra...','id'=>''];
+            return ['value'=>'No se encuentra...','id'=>''];
         }
-       
+
     }
-        
+
     public function ShowAllAlbum()
     {
-    	$Albums = Albums::where('status','=','Aprobado')->with('autors')->with('songs')->get();
+        $Albums = Albums::where('status','=','Aprobado')->with('autors')->with('songs')->get();
         return Datatables::of($Albums)->make(true);
     }
 
     public function ShowAllSingles()
     {
         $Singles = Songs::where('album','=',0)->where('status','=','Aprobado')->with('autors')->get();
-        
+
         return Datatables::of($Singles)->make(true);
- 
+
     }
 
 
@@ -109,12 +107,12 @@ class ContentController extends Controller
     public function ShowReadingsBooks()
     {
         $Books= Book::where('status','=','Aprobado')->paginate(9);
-       
-        
+
+
         return view('contents.Readings')->with('Books',$Books);
     }
 
-     public function ShowReadingsMegazines()
+    public function ShowReadingsMegazines()
     {
         $Megazines= Megazines::where('status','=','Aprobado')->get();
 
@@ -129,7 +127,7 @@ class ContentController extends Controller
         $data=array();
 
         foreach ($Author as $key) {
-           
+
             $data[]=['id' => $key->id, 'value' => $key->full_name, 'type' => 'author'];
         }
         // foreach ($book as $key1 ) {
@@ -137,12 +135,12 @@ class ContentController extends Controller
         // }
         if(count($data))
         {
-            return response()->json($data); 
+            return response()->json($data);
         }else
         {
-         return ['value'=>'No se encuentra...','id'=>''];
+            return ['value'=>'No se encuentra...','id'=>''];
         }
-       
+
     }
     public function ShowAuthor($id)
     {
@@ -151,10 +149,10 @@ class ContentController extends Controller
         $Books = Book::where('status','=','Aprobado')->where('author_id','=',$id)->get();
 
 
-         if ($Books->count()==0) 
-         {
-             $Books=NULL;
-         } 
+        if ($Books->count()==0)
+        {
+            $Books=NULL;
+        }
         return view('contents.AuthorProfile')->with('Author',$Author)->with('Books',$Books);
     }
 
@@ -176,10 +174,9 @@ class ContentController extends Controller
     }
 
     public function ListenRadio($id){
-        $Radio= Radio::where('id','=',$id)->get();
-          event(new RadioTraceEvent($id,Auth::user()->id));//Llama al evento asi y pasale el id del contenido y el id del usuario y listo se queda registrado
-
-        return view('Contents.listenRadio')->with('Radio',$Radio);
+        $Rad= Radio::where('id','=',$id)->get();
+        $Radio= Radio::where('status','=','Aprobado')->paginate(8);
+        return view('Contents.listenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
     }
 
     public function ShowListenRadio(Request $request){
@@ -197,29 +194,30 @@ class ContentController extends Controller
         $data=array();
 
         foreach ($Radio as $key) {
-           
+
             $data[]=['id' => $key->id, 'value' => $key->name_r];
         }
 
         if(count($data))
         {
-            return response()->json($data); 
+            return response()->json($data);
         }else
         {
-         return ['value'=>'No se encuentra...','id'=>''];
+            return ['value'=>'No se encuentra...','id'=>''];
         }
-       
+
     }
 //--------------------------------------Tvs-----------------------------------------------
-   public function ShowTv(){
+    public function ShowTv(){
         $Tv= Tv::where('status','=','Aprobado')->paginate(10);
         return view('Contents.ShowTv')->with('Tv',$Tv);
-    } 
+    }
     public function PlayTv($id){
         $Tv= Tv::where('id','=',$id)->get();
-        return view('Contents.playTv')->with('Tv',$Tv);
+        $Tvs= Tv::where('status','=','Aprobado')->paginate(8);
+        return view('Contents.playTv')->with('Tv',$Tv)->with('Tvs',$Tvs);
     }
-     public function ShowPlayTv(Request $request){
+    public function ShowPlayTv(Request $request){
         $Tv= Tv::where('name_r','=',$request->seach)->get();
         foreach ($Tv as $key) {
             $prueba=$this->PlayTv($key->id);
@@ -234,28 +232,28 @@ class ContentController extends Controller
         $data=array();
 
         foreach ($Tv as $key) {
-           
+
             $data[]=['id' => $key->id, 'value' => $key->name_r];
         }
 
         if(count($data))
         {
-            return response()->json($data); 
+            return response()->json($data);
         }else
         {
-         return ['value'=>'No se encuentra...','id'=>''];
+            return ['value'=>'No se encuentra...','id'=>''];
         }
-       
+
     }
 //--------------------------------------MOVIES--------------------------------------------
 
     public function ShowMovies(){
         $Movie= Movie::where('status','=','Aprobado')->get();
 
-        if ($Movie->count()==0) 
-         {
-             $Movie=NULL;
-         } 
+        if ($Movie->count()==0)
+        {
+            $Movie=NULL;
+        }
         return view('Contents.Movies')->with('Movie',$Movie);
     }
 
@@ -266,18 +264,18 @@ class ContentController extends Controller
         $data=array();
 
         foreach ($Movie as $key) {
-           
+
             $data[]=['id' => $key->id, 'value' => $key->title];
         }
 
         if(count($data))
         {
-            return response()->json($data); 
+            return response()->json($data);
         }else
         {
-         return ['value'=>'No se encuentra...','id'=>''];
+            return ['value'=>'No se encuentra...','id'=>''];
         }
-       
+
     }
     public function MovieList($id){
         $Movie= Movie::where('id','=',$id)->get();
@@ -292,4 +290,3 @@ class ContentController extends Controller
         return $prueba;
     }
 }
-
