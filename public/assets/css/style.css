@@ -13,7 +13,7 @@ Premium: http://www.gridgum.com
 /* BASIC THEME CONFIGURATION */
 body {
     color: #797979;
-	background: #f2f2f2;
+	/*background: #f2f2f2;*/
     font-family: 'Ruda', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
@@ -796,7 +796,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 /* Dash Side */
 
 .ds {
-	background: #ffffff;
+	background: #f2f2f2;
 	padding-top: 20px;
 }
 
