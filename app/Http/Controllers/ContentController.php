@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Events\RadioTraceEvent; //Agrega el Evento 
+use App\Events\RadioTraceEvent; //Agrega el Evento
 use Auth;//Agrega el facade de Auth para acceder al id
 
 use App\Megazines;

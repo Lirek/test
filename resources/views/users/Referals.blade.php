@@ -5,8 +5,10 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
+<div class="col-lg-9 col-md-9" >
     <div class="row mtbox">  
-        <div class="col-md-6 col-sm-6 mb">
+
+        <!-- <div class="col-md-6 col-sm-6 mb">
           <div class="white-panel refe">
             <div class="white-header">
                 <h5><i class="fa fa-user"></i>Mi Codigo de Referido:</h5>
@@ -19,9 +21,69 @@
                 </div>
             </div>
           </div>
-        </div><!-- /col-md-5 -->
+        </div> -->
 
-        <div class="col-md-6 col-sm-6 mb">
+        <div class="col-md-12 col-sm-12">
+          <dir class="col-md-6 col-sm-6" >
+            <div class="panel2">
+              <center><h5><i class="fa fa-user"></i> Mi Codigo de Referido:</h5></center>
+            </div>
+          </dir>
+          <div class="col-md-6 col-sm-6">
+            <p>
+              <h2>{{Auth::user()->codigo_ref}}</h2>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
+          <dir class="col-md-6 col-sm-6" >
+            <div class="panel2">
+              <center><h5><i class="fa fa-user"></i> Mi Enlace:</h5></center>
+            </div>
+          </dir>
+          <div class="col-md-6 col-sm-6" style="margin-top: 2%">
+            <p>
+              <h5><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h5>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
+          <dir class="col-md-6 col-sm-6" >
+            <div class="panel2">
+              <center><h5><i class="fa fa-envelope-o"></i> Invitar por correo</h5></center>
+            </div>
+          </dir>
+          <div class="col-md-6 col-sm-6" style="  ">
+            <p>
+              <h3>
+                  <a href="#myModal" data-toggle="modal" class="btn btn-info">
+                    Enviar     
+                  </a>
+              </h3>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
+          <dir class="col-md-6 col-sm-6" style="">
+            <div class="panel2">
+              <center><h5><i class="fa fa-user"></i> Total de referidos:</h5></center>
+            </div>
+          </dir>
+          <div class="col-md-6 col-sm-6" style="margin-top: -3%">
+            <p>
+              <h2><a href="#">
+                      <center>{{$referals1+$referals2+$referals3}}</center>
+                  </a>
+              </h2>
+              <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6 col-sm-6 mb">
           <div class="white-panel refe">
             <div class="white-header">
                 <h5><i class="fa fa-envelope-o"></i>Invitar por correo</h5>
@@ -38,9 +100,9 @@
                 </div>
             </div>
           </div>
-        </div><!-- /col-md-5 -->
+        </div> -->
 
-        <div class="col-md-12 col-sm-12 mb">
+        <!-- <div class="col-md-12 col-sm-12 mb">
           <div class="white-panel refe">
             <div class="white-header">
                 <h5><i class="fa fa-user"></i>Mi Enlace:</h5>
@@ -53,11 +115,25 @@
                 </div>
             </div>
           </div>
-        </div><!-- /col-md-5 -->
+        </div> -->
 
+        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
+          <dir class="col-md-6 col-sm-6" style="margin-top: 15%">
+            <div class="panel2">
+              <center> <h5><i class="fa fa-user"></i>Mi Codigo Qr:</h5></center>
+            </div>
+          </dir>
+          <div class="col-md-6 col-sm-6 col-xs-12" style="  ">
+            <p>
+              <div class="center">
+                {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                <center><a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a></center>
+            </div>
+            </p>
+          </div>
+        </div>
 
-        <div class="col-md-4 col-sm-4 mb">
-            <!-- Qr PANEL -->
+ <!--        <div class="col-md-4 col-sm-4 mb">
             <div class="white-panel  pn2">
           <div class="white-header">
               <h5><i class="fa fa-user"></i>Mi Codigo Qr:</h5>
@@ -69,10 +145,33 @@
             </div>
           </div>
           </div>
-        </div><!-- /col-md-4 -->
-
+        </div> -->
+  </div>
 </div>
-
+@if ($refered != null)
+<div class="col-lg-3 col-md-3 ds" >
+  <div class="panel panel-default">
+    <!-- USERS ONLINE SECTION -->
+    <h3>Mis referidos directos:</h3>
+    <!-- First Member -->
+    @foreach($refered as $refereds)
+    <div class="desc">
+      <div class="thumb">
+        @if($refereds->img_perf)
+          <img class="img-circle" src="{{asset('assets/img/ui-divya.jpg')}}" width="35px" height="35px" align="">
+        @else
+          <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="35px" height="35px" align="">
+        @endif
+      </div>
+    <div class="details" style="margin-top: 3%">
+      <p><a href="#">{{$refereds->name}}</a><br/></p>
+    </div>
+  </div>
+  @endforeach
+ {{  $refered->links() }}
+</div>
+</div>
+@endif
 <!--MODAL PARA ENVIAR REFERIDOS-->
 <div id="myModal" class="modal fade" role="dialog">                                     
      <div class="modal-dialog">
