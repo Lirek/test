@@ -20,6 +20,11 @@ use App\Referals;
 use App\Movie;
 use App\TicketsPackage;
 use App\Payments;
+
+use App\AccountBalance;
+use App\Serie;
+use App\Episode;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
 
@@ -142,9 +147,78 @@ class HomeController extends Controller
     }
 
     public function SaleTickets(){
+
         $package=TicketsPackage::all();
-        return view('users.SalesTickets')->with('package',$package);
+
+        $Transaction=Transactions::where('user_id','=',Auth::user()->id)->get();
+        if ($Transaction->count()!= 0) {
+            foreach ($Transaction as $key)  {
+                if($key->books_id != 0){
+                    $accionM=Book::find($key->books_id);
+                    $accion=$accionM->title;
+                    //$accion='Compra de libro';
+                            
+                }
+                elseif($key->album_id != 0){
+                    $accionM=Albums::find($key->album_id);
+                    $accion=$accionM->name_alb;
+                }
+                elseif($key->song_id != 0){
+                    $accionM=Songs::find($key->song_id);
+                    $accion=$accionM->song_name;
+                }
+                elseif($key->series_id != 0){
+                    $accionM=Serie::find($key->series_id);
+                    $accion=$accionM->title;
+                }
+                elseif($key->episodes_id != 0){
+                    $accionM=Episode::find($key->episodes_id);
+                    $accion=$accionM->episode_name;
+                }
+                elseif($key->movies_id != 0){
+                    $accionM=Movie::find($key->movies_id);
+                    $accion=$accionM->title;
+                }
+                elseif($key->megazines_id != 0){
+                    $accionM=Megazines::find($key->megazines_id);
+                    $accion=$accionM->title;
+                }
+                $Balance[]=array(
+                        'Id' => $key->user_id,
+                        'Date'=>$key->created_at->format('d/m/Y'),
+                        'Cant'=>$key->tickets,
+                        'Transaction'=>$accion,
+                        'Type' => 1,
+                        //'Factura' => $key->factura_id
+                    );
+            }
+        }else{
+
+            $Balance[]=0;
+        }
+        $Payment=Payments::where('user_id','=',Auth::user()->id)->where('status','=','Aprobado')->get();
+        if ($Payment->count() != 0) {
+            foreach ($Payment as $key) {
+                $Balance[]=array(
+                    'Id' => $key->user_id,
+                    'Date' => $key->created_at->format('d/m/Y'),
+                    'Cant' => $this->tickets($key->package_id)*$key->value,
+                    'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
+                    'Type' => 2,
+                    'Factura' => $key->factura_id
+                );
+            }
+        }else{
+            $Balance[]=0;
+        }
+        
+        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+
+        //dd($ordenBalance);
+
+        return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance);
     }
+
     public function BuyPlan(Request $request){
         $Buy = new Payments;
         $Buy->user_id=Auth::user()->id;
@@ -184,8 +258,8 @@ class HomeController extends Controller
         $Buy->status        = 2;
         $Buy->save();
         $Buy = Payments::all();
-        $lastID = $Buy->last();
-        return Response()->json($lastID);
+        $clientTransactionId = $Buy->last()->id."|".date("Y-m-d H:i:s");
+        return Response()->json($clientTransactionId);
     }
 
     public function TransactionCanceled($id,$reference) {
@@ -198,8 +272,6 @@ class HomeController extends Controller
     }
 
     public function TransactionApproved($id,$reference,$ticket,$idFactura) {
-        //$medio = "dinero_electronico_ec";
-        //$factura_id = $this->factura($id,$medio);
         $Buy = Payments::find($id);
         $Buy->status    = 1;
         $Buy->reference = $reference;
@@ -233,6 +305,8 @@ class HomeController extends Controller
 
     public function factura($idTickets,$medio) {
 
+        $secuencial = explode("|", $idTickets);
+        $secuencial = $secuencial[0];
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
         $nombrePaquete = $paquete->name;
@@ -245,7 +319,7 @@ class HomeController extends Controller
         $data = [
         "ambiente" => 1, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
-        "secuencial" => $idTickets, // Id de tickets_sales
+        "secuencial" => $secuencial, // Id de tickets_sales
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
         "emisor" => [
             "ruc" => "0992897171001",
@@ -298,9 +372,6 @@ class HomeController extends Controller
             "total" => $total // 10.0 // precio del paquete de tickets
             ]]
         ];
-        //dd($data);
-        /*
-        */
         $urlEmision = "https://link.datil.co/invoices/issue";
         $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: DTleipel8892");
         $datapost   = json_encode($data);
@@ -316,7 +387,15 @@ class HomeController extends Controller
         curl_close ($ch);
         $respuesta = json_decode($response);
         return Response()->json($respuesta);
-        //dd($response,$respuesta,$respuesta->id);
-        //echo $respuesta->id;
+    }
+
+    public function tickets($id){
+        $cantidad=TicketsPackage::find($id);
+        return $cantidad->amount;
+    }
+
+    public function packTicket($id){
+        $cantidad=TicketsPackage::find($id);
+        return $cantidad->name;
     }
 }

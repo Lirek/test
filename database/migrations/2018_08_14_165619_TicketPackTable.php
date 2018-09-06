@@ -23,7 +23,7 @@ class TicketPackTable extends Migration
             $table->string('name')->nullable()->default(NULL);
             $table->integer('promoter_id')->unsigned()->default('0');
             $table->timestamps();
-            $table->foreign('promoter_id')->references('id')->on('promoter');
+            //$table->foreign('promoter_id')->references('id')->on('promoter');
             });
     }
 

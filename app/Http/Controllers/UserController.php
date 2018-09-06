@@ -316,6 +316,7 @@ class UserController extends Controller
                         'Cant'=>$key->tickets,
                         'Transaction'=>$accion,
                         'Type' => 1,
+                        //'Factura' => $key->factura_id
                     );
             }
         }else{
@@ -330,7 +331,8 @@ class UserController extends Controller
                     'Date' => $key->created_at->format('d/m/Y'),
                     'Cant' => $this->tickets($key->package_id)*$key->value,
                     'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
-                    'Type' => 2
+                    'Type' => 2,
+                    'Factura' => $key->factura_id
                 );
             }
         }else{

@@ -19,7 +19,7 @@ class MoviesTraceTable extends Migration
             $table->integer('movies_id')->unsigned()->default();
             $table->integer('user_id')->unsigned()->default();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('movies_id')->references('id')->on('movies');
 
             

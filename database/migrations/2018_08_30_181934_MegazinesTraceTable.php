@@ -19,7 +19,7 @@ class MegazinesTraceTable extends Migration
             $table->integer('megazine_id')->unsigned()->default();
             $table->integer('user_id')->unsigned()->default();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('megazine_id')->references('id')->on('megazines');
 
             
