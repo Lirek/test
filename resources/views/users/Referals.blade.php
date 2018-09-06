@@ -150,25 +150,26 @@
 </div>
 @if ($refered != null)
 <div class="col-lg-3 col-md-3 ds" >
-  <!-- USERS ONLINE SECTION -->
-<h3>Mis referidos directos:</h3>
-<!-- First Member -->
-@foreach($refered as $refereds)
-<div class="desc">
-  <div class="thumb">
-    @if($refereds->img_perf)
-      <img class="img-circle" src="{{asset('assets/img/ui-divya.jpg')}}" width="35px" height="35px" align="">
-    @else
-      <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="35px" height="35px" align="">
-    @endif
+  <div class="panel panel-default">
+    <!-- USERS ONLINE SECTION -->
+    <h3>Mis referidos directos:</h3>
+    <!-- First Member -->
+    @foreach($refered as $refereds)
+    <div class="desc">
+      <div class="thumb">
+        @if($refereds->img_perf)
+          <img class="img-circle" src="{{asset('assets/img/ui-divya.jpg')}}" width="35px" height="35px" align="">
+        @else
+          <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="35px" height="35px" align="">
+        @endif
+      </div>
+    <div class="details" style="margin-top: 3%">
+      <p><a href="#">{{$refereds->name}}</a><br/></p>
+    </div>
   </div>
-  <div class="details" style="margin-top: 3%">
-    <p><a href="#">{{$refereds->name}}</a><br/>
-    </p>
-  </div>
-</div>
- @endforeach
+  @endforeach
  {{  $refered->links() }}
+</div>
 </div>
 @endif
 <!--MODAL PARA ENVIAR REFERIDOS-->
