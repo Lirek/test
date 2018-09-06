@@ -72,12 +72,12 @@
 </div>	
 
 
-<h3><i class="fa fa-angle-right"></i>Usuarios Destacados</h3>
+<h3><i class="fa fa-angle-right"></i>Usuarios</h3>
 
 
 <div class="row-mt">
 
-	 	<div class="col-md-8 col-sm-8 mb">
+	 	<div class="col-md-10 col-sm-10 mb">
   		<div class="green-panel pn">
   			<div class="green-header">
 	  			<h5>Usuarios</h5>
@@ -88,8 +88,9 @@
 				<img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="110px">
 			</div>
 			
-			<div class="center">
-					 <table class="table table-bordered table-striped table-condensed cf">            
+			<div class="col-md-10">
+        <h6>Usuarios Destacados</h6>
+					 <table class="table table-bordered table-striped table-condensed cf" style="background-color: #fff">            
                         <thead class="cf">
                                 <tr>
                                   <th class="non-numeric">Nombre</th>
@@ -112,6 +113,36 @@
                                </tbody>
                        </table>
 			</div>
+
+      <div class="col-md-10">
+          <h6>Usuarios Libres</h6>
+           <table class="table table-bordered table-striped table-condensed cf" style="background-color: #fff">            
+                        <thead class="cf">
+                                <tr>
+                                  <th class="non-numeric">Nombre</th>
+                                  <th class="non-numeric">Email</th>
+                                  <th class="non-numeric">Puntos</th>
+                                  <th class="non-numeric">Fecha de Registro</th>
+                                  <th class="non-numeric">Estatus</th>                                  
+                                </tr>
+                            </thead>
+                                <tbody>
+                                  @foreach($UnRefereds as $UnRefered)
+                                   <td class="non-numeric">{{$UnRefered->name}}</td>
+                                   <td class="non-numeric">{{$UnRefered->email}}</td>
+                                   <td class="non-numeric">{{$UnRefered->points}}</td>
+                                   <td class="non-numeric">{{$UnRefered->created_at}}</td>
+                                   @if($UnRefered->verify==0)
+                                   <td class="non-numeric">No Verificado</td>
+                                   @else
+                                   <td class="non-numeric">Verificado</td>
+                                   @endif
+                                  @endforeach 
+                               </tbody>
+                       </table>
+      </div>
+
+              
 			
 			<div class="center">
 				<a href="{{url('UserDetails')}}"><button type="button" class="btn btn-theme">Ver Mas

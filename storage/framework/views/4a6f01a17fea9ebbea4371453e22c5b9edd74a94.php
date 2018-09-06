@@ -187,12 +187,14 @@
               var  ammount = $('[name=ammount]').val();
               var  pointsCost = $('[name=points_cost]').val();
               var  points = $('[name=points]').val();
+              e.preventDefault();
              
 
                 $.ajax({
 
                   url: 'Save_Package',
                   type:'POST',
+                  async: false,
                   data:{
                         _token: $('input[name=_token]').val(),
                         name: name,

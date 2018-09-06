@@ -359,7 +359,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
 
          Route::get('UserDetails','SuperAdminController@ShowUserDetails');
-         
+         Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
          
 
 

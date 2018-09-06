@@ -1,7 +1,4 @@
-@extends('promoter.layouts.app')
-
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
 <div class="row mt">
 <h3><i class="fa fa-angle-right"></i>Usuarios Destacados</h3>
@@ -45,9 +42,9 @@
 	</div>  
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 	$(document).ready(function(){
 		
@@ -56,7 +53,7 @@
 	        serverSide: true,
             responsive: true,
 
-	        ajax: '{!! url('UnReferedUserDataTable') !!}',
+	        ajax: '<?php echo url('UnReferedUserDataTable'); ?>',
 	        columns: [
 	            {data: 'name', name: 'name'},
 	            {data: 'email', name: 'email'},
@@ -68,4 +65,5 @@
 	    });
 	})
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
