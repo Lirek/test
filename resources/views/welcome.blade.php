@@ -419,10 +419,10 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <li>
+                    <li style="margin-top: -5%; margin-left: 18%">
                         <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
-                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
                     </li>
                 </ul>
@@ -472,6 +472,14 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="modal-footer" id="modal_footer">
+                                <div class="text-center">
+                                    <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
+                                    <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
+                                    <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
+                                </div>
+                                <small style="font-size: 80%"><center>Inicio de sesion con redes sociales</center></small>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-4 ">
                                     <div class="checkbox">
@@ -484,14 +492,6 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="modal-footer" id="modal_footer">
-                            <div class="text-center">
-                                <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px"></a>
-                                <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
-                                <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
-                            </div>
-
-                        </div>
                     </div>
                     <div id="proveedor" class="tab-pane fade"> 
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
@@ -1360,7 +1360,7 @@ $(document).ready(function(){
                 $('#passwordMen').css('font-size','60%');
                 $('#iniciar').attr('disabled',true);
             } else {
-                $('#emailMen').hide();
+                $('#passwordMen').hide();
                 $('#iniciar').attr('disabled',false);
             }
             var email = $('#email').val().trim();

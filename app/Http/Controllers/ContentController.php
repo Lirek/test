@@ -174,8 +174,9 @@ class ContentController extends Controller
     }
 
     public function ListenRadio($id){
-        $Radio= Radio::where('id','=',$id)->get();
-        return view('Contents.listenRadio')->with('Radio',$Radio);
+        $Rad= Radio::where('id','=',$id)->get();
+        $Radio= Radio::where('status','=','Aprobado')->paginate(8);
+        return view('Contents.listenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
     }
 
     public function ShowListenRadio(Request $request){
@@ -213,7 +214,8 @@ class ContentController extends Controller
     } 
     public function PlayTv($id){
         $Tv= Tv::where('id','=',$id)->get();
-        return view('Contents.playTv')->with('Tv',$Tv);
+         $Tvs= Tv::where('status','=','Aprobado')->paginate(8);
+        return view('Contents.playTv')->with('Tv',$Tv)->with('Tvs',$Tvs);
     }
      public function ShowPlayTv(Request $request){
         $Tv= Tv::where('name_r','=',$request->seach)->get();

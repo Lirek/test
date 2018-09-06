@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
-    <title>LEIPEL</title>
+    <title>Leipel</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
@@ -59,6 +59,16 @@
               </div>
             <!--logo start-->
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
+            <div class="nav pull-right top-menu" id="boton">
+            <div class="navbar-right">
+              <img height="39px" src="{{asset('plugins/img/logo-icon-2.png')}}">
+              <img height="39px" src="{{asset('plugins/img/logo-icon-4.png')}}">
+              <img height="39px" src="{{asset('plugins/img/logo-icon.png')}}">
+              <img height="39px" src="{{asset('plugins/img/logo-icon-5.png')}}">
+              <img height="39px" src="{{asset('plugins/img/logo-icon-3.png')}}">
+            </div>
+            </div>
+            
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
            <!--  notification (Barra Cabecera) -->
@@ -238,6 +248,12 @@
                           <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Proveedores</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-ticket"></i>
+                          <span>Recargar</span>
+                      </a>
+                  </li>
                   <li class="sub-menu sidebar-menu hidden-xs" id="nav-accordion" style="position: fixed; bottom: 0px; width: 12%;">
                       <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                       <span>
@@ -258,14 +274,15 @@
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }}</form>
                   </li>
               </ul>
-              <!-- sidebar menu end-->
+              <!-- sidebar menu
+               end-->
           </div>
       </aside>
       <!--sidebar end-->
       <section id="main-content">
           <section class="wrapper">
                 <div class="row">
-                    <div class="col-lg-11 main-chart">
+                    <div class="col-lg-12 main-chart">
                         @yield('main')
                     </div>
                     <!--BARRA OCULTA-->
@@ -315,7 +332,7 @@
       <div class="modal-body">
         <label class="control-label col-sm-12 col-xs-12 col-md-12">
           <center><h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4></center>
-          <center><h4><b>Total de puntos:</b> 0 </h4></center>
+          <center><h4><b>Total de puntos:</b> </h4></center>
         </label>
         <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
       </div>

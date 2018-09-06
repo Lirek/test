@@ -1164,6 +1164,12 @@ PANELS CONFIGURATIONS
 	margin-bottom: 15px;
 	color: #f5f5f5;
 }
+.panel2 {
+    background: #23B5E6;
+    padding: 3px;
+    margin-bottom: 15px;
+    color: #f5f5f5;
+}
 .white-panel .small {
 	font-size: 10px;
 	color: #ccd1d9;

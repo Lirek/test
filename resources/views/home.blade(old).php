@@ -8,16 +8,9 @@
       @include('flash::message')
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
               
-                
+                  
                   
                     <div class="row mtbox" id="principal">
-                      <div class="col-md-11 col-sm-11 mb" id="barra" style="margin-left: 2% ">
-                        <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">
-                          <div class="white">
-                              <h3><span style="color: white" class="card-title">Contenido Reciente</span></h3>      
-                          </div>
-                        </div>
-                      </div>
 
                       <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                         <div class="box1">
@@ -60,104 +53,11 @@
                     
                     <div class="row mt">
 
-                  <!--CONTENIDO RECIENTE-->
-                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
-                        <div class="white-panel panRf pe donut-chart">
-                          <div class="white-header">
-                            <h3><span class="card-title"></span></h3>                          
-                          </div>
-                          <div class="col-sm-12 col-xs-12 col-md-12 goleft">
-                            <table class="table table-striped table-advance table-hover">
-                                <thead>
-                                <tr>
-                                  <th></th>
-                                  <th><i class="fa fa-bullhorn" style="color: #23B5E6"></i>Nombre</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"  style="color: #23B5E6"></i>Tipo</th>
-                                  <th><i class="fa fa-money" style="color: #23B5E6"></i>Costo</th>
-                                  <th class="hidden-phone"><i class=" fa fa-edit"  style="color: #23B5E6"></i>Proveedor</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-
-                              @if($Songs)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->title!!}','{!!$Songs->id!!}')" id="modal-confir"> {{$Songs->song_name}}</a></td>
-                                  <td class="hidden-phone">Single</td>
-                                  <td>{{$Songs->cost}}</td>
-                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
-                                </tr>
-                              @endif
-
-                              @if($Albums)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')" id="modal-confirAlbum"> {{$Albums->name_alb}}</a></td>
-                                  <td class="hidden-phone">Album Musical</td>
-                                  <td>{{$Albums->cost}}</td>
-                                  <td class="hidden-phone">{{$Albums->Seller->name}}</td>
-                                </tr>
-                              @endif
-
-                              @if($Tv)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
-                                  <td class="hidden-phone">TV Online</td>
-                                  <td>Gratis</td>
-                                </tr>
-                             @endif
-
-                            @if($Book)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"> {{$Book->title}}</a></td>
-                                <td class="hidden-phone">Libro</td>
-                                <td>{{$Book->cost}}</td>
-                                <td class="hidden-phone">{{$Book->seller->name}}</td>
-                              </tr>
-                            @endif
-
-                            @if($Megazines)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$Megazines->title}}</a></td>
-                                <td class="hidden-phone">Revista</td>
-                                <td>{{$Megazines->cost}}</td>
-                                <td class="hidden-phone">{{$Megazines->Seller->name}}</td>
-                              </tr>
-                            @endif
-
-                            @if($Radio)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ListenRadio/'.$Radio->id)}}"> {{$Radio->name_r}}</a></td>
-                                <td class="hidden-phone">Radio Online</td>
-                                <td>Gratis</td>
-                                <td class="hidden-phone">{{$Radio->name}}</td>
-                              </tr>
-                            @endif
-
-                            @if($Movies)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ShowMovies/'.$Movies->id)}}"> {{$Movies->title}}</a></td>
-                                <td class="hidden-phone">Pelicula</td>
-                                <td>{{$Movies->cost}}</td>
-                                <td class="hidden-phone">{{$Movies->Seller->name}}</td>
-                              </tr>
-                          @endif
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
                     @if(Auth::user()->alias==FALSE)
                         
                     
                       <!-- COMPLETAR PERFIL PANELS -->
-                        <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
+                        <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
                           <div class="white-panel panRf pe donut-chart">
                             <div class="white-header">
                                <h5>Finalice Su Registro</h5>
@@ -254,7 +154,7 @@
                     
                     <!--REFERIR-->
                     @if(Auth::user()->UserRefered()->count()==0) 
-                    <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
+                    <div class="col-md-12 col-sm-12 mb" id="referir" style="margin-left: 2%">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
                             <h5>Agregar codigo referido</h5>
@@ -307,7 +207,99 @@
                       </div>
                       @endif
 
-                                 
+                      <!--CONTENIDO RECIENTE-->
+                      <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
+                        <div class="white-panel panRf pe donut-chart">
+                          <div class="white-header">
+                            <h3><span class="card-title">Contenido Reciente</span></h3>                          
+                          </div>
+                          <div class="col-sm-12 col-xs-12 col-md-12 goleft">
+                            <table class="table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                  <th></th>
+                                  <th><i class="fa fa-bullhorn" style="color: #23B5E6"></i>Nombre</th>
+                                  <th class="hidden-phone"><i class="fa fa-question-circle"  style="color: #23B5E6"></i>Tipo</th>
+                                  <th><i class="fa fa-money" style="color: #23B5E6"></i>Costo</th>
+                                  <th class="hidden-phone"><i class=" fa fa-edit"  style="color: #23B5E6"></i>Proveedor</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                              @if($Songs)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->title!!}','{!!$Songs->id!!}')" id="modal-confir"> {{$Songs->song_name}}</a></td>
+                                  <td class="hidden-phone">Single</td>
+                                  <td>{{$Songs->cost}}</td>
+                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
+                                </tr>
+                              @endif
+
+                              @if($Albums)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')" id="modal-confirAlbum"> {{$Albums->name_alb}}</a></td>
+                                  <td class="hidden-phone">Album Musical</td>
+                                  <td>{{$Albums->cost}}</td>
+                                  <td class="hidden-phone">{{$Albums->Seller->name}}</td>
+                                </tr>
+                              @endif
+
+                              @if($Tv)
+                                <tr class="letters">
+                                  <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
+                                  <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
+                                  <td class="hidden-phone">TV Online</td>
+                                  <td>Gratis</td>
+                                  <td class="hidden-phone"></td>
+                                </tr>
+                             @endif
+
+                            @if($Book)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
+                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"> {{$Book->title}}</a></td>
+                                <td class="hidden-phone">Libro</td>
+                                <td>{{$Book->cost}}</td>
+                                <td class="hidden-phone">{{$Book->seller->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Megazines)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
+                                <td><a href=""> {{$Megazines->title}}</a></td>
+                                <td class="hidden-phone">Revista</td>
+                                <td>{{$Megazines->cost}}</td>
+                                <td class="hidden-phone">{{$Megazines->Seller->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Radio)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
+                                <td><a href="{{url('ListenRadio/'.$Radio->id)}}"> {{$Radio->name_r}}</a></td>
+                                <td class="hidden-phone">Radio Online</td>
+                                <td>Gratis</td>
+                                <td class="hidden-phone">{{$Radio->name}}</td>
+                              </tr>
+                            @endif
+
+                            @if($Movies)
+                              <tr class="letters">
+                                <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
+                                <td><a href="{{url('ShowMovies/'.$Movies->id)}}"> {{$Movies->title}}</a></td>
+                                <td class="hidden-phone">Pelicula</td>
+                                <td>{{$Movies->cost}}</td>
+                                <td class="hidden-phone">{{$Movies->Seller->name}}</td>
+                              </tr>
+                          @endif
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>            
 
 
 
