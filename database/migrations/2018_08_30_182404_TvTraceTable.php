@@ -19,7 +19,7 @@ class TvTraceTable extends Migration
             $table->integer('tv_id')->unsigned()->default();
             $table->integer('user_id')->unsigned()->default();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('tv_id')->references('id')->on('tv');
 
             

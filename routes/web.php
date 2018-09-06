@@ -54,7 +54,7 @@ Route::get('MyTickets/{id}', 'HomeController@MyTickets');
     Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
     Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
     //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
-    Route::get('factura/{id}/{medio}','HomeController@factura'); // la que firma
+    Route::get('factura/{id}/{medio}','HomeController@factura');
 
 //---------------------------------------------------------------------
 

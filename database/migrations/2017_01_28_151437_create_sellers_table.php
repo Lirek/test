@@ -26,7 +26,7 @@ class CreateSellersTable extends Migration
             $table->string('adj_ruc')->default('NULL');
             $table->string('adj_ci')->default('NULL');
             $table->integer('promoter_id')->unsigned()->default(0);
-            $table->foreign('promoter_id')->references('id')->on('promoter');
+            //$table->foreign('promoter_id')->references('id')->on('promoter');
             $table->rememberToken();
             $table->timestamps();
         });

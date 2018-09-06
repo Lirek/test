@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProducersSeed::class);
         $this->call(PromoterModules::class);
         $this->call(Rating::class);
-        $this->call(TicketSeeder::class);
+        //$this->call(TicketSeeder::class);
         $this->call(PackageSeeder::class);
         
 

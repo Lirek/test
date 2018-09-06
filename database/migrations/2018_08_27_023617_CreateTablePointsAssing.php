@@ -19,8 +19,8 @@ class CreateTablePointsAssing extends Migration
             $table->integer('from')->unsigned()->default('0');
             $table->integer('to')->unsigned()->default('0');
             $table->timestamps();
-            $table->foreign('from')->references('id')->on('user');
-            $table->foreign('to')->references('id')->on('user');
+            $table->foreign('from')->references('id')->on('users');
+            $table->foreign('to')->references('id')->on('users');
             });
     }
 

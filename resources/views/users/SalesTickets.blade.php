@@ -11,43 +11,49 @@
 @endsection
 @section('main') 
 
-<div class="row">
+<div class="row" style="margin-bottom: -20%">
     <div class="form-group"> 
         <div class="row-edit">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
-
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="white-header"><br>
-                                <h2><span class="card-title"><center><i class="fa fa-ticket"></i> Compra de tickets</center></span></h2><br>
+                                <h2>
+                                    <span class="card-title">
+                                        <center><i class="fa fa-ticket"></i> Compra de tickets</center>
+                                    </span>
+                                </h2>
+                                <br>
                             </div>
 
                     @foreach($package as $ticket)
-                    <div class="col-md-4 col-sm-4" id="referir">
+                    <div class="col-md-4 col-sm-4">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="white-panel panRf  donut-chart">
+                                <div class="white-panel">
                                     <div class="white-header" style="padding: 45px">
                                         <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1>{{$ticket->name}}</h1></span>
                                     </div>
-                                        <div class="row">
-                                            <div class="col-sm-10 col-xs-10 col-md-10">
-                                              <h4 style="margin-left: 20%; color: #000; "><b>Costo:</b> ${{$ticket->cost}} <br>(Incluido IVA)</h4><br>
-                                              <div class="paragraph">
-                                                <p class="center " id="mensaje"></p>
-
-                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})"><h5><i class="fa fa-ticket"></i> Comprar</h5></a>
-
-
-                                              </div>
+                                    <div class="row">
+                                        <div class="col-sm-10 col-xs-10 col-md-10">
+                                            <h4 style="margin-left: 20%; color: #000;">
+                                                <b>Costo:</b> ${{$ticket->cost}} <br> (Incluido IVA)
+                                            </h4>
+                                            <br>
+                                            <div class="paragraph">
+                                                <p class="center" id="mensaje"></p>
+                                                <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
+                                                        <h5><i class="fa fa-ticket"></i> Comprar</h5>
+                                                </a>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
 
                                                     <!--MODAL-->
-                             <div id="myModal-{{$ticket->id}}" class="modal fade" role="dialog">
+                            <div id="myModal-{{$ticket->id}}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                 <!-- Modal content-->
                                     <div class="modal-content">
@@ -56,84 +62,80 @@
                                             <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> {{$ticket->name}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">{{ csrf_field() }}
-                                            <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
-                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <img src="{{asset('assets/img/tickets.png')}}" class="img-responsive center-block">
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
-                                                <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
-                                                <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
-                                                <div id="cantidadTickets-{{$ticket->id}}">
-
+                                            <form class="form-horizontal" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <img src="{{asset('assets/img/tickets.png')}}" class="img-responsive center-block">
                                                 </div>
-                                            </div>
-                                            <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
-                                                <label for="codigo" class="col-md-4 col-sm-4 col-xs-12 control-label" style="margin-left:25% "><h5><b>Cantidad de paquetes:</b></h5>
-                                                </label>
-                                                <div class="col-md-2 col-sm-2 col-xs-12" style="margin-top: 1%">
-                                                    <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12" id="total-{{$ticket->id}}">
-
-                                            </div>
-                                            <h5 align="center"><b>Método de pago</b></h5>
-                                            <div class="radio" align="center">
-                                            <input type="hidden" name="id" id="id" value="{{$ticket->id}}">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h4>
-                                                            <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="Deposito" required onclick="tipo({!!$ticket->id!!})"><i class="fa fa-money"> Depósito </i>
-                                                        </h4>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h4>
-                                                            <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="payphone" required onclick="tipo({!!$ticket->id!!})"><i class="fa fa-money"> PayPhone </i>
-                                                        </h4>
+                                                <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
+                                                    <label for="codigo" class="col-md-4 col-sm-4 col-xs-12 control-label" style="margin-left:25% "><h5><b>Cantidad de paquetes:</b></h5>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-2 col-xs-12" style="margin-top: 1%">
+                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12" style="display:none;" id="deposito-{{$ticket->id}}" align="center">
-                                                <div class="col-md-12">
-                                                    <label class="control-label"><b>Número de deposito:</b>
-                                                        <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de deposito" size="28" onkeypress="return controltagNum(event)">
-                                                    </label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
+                                                    <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
+                                                    <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
+                                                    <div id="cantidadTickets-{{$ticket->id}}"></div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <label class="control-label"><b>Recibo:</b>
-                                                        <input id="voucher-{{$ticket->id}}" type="file" accept=".jpg" class="form-control" name="voucher" value="{{ old('voucher') }}" >
-                                                    </label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12" id="total-{{$ticket->id}}"></div>
+                                                <h5 align="center"><b>Método de pago</b></h5>
+                                                <div class="radio" align="center">
+                                                    <input type="hidden" name="id" id="id" value="{{$ticket->id}}">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h4>
+                                                                <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="Deposito" required onclick="tipo({!!$ticket->id!!})">
+                                                                <i class="fa fa-money"> Depósito </i>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <h4>
+                                                                <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="payphone" required onclick="tipo({!!$ticket->id!!})">
+                                                                <i class="fa fa-money"> PayPhone </i>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="display:none;" id="deposito-{{$ticket->id}}" align="center">
+                                                    <div class="col-md-12">
+                                                        <label class="control-label"><b>Número de depósito:</b>
+                                                            <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label class="control-label"><b>Recibo:</b>
+                                                            <input id="voucher-{{$ticket->id}}" type="file" accept=".jpg" class="form-control" name="voucher" value="{{ old('voucher') }}" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none;">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id="codCountry-{{$ticket->id}}"></span>
+                                                            <select name="pais" id="pais-{{$ticket->id}}" class="form-control pais">
+                                                            </select>
+                                                        </div>
+                                                        <input type="number" id="numero-{{$ticket->id}}" min="1" name="numero" class="form-control" placeholder="Número de teléfono" onkeypress="return controltagNumForm(event,{!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
+                                                    </div>
+                                                    <div id="mensajeValidacion-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
+                                                    </div>
+                                                    <div id="mensajePayPhone-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%">
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center" style="margin-top: 2%">
-                                                        <button type="submit" class="btn btn-primary" id='ingresar'>Comprar</button>
+                                                        <a class="btn btn-default" id="ingresarFalso-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none;">
-                                                <div class="col-md-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon" id="codCountry-{{$ticket->id}}"></span>
-                                                        <select name="pais" id="pais-{{$ticket->id}}" class="form-control pais">
-                                                        </select>
-                                                    </div>
-                                                    <input type="number" id="numero-{{$ticket->id}}" min="1" name="numero" class="form-control" placeholder="Número de teléfono" onkeypress="return controltagNumForm(event,{!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
-                                                </div>
-                                                <div id="mensajeValidacion-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
-                                                </div>
-                                                <div id="mensajePayPhone-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%">
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center" style="margin-top: 2%">
-                                                        <a class="btn btn-primary" id='ingresarFalso' onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
+                                                        <button type="submit" class="btn btn-default" id="ingresar-{{$ticket->id}}">Comprar</button>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </form>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +144,60 @@
                     </div>
                    <!--FIN DEL MODAL-->
                     @endforeach
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group"> 
+        <div class="row-edit">
+            <div class="col-md-12 col-sm-12 mb">
+                <div class="control-label">
+                <div class="white-header">
+                     <h2><span class="card-title"><center><i class="fa fa-ticket"></i> Mi Balance</center></span></h2><br>          
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
+                    <div class="text-center">
+                        <div class="col-sm-6">
+                            <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4><b>Total de puntos:</b> 0 </h4>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-advance table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-calendar" style="color: #23B5E6"></i> Fecha</th>
+                                <th><i class="fa fa-pencil" style="color: #23B5E6"></i> Concepto</th>
+                                <th><i class="fa fa-money" style="color: #23B5E6"></i> + </th>
+                                <th><i class="fa fa-money" style="color: #23B5E6"></i> - </th>
+                                <th><i class="fa fa-file-pdf-o" style="color: #23B5E6"></i> Factura</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($Balance as $balance)
+                                @if($balance != 0)
+                                    <tr class="letters">
+                                        <td>{{$balance['Date']}}</td>
+                                        <td>{{$balance['Transaction']}}</td>
+                                        @if($balance['Type']==1)
+                                            <td></td>
+                                            <td>{{$balance['Cant']}}</td>
+                                            <td></td>
+                                        @else
+                                            <td>{{$balance['Cant']}}</td>
+                                            <td></td>
+                                            <td>
+                                                <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
+                                            </td>
+                                       @endif
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             </div>
         </div>
@@ -151,8 +206,34 @@
 @endsection
 
 @section('js')
-<script language="JavaScript1.1">
-
+<script type="text/javascript">
+    $('#myTable').DataTable({
+        "language": {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ ",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "No Existen Conceptos Registrados",
+            "sInfo":           "Mostrando Conceptos del _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty":      "Mostrando Conceptos del 0 al 0 de un total de 0 Singles",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ Singles)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "processing": true,
+    });
 </script>
 <script type="text/javascript" id="jsbin-javascript">
     /*
@@ -196,6 +277,8 @@
     });
 
     function total(id,costo,cant){
+
+        $("#ingresarFalso-"+id).hide();
 
         var documento = $('#Cantidad-'+id).val();
         var total=parseFloat(costo*documento);
@@ -263,6 +346,8 @@
 
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
+            $("#ingresar-"+id).show();
+            $("#ingresarFalso-"+id).hide();
             $("#deposito-"+id).show();
             $("#payphone-"+id).hide();
             $('#voucher-'+id).attr('required','required');
@@ -271,6 +356,8 @@
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
         }else{
+            $("#ingresarFalso-"+id).show();
+            $("#ingresar-"+id).hide();
             $("#payphone-"+id).show();
             $("#deposito-"+id).hide();
             $('#voucher-'+id).removeAttr('required','required');
@@ -306,7 +393,7 @@
             type    : "GET",
             dataType: "json",
             success: function (data) {
-                var id = data.id;
+                var id = data;
                 callback(id);
             }
         });
@@ -536,163 +623,171 @@
             $('#mensajeValidacion-'+id).hide();
             $('#mensajePayPhone-'+id).show();
             $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
-        }
-        getUserPayPhone(numberPhone,countryPrefix).then(function(userPayPhone) {
-            $('#mensajePayPhone-'+id).hide();
-            var clientePayPhone = JSON.parse(userPayPhone);
-            if (clientePayPhone.name==undefined) {
-                swal({
-                    title: "El usuario no existe en PayPhone",
-                    text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
-                    icon: "warning"
-                });
-            } else {
-                var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
-                swal({
-                    title: "Confirmación de usuario",
-                    text: "El número introducido, corresponde a "+nombre+", ¿es usted?",
-                    icon: "warning",
-                    buttons: {
-                        cancel: "No",
-                        accept: {
-                            text: "Si, soy yo",
-                            value: true
-                        }
-                    }
-                })
-                .then((confirmacion) => {
-                    if(confirmacion) {
-                        var total = cantidadPaquetes*cost;
-                        swal({
-                            title: "Confirmación de pago a "+nombre,
-                            text: "Se le aplicará el cobro por la compra de "+cantidadPaquetes+" paquete(s) de "+cost+"$ cada uno, para un total de "+total+"$.",
-                            icon: "warning",
-                            buttons: {
-                                cancel: "Cancelar",
-                                accept: {
-                                    text: "Aceptar",
-                                    value: true
-                                }
+        
+            getUserPayPhone(numberPhone,countryPrefix).then(function(userPayPhone) {
+                $('#mensajePayPhone-'+id).hide();
+                var clientePayPhone = JSON.parse(userPayPhone);
+                if (clientePayPhone.name==undefined) {
+                    swal({
+                        title: "El usuario no existe en PayPhone",
+                        text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
+                        icon: "warning"
+                    });
+                } else {
+                    var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
+                    swal({
+                        title: "Confirmación de usuario",
+                        text: "El número introducido, corresponde a "+nombre+", ¿es usted?",
+                        icon: "warning",
+                        buttons: {
+                            cancel: "No",
+                            accept: {
+                                text: "Si, soy yo",
+                                value: true
                             }
-                        })
-                        .then((pagar) => {
-                            $('#mensajePayPhone-'+id).show();
-                            $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
-                            console.log("id: "+id+"cost: "+cost);
-                            bdd(id,cost,function(idTicketSales) {
-                                console.log("idTicketSales: "+idTicketSales);
-                                postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
-                                    var gif = "{{ asset('/sistem_images/Loading.gif') }}";
-                                    swal({
-                                        title: "¡Listo! Estamos esperando su confirmación...",
-                                        text: "Verifique su teléfono y seleccione una opción.",
-                                        icon: gif,
-                                        buttons: false
-                                    });
-                                    var intento = 0;
-                                    var maxIntento = 90; // 1min y 1/2 de espera
-                                    var transaction = JSON.parse(response);
-                                    console.log(transaction.transactionId);
-                                    comprobarEstatusPagoPayPhone(transaction.transactionId,function callback(transactionInfo) {
-                                        $('#mensajePayPhone-'+id).show();
-                                        $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
-                                        if (intento <= maxIntento) {
-                                            console.log(transactionInfo);
-                                            if (transactionInfo!=" ") {
+                        }
+                    })
+                    .then((confirmacion) => {
+                        if(confirmacion) {
+                            var total = cantidadPaquetes*cost;
+                            swal({
+                                title: "Confirmación de pago a "+nombre,
+                                text: "Se le aplicará el cobro por la compra de "+cantidadPaquetes+" paquete(s) de "+cost+"$ cada uno, para un total de "+total+"$.",
+                                icon: "warning",
+                                buttons: {
+                                    cancel: "Cancelar",
+                                    accept: {
+                                        text: "Aceptar",
+                                        value: true
+                                    }
+                                }
+                            })
+                            .then((pagar) => {
+                                $('#mensajePayPhone-'+id).show();
+                                $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
+                                console.log("id: "+id+" cost: "+cost);
+                                bdd(id,cost,function(idTicketSales) {
+                                    console.log("idTicketSales: "+idTicketSales);
+                                    postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
+                                        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+                                        swal({
+                                            title: "¡Listo! Estamos esperando su confirmación...",
+                                            text: "Verifique su teléfono y seleccione una opción.",
+                                            icon: gif,
+                                            buttons: false
+                                        });
+                                        var intento = 0;
+                                        var maxIntento = 90; // 1min y 1/2 de espera
+                                        var transaction = JSON.parse(response);
+                                        console.log(transaction);
+                                        console.log(transaction.transactionId);
+                                        comprobarEstatusPagoPayPhone(transaction.transactionId,function callback(transactionInfo) {
+                                            $('#mensajePayPhone-'+id).show();
+                                            $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
+                                            if (intento <= maxIntento) {
                                                 console.log(transactionInfo);
-                                                var status = transactionInfo.transactionStatus;
-                                                console.log(status);
-                                                if (status=="Pending") {
-                                                    console.log("intento "+intento+": "+status);
-                                                    comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
-                                                    intento++;
-                                                }
-                                                else if (status=="Approved") {
-                                                    swal({
-                                                        title: "¡Ya casi terminamos!",
-                                                        text: "Estamos procesando su información...",
-                                                        icon: gif,
-                                                        buttons: false
-                                                    });
-                                                    console.log("intento "+intento+": "+status);
-                                                    console.log(transaction.transactionId);
-                                                    var medio = "dinero_electronico_ec";
-                                                    getDatilAgain(idTicketSales,medio,function callback(infoFactura) {
-                                                        //var factura = JSON.parse(infoFactura);
-                                                        var idFactura = infoFactura.id;
-                                                        console.log(idFactura);
-                                                        if (idFactura!=undefined) {
-                                                            transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
-                                                                console.log("booleano "+aprobar);
-                                                                swal({
-                                                                    title: "¡Pago exitoso!",
-                                                                    text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
-                                                                    icon: "success",
-                                                                    buttons: {
-                                                                        accept: {
-                                                                            text: "OK",
-                                                                            value: true
-                                                                        }
-                                                                    }
-                                                                })
-                                                                .then((recarga) => {
-                                                                    location.reload();
-                                                                });
-                                                            });
-                                                        } else {
-                                                            getDatilAgain(idTicketSales,medio,callback);
-                                                        }
-                                                    });
-                                                }
-                                                else if (status=="Canceled") {
-                                                    swal({
-                                                        title: "¡Ya casi terminamos!",
-                                                        text: "Estamos procesando su información...",
-                                                        icon: gif,
-                                                        buttons: false
-                                                    });
-                                                    console.log("intento "+intento+": "+status);
-                                                    console.log(transaction.transactionId);
-                                                    transactionCanceled(transaction.transactionId,idTicketSales,function(cancelar) {
+                                                if (transactionInfo!=" ") {
+                                                    console.log(transactionInfo);
+                                                    var status = transactionInfo.transactionStatus;
+                                                    console.log(status);
+                                                    if (status=="Pending") {
+                                                        console.log("intento "+intento+": "+status);
+                                                        comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
+                                                        intento++;
+                                                    }
+                                                    else if (status=="Approved") {
                                                         swal({
-                                                            title: "¡Pago cancelado!",
-                                                            text: "Su pago fue cancelado.",
-                                                            icon: "error",
-                                                            buttons: {
-                                                                accept: {
-                                                                    text: "OK",
-                                                                    value: true
-                                                                }
+                                                            title: "¡Ya casi terminamos!",
+                                                            text: "Estamos procesando su información...",
+                                                            icon: gif,
+                                                            buttons: false
+                                                        });
+                                                        console.log("intento "+intento+": "+status);
+                                                        console.log(transaction.transactionId);
+                                                        var medio = "dinero_electronico_ec";
+                                                        getDatilAgain(idTicketSales,medio,function callback(infoFactura) {
+                                                            var idFactura = infoFactura.id;
+                                                            console.log(idFactura);
+                                                            if (idFactura!=undefined) {
+                                                                transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
+                                                                    console.log("booleano "+aprobar);
+                                                                    swal({
+                                                                        title: "¡Pago exitoso!",
+                                                                        text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
+                                                                        icon: "success",
+                                                                        buttons: {
+                                                                            accept: {
+                                                                                text: "OK",
+                                                                                value: true
+                                                                            }
+                                                                        }
+                                                                    })
+                                                                    .then((recarga) => {
+                                                                        location.reload();
+                                                                    });
+                                                                });
+                                                            } else {
+                                                                getDatilAgain(idTicketSales,medio,callback);
                                                             }
+                                                        });
+                                                    }
+                                                    else if (status=="Canceled") {
+                                                        swal({
+                                                            title: "¡Ya casi terminamos!",
+                                                            text: "Estamos procesando su información...",
+                                                            icon: gif,
+                                                            buttons: false
+                                                        });
+                                                        console.log("intento "+intento+": "+status);
+                                                        console.log(transaction.transactionId);
+                                                        transactionCanceled(transaction.transactionId,idTicketSales,function(cancelar) {
+                                                            swal({
+                                                                title: "¡Pago cancelado!",
+                                                                text: "Su pago fue cancelado.",
+                                                                icon: "error",
+                                                                buttons: {
+                                                                    accept: {
+                                                                        text: "OK",
+                                                                        value: true
+                                                                    }
+                                                                }
+                                                            })
+                                                            .then((recarga) => {
+                                                                location.reload();
+                                                            });
+                                                        });
+                                                    }
+                                                    else if (status==undefined) {
+                                                        console.log("intento desde == undefined "+intento+": "+status);
+                                                        comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
+                                                        intento++;
+                                                    }
+                                                }
+                                            } else {
+                                                console.log("intento "+intento+" expiró el tiempo");
+                                                console.log(transaction.transactionId);
+                                                postReverse(transaction.transactionId).then(function(response) {
+                                                    transactionCanceled(transaction.transactionId,idTicketSales,function(pendiente) {
+                                                        swal({
+                                                            title: "¡Ha expirado el tiempo de espera!",
+                                                            text: "No se pudo procesar el pago por exceder el límite del tiempo permitido.",
+                                                            icon: "warning",
+                                                            buttons: false
                                                         })
                                                         .then((recarga) => {
                                                             location.reload();
                                                         });
                                                     });
-                                                }
-                                                else if (status==undefined) {
-                                                    console.log("intento desde == undefined "+intento+": "+status);
-                                                    comprobarEstatusPagoPayPhone(transaction.transactionId,callback);
-                                                    intento++;
-                                                }
-                                            }
-                                        } else {
-                                            console.log("intento "+intento+" expiró el tiempo");
-                                            console.log(transaction.transactionId);
-                                            postReverse(transaction.transactionId).then(function(response) {
-                                                transactionCanceled(transaction.transactionId,idTicketSales,function(pendiente) {
-                                                    swal({
-                                                        title: "¡Ha expirado el tiempo de espera!",
-                                                        text: "No se pudo procesar el pago por exceder el límite del tiempo permitido.",
-                                                        icon: "warning",
-                                                        buttons: false
-                                                    })
-                                                    .then((recarga) => {
-                                                        location.reload();
-                                                    });
                                                 });
+                                            }
+                                        }, function(error) {
+                                            swal({
+                                                title: "¡Error de conexión!",
+                                                text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
+                                                icon: "error"
                                             });
-                                        }
+                                            $('#mensajePayPhone-'+id).hide();
+                                        });
                                     }, function(error) {
                                         swal({
                                             title: "¡Error de conexión!",
@@ -701,33 +796,26 @@
                                         });
                                         $('#mensajePayPhone-'+id).hide();
                                     });
-                                }, function(error) {
-                                    swal({
-                                        title: "¡Error de conexión!",
-                                        text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                        icon: "error"
-                                    });
-                                    $('#mensajePayPhone-'+id).hide();
                                 });
                             });
-                        });
-                    }  else {
-                        swal({
-                            title: "Tranquilo no pasó nada",
-                            text: "Verifique el número e intentelo de nuevo, por favor",
-                            icon: "warning"
-                        });
-                    }
+                        }  else {
+                            swal({
+                                title: "Tranquilo no pasó nada",
+                                text: "Verifique el número e intentelo de nuevo, por favor",
+                                icon: "warning"
+                            });
+                        }
+                    });
+                }
+            }, function(error) {
+                swal({
+                    title: "¡Error de conexión!",
+                    text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
+                    icon: "error"
                 });
-            }
-        }, function(error) {
-            swal({
-                title: "¡Error de conexión!",
-                text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                icon: "error"
+                $('#mensajePayPhone-'+id).hide();
             });
-            $('#mensajePayPhone-'+id).hide();
-        });
+        }
         return false;
     }
 </script>

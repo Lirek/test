@@ -19,7 +19,7 @@ class SongsTraceTable extends Migration
             $table->integer('songs_id')->unsigned()->default();
             $table->integer('user_id')->unsigned()->default();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('songs_id')->references('id')->on('songs');
 
             
