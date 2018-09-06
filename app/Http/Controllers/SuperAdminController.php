@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
@@ -26,6 +27,7 @@ use App\Payments;
 use App\PointsAssings;
 use App\SistemBalance;
 use App\Transactions;
+use App\Referals;
 
 class SuperAdminController extends Controller
 {
@@ -43,6 +45,18 @@ class SuperAdminController extends Controller
 
 	         $User = User::where('points','>=',900)->take(5)->get();
 
+           $UnRefered = User::all();
+           
+           $Data = collect(new User);
+
+            foreach ($UnRefered as $key) 
+              {
+                if($key->UserRefered()->count()!=1)
+                {
+                    $Data->push($key);              
+                }
+              }
+
 	         $Payments = Payments::take(5)->get();
 
 	         return view('promoter.AdminModules.Business')
@@ -50,6 +64,7 @@ class SuperAdminController extends Controller
 	        					->with('Payments', $Payments)
 	        					->with('Users', $User)
 	        					->with('PointsAssings', $PointsAssings)
+                    ->with('UnRefereds', $Data)
 	        					->with('Pack' ,$Pack);
 	      }
    //-------------------------------------------------------------
@@ -139,6 +154,34 @@ class SuperAdminController extends Controller
 	  {
 	  	return view('promoter.AdminModules.UserDetails');	
 	  }
+
+    public function UnReferedUserDataTable()
+    {
+        $UnRefered = User::all();
+        $Data = collect(new User);
+
+        foreach ($UnRefered as $key) 
+        {
+            if($key->UserRefered()->count()!=1)
+            {
+                $Data->push($key);              
+            }
+        }
+
+        return Datatables::of($Data)
+                    ->addColumn('assing',function($Data){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Data->id.' data-toggle="modal" data-target="#myModal" id="Status">Asignar</button';
+                    })
+                    ->editColumn('verify',function($Data){
+
+                      if($Data->verify == 0){return 'No Verificado';}
+
+                      return 'Verificado';
+                    })
+                    ->rawColumns(['assing'])
+                      ->toJson();
+    }
    //---------------------------------------------------------------
 
 

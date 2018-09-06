@@ -1,7 +1,4 @@
-@extends('promoter.layouts.app')
-
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
  <h3><i class="fa fa-angle-right"></i>Balance de la Plataforma</h3>
 
@@ -18,11 +15,11 @@
 				</div>
 				 
 				<div class="col-sm-6 col-xs-6 gocenter">								 	
-					<h2>{{$Balance->tickets_solds}} <i class="fa fa-ticket" style="font-size: 50px"></i></h2>
+					<h2><?php echo e($Balance->tickets_solds); ?> <i class="fa fa-ticket" style="font-size: 50px"></i></h2>
 				</div>			 	
 				 
 				 <div class="col-sm-6 col-xs-6 gocenter">
-				 	<a href="{{url('TicketsDetail')}}"><button type="button" class="btn btn-theme">Ver Mas</button></a>
+				 	<a href="<?php echo e(url('TicketsDetail')); ?>"><button type="button" class="btn btn-theme">Ver Mas</button></a>
 				 </div>
 				 
       		</div>
@@ -38,16 +35,16 @@
 			<p>Total</p>
 			
 			<div class="center">
-				<img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="110px">
+				<img src="<?php echo e(asset('sistem_images/Leipel Logo-02.png')); ?>" width="110px">
 			</div>
 			
 			<div class="center">
-					<h2>{{$Balance->points_solds}}</h2>
+					<h2><?php echo e($Balance->points_solds); ?></h2>
 			</div>
 			
 			<div class="center">
 			
-			<a href="{{url('PointsDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
+			<a href="<?php echo e(url('PointsDetails')); ?>"><button type="button" class="btn btn-theme">Ver Mas
   			</button></a>
   			
   			</div>
@@ -58,13 +55,13 @@
   	<div class="col-md-4 col-sm-4 mb">
   		<div class="green-panel pn">
   			<div class="green-header">
-	  			<h5><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></h5>
+	  			<h5><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"></h5>
   			</div>
   			<div class="center">
   				<h3>Puntos de Leipel</h3>
   			</div>
   			  <div class="center">
-  			  	<h3>{{$Balance->my_points}}</h3>
+  			  	<h3><?php echo e($Balance->my_points); ?></h3>
   			  </div>
   		</div>
   	</div>
@@ -85,7 +82,7 @@
 			<p></p>
 			
 			<div class="center">
-				<img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="110px">
+				<img src="<?php echo e(asset('sistem_images/Leipel Logo-02.png')); ?>" width="110px">
 			</div>
 			
 			<div class="col-md-10">
@@ -102,14 +99,14 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                  @foreach($Users as $User)
-                                   <td class="non-numeric">{{$User->name}}</td>
-                                   <td class="non-numeric">{{$User->email}}</td>
-                                   <td class="non-numeric">{{$User->points}}</td>
-                                   <td class="non-numeric">{{$User->pending_points}}</td>
-                                   <td class="non-numeric">{{$User->limit_points}}</td>
-                                   <td class="non-numeric">{{$User->Payments()->first()->created_at}}</td>
-                                  @endforeach 
+                                  <?php $__currentLoopData = $Users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $User): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                   <td class="non-numeric"><?php echo e($User->name); ?></td>
+                                   <td class="non-numeric"><?php echo e($User->email); ?></td>
+                                   <td class="non-numeric"><?php echo e($User->points); ?></td>
+                                   <td class="non-numeric"><?php echo e($User->pending_points); ?></td>
+                                   <td class="non-numeric"><?php echo e($User->limit_points); ?></td>
+                                   <td class="non-numeric"><?php echo e($User->Payments()->first()->created_at); ?></td>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                </tbody>
                        </table>
 			</div>
@@ -127,17 +124,17 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                  @foreach($UnRefereds as $UnRefered)
-                                   <td class="non-numeric">{{$UnRefered->name}}</td>
-                                   <td class="non-numeric">{{$UnRefered->email}}</td>
-                                   <td class="non-numeric">{{$UnRefered->points}}</td>
-                                   <td class="non-numeric">{{$UnRefered->created_at}}</td>
-                                   @if($UnRefered->verify==0)
+                                  <?php $__currentLoopData = $UnRefereds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $UnRefered): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                   <td class="non-numeric"><?php echo e($UnRefered->name); ?></td>
+                                   <td class="non-numeric"><?php echo e($UnRefered->email); ?></td>
+                                   <td class="non-numeric"><?php echo e($UnRefered->points); ?></td>
+                                   <td class="non-numeric"><?php echo e($UnRefered->created_at); ?></td>
+                                   <?php if($UnRefered->verify==0): ?>
                                    <td class="non-numeric">No Verificado</td>
-                                   @else
+                                   <?php else: ?>
                                    <td class="non-numeric">Verificado</td>
-                                   @endif
-                                  @endforeach 
+                                   <?php endif; ?>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                                </tbody>
                        </table>
       </div>
@@ -145,7 +142,7 @@
               
 			
 			<div class="center">
-				<a href="{{url('UserDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
+				<a href="<?php echo e(url('UserDetails')); ?>"><button type="button" class="btn btn-theme">Ver Mas
   			</button></a>
 			</div>
   		</div>
@@ -156,8 +153,9 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1427,7 +1427,7 @@ class AdminController extends Controller
           
 
 
-          event(new PayementAprovalEvent($user->email));
+          //event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
