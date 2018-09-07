@@ -15,7 +15,11 @@
                             <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
                         <div class="col-sm-6">
-                            <h4><b>Total de puntos:</b> 0 </h4>
+                            @if(Auth::user()->points)
+                                <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
+                            @else
+                                <h4><b>Total de puntos:</b> 0 </h4>
+                            @endif
                         </div>
                     </div>
                     <table class="table table-striped table-advance table-hover" id="myTable">

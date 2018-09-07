@@ -162,7 +162,11 @@
                             <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
                         <div class="col-sm-6">
-                            <h4><b>Total de puntos:</b> 0 </h4>
+                            @if(Auth::user()->points)
+                                <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
+                            @else
+                                <h4><b>Total de puntos:</b> 0 </h4>
+                            @endif
                         </div>
                     </div>
                     <table class="table table-striped table-advance table-hover" id="myTable">
@@ -417,7 +421,7 @@
         return cancelar;
     }
 
-    function transactionApproved(reference,id,ticket,idFactura,callback) {
+    function transactionApproved(id,reference,ticket,idFactura,callback) {
         var parametros = "/"+id+"/"+reference+"/"+ticket+"/"+idFactura;
         var ruta = "{{ url('/TransactionApproved/') }}"+parametros;
         var aprobar = true;
@@ -477,7 +481,6 @@
             req.send();
         });
     }
-
 
     function getDatil(idTicketSales,medio) {
         return new Promise(function(resolve,reject) {
@@ -623,7 +626,7 @@
             $('#mensajeValidacion-'+id).hide();
             $('#mensajePayPhone-'+id).show();
             $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
-        
+            
             getUserPayPhone(numberPhone,countryPrefix).then(function(userPayPhone) {
                 $('#mensajePayPhone-'+id).hide();
                 var clientePayPhone = JSON.parse(userPayPhone);
@@ -706,11 +709,14 @@
                                                         console.log(transaction.transactionId);
                                                         var medio = "dinero_electronico_ec";
                                                         getDatilAgain(idTicketSales,medio,function callback(infoFactura) {
+                                                            console.log(infoFactura);
                                                             var idFactura = infoFactura.id;
                                                             console.log(idFactura);
                                                             if (idFactura!=undefined) {
-                                                                transactionApproved(transaction.transactionId,idTicketSales,tickets,idFactura,function(aprobar) {
-                                                                    console.log("booleano "+aprobar);
+                                                                var idTicket = idTicketSales.split("|")[0];
+                                                                console.log(idTicket);
+                                                                transactionApproved(idTicket,transaction.transactionId,tickets,idFactura,function(aprobar) {
+                                                                    console.log("todo bien? "+aprobar);
                                                                     swal({
                                                                         title: "¡Pago exitoso!",
                                                                         text: "No. de Transacción: #"+transaction.transactionId+". Disfrutalos con todo el entretenimiento que te ofrece LEIPEL",
