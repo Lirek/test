@@ -214,8 +214,6 @@ class HomeController extends Controller
         
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
 
-        //dd($ordenBalance);
-
         return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance);
     }
 
@@ -272,6 +270,7 @@ class HomeController extends Controller
     }
 
     public function TransactionApproved($id,$reference,$ticket,$idFactura) {
+        
         $Buy = Payments::find($id);
         $Buy->status    = 1;
         $Buy->reference = $reference;
@@ -279,7 +278,7 @@ class HomeController extends Controller
         $Buy->save();
         $this->creditos($ticket);
         $this->correo();
-        $respuesta = true;
+        $respuesta = "todo bien";
         return Response()->json($respuesta);
     }
 
@@ -305,8 +304,7 @@ class HomeController extends Controller
 
     public function factura($idTickets,$medio) {
 
-        $secuencial = explode("|", $idTickets);
-        $secuencial = $secuencial[0];
+        $secuencial = rand(0,100000000);
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
         $nombrePaquete = $paquete->name;
