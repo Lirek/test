@@ -262,6 +262,7 @@ return array(
     'CreateSellersPasswordResetTable' => $baseDir . '/database/migrations/2017_01_28_163839_create_sellers_password_reset_table.php',
     'CreateSellersTable' => $baseDir . '/database/migrations/2017_01_28_151437_create_sellers_table.php',
     'CreateSellersmoduleTable' => $baseDir . '/database/migrations/2017_01_28_014840_create_sellersmodule_table.php',
+    'CreateSessionsTable' => $baseDir . '/database/migrations/2018_09_09_065121_create_sessions_table.php',
     'CreateSondMoviesTable' => $baseDir . '/database/migrations/2017_11_08_204006_create_sond_movies_table.php',
     'CreateSongsTable' => $baseDir . '/database/migrations/2017_11_07_214846_create_songs_table.php',
     'CreateStorytellersMoviesTable' => $baseDir . '/database/migrations/2017_11_08_214330_create_storytellers_movies_table.php',

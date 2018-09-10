@@ -684,6 +684,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'CreateSellersPasswordResetTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_28_163839_create_sellers_password_reset_table.php',
         'CreateSellersTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_28_151437_create_sellers_table.php',
         'CreateSellersmoduleTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_28_014840_create_sellersmodule_table.php',
+        'CreateSessionsTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_09_065121_create_sessions_table.php',
         'CreateSondMoviesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_08_204006_create_sond_movies_table.php',
         'CreateSongsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_07_214846_create_songs_table.php',
         'CreateStorytellersMoviesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_08_214330_create_storytellers_movies_table.php',
