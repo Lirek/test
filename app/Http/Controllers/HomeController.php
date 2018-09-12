@@ -315,7 +315,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 1, // 1: prueba; 2: produccion
+        "ambiente" => 2, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, // Id de tickets_sales
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
