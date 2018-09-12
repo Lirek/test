@@ -43,9 +43,15 @@
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
+                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL)
+                                                    <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
-                                                </a>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-{{$ticket->id}}" onclick="completar({!!$ticket->id!!})">
+                                                        <h5><i class="fa fa-ticket"></i> Comprar</h5>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -237,6 +243,7 @@
             }
         },
         "processing": true,
+        "order": [[ 0, "desc" ]],
     });
 </script>
 <script type="text/javascript" id="jsbin-javascript">
@@ -253,7 +260,6 @@
     }
     document.onmousedown=izquierda
     */
-
     $(document).ready(function(){
 
         var ruta = "https://pay.payphonetodoesposible.com/api/Regions";
@@ -381,6 +387,24 @@
                 });
             });
         }
+    }
+
+    function completar(id) {
+        swal({
+            title: "Complete su información personal por favor",
+            text: "Antes de realizar cualquier pago debe completar su información personal",
+            icon: "warning",
+            buttons: {
+                accept: {
+                    text: "OK",
+                    value: true
+                }
+            }
+        })
+        .then((completar) => {
+            var ruta = "{{url('EditProfile')}}";
+            $(location).attr('href',ruta);
+        });
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
