@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\View;
@@ -40,22 +39,6 @@ Auth::routes();
 
 Route::get('/register/{user_code}','UserController@show');
 Route::post('SellerRegister','SellerController@CompleteRegistration');
-
-//-----------------------Funciones del Homw---------------------------
-
-Route::get('/home', 'HomeController@index');
-Route::get('ContentGraph', 'HomeController@DataContentGraph');
-Route::get('MyTickets/{id}', 'HomeController@MyTickets');
-//Agregada 17/08/18
-    Route::get('SaleTickets','HomeController@SaleTickets');
-    Route::post('BuyPlan','HomeController@BuyPlan');
-    Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
-    // agregadas por Pacheco
-    Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
-    Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
-    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
-    Route::get('factura/{id}/{medio}','HomeController@factura');
-
 //---------------------------------------------------------------------
 
 Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
@@ -63,6 +46,28 @@ Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 Route::resource('users', 'UserController');
+
+
+
+Route::group(['middleware' => 'auth'], function() {
+
+//-----------------------Funciones del Home---------------------------
+
+    Route::get('/home', 'HomeController@index');
+    Route::get('ContentGraph', 'HomeController@DataContentGraph');
+    Route::get('MyTickets/{id}', 'HomeController@MyTickets');
+    //Agregada 17/08/18
+    Route::get('SaleTickets','HomeController@SaleTickets');
+    Route::post('BuyPlan','HomeController@BuyPlan');
+    Route::get('BuyPayphone/{id}/{cost}/{value}','HomeController@BuyPayphone');
+    Route::post('BuyPuntos','HomeController@BuyPoints');
+    // agregadas por Pacheco
+    Route::get('TransactionCanceled/{id}/{reference}','HomeController@TransactionCanceled');
+    Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
+    //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
+    Route::get('factura/{id}/{medio}','HomeController@factura');
+
+
 
 //-------------------Funciones del Usuarios----------------------------------
 
@@ -152,9 +157,9 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
 //-------------------------Funiciones de Referidos---------------------------
 
-Route::get('WebsUser','ReferalsController@ShowWebs');
-Route::get('Referals','ReferalsController@ShowReferals');
-
+    Route::get('WebsUser','ReferalsController@ShowWebs');
+    Route::get('Referals','ReferalsController@ShowReferals');
+ });
 
 /* ------------------------------------------------------------------
 ---------------------------------------------------------------------

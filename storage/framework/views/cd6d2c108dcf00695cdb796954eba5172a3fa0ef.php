@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')     
+<?php $__env->startSection('main'); ?>     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -16,8 +14,9 @@
             <div class="row white-size">
                 <div class="col-sm-6 col-xs-6 gocenterRed ">
                   <p>
-                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
-                      {{$referals1}}
+                    <h2><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>">
+                      <?php echo e($referals1); ?>
+
                     </a></h2>
                   </p>
                 </div>
@@ -34,8 +33,9 @@
                 <div class="row white-size">
                 <div class="col-sm-6 col-xs-6 gocenterRed ">
                   <p>
-                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
-                      {{$referals2}}
+                    <h2><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>">
+                      <?php echo e($referals2); ?>
+
                     </a></h2>
                   </p>
                 </div>
@@ -52,8 +52,9 @@
                 <div class="row white-size">
                 <div class="col-sm-6 col-xs-6 gocenterRed ">
                   <p>
-                    <h2><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}">
-                      {{$referals3}}
+                    <h2><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>">
+                      <?php echo e($referals3); ?>
+
                     </a></h2>
                   </p>
                 </div>
@@ -70,7 +71,8 @@
                 <div class="col-sm-6 col-xs-6 gocenterRed ">
                   <p>
                     <h2><a href="#">
-                      {{$referals1+$referals2+$referals3}}
+                      <?php echo e($referals1+$referals2+$referals3); ?>
+
                     </a></h2>
                     <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
                   </p>
@@ -78,31 +80,33 @@
             </div>
           </div>
         </div><!-- /col-md-5 -->
-        @if ($refered != null)
+        <?php if($refered != null): ?>
         <h5 style="margin-left: 3%">Mis referidos directos:</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
           
-          @foreach($refered as $refereds)
+          <?php $__currentLoopData = $refered; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refereds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="col-sm-2 col-xs-3 col-md-1">
-                @if($refereds->img_perf)
-                  <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60"></a>
-                @else
-                   <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                @endif
+                <?php if($refereds->img_perf): ?>
+                  <img src="<?php echo e(asset($refereds->img_perf)); ?>" class="img-circle" width="60"></a>
+                <?php else: ?>
+                   <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="60">
+                <?php endif; ?>
               </div>
               <div class="col-sm-3 col-xs-3 col-md-3" style="margin-top: 1%">
-                {{$refereds->name}}
+                <?php echo e($refereds->name); ?>
+
               </div>
-          @endforeach
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
-        @endif
+        <?php endif; ?>
        
                       
         </div><!-- /row --> 
            
 
-          @endsection
+          <?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

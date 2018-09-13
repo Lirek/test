@@ -205,6 +205,7 @@ class HomeController extends Controller
                     'Cant' => $this->tickets($key->package_id)*$key->value,
                     'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
                     'Type' => 2,
+                    'Method'=>$key->method,
                     'Factura' => $key->factura_id
                 );
             }
@@ -223,6 +224,7 @@ class HomeController extends Controller
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
+        $Buy->method='Depósito';
 
          if ($request->hasFile('voucher'))
         {
@@ -246,6 +248,40 @@ class HomeController extends Controller
         return redirect()->action('HomeController@index');
 
     }
+    public function BuyPoints(Request $request)
+    {
+        
+        $user = User::find(Auth::user()->id);
+
+        if ($request->cost > $user->points) 
+        {
+             return response()->json(1);  
+        }
+        
+        else
+        {
+            $Buy = new Payments;
+            $Buy->user_id       = Auth::user()->id;
+            $Buy->package_id    =$request->ticket_id;
+            $Buy->cost          =$request->points;
+            $Buy->value         =$request->Cantidad;
+            $Buy->status        = 1;
+            $Buy->method        ='Puntos';
+            $Buy->save();
+            
+            $cant=$this->tickets($request->ticket_id);
+            $ticket=$cant*$request->Cantidad;
+
+            $cost=$request->Cantidad*$request->points;
+
+            $this->creditos($ticket);
+            $this->points($cost);
+            $this->correo();
+
+            return response()->json($Buy);
+        }
+    
+    }
 
     public function BuyPayphone($id,$cost,$value) {
         $Buy = new Payments;
@@ -254,6 +290,7 @@ class HomeController extends Controller
         $Buy->cost          = $cost;
         $Buy->value         = $value;
         $Buy->status        = 2;
+        $Buy->method        ='Payphone';
         $Buy->save();
         $Buy = Payments::all();
         $clientTransactionId = $Buy->last()->id."|".date("Y-m-d H:i:s");
@@ -285,6 +322,12 @@ class HomeController extends Controller
     public function creditos($ticket) {
         $user = User::find(Auth::user()->id);
         $user->credito = $user->credito + $ticket;
+        $user->save();
+    }
+
+    public function points($points) {
+        $user = User::find(Auth::user()->id);
+        $user->points = $user->points - $points;
         $user->save();
     }
     /*
@@ -396,4 +439,5 @@ class HomeController extends Controller
         $cantidad=TicketsPackage::find($id);
         return $cantidad->name;
     }
+
 }

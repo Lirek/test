@@ -103,7 +103,8 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return view('home');
+
+        return redirect()->action('HomeController@index');
     }
 
     /**
@@ -147,7 +148,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
-        $user->ci = $request->ci;
+        $user->num_doc = $request->ci;
         //$user->num_doc = $request->num_doc;
 
         //$user->type= $request->type;
@@ -208,7 +209,7 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
 
         $user->last_name = $request->lastname;
-        $user->ci = $request->nDocument;
+        $user->num_doc = $request->nDocument;
 
         if ($request->hasFile('img_doc'))
         {
@@ -332,6 +333,7 @@ class UserController extends Controller
                     'Cant' => $this->tickets($key->package_id)*$key->value,
                     'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
                     'Type' => 2,
+                    'Method'=>$key->method,
                     'Factura' => $key->factura_id
                 );
             }
