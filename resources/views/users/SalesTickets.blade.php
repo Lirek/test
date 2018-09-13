@@ -46,11 +46,7 @@
                                                 <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                     </a>
-                                                @else
-                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-{{$ticket->id}}" onclick="completar({!!$ticket->id!!})">
-                                                        <h5><i class="fa fa-ticket"></i> Comprar</h5>
-                                                    </a>
-                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
@@ -420,14 +416,6 @@ function callback(id) {
             }
             $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
             $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
-            $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
-            if(totalP > Mypoints){
-             $('#ingresarPunto-'+id).attr('disabled',true);
-
-            }else{
-                 $('#ingresarPunto-'+id).attr('disabled',false);
-        }
-
 
         });
         $(':input[type="number"]').click(function (){
@@ -440,31 +428,12 @@ function callback(id) {
             if (isNaN(ticket)) {
                 ticket = 0;
             }
-            totalP=parseFloat(documento*points)
-            if (isNaN(totalP)) {
-                totalP = 0;
-            }
             $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
             $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
-            $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
-            if(totalP > Mypoints){
-             $('#ingresarPunto-'+id).attr('disabled',true);
-
-            }else{
-                 $('#ingresarPunto-'+id).attr('disabled',false);
-            }
             });
 
         $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
         $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
-        $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
-
-        if(totalP > Mypoints){
-             $('#ingresarPunto-'+id).attr('disabled',true);
-
-        }else{
-             $('#ingresarPunto-'+id).attr('disabled',false);
-        }
     }
 
     function controltagNum(e) {
@@ -496,30 +465,16 @@ function callback(id) {
             $("#ingresarFalso-"+id).hide();
             $("#deposito-"+id).show();
             $("#payphone-"+id).hide();
-            $("#puntos-"+id).hide();
             $('#voucher-'+id).attr('required','required');
             $('#references-'+id).attr('required','required');
             $('#references-'+id).focus();
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
-        }else if(valor == 'puntos'){
-            $("#ingresarPunto-"+id).show();
-            $("#ingresar-"+id).hide();
-            $("#payphone-"+id).hide();
-            $("#ingresarFalso-"+id).hide();
-            $('#pais-'+id).removeAttr('required');
-            $('#numero-'+id).removeAttr('required');
-            $("#deposito-"+id).hide();
-            $('#voucher-'+id).removeAttr('required','required');
-            $('#references-'+id).removeAttr('required','required');
-            $("#puntos-"+id).show();
         }else{
             $("#ingresarFalso-"+id).show();
-            $("#ingresarPunto-"+id).hide();
             $("#ingresar-"+id).hide();
             $("#payphone-"+id).show();
             $("#deposito-"+id).hide();
-            $("#puntos-"+id).hide();
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
             $('#pais-'+id).attr('required','required');
@@ -537,24 +492,6 @@ function callback(id) {
                 });
             });
         }
-    }
-
-    function completar(id) {
-        swal({
-            title: "Complete su información personal por favor",
-            text: "Antes de realizar cualquier pago debe completar su información personal",
-            icon: "warning",
-            buttons: {
-                accept: {
-                    text: "OK",
-                    value: true
-                }
-            }
-        })
-        .then((completar) => {
-            var ruta = "{{url('EditProfile')}}";
-            $(location).attr('href',ruta);
-        });
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
