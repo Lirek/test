@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
 
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('plugins/bootstrapV3.3/css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/LTE/thema/dist/css/AdminLTE.min.css')); ?>">
 
 
-    {{--carrusel--}}
+    
     <meta name="description" content="Circular Content Carousel with jQuery"/>
     <meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3"/>
     <meta name="author" content="Codrops"/>
-    {{--carrusel--}}
+    
 <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title>{{ config('app.name', 'Leipel') }}</title>
+    <title><?php echo e(config('app.name', 'Leipel')); ?></title>
 
     <!-- Styles -->
-    {{--<link href="/css/app.css" rel="stylesheet">--}}
-    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+    
+    
 
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/index/css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/index/css/content1.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/bootstrapV3.3/css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/bootstrapV3.3/css/bootstrap.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/index/css/index.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/index/css/content1.css')); ?>">
 
     <link rel="stylesheet" type="text/css"
-          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+          href="<?php echo e(asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css')); ?>">
     <style type="text/css">
 
 
@@ -39,9 +39,9 @@
 
     <!-- Scripts -->
     <script>
-        window.Laravel = {!! json_encode([
+        window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]) !!};
+        ]); ?>;
     </script>
 
 
@@ -54,7 +54,7 @@
 
 <!-- NAVBAR STAR-->
 
-{{--<div class="main-navigation navbar">--}}
+
 <nav class="navbar navbar-default ">
     <div class="container">
         <div class="navbar-header">
@@ -63,25 +63,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{Request::url()}}">
-                <img id="logo" src="{{asset('plugins/img/Logo-Leipel.png')}}">
+            <a class="navbar-brand" href="<?php echo e(Request::url()); ?>">
+                <img id="logo" src="<?php echo e(asset('plugins/img/Logo-Leipel.png')); ?>">
             </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
+                
                 <li><a href="#leipel">¿QUE ES LEIPEL?</a></li>
-                @if (Auth::guest())
+                <?php if(Auth::guest()): ?>
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
-                @endif
+                <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
 
 
-{{--</div>--}}
+
 
 <!-- NAVBAR END-->
 
@@ -100,7 +100,7 @@
                          src='plugins/img/slider1-I.jpg'/>
                 </div>
                 <h1 class="title">
-                    {{--<span class="title-text">Forest</span>--}}
+                    
                 </h1>
             </li>
             <li class="slide">
@@ -113,7 +113,7 @@
                          src='plugins/img/slider2-I.jpg'/>
                 </div>
                 <h1 class="title">
-                    {{--<span class="title-text">Mountain</span>--}}
+                    
                 </h1>
             </li>
             <li class="slide">
@@ -126,7 +126,7 @@
                          src='plugins/img/slider3-I.jpg'/>
                 </div>
                 <h1 class="title">
-                    {{--<span class="title-text">Ocean</span>--}}
+                    
                 </h1>
             </li>
         </ul>
@@ -159,27 +159,27 @@
 
 <div class="col-md-12" id="">
     <div class="row">
-        {{--<div class="container">--}}
+        
 
-        @foreach($radio as $r)
-            {{-- @if(< 2)--}}
+        <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            
             <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
             <figure class="snip1166 navy" style="display: block; ">
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
+                
+                
+                <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 90%" />
                 <figcaption style="width: 107%">
                     <h3>
-                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <small style="color: #fff; font-size: 60%"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                         <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                        <li class="fa fa-facebook-f"><a href="<?php echo e($r->facebook); ?>"></a></li>
+                        <li class="fa fa-instagram"><a href="<?php echo e($r->instagram); ?>"></a></li>
+                        <li class="fa fa-twitter"><a href="<?php echo e($r->twitter); ?>"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="<?php echo e($r->google); ?>"></a></li>
                         </div>
                     </h3>
                     <div>
-                        <p>{{ $r->email_c }}</p>
+                        <p><?php echo e($r->email_c); ?></p>
                     </div>
                     <a href="#"></a>
                 </figcaption>
@@ -187,21 +187,21 @@
             </div>
             <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
             <figure class="snip1166 navy" >
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
+                
+                
+                <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 70%" />
                 <figcaption style="width: 75%">
                     <h3>
-                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <small style="color: #fff; font-size: 60%"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                         <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                        <li class="fa fa-facebook-f"><a href="<?php echo e($r->facebook); ?>"></a></li>
+                        <li class="fa fa-instagram"><a href="<?php echo e($r->instagram); ?>"></a></li>
+                        <li class="fa fa-twitter"><a href="<?php echo e($r->twitter); ?>"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="<?php echo e($r->google); ?>"></a></li>
                         </div>
                     </h3>
                     <div>
-                        <p>{{ $r->email_c }}</p>
+                        <p><?php echo e($r->email_c); ?></p>
                     </div>
                     <a href="#"></a>
                 </figcaption>
@@ -209,30 +209,30 @@
             </div>
             <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
             <figure class="snip1166 navy" >
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
+                
+                
+                <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 70%" />
                 <figcaption style="width: 90%">
                     <h3>
-                        <small style="color: #fff; font-size: 50%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <small style="color: #fff; font-size: 50%"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                         <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                        <li class="fa fa-facebook-f"><a href="<?php echo e($r->facebook); ?>"></a></li>
+                        <li class="fa fa-instagram"><a href="<?php echo e($r->instagram); ?>"></a></li>
+                        <li class="fa fa-twitter"><a href="<?php echo e($r->twitter); ?>"></a></li>
+                        <li class="fa fa-google-plus-circle"><a href="<?php echo e($r->google); ?>"></a></li>
                         </div>
                     </h3>
                     <div>
-                        <p>{{ $r->email_c }}</p>
+                        <p><?php echo e($r->email_c); ?></p>
                     </div>
                     <a href="#"></a>
                 </figcaption>
             </figure>
             </div>
-            {{--@endif--}}
-        @endforeach
+            
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-        {{--</div>--}}
+        
 
     </div>
 </div>
@@ -244,7 +244,7 @@
     <div class="row col-md-12" id="leipel">
         <div class="col-md-3">
             <h1>
-                <img src="{{asset('plugins/img/Logo-Leipel.png')}}" id="logo">
+                <img src="<?php echo e(asset('plugins/img/Logo-Leipel.png')); ?>" id="logo">
             </h1>
             <p class="text-left">
                 Red social de entretenimiento: Cine, m&uacute;sica, lectura, radio y tv
@@ -365,35 +365,35 @@
     </div>
 
 
-        {{--<div class="col-md-3 " id="opinion">--}}
-            {{--<h1>Deja tu opini&oacute;n</h1>--}}
-            {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
-                           {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
-                           {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<input type="text" class="form-control " name="subject" id="subject"--}}
-                           {{--placeholder="Asunto" data-rule="minlen:4"--}}
-                           {{--data-msg="Please enter at least 8 chars of subject"/>--}}
-                    {{--<div class="validation"></div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 form-group">--}}
-                    {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
-                              {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-offset-7">--}}
-                    {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
-                {{--</div>--}}
+        
+            
+            
+                
+                    
+                           
+                    
+                
+                
+                    
+                           
+                    
+                
+                
+                    
+                           
+                           
+                    
+                
+                
+                    
+                              
+                
+                
+                    
+                
 
-            {{--</form>--}}
-        {{--</div>--}}
+            
+        
     </div>
 </footer>
 
@@ -406,7 +406,7 @@
 <div class="modal fade login-register-form row" id="modal-login">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-8 align-center">--}}
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -433,35 +433,36 @@
                 <div class="tab-content">
 
                     <div id="usuario" class="tab-pane fade in active">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
+                        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                            <?php echo e(csrf_field()); ?>
+
+                            <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                                
 
                                 <div class="col-md-12">
                                     <input id="email" type="email" class="form-control" name="email"
-                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                           placeholder="correo" value="<?php echo e(old('email')); ?>" required autofocus>
                                     <div id="emailMen" style="margin-top: 1%"></div>
-                                    @if ($errors->has('email'))
+                                    <?php if($errors->has('email')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong><?php echo e($errors->first('email')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
+                            <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                                
 
                                 <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password"
                                            placeholder="contraseña" required>
                                      <div id="passwordMen" ></div>
-                                    @if ($errors->has('password'))
+                                    <?php if($errors->has('password')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <strong><?php echo e($errors->first('password')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -486,7 +487,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                   name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
                                             Recuerdame
                                         </label>
                                     </div>
@@ -495,35 +496,36 @@
                         </form>
                     </div>
                     <div id="proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
-                            {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" >
-                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
+                        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/seller_login')); ?>">
+                            <?php echo e(csrf_field()); ?>
+
+                            <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>" >
+                                
 
                                 <div class="col-md-12">
                                     <input id="emailP" type="email" class="form-control" name="email"
-                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                           placeholder="correo" value="<?php echo e(old('email')); ?>" required autofocus>
                                     <div id="emailMenP" style="margin-top: 1%"></div>
-                                    @if ($errors->has('email'))
+                                    <?php if($errors->has('email')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong><?php echo e($errors->first('email')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
+                            <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                                
 
                                 <div class="col-md-12">
                                     <input id="passwordP" type="password" class="form-control" name="password"
                                            placeholder="contraseña" required>
                                     <div id="passwordMenP" style="margin-top: 1%" ></div>
-                                    @if ($errors->has('password'))
+                                    <?php if($errors->has('password')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <strong><?php echo e($errors->first('password')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -540,7 +542,7 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                   name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
                                             Recuerdame
                                         </label>
                                     </div>
@@ -554,7 +556,7 @@
             </div>
 
         </div>
-    {{--</div>--}}
+    
 
     <!-- modal-content -->
     </div>
@@ -566,7 +568,7 @@
 <div class="modal fade login-register-form row" id="modal-register">
     <!-- modal-dialog -->
     <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-8 align-center">--}}
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -591,71 +593,72 @@
             <div class="modal-body">
 
                 <div class="tab-content">
-                    {{--usuario--}}
+                    
                     <div id="new_usuario" class="tab-pane fade in active">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
-                            {{ csrf_field() }}
+                        <form class="form-horizontal" method="POST" action="<?php echo e(route('register')); ?>" id="formR">
+                            <?php echo e(csrf_field()); ?>
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                {{--<label for="name" class="col-md-4 control-label">Nombre</label>--}}
+
+                            <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
+                                
                                 <div class="col-md-12">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" placeholder="Nombre" required="required" onkeypress="return controltagLet(event)">
+                                           value="<?php echo e(old('name')); ?>" placeholder="Nombre" required="required" onkeypress="return controltagLet(event)">
                                     <div id="nameMen" style="margin-top: 1%"></div>
-                                    @if ($errors->has('name'))
+                                    <?php if($errors->has('name')): ?>
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong><?php echo e($errors->first('name')); ?></strong>
                                     </span>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">Direccion de Correo</label>--}}
+                            <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                                
 
                                 <div class="col-md-12">
                                     <input id="emailRU" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" placeholder="Correo">
+                                           value="<?php echo e(old('email')); ?>" placeholder="Correo">
                                     <div id="emailMenRU" style="margin-top: 1%"></div>
-                                    @if ($errors->has('email'))
+                                    <?php if($errors->has('email')): ?>
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
+                            <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                                
 
                                 <div class="col-md-12">
                                     <input id="passwordRU" type="password" class="form-control" name="password"
                                            placeholder="Contraseña">
                                     <div id="passwordMenRU" style="margin-top: 1%"></div>
-                                    @if ($errors->has('password'))
+                                    <?php if($errors->has('password')): ?>
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                {{--<label for="password_confirm" class="col-md-4 control-label">Confirmar--}}
-                                {{--Contraseña</label>--}}
+                                
+                                
 
                                 <div class="col-md-12">
                                     <input id="password_confirm" type="password" class="form-control"
                                            name="password_confirm" placeholder="Confirmar Contraseña">
                                     <div id="passwordCMenRU" style="margin-top: 1%"></div>
-                                    @if ($errors->has('password_confirm'))
+                                    <?php if($errors->has('password_confirm')): ?>
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirm') }}</strong>
+                                        <strong><?php echo e($errors->first('password_confirm')); ?></strong>
                                     </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -668,77 +671,78 @@
                             </div>
                         </form>
                     </div>
-                    {{--Usuario--}}
+                    
 
-                    {{--Solicitud de proveedor--}}
+                    
                     <div id="new_proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
-                            {{ csrf_field() }}
-                            {{--@include('flash::message')--}}
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-6 control-label">Nombre comercial:</label>--}}
+                        <form class="form-horizontal" method="POST" action="<?php echo e(url('ApplysSubmit')); ?>" id="formRP">
+                            <?php echo e(csrf_field()); ?>
+
+                            
+                            <div class="form-group<?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                                
                                 <div class="col-md-12">
 
                                     <input id="com_name" type="text" class="form-control" name="com_name"
                                            required="required"
                                            placeholder="Nombre comercial" autofocus onkeypress="return controltagLet(event)">
                                     <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
-                                    @if ($errors->has('tlf'))
+                                    <?php if($errors->has('tlf')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('com_name') }}</strong>
+                                            <strong><?php echo e($errors->first('com_name')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-6 control-label">Nombre del contacto</label>--}}
+                            <div class="form-group<?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                                
                                 <div class="col-md-12">
                                     <input id="contact_name" type="text" class="form-control" name="contact_name"
                                            required="required"
                                            placeholder="Nombre del contacto" onkeypress="return controltagLet(event)">
                                     <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
-                                    @if ($errors->has('tlf'))
+                                    <?php if($errors->has('tlf')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('contact_name') }}</strong>
+                                            <strong><?php echo e($errors->first('contact_name')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-12 control-label">Teléfono</label>--}}
+                            <div class="form-group<?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                                
                                 <div class="col-md-12">
 
-                                    <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}"
+                                    <input id="tlf" type="text" class="form-control" name="tlf" value="<?php echo e(old('tlf')); ?>"
                                            required="required"
                                            placeholder="Teléfono" onkeypress="return controltagNum(event)">
                                     <div id="mensajeTelefono" style="margin-top: 1%"></div>
-                                    @if ($errors->has('tlf'))
+                                    <?php if($errors->has('tlf')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('tlf') }}</strong>
+                                            <strong><?php echo e($errors->first('tlf')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                                {{--<label for="description" class="col-md-6 control-label">Descripción</label>--}}
+                            <div class="form-group<?php echo e($errors->has('description') ? ' has-error' : ''); ?>">
+                                
                                 <div class="col-md-12">
                                     <textarea class="form-control" name="description" id="description"
                                               required="required"
                                               placeholder="Descripción">
                                     </textarea>
-                                    @if ($errors->has('description'))
+                                    <?php if($errors->has('description')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('description') }}</strong>
+                                            <strong><?php echo e($errors->first('description')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                {{--<label for="content_type" class="col-md-6 control-label">Tipo de contenido</label>--}}
+                                
                                 <div class="col-md-12">
                                     <select class="form-control" name="content_type" id="content_type" required="required">
                                         <option value="">Seleccione el tipo contenido</option>
@@ -750,11 +754,11 @@
                                         <option value="Peliculas">Peliculas</option>
                                         <option value="Series">Series</option>
                                     </select>
-                                    @if ($errors->has('email'))
+                                    <?php if($errors->has('email')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('content_type') }}</strong>
+                                            <strong><?php echo e($errors->first('content_type')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                     <div id="subMenuMusica">
                                         <br>
                                         <select name="sub_desired" id="sub_desired1" class="form-control">
@@ -773,16 +777,16 @@
                             </div>
 
                             <div class="form-group">
-                                {{--<label for="email" class="col-md-6 control-label">Correo</label>--}}
+                                
                                 <div class="col-md-12">
                                     <input id="emailRP" type="email" class="form-control" name="email" required="required"
                                            placeholder="Correo">
                                     <div id="mensajeCorreo" style="margin-top: 1%"></div>
-                                    @if ($errors->has('email'))
+                                    <?php if($errors->has('email')): ?>
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong><?php echo e($errors->first('email')); ?></strong>
                                         </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -795,7 +799,7 @@
                             </div>
                         </form>
                     </div>
-                    {{--Solicitud de proveedor--}}
+                    
 
                 </div>
 
@@ -808,7 +812,7 @@
             </div>
 
         </div>
-    {{--</div>--}}
+    
 
     <!-- modal-content -->
     </div>
@@ -817,11 +821,11 @@
 <!-- /. REGISTRARSE END -->
 
 
-{{--<script src="/js/app.js"></script>--}}
-<script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
-<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
-{{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
-<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>
+
+<script src="<?php echo e(asset('plugins/jquery/js/jquery-3.2.1.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/bootstrapV3.3/js/bootstrap.min.js')); ?>"></script>
+
+<script src="<?php echo e(asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js')); ?>"></script>
 
 
 
@@ -987,9 +991,9 @@
 //------------------------------------------------------------------------------------------------------------
 </script>
 
-{{--registrar proveedor star--}}
-{{--<script src="{{asset('assets/js/jquery.js') }}"></script>--}}
-{{--<script src="{{ asset('plugins/bubbles/movingbubbles.js') }}" type="text/javascript"></script>--}}
+
+
+
 <script>
     //---------------------------------------------------------------------------------------------------
 
@@ -1157,10 +1161,10 @@ $(document).ready(function(){
     //---------------------------------------------------------------------------------------------------
 
 </script>
-{{--registrar proveedor end--}}
-{{--validaciones --}}
 
-{{--CONFIG DEL SLIDER STAR--}}
+
+
+
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script>"use strict";
@@ -1233,7 +1237,7 @@ $(document).ready(function(){
     });
     //# sourceURL=pen.js
 </script>
-{{--CONFIG DEL SLIDER END--}}
+
 
 
 <script>
@@ -1248,7 +1252,7 @@ $(document).ready(function(){
 
 </script>
 
-@if (count($errors) > 0)
+<?php if(count($errors) > 0): ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
@@ -1270,8 +1274,8 @@ $(document).ready(function(){
              
         });
     </script>
-@endif
-<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
+<?php endif; ?>
+<script src="<?php echo e(asset('plugins/bootstrapV3.3/js/bootstrap.js')); ?>"></script>
 <script type="text/javascript">
 
     $(document).ready(function(){

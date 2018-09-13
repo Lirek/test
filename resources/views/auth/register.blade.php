@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- aqui -->
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -204,7 +205,7 @@
                     },
                     email: {
                         required: "Ingresar un correo valido",
-                        minlength: "debe tener mas caracteres",
+                        email: "Formato de correo invalido",
                         remote: ("Ya se ha registrado")
                     }
                 },

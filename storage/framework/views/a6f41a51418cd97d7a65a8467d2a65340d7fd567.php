@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('main')  
+<?php $__env->startSection('main'); ?>  
 
 <div class="row" style="margin-bottom: -20%">
     <div class="form-group"> 
@@ -12,14 +11,14 @@
                 <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
                 	<div class="text-center">
                         <div class="col-sm-6">
-                            <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
+                            <h4><b>Total de tickets:</b> <?php echo e(Auth::user()->credito); ?></h4>
                         </div>
                         <div class="col-sm-6">
-                            @if(Auth::user()->points)
-                                <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
-                            @else
+                            <?php if(Auth::user()->points): ?>
+                                <h4><b>Total de puntos:</b> <?php echo e(Auth::user()->points); ?></h4>
+                            <?php else: ?>
                                 <h4><b>Total de puntos:</b> 0 </h4>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                     <table class="table table-striped table-advance table-hover" id="myTable">
@@ -34,30 +33,30 @@
                           	</tr>
                         </thead>
                         <tbody>
-                        	@foreach ($Balance as $balance)
-                                @if($balance != 0)
+                        	<?php $__currentLoopData = $Balance; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $balance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($balance != 0): ?>
                                 	<tr class="letters">
-        		                        <td>{{$balance['Date']}}</td>
-        	                          	<td>{{$balance['Transaction']}}</td>
-                                        @if($balance['Type']==1)
+        		                        <td><?php echo e($balance['Date']); ?></td>
+        	                          	<td><?php echo e($balance['Transaction']); ?></td>
+                                        <?php if($balance['Type']==1): ?>
             	                         	<td></td>
-            	                          	<td>{{$balance['Cant']}}</td>
+            	                          	<td><?php echo e($balance['Cant']); ?></td>
                                             <td></td>
-                                        @else
-            	                         	<td>{{$balance['Cant']}}</td>
+                                        <?php else: ?>
+            	                         	<td><?php echo e($balance['Cant']); ?></td>
             	                         	<td></td>
-                                            <td>{{$balance['Method']}}</td>
-                                            @if($balance['Method'] != 'Puntos')
+                                            <td><?php echo e($balance['Method']); ?></td>
+                                            <?php if($balance['Method'] != 'Puntos'): ?>
                                                 <td>
-                                                    <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
+                                                    <a href="https://app.datil.co/ver/<?php echo e($balance['Factura']); ?>/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
                                                 </td>
-                                            @else
+                                            <?php else: ?>
                                                 <td>No Aplica</td>
-                                            @endif
-        	                           @endif
+                                            <?php endif; ?>
+        	                           <?php endif; ?>
                                   	</tr>
-                                @endif
-                          	@endforeach
+                                <?php endif; ?>
+                          	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
@@ -66,8 +65,8 @@
         </div>
     </div>
 </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
 <script type="text/javascript">
 	            $('#myTable').DataTable({
@@ -100,4 +99,5 @@
             });
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
