@@ -641,6 +641,7 @@
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
         var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
+
         if (numberPhone=="" || countryPrefix=="") {
             $('#mensajePayPhone-'+id).hide();
             $('#mensajeValidacion-'+id).show();
@@ -658,7 +659,9 @@
                     swal({
                         title: "El usuario no existe en PayPhone",
                         text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
-                        icon: "warning"
+                        icon: "warning",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     });
                 } else {
                     var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
@@ -672,7 +675,9 @@
                                 text: "Si, soy yo",
                                 value: true
                             }
-                        }
+                        },
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     })
                     .then((confirmacion) => {
                         if(confirmacion) {
@@ -687,7 +692,9 @@
                                         text: "Aceptar",
                                         value: true
                                     }
-                                }
+                                },
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             })
                             .then((pagar) => {
                                 $('#mensajePayPhone-'+id).show();
@@ -701,7 +708,9 @@
                                             title: "¡Listo! Estamos esperando su confirmación...",
                                             text: "Verifique su teléfono y seleccione una opción.",
                                             icon: gif,
-                                            buttons: false
+                                            buttons: false,
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         var intento = 0;
                                         var maxIntento = 90; // 1min y 1/2 de espera
@@ -727,7 +736,9 @@
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -750,7 +761,9 @@
                                                                                 text: "OK",
                                                                                 value: true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        closeOnEsc: false,
+                                                                        closeOnClickOutside: false
                                                                     })
                                                                     .then((recarga) => {
                                                                         location.reload();
@@ -766,7 +779,9 @@
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -780,7 +795,9 @@
                                                                         text: "OK",
                                                                         value: true
                                                                     }
-                                                                }
+                                                                },
+                                                                closeOnEsc: false,
+                                                                closeOnClickOutside: false
                                                             })
                                                             .then((recarga) => {
                                                                 location.reload();
@@ -814,7 +831,9 @@
                                             swal({
                                                 title: "¡Error de conexión!",
                                                 text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                                icon: "error"
+                                                icon: "error",
+                                                closeOnEsc: false,
+                                                closeOnClickOutside: false
                                             });
                                             $('#mensajePayPhone-'+id).hide();
                                         });
@@ -822,7 +841,9 @@
                                         swal({
                                             title: "¡Error de conexión!",
                                             text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                            icon: "error"
+                                            icon: "error",
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         $('#mensajePayPhone-'+id).hide();
                                     });
@@ -832,7 +853,9 @@
                             swal({
                                 title: "Tranquilo no pasó nada",
                                 text: "Verifique el número e intentelo de nuevo, por favor",
-                                icon: "warning"
+                                icon: "warning",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             });
                         }
                     });
@@ -841,7 +864,9 @@
                 swal({
                     title: "¡Error de conexión!",
                     text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                    icon: "error"
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
                 });
                 $('#mensajePayPhone-'+id).hide();
             });
