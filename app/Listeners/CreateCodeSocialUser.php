@@ -43,6 +43,8 @@ class CreateCodeSocialUser
 
         $user->codigo_ref = $code;
 
+        $user->credito=0;
+
         $user->save();
 
     }

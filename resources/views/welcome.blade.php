@@ -658,6 +658,14 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="modal-footer" id="modal_footer">
+                                <div class="text-center">
+                                    <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
+                                    <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
+                                    <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
+                                </div>
+                                <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-12">
