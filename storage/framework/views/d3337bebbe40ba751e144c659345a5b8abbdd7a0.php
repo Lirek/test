@@ -1,12 +1,10 @@
-@extends('layouts.app')
-
-@section('main')     
+<?php $__env->startSection('main'); ?>     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      @include('flash::message')
-      <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
+      <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <input type="hidden" name="id" id="id" value="<?php echo e(Auth::user()->created_at); ?>">
               
                 
                   
@@ -22,35 +20,35 @@
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1" style="margin-left: 5%">
                           <span class="li_video"></span>
-                          <h3>{{$TransactionsMovies}}</h3>
+                          <h3><?php echo e($TransactionsMovies); ?></h3>
                         </div>
                         <!-- <p>More than 10 news were added in your reader.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_music"></span>
-                          <h3>{{$TransactionsMusic}}</h3>
+                          <h3><?php echo e($TransactionsMusic); ?></h3>
                         </div>
                        <!--  <p>933 People liked your page the last 24hs. Whoohoo!</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_vallet"></span>
-                          <h3>{{$TransacctionsLecture}}</h3>
+                          <h3><?php echo e($TransacctionsLecture); ?></h3>
                         </div>
                        <!--  <p>Your server is working perfectly. Relax & enjoy.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_sound"></span>
-                          <h3>{{$TransactionsRadio}}</h3>
+                          <h3><?php echo e($TransactionsRadio); ?></h3>
                         </div>
                         <!-- <p>You have 23 unread messages in your inbox.</p> -->
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_tv"></span>
-                          <h3>{{$TransactionsTv}}</h3>
+                          <h3><?php echo e($TransactionsTv); ?></h3>
                         </div>
                         <!-- <p>48 New files were added in your cloud storage.</p> -->
                       </div>
@@ -58,7 +56,7 @@
                         <div class="box1">
                           <h3>Total</h3>
                           <br>
-                          <h3>{{$TransactionsMovies + $TransactionsMusic + $TransacctionsLecture + $TransactionsRadio + $TransactionsTv}}</h3>
+                          <h3><?php echo e($TransactionsMovies + $TransactionsMusic + $TransacctionsLecture + $TransactionsRadio + $TransactionsTv); ?></h3>
                         </div>
                         <!-- <p>48 New files were added in your cloud storage.</p> -->
                       </div>
@@ -86,81 +84,81 @@
                               </thead>
                               <tbody>
 
-                              @if($Songs)
+                              <?php if($Songs): ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->title!!}','{!!$Songs->id!!}')" id="modal-confir"> {{$Songs->song_name}}</a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog('<?php echo $Songs->cost; ?>','<?php echo $Songs->title; ?>','<?php echo $Songs->id; ?>')" id="modal-confir"> <?php echo e($Songs->song_name); ?></a></td>
                                   <td class="hidden-phone">Single</td>
-                                  <td>{{$Songs->cost}}</td>
-                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
+                                  <td><?php echo e($Songs->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($Songs->Seller->name); ?></td>
                                 </tr>
-                              @endif
+                              <?php endif; ?>
 
-                              @if($Albums)
+                              <?php if($Albums): ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')" id="modal-confirAlbum"> {{$Albums->name_alb}}</a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog2('<?php echo $Albums->cost; ?>','<?php echo $Albums->name_alb; ?>','<?php echo $Albums->id; ?>')" id="modal-confirAlbum"> <?php echo e($Albums->name_alb); ?></a></td>
                                   <td class="hidden-phone">Album Musical</td>
-                                  <td>{{$Albums->cost}}</td>
-                                  <td class="hidden-phone">{{$Albums->Seller->name}}</td>
+                                  <td><?php echo e($Albums->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($Albums->Seller->name); ?></td>
                                 </tr>
-                              @endif
+                              <?php endif; ?>
 
-                              @if($Tv)
+                              <?php if($Tv): ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
+                                  <td><a href="<?php echo e(url('PlayTv/'.$Tv->id)); ?>"> <?php echo e($Tv->name_r); ?></a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
                                 </tr>
-                             @endif
+                             <?php endif; ?>
 
-                            @if($Book)
+                            <?php if($Book): ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"> {{$Book->title}}</a></td>
+                                <td><a href="#"  onclick="fnOpenNormalDialog3('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"> <?php echo e($Book->title); ?></a></td>
                                 <td class="hidden-phone">Libro</td>
-                                <td>{{$Book->cost}}</td>
-                                <td class="hidden-phone">{{$Book->seller->name}}</td>
+                                <td><?php echo e($Book->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Book->seller->name); ?></td>
                               </tr>
-                            @endif
+                            <?php endif; ?>
 
-                            @if($Megazines)
+                            <?php if($Megazines): ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$Megazines->title}}</a></td>
+                                <td><a href=""> <?php echo e($Megazines->title); ?></a></td>
                                 <td class="hidden-phone">Revista</td>
-                                <td>{{$Megazines->cost}}</td>
-                                <td class="hidden-phone">{{$Megazines->Seller->name}}</td>
+                                <td><?php echo e($Megazines->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Megazines->Seller->name); ?></td>
                               </tr>
-                            @endif
+                            <?php endif; ?>
 
-                            @if($Radio)
+                            <?php if($Radio): ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ListenRadio/'.$Radio->id)}}"> {{$Radio->name_r}}</a></td>
+                                <td><a href="<?php echo e(url('ListenRadio/'.$Radio->id)); ?>"> <?php echo e($Radio->name_r); ?></a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
-                                <td class="hidden-phone">{{$Radio->name}}</td>
+                                <td class="hidden-phone"><?php echo e($Radio->name); ?></td>
                               </tr>
-                            @endif
+                            <?php endif; ?>
 
-                            @if($Movies)
+                            <?php if($Movies): ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ShowMovies/'.$Movies->id)}}"> {{$Movies->title}}</a></td>
+                                <td><a href="<?php echo e(url('ShowMovies/'.$Movies->id)); ?>"> <?php echo e($Movies->title); ?></a></td>
                                 <td class="hidden-phone">Pelicula</td>
-                                <td>{{$Movies->cost}}</td>
-                                <td class="hidden-phone">{{$Movies->Seller->name}}</td>
+                                <td><?php echo e($Movies->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($Movies->Seller->name); ?></td>
                               </tr>
-                          @endif
+                          <?php endif; ?>
                               </tbody>
                             </table>
                           </div>
                         </div>
                       </div>
 
-                    @if(Auth::user()->alias==FALSE)
+                    <?php if(Auth::user()->alias==FALSE): ?>
                         
                     
                       <!-- COMPLETAR PERFIL PANELS -->
@@ -186,25 +184,26 @@
                                                 <h4 class="modal-title">Complete sus datos</h4>
                                               </div>
                                               <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" action="{{url('CompleteProfile')}}" enctype="multipart/form-data">{{ csrf_field() }}
+                                                <form class="form-horizontal" method="POST" action="<?php echo e(url('CompleteProfile')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
 
-                                                  <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+
+                                                  <div class="form-group<?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
                                                       <label for="lastname" class="col-md-4 control-label">Apellido</label>
                                                       <div id="apellidoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="required" onkeypress="return controltagLet(event)">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="<?php echo e(old('lastname')); ?>" required="required" onkeypress="return controltagLet(event)">
                                                       </div>
                                                   </div>
 
-                                                  <div class="form-group{{ $errors->has('nDocument') ? ' has-error' : '' }}">
+                                                  <div class="form-group<?php echo e($errors->has('nDocument') ? ' has-error' : ''); ?>">
                                                       <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
                                                       <div id="documentoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}" required="required" onkeypress="return controltagNum(event)">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="<?php echo e(old('nDocument')); ?>" required="required" onkeypress="return controltagNum(event)">
                                                       </div>
                                                   </div>
 
-                                                  <div class="form-group{{ $errors->has('img_doc') ? ' has-error' : '' }}">
+                                                  <div class="form-group<?php echo e($errors->has('img_doc') ? ' has-error' : ''); ?>">
                                                       <label class="col-md-4 control-label">Imagen del documento</label>
                                                       <div class="col-md-6">
                                                           <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
@@ -212,26 +211,26 @@
                                                   </div>
 
 
-                                                  <div class="form-group{{ $errors->has('dateN') ? ' has-error' : '' }}">
+                                                  <div class="form-group<?php echo e($errors->has('dateN') ? ' has-error' : ''); ?>">
                                                       <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
                                                       <div id="dateMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}" required="required">
+                                                          <input id="dateN" type="date" max="<?php echo e(@date('Y-m-d')); ?>" class="form-control" name="dateN" value="<?php echo e(old('dateN')); ?>" required="required">
                                                       </div>
                                                   </div>
 
-                                                  <div class="form-group{{ $errors->has('img_perf') ? ' has-error' : '' }}">
+                                                  <div class="form-group<?php echo e($errors->has('img_perf') ? ' has-error' : ''); ?>">
                                                       <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
                                                       <div class="col-md-6">
-                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="{{ old('img_perf') }}" required="required">
+                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="<?php echo e(old('img_perf')); ?>" required="required">
                                                       </div>
                                                   </div>
 
-                                                  <div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
+                                                  <div class="form-group<?php echo e($errors->has('alias') ? ' has-error' : ''); ?>">
                                                       <label for="alias" class="col-md-4 control-label">Alias</label>
                                                       <div id="aliasMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="alias" type="text" class="form-control" name="alias" value="{{ old('alias') }}"required="required">
+                                                          <input id="alias" type="text" class="form-control" name="alias" value="<?php echo e(old('alias')); ?>"required="required">
                                                       </div>
                                                   </div>
 
@@ -257,10 +256,10 @@
                           </div><!--/grey-panel -->
                         </div><!-- /col-md-12-->
 
-                    @endif 
+                    <?php endif; ?> 
                     
                     <!--REFERIR-->
-                    @if(Auth::user()->UserRefered()->count()==0) 
+                    <?php if(Auth::user()->UserRefered()->count()==0): ?> 
                     <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
@@ -283,13 +282,14 @@
                                             <h4 class="modal-title">Ingrese el codigo</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data">{{ csrf_field() }}
+                                            <form class="form-horizontal" method="POST" action="<?php echo e(url('Referals')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
 
-                                              <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
+
+                                              <div class="form-group<?php echo e($errors->has('codigo') ? ' has-error' : ''); ?>">
                                                       <label for="codigo" class="col-md-4 control-label">Codigo</label>
                                                       <div id="codigoMen"></div>
                                                       <div class="col-md-6">
-                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required="required">
+                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="<?php echo e(old('codigo')); ?>" required="required">
                                                       </div>
                                               </div>
                                                <div class="form-group">
@@ -312,7 +312,7 @@
                           </div>
                         </div>
                       </div>
-                      @endif
+                      <?php endif; ?>
 
                                  
 
@@ -325,10 +325,10 @@
                             </div>
                             <div class="row white-size">
                                <div class="col-sm-6 col-xs-6 goleft">
-                                  <p><i class="fa fa-ticket"></i>{{Auth::user()->credito}}</p>
+                                  <p><i class="fa fa-ticket"></i><?php echo e(Auth::user()->credito); ?></p>
                                </div>
                                <div class="col-sm-6 col-xs-6"></div>
-                               <p><a href="{{url('SaleTickets')}}" class="">Recargar</a></p>
+                               <p><a href="<?php echo e(url('SaleTickets')); ?>" class="">Recargar</a></p>
                             </div>
                             <div class="centered">
                                 
@@ -342,8 +342,9 @@
                            <!-- Qr PANEL -->
                            <div class="Qr-panel pn">
                               <div class="center">
-                                {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
-                                <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a>
+                                <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
+
+                                <a href="data:image/png;base64,<?php echo base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)); ?>" download="MiQr">Descargar</a>
                               </div>
                           </div>
                        </div><!-- /col-md-4 -->
@@ -352,9 +353,9 @@
    
           <div id="modal-confirmation"></div> 
 
-          @endsection
+          <?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
   $(document).ready(function(){
   var f1 = document.getElementById('id').value;
@@ -745,4 +746,5 @@ function callback3(value,id) {
     }
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

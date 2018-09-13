@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Events\TvTraceEvent; //Agrega el Evento 
+use App\Events\RadioTraceEvent; //Agrega el Evento 
+use Auth;//Agrega el facade de Auth para acceder al id
+
 
 use App\Megazines;
 use App\Tags;
@@ -170,13 +174,14 @@ class ContentController extends Controller
 //-------------------------------------------RADIO---------------------------------------
     public function ShowRadio(){
         $Radio= Radio::where('status','=','Aprobado')->paginate(10);
-        return view('Contents.ShowRadios')->with('Radio',$Radio);
+        return view('contents.ShowRadios')->with('Radio',$Radio);
     }
 
     public function ListenRadio($id){
         $Rad= Radio::where('id','=',$id)->get();
         $Radio= Radio::where('status','=','Aprobado')->paginate(8);
-        return view('Contents.listenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
+        event(new RadioTraceEvent($id,Auth::user()->id));//Llama al evento asi y pasale el id del contenido y el id del usuario y listo se queda registrado
+        return view('contents.listenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
     }
 
     public function ShowListenRadio(Request $request){
@@ -210,12 +215,13 @@ class ContentController extends Controller
 //--------------------------------------Tvs-----------------------------------------------
     public function ShowTv(){
         $Tv= Tv::where('status','=','Aprobado')->paginate(10);
-        return view('Contents.ShowTv')->with('Tv',$Tv);
+        return view('contents.ShowTv')->with('Tv',$Tv);
     }
     public function PlayTv($id){
         $Tv= Tv::where('id','=',$id)->get();
         $Tvs= Tv::where('status','=','Aprobado')->paginate(8);
-        return view('Contents.playTv')->with('Tv',$Tv)->with('Tvs',$Tvs);
+         event(new TvTraceEvent(Auth::user()->id,$id));
+        return view('contents.playTv')->with('Tv',$Tv)->with('Tvs',$Tvs);
     }
     public function ShowPlayTv(Request $request){
         $Tv= Tv::where('name_r','=',$request->seach)->get();
@@ -254,7 +260,7 @@ class ContentController extends Controller
         {
             $Movie=NULL;
         }
-        return view('Contents.Movies')->with('Movie',$Movie);
+        return view('contents.Movies')->with('Movie',$Movie);
     }
 
     public function seachMovie(){
@@ -279,7 +285,7 @@ class ContentController extends Controller
     }
     public function MovieList($id){
         $Movie= Movie::where('id','=',$id)->get();
-        return view('Contents.ShowMovies')->with('Movie',$Movie);
+        return view('contents.ShowMovies')->with('Movie',$Movie);
     }
 
     public function ShowMovieSeach(Request $request){
