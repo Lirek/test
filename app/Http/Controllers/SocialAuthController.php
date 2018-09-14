@@ -25,7 +25,8 @@ class SocialAuthController extends Controller
 //            dd($user);
             $createUser = User::firstOrCreate(
                 ['email' => $user->getEmail()],
-                ['name' => $user->getName()]
+                ['name' => $user->getName(),
+                'img_perf' => $user->getAvatar()]
             );
 
             event(new CreateCodeSocialUserEvent($createUser->id));
