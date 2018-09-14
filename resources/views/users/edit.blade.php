@@ -48,9 +48,9 @@
 
                         <div class="col-md-6 control-label">
                             @if($user->ci)
-                            {!! Form::text('ci',$user->ci,['class'=>'form-control','readonly']) !!}
+                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
                             @else
-                            {!! Form::text('ci',$user->ci,['class'=>'form-control']) !!}
+                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control']) !!}
                             @endif
                         </div>
                     </div>
