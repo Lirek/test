@@ -1,4 +1,4 @@
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('api/login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('api/login')); ?>">
                             
                             
 
@@ -11,6 +11,6 @@
                                         Ingresar
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                    <a class="btn btn-link" href="<?php echo e(url('/password/reset')); ?>">
                                         Olvide contraseña
                         </form>
