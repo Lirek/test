@@ -83,6 +83,7 @@
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
                                                     <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
+                                                    <input type="hidden" name="points" id="points" value="{{$ticket->points_cost}}">
                                                     <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
                                                     <div id="cantidadTickets-{{$ticket->id}}"></div>
                                                 </div>
@@ -269,7 +270,7 @@ function callback(id) {
         var tickets=id;
         var cant =$('#Cantidad-'+id).val();
 
-        console.log(tickets);
+        console.log(puntos);
          $.ajax({
 
             url:'BuyPuntos',

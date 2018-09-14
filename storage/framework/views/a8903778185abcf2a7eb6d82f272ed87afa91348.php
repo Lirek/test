@@ -42,9 +42,15 @@
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-<?php echo e($ticket->id); ?>" onclick="total(<?php echo $ticket->id; ?>,<?php echo $ticket->cost; ?>,<?php echo $ticket->amount; ?>,<?php echo $ticket->points_cost; ?>)">
+                                                <?php if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL): ?>
+                                                    <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-<?php echo e($ticket->id); ?>" onclick="total(<?php echo $ticket->id; ?>,<?php echo $ticket->cost; ?>,<?php echo $ticket->amount; ?>,<?php echo $ticket->points_cost; ?>)">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
-                                                </a>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-<?php echo e($ticket->id); ?>" onclick="completar(<?php echo $ticket->id; ?>)">
+                                                        <h5><i class="fa fa-ticket"></i> Comprar</h5>
+                                                    </a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -113,13 +119,13 @@
                                                                 <?php echo e(Auth::user()->points); ?>
 
                                                             <?php else: ?>
-                                                                 0 
+                                                                 0
                                                             <?php endif; ?>
                                                             </h5>
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label class="control-label"><h5><b>Costo por paquete: </b> <?php echo e($ticket->points_cost); ?> puntos</h5>    
+                                                        <label class="control-label"><h5><b>Costo por paquete: </b> <?php echo e($ticket->points_cost); ?> puntos</h5>
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12" id="totalP-<?php echo e($ticket->id); ?>"></div>
@@ -264,10 +270,10 @@ function callback(id) {
         var puntos= $('#points').val();
         var tickets=id;
         var cant =$('#Cantidad-'+id).val();
-        
-        console.log(tickets);
+
+        console.log(puntos);
          $.ajax({
-                    
+
             url:'BuyPuntos',
             type: 'post',
             data: {
@@ -277,38 +283,38 @@ function callback(id) {
             ticket_id: tickets,
             Cantidad: cant
              },
-                    
-             success: function (result) 
+
+             success: function (result)
                 {
 
 
-                     if (result==1) 
+                     if (result==1)
                     {
                       swal('Puntos insuficientes','','error');
-                 
+
                     }
                     else
-                    {   
+                    {
                     var idUser=<?php echo Auth::user()->id; ?>;
-                    $.ajax({ 
-                
+                    $.ajax({
+
                       url     : 'MyTickets/'+idUser,
                       type    : 'GET',
                       dataType: "json",
                       success: function (respuesta){
                       console.log(respuesta);
                         $('#Tickets').html(respuesta);
-                  
+
                       },
                     });
-                      
+
                     swal('Pago procesado','','success');
 
-                    }    
+                    }
                 },
-              error: function (result) 
+              error: function (result)
                 {
-                      
+
                 }
 
             });
@@ -358,7 +364,6 @@ function callback(id) {
     }
     document.onmousedown=izquierda
     */
-
     $(document).ready(function(){
 
         var ruta = "https://pay.payphonetodoesposible.com/api/Regions";
@@ -397,7 +402,7 @@ function callback(id) {
         var totalP=parseFloat(documento*points);
         var Mypoints = <?php echo Auth::user()->points; ?>
 
-        
+
         $("#Cantidad-"+id).change(function(){
             documento=parseFloat($('#Cantidad').val());
             total=parseFloat(costo*documento);
@@ -493,7 +498,6 @@ function callback(id) {
         if(valor == 'Deposito'){
             $("#ingresar-"+id).show();
             $("#ingresarFalso-"+id).hide();
-            $("#ingresarPunto-"+id).hide();
             $("#deposito-"+id).show();
             $("#payphone-"+id).hide();
             $("#puntos-"+id).hide();
@@ -537,6 +541,24 @@ function callback(id) {
                 });
             });
         }
+    }
+
+    function completar(id) {
+        swal({
+            title: "Complete su información personal por favor",
+            text: "Antes de realizar cualquier pago debe completar su información personal",
+            icon: "warning",
+            buttons: {
+                accept: {
+                    text: "OK",
+                    value: true
+                }
+            }
+        })
+        .then((completar) => {
+            var ruta = "<?php echo e(url('EditProfile')); ?>";
+            $(location).attr('href',ruta);
+        });
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
@@ -773,6 +795,7 @@ function callback(id) {
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
         var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
+
         if (numberPhone=="" || countryPrefix=="") {
             $('#mensajePayPhone-'+id).hide();
             $('#mensajeValidacion-'+id).show();
@@ -790,7 +813,9 @@ function callback(id) {
                     swal({
                         title: "El usuario no existe en PayPhone",
                         text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
-                        icon: "warning"
+                        icon: "warning",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     });
                 } else {
                     var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
@@ -804,7 +829,9 @@ function callback(id) {
                                 text: "Si, soy yo",
                                 value: true
                             }
-                        }
+                        },
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     })
                     .then((confirmacion) => {
                         if(confirmacion) {
@@ -819,7 +846,9 @@ function callback(id) {
                                         text: "Aceptar",
                                         value: true
                                     }
-                                }
+                                },
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             })
                             .then((pagar) => {
                                 $('#mensajePayPhone-'+id).show();
@@ -833,7 +862,9 @@ function callback(id) {
                                             title: "¡Listo! Estamos esperando su confirmación...",
                                             text: "Verifique su teléfono y seleccione una opción.",
                                             icon: gif,
-                                            buttons: false
+                                            buttons: false,
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         var intento = 0;
                                         var maxIntento = 90; // 1min y 1/2 de espera
@@ -859,7 +890,9 @@ function callback(id) {
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -882,7 +915,9 @@ function callback(id) {
                                                                                 text: "OK",
                                                                                 value: true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        closeOnEsc: false,
+                                                                        closeOnClickOutside: false
                                                                     })
                                                                     .then((recarga) => {
                                                                         location.reload();
@@ -898,7 +933,9 @@ function callback(id) {
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -912,7 +949,9 @@ function callback(id) {
                                                                         text: "OK",
                                                                         value: true
                                                                     }
-                                                                }
+                                                                },
+                                                                closeOnEsc: false,
+                                                                closeOnClickOutside: false
                                                             })
                                                             .then((recarga) => {
                                                                 location.reload();
@@ -946,7 +985,9 @@ function callback(id) {
                                             swal({
                                                 title: "¡Error de conexión!",
                                                 text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                                icon: "error"
+                                                icon: "error",
+                                                closeOnEsc: false,
+                                                closeOnClickOutside: false
                                             });
                                             $('#mensajePayPhone-'+id).hide();
                                         });
@@ -954,7 +995,9 @@ function callback(id) {
                                         swal({
                                             title: "¡Error de conexión!",
                                             text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                            icon: "error"
+                                            icon: "error",
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         $('#mensajePayPhone-'+id).hide();
                                     });
@@ -964,7 +1007,9 @@ function callback(id) {
                             swal({
                                 title: "Tranquilo no pasó nada",
                                 text: "Verifique el número e intentelo de nuevo, por favor",
-                                icon: "warning"
+                                icon: "warning",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             });
                         }
                     });
@@ -973,7 +1018,9 @@ function callback(id) {
                 swal({
                     title: "¡Error de conexión!",
                     text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                    icon: "error"
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
                 });
                 $('#mensajePayPhone-'+id).hide();
             });

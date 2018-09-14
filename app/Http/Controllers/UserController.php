@@ -151,7 +151,7 @@ class UserController extends Controller
         $user->num_doc = $request->ci;
         //$user->num_doc = $request->num_doc;
 
-        //$user->type= $request->type;
+        $user->type= $request->type;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
