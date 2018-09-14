@@ -10,6 +10,7 @@ class Radio extends Model
     use Notifiable;
 
     protected $fillable = [
+        'id',
         'seller_id',
         'name_r', 
         'streaming',
