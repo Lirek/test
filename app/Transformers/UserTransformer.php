@@ -29,7 +29,10 @@ class UserTransformer extends TransformerAbstract
                 'fech_nac'=> $User->fech_nac,
                 'status'=> $User->status,
                 'id'=> $User->id,
-                'verify'=> $User->verify
+                'verify'=> $User->verify,
+                'points'=> $User->points,
+                'pending_points'=> $User->pending_points
+
         ];
     }
 }
