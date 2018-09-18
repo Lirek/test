@@ -600,7 +600,7 @@
                                 {{--<label for="name" class="col-md-4 control-label">Nombre</label>--}}
                                 <div class="col-md-12">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" placeholder="Nombre" required="required" onkeypress="return controltagLet(event)">
+                                           value="{{ old('name') }}" placeholder="Nombre" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                                     <div id="nameMen" style="margin-top: 1%"></div>
                                     @if ($errors->has('name'))
                                         <span class="help-block">
@@ -616,7 +616,7 @@
 
                                 <div class="col-md-12">
                                     <input id="emailRU" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" placeholder="Correo">
+                                           value="{{ old('email') }}" placeholder="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                                     <div id="emailMenRU" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -658,6 +658,14 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="modal-footer" id="modal_footer">
+                                <div class="text-center">
+                                    <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
+                                    <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
+                                    <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
+                                </div>
+                                <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-12">
@@ -681,7 +689,7 @@
 
                                     <input id="com_name" type="text" class="form-control" name="com_name"
                                            required="required"
-                                           placeholder="Nombre comercial" autofocus onkeypress="return controltagLet(event)">
+                                           placeholder="Nombre comercial" autofocus onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                                     <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
@@ -696,7 +704,7 @@
                                 <div class="col-md-12">
                                     <input id="contact_name" type="text" class="form-control" name="contact_name"
                                            required="required"
-                                           placeholder="Nombre del contacto" onkeypress="return controltagLet(event)">
+                                           placeholder="Nombre del contacto" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                                     <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
@@ -712,7 +720,7 @@
 
                                     <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}"
                                            required="required"
-                                           placeholder="Teléfono" onkeypress="return controltagNum(event)">
+                                           placeholder="Teléfono" onkeypress="return controltagNum(event)" pattern="[0-9]+">
                                     <div id="mensajeTelefono" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
@@ -776,7 +784,7 @@
                                 {{--<label for="email" class="col-md-6 control-label">Correo</label>--}}
                                 <div class="col-md-12">
                                     <input id="emailRP" type="email" class="form-control" name="email" required="required"
-                                           placeholder="Correo">
+                                           placeholder="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                                     <div id="mensajeCorreo" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -887,25 +895,54 @@
             }
         });
     });
-    $(document).ready(function(){
-        $('#emailRU').keyup(function(evento){
-            var email = $('#emailRU').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+    // $(document).ready(function(){
+    //     $('#emailRU').blur(function(evento){
+    //         var email = $('#emailRU').val();
+    //         var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
-            if (caract.test(email) == false){
+    //         if (caract.test(email) == false){
 
-                $('#emailMenRU').show();
-                $('#emailMenRU').text('Formato email incorrecto');
-                $('#emailMenRU').css('color','red');
-                $('#emailMenRU').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-                $('#registroRU').css('background-color','');
+    //             $('#emailMenRU').show();
+    //             $('#emailMenRU').text('Formato email incorrecto');
+    //             $('#emailMenRU').css('color','red');
+    //             $('#emailMenRU').css('font-size','60%');
+    //             $('#registroRU').attr('disabled',true);
+    //             $('#registroRU').css('background-color','');
 
-            }else{
-                $('#emailMenRU').hide();
+    //         }else{
+    //             $('#emailMenRU').hide();
+    //         }
+    //     });
+    // });
+  $("#emailRU").on('keyup change',function(){
+        var email_data = $("#emailRU").val();
+        $.ajax({
+            url: 'EmailValidate',
+            type: 'POST',
+            data:{
+                 _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                 if (result == 1) 
+                 {
+                  $('#emailMenRU').hide();
+                  $('#registroRU').attr('disabled',false);
+                  return true;
+                 }
+                 else
+                 {
+                   $('#emailMenRU').show();
+                   $('#emailMenRU').text('Este email ya se encuentra regitrado');
+                   $('#emailMenRU').css('font-size','60%');
+                   $('#emailMenRU').css('color','red');
+                   $('#registroRU').attr('disabled',true);
+                   console.log(result);
+                 }
             }
         });
     });
+
      $(document).ready(function(){
 
         $('#passwordRU').keyup(function(evento){
@@ -1134,26 +1171,56 @@
         te = String.fromCharCode(tecla);
         return patron.test(te); 
     }
-$(document).ready(function(){
-        $('#emailRP').keyup(function(evento){
-            var email = $('#emailRP').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+// $(document).ready(function(){
+//         $('#emailRP').keyup(function(evento){
+//             var email = $('#emailRP').val();
+//             var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
-            if (caract.test(email) == false){
+//             if (caract.test(email) == false){
 
-                $('#mensajeCorreo').show();
-                $('#mensajeCorreo').text('Formato email incorrecto');
-                $('#mensajeCorreo').css('color','red');
-                $('#mensajeCorreo').css('font-size','60%');
-                $('#registroRP').attr('disabled',true);
-                $('#registroRP').css('background-color','');
+//                 $('#mensajeCorreo').show();
+//                 $('#mensajeCorreo').text('Formato email incorrecto');
+//                 $('#mensajeCorreo').css('color','red');
+//                 $('#mensajeCorreo').css('font-size','60%');
+//                 $('#registroRP').attr('disabled',true);
+//                 $('#registroRP').css('background-color','');
 
-            }else{
-                $('#mensajeCorreo').hide();
+//             }else{
+//                 $('#mensajeCorreo').hide();
+//             }
+//         });
+//     });
+    // Funcion para validar el correo
+
+  $("#emailRP").on('keyup change',function(){
+        var email_data = $("#emailRP").val();
+        $.ajax({
+            url: 'RegisterEmailSeller',
+            type: 'POST',
+            data:{
+                 _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                 if (result == 1) 
+                 {
+                  $('#mensajeCorreo').hide();
+                  $('#registroRP').attr('disabled',false);
+                  return true;
+                 }
+                 else
+                 {
+                   $('#mensajeCorreo').show();
+                   $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                   $('#mensajeCorreo').css('font-size','60%');
+                   $('#mensajeCorreo').css('color','red');
+                   $('#registroRP').attr('disabled',true);
+                   console.log(result);
+                 }
             }
         });
     });
-    // Funcion para validar el correo
+
     //---------------------------------------------------------------------------------------------------
 
 </script>

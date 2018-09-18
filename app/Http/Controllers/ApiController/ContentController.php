@@ -15,6 +15,8 @@ use App\Transformers\SellerTransformer;
 use App\Transformers\TagsTransformer;
 use App\Transformers\BooksTransformer;
 use App\Transformers\MegazinesTransformer;
+use App\Transformers\RadioTransformer;
+use App\Transformers\TvTransformer;
 
 
 
@@ -38,16 +40,8 @@ use App\Series;
 class ContentController extends Controller
 {
    
-    public function EmptyJson()
-    {
-    	$json=[
-    			"meta"=>'{ "status":"401","error":"Vacio"}',
-    			"data"=>'{}'
-    		  ];
-
-    	return $json;
-    }
     
+//---------------TODO EL CONTENIDO APROBADO---------------------------------------------------
     public function AllAprovedSingles()
     {
     	
@@ -57,7 +51,7 @@ class ContentController extends Controller
 	                                  ->where('status','=','Aprobado')
 	                                  ->get();
 			
-			if ($Songs->isEmpty()) { 
+			 if ($Songs->isEmpty()) { 
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
                     $Json = Fractal::create()
@@ -66,7 +60,7 @@ class ContentController extends Controller
                            ->parseIncludes(['autors','Seller','Tags'])
                            ->toArray();          
 
-			return Response::json($Json);
+			 return Response::json($Json);
     }
 
     public function AllAprovedAlbums()
@@ -82,7 +76,7 @@ class ContentController extends Controller
 									}
 
 
-		$Json = Fractal::create()
+	   	$Json = Fractal::create()
                            ->collection($Albums)
                            ->transformWith(new AlbumsTransformer)                  
                            ->parseIncludes(['songs','Autors','Seller','tags_music'])
@@ -103,13 +97,48 @@ class ContentController extends Controller
 								return Response::json(['error'=>'Esta Vacio'], 200);
 									}
 
-		$Json = Fractal::create()
+	   	$Json = Fractal::create()
                            ->collection($MusicAuthors)
                            ->transformWith(new MusicAuthorTransformer)                
                            ->parseIncludes(['Albums','Seller','Singles'])
                            ->toArray();          
 
         return Response::json($Json);									
+    }
+
+    public function AllAprovedRadios()
+    {
+      $Radio = Radio::where('status','=','Aprobado')->get();
+
+      
+      if ($Radio->isEmpty()) 
+      { 
+          return Response::json(['error'=>'Esta Vacio'], 200);
+      }
+
+      $Json = Fractal::create()
+                           ->collection($Radio)
+                           ->transformWith(new RadioTransformer)                
+                           ->toArray();          
+
+        return Response::json($Json);                 
+    }
+
+    public function AllAprovedTvs()
+    {
+      $Tvs = Tv::where('status','=','Aprobado')->get();
+
+      if ($Tvs->isEmpty()) 
+      { 
+        return Response::json(['error'=>'Esta Vacio'], 200);
+      }
+
+      $Json = Fractal::create()
+                           ->collection($Tvs)
+                           ->transformWith(new TvTransformer)                
+                           ->toArray();          
+
+        return Response::json($Json);                 
     }
 
     public function AllAprovedBooks()
@@ -153,17 +182,18 @@ class ContentController extends Controller
 
         return Response::json($Json);
     }
+//-----------------------------------------------------------------------------------------
 
+//---------------------Contenido Individual------------------------------------------------
     public function Single($id)
     {
-        $Songs=Songs::findOrFail($id)->whereNull('album')
+        $Songs=Songs::findOrFail($id)
                                       ->with('Seller')
                                       ->with('autors')
-                                      ->where('status','=','Aprobado')
                                       ->get();
             
-            if ($Songs->isEmpty()) { 
-                                return Response::json(['error'=>'Esta Vacio'], 200);
+            if ($Songs==NULL) { 
+                                return Response::json(['status'=>'Esta Vacio'], 200);
                                     }
                     $Json = Fractal::create()
                            ->collection($Songs)
@@ -176,21 +206,21 @@ class ContentController extends Controller
 
     public function Megazine($id)
     {
-        $Megazines= Megazines::findOrFail($id)->where('status','=','Aprobado')
+        $Megazines= Megazines::findOrFail($id)
                                                             ->with('Seller')
                                                             ->with('sagas')
                                                             ->with('tags_megazines')
                                                             ->with('Rating')
                                                             ->get();
 
-        if ($Megazines->isEmpty()) { 
-                                return Response::json(['error'=>'Esta Vacio'], 200);
+        if ($Megazines==NULL) { 
+                                return Response::json(['status'=>'Esta Vacio'], 200);
                                     }
 
             $Json = Fractal::create()
-                           ->collection($Megazines)
+                           ->item($Megazines)
                            ->transformWith(new MegazinesTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
+                           ->parseIncludes(['Seller','Sagas','Rating','Tags'])
                            ->toArray();
 
         return Response::json($Json);
@@ -198,19 +228,19 @@ class ContentController extends Controller
 
     public function Album($id)
     {
-        $Albums = Albums::findOrFail($id)->where('status','=','Aprobado')
+        $Albums = Albums::findOrFail($id)
                                                         ->with('Seller')
                                                         ->with('Autors')
                                                         ->with('tags_music')    
                                                         ->get();
 
-        if ($Albums->isEmpty()) { 
+        if ($Albums==NULL) { 
                                 return Response::json(['error'=>'Esta Vacio'], 200);
                                     }
 
 
         $Json = Fractal::create()
-                           ->collection($Albums)
+                           ->item($Albums)
                            ->transformWith(new AlbumsTransformer)                  
                            ->parseIncludes(['songs','Autors','Seller','tags_music'])
                            ->toArray();
@@ -220,19 +250,19 @@ class ContentController extends Controller
 
     public function Book($id)
     {
-        $Books= Book::findOrFail($id)->where('status','=','Aprobado')
+        $Books= Book::findOrFail($id)
                                                     ->with('author')
                                                     ->with('seller')
                                                     ->get();
 
-                    if ($Books->isEmpty()) { 
+                    if ($Books==NULL) { 
                                 return Response::json(['error'=>'Esta Vacio'], 200);
                                     }
 
             $Json = Fractal::create()
-                           ->collection($Books)
+                           ->item($Books)
                            ->transformWith(new BooksTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
+                           ->parseIncludes(['Seller','Saga','Rating','Author'])
                            ->toArray();          
 
         return Response::json($Json);
@@ -240,22 +270,54 @@ class ContentController extends Controller
 
     public function MusicAuthor($id)
     {
-        $MusicAuthor = music_authors::findOrFail($id)->where('status','=','Aprobado')
-                                                                    ->with('Seller')
+        $MusicAuthor = music_authors::findOrFail($id)                     ->with('Seller')
                                                                     ->with('songs')
                                                                     ->with('albums')
                                                                     ->get();
 
-        if ($MusicAuthor->isEmpty()) { 
+        if ($MusicAuthor == NULL) { 
                                 return Response::json(['error'=>'Esta Vacio'], 200);
                                     }
 
         $Json = Fractal::create()
-                           ->collection($MusicAuthor)
+                           ->item($MusicAuthor)
                            ->transformWith(new MusicAuthorTransformer)                
                            ->parseIncludes(['Albums','Seller','Singles'])
                            ->toArray();          
 
         return Response::json($Json);                                   
     }
+
+    public function Radio($id)
+    {
+        $Radio= Radio::findOrFail($id);
+
+                    if ($Radio == NULL) { 
+                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                    }
+
+            $Json = Fractal::create()
+                           ->item($Radio)
+                           ->transformWith(new RadioTransformer)                
+                           ->toArray();          
+
+        return Response::json($Json);
+    }
+
+    public function Tv($id)
+    {
+        $Tv= Tv::findOrFail($id);
+
+                    if ($Tv == NULL) { 
+                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                    }
+
+            $Json = Fractal::create()
+                           ->item($Tv)
+                           ->transformWith(new TvTransformer)                
+                           ->toArray();          
+
+        return Response::json($Json);
+    }
+//-----------------------------------------------------------------------------------------
 }

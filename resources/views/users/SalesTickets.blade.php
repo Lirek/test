@@ -43,7 +43,8 @@
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
+                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL)
+                                                    <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                     </a>
 
@@ -78,6 +79,7 @@
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
                                                     <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
+                                                    <input type="hidden" name="points" id="points" value="{{$ticket->points_cost}}">
                                                     <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
                                                     <div id="cantidadTickets-{{$ticket->id}}"></div>
                                                 </div>
@@ -264,7 +266,7 @@ function callback(id) {
         var tickets=id;
         var cant =$('#Cantidad-'+id).val();
 
-        console.log(tickets);
+        console.log(puntos);
          $.ajax({
 
             url:'BuyPuntos',
@@ -728,6 +730,7 @@ function callback(id) {
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
         var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
+
         if (numberPhone=="" || countryPrefix=="") {
             $('#mensajePayPhone-'+id).hide();
             $('#mensajeValidacion-'+id).show();
@@ -745,7 +748,9 @@ function callback(id) {
                     swal({
                         title: "El usuario no existe en PayPhone",
                         text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
-                        icon: "warning"
+                        icon: "warning",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     });
                 } else {
                     var nombre = clientePayPhone.name+" "+clientePayPhone.lastName;
@@ -759,7 +764,9 @@ function callback(id) {
                                 text: "Si, soy yo",
                                 value: true
                             }
-                        }
+                        },
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
                     })
                     .then((confirmacion) => {
                         if(confirmacion) {
@@ -774,7 +781,9 @@ function callback(id) {
                                         text: "Aceptar",
                                         value: true
                                     }
-                                }
+                                },
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             })
                             .then((pagar) => {
                                 $('#mensajePayPhone-'+id).show();
@@ -788,7 +797,9 @@ function callback(id) {
                                             title: "¡Listo! Estamos esperando su confirmación...",
                                             text: "Verifique su teléfono y seleccione una opción.",
                                             icon: gif,
-                                            buttons: false
+                                            buttons: false,
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         var intento = 0;
                                         var maxIntento = 90; // 1min y 1/2 de espera
@@ -814,7 +825,9 @@ function callback(id) {
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -837,7 +850,9 @@ function callback(id) {
                                                                                 text: "OK",
                                                                                 value: true
                                                                             }
-                                                                        }
+                                                                        },
+                                                                        closeOnEsc: false,
+                                                                        closeOnClickOutside: false
                                                                     })
                                                                     .then((recarga) => {
                                                                         location.reload();
@@ -853,7 +868,9 @@ function callback(id) {
                                                             title: "¡Ya casi terminamos!",
                                                             text: "Estamos procesando su información...",
                                                             icon: gif,
-                                                            buttons: false
+                                                            buttons: false,
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
                                                         });
                                                         console.log("intento "+intento+": "+status);
                                                         console.log(transaction.transactionId);
@@ -867,7 +884,9 @@ function callback(id) {
                                                                         text: "OK",
                                                                         value: true
                                                                     }
-                                                                }
+                                                                },
+                                                                closeOnEsc: false,
+                                                                closeOnClickOutside: false
                                                             })
                                                             .then((recarga) => {
                                                                 location.reload();
@@ -901,7 +920,9 @@ function callback(id) {
                                             swal({
                                                 title: "¡Error de conexión!",
                                                 text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                                icon: "error"
+                                                icon: "error",
+                                                closeOnEsc: false,
+                                                closeOnClickOutside: false
                                             });
                                             $('#mensajePayPhone-'+id).hide();
                                         });
@@ -909,7 +930,9 @@ function callback(id) {
                                         swal({
                                             title: "¡Error de conexión!",
                                             text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                                            icon: "error"
+                                            icon: "error",
+                                            closeOnEsc: false,
+                                            closeOnClickOutside: false
                                         });
                                         $('#mensajePayPhone-'+id).hide();
                                     });
@@ -919,7 +942,9 @@ function callback(id) {
                             swal({
                                 title: "Tranquilo no pasó nada",
                                 text: "Verifique el número e intentelo de nuevo, por favor",
-                                icon: "warning"
+                                icon: "warning",
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
                             });
                         }
                     });
@@ -928,7 +953,9 @@ function callback(id) {
                 swal({
                     title: "¡Error de conexión!",
                     text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
-                    icon: "error"
+                    icon: "error",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
                 });
                 $('#mensajePayPhone-'+id).hide();
             });

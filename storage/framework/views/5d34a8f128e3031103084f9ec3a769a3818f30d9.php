@@ -97,7 +97,7 @@
                                 <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password">
+                                    <input id="password" type="password" class="form-control" name="password" autocomplete="off">
 
                                     <?php if($errors->has('password')): ?>
                                         <span class="help-block">
@@ -114,7 +114,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password_confirm" type="password" class="form-control"
-                                           name="password_confirmation">
+                                           name="password_confirmation" autocomplete="off">
 
                                     <?php if($errors->has('password_confirm')): ?>
                                         <span class="help-block">
@@ -152,6 +152,9 @@
     <script>
 
         $(document).ready(function () {
+            jQuery.validator.addMethod("lettersonly", function(value, element, param) {
+              return value.match(new RegExp("." + param + "$"));
+            });
 
             $.mockjax({
                 url: "emails.action",
@@ -173,20 +176,29 @@
                 rules: {
                     name: {
                         required: true,
-                        minlength: 2
+                        minlength: 2,
+                        lettersonly: "[a-zA-Z]+" 
                     },
                     email: {
                         required: true,
                         email: true,
-                        remote: "emails.action"
+                        remote: {
+                            url: "<?php echo e(url ('RegisterEmail')); ?>",
+                            type:"POST",
+                            data:{
+                                _token: $('input[name=_token]').val(),
+                                'email': function(){ return $('#email').val();}
+                            }
+
+                        }
                     },
                     password: {
                         required: true,
-                        minlength: 5
+                        minlength: 6
                     },
-                    password_confirm: {
+                    password_confirmation: {
                         required: true,
-                        minlength: 5,
+                        minlength: 6,
                         equalTo: "#password"
                     },
                 },
@@ -194,21 +206,22 @@
                 messages: {
                     name: {
                         required: " Ingresar su nombre",
-                        minlength: "Su nombre debe tener minimo 2 caracteres"
+                        minlength: "Su nombre debe tener minimo 2 caracteres",
+                        lettersonly:'Solo debe ingresar letras'
                     },
                     password: {
                         required: "Ingresar clave",
-                        minlength: "Debe tener minim 5 caracteres"
+                        minlength: "Debe tener minimo 6 caracteres"
                     },
-                    password_confirm: {
+                    password_confirmation: {
                         required: "Ingresar contraseña",
-                        minlength: "Debe tener minimo 5 caracteres",
-                        equalTo: "Ingrese la misma contraseña"
+                        minlength: "Debe tener minimo 6 caracteres",
+                        equalTo: "Las contraseña deben coincidir"
                     },
                     email: {
                         required: "Ingresar un correo valido",
                         email: "Formato de correo invalido",
-                        remote: ("Ya se ha registrado")
+                        remote: ("Email ya se encuentra registrado")
                     }
                 },
 
