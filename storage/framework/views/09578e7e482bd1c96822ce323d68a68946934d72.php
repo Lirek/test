@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
     <!--Modal-->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 
     <!--Buscador-->
     <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
@@ -381,7 +381,7 @@
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
 
 <!--SCRIPS JS-->

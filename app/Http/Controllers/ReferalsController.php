@@ -91,4 +91,15 @@ class ReferalsController extends Controller
 
     	return view('users.Referals')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered);
     }
+
+    public function email(Request $request){
+        $email=User::where('email','=',$request->email)->first();
+        
+
+        if($email){
+            return response()->json($email->email); 
+        }else{
+            return response()->json(1); 
+        }
+    }
 }

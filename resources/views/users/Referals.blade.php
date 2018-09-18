@@ -187,13 +187,14 @@
                     <div class="form-group">
                         <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Email</label>
                         <div class="col-lg-10">
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
+                          <div id="emailMen"></div>
                         </div>
                     </div>
                                               
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-5">
-                          <button type="submit" class="btn btn-primary">Enviar</button>
+                          <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
                         </div>
                     </div>
                     </form>
@@ -204,14 +205,37 @@
           </div>
     </div>
 </div>
-              
-                  
-                  
-                  
-           
-
-          @endsection
+@endsection
 
 @section('js')
+<script type="text/javascript">
+  $("#email").on('keyup change',function(){
+        var email_data = $("#email").val();
+        $.ajax({
+            url: 'EmailValidate',
+            type: 'POST',
+            data:{
+                 _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                 if (result == 1) 
+                 {
+                  $('#emailMen').hide();
+                  $('#enviar').attr('disabled',false);
+                  return true;
+                 }
+                 else
+                 {
+                   $('#emailMen').show();
+                   $('#emailMen').text('Este email ya se encuentra regitrado');
+                   $('#emailMen').css('color','red');
+                   $('#enviar').attr('disabled',true);
+                   console.log(result);
+                 }
+            }
+        });
+    });
+</script>
 
 @endsection

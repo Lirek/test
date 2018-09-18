@@ -11,7 +11,7 @@
             	<div class="control-label">
             		<div class="white-header">
             			<div class="col-sm-12 col-xs-12 col-md-12">
-            				<h3><span class="card-title"><i class="fa fa-angle-right"> Televivision</i></span></h3>
+            				<h3><span class="card-title"><i class="fa fa-angle-right"> Television</i></span></h3>
             				<div class="col-md-12  control-label">
          						<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchPlayTv')); ?>"><?php echo e(csrf_field()); ?>
 
