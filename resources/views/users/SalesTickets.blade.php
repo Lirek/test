@@ -7,6 +7,37 @@
         -o-animation: spin 0.8s infinite linear;
         animation: spin 0.8s infinite linear;
     }
+    .btn-swal-center {
+        /*
+        width: 5em;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        position:absolute;
+        width:100%; left:0;
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        */
+        margin-right: 13em;
+        /*margin-left: 30em;*/
+    }
+    @media only screen and (max-width: 425px) {
+        .btn-swal-center {
+            margin-right: 10.5em;
+        }
+    }
+    @media only screen and (max-width: 375px) {
+        .btn-swal-center {
+            margin-right: 9em;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        .btn-swal-center {
+            margin-right: 7em;
+        }
+    }
 </style>
 @endsection
 @section('main') 
@@ -44,10 +75,20 @@
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
                                                 @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL)
-                                                    <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
+                                                    @if(Auth::user()->verify==0)
+                                                        <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-{{$ticket->id}}" onclick="esperarAprobacion()">
+                                                            <h5><i class="fa fa-ticket"></i> Comprar</h5>
+                                                        </a>
+                                                    @else
+                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
+                                                            <h5><i class="fa fa-ticket"></i> Comprar</h5>
+                                                        </a>
+                                                    @endif
+                                                @else
+                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-{{$ticket->id}}" onclick="completar()">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                     </a>
-
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +194,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center" style="margin-top: 2%">
-                                                        <a class="btn btn-default" id="ingresarFalso-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
+                                                        <a class="btn btn-default" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -162,7 +203,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div class="col-md-12" align="center" style="margin-top: -5%">
                                                         <a class="btn btn-default" id="ingresarPunto-{{$ticket->id}}" onclick="callback({!!$ticket->id!!})">Comprar</a>
                                                     </div>
                                                 </div>
@@ -249,73 +290,6 @@
 
 @section('js')
 <script type="text/javascript">
-function callback(id) {
-    var gif = "{{ asset('/sistem_images/Loading.gif') }}";
-      swal({
-                title: 'Procesando..!',
-                icon: gif,
-                text: 'Por favor espere..',
-                buttons: false,
-                closeOnEsc: false,
-                onOpen: () => {
-                    swal.showLoading()
-                }
-            })
-        var costo= $('#cost').val();
-        var puntos= $('#points').val();
-        var tickets=id;
-        var cant =$('#Cantidad-'+id).val();
-
-        console.log(puntos);
-         $.ajax({
-
-            url:'BuyPuntos',
-            type: 'post',
-            data: {
-            _token: $('input[name=_token]').val(),
-            cost: costo,
-            points: puntos,
-            ticket_id: tickets,
-            Cantidad: cant
-             },
-
-             success: function (result)
-                {
-
-
-                     if (result==1)
-                    {
-                      swal('Puntos insuficientes','','error');
-
-                    }
-                    else
-                    {
-                    var idUser={!!Auth::user()->id!!};
-                    $.ajax({
-
-                      url     : 'MyTickets/'+idUser,
-                      type    : 'GET',
-                      dataType: "json",
-                      success: function (respuesta){
-                      console.log(respuesta);
-                        $('#Tickets').html(respuesta);
-
-                      },
-                    });
-
-                    swal('Pago procesado','','success');
-
-                    }
-                },
-              error: function (result)
-                {
-
-                }
-
-            });
-}
-</script>
-<script type="text/javascript">
     $('#myTable').DataTable({
         "language": {
             "sProcessing":     "Procesando...",
@@ -385,10 +359,86 @@ function callback(id) {
         });
     });
 
+    function callback(id) {
+        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+        swal({
+            title: "Procesando",
+            text: "Estamos procesando su pago, por favor espere un momento.",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
+            onOpen: () => {
+                swal.showLoading()
+            }
+        });
+        var costo = $('#cost').val();
+        var puntos = $('#points').val();
+        var tickets = id;
+        var cant = $('#Cantidad-'+id).val();
+        console.log(puntos);
+        $.ajax({
+            url:'BuyPuntos',
+            type: 'post',
+            data: {
+                _token: $('input[name=_token]').val(),
+                cost: costo,
+                points: puntos,
+                ticket_id: tickets,
+                Cantidad: cant
+            },
+            success: function (result) {
+                console.log(result);
+                if (result==1) {
+                    swal({
+                        title: "Puntos insuficientes",
+                        text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
+                        icon: " warning",
+                        buttons: {
+                            accept: {
+                                text: "OK",
+                                value: true,
+                                className: "btn-swal-center"
+                            }
+                        },
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
+                } else {
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({
+                        url     : 'MyTickets/'+idUser,
+                        type    : 'GET',
+                        dataType: "json",
+                        success: function (respuesta){
+                            console.log(respuesta);
+                            swal({
+                                title: "¡Pago exitoso!",
+                                icon: "success",
+                                buttons: {
+                                    accept: {
+                                        text: "OK",
+                                        value: true,
+                                        className: "btn-swal-center"
+                                    }
+                                },
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
+                            })
+                            .then((ok) => {
+                                location.reload();
+                            });
+                        },
+                    });
+                }
+            }
+        });
+    }
+
 
     function total(id,costo,cant,points){
 
-        $("#ingresarFalso-"+id).hide();
+        $("#ingresarPayPhone-"+id).hide();
         $("#ingresarPunto-"+id).hide();
 
         var documento = $('#Cantidad-'+id).val();
@@ -400,8 +450,8 @@ function callback(id) {
         $("#Cantidad-"+id).change(function(){
             documento=parseFloat($('#Cantidad').val());
             total=parseFloat(costo*documento);
-
         });
+
         $("#Cantidad-"+id).keyup(function(){
             documento=parseFloat($('#Cantidad-'+id).val());
             total=parseFloat(costo*documento);
@@ -418,8 +468,14 @@ function callback(id) {
             }
             $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
             $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
-
+            $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
+            if(totalP > Mypoints){
+                $('#ingresarPunto-'+id).attr('disabled',true);
+            }else{
+                $('#ingresarPunto-'+id).attr('disabled',false);
+            }
         });
+
         $(':input[type="number"]').click(function (){
             documento=parseFloat($('#Cantidad-'+id).val());
             total=parseFloat(costo*documento);
@@ -432,10 +488,22 @@ function callback(id) {
             }
             $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
             $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
-            });
+            $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
+            if(totalP > Mypoints){
+                $('#ingresarPunto-'+id).attr('disabled',true);
+            }else{
+                $('#ingresarPunto-'+id).attr('disabled',false);
+            }
+        });
 
         $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
         $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
+        $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
+        if(totalP > Mypoints){
+            $('#ingresarPunto-'+id).attr('disabled',true);
+        }else{
+            $('#ingresarPunto-'+id).attr('disabled',false);
+        }
     }
 
     function controltagNum(e) {
@@ -464,7 +532,8 @@ function callback(id) {
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
             $("#ingresar-"+id).show();
-            $("#ingresarFalso-"+id).hide();
+            $("#ingresarPayPhone-"+id).hide();
+            $("#ingresarPunto-"+id).hide();
             $("#deposito-"+id).show();
             $("#payphone-"+id).hide();
             $('#voucher-'+id).attr('required','required');
@@ -472,8 +541,20 @@ function callback(id) {
             $('#references-'+id).focus();
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
+        }else if(valor == 'puntos'){
+            $("#ingresarPunto-"+id).show();
+            $("#ingresar-"+id).hide();
+            $("#payphone-"+id).hide();
+            $("#ingresarPayPhone-"+id).hide();
+            $('#pais-'+id).removeAttr('required');
+            $('#numero-'+id).removeAttr('required');
+            $("#deposito-"+id).hide();
+            $('#voucher-'+id).removeAttr('required','required');
+            $('#references-'+id).removeAttr('required','required');
+            $("#puntos-"+id).show();
         }else{
-            $("#ingresarFalso-"+id).show();
+            $("#ingresarPayPhone-"+id).show();
+            $("#ingresarPunto-"+id).hide();
             $("#ingresar-"+id).hide();
             $("#payphone-"+id).show();
             $("#deposito-"+id).hide();
@@ -494,6 +575,39 @@ function callback(id) {
                 });
             });
         }
+    }
+
+    function completar() {
+        swal({
+            title: "Complete su información personal por favor",
+            text: "Antes de realizar cualquier pago debe completar su información personal",
+            icon: "warning",
+            buttons: {
+                accept: {
+                    text: "OK",
+                    value: true,
+                    className: "btn-swal-center"
+                }
+            }
+        })
+        .then((completar) => {
+            var ruta = "{{url('EditProfile')}}";
+            $(location).attr('href',ruta);
+        });
+    }
+    function esperarAprobacion() {
+        swal({
+            title: "Verificando su información",
+            text: "Disculpe pero en estos momentos nos encontramos verificando su información, en breves momentos terminaremos con la verificación.",
+            icon: "warning",
+            buttons: {
+                accept: {
+                    text: "OK",
+                    value: true,
+                    className: "btn-swal-center"
+                }
+            }
+        });
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
@@ -726,6 +840,8 @@ function callback(id) {
     }
 
     function comprar(id,cost,cantidadTickets) {
+
+        $('#ingresarPayPhone-'+id).attr("disabled", true);
         var numberPhone = $('#numero-'+id).val();
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
@@ -735,6 +851,7 @@ function callback(id) {
             $('#mensajePayPhone-'+id).hide();
             $('#mensajeValidacion-'+id).show();
             $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Los datos introducidos son erróneos</span> </h4>");
+            $('#ingresarPayPhone-'+id).removeAttr("disabled");
         }
         else {
             $('#mensajeValidacion-'+id).hide();
@@ -749,6 +866,13 @@ function callback(id) {
                         title: "El usuario no existe en PayPhone",
                         text: "El número telefónico que introdujo no se encuentra registrado en PayPhone, verifique los datos e intentelo de nuevo, por favor.",
                         icon: "warning",
+                        buttons: {
+                            accept: {
+                                text: "OK",
+                                value: true,
+                                className: "btn-swal-center"
+                            }
+                        },
                         closeOnEsc: false,
                         closeOnClickOutside: false
                     });
@@ -786,6 +910,7 @@ function callback(id) {
                                 closeOnClickOutside: false
                             })
                             .then((pagar) => {
+                                $('#ingresarPayPhone-'+id).attr("disabled", true);
                                 $('#mensajePayPhone-'+id).show();
                                 $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
                                 console.log("id: "+id+" cost: "+cost);
@@ -848,7 +973,8 @@ function callback(id) {
                                                                         buttons: {
                                                                             accept: {
                                                                                 text: "OK",
-                                                                                value: true
+                                                                                value: true,
+                                                                                className: "btn-swal-center"
                                                                             }
                                                                         },
                                                                         closeOnEsc: false,
@@ -882,7 +1008,8 @@ function callback(id) {
                                                                 buttons: {
                                                                     accept: {
                                                                         text: "OK",
-                                                                        value: true
+                                                                        value: true,
+                                                                        className: "btn-swal-center"
                                                                     }
                                                                 },
                                                                 closeOnEsc: false,
@@ -921,6 +1048,13 @@ function callback(id) {
                                                 title: "¡Error de conexión!",
                                                 text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
                                                 icon: "error",
+                                                buttons: {
+                                                    accept: {
+                                                        text: "OK",
+                                                        value: true,
+                                                        className: "btn-swal-center"
+                                                    }
+                                                },
                                                 closeOnEsc: false,
                                                 closeOnClickOutside: false
                                             });
@@ -931,6 +1065,13 @@ function callback(id) {
                                             title: "¡Error de conexión!",
                                             text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
                                             icon: "error",
+                                            buttons: {
+                                                accept: {
+                                                    text: "OK",
+                                                    value: true,
+                                                    className: "btn-swal-center"
+                                                }
+                                            },
                                             closeOnEsc: false,
                                             closeOnClickOutside: false
                                         });
@@ -943,17 +1084,32 @@ function callback(id) {
                                 title: "Tranquilo no pasó nada",
                                 text: "Verifique el número e intentelo de nuevo, por favor",
                                 icon: "warning",
+                                buttons: {
+                                    accept: {
+                                        text: "OK",
+                                        value: true,
+                                        className: "btn-swal-center"
+                                    }
+                                },
                                 closeOnEsc: false,
                                 closeOnClickOutside: false
                             });
                         }
                     });
+                    $('#ingresarPayPhone-'+id).removeAttr("disabled");
                 }
             }, function(error) {
                 swal({
                     title: "¡Error de conexión!",
                     text: "Verifique su conexión de Internet e intentelo de nuevo, por favor.",
                     icon: "error",
+                    buttons: {
+                        accept: {
+                            text: "OK",
+                            value: true,
+                            className: "btn-swal-center"
+                        }
+                    },
                     closeOnEsc: false,
                     closeOnClickOutside: false
                 });
