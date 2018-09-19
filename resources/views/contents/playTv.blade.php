@@ -63,7 +63,7 @@
                             </div>
             				@endforeach
                             <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%"> 
-                                <h3><span class="card-title"><i class="fa fa-angle-right"> Televivision</i></span></h3>
+                                <h3><span class="card-title"><i class="fa fa-angle-right"> Television</i></span></h3>
                                 <div class="col-md-12  control-label">
                                     <form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">{{ csrf_field() }}
                                         <input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">

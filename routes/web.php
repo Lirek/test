@@ -47,6 +47,9 @@ Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCal
 
 Route::resource('users', 'UserController');
 
+Route::post('EmailValidate','ReferalsController@email');
+Route::post('RegisterEmail','WelcomeController@email');
+Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
 
 Route::group(['middleware' => 'auth'], function() {

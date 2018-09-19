@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')  
+<?php $__env->startSection('main'); ?>  
 
 <div class="row">
 <div class="form-group"> 
@@ -8,63 +6,74 @@
 	<h4><i class="fa fa-angle-right"></i> Modificar Perfil</h4>
 	<div class="col-md-12 col-sm-12 mb">
 		<div class="form-group">
-			{!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
-             {{ Form::token() }}
+			<?php echo Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']); ?>
 
-                 {{--Nombre--}}
+             <?php echo e(Form::token()); ?>
+
+
+                 
                  <div class="form-group ">
                     <div class="col-md-4  control-label">
-                      {!! Form::label('name','Nombres',['class'=>'control-label']) !!}
+                      <?php echo Form::label('name','Nombres',['class'=>'control-label']); ?>
+
                     </div>
                      <div class="col-md-6  control-label">
-                       {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+' ]) !!}
+                       <?php echo Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+' ]); ?>
+
                      </div>
                   </div>
 
 
                    <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('last_name','Apellidos',['class'=>'control-label']) !!}
+                            <?php echo Form::label('last_name','Apellidos',['class'=>'control-label']); ?>
+
                          </div>
                         <div class="col-md-6 control-label"> 
-                            {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+']) !!}
+                            <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+']); ?>
+
                         </div>
                     </div>
 
-                    {{--Correo--}}
+                    
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('email','Correo',['class'=>'control-label']) !!}
+                            <?php echo Form::label('email','Correo',['class'=>'control-label']); ?>
+
                         </div>
                         <div class="col-md-6 control-label">
-                            {!! Form::text('email',$user->email,['class'=>'form-control','readonly']) !!}
+                            <?php echo Form::text('email',$user->email,['class'=>'form-control','readonly']); ?>
+
                         </div>
                     </div>
-                     {{--Cedula Nota no es un select--}}
+                     
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('ci','Cedula',['class'=>'control-label']) !!}
+                            <?php echo Form::label('ci','Cedula',['class'=>'control-label']); ?>
+
                         </div>
 
                         <div class="col-md-6 control-label">
-                            @if($user->num_doc)
-                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
-                            @else
-                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
-                            @endif
+                            <?php if($user->num_doc): ?>
+                            <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']); ?>
+
+                            <?php else: ?>
+                            <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']); ?>
+
+                            <?php endif; ?>
                         </div>
                     </div>
 
-                    {{--Imagen Documento--}}
+                    
 
                      <div class="form-group ">
                          <div id="image-preview" class="col-md-4 control-label">
                              <label for="image-upload" id="image-label">Imagen de Documento</label>
                         </div>
                         <div  class="col-md-4">
-                            @if ($user->img_doc)
-    							<img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                            @endif
+                            <?php if($user->img_doc): ?>
+    							<img id="preview_img_doc" src="<?php echo e(asset($user->img_doc)); ?>" name='ci' alt="your image" width="180" height="180" />
+                            <?php endif; ?>
     							<div class="col-md-10 control-label">
     							     <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
                                      <div id="mensajeImgDoc"></div>
@@ -72,37 +81,41 @@
                          </div>
                     </div>
 
-                    {{--Genero --}}
+                    
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('num_doc','Sexo',['class'=>'control-label']) !!}
+                            <?php echo Form::label('num_doc','Sexo',['class'=>'control-label']); ?>
+
                         </div>
                         <div class="col-md-6 control-label">
-                            {!! Form::select('type',['M'=>'Masculino', 'F'=>'Femenino'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']) !!}
+                            <?php echo Form::select('type',['M'=>'Masculino', 'F'=>'Femenino'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']); ?>
+
                         </div>
                     </div>
 
-                    {{--Alias--}}
+                    
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('alias','Alias',['class'=>'control-label']) !!}
+                            <?php echo Form::label('alias','Alias',['class'=>'control-label']); ?>
+
                         </div>
                         <div class="col-md-6 control-label">
-                            {!! Form::text('alias',$user->alias,['class'=>'form-control']) !!}
+                            <?php echo Form::text('alias',$user->alias,['class'=>'form-control']); ?>
+
                         </div>
                     </div>
 
 
-                    {{--Imagen Perfil--}}
+                    
                     <div class="form-group ">
                          <div id="image-preview" class="col-md-4 control-label">
                              <label for="image-upload" id="image-label">Imagen de Perfil</label>
                             <!--  <input type="file" name="img_perf" id="image-upload" accept=".jpg" required> -->
                         </div>
                         <div  class="col-md-4">
-                            @if($user->img_perf)
-    							<img id="preview_img_perf" src="{{asset($user->img_perf)}}" name='perf' alt="your image" width="180" height="180" >
-                            @endif
+                            <?php if($user->img_perf): ?>
+    							<img id="preview_img_perf" src="<?php echo e(asset($user->img_perf)); ?>" name='perf' alt="your image" width="180" height="180" >
+                            <?php endif; ?>
     							<div class="col-md-10 control-label">
     							<input type='file' name="img_perf" id="img_perf" accept=".jpg" value="$user->img_perf" />
                                 <div id="mensajeImgPerf"></div>
@@ -111,33 +124,37 @@
                     </div>
 
 
-                    {{--Fecha Nacimiento--}}
+                    
                     <div class="form-group ">
                         <div class="col-md-4 control-label">
-                            {!! Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']) !!}
+                            <?php echo Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']); ?>
+
                         </div>
                         <div class="col-md-6 control-label">
-                            {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control', 'max' =>date('Y-m-d')]) !!}
+                            <?php echo Form::date('fech_nac',$user->fech_nac,['class'=>'form-control', 'max' =>date('Y-m-d')]); ?>
+
                         </div>
                     </div>
 
-                    {{--Boton--}}
+                    
                     <div class="form-group text-center">
-                        {!! Form::submit('Editar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                        <?php echo Form::submit('Editar', ['class' => 'btn btn-primary active','id'=>'Editar']); ?>
+
                     </div>
 
 
-                    {!! Form::close() !!}
+                    <?php echo Form::close(); ?>
+
 		</div>
 	</div>
 </div>
 </div> 
 </div>  
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -212,4 +229,5 @@
 </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
