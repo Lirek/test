@@ -31,10 +31,19 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     	
     	Route::get('User','ApiController\UserController@UserData');
     	Route::get('Referals','ApiController\UserController@WebsUser');
-    	Route::post('UpdateData', 'ApiController\UserController@UpdateData');
-		Route::get('Packages','ApiController\PackageController@ShowPackages');    	
+    	Route::post('UpdateData', 'ApiController\UserController@UpdateData');    	
    //-------------------------------------------------------------------------
 
+    //-------------------------RUTAS DE PAQUETES--------------------------------
+   		Route::get('Packages','ApiController\PackageController@ShowPackages');
+
+   		//---------------------------COMPRAS DE PAQUETES--------------------------------------
+	   		Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
+	   		Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
+   		//-----------------------------------------------------------------------------------
+
+    //--------------------------------------------------------------------------
+   
     //---------------Rutas de Contenido---------------------------------------
 
 		Route::get('Singles','ApiController\ContentController@AllAprovedSingles');
