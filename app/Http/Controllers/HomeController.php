@@ -143,7 +143,14 @@ class HomeController extends Controller
     public function MyTickets($id)
     {
         $MyTickets=Auth::user()->credito;
-        return Response()->json($MyTickets);
+        //dd($MyTickets);
+        if ($MyTickets==null){
+            $MyTickets = 0;
+             return Response()->json($MyTickets);
+        }
+        else{
+            return Response()->json($MyTickets);
+        }
     }
 
     public function SaleTickets(){
