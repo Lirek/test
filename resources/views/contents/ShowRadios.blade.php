@@ -21,16 +21,24 @@
        							</form>
        						</div>
        						@foreach($Radio as $radios)
-       						<div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 2%">
-                    			<div class="content-panel pn-music">
+       						<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 mb" style="margin-top: 2%">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <p><a href="{{url('ListenRadio/'.$radios->id)}}">
+                        <img src="{{asset($radios->logo)}}" width="100%" >
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="margin-left: -8%; margin-top: 8%">
+                        <h5>{{$radios->name_r}}</h5>
+                      </p></a>
+                    </div>
+                    			<!-- <div class="content-panel pn-music">
                         			<div id="profile-01" style="">
                         				<img src="{{asset($radios->logo)}}" width="100%" >
                         			</div>
                         			<div class="profile-01 centered">
                             			<p><a href="{{url('ListenRadio/'.$radios->id)}}" style="color: #ffff"><i class="fa fa-play-circle"> Escuchar</i></p></a>
                         			</div>
-                        		</div>
-                        	</div>
+                        	</div> -->
+                  </div>
                         	@endforeach
                         	<div  class="col-sm-12 col-xs-12 col-md-12">
        						{{  $Radio->links() }}
