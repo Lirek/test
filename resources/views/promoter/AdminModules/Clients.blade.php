@@ -64,7 +64,58 @@
 @endsection
 
 @section('js')
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
+<script id="jsbin-javascript">
+  function getDatilAgain(idTicketSales,medio,idUser,callback) {
+    var msn = "";
+    getDatil(idTicketSales,medio,idUser).then(function(response) {
+        var res = JSON.parse(response);
+        msn = res;
+    }, function(error) {
+        msn = error;
+    });
+    setTimeout(function() {
+        callback(msn);
+    },2000);
+  }
+  function getDatil(idTicketSales,medio,idUser) {
+    return new Promise(function(resolve,reject) {
+      var parametros = "/"+idTicketSales+"/"+medio+"/"+idUser;
+      var url = "{{ url('/facturaDeposito/') }}"+parametros;
+
+      var req = new XMLHttpRequest();
+      req.open("GET",url);
+      req.onload = function() {
+          if (req.status == 200) {
+              resolve(req.response);
+          }
+          else {
+              resolve(req.response);
+          }
+      };
+      req.onerror = function() {
+          reject(Error("Network Error"));
+      };
+      req.send();
+    });
+  }
+  function setFactura(idTicketSales,idFactura,callback){
+    var parametros = "/"+idTicketSales+"/"+idFactura;
+    var ruta = "{{ url('/setFactura/') }}"+parametros;
+    var factura = "";
+
+    $.ajax({
+        url     : ruta,
+        type    : "GET",
+        dataType: "json",
+        success: function (data) {
+            var factura = data;
+            callback(factura);
+        }
+    });
+    return factura;
+  }
+
 	$(document).ready(function(){
 
 		var ClientsDataTable = $('#Clients').DataTable({
@@ -184,35 +235,80 @@
         
         $( "#formPayment" ).on( 'submit', function(e){
 
-          var url = 'DepositStatus/'+x;
+          var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+          swal({
+              title: "Procesando la información",
+              text: "Espere mientras se procesa la información.",
+              icon: gif,
+              buttons: false,
+              closeOnEsc: false,
+              closeOnClickOutside: false
+          });
+
+          var url = "{{ url('/DepositStatus/') }}"+"/"+x;
           
           var s=$("input[type='radio'][name=status_p]:checked").val();
           
           var message=$('#razon_p').val();
+          console.log(x,url,s);
           e.preventDefault();
-            $.ajax({
+          $.ajax({
                     url: url,
                     type: 'post',
-                    async: false,
+                    //async: false,
                     data: {
                             _token: $('input[name=_token]').val(),
-                            status: s,
+                            status_p: s,
                             message: message,
                           }, 
                     success: function (result) {
 
                                                 $('#PayModal').toggle();
                                                 $('.modal-backdrop').remove();
-                                                swal("Se ha "+s+" con exito","","success");
-                                                console.log(result);
-                                                
-                                                },
+                                                var idTicketSales = x;
+                                                var idUser = result.id;
+                                                var medio = "deposito_cuenta_bancaria";
+                                                console.log(result,idTicketSales,idUser,medio,s);
+                                                if (s=="Aprobado") {
+                                                  getDatilAgain(idTicketSales,medio,idUser,function callback(infoFactura) {
+                                                    console.log(infoFactura);
+                                                    var idFactura = infoFactura.id;
+                                                    console.log(idFactura);
+                                                    if (idFactura!=undefined) {
+                                                      setFactura(idTicketSales,idFactura,function(ticketSales) {
+                                                        console.log(ticketSales);
+                                                        swal({
+                                                          title: "Se ha "+s+" con exito",
+                                                          icon: "success",
+                                                          closeOnEsc: false,
+                                                          closeOnClickOutside: false
+                                                        })
+                                                        .then((recarga) => {
+                                                            location.reload();
+                                                        });
+                                                      });
+                                                    } else {
+                                                      getDatilAgain(idTicketSales,medio,idUser,callback);
+                                                    }
+                                                  });
+                                                } else {
+                                                  swal({
+                                                    title: "Se ha "+s+" con exito",
+                                                    icon: "success",
+                                                    closeOnEsc: false,
+                                                    closeOnClickOutside: false
+                                                  })
+                                                  .then((recarga) => {
+                                                      location.reload();
+                                                  });
+                                                }
+                                              },
 
                     error: function (result) {
                     swal('Existe un Error en su Solicitud','','error');
                     console.log(result);
                     }
-                    });  
+          });
 
         });
       

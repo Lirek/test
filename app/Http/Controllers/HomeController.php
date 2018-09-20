@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Auth;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\User;
 use App\Megazines;
@@ -20,6 +22,7 @@ use App\Referals;
 use App\Movie;
 use App\TicketsPackage;
 use App\Payments;
+use App\SistemBalance;
 
 use App\AccountBalance;
 use App\Serie;
@@ -27,6 +30,8 @@ use App\Episode;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
+
+use App\Events\AssingPointsEvents;
 
 class HomeController extends Controller
 {
@@ -255,18 +260,14 @@ class HomeController extends Controller
         return redirect()->action('HomeController@index');
 
     }
-    public function BuyPoints(Request $request)
-    {
+    
+    public function BuyPoints(Request $request) {
         
         $user = User::find(Auth::user()->id);
 
-        if ($request->cost > $user->points) 
-        {
+        if ($request->cost > $user->points) {
              return response()->json(1);  
-        }
-        
-        else
-        {
+        } else {
             $Buy = new Payments;
             $Buy->user_id       = Auth::user()->id;
             $Buy->package_id    =$request->ticket_id;
@@ -280,6 +281,19 @@ class HomeController extends Controller
             $ticket=$cant*$request->Cantidad;
 
             $cost=$request->Cantidad*$request->points;
+
+            $Condition = Carbon::now()->firstOfMonth()->toDateString();
+            $revenueMonth = Payments::where('user_id',Auth::user()->id)
+                ->where('created_at','>=',$Condition)
+                ->where('status','Aprobado')
+                ->get();
+            $balance = SistemBalance::find(1);
+            $TicketsPackage = Payments::find($request->ticket_id);
+            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->Tickets->amount;
+            $balance->save();
+            if ($revenueMonth->count()<=1) {
+                event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
+            }
 
             $this->creditos($ticket);
             $this->points($cost);
@@ -322,6 +336,18 @@ class HomeController extends Controller
         $Buy->save();
         $this->creditos($ticket);
         $this->correo();
+        $Condition = Carbon::now()->firstOfMonth()->toDateString();
+        $revenueMonth = Payments::where('user_id',Auth::user()->id)
+            ->where('created_at','>=',$Condition)
+            ->where('status','Aprobado')
+            ->get();
+        $balance = SistemBalance::find(1);
+        $TicketsPackage = Payments::find($id);
+        $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->Tickets->amount;
+        $balance->save();
+        if ($revenueMonth->count()<=1) {
+            event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
+        }
         $respuesta = "todo bien";
         return Response()->json($respuesta);
     }
