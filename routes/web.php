@@ -372,6 +372,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('DepsitDataTable','AdminController@DepsitDataTable');
 
                 Route::post('DepositStatus/{id}','AdminController@DepositStatus');
+                // agregadas el 19-09-2018
+                Route::get('facturaDeposito/{idTicketSales}/{medio}/{idUser}','AdminController@facturaDeposito');
+                Route::get('setFactura/{idTicketSales}/{idFactura}','AdminController@setFactura');
           //-------------------------
         //______________________Fin de las rutas de Clientes________________________
         

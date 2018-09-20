@@ -1392,7 +1392,7 @@ class AdminController extends Controller
         $deposit = Payments::find($id);
         
         
-        if($request->status == 'Aprobado')
+        if($request->status_p == 'Aprobado')
         {
 
           $user = User::find($deposit->user_id);
@@ -1424,10 +1424,8 @@ class AdminController extends Controller
           {
            event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
-          
 
-
-          //event(new PayementAprovalEvent($user->email));
+          event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
@@ -1442,13 +1440,105 @@ class AdminController extends Controller
         }
       }
 
+      public function facturaDeposito($idTickets,$medio,$idUser) {
+        //dd($idTickets,$medio,$idUser);
+        $secuencial = rand(0,100000000);
+        $Buy = Payments::find($idTickets);
+        $paquete = TicketsPackage::find($Buy->package_id);
+        $user = User::find($idUser);
+        $nombrePaquete = $paquete->name;
+        $iva = 0.12;
+        $costoPaquete = $Buy->cost;
+        $cantidadPaquetes = $Buy->value;
+        $valor = ($costoPaquete*$iva)*$cantidadPaquetes;
+        $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
+        $total = $costoPaquete*$cantidadPaquetes;
+        $data = [
+        "ambiente" => 2, // 1: prueba; 2: produccion
+        "tipo_emision" => 1, // normal
+        "secuencial" => $secuencial, // Id de tickets_sales
+        "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
+        "emisor" => [
+            "ruc" => "0992897171001",
+            "obligado_contabilidad" => true,
+            "contribuyente_especial" => " ",
+            "nombre_comercial" => "LEIPEL / MuligHed",
+            "razon_social" => "Informeret S.A.",
+            "direccion" => "Torres del Mall del Sol, Torre B, Piso 4 (Av. Joaquín Orrantia y Juan Tanca Marengo)",
+            "establecimiento" => [
+                "punto_emision" => "002",
+                "codigo" => "001",
+                "direccion" => "Torres del Mall del Sol, Torre B, Piso 4 (Av. Joaquín Orrantia y Juan Tanca Marengo)"
+            ]
+        ],
+        "moneda" =>"USD",
+        "totales" => [
+            "impuestos" => [[
+                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
+                "valor" => $valor, //1.2, // 12% del precio del paquete
+                "codigo" => "2", // IVA
+                "codigo_porcentaje" => "2" // 12%
+            ]],
+            "total_sin_impuestos" => $base_imponible, // 8.8,
+            "importe_total" => $total, // 10.0, // precio del paquete de tickets
+            "propina" => 0.0,
+            "descuento" => 0.0
+        ],
+        "comprador" => [ // datos del usuario
+            "email" => $user->email, // "pachecojose0908@gmail.com",
+            "identificacion" => $user->num_doc, // "24218005",
+            "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
+            "razon_social" => $user->name." ".$user->last_name // "José Pacheco"
+        ],
+        "items" => [[
+            "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados
+            "precio_unitario" => $costoPaquete, // 10.0, // precio del paquete de tickets
+            "descripcion" => "Compra de Paquete de Tickets Leipel. ".$nombrePaquete, // "Compra de Paquete de Tickets Leipel", // nombre del paquete
+            "precio_total_sin_impuestos" => $total, // 10.0, // cantidad*precio_unitario //cambiado
+            "impuestos" => [[
+                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
+                "valor" => $valor, // 1.2, // 12% del precio del paquete
+                "tarifa" => 12.0, // 12%
+                "codigo" => "2", // IVA
+                "codigo_porcentaje" => "2" // 12%
+                ]],
+            "descuento" => 0.0
+            ]],
+        "pagos" => [[
+            "medio" => $medio, // "deposito_cuenta_bancaria", // deposito_cuenta_bancaria/dinero_electronico_ec
+            "total" => $total // 10.0 // precio del paquete de tickets
+            ]]
+        ];
+        $urlEmision = "https://link.datil.co/invoices/issue";
+        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: DTleipel8892");
+        $datapost   = json_encode($data);
+        $ch         = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$urlEmision);
+        curl_setopt($ch,CURLOPT_POST, 1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$datapost);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+        curl_setopt($ch,CURLOPT_TIMEOUT, 20);
+        curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
+        $response = curl_exec($ch);
+        curl_close ($ch);
+        $respuesta = json_decode($response);
+        return Response()->json($respuesta);
+      }
+
+      public function setFactura($idTicketSales,$idFactura) {
+        $ticketSale = Payments::find($idTicketSales);
+        $ticketSale->factura_id = $idFactura;
+        $ticketSale->save();
+        return Response()->json($ticketSale);
+      }
+
 
 //------------------------------------------------------------
 
 //--------------------------Funcion de Pruueba----------------
     public function test()
       {
-        
       }
 //-------------------------------------------------------------
 
