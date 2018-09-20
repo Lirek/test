@@ -181,7 +181,7 @@ class ContentController extends Controller
         $Rad= Radio::where('id','=',$id)->get();
         $Radio= Radio::where('status','=','Aprobado')->paginate(8);
         event(new RadioTraceEvent(Auth::user()->id,$id));//Llama al evento asi y pasale el id del contenido y el id del usuario y listo se queda registrado
-        return view('contents.listenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
+        return view('contents.ListenRadio')->with('Rad',$Rad)->with('Radio',$Radio);
     }
 
     public function ShowListenRadio(Request $request){

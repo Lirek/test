@@ -377,9 +377,10 @@
         var tickets = id;
         var cant = $('#Cantidad-'+id).val();
         console.log(puntos);
+        var ruta = "{{ url('/BuyPuntos/') }}";
         $.ajax({
-            url:'BuyPuntos',
-            type: 'post',
+            url: ruta,
+            type: "post",
             data: {
                 _token: $('input[name=_token]').val(),
                 cost: costo,
@@ -393,7 +394,7 @@
                     swal({
                         title: "Puntos insuficientes",
                         text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
-                        icon: " warning",
+                        icon: "warning",
                         buttons: {
                             accept: {
                                 text: "OK",

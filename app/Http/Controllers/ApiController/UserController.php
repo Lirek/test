@@ -11,10 +11,37 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
+use App\Events\PayementAprovalEvent;
+use App\Events\PaymentDenialEvent;
+use App\Events\AssingPointsEvents;
+
 use JWTAuth;
 use Response;
 
+use App\Megazines;
+use App\Tags;
+use App\ApplysSellers;
+use App\Songs;
+use App\Albums;
 use App\User;
+use App\Seller;
+use App\Radio;
+use App\Sagas;
+use App\BookAuthor;
+use App\Book;
+use App\Tv;
+use App\music_authors;
+use App\SellersRoles;
+use App\Promoters;
+use App\LoginControl;
+use App\Salesman;
+use App\PromotersRoles;
+use App\TicketsPackage;
+use App\Payments;
+use App\Referals;
+use App\PointsAssings;
+use App\SistemBalance;
+
 use App\Transformers\UserTransformer;
 
 
@@ -110,15 +137,20 @@ class UserController extends Controller
 
     public function UpdateData(Request $request)
     {
-       $user=User::find(auth()->user()->id);
+        $user = User::find(Auth::user()->id);
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
+        //$user->num_doc = $request->num_doc;
+
+        $user->type= $request->type;
         $user->alias = $request->alias;
         
         if ($request->hasFile('img_perf'))
         {
+
+
          $store_path = public_path().'/user/'.$user->id.'/profile/';
          
          $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
@@ -148,18 +180,20 @@ class UserController extends Controller
          $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
      
+        //dd($user);
         $user->save();
 
         return Response::json(['status'=>'OK'], 200);
     }
 
-    public function BuyPackage(Request $request)
+    public function BuyDepositPackage(Request $request)
     {
         $Buy = new Payments;
         $Buy->user_id=Auth::user()->id;
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
+        $Buy->method='Depósito';
 
          if ($request->hasFile('voucher'))
         {
@@ -177,7 +211,89 @@ class UserController extends Controller
 
         }
         $Buy->status=2;
+        $Buy->reference=$request->references;
         $Buy->save();
+
+        return Response::json(['status'=>'OK'], 200);
     }
 
+    public function BuyPayphonePackage(Request $request)
+    {
+          $user = User::find(Auth::user()->id);    
+
+            $Condition=Carbon::now()->firstOfMonth()->toDateString();
+
+            $revenueMonth = Payments::where('user_id','=',$user->id)
+            ->where('created_at', '>=',$Condition)
+            ->where('status', '=','Aprobado')
+            ->get();
+
+            $balance=  SistemBalance::find(1);
+
+            $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+
+            $balance->save();
+
+          if ($revenueMonth->count()<=1) 
+          {
+           event(new AssingPointsEvents($user->id,$Buy->package_id));
+          }  
+
+          event(new PayementAprovalEvent($user->email));
+
+          return Response::json(['status'=>'OK'], 200);    
+    }
+
+    public function BuyPointsPackage(Request $request)
+    {
+        
+        $user = User::find(Auth::user()->id);
+        $TicketsPackage= TicketsPackage::find($request->ticket_id);
+
+        if ($request->cost > $user->points) 
+        {
+             return Response::json(['status'=>'Puntos insuficientes'], 200);;  
+        }
+        
+        else
+        {
+            $Buy = new Payments;
+            $Buy->user_id       = Auth::user()->id;
+            $Buy->package_id    =$request->ticket_id;
+            $Buy->cost          =$request->points;
+            $Buy->value         =$request->Cantidad;
+            $Buy->status        = 1;
+            $Buy->method        ='Puntos';
+            $Buy->save();
+            
+            
+            $ticket=$TicketsPackage->amount*$request->Cantidad;
+            $cost=$request->Cantidad*$request->points;
+            
+            $user->credito = $ticket;
+            $user->point = $user->points - $cost;
+            $user->save();
+
+            $Condition=Carbon::now()->firstOfMonth()->toDateString();
+
+            $revenueMonth = Payments::where('user_id','=',$user->id)
+            ->where('created_at', '>=',$Condition)
+            ->where('status', '=','Aprobado')
+            ->get();
+
+            $balance=  SistemBalance::find(1);
+
+            $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+
+            $balance->save();
+
+          if ($revenueMonth->count()<=1) 
+          {
+           event(new AssingPointsEvents($user->id,$Buy->package_id));
+          }
+
+          event(new PayementAprovalEvent($user->email));
+        }
+        return Response::json(['status'=>'OK'], 200);    
+    }
 }

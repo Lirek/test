@@ -165,14 +165,14 @@
                         <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
                           <div class="white-panel panRf pe donut-chart">
                             <div class="white-header">
-                               <h5>Finalice Su Registro</h5>
+                               <h5>Complete Su Registro</h5>
                             </div>
                             <div class="row">
                                <div class="col-sm-10 col-xs-10 col-md-10 goleft">
                                   <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
                                   <div class="paragraph">
                                     <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil</p>
-                                      <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Finalizar Registro</a></p>
+                                      <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Completar Registro</a></p>
 
                                       <!--MODAL-->
                                       <div id="myModal" class="modal fade" role="dialog">
@@ -263,7 +263,7 @@
                     <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
-                            <h5>Agregar codigo referido</h5>
+                            <h5>Agregar codigo de patrocinador</h5>
                         </div>
                           <div class="row">
                             <div class="col-sm-10 col-xs-10 col-md-10 goleft">
@@ -334,12 +334,12 @@
                                 
                             </div>
                           </div>
-                        </div><!-- /col-md-5 -->
+                        </div>
                         <div class="col-md-1">
                           
                         </div>
-                        <div class="col-md-4 col-sm-4 mb" style="margin-bottom: -10%">
-                           <!-- Qr PANEL -->
+                        <!-- <div class="col-md-4 col-sm-4 mb" style="margin-bottom: -10%">
+                           
                            <div class="Qr-panel pn">
                               <div class="center">
                                 <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
@@ -347,8 +347,8 @@
                                 <a href="data:image/png;base64,<?php echo base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)); ?>" download="MiQr">Descargar</a>
                               </div>
                           </div>
-                       </div><!-- /col-md-4 -->
-                  </div><!-- /row -->
+                       </div> -->
+                  </div>
                               
    
           <div id="modal-confirmation"></div> 
@@ -368,7 +368,7 @@
   }else{
     var total=14-tiempo;
     console.log(tiempo);
-    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un referido';
+    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
   }
 
 });

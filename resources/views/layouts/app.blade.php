@@ -59,8 +59,8 @@
               </div>
             <!--logo start-->
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
-            <div class="nav pull-right top-menu" id="boton">
-            <div class="navbar-right">
+            <div class="nav pull-right top-menu" id="boton" >
+            <div class="navbar-right" style="margin-top: 12px">
               <img height="39px" src="{{asset('plugins/img/logo-icon-2.png')}}">
               <img height="39px" src="{{asset('plugins/img/logo-icon-4.png')}}">
               <img height="39px" src="{{asset('plugins/img/logo-icon.png')}}">
@@ -191,10 +191,10 @@
                       </a>
                       <ul class="sub">
                          <!--  <li><a  href="{{url('MyMovies')}}">Mis peliculas</a></li> -->
-                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis peliculas</a></li>
+                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Cine</a></li>
                           <li class="sub-menu">
                               <a href="javascript:;" >
-                                <span>Mi música</span>
+                                <span>Música</span>
                               </a>
                             <ul class="sub">
                              <!--  <li><a  href="{{url('MyMusic')}}">Sencillos</a></li>
@@ -206,7 +206,7 @@
 
                           <li class="sub-menu">
                             <a href="javascript: ;">
-                              <span>Mis lecturas</span>
+                              <span>Lecturas</span>
                             </a>
                             <ul class="sub">
                               <!-- <li><a  href="{{url('MyReads')}}">Mis libros</a></li>
@@ -215,8 +215,9 @@
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis megazines</a></li>
                             </ul>
                           </li>
-
-                          <li class="sub-menu">
+                           <li><a  href="{{url('ShowRadio')}}">Radio</a></li>
+                           <li><a  href="{{url('ShowTv')}}">Tv</a></li>
+                         <!--  <li class="sub">
                             <a href="javascript: ;">
                               <span>Streams</span>
                             </a>
@@ -224,7 +225,7 @@
                               <li><a  href="{{url('ShowTv')}}">Tv</a></li>
                               <li><a href="{{url('ShowRadio')}}">Radio</a></li>
                             </ul>
-                          </li>
+                          </li> -->
                       </ul>
                   </li>
 
@@ -251,23 +252,21 @@
                   <li class="sub-menu">
                       <a href="{{url('SaleTickets')}}" >
                           <i class="fa fa-ticket"></i>
-                          <span>Recargar</span></a>
+                          <span>Recargar</span>
+                      </a>  
+                  </li>
+                  <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 70px">
+                      <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                        <i class="fa fa-power-off"></i>
+                        <span>Salir</span>
                       </a>
-                  </li>
-                  <li class="sub-menu sidebar-menu hidden-xs" id="nav-accordion" style="position: fixed; bottom: 0px; width: 12%;">
-                      <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
-                      <span>
-                        <i class="glyphicon glyphicon-off"></i>
-                            Salir
-                        </span>
-                        </a>
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }}</form>
-            </form>
+                     
                   </li>
-                  <li class="sub-menu sidebar-menu hidden-sm hidden-md hidden-lg hidden-xg"" id="nav-accordion">
+                  <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg"" id="nav-accordion">
                       <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                       <span>
-                        <i class="glyphicon glyphicon-off"></i>
+                        <i class="fa fa-power-off"></i>
                             Salir
                         </span>
                         </a>

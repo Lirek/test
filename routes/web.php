@@ -93,7 +93,7 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyAlbums','UserController@MyAlbums');
     Route::get('SongsAlbums/{id}','UserController@SongAlbum');
 
-    //Agregada 13/7/18 
+    //Agregada 13/7/18
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
 
     //Agregada 14/7/18
@@ -188,7 +188,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::get('/promoter_home','PromoterController@index');
 
-  
+
    Route::group(['middleware' => ['Admin']], function (){
 
             Route::get('/admin_sellers','AdminController@ShowSellers');
@@ -229,8 +229,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
         //----------------------------------------------------------------
    });
-    
-       
+
+
     Route::group(['middleware' => ['Operator']], function (){
 
         //-----------------Rutas de Solicitudes-------------------------------------
@@ -239,14 +239,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
 
             Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
-            
+
             Route::post('AdminAproveOrDenialApplys/{id}','AdminController@StatusApllys');
 
             Route::get('/delete_applys_from/{promoter}/{applys}','AdminController@DeleteApplysFromPromoter');
 
 
         //__________________FIN DE RUTAS DE SOLICITUDES_____________________________
-        
+
         //___________________RUTAS DE CONTENIDO_____________________________________
 
 
@@ -256,7 +256,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('AdminContent','AdminContentController@Home');
 
                 Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
-                
+
                 Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
 
                 Route::get('TagsGraphData','AdminContentController@TagsBarGraph');
@@ -296,19 +296,19 @@ Route::group(['middleware' => 'promoter_auth'], function(){
            //----------------------------------------------------------------------
 
            //-----------------REVISTAS Y CADENAS DE PUBLICAION-----------------------
-                
+
                 Route::get('/admin_megazine','AdminController@ShowMegazine');
-                
+
                 Route::get('MegazineDataTable','AdminController@MegazineDataTable');
 
                 Route::get('PubChainDataTable','AdminController@ShowPublicationChain');
-                
+
                 Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
-                
+
                 Route::post('/admin_megazine/{id}','AdminController@MegazineStatus');
-                
+
                 Route::get('/AllAdminMegazinesChain','AdminController@ShowAllPublicationChain');
-                
+
                 Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
            //------------------------------------------------------------------------
 
@@ -372,9 +372,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('DepsitDataTable','AdminController@DepsitDataTable');
 
                 Route::post('DepositStatus/{id}','AdminController@DepositStatus');
+                // agregadas el 19-09-2018
+                Route::get('facturaDeposito/{idTicketSales}/{medio}/{idUser}','AdminController@facturaDeposito');
+                Route::get('setFactura/{idTicketSales}/{idFactura}','AdminController@setFactura');
           //-------------------------
         //______________________Fin de las rutas de Clientes________________________
-        
+
     });
 
     Route::group(['middleware' => ['SuperAdmin']], function (){

@@ -15,35 +15,39 @@
                                     <div class="col-sm-12 col-xs-12 col-md-12">
                                         <?php $__currentLoopData = $Rad; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radios): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <h3><span class="card-title"><center><b><i class=""></i> <?php echo e($radios->name_r); ?></b></center></span></h3>
-                                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                            <div class="col-sm-12 col-xs-12 col-md-12">
 
-
-                                                <img src="<?php echo e(asset($radios->logo)); ?>" class="img-responsive" width="40%" style="margin-top: 5%; margin-left: 30%">
+                                               <center><img src="<?php echo e(asset($radios->logo)); ?>" class="img-responsive" width="17%" style="margin-top: 2%;"></center>
 
                                             </div>
-                                            <div class="col-sm-12 col-xs-6 col-md-6" style="margin-top: 2%;">
-
-                                                <a class="waves-effect waves-light btn blue darken-3" href="<?php echo e($radios->facebook); ?>" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                            <div class="col-sm-12 col-xs-12 col-md-12" style="margin-top: 1%;">
+                                            <center>
+                                                <a class="waves-effect waves-light btn blue darken-3" href="<?php echo e($radios->facebook); ?>" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
                                                     <i class="fa fa-facebook" ></i>
                                                 </a>
-                                                <a class="waves-effect waves-light btn blue" href="<?php echo e($radios->twitter); ?>" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                <a class="waves-effect waves-light btn blue" href="<?php echo e($radios->twitter); ?>" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
                                                     <i class="fa fa-twitter"></i>
                                                 </a>
-                                                <a class="waves-effect waves-light btn red" href="<?php echo e($radios->google); ?>" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                <a class="waves-effect waves-light btn red" href="<?php echo e($radios->google); ?>" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
                                                     <i class="fa fa-youtube"></i>
                                                 </a>
-                                                <a class="waves-effect waves-light btn pink" href="<?php echo e($radios->instagram); ?>" target="blank" style="margin-top: 5%;  font-size: 250%; margin-left: 5%">
+                                                <a class="waves-effect waves-light btn pink" href="<?php echo e($radios->instagram); ?>" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
                                                     <i class="fa fa-instagram"></i>
                                                 </a>
 
-
+                                            </center>
                                             </div>
-                                            <div class="col-sm-12 col-xs-12 col-md-6">
+                                            <div class="col-md-3">
+                                                
+                                            </div>
+                                            <div class="col-sm-12 col-xs-12 col-md-6" align="center">
                                                 <audio  id="player" controls  autoplay >
                                                     <source src="<?php echo e(asset($radios->streaming)); ?>" type="audio/mp3" allow="autoplay">
                                                 </audio>
                                             </div>
-
+                                            <div class="col-md-3">
+                                                
+                                            </div>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-sm-12 col-xs-12 col-md-12">
                                             <hr>
@@ -58,14 +62,22 @@
 
                                             <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radioss): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 3%">
-                                                    <div class="content-panel pn-music">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                      <p><a href="<?php echo e(url('ListenRadio/'.$radios->id)); ?>">
+                                                        <img src="<?php echo e(asset($radios->logo)); ?>" width="100%" >
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="margin-left: -8%; margin-top: 8%">
+                                                        <h5><?php echo e($radios->name_r); ?></h5>
+                                                      </p></a>
+                                                    </div>
+                                                   <!--  <div class="content-panel pn-music">
                                                         <div id="profile-01" style="">
                                                             <img src="<?php echo e(asset($radioss->logo)); ?>" width="100%" >
                                                         </div>
                                                         <div class="profile-01 centered">
                                                             <p><a href="<?php echo e(url('ListenRadio/'.$radioss->id)); ?>" style="color: #ffff"><i class="fa fa-play-circle"> Escuchar</i></p></a>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <div  class="col-sm-12 col-xs-12 col-md-12">

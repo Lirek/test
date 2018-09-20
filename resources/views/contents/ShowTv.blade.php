@@ -21,8 +21,14 @@
        							</form>
        						</div>
        						@foreach($Tv as $tv)
-       						<div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 2%">
-                    			<div class="content-panel pn-music">
+       						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb" style="margin-top: 2%">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                      <p><a href="{{url('PlayTv/'.$tv->id)}}">
+                          <img src="{{asset($tv->logo)}}" width="150%" >
+                      </p></a>
+                    </div>
+                  </div>
+                    			<!-- <div class="content-panel pn-music">
                         			<div id="profile-01" style="">
                         				<img src="{{asset($tv->logo)}}" width="100%" >
                         			</div>
@@ -30,8 +36,8 @@
                             			<p><a href="{{url('PlayTv/'.$tv->id)}}" style="color: #ffff"><i class="fa fa-play-circle"> Ver</i></p></a>
                         			</div>
                         		</div>
-                        	</div>
-                        	@endforeach
+                        	</div> -->
+                    @endforeach
                         	<div  class="col-sm-12 col-xs-12 col-md-12">
        						{{  $Tv->links() }}
        						</div>
@@ -61,7 +67,7 @@ $(document).ready(function(){
           console.log(valor);
       		if (valor=='No se encuentra...'){
       			$('#buscar').attr('disabled',true);
-      			swal('Radio no se encuentra regitrada','','error');
+      			swal('Tv no se encuentra regitrada','','error');
       		}else{
       			$('#buscar').attr('disabled',false);
       		}

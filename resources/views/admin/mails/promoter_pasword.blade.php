@@ -36,13 +36,7 @@
   
   <tr>
 	<td>
-	<p style="font-size: 10px">Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando. En caso de no desear recibir más estos correos hacer click en DAR DE BAJA</p>
-	</td>
-  </tr>
-
-  <tr>
-	<td align="center">
-		<img src="{{$message->embed(public_path().'/sistem_images/Logo-Leipel.png')}}" style="height: 80px; width: 100px">
+	<p style="font-size: 10px">Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando.</p>
 	</td>
   </tr>	
 
