@@ -1,3 +1,45 @@
+<?php $__env->startSection('css'); ?>
+<style>
+    .gly-spin {
+        -webkit-animation: spin 0.8s infinite linear;
+        -moz-animation: spin 0.8s infinite linear;
+        -o-animation: spin 0.8s infinite linear;
+        animation: spin 0.8s infinite linear;
+    }
+    .btn-swal-center {
+        /*
+        width: 5em;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        position:absolute;
+        width:100%; left:0;
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        */
+        margin-right: 13em;
+        /*margin-left: 30em;*/
+    }
+    @media  only screen and (max-width: 425px) {
+        .btn-swal-center {
+            margin-right: 10.5em;
+        }
+    }
+    @media  only screen and (max-width: 375px) {
+        .btn-swal-center {
+            margin-right: 9em;
+        }
+    }
+    @media  only screen and (max-width: 320px) {
+        .btn-swal-center {
+            margin-right: 7em;
+        }
+    }
+</style>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('main'); ?>     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
@@ -8,49 +50,43 @@
               
                 
                   
-                    <div class="row mtbox" id="principal">
-                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                        <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">
-                          <div class="white">
-                              <h3><span style="color: white" class="card-title">Contenido Reciente</span></h3>      
-                          </div>
-                        </div>
-                      </div>
-                    <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                    <div class="row mtbox" id="principal" style="margin-top: -8px">
+                      
+                    <!-- <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1" style="margin-left: 5%">
                           <span class="li_video"></span>
                           <h3><?php echo e($TransactionsMovies); ?></h3>
                         </div>
-                        <!-- <p>More than 10 news were added in your reader.</p> -->
+                        
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_music"></span>
                           <h3><?php echo e($TransactionsMusic); ?></h3>
                         </div>
-                       <!--  <p>933 People liked your page the last 24hs. Whoohoo!</p> -->
+                       
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_vallet"></span>
                           <h3><?php echo e($TransacctionsLecture); ?></h3>
                         </div>
-                       <!--  <p>Your server is working perfectly. Relax & enjoy.</p> -->
+                       
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_sound"></span>
                           <h3><?php echo e($TransactionsRadio); ?></h3>
                         </div>
-                        <!-- <p>You have 23 unread messages in your inbox.</p> -->
+                       
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                           <span class="li_tv"></span>
                           <h3><?php echo e($TransactionsTv); ?></h3>
                         </div>
-                        <!-- <p>48 New files were added in your cloud storage.</p> -->
+                        
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
@@ -58,19 +94,189 @@
                           <br>
                           <h3><?php echo e($TransactionsMovies + $TransactionsMusic + $TransacctionsLecture + $TransactionsRadio + $TransactionsTv); ?></h3>
                         </div>
-                        <!-- <p>48 New files were added in your cloud storage.</p> -->
+                      
                       </div>
-                    </div>
-                    </div><!-- /row mt -->  
+                    </div> -->
+                    </div>  
                     
                     <div class="row mt">
+                    <?php if(Auth::user()->alias==FALSE): ?>
+                        
+                    
+                      <!-- COMPLETAR PERFIL PANELS -->
+                        <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
+                          <div class="white-panel panRf pe donut-chart">
+                            <div class="white-header">
+                               <h5>Complete Su Registro</h5>
+                            </div>
+                            <div class="row">
+                               <div class="col-sm-10 col-xs-10 col-md-10 goleft">
+                                  <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
+                                  <div class="paragraph">
+                                    <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil</p>
+                                      <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Completar Registro</a></p>
 
+                                      <!--MODAL-->
+                                      <div id="myModal" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+                                         <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Complete sus datos</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form class="form-horizontal" method="POST" action="<?php echo e(url('CompleteProfile')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
+
+
+                                                  <div class="form-group<?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
+                                                      <label for="lastname" class="col-md-4 control-label">Apellido</label>
+                                                      <div id="apellidoMen"></div>
+                                                      <div class="col-md-6">
+                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="<?php echo e(old('lastname')); ?>" required="required" onkeypress="return controltagLet(event)">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group<?php echo e($errors->has('nDocument') ? ' has-error' : ''); ?>">
+                                                      <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
+                                                      <div id="documentoMen"></div>
+                                                      <div class="col-md-6">
+                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="<?php echo e(old('nDocument')); ?>" required="required" onkeypress="return controltagNum(event)">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group<?php echo e($errors->has('img_doc') ? ' has-error' : ''); ?>">
+                                                      <label class="col-md-4 control-label">Imagen del documento</label>
+                                                      <div class="col-md-6">
+                                                          <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
+                                                      </div>
+                                                  </div>
+
+
+                                                  <div class="form-group<?php echo e($errors->has('dateN') ? ' has-error' : ''); ?>">
+                                                      <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
+                                                      <div id="dateMen"></div>
+                                                      <div class="col-md-6">
+                                                          <input id="dateN" type="date" max="<?php echo e(@date('Y-m-d')); ?>" class="form-control" name="dateN" value="<?php echo e(old('dateN')); ?>" required="required">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group<?php echo e($errors->has('img_perf') ? ' has-error' : ''); ?>">
+                                                      <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
+                                                      <div class="col-md-6">
+                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="<?php echo e(old('img_perf')); ?>">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group<?php echo e($errors->has('alias') ? ' has-error' : ''); ?>">
+                                                      <label for="alias" class="col-md-4 control-label">Alias</label>
+                                                      <div id="aliasMen"></div>
+                                                      <div class="col-md-6">
+                                                          <input id="alias" type="text" class="form-control" name="alias" value="<?php echo e(old('alias')); ?>"required="required">
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-4">
+                                                      <button type="submit" class="btn btn-primary" id="registro">Registrar datos</button>
+                                                    </div>
+                                                  </div>
+                                                  </form>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      </div>
+                                      <!--FIN DEL MODAL-->
+
+                                  </div><!--paragraph-->
+                               </div><!--golleft-->
+
+                            </div><!--row-->
+                          </div><!--/grey-panel -->
+                        </div><!-- /col-md-12-->
+
+                    <?php endif; ?>
+
+                                        <!--REFERIR-->
+                    <?php if(Auth::user()->UserRefered()->count()==0): ?> 
+                    <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
+                      <div class="white-panel panRf refe donut-chart">
+                        <div class="white-header">
+                            <h5>Agregar codigo de patrocinador</h5>
+                        </div>
+                          <div class="row">
+                            <div class="col-sm-10 col-xs-10 col-md-10 goleft">
+                              <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
+                              <div class="paragraph">
+                                <p class="center " id="mensaje"></p>
+                                 <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
+
+                                <!--MODAL-->
+                                  <div id="myModalRefe" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Ingrese el codigo</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-horizontal" method="POST" action="<?php echo e(url('Referals')); ?>" enctype="multipart/form-data" id="patrocinador"><?php echo e(csrf_field()); ?>
+
+
+                                              <div class="form-group<?php echo e($errors->has('codigo') ? ' has-error' : ''); ?>">
+                                                      <label for="codigo" class="col-md-4 control-label">Codigo</label>
+                                                      <div class="col-md-6">
+                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="<?php echo e(old('codigo')); ?>" required="required">
+                                                          <div id="codigoMen"></div>
+                                                      </div>
+
+                                              </div>
+                                               <div class="form-group">
+                                                  <div class="col-md-6 col-md-offset-4">
+                                                      <button type="submit" class="btn btn-primary" id='ingresar'>Ingresar</button>
+                                                  </div>
+                                                </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                   <!--FIN DEL MODAL-->
+
+                              </div> 
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                      <?php endif; ?>
+
+
+                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                        <!-- <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">  BARRA AZUL-->
+                          <div class=""> 
+                          <div class="white">
+                              <h3><span class="card-title">
+                                    <u>
+                                      <em>Contenido Reciente</em>
+                                    </u>
+                                  </span>
+                              </h3>      
+                          </div>
+                        </div>
+                      </div>
                   <!--CONTENIDO RECIENTE-->
                       <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
                         <div class="white-panel panRf pe donut-chart">
-                          <div class="white-header">
+                          <!-- <div class="white-header">
                             <h3><span class="card-title"></span></h3>                          
-                          </div>
+                          </div> -->
                           <div class="col-sm-12 col-xs-12 col-md-12 goleft">
                             <table class="table table-striped table-advance table-hover">
                                 <thead>
@@ -157,175 +363,20 @@
                           </div>
                         </div>
                       </div>
-
-                    <?php if(Auth::user()->alias==FALSE): ?>
-                        
-                    
-                      <!-- COMPLETAR PERFIL PANELS -->
-                        <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
-                          <div class="white-panel panRf pe donut-chart">
-                            <div class="white-header">
-                               <h5>Complete Su Registro</h5>
-                            </div>
-                            <div class="row">
-                               <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                                  <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                                  <div class="paragraph">
-                                    <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil</p>
-                                      <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Completar Registro</a></p>
-
-                                      <!--MODAL-->
-                                      <div id="myModal" class="modal fade" role="dialog">
-                                          <div class="modal-dialog">
-                                         <!-- Modal content-->
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Complete sus datos</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" action="<?php echo e(url('CompleteProfile')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
-
-
-                                                  <div class="form-group<?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
-                                                      <label for="lastname" class="col-md-4 control-label">Apellido</label>
-                                                      <div id="apellidoMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="<?php echo e(old('lastname')); ?>" required="required" onkeypress="return controltagLet(event)">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('nDocument') ? ' has-error' : ''); ?>">
-                                                      <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
-                                                      <div id="documentoMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="<?php echo e(old('nDocument')); ?>" required="required" onkeypress="return controltagNum(event)">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('img_doc') ? ' has-error' : ''); ?>">
-                                                      <label class="col-md-4 control-label">Imagen del documento</label>
-                                                      <div class="col-md-6">
-                                                          <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
-                                                      </div>
-                                                  </div>
-
-
-                                                  <div class="form-group<?php echo e($errors->has('dateN') ? ' has-error' : ''); ?>">
-                                                      <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
-                                                      <div id="dateMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="dateN" type="date" max="<?php echo e(@date('Y-m-d')); ?>" class="form-control" name="dateN" value="<?php echo e(old('dateN')); ?>" required="required">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('img_perf') ? ' has-error' : ''); ?>">
-                                                      <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
-                                                      <div class="col-md-6">
-                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="<?php echo e(old('img_perf')); ?>" required="required">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('alias') ? ' has-error' : ''); ?>">
-                                                      <label for="alias" class="col-md-4 control-label">Alias</label>
-                                                      <div id="aliasMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="alias" type="text" class="form-control" name="alias" value="<?php echo e(old('alias')); ?>"required="required">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group">
-                                                    <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary" id="registro">Registrar datos</button>
-                                                    </div>
-                                                  </div>
-                                                  </form>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                      </div>
-                                      <!--FIN DEL MODAL-->
-
-                                  </div><!--paragraph-->
-                               </div><!--golleft-->
-
-                            </div><!--row-->
-                          </div><!--/grey-panel -->
-                        </div><!-- /col-md-12-->
-
-                    <?php endif; ?> 
-                    
-                    <!--REFERIR-->
-                    <?php if(Auth::user()->UserRefered()->count()==0): ?> 
-                    <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
-                      <div class="white-panel panRf refe donut-chart">
-                        <div class="white-header">
-                            <h5>Agregar codigo de patrocinador</h5>
-                        </div>
-                          <div class="row">
-                            <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                              <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                              <div class="paragraph">
-                                <p class="center " id="mensaje"></p>
-                                 <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
-
-                                <!--MODAL-->
-                                  <div id="myModalRefe" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                      <!-- Modal content-->
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Ingrese el codigo</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="<?php echo e(url('Referals')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
-
-
-                                              <div class="form-group<?php echo e($errors->has('codigo') ? ' has-error' : ''); ?>">
-                                                      <label for="codigo" class="col-md-4 control-label">Codigo</label>
-                                                      <div id="codigoMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="<?php echo e(old('codigo')); ?>" required="required">
-                                                      </div>
-                                              </div>
-                                               <div class="form-group">
-                                                  <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary" id='ingresar'>Ingresar</button>
-                                                  </div>
-                                                </div>
-                                            </form>
-                                            <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                   <!--FIN DEL MODAL-->
-
-                              </div> 
-                           </div>
-                          </div>
-                        </div>
-                      </div>
-                      <?php endif; ?>
-
-                                 
-
-
-
-                        <div class="col-md-5 col-sm-5 mb" style="margin-left: 2%">
+                
+                      <!--COMPRAR TICKETS-->
+                        <!-- <div class="col-md-5 col-sm-5 mb" style="margin-left: 2%">
                           <div class="white-panel re">
                             <div class="white-header">
                                <h5>Tickets Disponible:</h5>
                             </div>
                             <div class="row white-size">
                                <div class="col-sm-6 col-xs-6 goleft">
+                                <?php if(Auth::user()->credito != null): ?>
                                   <p><i class="fa fa-ticket"></i><?php echo e(Auth::user()->credito); ?></p>
+                                <?php else: ?>
+                                  <p><i class="fa fa-ticket"></i>0</p>
+                                <?php endif; ?>
                                </div>
                                <div class="col-sm-6 col-xs-6"></div>
                                <p><a href="<?php echo e(url('SaleTickets')); ?>" class="">Recargar</a></p>
@@ -334,20 +385,10 @@
                                 
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-1">
                           
                         </div>
-                        <!-- <div class="col-md-4 col-sm-4 mb" style="margin-bottom: -10%">
-                           
-                           <div class="Qr-panel pn">
-                              <div class="center">
-                                <?php echo QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref);; ?>
-
-                                <a href="data:image/png;base64,<?php echo base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)); ?>" download="MiQr">Descargar</a>
-                              </div>
-                          </div>
-                       </div> -->
                   </div>
                               
    
@@ -356,6 +397,63 @@
           <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+  document.querySelector('#patrocinador').addEventListener('submit', function(e) {
+  var form = this;
+
+  e.preventDefault(); // <--- prevent form from submitting
+  var cod=$('#codigo').val();
+  $.ajax({
+                    
+      url:'sponsor/'+cod,
+      type: 'get',
+      dataType: "json",           
+      success: function (result) 
+                {
+                if(result.img_perf==null){
+                  perfil = "<?php echo asset('/sistem_images/DefaultUser.png'); ?>"
+                }else{
+                  perfil=result.img_perf;
+                }
+                if (result != 0)
+                {
+
+                  swal({
+                      // title: "Are you sure?",
+                      text: "¿Esta ingresando como patrocinador a: "+result.name+"?",
+                      // icon: "warning",
+                      icon: 'info',
+
+                      buttons: {
+                        
+                        accept:  'Aceptar',
+                                  
+                                
+                        cancel: 'Cancelar',
+                                
+                        
+                      },
+                      dangerMode: true,
+                    }).then(function(isConfirm) {
+                      if (isConfirm) {
+                          
+                            form.submit(); // <--- submit form programmatically
+                          
+                        } else {
+                          $('#patrocinador')[0].reset();
+                        }
+                      })
+                    }else{
+                      $('#codigoMen').show();
+                      $('#codigoMen').text('El codigo es incorrecto');
+                      $('#codigoMen').css('color','red');
+                  }
+                
+                }
+                })
+  });
+
+</script>
 <script type="text/javascript">
   $(document).ready(function(){
   var f1 = document.getElementById('id').value;
