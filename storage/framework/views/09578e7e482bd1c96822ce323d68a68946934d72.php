@@ -52,13 +52,16 @@
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
       <!--header start-->
-      <header class="header black-bg">
+     <!--  <header class="header black-bg"> Barra azul -->
+        <header class="header">
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"></b></a>
-            <div class="nav pull-right top-menu" id="boton" >
+           <!--  <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>" width="110px"> LOGO BLANCO -->
+            <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Logo-Leipel.png')); ?>" width="150px">
+            </b></a>
+          <!--   <div class="nav pull-right top-menu" id="boton" >
             <div class="navbar-right" style="margin-top: 12px">
               <img height="39px" src="<?php echo e(asset('plugins/img/logo-icon-2.png')); ?>">
               <img height="39px" src="<?php echo e(asset('plugins/img/logo-icon-4.png')); ?>">
@@ -66,70 +69,21 @@
               <img height="39px" src="<?php echo e(asset('plugins/img/logo-icon-5.png')); ?>">
               <img height="39px" src="<?php echo e(asset('plugins/img/logo-icon-3.png')); ?>">
             </div>
-            </div>
+            </div> -->
             
+            <div class="nav pull-right top-menu" id="boton" >
+            <div class="navbar-right" style="margin-top: 12px">
+              <img height="39px" src="<?php echo e(asset('plugins/img/cine.png')); ?>">
+              <img height="39px" src="<?php echo e(asset('plugins/img/musica.png')); ?>">
+              <img height="39px" src="<?php echo e(asset('plugins/img/lectura.png')); ?>">
+              <img height="39px" src="<?php echo e(asset('plugins/img/radio.png')); ?>">
+              <img height="39px" src="<?php echo e(asset('plugins/img/tv.png')); ?>">
+            </div>
+            </div>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
-           <!--  notification (Barra Cabecera) -->
-                <!-- <ul class="nav top-menu">
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-tasks"></i>
-                            <span class="badge bg-theme">4</span>
-                        </a>
-                        <ul class="dropdown-menu extended tasks-bar">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">You have 4 pending tasks</p>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">DashGum Admin Panel</div>
-                                        <div class="percent">40%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-theme">5</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Zac Snider</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> 
-                    
-                </ul>-->
-                <!--  notification end -->
+ 
             </div>
-<!--             <div class="top-menu">
-                <ul class="nav pull-right top-menu">
-                    <li><a class="logout" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Salir</a></li>
-                </ul>
-            </div> -->
         </header>
       <!--header end-->
        <!-- **********************************************************************************************************************************************************
@@ -139,21 +93,26 @@
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
+              <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 40px">
                   <?php if(Auth::user()->img_perf): ?>
                     <p class="centered"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="80"></a></p>
                   <?php else: ?>
                    <p class="centered"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="80"></a></p>
                   <?php endif; ?>
-                  <h5 class="centered"><?php echo e(Auth::user()->name); ?></h5>
+                  <?php if(Auth::user()->alias == null): ?>
+                    <h5 class="centered" style="color: "><?php echo e(Auth::user()->name); ?></h5>
+                  <?php else: ?>
+                    <h5 class="centered" style="color: "><?php echo e(Auth::user()->alias); ?></h5>
+                  <?php endif; ?>
                   <div class="card-content white-text">
                       <span class="card-title centered">
                         <h6> 
-                          <a href="" style="color: #aeb2b7" data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
-                            <u>Tickets Disponibles: </u>
-                          </a>
-                          <p id="Tickets" style="color: #aeb2b7">
+                          <a href=""  data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
+                            <!-- <u style="color: #ffffff">Tickets Disponibles: </u> -->
+                            <!-- <p id="Tickets" style="color: #aeb2b7"> -->
+                            <p id="Tickets" style="color: #ffffff">
                           </p>
+                          </a>
                         </h6>
                       </span>
                       
@@ -169,19 +128,17 @@
                       </ul>
                   </li>
 
-                  <li class="sub-menu">
+                  <!-- <li class="sub-menu">
                     <a href="javascript:;">
                       <i class="fa fa-money"></i>
                       <span>Adquirir Contenido</span>
                     </a>
                     <ul class="sub">
-                      <!-- <li><a href="<?php echo e(url('MusicContent')); ?>">Música</a></li> -->
-                      <!-- <li><a href="<?php echo e(url('ReadingsBooks')); ?>">Libros</a></li> -->
-                      <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Música</a></li>
-                      <li><a href="#" data-toggle="modal" data-target="#myModalContenido">Libros</a></li>
-                      <!-- <li><a href="<?php echo e(url('ShowMovies')); ?>">Peliculas</a></li> -->
+                      <li><a href="<?php echo e(url('MusicContent')); ?>">Música</a></li>
+                      <li><a href="<?php echo e(url('ReadingsBooks')); ?>">Libros</a></li>
+                      <li><a href="<?php echo e(url('ShowMovies')); ?>">Peliculas</a></li>
                     </ul>
-                  </li>
+                  </li> -->
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -189,31 +146,31 @@
                           <span>Entretenimiento</span>
                       </a>
                       <ul class="sub">
-                         <!--  <li><a  href="<?php echo e(url('MyMovies')); ?>">Mis peliculas</a></li> -->
-                          <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Cine</a></li>
-                          <li class="sub-menu">
+                         <!--  <li><a  href="<?php echo e(url('MyMovies')); ?>">Cine</a></li> -->
+                          <!-- <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Cine</a></li> -->
+                          <!-- <li class="sub-menu">
                               <a href="javascript:;" >
                                 <span>Música</span>
                               </a>
                             <ul class="sub">
-                             <!--  <li><a  href="<?php echo e(url('MyMusic')); ?>">Sencillos</a></li>
-                              <li><a  href="<?php echo e(url('MyAlbums')); ?>">Albums</a></li> -->
+                              <li><a  href="<?php echo e(url('MyMusic')); ?>">Sencillos</a></li>
+                              <li><a  href="<?php echo e(url('MyAlbums')); ?>">Albums</a></li>
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Sencillos</a></li>
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Albums</a></li> 
                             </ul>
-                          </li>
+                          </li> -->
 
-                          <li class="sub-menu">
+                          <!-- <li class="sub-menu">
                             <a href="javascript: ;">
                               <span>Lecturas</span>
                             </a>
                             <ul class="sub">
-                              <!-- <li><a  href="<?php echo e(url('MyReads')); ?>">Mis libros</a></li>
-                              <li><a  href="<?php echo e(url('MyMegazine')); ?>">Mis megazines</a></li> -->
+                              <li><a  href="<?php echo e(url('MyReads')); ?>">Mis libros</a></li>
+                              <li><a  href="<?php echo e(url('MyMegazine')); ?>">Mis megazines</a></li>
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis libros</a></li>
                               <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis megazines</a></li>
                             </ul>
-                          </li>
+                          </li> -->
                            <li><a  href="<?php echo e(url('ShowRadio')); ?>">Radio</a></li>
                            <li><a  href="<?php echo e(url('ShowTv')); ?>">Tv</a></li>
                          <!--  <li class="sub">
@@ -238,7 +195,7 @@
                           <li><a  href="<?php echo e(url('Referals')); ?>"">Referir</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
+                  <!-- <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-heart"></i>
                           <span>Seguidos</span>
@@ -247,14 +204,14 @@
                           <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis seguidos</a></li>
                           <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Proveedores</a></li>
                       </ul>
-                  </li>
+                  </li> -->
                   <li class="sub-menu">
                       <a href="<?php echo e(url('SaleTickets')); ?>" >
                           <i class="fa fa-ticket"></i>
                           <span>Recargar</span>
                       </a>  
                   </li>
-                  <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 70px">
+                  <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 115px">
                       <a href="<?php echo e(url('/logout')); ?>" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                         <i class="fa fa-power-off"></i>
                         <span>Salir</span>
@@ -329,7 +286,11 @@
       </div>
       <div class="modal-body">
         <label class="control-label col-sm-12 col-xs-12 col-md-12">
-          <center><h4><b>Total de tickets:</b> <?php echo e(Auth::user()->credito); ?></h4></center>
+          <?php if(Auth::user()->credito != null): ?>
+           <center><h4><b>Total de tickets:</b> <?php echo e(Auth::user()->credito); ?></h4></center>
+          <?php else: ?>
+            <center><h4><b>Total de tickets:</b> 0</h4></center>
+          <?php endif; ?>
           <?php if(Auth::user()->points): ?>
             <center><h4><b>Total de puntos:</b> <?php echo e(Auth::user()->points); ?></h4></center>
           <?php else: ?>

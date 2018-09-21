@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
     //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
     Route::get('factura/{id}/{medio}','HomeController@factura');
-
+    Route::get('sponsor/{cod}','HomeController@sponsor');
 
 
 //-------------------Funciones del Usuarios----------------------------------

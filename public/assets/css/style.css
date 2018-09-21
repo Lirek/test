@@ -263,7 +263,10 @@ ul.top-menu > li > .logout {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #424a5d;
+    /*background: #424a5d;*/
+    background:url('../img/menu.jpg');
+    background-size: cover;
+    margin-top: 4%;
 }
 
 #sidebar h5 {
@@ -326,7 +329,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li ul.sub li{
-    background: #424a5d;
+    /*background: #424a5d;*/
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -381,7 +384,8 @@ ul.sidebar-menu li a span{
 }
 
 ul.sidebar-menu li a{
-    color: #aeb2b7;
+    /*color: #aeb2b7;*/
+    color: #ffffff;
     text-decoration: none;
     display: block;
     padding: 15px 0 15px 10px;
@@ -462,7 +466,7 @@ a.logo {
     font-size: 20px;
     color: #ffffff;
     float: left;
-    margin-top: 15px;
+    margin-top: 5px;
     text-transform: uppercase;
 }
 
