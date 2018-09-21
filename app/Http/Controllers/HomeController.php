@@ -143,13 +143,25 @@ class HomeController extends Controller
     public function MyTickets($id)
     {
         $MyTickets=Auth::user()->credito;
+        $Points=Auth::user()->points;
         //dd($MyTickets);
         if ($MyTickets==null){
             $MyTickets = 0;
-             return Response()->json($MyTickets);
         }
-        else{
-            return Response()->json($MyTickets);
+        if ($Points==null){
+            $Points = 0;
+        }
+        $respuesta=$MyTickets." T/ ".$Points." P";
+        return Response()->json($respuesta);
+    }
+    
+    public function sponsor($codigo){
+        $sponsor=User::where('codigo_ref','=',$codigo)->first();
+
+        if ($sponsor) {
+            return Response()->json($sponsor);
+        }else{
+            return Response()->json(0);
         }
     }
 
