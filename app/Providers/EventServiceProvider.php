@@ -90,6 +90,11 @@ class EventServiceProvider extends ServiceProvider
         ],
 
 
+            'App\Events\PointsTraceEvent' => [
+            'App\Listeners\RegisterPointsTrace',
+        ],
+
+
     ];
 
     /**

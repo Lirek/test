@@ -8,5 +8,11 @@ class SistemBalance extends Model
 {
      protected $table = 'system_balance';
 
-  	  protected $fillable = ['id','tickets_solds','points_solds','my_points','created_at','updated_at'];
+  	  protected $fillable = ['id',
+  	  						 'tickets_solds',
+  	  						 'points_solds',
+  	  						 'my_points',
+  	  						 'points_sells',
+  	  						 'created_at',
+  	  						 'updated_at'];
 }
