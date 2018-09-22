@@ -38,9 +38,20 @@ class Authenticate
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        //Unica funcion modificada para hacer funcionar el Middleware
+        if ($this->auth->check()) {
+            $this->authenticate($guards);
+
+            return $next($request);
+        } else {
+            return redirect('/');
+        }
+        /*
+        // Esto es lo unico que traia por defecto
         $this->authenticate($guards);
 
         return $next($request);
+        */
     }
 
     /**
