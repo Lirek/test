@@ -54,26 +54,16 @@
       *********************************************************************************************************************************************************** -->
       <!--header start-->
      <!--  <header class="header black-bg"> Barra azul -->
-        <header class="header">
+        <header class="header" style="background: white">
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-           <!--  <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"> LOGO BLANCO -->
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
             </b></a>
-          <!--   <div class="nav pull-right top-menu" id="boton" >
-            <div class="navbar-right" style="margin-top: 12px">
-              <img height="39px" src="{{asset('plugins/img/logo-icon-2.png')}}">
-              <img height="39px" src="{{asset('plugins/img/logo-icon-4.png')}}">
-              <img height="39px" src="{{asset('plugins/img/logo-icon.png')}}">
-              <img height="39px" src="{{asset('plugins/img/logo-icon-5.png')}}">
-              <img height="39px" src="{{asset('plugins/img/logo-icon-3.png')}}">
-            </div>
-            </div> -->
-            
+
             <div class="nav pull-right top-menu" id="boton" >
-            <div class="navbar-right" style="margin-top: 12px">
+            <div class="navbar-right" style="margin-top: 12px;">
               <img height="39px" src="{{asset('plugins/img/cine.png')}}">
               <img height="39px" src="{{asset('plugins/img/musica.png')}}">
               <img height="39px" src="{{asset('plugins/img/lectura.png')}}">
@@ -101,9 +91,9 @@
                    <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></a></p>
                   @endif
                   @if(Auth::user()->alias == null)
-                    <h5 class="centered" style="color: ">{{Auth::user()->name}}</h5>
+                    <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 ">{{Auth::user()->name}}</h5>
                   @else
-                    <h5 class="centered" style="color: ">{{Auth::user()->alias}}</h5>
+                    <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 ">{{Auth::user()->alias}}</h5>
                   @endif
                   <div class="card-content white-text">
                       <span class="card-title centered">
@@ -111,7 +101,7 @@
                           <a href=""  data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
                             <!-- <u style="color: #ffffff">Tickets Disponibles: </u> -->
                             <!-- <p id="Tickets" style="color: #aeb2b7"> -->
-                            <p id="Tickets" style="color: #ffffff">
+                            <p id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333">
                           </p>
                           </a>
                         </h6>

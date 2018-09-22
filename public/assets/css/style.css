@@ -396,6 +396,8 @@ ul.sidebar-menu li a{
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    text-shadow: 0.1em 0.1em #333;
+    
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
