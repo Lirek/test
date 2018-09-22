@@ -74,6 +74,8 @@
                 @if (Auth::guest())
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
+                @else
+                    <li><a href="{{ url('/home')}}">INGRESAR</a></li>
                 @endif
             </ul>
         </div>

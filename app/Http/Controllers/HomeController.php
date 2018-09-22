@@ -300,8 +300,8 @@ class HomeController extends Controller
                 ->where('status','Aprobado')
                 ->get();
             $balance = SistemBalance::find(1);
-            $TicketsPackage = Payments::find($request->ticket_id);
-            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->Tickets->amount;
+            $TicketsPackage = TicketsPackage::find($request->ticket_id);
+            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
             $balance->save();
             if ($revenueMonth->count()<=1) {
                 event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
@@ -354,7 +354,7 @@ class HomeController extends Controller
             ->where('status','Aprobado')
             ->get();
         $balance = SistemBalance::find(1);
-        $TicketsPackage = Payments::find($id);
+        $TicketsPackage = TicketsPackage::find($id);
         $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->Tickets->amount;
         $balance->save();
         if ($revenueMonth->count()<=1) {
