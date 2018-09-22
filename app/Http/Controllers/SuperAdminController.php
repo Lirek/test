@@ -132,6 +132,7 @@ class SuperAdminController extends Controller
                       	else
                       		{
                       		return $Points->TracePointsFrom()->first()->name;
+                      		    
                       		}
                     })
                     ->editColumn('to',function($Points){

@@ -18,6 +18,7 @@ class CreateTableSystemEconomics extends Migration
             $table->integer('tickets_solds')->unsigned()->default('0');
             $table->integer('points_solds')->unsigned()->default('0');
             $table->integer('my_points')->unsigned()->default('0');
+            $table->integer('points_sells')->unsigned()->default('0');
             $table->timestamps();
             });
     }

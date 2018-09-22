@@ -22,7 +22,7 @@ class PackageController extends Controller
 
        if ($Tickets->isEmpty()) 
        { 
-        return Response::json(['status'=>'Esta Vacio'], 200);
+        return Response::json(['status'=>'Esta Vacio'], 204);
        }
 
        $Json = Fractal::create()
