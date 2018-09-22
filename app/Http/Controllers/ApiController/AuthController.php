@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Http\Controllers\Controller;
+use App\Events\CreateCodeSocialUserEvent;
 
 use App\User;
 use JWTAuth;
@@ -21,14 +22,15 @@ class AuthController extends Controller
         
         $rules = [
                     'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users'
+                    'email' => 'required|email|max:255|unique:users',
+                    'password'=>'required'
                  ];
 
         $validator = Validator::make($credentials, $rules);
         
         if($validator->fails()) 
         {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()]);
+            return response()->json(['success'=> false, 'error'=> $validator->messages()],400);
         }
         
         $name = $request->name;
@@ -38,7 +40,9 @@ class AuthController extends Controller
         $password = $request->password;
         
         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
-
+        
+        event(new CreateCodeSocialUserEvent($user->id));
+        
         return response()->json(['success'=> true, 'message'=> 'Muchas Gracias por ser parte de Nuestra Plataforma le Recordamos finalizar su registro para disfrutar de nuestra plataforma en su totalidad']);
     }
 

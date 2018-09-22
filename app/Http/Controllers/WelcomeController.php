@@ -11,6 +11,9 @@ use App\Tv;
 use App\Movie;
 use App\Albums;
 
+use App\User;
+
+
 class WelcomeController extends Controller
 {
     public function welcome()
@@ -54,5 +57,29 @@ class WelcomeController extends Controller
             ->with('tv',$tvs)
             ->with('radio',$radios)
             ->with('music',$musica);
+    }
+
+    public function email(Request $request){
+        $email=User::where('email','=',$request->email)->first();
+        
+
+        if($email){
+             return response()->json(false);  
+        }else{
+            return response()->json(true);
+        }
+    
+    }
+
+    public function emailSeller(Request $request){
+        $email=Seller::where('email','=',$request->email)->first();
+      
+
+        if($email){
+            return response()->json($email->email); 
+        }else{
+            return response()->json(1); 
+        }
+    
     }
 }

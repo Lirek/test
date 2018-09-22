@@ -52,7 +52,7 @@ class ContentController extends Controller
 	                                  ->get();
 			
 			 if ($Songs->isEmpty()) { 
-								return Response::json(['error'=>'Esta Vacio'], 200);
+								return Response::json(['status'=>'Esta Vacio'], 204);
 									}
                     $Json = Fractal::create()
                            ->collection($Songs)
@@ -72,7 +72,7 @@ class ContentController extends Controller
 	    							  					->get();
 
     	if ($Albums->isEmpty()) { 
-								return Response::json(['error'=>'Esta Vacio'], 200);
+								return Response::json(['status'=>'Esta Vacio'], 200);
 									}
 
 
@@ -94,7 +94,7 @@ class ContentController extends Controller
                                                                     ->get();
 
     	if ($MusicAuthors->isEmpty()) { 
-								return Response::json(['error'=>'Esta Vacio'], 200);
+								return Response::json(['status'=>'Esta Vacio'], 204);
 									}
 
 	   	$Json = Fractal::create()
@@ -113,7 +113,7 @@ class ContentController extends Controller
       
       if ($Radio->isEmpty()) 
       { 
-          return Response::json(['error'=>'Esta Vacio'], 200);
+          return Response::json(['status'=>'Esta Vacio'], 204);
       }
 
       $Json = Fractal::create()
@@ -130,7 +130,7 @@ class ContentController extends Controller
 
       if ($Tvs->isEmpty()) 
       { 
-        return Response::json(['error'=>'Esta Vacio'], 200);
+        return Response::json(['status'=>'Esta Vacio'], 204);
       }
 
       $Json = Fractal::create()
@@ -149,7 +149,7 @@ class ContentController extends Controller
     												->get();
 
     				if ($Books->isEmpty()) { 
-								return Response::json(['error'=>'Esta Vacio'], 200);
+								return Response::json(['status'=>'Esta Vacio'], 204);
 									}
 
 			$Json = Fractal::create()
@@ -171,7 +171,7 @@ class ContentController extends Controller
                                                             ->get();
 
     	if ($Megazines->isEmpty()) { 
-								return Response::json(['error'=>'Esta Vacio'], 200);
+								return Response::json(['status'=>'Esta Vacio'], 204);
 									}
 
 			$Json = Fractal::create()
@@ -193,7 +193,7 @@ class ContentController extends Controller
                                       ->get();
             
             if ($Songs==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
                     $Json = Fractal::create()
                            ->collection($Songs)
@@ -214,7 +214,7 @@ class ContentController extends Controller
                                                             ->get();
 
         if ($Megazines==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
             $Json = Fractal::create()
@@ -235,7 +235,7 @@ class ContentController extends Controller
                                                         ->get();
 
         if ($Albums==NULL) { 
-                                return Response::json(['error'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
 
@@ -256,7 +256,7 @@ class ContentController extends Controller
                                                     ->get();
 
                     if ($Books==NULL) { 
-                                return Response::json(['error'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
             $Json = Fractal::create()
@@ -276,7 +276,7 @@ class ContentController extends Controller
                                                                     ->get();
 
         if ($MusicAuthor == NULL) { 
-                                return Response::json(['error'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
         $Json = Fractal::create()
@@ -293,7 +293,7 @@ class ContentController extends Controller
         $Radio= Radio::findOrFail($id);
 
                     if ($Radio == NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
             $Json = Fractal::create()
@@ -309,7 +309,7 @@ class ContentController extends Controller
         $Tv= Tv::findOrFail($id);
 
                     if ($Tv == NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 200);
+                                return Response::json(['status'=>'Esta Vacio'], 204);
                                     }
 
             $Json = Fractal::create()

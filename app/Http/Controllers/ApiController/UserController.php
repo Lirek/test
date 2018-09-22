@@ -70,12 +70,8 @@ class UserController extends Controller
           
           if ($user->Referals()->get()->isEmpty()) 
           {            
-          	$Json=[
-          		"meta"=>'{ "status":"201","estatus":"Vacio"}',
-    			"data"=>'{}'
-    			];
+          	return Response::json(['status'=>'Esta Vacio'], 204);
 
-    		return Response::json($Json);
           }
           foreach ($user->Referals()->get() as $key) 
           {
@@ -183,7 +179,7 @@ class UserController extends Controller
         //dd($user);
         $user->save();
 
-        return Response::json(['status'=>'OK'], 200);
+        return Response::json(['status'=>'OK'], 201);
     }
 
     public function BuyDepositPackage(Request $request)
@@ -214,7 +210,7 @@ class UserController extends Controller
         $Buy->reference=$request->references;
         $Buy->save();
 
-        return Response::json(['status'=>'OK'], 200);
+        return Response::json(['status'=>'OK'], 201);
     }
 
     public function BuyPayphonePackage(Request $request)
@@ -241,7 +237,7 @@ class UserController extends Controller
 
           event(new PayementAprovalEvent($user->email));
 
-          return Response::json(['status'=>'OK'], 200);    
+          return Response::json(['status'=>'OK'], 201);    
     }
 
     public function BuyPointsPackage(Request $request)
@@ -252,7 +248,7 @@ class UserController extends Controller
 
         if ($request->cost > $user->points) 
         {
-             return Response::json(['status'=>'Puntos insuficientes'], 200);;  
+             return Response::json(['status'=>'Puntos insuficientes'], 201);;  
         }
         
         else
@@ -294,6 +290,6 @@ class UserController extends Controller
 
           event(new PayementAprovalEvent($user->email));
         }
-        return Response::json(['status'=>'OK'], 200);    
+        return Response::json(['status'=>'OK'], 201);    
     }
 }
