@@ -155,7 +155,10 @@
                                     <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                 @endif
                                 <div class="col-md-10 control-label">
+                                @if($user->verify == 0)
+                                    <img id="preview_img_doc" src="" name='ci'/>  
                                     <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
+                                @endif
                                     <div id="mensajeImgDoc"></div>
                                 </div>
                             </div>
@@ -242,6 +245,8 @@
                     $('#Editar').attr('disabled',true);
                 } else {
                     $('#mensajeImgDoc').hide();
+                    $('#preview_img_doc').attr('width','180');
+                    $('#preview_img_doc').attr('height','180');
                     $('#Editar').attr('disabled',false);
                 }
             });

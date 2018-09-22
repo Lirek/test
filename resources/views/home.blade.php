@@ -200,8 +200,8 @@
 
                     @endif
 
-                                        <!--REFERIR-->
-                    @if(Auth::user()->UserRefered()->count()==0) 
+                    <!--REFERIR-->
+                    <!-- @if(Auth::user()->UserRefered()->count()==0) 
                     <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
                       <div class="white-panel panRf refe donut-chart">
                         <div class="white-header">
@@ -214,10 +214,10 @@
                                 <p class="center " id="mensaje"></p>
                                  <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
 
-                                <!--MODAL-->
+                             
                                   <div id="myModalRefe" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
-                                      <!-- Modal content-->
+                                      
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -247,7 +247,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                   <!--FIN DEL MODAL-->
+                                  
 
                               </div> 
                            </div>
@@ -255,7 +255,7 @@
                         </div>
                       </div>
                       @endif
-
+ -->
 
                       <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
                         <!-- <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">  BARRA AZUL-->
