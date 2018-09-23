@@ -10,8 +10,8 @@
         <div class="form-group">
             <div class="row-edit">
                 <div class="col-md-12 col-sm-12 mb">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="">
+                        <div class="">
                             <div class="control-label">
                                 <div class="white-header">
                                     <div class="col-sm-12 col-xs-12 col-md-12">

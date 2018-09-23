@@ -29,34 +29,42 @@
             		<div class="white-header">
             			<div class="col-sm-12 col-xs-12 col-md-12">
                             @foreach($Tv as $tv)
-                             <h2><span class="card-title"><center><i class="fa fa-tv"></i> {{$tv->name_r}}</center></span></h2><br>
                             <div class="col-sm-12 col-xs-12 col-md-12" style="margin-top: 1%">
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <div class="col-sm-10 col-xs-12 col-md-8">
+                                        <h2><span class="card-title"><center><i class="fa fa-tv"></i> {{$tv->name_r}}</center></span></h2><br>
                                         <div class="plyr__video iframe-16-9" id="player">
                                             <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency allow="autoplay" height="405" width="90%" scrolling="no"></iframe>
                                         </div>
                                     </div>
                                     <div class="col-sm-2 col-xs-10 col-md-4">
-                                        <center><img src="{{asset($tv->logo)}}" class="img-responsive" width="50%" style="margin-top: 20%; margin-left: 15%"></center>
+                                        <center><img src="{{asset($tv->logo)}}" class="img-responsive" width="50%" style="margin-top: 25%; margin-left: 15%"></center>
                                     </div>
                                     
-                                    <div class="col-sm-1 col-xs-12 col-md-4">
-                                        <center>
-                                        <a class="waves-effect waves-light btn red" href="{{$tv->google}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%"> 
-                                        <i class="fa fa-youtube"></i>
-                                        </a>    
-                                        <a class="waves-effect waves-light btn pink" href="{{$tv->instagram}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%">
-                                        <i class="fa fa-instagram"></i>
-                                        </a>
-                                    
-                                        <a class="waves-effect waves-light btn blue darken-3" href="{{$tv->facebook}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%">
-                                        <i class="fa fa-facebook" ></i>
-                                        </a>
-                                        <a class="waves-effect waves-light btn blue" href="{{$tv->twitter}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%">
-                                        <i class="fa fa-twitter"></i>
-                                        </a>
-                                        </center>
+                                    <div class="col-sm-1 col-xs-10 col-md-4">
+                                        
+                                        <div class="col-md-4 col-xs-4" style="margin-left: 25%; margin-top: 10%"> 
+                                        
+                                            <a class="waves-effect waves-light btn red" href="{{$tv->google}}" target="blank" style="margin-top: 10%; margin-left: 5%; font-size: 250%"> 
+                                            <i class="fa fa-youtube"></i>
+                                            </a> 
+                                            <a class="waves-effect waves-light btn blue darken-3" href="{{$tv->facebook}}" target="blank" style="margin-top: 20%; margin-left: 5%; font-size: 250%">
+                                            <i class="fa fa-facebook" ></i>
+                                            </a>   
+                                            
+
+                                        </div>
+                                        <div class="col-md-4 col-xs-4" style="margin-top: 10%">
+
+                                            <a class="waves-effect waves-light btn pink" href="{{$tv->instagram}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%">
+                                            <i class="fa fa-instagram"></i>
+                                            </a> 
+                                            <a class="waves-effect waves-light btn blue" href="{{$tv->twitter}}" target="blank" style="margin-top: 20%; margin-left: 7%; font-size: 250%">
+                                            <i class="fa fa-twitter"></i></a>
+                                           
+                                            
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
