@@ -161,81 +161,105 @@
 
 <div class="col-md-12" id="">
     <div class="row">
-        {{--<div class="container">--}}
 
         @foreach($radio as $r)
-            {{-- @if(< 2)--}}
             <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
-            <figure class="snip1166 navy" style="display: block; ">
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
-                <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
-                <figcaption style="width: 107%">
-                    <h3>
-                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                        <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                <figure class="snip1166 navy" style="display: block; ">
+                    <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 90%" />
+                    <figcaption style="width: 107%">
+                        <h3>
+                            <small style="color: #fff; font-size: 100%;">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                            <div align="left">
+                                <li class="fa"></li>
+                            </div>
+                            {{--
+                            <div align="left">
+                                @if($r->facebook)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $r->facebook }}"></a>
+                                @endif
+                                @if($r->instagram)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $r->instagram }}"></a>
+                                @endif
+                                @if($r->twitter)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $r->twitter }}"></a>
+                                @endif
+                                @if($r->google)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $r->google }}"></a>
+                                @endif
+                            </div>
+                            --}}
+                        </h3>
+                        <div>
+                            <p>{{ $r->email_c }}</p>
                         </div>
-                    </h3>
-                    <div>
-                        <p>{{ $r->email_c }}</p>
-                    </div>
-                    <a href="#"></a>
-                </figcaption>
-            </figure>
+                    </figcaption>
+                </figure>
             </div>
             <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
             <figure class="snip1166 navy" >
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
                 <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
                 <figcaption style="width: 75%">
                     <h3>
-                        <small style="color: #fff; font-size: 60%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <small style="color: #fff; font-size: 100%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                         <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                            <li class="fa"></li>
                         </div>
+                        {{---
+                        <div align="left">
+                            @if($r->facebook)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $r->facebook }}"></a>
+                            @endif
+                            @if($r->instagram)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $r->instagram }}"></a>
+                            @endif
+                            @if($r->twitter)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $r->twitter }}"></a>
+                            @endif
+                            @if($r->google)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $r->google }}"></a>
+                            @endif
+                        </div>
+                        --}}
                     </h3>
                     <div>
                         <p>{{ $r->email_c }}</p>
                     </div>
-                    <a href="#"></a>
                 </figcaption>
             </figure>
             </div>
             <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
             <figure class="snip1166 navy" >
-                {{--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample73.jpg" alt="sample73"/>--}}
-                {{--<img class="img-responsive" src="/images/radio/{{ $r->logo }}" alt="sample73"/>--}}
                 <img class="img-responsive" src="{{ asset($r->logo) }} " style="width: 70%" />
                 <figcaption style="width: 90%">
                     <h3>
-                        <small style="color: #fff; font-size: 50%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <small style="color: #fff; font-size: 100%">{{ $r->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                         <div align="left">
-                        <li class="fa fa-facebook-f"><a href="{{ $r->facebook }}"></a></li>
-                        <li class="fa fa-instagram"><a href="{{ $r->instagram }}"></a></li>
-                        <li class="fa fa-twitter"><a href="{{ $r->twitter }}"></a></li>
-                        <li class="fa fa-google-plus-circle"><a href="{{ $r->google }}"></a></li>
+                            <li class="fa"></li>
                         </div>
+                        {{--
+                        <div align="left">
+                            @if($r->facebook)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $r->facebook }}"></a>
+                            @endif
+                            @if($r->instagram)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $r->instagram }}"></a>
+                            @endif
+                            @if($r->twitter)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $r->twitter }}"></a>
+                            @endif
+                            @if($r->google)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $r->google }}"></a>
+                            @endif
+                        </div>
+                        --}}
                     </h3>
                     <div>
                         <p>{{ $r->email_c }}</p>
                     </div>
-                    <a href="#"></a>
                 </figcaption>
             </figure>
             </div>
-            {{--@endif--}}
         @endforeach
-
-        {{--</div>--}}
-
     </div>
 </div>
 <!--CONTENIDO END-->
@@ -890,8 +914,8 @@
                 var email = $('#email').val().trim();
                 var password = $('#password').val().trim();
                 var password1 = $('#password_confirm').val().trim();
-                if (email.length !=0 && password.length  != 0 && password1.length !=0)
-                {
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && password.length  != 0 && password1.length !=0 && valCorreo) {
                     $('#registroRU').attr('disabled',false);
                 }
             }
@@ -969,7 +993,9 @@
                 var name = $('#name').val().trim();
                 var email = $('#email').val().trim();
                 var password1 = $('#password_confirm').val().trim();
-                if (email.length !=0 && name.length  != 0 && password1.length !=0){
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                console.log(email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo);
+                if ( email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo ){
                     $('#registroRU').attr('disabled',false);
                 }
             }
@@ -991,8 +1017,8 @@
                 var name = $('#name').val().trim();
                 var email = $('#emailRU').val().trim();
                 var password1 = $('#passwordRU').val().trim();
-
-                if (email.length !=0 && name.length  != 0 && password1.length !=0){
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo){
                     $('#registroRU').attr('disabled',false);
                 }
             }
@@ -1014,9 +1040,8 @@
                 $('#passwordCMenRU').hide();
                 var name = $('#name').val().trim();
                 var email = $('#emailRU').val().trim();
-
-
-                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0){
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0 && valCorreo){
                     $('#registroRU').attr('disabled',false);
                 }
             }
