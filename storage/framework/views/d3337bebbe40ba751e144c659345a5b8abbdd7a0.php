@@ -291,72 +291,87 @@
                               <tbody>
 
                               <?php if($Songs): ?>
+                                <?php $__currentLoopData = $Songs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $song): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('<?php echo $Songs->cost; ?>','<?php echo $Songs->title; ?>','<?php echo $Songs->id; ?>')" id="modal-confir"> <?php echo e($Songs->song_name); ?></a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog('<?php echo $songs->cost; ?>','<?php echo $songs->title; ?>','<?php echo $songs->id; ?>')" id="modal-confir"> <?php echo e($songs->song_name); ?></a></td>
                                   <td class="hidden-phone">Single</td>
-                                  <td><?php echo e($Songs->cost); ?></td>
-                                  <td class="hidden-phone"><?php echo e($Songs->Seller->name); ?></td>
+                                  <td><?php echo e($songs->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($songs->Seller->name); ?></td>
                                 </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               <?php endif; ?>
 
                               <?php if($Albums): ?>
+                              <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $albums): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog2('<?php echo $Albums->cost; ?>','<?php echo $Albums->name_alb; ?>','<?php echo $Albums->id; ?>')" id="modal-confirAlbum"> <?php echo e($Albums->name_alb); ?></a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog2('<?php echo $albums->cost; ?>','<?php echo $albums->name_alb; ?>','<?php echo $albums->id; ?>')" id="modal-confirAlbum"> <?php echo e($albums->name_alb); ?></a></td>
                                   <td class="hidden-phone">Album Musical</td>
-                                  <td><?php echo e($Albums->cost); ?></td>
-                                  <td class="hidden-phone"><?php echo e($Albums->Seller->name); ?></td>
+                                  <td><?php echo e($albums->cost); ?></td>
+                                  <td class="hidden-phone"><?php echo e($albums->Seller->name); ?></td>
                                 </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               <?php endif; ?>
 
                               <?php if($Tv): ?>
+                                <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="<?php echo e(url('PlayTv/'.$Tv->id)); ?>"> <?php echo e($Tv->name_r); ?></a></td>
+                                  <td><a href="<?php echo e(url('PlayTv/'.$tv->id)); ?>"> <?php echo e($tv->name_r); ?></a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
+                                  <td class="hidden-phone"><?php echo e($tv->name); ?></td>
                                 </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                              <?php endif; ?>
 
                             <?php if($Book): ?>
+                              <?php $__currentLoopData = $Book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                                <td><a href="#"  onclick="fnOpenNormalDialog3('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"> <?php echo e($Book->title); ?></a></td>
+                                <td><a href="#"  onclick="fnOpenNormalDialog3('<?php echo $book->cost; ?>','<?php echo $book->title; ?>','<?php echo $book->id; ?>')"> <?php echo e($book->title); ?></a></td>
                                 <td class="hidden-phone">Libro</td>
-                                <td><?php echo e($Book->cost); ?></td>
-                                <td class="hidden-phone"><?php echo e($Book->seller->name); ?></td>
+                                <td><?php echo e($book->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($book->seller->name); ?></td>
                               </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
 
                             <?php if($Megazines): ?>
+                            <?php $__currentLoopData = $Megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $megazines): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> <?php echo e($Megazines->title); ?></a></td>
+                                <td><a href=""> <?php echo e($megazines->title); ?></a></td>
                                 <td class="hidden-phone">Revista</td>
-                                <td><?php echo e($Megazines->cost); ?></td>
-                                <td class="hidden-phone"><?php echo e($Megazines->Seller->name); ?></td>
+                                <td><?php echo e($megazines->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($megazines->Seller->name); ?></td>
                               </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
 
                             <?php if($Radio): ?>
+                              <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href="<?php echo e(url('ListenRadio/'.$Radio->id)); ?>"> <?php echo e($Radio->name_r); ?></a></td>
+                                <td><a href="<?php echo e(url('ListenRadio/'.$radio->id)); ?>"> <?php echo e($radio->name_r); ?></a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
-                                <td class="hidden-phone"><?php echo e($Radio->name); ?></td>
+                                <td class="hidden-phone"><?php echo e($radio->name); ?></td>
                               </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php endif; ?>
 
                             <?php if($Movies): ?>
+                            <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $movies): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href="<?php echo e(url('ShowMovies/'.$Movies->id)); ?>"> <?php echo e($Movies->title); ?></a></td>
+                                <td><a href="<?php echo e(url('ShowMovies/'.$movies->id)); ?>"> <?php echo e($movies->title); ?></a></td>
                                 <td class="hidden-phone">Pelicula</td>
-                                <td><?php echo e($Movies->cost); ?></td>
-                                <td class="hidden-phone"><?php echo e($Movies->Seller->name); ?></td>
+                                <td><?php echo e($movies->cost); ?></td>
+                                <td class="hidden-phone"><?php echo e($movies->Seller->name); ?></td>
                               </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                           <?php endif; ?>
                               </tbody>
                             </table>

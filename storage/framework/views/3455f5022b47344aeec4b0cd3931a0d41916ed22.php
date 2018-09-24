@@ -257,14 +257,15 @@
                     <i class="fa fa-map-marker text-info "></i>
                     &nbsp;&nbsp;&nbsp;Guayaquil, Ecuador
                 </li>
-                <li class="lista">
+                <!-- <li class="lista">
                     <i class="fa fa-phone text-info "></i>
                     &nbsp;&nbsp;+123 4567 987
                 </li>
-                <li class="lista">
+ -->                <li class="lista">
                     <i class="fa fa-envelope-o text-info"></i>
                     info@leipel.com
                 </li>
+                <li></li>
             </ul>
         </div>
         <div class="col-md-3" id="sobre">

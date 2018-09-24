@@ -22,7 +22,7 @@
         <div class="col-md-12 col-sm-12">
           <dir class="col-md-6 col-sm-6" >
             <div class="panel2">
-              <center><h5><i class="fa fa-user"></i> Mi Codigo de Referido:</h5></center>
+              <center><h5><i class="fa fa-user"></i> Mi Código:</h5></center>
             </div>
           </dir>
           <div class="col-md-6 col-sm-6">
@@ -38,10 +38,12 @@
               <center><h5><i class="fa fa-user"></i> Mi Enlace:</h5></center>
             </div>
           </dir>
-          <div class="col-md-6 col-sm-6" style="margin-top: 2%">
+          <div class="col-md-6 col-sm-6" style="margin-top: %">
+            <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
             <p>
               <h5><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h5>
             </p>
+            <p>Atte código: {{Auth::user()->codigo_ref}}</p>
           </div>
         </div>
 
@@ -85,14 +87,14 @@
 
 <div class="col-md-4 col-sm-4" style="margin-top: 5%">
 <dir class="col-md-12 col-sm-12" style="margin-top: 25%;">
-  <div class="panel2" style="margin-bottom: -5%">
-    <center> <h5><i class="fa fa-user"></i>Mi Codigo Qr:</h5></center>
+  <div class="panel2" style="margin-bottom: -5%; ">
+    <center> <h5><i class="fa fa-user"></i>Mi Código Qr:</h5></center>
   </div>
 </dir>
 <div class="col-md-12 col-sm-12 col-xs-12" style="  ">
     <p>
       <div class="center">
-        {!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+        <div style="margin-left: 3%">{!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}</div>
         <center><a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a></center>
       </div>
     </p>

@@ -63,11 +63,11 @@
                                             <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radioss): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 3%">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                      <p><a href="<?php echo e(url('ListenRadio/'.$radios->id)); ?>">
-                                                        <img src="<?php echo e(asset($radios->logo)); ?>" width="100%" >
+                                                      <p><a href="<?php echo e(url('ListenRadio/'.$radioss->id)); ?>">
+                                                        <img src="<?php echo e(asset($radioss->logo)); ?>" width="100%" >
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="margin-left: -8%; margin-top: 8%">
-                                                        <h5><?php echo e($radios->name_r); ?></h5>
+                                                        <h5><?php echo e($radioss->name_r); ?></h5>
                                                       </p></a>
                                                     </div>
                                                    <!--  <div class="content-panel pn-music">
