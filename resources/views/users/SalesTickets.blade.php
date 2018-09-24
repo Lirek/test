@@ -38,6 +38,54 @@
             margin-right: 7em;
         }
     }
+
+label{
+    position: relative;
+    cursor: pointer;
+    color: #666;
+    font-size: 100%;
+}
+
+input[type="checkbox"]{
+    position: absolute;
+    right: 9000px;
+}
+
+input[type="checkbox"] + .label-text:before{
+    content: "\f096";
+    font-family: "FontAwesome";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing:antialiased;
+    width: 1em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+input[type="checkbox"]:checked + .label-text:before{
+    content: "\f14a";
+    color: #2980b9;
+    animation: effect 250ms ease-in;
+}
+
+input[type="checkbox"]:disabled + .label-text{
+    color: #aaa;
+}
+
+input[type="checkbox"]:disabled + .label-text:before{
+    content: "\f0c8";
+    color: #ccc;
+}
+@keyframes effect{
+    0%{transform: scale(0);}
+    25%{transform: scale(1.3);}
+    75%{transform: scale(1.4);}
+    100%{transform: scale(1);}
+}
 </style>
 @endsection
 @section('main') 
@@ -149,7 +197,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none;" id="puntos-{{$ticket->id}}" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="puntos-{{$ticket->id}}" align="center">
                                                     <div class="col-md-12">
                                                         <label class="control-label"><h5><b>Sus puntos: </b>
                                                             @if(Auth::user()->points)
@@ -166,7 +214,7 @@
                                                     </div>
                                                     <div class="col-md-12" id="totalP-{{$ticket->id}}"></div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none;" id="deposito-{{$ticket->id}}" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-{{$ticket->id}}" align="center">
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Número de depósito:</b>
                                                             <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
@@ -174,11 +222,11 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Recibo:</b>
-                                                            <input id="voucher-{{$ticket->id}}" type="file" accept=".jpg" class="form-control" name="voucher" value="{{ old('voucher') }}" >
+                                                            <input id="voucher-{{$ticket->id}}" type="file" accept="image/*" class="form-control" name="voucher" value="{{ old('voucher') }}" >
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none;">
+                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none; margin-bottom: 5%">
                                                     <div class="col-md-12">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" id="codCountry-{{$ticket->id}}"></span>
@@ -192,13 +240,24 @@
                                                     <div id="mensajePayPhone-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%">
                                                     </div>
                                                 </div>
+                                                <div class="form-check text-center" style="padding-top: 5%">
+                                                    <div id="mensajeTerminosCondiciones-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
+                                                    </div>
+                                                    <label>
+                                                        <input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-{{$ticket->id}}">
+                                                        <span class="label-text" onclick="terminosCondiciones({!!$ticket->id!!})">
+                                                            Al comprar estas aceptando nuestros
+                                                        </span>
+                                                    </label>
+                                                    <a href="" target="_blank">Términos</a> y <a href="" target="_blank">Condiciones</a>.
+                                                </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div class="col-md-12" align="center">
                                                         <a class="btn btn-default" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div class="col-md-12" align="center">
                                                         <button type="submit" class="btn btn-default" id="ingresar-{{$ticket->id}}">Comprar</button>
                                                     </div>
                                                 </div>
@@ -320,19 +379,7 @@
     });
 </script>
 <script type="text/javascript" id="jsbin-javascript">
-    /*
-    // para bloquear el click izquierdo
-    function izquierda(e) {
-        if (navigator.appName == 'Netscape' && (e.which == 1 || e.which == 2)) {
-            alert('Botón izquierdo inhabilitado');
-            return false;
-        } else if (navigator.appName == 'Microsoft Internet Explorer' && (event.button == 1)){
-            alert('Botón izquierdo inhabilitado');
-            return false;
-        }
-    }
-    document.onmousedown=izquierda
-    */
+
     $(document).ready(function(){
 
         var ruta = "https://pay.payphonetodoesposible.com/api/Regions";
@@ -359,7 +406,23 @@
         });
     });
 
+    function terminosCondiciones(id) {
+        if (!($('input[name="checkTerminosCondiciones"]').is(':checked'))) {
+            $('#mensajeTerminosCondiciones-'+id).hide();
+            $("#ingresar-"+id).attr('disabled',false);
+            $("#ingresarPunto-"+id).attr('disabled',false);
+            $("#ingresarPayPhone-"+id).attr('disabled',false);
+        } else {
+            $("#ingresar-"+id).attr('disabled',true);
+            $("#ingresarPunto-"+id).attr('disabled',true);
+            $("#ingresarPayPhone-"+id).attr('disabled',true);
+            $('#mensajeTerminosCondiciones-'+id).show();
+            $('#mensajeTerminosCondiciones-'+id).html("<h6> <i class='glyphicon glyphicon-warning-sign'></i> <span>Por favor marque la casilla de 'Términos y Condiciones' antes de realizar la compra</span> </h6>");
+        }
+    }
+
     function callback(id) {
+        
         var gif = "{{ asset('/sistem_images/Loading.gif') }}";
         swal({
             title: "Procesando",
@@ -472,6 +535,7 @@
             $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
             if(totalP > Mypoints){
                 $('#ingresarPunto-'+id).attr('disabled',true);
+                $("#ingresar-"+id).attr('disabled',true);
             }else{
                 $('#ingresarPunto-'+id).attr('disabled',false);
             }
@@ -492,6 +556,7 @@
             $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
             if(totalP > Mypoints){
                 $('#ingresarPunto-'+id).attr('disabled',true);
+                $("#ingresar-"+id).attr('disabled',true);
             }else{
                 $('#ingresarPunto-'+id).attr('disabled',false);
             }
@@ -502,6 +567,7 @@
         $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
         if(totalP > Mypoints){
             $('#ingresarPunto-'+id).attr('disabled',true);
+            $("#ingresar-"+id).attr('disabled',true);
         }else{
             $('#ingresarPunto-'+id).attr('disabled',false);
         }
@@ -532,10 +598,12 @@
 
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
+            $("#ingresar-"+id).attr('disabled',false);
+            $("#deposito-"+id).show();
             $("#ingresar-"+id).show();
             $("#ingresarPayPhone-"+id).hide();
             $("#ingresarPunto-"+id).hide();
-            $("#deposito-"+id).show();
+            $("#puntos-"+id).hide();
             $("#payphone-"+id).hide();
             $('#voucher-'+id).attr('required','required');
             $('#references-'+id).attr('required','required');
@@ -544,21 +612,24 @@
             $('#numero-'+id).removeAttr('required');
         }else if(valor == 'puntos'){
             $("#ingresarPunto-"+id).show();
-            $("#ingresar-"+id).hide();
+            $("#puntos-"+id).show();
             $("#payphone-"+id).hide();
+            $("#deposito-"+id).hide();
+            $("#ingresar-"+id).hide();
             $("#ingresarPayPhone-"+id).hide();
+            $("#ingresar-"+id).attr('disabled',true);
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
-            $("#deposito-"+id).hide();
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
-            $("#puntos-"+id).show();
         }else{
             $("#ingresarPayPhone-"+id).show();
+            $("#payphone-"+id).show();
+            $("#puntos-"+id).hide();
             $("#ingresarPunto-"+id).hide();
             $("#ingresar-"+id).hide();
-            $("#payphone-"+id).show();
             $("#deposito-"+id).hide();
+            $("#ingresar-"+id).attr('disabled',true);
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
             $('#pais-'+id).attr('required','required');
