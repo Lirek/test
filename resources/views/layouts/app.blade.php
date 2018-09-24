@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@
      <!--  <header class="header black-bg"> Barra azul -->
         <header class="header" style="background: white">
               <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title=""></div>
               </div>
             <!--logo start-->
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
@@ -64,11 +64,11 @@
 
             <div class="nav pull-right top-menu" id="boton" >
             <div class="navbar-right" style="margin-top: 12px;">
-              <img height="39px" src="{{asset('plugins/img/cine.png')}}">
+              <!-- <img height="39px" src="{{asset('plugins/img/cine.png')}}">
               <img height="39px" src="{{asset('plugins/img/musica.png')}}">
-              <img height="39px" src="{{asset('plugins/img/lectura.png')}}">
-              <img height="39px" src="{{asset('plugins/img/radio.png')}}">
-              <img height="39px" src="{{asset('plugins/img/tv.png')}}">
+              <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
+              <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+               <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
             </div>
             </div>
             <!--logo end-->
@@ -86,9 +86,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 40px">
                   @if(Auth::user()->img_perf)
-                    <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
+                    <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
                   @else
-                   <p class="centered"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></a></p>
+                   <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></a></p>
                   @endif
                   @if(Auth::user()->alias == null)
                     <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 ">{{Auth::user()->name}}</h5>
@@ -130,7 +130,12 @@
                       <li><a href="{{url('ShowMovies')}}">Peliculas</a></li>
                     </ul>
                   </li> -->
-
+                  <li class="sub-menu">
+                      <a href="{{ url('/home')}}" >
+                          <i class="fa fa-search"></i>
+                          <span>Cartelera</span>
+                      </a>  
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
@@ -163,7 +168,7 @@
                             </ul>
                           </li> -->
                            <li><a  href="{{url('ShowRadio')}}">Radio</a></li>
-                           <li><a  href="{{url('ShowTv')}}">Tv</a></li>
+                           <!-- <li><a  href="{{url('ShowTv')}}">Tv</a></li> -->
                          <!--  <li class="sub">
                             <a href="javascript: ;">
                               <span>Streams</span>
@@ -202,7 +207,7 @@
                           <span>Recargar</span>
                       </a>  
                   </li>
-                  <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 115px">
+                  <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 20px">
                       <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                         <i class="fa fa-power-off"></i>
                         <span>Salir</span>

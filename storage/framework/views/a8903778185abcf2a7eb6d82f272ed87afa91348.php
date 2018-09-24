@@ -46,8 +46,8 @@
         <div class="row-edit">
             <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="">
+                        <div class="">
                             <div class="white-header"><br>
                                 <h2>
                                     <span class="card-title">
@@ -58,11 +58,11 @@
                             </div>
 
                     <?php $__currentLoopData = $package; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="white-panel">
-                                    <div class="white-header" style="padding: 45px">
+                                    <div class="white-header" style="padding: 10px">
                                         <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1><?php echo e($ticket->name); ?></h1></span>
                                     </div>
                                     <div class="row">
@@ -378,9 +378,10 @@
         var tickets = id;
         var cant = $('#Cantidad-'+id).val();
         console.log(puntos);
+        var ruta = "<?php echo e(url('/BuyPuntos/')); ?>";
         $.ajax({
-            url:'BuyPuntos',
-            type: 'post',
+            url: ruta,
+            type: "post",
             data: {
                 _token: $('input[name=_token]').val(),
                 cost: costo,
@@ -394,7 +395,7 @@
                     swal({
                         title: "Puntos insuficientes",
                         text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
-                        icon: " warning",
+                        icon: "warning",
                         buttons: {
                             accept: {
                                 text: "OK",

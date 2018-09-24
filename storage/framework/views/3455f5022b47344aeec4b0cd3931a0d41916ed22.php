@@ -74,6 +74,8 @@
                 <?php if(Auth::guest()): ?>
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
+                <?php else: ?>
+                    <li><a href="<?php echo e(url('/home')); ?>">INGRESAR</a></li>
                 <?php endif; ?>
             </ul>
         </div>

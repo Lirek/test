@@ -47,8 +47,8 @@
         <div class="row-edit">
             <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="">
+                        <div class="">
                             <div class="white-header"><br>
                                 <h2>
                                     <span class="card-title">
@@ -59,11 +59,11 @@
                             </div>
 
                     @foreach($package as $ticket)
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="white-panel">
-                                    <div class="white-header" style="padding: 45px">
+                                    <div class="white-header" style="padding: 10px">
                                         <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1>{{$ticket->name}}</h1></span>
                                     </div>
                                     <div class="row">
