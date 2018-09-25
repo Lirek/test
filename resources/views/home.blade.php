@@ -290,72 +290,87 @@
                               <tbody>
 
                               @if($Songs)
+                                @foreach($Songs as $song)
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->title!!}','{!!$Songs->id!!}')" id="modal-confir"> {{$Songs->song_name}}</a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$songs->cost!!}','{!!$songs->title!!}','{!!$songs->id!!}')" id="modal-confir"> {{$songs->song_name}}</a></td>
                                   <td class="hidden-phone">Single</td>
-                                  <td>{{$Songs->cost}}</td>
-                                  <td class="hidden-phone">{{$Songs->Seller->name}}</td>
+                                  <td>{{$songs->cost}}</td>
+                                  <td class="hidden-phone">{{$songs->Seller->name}}</td>
                                 </tr>
+                                @endforeach
                               @endif
 
                               @if($Albums)
+                              @foreach($Albums as $albums)
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')" id="modal-confirAlbum"> {{$Albums->name_alb}}</a></td>
+                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$albums->cost!!}','{!!$albums->name_alb!!}','{!!$albums->id!!}')" id="modal-confirAlbum"> {{$albums->name_alb}}</a></td>
                                   <td class="hidden-phone">Album Musical</td>
-                                  <td>{{$Albums->cost}}</td>
-                                  <td class="hidden-phone">{{$Albums->Seller->name}}</td>
+                                  <td>{{$albums->cost}}</td>
+                                  <td class="hidden-phone">{{$albums->Seller->name}}</td>
                                 </tr>
+                                @endforeach
                               @endif
 
                               @if($Tv)
+                                @foreach($Tv as $tv)
                                 <tr class="letters">
                                   <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="{{url('PlayTv/'.$Tv->id)}}"> {{$Tv->name_r}}</a></td>
+                                  <td><a href="{{url('PlayTv/'.$tv->id)}}"> {{$tv->name_r}}</a></td>
                                   <td class="hidden-phone">TV Online</td>
                                   <td>Gratis</td>
+                                  <td class="hidden-phone">{{$tv->name}}</td>
                                 </tr>
+                                @endforeach
                              @endif
 
                             @if($Book)
+                              @foreach($Book as $book)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"> {{$Book->title}}</a></td>
+                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$book->cost!!}','{!!$book->title!!}','{!!$book->id!!}')"> {{$book->title}}</a></td>
                                 <td class="hidden-phone">Libro</td>
-                                <td>{{$Book->cost}}</td>
-                                <td class="hidden-phone">{{$Book->seller->name}}</td>
+                                <td>{{$book->cost}}</td>
+                                <td class="hidden-phone">{{$book->seller->name}}</td>
                               </tr>
+                              @endforeach
                             @endif
 
                             @if($Megazines)
+                            @foreach($Megazines as $megazines)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$Megazines->title}}</a></td>
+                                <td><a href=""> {{$megazines->title}}</a></td>
                                 <td class="hidden-phone">Revista</td>
-                                <td>{{$Megazines->cost}}</td>
-                                <td class="hidden-phone">{{$Megazines->Seller->name}}</td>
+                                <td>{{$megazines->cost}}</td>
+                                <td class="hidden-phone">{{$megazines->Seller->name}}</td>
                               </tr>
+                              @endforeach
                             @endif
 
                             @if($Radio)
+                              @foreach($Radio as $radio)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ListenRadio/'.$Radio->id)}}"> {{$Radio->name_r}}</a></td>
+                                <td><a href="{{url('ListenRadio/'.$radio->id)}}"> {{$radio->name_r}}</a></td>
                                 <td class="hidden-phone">Radio Online</td>
                                 <td>Gratis</td>
-                                <td class="hidden-phone">{{$Radio->name}}</td>
+                                <td class="hidden-phone">{{$radio->name}}</td>
                               </tr>
+                              @endforeach
                             @endif
 
                             @if($Movies)
+                            @foreach($Movies as $movies)
                               <tr class="letters">
                                 <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ShowMovies/'.$Movies->id)}}"> {{$Movies->title}}</a></td>
+                                <td><a href="{{url('ShowMovies/'.$movies->id)}}"> {{$movies->title}}</a></td>
                                 <td class="hidden-phone">Pelicula</td>
-                                <td>{{$Movies->cost}}</td>
-                                <td class="hidden-phone">{{$Movies->Seller->name}}</td>
+                                <td>{{$movies->cost}}</td>
+                                <td class="hidden-phone">{{$movies->Seller->name}}</td>
                               </tr>
+                              @endforeach
                           @endif
                               </tbody>
                             </table>
