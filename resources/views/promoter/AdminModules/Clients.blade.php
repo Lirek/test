@@ -32,6 +32,7 @@
 
         </div>
       </div>
+      <button class="btn-info" id="AllClients">Ver Aprobados</button>
     </div>
 
    <div id="menu1" class="tab-pane fade">
@@ -84,6 +85,11 @@
 	        ]
 	    });
 
+    $(document).on('click', '#AllClients', function() {
+
+      ClientsDataTable.ajax.url('{!! url('AllClientsDataTable') !!}').load();
+    
+    });
 
 		$(document).on('click', '#Status', function() {    
               var x = $(this).val();

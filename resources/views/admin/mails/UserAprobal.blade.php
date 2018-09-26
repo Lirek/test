@@ -6,30 +6,25 @@
 <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">
  <tr>
  	<td align="center">
- 		<img src="<?php echo e($message->embed(public_path().'/sistem_images/welcome.png')); ?>" width="100%" height="100%">
+ 		<img src="{{$message->embed(public_path().'/sistem_images/content_aproval.png')}}" width="100%" height="100%">
  	</td>
  </tr>
 
  <tr>
  	<td align="center">
-		<h1>Bienvenido</h1>
+		<h1>Su Cuenta ha sido Validada ahora puede disfrutar en su totalidad de la plataforma.</h1>
 	</td>
  </tr>
-
- <tr>
-	<td>
-	<p style="font-size: 14px;" align="justify">Se requiere la atencion de la solicitud de aprobacion/validacion del <?php echo e($type); ?> <?php echo e($name); ?>.</p>
- 	</td>
- </tr>
-
+ 
  <tr>
 	<td>
 	<p style="font-size: 14px">Muchas Gracias Por Ser Parte de Nuestra plataforma</p>
 	</td>
  </tr>
+		
 
   <tr align="left">
- 	<img src="<?php echo e($message->embed(public_path().'/sistem_images/signature.png')); ?>">
+ 	<img src="{{$message->embed(public_path().'/sistem_images/signature.png')}}">
   </tr>
   
   <tr>
@@ -40,7 +35,7 @@
 
  <tr>
 	<td align="center">
-		<img src="<?php echo e($message->embed(public_path().'/sistem_images/Leipel.png')); ?>" style="height: 80px; width: 80px">
+		<img src="{{$message->embed(public_path().'/sistem_images/Leipel.png')}}" style="height: 80px; width: 80px">
 	</td>
  </tr>	
 	
