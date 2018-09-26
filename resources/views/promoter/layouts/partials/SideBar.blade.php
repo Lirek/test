@@ -65,8 +65,8 @@
 
                     <li class="mt">
                       <a href="{{ route('log-viewer::dashboard') }}">
-                          <i class="fa fa-university"></i>
-                          <span>Negocios y Otros</span>
+                          <i class="fa fa-warning" style="color:red"></i>
+                          <span>Errores</span>
                       </a>
                   </li> 
                   

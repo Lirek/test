@@ -13,8 +13,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="{{ Route::is('log-viewer::dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('log-viewer::dashboard') }}">
+                <li class="{{ url('promoter_home') ? 'active' : '' }}">
+                    <a href="{{ url('promoter_home') }}">
                         <i class="fa fa-dashboard"></i> Panel Principal
                     </a>
                 </li>

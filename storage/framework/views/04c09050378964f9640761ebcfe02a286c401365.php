@@ -13,8 +13,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="<?php echo e(Route::is('log-viewer::dashboard') ? 'active' : ''); ?>">
-                    <a href="<?php echo e(route('log-viewer::dashboard')); ?>">
+                <li class="<?php echo e(url('promoter_home') ? 'active' : ''); ?>">
+                    <a href="<?php echo e(url('promoter_home')); ?>">
                         <i class="fa fa-dashboard"></i> Panel Principal
                     </a>
                 </li>
