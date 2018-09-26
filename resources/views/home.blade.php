@@ -114,7 +114,7 @@
                                <div class="col-sm-10 col-xs-10 col-md-10 goleft">
                                   <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
                                   <div class="paragraph">
-                                    <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil</p>
+                                    <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil.</p>
                                       <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Completar Registro</a></p>
 
                                       <!--MODAL-->

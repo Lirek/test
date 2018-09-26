@@ -40,6 +40,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
    		//---------------------------COMPRAS DE PAQUETES--------------------------------------
 	   		Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
 	   		Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
+	   		Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
    		//-----------------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------

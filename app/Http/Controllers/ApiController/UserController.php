@@ -61,12 +61,13 @@ class UserController extends Controller
 
     public function WebsUser()
     {
-    	$user= auth()->user();
-          $x=$user->Referals()->get();
+    	$user= User::find(auth()->user()->id);
+          
+          $x= $user->Referals()->get();
           $referals1 = [];
           $referals2= [];
           $referals3= [];
-          $WholeReferals = new Collection; 
+          $WholeReferals = new Collection;
           
           if ($user->Referals()->get()->isEmpty()) 
           {            
@@ -133,7 +134,7 @@ class UserController extends Controller
 
     public function UpdateData(Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::find(auth()->user()->id);
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
@@ -185,7 +186,7 @@ class UserController extends Controller
     public function BuyDepositPackage(Request $request)
     {
         $Buy = new Payments;
-        $Buy->user_id=Auth::user()->id;
+        $Buy->user_id=auth()->user()->id;
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
@@ -214,8 +215,20 @@ class UserController extends Controller
     }
 
     public function BuyPayphonePackage(Request $request)
-    {
-          $user = User::find(Auth::user()->id);    
+    {              
+            $Buy = new Payments;
+            $Buy->user_id       = auth()->user()->id;
+            $Buy->package_id    = $request->id;
+            $Buy->cost          = $request->cost;
+            $Buy->value         = $request->value;
+            $Buy->status        = 2;
+            $Buy->method        ='Payphone';
+            
+            $Buy->save();
+            
+            $clientTransactionId = $Buy->id."|".date("Y-m-d H:i:s");
+        
+        
 
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
@@ -230,14 +243,14 @@ class UserController extends Controller
 
             $balance->save();
 
-          if ($revenueMonth->count()<=1) 
-          {
-           event(new AssingPointsEvents($user->id,$Buy->package_id));
-          }  
+            if ($revenueMonth->count()<=1) 
+            {
+             event(new AssingPointsEvents($user->id,$Buy->package_id));
+            }  
 
-          event(new PayementAprovalEvent($user->email));
+            event(new PayementAprovalEvent($user->email));
 
-          return Response::json(['status'=>'OK'], 201);    
+          return Response::json(['status'=>'OK','id_transaction'=>$clientTransactionId], 201);    
     }
 
     public function BuyPointsPackage(Request $request)
@@ -292,4 +305,5 @@ class UserController extends Controller
         }
         return Response::json(['status'=>'OK'], 201);    
     }
+
 }

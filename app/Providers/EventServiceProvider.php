@@ -89,9 +89,12 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\RegisterTvTrace',
         ],
 
-
             'App\Events\PointsTraceEvent' => [
             'App\Listeners\RegisterPointsTrace',
+        ],
+
+            'App\Events\NewContentNotice' => [
+            'App\Listeners\SendNoticeEmail',
         ],
 
 

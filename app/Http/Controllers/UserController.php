@@ -8,6 +8,8 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
+use App\Events\NewContentNotice;
+
 use File;
 use QrCode;
 use Carbon\Carbon;
@@ -248,6 +250,9 @@ class UserController extends Controller
 
         $user->alias = $request->alias;
         $user->save();
+
+        event( new NewContentNotice($user->name,'Usuario'));
+        
         Flash('Completo Sus Datos Con Exito')->success();
        return redirect()->action('HomeController@index');
     }
