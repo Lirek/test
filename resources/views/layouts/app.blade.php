@@ -110,13 +110,10 @@
                   </div>  
                     
                   <li class="sub-menu">
-                      <a class="sub" href="#">
+                      <a class="sub" href="{{url('EditProfile')}}">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
-                      <ul class="sub">
-                        <li><a href="{{url('EditProfile')}}">Editar mi perfil</a></li>
-                      </ul>
                   </li>
 
                   <!-- <li class="sub-menu">
@@ -187,8 +184,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('WebsUser')}}">Mis redes</a></li>
-                          <li><a  href="{{url('Referals')}}"">Referir</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis referidos</a></li>
+                          <li><a  href="{{url('Referals')}}"">Invitar</a></li>
                       </ul>
                   </li>
                   <!-- <li class="sub-menu">

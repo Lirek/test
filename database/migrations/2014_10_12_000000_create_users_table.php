@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->enum('status',['admin','client'])->default('client');
             $table->string('alias')->nullable();
             $table->string('img_perf')->nullable();
+            $table->string('direccion')->nullable();
             $table->integer('credito')->nullable();
             $table->integer('points')->nullable();
             $table->integer('limit_points')->nullable()->default(1000);
