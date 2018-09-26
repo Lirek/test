@@ -16,6 +16,7 @@ use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
 use App\Events\AssingPointsEvents;
+use App\Events\UserValidateEvent;
 use File;
 
 //-------------Modelos del sistema-----------------------
@@ -1221,17 +1222,52 @@ class AdminController extends Controller
                     ->toJson();                                           
       }
 
+      public function AllClientsData()
+      {
+          $user=User::where('verify','=','1')
+                                             ->where('img_doc','<>','NULL')
+                                             ->where('num_doc','<>','NULL')
+                                             ->get(); 
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" disabled >En Proceso</button';
+                    })
+
+                    ->addColumn('webs',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+                    })                                        
+                    
+                    ->editColumn('img_doc',function($user){
+
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name; 
+                    })
+                    ->rawColumns(['Estatus','img_doc','webs'])
+                    ->toJson();                                           
+      }
+
       public function ValidateUser(Request $request,$id)
       {
         $User= User::find($id);
         
         if ($request->status == 'Aprobado')
           {
-            $User->verify=1;  
+            $User->verify=1;
+            
+            event(new UserValidateEvent($User->email,1,0));
           }
            else
           {
-          $User->verify=0; 
+            $User->verify=0;
+
+            event(new UserValidateEvent($User->email,2,$request->reason));
           }
 
         $User->save();
@@ -1250,7 +1286,7 @@ class AdminController extends Controller
           
           if ($user->Referals()->get()->isEmpty()) 
           {
-            return Datatables::of($WholeReferals);
+            return Datatables::of($WholeReferals)->toJson();
           }
           foreach ($user->Referals()->get() as $key) 
           {

@@ -364,6 +364,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_clients','AdminController@ShowPendingClients');
                 Route::get('ClientsDataTable','AdminController@ClientsData');
+                Route::get('AllClientsDataTable','AdminController@AllClientsData');
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
