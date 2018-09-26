@@ -75,6 +75,17 @@
               </div>
          
           </div>
+
+          <div class="row mt">
+              <!-- TWITTER PANEL -->
+              <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                <div class="twitter-panel pn">
+                  <i class="fa fa-suitcase fa-4x"></i>
+                  <p>Errores</p>
+                  <a href="{{url('logs')}}"> <button type="button" class="btn btn-theme">Ver</button></a>
+                </div>
+              </div><!-- /col-md-4 -->
+          </div
           @endif
 @include('promoter.modals.HomeViewModal')           
 @endsection

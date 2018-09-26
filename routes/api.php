@@ -69,6 +69,13 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
 	//-------------------------------------------------------------------------------
 
+	//---------------Rutas de Contenido Especifico----------------------------------
+
+		Route::post('RadioTrace/{id}','ApiController\ContentController@RadioTrace');
+		Route::post('TvTrace/{id}','ApiController\ContentController@TvTrace');
+
+	//-------------------------------------------------------------------------------
+
 });
 
 

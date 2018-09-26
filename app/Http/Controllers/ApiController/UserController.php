@@ -11,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
+
 use App\Events\PayementAprovalEvent;
 use App\Events\PaymentDenialEvent;
 use App\Events\AssingPointsEvents;
@@ -43,15 +44,15 @@ use App\PointsAssings;
 use App\SistemBalance;
 
 use App\Transformers\UserTransformer;
-
+use Auth;
 
 class UserController extends Controller
 {
     public function UserData()
     {
-    	$user=auth()->user();
+      $user=auth()->user();
 
-    				$Json = Fractal::create()
+            $Json = Fractal::create()
                            ->item($user)
                            ->transformWith(new UserTransformer)                
                            ->toArray();          
@@ -61,17 +62,17 @@ class UserController extends Controller
 
     public function WebsUser()
     {
-    	$user= User::find(auth()->user()->id);
+      $user= User::find(auth()->user()->id);
           
           $x= $user->Referals()->get();
           $referals1 = [];
           $referals2= [];
           $referals3= [];
-          $WholeReferals = new Collection;
+          $WholeReferals = collect(new User);
           
           if ($user->Referals()->get()->isEmpty()) 
           {            
-          	return Response::json(['status'=>'Esta Vacio'], 204);
+            return Response::json(['status'=>'Esta Vacio'], 204);
 
           }
           foreach ($user->Referals()->get() as $key) 
@@ -129,7 +130,7 @@ class UserController extends Controller
               if (in_array($item->id, $referals3)) { return $item->level=3;}
                       });         
               
-        return Datatables::of($WholeReferals)->toJson(); 	
+        return Datatables::of($WholeReferals)->toJson();  
     }
 
     public function UpdateData(Request $request)
@@ -190,7 +191,7 @@ class UserController extends Controller
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
-        $Buy->method='Depósito';
+        $Buy->method='Dep贸sito';
 
          if ($request->hasFile('voucher'))
         {
@@ -215,20 +216,8 @@ class UserController extends Controller
     }
 
     public function BuyPayphonePackage(Request $request)
-    {              
-            $Buy = new Payments;
-            $Buy->user_id       = auth()->user()->id;
-            $Buy->package_id    = $request->id;
-            $Buy->cost          = $request->cost;
-            $Buy->value         = $request->value;
-            $Buy->status        = 2;
-            $Buy->method        ='Payphone';
-            
-            $Buy->save();
-            
-            $clientTransactionId = $Buy->id."|".date("Y-m-d H:i:s");
-        
-        
+    {
+          $user = User::find(auth()->user()->id);    
 
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
@@ -243,20 +232,20 @@ class UserController extends Controller
 
             $balance->save();
 
-            if ($revenueMonth->count()<=1) 
-            {
-             event(new AssingPointsEvents($user->id,$Buy->package_id));
-            }  
+          if ($revenueMonth->count()<=1) 
+          {
+           event(new AssingPointsEvents($user->id,$Buy->package_id));
+          }  
 
-            event(new PayementAprovalEvent($user->email));
+          event(new PayementAprovalEvent($user->email));
 
-          return Response::json(['status'=>'OK','id_transaction'=>$clientTransactionId], 201);    
+          return Response::json(['status'=>'OK'], 201);    
     }
 
     public function BuyPointsPackage(Request $request)
     {
         
-        $user = User::find(Auth::user()->id);
+        $user = User::find(auth()->user()->id);
         $TicketsPackage= TicketsPackage::find($request->ticket_id);
 
         if ($request->cost > $user->points) 
@@ -305,5 +294,4 @@ class UserController extends Controller
         }
         return Response::json(['status'=>'OK'], 201);    
     }
-
 }

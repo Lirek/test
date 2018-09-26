@@ -63,6 +63,13 @@
                       </a>
                   </li> 
 
+                    <li class="mt">
+                      <a href="{{ route('log-viewer::dashboard') }}">
+                          <i class="fa fa-university"></i>
+                          <span>Negocios y Otros</span>
+                      </a>
+                  </li> 
+                  
                   @endif
 
               </ul>

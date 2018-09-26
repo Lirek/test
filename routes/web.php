@@ -388,6 +388,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
          Route::get('UserDetails','SuperAdminController@ShowUserDetails');
 
+         //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
