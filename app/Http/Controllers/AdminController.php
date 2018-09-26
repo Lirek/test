@@ -1196,6 +1196,8 @@ class AdminController extends Controller
           $user=User::where('verify','=','0')
                                              ->where('img_doc','<>','NULL')
                                              ->where('num_doc','<>','NULL')
+                                             ->where('type','<>','Indefinido')
+                                             ->where('fech_nac','<>','NULL')
                                              ->get(); 
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
@@ -1265,7 +1267,7 @@ class AdminController extends Controller
           }
            else
           {
-            $User->verify=0;
+            $User->verify=2;
 
             event(new UserValidateEvent($User->email,2,$request->reason));
           }

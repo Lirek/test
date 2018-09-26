@@ -26,6 +26,7 @@
                   <th class="non-numeric">Genero</th>
                   <th class="non-numeric">Redes</th>
                   <th class="non-numeric">Estatus</th>
+                  <th class="non-numeric">Fecha de registro</th>
               </tr>
               </thead>
           </table>
@@ -132,7 +133,8 @@
 	            {data: 'fech_nac', name: 'fech_nac'},
 	            {data: 'type', name: 'type'},
               {data: 'webs', name: 'webs'},
-	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false},
+              {data: 'created_at', name: 'created_at'}
 	        ]
 	    });
 
@@ -159,7 +161,7 @@
                                   data: {
                                           _token: $('input[name=_token]').val(),
                                           status: s,
-                                          message: message,
+                                          reason: message,
                                         }, 
                                   success: function (result) {
 
