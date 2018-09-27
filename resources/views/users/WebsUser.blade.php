@@ -83,19 +83,22 @@
         @if ($refered != null)
         <h5 style="margin-left: 3%">Mis referidos directos:</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
-          
-          @foreach($refered as $refereds)
-              <div class="col-sm-2 col-xs-3 col-md-1">
-                @if($refereds->img_perf)
-                  <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60"></a>
-                @else
-                   <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                @endif
+          <div class="row">
+            @foreach($refered as $refereds)
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                <div class="col-xs-3 col-sm-3 col-lg-3">
+                  @if($refereds->img_perf)
+                    <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
+                  @else
+                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
+                  @endif
+                </div>
+                <div class="col-xs-9 col-sm-9 col-lg-9" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                  {{$refereds->name}} {{$refereds->last_name}}
+                </div>
               </div>
-              <div class="col-sm-3 col-xs-3 col-md-3" style="margin-top: 1%">
-                {{$refereds->name}}
-              </div>
-          @endforeach
+            @endforeach
+          </div>
         </div>
         @endif
        
@@ -107,60 +110,85 @@
 
 @section('js')
 <script type="text/javascript">
-  document.querySelector('#patrocinador').addEventListener('submit', function(e) {
+document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var form = this;
 
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
+
   $.ajax({
-                    
-      url:'sponsor/'+cod,
-      type: 'get',
-      dataType: "json",           
-      success: function (result) 
-                {
-                if(result.img_perf==null){
-                  perfil = "{!! asset('/sistem_images/DefaultUser.png') !!}"
-                }else{
-                  perfil=result.img_perf;
-                }
-                if (result != 0)
-                {
-
-                  swal({
-                      // title: "Are you sure?",
-                      text: "¿Esta ingresando como patrocinador a: "+result.name+"?",
-                      // icon: "warning",
-                      icon: 'info',
-
-                      buttons: {
-                        
-                        accept:  'Aceptar',
-                                  
-                                
-                        cancel: 'Cancelar',
-                                
-                        
-                      },
-                      dangerMode: true,
-                    }).then(function(isConfirm) {
-                      if (isConfirm) {
-                          
-                            form.submit(); // <--- submit form programmatically
-                          
-                        } else {
-                          $('#patrocinador')[0].reset();
-                        }
-                      })
-                    }else{
-                      $('#codigoMen').show();
-                      $('#codigoMen').text('El codigo es incorrecto');
-                      $('#codigoMen').css('color','red');
-                  }
-                
-                }
-                })
+    url:'sponsor/'+cod,
+    type: 'get',
+    dataType: "json",
+    beforeSend: function() {
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      swal({
+          title: "¡Listo! Estamos validando su información...",
+          text: "Espere un momento por favot, mientras validamos el código de patrocinador.",
+          icon: gif,
+          buttons: false,
+          closeOnEsc: false,
+          closeOnClickOutside: false
+      });
+    },
+    success: function (result) {
+      console.log(result);
+      if(result == 2) {
+        swal({
+          title: "Ingrese otro código por favor",
+          text: "El código que introdujo le pertecene a algún miembro de su propia red, por favor ingrese otro.",
+          icon: 'info',
+          buttons: {
+            accept: 'Aceptar'
+          }
+        });
+      } else {
+        if(result == 1) {
+          swal({
+            title: "Ingrese otro código por favor",
+            text: "Disculpe, pero no puede ingresar su propio código",
+            icon: 'info',
+            buttons: {
+              accept: 'Aceptar'
+            },
+            closeOnEsc: false,
+            closeOnClickOutside: false
+          });
+          $('#patrocinador')[0].reset();
+        } else if (result.id != undefined) {
+          if (result.last_name != undefined) {
+            var nombre = result.name+" "+result.last_name;
+          } else {
+            var nombre = result.name;
+          }
+          swal({
+            text: "¿Esta ingresando como patrocinador a "+nombre+"?",
+            icon: 'info',
+            buttons: {
+              accept: 'Aceptar',
+              cancel: 'Cancelar'
+            },
+            dangerMode: true,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+          }).then(function(isConfirm) {
+            if (isConfirm) {
+              form.submit();
+            } else {
+              $('#patrocinador')[0].reset();
+            }
+          });
+        }
+        else if(result == 0) {
+          swal.close();
+          $('#codigoMen').show();
+          $('#codigoMen').text('El codigo es incorrecto');
+          $('#codigoMen').css('color','red');
+        }
+      }
+    }
   });
+});
 
 </script>
 <script type="text/javascript">

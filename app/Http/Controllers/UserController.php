@@ -151,6 +151,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
+        $user->direccion = $request->direccion;
 
         
         if ($request->type != null){
