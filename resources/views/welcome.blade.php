@@ -498,12 +498,15 @@
                                     <button type="submit" class="btn btn-primary btn-block" id="iniciar">
                                         Inicia sesi&oacute;n
                                     </button>
+                                    <center><a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                        Olvide mi contraseña
+                                    </a></center>
                                 </div>
                             </div>
                             <div class="modal-footer" id="modal_footer">
                                 <div class="text-center">
                                     <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
-                                    <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
+                                    <!-- <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a> -->
                                     <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
                                 </div>
                                 <small style="font-size: 80%"><center>Inicio de sesion con redes sociales</center></small>
@@ -560,6 +563,7 @@
                                     <button type="submit" class="btn btn-primary btn-block" id="iniciarP">
                                         Inicia sesi&oacute;n
                                     </button>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -688,7 +692,7 @@
                             <div class="modal-footer" id="modal_footer">
                                 <div class="text-center">
                                     <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
-                                    <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a>
+                                    <!-- <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a> -->
                                     <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
                                 </div>
                                 <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>

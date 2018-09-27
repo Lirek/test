@@ -157,7 +157,7 @@
                                 <div class="col-md-10 control-label">
                                 @if($user->verify == 0)
                                     <img id="preview_img_doc" src="" name='ci'/>  
-                                    <input type='file' name="img_doc" id="img_doc" accept=".jpg" value="$user->img_doc"/>
+                                    <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
                                 @endif
                                     <div id="mensajeImgDoc"></div>
                                 </div>
