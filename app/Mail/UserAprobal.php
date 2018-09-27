@@ -29,6 +29,6 @@ class UserAprobal extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mails.UserAprobal');
+        return $this->view('admin.mails.UserAprobal')->subject('Validacion Exitosa');
     }
 }
