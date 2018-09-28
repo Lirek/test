@@ -83,18 +83,20 @@
                                             {!! Form::hidden('img_posterOld',$user->img_perf)!!}
                                             <div id="list">
                                                 @if ($user->img_perf)
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="{{asset($user->img_perf)}}">
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="{{asset($user->img_perf)}}" id="img_perf">
                                                 @else
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}">
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
                                                 @endif
-                                                <div id="mensajeImgPerf"></div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="panel" class="img-rounded img-responsive av "></div>
+                                    <div id="panel" class="img-rounded img-responsive av"></div>
                                     <br>
-                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label"> Haga click sobre la imagen de perfil para cambiarla </label>
+                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label">
+                                        <div id="mensajeImgPerf"></div>
+                                        Haga click sobre la imagen de perfil para cambiarla
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +159,7 @@
                                     <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                 @endif
                                 <div class="col-md-10 control-label">
-                                @if($user->verify == 0)
+                                @if($user->verify == 0 || $user->verify == 2)
                                     <img id="preview_img_doc" src="" name='ci'/>  
                                     <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
                                 @endif
@@ -250,17 +252,17 @@
         // Maximo tamaño permitido para la imagen
         $(document).ready(function(){
             $('#img_doc').change(function(){
+                $('#preview_img_doc').attr('width','180');
+                $('#preview_img_doc').attr('height','180');
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
+                if (tamañoKb>1024000) {
                     $('#mensajeImgDoc').show();
                     $('#mensajeImgDoc').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
                     $('#mensajeImgDoc').css('color','red');
                     $('#Editar').attr('disabled',true);
                 } else {
                     $('#mensajeImgDoc').hide();
-                    $('#preview_img_doc').attr('width','180');
-                    $('#preview_img_doc').attr('height','180');
                     $('#Editar').attr('disabled',false);
                 }
             });
@@ -270,9 +272,11 @@
         // Maximo tamaño permitido para la imagen
         $(document).ready(function(){
             $('#img_perf').change(function(){
+                $('#preview_img').attr('width','180');
+                $('#preview_img').attr('height','180');
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
+                if (tamañoKb>1024000) {
                     $('#mensajeImgPerf').show();
                     $('#mensajeImgPerf').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
                     $('#mensajeImgPerf').css('color','red');
@@ -444,6 +448,39 @@
             });
         });
         // Validacion al enviar formulario
+        //---------------------------------------------------------------------------------------------------
+        // Validar formato de imagen de perfil y del documento
+        $(document).ready(function(){
+            $('#img_doc').change(function(){
+                var img_doc = $('#img_doc').val();
+                var extension = img_doc.substring(img_doc.lastIndexOf("."));
+                if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                    $('#Editar').attr('disabled',false);
+                    $('#mensajeImgDoc').hide();
+                    $('#preview_img_doc').show();
+                } else {
+                    $('#Editar').attr('disabled',true);
+                    $('#mensajeImgDoc').show();
+                    $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg o png');
+                    $('#mensajeImgDoc').css('color','red');
+                    $('#preview_img_doc').hide();
+                }
+            });
+            $('#image-upload').change(function(){
+                var img_perf = $('#image-upload').val();
+                var extension = img_perf.substring(img_perf.lastIndexOf("."));
+                if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                    $('#Editar').attr('disabled',false);
+                    $('#mensajeImgPerf').hide();
+                } else {
+                    $('#Editar').attr('disabled',true);
+                    $('#mensajeImgPerf').show();
+                    $('#mensajeImgPerf').text('La imagen debe estar en formato jpeg, jpg o png');
+                    $('#mensajeImgPerf').css('color','red');
+                }
+            });
+        });
+        // Validar formato de imagen de perfil y del documento
         //---------------------------------------------------------------------------------------------------
     </script>
 

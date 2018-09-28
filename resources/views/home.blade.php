@@ -8,20 +8,7 @@
         animation: spin 0.8s infinite linear;
     }
     .btn-swal-center {
-        /*
-        width: 5em;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        position:absolute;
-        width:100%; left:0;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        */
         margin-right: 13em;
-        /*margin-left: 30em;*/
     }
     @media only screen and (max-width: 425px) {
         .btn-swal-center {
@@ -48,6 +35,7 @@
       <!--main content start-->
       @include('flash::message')
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
+      <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
               
                 
                   
@@ -412,6 +400,32 @@
 
 @section('js')
 <script type="text/javascript">
+//---------------------------------------------------------------------------------------------------
+// Validacion cuando el usuario esta rechazado
+$(document).ready(function(){
+  var verificacion = $(':hidden#verificacion').val();
+  console.log(verificacion);
+  if (verificacion==2) {
+    swal({
+      title: "Verificación rechazada",
+      text: "Le informamos que su verificación fue rechazada, le invitamos a modificar su perfil",
+      icon: "info",
+      buttons: {
+          accept: {
+              text: "OK",
+              value: true,
+              className: "btn-swal-center"
+          }
+      }
+  })
+  .then((completar) => {
+      var ruta = "{{url('EditProfile')}}";
+      $(location).attr('href',ruta);
+  });
+  }
+});
+// Validacion cuando el usuario esta rechazado
+//---------------------------------------------------------------------------------------------------
   $(document).ready(function(){
   var f1 = document.getElementById('id').value;
   var f = new Date();
