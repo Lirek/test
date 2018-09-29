@@ -2,16 +2,19 @@
 
 @section('main')
  <div class="row mt">
-    <h2>
+    <h3>
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home" id="users">Usuarios Pendientes</a></li>
-        <li><a data-toggle="tab" href="#menu1" id="users_payments">Pagos de Usuarios</a></li>    
+        <li><a data-toggle="tab" href="#menu1" id="users_payments">Depositos de Usuarios</a></li>
+        <li><a data-toggle="tab" href="#menu2" id="users_d">Usuarios Negados</a></li>
+        <li><a data-toggle="tab" href="#menu3" id="users_a">Usuarios Aprobados</a></li>
       </ul>
-  </h2>
+  </h3>
 </div>
 
 <div class="row mt">
   <div class="tab-content">
+   
     <div id="home" class="tab-pane fade in active">
       <div class="col-lg-12">
         <div class="content-panel">
@@ -24,6 +27,7 @@
                   <th class="non-numeric">Imagen del Documento</th>
                   <th class="non-numeric">Fecha de Nacimiento</th>
                   <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de registro</th>
                   <th class="non-numeric">Redes</th>
                   <th class="non-numeric">Estatus</th>
               </tr>
@@ -57,7 +61,54 @@
 
         </div>
      </div>
+   </div>
+
+    <div id="menu2" class="tab-pane fade">
+      <div class="col-lg-12">
+        <div class="content-panel">
+
+          <table class="table table-bordered table-striped table-condensed" id="ClientsDenials">            
+            <thead>
+                <tr>
+                  <th class="non-numeric">Nombre</th>
+                  <th class="non-numeric">Numero Doc</th>
+                  <th class="non-numeric">Imagen del Documento</th>
+                  <th class="non-numeric">Fecha de Nacimiento</th>
+                  <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de registro</th>
+                  <th class="non-numeric">Redes</th>
+                  <th class="non-numeric">Estatus</th>
+              </tr>
+              </thead>
+          </table>
+
+        </div>
+      </div>      
     </div>
+
+    <div id="menu3" class="tab-pane fade">
+      <div class="col-lg-12">
+        <div class="content-panel">
+
+          <table class="table table-bordered table-striped table-condensed" id="ClientsAproved">            
+            <thead>
+                <tr>
+                  <th class="non-numeric">Nombre</th>
+                  <th class="non-numeric">Numero Doc</th>
+                  <th class="non-numeric">Imagen del Documento</th>
+                  <th class="non-numeric">Fecha de Nacimiento</th>
+                  <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de registro</th>
+                  <th class="non-numeric">Redes</th>
+                  <th class="non-numeric">Estatus</th>
+              </tr>
+              </thead>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -66,24 +117,25 @@
 
 @section('js')
 <script>
-	$(document).ready(function(){
+  $(document).ready(function(){
 
-		var ClientsDataTable = $('#Clients').DataTable({
-	        processing: true,
-	        serverSide: true,
+    var ClientsDataTable = $('#Clients').DataTable({
+          processing: true,
+          serverSide: true,
             responsive: true,
 
-	        ajax: '{!! url('ClientsDataTable') !!}',
-	        columns: [
-	            {data: 'name', name: 'name'},
-	            {data: 'num_doc', name: 'num_doc'},
-	            {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
-	            {data: 'fech_nac', name: 'fech_nac'},
-	            {data: 'type', name: 'type'},
+          ajax: '{!! url('ClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
               {data: 'webs', name: 'webs'},
-	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-	        ]
-	    });
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
 
     $(document).on('click', '#AllClients', function() {
 
@@ -91,7 +143,7 @@
     
     });
 
-		$(document).on('click', '#Status', function() {    
+    $(document).on('click', '#Status', function() {    
               var x = $(this).val();
               
               $( "#formStatus" ).on( 'submit', function(e)
@@ -115,7 +167,7 @@
                                                               $('#myModal').toggle();
                                                               $('.modal-backdrop').remove();
                                                               swal("Se ha "+s+" con exito","","success");
-                                                              ClientsDataTable.ajax.reload();
+                                                              location.reload();
                                                               },
 
                                   error: function (result) {
@@ -134,7 +186,7 @@
      $("#ci_photo").attr("src", file);
     
      });
-	
+  
     $(document).on('click', '#webs', function() {
         
         var x = $(this).val();
@@ -177,7 +229,6 @@
               {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
           ]
         });
-
         
       $(document).on('click', '#users', function() {
            
@@ -221,11 +272,83 @@
                     });  
 
         });
-      
       });
 
-    
     });
+
+    $(document).on('click', '#users_a', function() {
+      
+      var AllClientsDataTable = $('#ClientsAproved').DataTable({
+          processing: true,
+          serverSide: true,
+            responsive: true,
+
+          ajax: '{!! url('AllClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
+              {data: 'webs', name: 'webs'},
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
+      
+      $(document).on('click', '#users', function() {
+           
+           AllClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_d', function() {
+           
+           AllClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_payments', function() {
+          
+           AllClientsDataTable.destroy();
+      });
+
+  });
+
+    $(document).on('click', '#users_d', function() {
+      
+      var DenialClientsDataTable = $('#ClientsDenials').DataTable({
+          processing: true,
+          serverSide: true,
+            responsive: true,
+
+          ajax: '{!! url('RejectedClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
+              {data: 'webs', name: 'webs'},
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
+      
+      $(document).on('click', '#users', function() {
+           
+           DenialClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_a', function() {
+           
+           DenialClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_payments', function() {
+
+           DenialClientsDataTable.destroy();
+      });
+
+  });
 
 
   });
