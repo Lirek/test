@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,73 +49,25 @@
             TOP BAR CONTENT & NOTIFICATIONS
             -->
             <!--header start-->
-            <header class="header black-bg">
+            <header class="header" style="background: white">
                 <div class="sidebar-toggle-box">
-                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title=""></div>
                 </div>
                 <!--logo start-->
-                <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
-                <!--logo end-->
+                <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
+            </b></a>
+                <div class="nav pull-right top-menu" id="boton" >
+                    <div class="navbar-right" style="margin-top: 12px;">
+                          <!-- <img height="39px" src="{{asset('plugins/img/cine.png')}}">
+                          <img height="39px" src="{{asset('plugins/img/musica.png')}}">
+                          <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
+                          <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+                          <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
+                    </div>
+                </div>
                 <div class="nav notify-row" id="top_menu">
-                    <!--  notification start -->
-                    <ul class="nav top-menu">
-                        <!-- settings start -->
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-tasks"></i>
-                                <span class="badge bg-theme">4</span>
-                            </a>
-                            <ul class="dropdown-menu extended tasks-bar">
-                                <div class="notify-arrow notify-arrow-green"></div>
-                                <li>
-                                    <p class="green">You have 4 pending tasks</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="task-info">
-                                            <div class="desc">DashGum Admin Panel</div>
-                                            <div class="percent">40%</div>
-                                        </div>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40% Complete (success)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- settings end -->
-                        <!-- inbox dropdown start-->
-                        <li id="header_inbox_bar" class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-theme">5</span>
-                            </a>
-                            <ul class="dropdown-menu extended inbox">
-                                <div class="notify-arrow notify-arrow-green"></div>
-                                <li>
-                                    <p class="green">You have 5 new messages</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo">
-                                            <img alt="avatar" src="{{ asset('assets/img/ui-zac.jpg') }}">
-                                        </span>
-                                        <span class="subject">
-                                            <span class="from">Zac Snider</span>
-                                            <span class="time">Just now</span>
-                                        </span>
-                                        <span class="message">
-                                            Hi mate, how is everything?
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- inbox dropdown end -->
-                    </ul>
-                    <!--  notification end -->
+                    
+                    
                 </div>
                 <!--
                 <div class="top-menu">
@@ -135,7 +87,7 @@
             <aside>
                 <div id="sidebar"  class="nav-collapse ">
                     <!-- sidebar menu start-->
-                    <ul class="sidebar-menu" id="nav-accordion">
+                    <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                         <p class="centered">
                             <!--Revisar este enlace -->
                             <a href="{{ url('/home')}}">
@@ -146,10 +98,12 @@
                                 @endif
                             </a>
                         </p>
-                        <h5 class="centered">{{Auth::guard('web_seller')->user()->name}}</h5>
-                        <div class="card-content white-text">
+                        <h5 class="centered" style="text-shadow: 0.1em 0.1em #333">
+                            {{Auth::guard('web_seller')->user()->name}}
+                        </h5>
+                        <!-- <div class="card-content white-text">
                             <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::guard('web_seller')->user()->credito}}</p></h6></span>
-                        </div>
+                        </div> -->
                         <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
                                 <i class="glyphicon glyphicon-home"></i>
@@ -162,7 +116,7 @@
                                 <span>Mi perfil</span>
                             </a>
                         </li>
-                        <li class="sub-menu">
+                        <!-- <li class="sub-menu">
                             <a href="javascript:;" >
                                 <i class="fa fa-users"></i>
                                 <span>Referidos</span>
@@ -172,8 +126,8 @@
                                 <li><a href="#">Mis amigos</a></li>
                                 <li><a href="#">Referir</a></li>
                             </ul>
-                        </li>
-                        <li class="sub-menu">
+                        </li> -->
+                        <!-- <li class="sub-menu">
                             <a href="javascript:;" >
                                 <i class="fa fa-heart"></i>
                                 <span>Seguidos</span>
@@ -183,7 +137,7 @@
                                 <li><a href="#">Mis seguidores</a></li>
                                 <li><a href="#">Proveedores</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
 
@@ -399,7 +353,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu sidebar-menu hidden-xs hidden-sm" id="nav-accordion" style="position: fixed; bottom: 0px; width: 13.5%;">
+                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 5px">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -410,7 +364,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        <li class="sub-menu sidebar-menu hidden-md hidden-lg hidden-xg" id="nav-accordion">
+                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg"" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -429,11 +383,11 @@
             <section id="main-content">
                 <section class="wrapper">
                     <div class="row">
-                        <div class="col-lg-9 main-chart">
+                        <div class="col-lg-12 main-chart">
                             @yield('content')
                         </div>
                         <div class="col-lg-3 ds" style="margin-bottom: 50%;">
-                            @include('seller.partials.siderRigth') 
+                           {{-- @include('seller.partials.siderRigth')--}} 
                         </div><!-- /col-lg-3 -->
                     </div>
                 </section>
@@ -500,6 +454,17 @@
         }
     */
     </script>
+    <script type="text/javascript">
+$(document).ready(function() {
+        if ((screen.width <= 768)) {
+        //alert('Resolucion: 1024x768 o mayor');
+          $('#container').addClass('sidebar-closed');
+        }else{
+          $('#container').removeClass('sidebar-close');
+        }
+
+});
+</script>
     @yield('js')
 
 

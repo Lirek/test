@@ -7,4 +7,6 @@
       </footer>
       <!--footer end-->
   </section>
+</div>
+
   
