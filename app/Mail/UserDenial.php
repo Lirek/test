@@ -30,6 +30,6 @@ class UserDenial extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mails.UserDenial')->with('x',$this->x);
+        return $this->view('admin.mails.UserDenial')->with('x',$this->x)->subject('Existe Un Error con Su Validacion');
     }
 }

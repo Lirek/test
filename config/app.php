@@ -198,6 +198,9 @@ return [
         //Erorres en Json
         Optimus\Heimdal\Provider\LaravelServiceProvider::class,
 
+        //Visualizacion de Errores
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+
     ],
 
 

@@ -159,14 +159,101 @@ class HomeController extends Controller
         $respuesta=$MyTickets." T/ ".$Points." P";
         return Response()->json($respuesta);
     }
+
+    public function validarPatrocinador($codigo) {
+        $cod1 = NULL;
+        $cod2 = NULL;
+        $cod3 = NULL;
+        $id_ref1 = NULL;
+        $id_ref2 = NULL;
+        $id_ref3 = NULL;
+        $L2 = NULL;
+        $L3 = NULL;
+        $L1 = Referals::where('user_id',Auth::user()->id)->get();
+        if ($L1!=NULL) {
+            foreach ($L1 as $key1) {
+                $id_ref1[] = $key1->refered;
+                $L2 = Referals::where('user_id',$id_ref1)->get();
+            }
+            if ($id_ref1!=NULL) {
+                for ($i=0; $i < count($id_ref1); $i++) { 
+                    $user1[] = User::find($id_ref1[$i]);
+                }
+                if ($user1!=NULL) {
+                    foreach ($user1 as $codUser1) {
+                        $cod1[] = $codUser1->codigo_ref;
+                    }
+                }
+            }
+        }
+        if ($L2!=NULL) {
+            foreach ($L2 as $key2) {
+                $id_ref2[] = $key2->refered;
+                $L3 = Referals::where('user_id',$id_ref2)->get();
+            }
+            if ($id_ref2!=NULL) {
+                for ($i=0; $i < count($id_ref2); $i++) { 
+                    $user2[] = User::find($id_ref2[$i]);
+                }
+                if ($user2!=NULL) {
+                    foreach ($user2 as $codUser2) {
+                        $cod2[] = $codUser2->codigo_ref;
+                    }
+                }
+            }
+        }
+        if ($L3!=NULL) {
+            foreach ($L3 as $key3) {
+                $id_ref3[] = $key3->refered;
+            }
+            if ($id_ref3!=NULL) {
+                for ($i=0; $i < count($id_ref3); $i++) { 
+                    $user3[] = User::find($id_ref3[$i]);
+                }
+                if ($user3!=NULL) {
+                    foreach ($user3 as $codUser3) {
+                        $cod3[] = $codUser3->codigo_ref;
+                    }
+                }
+            }
+        }
+        $cods = NULL;
+        if ($cod1!=NULL) {
+            $cods = array_merge($cod1);
+        }
+        if ($cod2!=NULL) {
+            $cods = array_merge($cods,$cod2);
+        }
+        if ($cod3!=NULL) {
+            $cods = array_merge($cods,$cod3);
+        }
+        if ($cods!=NULL) {
+            $existe = in_array($codigo, $cods);
+        } else {
+            $existe = 3; // el codigo no existe en su lista de referidos
+        }
+        if ($existe) {
+            $existe = 2; // el codigo existe en su lista de referidos
+        }
+        return $existe;
+    }
     
     public function sponsor($codigo){
-        $sponsor=User::where('codigo_ref','=',$codigo)->first();
-
-        if ($sponsor) {
-            return Response()->json($sponsor);
-        }else{
-            return Response()->json(0);
+        $validarPatrocinador = $this->validarPatrocinador($codigo);
+        $miCod = Auth::user()->codigo_ref;
+        if ($miCod==$codigo) {
+            return Response()->json(1);
+        } else {
+            if ($validarPatrocinador) {
+                return Response()->json($validarPatrocinador);
+            } else {
+                $sponsor=User::where('codigo_ref','=',$codigo)->first();
+                if ($sponsor) {
+                    return Response()->json($sponsor);
+                }else{
+                    return Response()->json(0);
+                }
+            }
         }
     }
 
@@ -434,10 +521,11 @@ class HomeController extends Controller
             "descuento" => 0.0
         ],
         "comprador" => [ // datos del usuario
-            "email" => Auth::user()->email, // "pachecojose0908@gmail.com",
-            "identificacion" => Auth::user()->num_doc, // "24218005",
+            "email" => Auth::user()->email,
+            "identificacion" => Auth::user()->num_doc,
             "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
-            "razon_social" => Auth::user()->name." ".Auth::user()->last_name // "José Pacheco"
+            "razon_social" => Auth::user()->name." ".Auth::user()->last_name,
+            "direccion" => Auth::user()->direccion
         ],
         "items" => [[
             "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados

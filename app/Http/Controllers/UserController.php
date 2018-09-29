@@ -151,6 +151,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
+        $user->direccion = $request->direccion;
+        if ($user->verify==2) {
+            $user->verify = 0;
+        }
 
         
         if ($request->type != null){
@@ -162,10 +166,12 @@ class UserController extends Controller
         if ($request->hasFile('img_perf'))
         {
 
+         $nombre = $this->sinAcento($request->name);
+
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
          
-         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+         $name = 'userpic'.$nombre.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
 
          $request->file('img_perf')->move($store_path,$name);
 
@@ -181,9 +187,11 @@ class UserController extends Controller
         {
 
 
+         $nombre = $this->sinAcento($request->name);
+
          $store_path = public_path().'/user/'.$user->id.'/profile/';
          
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+         $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
 
@@ -194,9 +202,17 @@ class UserController extends Controller
      
         //dd($user);
         $user->save();
-        Flash('Se Han Modificado Sus Datos Con Exito')->success();
+        Flash('Se han modificado sus datos con exito')->success();
         //return view('home');
        return redirect()->action('HomeController@index');
+    }
+
+    public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        return $cadena;
     }
 
     /**
@@ -221,8 +237,8 @@ class UserController extends Controller
 
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+
+         $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
 

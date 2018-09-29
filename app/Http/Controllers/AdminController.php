@@ -1211,7 +1211,13 @@ class AdminController extends Controller
                     })                                        
                     
                     ->editColumn('img_doc',function($user){
-
+                      /* solucion para produccion
+                      $ruta = "http://leipel.com";
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
+                      */
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
                       <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
                                  style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
@@ -1523,10 +1529,11 @@ class AdminController extends Controller
             "descuento" => 0.0
         ],
         "comprador" => [ // datos del usuario
-            "email" => $user->email, // "pachecojose0908@gmail.com",
-            "identificacion" => $user->num_doc, // "24218005",
+            "email" => $user->email,
+            "identificacion" => $user->num_doc,
             "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
-            "razon_social" => $user->name." ".$user->last_name // "José Pacheco"
+            "razon_social" => $user->name." ".$user->last_name,
+            "direccion" => $user->direccion
         ],
         "items" => [[
             "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados

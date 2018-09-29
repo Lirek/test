@@ -68,6 +68,7 @@
               <img height="39px" src="{{asset('plugins/img/musica.png')}}">
               <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
               <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+              <a href="{{ url('ShowTv')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"> </b></a>
                <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
             </div>
             </div>
@@ -110,13 +111,10 @@
                   </div>  
                     
                   <li class="sub-menu">
-                      <a class="sub" href="#">
+                      <a class="sub" href="{{url('EditProfile')}}">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
-                      <ul class="sub">
-                        <li><a href="{{url('EditProfile')}}">Editar mi perfil</a></li>
-                      </ul>
                   </li>
 
                   <!-- <li class="sub-menu">
@@ -168,7 +166,7 @@
                             </ul>
                           </li> -->
                            <li><a  href="{{url('ShowRadio')}}">Radio</a></li>
-                           <!-- <li><a  href="{{url('ShowTv')}}">Tv</a></li> -->
+                           <li><a  href="{{url('ShowTv')}}">Tv</a></li>
                          <!--  <li class="sub">
                             <a href="javascript: ;">
                               <span>Streams</span>
@@ -187,8 +185,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('WebsUser')}}">Mis redes</a></li>
-                          <li><a  href="{{url('Referals')}}"">Referir</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis referidos</a></li>
+                          <li><a  href="{{url('Referals')}}"">Invitar</a></li>
                       </ul>
                   </li>
                   <!-- <li class="sub-menu">

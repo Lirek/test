@@ -122,7 +122,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL)
+                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL)
                                                     @if(Auth::user()->verify==0)
                                                         <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-{{$ticket->id}}" onclick="esperarAprobacion()">
                                                             <h5><i class="fa fa-ticket"></i> Comprar</h5>
@@ -215,6 +215,11 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                     <div class="col-md-12" id="totalP-{{$ticket->id}}"></div>
                                                 </div>
                                                 <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-{{$ticket->id}}" align="center">
+                                                    <h4 style="color: black">
+                                                        <b>
+                                                            Depósito a Cta.Cte PRODUBANCO #02 72 800 11 32 <br> INFORMERET S.A.
+                                                        </b>
+                                                    </h4>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Número de depósito:</b>
                                                             <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
@@ -423,7 +428,7 @@ input[type="checkbox"]:disabled + .label-text:before{
 
     function callback(id) {
         
-        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
         swal({
             title: "Procesando",
             text: "Estamos procesando su pago, por favor espere un momento.",
@@ -989,7 +994,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                 bdd(id,cost,function(idTicketSales) {
                                     console.log("idTicketSales: "+idTicketSales);
                                     postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
-                                        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+                                        var gif = "{{ asset('/sistem_images/loading.gif') }}";
                                         swal({
                                             title: "¡Listo! Estamos esperando su confirmación...",
                                             text: "Verifique su teléfono y seleccione una opción.",
