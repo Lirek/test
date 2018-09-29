@@ -16,6 +16,17 @@ use App\User;
 
 class WelcomeController extends Controller
 {
+
+        public function terminosYcondiciones()
+    {
+        return view('terminosCondiciones');
+    }
+
+    public function leipel()
+    {
+        return view('queEsLeipel');
+    }
+
     public function welcome()
     {
 //        $sellers = Seller::orderBy('id', 'DESC')->paginate('10');

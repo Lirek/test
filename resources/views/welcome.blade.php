@@ -70,7 +70,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
-                <li><a href="#leipel">¿QUE ES LEIPEL?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿QUE ES LEIPEL?</a></li>
                 @if (Auth::guest())
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
@@ -697,7 +697,15 @@
                                 </div>
                                 <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>
                             </div>
-
+                            <div class="form-check text-center" style="padding-top: 5%">
+                                <label>
+                                    <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
+                                    <span class="label-text">
+                                        He leido y acepto los 
+                                    </span>
+                                </label>
+                                <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button type="submit"  class="btn btn-primary" id="registroRU">
@@ -865,6 +873,17 @@
 
 
 <script type="text/javascript">
+
+
+//---------------------------------------VALIDACIONES PARA TERMINOS Y CONDICIONES------------------------------------------
+    //---------VALIDACION DEL CHECKBOX---------------
+
+$('input[type=checkbox]').click(function(){ 
+    if($(this).is(':not(:checked)')) {
+    alert('para registrarse en el sistema debe acepar los terminos y condiciones'); 
+    } 
+});
+
 //---------------------------------------VALIDACIONES PARA REGISTRO DE USUARIO------------------------------------------
     //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
     function controltagLet(e) {

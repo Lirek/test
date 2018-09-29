@@ -22,6 +22,21 @@ Route::get('/', 'WelcomeController@welcome');
 Route::get('Test','AdminController@test');
 
 
+// terminos y condiciones
+Route::get('terminosCondiciones', [
+    'uses' => 'WelcomeController@terminosYcondiciones',
+    'as'   => 'terminosCondiciones'
+]);
+
+// que es leipel
+Route::get('queEsLeipel', [
+    'uses' => 'WelcomeController@leipel',
+    'as'   => 'queEsLeipel'
+]);
+
+
+
+
 /* ------------------------------------------------------------------
 ---------------------------------------------------------------------
 ---------                                              --------------
