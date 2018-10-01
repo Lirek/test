@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="se agrego los terminos y condiciones para el registro de los usuarios" />
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="se agrego los terminos y condiciones para el registro de los usuarios">
+      <change afterPath="$PROJECT_DIR$/public/images/Tv/radiologo_1535152331.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/img/piñas.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +25,13 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.105" value="1" />
+          <entry key="project.open.time.108" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.174" value="1" />
+          <entry key="project.open.time.78" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -30,17 +44,31 @@
           <entry key="PLAIN_TEXT" value="48" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.open" />
+      <usages-collector id="statistics.php.composer.command.options" />
+      <usages-collector id="statistics.php.new.test" />
+      <usages-collector id="statistics.file.types.open" />
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.php.new.class" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.php.composer.actions" />
+      <usages-collector id="statistics.php.rename.constructor" />
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
+            <state relative-caret-position="289">
               <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/plugins/index/css/index.css">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -257,18 +285,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,6 +365,9 @@
       <workItem from="1537361335117" duration="406000" />
       <workItem from="1537397483409" duration="2908000" />
       <workItem from="1538248142065" duration="583000" />
+      <workItem from="1538353416431" duration="1303000" />
+      <workItem from="1538413673715" duration="6215000" />
+      <workItem from="1538424638638" duration="1703000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -390,11 +432,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538248658810</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="se agrego los terminos y condiciones para el registro de los usuarios">
+      <created>1538353616098</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1538353616098</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128729000" />
+    <option name="totallyTimeSpent" value="137950000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -406,14 +455,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25642964" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -425,7 +472,9 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50292826" side_tool="true" weight="0.3296355" />
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.49707174" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49707174" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -736,7 +785,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
+        <state relative-caret-position="289">
           <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
         </state>
       </provider>
@@ -747,6 +796,9 @@
           <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/plugins/index/css/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

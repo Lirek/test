@@ -447,12 +447,12 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <li style="margin-top: -5%; margin-left: 18%">
+                    <!-- <li style="margin-top: -5%; margin-left: 18%">
                         <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
                             <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -524,6 +524,7 @@
                             </div>
                         </form>
                     </div>
+<!--                     
                     <div id="proveedor" class="tab-pane fade">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
                             {{ csrf_field() }}
@@ -578,7 +579,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -611,12 +612,12 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a data-toggle="tab" href="#new_proveedor">
                             Proveedor
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -718,6 +719,7 @@
                     </div>
                     {{--Usuario--}}
 
+                    <!-- 
                     {{--Solicitud de proveedor--}}
                     <div id="new_proveedor" class="tab-pane fade">
                         <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
@@ -855,7 +857,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <div class="modal-footer" id="modal_footer">
                 <div class="text-center">
 
