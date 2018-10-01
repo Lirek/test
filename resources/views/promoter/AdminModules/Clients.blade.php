@@ -77,7 +77,7 @@
     });
     setTimeout(function() {
         callback(msn);
-    },2000);
+    },1000); // 6000
   }
   function getDatil(idTicketSales,medio,idUser) {
     return new Promise(function(resolve,reject) {
@@ -276,25 +276,51 @@
                                                 var medio = "deposito_cuenta_bancaria";
                                                 console.log(result,idTicketSales,idUser,medio,s);
                                                 if (s=="Aprobado") {
+                                                  swal({
+                                                    title: "Generando factura",
+                                                    text: "Espere mientras se genera la factura.",
+                                                    icon: gif,
+                                                    buttons: false,
+                                                    closeOnEsc: false,
+                                                    closeOnClickOutside: false
+                                                  });
+                                                  var intento = 0;
+                                                  var maxIntento = 10; // 1min de espera // 10
                                                   getDatilAgain(idTicketSales,medio,idUser,function callback(infoFactura) {
                                                     console.log(infoFactura);
                                                     var idFactura = infoFactura.id;
                                                     console.log(idFactura);
-                                                    if (idFactura!=undefined) {
-                                                      setFactura(idTicketSales,idFactura,function(ticketSales) {
-                                                        console.log(ticketSales);
-                                                        swal({
-                                                          title: "Se ha "+s+" con exito",
-                                                          icon: "success",
-                                                          closeOnEsc: false,
-                                                          closeOnClickOutside: false
-                                                        })
-                                                        .then((recarga) => {
+                                                    if (intento <= maxIntento) {
+                                                      if (idFactura!=undefined) {
+                                                        setFactura(idTicketSales,idFactura,function(ticketSales) {
+                                                          console.log(ticketSales);
+                                                          swal({
+                                                            title: "Se ha "+s+" con exito",
+                                                            icon: "success",
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
+                                                          })
+                                                          .then((recarga) => {
                                                             location.reload();
+                                                          });
                                                         });
-                                                      });
+                                                        intento++;
+                                                      } else {
+                                                        console.log('intento: '+intento);
+                                                        getDatilAgain(idTicketSales,medio,idUser,callback);
+                                                        intento++;
+                                                      }
                                                     } else {
-                                                      getDatilAgain(idTicketSales,medio,idUser,callback);
+                                                      swal({
+                                                        title: "No se pudo conectar con Datil",
+                                                        text: "El pago ya fue procesado exitosamente, sin embargo la factura la solicitará el cliente, por expirarse el tiempo de espera.",
+                                                        icon: "info",
+                                                        closeOnEsc: false,
+                                                        closeOnClickOutside: false
+                                                      })
+                                                      .then((recarga) => {
+                                                        location.reload();
+                                                      });
                                                     }
                                                   });
                                                 } else {
@@ -305,7 +331,7 @@
                                                     closeOnClickOutside: false
                                                   })
                                                   .then((recarga) => {
-                                                      location.reload();
+                                                    location.reload();
                                                   });
                                                 }
                                               },

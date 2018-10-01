@@ -8,20 +8,7 @@
         animation: spin 0.8s infinite linear;
     }
     .btn-swal-center {
-        /*
-        width: 5em;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        position:absolute;
-        width:100%; left:0;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        */
         margin-right: 13em;
-        /*margin-left: 30em;*/
     }
     @media only screen and (max-width: 425px) {
         .btn-swal-center {
@@ -123,7 +110,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
                                                 @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL)
-                                                    @if(Auth::user()->verify==0)
+                                                    @if(Auth::user()->verify==0 || Auth::user()->verify==2)
                                                         <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-{{$ticket->id}}" onclick="esperarAprobacion()">
                                                             <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                         </a>
@@ -333,7 +320,15 @@ input[type="checkbox"]:disabled + .label-text:before{
                                             <td>{{$balance['Method']}}</td>
                                             @if($balance['Method'] != 'Puntos')
                                                 <td>
-                                                    <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
+                                                    @if($balance['Factura']!=NULL)
+                                                        <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Ver 
+                                                        </a>
+                                                    @else
+                                                        <a onclick="generarFactura({!!$balance['id_payments']!!})" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Generar 
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             @else
                                                 <td>No Aplica</td>
@@ -690,6 +685,67 @@ input[type="checkbox"]:disabled + .label-text:before{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
 <script id="jsbin-javascript">
 
+    function generarFactura(id_payments) {
+        console.log(id_payments);
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
+        swal({
+            title: "¡Generando factura!",
+            text: "Estamos generando su factura...",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        var intento = 0;
+        var maxIntento = 5; // 30seg de espera // 10
+        var medio = "deposito_cuenta_bancaria";
+        getDatilAgain(id_payments,medio,function callback(infoFactura) {
+            console.log(infoFactura);
+            var idFactura = infoFactura.id;
+            console.log(idFactura);
+            if (intento <= maxIntento) {
+                if (idFactura!=undefined) {
+                    var parametros = "/"+idFactura+"/"+id_payments;
+                    var ruta = "{{ url('/generarFactura/') }}"+parametros;
+                    $.ajax({
+                        url     : ruta,
+                        type    : "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            var respuesta = data;
+                            console.log("lista la factura? "+respuesta);
+                        }
+                    });
+                    swal({
+                        title: "¡Factura Generada!",
+                        text: "Ya podrá ver la factura de su pago",
+                        icon: "success",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    })
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                    intento++;
+                } else {
+                    console.log('intento: '+intento);
+                    getDatilAgain(id_payments,medio,callback);
+                }
+            } else {
+                swal({
+                    title: "¡Ups!",
+                    text: "En estos momentos no podemos generar su factura, intente más tarde",
+                    icon: "info",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((recarga) => {
+                    location.reload();
+                });
+            }
+        });
+    }
+
     function bdd(id,cost,callback){
         var value = $('#Cantidad-'+id).val();
         var parametros = "/"+id+"/"+cost+"/"+value;
@@ -913,7 +969,7 @@ input[type="checkbox"]:disabled + .label-text:before{
         });
         setTimeout(function() {
             callback(msn);
-        },2000);
+        },6000);
     }
 
     function comprar(id,cost,cantidadTickets) {
@@ -991,18 +1047,26 @@ input[type="checkbox"]:disabled + .label-text:before{
                                 $('#mensajePayPhone-'+id).show();
                                 $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
                                 console.log("id: "+id+" cost: "+cost);
+                                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                                swal({
+                                    title: "¡Procesando información!",
+                                    text: "Estamos procesando su información...",
+                                    icon: gif,
+                                    buttons: false,
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false
+                                });
                                 bdd(id,cost,function(idTicketSales) {
                                     console.log("idTicketSales: "+idTicketSales);
+                                    swal({
+                                        title: "¡Listo! Estamos esperando su confirmación...",
+                                        text: "Verifique su teléfono y seleccione una opción.",
+                                        icon: gif,
+                                        buttons: false,
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false
+                                    });
                                     postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
-                                        var gif = "{{ asset('/sistem_images/loading.gif') }}";
-                                        swal({
-                                            title: "¡Listo! Estamos esperando su confirmación...",
-                                            text: "Verifique su teléfono y seleccione una opción.",
-                                            icon: gif,
-                                            buttons: false,
-                                            closeOnEsc: false,
-                                            closeOnClickOutside: false
-                                        });
                                         var intento = 0;
                                         var maxIntento = 90; // 1min y 1/2 de espera
                                         var transaction = JSON.parse(response);

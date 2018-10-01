@@ -28,6 +28,8 @@ use App\AccountBalance;
 use App\Serie;
 use App\Episode;
 
+use App\PointsAssings; //
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
 
@@ -161,81 +163,43 @@ class HomeController extends Controller
     }
 
     public function validarPatrocinador($codigo) {
-        $cod1 = NULL;
-        $cod2 = NULL;
-        $cod3 = NULL;
-        $id_ref1 = NULL;
-        $id_ref2 = NULL;
-        $id_ref3 = NULL;
-        $L2 = NULL;
-        $L3 = NULL;
-        $L1 = Referals::where('user_id',Auth::user()->id)->get();
-        if ($L1!=NULL) {
-            foreach ($L1 as $key1) {
-                $id_ref1[] = $key1->refered;
-                $L2 = Referals::where('user_id',$id_ref1)->get();
-            }
-            if ($id_ref1!=NULL) {
-                for ($i=0; $i < count($id_ref1); $i++) { 
-                    $user1[] = User::find($id_ref1[$i]);
-                }
-                if ($user1!=NULL) {
-                    foreach ($user1 as $codUser1) {
-                        $cod1[] = $codUser1->codigo_ref;
-                    }
-                }
-            }
-        }
-        if ($L2!=NULL) {
-            foreach ($L2 as $key2) {
-                $id_ref2[] = $key2->refered;
-                $L3 = Referals::where('user_id',$id_ref2)->get();
-            }
-            if ($id_ref2!=NULL) {
-                for ($i=0; $i < count($id_ref2); $i++) { 
-                    $user2[] = User::find($id_ref2[$i]);
-                }
-                if ($user2!=NULL) {
-                    foreach ($user2 as $codUser2) {
-                        $cod2[] = $codUser2->codigo_ref;
-                    }
-                }
-            }
-        }
-        if ($L3!=NULL) {
-            foreach ($L3 as $key3) {
-                $id_ref3[] = $key3->refered;
-            }
-            if ($id_ref3!=NULL) {
-                for ($i=0; $i < count($id_ref3); $i++) { 
-                    $user3[] = User::find($id_ref3[$i]);
-                }
-                if ($user3!=NULL) {
-                    foreach ($user3 as $codUser3) {
-                        $cod3[] = $codUser3->codigo_ref;
-                    }
-                }
-            }
-        }
+        $ids = NULL;
         $cods = NULL;
-        if ($cod1!=NULL) {
-            $cods = array_merge($cod1);
+        $user = User::find(Auth::user()->id);
+        //$user = User::find(5);
+        $datos1 = $user->referals()->get();
+        if ($datos1->count()>0) {
+            foreach ($datos1 as $info) {
+                $ids[] = $info->refered;
+            }
         }
-        if ($cod2!=NULL) {
-            $cods = array_merge($cods,$cod2);
+        if ($ids!=NULL) {
+            for ($i=0; $i < count($ids); $i++) { 
+                $user = User::find($ids[$i]);
+                $datos = $user->referals()->get();
+                if ($datos->count()>0) {
+                    foreach ($datos as $info) {
+                        $ids[] = $info->refered;
+                    }
+                }
+            }
+            $info = User::select('codigo_ref')->whereIn("id",$ids)->get();
+            foreach ($info as $key) {
+                $cods[] = $key->codigo_ref;
+            }
         }
-        if ($cod3!=NULL) {
-            $cods = array_merge($cods,$cod3);
+        //dd($cods);
+        if ($cods===NULL) { // si es NULL se agrega sin problema porque esa persona no tiene red
+            $agregar = 3;
+        } else { // si tiene red hay que revisar que el codigo no pertenezca a alguien de dicha red
+            $busqueda = in_array($codigo, $cods);
+            if ($busqueda===true) { // el codigo ya lo tiene alguien de su red
+                $agregar = 2;
+            } else { // puede agregar ese codigo sin problema
+                $agregar = 3;
+            }
         }
-        if ($cods!=NULL) {
-            $existe = in_array($codigo, $cods);
-        } else {
-            $existe = 3; // el codigo no existe en su lista de referidos
-        }
-        if ($existe) {
-            $existe = 2; // el codigo existe en su lista de referidos
-        }
-        return $existe;
+        return $agregar;
     }
     
     public function sponsor($codigo){
@@ -244,7 +208,7 @@ class HomeController extends Controller
         if ($miCod==$codigo) {
             return Response()->json(1);
         } else {
-            if ($validarPatrocinador) {
+            if ($validarPatrocinador==2) {
                 return Response()->json($validarPatrocinador);
             } else {
                 $sponsor=User::where('codigo_ref','=',$codigo)->first();
@@ -311,6 +275,7 @@ class HomeController extends Controller
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
+                    'id_payments' => $key->id,
                     'Id' => $key->user_id,
                     'Date' => $key->created_at->format('d/m/Y'),
                     'Cant' => $this->tickets($key->package_id)*$key->value,
@@ -391,7 +356,8 @@ class HomeController extends Controller
             $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
             $balance->save();
             if ($revenueMonth->count()<=1) {
-                event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
+                //$action = "accept";
+                event(new AssingPointsEvents(Auth::user()->id,$request->ticket_id));
             }
 
             $this->creditos($ticket);
@@ -400,8 +366,80 @@ class HomeController extends Controller
 
             return response()->json($Buy);
         }
-    
     }
+    /*
+    public function pruebaPuntos($package_id,$user_id) {
+        //$TicketsPackage = TicketsPackage::find($event->package_id);
+        $TicketsPackage = TicketsPackage::find($package_id);
+        //$User = User::find($event->user_id);
+        $User = User::find($user_id);
+        //dd($User);
+        $points= $TicketsPackage->points;
+        $i = 0;
+        if ($User->UserRefered->count() == 0) {
+
+          $balance= SistemBalance::find(1);
+          $balance->my_points= $balance->my_points + $points;
+          $balance->points_solds = $balance->points_solds + $points;
+          $balance->save();
+
+          $Assing = new PointsAssings;
+          $Assing->amount = $points;
+          $Assing->from =  $User->id;
+          $Assing->to =  0;
+          $Assing->save();
+        } else {
+          //$UserR = User::find($event->user_id);
+            $UserR = User::find($user_id);
+          $id=$UserR->id;
+          $Refered= collect(new User);
+
+          while (true) {
+            $pass = Referals::where('refered','=',$id)->first();
+            if ($pass!=NULL) {
+              $id=$pass->user_id;
+              $Refered->push(User::find($id));
+            } else {
+              break;
+            }   
+          }
+
+          foreach ($Refered as $key) {
+            if($key->points == $key->limit_points) {
+              $key->pending_points = $key->pending_points + 1;
+            } else {
+              $key->points = $key->points + 1; 
+            }
+
+            $key->save();
+            $Assing1 = new PointsAssings;
+            $Assing1->amount = 1;
+            $Assing1->from = $UserR->id; 
+            $Assing1->to =   $key->id;
+            $Assing1->save();
+          }
+
+          $total=$points-$Refered->count();
+          dd($Refered->count(),$points);
+          $balance=  SistemBalance::find(1);
+          $balance->points_solds = $balance->points_solds + $points;
+          dd($total);
+
+          if ($total!=0) {
+            $balance->my_points= $balance->my_points + $total; 
+            $balance->save();
+
+            $Assing = new PointsAssings;
+            $Assing->amount = $total;
+            $Assing->from =  $User->id;
+            $Assing->to =  0;
+            $Assing->save();
+          } else {
+            $balance->save();
+          }
+        }
+    }
+    */
 
     public function BuyPayphone($id,$cost,$value) {
         $Buy = new Payments;
@@ -426,15 +464,17 @@ class HomeController extends Controller
         return Response()->json($respuesta);
     }
 
-    public function TransactionApproved($id,$reference,$ticket,$idFactura) {
+    public function TransactionApproved($id,$reference,$tickets,$idFactura) {
         
         $Buy = Payments::find($id);
         $Buy->status    = 1;
         $Buy->reference = $reference;
         $Buy->factura_id = $idFactura;
         $Buy->save();
-        $this->creditos($ticket);
         $this->correo();
+
+        $this->creditos($tickets);
+
         $Condition = Carbon::now()->firstOfMonth()->toDateString();
         $revenueMonth = Payments::where('user_id',Auth::user()->id)
             ->where('created_at','>=',$Condition)
@@ -445,6 +485,7 @@ class HomeController extends Controller
         $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
         $balance->save();
         if ($revenueMonth->count()<=1) {
+            // $action = "accept";
             event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
         }
         $respuesta = "todo bien";
@@ -477,6 +518,14 @@ class HomeController extends Controller
         Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));
     }
 
+    public function generarFactura($idFactura,$id_payments) {
+        $Buy = Payments::find($id_payments);
+        $Buy->factura_id = $idFactura;
+        $Buy->save();
+        $respuesta = "lista factura";
+        return Response()->json($respuesta);
+    }
+
     public function factura($idTickets,$medio) {
 
         $secuencial = rand(0,100000000);
@@ -490,7 +539,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 2, // 1: prueba; 2: produccion
+        "ambiente" => 1, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, // Id de tickets_sales
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z

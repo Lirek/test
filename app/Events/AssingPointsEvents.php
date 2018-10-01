@@ -22,11 +22,13 @@ class AssingPointsEvents
 
     public $user_id;
     public $package_id;
+    // public $action;
 
     public function __construct( $user_id, $package_id)
     {
         $this->user_id=$user_id;
         $this->package_id=$package_id;
+        // $this->action = $action;
     }
 
     /**

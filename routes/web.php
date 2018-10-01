@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
-Route::get('Test','AdminController@test');
+//Route::get('Test','AdminController@test');
+
+//Route::get('test/{cod}','HomeController@validarPatrocinador');
+//Route::get('pruebaPuntos/{package_id}/{user_id}','HomeController@pruebaPuntos');
 
 
 /* ------------------------------------------------------------------
@@ -69,6 +72,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
     //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
     Route::get('factura/{id}/{medio}','HomeController@factura');
+    // agregada 30-09-2018
+    Route::get('generarFactura/{idFactura}/{id_payments}','HomeController@generarFactura');
     Route::get('sponsor/{cod}','HomeController@sponsor');
 
 

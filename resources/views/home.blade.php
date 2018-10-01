@@ -25,6 +25,9 @@
             margin-right: 7em;
         }
     }
+    .justify {
+      text-align: justify;
+    }
 </style>
 @endsection
 
@@ -407,8 +410,9 @@ $(document).ready(function(){
   console.log(verificacion);
   if (verificacion==2) {
     swal({
+      className: "justify",
       title: "Verificación rechazada",
-      text: "Le informamos que su verificación fue rechazada, le invitamos a modificar su perfil",
+      text: "Le informamos que su verificación fue rechazada, por favor revise su bandeja de correos (incluida la de spam) para ampliar la información del rechazado y modifique su perfil para posterior revisión.",
       icon: "info",
       buttons: {
           accept: {
