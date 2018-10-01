@@ -37,6 +37,17 @@
 
     <!--Buscador-->
     <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+
+    <!--NUMERO-->
+   <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
+   <style type="text/css"> 
+                .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags.png')); ?>");}
+
+            @media  only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+            .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags2x.png')); ?>");}
+        
+        }
+</style> 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -46,8 +57,7 @@
   
    <body>
     <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;"> <?php echo e(csrf_field()); ?> </form>
-<!----MENU PANTALLAS PC-->    
-<div class="">
+<!----MENU PANTALLAS PC-->
   <section id="container" class="">
       <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -68,6 +78,7 @@
               <img height="39px" src="<?php echo e(asset('plugins/img/musica.png')); ?>">
               <img height="39px" src="<?php echo e(asset('plugins/img/lectura.png')); ?>"> -->
               <a href="<?php echo e(url('ShowRadio')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/radio.png')); ?>"> </b></a>
+              <a href="<?php echo e(url('ShowTv')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/tv.png')); ?>"> </b></a>
                <!--  <img height="39px" src="<?php echo e(asset('plugins/img/tv.png')); ?>"> -->
             </div>
             </div>
@@ -110,13 +121,10 @@
                   </div>  
                     
                   <li class="sub-menu">
-                      <a class="sub" href="#">
+                      <a class="sub" href="<?php echo e(url('EditProfile')); ?>">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
-                      <ul class="sub">
-                        <li><a href="<?php echo e(url('EditProfile')); ?>">Editar mi perfil</a></li>
-                      </ul>
                   </li>
 
                   <!-- <li class="sub-menu">
@@ -168,7 +176,7 @@
                             </ul>
                           </li> -->
                            <li><a  href="<?php echo e(url('ShowRadio')); ?>">Radio</a></li>
-                           <!-- <li><a  href="<?php echo e(url('ShowTv')); ?>">Tv</a></li> -->
+                           <li><a  href="<?php echo e(url('ShowTv')); ?>">Tv</a></li>
                          <!--  <li class="sub">
                             <a href="javascript: ;">
                               <span>Streams</span>
@@ -184,11 +192,11 @@
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-users"></i>
-                          <span>Referidos</span>
+                          <span>Invitar amigos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="<?php echo e(url('WebsUser')); ?>">Mis redes</a></li>
-                          <li><a  href="<?php echo e(url('Referals')); ?>"">Referir</a></li>
+                          <li><a  href="<?php echo e(url('WebsUser')); ?>">Mis referidos</a></li>
+                          <li><a  href="<?php echo e(url('Referals')); ?>"">Invitar</a></li>
                       </ul>
                   </li>
                   <!-- <li class="sub-menu">
@@ -340,7 +348,9 @@
 
   <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
-
+<!--telefono-->
+<script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>
 <!--SCRIPS JS-->
   
   <script type="application/javascript">
@@ -398,8 +408,10 @@ $(document).ready(function() {
         if ((screen.width <= 768)) {
         //alert('Resolucion: 1024x768 o mayor');
           $('#container').addClass('sidebar-closed');
+          $('#nav-accordion').css('display','none');
         }else{
-          $('#container').removeClass('sidebar-close');
+          $('#container').removeClass('sidebar-closed');
+          $('#nav-accordion').css('display','block');
         }
 
 });
@@ -410,10 +422,12 @@ $(window).resize(function() {
   if ($(window).width() <= 768) 
         {
           $('#container').addClass('sidebar-closed');
+          $('#nav-accordion').css('display','none');
         }
         else
         {
           $('#container').removeClass('sidebar-closed');
+          $('#nav-accordion').css('display','block');
         }
 });
 </script>

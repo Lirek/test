@@ -152,6 +152,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
+        $user->phone = $request->phone;
         if ($user->verify==2) {
             $user->verify = 0;
         }

@@ -58,6 +58,9 @@
             margin: auto;
             text-align: center;
         }
+        .intl-tel-input{
+            width: 100%;
+        }
 
     </style>
 
@@ -152,7 +155,7 @@
 
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Documento de identificación (cédula)',['class'=>'control-label']) !!}
+                                {!! Form::label('documento','Foto de la cédula',['class'=>'control-label']) !!}
                             </div>
                             <div  class="col-md-4">
                                 @if ($user->img_doc)
@@ -209,6 +212,16 @@
                                 {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label">
+                                <label  for="phone">Telefono de Contacto</label>
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
+                                <input type="hidden" id="phone2" name="phone" value="{{$user->phone}}">
+
+                            </div>
+                        </div> 
 
                         {{--Boton--}}
                         <div class="form-group text-center">
@@ -227,6 +240,27 @@
 
 
 @section('js')
+<script type="text/javascript">
+$(document).ready(function (e){
+    
+    if ($("#phone2").val() !=''){
+        var phone = $("#phone2").val();
+        $("#phone_s").intlTelInput();
+        $("#phone_s").intlTelInput("setNumber",phone );
+        $("#phone_s").val(phone);
+
+    }else{
+      $("#phone_s").intlTelInput({
+        defaultCountry: "auto",
+        preferredCountries: ["ec"]
+      });
+    }
+     $("Form").submit(function() {
+            $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
+});
+
+  })
+</script>
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------

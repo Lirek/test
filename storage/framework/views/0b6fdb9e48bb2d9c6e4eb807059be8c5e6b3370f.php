@@ -63,6 +63,13 @@
                       </a>
                   </li> 
 
+                    <li class="mt">
+                      <a href="<?php echo e(route('log-viewer::dashboard')); ?>">
+                          <i class="fa fa-warning" style="color:red"></i>
+                          <span>Errores</span>
+                      </a>
+                  </li> 
+                  
                   <?php endif; ?>
 
               </ul>

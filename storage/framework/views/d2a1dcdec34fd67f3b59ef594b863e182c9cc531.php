@@ -56,6 +56,9 @@
             margin: auto;
             text-align: center;
         }
+        .intl-tel-input{
+            width: 100%;
+        }
 
     </style>
 
@@ -85,18 +88,20 @@
 
                                             <div id="list">
                                                 <?php if($user->img_perf): ?>
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="<?php echo e(asset($user->img_perf)); ?>">
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="<?php echo e(asset($user->img_perf)); ?>" id="img_perf">
                                                 <?php else: ?>
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="<?php echo e(asset('plugins/img/sinPerfil.png')); ?>">
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="<?php echo e(asset('plugins/img/sinPerfil.png')); ?>" id="img_perf">
                                                 <?php endif; ?>
-                                                <div id="mensajeImgPerf"></div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="panel" class="img-rounded img-responsive av "></div>
+                                    <div id="panel" class="img-rounded img-responsive av"></div>
                                     <br>
-                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label"> Haga click sobre la imagen de perfil para cambiarla </label>
+                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label">
+                                        <div id="mensajeImgPerf"></div>
+                                        Haga click sobre la imagen de perfil para cambiarla
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -108,19 +113,21 @@
 
                             </div>
                             <div class="col-md-6  control-label">
-                                <?php echo Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+' ]); ?>
+                                <div id="mensajeMaximoNombre"></div>
+                                <?php echo Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']); ?>
 
                             </div>
                         </div>
 
-
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
                                 <?php echo Form::label('last_name','Apellidos',['class'=>'control-label']); ?>
 
                             </div>
                             <div class="col-md-6 control-label">
-                                <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+']); ?>
+                                <div id="mensajeMaximoApellido"></div>
+                                <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']); ?>
 
                             </div>
                         </div>
@@ -159,7 +166,7 @@
 
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                <?php echo Form::label('documento','Documento de identificación (cédula)',['class'=>'control-label']); ?>
+                                <?php echo Form::label('documento','Foto de la cédula',['class'=>'control-label']); ?>
 
                             </div>
                             <div  class="col-md-4">
@@ -167,7 +174,7 @@
                                     <img id="preview_img_doc" src="<?php echo e(asset($user->img_doc)); ?>" name='ci' alt="your image" width="180" height="180" />
                                 <?php endif; ?>
                                 <div class="col-md-10 control-label">
-                                <?php if($user->verify == 0): ?>
+                                <?php if($user->verify == 0 || $user->verify == 2): ?>
                                     <img id="preview_img_doc" src="" name='ci'/>  
                                     <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
                                 <?php endif; ?>
@@ -195,7 +202,8 @@
 
                             </div>
                             <div class="col-md-6 control-label">
-                                <?php echo Form::text('alias',$user->alias,['class'=>'form-control']); ?>
+                                <div id="mensajeMaximoAlias"></div>
+                                <?php echo Form::text('alias',$user->alias,['class'=>'form-control','id'=>'alias']); ?>
 
                             </div>
                         </div>
@@ -213,8 +221,31 @@
                         </div>
 
                         
+                        <div class="form-group ">
+                            <div class="col-md-4 control-label">
+                                <?php echo Form::label('direccion','Dirección',['class'=>'control-label']); ?>
+
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <div id="mensajeMaximoDireccion"></div>
+                                <?php echo Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']); ?>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label">
+                                <label  for="phone">Telefono de Contacto</label>
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
+                                <input type="hidden" id="phone2" name="phone" value="<?php echo e($user->phone); ?>">
+
+                            </div>
+                        </div> 
+
+                        
                         <div class="form-group text-center">
-                            <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary active']); ?>
+                            <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']); ?>
 
                         </div>
 
@@ -231,6 +262,27 @@
 
 
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+$(document).ready(function (e){
+    
+    if ($("#phone2").val() !=''){
+        var phone = $("#phone2").val();
+        $("#phone_s").intlTelInput();
+        $("#phone_s").intlTelInput("setNumber",phone );
+        $("#phone_s").val(phone);
+
+    }else{
+      $("#phone_s").intlTelInput({
+        defaultCountry: "auto",
+        preferredCountries: ["ec"]
+      });
+    }
+     $("Form").submit(function() {
+            $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
+});
+
+  })
+</script>
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------
@@ -253,31 +305,34 @@
         document.getElementById('image-upload').addEventListener('change', archivo, false);
         // Para que se vea la imagen en el formulario
         //---------------------------------------------------------------------------------------------------
-
+        // Maximo tamaño permitido para la imagen
         $(document).ready(function(){
             $('#img_doc').change(function(){
+                $('#preview_img_doc').attr('width','180');
+                $('#preview_img_doc').attr('height','180');
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
+                if (tamañoKb>1024000) {
                     $('#mensajeImgDoc').show();
                     $('#mensajeImgDoc').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
                     $('#mensajeImgDoc').css('color','red');
                     $('#Editar').attr('disabled',true);
                 } else {
                     $('#mensajeImgDoc').hide();
-                    $('#preview_img_doc').attr('width','180');
-                    $('#preview_img_doc').attr('height','180');
                     $('#Editar').attr('disabled',false);
                 }
             });
         });
-
-
+        // Maximo tamaño permitido para la imagen
+        //---------------------------------------------------------------------------------------------------
+        // Maximo tamaño permitido para la imagen
         $(document).ready(function(){
             $('#img_perf').change(function(){
+                $('#preview_img').attr('width','180');
+                $('#preview_img').attr('height','180');
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
+                if (tamañoKb>1024000) {
                     $('#mensajeImgPerf').show();
                     $('#mensajeImgPerf').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
                     $('#mensajeImgPerf').css('color','red');
@@ -288,7 +343,9 @@
                 }
             });
         });
-
+        // Maximo tamaño permitido para la imagen
+        //---------------------------------------------------------------------------------------------------
+        // Para que se vea la imagen que se esta cargando
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -301,12 +358,12 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
-
         $("form#edit input[type='file' ]").change(function () {
             readURL(this);
         });
-
+        // Para que se vea la imagen que se esta cargando
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo letas
         function controltagLet(e) {
             tecla = (document.all) ? e.keyCode : e.which;
             if (tecla==8) return true; // para la tecla de retroseso
@@ -316,7 +373,9 @@
             te = String.fromCharCode(tecla);
             return patron.test(te);
         }
-
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
         function controltagNum(e) {
             tecla = (document.all) ? e.keyCode : e.which;
             if (tecla==8) return true; // para la tecla de retroseso
@@ -326,6 +385,159 @@
             te = String.fromCharCode(tecla);
             return patron.test(te);
         }
+        // Validacion de solo numeros
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de maximo de caracteres para el nombre
+            $(document).ready(function(){
+                var cantidadMaxima = 191;
+                $('#nombre').keyup(function(evento){
+                    var nombre = $('#nombre').val();
+                    numeroPalabras = nombre.length;
+                    if (numeroPalabras>cantidadMaxima) {
+                        $('#mensajeMaximoNombre').show();
+                        $('#mensajeMaximoNombre').text('Ha excedido la cantidad máxima de caracteres');
+                        $('#mensajeMaximoNombre').css('color','red');
+                        $('#Editar').attr('disabled',true);
+                    } else {
+                        $('#mensajeMaximoNombre').hide();
+                        $('#Editar').attr('disabled',false);
+                    }
+                });
+            });
+        // Validacion de maximo de caracteres para el nombre
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de maximo de caracteres para el apellido
+            $(document).ready(function(){
+                var cantidadMaxima = 191;
+                $('#apellido').keyup(function(evento){
+                    var apellido = $('#apellido').val();
+                    numeroPalabras = apellido.length;
+                    if (numeroPalabras>cantidadMaxima) {
+                        $('#mensajeMaximoApellido').show();
+                        $('#mensajeMaximoApellido').text('Ha excedido la cantidad máxima de caracteres');
+                        $('#mensajeMaximoApellido').css('color','red');
+                        $('#Editar').attr('disabled',true);
+                    } else {
+                        $('#mensajeMaximoApellido').hide();
+                        $('#Editar').attr('disabled',false);
+                    }
+                });
+            });
+        // Validacion de maximo de caracteres para la apellido
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de maximo de caracteres para el alias
+            $(document).ready(function(){
+                var cantidadMaxima = 191;
+                $('#alias').keyup(function(evento){
+                    var alias = $('#alias').val();
+                    numeroPalabras = alias.length;
+                    if (numeroPalabras>cantidadMaxima) {
+                        $('#mensajeMaximoAlias').show();
+                        $('#mensajeMaximoAlias').text('Ha excedido la cantidad máxima de caracteres');
+                        $('#mensajeMaximoAlias').css('color','red');
+                        $('#Editar').attr('disabled',true);
+                    } else {
+                        $('#mensajeMaximoAlias').hide();
+                        $('#Editar').attr('disabled',false);
+                    }
+                });
+            });
+        // Validacion de maximo de caracteres para la alias
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de maximo de caracteres para la direccion
+            $(document).ready(function(){
+                var cantidadMaxima = 191;
+                $('#direccion').keyup(function(evento){
+                    var direccion = $('#direccion').val();
+                    numeroPalabras = direccion.length;
+                    if (numeroPalabras>cantidadMaxima) {
+                        $('#mensajeMaximoDireccion').show();
+                        $('#mensajeMaximoDireccion').text('Ha excedido la cantidad máxima de caracteres');
+                        $('#mensajeMaximoDireccion').css('color','red');
+                        $('#Editar').attr('disabled',true);
+                    } else {
+                        $('#mensajeMaximoDireccion').hide();
+                        $('#Editar').attr('disabled',false);
+                    }
+                });
+            });
+        // Validacion de maximo de caracteres para la direccion
+        //---------------------------------------------------------------------------------------------------
+        // Validacion al enviar formulario
+        $(document).ready(function(){
+            $('#Editar').click(function(){
+                var cantidadMaxima = 191;
+                var nombre = $('#nombre').val();
+                var apellido = $('#apellido').val();
+                var alias = $('#alias').val();
+                var direccion = $('#direccion').val();
+                if (direccion.length > cantidadMaxima) {
+                    $('#direccion').focus();
+                    $('#mensajeMaximoDireccion').show();
+                    $('#mensajeMaximoDireccion').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoDireccion').css('color','red');
+                    return false;
+                }
+                else if (alias.length > cantidadMaxima) {
+                    $('#alias').focus();
+                    $('#mensajeMaximoAlias').show();
+                    $('#mensajeMaximoAlias').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoAlias').css('color','red');
+                    return false;
+                }
+                else if (apellido.length > cantidadMaxima) {
+                    $('#apellido').focus();
+                    $('#mensajeMaximoApellido').show();
+                    $('#mensajeMaximoApellido').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoApellido').css('color','red');
+                    return false;
+                }
+                else if (nombre.length > cantidadMaxima) {
+                    $('#nombre').focus();
+                    $('#mensajeMaximoNombre').show();
+                    $('#mensajeMaximoNombre').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoNombre').css('color','red');
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+        });
+        // Validacion al enviar formulario
+        //---------------------------------------------------------------------------------------------------
+        // Validar formato de imagen de perfil y del documento
+        $(document).ready(function(){
+            $('#img_doc').change(function(){
+                var img_doc = $('#img_doc').val();
+                var extension = img_doc.substring(img_doc.lastIndexOf("."));
+                if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                    $('#Editar').attr('disabled',false);
+                    $('#mensajeImgDoc').hide();
+                    $('#preview_img_doc').show();
+                } else {
+                    $('#Editar').attr('disabled',true);
+                    $('#mensajeImgDoc').show();
+                    $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg o png');
+                    $('#mensajeImgDoc').css('color','red');
+                    $('#preview_img_doc').hide();
+                }
+            });
+            $('#image-upload').change(function(){
+                var img_perf = $('#image-upload').val();
+                var extension = img_perf.substring(img_perf.lastIndexOf("."));
+                if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                    $('#Editar').attr('disabled',false);
+                    $('#mensajeImgPerf').hide();
+                } else {
+                    $('#Editar').attr('disabled',true);
+                    $('#mensajeImgPerf').show();
+                    $('#mensajeImgPerf').text('La imagen debe estar en formato jpeg, jpg o png');
+                    $('#mensajeImgPerf').css('color','red');
+                }
+            });
+        });
+        // Validar formato de imagen de perfil y del documento
+        //---------------------------------------------------------------------------------------------------
     </script>
 
 

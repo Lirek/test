@@ -38,6 +38,17 @@
 
     <!--Buscador-->
     <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+
+    <!--NUMERO-->
+   <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+   <style type="text/css"> 
+                .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+            .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+        
+        }
+</style> 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -182,7 +193,7 @@
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-users"></i>
-                          <span>Referidos</span>
+                          <span>Invitar amigos</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="{{url('WebsUser')}}">Mis referidos</a></li>
@@ -338,7 +349,9 @@
 
   <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
-
+<!--telefono-->
+<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
+<script src="{{ asset('plugins/telefono/utils.js') }}"></script>
 <!--SCRIPS JS-->
   
   <script type="application/javascript">
@@ -396,8 +409,10 @@ $(document).ready(function() {
         if ((screen.width <= 768)) {
         //alert('Resolucion: 1024x768 o mayor');
           $('#container').addClass('sidebar-closed');
+          $('#nav-accordion').css('display','none');
         }else{
-          $('#container').removeClass('sidebar-close');
+          $('#container').removeClass('sidebar-closed');
+          $('#nav-accordion').css('display','block');
         }
 
 });
@@ -408,10 +423,12 @@ $(window).resize(function() {
   if ($(window).width() <= 768) 
         {
           $('#container').addClass('sidebar-closed');
+          $('#nav-accordion').css('display','none');
         }
         else
         {
           $('#container').removeClass('sidebar-closed');
+          $('#nav-accordion').css('display','block');
         }
 });
 </script>

@@ -41,7 +41,6 @@
             <p>
               <h5><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>" style="font-size: 86%;"><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></a></h5>
             </p>
-            <p>Atte código: <?php echo e(Auth::user()->codigo_ref); ?></p>
           </div>
         </div>
 
@@ -86,7 +85,7 @@
 <div class="col-md-4 col-sm-4" style="margin-top: 5%">
 <dir class="col-md-12 col-sm-12" style="margin-top: 25%;">
   <div class="panel2" style="margin-bottom: -5%; ">
-    <center> <h5><i class="fa fa-user"></i>Mi Código Qr:</h5></center>
+    <center> <h5><i class="fa fa-user"></i> Mi Código Qr:</h5></center>
   </div>
 </dir>
 <div class="col-md-12 col-sm-12 col-xs-12" style="  ">

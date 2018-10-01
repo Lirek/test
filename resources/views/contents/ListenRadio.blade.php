@@ -16,7 +16,7 @@
                                 <div class="white-header">
                                     <div class="col-sm-12 col-xs-12 col-md-12">
                                         @foreach($Rad as $radios)
-                                            <h3><span class="card-title"><center><b><i class=""></i> {{$radios->name_r}}</b></center></span></h3>
+                                            <h3><span class="card-title"><center><b style="color: #428bca"><i class=""></i> {{$radios->name_r}}</b></center></span></h3>
                                             <div class="col-sm-12 col-xs-12 col-md-12">
 
                                                <center><img src="{{asset($radios->logo)}}" class="img-responsive" width="17%" style="margin-top: 2%;"></center>

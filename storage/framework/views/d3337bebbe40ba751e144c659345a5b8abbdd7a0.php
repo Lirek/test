@@ -7,20 +7,7 @@
         animation: spin 0.8s infinite linear;
     }
     .btn-swal-center {
-        /*
-        width: 5em;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        position:absolute;
-        width:100%; left:0;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        */
         margin-right: 13em;
-        /*margin-left: 30em;*/
     }
     @media  only screen and (max-width: 425px) {
         .btn-swal-center {
@@ -47,6 +34,7 @@
       <!--main content start-->
       <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
       <input type="hidden" name="id" id="id" value="<?php echo e(Auth::user()->created_at); ?>">
+      <input type="hidden" name="verificacion" id="verificacion" value="<?php echo e(Auth::user()->verify); ?>">
               
                 
                   
@@ -100,103 +88,28 @@
                     </div>  
                     
                     <div class="row mt">
-                    <?php if(Auth::user()->alias==FALSE): ?>
-                        
-                    
+                    <?php if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL): ?>
                       <!-- COMPLETAR PERFIL PANELS -->
-                        <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
-                          <div class="white-panel panRf pe donut-chart">
-                            <div class="white-header">
-                               <h5>Complete Su Registro</h5>
-                            </div>
-                            <div class="row">
-                               <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                                  <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                                  <div class="paragraph">
-                                    <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil.</p>
-                                      <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModal">Completar Registro</a></p>
+                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
+                        <div class="white-panel panRf pe donut-chart">
+                          <div class="white-header">
+                             <h5>Complete Su Registro</h5>
+                          </div>
+                          <div class="row">
+                             <div class="col-sm-10 col-xs-10 col-md-10 goleft">
+                                <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
+                                <div class="paragraph">
+                                  <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil.</p>
+                                    <p><a href="<?php echo e(url('EditProfile')); ?>" class="buttonCenter">Completar Registro</a></p>
 
-                                      <!--MODAL-->
-                                      <div id="myModal" class="modal fade" role="dialog">
-                                          <div class="modal-dialog">
-                                         <!-- Modal content-->
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Complete sus datos</h4>
-                                              </div>
-                                              <div class="modal-body">
-                                                <form class="form-horizontal" method="POST" action="<?php echo e(url('CompleteProfile')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
+                                    
 
+                                </div><!--paragraph-->
+                             </div><!--golleft-->
 
-                                                  <div class="form-group<?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
-                                                      <label for="lastname" class="col-md-4 control-label">Apellido</label>
-                                                      <div id="apellidoMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="lastname" type="text" class="form-control" name="lastname" value="<?php echo e(old('lastname')); ?>" required="required" onkeypress="return controltagLet(event)">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('nDocument') ? ' has-error' : ''); ?>">
-                                                      <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
-                                                      <div id="documentoMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="nDocument" type="text" class="form-control" name="nDocument" value="<?php echo e(old('nDocument')); ?>" required="required" onkeypress="return controltagNum(event)">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('img_doc') ? ' has-error' : ''); ?>">
-                                                      <label class="col-md-4 control-label">Imagen del documento</label>
-                                                      <div class="col-md-6">
-                                                          <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
-                                                      </div>
-                                                  </div>
-
-
-                                                  <div class="form-group<?php echo e($errors->has('dateN') ? ' has-error' : ''); ?>">
-                                                      <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
-                                                      <div id="dateMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="dateN" type="date" max="<?php echo e(@date('Y-m-d')); ?>" class="form-control" name="dateN" value="<?php echo e(old('dateN')); ?>" required="required">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('img_perf') ? ' has-error' : ''); ?>">
-                                                      <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
-                                                      <div class="col-md-6">
-                                                          <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="<?php echo e(old('img_perf')); ?>">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group<?php echo e($errors->has('alias') ? ' has-error' : ''); ?>">
-                                                      <label for="alias" class="col-md-4 control-label">Alias</label>
-                                                      <div id="aliasMen"></div>
-                                                      <div class="col-md-6">
-                                                          <input id="alias" type="text" class="form-control" name="alias" value="<?php echo e(old('alias')); ?>"required="required">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group">
-                                                    <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary" id="registro">Registrar datos</button>
-                                                    </div>
-                                                  </div>
-                                                  </form>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                      </div>
-                                      <!--FIN DEL MODAL-->
-
-                                  </div><!--paragraph-->
-                               </div><!--golleft-->
-
-                            </div><!--row-->
-                          </div><!--/grey-panel -->
-                        </div><!-- /col-md-12-->
+                          </div><!--row-->
+                        </div><!--/grey-panel -->
+                      </div><!-- /col-md-12-->
 
                     <?php endif; ?>
 
@@ -264,7 +177,7 @@
                           <div class="white">
                               <h3><span class="card-title">
                                     <u>
-                                      <em>Contenido Reciente</em>
+                                      <em>Cartelera</em>
                                     </u>
                                   </span>
                               </h3>      
@@ -413,63 +326,32 @@
 
 <?php $__env->startSection('js'); ?>
 <script type="text/javascript">
-  document.querySelector('#patrocinador').addEventListener('submit', function(e) {
-  var form = this;
-
-  e.preventDefault(); // <--- prevent form from submitting
-  var cod=$('#codigo').val();
-  $.ajax({
-                    
-      url:'sponsor/'+cod,
-      type: 'get',
-      dataType: "json",           
-      success: function (result) 
-                {
-                if(result.img_perf==null){
-                  perfil = "<?php echo asset('/sistem_images/DefaultUser.png'); ?>"
-                }else{
-                  perfil=result.img_perf;
-                }
-                if (result != 0)
-                {
-
-                  swal({
-                      // title: "Are you sure?",
-                      text: "¿Esta ingresando como patrocinador a: "+result.name+"?",
-                      // icon: "warning",
-                      icon: 'info',
-
-                      buttons: {
-                        
-                        accept:  'Aceptar',
-                                  
-                                
-                        cancel: 'Cancelar',
-                                
-                        
-                      },
-                      dangerMode: true,
-                    }).then(function(isConfirm) {
-                      if (isConfirm) {
-                          
-                            form.submit(); // <--- submit form programmatically
-                          
-                        } else {
-                          $('#patrocinador')[0].reset();
-                        }
-                      })
-                    }else{
-                      $('#codigoMen').show();
-                      $('#codigoMen').text('El codigo es incorrecto');
-                      $('#codigoMen').css('color','red');
-                  }
-                
-                }
-                })
+//---------------------------------------------------------------------------------------------------
+// Validacion cuando el usuario esta rechazado
+$(document).ready(function(){
+  var verificacion = $(':hidden#verificacion').val();
+  console.log(verificacion);
+  if (verificacion==2) {
+    swal({
+      title: "Verificación rechazada",
+      text: "Le informamos que su verificación fue rechazada, le invitamos a modificar su perfil",
+      icon: "info",
+      buttons: {
+          accept: {
+              text: "OK",
+              value: true,
+              className: "btn-swal-center"
+          }
+      }
+  })
+  .then((completar) => {
+      var ruta = "<?php echo e(url('EditProfile')); ?>";
+      $(location).attr('href',ruta);
   });
-
-</script>
-<script type="text/javascript">
+  }
+});
+// Validacion cuando el usuario esta rechazado
+//---------------------------------------------------------------------------------------------------
   $(document).ready(function(){
   var f1 = document.getElementById('id').value;
   var f = new Date();

@@ -62,16 +62,54 @@
             @foreach($refered as $refereds)
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="col-xs-3 col-sm-3 col-lg-3">
-                  @if($refereds->img_perf)
-                    <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                  @else
-                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                  @endif
-                </div>
-                <div class="col-sm-6 col-lg-6" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                  {{$refereds->name}} {{$refereds->last_name}}
+                  <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
+                        @if($refereds->img_perf)
+                          <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
+                        @else
+                          <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
+                        @endif
+                      </div>
+                      <div class="col-sm-6 col-lg-6" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                      {{$refereds->name}} {{$refereds->last_name}}
+                  </a>
                 </div>
               </div>
+                <!--MODAL DATOS-->
+                <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Mi referido:</h4>
+                      </div>
+                      <div class="modal-body">
+                          @if($refereds->img_perf)
+                            <center><img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60"></center>
+                          @else
+                            <center><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></center>
+                          @endif
+                          <center>
+                              <h5 style="margin-top: 2%"><b>Nombre: </b> {{$refereds->name}} {{$refereds->last_name}}</h5>
+                          </center>
+                          <center>
+                              <h5 style="margin-top: 2%"><b>Email: </b> {{$refereds->email}}</h5>
+                          </center>
+                          <center>
+                            @if($refereds->phone)
+                              <h5 style="margin-top: 2%"><b>Telefono: </b> {{$refereds->phone}}</h5>
+                            @else
+                              <h5 style="margin-top: 2%"><b>Telefono: </b> No posee teléfono registrado</h5>
+                            @endif
+                          </center>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--FIN DEL MODAL-->
             @endforeach
           </div>
         </div>
@@ -139,6 +177,8 @@
       </div>
     </div>
     <!--FIN DEL MODAL-->
+
+     
 
   </div><!-- /row --> 
 

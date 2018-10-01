@@ -14,7 +14,7 @@
                                 <div class="white-header">
                                     <div class="col-sm-12 col-xs-12 col-md-12">
                                         <?php $__currentLoopData = $Rad; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radios): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <h3><span class="card-title"><center><b><i class=""></i> <?php echo e($radios->name_r); ?></b></center></span></h3>
+                                            <h3><span class="card-title"><center><b style="color: #428bca"><i class=""></i> <?php echo e($radios->name_r); ?></b></center></span></h3>
                                             <div class="col-sm-12 col-xs-12 col-md-12">
 
                                                <center><img src="<?php echo e(asset($radios->logo)); ?>" class="img-responsive" width="17%" style="margin-top: 2%;"></center>
