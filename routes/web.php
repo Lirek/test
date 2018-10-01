@@ -194,6 +194,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 */
+
+
 Route::group(['middleware' => 'promoter_guest'], function() {
 
 Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
@@ -385,6 +387,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/admin_clients','AdminController@ShowPendingClients');
                 Route::get('ClientsDataTable','AdminController@ClientsData');
                 Route::get('AllClientsDataTable','AdminController@AllClientsData');
+                Route::get('RejectedClientsDataTable','AdminController@RejectedClientsData');
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
@@ -422,6 +425,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     });
 });
+
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------

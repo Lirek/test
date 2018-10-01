@@ -685,7 +685,7 @@ class AdminController extends Controller
                           })
                           ->editColumn('logo',function($tv){
                             /*
-                            produccion 
+                            produccion
                             $ruta  = "https://leipel.com/".$tv->logo;
                             return '<img class="img-rounded img-responsive av" src='.$ruta.'
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
@@ -1212,7 +1212,7 @@ class AdminController extends Controller
                                              ->where('num_doc','<>','NULL')
                                              ->where('type','<>','Indefinido')
                                              ->where('fech_nac','<>','NULL')
-                                             ->get(); 
+                                             ->get();
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
                       
@@ -1229,7 +1229,7 @@ class AdminController extends Controller
                       $ruta = "https://leipel.com/";
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
                       <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'">
                                  </button>';
                       })
                       */
@@ -1248,13 +1248,11 @@ class AdminController extends Controller
       public function AllClientsData()
       {
           $user=User::where('verify','=','1')
-                                             ->where('img_doc','<>','NULL')
-                                             ->where('num_doc','<>','NULL')
                                              ->get(); 
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
                       
-                      return '<button type="button" class="btn btn-theme" disabled >En Proceso</button';
+                      return '<button type="button" class="btn btn-theme" disabled >Aprobado</button';
                     })
 
                     ->addColumn('webs',function($user){
@@ -1265,7 +1263,36 @@ class AdminController extends Controller
                     ->editColumn('img_doc',function($user){
 
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name;
+                    })
+                    ->rawColumns(['Estatus','img_doc','webs'])
+                    ->toJson();
+      }
+
+     public function RejectedClientsData()
+      {
+          $user=User::where('verify','=','2')
+                                             ->get();
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+
+                      return '<button type="button" class="btn btn-theme" disabled >Rechazado</button';
+                    })
+
+                    ->addColumn('webs',function($user){
+
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+                    })
+
+                    ->editColumn('img_doc',function($user){
+
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
                                  style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
                                  </button>';
                     })
@@ -1275,6 +1302,7 @@ class AdminController extends Controller
                     ->rawColumns(['Estatus','img_doc','webs'])
                     ->toJson();                                           
       }
+
 
       public function ValidateUser(Request $request,$id)
       {
@@ -1422,8 +1450,8 @@ class AdminController extends Controller
         /* solucion para produccion
                       $ruta = "http://leipel.com";
                       return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'" 
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
                                  </button> ';
                       })
                       */
