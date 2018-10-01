@@ -33,8 +33,8 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12">
                                     <div class="col-sm-10 col-xs-12 col-md-8">
                                         <h2><span class="card-title"><center><i class="fa fa-tv"></i> {{$tv->name_r}}</center></span></h2><br>
-                                        <div class="plyr__video iframe-16-9" id="player">
-                                            <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency allow="autoplay" height="405" width="90%" scrolling="no"></iframe>
+                                        <div class="plyr__video-embed iframe-16-9" id="player">
+                                            <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency allow="autoplay" height="405" width="90%" scrolling="no" border="0" style="border:0px;"></iframe>
                                         </div>
                                     </div>
                                     <div class="col-sm-2 col-xs-10 col-md-4">

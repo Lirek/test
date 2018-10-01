@@ -152,7 +152,7 @@
 
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Documento de identificación (cédula)',['class'=>'control-label']) !!}
+                                {!! Form::label('documento','Foto de cédula',['class'=>'control-label']) !!}
                             </div>
                             <div  class="col-md-4">
                                 @if ($user->img_doc)

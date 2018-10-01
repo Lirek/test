@@ -47,8 +47,8 @@
   
    <body>
     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }} </form>
-
-  <section id="container" >
+<!----MENU PANTALLAS PC-->
+  <section id="container" class="">
       <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -62,14 +62,13 @@
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
             </b></a>
 
-            <div class="nav pull-right top-menu" id="boton" >
+            <div class="nav pull-right top-menu hidden-xs" id="boton" >
             <div class="navbar-right" style="margin-top: 12px;">
               <!-- <img height="39px" src="{{asset('plugins/img/cine.png')}}">
               <img height="39px" src="{{asset('plugins/img/musica.png')}}">
               <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
-              <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
-              <a href="{{ url('ShowTv')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"> </b></a>
-               <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
+              <a href="{{ url('ShowRadio')}}"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+              <img height="39px" src="{{asset('plugins/img/tv.png')}}">
             </div>
             </div>
             <!--logo end-->
@@ -83,9 +82,9 @@
       *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
+          <div id="sidebar"  class="nav-collapse">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 40px">
+              <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                   @if(Auth::user()->img_perf)
                     <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
                   @else
@@ -111,10 +110,13 @@
                   </div>  
                     
                   <li class="sub-menu">
-                      <a class="sub" href="{{url('EditProfile')}}">
+                      <a class="sub" href="#">
                           <i class="fa fa-user"></i>
                           <span>Mi Perfil</span>
                       </a>
+                      <ul class="sub">
+                        <li><a href="{{url('EditProfile')}}">Editar mi perfil</a></li>
+                      </ul>
                   </li>
 
                   <!-- <li class="sub-menu">
@@ -185,8 +187,8 @@
                           <span>Referidos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{url('WebsUser')}}">Mis referidos</a></li>
-                          <li><a  href="{{url('Referals')}}"">Invitar</a></li>
+                          <li><a  href="{{url('WebsUser')}}">Mis redes</a></li>
+                          <li><a  href="{{url('Referals')}}"">Referir</a></li>
                       </ul>
                   </li>
                   <!-- <li class="sub-menu">
@@ -225,6 +227,7 @@
               </ul>
               <!-- sidebar menu
                end-->
+
           </div>
       </aside>
       <!--sidebar end-->
@@ -390,6 +393,30 @@
               });
       });
     </script>
+<script type="text/javascript">
+$(document).ready(function() {
+        if ((screen.width <= 768)) {
+        //alert('Resolucion: 1024x768 o mayor');
+          $('#container').addClass('sidebar-closed');
+        }else{
+          $('#container').removeClass('sidebar-close');
+        }
+
+});
+</script>
+<script type="text/javascript">
+$(window).resize(function() {
+  console.log($(window).width());
+  if ($(window).width() <= 768) 
+        {
+          $('#container').addClass('sidebar-closed');
+        }
+        else
+        {
+          $('#container').removeClass('sidebar-closed');
+        }
+});
+</script>
     
     @yield('js')
 

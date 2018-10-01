@@ -25,6 +25,9 @@
             margin-right: 7em;
         }
     }
+    .justify {
+      text-align: justify;
+    }
 </style>
 @endsection
 
@@ -276,19 +279,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-
-                              @if($Songs)
-                                @foreach($Songs as $song)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('{!!$songs->cost!!}','{!!$songs->title!!}','{!!$songs->id!!}')" id="modal-confir"> {{$songs->song_name}}</a></td>
-                                  <td class="hidden-phone">Single</td>
-                                  <td>{{$songs->cost}}</td>
-                                  <td class="hidden-phone">{{$songs->Seller->name}}</td>
-                                </tr>
-                                @endforeach
-                              @endif
-
+                                
                               @if($Albums)
                               @foreach($Albums as $albums)
                                 <tr class="letters">
@@ -407,8 +398,9 @@ $(document).ready(function(){
   console.log(verificacion);
   if (verificacion==2) {
     swal({
+      className: "justify",
       title: "Verificación rechazada",
-      text: "Le informamos que su verificación fue rechazada, le invitamos a modificar su perfil",
+      text: "Le informamos que su verificación fue rechazada, por favor revise su bandeja de correos (incluida la de spam) para ampliar la información del rechazado y modifique su perfil para posterior revisión.",
       icon: "info",
       buttons: {
           accept: {

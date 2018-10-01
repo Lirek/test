@@ -697,21 +697,22 @@
                                 </div>
                                 <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>
                             </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <center><button type="submit"  class="btn btn-primary" id="registroRU">
+                                        Registrarse
+                                    </button></center>
+                                </div>
+                            </div>
                             <div class="form-check text-center" style="padding-top: 5%">
                                 <label>
                                     <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
                                     <span class="label-text">
-                                        He leido y acepto los 
+                                        He leído y acepto los
                                     </span>
                                 </label>
                                 <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit"  class="btn btn-primary" id="registroRU">
-                                        Registrarse
-                                    </button>
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -832,7 +833,15 @@
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="form-check text-center" style="padding-top: 5%">
+                                <label>
+                                    <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
+                                    <span class="label-text">
+                                        He leido y acepto los 
+                                    </span>
+                                </label>
+                                <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary" id="registroRP">
