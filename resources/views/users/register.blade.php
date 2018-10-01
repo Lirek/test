@@ -21,11 +21,30 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
+<style type="">
+    html {
+        min-height: 100%;
+        position: relative;
+    }
+
+    body {
+      margin: 0;
+      margin-bottom: 40px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 40px;
+    }
+
+</style>
 <body>
 <!--HEADER START-->
-<div class="main-navigation ">
+<div id="wrapper" class="main-navigation ">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -33,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
+                <a href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
                                                                    width="150" height="50" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -45,6 +64,9 @@
         </div>
     </nav>
 
+    <div class="img-responsive"></div>
+    <img src="{{asset('plugins/img/piñas.jpg')}}" style="  background-size: cover; position: absolute; width: 100%; height: 100% ">
+
     <!--HEADER END-->
 
     <div class="container">
@@ -52,7 +74,7 @@
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-
+                <br>
                 <div class="panel panel-default">
                     <div class="panel-heading">Registro</div>
 
@@ -132,14 +154,25 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
 
             </div>
 
-        </div>
-
+        </div>    
     </div>
+<footer>
+<div class="col-lg-12" style="background-color: #21a4de" >
+    <div class="text-center">
+            <center>
+                <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-2.png')}}">
+                <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-4.png')}}">
+                <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon.png')}}">
+                <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-5.png')}}">
+                <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-3.png')}}">
+            </center>
+    </div>
+</div>
+</footer>
 
 
     <!--Seccion de Scripts-->
