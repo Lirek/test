@@ -352,6 +352,7 @@ class UserController extends Controller
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
+                    'id_payments' => $key->id,
                     'Id' => $key->user_id,
                     'Date' => $key->created_at->format('d/m/Y'),
                     'Cant' => $this->tickets($key->package_id)*$key->value,

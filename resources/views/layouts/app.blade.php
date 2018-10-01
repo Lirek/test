@@ -184,7 +184,7 @@
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-users"></i>
-                          <span>Referidos</span>
+                          <span>Invitar amigos</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="{{url('WebsUser')}}">Mis redes</a></li>

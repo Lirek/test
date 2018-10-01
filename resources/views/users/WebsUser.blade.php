@@ -3,7 +3,7 @@
 <style>
 .lista {
   height: 30em;
-  overflow-y: scroll;
+  overflow: auto;
 }
 </style>
 @endsection
@@ -54,13 +54,8 @@
       @if ($refered != null)
         <h5 style="margin-left: 3%">Mis referidos directos: ({{$referals1}})</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
-          @if($referals1>12) {{--para que no se vea el scroll cuando hay menos de esa cantidad--}}
           <div class="row lista">
-          @else
-            <div class="row">
-          @endif
-            @foreach($refered as $refereds)
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="col-xs-3 col-sm-3 col-lg-3">
                   @if($refereds->img_perf)
                     <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
@@ -68,7 +63,7 @@
                     <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
                   @endif
                 </div>
-                <div class="col-sm-6 col-lg-6" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
                   {{$refereds->name}} {{$refereds->last_name}}
                 </div>
               </div>
@@ -148,7 +143,7 @@
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var form = this;
-
+  $('#codigoMen').hidden();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
 
@@ -182,7 +177,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         if(result == 1) {
           swal({
             title: "Ingrese otro código por favor",
-            text: "Disculpe, pero no puede ingresar su propio código",
+            text: "Disculpe, no puede ingresar su propio código",
             icon: 'info',
             buttons: {
               accept: 'Aceptar'
@@ -218,7 +213,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         else if(result == 0) {
           swal.close();
           $('#codigoMen').show();
-          $('#codigoMen').text('El codigo es incorrecto');
+          $('#codigoMen').text('El código es incorrecto.');
           $('#codigoMen').css('color','red');
         }
       }

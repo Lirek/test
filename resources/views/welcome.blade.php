@@ -161,7 +161,6 @@
 
 <div class="col-md-12" id="">
     <div class="row">
-
         @foreach($radio as $r)
             <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
                 <figure class="snip1166 navy" style="display: block; ">
@@ -255,6 +254,104 @@
                     </h3>
                     <div>
                         <p>{{ $r->email_c }}</p>
+                    </div>
+                </figcaption>
+            </figure>
+            </div>
+        @endforeach
+        @foreach($tv as $tvs)
+            <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
+                <figure class="snip1166 navy" style="display: block; ">
+                    <img class="img-responsive" src="{{ asset($tvs->logo) }} " style="width: 90%" />
+                    <figcaption style="width: 107%">
+                        <h3 style="white-space:nowrap; text-overflow: ellipsis;">
+                            <small style=" color: #fff; font-size: 100%;">{{ $tvs->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                            <div align="left">
+                                <li class="fa"></li>
+                            </div>
+                            {{--
+                            <div align="left">
+                                @if($tvs->facebook)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $tvs->facebook }}"></a>
+                                @endif
+                                @if($tvs->instagram)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $tvs->instagram }}"></a>
+                                @endif
+                                @if($tvs->twitter)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $tvs->twitter }}"></a>
+                                @endif
+                                @if($tvs->google)
+                                    <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $tvs->google }}"></a>
+                                @endif
+                            </div>
+                            --}}
+                        </h3>
+                        <div>
+                            <p>{{ $tvs->email_c }}</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
+            <figure class="snip1166 navy" >
+                <img class="img-responsive" src="{{ asset($tvs->logo) }} " style="width: 70%" />
+                <figcaption style="width: 75%">
+                    <h3>
+                        <small style="color: #fff; font-size: 100%">{{ $tvs->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                            <li class="fa"></li>
+                        </div>
+                        {{---
+                        <div align="left">
+                            @if($tvs->facebook)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $tvs->facebook }}"></a>
+                            @endif
+                            @if($tvs->instagram)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $tvs->instagram }}"></a>
+                            @endif
+                            @if($tvs->twitter)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $tvs->twitter }}"></a>
+                            @endif
+                            @if($tvs->google)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $tvs->google }}"></a>
+                            @endif
+                        </div>
+                        --}}
+                    </h3>
+                    <div>
+                        <p>{{ $tvs->email_c }}</p>
+                    </div>
+                </figcaption>
+            </figure>
+            </div>
+            <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
+            <figure class="snip1166 navy" >
+                <img class="img-responsive" src="{{ asset($tvs->logo) }} " style="width: 70%" />
+                <figcaption style="width: 90%">
+                    <h3>
+                        <small style="color: #fff; font-size: 100%">{{ $tvs->name_r }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                            <li class="fa"></li>
+                        </div>
+                        {{--
+                        <div align="left">
+                            @if($tvs->facebook)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $tvs->facebook }}"></a>
+                            @endif
+                            @if($tvs->instagram)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $tvs->instagram }}"></a>
+                            @endif
+                            @if($tvs->twitter)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $tvs->twitter }}"></a>
+                            @endif
+                            @if($tvs->google)
+                                <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $tvs->google }}"></a>
+                            @endif
+                        </div>
+                        --}}
+                    </h3>
+                    <div>
+                        <p>{{ $tvs->email_c }}</p>
                     </div>
                 </figcaption>
             </figure>
