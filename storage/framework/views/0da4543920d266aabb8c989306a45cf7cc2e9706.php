@@ -161,7 +161,6 @@
 
 <div class="col-md-12" id="">
     <div class="row">
-
         <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
                 <figure class="snip1166 navy" style="display: block; ">
@@ -210,6 +209,59 @@
                     </h3>
                     <div>
                         <p><?php echo e($r->email_c); ?></p>
+                    </div>
+                </figcaption>
+            </figure>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php $__currentLoopData = $tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
+                <figure class="snip1166 navy" style="display: block; ">
+                    <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 90%" />
+                    <figcaption style="width: 107%">
+                        <h3 style="white-space:nowrap; text-overflow: ellipsis;">
+                            <small style=" color: #fff; font-size: 100%;"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                            <div align="left">
+                                <li class="fa"></li>
+                            </div>
+                            
+                        </h3>
+                        <div>
+                            <p><?php echo e($tvs->email_c); ?></p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
+            <figure class="snip1166 navy" >
+                <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 70%" />
+                <figcaption style="width: 75%">
+                    <h3>
+                        <small style="color: #fff; font-size: 100%"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                            <li class="fa"></li>
+                        </div>
+                        
+                    </h3>
+                    <div>
+                        <p><?php echo e($tvs->email_c); ?></p>
+                    </div>
+                </figcaption>
+            </figure>
+            </div>
+            <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
+            <figure class="snip1166 navy" >
+                <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 70%" />
+                <figcaption style="width: 90%">
+                    <h3>
+                        <small style="color: #fff; font-size: 100%"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                        <div align="left">
+                            <li class="fa"></li>
+                        </div>
+                        
+                    </h3>
+                    <div>
+                        <p><?php echo e($tvs->email_c); ?></p>
                     </div>
                 </figcaption>
             </figure>
