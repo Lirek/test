@@ -206,21 +206,18 @@
                       </a>  
                   </li>
                   <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 20px">
-                      <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
-                        <i class="fa fa-power-off"></i>
-                        <span>Salir</span>
-                      </a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }}</form>
-                     
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                      <i class="fa fa-power-off"></i>
+                      <span>Salir</span>
+                    </a>
                   </li>
                   <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg"" id="nav-accordion">
-                      <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
                       <span>
                         <i class="fa fa-power-off"></i>
-                            Salir
-                        </span>
-                        </a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{ csrf_field() }}</form>
+                          Salir
+                      </span>
+                    </a>
                   </li>
               </ul>
               <!-- sidebar menu

@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
+// Agregadas 01-10-2018
+Route::get('indexRadio', 'WelcomeController@indexRadio');
+Route::get('indexTv', 'WelcomeController@indexTv');
+
 //Route::get('Test','AdminController@test');
 
 //Route::get('test/{cod}','HomeController@validarPatrocinador');
