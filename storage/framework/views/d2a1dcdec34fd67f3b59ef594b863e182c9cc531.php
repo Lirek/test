@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
     <style>
         #panel {
             /*Para la Sombra*/
@@ -8,7 +6,7 @@
             -moz-box-shadow: 8px 8px 15px #999;
             filter: shadow(color=#999999, direction=135, strength=8);
             /*Para la Sombra*/
-            background-image: url("{{asset('plugins/img/estatica.jpg')}}");
+            background-image: url("<?php echo e(asset('plugins/img/estatica.jpg')); ?>");
             background-position: center center;
             width: 100%;
             min-height: 350px;
@@ -70,26 +68,30 @@
                 <h4><i class="fa fa-angle-right"></i> Modificar Perfil</h4>
                 <div class="col-md-12 col-sm-12 mb">
                     <div class="form-group">
-                        {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
-                        {{ Form::token() }}
+                        <?php echo Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']); ?>
+
+                        <?php echo e(Form::token()); ?>
 
 
 
 
-                        {{--Imagen de perfil--}}
+
+                        
                         <div class="row">
                             <div class="group-input">
                                 <div class="box box-widget widget-user-1">
                                     <div class="col-md-6">
                                         <div id="image-preview" class="form-group btn pull-left col-md-1">
-                                            {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                            {!! Form::hidden('img_posterOld',$user->img_perf)!!}
+                                            <?php echo Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']); ?>
+
+                                            <?php echo Form::hidden('img_posterOld',$user->img_perf); ?>
+
                                             <div id="list">
-                                                @if ($user->img_perf)
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="{{asset($user->img_perf)}}" id="img_perf">
-                                                @else
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
-                                                @endif
+                                                <?php if($user->img_perf): ?>
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="<?php echo e(asset($user->img_perf)); ?>" id="img_perf">
+                                                <?php else: ?>
+                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="<?php echo e(asset('plugins/img/sinPerfil.png')); ?>" id="img_perf">
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -104,135 +106,165 @@
                             </div>
                         </div>
 
-                        {{--Nombre--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4  control-label">
-                                {!! Form::label('name','Nombres',['class'=>'control-label']) !!}
+                                <?php echo Form::label('name','Nombres',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6  control-label">
                                 <div id="mensajeMaximoNombre"></div>
-                                {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                <?php echo Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']); ?>
+
                             </div>
                         </div>
 
-                        {{--Apellido--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('last_name','Apellidos',['class'=>'control-label']) !!}
+                                <?php echo Form::label('last_name','Apellidos',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
                                 <div id="mensajeMaximoApellido"></div>
-                                {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
+                                <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']); ?>
+
                             </div>
                         </div>
 
-                        {{--Correo--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('email','Correo',['class'=>'control-label']) !!}
+                                <?php echo Form::label('email','Correo',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
-                                {!! Form::text('email',$user->email,['class'=>'form-control','readonly']) !!}
+                                <?php echo Form::text('email',$user->email,['class'=>'form-control','readonly']); ?>
+
                             </div>
                         </div>
 
-                        {{--Cedula Nota no es un select--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('ci','Cédula',['class'=>'control-label']) !!}
+                                <?php echo Form::label('ci','Cédula',['class'=>'control-label']); ?>
+
                             </div>
 
                             <div class="col-md-6 control-label">
-                                @if($user->num_doc)
-                                    {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
-                                @else
-                                    {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
-                                @endif
+                                <?php if($user->num_doc): ?>
+                                    <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']); ?>
+
+                                <?php else: ?>
+                                    <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']); ?>
+
+                                <?php endif; ?>
                             </div>
                         </div>
 
-                        {{--Imagen Documento--}}
+                        
 
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Foto de la cédula',['class'=>'control-label']) !!}
+                                <?php echo Form::label('documento','Foto de la cédula',['class'=>'control-label']); ?>
+
                             </div>
                             <div  class="col-md-4">
-                                @if ($user->img_doc)
-                                    <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                                @endif
+                                <?php if($user->img_doc): ?>
+                                    <img id="preview_img_doc" src="<?php echo e(asset($user->img_doc)); ?>" name='ci' alt="your image" width="180" height="180" />
+                                <?php endif; ?>
                                 <div class="col-md-10 control-label">
-                                @if($user->verify == 0 || $user->verify == 2)
+                                <?php if($user->verify == 0 || $user->verify == 2): ?>
                                     <img id="preview_img_doc" src="" name='ci'/>  
                                     <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
-                                @endif
+                                <?php endif; ?>
                                     <div id="mensajeImgDoc"></div>
                                 </div>
                             </div>
                         </div>
 
-                        {{--Genero--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('num_doc','Sexo',['class'=>'control-label']) !!}
+                                <?php echo Form::label('num_doc','Sexo',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
-                                {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']) !!}
+                                <?php echo Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']); ?>
+
                             </div>
                         </div>
 
-                        {{--Alias--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('alias','Alias',['class'=>'control-label']) !!}
+                                <?php echo Form::label('alias','Alias',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
                                 <div id="mensajeMaximoAlias"></div>
-                                {!! Form::text('alias',$user->alias,['class'=>'form-control','id'=>'alias']) !!}
+                                <?php echo Form::text('alias',$user->alias,['class'=>'form-control','id'=>'alias']); ?>
+
                             </div>
                         </div>
 
-                        {{--Fecha Nacimiento--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']) !!}
+                                <?php echo Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
-                                {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control', 'max' =>date('Y-m-d')]) !!}
+                                <?php echo Form::date('fech_nac',$user->fech_nac,['class'=>'form-control', 'max' =>date('Y-m-d')]); ?>
+
                             </div>
                         </div>
 
-                        {{--Direccion--}}
+                        
                         <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('direccion','Dirección',['class'=>'control-label']) !!}
+                                <?php echo Form::label('direccion','Dirección',['class'=>'control-label']); ?>
+
                             </div>
                             <div class="col-md-6 control-label">
                                 <div id="mensajeMaximoDireccion"></div>
-                                {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
+                                <?php echo Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']); ?>
+
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label">
+                                <label  for="phone">Telefono de Contacto</label>
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
+                                <input type="hidden" id="phone2" name="phone" value="<?php echo e($user->phone); ?>">
 
-                        {{--Boton--}}
+                            </div>
+                        </div> 
+
+                        
                         <div class="form-group text-center">
-                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                            <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']); ?>
+
                         </div>
 
 
-                        {!! Form::close() !!}
+                        <?php echo Form::close(); ?>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
 $(document).ready(function (e){
-
+    
     if ($("#phone2").val() !=''){
         var phone = $("#phone2").val();
         $("#phone_s").intlTelInput();
@@ -509,4 +541,5 @@ $(document).ready(function (e){
     </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

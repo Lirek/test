@@ -1,18 +1,17 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <style>
 .lista {
   height: 30em;
-  overflow: auto;
+  overflow-y: scroll;
 }
 </style>
-@endsection
-@section('main')     
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main'); ?>     
   <!-- **********************************************************************************************************************************************************
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
   <!--main content start-->
-  <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
+  <input type="hidden" name="id" id="id" value="<?php echo e(Auth::user()->created_at); ?>">
   <div class="row mtbox" style="margin-top: 2%">
     <div class="col-sm-6 col-md-6">
       <div class="col-md-12 col-sm-12 mb" style="margin-left: ">
@@ -24,7 +23,7 @@
             <div class="col-sm-6 col-xs-6 gocenterRed ">
               <p>
                 <h2>
-                  <a> {{$referals1+$referals2+$referals3}} </a>
+                  <a> <?php echo e($referals1+$referals2+$referals3); ?> </a>
                 </h2>
                 <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
               </p>
@@ -33,7 +32,7 @@
         </div>
       </div>
       <!--REFERIR-->
-      @if(Auth::user()->UserRefered()->count()==0) 
+      <?php if(Auth::user()->UserRefered()->count()==0): ?> 
         <div class="col-md-12 col-sm-12 mb" id="referir">
           <div class="white-panel panRf refe donut-chart">
             <div class="white-header">
@@ -50,25 +49,33 @@
             </div>
           </div>
         </div>
-      @endif
-      @if ($refered != null)
-        <h5 style="margin-left: 3%">Mis referidos directos: ({{$referals1}})</h5>
+      <?php endif; ?>
+      <?php if($refered != null): ?>
+        <h5 style="margin-left: 3%">Mis referidos directos: (<?php echo e($referals1); ?>)</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
+          <?php if($referals1>12): ?> 
           <div class="row lista">
-            @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+          <?php else: ?>
+            <div class="row">
+          <?php endif; ?>
+            <?php $__currentLoopData = $refered; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refereds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                 <div class="col-xs-3 col-sm-3 col-lg-3">
-                  @if($refereds->img_perf)
-                    <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                  @else
-                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                  @endif
-                </div>
-                <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                  {{$refereds->name}} {{$refereds->last_name}}
+                  <a href="#" data-toggle="modal" data-target="#myModal-<?php echo e($refereds->id); ?>">
+                        <?php if($refereds->img_perf): ?>
+                          <img src="<?php echo e(asset($refereds->img_perf)); ?>" class="img-circle" width="60" height="60">
+                        <?php else: ?>
+                          <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="60">
+                        <?php endif; ?>
+                      </div>
+                      <div class="col-sm-6 col-lg-6" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                      <?php echo e($refereds->name); ?> <?php echo e($refereds->last_name); ?>
+
+                  </a>
                 </div>
               </div>
                 <!--MODAL DATOS-->
-                <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
+                <div id="myModal-<?php echo e($refereds->id); ?>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -77,23 +84,23 @@
                           <h4 class="modal-title">Mi referido:</h4>
                       </div>
                       <div class="modal-body">
-                          @if($refereds->img_perf)
-                            <center><img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60"></center>
-                          @else
-                            <center><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></center>
-                          @endif
+                          <?php if($refereds->img_perf): ?>
+                            <center><img src="<?php echo e(asset($refereds->img_perf)); ?>" class="img-circle" width="60" height="60"></center>
+                          <?php else: ?>
+                            <center><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="80"></center>
+                          <?php endif; ?>
                           <center>
-                              <h5 style="margin-top: 2%"><b>Nombre: </b> {{$refereds->name}} {{$refereds->last_name}}</h5>
+                              <h5 style="margin-top: 2%"><b>Nombre: </b> <?php echo e($refereds->name); ?> <?php echo e($refereds->last_name); ?></h5>
                           </center>
                           <center>
-                              <h5 style="margin-top: 2%"><b>Email: </b> {{$refereds->email}}</h5>
+                              <h5 style="margin-top: 2%"><b>Email: </b> <?php echo e($refereds->email); ?></h5>
                           </center>
                           <center>
-                            @if($refereds->phone)
-                              <h5 style="margin-top: 2%"><b>Telefono: </b> {{$refereds->phone}}</h5>
-                            @else
+                            <?php if($refereds->phone): ?>
+                              <h5 style="margin-top: 2%"><b>Telefono: </b> <?php echo e($refereds->phone); ?></h5>
+                            <?php else: ?>
                               <h5 style="margin-top: 2%"><b>Telefono: </b> No posee teléfono registrado</h5>
-                            @endif
+                            <?php endif; ?>
                           </center>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
@@ -103,10 +110,10 @@
                   </div>
                 </div>
                 <!--FIN DEL MODAL-->
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
         </div>
-      @endif
+      <?php endif; ?>
     </div>
     <div class="col-sm-6 col-md-6">
       <div class="col-md-12 col-sm-12 mb">
@@ -118,11 +125,11 @@
             <div class="col-sm-6 col-xs-6 gocenterRed ">
               <p>
                 <h2>
-                  @if(Auth::user()->points!=NULL)
-                    <a> {{Auth::user()->points}} </a>
-                  @else 
+                  <?php if(Auth::user()->points!=NULL): ?>
+                    <a> <?php echo e(Auth::user()->points); ?> </a>
+                  <?php else: ?> 
                     <a> 0 </a>
-                  @endif
+                  <?php endif; ?>
                 </h2>
                 <h6>Estos son los puntos que se han generado de tus referidos directos e indirectos</h6>
               </p>
@@ -131,8 +138,8 @@
         </div>
       </div>
       <div class="col-md-12 col-sm-12 text-center" style="margin-left: 1%; margin-top: 1%">
-        <img src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" style="width: 80%;">
-        <a style="margin-top: 3%;" target="_blank" href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" class="btn btn-primary">Detalles del viaje (Descargar en PDF)</a>
+        <img src="<?php echo e(asset('promociones/PromocionGalapagosImg.jpg')); ?>" style="width: 80%;">
+        <a style="margin-top: 3%;" target="_blank" href="<?php echo e(asset('promociones/PromocionGalapagosInfo.pdf')); ?>" class="btn btn-primary">Detalles del viaje (Descargar en PDF)</a>
       </div>
     </div>
 
@@ -146,12 +153,13 @@
               <h4 class="modal-title">Ingrese el codigo</h4>
           </div>
           <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data" id="patrocinador">{{ csrf_field() }}
+              <form class="form-horizontal" method="POST" action="<?php echo e(url('Referals')); ?>" enctype="multipart/form-data" id="patrocinador"><?php echo e(csrf_field()); ?>
 
-                <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
+
+                <div class="form-group<?php echo e($errors->has('codigo') ? ' has-error' : ''); ?>">
                         <label for="codigo" class="col-md-4 control-label">Codigo</label>
                         <div class="col-md-6">
-                            <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required="required">
+                            <input id="codigo" type="text" class="form-control" name="codigo" value="<?php echo e(old('codigo')); ?>" required="required">
                             <div id="codigoMen"></div>
                         </div>
 
@@ -171,17 +179,17 @@
     </div>
     <!--FIN DEL MODAL-->
 
+     
 
+  </div><!-- /row --> 
 
-  </div><!-- /row -->
+<?php $__env->stopSection(); ?>
 
-@endsection
-
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var form = this;
-  $('#codigoMen').hidden();
+
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
 
@@ -190,7 +198,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
     type: 'get',
     dataType: "json",
     beforeSend: function() {
-      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
       swal({
           title: "¡Listo! Estamos validando su información...",
           text: "Espere un momento por favot, mientras validamos el código de patrocinador.",
@@ -215,7 +223,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         if(result == 1) {
           swal({
             title: "Ingrese otro código por favor",
-            text: "Disculpe, no puede ingresar su propio código",
+            text: "Disculpe, pero no puede ingresar su propio código",
             icon: 'info',
             buttons: {
               accept: 'Aceptar'
@@ -251,7 +259,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         else if(result == 0) {
           swal.close();
           $('#codigoMen').show();
-          $('#codigoMen').text('El código es incorrecto.');
+          $('#codigoMen').text('El codigo es incorrecto');
           $('#codigoMen').css('color','red');
         }
       }
@@ -288,4 +296,5 @@ restaFechas = function(f1,f2)
  return dias;
  }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
