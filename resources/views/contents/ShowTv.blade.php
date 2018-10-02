@@ -24,7 +24,7 @@
        						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb" style="margin-top: 2%">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
                       <p><a href="{{url('PlayTv/'.$tv->id)}}">
-                          <img src="{{asset($tv->logo)}}" width="150%" >
+                          <img src="{{asset($tv->logo)}}" width="150%" height="120">
                       </p></a>
                     </div>
                   </div>
