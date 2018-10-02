@@ -267,10 +267,10 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
 
   var tiempo=restaFechas(f1,f2);
-  if (tiempo > 15){
+  if (tiempo > 7){
     document.getElementById('referir').style.display='none';  
   }else{
-    var total=14-tiempo;
+    var total=6-tiempo;
     console.log(tiempo);
     document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
   }
