@@ -2,20 +2,21 @@
 
 @section('css')
 <style type="text/css">
-    .iframe-16-9 {
+    #player {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 35px;
     height: 0;
     overflow: hidden;
 }
-.iframe-16-9  iframe {
+#player  iframe {
     position: absolute;
     top:0;
     left: 0;
     width: 100%;
     height: 100%;
 }
+
 </style>
 @endsection
 
@@ -81,7 +82,7 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mb" style="margin-top: 2%">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
                                           <p><a href="{{url('PlayTv/'.$tv->id)}}">
-                                              <img src="{{asset($tv->logo)}}" width="150%" >
+                                              <img src="{{asset($tv->logo)}}" width="150%" height="120">
                                           </p></a>
                                         </div>
                                       </div>

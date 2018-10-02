@@ -67,7 +67,7 @@
      <!--  <header class="header black-bg"> Barra azul -->
         <header class="header" style="background: white">
               <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title=""></div>
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="" id="menu"></div>
               </div>
             <!--logo start-->
             <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
@@ -404,34 +404,7 @@
               });
       });
     </script>
-<script type="text/javascript">
-$(document).ready(function() {
-        if ((screen.width <= 768)) {
-        //alert('Resolucion: 1024x768 o mayor');
-          $('#container').addClass('sidebar-closed');
-          $('#nav-accordion').css('display','none');
-        }else{
-          $('#container').removeClass('sidebar-closed');
-          $('#nav-accordion').css('display','block');
-        }
 
-});
-</script>
-<script type="text/javascript">
-$(window).resize(function() {
-  console.log($(window).width());
-  if ($(window).width() <= 768) 
-        {
-          $('#container').addClass('sidebar-closed');
-          $('#nav-accordion').css('display','none');
-        }
-        else
-        {
-          $('#container').removeClass('sidebar-closed');
-          $('#nav-accordion').css('display','block');
-        }
-});
-</script>
     
     @yield('js')
 

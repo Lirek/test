@@ -58,6 +58,12 @@ var Script = function () {
             });
             $('#sidebar > ul').hide();
             $("#container").addClass("sidebar-closed");
+            var wSize = $(window).width();
+            if (wSize <= 768) {
+                $('.main-chart').css({
+                'padding-top':'0px'
+                 })
+            }
         } else {
             $('#main-content').css({
                 'margin-left': '210px'
@@ -67,6 +73,12 @@ var Script = function () {
                 'margin-left': '0'
             });
             $("#container").removeClass("sidebar-closed");
+            var wSize = $(window).width();
+            if (wSize <= 768) {
+                $('.main-chart').css({
+                'padding-top':'400px'
+                 })
+            }
         }
     });
 

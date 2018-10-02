@@ -43,7 +43,7 @@
                                                 
                                             </div>
                                             <div class="col-sm-12 col-xs-12 col-md-6" align="center">
-                                                <audio  id="player" controls  autoplay >
+                                                <audio  id="player" controls  >
                                                     <source src="{{asset($radios->streaming)}}" type="audio/mp3" >
                                                 </audio>
                                             </div>
@@ -65,7 +65,7 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 3%">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                       <p><a href="{{url('ListenRadio/'.$radioss->id)}}">
-                                                        <img src="{{asset($radioss->logo)}}" width="100%" >
+                                                        <img src="{{asset($radioss->logo)}}" width="100%" height="90">
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="margin-left: -8%; margin-top: 8%">
                                                         <h5>{{$radioss->name_r}}</h5>
@@ -99,11 +99,10 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function(evento){
-        var vid = document.getElementById("#player");
-    function enableAutoplay() { 
+        var vid = document.getElementById("player");
     vid.autoplay = true;
     vid.load();
-}
+
     })
 </script>
 
