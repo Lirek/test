@@ -149,124 +149,134 @@
 <!--CONTENIDO STAR-->
 <div class="" id="barra" class="text-center">
         <center>
-            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-2.png">
-            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-4.png">
-            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon.png">
-            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-5.png">
-            <img height="60px" style="padding: 0% 5%" src="plugins/img/logo-icon-3.png">
+            <img height="60px" style="padding: 0% 5%; cursor: pointer;" id="cine" src="plugins/img/logo-icon-2.png">
+            <img height="60px" style="padding: 0% 5%; cursor: pointer;" id="musica" src="plugins/img/logo-icon-4.png">
+            <img height="60px" style="padding: 0% 5%; cursor: pointer;" id="libros" src="plugins/img/logo-icon.png">
+            <img height="60px" style="padding: 0% 5%; cursor: pointer;" id="radio" src="plugins/img/logo-icon-5.png">
+            <img height="60px" style="padding: 0% 5%; cursor: pointer;" id="tv" src="plugins/img/logo-icon-3.png">
         </center>
 </div>
 
 
 
-<div class="col-md-12" id="">
+<div class="col-md-12">
     <div class="row">
-        <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
-                <figure class="snip1166 navy" style="display: block; ">
-                    <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 90%" />
-                    <figcaption style="width: 107%">
-                        <h3>
-                            <small style="color: #fff; font-size: 100%;"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                            <div align="left">
-                                <li class="fa"></li>
+        <div id="radios">
+            <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
+                    <figure class="snip1166 navy" style="display: block; ">
+                        <img class="img-responsive" id="logoRadioGrande<?php echo e($iRadios); ?>" style="width: 90%" />
+                        <figcaption style="width: 107%">
+                            <h3>
+                                <small style="color: #fff; font-size: 100%;" id="nombreRadioGrande<?php echo e($iRadios); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailRadioGrande<?php echo e($iRadios); ?>"></p>
                             </div>
-                            
-                        </h3>
-                        <div>
-                            <p><?php echo e($r->email_c); ?></p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
-            <figure class="snip1166 navy" >
-                <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 70%" />
-                <figcaption style="width: 75%">
-                    <h3>
-                        <small style="color: #fff; font-size: 100%"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                        <div align="left">
-                            <li class="fa"></li>
-                        </div>
-                        
-                    </h3>
-                    <div>
-                        <p><?php echo e($r->email_c); ?></p>
-                    </div>
-                </figcaption>
-            </figure>
-            </div>
-            <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
-            <figure class="snip1166 navy" >
-                <img class="img-responsive" src="<?php echo e(asset($r->logo)); ?> " style="width: 70%" />
-                <figcaption style="width: 90%">
-                    <h3>
-                        <small style="color: #fff; font-size: 100%"><?php echo e($r->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                        <div align="left">
-                            <li class="fa"></li>
-                        </div>
-                        
-                    </h3>
-                    <div>
-                        <p><?php echo e($r->email_c); ?></p>
-                    </div>
-                </figcaption>
-            </figure>
-            </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php $__currentLoopData = $tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
-                <figure class="snip1166 navy" style="display: block; ">
-                    <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 90%" />
-                    <figcaption style="width: 107%">
-                        <h3 style="white-space:nowrap; text-overflow: ellipsis;">
-                            <small style=" color: #fff; font-size: 100%;"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                            <div align="left">
-                                <li class="fa"></li>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
+                    <figure class="snip1166 navy" >
+                        <img class="img-responsive" id="logoRadioMediano<?php echo e($iRadios); ?>" style="width: 70%" />
+                        <figcaption style="width: 75%">
+                            <h3>
+                                <small style="color: #fff; font-size: 100%" id="nombreRadioMediano<?php echo e($iRadios); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailRadioMediano<?php echo e($iRadios); ?>"></p>
                             </div>
-                            
-                        </h3>
-                        <div>
-                            <p><?php echo e($tvs->email_c); ?></p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
-            <figure class="snip1166 navy" >
-                <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 70%" />
-                <figcaption style="width: 75%">
-                    <h3>
-                        <small style="color: #fff; font-size: 100%"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                        <div align="left">
-                            <li class="fa"></li>
-                        </div>
-                        
-                    </h3>
-                    <div>
-                        <p><?php echo e($tvs->email_c); ?></p>
-                    </div>
-                </figcaption>
-            </figure>
-            </div>
-            <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
-            <figure class="snip1166 navy" >
-                <img class="img-responsive" src="<?php echo e(asset($tvs->logo)); ?> " style="width: 70%" />
-                <figcaption style="width: 90%">
-                    <h3>
-                        <small style="color: #fff; font-size: 100%"><?php echo e($tvs->name_r); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                        <div align="left">
-                            <li class="fa"></li>
-                        </div>
-                        
-                    </h3>
-                    <div>
-                        <p><?php echo e($tvs->email_c); ?></p>
-                    </div>
-                </figcaption>
-            </figure>
-            </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
+                    <figure class="snip1166 navy" >
+                        <img class="img-responsive" id="logoRadioPequeño<?php echo e($iRadios); ?>" style="width: 70%" />
+                        <figcaption style="width: 90%">
+                            <h3>
+                                <small style="color: #fff; font-size: 100%" id="nombreRadioPequeño<?php echo e($iRadios); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailRadioPequeño<?php echo e($iRadios); ?>"></p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+                <?php 
+                    $iRadios++
+                 ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+        <div id="Tvs">
+            <?php $__currentLoopData = $tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
+                    <figure class="snip1166 navy"">
+                        <img class="img-responsive" id="logoTvGrande<?php echo e($iTvs); ?>" style="width: 90%" />
+                        <figcaption style="width: 107%">
+                            <h3 style="white-space:nowrap; text-overflow: ellipsis;">
+                                <small style=" color: #fff; font-size: 100%;" id="nombreTvGrande<?php echo e($iTvs); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailTvGrande<?php echo e($iTvs); ?>"></p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
+                    <figure class="snip1166 navy" >
+                        <img class="img-responsive" id="logoTvMediano<?php echo e($iTvs); ?>" style="width: 70%" />
+                        <figcaption style="width: 75%">
+                            <h3>
+                                <small style="color: #fff; font-size: 100%" id="nombreTvMediano<?php echo e($iTvs); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailTvMediano<?php echo e($iTvs); ?>"></p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
+                    <figure class="snip1166 navy" >
+                        <img class="img-responsive" id="logoTvPequeño<?php echo e($iTvs); ?>" style="width: 70%" />
+                        <figcaption style="width: 90%">
+                            <h3>
+                                <small style="color: #fff; font-size: 100%" id="nombreTvPequeño<?php echo e($iTvs); ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <div align="left">
+                                    <li class="fa"></li>
+                                </div>
+                                
+                            </h3>
+                            <div>
+                                <p id="emailTvPequeño<?php echo e($iTvs); ?>"></p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+                <?php 
+                    $iTvs++
+                 ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
     </div>
 </div>
 <!--CONTENIDO END-->
@@ -454,12 +464,12 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <li style="margin-top: -5%; margin-left: 18%">
+                    <!-- <li style="margin-top: -5%; margin-left: 18%">
                         <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
                             <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -532,6 +542,7 @@
                             </div>
                         </form>
                     </div>
+<!--                     
                     <div id="proveedor" class="tab-pane fade">
                         <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/seller_login')); ?>">
                             <?php echo e(csrf_field()); ?>
@@ -587,7 +598,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -620,12 +631,12 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a data-toggle="tab" href="#new_proveedor">
                             Proveedor
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -728,6 +739,7 @@
                     </div>
                     
 
+                    <!-- 
                     
                     <div id="new_proveedor" class="tab-pane fade">
                         <form class="form-horizontal" method="POST" action="<?php echo e(url('ApplysSubmit')); ?>" id="formRP">
@@ -866,7 +878,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <div class="modal-footer" id="modal_footer">
                 <div class="text-center">
 
@@ -1294,6 +1306,123 @@ $('input[type=checkbox]').click(function(){
 
     //---------------------------------------------------------------------------------------------------
 
+</script>
+<script>
+    $(document).ready(function (){
+        $('#radio').css("background-color","#337ab7");
+        $('#Tvs').hide();
+        $.ajax({
+            url     : "<?php echo e(url('/indexRadio/')); ?>",
+            type    : "GET",
+            dataType: "json",
+            success: function (data) {
+                // console.log(data);
+                $.each(data, function(i,info) {
+                    var rutaLogo = "<?php echo e(asset('/')); ?>"+data[i].logo;
+                    var nombreRadio = data[i].name_r;
+                    var emailRadio = data[i].email_c;
+                    var logoRadioGrande = "#logoRadioGrande"+[i];
+                    var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
+                    var campoEmailRadioGrande = "#emailRadioGrande"+[i];
+                    var logoRadioMediano = "#logoRadioMediano"+[i];
+                    var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
+                    var campoEmailRadioMediano = "#emailRadioMediano"+[i];
+                    var logoRadioPequeño = "#logoRadioPequeño"+[i];
+                    var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
+                    var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
+                    $(logoRadioGrande).attr('src',rutaLogo);
+                    $(campoNombreRadioGrande).html(nombreRadio);
+                    $(campoEmailRadioGrande).html(emailRadio);
+                    $(logoRadioMediano).attr('src',rutaLogo);
+                    $(campoNombreRadioMediano).html(nombreRadio);
+                    $(campoEmailRadioMediano).html(emailRadio);
+                    $(logoRadioPequeño).attr('src',rutaLogo);
+                    $(campoNombreRadioPequeño).html(nombreRadio);
+                    $(campoEmailRadioPequeño).html(emailRadio);
+                });
+            }
+        });
+        $('#radio').click(function(){
+            $('#radio').css("background-color","#337ab7");
+            $('#cine').css("background-color","#21a4de");
+            $('#musica').css("background-color","#21a4de");
+            $('#libro').css("background-color","#21a4de");
+            $('#tv').css("background-color","#21a4de");
+            $('#Tvs').hide();
+            $('#radios').show();
+            $.ajax({
+                url     : "<?php echo e(url('/indexRadio/')); ?>",
+                type    : "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(i,info) {
+                        var rutaLogo = "<?php echo e(asset('/')); ?>"+data[i].logo;
+                        var nombreRadio = data[i].name_r;
+                        var emailRadio = data[i].email_c;
+                        var logoRadioGrande = "#logoRadioGrande"+[i];
+                        var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
+                        var campoEmailRadioGrande = "#emailRadioGrande"+[i];
+                        var logoRadioMediano = "#logoRadioMediano"+[i];
+                        var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
+                        var campoEmailRadioMediano = "#emailRadioMediano"+[i];
+                        var logoRadioPequeño = "#logoRadioPequeño"+[i];
+                        var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
+                        var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
+                        $(logoRadioGrande).attr('src',rutaLogo);
+                        $(campoNombreRadioGrande).html(nombreRadio);
+                        $(campoEmailRadioGrande).html(emailRadio);
+                        $(logoRadioMediano).attr('src',rutaLogo);
+                        $(campoNombreRadioMediano).html(nombreRadio);
+                        $(campoEmailRadioMediano).html(emailRadio);
+                        $(logoRadioPequeño).attr('src',rutaLogo);
+                        $(campoNombreRadioPequeño).html(nombreRadio);
+                        $(campoEmailRadioPequeño).html(emailRadio);
+                    });
+                }
+            });
+        });
+        $('#tv').click(function(){
+            $('#tv').css("background-color","#337ab7");
+            $('#cine').css("background-color","#21a4de");
+            $('#musica').css("background-color","#21a4de");
+            $('#libro').css("background-color","#21a4de");
+            $('#radio').css("background-color","#21a4de");
+            $('#radios').hide();
+            $('#Tvs').show();
+            $.ajax({
+                url     : "<?php echo e(url('/indexTv/')); ?>",
+                type    : "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(i,info) {
+                        var rutaLogo = "<?php echo e(asset('/')); ?>"+data[i].logo;
+                        var nombreTv = data[i].name_r;
+                        var emailTv = data[i].email_c;
+                        var logoTvGrande = "#logoTvGrande"+[i];
+                        var campoNombreTvGrande = "#nombreTvGrande"+[i];
+                        var campoEmailTvGrande = "#emailTvGrande"+[i];
+                        var logoTvMediano = "#logoTvMediano"+[i];
+                        var campoNombreTvMediano = "#nombreTvMediano"+[i];
+                        var campoEmailTvMediano = "#emailTvMediano"+[i];
+                        var logoTvPequeño = "#logoTvPequeño"+[i];
+                        var campoNombreTvPequeño = "#nombreTvPequeño"+[i];
+                        var campoEmailTvPequeño = "#emailTvPequeño"+[i];
+                        $(logoTvGrande).attr('src',rutaLogo);
+                        $(campoNombreTvGrande).html(nombreTv);
+                        $(campoEmailTvGrande).html(emailTv);
+                        $(logoTvMediano).attr('src',rutaLogo);
+                        $(campoNombreTvMediano).html(nombreTv);
+                        $(campoEmailTvMediano).html(emailTv);
+                        $(logoTvPequeño).attr('src',rutaLogo);
+                        $(campoNombreTvPequeño).html(nombreTv);
+                        $(campoEmailTvPequeño).html(emailTv);
+                    });
+                }
+            });
+        });
+    });
 </script>
 
 

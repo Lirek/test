@@ -162,10 +162,10 @@
                                     <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                 @endif
                                 <div class="col-md-10 control-label">
-                                @if($user->verify == 0 || $user->verify == 2)
-                                    <img id="preview_img_doc" src="" name='ci'/>  
-                                    <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
-                                @endif
+                                    @if($user->verify == 0 || $user->verify == 2)
+                                        <img id="preview_img_doc" src="" name='ci'/>
+                                        <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
+                                    @endif
                                     <div id="mensajeImgDoc"></div>
                                 </div>
                             </div>
@@ -212,6 +212,16 @@
                                 {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-4 control-label">
+                                <label  for="phone">Telefono de Contacto</label>
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
+                                <input type="hidden" id="phone2" name="phone" value="{{$user->phone}}">
+
+                            </div>
+                        </div>
 
                         {{--Boton--}}
                         <div class="form-group text-center">
@@ -230,27 +240,27 @@
 
 
 @section('js')
-<script type="text/javascript">
-$(document).ready(function (e){
+    <script type="text/javascript">
+        $(document).ready(function (e){
 
-    if ($("#phone2").val() !=''){
-        var phone = $("#phone2").val();
-        $("#phone_s").intlTelInput();
-        $("#phone_s").intlTelInput("setNumber",phone );
-        $("#phone_s").val(phone);
+            if ($("#phone2").val() !=''){
+                var phone = $("#phone2").val();
+                $("#phone_s").intlTelInput();
+                $("#phone_s").intlTelInput("setNumber",phone );
+                $("#phone_s").val(phone);
 
-    }else{
-      $("#phone_s").intlTelInput({
-        defaultCountry: "auto",
-        preferredCountries: ["ec"]
-      });
-    }
-     $("Form").submit(function() {
-            $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
-});
+            }else{
+                $("#phone_s").intlTelInput({
+                    defaultCountry: "auto",
+                    preferredCountries: ["ec"]
+                });
+            }
+            $("Form").submit(function() {
+                $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
+            });
 
-  })
-</script>
+        })
+    </script>
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------
@@ -356,79 +366,79 @@ $(document).ready(function (e){
         // Validacion de solo numeros
         //---------------------------------------------------------------------------------------------------
         // Validacion de maximo de caracteres para el nombre
-            $(document).ready(function(){
-                var cantidadMaxima = 191;
-                $('#nombre').keyup(function(evento){
-                    var nombre = $('#nombre').val();
-                    numeroPalabras = nombre.length;
-                    if (numeroPalabras>cantidadMaxima) {
-                        $('#mensajeMaximoNombre').show();
-                        $('#mensajeMaximoNombre').text('Ha excedido la cantidad máxima de caracteres');
-                        $('#mensajeMaximoNombre').css('color','red');
-                        $('#Editar').attr('disabled',true);
-                    } else {
-                        $('#mensajeMaximoNombre').hide();
-                        $('#Editar').attr('disabled',false);
-                    }
-                });
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#nombre').keyup(function(evento){
+                var nombre = $('#nombre').val();
+                numeroPalabras = nombre.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeMaximoNombre').show();
+                    $('#mensajeMaximoNombre').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoNombre').css('color','red');
+                    $('#Editar').attr('disabled',true);
+                } else {
+                    $('#mensajeMaximoNombre').hide();
+                    $('#Editar').attr('disabled',false);
+                }
             });
+        });
         // Validacion de maximo de caracteres para el nombre
         //---------------------------------------------------------------------------------------------------
         // Validacion de maximo de caracteres para el apellido
-            $(document).ready(function(){
-                var cantidadMaxima = 191;
-                $('#apellido').keyup(function(evento){
-                    var apellido = $('#apellido').val();
-                    numeroPalabras = apellido.length;
-                    if (numeroPalabras>cantidadMaxima) {
-                        $('#mensajeMaximoApellido').show();
-                        $('#mensajeMaximoApellido').text('Ha excedido la cantidad máxima de caracteres');
-                        $('#mensajeMaximoApellido').css('color','red');
-                        $('#Editar').attr('disabled',true);
-                    } else {
-                        $('#mensajeMaximoApellido').hide();
-                        $('#Editar').attr('disabled',false);
-                    }
-                });
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#apellido').keyup(function(evento){
+                var apellido = $('#apellido').val();
+                numeroPalabras = apellido.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeMaximoApellido').show();
+                    $('#mensajeMaximoApellido').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoApellido').css('color','red');
+                    $('#Editar').attr('disabled',true);
+                } else {
+                    $('#mensajeMaximoApellido').hide();
+                    $('#Editar').attr('disabled',false);
+                }
             });
+        });
         // Validacion de maximo de caracteres para la apellido
         //---------------------------------------------------------------------------------------------------
         // Validacion de maximo de caracteres para el alias
-            $(document).ready(function(){
-                var cantidadMaxima = 191;
-                $('#alias').keyup(function(evento){
-                    var alias = $('#alias').val();
-                    numeroPalabras = alias.length;
-                    if (numeroPalabras>cantidadMaxima) {
-                        $('#mensajeMaximoAlias').show();
-                        $('#mensajeMaximoAlias').text('Ha excedido la cantidad máxima de caracteres');
-                        $('#mensajeMaximoAlias').css('color','red');
-                        $('#Editar').attr('disabled',true);
-                    } else {
-                        $('#mensajeMaximoAlias').hide();
-                        $('#Editar').attr('disabled',false);
-                    }
-                });
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#alias').keyup(function(evento){
+                var alias = $('#alias').val();
+                numeroPalabras = alias.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeMaximoAlias').show();
+                    $('#mensajeMaximoAlias').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoAlias').css('color','red');
+                    $('#Editar').attr('disabled',true);
+                } else {
+                    $('#mensajeMaximoAlias').hide();
+                    $('#Editar').attr('disabled',false);
+                }
             });
+        });
         // Validacion de maximo de caracteres para la alias
         //---------------------------------------------------------------------------------------------------
         // Validacion de maximo de caracteres para la direccion
-            $(document).ready(function(){
-                var cantidadMaxima = 191;
-                $('#direccion').keyup(function(evento){
-                    var direccion = $('#direccion').val();
-                    numeroPalabras = direccion.length;
-                    if (numeroPalabras>cantidadMaxima) {
-                        $('#mensajeMaximoDireccion').show();
-                        $('#mensajeMaximoDireccion').text('Ha excedido la cantidad máxima de caracteres');
-                        $('#mensajeMaximoDireccion').css('color','red');
-                        $('#Editar').attr('disabled',true);
-                    } else {
-                        $('#mensajeMaximoDireccion').hide();
-                        $('#Editar').attr('disabled',false);
-                    }
-                });
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#direccion').keyup(function(evento){
+                var direccion = $('#direccion').val();
+                numeroPalabras = direccion.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeMaximoDireccion').show();
+                    $('#mensajeMaximoDireccion').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoDireccion').css('color','red');
+                    $('#Editar').attr('disabled',true);
+                } else {
+                    $('#mensajeMaximoDireccion').hide();
+                    $('#Editar').attr('disabled',false);
+                }
             });
+        });
         // Validacion de maximo de caracteres para la direccion
         //---------------------------------------------------------------------------------------------------
         // Validacion al enviar formulario
