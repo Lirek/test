@@ -13,6 +13,9 @@ class SistemBalance extends Model
   	  						 'points_solds',
   	  						 'my_points',
   	  						 'points_sells',
+  	  						 'tickets_sells',
+  	  						 'tickets_rolled',
+  	  						 'points_rolled',
   	  						 'created_at',
   	  						 'updated_at'];
 }
