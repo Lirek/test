@@ -335,8 +335,10 @@
     <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
   <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
 
+
   <!--Script Plyr-->
   <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
+
 
   <!--PDF.JS-->
   <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
