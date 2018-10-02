@@ -383,14 +383,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
          Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
+         Route::post('PointsRollBack/{id}','SuperAdminController@PointsRollBack');
 
 
          Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');
          Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
+         Route::post('TicketsRollBack/{id}','SuperAdminController@TicketsRollBack');
 
          Route::get('UserDetails','SuperAdminController@ShowUserDetails');
-
-         //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
