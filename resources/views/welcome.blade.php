@@ -32,8 +32,8 @@
 
     <link rel="stylesheet" type="text/css"
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    
     <style type="text/css">
-
 
     </style>
 
@@ -159,14 +159,14 @@
 
 
 
-<div class="col-md-12">
+<div class="col-md-12" id="contenido">
     <div class="row">
         <div id="radios">
             @foreach($radio as $r)
-                <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
-                    <figure class="snip1166 navy" style="display: block; ">
-                        <img class="img-responsive" id="logoRadioGrande{{$iRadios}}" style="width: 90%" />
-                        <figcaption style="width: 107%">
+                <div class="contenidoGeneral">
+                    <figure class="snip1166 navy" style="display: block;">
+                        <img class="img-responsive imagenLogo" id="logoRadioGrande{{$iRadios}}">
+                        <figcaption class="bandaAzul">
                             <h3>
                                 <small style="color: #fff; font-size: 100%;" id="nombreRadioGrande{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                                 <div align="left">
@@ -195,70 +195,6 @@
                         </figcaption>
                     </figure>
                 </div>
-                <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
-                    <figure class="snip1166 navy" >
-                        <img class="img-responsive" id="logoRadioMediano{{$iRadios}}" style="width: 70%" />
-                        <figcaption style="width: 75%">
-                            <h3>
-                                <small style="color: #fff; font-size: 100%" id="nombreRadioMediano{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                                <div align="left">
-                                    <li class="fa"></li>
-                                </div>
-                                {{---
-                                <div align="left">
-                                    @if($r->facebook)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $r->facebook }}"></a>
-                                    @endif
-                                    @if($r->instagram)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $r->instagram }}"></a>
-                                    @endif
-                                    @if($r->twitter)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $r->twitter }}"></a>
-                                    @endif
-                                    @if($r->google)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $r->google }}"></a>
-                                    @endif
-                                </div>
-                                --}}
-                            </h3>
-                            <div>
-                                <p id="emailRadioMediano{{$iRadios}}"></p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
-                    <figure class="snip1166 navy" >
-                        <img class="img-responsive" id="logoRadioPequeño{{$iRadios}}" style="width: 70%" />
-                        <figcaption style="width: 90%">
-                            <h3>
-                                <small style="color: #fff; font-size: 100%" id="nombreRadioPequeño{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                                <div align="left">
-                                    <li class="fa"></li>
-                                </div>
-                                {{--
-                                <div align="left">
-                                    @if($r->facebook)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $r->facebook }}"></a>
-                                    @endif
-                                    @if($r->instagram)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $r->instagram }}"></a>
-                                    @endif
-                                    @if($r->twitter)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $r->twitter }}"></a>
-                                    @endif
-                                    @if($r->google)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $r->google }}"></a>
-                                    @endif
-                                </div>
-                                --}}
-                            </h3>
-                            <div>
-                                <p id="emailRadioPequeño{{$iRadios}}"></p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
                 @php
                     $iRadios++
                 @endphp
@@ -266,10 +202,10 @@
         </div>
         <div id="Tvs">
             @foreach($tv as $tvs)
-                <div class="hidden-sm hidden-md hidden-xs col-lg-3" style="width: 265px; padding-left: 45px">
-                    <figure class="snip1166 navy"">
-                        <img class="img-responsive" id="logoTvGrande{{$iTvs}}" style="width: 90%" />
-                        <figcaption style="width: 107%">
+                <div class="contenidoGeneral">
+                    <figure class="snip1166 navy" style="display: block;">
+                        <img class="img-responsive imagenLogo" id="logoTvGrande{{$iTvs}}">
+                        <figcaption class="bandaAzul">
                             <h3 style="white-space:nowrap; text-overflow: ellipsis;">
                                 <small style=" color: #fff; font-size: 100%;" id="nombreTvGrande{{$iTvs}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                                 <div align="left">
@@ -294,70 +230,6 @@
                             </h3>
                             <div>
                                 <p id="emailTvGrande{{$iTvs}}"></p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-md-5 hidden-lg  hidden-xs" style="margin-left: 8%">
-                    <figure class="snip1166 navy" >
-                        <img class="img-responsive" id="logoTvMediano{{$iTvs}}" style="width: 70%" />
-                        <figcaption style="width: 75%">
-                            <h3>
-                                <small style="color: #fff; font-size: 100%" id="nombreTvMediano{{$iTvs}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                                <div align="left">
-                                    <li class="fa"></li>
-                                </div>
-                                {{---
-                                <div align="left">
-                                    @if($tvs->facebook)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $tvs->facebook }}"></a>
-                                    @endif
-                                    @if($tvs->instagram)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $tvs->instagram }}"></a>
-                                    @endif
-                                    @if($tvs->twitter)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $tvs->twitter }}"></a>
-                                    @endif
-                                    @if($tvs->google)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $tvs->google }}"></a>
-                                    @endif
-                                </div>
-                                --}}
-                            </h3>
-                            <div>
-                                <p id="emailTvMediano{{$iTvs}}"></p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-xs-10 hidden-sm hidden-lg hidden-md" style="margin-left: 15%">
-                    <figure class="snip1166 navy" >
-                        <img class="img-responsive" id="logoTvPequeño{{$iTvs}}" style="width: 70%" />
-                        <figcaption style="width: 90%">
-                            <h3>
-                                <small style="color: #fff; font-size: 100%" id="nombreTvPequeño{{$iTvs}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
-                                <div align="left">
-                                    <li class="fa"></li>
-                                </div>
-                                {{--
-                                <div align="left">
-                                    @if($tvs->facebook)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-facebook-f" href="{{ $tvs->facebook }}"></a>
-                                    @endif
-                                    @if($tvs->instagram)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-instagram" href="{{ $tvs->instagram }}"></a>
-                                    @endif
-                                    @if($tvs->twitter)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-twitter" href="{{ $tvs->twitter }}"></a>
-                                    @endif
-                                    @if($tvs->google)
-                                        <a target="_blank" style="color: white; text-decoration: none" class="fa fa-youtube-play" href="{{ $tvs->google }}"></a>
-                                    @endif
-                                </div>
-                                --}}
-                            </h3>
-                            <div>
-                                <p id="emailTvPequeño{{$iTvs}}"></p>
                             </div>
                         </figcaption>
                     </figure>
@@ -968,6 +840,158 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function (){
+        $('#radio').css("background-color","#337ab7");
+        $('#Tvs').hide();
+        $.ajax({
+            url     : "{{ url('/indexRadio/') }}",
+            type    : "GET",
+            dataType: "json",
+            success: function (data) {
+                // console.log(data);
+                $.each(data, function(i,info) {
+                    var rutaLogo = "{{asset('/')}}"+data[i].logo;
+                    var nombreRadio = data[i].name_r;
+                    var emailRadio = data[i].email_c;
+                    var logoRadioGrande = "#logoRadioGrande"+[i];
+                    var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
+                    var campoEmailRadioGrande = "#emailRadioGrande"+[i];
+                    var logoRadioMediano = "#logoRadioMediano"+[i];
+                    var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
+                    var campoEmailRadioMediano = "#emailRadioMediano"+[i];
+                    var logoRadioPequeño = "#logoRadioPequeño"+[i];
+                    var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
+                    var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
+                    $(logoRadioGrande).attr('src',rutaLogo);
+                    $(campoNombreRadioGrande).html(nombreRadio);
+                    $(campoEmailRadioGrande).html(emailRadio);
+                    $(logoRadioMediano).attr('src',rutaLogo);
+                    $(campoNombreRadioMediano).html(nombreRadio);
+                    $(campoEmailRadioMediano).html(emailRadio);
+                    $(logoRadioPequeño).attr('src',rutaLogo);
+                    $(campoNombreRadioPequeño).html(nombreRadio);
+                    $(campoEmailRadioPequeño).html(emailRadio);
+                });
+            }
+        });
+        $('#radio').click(function(){
+            $('#radio').css("background-color","#337ab7");
+            $('#cine').css("background-color","#21a4de");
+            $('#musica').css("background-color","#21a4de");
+            $('#libro').css("background-color","#21a4de");
+            $('#tv').css("background-color","#21a4de");
+            $('#Tvs').hide();
+            $('#radios').show();
+            $.ajax({
+                url     : "{{ url('/indexRadio/') }}",
+                type    : "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(i,info) {
+                        var rutaLogo = "{{asset('/')}}"+data[i].logo;
+                        var nombreRadio = data[i].name_r;
+                        var emailRadio = data[i].email_c;
+                        var logoRadioGrande = "#logoRadioGrande"+[i];
+                        var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
+                        var campoEmailRadioGrande = "#emailRadioGrande"+[i];
+                        var logoRadioMediano = "#logoRadioMediano"+[i];
+                        var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
+                        var campoEmailRadioMediano = "#emailRadioMediano"+[i];
+                        var logoRadioPequeño = "#logoRadioPequeño"+[i];
+                        var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
+                        var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
+                        $(logoRadioGrande).attr('src',rutaLogo);
+                        $(campoNombreRadioGrande).html(nombreRadio);
+                        $(campoEmailRadioGrande).html(emailRadio);
+                        $(logoRadioMediano).attr('src',rutaLogo);
+                        $(campoNombreRadioMediano).html(nombreRadio);
+                        $(campoEmailRadioMediano).html(emailRadio);
+                        $(logoRadioPequeño).attr('src',rutaLogo);
+                        $(campoNombreRadioPequeño).html(nombreRadio);
+                        $(campoEmailRadioPequeño).html(emailRadio);
+                    });
+                }
+            });
+        });
+        $('#tv').click(function(){
+            $('#tv').css("background-color","#337ab7");
+            $('#cine').css("background-color","#21a4de");
+            $('#musica').css("background-color","#21a4de");
+            $('#libro').css("background-color","#21a4de");
+            $('#radio').css("background-color","#21a4de");
+            $('#radios').hide();
+            $('#Tvs').show();
+            $.ajax({
+                url     : "{{ url('/indexTv/') }}",
+                type    : "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $.each(data, function(i,info) {
+                        var rutaLogo = "{{asset('/')}}"+data[i].logo;
+                        var nombreTv = data[i].name_r;
+                        var emailTv = data[i].email_c;
+                        var logoTvGrande = "#logoTvGrande"+[i];
+                        var campoNombreTvGrande = "#nombreTvGrande"+[i];
+                        var campoEmailTvGrande = "#emailTvGrande"+[i];
+                        var logoTvMediano = "#logoTvMediano"+[i];
+                        var campoNombreTvMediano = "#nombreTvMediano"+[i];
+                        var campoEmailTvMediano = "#emailTvMediano"+[i];
+                        var logoTvPequeño = "#logoTvPequeño"+[i];
+                        var campoNombreTvPequeño = "#nombreTvPequeño"+[i];
+                        var campoEmailTvPequeño = "#emailTvPequeño"+[i];
+                        $(logoTvGrande).attr('src',rutaLogo);
+                        $(campoNombreTvGrande).html(nombreTv);
+                        $(campoEmailTvGrande).html(emailTv);
+                        $(logoTvMediano).attr('src',rutaLogo);
+                        $(campoNombreTvMediano).html(nombreTv);
+                        $(campoEmailTvMediano).html(emailTv);
+                        $(logoTvPequeño).attr('src',rutaLogo);
+                        $(campoNombreTvPequeño).html(nombreTv);
+                        $(campoEmailTvPequeño).html(emailTv);
+                    });
+                }
+            });
+        });
+    });
+    $('#contenido').ready(function(){
+        var ventana_ancho = $(window).width();
+        ajustarTiempo(ventana_ancho);
+        $(window).resize(function(){
+            limpiarCalses();
+            var ventana_ancho = $(window).width();
+            ajustarTiempo(ventana_ancho);
+            
+        });
+        function ajustarTiempo(ventana_ancho) {
+            if (ventana_ancho<=425) {
+                $('.contenidoGeneral').addClass('col-xs-10');
+                $('.contenidoGeneral').css('margin-left','15%');
+                $('.imagenLogo').css('width','70%');
+                $('.bandaAzul').css('width','90%');
+            } else if (ventana_ancho<= 1024) {
+                $('.contenidoGeneral').addClass('col-md-5');
+                $('.contenidoGeneral').css('margin-left','8%');
+                $('.imagenLogo').css('width','70%');
+                $('.bandaAzul').css('width','75%');
+            } else if (ventana_ancho>=1025) {
+                $('.contenidoGeneral').addClass('col-lg-3');
+                $('.contenidoGeneral').css('padding-left','3%');
+                $('.contenidoGeneral').css('width','265px');
+                $('.imagenLogo').css('width','90%');
+                $('.bandaAzul').css('width','107%');
+            }
+        }
+        function limpiarCalses() {
+            $('.contenidoGeneral').removeClass('col-xs-10');
+            $('.contenidoGeneral').removeClass('col-md-5');
+            $('.contenidoGeneral').removeClass('col-lg-3');
+            $('.contenidoGeneral').removeAttr('style');
+            $('.imagenLogo').removeAttr('style');
+            $('.bandaAzul').removeAttr('style');
+        }
+    });
 //---------------------------------------VALIDACIONES PARA REGISTRO DE USUARIO------------------------------------------
     //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
     function controltagLet(e) {
@@ -1358,123 +1382,6 @@
 
     //---------------------------------------------------------------------------------------------------
 
-</script>
-<script>
-    $(document).ready(function (){
-        $('#radio').css("background-color","#337ab7");
-        $('#Tvs').hide();
-        $.ajax({
-            url     : "{{ url('/indexRadio/') }}",
-            type    : "GET",
-            dataType: "json",
-            success: function (data) {
-                // console.log(data);
-                $.each(data, function(i,info) {
-                    var rutaLogo = "{{asset('/')}}"+data[i].logo;
-                    var nombreRadio = data[i].name_r;
-                    var emailRadio = data[i].email_c;
-                    var logoRadioGrande = "#logoRadioGrande"+[i];
-                    var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
-                    var campoEmailRadioGrande = "#emailRadioGrande"+[i];
-                    var logoRadioMediano = "#logoRadioMediano"+[i];
-                    var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
-                    var campoEmailRadioMediano = "#emailRadioMediano"+[i];
-                    var logoRadioPequeño = "#logoRadioPequeño"+[i];
-                    var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
-                    var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
-                    $(logoRadioGrande).attr('src',rutaLogo);
-                    $(campoNombreRadioGrande).html(nombreRadio);
-                    $(campoEmailRadioGrande).html(emailRadio);
-                    $(logoRadioMediano).attr('src',rutaLogo);
-                    $(campoNombreRadioMediano).html(nombreRadio);
-                    $(campoEmailRadioMediano).html(emailRadio);
-                    $(logoRadioPequeño).attr('src',rutaLogo);
-                    $(campoNombreRadioPequeño).html(nombreRadio);
-                    $(campoEmailRadioPequeño).html(emailRadio);
-                });
-            }
-        });
-        $('#radio').click(function(){
-            $('#radio').css("background-color","#337ab7");
-            $('#cine').css("background-color","#21a4de");
-            $('#musica').css("background-color","#21a4de");
-            $('#libro').css("background-color","#21a4de");
-            $('#tv').css("background-color","#21a4de");
-            $('#Tvs').hide();
-            $('#radios').show();
-            $.ajax({
-                url     : "{{ url('/indexRadio/') }}",
-                type    : "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $.each(data, function(i,info) {
-                        var rutaLogo = "{{asset('/')}}"+data[i].logo;
-                        var nombreRadio = data[i].name_r;
-                        var emailRadio = data[i].email_c;
-                        var logoRadioGrande = "#logoRadioGrande"+[i];
-                        var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
-                        var campoEmailRadioGrande = "#emailRadioGrande"+[i];
-                        var logoRadioMediano = "#logoRadioMediano"+[i];
-                        var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
-                        var campoEmailRadioMediano = "#emailRadioMediano"+[i];
-                        var logoRadioPequeño = "#logoRadioPequeño"+[i];
-                        var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
-                        var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
-                        $(logoRadioGrande).attr('src',rutaLogo);
-                        $(campoNombreRadioGrande).html(nombreRadio);
-                        $(campoEmailRadioGrande).html(emailRadio);
-                        $(logoRadioMediano).attr('src',rutaLogo);
-                        $(campoNombreRadioMediano).html(nombreRadio);
-                        $(campoEmailRadioMediano).html(emailRadio);
-                        $(logoRadioPequeño).attr('src',rutaLogo);
-                        $(campoNombreRadioPequeño).html(nombreRadio);
-                        $(campoEmailRadioPequeño).html(emailRadio);
-                    });
-                }
-            });
-        });
-        $('#tv').click(function(){
-            $('#tv').css("background-color","#337ab7");
-            $('#cine').css("background-color","#21a4de");
-            $('#musica').css("background-color","#21a4de");
-            $('#libro').css("background-color","#21a4de");
-            $('#radio').css("background-color","#21a4de");
-            $('#radios').hide();
-            $('#Tvs').show();
-            $.ajax({
-                url     : "{{ url('/indexTv/') }}",
-                type    : "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $.each(data, function(i,info) {
-                        var rutaLogo = "{{asset('/')}}"+data[i].logo;
-                        var nombreTv = data[i].name_r;
-                        var emailTv = data[i].email_c;
-                        var logoTvGrande = "#logoTvGrande"+[i];
-                        var campoNombreTvGrande = "#nombreTvGrande"+[i];
-                        var campoEmailTvGrande = "#emailTvGrande"+[i];
-                        var logoTvMediano = "#logoTvMediano"+[i];
-                        var campoNombreTvMediano = "#nombreTvMediano"+[i];
-                        var campoEmailTvMediano = "#emailTvMediano"+[i];
-                        var logoTvPequeño = "#logoTvPequeño"+[i];
-                        var campoNombreTvPequeño = "#nombreTvPequeño"+[i];
-                        var campoEmailTvPequeño = "#emailTvPequeño"+[i];
-                        $(logoTvGrande).attr('src',rutaLogo);
-                        $(campoNombreTvGrande).html(nombreTv);
-                        $(campoEmailTvGrande).html(emailTv);
-                        $(logoTvMediano).attr('src',rutaLogo);
-                        $(campoNombreTvMediano).html(nombreTv);
-                        $(campoEmailTvMediano).html(emailTv);
-                        $(logoTvPequeño).attr('src',rutaLogo);
-                        $(campoNombreTvPequeño).html(nombreTv);
-                        $(campoEmailTvPequeño).html(emailTv);
-                    });
-                }
-            });
-        });
-    });
 </script>
 {{--registrar proveedor end--}}
 {{--validaciones --}}

@@ -110,7 +110,8 @@
               <h4 class="modal-title">Ingrese el codigo</h4>
           </div>
           <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data" id="patrocinador">{{ csrf_field() }}
+              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">
+                {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                         <label for="codigo" class="col-md-4 control-label">Codigo</label>
@@ -142,11 +143,10 @@
 @section('js')
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
-  var form = this;
-  $('#codigoMen').hidden();
+  //var form = this;
+  $('#codigoMen').hide();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
-
   $.ajax({
     url:'sponsor/'+cod,
     type: 'get',
@@ -155,7 +155,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
       var gif = "{{ asset('/sistem_images/loading.gif') }}";
       swal({
           title: "¡Listo! Estamos validando su información...",
-          text: "Espere un momento por favot, mientras validamos el código de patrocinador.",
+          text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
           icon: gif,
           buttons: false,
           closeOnEsc: false,
