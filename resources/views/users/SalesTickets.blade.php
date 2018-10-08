@@ -214,9 +214,10 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Recibo:</b>
-                                                            <input id="voucher-{{$ticket->id}}" type="file" accept="image/*" class="form-control" name="voucher" value="{{ old('voucher') }}" >
+                                                            <input id="voucher-{{$ticket->id}}" type="file" accept="image/*" class="form-control" onchange="validarVoucher({!!$ticket->id!!})" name="voucher" value="{{ old('voucher') }}" >
                                                         </label>
                                                     </div>
+                                                    <div id="mensajeImgVoucher-{{$ticket->id}}"></div>
                                                 </div>
                                                 <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none; margin-bottom: 5%">
                                                     <div class="col-md-12">
@@ -681,6 +682,24 @@ input[type="checkbox"]:disabled + .label-text:before{
             }
         });
     }
+    //---------------------------------------------------------------------------------------------------
+    // Validar formato del voucher
+        function validarVoucher(id) {
+            var img_voucher = $('#voucher-'+id).val();
+            console.log(img_voucher);
+            var extension = img_voucher.substring(img_voucher.lastIndexOf("."));
+            console.log(extension);
+            if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                $('#ingresar-'+id).attr('disabled',false);
+                $('#mensajeImgVoucher-'+id).hide();
+            } else {
+                $('#ingresar-'+id).attr('disabled',true);
+                $('#mensajeImgVoucher-'+id).show();
+                $('#mensajeImgVoucher-'+id).text('El recibo debe estar en formato jpeg, jpg o png');
+                $('#mensajeImgVoucher-'+id).css('color','red');
+            }
+        }
+    // Validar formato del voucher
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
 <script id="jsbin-javascript">
