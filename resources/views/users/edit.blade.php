@@ -12,7 +12,7 @@
             background-position: center center;
             width: 100%;
             min-height: 350px;
-            min-width: 1000px;
+            min-width: 100%;
             -webkit-background-size: 100%;
             -moz-background-size: 100%;
             -o-background-size: 100%;
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="panel" class="img-rounded img-responsive av"></div>
+                                    <div id="panel" class="img-rounded img-responsive"></div>
                                     <br>
                                     <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label">
                                         <div id="mensajeImgPerf"></div>
@@ -195,7 +195,7 @@
                                 {!! Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']) !!}
                             </div>
                             <div class="col-md-6 control-label">
-                                {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control', 'max' =>date('Y-m-d')]) !!}
+                                {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control']) !!}
                             </div>
                         </div>
 

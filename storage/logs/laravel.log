@@ -15520,3 +15520,18 @@ Stack trace:
 [2018-10-01 16:16:49] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Auth\Access\AuthorizesRequests.php:7
 Stack trace:
 #0 {main}  
+[2018-10-04 21:01:00] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\spatie\laravel-fractal\src\FractalServiceProvider.php:10
+Stack trace:
+#0 {main}  
+[2018-10-04 21:01:44] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\View\View.php:17
+Stack trace:
+#0 {main}  
+[2018-10-06 20:02:42] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Concerns\HasTimestamps.php:7
+Stack trace:
+#0 {main}  
+[2018-10-06 20:03:17] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\ImplicitRouteBinding.php:7
+Stack trace:
+#0 {main}  
+[2018-10-08 14:06:26] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Auth\CreatesUserProviders.php:7
+Stack trace:
+#0 {main}  
