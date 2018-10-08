@@ -43,7 +43,7 @@
                                                 
                                             </div>
                                             <div class="col-sm-12 col-xs-12 col-md-6" align="center">
-                                                <audio  id="player" controls  >
+                                                <audio  id="player" controls  data-plyr-config='{"autoplay": true}'>
                                                     <source src="{{asset($radios->streaming)}}" type="audio/mp3" >
                                                 </audio>
                                             </div>
@@ -97,18 +97,11 @@
     </div>
 @endsection
 @section('js')
-<script type="text/javascript">
-    $(document).ready(function(evento){
-        var vid = document.getElementById("player");
-    vid.autoplay = true;
-    vid.load();
-
-    })
-</script>
 
     <script type="text/javascript">
 
         const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
+
     </script>
 
 
