@@ -340,12 +340,16 @@ class HomeController extends Controller
             $Buy->status        = 1;
             $Buy->method        ='Puntos';
             $Buy->save();
-            
             $cant=$this->tickets($request->ticket_id);
             $ticket=$cant*$request->Cantidad;
-
             $cost=$request->Cantidad*$request->points;
-
+            $this->creditos($ticket);
+            $this->points($cost);
+            if ($user->pending_points != 0 && $user->points < $user->limit_points) {
+                $user->points = $user->points + $user->pending_points;
+                $user->pending_points = 0;
+            }
+            $user->save();
             $Condition = Carbon::now()->firstOfMonth()->toDateString();
             $revenueMonth = Payments::where('user_id',Auth::user()->id)
                 ->where('created_at','>=',$Condition)
@@ -356,90 +360,12 @@ class HomeController extends Controller
             $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
             $balance->save();
             if ($revenueMonth->count()<=1) {
-                //$action = "accept";
                 event(new AssingPointsEvents(Auth::user()->id,$request->ticket_id));
             }
-
-            $this->creditos($ticket);
-            $this->points($cost);
             $this->correo();
-
             return response()->json($Buy);
         }
     }
-    /*
-    public function pruebaPuntos($package_id,$user_id) {
-        //$TicketsPackage = TicketsPackage::find($event->package_id);
-        $TicketsPackage = TicketsPackage::find($package_id);
-        //$User = User::find($event->user_id);
-        $User = User::find($user_id);
-        //dd($User);
-        $points= $TicketsPackage->points;
-        $i = 0;
-        if ($User->UserRefered->count() == 0) {
-
-          $balance= SistemBalance::find(1);
-          $balance->my_points= $balance->my_points + $points;
-          $balance->points_solds = $balance->points_solds + $points;
-          $balance->save();
-
-          $Assing = new PointsAssings;
-          $Assing->amount = $points;
-          $Assing->from =  $User->id;
-          $Assing->to =  0;
-          $Assing->save();
-        } else {
-          //$UserR = User::find($event->user_id);
-            $UserR = User::find($user_id);
-          $id=$UserR->id;
-          $Refered= collect(new User);
-
-          while (true) {
-            $pass = Referals::where('refered','=',$id)->first();
-            if ($pass!=NULL) {
-              $id=$pass->user_id;
-              $Refered->push(User::find($id));
-            } else {
-              break;
-            }   
-          }
-
-          foreach ($Refered as $key) {
-            if($key->points == $key->limit_points) {
-              $key->pending_points = $key->pending_points + 1;
-            } else {
-              $key->points = $key->points + 1; 
-            }
-
-            $key->save();
-            $Assing1 = new PointsAssings;
-            $Assing1->amount = 1;
-            $Assing1->from = $UserR->id; 
-            $Assing1->to =   $key->id;
-            $Assing1->save();
-          }
-
-          $total=$points-$Refered->count();
-          dd($Refered->count(),$points);
-          $balance=  SistemBalance::find(1);
-          $balance->points_solds = $balance->points_solds + $points;
-          dd($total);
-
-          if ($total!=0) {
-            $balance->my_points= $balance->my_points + $total; 
-            $balance->save();
-
-            $Assing = new PointsAssings;
-            $Assing->amount = $total;
-            $Assing->from =  $User->id;
-            $Assing->to =  0;
-            $Assing->save();
-          } else {
-            $balance->save();
-          }
-        }
-    }
-    */
 
     public function BuyPayphone($id,$cost,$value) {
         $Buy = new Payments;
@@ -471,10 +397,13 @@ class HomeController extends Controller
         $Buy->reference = $reference;
         $Buy->factura_id = $idFactura;
         $Buy->save();
-        $this->correo();
-
         $this->creditos($tickets);
-
+        $user = User::find(Auth::user()->id);
+        if ($user->pending_points != 0 && $user->points < $user->limit_points) {
+            $user->points = $user->points + $user->pending_points;
+            $user->pending_points = 0;
+            $user->save();
+        }
         $Condition = Carbon::now()->firstOfMonth()->toDateString();
         $revenueMonth = Payments::where('user_id',Auth::user()->id)
             ->where('created_at','>=',$Condition)
@@ -485,9 +414,9 @@ class HomeController extends Controller
         $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
         $balance->save();
         if ($revenueMonth->count()<=1) {
-            // $action = "accept";
-            event(new AssingPointsEvents(Auth::user()->id,$TicketsPackage->package_id));
+            event(new AssingPointsEvents(Auth::user()->id,$Buy->package_id));
         }
+        $this->correo();
         $respuesta = "todo bien";
         return Response()->json($respuesta);
     }

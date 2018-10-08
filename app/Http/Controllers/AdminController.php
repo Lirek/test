@@ -104,7 +104,7 @@ class AdminController extends Controller
                       
 
                       return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';;
+                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';
                     })
                     ->rawColumns(['Estatus','cover','songs'])
                     ->toJson();        
@@ -1234,8 +1234,8 @@ class AdminController extends Controller
                       })
                       */
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                      <img class="img-rounded img-responsive av" style="width:70px;height:70px;" src="'.asset($user->img_doc).'"
+                                  alt="User Avatar" id="photo'.$user->id.'"> 
                                  </button>';
                     })
                     ->editColumn('name',function($user){
@@ -1648,3 +1648,4 @@ class AdminController extends Controller
 
 
 }
+ 

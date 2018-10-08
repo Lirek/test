@@ -27,6 +27,7 @@
                   <th class="non-numeric">Imagen del Documento</th>
                   <th class="non-numeric">Fecha de Nacimiento</th>
                   <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de Registro</th>
                   <th class="non-numeric">Redes</th>
                   <th class="non-numeric">Estatus</th>
               </tr>
@@ -35,7 +36,7 @@
 
         </div>
       </div>
-      <button class="btn-info" id="AllClients">Ver Aprobados</button>
+
     </div>
 
    <div id="menu1" class="tab-pane fade">
@@ -84,6 +85,29 @@
         </div>
       </div>
     </div>
+    
+       <div id="menu3" class="tab-pane fade">
+      <div class="col-lg-12">
+        <div class="content-panel">
+
+          <table class="table table-bordered table-striped table-condensed" id="ClientsAproved">            
+            <thead>
+                <tr>
+                  <th class="non-numeric">Nombre</th>
+                  <th class="non-numeric">Numero Doc</th>
+                  <th class="non-numeric">Imagen del Documento</th>
+                  <th class="non-numeric">Fecha de Nacimiento</th>
+                  <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de registro</th>
+                  <th class="non-numeric">Redes</th>
+                  <th class="non-numeric">Estatus</th>
+              </tr>
+              </thead>
+          </table>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -91,7 +115,57 @@
 @endsection
 
 @section('js')
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
+<script id="jsbin-javascript">
+  function getDatilAgain(idTicketSales,medio,idUser,callback) {
+    var msn = "";
+    getDatil(idTicketSales,medio,idUser).then(function(response) {
+        var res = JSON.parse(response);
+        msn = res;
+    }, function(error) {
+        msn = error;
+    });
+    setTimeout(function() {
+        callback(msn);
+    },6000); // 6000
+  }
+  function getDatil(idTicketSales,medio,idUser) {
+    return new Promise(function(resolve,reject) {
+      var parametros = "/"+idTicketSales+"/"+medio+"/"+idUser;
+      var url = "{{ url('/facturaDeposito/') }}"+parametros;
+
+      var req = new XMLHttpRequest();
+      req.open("GET",url);
+      req.onload = function() {
+          if (req.status == 200) {
+              resolve(req.response);
+          }
+          else {
+              resolve(req.response);
+          }
+      };
+      req.onerror = function() {
+          reject(Error("Network Error"));
+      };
+      req.send();
+    });
+  }
+  function setFactura(idTicketSales,idFactura,callback){
+    var parametros = "/"+idTicketSales+"/"+idFactura;
+    var ruta = "{{ url('/setFactura/') }}"+parametros;
+    var factura = "";
+
+    $.ajax({
+        url     : ruta,
+        type    : "GET",
+        dataType: "json",
+        success: function (data) {
+            var factura = data;
+            callback(factura);
+        }
+    });
+    return factura;
+  }
   $(document).ready(function(){
 
     var ClientsDataTable = $('#Clients').DataTable({
@@ -108,15 +182,11 @@
               {data: 'type', name: 'type'},
               {data: 'created_at', name: 'created_at'},
               {data: 'webs', name: 'webs'},
-              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false},
           ]
       });
 
-    $(document).on('click', '#AllClients', function() {
 
-      ClientsDataTable.ajax.url('{!! url('AllClientsDataTable') !!}').load();
-    
-    });
 
     $(document).on('click', '#Status', function() {
               var x = $(this).val();
@@ -216,7 +286,7 @@
         
         $( "#formPayment" ).on( 'submit', function(e){
 
-          var gif = "{{ asset('/sistem_images/Loading.gif') }}";
+          var gif = "{{ asset('/sistem_images/loading.gif') }}";
           swal({
               title: "Procesando la información",
               text: "Espere mientras se procesa la información.",
@@ -288,7 +358,7 @@
                                                     } else {
                                                       swal({
                                                         title: "No se pudo conectar con Datil",
-                                                        text: "El pago ya fue procesado exitosamente, sin embargo la factura la solicitará el cliente, por expirarse el tiempo de espera.",
+                                                        text: "El pago ya fue procesado exitosamente, sin embargo la factura la podrá solicitar el cliente, por expirarse el tiempo de espera.",
                                                         icon: "info",
                                                         closeOnEsc: false,
                                                         closeOnClickOutside: false

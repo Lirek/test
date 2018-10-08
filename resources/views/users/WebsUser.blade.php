@@ -181,7 +181,7 @@
 @section('js')
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
-  //var form = this;
+  var form = this;
   $('#codigoMen').hide();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
