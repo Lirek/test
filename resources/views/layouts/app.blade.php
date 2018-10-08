@@ -293,6 +293,11 @@
           @else
             <center><h4><b>Total de puntos:</b> 0</h4></center>
           @endif
+          @if(Auth::user()->pending_points)
+            <center><h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4></center>
+          @else
+            <center><h4><b>Total de puntos pendientes:</b> 0 </h4></center>
+          @endif
         </label>
         <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
       </div>
