@@ -16,6 +16,17 @@ use App\User;
 
 class WelcomeController extends Controller
 {
+
+        public function terminosYcondiciones()
+    {
+        return view('terminosCondiciones');
+    }
+
+    public function leipel()
+    {
+        return view('queEsLeipel');
+    }
+
     public function welcome()
     {
 //        $sellers = Seller::orderBy('id', 'DESC')->paginate('10');
@@ -28,11 +39,14 @@ class WelcomeController extends Controller
             $books->rating;
         });
 //        $radios = Radio::all();
-        $radios = Radio::orderBy('id','DESC')->paginate('10');
+        //$radios = Radio::orderBy('id','DESC')->paginate(5);
+        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
         $radios->each(function ($radios){
             $radios->seller;
         });
-        $tvs = Tv::all();
+
+        //$tvs = Tv::all();
+        $tvs = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
         $tvs->each(function ($tvs){
             $tvs->seller;
         });
@@ -49,8 +63,12 @@ class WelcomeController extends Controller
             $musica->Autors;
         });
 
+        $iRadios = 0;
+        $iTvs = 0;
 
         return view('welcome')
+            ->with('iRadios',$iRadios)
+            ->with('iTvs',$iTvs)
             ->with('seller', $sellers)
             ->with('book',$books)
             ->with('movie',$movies)
@@ -81,5 +99,16 @@ class WelcomeController extends Controller
             return response()->json(1); 
         }
     
+    }
+
+    public function indexRadio() {
+        //$radios = Radio::where('status','Aprobado')->take(5)->get();
+        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        return response()->json($radios);
+    }
+    public function indexTv() {
+        //$tvs = Tv::where('status','Aprobado')->take(5)->get();
+        $tvs = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        return response()->json($tvs);
     }
 }

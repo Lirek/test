@@ -18,6 +18,7 @@
 		          <th class="non-numeric">Receptor</th>
 		          <th class="non-numeric">Cantidad</th>
 				  <th class="non-numeric">Fecha de Asignacion</th>
+				  <th class="non-numeric">Deshacer</th>
 		        </tr>
 		    	</thead>
 			
@@ -45,6 +46,7 @@
 	            {data: 'to', name: 'to'},
 	            {data: 'amount', name: 'amount'},
 	            {data: 'created_at', name: 'created_at'},
+	            {data: 'deshacer', name: 'deshacer'}
 	        ]
 	    });
 

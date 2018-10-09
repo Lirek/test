@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 //use Laravel\Socialite;
 
-use App\Events\CreateCodeSocialUserEvent;
+use App\Events\WelcomeEmailEvent;
 
 use Socialite;
 
@@ -41,7 +41,11 @@ class SocialAuthController extends Controller
                 'img_perf' => $user->getAvatar(),
                 'codigo_ref'=>$code]
             );
-
+            
+            if($createUser->wasRecentlyCreated)
+             {
+                 event(new WelcomeEmailEvent($createUser));
+             }
 
             auth()->login($createUser);
             

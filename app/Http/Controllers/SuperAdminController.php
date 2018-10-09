@@ -28,6 +28,7 @@ use App\PointsAssings;
 use App\SistemBalance;
 use App\Transactions;
 use App\Referals;
+use App\RollBacksTransacctions;
 
 class SuperAdminController extends Controller
 {
@@ -106,10 +107,36 @@ class SuperAdminController extends Controller
 
                       return $TicketsSales->value * $TicketsSales->Tickets()->first()->amount;
                     })
-                    
+                    ->addColumn('Deshacer',function($TicketsSales){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Points->id.' data-toggle="modal" data-target="#myModal" id="Status">Deshacer</button';
+                    })                  
                     ->toJson();
 
 	  }
+    public function TicketsRollBack($id)
+    {
+      $Payments = Payments::find($id);
+      $Tickets = $Payments->value+$Payments->Tickets->amount;
+
+      $RollBack= new RollBacksTransacctions;
+      $RollBack->id_tickets_sales = $Payments->id;
+      $RollBack->ammount_ticktes = $Tickets;
+      $RollBack->save();
+
+      $User=User::find($Payments->user_id);
+      $User->credito = $User->credito - $Tickets;
+      $User->save();
+
+
+      $Balance = SistemBalance::find(1);
+      $Balance->tickets_rolled=$Balance->tickets_rolled-$Tickets;
+      $Balance->tickets_rolled=$Balance->tickets_solds-$Tickets;
+      $Balance->save();
+
+      return response()->json($User);
+
+    }
    //-----------------------------------------------------------
 
    //----------------------Puntos----------------------------------
@@ -145,9 +172,42 @@ class SuperAdminController extends Controller
                       {
                        return $Points->TracePointsTo()->first()->name;
                       }
-                    })                   
+                    })
+                     ->addColumn('Deshacer',function($Points){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$Points->id.' data-toggle="modal" data-target="#myModal" id="Status">Deshacer</button';
+                    })                  
                     ->toJson();	  	
 	  }
+
+    public function PointsRollBack($id)
+    {
+      $Assing = PointsAssings::find($id);
+      
+      $RollBack= new RollBacksTransacctions;
+      $RollBack->id_points_assing = $Assing->id;
+      $RollBack->ammount_points = $Assing->amount;
+      $RollBack->save();
+      
+      $Balance = SistemBalance::find(1);
+
+      if ($Assing->to!=0) 
+      {
+        $User=User::find($Assing->to);
+        $User->points = $User->points - $Assing->amount;
+        $User->save();  
+      }
+      else
+      {
+        $Balance->my_points=$Balance->my_points-$Assing->amount;
+      }
+
+      $Balance->points_rolled=$Balance->points_rolled+$Assing->amount;
+      $Balance->save();
+      
+      
+     return response()->json($User);      
+    }
    //-------------------------------------------------------------
 
    //----------------------Usuarios---------------------------------
@@ -158,21 +218,13 @@ class SuperAdminController extends Controller
 
     public function UnReferedUserDataTable()
     {
-        $UnRefered = User::all();
-        $Data = collect(new User);
+        $Data = User::all();
 
-        foreach ($UnRefered as $key) 
-        {
-            if($key->UserRefered()->count()!=1)
-            {
-                $Data->push($key);              
-            }
-        }
 
         return Datatables::of($Data)
-                    ->addColumn('assing',function($Data){
+                    ->addColumn('Transactions',function($Data){
                       
-                      return '<button type="button" class="btn btn-theme" value='.$Data->id.' data-toggle="modal" data-target="#myModal" id="Status">Asignar</button';
+                      return '<button type="button" class="btn btn-theme" value='.$Data->id.' data-toggle="modal" data-target="#myModal" id="Status">Ver</button';
                     })
                     ->editColumn('verify',function($Data){
 
@@ -180,7 +232,7 @@ class SuperAdminController extends Controller
 
                       return 'Verificado';
                     })
-                    ->rawColumns(['assing'])
+                    ->rawColumns(['Transactions'])
                       ->toJson();
     }
    //---------------------------------------------------------------

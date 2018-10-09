@@ -19,7 +19,29 @@ use Illuminate\Support\Facades\View;
 //});
 Route::get('/', 'WelcomeController@welcome');
 
-Route::get('Test','AdminController@test');
+// Agregadas 01-10-2018
+Route::get('indexRadio', 'WelcomeController@indexRadio');
+Route::get('indexTv', 'WelcomeController@indexTv');
+
+//Route::get('Test','AdminController@test');
+
+//Route::get('test/{cod}','HomeController@validarPatrocinador');
+//Route::get('pruebaPuntos/{package_id}/{user_id}','HomeController@pruebaPuntos');
+
+
+// terminos y condiciones
+Route::get('terminosCondiciones', [
+    'uses' => 'WelcomeController@terminosYcondiciones',
+    'as'   => 'terminosCondiciones'
+]);
+
+// que es leipel
+Route::get('queEsLeipel', [
+    'uses' => 'WelcomeController@leipel',
+    'as'   => 'queEsLeipel'
+]);
+
+
 
 
 /* ------------------------------------------------------------------
@@ -69,6 +91,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','HomeController@TransactionApproved');
     //Route::get('TransactionPending/{id}/{reference}','HomeController@TransactionPending');
     Route::get('factura/{id}/{medio}','HomeController@factura');
+    // agregada 30-09-2018
+    Route::get('generarFactura/{idFactura}/{id_payments}','HomeController@generarFactura');
     Route::get('sponsor/{cod}','HomeController@sponsor');
 
 
@@ -174,6 +198,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 */
+
+
 Route::group(['middleware' => 'promoter_guest'], function() {
 
 Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
@@ -365,6 +391,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/admin_clients','AdminController@ShowPendingClients');
                 Route::get('ClientsDataTable','AdminController@ClientsData');
                 Route::get('AllClientsDataTable','AdminController@AllClientsData');
+                Route::get('RejectedClientsDataTable','AdminController@RejectedClientsData');
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
 
@@ -387,14 +414,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
          Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
+         Route::post('PointsRollBack/{id}','SuperAdminController@PointsRollBack');
 
 
          Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');
          Route::get('TicketsSalesDataTable','SuperAdminController@TicketsSalesDataTable');
+         Route::post('TicketsRollBack/{id}','SuperAdminController@TicketsRollBack');
 
          Route::get('UserDetails','SuperAdminController@ShowUserDetails');
-
-         //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
@@ -402,6 +429,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     });
 });
+
 
 /*------------------------------------------------------------------
 --------------------------------------------------------------------

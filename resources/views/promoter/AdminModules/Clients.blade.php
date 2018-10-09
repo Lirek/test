@@ -2,16 +2,19 @@
 
 @section('main')
  <div class="row mt">
-    <h2>
+    <h3>
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home" id="users">Usuarios Pendientes</a></li>
-        <li><a data-toggle="tab" href="#menu1" id="users_payments">Pagos de Usuarios</a></li>    
+        <li><a data-toggle="tab" href="#menu1" id="users_payments">Depositos de Usuarios</a></li>
+        <li><a data-toggle="tab" href="#menu2" id="users_d">Usuarios Negados</a></li>
+        <li><a data-toggle="tab" href="#menu3" id="users_a">Usuarios Aprobados</a></li>
       </ul>
-  </h2>
+  </h3>
 </div>
 
 <div class="row mt">
   <div class="tab-content">
+
     <div id="home" class="tab-pane fade in active">
       <div class="col-lg-12">
         <div class="content-panel">
@@ -26,7 +29,6 @@
                   <th class="non-numeric">Genero</th>
                   <th class="non-numeric">Redes</th>
                   <th class="non-numeric">Estatus</th>
-                  <th class="non-numeric">Fecha de registro</th>
               </tr>
               </thead>
           </table>
@@ -58,6 +60,29 @@
 
         </div>
      </div>
+   </div>
+
+    <div id="menu2" class="tab-pane fade">
+      <div class="col-lg-12">
+        <div class="content-panel">
+
+          <table class="table table-bordered table-striped table-condensed" id="ClientsDenials">
+            <thead>
+                <tr>
+                  <th class="non-numeric">Nombre</th>
+                  <th class="non-numeric">Numero Doc</th>
+                  <th class="non-numeric">Imagen del Documento</th>
+                  <th class="non-numeric">Fecha de Nacimiento</th>
+                  <th class="non-numeric">Genero</th>
+                  <th class="non-numeric">Fecha de registro</th>
+                  <th class="non-numeric">Redes</th>
+                  <th class="non-numeric">Estatus</th>
+              </tr>
+              </thead>
+          </table>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -66,77 +91,26 @@
 @endsection
 
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
-<script id="jsbin-javascript">
-  function getDatilAgain(idTicketSales,medio,idUser,callback) {
-    var msn = "";
-    getDatil(idTicketSales,medio,idUser).then(function(response) {
-        var res = JSON.parse(response);
-        msn = res;
-    }, function(error) {
-        msn = error;
-    });
-    setTimeout(function() {
-        callback(msn);
-    },2000);
-  }
-  function getDatil(idTicketSales,medio,idUser) {
-    return new Promise(function(resolve,reject) {
-      var parametros = "/"+idTicketSales+"/"+medio+"/"+idUser;
-      var url = "{{ url('/facturaDeposito/') }}"+parametros;
+<script>
+  $(document).ready(function(){
 
-      var req = new XMLHttpRequest();
-      req.open("GET",url);
-      req.onload = function() {
-          if (req.status == 200) {
-              resolve(req.response);
-          }
-          else {
-              resolve(req.response);
-          }
-      };
-      req.onerror = function() {
-          reject(Error("Network Error"));
-      };
-      req.send();
-    });
-  }
-  function setFactura(idTicketSales,idFactura,callback){
-    var parametros = "/"+idTicketSales+"/"+idFactura;
-    var ruta = "{{ url('/setFactura/') }}"+parametros;
-    var factura = "";
-
-    $.ajax({
-        url     : ruta,
-        type    : "GET",
-        dataType: "json",
-        success: function (data) {
-            var factura = data;
-            callback(factura);
-        }
-    });
-    return factura;
-  }
-
-	$(document).ready(function(){
-
-		var ClientsDataTable = $('#Clients').DataTable({
-	        processing: true,
-	        serverSide: true,
+    var ClientsDataTable = $('#Clients').DataTable({
+          processing: true,
+          serverSide: true,
             responsive: true,
 
-	        ajax: '{!! url('ClientsDataTable') !!}',
-	        columns: [
-	            {data: 'name', name: 'name'},
-	            {data: 'num_doc', name: 'num_doc'},
-	            {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
-	            {data: 'fech_nac', name: 'fech_nac'},
-	            {data: 'type', name: 'type'},
+          ajax: '{!! url('ClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
               {data: 'webs', name: 'webs'},
-	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false},
-              {data: 'created_at', name: 'created_at'}
-	        ]
-	    });
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
 
     $(document).on('click', '#AllClients', function() {
 
@@ -144,7 +118,7 @@
     
     });
 
-		$(document).on('click', '#Status', function() {    
+    $(document).on('click', '#Status', function() {
               var x = $(this).val();
               
               $( "#formStatus" ).on( 'submit', function(e)
@@ -161,14 +135,14 @@
                                   data: {
                                           _token: $('input[name=_token]').val(),
                                           status: s,
-                                          reason: message,
+                                          message: message,
                                         }, 
                                   success: function (result) {
 
                                                               $('#myModal').toggle();
                                                               $('.modal-backdrop').remove();
                                                               swal("Se ha "+s+" con exito","","success");
-                                                              ClientsDataTable.ajax.reload();
+                                                              location.reload();
                                                               },
 
                                   error: function (result) {
@@ -187,7 +161,7 @@
      $("#ci_photo").attr("src", file);
     
      });
-	
+
     $(document).on('click', '#webs', function() {
         
         var x = $(this).val();
@@ -230,7 +204,6 @@
               {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
           ]
         });
-
         
       $(document).on('click', '#users', function() {
            
@@ -278,25 +251,51 @@
                                                 var medio = "deposito_cuenta_bancaria";
                                                 console.log(result,idTicketSales,idUser,medio,s);
                                                 if (s=="Aprobado") {
+                                                  swal({
+                                                    title: "Generando factura",
+                                                    text: "Espere mientras se genera la factura.",
+                                                    icon: gif,
+                                                    buttons: false,
+                                                    closeOnEsc: false,
+                                                    closeOnClickOutside: false
+                                                  });
+                                                  var intento = 0;
+                                                  var maxIntento = 10; // 1min de espera // 10
                                                   getDatilAgain(idTicketSales,medio,idUser,function callback(infoFactura) {
                                                     console.log(infoFactura);
                                                     var idFactura = infoFactura.id;
                                                     console.log(idFactura);
-                                                    if (idFactura!=undefined) {
-                                                      setFactura(idTicketSales,idFactura,function(ticketSales) {
-                                                        console.log(ticketSales);
-                                                        swal({
-                                                          title: "Se ha "+s+" con exito",
-                                                          icon: "success",
-                                                          closeOnEsc: false,
-                                                          closeOnClickOutside: false
-                                                        })
-                                                        .then((recarga) => {
+                                                    if (intento <= maxIntento) {
+                                                      if (idFactura!=undefined) {
+                                                        setFactura(idTicketSales,idFactura,function(ticketSales) {
+                                                          console.log(ticketSales);
+                                                          swal({
+                                                            title: "Se ha "+s+" con exito",
+                                                            icon: "success",
+                                                            closeOnEsc: false,
+                                                            closeOnClickOutside: false
+                                                          })
+                                                          .then((recarga) => {
                                                             location.reload();
+                                                          });
                                                         });
-                                                      });
+                                                        intento++;
+                                                      } else {
+                                                        console.log('intento: '+intento);
+                                                        getDatilAgain(idTicketSales,medio,idUser,callback);
+                                                        intento++;
+                                                      }
                                                     } else {
-                                                      getDatilAgain(idTicketSales,medio,idUser,callback);
+                                                      swal({
+                                                        title: "No se pudo conectar con Datil",
+                                                        text: "El pago ya fue procesado exitosamente, sin embargo la factura la solicitará el cliente, por expirarse el tiempo de espera.",
+                                                        icon: "info",
+                                                        closeOnEsc: false,
+                                                        closeOnClickOutside: false
+                                                      })
+                                                      .then((recarga) => {
+                                                        location.reload();
+                                                      });
                                                     }
                                                   });
                                                 } else {
@@ -307,7 +306,7 @@
                                                     closeOnClickOutside: false
                                                   })
                                                   .then((recarga) => {
-                                                      location.reload();
+                                                    location.reload();
                                                   });
                                                 }
                                               },
@@ -319,11 +318,83 @@
           });
 
         });
-      
       });
 
-    
     });
+
+    $(document).on('click', '#users_a', function() {
+
+      var AllClientsDataTable = $('#ClientsAproved').DataTable({
+          processing: true,
+          serverSide: true,
+            responsive: true,
+
+          ajax: '{!! url('AllClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
+              {data: 'webs', name: 'webs'},
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
+
+      $(document).on('click', '#users', function() {
+
+           AllClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_d', function() {
+
+           AllClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_payments', function() {
+
+           AllClientsDataTable.destroy();
+      });
+
+  });
+
+    $(document).on('click', '#users_d', function() {
+
+      var DenialClientsDataTable = $('#ClientsDenials').DataTable({
+          processing: true,
+          serverSide: true,
+            responsive: true,
+
+          ajax: '{!! url('RejectedClientsDataTable') !!}',
+          columns: [
+              {data: 'name', name: 'name'},
+              {data: 'num_doc', name: 'num_doc'},
+              {data: 'img_doc', name: 'img_doc',orderable: false, searchable: false},
+              {data: 'fech_nac', name: 'fech_nac'},
+              {data: 'type', name: 'type'},
+              {data: 'created_at', name: 'created_at'},
+              {data: 'webs', name: 'webs'},
+              {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
+          ]
+      });
+
+      $(document).on('click', '#users', function() {
+
+           DenialClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_a', function() {
+
+           DenialClientsDataTable.destroy();
+      });
+
+      $(document).on('click', '#users_payments', function() {
+
+           DenialClientsDataTable.destroy();
+      });
+
+  });
 
 
   });
