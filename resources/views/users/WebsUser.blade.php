@@ -3,7 +3,7 @@
 <style>
 .lista {
   height: 30em;
-  overflow-y: scroll;
+  overflow: auto;
 }
 </style>
 @endsection
@@ -54,25 +54,20 @@
       @if ($refered != null)
         <h5 style="margin-left: 3%">Mis referidos directos: ({{$referals1}})</h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
-          @if($referals1>12) {{--para que no se vea el scroll cuando hay menos de esa cantidad--}}
           <div class="row lista">
-          @else
-            <div class="row">
-          @endif
-            @foreach($refered as $refereds)
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="col-xs-3 col-sm-3 col-lg-3">
-                  <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
-                        @if($refereds->img_perf)
-                          <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                        @else
-                          <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                        @endif
-                      </div>
-                      <div class="col-sm-6 col-lg-6" style="margin-top: 1%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+            @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                      @if($refereds->img_perf)
+                        <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
+                      @else
+                        <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
+                      @endif
+                    </div>
+                    <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
                       {{$refereds->name}} {{$refereds->last_name}}
-                  </a>
-                </div>
+                    </div>
+                </a>
               </div>
                 <!--MODAL DATOS-->
                 <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
@@ -153,7 +148,7 @@
               <h4 class="modal-title">Ingrese el codigo</h4>
           </div>
           <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data" id="patrocinador">{{ csrf_field() }}
+              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">{{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                         <label for="codigo" class="col-md-4 control-label">Codigo</label>
@@ -178,9 +173,9 @@
     </div>
     <!--FIN DEL MODAL-->
 
-     
 
-  </div><!-- /row --> 
+
+  </div><!-- /row -->
 
 @endsection
 
@@ -188,7 +183,7 @@
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var form = this;
-
+  $('#codigoMen').hide();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
 
@@ -200,7 +195,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
       var gif = "{{ asset('/sistem_images/loading.gif') }}";
       swal({
           title: "¡Listo! Estamos validando su información...",
-          text: "Espere un momento por favot, mientras validamos el código de patrocinador.",
+          text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
           icon: gif,
           buttons: false,
           closeOnEsc: false,
@@ -222,7 +217,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         if(result == 1) {
           swal({
             title: "Ingrese otro código por favor",
-            text: "Disculpe, pero no puede ingresar su propio código",
+            text: "Disculpe, no puede ingresar su propio código",
             icon: 'info',
             buttons: {
               accept: 'Aceptar'
@@ -258,7 +253,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
         else if(result == 0) {
           swal.close();
           $('#codigoMen').show();
-          $('#codigoMen').text('El codigo es incorrecto');
+          $('#codigoMen').text('El código es incorrecto.');
           $('#codigoMen').css('color','red');
         }
       }
@@ -274,10 +269,10 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
 
   var tiempo=restaFechas(f1,f2);
-  if (tiempo > 15){
+  if (tiempo > 7){
     document.getElementById('referir').style.display='none';  
   }else{
-    var total=14-tiempo;
+    var total=6-tiempo;
     console.log(tiempo);
     document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
   }

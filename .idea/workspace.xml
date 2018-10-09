@@ -323,6 +323,7 @@
       <workItem from="1538230372957" duration="806000" />
       <workItem from="1538401895558" duration="412000" />
       <workItem from="1538438794279" duration="926000" />
+      <workItem from="1538515696869" duration="284000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -394,11 +395,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538439127244</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Cambios en el responsive de tv y en el reproductor de radios">
+      <created>1538516020122</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1538516020122</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131029000" />
+    <option name="totallyTimeSpent" value="131313000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -419,7 +427,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.2677761" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.27155825" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5033003" side_tool="true" weight="0.25642964" />
@@ -453,9 +461,10 @@
     <MESSAGE value="algunos modelos, controladores, vista" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="Merge branch 'mauricio' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/users/Referals.blade.php&#10;#&#9;resources/views/users/WebsUser.blade.php" />
-    <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en reproductor tv, radios, listado de radios y v por tamaño de logo y arreglos de responsive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios en reproductor tv, radios, listado de radios y v por tamaño de logo y arreglos de responsive" />
+    <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Cambios en el responsive de tv y en el reproductor de radios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios en el responsive de tv y en el reproductor de radios" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
