@@ -257,61 +257,66 @@
     <div class="desc"></div>
 @extends('layouts.partials.footer')
 <!--MODAL-->
-    <div id="myModalContenido" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" align="center">PRÓXIMAMENTE!</h4>
-            </div>
-            <div style="background-image: url('{{asset('sistem_images/dsBuffer.png')}}');
-                    background-size: 100% 100%;;" class="img-rounded img-responsive av text-center">
-            <!-- <img src="{{asset('assets/img/Logo-Leipel.png')}}" style="width: 45%;  margin-left: 10%; margin-top: 20%"> -->
-                <div>
-                    <img src="{{asset('assets/img/wrench.png')}}" style=" z-index:1; width:10%;  margin-top: 40%">
-                </div>
-                <div align="center" style="margin-left: 20%; margin-right: 20%; margin-top: 2% ">
-                    <p><h3>Estamos trabajando para su entretenimiento</h3></p>
-                    <h4> visitenos pronto!!</h4>
-                </div>
-            </div>
-
+<div id="myModalContenido" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+      
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" align="center">PRÓXIMAMENTE!</h4>
         </div>
-    </div>
-    <!--FIN DEL MODAL-->
-    <!--MODAL-->
-    <!--MODAL-->
-    <div id="myModalTotal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><i class="fa fa-ticket"></i> Mi Balance</h4>
-                </div>
-                <div class="modal-body">
-                    <label class="control-label col-sm-12 col-xs-12 col-md-12">
-                        @if(Auth::user()->credito != null)
-                            <center><h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4></center>
-                        @else
-                            <center><h4><b>Total de tickets:</b> 0</h4></center>
-                        @endif
-                        @if(Auth::user()->points)
-                            <center><h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4></center>
-                        @else
-                            <center><h4><b>Total de puntos:</b> 0</h4></center>
-                        @endif
-                    </label>
-                    <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                </div>
-            </div>
+        <div style="background-image: url('{{asset('sistem_images/dsBuffer.png')}}'); 
+      background-size: 100% 100%;;" class="img-rounded img-responsive av text-center">
+          <!-- <img src="{{asset('assets/img/Logo-Leipel.png')}}" style="width: 45%;  margin-left: 10%; margin-top: 20%"> -->
+          <div>
+          <img src="{{asset('assets/img/wrench.png')}}" style=" z-index:1; width:10%;  margin-top: 40%">
+          </div>
+          <div align="center" style="margin-left: 20%; margin-right: 20%; margin-top: 2% ">
+            <p><h3>Estamos trabajando para su entretenimiento</h3></p>
+            <h4> visitenos pronto!!</h4>
+          </div>
         </div>
+        
+      </div>
+  </div>
+<!--FIN DEL MODAL-->
+<!--MODAL-->
+<!--MODAL-->
+<div id="myModalTotal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-ticket"></i> Mi Balance</h4>
+      </div>
+      <div class="modal-body">
+        <label class="control-label col-sm-12 col-xs-12 col-md-12">
+          @if(Auth::user()->credito != null)
+           <center><h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4></center>
+          @else
+            <center><h4><b>Total de tickets:</b> 0</h4></center>
+          @endif
+          @if(Auth::user()->points)
+            <center><h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4></center>
+          @else
+            <center><h4><b>Total de puntos:</b> 0</h4></center>
+          @endif
+          @if(Auth::user()->pending_points)
+            <center><h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4></center>
+          @else
+            <center><h4><b>Total de puntos pendientes:</b> 0 </h4></center>
+          @endif
+        </label>
+        <center><a href="{{url('MyBalance')}}">Ver detalle</a></center>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
     </div>
-    <!--FIN DEL MODAL-->
+  </div>
+</div>
+<!--FIN DEL MODAL-->
 
 </body>
 <!-- js placed at the end of the document so the pages load faster -->
