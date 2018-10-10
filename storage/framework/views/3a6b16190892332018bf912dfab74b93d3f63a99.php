@@ -88,7 +88,9 @@
              <form method="POST" id="UPackForm">
                             <?php echo e(csrf_field()); ?>
 
-                          <div class="form-group">
+                <input type="text" name="p_id" id="name_u" hidden >
+                            
+             <div class="form-group">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                  <input class="mdl-textfield__input" type="text" name="name_u" id="name_u" required min="0">
                  <label class="mdl-textfield__label" for="name_u">Nombre</label>

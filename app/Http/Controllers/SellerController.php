@@ -117,22 +117,22 @@ class SellerController extends Controller
         $followers=count($seller->followers()->get());
         //dd($followers);
 
-        $user = Seller::find(Auth::guard('web_seller')->user()->id);
-        $referals1 = $user->referals()->count();
-        $referals2 = 0;
-        $referals3 = 0;
+        // $user = Seller::find(Auth::guard('web_seller')->user()->id);
+        // $referals1 = $user->referals()->count();
+        // $referals2 = 0;
+        // $referals3 = 0;
         
-        foreach ($user->referals()->get() as $key) {
+        // foreach ($user->referals()->get() as $key) {
 
-            $referals = Seller::find($key->refered);
-            $referals2 = $referals->referals()->count()+$referals2;
+        //     $referals = Seller::find($key->refered);
+        //     $referals2 = $referals->referals()->count()+$referals2;
 
-            foreach ($referals->referals()->get() as $key2) {
+        //     foreach ($referals->referals()->get() as $key2) {
 
-                $referals = Seller::find($key2->refered);
-                $referals3 = $referals->referals()->count()+$referals3;
-            }
-        }
+        //         $referals = Seller::find($key2->refered);
+        //         $referals3 = $referals->referals()->count()+$referals3;
+        //     }
+        // }
 
         //$autor = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
         //dd(count($autor));
@@ -156,10 +156,7 @@ class SellerController extends Controller
                 ->with('musical_content',$musical_content)
                 ->with('musical_aproved',$musical_aproved)
                 //->with('artist',$autor)
-                ->with('modulos',$seller_modules)
-                ->with('referals1',$referals1)
-                ->with('referals2',$referals2)
-                ->with('referals3',$referals3);
+                ->with('modulos',$seller_modules);
     }
 
     //Funcion Encargada de Cargar el Formulario para el Registro que completo

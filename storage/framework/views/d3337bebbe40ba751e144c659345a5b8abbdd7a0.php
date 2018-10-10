@@ -24,6 +24,9 @@
             margin-right: 7em;
         }
     }
+    .justify {
+      text-align: justify;
+    }
 </style>
 <?php $__env->stopSection(); ?>
 
@@ -202,19 +205,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-
-                              <?php if($Songs): ?>
-                                <?php $__currentLoopData = $Songs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $song): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_music" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog('<?php echo $songs->cost; ?>','<?php echo $songs->title; ?>','<?php echo $songs->id; ?>')" id="modal-confir"> <?php echo e($songs->song_name); ?></a></td>
-                                  <td class="hidden-phone">Single</td>
-                                  <td><?php echo e($songs->cost); ?></td>
-                                  <td class="hidden-phone"><?php echo e($songs->Seller->name); ?></td>
-                                </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                              <?php endif; ?>
-
+                                
                               <?php if($Albums): ?>
                               <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $albums): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr class="letters">
@@ -333,8 +324,9 @@ $(document).ready(function(){
   console.log(verificacion);
   if (verificacion==2) {
     swal({
+      className: "justify",
       title: "Verificación rechazada",
-      text: "Le informamos que su verificación fue rechazada, le invitamos a modificar su perfil",
+      text: "Le informamos que su verificación fue rechazada, por favor revise su bandeja de correos (incluida la de spam) para ampliar la información del rechazado y modifique su perfil para posterior revisión.",
       icon: "info",
       buttons: {
           accept: {

@@ -58,11 +58,23 @@
             </b></a>
                 <div class="nav pull-right top-menu" id="boton" >
                     <div class="navbar-right" style="margin-top: 12px;">
-                          <!-- <img height="39px" src="{{asset('plugins/img/cine.png')}}">
-                          <img height="39px" src="{{asset('plugins/img/musica.png')}}">
-                          <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
-                          <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
-                          <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
+                        @foreach($modulos as $mod)
+                            @if($mod->name == 'Peliculas')
+                                <a href="{{ url('/movies') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/cine.png')}}"></b></a>
+                            @endif                          
+                            @if($mod->name == 'Musica')
+                                <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/musica.png')}}"></b></a>
+                            @endif
+                            @if($mod->name == 'Libros')
+                                <a href="{{ url('/tbook') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/lectura.png')}}"></b></a>
+                            @endif
+                            @if($mod->name == 'Radios')
+                                <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+                            @endif
+                            @if($mod->name == 'TV')
+                                <img height="39px" src="{{asset('plugins/img/tv.png')}}">
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="nav notify-row" id="top_menu">
@@ -90,7 +102,7 @@
                     <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                         <p class="centered">
                             <!--Revisar este enlace -->
-                            <a href="{{ url('/home')}}">
+                            <a href="{{ url('/seller_home')}}">
                                 @if(Auth::guard('web_seller')->user()->logo!="NULL")
                                     <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="80">
                                 @else
@@ -101,15 +113,15 @@
                         <h5 class="centered" style="text-shadow: 0.1em 0.1em #333">
                             {{Auth::guard('web_seller')->user()->name}}
                         </h5>
-                        <!-- <div class="card-content white-text">
+                        <div class="card-content white-text">
                             <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::guard('web_seller')->user()->credito}}</p></h6></span>
-                        </div> -->
-                        <li class="mt">
+                        </div>
+                       <!--  <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
                                 <i class="glyphicon glyphicon-home"></i>
                                 <span>Escritorio</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-user"></i>
@@ -191,7 +203,7 @@
                                                                 @else
                                                                     <li>
                                                                         <a href="{{ url('/modify_artist') }}">
-                                                                            Modificar datos de artista
+                                                                            Artista
                                                                         </a>
                                                                     </li>
                                                                 @endif
@@ -226,10 +238,11 @@
                                                         <span>Revistas</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li>
-                                                        <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li>
-                                                        <li><a href="{{ url('/type') }}">Registrar cadena de publicaciones</a></li>
-                                                        <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista </a></li>
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li> -->
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li> -->
+                                                        <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
+                                                        <li style="top: 20px"><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -353,7 +366,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 5px">
+                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 1%  ">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -364,7 +377,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg"" id="nav-accordion">
+                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
