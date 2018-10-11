@@ -78,61 +78,62 @@
 <script>
 
 $( document ).ready(function() {
-    
 
+  $("#phone_s").intlTelInput();
+  function yesnoCheck() {
+    if (document.getElementById('option-2').checked) {
+      $('#if_no').show();
+    } else {
+      $('#if_no').hide();
+      $('#razon').val('');
+    }
+  };
 
-      $("#phone_s").intlTelInput();
+  $(document).on('click', '#ModifyApplys', function() {
 
-      function yesnoCheck() {
-          if (document.getElementById('option-2').checked) 
-          {
-              $('#if_no').show();
-          } 
-          else 
-          {
-              $('#if_no').hide();
-              $('#razon').val('');
-          }
-        };
-
-
-
-      $(document).on('click', '#ModifyApplys', function() {    
-              var x = $(this).val();
-
-                  
-                  $( "#formStatus" ).on( 'submit', function(e)
-                      {
-                          var s=$("input[type='radio'][name=status]:checked").val();
-                          var message=$('#razon').val();
-                          var url = 'AdminAproveOrDenialApplys/'+x;
-                          console.log(s);
-                          e.preventDefault();
-                          $.ajax({
-                                  url: url,
-                                  type: 'post',
-                                  data: {
-                                          _token: $('input[name=_token]').val(),
-                                          status: s,
-                                          message: message,
-                                        }, 
-                                  success: function (result) {
-
-                                                              $('#myModal').toggle();
-                                                              $('.modal-backdrop').remove();
-                                                              swal("Se ha "+s+" con exito","","success");
-                                                              $('#album'+x).fadeOut();
-                                                              },
-
-                                  error: function (result) {
-                                  swal('Existe un Error en su Solicitud','','error');
-                                  console.log(result);
-                                  }
-                                  });  
-                                                  });
-                      
-
+    var x = $(this).val();
+    $( "#formStatus" ).on( 'submit', function(e) {
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      swal({
+        title: "Procesando la información",
+        text: "Espere mientras se procesa la información.",
+        icon: gif,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
       });
+      var s=$("input[type='radio'][name=status]:checked").val();
+      var message=$('#razon').val();
+      var url = 'AdminAproveOrDenialApplys/'+x;
+      console.log(s);
+      e.preventDefault();
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: {
+          _token: $('input[name=_token]').val(),
+          status: s,
+          message: message
+        }, 
+        success: function (result) {
+          $('#myModal').toggle();
+          $('.modal-backdrop').remove();
+          swal("Se ha "+s+" con éxito","","success")
+          .then((recarga) => {
+            location.reload();
+          });
+          $('#album'+x).fadeOut();
+        },
+        error: function (result) {
+          swal('Existe un Error en su Solicitud','','error')
+          .then((recarga) => {
+            location.reload();
+          });
+          console.log(result);
+        }
+      });
+    });
+  });
 
       $(document).on('click', '#x', function() {
         

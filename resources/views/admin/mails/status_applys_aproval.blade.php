@@ -18,7 +18,7 @@
 
  <tr>
 	<td>
-	<p style="font-size: 14px;" align="justify">Hola, le damos la más cordial bienvenida  LEIPEL, para avanzar al siguiente paso de su registro</p>
+	<p style="font-size: 14px;" align="justify">Hola, le damos la más cordial bienvenida a LEIPEL, para avanzar al siguiente paso de su registro seleccione el botón "Registrarse".</p>
  	</td>
  </tr>
 
@@ -29,7 +29,7 @@
  </tr>
  <tr>
 	<td>
-	<p style="font-size: 14px">Muchas Gracias Por Ser Parte de Nuestra plataforma</p>
+	<p style="font-size: 14px">Muchas gracias por ser parte de nuestra plataforma.</p>
 	</td>
  </tr>
 		

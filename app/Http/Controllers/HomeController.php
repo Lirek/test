@@ -295,6 +295,7 @@ class HomeController extends Controller
     }
 
     public function BuyPlan(Request $request){
+        //dd($request->all());
         $Buy = new Payments;
         $Buy->user_id=Auth::user()->id;
         $Buy->package_id=$request->ticket_id;

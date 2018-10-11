@@ -26,7 +26,7 @@ Route::get('indexTv', 'WelcomeController@indexTv');
 //Route::get('Test','AdminController@test');
 
 //Route::get('test/{cod}','HomeController@validarPatrocinador');
-//Route::get('pruebaPuntos/{package_id}/{user_id}','HomeController@pruebaPuntos');
+//Route::get('pruebaPuntos','HomeController@pruebaPuntos');
 
 
 // terminos y condiciones
@@ -487,6 +487,8 @@ Route::group(['middleware' => 'seller_guest'], function () {
     Route::get('seller_login', 'SellerAuth\LoginController@showLoginForm');
 
     Route::post('seller_login', 'SellerAuth\LoginController@login');
+    //agregada 10-10-2018
+    Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
 //------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
 

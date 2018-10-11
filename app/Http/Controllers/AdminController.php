@@ -1115,14 +1115,14 @@ class AdminController extends Controller
   				$applys->expires_at= $current->addDays(7);
   				
   				
-  				Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
+  				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
 
   				$applys->save();
   				return response()->json($applys);	
   			}
         else
         {   
-            Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
+            Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
             $applys->save();
            return response()->json($applys);
             
@@ -1318,7 +1318,7 @@ class AdminController extends Controller
           {
             $User->verify=2;
 
-            event(new UserValidateEvent($User->email,2,$request->reason));
+            event(new UserValidateEvent($User->email,2,$request->message));
           }
 
         $User->save();

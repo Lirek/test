@@ -591,12 +591,14 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
-                    <!-- <li>
+                    <!-- 
+                    -->
+                    <li>
                         <a data-toggle="tab" href="#new_proveedor">
                             Proveedor
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                    </li> -->
+                    </li> 
                 </ul>
             </div>
             <div class="modal-body">
@@ -700,6 +702,7 @@
                     {{--Usuario--}}
 
                     <!--
+                    -->
                     {{--Solicitud de proveedor--}}
                     <div id="new_proveedor" class="tab-pane fade">
                         <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
@@ -755,10 +758,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 {{--<label for="description" class="col-md-6 control-label">Descripción</label>--}}
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="description" id="description"
-                                              required="required"
-                                              placeholder="Descripción">
-                                    </textarea>
+                                    <textarea class="form-control" name="description" id="description" required="required" placeholder="Descripción"></textarea>
                                     @if ($errors->has('description'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -829,7 +829,7 @@
 
                 </div>
 
-            </div> -->
+            </div> 
             <div class="modal-footer" id="modal_footer">
                 <div class="text-center">
 

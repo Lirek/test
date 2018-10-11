@@ -90,9 +90,9 @@
                           </center>
                           <center>
                             @if($refereds->phone)
-                              <h5 style="margin-top: 2%"><b>Telefono: </b> {{$refereds->phone}}</h5>
+                              <h5 style="margin-top: 2%"><b>Teléfono: </b> {{$refereds->phone}}</h5>
                             @else
-                              <h5 style="margin-top: 2%"><b>Telefono: </b> No posee teléfono registrado</h5>
+                              <h5 style="margin-top: 2%"><b>Teléfono: </b> No posee teléfono registrado</h5>
                             @endif
                           </center>
                           <div class="modal-footer">

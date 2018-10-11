@@ -189,39 +189,50 @@
 
 
     $(document).on('click', '#Status', function() {
-              var x = $(this).val();
-              
-              $( "#formStatus" ).on( 'submit', function(e)
-                      {
-                          var s=$("input[type='radio'][name=status]:checked").val();
-                          var message=$('#razon').val();
-                          var url = 'ValidateUser/'+x;
-                          console.log(s);
-                          e.preventDefault();
-                          $.ajax({
-                                  url: url,
-                                  type: 'post',
-                                  async: false,
-                                  data: {
-                                          _token: $('input[name=_token]').val(),
-                                          status: s,
-                                          message: message,
-                                        }, 
-                                  success: function (result) {
-
-                                                              $('#myModal').toggle();
-                                                              $('.modal-backdrop').remove();
-                                                              swal("Se ha "+s+" con exito","","success");
-                                                              location.reload();
-                                                              },
-
-                                  error: function (result) {
-                                  swal('Existe un Error en su Solicitud','','error');
-                                  console.log(result);
-                                  }
-                                  });  
-                                                  });
-         });
+      var x = $(this).val();
+      $( "#formStatus" ).on( 'submit', function(e) {
+        var s=$("input[type='radio'][name=status]:checked").val();
+        var message=$('#razon').val();
+        var url = 'ValidateUser/'+x;
+        console.log(message);
+        console.log(s);
+        e.preventDefault();
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
+        swal({
+            title: "Procesando la información",
+            text: "Espere mientras se procesa la información.",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        $.ajax({
+          url: url,
+          type: 'post',
+          //async: false,
+          data: {
+            _token: $('input[name=_token]').val(),
+            status: s,
+            message: message,
+          }, 
+          success: function (result) {
+            $('#myModal').toggle();
+            $('.modal-backdrop').remove();
+            swal("Se ha "+s+" con éxito","","success")
+            .then((recarga) => {
+              location.reload();
+            });
+          },
+          error: function (result) {
+            swal('Existe un Error en su Solicitud','','error')
+            .then((recarga) => {
+              location.reload();
+            });
+            console.log(result);
+          }
+        }); 
+      });
+    });
 
     $(document).on('click', '#file_b', function() {
     
@@ -301,92 +312,90 @@
           var s=$("input[type='radio'][name=status_p]:checked").val();
           
           var message=$('#razon_p').val();
+          console.log(message);
           console.log(x,url,s);
           e.preventDefault();
           $.ajax({
-                    url: url,
-                    type: 'post',
-                    //async: false,
-                    data: {
-                            _token: $('input[name=_token]').val(),
-                            status_p: s,
-                            message: message,
-                          }, 
-                    success: function (result) {
-
-                                                $('#PayModal').toggle();
-                                                $('.modal-backdrop').remove();
-                                                var idTicketSales = x;
-                                                var idUser = result.id;
-                                                var medio = "deposito_cuenta_bancaria";
-                                                console.log(result,idTicketSales,idUser,medio,s);
-                                                if (s=="Aprobado") {
-                                                  swal({
-                                                    title: "Generando factura",
-                                                    text: "Espere mientras se genera la factura.",
-                                                    icon: gif,
-                                                    buttons: false,
-                                                    closeOnEsc: false,
-                                                    closeOnClickOutside: false
-                                                  });
-                                                  var intento = 0;
-                                                  var maxIntento = 10; // 1min de espera // 10
-                                                  getDatilAgain(idTicketSales,medio,idUser,function callback(infoFactura) {
-                                                    console.log(infoFactura);
-                                                    var idFactura = infoFactura.id;
-                                                    console.log(idFactura);
-                                                    if (intento <= maxIntento) {
-                                                      if (idFactura!=undefined) {
-                                                        setFactura(idTicketSales,idFactura,function(ticketSales) {
-                                                          console.log(ticketSales);
-                                                          swal({
-                                                            title: "Se ha "+s+" con exito",
-                                                            icon: "success",
-                                                            closeOnEsc: false,
-                                                            closeOnClickOutside: false
-                                                          })
-                                                          .then((recarga) => {
-                                                            location.reload();
-                                                          });
-                                                        });
-                                                        intento++;
-                                                      } else {
-                                                        console.log('intento: '+intento);
-                                                        getDatilAgain(idTicketSales,medio,idUser,callback);
-                                                        intento++;
-                                                      }
-                                                    } else {
-                                                      swal({
-                                                        title: "No se pudo conectar con Datil",
-                                                        text: "El pago ya fue procesado exitosamente, sin embargo la factura la podrá solicitar el cliente, por expirarse el tiempo de espera.",
-                                                        icon: "info",
-                                                        closeOnEsc: false,
-                                                        closeOnClickOutside: false
-                                                      })
-                                                      .then((recarga) => {
-                                                        location.reload();
-                                                      });
-                                                    }
-                                                  });
-                                                } else {
-                                                  swal({
-                                                    title: "Se ha "+s+" con exito",
-                                                    icon: "success",
-                                                    closeOnEsc: false,
-                                                    closeOnClickOutside: false
-                                                  })
-                                                  .then((recarga) => {
-                                                    location.reload();
-                                                  });
-                                                }
-                                              },
-
-                    error: function (result) {
-                    swal('Existe un Error en su Solicitud','','error');
-                    console.log(result);
+            url: url,
+            type: 'post',
+            //async: false,
+            data: {
+              _token: $('input[name=_token]').val(),
+              status_p: s,
+              message: message,
+            }, 
+            success: function (result) {
+              $('#PayModal').toggle();
+              $('.modal-backdrop').remove();
+              var idTicketSales = x;
+              var idUser = result.id;
+              var medio = "deposito_cuenta_bancaria";
+              console.log(result,idTicketSales,idUser,medio,s);
+              if (s=="Aprobado") {
+                swal({
+                  title: "Generando factura",
+                  text: "Espere mientras se genera la factura.",
+                  icon: gif,
+                  buttons: false,
+                  closeOnEsc: false,
+                  closeOnClickOutside: false
+                });
+                var intento = 0;
+                var maxIntento = 10; // 1min de espera // 10
+                getDatilAgain(idTicketSales,medio,idUser,function callback(infoFactura) {
+                  console.log(infoFactura);
+                  var idFactura = infoFactura.id;
+                  console.log(idFactura);
+                  if (intento <= maxIntento) {
+                    if (idFactura!=undefined) {
+                      setFactura(idTicketSales,idFactura,function(ticketSales) {
+                        console.log(ticketSales);
+                        swal({
+                          title: "Se ha "+s+" con exito",
+                          icon: "success",
+                          closeOnEsc: false,
+                          closeOnClickOutside: false
+                          })
+                          .then((recarga) => {
+                            location.reload();
+                        });
+                      });
+                      intento++;
+                    } else {
+                      console.log('intento: '+intento);
+                      getDatilAgain(idTicketSales,medio,idUser,callback);
+                      intento++;
                     }
+                  } else {
+                    swal({
+                      title: "No se pudo conectar con Datil",
+                      text: "El pago ya fue procesado exitosamente, sin embargo la factura la podrá solicitar el cliente, por expirarse el tiempo de espera.",
+                      icon: "info",
+                      closeOnEsc: false,
+                      closeOnClickOutside: false
+                    })
+                    .then((recarga) => {
+                      location.reload();
+                    });
+                  }
+                });
+              } else {
+                swal({
+                  title: "Se ha "+s+" con exito",
+                  icon: "success",
+                  closeOnEsc: false,
+                  closeOnClickOutside: false
+                })
+                .then((recarga) => {
+                  location.reload();
+                });
+              }
+            },
+            error: function (result) {
+              swal('Existe un Error en su Solicitud','','error');
+              console.log(result);
+            }
           });
-
         });
       });
 
