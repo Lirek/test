@@ -87,7 +87,8 @@ class HomeController extends Controller
         if ($Radio==NULL) { $Radio=False; }
         if ($Megazines==NULL) { $Megazines=False; }
         if ($Albums==NULL) { $Albums=False; }
-        if ($Songs==NULL) { $Songs=False; }           
+        if ($Songs==NULL) { $Songs=False; }  
+        if($Book==NULL){ $Book=False; }         
 
         if($user['status']=='admin')
         {

@@ -57,50 +57,47 @@ class SellerController extends Controller
                 
                 case 'Musica':
                     $content_album = count($seller->albums()->get());
-                    $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
-
+                  $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
                     $content_song = count($seller->songs()->where('album',0)->get());
-                    $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
-
+                   $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
                     $musical_content = $content_album+$content_song;
-                    $musical_aproved = $aproved_album+$aproved_song;
-                    //dd($musical_content,$musical_aproved);
+                   $musical_aproved = $aproved_album+$aproved_song;
+                    
                     break;
 
                 case 'Peliculas':
                     $movie_content = count($seller->movies()->get());
                     $movie_aproved = count($seller->movies()->where('status','Aprobado')->get());
-                    //dd($movie_content,$movie_aproved);
+                   
                     break;
                 
                 case 'Libros':
                     $book_content = count($seller->Books()->get());
                     $book_aproved = count($seller->Books()->where('status','Aprobado')->get());
-                    //dd($book_content,$book_aproved);
+                    
                     break;
                 
                 case 'Series':
                     $serie_content = count($seller->series()->get());
                     $serie_aproved = count($seller->series()->where('status','Aprobado')->get());
-                    //dd($serie_content,$serie_aproved);
+                    
                     break;
 
                 case 'Revistas':
                     $megazine_content = count($seller->Megazines()->get());
                     $megazine_aproved = count($seller->Megazines()->where('status','Aprobado')->get());
-                    //dd($megazine_content,$megazine_aproved);
+                     
                     break;
 
                 case 'Radios':
                     $radio_content = count($seller->Radio()->get());
                     $radio_aproved = count($seller->Radio()->where('status','Aprobado')->get());
-                    //dd($radio_content,$radio_aproved);
+                    
                     break;
 
                 case 'TV':
                     $tv_content = count($seller->Tv()->get());
                     $tv_aproved = count($seller->Tv()->where('status','Aprobado')->get());
-                    //dd($tv_content,$tv_aproved);
                     break;
                 
                 default:
@@ -109,52 +106,48 @@ class SellerController extends Controller
             };
 
         };
-        
+        $Tv=$seller->Tv()->orderBy('created_at','desc')->get();
+        $Radio=$seller->Radio()->orderBy('created_at','desc')->get();
+        $Megazines=$seller->Megazines()->orderBy('created_at','desc')->get();
+        $Series=$seller->series()->orderBy('created_at','desc')->get();
+        $Book=$seller->Books()->orderBy('created_at','desc')->get();
+        $Movies=$seller->movies()->orderBy('created_at','desc')->get();
+        $Songs=$seller->songs()->where('album',0)->orderBy('created_at','desc')->get();
+        $Albums= $seller->albums()->orderBy('created_at','desc')->get();
+
+        if ($Movies==NULL) { $Movies=False; }
+        if ($Tv==NULL) { $Tv=False; }
+        if ($Radio==NULL) { $Radio=False; }
+        if ($Megazines==NULL) { $Megazines=False; }
+        if ($Albums==NULL) { $Albums=False; }
+        if ($Songs==NULL) { $Songs=False; }  
+        if($Book==NULL){ $Book=False; } 
+        if($Series==NULL){ $Series=False;}
+    
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
-        //dd($total_content);
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
-        //dd($total_aproved);
+      
         $followers=count($seller->followers()->get());
-        //dd($followers);
-
-        // $user = Seller::find(Auth::guard('web_seller')->user()->id);
-        // $referals1 = $user->referals()->count();
-        // $referals2 = 0;
-        // $referals3 = 0;
         
-        // foreach ($user->referals()->get() as $key) {
-
-        //     $referals = Seller::find($key->refered);
-        //     $referals2 = $referals->referals()->count()+$referals2;
-
-        //     foreach ($referals->referals()->get() as $key2) {
-
-        //         $referals = Seller::find($key2->refered);
-        //         $referals3 = $referals->referals()->count()+$referals3;
-        //     }
-        // }
-
-        //$autor = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
-        //dd(count($autor));
         
         return view('seller.home')
                 ->with('total_content',$total_content)
-                ->with('aproved_content',$total_aproved)
+                ->with('total_aproved',$total_aproved)
                 ->with('followers', $followers)
                 ->with('tv_content',$tv_content)
-                ->with('tv_aproved',$tv_aproved)
                 ->with('radio_content',$radio_content)
-                ->with('radio_aproved',$radio_aproved)
                 ->with('megazine_content',$megazine_content)
-                ->with('megazine_aproved',$megazine_aproved)
-                ->with('serie_content',$serie_content)
-                ->with('serie_aproved',$serie_aproved)
-                ->with('book_content',$book_content)
-                ->with('book_aproved',$book_aproved)
+                ->with('serie_content',$serie_content) 
+                ->with('book_content',$book_content) 
                 ->with('movie_content',$movie_content)
-                ->with('movie_aproved',$movie_aproved)
                 ->with('musical_content',$musical_content)
-                ->with('musical_aproved',$musical_aproved)
+                ->with('Songs',$Songs)
+                ->with('Albums',$Albums)
+                ->with('Movies',$Movies)
+                ->with('Megazines',$Megazines)
+                ->with('Book',$Book)
+                ->with('Radio',$Radio)
+                ->with('Tv',$Tv)
                 //->with('artist',$autor)
                 ->with('modulos',$seller_modules);
     }
@@ -208,23 +201,22 @@ class SellerController extends Controller
         return view('seller.messages');
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $sellers = Seller::find($id);
-
-        return view('seller.producer.edit')->with('seller',$sellers);
+        $seller = Seller::find(Auth::guard('web_seller')->user()->id);
+        return view('seller.edit')->with('seller',$seller);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request)
     {
-        $seller = Seller::find($id);
+        $seller = Seller::find(Auth::guard('web_seller')->user()->id);
 
         if ($request->logo <> null) {
             $file = $request->file('logo');
             $name = 'logo_' . time() . '.' . $file->getClientOriginalExtension();
             $path = public_path() . '/images/producer/logo';
             $file->move($path, $name);
-            $seller->logo = $name;
+            $seller->logo ='/images/producer/logo/'.$name;
         }
 
         if ($request->adj_ruc <> null) {
@@ -232,27 +224,29 @@ class SellerController extends Controller
             $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
             $path1 = public_path() . '/images/producer/ruc';
             $file1->move($path1, $name1);
-            $seller->adj_ruc = $name1;
+            $seller->adj_ruc = '/images/producer/ruc/'.$name1;
         }
 
-        if ($request->adj_ci <> null) {
-            $file2 = $request->file('adj_ci');
-            $name2 = 'ci_' . time() . '.' . $file2->getClientOriginalExtension();
-            $path2 = public_path() . '/images/producer/ci';
-            $file2->move($path2, $name2);
-            $seller->adj_ci = $name2;
-        }
+        // if ($request->adj_ci <> null) {
+        //     $file2 = $request->file('adj_ci');
+        //     $name2 = 'ci_' . time() . '.' . $file2->getClientOriginalExtension();
+        //     $path2 = public_path() . '/images/producer/ci';
+        //     $file2->move($path2, $name2);
+        //     $seller->adj_ci = $name2;
+        // }
 
         $seller->name = $request->name;
         $seller->email = $request->email;
-        $seller->tlf = $request->tlf;
+        $seller->tlf = $request->phone;
         $seller->ruc_s = $request->ruc_s;
 
         $seller->save();
 
         Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();
 
-        return view('seller.producer.edit')->with('seller',$seller);
+        //return view('seller.edit')->with('seller',$seller);
+        return redirect()->action('SellerController@homeSeller');
+
     }
     
 }
