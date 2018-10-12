@@ -166,9 +166,16 @@ class SellerController extends Controller
 
     //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
     public function CompleteRegistrationForm($id,$code) {
-        return view('seller.complete');
-        /*
         $ApplysSellers = ApplysSellers::find($id);
+        $seller = Seller::where('email',$ApplysSellers->email)->get();
+        //dd(isset($seller[0]));
+        if (isset($seller[0])) {
+            $validacion = 1; // ya el usuario ya completó el registro
+        } else {
+            $validacion = 0; // el usuario aun no ha completado el registro
+        }
+        return view('seller.complete')->with('valSeller',$validacion);
+        /*
         if ($ApplysSellers!=null) {
             if ($code == $ApplysSellers->token) {
                 return view('seller.complete');

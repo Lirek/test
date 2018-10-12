@@ -77,7 +77,8 @@
                         <div class="form-group">
                             <label for="ruc" class="col-md-4 control-label">Registro Único de Contribuyente</label>
                             <div class="col-md-6">
-                                <input id="ruc" type="text" class="form-control" name="ruc" required>
+                                <input id="ruc" type="number" class="form-control" name="ruc" required onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                                <div id="mensajeDoc" style="display: none;"></div>
                                 @if ($errors->has('ruc'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('ruc') }}</strong>
@@ -89,7 +90,9 @@
                         <div class="form-group">
                             <label for="adj_ruc" class="col-md-4 control-label">Imagen del RUC</label>
                             <div class="col-md-6">
-                                <input type="file" name="adj_ruc" required>
+                                <img id="preview_adj_ruc" src="" name='ci'/>
+                                <input type="file" class="form-control" name="adj_ruc" id="adj_ruc" accept="image/*" required>
+                                <div id="mensajeImgDoc" style="display: none;"></div>
                             </div>
                         </div>
 
@@ -97,6 +100,7 @@
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
+                                <div id="passwordMenRU" style="margin-top: 1%; display: none;"></div>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -109,6 +113,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Confirme Contraseña</label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <div id="passwordConfirmMenRU" style="margin-top: 1%; display: none;"></div>
                             </div>
                         </div>
 
@@ -129,6 +134,25 @@
 <script src="{{asset('assets/js/jquery.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+    //---------------------------------------------------------------------------------------------------
+    // Validacion de registro previo
+    $(document).ready(function () {
+        var valSeller = "{{$valSeller}}";
+        if (valSeller==1) {
+            $('#completar').attr('disabled',true);
+            swal({
+                title: "¡Ha ocurrido un error!",
+                text: "Ya usted completó el registro, debe iniciar sesión.",
+                icon: "warning",
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+        }
+    });
+    // Validacion de registro previo
+    //---------------------------------------------------------------------------------------------------
+    // Validacion para el url y llenado de datos automaticamente
     $(document).ready(function () {
         var url = window.location.pathname;
         var cadena = url.split('/');
@@ -156,7 +180,7 @@
                     $('#submodulo').val(result.sub_desired_m);
                 }
                 else if (result==0){
-                    console.log('no existe ese id de la persona');
+                    //console.log('no existe ese id de la persona');
                     $('#completar').attr('disabled',true);
                     swal({
                         title: "¡Ha ocurrido un error!",
@@ -167,7 +191,7 @@
                     });
                 }
                 else if (result==1) {
-                    console.log('es otro token');
+                    //console.log('es otro token');
                     $('#completar').attr('disabled',true);
                     swal({
                         title: "¡Ha ocurrido un error!",
@@ -192,6 +216,150 @@
             }
         });
     });
+    // Validacion para el url y llenado de datos automaticamente
+    //---------------------------------------------------------------------------------------------------
+    // Validacion de solo numeros
+    function controltagNum(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[0-9]/;// -> solo numeros
+        te = String.fromCharCode(tecla);
+        if (te=='0' || te=='1' || te=='2' || te=='3' || te=='4' || te=='5' || te=='6' || te=='7' || te=='8' || te=='9') {
+            $('#mensajeDoc').hide();
+        } else {
+            $('#mensajeDoc').show();
+            $('#mensajeDoc').text('Solo números');
+            $('#mensajeDoc').css('color','red');
+        }
+        return patron.test(te);
+    }
+    // Validacion de solo numeros
+    //---------------------------------------------------------------------------------------------------
+    // Para que se vea la imagen que se esta cargando
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgId= '#preview_'+$(input).attr('id');
+                $(imgId).attr('src', e.target.result);
+                $(imgId).width('350');
+                $(imgId).height('300');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#adj_ruc").change(function () {
+        readURL(this);
+        var adj_ruc = $('#adj_ruc').val();
+        var valRuc = '#mensajeDoc';
+        var valImgRuc = '#mensajeImgDoc';
+        var valContraseña = '#passwordMenRU';
+        var valConfirContraseña = '#passwordConfirmMenRU';
+        var extension = adj_ruc.substring(adj_ruc.lastIndexOf("."));
+        if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+            $('#completar').attr('disabled',false);
+            $('#mensajeImgDoc').hide();
+            $('#preview_adj_ruc').show();
+        } else {
+            $('#completar').attr('disabled',true);
+            $('#mensajeImgDoc').show();
+            $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg o png');
+            $('#mensajeImgDoc').css('color','red');
+            $('#preview_adj_ruc').hide();
+        }
+        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+            $('#completar').attr('disabled',true);
+        } else {
+            $('#completar').attr('disabled',false);
+        }
+    });
+    // Para que se vea la imagen que se esta cargando
+    //---------------------------------------------------------------------------------------------------
+    // Validacion de contraseñas
+    $(document).ready(function(){
+        $('#password').keyup(function(evento){
+            var password = ($('#password').val()).trim();
+            if (password.length==0) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('El campo no debe estar vacio');
+                $('#passwordMenRU').css('color','red');
+                $('#completar').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('La contaseña debe tener 5 caracteres');
+                $('#passwordMenRU').css('color','red');
+                $('#completar').attr('disabled',true);
+            }
+            else {
+                $('#passwordMenRU').hide();
+                var password1 = ($('#password-confirm').val()).trim();
+                if (password1.length!=0){
+                    $('#completar').attr('disabled',false);
+                }
+            }
+            var valRuc = '#mensajeDoc';
+            var valImgRuc = '#mensajeImgDoc';
+            var valContraseña = '#passwordMenRU';
+            var valConfirContraseña = '#passwordConfirmMenRU';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#completar').attr('disabled',false);
+            }
+        });
+        $('#password-confirm').keyup(function(evento){
+            var passwordConfirm = ($('#password-confirm').val()).trim();
+            if (passwordConfirm.length==0) {
+                $('#passwordConfirmMenRU').show();
+                $('#passwordConfirmMenRU').text('El campo no debe estar vacio');
+                $('#passwordConfirmMenRU').css('color','red');
+                $('#completar').attr('disabled',true);
+            }
+            if (passwordConfirm.length < 5) {
+                $('#passwordConfirmMenRU').show();
+                $('#passwordConfirmMenRU').text('La contaseña debe tener 5 caracteres');
+                $('#passwordConfirmMenRU').css('color','red');
+                $('#completar').attr('disabled',true);
+            }
+            else {
+                $('#passwordConfirmMenRU').hide();
+                var password1 = ($('#password-confirm').val()).trim();
+                console.log(password1.length !=0);
+                if (password1.length !=0){
+                    $('#completar').attr('disabled',false);
+                }
+            }
+
+            var password1 = $('#password').val();
+            var password = $('#password-confirm').val();
+
+            if (password != password1) {
+                $('#passwordConfirmMenRU').show();
+                $('#passwordConfirmMenRU').text('Ambas contraseña deben coincidir');
+                $('#passwordConfirmMenRU').css('color','red');
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#passwordConfirmMenRU').hide();
+                if (password1.length !=0 && password.length !=0){
+                    $('#completar').attr('disabled',false);
+                }
+            }
+            var valRuc = '#mensajeDoc';
+            var valImgRuc = '#mensajeImgDoc';
+            var valContraseña = '#passwordMenRU';
+            var valConfirContraseña = '#passwordConfirmMenRU';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#completar').attr('disabled',false);
+            }
+        });
+    });
+    // Validacion de contraseñas
+    //---------------------------------------------------------------------------------------------------
 </script>
 </html>
 

@@ -10,6 +10,9 @@ use App\Events\WelcomeEmailEvent;
 
 use Socialite;
 
+use App\Mail\ApprovalNotification;
+use Illuminate\Support\Facades\Mail;
+
 class SocialAuthController extends Controller
 {
     public function redirectToProvider($provider)
@@ -44,7 +47,10 @@ class SocialAuthController extends Controller
             
             if($createUser->wasRecentlyCreated)
              {
-                 event(new WelcomeEmailEvent($createUser));
+                event(new WelcomeEmailEvent($createUser));
+                $emailAdmin = "bcastillo@leipel.com";
+                $motivo = "Usuario pendiente por aprobar";
+                Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
              }
 
             auth()->login($createUser);

@@ -82,9 +82,13 @@ class RegisterController extends Controller
             'codigo_ref' => $code,
             'credito'=> 0,
                 ]);
-            
+
             event(new WelcomeEmailEvent($user));
-        
+
+            $emailAdmin = "bcastillo@leipel.com";
+            $motivo = "Usuario pendiente por aprobar";
+            Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
+            
         return $user;
     }
 }

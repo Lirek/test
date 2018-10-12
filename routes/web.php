@@ -337,23 +337,19 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/AllAdminMegazines','AdminController@ShowAllMegazine');
            //------------------------------------------------------------------------
-
-           //---------------LIBROS,SAGAS,TRILOGIAS, ETC---------------------------
+           //---------------LIBROS,SAGAS,TRILOGIAS, ETC------------------------------
                 Route::get('admin_books','AdminController@ShowBooks');
                 Route::get('BooksData','AdminController@BooksDataTable');
                 Route::post('books_status/{id}','AdminController@EstatusBooks');
-
                 Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
                 Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
            //------------------------------------------------------------------------
-
            //--------------------AUTORES LITERARIOS----------------------------------
-
                 Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
                 Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');
-           //------------------------------------------------------------------------
-            //-----------------------RADIOS------------------------------------------
+            //------------------------------------------------------------------------
+            //-----------------------RADIOS-------------------------------------------
                 Route::get('/admin_radio','AdminController@ShowRadios');
                 Route::get('RadioData','AdminController@RadioDataTable');
                 Route::get('BackendRadios','AdminController@BackendRadioData');
@@ -361,11 +357,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
                 Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
                 Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
-
             //-----------------------------------------------------------------------
-
-            //---------------------------TV----------------------------------------
-
+            //---------------------------TV------------------------------------------
                 Route::get('/admin_tv','AdminController@ShowTV');
                 Route::get('DataTableTv','AdminController@DataTableTv');
                 Route::get('BackendTV','AdminController@BackendTvData');
@@ -373,9 +366,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('BackendTv/{id}','AdminController@GetBackendTv');
                 Route::post('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
                 Route::post('UpdateBackendTv/{id}','AdminController@UpdateBackendTv');
+            //-----------------------------------------------------------------------
+            //----------------------------PELICULAS----------------------------------
+                Route::get('/admin_movies','AdminController@ShowMovies');
+                Route::get('MoviesDataTable','AdminController@MoviesDataTable');
+                Route::post('/admin_movie/{id}','AdminController@MovieStatus');
 
-
-            //--------------------------------------------------------------------
 
 
 

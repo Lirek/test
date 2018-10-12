@@ -32,6 +32,7 @@ use App\PointsAssings; //
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
+use App\Mail\ApprovalNotification;
 
 use App\Events\AssingPointsEvents;
 
@@ -321,6 +322,9 @@ class HomeController extends Controller
         $Buy->status=2;
         $Buy->reference=$request->references;
         $Buy->save();
+        $emailAdmin = "bcastillo@leipel.com";
+        $motivo = "Pago por depósito pendiente por aprobar";
+        Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
         Flash('Pago registrado, en proceso de validación')->success();
         return redirect()->action('HomeController@index');
 

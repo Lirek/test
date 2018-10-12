@@ -140,7 +140,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                             <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> {{$ticket->name}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
+                                            <form class="form-horizontal" id="formPago" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -406,7 +406,20 @@ input[type="checkbox"]:disabled + .label-text:before{
                 });
             }
         });
+
+        $("#formPago").on('submit', function(e){
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+        });
     });
+
 
     function terminosCondiciones(id) {
         if (!($('input[name="checkTerminosCondiciones"]').is(':checked'))) {

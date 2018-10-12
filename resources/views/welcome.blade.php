@@ -427,12 +427,14 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <!-- <li style="margin-top: -5%; margin-left: 18%">
+                    <!--
+                    -->
+                    <li style="margin-top: -5%; margin-left: 18%">
                         <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
                             <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
-                    </li> -->
+                    </li> 
                 </ul>
             </div>
             <div class="modal-body">
@@ -505,6 +507,7 @@
                         </form>
                     </div>
 <!--
+                -->
                     <div id="proveedor" class="tab-pane fade">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
                             {{ csrf_field() }}
@@ -558,7 +561,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div> -->
+                    </div> 
 
                 </div>
 
@@ -787,14 +790,14 @@
                                     @endif
                                     <div id="subMenuMusica">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired1" class="form-control">
+                                        <select name="sub_desired_musica" id="sub_desired1" class="form-control">
                                             <option value="Artista">Artista</option>
                                             <option value="Productora">Productora</option>
                                         </select>
                                     </div>
                                     <div id="subMenuLibro">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired2" class="form-control">
+                                        <select name="sub_desired_libros" id="sub_desired2" class="form-control">
                                             <option value="Escritor">Escritor</option>
                                             <option value="Editorial">Editorial</option>
                                         </select>

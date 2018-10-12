@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
+use App\Mail\StatusMovies;
+use App\Mail\StatusSeller;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
 use App\Events\PayementAprovalEvent;
@@ -43,6 +45,8 @@ use App\Payments;
 use App\Referals;
 use App\PointsAssings;
 use App\SistemBalance;
+use App\Movie;
+use App\Rating;
 
 //--------------------------------------------------------
 
@@ -71,7 +75,7 @@ class AdminController extends Controller
 */
     	public function ShowAlbums()
     	{	
-    		return view('promoter.ContentModules.MainContent.Albums');
+    		  return view('promoter.ContentModules.MainContent.Albums');
    		}
 
       public function AlbumsDataTable()
@@ -918,6 +922,71 @@ class AdminController extends Controller
         $Book->save();
         return response()->json($Book);
   }
+
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE PELICULA -------------------
+  ---------------------------------------------------------------
+*/
+    public function ShowMovies() {
+      return view('promoter.ContentModules.MainContent.Movies');
+    }
+
+    public function MoviesDataTable() {
+
+      //$movies = Movie::where('status','En Proceso');
+      $movies = Movie::all();
+      return Datatables::of($movies)
+        ->editColumn('img_poster',function($movies){
+          return "<img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
+        })
+        ->addColumn('autor',function($movies){
+          return $movies->Seller()->first()->name;
+        })
+        ->addColumn('title',function($movies){
+          return $movies->title;
+        })
+        ->addColumn('original_title',function($movies){
+          return $movies->original_title;
+        })
+        ->addColumn('sinopsis',function($movies){
+          return $movies->based_on;
+        })
+        ->addColumn('categoria',function($movies){
+          return $movies->rating->r_descr;
+        })
+        ->addColumn('genero',function($movies){
+          foreach ($movies->tags_movie as $key) {
+            $tags[] = $key->tags_name;
+          }
+          return $tags;
+        })
+        ->addColumn('release_year',function($movies){
+          return $movies->release_year;
+        })
+        ->addColumn('cost',function($movies){
+          return $movies->cost;
+        })
+        ->addColumn('Estatus',function($movies){
+          return "<button type='button' class='btn btn-theme' value=".$movies->id." data-toggle='modal' data-target='#myModal' id='status'>".$movies->status."</button>";
+        })
+        ->rawColumns(['Estatus','img_poster'])
+        ->toJson();
+    }
+
+    public function MovieStatus(Request $request,$id) {
+      $movie = Movie::find($id);
+      $email = $movie->seller->email;
+      $message = $request->message;
+      if ($request->status == 'Aprobado') {
+        $movie->status = 1;
+      } else {
+        $movie->status = 3;
+      }
+      $movie->save();
+      Mail::to($email)->send(new StatusMovies($movie->title,$request->status,$message));
+      return response()->json($movie);
+    }
  /*---------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------FUNCIONES DE PROVEEDORES----------------------------------
 --------------------------------------------------------------------------------------
@@ -977,21 +1046,17 @@ class AdminController extends Controller
         return response()->json($data); 
       }
 
-      public function AproveOrDenialSeller(Request $request,$id)
-      {
-        if ($request->status=='Rechazado') 
-        {
-          $seller= Seller::find($id);
-          
-          $data=$seller->delete();          
+      public function AproveOrDenialSeller(Request $request,$id) {
+        $seller= Seller::find($id);
+        if ($request->status=='Rechazado') {
+          //$data=$seller->delete();
+          $seller->estatus = 3; // rechazado
+        } else {
+          $seller->estatus = 2; // aprobado
         }
-        else
-        {
-          $seller= Seller::find($id);
-          $seller->estatus=$request->status;          
-          $data=$seller->save();
-        }
-          return response()->json($data);          
+        $seller->save();
+        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
+        return response()->json($request->all());
       }
 //-------------Mostrar Solicitudes ---------------------------------
    		

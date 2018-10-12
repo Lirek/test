@@ -101,7 +101,7 @@
 			<i class="fas fa-film fa-4x"></i>
 			<p>Peliculas</p>
 			<p>{{$movies}}</p>
-			<p class="user"><a href="{{url('/admin_movie')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
+			<p class="user"><a href="{{url('/admin_movies')}}"><button type="button" class="btn btn-theme">Revisar</button></a></p>
 		</div>
    </div>
 </div>
