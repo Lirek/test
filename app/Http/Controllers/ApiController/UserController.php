@@ -10,6 +10,7 @@ use Spatie\Fractalistic\Fractal;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Log;
 
 
 use App\Events\PayementAprovalEvent;
@@ -140,30 +141,22 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
-        //$user->num_doc = $request->num_doc;
-
         $user->type= $request->type;
         $user->alias = $request->alias;
-        
-        if ($request->hasFile('img_perf'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
-
-         $request->file('img_perf')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
-        }
-        
         $user->fech_nac = $request->fech_nac;
+        $user->direccion = $request->address;
+        $user->phone = $request->phone;
 
-       
-        if ($request->hasFile('img_doc'))
+        $user->save();
+
+        return Response::json(['status'=>'OK'], 201);
+    }
+
+    public function UploadDocument(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        
+         if ($request->hasFile('img_doc'))
         {
 
 
@@ -175,13 +168,45 @@ class UserController extends Controller
 
          $real_path='/user/'.$user->id.'/profile/'.$name;
          
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
+         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;
+         
+         $user->save();
+         
+         return Response::json(['status'=>'OK'], 201);
         }
-     
-        //dd($user);
-        $user->save();
+        else
+        {
+            
+            return Response::json(['status'=>'Error'], 400);
+        }
+    }
+    
+    public function UploadAvatar(Request $request)
+    {
+         $user = User::find(auth()->user()->id);
+         
+         if ($request->hasFile('img_perf'))
+            {
+             $store_path = public_path().'/user/'.$user->id.'/profile/';
+             
+             $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+    
+             $request->file('img_perf')->move($store_path,$name);
+    
+             $real_path='/user/'.$user->id.'/profile/'.$name;
+             
+             $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;
+             
+             $user->save();
+             
+             return Response::json(['status'=>'OK'], 201);
+            }
+            else
+            {
+                return Response::json(['status'=>'ERROR'], 402);
+            }
+        
 
-        return Response::json(['status'=>'OK'], 201);
     }
 
     public function BuyDepositPackage(Request $request)
@@ -191,7 +216,7 @@ class UserController extends Controller
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
-        $Buy->method='Dep贸sito';
+        $Buy->method='Deposito';
 
          if ($request->hasFile('voucher'))
         {

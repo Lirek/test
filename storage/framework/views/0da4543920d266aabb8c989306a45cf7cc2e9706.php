@@ -44,6 +44,15 @@
         ]); ?>;
     </script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126665289-1');
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
