@@ -9,6 +9,10 @@ class SellersAcces extends Model
     //Nombre de la tabla Pivot de accesos a los modulos
 
     protected $table = 'seller_acces';
+    protected $fillable = [
+    	'seller_id',
+    	'modules_id'
+    ];
 	
 
 }

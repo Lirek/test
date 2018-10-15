@@ -68,14 +68,14 @@ figure.snip1166 h3 span {
 }
 figure.snip1166 h3:after,
 figure.snip1166 h3:before {
-    border-style: solid;
-    content: '';
-    position: absolute;
     left: 100%;
+    position: absolute;
+    content: '';
+    border-style: solid;
 }
 figure.snip1166 h3:after {
-    border-width: 40px 0 0 12px;
     border-color: transparent transparent transparent #1a1a1a;
+    border-width: 40px 0 0 12px;
     top: 0;
 }
 figure.snip1166 h3:before {

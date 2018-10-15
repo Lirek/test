@@ -37,7 +37,7 @@ class AdminContentController extends Controller
             $books= Book::where('status','=','En Revision')->count();
             $megazines= Megazines::where('status','=','En Revision')->count();
             $tags= Tags::where('status','=','En Revision')->count();
-            $movies = Movie::where('status','=','En Revision')->count();
+            $movies = Movie::where('status','=','En Proceso')->count();
             $series = 0;
             $BookAuthor= BookAuthor::where('status','=','En Revision')->count();
 

@@ -166,40 +166,48 @@ $(document).ready(function (e){
     $(document).on('click','#ModifySellers', function() {
       
       var x = $(this).val();
-       console.log(x);
-       $( "#FormStatusSeller" ).on( 'submit', function(e){
-
-            var s=$("input[type='radio'][name=status]:checked").val();
-            var message=$('#razon').val();
-            var url = 'AproveOrDenialSeller/'+x;
-
-            e.preventDefault(); 
-            
-                                $.ajax({
-                                url: url,
-                                type: 'POST',
-                                data: {
-                                        _token: $('input[name=_token]').val(),
-                                        status: s,
-                                        message: message,
-                                      }, 
-                                success: function (result) {
-
-                                                            $('#myModal').toggle();
-                                                            $('.modal-backdrop').remove();
-                                                            location.reload();
-                                                            swal("Se ha "+s+" con exito","","success");
-                                                            },
-
-                                error: function (result) {
-                                swal('Existe un Error en su Solicitud','','error');
-                                
-                                },
-                                });  
-                                  
-                    
-       });  
-
+      console.log(x);
+      $("#FormStatusSeller").on('submit', function(e){
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
+        swal({
+          title: "Procesando la información",
+          text: "Espere mientras se procesa la información.",
+          icon: gif,
+          buttons: false,
+          closeOnEsc: false,
+          closeOnClickOutside: false
+        });
+        var s = $("input[type='radio'][name=status]:checked").val();
+        var message = $('#razon').val();
+        var url = 'AproveOrDenialSeller/'+x;
+        e.preventDefault(); 
+        $.ajax({
+          url: url,
+          type: 'POST',
+          data: {
+            _token: $('input[name=_token]').val(),
+            status: s,
+            message: message
+          }, 
+          success: function (result) {
+            console.log(result);
+            $('#myModal').toggle();
+            $('.modal-backdrop').remove();
+            //location.reload();
+            swal("Se ha "+s+" con éxito","","success")
+            .then((recarga) => {
+              location.reload();
+            });
+          },
+          error: function (result) {
+            console.log(result);
+            swal('Existe un Error en su Solicitud','','error')
+            .then((recarga) => {
+              location.reload();
+            });
+          },
+        });  
+      });  
 
     });
 });

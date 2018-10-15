@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Validator;
 
 //Seller Model
 use App\Seller;
+use App\SellersRoles;
 use App\ApplysSellers;
+use App\SellersAcces;
 use Laracasts\Flash\Flash;
 //use App\music_authors;
 
@@ -152,46 +154,88 @@ class SellerController extends Controller
                 ->with('modulos',$seller_modules);
     }
 
-    //Funcion Encargada de Cargar el Formulario para el Registro que completo
-    public function CompleteRegistrationForm($id,$code)
-    {
-    	$ApplysSellers = ApplysSellers::find($id);
-        
-        if ($code == $ApplysSellers->token)
-        {
-            return view('seller.complete');    
+    //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
+    public function CompleteRegistrationForm($id,$code) {
+        $ApplysSellers = ApplysSellers::find($id);
+        $seller = Seller::where('email',$ApplysSellers->email)->get();
+        //dd(isset($seller[0]));
+        if (isset($seller[0])) {
+            $validacion = 1; // ya el usuario ya completó el registro
+        } else {
+            $validacion = 0; // el usuario aun no ha completado el registro
         }
-        else
-        {
-            flash()->error('El enlace procesado no corresponde a nuestors registros');
-          return view('seller.auth.login');   
+        return view('seller.complete')->with('valSeller',$validacion);
+        /*
+        if ($ApplysSellers!=null) {
+            if ($code == $ApplysSellers->token) {
+                return view('seller.complete');
+            } else {
+                flash()->error('El enlace procesado no corresponde a nuestros registros');
+                return view('seller.auth.login');   
+            }
+        } else {
+            return view('seller.complete');
         }
-        
+        */
     }
+	//Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
 
-	//Funcion Encargada de Cargar los datos del formulario a la BD para el Registro que completo
+    // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
+    public function getDataSeller($id,$token) {
+        $ApplysSellers = ApplysSellers::find($id);
+        if ($ApplysSellers!=null) { // si existe ese registro con ese id
+            if ($ApplysSellers->token === $token) { // si coincide el token que se envia con el del registro
+                return response()->json($ApplysSellers); // retorna la informacion 
+            } else {
+                return response()->json(1); // si no corresponde el token 
+            }
+        } else {
+            return response()->json(0); // si no existe el registro con ese id
+        }
+    }
+    // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
 
     public function CompleteRegistration(Request $request)
-    {   
-        
-        
-        $store_path='documents/sellers/';      
-        
-        $path = $request->file('adj_ruc')->storeAs($store_path,$request->name.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
-    	$Seller= new Seller;
+    {
+        //dd($request->all());
+        //$store_path='documents/sellers/';
+        $nombre = $this->sinAcento($request->name);
+        $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+        $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+        $request->file('adj_ruc')->move($store_path,$name);
+        $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/';
+        //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
+        $Seller= new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;
         $Seller->password = bcrypt($request->password);
         $Seller->estatus = 'Pre-Aprobado';
         $Seller->ruc_s = $request->ruc;
         $Seller->descs_s = $request->dsc;
-        $Seller->adj_ruc = $path;
+        $Seller->adj_ruc = $real_path;
         $Seller->tlf = $request->tlf;
         $Seller->save();
         Auth::guard('web_seller')->login($Seller);
+        $seller_roles = SellersRoles::where('name',$request->modulo)->get();
+        $seller= Seller::find(Auth::guard('web_seller')->user()->id);
+        $data = $seller->roles()->attach($seller_roles[0]->id);
+        if ($request->submodulo!=null) {
+            $seller_sub_roles = SellersRoles::where('name',$request->submodulo)->get();
+            $data = $seller->roles()->attach($seller_sub_roles[0]->id);
+        }
 
-    
-    	return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
+    	//return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
+        return redirect()->action(
+            'SellerController@homeSeller'
+        );
+    }
+
+    public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        return $cadena;
     }
 
     public function ShowMessages()

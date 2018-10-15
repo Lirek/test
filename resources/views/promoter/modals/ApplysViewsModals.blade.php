@@ -8,7 +8,7 @@
           <h4 class="modal-title">Modificar Estatus</h4>
         </div>
         <div class="modal-body">
-         <p>Modifique El Estatus De La Solicitud</p>
+         <p>Modifique el estatus de la solicitud</p>
         
 
              <form method="POST"  id="formStatus">

@@ -6,25 +6,25 @@
 <table class="wrapper" width="100%" cellpadding="0" cellspacing="0">
  <tr>
  	<td align="center">
- 		<img src="{{$message->embed(public_path().'/sistem_images/aproval.png')}}" width="100%" height="100%">
+ 		<img src="{{$message->embed(public_path().'/sistem_images/denial.png')}}" width="100%" height="100%">
  	</td>
  </tr>
 
  <tr>
  	<td align="center">
-		<h1>Su SOLICITUD de cuenta ha sido APROBADA.</h1>
+		<h1>Su CUENTA ha sido RECHAZADA.</h1>
 	</td>
  </tr>
 
  <tr>
 	<td>
-	<p style="font-size: 14px;" align="justify">Hola, le damos la más cordial bienvenida a LEIPEL, para avanzar al siguiente paso de su registro seleccione el botón "Registrarse".</p>
+	<p style="font-size: 14px;" align="justify">Hola, de parte de LEIPEL le informamos que su cuenta fue rechazada por el siguiente motivo:</p>
  	</td>
  </tr>
 
  	<tr>
  	<td align="center">
-		<a href="{{$url}}"><button>Registrarse</button></a>
+		{{ $m }}
 	</td>
  </tr>
  <tr>
@@ -42,7 +42,7 @@
 	<td>
 	<p style="font-size: 10px">Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando.</p>
 	</td>
-  </tr>	
+  </tr>
 
  <tr>
 	<td align="center">
@@ -53,3 +53,5 @@
 </table>
 </body>
 </html>
+
+<td></td>
