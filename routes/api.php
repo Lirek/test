@@ -19,6 +19,10 @@ Route::post('login', 'ApiController\AuthController@login');
 
 Route::post('recover', 'ApiController\AuthController@recover');
 
+Route::get('login/{provider}', 'ApiController\AuthController@redirectToProvider');
+
+Route::get('login/{provider}/callback', 'ApiController\AuthController@handleProviderCallback');
+
 Route::get('login', function(){
         return view('test_login');
     });

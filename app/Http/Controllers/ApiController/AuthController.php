@@ -8,11 +8,16 @@ use App\Http\Controllers\Controller;
 use App\Events\CreateCodeSocialUserEvent;
 
 use App\User;
+
 use JWTAuth;
+use Socialite;
+
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator, DB, Hash, Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
+use App\Events\WelcomeEmailEvent;
+
 
 class AuthController extends Controller
 {
@@ -114,4 +119,47 @@ class AuthController extends Controller
             'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
         ]);
     }
+
+    public function redirectToProvider($provider)
+    {
+      return Socialite::driver($provider)->stateless()->redirect();
+    }
+
+    public function handleProviderCallback($provider)
+    {
+        try {
+                $user = Socialite::driver($provider)->stateless()->user();
+                 
+                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                 $charactersLength = strlen($characters);
+                 $randomString = '';
+        
+                   for ($i = 0; $i < 6; $i++) 
+                      {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                      }
+
+
+                 $code=$randomString;
+            $createUser = User::firstOrCreate(
+                ['email' => $user->getEmail()],
+                ['name' => $user->getName(),
+                'img_perf' => $user->getAvatar(),
+                'codigo_ref'=>$code]
+            );
+            
+            if($createUser->wasRecentlyCreated)
+             {
+                 event(new WelcomeEmailEvent($createUser));
+             }
+            
+            $token = JWTAuth::fromUser($createUser);
+            
+            return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+
+        }catch (\GuzzleHttp\Exception\ClientException $e){
+            dd($e);
+        }
+    }
+
 }
