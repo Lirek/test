@@ -1,10 +1,9 @@
-@extends('seller.layouts')
-@section('content')
+<?php $__env->startSection('content'); ?>
   <!-- 
   MAIN CONTENT
   -->
   <!--main content start-->
-  @include('flash::message')
+  <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
   <div class=""> 
       <div class="white">
@@ -18,66 +17,66 @@
 </div>
 <!-- Si se quiere central lo iconos agregar al DIV style="justify-content: center; display: flex;"-->
 <div class="col-md-12" >
-    @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
-      @if($modulos!=false)
-        @foreach($modulos as $mod)
-          @if($mod->name == 'Musica')
+    <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
+      <?php if($modulos!=false): ?>
+        <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php if($mod->name == 'Musica'): ?>
             <div class="col-sm-2 box0">
-              <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">
+              <a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>">
                 <div class="box1" style="padding: 10%;">
                   <span class="li_music"></span>
-                  <h3 style="margin-top: 2%;">{{ $musical_content }}</h3>
+                  <h3 style="margin-top: 2%;"><?php echo e($musical_content); ?></h3>
                 </div>
               </a>
             </div>
-          @endif
-          @if($mod->name =='Peliculas')
+          <?php endif; ?>
+          <?php if($mod->name =='Peliculas'): ?>
             <div class="col-sm-2 box0">
-              <a href="{{ url('/movies') }}">
+              <a href="<?php echo e(url('/movies')); ?>">
                 <div class="box1" style="padding: 11%;">
                   <span class="fa fa-film"></span>
-                  <h3>{{ $movie_content + $serie_content }}</h3>
+                  <h3><?php echo e($movie_content + $serie_content); ?></h3>
                 </div>
               </a>
             </div>
-          @endif
-          @if($mod->name == 'Libros')
+          <?php endif; ?>
+          <?php if($mod->name == 'Libros'): ?>
             <div class="col-sm-2 box0">
-              <a href="{{ url('/tbook') }}">
+              <a href="<?php echo e(url('/tbook')); ?>">
                 <div class="box1" style="padding: 11%;">
                   <span class="fa fa-book"></span>
-                  <h3>{{ $book_content +  $megazine_content }}</h3>
+                  <h3><?php echo e($book_content +  $megazine_content); ?></h3>
                 </div>
               </a>
             </div>
-          @endif
-          @if($mod->name == 'Radios')
+          <?php endif; ?>
+          <?php if($mod->name == 'Radios'): ?>
             <div class="col-sm-2 box0">
               <a href="#">
                 <div class="box1" style="padding: 10.3%;">
                   <span class="glyphicon glyphicon-stats"></span>
-                  <h3>{{ $radio_content }}</h3>
+                  <h3><?php echo e($radio_content); ?></h3>
                 </div>
               </a>
             </div>
-          @endif
-          @if($mod->name == 'TV')
+          <?php endif; ?>
+          <?php if($mod->name == 'TV'): ?>
             <div class="col-sm-2 box0">
               <a href="#">
                 <div class="box1" style="padding: 10%;">
                   <span class="li_tv"></span>
-                  <h3 style="margin-top: 2%;">{{ $tv_content }}</h3>
+                  <h3 style="margin-top: 2%;"><?php echo e($tv_content); ?></h3>
                 </div>
               </a>
             </div>
-          @endif
-        @endforeach
-      @else
+          <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      <?php else: ?>
         <div class="col-md-12 col-md-offset-1">
           <h1>Aún no posee módulos asignados.</h1>
         </div>
-      @endif
-    @endif
+      <?php endif; ?>
+    <?php endif; ?>
   </div>
   <!-- /row mt -->
   <!-- **********************************************************************************************************************************************************
@@ -89,10 +88,10 @@
   <div class="row mt">
     <div class="text-center">
       <div class="col-sm-6">
-          <h4><b>Total de contenido:</b> {{ $total_content }}</h4>
+          <h4><b>Total de contenido:</b> <?php echo e($total_content); ?></h4>
       </div>
       <div class="col-sm-6">
-          <h4><b>Contenido aprobado:</b> {{ $total_aproved }}</h4>
+          <h4><b>Contenido aprobado:</b> <?php echo e($total_aproved); ?></h4>
       </div>
     </div>
     <!--CONTENIDO RECIENTE-->
@@ -110,77 +109,77 @@
                 </tr>
               </thead>
               <tbody>  
-                @if($Albums)
-                  @foreach($Albums as $albums)
+                <?php if($Albums): ?>
+                  <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $albums): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr class="letters">
                       <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                      <td><a href="#"> {{$albums->name_alb}}</a></td>
+                      <td><a href="#"> <?php echo e($albums->name_alb); ?></a></td>
                       <td class="hidden-phone">Album Musical</td>
-                      <td class="hidden-phone">{{$albums->cost}}</td>
-                      <td>{{$albums->status}}</td>
+                      <td class="hidden-phone"><?php echo e($albums->cost); ?></td>
+                      <td><?php echo e($albums->status); ?></td>
                     </tr>
-                  @endforeach
-                @endif
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
 
-                @if($Tv)
-                  @foreach($Tv as $tv)
+                <?php if($Tv): ?>
+                  <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr class="letters">
                     <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                    <td><a href="#"> {{$tv->name_r}}</a></td>
+                    <td><a href="#"> <?php echo e($tv->name_r); ?></a></td>
                     <td class="hidden-phone">TV Online</td>
                     <td class="hidden-phone">Gratis</td>
-                    <td>{{$tv->status}}</td>
+                    <td><?php echo e($tv->status); ?></td>
                   </tr>
-                  @endforeach
-                @endif
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
 
-                @if($Book)
-                  @foreach($Book as $book)
+                <?php if($Book): ?>
+                  <?php $__currentLoopData = $Book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr class="letters">
                     <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                    <td><a href="#"> {{$book->title}}</a></td>
+                    <td><a href="#"> <?php echo e($book->title); ?></a></td>
                     <td class="hidden-phone">Libro</td>
-                    <td class="hidden-phone">{{$book->cost}}</td>
-                    <td>{{$book->status}}</td>
+                    <td class="hidden-phone"><?php echo e($book->cost); ?></td>
+                    <td><?php echo e($book->status); ?></td>
                   </tr>
-                  @endforeach
-                @endif
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
 
-                @if($Megazines)
-                  @foreach($Megazines as $megazines)
+                <?php if($Megazines): ?>
+                  <?php $__currentLoopData = $Megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $megazines): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr class="letters">
                       <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                      <td><a href="#"> {{$megazines->title}}</a></td>
+                      <td><a href="#"> <?php echo e($megazines->title); ?></a></td>
                       <td class="hidden-phone">Revista</td>
-                      <td class="hidden-phone">{{$megazines->cost}}</td>
-                      <td>{{$megazines->status}}</td>
+                      <td class="hidden-phone"><?php echo e($megazines->cost); ?></td>
+                      <td><?php echo e($megazines->status); ?></td>
                     </tr>
-                    @endforeach
-                  @endif
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endif; ?>
 
-                  @if($Radio)
-                    @foreach($Radio as $radio)
+                  <?php if($Radio): ?>
+                    <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <tr class="letters">
                         <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                        <td><a href="#"> {{$radio->name_r}}</a></td>
+                        <td><a href="#"> <?php echo e($radio->name_r); ?></a></td>
                         <td class="hidden-phone">Radio Online</td>
                         <td class="hidden-phone">Gratis</td>
-                        <td>{{$radio->status}}</td>
+                        <td><?php echo e($radio->status); ?></td>
                       </tr>
-                    @endforeach
-                  @endif
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endif; ?>
 
-                  @if($Movies)
-                    @foreach($Movies as $movies)
+                  <?php if($Movies): ?>
+                    <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $movies): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <tr class="letters">
                         <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                        <td><a href="#"> {{$movies->title}}</a></td>
+                        <td><a href="#"> <?php echo e($movies->title); ?></a></td>
                         <td class="hidden-phone">Pelicula</td>
-                        <td class="hidden-phone">{{$movies->cost}}</td>
-                        <td>{{$movies->status}}</td>
+                        <td class="hidden-phone"><?php echo e($movies->cost); ?></td>
+                        <td><?php echo e($movies->status); ?></td>
                       </tr>
-                    @endforeach
-                  @endif
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endif; ?>
                 </tbody>
               </table>
           </div>
@@ -195,13 +194,11 @@
         </div>
         <h2 class="mt" style="color: #fff;">
           <i class="fa fa-users fa-3x"></i>
-          {{--
-          <img src="{{asset('sistem_images/seguidores.png')}}" alt="seguidores" width="50%">
-          --}}
+          
         </h2>
         <footer>
           <div class="centered">
-            <h1><i class="info-box-number"> {{ $followers }} </i></h1>
+            <h1><i class="info-box-number"> <?php echo e($followers); ?> </i></h1>
           </div>
         </footer>
       </div>
@@ -216,7 +213,7 @@
         </h2>
         <footer>
           <div class="centered">
-            <h1><i class="info-box-number"> {{ $total_content }} </i></h1>
+            <h1><i class="info-box-number"> <?php echo e($total_content); ?> </i></h1>
           </div>
         </footer>
       </div>
@@ -291,11 +288,13 @@
     </div>
   </div>
 </div>    -->
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
   <!--
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
   -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

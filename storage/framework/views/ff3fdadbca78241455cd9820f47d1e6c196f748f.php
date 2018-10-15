@@ -139,21 +139,21 @@
 // Para validar la longtud del nombre de la cancion
 //---------------------------------------------------------------------------------------------------
 // Para validar el tamaño de la cancion
-    $(document).ready(function(){
-      $('#cancion').change(function(){
-          var tamaño = this.files[0].size;
-          var tamañoKb = parseInt(tamaño/1024);
-          if (tamañoKb>2048) {
-              $('#mensajeCancion').show();
-              $('#mensajeCancion').text('La canción es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-              $('#mensajeCancion').css('color','red');
-              $('#registarCancion').attr('disabled',true);
-          } else {
-              $('#mensajeCancion').hide();
-              $('#registarCancion').attr('disabled',false);
-          }
-      });
-    });
+    // $(document).ready(function(){
+    //   $('#cancion').change(function(){
+    //       var tamaño = this.files[0].size;
+    //       var tamañoKb = parseInt(tamaño/1024);
+    //       if (tamañoKb>2048) {
+    //           $('#mensajeCancion').show();
+    //           $('#mensajeCancion').text('La canción es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+    //           $('#mensajeCancion').css('color','red');
+    //           $('#registarCancion').attr('disabled',true);
+    //       } else {
+    //           $('#mensajeCancion').hide();
+    //           $('#registarCancion').attr('disabled',false);
+    //       }
+    //   });
+    // });
 // Para validar el tamaño de la cancion
 //---------------------------------------------------------------------------------------------------
 // Para validar la cantidad de Tickets

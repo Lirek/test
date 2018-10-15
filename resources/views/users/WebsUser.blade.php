@@ -56,16 +56,18 @@
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
           <div class="row lista">
             @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="col-xs-3 col-sm-3 col-lg-3">
-                  @if($refereds->img_perf)
-                    <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                  @else
-                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                  @endif
-                </div>
-                <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                  {{$refereds->name}} {{$refereds->last_name}}
-                </div>
+                <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                      @if($refereds->img_perf)
+                        <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
+                      @else
+                        <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
+                      @endif
+                    </div>
+                    <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                      {{$refereds->name}} {{$refereds->last_name}}
+                    </div>
+                </a>
               </div>
                 <!--MODAL DATOS-->
                 <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
@@ -146,8 +148,7 @@
               <h4 class="modal-title">Ingrese el codigo</h4>
           </div>
           <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">
-                {{ csrf_field() }}
+              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">{{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                         <label for="codigo" class="col-md-4 control-label">Codigo</label>
@@ -181,10 +182,11 @@
 @section('js')
 <script type="text/javascript">
 document.querySelector('#patrocinador').addEventListener('submit', function(e) {
-  //var form = this;
+  var form = this;
   $('#codigoMen').hide();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
+
   $.ajax({
     url:'sponsor/'+cod,
     type: 'get',
