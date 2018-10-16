@@ -1,46 +1,86 @@
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar estatus</h4>
-        </div>
-        <div class="modal-body">
-          <p>Modifique el estatus de la película</p>
-          <form method="POST" id="formStatus">
-            {{ csrf_field() }}
-            <div class="radio-inline">
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button"  onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                <span class="mdl-radio__label">Aprobar</span>
-              </label>
-            </div>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Modificar estatus</h4>
+      </div>
+      <div class="modal-body text-center">
+        <h5>Modifique el estatus de la película</h5>
+        <form method="POST" id="formStatus">
+          {{ csrf_field() }}
+          <div class="radio-inline">
+            <label for="option-1">
+              <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+              <span>Aprobar</span>
+            </label>
+          </div>
 
-            <div class="radio-inline">
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
-                <span class="mdl-radio__label">Negar</span>
-              </label>
-            </div>
+          <div class="radio-inline">
+            <label for="option-2">
+              <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
+              <span>Negar</span>
+            </label>
+          </div>
 
-            <div class="radio-inline" style="display:none" id="if_no">
-              <div class="mdl-textfield mdl-js-textfield">
-               <textarea name="message" class="mdl-textfield__input" type="text" rows="6" id="razon"></textarea>
-               <label class="mdl-textfield__label" for="razon">Explique la razón</label>
-              </div>
-            </div>
+          <div style="display:none" id="if_no">
+            <label for="razon">Explique la razón</label>
+            <textarea name="message" class="form-control" type="text" id="razon"></textarea>
+          </div>
+          <br>
 
-            <div class="radio-inline">
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-                Enviar
-              </button>
-            </div>
-          </form>
-        </div>
+          <button class="btn btn-primary" type="submit">
+            Enviar
+          </button>
+        </form>
+      </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="movieView" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Ver película</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <video style="width: 100%; height: 100%;" id="play" controls>
+              <source src="" type="video/mp4">
+              <source src="" type="video/webm">
+            </video>
+          </div>
+
+          <div class="col-md-6">
+            <label for="exampleInputFile" class="control-label">Nombre: </label>
+            <div id="nombrePelicula"></div>
+            <br>
+            <label for="exampleInputFile" class="control-label">Nombre original: </label>
+            <div id="nombreOriginalPelicula"></div>
+            <br>
+            <label for="exampleInputFile" class="control-label">Sinopsis: </label>
+            <div id="sinopsisPelicula"></div>
+            <br>
+            <label for="exampleInputFile" class="control-label">Año de publicación: </label>
+            <div id="añoPublicacion"></div>
+            <br>
+            <label for="exampleInputFile" class="control-label">Trailer: </label><br>
+            <a id="trailer" target="_black"></a>
+            <br>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

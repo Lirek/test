@@ -22,7 +22,7 @@ use App\SellersRoles;
 use App\Promoters;
 use App\PromotersRoles;
 use App\Movie;
-use App\Series;
+use App\Serie;
 
 class AdminContentController extends Controller
 {
@@ -37,8 +37,8 @@ class AdminContentController extends Controller
             $books= Book::where('status','=','En Revision')->count();
             $megazines= Megazines::where('status','=','En Revision')->count();
             $tags= Tags::where('status','=','En Revision')->count();
-            $movies = Movie::where('status','=','En Proceso')->count();
-            $series = 0;
+            $movies = Movie::where('status','En Proceso')->count();
+            $series = Serie::where('status','En Proceso')->count();
             $BookAuthor= BookAuthor::where('status','=','En Revision')->count();
 
             

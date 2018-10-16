@@ -74,6 +74,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Dirección</label>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                                <div id="mensajeDireccion"></div>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="ruc" class="col-md-4 control-label">Registro Único de Contribuyente</label>
                             <div class="col-md-6">
@@ -257,6 +271,7 @@
         var valImgRuc = '#mensajeImgDoc';
         var valContraseña = '#passwordMenRU';
         var valConfirContraseña = '#passwordConfirmMenRU';
+        var valDireccion = '#mensajeDireccion';
         var extension = adj_ruc.substring(adj_ruc.lastIndexOf("."));
         if (extension==".png" || extension==".jpg" || extension==".jpeg") {
             $('#completar').attr('disabled',false);
@@ -269,7 +284,7 @@
             $('#mensajeImgDoc').css('color','red');
             $('#preview_adj_ruc').hide();
         }
-        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
             $('#completar').attr('disabled',true);
         } else {
             $('#completar').attr('disabled',false);
@@ -304,7 +319,8 @@
             var valImgRuc = '#mensajeImgDoc';
             var valContraseña = '#passwordMenRU';
             var valConfirContraseña = '#passwordConfirmMenRU';
-            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
                 $('#completar').attr('disabled',true);
             } else {
                 $('#completar').attr('disabled',false);
@@ -351,7 +367,8 @@
             var valImgRuc = '#mensajeImgDoc';
             var valContraseña = '#passwordMenRU';
             var valConfirContraseña = '#passwordConfirmMenRU';
-            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
                 $('#completar').attr('disabled',true);
             } else {
                 $('#completar').attr('disabled',false);
@@ -359,6 +376,37 @@
         });
     });
     // Validacion de contraseñas
+    //---------------------------------------------------------------------------------------------------
+    // Función que nos va a contar el número de caracteres
+    // Para la direccion
+    $(document).ready(function(){
+        var cantidadMaxima = 191;
+        $('#address').keyup(function(evento){
+            var address = $('#address').val();
+            numeroPalabras = address.length;
+            if (numeroPalabras>cantidadMaxima) {
+                $('#mensajeDireccion').show();
+                $('#mensajeDireccion').text('Ha excedido la cantidad máxima de caracteres permitidos');
+                $('#mensajeDireccion').css('color','red');
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#mensajeDireccion').hide();
+                $('#completar').attr('disabled',false);
+            }
+            var valRuc = '#mensajeDoc';
+            var valImgRuc = '#mensajeImgDoc';
+            var valContraseña = '#passwordMenRU';
+            var valConfirContraseña = '#passwordConfirmMenRU';
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#completar').attr('disabled',false);
+            }
+        });
+    });
+    // Para la direccion
+    // Función que nos va a contar el número de caracteres
     //---------------------------------------------------------------------------------------------------
 </script>
 </html>

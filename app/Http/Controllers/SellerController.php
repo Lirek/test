@@ -224,6 +224,7 @@ class SellerController extends Controller
         $Seller->descs_s = $request->dsc;
         $Seller->adj_ruc = $real_path;
         $Seller->tlf = $request->tlf;
+        $Seller->address = $request->address;
         $Seller->save();
         Auth::guard('web_seller')->login($Seller);
         $seller_roles = SellersRoles::where('name',$request->modulo)->get();
