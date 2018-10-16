@@ -87,7 +87,11 @@
             text-align: center;
         }
     </style>
-
+    <style>
+        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -485,6 +489,10 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
+                            <div class="progress">
+                                <div class="bar"></div >
+                                <div class="percent">0%</div >
+                            </div>
                             <div class="text-center">
                                 <?php echo Form::submit('Registrar película', ['class' => 'btn btn-primary','id'=>'registrarPelicula']); ?>
 
@@ -508,7 +516,7 @@
                     <h1 class="modal-title text-center">Agregar saga</h1>
                 </div>
                 <div class="modal-body">
-                    <?php echo Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]); ?>
+                    <?php echo Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true', 'id' => 'registro' ]); ?>
 
                     <?php echo e(Form::token()); ?>
 
@@ -616,6 +624,48 @@
 
 <?php $__env->startSection('js'); ?>
 
+<script src="http://malsup.github.com/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#registroPelicula').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[name=duration]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "<?php echo e(URL::to('movies')); ?>"
+
+        }
+    });
+     
+    })();
+</script>
+
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la imagen en el formulario
@@ -657,8 +707,8 @@
 // Para que se vea la imagen en el modal
 //---------------------------------------------------------------------------------------------------
 // Para validar el tamaño maximo de las imagenes y de la pelicula
-    // Portada de la pelicula
-    $(document).ready(function(){
+   // Portada de la pelicula
+  /*  $(document).ready(function(){
         $('#image-upload').change(function(){
             var tamaño = this.files[0].size;
             var tamañoKb = parseInt(tamaño/1024);
@@ -672,9 +722,10 @@
                 $('#registrarPelicula').attr('disabled',false);
             }
         });
-    });
+    });*/
     // Portada de la pelicula
     // Pelicula
+    /*
     $(document).ready(function(){
         $('#pelicula').change(function(){
             var tamaño = this.files[0].size;
@@ -689,9 +740,10 @@
                 $('#registrarPelicula').attr('disabled',false);
             }
         });
-    });
+    });*/
     // Pelicula
     // Portada de la Saga
+    /*
     $(document).ready(function(){
         $('#imageSM-upload').change(function(){
             var tamaño = this.files[0].size;
@@ -706,7 +758,7 @@
                 $('#registrarSaga').attr('disabled',false);
             }
         });
-    });
+    });*/
     // Portada de la Saga
 // Para validar el tamaño maximo de las imagenes y de la pelicula
 //---------------------------------------------------------------------------------------------------

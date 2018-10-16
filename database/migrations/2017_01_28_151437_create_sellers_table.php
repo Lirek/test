@@ -18,14 +18,15 @@ class CreateSellersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('logo')->nullable();;
-            $table->string('tlf')->nullable();;
+            $table->string('logo')->nullable();
+            $table->string('tlf')->nullable();
             $table->enum('estatus',['Pre-Aprobado','Aprobado','Rechazado','En Proceso'])->default('En Proceso');
             $table->string('ruc_s')->nullable();
             $table->string('descs_s')->nullable();
             $table->string('adj_ruc')->nullable();
             $table->string('adj_ci')->nullable();
             $table->integer('credito')->nullable();
+            $table->string('address')->nullable();
             $table->integer('promoter_id')->unsigned()->default(0);
             //$table->foreign('promoter_id')->references('id')->on('promoter');
             $table->rememberToken();

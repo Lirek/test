@@ -5,6 +5,20 @@
       <change afterPath="$PROJECT_DIR$/public/Music/7/profileArtist/Musua.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/albumcover_Let it be1539016398.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/song_Madre tierra1539016398.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539708625.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539711521.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714306.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714437.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714474.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715092.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715626.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539708625.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539711521.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714306.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714437.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714474.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715092.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715626.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017694.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017819.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539102702.pdf" afterDir="false" />
@@ -26,44 +40,58 @@
       <change afterPath="$PROJECT_DIR$/public/images/radio/descarga.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1534450759.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/rctv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539698866.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539699197.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539708260.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/loading_1539730849.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539730849.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/04fdf79e90504a849db7961c0951388ec6d0e34b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1e0f54da529db1683176d1ca63cb1dd73468a57c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2b9c094a1c8e68aa3255a6364f69798f0c578e89.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5a2aa726a9092c0387246249ac9a38721189ce19.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5abc5375d7d74b4956fc4c3b83c9e1eac9a57cb9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6dcefe47c1884b2ff211e025eee74ce0c98bb4ec.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6e696cd89e935d7d860b486609c1f8d439d79555.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6f95a3763be4649104869578b4adcaf49bdad66d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/83204ffe7978a8e8f459271f522e8c0dd45f315a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/877d225fe3fc021e02e5a3d4065c48c3140e520e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a2e478a26384ea80162ee67bf93f23c2c5503fbe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b5723e914b3682a851c86f5fe4fddefe6fab1a4f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b6bc5537e10cfd4bf7ace3547ed4b850b66f156a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e0a2141ba053701a98c14b8c12c1c27857fde72c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ed84fe06cfc5e689cb16358f8c7cac1bbc9b8613.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leipel.com.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leipel.com.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2fa2568f74fe6fff26b5329cc40a8026cf0caf67.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5a852e241902c688f09e3badf129e9c6a0c557af.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/75261ad3f11ea78a9ebbcbc5c711cd79cca7f39f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/8c5737a6b849aafabff32fcebcdae7778c5bed38.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SeriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SeriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2017_01_28_151437_create_sellers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2017_01_28_151437_create_sellers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_02_13_011054_Create_Table_Series.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_02_13_011054_Create_Table_Series.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/adsad_1530855875.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/ti2_1533321606.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/ti2_1533321630.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/titulo 2_1530894019.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/titulo 3_1530894480.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/titulo 4_1530894567.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/film/titulo_1530893924.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530849430.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530855875.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530893924.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530894019.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530894480.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530894567.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530910555.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530910651.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530910675.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530910708.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530911109.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530911979.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1533321606.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1533321630.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -380,7 +408,9 @@
       <workItem from="1538438794279" duration="926000" />
       <workItem from="1538515696869" duration="284000" />
       <workItem from="1539192246962" duration="532000" />
-      <workItem from="1539295041908" duration="1389000" />
+      <workItem from="1539295041908" duration="1795000" />
+      <workItem from="1539729917480" duration="125000" />
+      <workItem from="1539731553937" duration="758000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -459,11 +489,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538516020122</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Modificacion en el home de proveedor y creacion de pantalla de perfil">
+      <created>1539298452333</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1539298452333</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133234000" />
+    <option name="totallyTimeSpent" value="134523000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -484,7 +521,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.27987897" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.28895614" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5033003" side_tool="true" weight="0.25642964" />
@@ -521,7 +558,9 @@
     <MESSAGE value="Cambios en reproductor tv, radios, listado de radios y v por tamaño de logo y arreglos de responsive" />
     <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en el responsive de tv y en el reproductor de radios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios en el responsive de tv y en el reproductor de radios" />
+    <MESSAGE value="Modificacion en el home de proveedor y creacion de pantalla de perfil" />
+    <MESSAGE value="Se realizo el perfil del usuario seller, y se arrglaron las pantallas d home, peliculas y series" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se realizo el perfil del usuario seller, y se arrglaron las pantallas d home, peliculas y series" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -83,7 +83,11 @@
             text-align: center;
         }
     </style>
-
+     <style>
+        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
 @endsection
 @section('content')
     
@@ -112,7 +116,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true' ]) !!}
+                    {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true', 'id' => 'registroSerie' ]) !!}
                     {{ Form::token() }}
                     {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                     <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
@@ -272,6 +276,12 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
+                <div class="form-group col-md-12">
+                <div class="progress">
+                    <div class="bar"></div >
+                    <div class="percent">0%</div >
+                </div>
+            </div>
             </div>
             <div class="text-center">
                 {!! Form::submit('Registrar serie', ['class' => 'btn btn-primary','id'=>'registrarSerie']) !!}
@@ -381,6 +391,47 @@
 @endsection
 
 @section('js')
+<script src="http://malsup.github.com/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#registroSerie').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[id=episodio_file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "{{URL::to('series')}}"
+
+        }
+    });
+     
+    })();
+</script>
     <script>
 //---------------------------------------------------------------------------------------------------
     // Para que se vea la imagen en el formulario

@@ -23,6 +23,7 @@
                                     <th class="text-center">Categoría</th>
                                     <th class="text-center" width="300">Generos</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </td>
                                             <td class="text-center"> <?php echo e($m->status); ?> </td>
+                                            <td class="text-center"> <?php echo e($m->created_at); ?> </td>
                                             <td class="text-center">
                                                 <a href="<?php echo e(route('movies.show', $m->id)); ?>" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -54,9 +56,9 @@
                                                 <a href="<?php echo e(route('movies.edit',$m->id)); ?>" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="<?php echo e(route('movies.destroy',$m->id)); ?>" onclick="return confirm('¿Realmente desea eliminar la película <?php echo e($m->title); ?>?')" class="btn btn-danger btn-xs">
+                                                <!-- <a href="<?php echo e(route('movies.destroy',$m->id)); ?>" onclick="return confirm('¿Realmente desea eliminar la película <?php echo e($m->title); ?>?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     <?php endif; ?>
@@ -69,6 +71,7 @@
                                     <th class="text-center">Categoría</th>
                                     <th class="text-center">Generos</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -125,7 +128,8 @@
                         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
-                }
+                },
+                "order": [[ 5, "desc" ]],
             });
             $('#example2').DataTable({
                 'paging': true,

@@ -1,9 +1,8 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
-            height: 450px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -51,10 +50,45 @@
             background: transparent !important;
         }
 
-        /*es es del modal de autor*/
+        #imageAM-preview {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #2b81af;
+        }
+
+        #imageAM-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #imageAM-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
         #imageSM-preview {
-            width: 100%;
-            height: 380px;
+            width: 300px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
@@ -75,7 +109,7 @@
             opacity: 0.8;
             cursor: pointer;
             background-color: #bdc3c7;
-            width: 90%;
+            width: 200px;
             height: 50px;
             font-size: 20px;
             line-height: 50px;
@@ -88,129 +122,139 @@
             text-align: center;
         }
     </style>
-    <style>
-        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
-        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
-        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
-    </style>
-@endsection
-
-@section('content')
-
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <!-- Main content -->
     <section class="content">
-
-        @if (count($errors)>0)
+        <?php if(count($errors)>0): ?>
             <div class="col-md-6 col-md-offset-3">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <ul>
-                        @foreach($errors->all() as $error)
-                            <li> {{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li> <?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                @include('flash::message')
 
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Registrar película</h3>
+                        <h3 class="box-title">Editar película</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}
-                    {{ Form::token() }}
-                    {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
+                    <?php echo Form::open(['route'=>['movies.update',$movie], 'method'=>'PUT','files' => 'true' ]); ?>
+
+                    <?php echo e(Form::token()); ?>
+
                     <div class="box-body ">
 
-                        {{--Poster de la pelicula--}}
+                        
                         <div class="col-md-6">
                             <div id="mensajePortadaPelicula"></div>
+                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                Si no selecciona una portada, se mantendrá la actual
+                            </label>
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
-                                <div id="list"></div>
+                                <?php echo Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']); ?>
+
+                                <?php echo Form::hidden('img_posterOld',$movie->img_poster); ?>
+
+                                <div id="list">
+                                    <img style="width:100%; height:100%; border-top:50%;" src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($movie->img_poster); ?>">
+                                </div>
                             </div>
                         </div>
 
-                        {{--Selecion tipo de publico de la pelicula--}}
+                        
                         <div class="form-group col-md-6">
-
-                            {{--titulo de la pelicula--}}
+                            
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            <div id="mensajeTitulo"></div>
-                            {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo de la película','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--titulo original de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">Título original</label>
-                            <div id="mensajeTitulOriginal"></div>
-                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                            
+                            <label for="exampleInputFile" class="control-label">Título original </label>
+                            <?php echo Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--precio--}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                             <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            <?php echo Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']); ?>
+
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <br>
 
-                            {{--Categoria--}}
-                            <label for="tags"> Géneros </label>
-                            <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
-                                @foreach($tags as $genders)
-                                    @if($genders->type_tags=='Peliculas')
-                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
-                                    @endif
-                                @endforeach
+                            
+                            <label for="tags"> Generos </label>
+                            <select name="tags[]" multiple="true" class="form-control" required>
+                                <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($genders->id); ?>"
+                                        <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                                            <?php if($s->id == $genders->id): ?> 
+                                                selected 
+                                            <?php endif; ?> 
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        >
+                                        <?php echo e($genders->tags_name); ?>
+
+                                    </option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
-                                Agregar género
-                            </button>
                             <br>
-                            <br>
+
                         </div>
 
                         <div class="form-group col-md-6">
 
-                            {{--archivo de la pelicula--}}
+                            
                             <label for="exampleInputFile" class="control-label">Cargar película</label>
-                            <div id="mensajePelicula"></div>
-                            {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','control-label','placeholder'=>'Cargar película','id'=>'pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la película')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <br>
+                            <div id='mensajeCargaPelicula'></div>
+                            <label for="cargaPelicula" id="mensajePelicula" class="control-label" style="color: green;">
+                                Si no selecciona una película, se mantendrá la actual
+                            </label>
+                            <?php echo Form::file('duration',['class'=>'form-control','accept'=>'.mp4','id'=>'pelicula']); ?>
 
-                            {{--historia de la pelicula --}}
-                            {{--
-                            <label for="exampleInputPassword1" class="control-label">Historia</label>
-                            <div id="cantidadHistoria"></div>
-                            <div id="mensajeHistoria"></div>
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la película')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
                             <br>
+                            <?php echo Form::hidden('durationOld',$movie->duration); ?>
 
-                            {{--año de salida de la pelicula --}}
+                            
+                            
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            <?php echo Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]); ?>
+
                             <br>
 
-                            {{--Basado en un libro o no --}}
+                            
                             <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                            <div id="cantidadSinopsis"></div>
-                            <div id="mensajeSinopsis"></div>
-                            {!! Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                            <?php echo Form::textarea('based_on',$movie->based_on,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'sinopsis']); ?>
+
                         </div>
 
                         <div class="form-group col-md-6">
-                            {{--selecionar pais--}}
+                            
+                            
+
+                            
                             <label class="control-label">Pais</label>
+                            <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                Si no selecciona un país, se mantendrá la actual
+                            </label>
+                            <br>
                             <select  name="country" id="paises" class="form-control">
                                 <option value="" selected>Seleccione una opción</option>
                                 <option value="AF">Afganistán</option>
@@ -449,401 +493,130 @@
                                 <option value="ZW">Zimbabue</option>
                             </select>
                             <br>
+                        </div>
 
-                            {{--link--}}
-                            <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
-                            {!! Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
-                            <br>
+                        <div class="form-group col-md-6">
                             
+                            <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
+                            <?php echo Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']); ?>
+
+                            <br>
+
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="radio-inline">
-                                <label for="option-1">
-                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                <label class="control-label" for="option-1">
+                                    <input type="radio" id="option-1" class="flat-red" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
                                     <span class="mdl-radio__label">Si</span>
                                 </label>
                             </div>
+
                             <div class="radio-inline">
-                                <label for="option-2">
-                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                    <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
                                     <span class="mdl-radio__label">No</span>
                                 </label>
+
                             </div>
                             <br>
 
                             <div class="" style="display:none" id="if_si">
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione una saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
-                                <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
-                                    <i class="fa fa-book"></i> 
-                                    Agregar saga
-                                </a>
-                                <br>
+                                <?php echo Form::select('saga_id',$saga,$movie->saga_id,['class'=>'form-control','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga de la película')", 'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <br>
 
-                                {{--
-                                <div id="mensajeAntes"></div>
-                                <label for="exampleInputPassword1" class="control-label">Antes</label>
-                                {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
-                                <br>
+                                
 
-                                <label for="exampleInputPassword1" class="control-label">Después</label>
-                                <div id="mensajeDespues"></div>
-                                {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
-                                --}}
+                                
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <div class="progress">
-                                <div class="bar"></div >
-                                <div class="percent">0%</div >
+                            <div class="form-group col-md-6">
+                                <div align="right">
+                                    <a href="<?php echo e(url('/movies')); ?>" class="btn btn-danger">Atrás</a>
+                                </div>
                             </div>
-                            <div class="text-center">
-                                {!! Form::submit('Registrar película', ['class' => 'btn btn-primary','id'=>'registrarPelicula']) !!}
+                            <div class="form-group col-md-6">
+                                <div align="left">
+                                    <?php echo Form::submit('Editar película', ['class' => 'btn btn-primary','id'=>'guardarCambios']); ?>
+
+                                </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- /.box-body -->
                 </div>
-            {!! Form::close() !!}
-        </div>
-    </div>
-    <!-- /.modal  de sagas  -->
-    <div class="modal fade in modal-primary" id="modal-defaultMS">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h1 class="modal-title text-center">Agregar saga</h1>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true', 'id' => 'registro' ]) !!}
-                    {{ Form::token() }}
-                    <div class="box-body">
-                        <div class="col-md-6">
-                            
-                            {{--Imagen--}}
-                            <div id="mensajePortadaSaga"></div>
-                            <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group">
-                                <label for="imageSM-upload" id="image-label"> Imagen de la Saga</label>
-                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
-                                <div id="listModal"></div>
-                            </div>
+                <?php echo Form::close(); ?>
 
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{--seleccion de rating--}}
-                            <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
-                            <br>
-
-                            {{--Nombre de la saga--}}
-                            <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga','required'=>'required']) !!}
-                            <br>
-
-                            {{--tipo de saga--}}
-                            <label for="exampleInputFile" class="control-label">Tipo de saga</label>
-                            {!! Form::select('type_saga',['2'=>'Peliculas'],null,
-                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
-                            <br>
-
-                            {{--Descripcion de  la saga--}}
-                            <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                            {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
-                        </div>
-                        <br>
-                    </div>
-                    <div align="center">
-                        {!! Form::submit('Guardar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
-                        {!! Form::close() !!}
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <div class="modal-footer">
-                    <div class="box-body">
-                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-    <!-- /.modal  de generos  -->
-        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
-                    </div>
-                    <div class="modal-body">
-                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
-                        {{ Form::token() }}
-                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
-                        {!! Form::hidden('type_tags','Peliculas') !!}
-                        {!! Form::hidden('ruta','Peliculas') !!}
-                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
-                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
-                        <br>
-                        <div align="center">
-                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
-                    </div>
-                </div>
             </div>
         </div>
-    <!-- /.modal -->
 
     </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
-
-<script src="http://malsup.github.com/jquery.form.js"></script>
- 
-<script type="text/javascript">
- 
-    
- 
-    (function() {
- 
-    var bar = $('.bar');
-    var percent = $('.percent');
-    var status = $('#status');
- 
-    $('#registroPelicula').ajaxForm({
-        
-        beforeSend: function() {
-            status.empty();
-            var percentVal = '0%';
-            var posterValue = $('input[name=duration]').fieldValue();
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        success: function() {
-            var percentVal = 'Completado..';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        complete: function(xhr) {
-            status.html(xhr.responseText);
-            // alert('Uploaded Successfully');
-            window.location.href = "{{URL::to('movies')}}"
-
-        }
-    });
-     
-    })();
-</script>
-
+<?php $__env->startSection('js'); ?>
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la imagen en el formulario
     function archivo(evt) {
-        var files = evt.target.files;
-        for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
-            }
-            var reader = new FileReader();
-            reader.onload = (function(theFile) {
-                return function(e) {
-                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-                };
-            })(f);
-            reader.readAsDataURL(f);
+      var files = evt.target.files;
+      for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match('image.*')) {
+            continue;
         }
-    }
-    document.getElementById('image-upload').addEventListener('change', archivo, false);
+        var reader = new FileReader();
+        reader.onload = (function(theFile) {
+            return function(e) {
+             document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+            };
+        })(f);
+        reader.readAsDataURL(f);
+      }
+  }
+  document.getElementById('image-upload').addEventListener('change', archivo, false);
 // Para que se vea la imagen en el formulario
 //---------------------------------------------------------------------------------------------------
-// Para que se vea la imagen en el modal
-    function modal(evt) {
-        var files = evt.target.files;
-        for (var i = 0, m; m = files[i]; i++) {
-            if (!m.type.match('image.*')) {
-                continue;
-            }
-            var reader = new FileReader();
-            reader.onload = (function(theFile) {
-                return function(e) {
-                document.getElementById("listModal").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-                };
-            })(m);
-            reader.readAsDataURL(m);
-        }
-    }
-    document.getElementById('imageSM-upload').addEventListener('change', modal, false);
-// Para que se vea la imagen en el modal
-//---------------------------------------------------------------------------------------------------
-// Para validar el tamaño maximo de las imagenes y de la pelicula
-   // Portada de la pelicula
-  /*  $(document).ready(function(){
-        $('#image-upload').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePortadaPelicula').show();
-                $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePortadaPelicula').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajePortadaPelicula').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
+        // Portada de la Pelicula
+        $(document).ready(function(){
+            $('#image-upload').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#cargaPelicula').hide();
+                    $('#mensajePortadaPelicula').show();
+                    $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePortadaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#cargaPelicula').show();
+                    $('#mensajePortadaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
         });
-    });*/
-    // Portada de la pelicula
-    // Pelicula
-    /*
-    $(document).ready(function(){
-        $('#pelicula').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePelicula').show();
-                $('#mensajePelicula').text('La pelicula es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePelicula').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajePelicula').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        // Portada de la Pelicula
+        // Archivo de la Pelicula
+        $(document).ready(function(){
+            $('#pelicula').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#mensajePelicula').hide();
+                    $('#mensajeCargaPelicula').show();
+                    $('#mensajeCargaPelicula').text('El archivo es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajeCargaPelicula').css('color','red');
+                    $('#guardarCambios').attr('disabled',true);
+                } else {
+                    $('#mensajeCargaPelicula').hide();
+                    $('#guardarCambios').attr('disabled',false);
+                }
+            });
         });
-    });*/
-    // Pelicula
-    // Portada de la Saga
-    /*
-    $(document).ready(function(){
-        $('#imageSM-upload').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePortadaSaga').show();
-                $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePortadaSaga').css('color','red');
-                $('#registrarSaga').attr('disabled',true);
-            } else {
-                $('#mensajePortadaSaga').hide();
-                $('#registrarSaga').attr('disabled',false);
-            }
-        });
-    });*/
-    // Portada de la Saga
-// Para validar el tamaño maximo de las imagenes y de la pelicula
-//---------------------------------------------------------------------------------------------------
-    // Para evitar los espacios vacios
-    /*
-    $(document).ready(function(){
-        $('#titulo').keyup(function(evento){
-            var titulOriginal = $('#titulo').val().trim();
-            console.log(titulOriginal.length);
-            if (titulOriginal.length==0) {
-                $('#mensajeTitulo').show();
-                $('#mensajeTitulo').text('El campo no debe estar vacio');
-                $('#mensajeTitulo').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulo').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    */
-    // Para evitar los espacios vacios
-    // PD: cocha con el siguiente script de validacion
-//---------------------------------------------------------------------------------------------------
-// Función que nos va a contar el número de caracteres
-    // Para el titulo
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#titulo').keyup(function(evento){
-            var titulo = $('#titulo').val();
-            numeroPalabras = titulo.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeTitulo').show();
-                $('#mensajeTitulo').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeTitulo').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulo').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para el titulo
-    // Para el titulo original
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#titulOriginal').keyup(function(evento){
-            var titulOriginal = $('#titulOriginal').val();
-            numeroPalabras = titulOriginal.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeTitulOriginal').show();
-                $('#mensajeTitulOriginal').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeTitulOriginal').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulOriginal').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para el titulo original
-    // Para la sinopsis
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#sinopsis').keyup(function(evento){
-            var sinopsis = $('#sinopsis').val();
-            numeroPalabras = sinopsis.length;
-            $('#cantidadSinopsis').text(numeroPalabras+'/'+cantidadMaxima);
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeSinopsis').show();
-                $('#mensajeSinopsis').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeSinopsis').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeSinopsis').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para la sinopsis
-    // Para la historia
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#historia').keyup(function(evento){
-            var historia = $('#historia').val();
-            numeroPalabras = historia.length;
-            $('#cantidadHistoria').text(numeroPalabras+'/'+cantidadMaxima);
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeHistoria').show();
-                $('#mensajeHistoria').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeHistoria').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeHistoria').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para la historia
-// Función que nos va a contar el número de caracteres
+        // Archivo de la Pelicula
+    // Para validar el tamaño maximo de las imagenes de la pelicula y la pelicula
 //---------------------------------------------------------------------------------------------------
 // Para validar la Fecha de Lanzamiento
     $(document).ready(function(){
@@ -852,12 +625,12 @@
             var año = $('#fechaLanzamiento').val();
             if (año > fechaActual.getFullYear()) {
                 $('#mensajeFechaLanzamiento').show();
-                $('#mensajeFechaLanzamiento').text('La fecha de lanzamiento no debe exceder el año actual');
+                $('#mensajeFechaLanzamiento').text('La Fecha de Lanzamiento no debe exceder el año actual');
                 $('#mensajeFechaLanzamiento').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
+                $('#guardarCambios').attr('disabled',true);
             } else {
                 $('#mensajeFechaLanzamiento').hide();
-                $('#registrarPelicula').attr('disabled',false);
+                $('#guardarCambios').attr('disabled',false);
             }
         });
     });
@@ -871,15 +644,15 @@
                 $('#mensajePrecio').show();
                 $('#mensajePrecio').text('El costo de tickets no deben exceder los 999 Tickets');
                 $('#mensajePrecio').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
+                $('#guardarCambios').attr('disabled',true);
             } else if (precio<0) {
                 $('#mensajePrecio').show();
                 $('#mensajePrecio').text('El costo de tickets debe ser mayor a 0');
                 $('#mensajePrecio').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
+                $('#guardarCambios').attr('disabled',true);
             } else {
                 $('#mensajePrecio').hide();
-                $('#registrarPelicula').attr('disabled',false);
+                $('#guardarCambios').attr('disabled',false);
             }
         });
     });
@@ -887,10 +660,12 @@
 //---------------------------------------------------------------------------------------------------
 // Para validar los radio boton
     $(document).ready(function(){
-        $('#option-2').prop('checked','checked');
-        $('#sagas').removeAttr('required');
-        $('#despues').removeAttr('required');
-        $('#antes').removeAttr('required');
+        $('#option-1').prop('checked','checked');
+        $('#if_si').show();
+        $('#sagas').attr('required','required');
+        $('#despues').attr('required','required');
+        $('#antes').attr('required','required');
+        $('#sagas').val('');
     });
 
     function yesnoCheck() {
@@ -903,7 +678,6 @@
         } else {
             $('#if_si').hide();
             $('#sagas').removeAttr('required');
-            $('#sagas').attr('novalidate',true);
             $('#despues').removeAttr('required');
             $('#antes').removeAttr('required');
             $('#sagas').val('');
@@ -917,12 +691,12 @@
             var despues = $('#despues').val();
             if (despues<0) {
                 $('#mensajeDespues').show();
-                $('#mensajeDespues').text('El número de la saga debe ser mayor a cero');
+                $('#mensajeDespues').text('El Número de la Saga debe ser mayor a cero');
                 $('#mensajeDespues').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
+                $('#guardarCambios').attr('disabled',true);
             } else {
                 $('#mensajeDespues').hide();
-                $('#registrarPelicula').attr('disabled',false);
+                $('#guardarCambios').attr('disabled',false);
             }
         });
     });
@@ -931,16 +705,107 @@
             var antes = $('#antes').val();
             if (antes<0) {
                 $('#mensajeAntes').show();
-                $('#mensajeAntes').text('El número de la saga debe ser mayor a cero');
+                $('#mensajeAntes').text('El Número de la Saga debe ser mayor a cero');
                 $('#mensajeAntes').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
+                $('#guardarCambios').attr('disabled',true);
             } else {
                 $('#mensajeAntes').hide();
-                $('#registrarPelicula').attr('disabled',false);
+                $('#guardarCambios').attr('disabled',false);
             }
         });
     });
 // Para validar los capitulos de las sagas
 //---------------------------------------------------------------------------------------------------
+/*
+        $('.select-author').chosen({
+            allow_single_deselect: false,
+            no_results_text: "Registra el autor ya que no se encuentra en la base de datos y registrar el libro se necesita el autor",
+            width: "60%"
+        });
+
+        $('.select-saga').chosen({
+            allow_single_deselect: true,
+            no_results_text: "No se encuentra la saga",
+            width: "60%"
+        });
+
+        $('#paises').chosen({
+            allow_single_deselect: true,
+            no_results_text: "No se encuentra la saga",
+            width: "60%"
+        });
+*/
     </script>
-@endsection
+
+    
+    <script>
+/*
+        $(document).ready(function () {
+            $.uploadPreview({
+                input_field: "#image-upload",
+                preview_box: "#image-preview",
+                label_field: "#image-label"
+            });
+        });
+*/
+    </script>
+
+    
+    <script>
+/*
+        function yesnoCheck() {
+            if (document.getElementById('option-1').checked) {
+                $('#if_si').show();
+                $('#sagas').val('');
+            }
+            // else if(document.getElementById('option-2').checked) {
+            //     $('#if_no').hide();
+            //     $('#sagas').val('3');
+            // }
+            else {
+                $('#if_si').hide();
+                $('#sagas').val('');
+            }
+
+        }
+*/
+    </script>
+
+    
+    <script>
+/*
+        $('#datepicker').datepicker({
+            autoclose: true,
+            language: 'es'
+        })
+*/
+    </script>
+
+    
+    <script>
+/*
+        $(document).ready(function () {
+            $.uploadPreview({
+                input_field: "#imageAM-upload",
+                preview_box: "#imageAM-preview",
+                label_field: "#imageAM-label"
+            });
+        });
+*/
+    </script>
+
+    
+    <script>
+/*
+        $(document).ready(function () {
+            $.uploadPreview({
+                input_field: "#imageSM-upload",
+                preview_box: "#imageSM-preview",
+                label_field: "#imageSM-label"
+            });
+        });
+*/
+    </script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
