@@ -34,7 +34,19 @@
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
 
     <style type="text/css">
-
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
     <!-- Scripts -->
@@ -174,7 +186,7 @@
             @foreach($radio as $r)
                 <div class="contenidoGeneral">
                     <figure class="snip1166 navy" style="display: block; cursor: pointer;" {{--onclick="masInfo('radio',{!!$r->id!!})"--}}>
-                        <img class="img-responsive imagenLogo" id="logoRadio{{$iRadios}}">
+                        <img class="img-responsive imagenLogo"  id="logoRadio{{$iRadios}}">
                         <figcaption class="bandaAzul">
                             <h3>
                                 <small style="color: #fff; font-size: 100%;" id="nombreRadio{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
@@ -252,6 +264,33 @@
     </div>
 </div>
 <!--CONTENIDO END-->
+<br>
+<!-- Barra para como funcionan los puntos en leipel -->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
+        <div class="" id="barra" class="text-center">
+            <center>
+                <br>
+                <b style="color: #fff; font-size: 30px;">¿Cómo funciona Leipel?</b>
+                <br><br>
+            </center>
+        </div>
+        <div class="col-md-6" >
+            <center><br>
+                <img src="plugins/img/pregunta.png" width="100" height="100" alt="Italian Trulli"><br><br><br>
+                <b style="color: #000; font-size: 30px;"> Si tienes dudas sobre la diferéncia entre tickets y puntos.</b>
+            </center>
+        </div>
+        <div class="col-md-6" >
+            <center><br>
+                <div class="embed-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/J39NrXacu5g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- Fin barra  como funcionan los puntos en leipel-->
 
 <!--FOOTER STAR -->
 
@@ -971,7 +1010,7 @@
             if (ventana_ancho<=425) {
                 $('.contenidoGeneral').addClass('col-xs-10');
                 $('.contenidoGeneral').css('margin-left','15%');
-                $('.imagenLogo').css('width','70%');
+                $('.imagenLogo').css('width','90%');
                 $('.bandaAzul').css('width','90%');
             } else if (ventana_ancho<= 1024) {
                 $('.contenidoGeneral').addClass('col-md-5');
@@ -982,7 +1021,7 @@
                 $('.contenidoGeneral').addClass('col-lg-3');
                 $('.contenidoGeneral').css('padding-left','3%');
                 $('.contenidoGeneral').css('width','265px');
-                $('.imagenLogo').css('width','90%');
+                $('.imagenLogo').css('width','100%');
                 $('.bandaAzul').css('width','107%');
             }
         }
