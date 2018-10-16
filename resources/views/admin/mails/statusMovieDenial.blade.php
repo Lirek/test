@@ -17,7 +17,7 @@
 			<tr>
 				<td>
 					<p style="font-size: 14px;" align="justify">
-						Hola, de parte de LEIPEL le informamos que su su PELÍCULA: "{{$title}}" fue rechazada por el siguiente motivo:
+						Hola, de parte de LEIPEL le informamos que su PELÍCULA: "{{$title}}" fue rechazada por el siguiente motivo:
 					</p>
 				</td>
 			</tr>

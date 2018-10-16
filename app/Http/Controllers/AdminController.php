@@ -26,6 +26,7 @@ use App\Megazines;
 use App\Tags;
 use App\ApplysSellers;
 use App\Albums;
+use App\Serie;
 use App\Songs;
 use App\User;
 use App\Seller;
@@ -932,13 +933,13 @@ class AdminController extends Controller
       return view('promoter.ContentModules.MainContent.Movies');
     }
 
-    public function MoviesDataTable() {
+    public function MoviesDataTable($status) {
 
-      //$movies = Movie::where('status','En Proceso');
-      $movies = Movie::all();
+      $movies = Movie::where('status',$status);
+      //$movies = Movie::all();
       return Datatables::of($movies)
         ->editColumn('img_poster',function($movies){
-          return "<img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
+          return "<button href='' data-toggle='modal' data-target='#movieView' value=".$movies->id." id='viewMovie'><img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada'></button>";
         })
         ->addColumn('autor',function($movies){
           return $movies->Seller()->first()->name;
@@ -964,11 +965,17 @@ class AdminController extends Controller
         ->addColumn('release_year',function($movies){
           return $movies->release_year;
         })
+        ->addColumn('created_at',function($movies){
+          return $movies->created_at;
+        })
         ->addColumn('cost',function($movies){
           return $movies->cost;
         })
         ->addColumn('Estatus',function($movies){
-          return "<button type='button' class='btn btn-theme' value=".$movies->id." data-toggle='modal' data-target='#myModal' id='status'>".$movies->status."</button>";
+          if ($movies->status=="Aprobado") { $colorBoton = "btn-primary"; }
+          else if ($movies->status=="En Proceso") { $colorBoton = "btn-warning"; }
+          else if ($movies->status=="Denegado") { $colorBoton = "btn-danger"; }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='#myModal' id='status'>".$movies->status."</button>";
         })
         ->rawColumns(['Estatus','img_poster'])
         ->toJson();
@@ -987,6 +994,81 @@ class AdminController extends Controller
       Mail::to($email)->send(new StatusMovies($movie->title,$request->status,$message));
       return response()->json($movie);
     }
+
+    public function viewMovie($id) {
+      $movie = Movie::find($id);
+      $seller = $movie->seller;
+      return response()->json($movie);
+    }
+
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE PELICULA -------------------
+  ---------------------------------------------------------------
+*/
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE SERIE -------------------
+  ---------------------------------------------------------------
+*/
+  public function ShowSeries() {
+    return view('promoter.ContentModules.MainContent.Series');
+  }
+
+  public function SeriesDataTable() {
+
+      $serie = Serie::all();
+      return Datatables::of($serie)
+        ->editColumn('img_poster',function($serie){
+          return "<img class='img-rounded img-responsive av' src='".asset($serie->img_poster)."' style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
+        })
+        ->addColumn('autor',function($serie){
+          return $serie->Seller()->first()->name;
+        })
+        ->addColumn('title',function($serie){
+          return $serie->title;
+        })
+        ->addColumn('historia',function($serie){
+          return $serie->story;
+        })
+        ->addColumn('release_year',function($serie){
+          return $serie->release_year;
+        })
+        ->addColumn('trailer',function($serie){
+          return "<a href=$serie->trailer target='_blank'>".$serie->trailer."</a>";
+        })
+        ->addColumn('cost',function($serie){
+          return $serie->cost;
+        })
+        ->addColumn('saga',function($serie){
+          if ($serie->saga!=null) {
+            $saga = "<button href='' value='".$serie->id."' data-toggle='modal' data-target='#ModalSaga' id='saga' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$serie->saga->sag_name."</button>";
+            //$saga = $serie->saga->sag_name;
+          } else {
+            $saga = "No tiene saga";
+          }
+          return $saga;
+        })
+        ->addColumn('estatusSerie',function($serie){
+          return $serie->status_series;
+        })
+        ->addColumn('Estatus',function($serie){
+          return "<button type='button' class='btn btn-theme' value=".$serie->id." data-toggle='modal' data-target='#myModal' id='status'>".$serie->status."</button>";
+        })
+        ->rawColumns(['Estatus','img_poster','trailer','saga'])
+        ->toJson();
+  }
+
+  public function sagaSerie($idSerie) {
+    $serie = Serie::find($idSerie);
+    $saga = $serie->saga;
+    return response()->json($saga);
+  }
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE SERIE -------------------
+  ---------------------------------------------------------------
+*/
  /*---------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------FUNCIONES DE PROVEEDORES----------------------------------
 --------------------------------------------------------------------------------------
@@ -1058,16 +1140,76 @@ class AdminController extends Controller
         Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
         return response()->json($request->all());
       }
-//-------------Mostrar Solicitudes ---------------------------------
+//------------------------- Mostrar Proveedores ---------------------------------
    		
-      public function ShowApplys()
-    	{
-    		$applys= ApplysSellers::paginate(10);
-    		
-    		$Salesmans = Salesman::all();
-    		
-    		return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+      public function ShowApplys() {
+    		//$applys= ApplysSellers::paginate(10);
+    		$salesmans = Salesman::all();
+    		//return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+        return view('promoter.AdminModules.Applys')->with('salesmans',$salesmans);
    		}
+
+      public function SellerDataTable($status) {
+        $ApplysSellers = ApplysSellers::where('status',$status);
+        return Datatables::of($ApplysSellers)
+          ->addColumn('nombreComercial',function($ApplysSellers){
+            return $ApplysSellers->name_c;
+          })
+          ->addColumn('nombreContacto',function($ApplysSellers){
+            return $ApplysSellers->contact_s;
+          })
+          ->addColumn('telefono',function($ApplysSellers){
+            return $ApplysSellers->phone_s;
+          })
+          ->addColumn('email',function($ApplysSellers){
+            return $ApplysSellers->email;
+          })
+          ->addColumn('tipo',function($ApplysSellers){
+            return $ApplysSellers->desired_m;
+          })
+          ->addColumn('subTipo',function($ApplysSellers){
+            if ($ApplysSellers->sub_desired_m!=NULL) {
+              $subTipo = $ApplysSellers->sub_desired_m;
+            } else {
+              $subTipo = "No aplica";
+            }
+            return $subTipo;
+          })
+          ->addColumn('vendedor',function($ApplysSellers){
+            if ($ApplysSellers->salesman_id != NULL) {
+              return 
+              "<span class='mdl-chip mdl-chip--deletable' id='a_".$ApplysSellers->salesman_id."_".$ApplysSellers->id."'>
+                <span class='mdl-chip__text' id='promoter_assing'>".$ApplysSellers->Salesman->name."</span> 
+                <button type='button' class='mdl-chip__action' value1='".$ApplysSellers->id."' value2='".$ApplysSellers->salesman_id."' name='apply' id='x'> 
+                  <i class='material-icons'>cancel</i> 
+                </button>
+              </span>";
+            } else {
+              return
+              "<button class='mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' id='add_promoter_to' value='".$ApplysSellers->id."' data-toggle='modal' data-target='#AssingPromoter'>
+                <i class='material-icons'>add</i>
+              </button>";
+            }
+          })
+          ->addColumn('created_at',function($ApplysSellers){
+            return $ApplysSellers->created_at;
+          })
+          ->addColumn('solicitud',function($ApplysSellers){
+            if ($ApplysSellers->status=="Aprobado") { $colorBoton = "btn-primary"; }
+            else if ($ApplysSellers->status=="En Proceso") { $colorBoton = "btn-warning"; }
+            else if ($ApplysSellers->status=="Denegado") { $colorBoton = "btn-danger"; }
+            return "<button type='button' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn ".$colorBoton."' value=".$ApplysSellers->id." data-toggle='modal' data-target='#myModal' id='statusApplys'>".$ApplysSellers->status."</button>";
+          })
+          ->rawColumns(['solicitud','vendedor'])
+          ->toJson();
+      }
+
+      public function AddSalesMan($idApplySeller, $idSalesman) {
+        $applys = ApplysSellers::find($idApplySeller);
+        $applys->salesman_id = $idSalesman;
+        $applys->save();
+        return response()->json($applys); 
+      }
 //-------------------------------------------------------------------------------
 
 //-----------------------CRUD PROMOTORES------------------------------------
@@ -1155,43 +1297,32 @@ class AdminController extends Controller
   			return response()->json($applys);	
   		}
 
-  		public function StatusApllys($id,Request $request )
-  		{
+  		public function StatusApllys($id,Request $request ) {
   			$applys= ApplysSellers::find($id);
   			$applys->status = $request->status;
-  			
-        
-  			if ($request->status == 'Aprobado') 
-  			{
-  			
-  				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      			$charactersLength = strlen($characters);
-      			$randomString = '';
-      		
-      					for ($i = 0; $i < 10; $i++) 
-         						{
-          						$randomString .= $characters[rand(0, $charactersLength - 1)];
-     					 		  }
+        if ($request->status == 'Aprobado') {
+          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          $charactersLength = strlen($characters);
+          $randomString = '';
+          for ($i = 0; $i < 10; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+          }
   	
   				$applys->token= $randomString;
   			
   				$current = Carbon::now();
   	
   				$applys->expires_at= $current->addDays(7);
-  				
-  				
-  				Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
+
+          Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
 
   				$applys->save();
   				return response()->json($applys);	
-  			}
-        else
-        {   
+  			} else {   
             Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
             $applys->save();
-           return response()->json($applys);
-            
-        }	
+            return response()->json($applys);
+          }	
   		}
 
       public function DeleteApplysFromPromoter($promoter,$applys)

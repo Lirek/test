@@ -261,8 +261,10 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
         //-----------------Rutas de Solicitudes-------------------------------------
             Route::get('/admin_applys','AdminController@ShowApplys');
+            Route::get('SellerDataTable/{status}','AdminController@SellerDataTable');
 
             Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
+            Route::get('/AddSalesMan/{idApplySeller}/{idSalesman}','AdminController@AddSalesMan');
 
             Route::get('/delete_promoter_from/{id_apply}/{id_promoter}','AdminController@DeleteSalesmanFromApllys');
 
@@ -369,14 +371,15 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             //-----------------------------------------------------------------------
             //----------------------------PELICULAS----------------------------------
                 Route::get('/admin_movies','AdminController@ShowMovies');
-                Route::get('MoviesDataTable','AdminController@MoviesDataTable');
+                Route::get('MoviesDataTable/{status}','AdminController@MoviesDataTable');
                 Route::post('/admin_movie/{id}','AdminController@MovieStatus');
-
-
-
-
-
-
+                Route::get('viewMovie/{id}','AdminController@viewMovie');
+            //-----------------------------------------------------------------------
+            //------------------------------SERIES-----------------------------------
+                Route::get('/admin_series','AdminController@ShowSeries');
+                Route::get('SeriesDataTable','AdminController@SeriesDataTable');
+                Route::get('/sagaSerie/{id}','AdminController@sagaSerie');
+                
 
             //-----------------------------------------------------------------------
 
