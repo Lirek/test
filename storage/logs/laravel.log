@@ -18764,3 +18764,18 @@ Stack trace:
 #62 C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #63 C:\xampp\htdocs\www\Leipel\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #64 {main}  
+[2018-10-17 14:18:47] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\View\Concerns\ManagesStacks.php:7
+Stack trace:
+#0 {main}  
+[2018-10-17 14:19:33] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Contracts\Hashing\Hasher.php:5
+Stack trace:
+#0 {main}  
+[2018-10-17 14:57:43] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Auth\AuthServiceProvider.php:10
+Stack trace:
+#0 {main}  
+[2018-10-17 14:58:18] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Matching\HostValidator.php:8
+Stack trace:
+#0 {main}  
+[2018-10-17 19:55:37] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Session\FileSessionHandler.php:10
+Stack trace:
+#0 {main}  

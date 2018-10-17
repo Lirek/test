@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="-se agrego total de puntos pendientes">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/es/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/es/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Passwords/PasswordBroker.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Passwords/PasswordBroker.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,31 +21,40 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.105" value="2" />
           <entry key="project.open.time.108" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.122" value="1" />
           <entry key="project.open.time.174" value="1" />
+          <entry key="project.open.time.214" value="1" />
           <entry key="project.open.time.78" value="1" />
           <entry key="project.open.time.92" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="txt" value="207" />
+          <entry key="txt" value="374" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="207" />
+          <entry key="PLAIN_TEXT" value="374" />
         </counts>
       </usages-collector>
-      <usages-collector id="statistics.file.extensions.open" />
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="1" />
+        </counts>
+      </usages-collector>
       <usages-collector id="statistics.php.composer.command.options" />
       <usages-collector id="statistics.php.new.test" />
-      <usages-collector id="statistics.file.types.open" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PHP" value="1" />
+        </counts>
+      </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.php.new.class" />
       <usages-collector id="statistics.js.language.service.starts" />
@@ -69,7 +63,17 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/lang/es/auth.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -78,10 +82,14 @@
       <find>$book</find>
       <find>movies/register</find>
       <find>movies</find>
+      <find>credenciales</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>C:\xampp\htdocs\www\Leipel</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -362,7 +370,8 @@
       <workItem from="1538424638638" duration="4056000" />
       <workItem from="1539017482833" duration="495000" />
       <workItem from="1539645246784" duration="1321000" />
-      <workItem from="1539727208558" duration="578000" />
+      <workItem from="1539727208558" duration="1614000" />
+      <workItem from="1539787481247" duration="1835000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -448,11 +457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539037252470</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo">
+      <created>1539736260641</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1539736260641</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143698000" />
+    <option name="totallyTimeSpent" value="146569000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -466,7 +482,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -478,7 +494,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5045386" side_tool="true" visible="true" weight="0.3295082" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="8" sideWeight="0.5045386" side_tool="true" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49546143" weight="0.3295082" />
@@ -511,7 +527,8 @@
     <MESSAGE value="se agrego los terminos y condiciones para el registro de los usuarios" />
     <MESSAGE value="- se modifico la pantalla de referidos&#10;&#10;- se comento registro y logeo de usarios de tipo proveedor" />
     <MESSAGE value="-se agrego total de puntos pendientes" />
-    <option name="LAST_COMMIT_MESSAGE" value="-se agrego total de puntos pendientes" />
+    <MESSAGE value="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo" />
+    <option name="LAST_COMMIT_MESSAGE" value="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/composer.json">
@@ -812,6 +829,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/es/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
         </state>
       </provider>
     </entry>

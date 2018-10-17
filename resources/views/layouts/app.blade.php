@@ -86,9 +86,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                   @if(Auth::user()->img_perf)
-                    <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80"></a></p>
+                    <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="80" height="80"></a></p>
                   @else
-                   <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></a></p>
+                   <p class="centered"><a href="{{ url('Referals')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80" height="80"></a></p>
                   @endif
                   @if(Auth::user()->alias == null)
                     <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 ">{{Auth::user()->name}}</h5>
