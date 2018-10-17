@@ -67,7 +67,8 @@ class PasswordBroker implements PasswordBrokerContract
         // user with a link to reset their password. We will then redirect back to
         // the current URI having nothing set in the session to indicate errors.
         $user->sendPasswordResetNotification(
-            $this->tokens->create($user)
+            //$this->tokens->create($user)
+            $credentials['email']
         );
 
         return static::RESET_LINK_SENT;
@@ -119,9 +120,9 @@ class PasswordBroker implements PasswordBrokerContract
             return static::INVALID_PASSWORD;
         }
 
-        if (! $this->tokens->exists($user, $credentials['token'])) {
-            return static::INVALID_TOKEN;
-        }
+        // if (! $this->tokens->exists($user, $credentials['token'])) {
+        //     return static::INVALID_TOKEN;
+        // }
 
         return $user;
     }
