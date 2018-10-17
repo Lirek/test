@@ -12,7 +12,7 @@
 
  <tr>
  	<td align="center">
-		<h1>Su SOLICITUD de cuenta ha sido APROBADA.</h1>
+		<h1>Su SOLICITUD de cuenta ha sido PRE-APROBADA.</h1>
 	</td>
  </tr>
 

@@ -219,7 +219,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/admin_sellers','AdminController@ShowSellers');
 
-            Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
+            //Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
+            Route::get('/delete_mod/{id_seller}/{id_module}','AdminController@DeleteModule');
 
             Route::post('admin_add_module/{id}','AdminController@AddModule');
 
