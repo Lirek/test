@@ -246,23 +246,25 @@
             </center>
         </div>
         <div class="col-md-6" >
-            <center><br>
-                <img src="plugins/img/pregunta.png" width="100" height="100" alt="Italian Trulli"><br><br><br>
-                <b style="color: #000; font-size: 30px;"> Si tienes dudas sobre la diferéncia entre tickets y puntos.</b>
+            <br>
+                <div class="embed-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                </div>
             </center>
         </div>
         <div class="col-md-6" >
             <center><br>
                 <div class="embed-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/J39NrXacu5g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </center>
         </div>
     </div>
 </div>
-
 <!-- Fin barra  como funcionan los puntos en leipel-->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
 
+    </div>
+</div>
 <!--FOOTER STAR -->
 
 <footer class="footer">
