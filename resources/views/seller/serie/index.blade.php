@@ -27,6 +27,7 @@
                                     <th class="text-center">Episodios</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center" width="60">Género</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                                     {{ $t->tags_name }}
                                                 @endforeach
                                             </td>
+                                            <td class="text-center"> {{ $s->created_at }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('series.show',$s->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -60,9 +62,9 @@
                                                 <a href="{{ route('series.edit',$s->id) }}" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="{{ route('seriesDestroy', $s->id) }}" onclick="return confirm('¿Desea eliminar la serie {{ $s->title }}?')" class="btn btn-danger btn-xs">
+                                                <!-- <a href="{{ route('seriesDestroy', $s->id) }}" onclick="return confirm('¿Desea eliminar la serie {{ $s->title }}?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     @endif
@@ -78,6 +80,7 @@
                                     <th class="text-center">Episodios</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Género</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -133,7 +136,8 @@
                         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
-                }
+                },
+                "order": [[ 8, "desc" ]],
             });
             $('#example2').DataTable({
                 'paging': true,

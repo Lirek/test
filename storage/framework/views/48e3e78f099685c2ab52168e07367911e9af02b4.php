@@ -66,6 +66,7 @@
                 <!--logo start-->
                 <a href="<?php echo e(url('/home')); ?>" class="logo"><b><img src="<?php echo e(asset('sistem_images/Logo-Leipel.png')); ?>" width="150px">
             </b></a>
+             <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
                 <div class="nav pull-right top-menu" id="boton" >
                     <div class="navbar-right" style="margin-top: 12px;">
                         <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -87,6 +88,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="nav notify-row" id="top_menu">
                     
                     
@@ -484,15 +486,32 @@
     */
     </script>
     <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
         if ((screen.width <= 768)) {
-        //alert('Resolucion: 1024x768 o mayor');
-          $('#container').addClass('sidebar-closed');
+            //alert('Resolucion: 1024x768 o mayor');
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
         }else{
-          $('#container').removeClass('sidebar-close');
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
         }
 
-});
+    });
+</script>
+<script type="text/javascript">
+    $(window).resize(function() {
+        console.log($(window).width());
+        if ($(window).width() <= 768)
+        {
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
+        }
+        else
+        {
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
+        }
+    });
 </script>
     <?php echo $__env->yieldContent('js'); ?>
 

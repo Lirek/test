@@ -96,7 +96,7 @@ class MoviesController extends Controller
     }
     public function update(Request $request,$id)
     {
-        
+        //dd($request->country);    
         $movie = Movie::find($id);
         $movie->seller_id = \Auth::guard('web_seller')->user()->id;
         $movie->saga_id = $request->saga_id;
@@ -112,9 +112,7 @@ class MoviesController extends Controller
         //$movie->story = $request->story;
         if ($request->country<>null) {
             $movie->country = $request->country;
-        } else {
-            $movie->country = $request->country2;
-        }
+        } 
         $movie->based_on = $request->based_on;
         if ($request->duration <> null) {
             $files = $request->file('duration');
@@ -123,7 +121,10 @@ class MoviesController extends Controller
             $files->move($path2, $names);
             $movie->duration = $names;
         }
+        if($request->rating_id != null)
+        {
         $movie->rating_id = $request->rating_id;
+        }
         $movie->cost = $request->cost;
         $movie->trailer_url = $request->trailer_url;
 
