@@ -37,10 +37,10 @@
                         			</div>
                         		</div>
                         	</div> -->
-                    @endforeach
+                  @endforeach
                         	<div  class="col-sm-12 col-xs-12 col-md-12">
-       						{{  $Tv->links() }}
-       						</div>
+       					            {{  $Tv->links() }}
+       					          </div>
             			</div>
             		</div>
             	</div>

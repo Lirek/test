@@ -96,7 +96,12 @@
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
                 @else
-                    <li><a href="{{ url('/home')}}">INGRESAR</a></li>
+                    {{--<li><a href="{{ url('/home')}}">INGRESAR</a></li>--}}
+                    @if(Auth::user()->img_perf)
+                        <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="40" height="40"></a></p>
+                    @else
+                       <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                    @endif
                 @endif
             </ul>
         </div>
@@ -326,11 +331,11 @@
         <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
-                <li><a href="#">¿Que es Leipel?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿Que es Leipel?</a></li>
                 <br>
-                <li><a href="#">Terminos y condiciones</a></li>
+                <li><a href="{{route('terminosCondiciones')}}" target="_blank">Terminos y condiciones</a></li>
                 <br>
-                <li><a href="#">Reg&iacute;strate</a></li>
+                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register" >Reg&iacute;strate</a></li>
                 <br>
                 <li><a href="#">Beneficios adicionales</a></li>
                 <br>
@@ -340,15 +345,15 @@
         <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">Cine</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Cine</a></li>
                 <br>
-                <li><a href="#">M&uacute;sica</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">M&uacute;sica</a></li>
                 <br>
-                <li><a href="#">Lectura</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Lectura</a></li>
                 <br>
-                <li><a href="#">Radio</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Radio</a></li>
                 <br>
-                <li><a href="#">Tv</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Tv</a></li>
             </ul>
         </div>
         <div class="col-md-3" id="social">
