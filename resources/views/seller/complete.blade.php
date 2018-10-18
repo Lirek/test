@@ -29,7 +29,7 @@
                         <input type="hidden" id="modulo" name="modulo">
                         <input type="hidden" id="submodulo" name="submodulo">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nombre</label>
+                            <label for="name" class="col-md-4 control-label">Nombre del contacto de la empresa</label>
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
@@ -42,9 +42,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Correo Electrónico</label>
+                            <label for="email" class="col-md-4 control-label">Correo electrónico del contacto</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required="required">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -55,9 +55,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                            <label for="tlf" class="col-md-4 control-label">Teléfono</label>
+                            <label for="tlf" class="col-md-4 control-label">Teléfono del contacto</label>
                             <div class="col-md-6">
-                                <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}" required autofocus>
+                                <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}" required="required">
 
                                 @if ($errors->has('tlf'))
                                     <span class="help-block">
@@ -68,16 +68,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="desc" class="col-md-4 control-label">Descripción</label>
+                            <label for="desc" class="col-md-4 control-label">Breve descripción de la empresa</label>
                             <div class="col-md-6">
-                                <textarea name="dsc" id="dcs" class="form-control" required></textarea>
+                                <textarea name="dsc" id="dcs" class="form-control" required="required"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Dirección de la empresa</label>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required="required">
+                                <div id="mensajeDireccion"></div>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="ruc" class="col-md-4 control-label">Registro Único de Contribuyente</label>
                             <div class="col-md-6">
-                                <input id="ruc" type="number" class="form-control" name="ruc" required onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                                <input id="ruc" type="number" class="form-control" name="ruc" required="required" onkeypress="return controltagNum(event)" min="1" pattern="[0-9]+">
                                 <div id="mensajeDoc" style="display: none;"></div>
                                 @if ($errors->has('ruc'))
                                     <span class="help-block">
@@ -91,7 +105,7 @@
                             <label for="adj_ruc" class="col-md-4 control-label">Imagen del RUC</label>
                             <div class="col-md-6">
                                 <img id="preview_adj_ruc" src="" name='ci'/>
-                                <input type="file" class="form-control" name="adj_ruc" id="adj_ruc" accept="image/*" required>
+                                <input type="file" class="form-control" name="adj_ruc" id="adj_ruc" accept="image/*" required="required">
                                 <div id="mensajeImgDoc" style="display: none;"></div>
                             </div>
                         </div>
@@ -99,7 +113,7 @@
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required="required">
                                 <div id="passwordMenRU" style="margin-top: 1%; display: none;"></div>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -112,7 +126,7 @@
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirme Contraseña</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="required">
                                 <div id="passwordConfirmMenRU" style="margin-top: 1%; display: none;"></div>
                             </div>
                         </div>
@@ -172,12 +186,13 @@
                     $('#name').val(result.contact_s);
                     $('#email').attr('readonly','readonly');
                     $('#email').val(result.email);
-                    $('#tlf').attr('readonly','readonly');
+                    //$('#tlf').attr('readonly','readonly');
                     $('#tlf').val(result.phone_s);
-                    $('textarea#dcs').attr('readonly','readonly');
+                    //$('textarea#dcs').attr('readonly','readonly');
                     $('textarea#dcs').text(result.dsc);
                     $('#modulo').val(result.desired_m);
                     $('#submodulo').val(result.sub_desired_m);
+                    $('#address').focus();
                 }
                 else if (result==0){
                     //console.log('no existe ese id de la persona');
@@ -233,6 +248,16 @@
             $('#mensajeDoc').text('Solo números');
             $('#mensajeDoc').css('color','red');
         }
+        var valRuc = '#mensajeDoc';
+        var valImgRuc = '#mensajeImgDoc';
+        var valContraseña = '#passwordMenRU';
+        var valConfirContraseña = '#passwordConfirmMenRU';
+        var valDireccion = '#mensajeDireccion';
+        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
+            $('#completar').attr('disabled',true);
+        } else {
+            $('#completar').attr('disabled',false);
+        }
         return patron.test(te);
     }
     // Validacion de solo numeros
@@ -257,6 +282,7 @@
         var valImgRuc = '#mensajeImgDoc';
         var valContraseña = '#passwordMenRU';
         var valConfirContraseña = '#passwordConfirmMenRU';
+        var valDireccion = '#mensajeDireccion';
         var extension = adj_ruc.substring(adj_ruc.lastIndexOf("."));
         if (extension==".png" || extension==".jpg" || extension==".jpeg") {
             $('#completar').attr('disabled',false);
@@ -269,7 +295,7 @@
             $('#mensajeImgDoc').css('color','red');
             $('#preview_adj_ruc').hide();
         }
-        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+        if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
             $('#completar').attr('disabled',true);
         } else {
             $('#completar').attr('disabled',false);
@@ -304,7 +330,8 @@
             var valImgRuc = '#mensajeImgDoc';
             var valContraseña = '#passwordMenRU';
             var valConfirContraseña = '#passwordConfirmMenRU';
-            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
                 $('#completar').attr('disabled',true);
             } else {
                 $('#completar').attr('disabled',false);
@@ -351,7 +378,8 @@
             var valImgRuc = '#mensajeImgDoc';
             var valContraseña = '#passwordMenRU';
             var valConfirContraseña = '#passwordConfirmMenRU';
-            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') ) {
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
                 $('#completar').attr('disabled',true);
             } else {
                 $('#completar').attr('disabled',false);
@@ -360,6 +388,53 @@
     });
     // Validacion de contraseñas
     //---------------------------------------------------------------------------------------------------
+    // Función que nos va a contar el número de caracteres
+    // Para la direccion
+    $(document).ready(function(){
+        var cantidadMaxima = 191;
+        $('#address').keyup(function(evento){
+            var address = $('#address').val();
+            numeroPalabras = address.length;
+            if (numeroPalabras>cantidadMaxima) {
+                $('#mensajeDireccion').show();
+                $('#mensajeDireccion').text('Ha excedido la cantidad máxima de caracteres permitidos');
+                $('#mensajeDireccion').css('color','red');
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#mensajeDireccion').hide();
+                $('#completar').attr('disabled',false);
+            }
+            var valRuc = '#mensajeDoc';
+            var valImgRuc = '#mensajeImgDoc';
+            var valContraseña = '#passwordMenRU';
+            var valConfirContraseña = '#passwordConfirmMenRU';
+            var valDireccion = '#mensajeDireccion';
+            if ( $(valRuc).is(':visible') || $(valImgRuc).is(':visible') || $(valContraseña).is(':visible') || $(valConfirContraseña).is(':visible') || $(valDireccion).is(':visible') ) {
+                $('#completar').attr('disabled',true);
+            } else {
+                $('#completar').attr('disabled',false);
+            }
+        });
+    });
+    // Para la direccion
+    // Función que nos va a contar el número de caracteres
+    //---------------------------------------------------------------------------------------------------
+    $(document).ready(function (e){
+        if ($("#phone2").val() !=''){
+            var phone = $("#phone2").val();
+            $("#phone_s").intlTelInput();
+            $("#phone_s").intlTelInput("setNumber",phone );
+            $("#phone_s").val(phone);
+        } else {
+            $("#phone_s").intlTelInput({
+                defaultCountry: "auto",
+                preferredCountries: ["ec"]
+            });
+        }
+        $("Form").submit(function() {
+            $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
+        });
+    });
 </script>
 </html>
 

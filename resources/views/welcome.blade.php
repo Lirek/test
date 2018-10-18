@@ -764,9 +764,9 @@
                     -->
                     {{--Solicitud de proveedor--}}
                     <div id="new_proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
+                        <form class="form-horizontal" id="formRP">
                             {{ csrf_field() }}
-                            {{--@include('flash::message')--}}
+                            @include('flash::message')
                             <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
                                 {{--<label for="tlf" class="col-md-6 control-label">Nombre comercial:</label>--}}
                                 <div class="col-md-12">
@@ -831,13 +831,11 @@
                                 <div class="col-md-12">
                                     <select class="form-control" name="content_type" id="content_type" required="required">
                                         <option value="">Seleccione el tipo contenido</option>
-                                        <option value="Musica">Musica</option>
-                                        <option value="Revistas">Revistas</option>
-                                        <option value="Libros">Libros</option>
-                                        <option value="Radios">Radios</option>
-                                        <option value="TV">Televisoras</option>
-                                        <option value="Peliculas">Peliculas</option>
-                                        <option value="Series">Series</option>
+                                        <option value="Peliculas">Cine: Películas | Series</option>
+                                        <option value="Musica">Música</option>
+                                        <option value="Libros">Lectura: Libros | Revistas</option>
+                                        <option value="Radios">Radio</option>
+                                        <option value="TV">Televisora</option>
                                     </select>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -928,6 +926,7 @@
 
 <script type="text/javascript">
     $(document).ready(function (){
+
         $('#radio').css("background-color","#337ab7");
         $('#Tvs').hide();
         $.ajax({
@@ -1075,7 +1074,8 @@
                 })
                 .then((confirmacion) => {
                     console.log(confirmacion);
-                    if(confirmacion) {
+                    if(confirmacion=="registrar") {
+                        $('#modal-register').modal('show');
                     }
                 });
                 /*

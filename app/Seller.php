@@ -31,6 +31,7 @@ class Seller extends Authenticatable
       'adj_ruc',
       'tlf',
       'logo',
+      'address',
       'created_at',
       'updated_at',
     ];

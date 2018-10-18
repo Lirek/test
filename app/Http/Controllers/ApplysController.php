@@ -16,8 +16,7 @@ class ApplysController extends Controller
     }
 
     public function SubmitApp (Request $request) {
-
-    	$applys = new ApplysSellers;
+        $applys = new ApplysSellers;
         
         $applys->name_c = $request->com_name;
         $applys->contact_s = $request->contact_name;
@@ -37,12 +36,8 @@ class ApplysController extends Controller
         $emailAdmin = "bcastillo@leipel.com";
         $motivo = "Usuario proveedor pendiente por aprobar";
         Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
-
-        Flash::success('Su solicitud está siendo procesada')->important();
         
-        return redirect()->action(
-            'ApplysController@ShowApplysForm'
-        );
+        return response()->json($request->all());
     
     }
 
