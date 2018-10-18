@@ -646,6 +646,7 @@
             percent.html(percentVal);
         },
         uploadProgress: function(event, position, total, percentComplete) {
+            $('#registrarPelicula').attr('disabled',true);
             var percentVal = percentComplete + '%';
             bar.width(percentVal)
             percent.html(percentVal);
