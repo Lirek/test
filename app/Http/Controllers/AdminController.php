@@ -938,7 +938,7 @@ class AdminController extends Controller
       $movies = Movie::where('status',$status);
       //$movies = Movie::all();
       return Datatables::of($movies)
-        ->editColumn('img_poster',function($movies){
+        ->addColumn('img_poster',function($movies){
           return "<button href='' data-toggle='modal' data-target='#movieView' value=".$movies->id." id='viewMovie'><img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada'></button>";
         })
         ->addColumn('autor',function($movies){
@@ -972,10 +972,10 @@ class AdminController extends Controller
           return $movies->cost;
         })
         ->addColumn('Estatus',function($movies){
-          if ($movies->status=="Aprobado") { $colorBoton = "btn-primary"; }
-          else if ($movies->status=="En Proceso") { $colorBoton = "btn-warning"; }
-          else if ($movies->status=="Denegado") { $colorBoton = "btn-danger"; }
-          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='#myModal' id='status'>".$movies->status."</button>";
+          if ($movies->status=="Aprobado") { $colorBoton = "btn-primary";  $id = ""; }
+          else if ($movies->status=="En Proceso") { $colorBoton = "btn-warning";  $id = "#myModal"; }
+          else if ($movies->status=="Denegado") { $colorBoton = "btn-danger";  $id = ""; }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='".$id."' id='status'>".$movies->status."</button>";
         })
         ->rawColumns(['Estatus','img_poster'])
         ->toJson();

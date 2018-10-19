@@ -104,6 +104,7 @@ $(document).ready(function (e){
       var modules = $(this).attr('value1'); ;
       var seller = $(this).attr('value2');;
       var url = 'delete_mod/'+seller+'/'+modules;
+      console.log(modules,seller,url);
            $.ajax({
              url: url,
              type:'get',

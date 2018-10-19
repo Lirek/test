@@ -39,7 +39,7 @@ class SeriesController extends Controller
     }
 
     public function store(Request $request) {
-
+        //dd($request->saga_id);
         $seller_id = $request->seller_id;
         $store_path = public_path().'/Serie/'.$request->title;
         $name = 'seriecover_'.$request->title.time().'.'.$request->file('img_poster')->getClientOriginalExtension();
@@ -65,7 +65,14 @@ class SeriesController extends Controller
         $cost = $request->cost;
         $serie = new Serie;
         $serie->seller_id   = $request->seller_id;
-        $serie->saga_id     = $request->saga_id;
+        if ($request->saga_id != null)
+        {
+            $serie->saga_id     = $request->saga_id;
+            $serie->before      = $request->before;
+            $serie->after       = $request->after;
+        }else{
+            $serie->saga_id     = null;
+        }
         $serie->cost        = $cost;
         $serie->trailer     = $request->trailer;
         $serie->status      = $status;
@@ -74,8 +81,6 @@ class SeriesController extends Controller
         $serie->img_poster  = $path;
         $serie->story       = $request->story;
         $serie->release_year= $request->release_year;
-        $serie->before      = $request->before;
-        $serie->after       = $request->after;
         $serie->save();
 
         $serie->tags_serie()->attach($request->tags);
@@ -108,7 +113,7 @@ class SeriesController extends Controller
         $serieEpisodes->episode_file= $path;
         $serieEpisodes->status      = $status;
         $serieEpisodes->trailer_url = $trailer;
-        $serieEpisodes->save();
+        //$serieEpisodes->save();
 
         return($serieEpisodes);
     }

@@ -171,7 +171,17 @@
                         </div>
 
                         
-                        
+                        <div class="form-group ">
+                            <div class="col-md-4 control-label">
+                                <?php echo Form::label('direccion','Dirección',['class'=>'control-label']); ?>
+
+                            </div>
+                            <div class="col-md-6 control-label">
+                                <div id="mensajeMaximoDireccion"></div>
+                                <?php echo Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion']); ?>
+
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-4 control-label">
                                 <label  for="phone">Telefono de Contacto</label>

@@ -8,7 +8,7 @@
     padding-top: 35px;
     height: 250px;
     width: 190%;
-    margin-left: -79px; 
+    margin-left: -79px;
     overflow: hidden;
 }
 .player  iframe {
@@ -47,7 +47,7 @@
                                     
                                     <div class="col-sm-1 col-xs-12 col-md-4">
                                         
-                                        <div class="col-md-4 col-xs-4" style="margin-left: 25%; margin-top: 10%" id="rrss"> 
+                                        <div class="col-md-4 col-xs-4" style="margin-left: 25%; margin-top: 10%" id="rrss">
                                         
                                             <a class="waves-effect waves-light btn red" href="{{$tv->google}}" target="blank" style="margin-top: 10%; margin-left: 5%; font-size: 250%"> 
                                             <i class="fa fa-youtube"></i>
@@ -65,8 +65,7 @@
                                             </a> 
                                             <a class="waves-effect waves-light btn blue" href="{{$tv->twitter}}" target="blank" style="margin-top: 20%; margin-left: 7%; font-size: 250%">
                                             <i class="fa fa-twitter"></i></a>
-                                           
-                                            
+
                                         </div>
                                         
                                     </div>
@@ -145,7 +144,7 @@ $(document).ready(function(){
   });
 </script>
 <script type="text/javascript">
-    $(document).ready(function(evento){ 
+    $(document).ready(function(evento){
         var wSize = $(window).width();
             if (wSize <= 768) {
                 $('#player').addClass('player');

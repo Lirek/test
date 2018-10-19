@@ -156,12 +156,16 @@
                         {{--Poster de la pelicula--}}
                         <div class="col-md-6">
                             <div id="mensajePortadaPelicula"></div>
+                            @if($movie->status != 'Aprobado')
                             <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                 Si no selecciona una portada, se mantendrá la actual
                             </label>
+                            @endif
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
+                                @if($movie->status != 'Aprobado')
                                 {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
+                                @endif
                                 {!! Form::hidden('img_posterOld',$movie->img_poster)!!}
                                 <div id="list">
                                     <img style="width:100%; height:100%; border-top:50%;" src="{{asset('movie/poster')}}/{{$movie->img_poster}}">
@@ -173,26 +177,43 @@
                         <div class="form-group col-md-6">
                             {{--titulo de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            @else
+                            {!! Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula', 'readonly']) !!}
+                            @endif
                             <br>
 
                             {{--titulo original de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Título original </label>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                            @else
+                            {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película', 'readonly']) !!}
+                            @endif
                             <br>
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                             <div id="mensajePrecio"></div>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                            @else
+                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
+                            @endif
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            @else
+                            {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','disabled'=>true ]) !!}
+                            @endif
                             <br>
 
                             {{--Categoria--}}
                             <label for="tags"> Generos </label>
+                            @if($movie->status != 'Aprobado')
                             <select name="tags[]" multiple="true" class="form-control" required>
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
@@ -206,6 +227,21 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @else
+                            <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                                @foreach($tags as $genders)
+                                    <option value="{{$genders->id}}"
+                                        @foreach($s_tags as $s) 
+                                            @if($s->id == $genders->id) 
+                                                selected 
+                                            @endif 
+                                        @endforeach
+                                        >
+                                        {{$genders->tags_name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @endif
                             <br>
 
                         </div>
@@ -213,6 +249,7 @@
                         <div class="form-group col-md-6">
 
                             {{--archivo de la pelicula--}}
+                            @if($movie->status != 'Aprobado')
                             <label for="exampleInputFile" class="control-label">Cargar película</label>
                             <div id='mensajeCargaPelicula'></div>
                             <label for="cargaPelicula" id="mensajePelicula" class="control-label" style="color: green;">
@@ -221,11 +258,17 @@
                             {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','id'=>'pelicula']) !!}
                             <br>
                             {!! Form::hidden('durationOld',$movie->duration) !!}
-                            
+                            @else
+                            {!! Form::hidden('durationOld',$movie->duration) !!}
+                            @endif
                             {{--año de salida de la pelicula --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            @else
+                            {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'readonly']) !!}
+                            @endif
                             <br>
 
                             {{--Basado en un libro o no --}}
@@ -242,12 +285,13 @@
                             --}}
 
                             {{--selecionar pais--}}
+                            @if($movie->status != 'Aprobado')
                             <label class="control-label">Pais</label>
                             <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                 Si no selecciona un país, se mantendrá la actual
                             </label>
                             <br>
-                            <select  name="country" id="paises" class="form-control">
+                            <select  name="country" id="paises" class="form-control" >
                                 <option value="" selected>Seleccione una opción</option>
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
@@ -484,15 +528,20 @@
                                 <option value="ZM">Zambia</option>
                                 <option value="ZW">Zimbabue</option>
                             </select>
+                            @endif
                             <br>
                         </div>
 
                         <div class="form-group col-md-6">
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
+                            @if($movie->status != 'Aprobado')
                             {!! Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            @else
+                            {!! Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'readonly', 'id'=>'link']) !!}
+                            @endif
                             <br>
-
+                            @if($movie->status != 'Aprobado')
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="radio-inline">
@@ -510,7 +559,7 @@
 
                             </div>
                             <br>
-
+                            @endif
                             <div class="" style="display:none" id="if_si">
                                 {!! Form::select('saga_id',$saga,$movie->saga_id,['class'=>'form-control','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga de la película')", 'oninput'=>"setCustomValidity('')"]) !!}
                                 <br>
