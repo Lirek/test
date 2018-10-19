@@ -92,16 +92,16 @@
    MAIN SIDEBAR MENU
    *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
-                <?php if(Auth::user()->img_perf): ?>
-                    <p class="centered"><a href="<?php echo e(url('Referals')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="80"></a></p>
-                <?php else: ?>
-                    <p class="centered"><a href="<?php echo e(url('Referals')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="80"></a></p>
-                <?php endif; ?>
-                <?php if(Auth::user()->alias == null): ?>
+      <aside>
+          <div id="sidebar"  class="nav-collapse">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
+                  <?php if(Auth::user()->img_perf): ?>
+                    <p class="centered"><a href="<?php echo e(url('Referals')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="80" height="80"></a></p>
+                  <?php else: ?>
+                   <p class="centered"><a href="<?php echo e(url('Referals')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="80" height="80"></a></p>
+                  <?php endif; ?>
+                  <?php if(Auth::user()->alias == null): ?>
                     <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 "><?php echo e(Auth::user()->name); ?></h5>
                 <?php else: ?>
                     <h5 class="centered" style="text-shadow: 0.1em 0.1em #333 "><?php echo e(Auth::user()->alias); ?></h5>

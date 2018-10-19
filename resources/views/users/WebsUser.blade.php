@@ -15,23 +15,21 @@
   <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
   <div class="row mtbox" style="margin-top: 2%">
     <div class="col-sm-6 col-md-6">
-      <div class="col-md-12 col-sm-12 mb" style="margin-left: ">
-        <div class="white-panel refe">
-          <div class="white-header">
-            <h5><i class="fa fa-users"></i>Total de referidos:</h5>
-          </div>
-          <div class="row white-size">
-            <div class="col-sm-6 col-xs-6 gocenterRed ">
-              <p>
-                <h2>
-                  <a> {{$referals1+$referals2+$referals3}} </a>
-                </h2>
-                <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
-              </p>
+        <div class="col-md-12 col-sm-12 mb" style="margin-left:">
+            <div class="darkblue-panel pn">
+                <div class="darkblue-header">
+                    <h2 style="color: #fff">Total de referidos:</h2>
+                </div>
+                <h3 class="mt" style="color: #fff"><i class="fa fa-users fa-3x"></i></h3>
+                <div class="centered">
+                    <h3 style="color: #fff"><i class="fa fa-trophy"></i> {{$referals1+$referals2+$referals3}}</h3>
+                </div>
+                <footer><br>
+                    <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+
+                </footer>
             </div>
-          </div>
         </div>
-      </div>
       <!--REFERIR-->
       @if(Auth::user()->UserRefered()->count()==0) 
         <div class="col-md-12 col-sm-12 mb" id="referir">

@@ -36,11 +36,11 @@
                         			</div>
                         		</div>
                         	</div> -->
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         	<div  class="col-sm-12 col-xs-12 col-md-12">
-       						<?php echo e($Tv->links()); ?>
+       					            <?php echo e($Tv->links()); ?>
 
-       						</div>
+       					          </div>
             			</div>
             		</div>
             	</div>
