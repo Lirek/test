@@ -20,9 +20,9 @@
                 <div class="darkblue-header">
                     <h2 style="color: #fff">Total de referidos:</h2>
                 </div>
-                <h3 class="mt" style="color: #fff"><i class="fa fa-users fa-3x"></i></h3>
+                <h4 class="mt" style="color: #fff"><i class="fa fa-users fa-3x"></i></h4>
                 <div class="centered">
-                    <h3 style="color: #fff"><i class="fa fa-trophy"></i> {{$referals1+$referals2+$referals3}}</h3>
+                    <h2 style="color: #fff">{{$referals1+$referals2+$referals3}}</h2>
                 </div>
                 <footer><br>
                     <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
@@ -109,29 +109,31 @@
       @endif
     </div>
     <div class="col-sm-6 col-md-6">
-      <div class="col-md-12 col-sm-12 mb">
-        <div class="white-panel refe">
-          <div class="white-header">
-            <h5> Total de puntos:</h5>
-          </div>
-          <div class="row white-size">
-            <div class="col-sm-6 col-xs-6 gocenterRed ">
-              <p>
-                <h2>
-                  @if(Auth::user()->points!=NULL)
-                    <a> {{Auth::user()->points}} </a>
-                  @else 
-                    <a> 0 </a>
-                  @endif
-                </h2>
-                <h6>Estos son los puntos que se han generado de tus referidos directos e indirectos</h6>
-              </p>
+
+        <div class="col-md-12 col-sm-12 mb" style="margin-left:">
+            <div class="darkblue-panel pn">
+                <div class="darkblue-header">
+                    <h2 style="color: #fff">Total de puntos:</h2>
+                </div>
+                <h1 class="mt" style="color: #fff"><i class="fa fa-check-circle"></i></h1>
+                <div class="centered">
+                    <h2 style="color: #fff">
+                        @if(Auth::user()->points!=NULL)
+                             {{Auth::user()->points}}
+                        @else
+                             0
+                        @endif
+                    </h2>
+                </div>
+                <footer><br>
+                    <h6>Estos son los puntos que se han generado de tus referidos directos e indirectos</h6>
+
+                </footer>
             </div>
-          </div>
         </div>
-      </div>
+        {{--Viaje--}}
       <div class="col-md-12 col-sm-12 text-center" style="margin-left: 1%; margin-top: 1%">
-        <img src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" style="width: 80%;">
+        <img src="{{asset('prom ociones/PromocionGalapagosImg.jpg')}}" style="width: 80%;">
         <a style="margin-top: 3%;" target="_blank" href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" class="btn btn-primary">Detalles del viaje (Descargar en PDF)</a>
       </div>
     </div>
