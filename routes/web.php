@@ -378,11 +378,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             //-----------------------------------------------------------------------
             //------------------------------SERIES-----------------------------------
                 Route::get('/admin_series','AdminController@ShowSeries');
-                Route::get('SeriesDataTable','AdminController@SeriesDataTable');
+                Route::get('SeriesDataTable/{status}','AdminController@SeriesDataTable');
                 Route::get('/sagaSerie/{id}','AdminController@sagaSerie');
+                Route::post('/admin_serie/{id}','AdminController@SerieStatus');
                 
 
             //-----------------------------------------------------------------------
+                Route::get('/viewRejection/{idModulo}/{modulo}','AdminController@viewRejection');
 
         //________________Fin de las rutas de contenido_____________________________
 

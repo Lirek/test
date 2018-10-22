@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
 use App\Mail\StatusMovies;
+use App\Mail\StatusSerie;
 use App\Mail\StatusSeller;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
@@ -48,6 +49,7 @@ use App\PointsAssings;
 use App\SistemBalance;
 use App\Movie;
 use App\Rating;
+use App\Rejection;
 
 //--------------------------------------------------------
 
@@ -972,10 +974,25 @@ class AdminController extends Controller
           return $movies->cost;
         })
         ->addColumn('Estatus',function($movies){
-          if ($movies->status=="Aprobado") { $colorBoton = "btn-primary";  $id = ""; }
-          else if ($movies->status=="En Proceso") { $colorBoton = "btn-warning";  $id = "#myModal"; }
-          else if ($movies->status=="Denegado") { $colorBoton = "btn-danger";  $id = ""; }
-          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='".$id."' id='status'>".$movies->status."</button>";
+          if ($movies->status=="Aprobado") { 
+            $colorBoton = "btn-success";
+            $id = "status";
+            $modal = "";
+            $texto = $movies->status;
+          }
+          else if ($movies->status=="En Proceso") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = $movies->status;
+          }
+          else if ($movies->status=="Denegado") { 
+            $colorBoton = "btn-danger";
+            $id = "denegado";
+            $modal = "#negado";
+            $texto = "Ver negaciones";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
         })
         ->rawColumns(['Estatus','img_poster'])
         ->toJson();
@@ -988,6 +1005,11 @@ class AdminController extends Controller
       if ($request->status == 'Aprobado') {
         $movie->status = 1;
       } else {
+        $rejection = new Rejection;
+        $rejection->module = "Movies";
+        $rejection->id_module = $id;
+        $rejection->reason = $message;
+        $rejection->save();
         $movie->status = 3;
       }
       $movie->save();
@@ -1008,18 +1030,18 @@ class AdminController extends Controller
 */
 /* 
   ---------------------------------------------------------------
-  --------------------- FUNCIONES DE SERIE -------------------
+  ---------------------- FUNCIONES DE SERIE ---------------------
   ---------------------------------------------------------------
 */
   public function ShowSeries() {
     return view('promoter.ContentModules.MainContent.Series');
   }
 
-  public function SeriesDataTable() {
+  public function SeriesDataTable($status) {
 
-      $serie = Serie::all();
+      $serie = Serie::where('status',$status);
       return Datatables::of($serie)
-        ->editColumn('img_poster',function($serie){
+        ->addColumn('img_poster',function($serie){
           return "<img class='img-rounded img-responsive av' src='".asset($serie->img_poster)."' style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
         })
         ->addColumn('autor',function($serie){
@@ -1053,7 +1075,27 @@ class AdminController extends Controller
           return $serie->status_series;
         })
         ->addColumn('Estatus',function($serie){
-          return "<button type='button' class='btn btn-theme' value=".$serie->id." data-toggle='modal' data-target='#myModal' id='status'>".$serie->status."</button>";
+          if ($serie->status=="Aprobado") { 
+            $colorBoton = "btn-success";
+            $id = "status";
+            $modal = "";
+            $texto = $serie->status;
+            $modal = "";
+          }
+          else if ($serie->status=="En Proceso") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "";
+            $texto = $serie->status;
+            $modal = "#myModal";
+          }
+          else if ($serie->status=="Denegado") { 
+            $colorBoton = "btn-danger";
+            $id = "denegado";
+            $modal = "#negado";
+            $texto = "Ver negaciones";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$serie->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
         })
         ->rawColumns(['Estatus','img_poster','trailer','saga'])
         ->toJson();
@@ -1062,7 +1104,35 @@ class AdminController extends Controller
   public function sagaSerie($idSerie) {
     $serie = Serie::find($idSerie);
     $saga = $serie->saga;
-    return response()->json($saga);
+    $rating = $saga->rating;
+    for ($i=0; $i < count($saga); $i++) { 
+      $result[$i++] = $saga->img_saga;
+      $result[$i++] = $saga->sag_name;
+      $result[$i++] = $rating->r_descr;
+      $result[$i++] = $saga->status;
+      $result[$i++] = $saga->type_saga;
+      $result[$i++] = $saga->sag_description;
+    }
+    return response()->json($result);
+  }
+
+  public function SerieStatus(Request $request, $id) {
+    $serie = Serie::find($id);
+    $email = $serie->seller->email;
+    $message = $request->message;
+    if ($request->status == 'Aprobado') {
+      $serie->status = 1;
+    } else {
+      $rejection = new Rejection;
+      $rejection->module = "Series";
+      $rejection->id_module = $id;
+      $rejection->reason = $message;
+      $rejection->save();
+      $serie->status = 3;
+    }
+    $serie->save();
+    Mail::to($email)->send(new StatusSerie($serie->title,$request->status,$message));
+    return response()->json($serie);
   }
 /* 
   ---------------------------------------------------------------
@@ -1195,10 +1265,25 @@ class AdminController extends Controller
             return $ApplysSellers->created_at;
           })
           ->addColumn('solicitud',function($ApplysSellers){
-            if ($ApplysSellers->status=="Aprobado") { $colorBoton = "btn-primary"; }
-            else if ($ApplysSellers->status=="En Proceso") { $colorBoton = "btn-warning"; }
-            else if ($ApplysSellers->status=="Denegado") { $colorBoton = "btn-danger"; }
-            return "<button type='button' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn ".$colorBoton."' value=".$ApplysSellers->id." data-toggle='modal' data-target='#myModal' id='statusApplys'>".$ApplysSellers->status."</button>";
+            if ($ApplysSellers->status=="Aprobado") { 
+              $colorBoton = "btn-primary"; 
+              $id = "statusApplys"; 
+              $modal = "#myModal";
+              $texto = $ApplysSellers->status;
+            }
+            else if ($ApplysSellers->status=="En Proceso") { 
+              $colorBoton = "btn-warning"; 
+              $id = "statusApplys"; 
+              $modal = "#myModal";
+              $texto = $ApplysSellers->status;
+            }
+            else if ($ApplysSellers->status=="Denegado") { 
+              $colorBoton = "btn-danger"; 
+              $id = "denegado"; 
+              $modal = "#negado";
+              $texto = "Ver degaciones";
+            }
+            return "<button type='button' class='btn ".$colorBoton."' value=".$ApplysSellers->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
           })
           ->rawColumns(['solicitud','vendedor'])
           ->toJson();
@@ -1209,6 +1294,21 @@ class AdminController extends Controller
         $applys->salesman_id = $idSalesman;
         $applys->save();
         return response()->json($applys); 
+      }
+
+      public function viewRejection($idModulo,$modulo) {
+        $rejection = Rejection::where('id_module',$idModulo)
+                              ->where('module',$modulo)
+                              ->get();
+        return Datatables::of($rejection)
+          ->addColumn('razon',function($rejection){
+            return $rejection->reason;
+          })
+          ->addColumn('created_at',function($rejection){
+            return $rejection->created_at;
+          })
+          ->toJson();
+          //return response()->json($rejection);
       }
 //-------------------------------------------------------------------------------
 
@@ -1317,8 +1417,13 @@ class AdminController extends Controller
           Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
 
   				$applys->save();
-  				return response()->json($applys);	
-  			} else {   
+  				return response()->json($applys);
+  			} else {
+            $rejection = new Rejection;
+            $rejection->module = "Applys Seller";
+            $rejection->id_module = $id;
+            $rejection->reason = $request->message;
+            $rejection->save();
             Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
             $applys->save();
             return response()->json($applys);
