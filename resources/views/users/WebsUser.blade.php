@@ -50,7 +50,7 @@
         </div>
       @endif
       @if ($refered != null)
-        <h5 style="margin-left: 3%">Mis referidos directos: ({{$referals1}})</h5>
+        <h5 style="margin-left: 3%">Mis referidos directos: <span class="badge bg-info">{{$referals1}}</span></h5>
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
           <div class="row lista">
             @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

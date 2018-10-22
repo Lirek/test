@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="- mejora vista que es leipel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,11 +63,89 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/lang/es/auth.php">
+      <file leaf-file-name="WebsUser.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/users/WebsUser.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="234">
+              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+              <folding>
+                <element signature="e#5730#5749#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SalesTickets.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="187" column="27" lean-forward="true" selection-start-line="187" selection-start-column="27" selection-end-line="187" selection-end-column="27" />
+              <folding>
+                <element signature="e#1705#1732#0#HTML" expanded="true" />
+                <element signature="e#2712#2733#0#HTML" expanded="true" />
+                <element signature="e#2805#2828#0#HTML" expanded="true" />
+                <element signature="e#3096#3134#0#HTML" expanded="true" />
+                <element signature="e#5879#5886#1#HTML" expanded="true" />
+                <element signature="e#7009#7033#0#HTML" expanded="true" />
+                <element signature="e#7226#7248#0#HTML" expanded="true" />
+                <element signature="e#7727#7749#0#HTML" expanded="true" />
+                <element signature="e#10614#10653#0#HTML" expanded="true" />
+                <element signature="e#12046#12081#0#HTML" expanded="true" />
+                <element signature="e#12215#12254#0#HTML" expanded="true" />
+                <element signature="e#12357#12377#0#HTML" expanded="true" />
+                <element signature="e#14081#14120#0#HTML" expanded="true" />
+                <element signature="e#15153#15188#0#HTML" expanded="true" />
+                <element signature="e#15376#15398#0#HTML" expanded="true" />
+                <element signature="e#15598#15621#0#HTML" expanded="true" />
+                <element signature="e#15761#15796#0#HTML" expanded="true" />
+                <element signature="e#17733#17756#0#HTML" expanded="true" />
+                <marker date="1540242166079" expanded="false" signature="20142:20156" ph="..." />
+                <marker date="1540242166079" expanded="false" signature="20241:20255" ph="..." />
+                <marker date="1540242166079" expanded="false" signature="20342:20356" ph="..." />
+                <marker date="1540242166079" expanded="false" signature="20437:20451" ph="..." />
+                <marker date="1540242166079" expanded="false" signature="20533:20547" ph="..." />
+                <marker date="1540242166079" expanded="false" signature="20637:20651" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowTv.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="121" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playTv.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/playTv.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3450">
+              <caret line="138" column="1" lean-forward="false" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListenRadio.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5075">
+              <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowRadios.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4050">
+              <caret line="162" column="38" lean-forward="false" selection-start-line="141" selection-start-column="32" selection-end-line="162" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,98 +256,7 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
-    <include_path>
-      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
-      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
-      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
-      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
-      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
-      <path value="$PROJECT_DIR$/vendor/symfony/console" />
-      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
-      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
-      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
-      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
-      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
-      <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/laracasts/flash" />
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
-      <path value="$PROJECT_DIR$/vendor/howtomakeaturn/pdfinfo" />
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
-      <path value="$PROJECT_DIR$/vendor/wapmorgan/mp3info" />
-      <path value="$PROJECT_DIR$/vendor/acekyd/laravelmp3" />
-      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
-      <path value="$PROJECT_DIR$/vendor/mtdowling/cron-expression" />
-      <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
-      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
-      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
-      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
-      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
-      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
-      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
-      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
-      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
-      <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
-      <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
-      <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
-      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
-      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
-      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
-      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
-      <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
-      <path value="$PROJECT_DIR$/vendor/optimus/heimdal" />
-      <path value="$PROJECT_DIR$/vendor/spatie/fractalistic" />
-      <path value="$PROJECT_DIR$/vendor/spatie/laravel-fractal" />
-      <path value="$PROJECT_DIR$/vendor/league/fractal" />
-      <path value="$PROJECT_DIR$/vendor/arcanedev/log-viewer" />
-      <path value="$PROJECT_DIR$/vendor/arcanedev/support" />
-      <path value="$PROJECT_DIR$/vendor/rap2hpoutre/laravel-log-viewer" />
-    </include_path>
-  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -280,33 +267,51 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="users" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,152 +335,25 @@
       </list>
     </option>
   </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="" />
-      <created>1525598327498</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1525598327498</updated>
-      <workItem from="1525598335002" duration="2347000" />
-      <workItem from="1525603950636" duration="3090000" />
-      <workItem from="1525802031579" duration="590000" />
-      <workItem from="1525802675050" duration="15808000" />
-      <workItem from="1526366315059" duration="969000" />
-      <workItem from="1526368056403" duration="144000" />
-      <workItem from="1526414879849" duration="16841000" />
-      <workItem from="1526632437411" duration="4649000" />
-      <workItem from="1526637279504" duration="1635000" />
-      <workItem from="1526666989186" duration="7630000" />
-      <workItem from="1527018694255" duration="783000" />
-      <workItem from="1527024133987" duration="1040000" />
-      <workItem from="1527099910073" duration="45012000" />
-      <workItem from="1528822538752" duration="1026000" />
-      <workItem from="1528824442046" duration="1911000" />
-      <workItem from="1528830858248" duration="8000000" />
-      <workItem from="1528902207713" duration="7910000" />
-      <workItem from="1529796183167" duration="477000" />
-      <workItem from="1529928910199" duration="1232000" />
-      <workItem from="1529931247125" duration="293000" />
-      <workItem from="1530551649876" duration="811000" />
-      <workItem from="1537361335117" duration="406000" />
-      <workItem from="1537397483409" duration="2908000" />
-      <workItem from="1538248142065" duration="583000" />
-      <workItem from="1538353416431" duration="1303000" />
-      <workItem from="1538413673715" duration="6215000" />
-      <workItem from="1538424638638" duration="4056000" />
-      <workItem from="1539017482833" duration="495000" />
-      <workItem from="1539645246784" duration="1321000" />
-      <workItem from="1539727208558" duration="1614000" />
-      <workItem from="1539787481247" duration="2775000" />
-      <workItem from="1540227292003" duration="542000" />
-    </task>
-    <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
-      <created>1526420332679</created>
+    <task id="LOCAL-00001" summary="- mejora vista que es leipel">
+      <created>1540246798079</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1526420332679</updated>
+      <updated>1540246798079</updated>
     </task>
-    <task id="LOCAL-00002" summary="api de facebook y bonton q hice ayer en el servidor">
-      <created>1526485612992</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1526485612992</updated>
-    </task>
-    <task id="LOCAL-00003" summary="parte de peliculas">
-      <created>1526505575347</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1526505575389</updated>
-    </task>
-    <task id="LOCAL-00004" summary="template de usuarios">
-      <created>1526676697813</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1526676697814</updated>
-    </task>
-    <task id="LOCAL-00005" summary="pelicula y libros (creo)">
-      <created>1527131790126</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1527131790126</updated>
-    </task>
-    <task id="LOCAL-00006" summary="solo falta mostrar la pelicula">
-      <created>1527152134897</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1527152134915</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Merge branch 'mauricio' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/users/Referals.blade.php&#10;#&#9;resources/views/users/WebsUser.blade.php">
-      <created>1530553337185</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1530553337185</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log">
-      <created>1537754755093</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1537754755093</updated>
-    </task>
-    <task id="LOCAL-00009" summary="se agrego los terminos y condiciones para el registro de los usuarios">
-      <created>1538248658810</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1538248658810</updated>
-    </task>
-    <task id="LOCAL-00010" summary="se agrego los terminos y condiciones para el registro de los usuarios">
-      <created>1538353616098</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1538353616098</updated>
-    </task>
-    <task id="LOCAL-00011" summary="- se modifico la pantalla de referidos&#10;&#10;- se comento registro y logeo de usarios de tipo proveedor">
-      <created>1538427043182</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1538427043182</updated>
-    </task>
-    <task id="LOCAL-00012" summary="-se agrego total de puntos pendientes">
-      <created>1539037252470</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1539037252470</updated>
-    </task>
-    <task id="LOCAL-00013" summary="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo">
-      <created>1539736260641</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1539736260641</updated>
-    </task>
-    <task id="LOCAL-00014" summary="-links de pie de pagina funcionales&#10;-mensaje de credenciales cambiado&#10;-imagen agregada para idex (falta menu en la imagen)&#10;-arregle la imagen de perfil adentro que aveces se colocaba como ovalo en el menu de la izquierda">
-      <created>1539815930392</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1539815930392</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148051000" />
+    <option name="totallyTimeSpent" value="149520000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -487,60 +365,89 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="8" sideWeight="0.5045386" side_tool="true" visible="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49546143" weight="0.3295082" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5087848" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.49121523" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5058565" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.4941435" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="los cambios q hice en el servidor" />
-    <MESSAGE value="api de facebook y bonton q hice ayer en el servidor" />
-    <MESSAGE value="parte de peliculas" />
-    <MESSAGE value="template de usuarios" />
-    <MESSAGE value="pelicula y libros (creo)" />
-    <MESSAGE value="solo falta mostrar la pelicula" />
-    <MESSAGE value="listo pelicula afro y otra vez la ruta en el sidebar" />
-    <MESSAGE value="algunos modelos, controladores, vista" />
-    <MESSAGE value="gitignore" />
-    <MESSAGE value="Merge branch 'mauricio' into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/users/Referals.blade.php&#10;#&#9;resources/views/users/WebsUser.blade.php" />
-    <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
-    <MESSAGE value="se agrego los terminos y condiciones para el registro de los usuarios" />
-    <MESSAGE value="- se modifico la pantalla de referidos&#10;&#10;- se comento registro y logeo de usarios de tipo proveedor" />
-    <MESSAGE value="-se agrego total de puntos pendientes" />
-    <MESSAGE value="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo" />
-    <MESSAGE value="-links de pie de pagina funcionales&#10;-mensaje de credenciales cambiado&#10;-imagen agregada para idex (falta menu en la imagen)&#10;-arregle la imagen de perfil adentro que aveces se colocaba como ovalo en el menu de la izquierda" />
     <MESSAGE value="- mejora vista que es leipel" />
     <option name="LAST_COMMIT_MESSAGE" value="- mejora vista que es leipel" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2650">
+          <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+          <folding>
+            <element signature="e#1705#1732#0#HTML" expanded="true" />
+            <element signature="e#2712#2733#0#HTML" expanded="true" />
+            <element signature="e#2805#2828#0#HTML" expanded="true" />
+            <element signature="e#3096#3134#0#HTML" expanded="true" />
+            <element signature="e#5879#5886#1#HTML" expanded="true" />
+            <element signature="e#7009#7033#0#HTML" expanded="true" />
+            <element signature="e#7226#7248#0#HTML" expanded="true" />
+            <element signature="e#7727#7749#0#HTML" expanded="true" />
+            <element signature="e#10614#10653#0#HTML" expanded="true" />
+            <element signature="e#12046#12081#0#HTML" expanded="true" />
+            <element signature="e#12215#12254#0#HTML" expanded="true" />
+            <element signature="e#12357#12377#0#HTML" expanded="true" />
+            <element signature="e#14081#14120#0#HTML" expanded="true" />
+            <element signature="e#15153#15188#0#HTML" expanded="true" />
+            <element signature="e#15376#15398#0#HTML" expanded="true" />
+            <element signature="e#15598#15621#0#HTML" expanded="true" />
+            <element signature="e#15761#15796#0#HTML" expanded="true" />
+            <element signature="e#17733#17756#0#HTML" expanded="true" />
+            <marker date="1540242166079" expanded="false" signature="20142:20156" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20241:20255" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20342:20356" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20437:20451" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20533:20547" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20637:20651" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -551,14 +458,14 @@
     <entry file="file://$PROJECT_DIR$/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
-          <caret line="237" column="66" selection-start-line="237" selection-start-column="66" selection-end-line="237" selection-end-column="66" />
+          <caret line="237" column="66" lean-forward="false" selection-start-line="237" selection-start-column="66" selection-end-line="237" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/authorbook/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -572,7 +479,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RadiosController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+          <caret line="14" column="59" lean-forward="false" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -593,7 +500,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/seller/tv/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1771">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+          <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -607,7 +514,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/seller/tv/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="27" />
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -616,32 +523,36 @@
     <entry file="file://$PROJECT_DIR$/app/Rating.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+          <caret line="28" column="54" lean-forward="false" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Saga.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Book.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="24" />
+          <caret line="29" column="24" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/radio/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-828" />
+        <state relative-caret-position="-828">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/radio/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1242" />
+        <state relative-caret-position="-1242">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/index.blade.php">
@@ -661,112 +572,112 @@
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10649">
-          <caret line="463" column="13" selection-start-line="463" selection-start-column="13" selection-end-line="463" selection-end-column="13" />
+          <caret line="463" column="13" lean-forward="false" selection-start-line="463" selection-start-column="13" selection-end-line="463" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4554">
-          <caret line="198" column="86" selection-start-line="198" selection-start-column="80" selection-end-line="198" selection-end-column="86" />
+          <caret line="198" column="86" lean-forward="false" selection-start-line="198" selection-start-column="80" selection-end-line="198" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/movie/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+          <caret line="16" column="45" lean-forward="false" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2208">
-          <caret line="96" column="22" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Sagas.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MoviesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2507">
-          <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
+          <caret line="109" column="48" lean-forward="false" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Movie.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
-          <caret line="32" column="59" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+          <caret line="32" column="59" lean-forward="false" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SagaController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2507">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SeriesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17618">
-          <caret line="766" column="34" selection-start-line="766" selection-start-column="34" selection-end-line="766" selection-end-column="34" />
+          <caret line="766" column="34" lean-forward="false" selection-start-line="766" selection-start-column="34" selection-end-line="766" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/movie/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14950">
-          <caret line="650" column="13" selection-start-line="650" selection-start-column="13" selection-end-line="650" selection-end-column="13" />
+          <caret line="650" column="13" lean-forward="false" selection-start-line="650" selection-start-column="13" selection-end-line="650" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/movie/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3335">
-          <caret line="145" column="11" selection-start-line="145" selection-start-column="11" selection-end-line="145" selection-end-column="11" />
+          <caret line="145" column="11" lean-forward="false" selection-start-line="145" selection-start-column="11" selection-end-line="145" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/partials/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4232">
-          <caret line="187" column="47" selection-start-line="187" selection-start-column="47" selection-end-line="187" selection-end-column="47" />
+          <caret line="187" column="47" lean-forward="false" selection-start-line="187" selection-start-column="47" selection-end-line="187" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="37" column="75" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
+          <caret line="37" column="75" lean-forward="false" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2300">
-          <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
+          <caret line="100" column="31" lean-forward="false" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1925">
-          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+          <caret line="77" column="41" lean-forward="false" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -776,14 +687,14 @@
     <entry file="file://$PROJECT_DIR$/config/services.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
-          <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
+          <caret line="55" column="6" lean-forward="false" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Seller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+        <state relative-caret-position="0">
+          <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -791,47 +702,76 @@
     <entry file="file://$PROJECT_DIR$/resources/views/seller/layouts.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7431">
-          <caret line="418" selection-start-line="418" selection-end-line="418" />
+          <caret line="418" column="0" lean-forward="false" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2975" />
+        <state relative-caret-position="-2975">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
-          <caret line="952" selection-start-line="952" selection-end-line="952" />
+          <caret line="952" column="0" lean-forward="false" selection-start-line="952" selection-start-column="0" selection-end-line="952" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
-          <caret line="10" column="75" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
+          <caret line="10" column="75" lean-forward="false" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
+        <state relative-caret-position="5075">
+          <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
+        <state relative-caret-position="150">
+          <caret line="187" column="27" lean-forward="true" selection-start-line="187" selection-start-column="27" selection-end-line="187" selection-end-column="27" />
+          <folding>
+            <element signature="e#1705#1732#0#HTML" expanded="true" />
+            <element signature="e#2712#2733#0#HTML" expanded="true" />
+            <element signature="e#2805#2828#0#HTML" expanded="true" />
+            <element signature="e#3096#3134#0#HTML" expanded="true" />
+            <element signature="e#5879#5886#1#HTML" expanded="true" />
+            <element signature="e#7009#7033#0#HTML" expanded="true" />
+            <element signature="e#7226#7248#0#HTML" expanded="true" />
+            <element signature="e#7727#7749#0#HTML" expanded="true" />
+            <element signature="e#10614#10653#0#HTML" expanded="true" />
+            <element signature="e#12046#12081#0#HTML" expanded="true" />
+            <element signature="e#12215#12254#0#HTML" expanded="true" />
+            <element signature="e#12357#12377#0#HTML" expanded="true" />
+            <element signature="e#14081#14120#0#HTML" expanded="true" />
+            <element signature="e#15153#15188#0#HTML" expanded="true" />
+            <element signature="e#15376#15398#0#HTML" expanded="true" />
+            <element signature="e#15598#15621#0#HTML" expanded="true" />
+            <element signature="e#15761#15796#0#HTML" expanded="true" />
+            <element signature="e#17733#17756#0#HTML" expanded="true" />
+            <marker date="1540242166079" expanded="false" signature="20142:20156" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20241:20255" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20342:20356" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20437:20451" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20533:20547" ph="..." />
+            <marker date="1540242166079" expanded="false" signature="20637:20651" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -845,7 +785,7 @@
     <entry file="file://$PROJECT_DIR$/resources/lang/es/auth.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
         </state>
       </provider>
     </entry>
