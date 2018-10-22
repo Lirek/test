@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo">
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="- mejora vista que es leipel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/es/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/es/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +19,7 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.105" value="2" />
           <entry key="project.open.time.108" value="1" />
           <entry key="project.open.time.11" value="1" />
@@ -29,18 +27,19 @@
           <entry key="project.open.time.174" value="1" />
           <entry key="project.open.time.214" value="1" />
           <entry key="project.open.time.78" value="1" />
+          <entry key="project.open.time.91" value="1" />
           <entry key="project.open.time.92" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="txt" value="374" />
+          <entry key="txt" value="626" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="374" />
+          <entry key="PLAIN_TEXT" value="626" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,7 +62,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/lang/es/auth.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -371,7 +370,8 @@
       <workItem from="1539017482833" duration="495000" />
       <workItem from="1539645246784" duration="1321000" />
       <workItem from="1539727208558" duration="1614000" />
-      <workItem from="1539787481247" duration="1835000" />
+      <workItem from="1539787481247" duration="2775000" />
+      <workItem from="1540227292003" duration="542000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -464,11 +464,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539736260641</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="-links de pie de pagina funcionales&#10;-mensaje de credenciales cambiado&#10;-imagen agregada para idex (falta menu en la imagen)&#10;-arregle la imagen de perfil adentro que aveces se colocaba como ovalo en el menu de la izquierda">
+      <created>1539815930392</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1539815930392</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146569000" />
+    <option name="totallyTimeSpent" value="148051000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -481,8 +488,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -528,7 +536,9 @@
     <MESSAGE value="- se modifico la pantalla de referidos&#10;&#10;- se comento registro y logeo de usarios de tipo proveedor" />
     <MESSAGE value="-se agrego total de puntos pendientes" />
     <MESSAGE value="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo" />
-    <option name="LAST_COMMIT_MESSAGE" value="- se arreglo pie de pag en que es leipel?&#10;- se arreglo pie de pag en terminos de condiciones&#10;- se mejoro vista de reset password y se le agrego el correo" />
+    <MESSAGE value="-links de pie de pagina funcionales&#10;-mensaje de credenciales cambiado&#10;-imagen agregada para idex (falta menu en la imagen)&#10;-arregle la imagen de perfil adentro que aveces se colocaba como ovalo en el menu de la izquierda" />
+    <MESSAGE value="- mejora vista que es leipel" />
+    <option name="LAST_COMMIT_MESSAGE" value="- mejora vista que es leipel" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/composer.json">
