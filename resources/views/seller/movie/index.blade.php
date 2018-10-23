@@ -24,6 +24,7 @@
                                     <th class="text-center">Categoría</th>
                                     <th class="text-center" width="300">Generos</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                                 @endforeach
                                             </td>
                                             <td class="text-center"> {{ $m->status }} </td>
+                                            <td class="text-center"> {{ $m->created_at }} </td>
                                             <td class="text-center">
                                                 <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -54,9 +56,9 @@
                                                 <a href="{{ route('movies.edit',$m->id) }}" class="btn btn-warning btn-xs">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
-                                                <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película {{ $m->title }}?')" class="btn btn-danger btn-xs">
+                                                <!-- <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película {{ $m->title }}?')" class="btn btn-danger btn-xs">
                                                     <span class="glyphicon glyphicon-remove"></span>
-                                                </a>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     @endif
@@ -69,6 +71,7 @@
                                     <th class="text-center">Categoría</th>
                                     <th class="text-center">Generos</th>
                                     <th class="text-center">Estatus</th>
+                                    <th class="text-center">Fecha de registro</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>
@@ -125,7 +128,8 @@
                         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
-                }
+                },
+                "order": [[ 5, "desc" ]],
             });
             $('#example2').DataTable({
                 'paging': true,

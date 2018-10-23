@@ -70,9 +70,8 @@
 </nav>
 
 
-<div class="col-md-12 col-sm-12 ">
-              <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">
-              
+    <div class="col-md-12 col-sm-12 ">
+        <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">   
             <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
                 <div class="white-panel">
                     <br>
@@ -134,7 +133,6 @@
                 </div>
             </div> 
 
-
             <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
                 <div class="white-panel">
                     <br>
@@ -173,7 +171,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
 
 <!--FOOTER STAR -->
 

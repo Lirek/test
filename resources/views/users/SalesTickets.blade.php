@@ -283,14 +283,21 @@ input[type="checkbox"]:disabled + .label-text:before{
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
                     <div class="text-center">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             @if(Auth::user()->points)
                                 <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
                             @else
                                 <h4><b>Total de puntos:</b> 0 </h4>
+                            @endif
+                        </div>
+                        <div class="col-sm-4">
+                            @if(Auth::user()->pending_points)
+                                <h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4>
+                            @else
+                                <h4><b>Total de puntos pendientes:</b> 0 </h4>
                             @endif
                         </div>
                     </div>

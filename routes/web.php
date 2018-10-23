@@ -525,6 +525,9 @@ Route::group(['middleware' => 'seller_guest'], function () {
 //Solo Productoras Logueadas pueden acceder a las siguientes rutas
 
 Route::group(['middleware' => 'seller_auth'], function () {
+    
+    Route::get('seller_edit', 'SellerController@edit');
+
 
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
 

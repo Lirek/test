@@ -15,23 +15,21 @@
   <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
   <div class="row mtbox" style="margin-top: 2%">
     <div class="col-sm-6 col-md-6">
-      <div class="col-md-12 col-sm-12 mb" style="margin-left: ">
-        <div class="white-panel refe">
-          <div class="white-header">
-            <h5><i class="fa fa-users"></i>Total de referidos:</h5>
-          </div>
-          <div class="row white-size">
-            <div class="col-sm-6 col-xs-6 gocenterRed ">
-              <p>
-                <h2>
-                  <a> {{$referals1+$referals2+$referals3}} </a>
-                </h2>
-                <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
-              </p>
+        <div class="col-md-12 col-sm-12 mb" style="margin-left:">
+            <div class="darkblue-panel pn">
+                <div class="darkblue-header">
+                    <h2 style="color: #fff">Total de referidos:</h2>
+                </div>
+                <h3 class="mt" style="color: #fff"><i class="fa fa-users fa-3x"></i></h3>
+                <div class="centered">
+                    <h3 style="color: #fff"><i class="fa fa-trophy"></i> {{$referals1+$referals2+$referals3}}</h3>
+                </div>
+                <footer><br>
+                    <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+
+                </footer>
             </div>
-          </div>
         </div>
-      </div>
       <!--REFERIR-->
       @if(Auth::user()->UserRefered()->count()==0) 
         <div class="col-md-12 col-sm-12 mb" id="referir">
@@ -56,16 +54,18 @@
         <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
           <div class="row lista">
             @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="col-xs-3 col-sm-3 col-lg-3">
-                  @if($refereds->img_perf)
-                    <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                  @else
-                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                  @endif
-                </div>
-                <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                  {{$refereds->name}} {{$refereds->last_name}}
-                </div>
+                <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                      @if($refereds->img_perf)
+                        <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
+                      @else
+                        <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
+                      @endif
+                    </div>
+                    <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
+                      {{$refereds->name}} {{$refereds->last_name}}
+                    </div>
+                </a>
               </div>
                 <!--MODAL DATOS-->
                 <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
@@ -146,8 +146,7 @@
               <h4 class="modal-title">Ingrese el codigo</h4>
           </div>
           <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">
-                {{ csrf_field() }}
+              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">{{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                         <label for="codigo" class="col-md-4 control-label">Codigo</label>
@@ -185,6 +184,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
   $('#codigoMen').hide();
   e.preventDefault(); // <--- prevent form from submitting
   var cod=$('#codigo').val();
+
   $.ajax({
     url:'sponsor/'+cod,
     type: 'get',

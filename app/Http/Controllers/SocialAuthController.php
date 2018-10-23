@@ -25,7 +25,7 @@ class SocialAuthController extends Controller
     {
         try {
                 $user = Socialite::driver($provider)->user();
-//               dd($user);
+                //dd($user);
                  
                  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                  $charactersLength = strlen($characters);

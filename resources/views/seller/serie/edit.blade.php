@@ -121,12 +121,15 @@
                         <div class="col-md-6">
                             {{--Portada de la Serie--}}
                             <div id="mensajePortadaSerie"></div>
+                            @if($serie->status != 'Aprobado')
                             <label for="cargaPortada" id="cargaPortada" class="control-label" style="color: green;">
                                 Si no selecciona una portada, se mantendrá la actual
                             </label>
+                            @endif
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                 <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*']) !!}
+                                
+                                    {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*']) !!}
                                 <div id="list">
                                     <img style="width:100%; height:100%; border-top:50%;" src="{{asset($serie->img_poster)}}">
                                 </div>
@@ -137,7 +140,11 @@
                             {{--titulo de la serie--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
                             <div id="mensajeTitulo"></div>
+                            @if($serie->status != 'Aprobado')
                             {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            @else
+                            {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo', 'readonly']) !!}
+                            @endif
                             <br>
 
                             {{--Selecion tipo de publico de la serie--}}
@@ -148,11 +155,16 @@
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                             <div id="mensajePrecio"></div>
+                            @if($serie->status != 'Aprobado')
                             {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
+                            @else
+                            {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'readonly', 'min'=>'0']) !!}
+                            @endif
                             <br>
 
                             {{--Categoria--}}
                             <label for="tags"> Generos </label>
+                            @if($serie->status != 'Aprobado')
                             <select name="tags[]" multiple="true" class="form-control" required>
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
@@ -166,6 +178,21 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @else
+                            <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                                @foreach($tags as $genders)
+                                    <option value="{{$genders->id}}"
+                                        @foreach($s_tags as $s) 
+                                            @if($s->id == $genders->id) 
+                                                selected 
+                                            @endif 
+                                        @endforeach
+                                        >
+                                        {{$genders->tags_name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @endif
                             <br>
 
                             {{--historia de la serie --}}
@@ -180,19 +207,27 @@
                             {{--año de salida de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Año de Llanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
+                            @if($serie->status != 'Aprobado')
                             {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            @else
+                            {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'readonly']) !!}
+                            @endif
                             <br>
                         </div>
 
                         <div class="col-md-6">
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
+                            @if($serie->status != 'Aprobado')
                             {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            @else
+                            {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'readonly', 'id'=>'link']) !!}
+                            @endif
                             <br>
                         </div>
 
                         <div class="col-md-12">
-
+                            @if($serie->status != 'Aprobado')
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="radio-inline">
@@ -208,7 +243,7 @@
                                 </label>
                             </div>
                             <br>
-
+                            
                             <div class="" style="display:none" id="if_si">
 
                                 <div class="col-md-4">
@@ -230,7 +265,7 @@
                                     <div id="mensajeDespues"></div>
                                 </div>
                             </div>
-
+                            @endif
                         </div>
 
                         <div class="col-md-12" id="example-2">
@@ -244,7 +279,11 @@
                                         {!! Form::hidden('episodeId[]',$e->id) !!}
                                         <div class="col-md-6">
                                             <label for="nombre del episodio" class="control-label">Nombre del episodio</label>
+                                            @if($e->status != 'Aprobado')
                                             <input type="text" value="{{ $e->episode_name }}" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
+                                            @else
+                                            <input type="text" value="{{ $e->episode_name }}" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" readonly="true">
+                                            @endif
                                             <br>
 
                                             {{--precio--}}
@@ -272,11 +311,11 @@
                                             <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="5" class="form-control" placeholder="Sinopsis del episodio" required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')">{{ $e->sinopsis }}</textarea>
                                             <br>
                                         </div>
-                                        <div class="col-sm-1" style="margin-bottom: 4%; margin-top: 3%;">
+                                        <!-- <div class="col-sm-1" style="margin-bottom: 4%; margin-top: 3%;">
                                             <a href="{{ route('destroyEpisode',[$e->id,$serie->id]) }}" class="btn btn-danger btn-sm btnRemove" onclick="return confirm('¿Desea eliminar el episodio {{ $e->episode_name }}?')">
                                                 <i class="material-icons"></i> Eliminar episodio 
                                             </a>
-                                        </div>
+                                        </div> -->
                                         <br>
                                     @endforeach
                                     <div class='col-md-12'>

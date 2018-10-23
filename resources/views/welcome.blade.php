@@ -34,7 +34,19 @@
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
 
     <style type="text/css">
-
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
     <!-- Scripts -->
@@ -44,6 +56,15 @@
         ]) !!};
     </script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126665289-1');
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
@@ -75,7 +96,12 @@
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
                     <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
                 @else
-                    <li><a href="{{ url('/home')}}">INGRESAR</a></li>
+                    {{--<li><a href="{{ url('/home')}}">INGRESAR</a></li>--}}
+                    @if(Auth::user()->img_perf)
+                        <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="40" height="40"></a></p>
+                    @else
+                       <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                    @endif
                 @endif
             </ul>
         </div>
@@ -164,8 +190,8 @@
         <div id="radios">
             @foreach($radio as $r)
                 <div class="contenidoGeneral">
-                    <figure class="snip1166 navy" style="display: block; cursor: pointer;" onclick="masInfo('radio',{!!$r->id!!})">
-                        <img class="img-responsive imagenLogo" id="logoRadio{{$iRadios}}">
+                    <figure class="snip1166 navy" style="display: block; cursor: pointer;" {{--onclick="masInfo('radio',{!!$r->id!!})"--}}>
+                        <img class="img-responsive imagenLogo"  id="logoRadio{{$iRadios}}">
                         <figcaption class="bandaAzul">
                             <h3>
                                 <small style="color: #fff; font-size: 100%;" id="nombreRadio{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
@@ -243,7 +269,37 @@
     </div>
 </div>
 <!--CONTENIDO END-->
+<br>
+<!-- Barra para como funcionan los puntos en leipel -->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
+        <div class="" id="barra" class="text-center">
+            <center>
+                <br>
+                <b style="color: #fff; font-size: 30px;">¿Cómo funciona Leipel?</b>
+                <br><br>
+            </center>
+        </div>
+        <div class="col-md-6" >
+            <br>
+                <div class="embed-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                </div>
+            </center>
+        </div>
+        <div class="col-md-6" >
+            <center><br>
+                <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- Fin barra  como funcionan los puntos en leipel-->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
 
+    </div>
+</div>
 <!--FOOTER STAR -->
 
 <footer class="footer">
@@ -275,11 +331,11 @@
         <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
-                <li><a href="#">¿Que es Leipel?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿Que es Leipel?</a></li>
                 <br>
-                <li><a href="#">Terminos y condiciones</a></li>
+                <li><a href="{{route('terminosCondiciones')}}" target="_blank">Terminos y condiciones</a></li>
                 <br>
-                <li><a href="#">Reg&iacute;strate</a></li>
+                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register" >Reg&iacute;strate</a></li>
                 <br>
                 <li><a href="#">Beneficios adicionales</a></li>
                 <br>
@@ -289,15 +345,15 @@
         <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">Cine</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Cine</a></li>
                 <br>
-                <li><a href="#">M&uacute;sica</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">M&uacute;sica</a></li>
                 <br>
-                <li><a href="#">Lectura</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Lectura</a></li>
                 <br>
-                <li><a href="#">Radio</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Radio</a></li>
                 <br>
-                <li><a href="#">Tv</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Tv</a></li>
             </ul>
         </div>
         <div class="col-md-3" id="social">
@@ -961,7 +1017,7 @@
             if (ventana_ancho<=425) {
                 $('.contenidoGeneral').addClass('col-xs-10');
                 $('.contenidoGeneral').css('margin-left','15%');
-                $('.imagenLogo').css('width','70%');
+                $('.imagenLogo').css('width','90%');
                 $('.bandaAzul').css('width','90%');
             } else if (ventana_ancho<= 1024) {
                 $('.contenidoGeneral').addClass('col-md-5');
@@ -972,7 +1028,7 @@
                 $('.contenidoGeneral').addClass('col-lg-3');
                 $('.contenidoGeneral').css('padding-left','3%');
                 $('.contenidoGeneral').css('width','265px');
-                $('.imagenLogo').css('width','90%');
+                $('.imagenLogo').css('width','100%');
                 $('.bandaAzul').css('width','107%');
             }
         }
@@ -1244,41 +1300,6 @@
                     $('#registroRU').attr('disabled',false);
                 }
             }
-        });
-    });
-
-    $(document).ready(function(){
-        $("#formRP").on('submit',function(e){
-            var url = "{{ url('ApplysSubmit') }}";
-            e.preventDefault();
-            var gif = "{{ asset('/sistem_images/loading.gif') }}";
-            swal({
-                title: "Procesando la información",
-              text: "Espere mientras se procesa la información.",
-              icon: gif,
-              buttons: false,
-              closeOnEsc: false,
-              closeOnClickOutside: false
-            });
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: $("#formRP").serialize(),
-                success: function (result) {
-                    console.log(result);
-                    swal("Su solicitud está siendo procesada","","success")
-                    .then((recarga) => {
-                        location.reload();
-                    });
-                },
-                error: function (result) {
-                    console.log(result);
-                    swal('Existe un Error en su Solicitud','','error')
-                    .then((recarga) => {
-                        location.reload();
-                    });
-                }
-            });
         });
     });
 

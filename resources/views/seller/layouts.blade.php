@@ -30,6 +30,16 @@
                 font-family: 'Roboto', sans-serif;
             }
         </style>
+        <!--NUMERO-->
+        <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+        <style type="text/css">
+            .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+                .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+
+            }
+        </style>
 
         @yield('css')
 
@@ -56,15 +66,29 @@
                 <!--logo start-->
                 <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
             </b></a>
+             @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
                 <div class="nav pull-right top-menu" id="boton" >
                     <div class="navbar-right" style="margin-top: 12px;">
-                          <!-- <img height="39px" src="{{asset('plugins/img/cine.png')}}">
-                          <img height="39px" src="{{asset('plugins/img/musica.png')}}">
-                          <img height="39px" src="{{asset('plugins/img/lectura.png')}}"> -->
-                          <a href="{{ url('ShowRadio')}}" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
-                          <!--  <img height="39px" src="{{asset('plugins/img/tv.png')}}"> -->
+                        @foreach($modulos as $mod)
+                            @if($mod->name == 'Peliculas')
+                                <a href="{{ url('/movies') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/cine.png')}}"></b></a>
+                            @endif                          
+                            @if($mod->name == 'Musica')
+                                <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/musica.png')}}"></b></a>
+                            @endif
+                            @if($mod->name == 'Libros')
+                                <a href="{{ url('/tbook') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/lectura.png')}}"></b></a>
+                            @endif
+                            @if($mod->name == 'Radios')
+                                <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+                            @endif
+                            @if($mod->name == 'TV')
+                                <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"></b></a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
+                @endif
                 <div class="nav notify-row" id="top_menu">
                     
                     
@@ -90,8 +114,8 @@
                     <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                         <p class="centered">
                             <!--Revisar este enlace -->
-                            <a href="{{ url('/home')}}">
-                                @if(Auth::guard('web_seller')->user()->logo!="NULL")
+                            <a href="{{ url('/seller_home')}}">
+                                @if(Auth::guard('web_seller')->user()->logo)
                                     <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="80">
                                 @else
                                     <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80">
@@ -101,19 +125,20 @@
                         <h5 class="centered" style="text-shadow: 0.1em 0.1em #333">
                             {{Auth::guard('web_seller')->user()->name}}
                         </h5>
-                        <!-- <div class="card-content white-text">
+                        <div class="card-content white-text">
                             <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::guard('web_seller')->user()->credito}}</p></h6></span>
-                        </div> -->
-                        <li class="mt">
+                        </div>
+                       <!--  <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
                                 <i class="glyphicon glyphicon-home"></i>
                                 <span>Escritorio</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="sub-menu">
                             <a href="javascript:;">
+                                <a href="{{url('seller_edit')}}">
                                 <i class="fa fa-user"></i>
-                                <span>Mi perfil</span>
+                                <span>Mi perfil</span></a>
                             </a>
                         </li>
                         <!-- <li class="sub-menu">
@@ -191,7 +216,7 @@
                                                                 @else
                                                                     <li>
                                                                         <a href="{{ url('/modify_artist') }}">
-                                                                            Modificar datos de artista
+                                                                            Artista
                                                                         </a>
                                                                     </li>
                                                                 @endif
@@ -226,10 +251,11 @@
                                                         <span>Revistas</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li>
-                                                        <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li>
-                                                        <li><a href="{{ url('/type') }}">Registrar cadena de publicaciones</a></li>
-                                                        <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista </a></li>
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li> -->
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li> -->
+                                                        <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
+                                                        <li style="top: 20px"><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -353,7 +379,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 5px">
+                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 1%  ">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -364,7 +390,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg"" id="nav-accordion">
+                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -386,7 +412,7 @@
                         <div class="col-lg-12 main-chart">
                             @yield('content')
                         </div>
-                        <div class="col-lg-3 ds" style="margin-bottom: 50%;">
+                        <div class="col-lg-3 ds" style="margin-bottom: 15%;">
                            {{-- @include('seller.partials.siderRigth')--}} 
                         </div><!-- /col-lg-3 -->
                     </div>
@@ -414,7 +440,9 @@
     <!--script for this page-->
     <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
     {{--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> --}}
-
+    <!--telefono-->
+<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
+<script src="{{ asset('plugins/telefono/utils.js') }}"></script>
 
 <!--SCRIPS JS-->
   
@@ -455,15 +483,32 @@
     */
     </script>
     <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
         if ((screen.width <= 768)) {
-        //alert('Resolucion: 1024x768 o mayor');
-          $('#container').addClass('sidebar-closed');
+            //alert('Resolucion: 1024x768 o mayor');
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
         }else{
-          $('#container').removeClass('sidebar-close');
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
         }
 
-});
+    });
+</script>
+<script type="text/javascript">
+    $(window).resize(function() {
+        console.log($(window).width());
+        if ($(window).width() <= 768)
+        {
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
+        }
+        else
+        {
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
+        }
+    });
 </script>
     @yield('js')
 

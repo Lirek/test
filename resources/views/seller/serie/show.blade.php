@@ -28,50 +28,62 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h2>
+                <div class="col-md-12"> 
+                    <h4 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h4>
+                </div>
 
-                <div class="col-md-7">
+                <div class="col-md-7" style="margin-top: 2%">
                     <ul class="nav nav-stacked">
                         <li>
-                            <h2> 
+                            <h4> 
                                 <b>{{ $serie->cost }} tickets</b>
-                            </h2>
+                            </h4>
                         </li>
                         <li>
-                            <h3> <b>Estatus:</b> 
+                            <h4> <b>Estatus de transmisión:</b> 
                                 <span class="pull-right ">{{ $serie->status_series }}</span>
-                            </h3>
+                            </h4>
                         </li>
                         <li>
-                            <h3> <b>Historia:</b>
+                            <h4> <b>Historia:</b>
                                 <br>
                                 <h4><p class="text-justify"> {{ $serie->story }} </p></h4>
-                            </h3>
+                            </h4>
                         </li>
                         <li>
                             @if($serie->saga_id!=null)
-                                <h3> <b>Saga:</b> <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h3>
+                                <h4> <b>Saga:</b> <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h4>
                                 <div class="col-xs-5">
-                                    <h3> <b>Antes:</b> <span class=""> {{ $serie->before }} </span> </h3>
+                                    <h4> <b>Antes:</b> <span class=""> {{ $serie->before }} </span> </h4>
                                 </div>
                                 <div class="col-xs-7">
-                                    <h3> <b>Después:</b> <span class=""> {{ $serie->after }} </span> </h3>
+                                    <h4> <b>Después:</b> <span class=""> {{ $serie->after }} </span> </h4>
                                     <br>
                                 </div>
                             @else
-                                <h3> <b>Saga:</b> <span class="pull-right ">No tiene saga</span></h3>
+                                <h4> <b>Saga:</b> <span class="pull-right ">No tiene saga</span></h4>
                             @endif
                         </li>
                         <li>
-                            <h3>
+                            <h4> <b>Estatus de aprobación:</b> 
+                                <span class="pull-right ">{{ $serie->status }}</span>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
                                 <a href="{{ $serie->trailer }}" target="_blank"><span class="glyphicon glyphicon-link"></span><b> Ver trailer</b></a>
-                            </h3>
+                            </h4>
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-5 col-xs-12">
                     <div id="panel" class="img-rounded img-responsive av text-center">
+                        <div class="widget-user-header bg-black">
+                            <div class="widget-user-image">
+                                <img class="img-responsive av" src="{{ asset($serie->img_poster) }}" style="width:100%; height:500px; border-radius:2%;" alt="">
+                            </div>
+                        </div>
                     </div>
                     <ul class="nav nav-stacked">
                         <li>

@@ -10,6 +10,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
 
+
+    {{--carrusel--}}
+    <meta name="description" content="Circular Content Carousel with jQuery"/>
+    <meta name="author" content="Codrops"/>
+    {{--carrusel--}}
 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -19,12 +24,17 @@
     {{--<link href="/css/app.css" rel="stylesheet">--}}
     {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
 
-    {{--    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/index/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/index/css/content1.css') }}">
 
     <link rel="stylesheet" type="text/css"
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
+    <style type="text/css">
+
+
+    </style>
 
     <!-- Scripts -->
     <script>
@@ -39,7 +49,7 @@
 
 
 </head>
-<body>
+<body style="padding-right: 0px;">
 
 <!-- NAVBAR STAR-->
 
@@ -59,20 +69,24 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
-                <li><a href="#leipel">¿QUE ES LEIPEL?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿QUE ES LEIPEL?</a></li>
                 @if (Auth::guest())
                     <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
-                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGRISTRATE</a></li>
-                @endif              
+                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
+                @else
+                    <li><a href="{{ url('/home')}}">INGRESAR</a></li>
+                @endif
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- NAVBAR END-->
 
 <div class="col-md-12 col-sm-12 ">
-              <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">
-              <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%">
+    <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">
+        <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%">
+            
 Estos Términos de uso incluyen y pueden incluir otros temas, a los cuales se accede a través de hipervínculos, por lo cual deberá leer el contenido total de los presentes Términos y Condiciones de Uso antes de aceptarlos. SI NO ACEPTA ESTOS TÉRMINOS DE USO, NO UTILICE EL SERVICIO DE LEIPEL.
 Los presentes Términos y condiciones de uso rigen estrictamente la utilización que haga de nuestro servicio.  LEIPEL es el nombre comercial bajo la razón social INFORMERET S.A. y según se utilice en estos términos y condiciones de uso, en todo momento que se mencione a LEIPEL en el presente documento, es equivalente a mencionar al servicio que ofrecemos desde www.leipel.com y sus páginas derivadascomo por ejemplo www.leipel.com/perfil , también en todo momento que se mencione a UN USUARIO, AL USUARIO, DEL USUARIO, EL USUARIO, LOS USUARIOS o  USUARIO en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a poder adquirir de manera gratuita o bajo costos los diferentes contenidos existentes dentro de LEIPEL, de la misma manera, en todo momento que se mencione a UN PROVEEDOR, EL PROVEEDOR, LOS PROVEEDOR o PROVEEDOR en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a proveer de contenidos a LEIPEL de manera gratuita, libre y voluntaria. Todas las cuentas dentro de Leipel pertenecen a personas naturales o jurídicas las cuales afirman haber leído y aceptado en la plenitud de sus facultades físicas y mentales, los presentes términos y condiciones de uso. 
 
@@ -298,7 +312,10 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
 
 
 Última actualización al 18 de julio del 2017
-  </textarea>
+        </textarea>
+    </div>
+</div>
+
 
 <!--FOOTER STAR -->
 
@@ -317,14 +334,15 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     <i class="fa fa-map-marker text-info "></i>
                     &nbsp;&nbsp;&nbsp;Guayaquil, Ecuador
                 </li>
-                <li class="lista">
+                <!-- <li class="lista">
                     <i class="fa fa-phone text-info "></i>
                     &nbsp;&nbsp;+123 4567 987
                 </li>
-                <li class="lista">
+ -->                <li class="lista">
                     <i class="fa fa-envelope-o text-info"></i>
                     info@leipel.com
                 </li>
+                <li></li>
             </ul>
         </div>
         <div class="col-md-3" id="sobre">
@@ -351,7 +369,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                 <li><a href="#">Lectura</a></li>
                 <br>
                 <li><a href="#">Radio</a></li>
-                <br>                
+                <br>
                 <li><a href="#">Tv</a></li>
             </ul>
         </div>
@@ -365,7 +383,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                 <li><a href="#">Instagram</a></li>
             </ul>
         </div>
-        
+
     <div class="col-md-12 hidden-sm hidden-xs" style=" font-family: Roboto;
                                         background: #21a4de;
                                         height: 40px;
@@ -426,6 +444,36 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
         </div>
     </div>
 
+
+        {{--<div class="col-md-3 " id="opinion">--}}
+            {{--<h1>Deja tu opini&oacute;n</h1>--}}
+            {{--<form action="" method="post" role="form" class="form-horizontal" id="formOp">--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" name="name" class="form-control " id="name" placeholder="Nombre"--}}
+                           {{--data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="email" class="form-control " name="email" id="email" placeholder="Correo"--}}
+                           {{--data-rule="email" data-msg="Please enter a valid email"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<input type="text" class="form-control " name="subject" id="subject"--}}
+                           {{--placeholder="Asunto" data-rule="minlen:4"--}}
+                           {{--data-msg="Please enter at least 8 chars of subject"/>--}}
+                    {{--<div class="validation"></div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<textarea class="form-control " name="message" rows="4" data-rule="required"--}}
+                              {{--data-msg="Please write something for us" placeholder="Mensaje"></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-offset-7">--}}
+                    {{--<a class="btn btn-info active" name="contact" style="background: #21a4de">Enviar</a>--}}
+                {{--</div>--}}
+
+            {{--</form>--}}
+        {{--</div>--}}
     </div>
 </footer>
 
@@ -445,19 +493,19 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title text-center">&nbsp;</h4>
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" id="tabs">
                     <li class="active">
                         <a data-toggle="tab" href="#usuario">
                             Usuario
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <li>
-                        <a data-toggle="tab" href="#proveedor">
+                    <!-- <li style="margin-top: -5%; margin-left: 18%">
+                        <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
-                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -467,13 +515,13 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     <div id="usuario" class="tab-pane fade in active">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                             {{ csrf_field() }}
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
 
                                 <div class="col-md-12">
                                     <input id="email" type="email" class="form-control" name="email"
                                            placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                    <div id="emailMen" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -488,6 +536,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                                 <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password"
                                            placeholder="contraseña" required>
+                                     <div id="passwordMen" ></div>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -499,10 +548,21 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary form-control">
+                                    <button type="submit" class="btn btn-primary btn-block" id="iniciar">
                                         Inicia sesi&oacute;n
                                     </button>
+                                    <center><a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                        Olvide mi contraseña
+                                    </a></center>
                                 </div>
+                            </div>
+                            <div class="modal-footer" id="modal_footer">
+                                <div class="text-center">
+                                    <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
+                                    <!-- <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a> -->
+                                    <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
+                                </div>
+                                <small style="font-size: 80%"><center>Inicio de sesion con redes sociales</center></small>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4 ">
@@ -516,34 +576,18 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                                 </div>
                             </div>
                         </form>
-                        <div class="modal-footer" id="modal_footer">
-                            <div class="text-center">
-
-                                <a href="login/facebook" class="btn btn-facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-
-                                <a href="login/twitter" class="btn btn-twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-
-                                <a href="login/google" class="btn btn-google" style="font-size: 10px">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-
-                        </div>
                     </div>
+<!--                     
                     <div id="proveedor" class="tab-pane fade">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
                             {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" >
                                 {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
 
                                 <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email"
+                                    <input id="emailP" type="email" class="form-control" name="email"
                                            placeholder="correo" value="{{ old('email') }}" required autofocus>
+                                    <div id="emailMenP" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -556,8 +600,9 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                                 {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
 
                                 <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password"
+                                    <input id="passwordP" type="password" class="form-control" name="password"
                                            placeholder="contraseña" required>
+                                    <div id="passwordMenP" style="margin-top: 1%" ></div>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -569,9 +614,10 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary form-control">
+                                    <button type="submit" class="btn btn-primary btn-block" id="iniciarP">
                                         Inicia sesi&oacute;n
                                     </button>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -586,11 +632,11 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                 </div>
 
-s            </div>
+            </div>
 
         </div>
     {{--</div>--}}
@@ -619,12 +665,12 @@ s            </div>
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a data-toggle="tab" href="#new_proveedor">
                             Proveedor
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="modal-body">
@@ -639,8 +685,8 @@ s            </div>
                                 {{--<label for="name" class="col-md-4 control-label">Nombre</label>--}}
                                 <div class="col-md-12">
                                     <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" placeholder="Nombre">
-
+                                           value="{{ old('name') }}" placeholder="Nombre" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                                    <div id="nameMen" style="margin-top: 1%"></div>
                                     @if ($errors->has('name'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -654,9 +700,9 @@ s            </div>
                                 {{--<label for="email" class="col-md-4 control-label">Direccion de Correo</label>--}}
 
                                 <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" placeholder="Correo">
-
+                                    <input id="emailRU" type="email" class="form-control" name="email"
+                                           value="{{ old('email') }}" placeholder="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                    <div id="emailMenRU" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -670,9 +716,9 @@ s            </div>
                                 {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
 
                                 <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password"
+                                    <input id="passwordRU" type="password" class="form-control" name="password"
                                            placeholder="Contraseña">
-
+                                    <div id="passwordMenRU" style="margin-top: 1%"></div>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -689,7 +735,7 @@ s            </div>
                                 <div class="col-md-12">
                                     <input id="password_confirm" type="password" class="form-control"
                                            name="password_confirm" placeholder="Confirmar Contraseña">
-
+                                    <div id="passwordCMenRU" style="margin-top: 1%"></div>
                                     @if ($errors->has('password_confirm'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
@@ -697,18 +743,36 @@ s            </div>
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="modal-footer" id="modal_footer">
+                                <div class="text-center">
+                                    <a href="login/facebook" target="_blank" class="fa fa-facebook-square" style=" font-size: 32px;"></a>
+                                    <!-- <a href="login/twitter" target="_blank" class="fa fa-twitter-square" style=" font-size: 32px"></a> -->
+                                    <a href="login/google" target="_blank" class="fa fa-google-plus-square" style=" font-size: 32px"></a>
+                                </div>
+                                <small style="font-size: 80%"><center>Registrese con redes sociales</center></small>
+                            </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <button type="submit" id="submit" class="btn btn-primary">
+                                    <center><button type="submit"  class="btn btn-primary" id="registroRU">
                                         Registrarse
-                                    </button>
+                                    </button></center>
                                 </div>
+                            </div>
+                            <div class="form-check text-center" style="padding-top: 5%">
+                                <label>
+                                    <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
+                                    <span class="label-text">
+                                        He leído y acepto los
+                                    </span>
+                                </label>
+                                <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
                             </div>
                         </form>
                     </div>
                     {{--Usuario--}}
 
+                    <!-- 
                     {{--Solicitud de proveedor--}}
                     <div id="new_proveedor" class="tab-pane fade">
                         <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
@@ -717,10 +781,11 @@ s            </div>
                             <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
                                 {{--<label for="tlf" class="col-md-6 control-label">Nombre comercial:</label>--}}
                                 <div class="col-md-12">
-                                    <div id="mensajeNombreComercial"></div>
+
                                     <input id="com_name" type="text" class="form-control" name="com_name"
                                            required="required"
-                                           placeholder="Nombre comercial" autofocus>
+                                           placeholder="Nombre comercial" autofocus onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                                    <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('com_name') }}</strong>
@@ -732,10 +797,10 @@ s            </div>
                             <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
                                 {{--<label for="tlf" class="col-md-6 control-label">Nombre del contacto</label>--}}
                                 <div class="col-md-12">
-                                    <div id="mensajeNombreContacto"></div>
                                     <input id="contact_name" type="text" class="form-control" name="contact_name"
                                            required="required"
-                                           placeholder="Nombre del contacto">
+                                           placeholder="Nombre del contacto" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                                    <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('contact_name') }}</strong>
@@ -747,10 +812,11 @@ s            </div>
                             <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
                                 {{--<label for="tlf" class="col-md-12 control-label">Teléfono</label>--}}
                                 <div class="col-md-12">
-                                    <div id="mensajeTelefono"></div>
+
                                     <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}"
                                            required="required"
-                                           placeholder="Teléfono">
+                                           placeholder="Teléfono" onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                                    <div id="mensajeTelefono" style="margin-top: 1%"></div>
                                     @if ($errors->has('tlf'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('tlf') }}</strong>
@@ -777,7 +843,7 @@ s            </div>
                             <div class="form-group">
                                 {{--<label for="content_type" class="col-md-6 control-label">Tipo de contenido</label>--}}
                                 <div class="col-md-12">
-                                    <select class="form-control" name="content_type" id="content_type">
+                                    <select class="form-control" name="content_type" id="content_type" required="required">
                                         <option value="">Seleccione el tipo contenido</option>
                                         <option value="Musica">Musica</option>
                                         <option value="Revistas">Revistas</option>
@@ -794,14 +860,14 @@ s            </div>
                                     @endif
                                     <div id="subMenuMusica">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
+                                        <select name="sub_desired" id="sub_desired1" class="form-control">
                                             <option value="Artista">Artista</option>
                                             <option value="Productora">Productora</option>
                                         </select>
                                     </div>
                                     <div id="subMenuLibro">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
+                                        <select name="sub_desired" id="sub_desired2" class="form-control">
                                             <option value="Escritor">Escritor</option>
                                             <option value="Editorial">Editorial</option>
                                         </select>
@@ -812,9 +878,9 @@ s            </div>
                             <div class="form-group">
                                 {{--<label for="email" class="col-md-6 control-label">Correo</label>--}}
                                 <div class="col-md-12">
-                                    <div id="mensajeCorreo"></div>
-                                    <input id="email" type="email" class="form-control" name="email" required="required"
-                                           placeholder="Correo">
+                                    <input id="emailRP" type="email" class="form-control" name="email" required="required"
+                                           placeholder="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                    <div id="mensajeCorreo" style="margin-top: 1%"></div>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -822,10 +888,18 @@ s            </div>
                                     @endif
                                 </div>
                             </div>
-
+                            <div class="form-check text-center" style="padding-top: 5%">
+                                <label>
+                                    <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
+                                    <span class="label-text">
+                                        He leido y acepto los 
+                                    </span>
+                                </label>
+                                <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" id="registroRP">
                                         Solicitar
                                     </button>
                                 </div>
@@ -836,7 +910,7 @@ s            </div>
 
                 </div>
 
-            </div>
+            </div> -->
             <div class="modal-footer" id="modal_footer">
                 <div class="text-center">
 
@@ -860,113 +934,210 @@ s            </div>
 {{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
 <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>
 
-{{--CONFIG DEL SLIDER STAR--}}
-
-{{--validaciones --}}
-{{--registrar usuario star--}}
-<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js') }}"></script>
-<script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
-<script>
-    $(document).ready(function () {
-
-        $.mockjax({
-            url: "emails.action",
-            response: function (settings) {
-                var email = settings.data.email, //original del archivo no cambiar
-                    emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
-                // emails = mys;
-                this.responseText = "true";
-                if ($.inArray(email, emails) !== -1) {
-                    this.responseText = "false";
-                }
-            },
-            responseTime: 500
-        });
 
 
-        $("#formR").validate({
+<script type="text/javascript">
 
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: {
-                    required: true,
-                    email: true,
-                    remote: "emails.action"
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                password_confirm: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-            },
 
-            messages: {
-                name: {
-                    required: " Ingresar su nombre",
-                    minlength: "Su nombre debe tener minimo 2 caracteres"
-                },
-                password: {
-                    required: "Ingresar clave",
-                    minlength: "Debe tener minim 5 caracteres"
-                },
-                password_confirm: {
-                    required: "Ingresar contraseña",
-                    minlength: "Debe tener minimo 5 caracteres",
-                    equalTo: "Ingrese la misma contraseña"
-                },
-                email: {
-                    required: "Ingresar un correo valido",
-                    minlength: "debe tener mas caracteres",
-                    remote: ("Ya se ha registrado")
-                }
-            },
+//---------------------------------------VALIDACIONES PARA TERMINOS Y CONDICIONES------------------------------------------
+    //---------VALIDACION DEL CHECKBOX---------------
 
-            errorElement: "em",
-            errorPlacement: function (error, element) {
-                error.addClass("help-block");
+$('input[type=checkbox]').click(function(){ 
+    if($(this).is(':not(:checked)')) {
+    alert('para registrarse en el sistema debe acepar los terminos y condiciones'); 
+    } 
+});
 
-                element.parents(".col-md-6").addClass("has-feedback");
+//---------------------------------------VALIDACIONES PARA REGISTRO DE USUARIO------------------------------------------
+    //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
+    function controltagLet(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+    //---------BLOQUEAR BOTON----------------------
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
 
-                if (element.prop("type") === "checkbox") {
-                    error.insertAfter(element.parent("label"));
-                } else {
-                    error.insertAfter(element);
-                }
+        if (email.length==0 || name.length ==0 || password.length == 0 || password1.length==0){
+            $('#registroRU').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
 
-                if (!element.next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-remove form-control-feedback'></span> ").insertAfter(element);
-                }
-            },
-
-            success: function (label, element) {
-                if (!$(element).next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
-                }
-            },
-
-            highlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-error").removeClass("has-success");
-                $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
-            },
-
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-success").removeClass("has-error");
-                $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+        if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0){
+            $('#registroRU').attr('disabled',false);
+        }
+    });
+    $(document).ready(function(){
+        $('#name').keyup(function(evento){
+            var name = $('#name').val().trim();
+            console.log(name.length);
+            if (name.length==0) {
+                $('#nameMen').show();
+                $('#nameMen').text('Campo obligatorio');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
             }
+            if (name.length < 3) {
+                $('#nameMen').show();
+                $('#nameMen').text('Minimo 3 caracteres');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }else {
+                $('#nameMen').hide();
+                var email = $('#email').val().trim();
+                var password = $('#password').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && password.length  != 0 && password1.length !=0 && valCorreo) {
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    // $(document).ready(function(){
+    //     $('#emailRU').blur(function(evento){
+    //         var email = $('#emailRU').val();
+    //         var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
-        })
+    //         if (caract.test(email) == false){
 
+    //             $('#emailMenRU').show();
+    //             $('#emailMenRU').text('Formato email incorrecto');
+    //             $('#emailMenRU').css('color','red');
+    //             $('#emailMenRU').css('font-size','60%');
+    //             $('#registroRU').attr('disabled',true);
+    //             $('#registroRU').css('background-color','');
 
-    })
+    //         }else{
+    //             $('#emailMenRU').hide();
+    //         }
+    //     });
+    // });
+  $("#emailRU").on('keyup change',function(){
+        var email_data = $("#emailRU").val();
+        $.ajax({
+            url: 'EmailValidate',
+            type: 'POST',
+            data:{
+                 _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                 if (result == 1) 
+                 {
+                  $('#emailMenRU').hide();
+                  $('#registroRU').attr('disabled',false);
+                  return true;
+                 }
+                 else
+                 {
+                   $('#emailMenRU').show();
+                   $('#emailMenRU').text('Este email ya se encuentra regitrado');
+                   $('#emailMenRU').css('font-size','60%');
+                   $('#emailMenRU').css('color','red');
+                   $('#registroRU').attr('disabled',true);
+                   console.log(result);
+                 }
+            }
+        });
+    });
+
+     $(document).ready(function(){
+
+        $('#passwordRU').keyup(function(evento){
+            var password = $('#passwordRU').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('El campo no debe estar vacio');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('La contaseña debe tener 5 caracteres');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#email').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                console.log(email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo);
+                if ( email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo ){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password = $('#password_confirm').val().trim();
+
+            if (password.length==0) {
+                $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('El campo no debe estar vacio');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var password1 = $('#passwordRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password1 = $('#passwordRU').val();
+            var password = $('#password_confirm').val();
+
+            if (password != password1) {
+                 $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('Ambas contraseña deben coincidir');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordCMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+//------------------------------------------------------------------------------------------------------------
 </script>
-{{--registrar usuario end--}}
 
 {{--registrar proveedor star--}}
 {{--<script src="{{asset('assets/js/jquery.js') }}"></script>--}}
@@ -982,9 +1153,11 @@ s            </div>
             if (this.value == 'Musica') {
                 $('#subMenuLibro').hide();
                 $('#subMenuMusica').show();
+                $('#subMenuMusica').attr('required','required');
             } else if (this.value == 'Libros') {
                 $('#subMenuMusica').hide();
                 $('#subMenuLibro').show();
+                $('#subMenuLibro').attr('required','required');
             } else {
                 $('#subMenuMusica').hide();
                 $('#subMenuLibro').hide();
@@ -1003,14 +1176,46 @@ s            </div>
                 $('#mensajeNombreComercial').show();
                 $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
                 $('#mensajeNombreComercial').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            } if (numeroPalabras < 3){
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('Minimo 3 caracteres');
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
                 $('#mensajeNombreComercial').hide();
-                $('#solicitar').attr('disabled', false);
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length !=0 || name.length !=0 || tlf.length !=0){
+                    $('#registroRP').attr('disabled', false);
+                }
             }
         });
     });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
 
+        if (email.length==0 || name.length ==0 || nameC.length == 0 || tlf.length==0){
+            $('#registroRP').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
+
+        if (email.length !=0 && name.length  != 0 && nameC.length !=0 && tlf.length !=0){
+            $('#registroRP').attr('disabled',false);
+        }
+    });
     $(document).ready(function () {
         var cantidadMaxima = 191;
         $('#contact_name').keyup(function (evento) {
@@ -1020,10 +1225,24 @@ s            </div>
                 $('#mensajeNombreContacto').show();
                 $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
                 $('#mensajeNombreContacto').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            if (numeroPalabras < 3) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('Minimo 3 caracteres');
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+
             } else {
                 $('#mensajeNombreContacto').hide();
-                $('#solicitar').attr('disabled', false);
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length!=0 && nameC.length !=0 && tlf.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
             }
         });
     });
@@ -1037,129 +1256,91 @@ s            </div>
                 $('#mensajeTelefono').show();
                 $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
                 $('#mensajeTelefono').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
-                $('#mensajeTelefono').hide();
-                $('#solicitar').attr('disabled', false);
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
             }
-        });
-    });
-    // Función que nos va a contar el número de caracteres
-    //---------------------------------------------------------------------------------------------------
-    // Funcion de solo numero
-    $(document).ready(function () {
-        $("#tlf").keypress(function (event) {
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
+            if (numeroPalabras < 9) {
                 $('#mensajeTelefono').show();
-                $('#mensajeTelefono').text('Solo números');
+                $('#mensajeTelefono').text('Minimo 9 numeros');
                 $('#mensajeTelefono').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
                 $('#mensajeTelefono').hide();
-                $('#solicitar').attr('disabled', false);
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                if (email.length!=0 || nameC.length !=0 || name.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
             }
         });
     });
-    // Funcion de solo numero
-    //---------------------------------------------------------------------------------------------------
+    function controltagNum(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[0-9]/;// -> solo numeros
+        te = String.fromCharCode(tecla);
+        return patron.test(te); 
+    }
+// $(document).ready(function(){
+//         $('#emailRP').keyup(function(evento){
+//             var email = $('#emailRP').val();
+//             var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+//             if (caract.test(email) == false){
+
+//                 $('#mensajeCorreo').show();
+//                 $('#mensajeCorreo').text('Formato email incorrecto');
+//                 $('#mensajeCorreo').css('color','red');
+//                 $('#mensajeCorreo').css('font-size','60%');
+//                 $('#registroRP').attr('disabled',true);
+//                 $('#registroRP').css('background-color','');
+
+//             }else{
+//                 $('#mensajeCorreo').hide();
+//             }
+//         });
+//     });
     // Funcion para validar el correo
-    $(document).ready(function () {
-        $('#solicitar').click(function () {
-            var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-            if (regex.test($('#email').val().trim())) {
-                $("#form").submit();
-            } else {
-                $('#mensajeCorreo').show();
-                $('#mensajeCorreo').text('El correo introducido no es valido');
-                $('#mensajeCorreo').css('color', 'red');
-                event.preventDefault();
+
+  $("#emailRP").on('keyup change',function(){
+        var email_data = $("#emailRP").val();
+        $.ajax({
+            url: 'RegisterEmailSeller',
+            type: 'POST',
+            data:{
+                 _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                 if (result == 1) 
+                 {
+                  $('#mensajeCorreo').hide();
+                  $('#registroRP').attr('disabled',false);
+                  return true;
+                 }
+                 else
+                 {
+                   $('#mensajeCorreo').show();
+                   $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                   $('#mensajeCorreo').css('font-size','60%');
+                   $('#mensajeCorreo').css('color','red');
+                   $('#registroRP').attr('disabled',true);
+                   console.log(result);
+                 }
             }
         });
     });
-    // Funcion para validar el correo
+
     //---------------------------------------------------------------------------------------------------
 
 </script>
 {{--registrar proveedor end--}}
 {{--validaciones --}}
-
-{{--CONFIG DEL SLIDER STAR--}}
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script>"use strict";
-
-    var $slides = undefined,
-        interval = undefined,
-        $selectors = undefined,
-        $btns = undefined,
-        currentIndex = undefined,
-        nextIndex = undefined;
-
-    var cycle = function cycle(index) {
-        var $currentSlide = undefined,
-            $nextSlide = undefined,
-            $currentSelector = undefined,
-            $nextSelector = undefined;
-
-        nextIndex = index !== undefined ? index : nextIndex;
-
-        $currentSlide = $($slides.get(currentIndex));
-        $currentSelector = $($selectors.get(currentIndex));
-
-        $nextSlide = $($slides.get(nextIndex));
-        $nextSelector = $($selectors.get(nextIndex));
-
-        $currentSlide.removeClass("active").css("z-index", "0");
-
-        $nextSlide.addClass("active").css("z-index", "1");
-
-        $currentSelector.removeClass("current");
-        $nextSelector.addClass("current");
-
-        currentIndex = index !== undefined ? nextIndex : currentIndex < $slides.length - 1 ? currentIndex + 1 : 0;
-
-        nextIndex = currentIndex + 1 < $slides.length ? currentIndex + 1 : 0;
-    };
-
-    $(function () {
-        currentIndex = 0;
-        nextIndex = 1;
-
-        $slides = $(".slide");
-        $selectors = $(".selector");
-        $btns = $(".btn");
-
-        $slides.first().addClass("active");
-        $selectors.first().addClass("current");
-
-        interval = window.setInterval(cycle, 6000);
-
-        $selectors.on("click", function (e) {
-            var target = $selectors.index(e.target);
-            if (target !== currentIndex) {
-                window.clearInterval(interval);
-                cycle(target);
-                interval = window.setInterval(cycle, 6000);
-            }
-        });
-
-        $btns.on("click", function (e) {
-            window.clearInterval(interval);
-            if ($(e.target).hasClass("prev")) {
-                var target = currentIndex > 0 ? currentIndex - 1 : $slides.length - 1;
-                cycle(target);
-            } else if ($(e.target).hasClass("next")) {
-                cycle();
-            }
-            interval = window.setInterval(cycle, 6000);
-        });
-    });
-    //# sourceURL=pen.js
-</script>
-{{--CONFIG DEL SLIDER END--}}
-
 
 <script>
 
@@ -1173,5 +1354,205 @@ s            </div>
 
 </script>
 
+@if (count($errors) > 0)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+    
+        $(document).ready(function(){
+            
+            //var usuario = $('#usuario').attr('href');
+
+            $('#modal-login').modal('show');
+         
+            
+            
+            // $('[href="#'+id+'"]').tab('show');
+           
+            
+            // #usuario
+            // #proveedor
+
+             
+        });
+    </script>
+@endif
+<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.js') }}"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        // $('#proOculto').html('<input type="hidden" id="usuarioP" value="#proveedor">');
+        // $('#usuOcul').html('<input type="hidden" id="usuarioU" value="" >');
+        $('.nav-tabs a').on('show.bs.tab',function (e){
+            localStorage.setItem('activeTab',$(e.target).attr('href'));
+            console.log('hola');
+        });
+        var activeTab = localStorage.getItem('activeTab');
+            console.log(activeTab);
+        
+    });
+
+</script>
+
+
+<script type="text/javascript">
+//-------------------------------VALIDACIONES PARA EL LOGIN DE USUARIO---------------------------------
+    //---------BLOQUEAR BOTON----------------------
+    $(document).ready(function(){
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+
+        if (email.length==0 || password.length ==0){
+            $('#iniciar').attr('disabled',true);
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#email').keyup(function(evento){
+            var email = $('#email').val().trim();
+            
+            if (email.length==0) {
+                $('#emailMen').show();
+                $('#emailMen').text('El campo no debe estar vacio');
+                $('#emailMen').css('color','red');
+                $('#emailMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+                $('#iniciar').css('background-color','')
+                }else {
+                $('#emailMen').hide(); 
+                }
+                var password = $('#password').val().trim();
+
+                if (email.length !=0 && password.length !=0){
+                    $('#iniciar').attr('disabled',false);
+                } 
+        });
+    });
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#email').keyup(function(evento){
+            var email = $('#email').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false){
+                
+                $('#emailMen').show();
+                $('#emailMen').text('Formato email incorrecto');
+                $('#emailMen').css('color','red');
+                $('#emailMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+                $('#iniciar').css('background-color','')
+              
+            }else{
+                
+                return true;
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#password').keyup(function(evento){
+            var password = $('#password').val().trim();
+            
+            if (password.length==0) {
+                $('#passwordMen').show();
+                $('#passwordMen').text('El campo no debe estar vacio');
+                $('#passwordMen').css('color','red');
+                $('#passwordMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+            } else {
+                $('#passwordMen').hide();
+                $('#iniciar').attr('disabled',false);
+            }
+            var email = $('#email').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciar').attr('disabled',false);
+            } 
+        });
+    });
+//------------------------------------------------------------------------------------------------------
+//-------------------------------------VALICACIONES LOGIN PROMOTOR--------------------------------------
+  //---------BLOQUEAR BOTON----------------------
+    $(document).ready(function(){
+        var email = $('#emailP').val().trim();
+        var password = $('#passwordP').val().trim();
+
+        if (email.length==0 || password.length ==0){
+            $('#iniciarP').attr('disabled',true);
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val().trim();
+            
+            if (email.length==0) {
+                $('#emailMenP').show();
+                $('#emailMenP').text('El campo no debe estar vacio');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+                }else {
+                $('#emailMenP').hide(); 
+                }
+                var password = $('#passwordP').val().trim();
+
+                if (email.length !=0 && password.length !=0){
+                    $('#iniciarP').attr('disabled',false);
+                } 
+        });
+    });
+        //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false){
+                
+                $('#emailMenP').show();
+                $('#emailMenP').text('Formato email incorrecto');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+              
+            }else{
+                
+                return true;
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#passwordP').keyup(function(evento){
+            var password = $('#passwordP').val().trim();
+            
+            if (password.length==0) {
+                $('#passwordMenP').show();
+                $('#passwordMenP').text('El campo no debe estar vacio');
+                $('#passwordMenP').css('color','red');
+                $('#passwordMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+            } else {
+                $('#emailMenP').hide();
+                $('#iniciarP').attr('disabled',false);
+            }
+            var email = $('#emailP').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            } 
+        });
+    });
+//------------------------------------------------------------------------------------------------------
+</script>
 </body>
 </html>

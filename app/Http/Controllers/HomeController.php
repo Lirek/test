@@ -88,7 +88,8 @@ class HomeController extends Controller
         if ($Radio==NULL) { $Radio=False; }
         if ($Megazines==NULL) { $Megazines=False; }
         if ($Albums==NULL) { $Albums=False; }
-        if ($Songs==NULL) { $Songs=False; }           
+        if ($Songs==NULL) { $Songs=False; }  
+        if($Book==NULL){ $Book=False; }         
 
         if($user['status']=='admin')
         {
@@ -152,6 +153,7 @@ class HomeController extends Controller
     {
         $MyTickets=Auth::user()->credito;
         $Points=Auth::user()->points;
+        $Pending=Auth::user()->pending_points;
         //dd($MyTickets);
         if ($MyTickets==null){
             $MyTickets = 0;
@@ -159,7 +161,10 @@ class HomeController extends Controller
         if ($Points==null){
             $Points = 0;
         }
-        $respuesta=$MyTickets." T/ ".$Points." P";
+        if ($Pending==null){
+            $Pending = 0;
+        }
+        $respuesta=$MyTickets." T/ ".$Points." P/ ".$Pending." PP";
         return Response()->json($respuesta);
     }
 
