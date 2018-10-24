@@ -168,6 +168,7 @@ return array(
     'App\\RadiosTrace' => $baseDir . '/app/RadiosTrace.php',
     'App\\Rating' => $baseDir . '/app/Rating.php',
     'App\\Referals' => $baseDir . '/app/Referals.php',
+    'App\\Rejection' => $baseDir . '/app/Rejection.php',
     'App\\RollBacksTransacctions' => $baseDir . '/app/RollBacksTransacctions.php',
     'App\\Saga' => $baseDir . '/app/Saga.php',
     'App\\Sagas' => $baseDir . '/app/Sagas.php',

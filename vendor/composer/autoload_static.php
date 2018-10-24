@@ -604,6 +604,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\RadiosTrace' => __DIR__ . '/../..' . '/app/RadiosTrace.php',
         'App\\Rating' => __DIR__ . '/../..' . '/app/Rating.php',
         'App\\Referals' => __DIR__ . '/../..' . '/app/Referals.php',
+        'App\\Rejection' => __DIR__ . '/../..' . '/app/Rejection.php',
         'App\\RollBacksTransacctions' => __DIR__ . '/../..' . '/app/RollBacksTransacctions.php',
         'App\\Saga' => __DIR__ . '/../..' . '/app/Saga.php',
         'App\\Sagas' => __DIR__ . '/../..' . '/app/Sagas.php',
