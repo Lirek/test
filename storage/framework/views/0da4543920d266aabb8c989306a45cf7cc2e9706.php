@@ -64,6 +64,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-126665289-1');
+
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -254,22 +255,48 @@
             <br>
                 <div class="embed-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                </div>
-            </center>
+            </center><br>
         </div>
         <div class="col-md-6" >
             <center><br>
                 <div class="embed-container">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </center>
+            </center><br>
         </div>
     </div>
 </div>
 <!-- Fin barra  como funcionan los puntos en leipel-->
+<!-- Barra para pantallas en leipel -->
 <div class="row" id="contenido">
     <div class="col-md-12" >
+        <div class="" id="barra" class="text-center">
+            <center>
+                <br>
+                <b style="color: #fff; font-size: 30px;">Ve y escucha desde donde quieras</b>
+                <br><br>
+            </center>
+        </div>
+        <div class="col-md-2 col-xs-12 col-lg-2" >
+            <br>
+            <center>
 
+
+            </center>
+        </div>
+        <div class="col-md-8 col-xs-12 col-lg-8" height="190" width="190">
+            <center><br>
+                <img height="100%" width="100%" src="https://www.eltiempo.com/contenido/tecnosfera/tecnosfera-tv/IMAGEN/IMAGEN-16440490-2.jpg" >
+            </center>
+        </div>
+        <div class="col-md-2 col-xs-12 col-lg-2" >
+            <center><br>
+
+            </center>
+        </div>
     </div>
 </div>
+<!-- Fin barra  pantallas leipel-->
+
 <!--FOOTER STAR -->
 
 <footer class="footer">
