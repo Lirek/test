@@ -69,23 +69,25 @@
              @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
                 <div class="nav pull-right top-menu" id="boton" >
                     <div class="navbar-right" style="margin-top: 12px;">
-                        @foreach($modulos as $mod)
-                            @if($mod->name == 'Peliculas')
-                                <a href="{{ url('/movies') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/cine.png')}}"></b></a>
-                            @endif                          
-                            @if($mod->name == 'Musica')
-                                <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/musica.png')}}"></b></a>
-                            @endif
-                            @if($mod->name == 'Libros')
-                                <a href="{{ url('/tbook') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/lectura.png')}}"></b></a>
-                            @endif
-                            @if($mod->name == 'Radios')
-                                <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
-                            @endif
-                            @if($mod->name == 'TV')
-                                <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"></b></a>
-                            @endif
-                        @endforeach
+                        @if($modulos!=false)
+                            @foreach($modulos as $mod)
+                                @if($mod->name == 'Peliculas')
+                                    <a href="{{ url('/movies') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/cine.png')}}"></b></a>
+                                @endif                          
+                                @if($mod->name == 'Musica')
+                                    <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/musica.png')}}"></b></a>
+                                @endif
+                                @if($mod->name == 'Libros')
+                                    <a href="{{ url('/tbook') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/lectura.png')}}"></b></a>
+                                @endif
+                                @if($mod->name == 'Radios')
+                                    <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+                                @endif
+                                @if($mod->name == 'TV')
+                                    <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"></b></a>
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -443,6 +445,8 @@
     <!--telefono-->
 <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
 <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--SCRIPS JS-->
   

@@ -69,23 +69,25 @@
              <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
                 <div class="nav pull-right top-menu" id="boton" >
                     <div class="navbar-right" style="margin-top: 12px;">
-                        <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if($mod->name == 'Peliculas'): ?>
-                                <a href="<?php echo e(url('/movies')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/cine.png')); ?>"></b></a>
-                            <?php endif; ?>                          
-                            <?php if($mod->name == 'Musica'): ?>
-                                <a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/musica.png')); ?>"></b></a>
-                            <?php endif; ?>
-                            <?php if($mod->name == 'Libros'): ?>
-                                <a href="<?php echo e(url('/tbook')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/lectura.png')); ?>"></b></a>
-                            <?php endif; ?>
-                            <?php if($mod->name == 'Radios'): ?>
-                                <a href="#" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/radio.png')); ?>"> </b></a>
-                            <?php endif; ?>
-                            <?php if($mod->name == 'TV'): ?>
-                                <a href="#" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/tv.png')); ?>"></b></a>
-                            <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($modulos!=false): ?>
+                            <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($mod->name == 'Peliculas'): ?>
+                                    <a href="<?php echo e(url('/movies')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/cine.png')); ?>"></b></a>
+                                <?php endif; ?>                          
+                                <?php if($mod->name == 'Musica'): ?>
+                                    <a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/musica.png')); ?>"></b></a>
+                                <?php endif; ?>
+                                <?php if($mod->name == 'Libros'): ?>
+                                    <a href="<?php echo e(url('/tbook')); ?>" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/lectura.png')); ?>"></b></a>
+                                <?php endif; ?>
+                                <?php if($mod->name == 'Radios'): ?>
+                                    <a href="#" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/radio.png')); ?>"> </b></a>
+                                <?php endif; ?>
+                                <?php if($mod->name == 'TV'): ?>
+                                    <a href="#" class="logo"><b><img height="39px" src="<?php echo e(asset('plugins/img/tv.png')); ?>"></b></a>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -446,6 +448,8 @@
     <!--telefono-->
 <script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>
 <script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--SCRIPS JS-->
   

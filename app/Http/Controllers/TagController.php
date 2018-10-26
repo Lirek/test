@@ -35,7 +35,8 @@ class TagController extends Controller
                 break;
         }
 
-    	return redirect()->action( $ruta );
+    	//return redirect()->action( $ruta );
+        return Response()->json(0);
     }
 
     

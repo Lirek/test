@@ -148,6 +148,7 @@ class SellerController extends Controller
                 ->with('Book',$Book)
                 ->with('Radio',$Radio)
                 ->with('Tv',$Tv)
+                ->with('Series',$Series)
                 //->with('artist',$autor)
                 ->with('modulos',$seller_modules);
     }

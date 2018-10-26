@@ -28,11 +28,27 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-12"> 
-                    <h4 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h4>
-                </div>
 
-                <div class="col-md-7" style="margin-top: 2%">
+                <div class="col-md-5 col-xs-12">
+                    <div id="panel" class="img-rounded img-responsive av text-center">
+                        <div class="widget-user-header bg-black">
+                            <div class="widget-user-image">
+                                <img class="img-responsive av" src="{{ asset($serie->img_poster) }}" style="width:100%; height:500px; border-radius:2%;" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-stacked">
+                        <li>
+                            <h6> <b>Categorias:</b> 
+                                @foreach($tags as $t)
+                                    <span>| {{ $t->tags_name }} |</span>
+                                @endforeach
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-7" style="margin-top: 1%">
+                    <h4 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h4>
                     <ul class="nav nav-stacked">
                         <li>
                             <h4> 
@@ -75,32 +91,9 @@
                             </h4>
                         </li>
                     </ul>
-                </div>
-
-                <div class="col-md-5 col-xs-12">
-                    <div id="panel" class="img-rounded img-responsive av text-center">
-                        <div class="widget-user-header bg-black">
-                            <div class="widget-user-image">
-                                <img class="img-responsive av" src="{{ asset($serie->img_poster) }}" style="width:100%; height:500px; border-radius:2%;" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="nav nav-stacked">
-                        <li>
-                            <h6> <b>Categorias:</b> 
-                                @foreach($tags as $t)
-                                    <span>| {{ $t->tags_name }} |</span>
-                                @endforeach
-                            </h6>
-                        </li>
-                    </ul>
-                </div>
-
-                
-                <div class="box box-widget widget-user-2">
-                    <div class="box-footer no-padding">
-                        <div class="col-md-12 table-responsive">
-                            <h2><b>Episodios:</b></h2>
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <div class="box-footer no-padding">
+                            <h3><b>Episodios:</b></h3>
                             @if($episodes!=null)
                                 <h4>
                                     <table class="table table-hover">
@@ -113,32 +106,39 @@
                                                 <th>Costo</th>
                                             </tr>
                                         </thead>
-                                        @foreach($episodes as $episode)
-                                            <tbody class="text-center">
-                                                <tr>
-                                                    <td> {{ $episode->episode_name }} </td>
-                                                    <td class="text-justify"> {{ $episode->sinopsis }} </td>
-                                                    <td>
-                                                        <a href="{{ $episode->trailer_url }}" target="_blank">
-                                                        <span class="glyphicon glyphicon-link"></span>
-                                                        </a>
-                                                    </td>
-                                                    <td> 
-                                                        <a href="{{ route('series.showEpisode',[$episode->id,$serie->id]) }}" class="btn btn-info btn-xs">
-                                                            <span class="fa fa-play-circle" aria-hidden="true"></span>
-                                                        </a>
-                                                    </td>
-                                                    <td> {{ $episode->cost }} </td>
-                                                </tr>
-                                            </tbody>
-                                        @endforeach
-                                    </table>
-                                </h4>
-                            @else
-                                <span class="pull-right"> No tiene episodios </span>
-                            @endif
-                        </div>
+                                    @foreach($episodes as $episode)
+                                        <tbody class="text-center">
+                                        <tr>
+                                            <td> {{ $episode->episode_name }} </td>
+                                            <td class="text-justify"> {{ $episode->sinopsis }} </td>
+                                            <td>
+                                                <a href="{{ $episode->trailer_url }}" target="_blank">
+                                                <span class="glyphicon glyphicon-link"></span>
+                                                </a>
+                                            </td>
+                                            <td> 
+                                            <a href="{{ route('series.showEpisode',[$episode->id,$serie->id]) }}" class="btn btn-info btn-xs">
+                                                <span class="fa fa-play-circle" aria-hidden="true"></span>
+                                            </a>
+                                            </td>
+                                            <td> {{ $episode->cost }} </td>
+                                        </tr>
+                                    </tbody>
+                                    @endforeach
+                                </table>
+                            </h4>
+                        @else
+                            <span class="pull-right"> No tiene episodios </span>
+                        @endif
                     </div>
+                    </div>
+                </div>
+
+
+
+                
+                <div class="col-md-12">
+                    
                     <div class="col-xs-6">
                         <div align="right">
                             <a href="{{ url('/series') }}" class="btn btn-danger">Atrás</a>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log">
+      <change afterPath="$PROJECT_DIR$/app/MegazineTags.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/7/profileArtist/Musua.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/albumcover_Let it be1539016398.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/song_Madre tierra1539016398.mp3" afterDir="false" />
@@ -12,6 +13,7 @@
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714474.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715092.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715626.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539808985.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539708625.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539711521.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714306.jpg" afterDir="false" />
@@ -19,12 +21,20 @@
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714474.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715092.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715626.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539808985.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017694.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017819.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539102702.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540497078.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Saga_1540525045.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Saga_1540564193.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/authorbook/author_1540497004.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539017694.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539017819.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539102702.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540497078.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540525045.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540564193.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/max.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539286856.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539286904.png" afterDir="false" />
@@ -43,13 +53,77 @@
       <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539698866.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539699197.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539708260.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_Prueba1540575968.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572404.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572581.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572920.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_Prueba1540575968.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572404.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572581.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572920.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/Prueba/saga_Prueba1540526723.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540568626.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540568892.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540569708.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540569741.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540570049.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570111.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570133.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570169.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540568626.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540568892.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540569708.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540569741.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540570049.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570111.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570133.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570169.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/saga_cadena 11540568176.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527177.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527308.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527350.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527820.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527863.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527941.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528135.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528203.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528224.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528282.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_hola1540527390.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527820.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527863.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527941.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528135.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528203.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528224.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528282.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_hola1540527390.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Me pido la ventana_1540417198.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba mkv_1540415327.mkv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba2_1539796405.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba_1539793992.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/film/loading_1539730849.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539730849.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539793992.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539796405.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540415327.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540417198.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1783c81c9e8e31509c150caca3dcf503c6c9830e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2c1429218e9bb8ef3817c47cd46f670aa423499c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/657a99ab3cf041eac88f8181b2fcc7c2a15a0578.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/8eb99315d9aa05f0f302e7dca68e5b43baf8b7f9.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/98a215e14f47d1c2f24996d2562640ea72f58160.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/9e26b9a3e9348700f050522cbfa8f8404ad620b7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MegazineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MegazineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/movie/film/adsad_1530855875.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/movie/film/ti2_1533321606.mp4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/movie/film/ti2_1533321630.mp4" beforeDir="false" />
@@ -71,16 +145,38 @@
       <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1530911979.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1533321606.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/movie/poster/poster1533321630.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_i_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_i_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_panel.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/show_type.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/show_type.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_megazine_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_megazine_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/5a852e241902c688f09e3badf129e9c6a0c557af.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5a852e241902c688f09e3badf129e9c6a0c557af.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/75261ad3f11ea78a9ebbcbc5c711cd79cca7f39f.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/75261ad3f11ea78a9ebbcbc5c711cd79cca7f39f.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/83204ffe7978a8e8f459271f522e8c0dd45f315a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/83204ffe7978a8e8f459271f522e8c0dd45f315a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8c5737a6b849aafabff32fcebcdae7778c5bed38.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/8c5737a6b849aafabff32fcebcdae7778c5bed38.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -306,17 +402,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -328,6 +413,17 @@
               <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="leipel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -400,7 +496,8 @@
       <workItem from="1539295041908" duration="1795000" />
       <workItem from="1539729917480" duration="125000" />
       <workItem from="1539731553937" duration="1410000" />
-      <workItem from="1539815086116" duration="598000" />
+      <workItem from="1539815086116" duration="1225000" />
+      <workItem from="1540581695050" duration="1076000" />
     </task>
     <task id="LOCAL-00001" summary="los cambios q hice en el servidor">
       <created>1526420332679</created>
@@ -493,11 +590,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539732356898</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Bloqueo del boton registras mientra las pelicula o serie se esta cargando y srestrigio la modificacion de datos de la pelicula o serie una vez que se encuentre validada">
+      <created>1539824443394</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1539824443394</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135773000" />
+    <option name="totallyTimeSpent" value="137476000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -518,7 +622,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.2934947" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49669966" visible="true" weight="0.2980333" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5033003" side_tool="true" weight="0.25642964" />
@@ -557,7 +661,8 @@
     <MESSAGE value="Cambios en el responsive de tv y en el reproductor de radios" />
     <MESSAGE value="Modificacion en el home de proveedor y creacion de pantalla de perfil" />
     <MESSAGE value="Se realizo el perfil del usuario seller, y se arrglaron las pantallas d home, peliculas y series" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se realizo el perfil del usuario seller, y se arrglaron las pantallas d home, peliculas y series" />
+    <MESSAGE value="Bloqueo del boton registras mientra las pelicula o serie se esta cargando y srestrigio la modificacion de datos de la pelicula o serie una vez que se encuentre validada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bloqueo del boton registras mientra las pelicula o serie se esta cargando y srestrigio la modificacion de datos de la pelicula o serie una vez que se encuentre validada" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

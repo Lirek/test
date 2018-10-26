@@ -110,7 +110,8 @@
                             </div>
                             <div class="col-md-6  control-label">
                                 <div id="mensajeMaximoNombre"></div>
-                                {!! Form::text('name',$seller->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                <div id="mensajeNombre"></div>
                             </div>
                         </div>
 
@@ -131,10 +132,11 @@
                             </div>
 
                             <div class="col-md-6 control-label">
-                                @if($seller->ruc_s)
+                                @if($seller->estatus == 'Aprobado')
                                     {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','readonly']) !!}
                                 @else
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    <div id="mensajeRuc"></div>
                                 @endif
                             </div>
                         </div>
@@ -165,8 +167,8 @@
                                 {!! Form::label('direccion','Dirección',['class'=>'control-label']) !!}
                             </div>
                             <div class="col-md-6 control-label">
+                                {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion', 'required'=>'required']) !!}
                                 <div id="mensajeMaximoDireccion"></div>
-                                {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion']) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -175,8 +177,8 @@
                             </div>
                             <div class="col-md-6 control-label">
                                 <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
-                                <input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}">
-
+                                <input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">
+                                <div id="mensajePhone"></div>
                             </div>
                         </div>
 
@@ -197,6 +199,67 @@
 
 
 @section('js')
+<script type="text/javascript">
+    $("#nombre").change(function(){
+        var nombre = $("#nombre").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeNombre').show();
+            $('#mensajeNombre').text('El Nombre no debe estar vacio');
+            $('#mensajeNombre').css('color','red');
+            $('#Editar').attr('disabled',true);
+        }
+        else {
+            $('#mensajeNombre').hide();
+            $('#Editar').attr('disabled',false);
+        
+        }
+    })
+</script>
+<script type="text/javascript">
+    $("#ruc_s").change(function(){
+        var nombre = $("#ruc_s").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeRuc').show();
+            $('#mensajeRuc').text('El numero de ruc no debe estar vacio');
+            $('#mensajeRuc').css('color','red');
+            $('#Editar').attr('disabled',true);
+        }
+        else {
+            $('#mensajeRuc').hide();
+             $('#Editar').attr('disabled',false);
+        }
+    })
+</script>
+<script type="text/javascript">
+    $("#direccion").change(function(){
+        var nombre = $("#direccion").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeMaximoDireccion').show();
+            $('#mensajeMaximoDireccion').text('La direccion no debe estar vacio');
+            $('#mensajeMaximoDireccion').css('color','red');
+            $('#Editar').attr('disabled',true);
+        }
+        else {
+            $('#mensajeMaximoDireccion').hide();
+             $('#Editar').attr('disabled',false);
+        }
+    })
+</script>
+<script type="text/javascript">
+    $("#phone_s").change(function(){
+        var nombre = $("#phone_s").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePhone').show();
+            $('#mensajePhone').text('El telefono no debe estar vacio');
+            $('#mensajePhone').css('color','red');
+            $('#Editar').attr('disabled',true);
+        }
+        else {
+            $('#mensajePhone').hide();
+             $('#Editar').attr('disabled',false);
+        }
+    })
+</script>
     <script type="text/javascript">
         $(document).ready(function (e){
 

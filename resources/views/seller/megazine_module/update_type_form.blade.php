@@ -45,11 +45,11 @@
         </ul>
     </div>
 @endif
-<div class="container">
+<div class="content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Registrar Cadena de Publicaciones</div>
+                <div class="panel-heading">Modificar Cadena de Publicaciones</div>
                 <div class="panel-body">
                     @include('flash::message')
 
@@ -63,12 +63,16 @@
                             <label for="art_name" class="col-md-4 control-label">Titulo De La Cadena de Publicacion</label>
 
                             <div class="col-md-6">
+                              @if($pub_type->status != 'Aprobado')
                                 <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" required autofocus>
+                              @else
+                                <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" readonly>
+                              @endif
                             </div>
                         </div>
                        
                        <div class="form-group col-md-6">
-                        <img src="{{$pub_type->img_saga}}" class=".img-thumbnail" style="width:200px;height:200px;">
+                        <img src="{{asset($pub_type->img_saga)}}" class=".img-thumbnail" style="width:200px;height:200px;">
                         </div>
 
                         <div class="form-group col-md-6">
@@ -77,25 +81,50 @@
                          Generos
                          </label>
                          
-                         <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple col-md-6">
+                         @if($pub_type->status != 'Aprobado')
+                         <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple">
                              @foreach($tags as $genders)
-                             <option value="{{$genders->id}}" @foreach($s_tags as $s) @if($s->id == $genders->id) selected @endif @endforeach >{{$genders->tags_name}}  
-                             </option>                                                 
-                             @endforeach
-                         </select>                        
+                                <option value="{{$genders->id}}" @foreach($s_tags as $s) 
+                                @if($s->id == $genders->id) 
+                                selected
+                                @endif 
+                                @endforeach >{{$genders->tags_name}}  
+                              </option>                                                 
+                            @endforeach
+                        </select>
+                        @else
+                          <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" disabled="true">
+                         @foreach($tags as $genders)
+                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
+                            @if($s->id == $genders->id) 
+                            selected
+                            @endif 
+                            @endforeach >{{$genders->tags_name}}  
+                            </option>                                                 
+                        @endforeach
+                        </select>
+                        @endif                      
                             
-                           <div id="image-preview">
-                          <label for="image-upload" id="image-label">Caratula</label>
-                          <input type="file" name="image" id="image-upload" class="form-control" />
-                        </div>
+                           <div class="col-md-6">
+                                {{--Imagen--}}
+                                <div id="mensajeFotoLibro"></div>
+                                <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                                    Si no selecciona una portada, se mantendrá la actual
+                                </label>
+                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                                    <label for="image-upload" id="image-label"> Portada del Libro </label>
+                                        {!! Form::file('image',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <div id="list">
+                                        <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($i_megazine->cover)}}"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="desc" class="col-md-4 control-label">Descripcion</label>
                                 
                             <div class="col-md-6">
-                                <textarea name="dsc" required>
-                                    {{$pub_type->sag_description}}
-                                </textarea>
+                                <textarea name="dsc" required class="form-control" rows="3" cols="2">{{$pub_type->sag_description}}</textarea>
                             </div>
                         </div>
 

@@ -609,7 +609,9 @@ Route::group(['middleware' => 'seller_auth'], function () {
     /*--------------------------------------------------------------*/
 
     /*----------------------Agregar Tags--------------------------- */
-    Route::resource('tags','TagController');
+    //Route::resource('tags','TagController');
+
+    Route::post('AddTags','TagController@store');
     /*--------------------------------------------------------------*/
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */

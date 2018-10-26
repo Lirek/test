@@ -124,6 +124,11 @@
             text-align: center;
         }
     </style>
+    <style>
+        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
@@ -153,7 +158,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <?php echo Form::open(['route'=>'tbook.store', 'method'=>'POST','files' => 'true' ]); ?>
+                    <?php echo Form::open(['route'=>'tbook.store', 'method'=>'POST','files' => 'true', 'id'=>'libro']); ?>
 
                     <?php echo e(Form::token()); ?>
 
@@ -178,7 +183,8 @@
                                         <label for="exampleInputFile" class="control-label">Nombre de autor</label>
                                         <?php echo Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                        <!-- <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA"> -->
+                                        <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
                                         </a>
@@ -187,7 +193,8 @@
                                         <label id="faltaRegistro" style="color: red;"> 
                                             Usted aun no tiene registros de datos de autores de libros, por favor agregue dichos datos primero
                                         </label>
-                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                        <!-- <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA"> -->
+                                         <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
                                         </a>
@@ -203,7 +210,8 @@
                                         <label id="faltaRegistro" style="color: red;"> 
                                             Usted aun no tiene registros de sus datos como autor de libros, por favor agregue dichos datos primero
                                         </label>
-                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA">
+                                        <!-- <a class="btn btn-success" data-toggle="modal" data-target="#modal-defaultMA"> -->
+                                        <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
                                         </a>
@@ -214,21 +222,23 @@
 
                             
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            <?php echo Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo del libro','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
+                            <div id="mensajeTitulo"></div>
                             <br>
 
                             
                             <label for="exampleInputFile" class="control-label">Título original</label>
-                            <?php echo Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Título original del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Título original del libro','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
 
+                             <div id="mensajeTitulOriginal"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            <?php echo Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']); ?>
+                            <?php echo Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','oninput'=>"maxLengthCheck(this)"]); ?>
 
+                            <div id="mensajePrecio"></div>
                             <br>
 
                             
@@ -259,12 +269,12 @@
                             <div id="mensajeDocumento"></div>
                             <?php echo Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'Cargar libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']); ?>
 
+                            <div id="mensajeLibro"></div>
                             <br>
 
                             
                             <label class="control-label"> País</label>
                             <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
-                                <option value="">Seleccione una opción</option>
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
                                 <option value="DE">Alemania</option>
@@ -323,7 +333,7 @@
                                 <option value="DK">Dinamarca</option>
                                 <option value="DJ">Djibouti</option>
                                 <option value="DM">Dominica</option>
-                                <option value="EC">Ecuador</option>
+                                <option value="EC" selected>Ecuador</option>
                                 <option value="EG">Egipto</option>
                                 <option value="SV">El Salvador</option>
                                 <option value="AE">Emiratos Árabes Unidos</option>
@@ -508,13 +518,15 @@
                             <div id="mensajeNumeroPalabras"></div>
                             <?php echo Form::textarea('sinopsis',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
 
+                            <div id="mensajeSinopsis"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                             <div id="mensajeFechaLanzamiento"></div>
-                            <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]); ?>
 
+                            <div id="mensajeFechaLanzamiento"></div>
                             <br>
                             <br>
 
@@ -567,17 +579,22 @@
                             <br>
                         </div>
                     </div>
-                    <!-- /.box-body -->
-                </div>
-            </div>
+                    <!-- /.box-body -->        
         </div>
-        <div class="text-center">
-            <?php echo Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']); ?>
+        <div class="form-group col-md-12">
+            <div class="progress">
+                <div class="bar"></div >
+                <div class="percent">0%</div >
+            </div>
+            <div class="text-center">
+                <?php echo Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']); ?>
 
+            </div>
         </div>
         <?php echo Form::close(); ?>
 
-
+    </div>
+</div>
 
         <!-- /.modal  de autor  -->
         <div class="modal fade in modal-primary" id="modal-defaultMA">
@@ -750,26 +767,19 @@
                         <h1 style="text-align: center; color: #fff;">Agregar género</h1>
                     </div>
                     <div class="modal-body">
-                        <?php echo Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']); ?>
-
-                        <?php echo e(Form::token()); ?>
-
-                        <?php echo Form::hidden('seller_id',Auth::guard('web_seller')->user()->id); ?>
-
-                        <?php echo Form::hidden('type_tags','Libros'); ?>
-
-                        <?php echo Form::hidden('ruta','Libros'); ?>
-
+                        
+                        <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>" id="seller_id">
+                        <input type="hidden" name="type_tags" value="Libros" id="type_tags">
+                        
                         <label for="exampleInputFile" class="control-label">Nuevo género</label>
-                        <?php echo Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]); ?>
-
+                        
+                        <input type="text" name="tags_name" class="form-control" placeholder="Ingrese el nuevo género" id="new_tag" required="required" >
+                        <div id="mensajegeneronuevo"></div>
                         <br>
                         <div align="center">
-                            <?php echo Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']); ?>
-
+                            <button class="btn btn-primary"  id="save-resource" onclick="callback()">Guardar género</button>
                         </div>
-                        <?php echo Form::close(); ?>
-
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
@@ -781,6 +791,194 @@
     </section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+    
+       function callback() {
+            $('#save-resource').attr('disabled',true);
+            var tags_name= $("#new_tag").val();
+            var type_tags= $('#type_tags').val();
+            var seller_id = $('#seller_id').val();
+  
+                                $.ajax({
+                                url: "<?php echo e(url('/AddTags')); ?>",
+                                type: 'POST',
+                                data: {
+                                        _token: $('input[name=_token]').val(),
+                                        tags_name: tags_name,
+                                        type_tags: type_tags,
+                                        seller_id: seller_id,
+                                      
+                                      }, 
+
+                                success: function (result) {
+                                    
+                                    if(result==0){
+                                    swal("Genero "+tags_name +" agregado con exito y en espera de verificación","","success");
+                                    $('#modalgenero').toggle();
+                                    $('.modal-backdrop').remove();
+                                    }
+                                },
+
+                                error: function (result) {
+                                    swal('Existe un Error en su Solicitud','','error');
+                                
+                                },
+                                });  
+ }
+
+
+</script>
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+
+
+<script type="text/javascript">
+    $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#titulOriginal").change(function(){
+        var nombre = $("#titulOriginal").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulOriginal').show();
+            $('#mensajeTitulOriginal').text('El titulo no debe estar vacio');
+            $('#mensajeTitulOriginal').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulOriginal').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La sinopsis no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#fechaLanzamiento").change(function(){
+        var nombre = $("#fechaLanzamiento").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeFechaLanzamiento').show();
+            $('#mensajeFechaLanzamiento').text('La fecha no debe estar vacia');
+            $('#mensajeFechaLanzamiento').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#link").change(function(){
+        var nombre = $("#link").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeLink').show();
+            $('#mensajeLink').text('El trailer no debe estar vacio');
+            $('#mensajeLink').css('color','red');
+            $('#guardarLibro').attr('disabled',true);
+        }
+        else {
+            $('#mensajeLink').hide();
+            $('#guardarLibro').attr('disabled',false);
+        
+        }
+    })
+    $("#new_tag").change(function(){
+        var nombre = $("#new_tag").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajegeneronuevo').show();
+            $('#mensajegeneronuevo').text('El nombre de la saga no debe estar vacio');
+            $('#mensajegeneronuevo').css('color','red');
+            $('#save-resource').attr('disabled',true);
+        }
+        else {
+            $('#mensajegeneronuevo').hide();
+            $('#save-resource').attr('disabled',false);
+        
+        }
+    })
+</script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#libro').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[name=books_file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            $('#guardarLibro').attr('disabled',true);
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "<?php echo e(URL::to('tbook')); ?>"
+
+        }
+    });
+     
+    })();
+</script>
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la portada del libro, los modales de Autor y de Saga
@@ -1030,5 +1228,29 @@
 // Para validar los capitulos de las sagas
 //---------------------------------------------------------------------------------------------------
     </script>
+<script type="text/javascript">
+    // Validacion de solo letas
+        function controltagLet(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
+        function controltagNum(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[0-9]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

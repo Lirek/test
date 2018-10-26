@@ -181,35 +181,37 @@
                             
                             <label for="exampleInputFile" class="control-label">Título</label>
                             <?php if($movie->status != 'Aprobado'): ?>
-                            <?php echo Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
                             <?php else: ?>
                             <?php echo Form::text('title',$movie->title,['class'=>'form-control','placeholder'=>'Título de la pelicula', 'readonly']); ?>
 
                             <?php endif; ?>
+                            <div id="mensajeTitulo"></div>
                             <br>
 
                             
                             <label for="exampleInputFile" class="control-label">Título original </label>
                             <?php if($movie->status != 'Aprobado'): ?>
-                            <?php echo Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','id'=>'titulOriginal','placeholder'=>'Titulo de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
 
                             <?php else: ?>
                             <?php echo Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película', 'readonly']); ?>
 
                             <?php endif; ?>
+                            <div id="mensajeTitulOriginal"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
                             <?php if($movie->status != 'Aprobado'): ?>
-                            <?php echo Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']); ?>
+                            <?php echo Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]); ?>
 
                             <?php else: ?>
                             <?php echo Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']); ?>
 
                             <?php endif; ?>
+                            <div id="mensajePrecio"></div>
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
@@ -279,20 +281,21 @@
                             <?php endif; ?>
                             
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            <div id="mensajeFechaLanzamiento"></div>
                             <?php if($movie->status != 'Aprobado'): ?>
-                            <?php echo Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]); ?>
+                            <?php echo Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]); ?>
 
                             <?php else: ?>
                             <?php echo Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'readonly']); ?>
 
                             <?php endif; ?>
+                            <div id="mensajeFechaLanzamiento"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                             <?php echo Form::textarea('based_on',$movie->based_on,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'sinopsis']); ?>
 
+                            <div id="mensajeSinopsis"></div>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -557,7 +560,9 @@
                             <?php echo Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'readonly', 'id'=>'link']); ?>
 
                             <?php endif; ?>
+                            <div id="mensajeLink"></div>
                             <br>
+                            <input type="hidden" id="saga" value="<?php echo e($movie->saga_id); ?>">
                             <?php if($movie->status != 'Aprobado'): ?>
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
@@ -614,6 +619,123 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+<script type="text/javascript">
+    // Validacion de solo letas
+        function controltagLet(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
+        function controltagNum(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[0-9]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+</script>
+<script type="text/javascript">
+    $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#titulOriginal").change(function(){
+        var nombre = $("#titulOriginal").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulOriginal').show();
+            $('#mensajeTitulOriginal').text('El titulo no debe estar vacio');
+            $('#mensajeTitulOriginal').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulOriginal').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La sinopsis no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#fechaLanzamiento").change(function(){
+        var nombre = $("#fechaLanzamiento").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeFechaLanzamiento').show();
+            $('#mensajeFechaLanzamiento').text('La fecha no debe estar vacia');
+            $('#mensajeFechaLanzamiento').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#link").change(function(){
+        var nombre = $("#link").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeLink').show();
+            $('#mensajeLink').text('El trailer no debe estar vacio');
+            $('#mensajeLink').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+</script>
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la imagen en el formulario
@@ -717,12 +839,22 @@
 //---------------------------------------------------------------------------------------------------
 // Para validar los radio boton
     $(document).ready(function(){
+        console.log($('#saga').val() );
+        if($('#saga').val() != ''){
         $('#option-1').prop('checked','checked');
         $('#if_si').show();
         $('#sagas').attr('required','required');
         $('#despues').attr('required','required');
         $('#antes').attr('required','required');
         $('#sagas').val('');
+        }else{
+          $('#option-2').prop('checked','checked'); 
+          $('#if_si').hide();
+          $('#sagas').removeAttr('required');
+          $('#despues').removeAttr('required');
+          $('#antes').removeAttr('required');
+          $('#sagas').val(''); 
+        }
     });
 
     function yesnoCheck() {

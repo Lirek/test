@@ -173,10 +173,22 @@
                     <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $movies): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <tr class="letters">
                         <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                        <td><a href="#"> <?php echo e($movies->title); ?></a></td>
+                        <td><a href="<?php echo e(route('movies.show', $movies->id)); ?>"> <?php echo e($movies->title); ?></a></td>
                         <td class="hidden-phone">Pelicula</td>
                         <td class="hidden-phone"><?php echo e($movies->cost); ?></td>
                         <td><?php echo e($movies->status); ?></td>
+                      </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endif; ?>
+
+                   <?php if($Series): ?>
+                    <?php $__currentLoopData = $Series; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $series): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <tr class="letters">
+                        <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
+                        <td><a href="<?php echo e(route('series.show',$series->id)); ?>"> <?php echo e($series->title); ?></a></td>
+                        <td class="hidden-phone">Serie</td>
+                        <td class="hidden-phone"><?php echo e($series->cost); ?></td>
+                        <td><?php echo e($series->status); ?></td>
                       </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php endif; ?>
