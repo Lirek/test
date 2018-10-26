@@ -28,7 +28,7 @@
 
                     {{--Estatus de  la saga--}}
                     <label for="exampleInputPassword1" class="control-label">Estatus de la saga: </label>
-                    <div id="status"></div>
+                    <div id="statusSaga"></div>
                     <br>
 
                     {{--tipo de saga--}}
@@ -44,8 +44,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="box-body">
-                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
         <!-- /.modal-content -->

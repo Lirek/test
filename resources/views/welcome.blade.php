@@ -1330,6 +1330,41 @@
         });
     });
 
+    $(document).ready(function(){
+        $("#formRP").on('submit',function(e){
+            var url = "{{ url('ApplysSubmit') }}";
+            e.preventDefault();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $("#formRP").serialize(),
+                success: function (result) {
+                    console.log(result);
+                    swal("Su solicitud está siendo procesada","","success")
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                },
+                error: function (result) {
+                    console.log(result);
+                    swal('Existe un Error en su Solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+    });
+
 //------------------------------------------------------------------------------------------------------------
 </script>
 

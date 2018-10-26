@@ -33,7 +33,7 @@
 									<th class="non-numeric">Géneros</th>
 									<th class="non-numeric">Fecha de registro</th>
 									<th class="non-numeric">Costo en Tickets</th>
-									<th class="non-numeric">Estatus</th>
+									<th class="non-numeric" id="estatus">Estatus</th>
 						        </tr>
 					    	</thead>
 					    </table>
@@ -54,6 +54,7 @@
 <script>
 	$(document).ready(function(){
 
+		// modificar el estaus de la pelicula
 		$(document).on('click','#status', function() {
 			var idMovie = $(this).val();
 			console.log(idMovie);
@@ -99,7 +100,9 @@
 				}); 
 			});
 		});
+		// modificar el estaus de la pelicula
 
+		// ver mas detalles de la pelicula
 		$(document).on('click','#viewMovie', function() {
 			const player = new Plyr('#player');
 			var idMovie = $(this).val();
@@ -131,6 +134,7 @@
 				}
 			});
 		});
+		// ver mas detalles de la pelicula
 
 		var Movies = $('#peliculas').DataTable({
 	        processing: true,
@@ -175,8 +179,10 @@
                 }
 	        }
 		});
+		// listar las peliculas pendientes
 
 		$(document).on('click','#opcion1', function() {
+			$("#estatus").text("Estatus");
 			var peliculasPendientes = $('#peliculas').DataTable({
 		        processing: true,
 		        serverSide: true,
@@ -221,8 +227,11 @@
 		        }
 			});
 		});
+		// listar las peliculas pendientes
 
+		// listar las peliculas aprobadas
 		$(document).on('click','#opcion2', function() {
+			$("#estatus").text("Estatus");
 			var peliculasAprobadas = $('#peliculas').DataTable({
 		        processing: true,
 		        serverSide: true,
@@ -267,8 +276,11 @@
 		        }
 			});
 		});
+		// listar las peliculas aprobadas
 
+		// listar las peliculas denegadas
 		$(document).on('click','#opcion3', function() {
+			$("#estatus").text("Negaciones");
 			var peliculasRechazadas = $('#peliculas').DataTable({
 		        processing: true,
 		        serverSide: true,
@@ -313,6 +325,73 @@
 		        }
 			});
 		});
+		// listar las peliculas denegadas
+
+		// Listar las negaciones
+		$(document).on('click', '#denegado', function() {
+			var id = $(this).val(); // id de la pelicula
+			console.log(id);
+			var modulo = "Movies";
+			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
+			var historialRechazo = $('#historialRechazo').DataTable({
+				processing: true,
+				serverSide: true,
+				responsive: true,
+				destroy: true,
+
+				ajax: url,
+				columns: [
+					{data: 'razon', name: 'razon'},
+					{data: 'created_at', name: 'created_at'}
+				],
+				language: {
+					"processing": "Procesando...",
+					"lengthMenu" : "Mostrar _MENU_ registros",
+					"zeroRecords" : "No se encontraron resultados",
+					"sEmptyTable":     "Ningún dato disponible en esta tabla",
+					"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+					"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+					"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+					"sInfoPostFix":    "",
+					"sSearch":         "Buscar:",
+					"sUrl":            "",
+					"sInfoThousands":  ",",
+					"sLoadingRecords": "Cargando...",
+					"oPaginate": {
+						"sFirst":    "Primero",
+						"sLast":     "Último",
+						"sNext":     "Siguiente",
+						"sPrevious": "Anterior"
+					},
+					"oAria": {
+						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+					}
+				},
+				order: [ 1, "desc" ],
+				footerCallback: function(row, data, start, end, display){
+					$("#totalNegaciones").text("Total de negaciones: "+end);
+				}
+			});
+		});
+		// Listar las negaciones
+    	
+    	// Validacion de maximo de caracteres para la razon
+        var cantidadMaxima = 191;
+        $('#razon').keyup(function(evento){
+            var razon = $('#razon').val();
+            numeroPalabras = razon.length;
+            if (numeroPalabras>cantidadMaxima) {
+                $('#mensajeMaximoRazon').show();
+                $('#mensajeMaximoRazon').text('Ha excedido la cantidad máxima de caracteres');
+                $('#mensajeMaximoRazon').css('color','red');
+                $('#rechazo').attr('disabled',true);
+            } else {
+                $('#mensajeMaximoRazon').hide();
+                $('#rechazo').attr('disabled',false);
+            }
+        });
+    	// Validacion de maximo de caracteres para la razon
 	});
 </script>
 @endsection

@@ -31,7 +31,7 @@
                   <th class="non-numeric">Sub-contenido</th>
                   <th class="non-numeric">Vendedor</th>
                   <th class="non-numeric">Fecha de registro</th>
-                  <th class="non-numeric">Solicitud</th>
+                  <th class="non-numeric" id="solicitud">Solicitud</th>
                 </tr>
               </thead>
             </table>
@@ -98,6 +98,7 @@ $( document ).ready(function() {
 
   // Listar los aspirante a proveedor en espera de aprobacion
   $(document).on('click','#opcion1', function() {
+    $("#solicitud").text("Solicitud");
     var proveedoresPendientes = $('#proveedoresPendientes').DataTable({
       processing: true,
       serverSide: true,
@@ -146,11 +147,12 @@ $( document ).ready(function() {
 
   // Listar los aspirante a proveedor rechazados
   $(document).on('click','#opcion2', function() {
+    $("#solicitud").text("Negaciones");
     var proveedoresPendientes = $('#proveedoresPendientes').DataTable({
       processing: true,
       serverSide: true,
       responsive: true,
-      bDestroy: true,
+      destroy: true,
 
       ajax: '{!! url('SellerDataTable/Denegado') !!}',
       columns: [
@@ -219,6 +221,9 @@ $( document ).ready(function() {
           message: message
         }, 
         success: function (result) {
+          if (s=="Aprobado") {
+            s = "Pre-aprobado";
+          }
           $('#myModal').toggle();
           $('.modal-backdrop').remove();
           swal("Se ha "+s+" con éxito","","success")
@@ -331,6 +336,54 @@ $( document ).ready(function() {
     });
   });
   // Asignar vendedor del aspitante a proveedor
+
+  // Listar las negaciones
+  $(document).on('click', '#denegado', function() {
+    var idApply = $(this).val(); // id del aspirante
+    var modulo = "Applys Seller";
+    var url = "{!! url('viewRejection/"+idApply+"/"+modulo+"') !!}";
+    var historialRechazo = $('#historialRechazo').DataTable({
+      processing: true,
+      serverSide: true,
+      responsive: true,
+      destroy: true,
+
+      ajax: url,
+      columns: [
+        {data: 'razon', name: 'razon'},
+        {data: 'created_at', name: 'created_at'}
+      ],
+      language: {
+        "processing": "Procesando...",
+        "lengthMenu" : "Mostrar _MENU_ registros",
+        "zeroRecords" : "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+          "sFirst":    "Primero",
+          "sLast":     "Último",
+          "sNext":     "Siguiente",
+          "sPrevious": "Anterior"
+        },
+        "oAria": {
+          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+      },
+      order: [ 1, "desc" ],
+      footerCallback: function(row, data, start, end, display){
+        $("#totalNegaciones").text("Total de negaciones: "+end);
+      }
+    });
+  });
+  // Listar las negaciones
 
 
 

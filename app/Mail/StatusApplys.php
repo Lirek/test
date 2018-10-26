@@ -38,7 +38,7 @@ class StatusApplys extends Mailable
     {
         if($this->applys->status=='Aprobado')
         {
-        return $this->view('admin.mails.status_applys_aproval')->subject('Solicitud aprobada')->with('applys',$this->applys)->with('url',$this->url);
+        return $this->view('admin.mails.status_applys_aproval')->subject('Solicitud pre-aprobada')->with('applys',$this->applys)->with('url',$this->url);
         }
         else
         {
