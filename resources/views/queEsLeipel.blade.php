@@ -267,7 +267,7 @@
               <br>
             </div>
             <div class="timeline-body">
-              <p>Leipel es una red socia de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.</p>
+              <p>Leipel es una red social de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.</p>
             </div>
           </div>
         </li>
