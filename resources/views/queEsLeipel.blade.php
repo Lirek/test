@@ -39,6 +39,192 @@
 
 
 </head>
+<style type="text/css">
+    .timeline {
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
+}
+
+    .timeline:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 3px;
+        background-color: #eeeeee;
+        left: 50%;
+        margin-left: -1.5px;
+    }
+
+    .timeline > li {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li > .timeline-panel {
+            width: 46%;
+            float: left;
+            border: 1px solid #d4d4d4;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            background: #eee;
+        }
+
+            .timeline > li > .timeline-panel:before {
+                position: absolute;
+                top: 26px;
+                right: -15px;
+                display: inline-block;
+                border-top: 15px solid transparent;
+                border-left: 15px solid #ccc;
+                border-right: 0 solid #ccc;
+                border-bottom: 15px solid transparent;
+                content: " ";
+            }
+
+            .timeline > li > .timeline-panel:after {
+                position: absolute;
+                top: 27px;
+                right: -14px;
+                display: inline-block;
+                border-top: 14px solid transparent;
+                border-left: 14px solid #eee;
+                border-right: 0 solid #eee;
+                border-bottom: 14px solid transparent;
+                content: " ";
+            }
+
+        .timeline > li > .timeline-badge {
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            margin-left: -25px;
+            background-color: #21a4de;
+            z-index: 100;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .timeline > li.timeline-inverted > .timeline-panel {
+            float: right;
+        }
+
+            .timeline > li.timeline-inverted > .timeline-panel:before {
+                border-left-width: 0;
+                border-right-width: 15px;
+                left: -15px;
+                right: auto;
+            }
+
+            .timeline > li.timeline-inverted > .timeline-panel:after {
+                border-left-width: 0;
+                border-right-width: 14px;
+                left: -14px;
+                right: auto;
+            }
+
+.timeline-badge.primary {
+    background-color: #21a4de !important;
+}
+
+.timeline-badge.success {
+    background-color: #21a4de !important;
+}
+
+.timeline-badge.warning {
+    background-color: #21a4de !important;
+}
+
+.timeline-badge.danger {
+    background-color: #21a4de !important;
+}
+
+.timeline-badge.info {
+    background-color: #21a4de !important;
+}
+
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+    margin-bottom: 0;
+}
+
+    .timeline-body > p + p {
+        margin-top: 5px;
+    }
+
+@media (max-width: 767px) {
+    ul.timeline:before {
+        left: 40px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        width: calc(100% - 90px);
+        width: -moz-calc(100% - 90px);
+        width: -webkit-calc(100% - 90px);
+    }
+
+    ul.timeline > li > .timeline-badge {
+        left: 15px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        float: right;
+    }
+
+        ul.timeline > li > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+
+        ul.timeline > li > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
+}
+</style>
 <body>
 
 <!-- NAVBAR STAR-->
@@ -70,111 +256,94 @@
 </nav>
 
 
-    <div class="col-md-12 col-sm-12 ">
-        <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">   
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <br>
-                    <h2><span style="color: #23b5e6" class="card-title">¿QUÉ ES LEIPEL?</span></h2>      
-                </div>
-                    <div class="row">
-                        <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                            <div class="paragraph">
-                                <br>
-                                <p class="text-center text-justify">Leipel es una red socia de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.</p>
-                            </div>
-                        </div>
-                    </div> 
-            </div> 
-                        
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <h4><span style="color: #23b5e6" class="card-title">¿QUÉ SON LO TICKETS Y PARA QUE SIRVEN?</span></h4>
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                        <div class="paragraph">
-                            <br>
-                            <p class="text-center text-justify">Los ticket son la moneda interna de Leipel, con ellos pordrás adquirir los contenidos que no sean gratis dentro de Leipel. Si se te acaban, siempre puedes comprar más.</p>
-                        </div>
-                    </div>
-                </div>
-            </div> 
 
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <h4><span style="color: #23b5e6" class="card-title">¿QUÈ SON LOS PUNTOS Y PARA QUÉ SIRVEN?</span></h4>     
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                        <div class="paragraph">
-                            <br>
-                            <p class="text-center text-justify">En Leipel tenemos una manera de agradecerte por ayudarnos a llegar a más personas, a cambio de esto te regalamos puntos leipel, los cuales vas a poder canjear por viajes, más tickets y otros beneficios.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <h4><span style="color: #23b5e6" class="card-title">¿POR QUÈ POR EL PAGO NO TENGO TODO GRATIS?</span></h4>      
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                        <div class="paragraph">
-                            <br>
-                            <p class="text-center text-justify">Es fácil, nosotros colaboramos para que los autores ganen más dinero entre más se vende su obra. Actualmente en muchas páginas esto no pasa, simplemente les dan un valor pequeño se venda o no, con Leipel el autor depende de su gran talento para que su contenido se haga viral y así poder ganar como siempre han querido. Y como a fin de cuenta, los que compramos ya estamos mal acostumbrados a que nos regalen todo por internet, es por esto que Leipel da puntos para que te puedas llevar viajes y otros beneficios GRATIS.</p>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <h4><span style="color: #23b5e6" class="card-title">¿CÓMO GANO PUNTOS?</span></h4>      
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                        <div class="paragraph">
-                            <br>
-                            <p class="text-center text-justify">Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
-                            <br>
-                            *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
-                            <br> 
-                            *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
-                            <br>
-                            *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.</p>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-
-            <div class="col-md-12 col-sm-12 mb" style="margin-left: 2%">
-                <div class="white-panel">
-                    <br>
-                    <h4><span style="color: #23b5e6" class="card-title">¿CON QUÉ CANJEO LOS PUNTOS?</span></h4>      
-                </div>
-                <div class="row">
-                    <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                        <div class="paragraph">
-                            <br>
-                            <p class="text-center text-justify">Por lo general con viajes, sin embargo habràn màs sorpresas. Una vez hayas acumulado los puntos necesarios para lo que deseas, deberàs enviarnos un mail con título CANJE DE PUNTOS a info@leipel.com y en el mail nos escribes tu nombre de usuario y número de cédula, recueda indicarnos en qué vas a canjear los puntos.</p>
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+    <ul class="timeline">
+        <li>
+          <div class="timeline-badge"><i class="glyphicon glyphicon-question-sign"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿QUÉ ES LEIPEL?</h4>
+              <br>
             </div>
-        </div>
-    </div>
-
+            <div class="timeline-body">
+              <p>Leipel es una red socia de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="fa fa-ticket"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿QUÉ SON LO TICKETS Y PARA QUE SIRVEN?</h4>
+              <br>
+            </div>
+            <div class="timeline-body">
+              <p>Los ticket son la moneda interna de Leipel, con ellos pordrás adquirir los contenidos que no sean gratis dentro de Leipel. Si se te acaban, siempre puedes comprar más.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge danger"><i class="glyphicon glyphicon-record"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿QUÈ SON LOS PUNTOS Y PARA QUÉ SIRVEN?</h4>
+              <br>
+            </div>
+            <div class="timeline-body">
+              <p>En Leipel tenemos una manera de agradecerte por ayudarnos a llegar a más personas, a cambio de esto te regalamos puntos leipel, los cuales vas a poder canjear por viajes, más tickets y otros beneficios.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="glyphicon glyphicon-piggy-bank"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿POR QUÈ POR EL PAGO NO TENGO TODO GRATIS?</h4>
+              <br>
+            </div>
+            <div class="timeline-body">
+              <p>Es fácil, nosotros colaboramos para que los autores ganen más dinero entre más se vende su obra. Actualmente en muchas páginas esto no pasa, simplemente les dan un valor pequeño se venda o no, con Leipel el autor depende de su gran talento para que su contenido se haga viral y así poder ganar como siempre han querido. Y como a fin de cuenta, los que compramos ya estamos mal acostumbrados a que nos regalen todo por internet, es por esto que Leipel da puntos para que te puedas llevar viajes y otros beneficios GRATIS.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge danger"><i class="fa fa-gift"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿CÓMO GANO PUNTOS?</h4>
+            </div>
+            <div class="timeline-body">
+                <br>
+                <p class="text-center text-justify">Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
+                <br>
+                <br>
+                *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
+                <br>
+                <br> 
+                *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
+                <br>
+                <br>
+                *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge success"><i class="fa fa-handshake-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">¿CON QUÉ CANJEO LOS PUNTOS?</h4>
+              <br>
+            </div>
+            <div class="timeline-body">
+              <p>Por lo general con viajes, sin embargo habràn màs sorpresas. Una vez hayas acumulado los puntos necesarios para lo que deseas, deberàs enviarnos un mail con título CANJE DE PUNTOS a info@leipel.com y en el mail nos escribes tu nombre de usuario y número de cédula, recueda indicarnos en qué vas a canjear los puntos.</p>
+            </div>
+          </div>
+        </li>
+    </ul>
+</div>
 <!--FOOTER STAR -->
+
 
 <footer class="footer">
     <div class="row col-md-12" id="leipel">
@@ -191,24 +360,25 @@
                     <i class="fa fa-map-marker text-info "></i>
                     &nbsp;&nbsp;&nbsp;Guayaquil, Ecuador
                 </li>
-                <li class="lista">
+                <!-- <li class="lista">
                     <i class="fa fa-phone text-info "></i>
                     &nbsp;&nbsp;+123 4567 987
                 </li>
-                <li class="lista">
+ -->                <li class="lista">
                     <i class="fa fa-envelope-o text-info"></i>
                     info@leipel.com
                 </li>
+                <li></li>
             </ul>
         </div>
         <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
-                <li><a href="#">¿Que es Leipel?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿Que es Leipel?</a></li>
                 <br>
-                <li><a href="#">Terminos y condiciones</a></li>
+                <li><a href="{{route('terminosCondiciones')}}" target="_blank">Terminos y condiciones</a></li>
                 <br>
-                <li><a href="#">Reg&iacute;strate</a></li>
+                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register" >Reg&iacute;strate</a></li>
                 <br>
                 <li><a href="#">Beneficios adicionales</a></li>
                 <br>
@@ -218,15 +388,15 @@
         <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">Cine</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Cine</a></li>
                 <br>
-                <li><a href="#">M&uacute;sica</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">M&uacute;sica</a></li>
                 <br>
-                <li><a href="#">Lectura</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Lectura</a></li>
                 <br>
-                <li><a href="#">Radio</a></li>
-                <br>                
-                <li><a href="#">Tv</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Radio</a></li>
+                <br>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Tv</a></li>
             </ul>
         </div>
         <div class="col-md-3" id="social">
@@ -239,7 +409,7 @@
                 <li><a href="#">Instagram</a></li>
             </ul>
         </div>
-        
+
     <div class="col-md-12 hidden-sm hidden-xs" style=" font-family: Roboto;
                                         background: #21a4de;
                                         height: 40px;
@@ -299,9 +469,9 @@
             <a href="">Contacto</a>
         </div>
     </div>
-
-    </div>
+</div>
 </footer>
+
 
 
 <!--FOOTER END -->
@@ -464,7 +634,7 @@
 
                 </div>
 
-s            </div>
+            </div>
 
         </div>
     {{--</div>--}}

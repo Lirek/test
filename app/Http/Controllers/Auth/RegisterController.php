@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Events\WelcomeEmailEvent;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovalNotification;
 
 class RegisterController extends Controller
 {

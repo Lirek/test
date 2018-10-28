@@ -205,7 +205,7 @@ class SellerController extends Controller
         $request->file('adj_ruc')->move($store_path,$name);
         $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/';
         //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
-        $Seller= new Seller;
+        $Seller = new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;
         $Seller->password = bcrypt($request->password);
@@ -220,6 +220,16 @@ class SellerController extends Controller
         $seller_roles = SellersRoles::where('name',$request->modulo)->get();
         $seller= Seller::find(Auth::guard('web_seller')->user()->id);
         $data = $seller->roles()->attach($seller_roles[0]->id);
+        if ($request->modulo=="Peliculas") {
+            $seller_roles = SellersRoles::where('name','Series')->get();
+            $seller= Seller::find(Auth::guard('web_seller')->user()->id);
+            $data = $seller->roles()->attach($seller_roles[0]->id);
+        }
+        if ($request->modulo=="Libros") {
+            $seller_roles = SellersRoles::where('name','Revistas')->get();
+            $seller= Seller::find(Auth::guard('web_seller')->user()->id);
+            $data = $seller->roles()->attach($seller_roles[0]->id);
+        }
         if ($request->submodulo!=null) {
             $seller_sub_roles = SellersRoles::where('name',$request->submodulo)->get();
             $data = $seller->roles()->attach($seller_sub_roles[0]->id);
