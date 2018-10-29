@@ -192,17 +192,24 @@
                             @else
                             {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','placeholder'=>'Titulo de la película', 'readonly']) !!}
                             @endif
-                            <div id="mensajeTitulOriginal"></div>
                             <br>
 
                             {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            @if($movie->status != 'Aprobado')
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
-                            @else
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
-                            @endif
-                            <div id="mensajePrecio"></div>
+                            <div class="form-group row">
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                    @if($movie->status != 'Aprobado')
+                                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ]) !!}
+                                    @else
+                                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
+                                    @endif
+                                </div>
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en dolares</label>
+                                    {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
+                                </div>
+                                <div class=" col-md-12" id="mensajePrecio"></div>
+                            </div>
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
@@ -650,7 +657,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajeTitulo').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
     $("#titulOriginal").change(function(){
@@ -664,7 +671,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajeTitulOriginal').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
     $("#precio").change(function(){
@@ -678,7 +685,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajePrecio').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
     $("#sinopsis").change(function(){
@@ -692,7 +699,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajeSinopsis').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
     $("#fechaLanzamiento").change(function(){
@@ -706,7 +713,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajeFechaLanzamiento').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
     $("#link").change(function(){
@@ -720,7 +727,7 @@ function maxLengthCheck(object) {
         else {
             $('#mensajeFechaLanzamiento').hide();
             $('#registrarPelicula').attr('disabled',false);
-        
+
         }
     })
 </script>
@@ -805,7 +812,7 @@ function maxLengthCheck(object) {
 //---------------------------------------------------------------------------------------------------
 // Para validar el precio
     $(document).ready(function(){
-        $('#precio').keyup(function(evento) {
+        $('#precio').on( 'keyup click',(function(evento) {
             var precio = $('#precio').val();
             if (precio>999) {
                 $('#mensajePrecio').show();
@@ -821,28 +828,18 @@ function maxLengthCheck(object) {
                 $('#mensajePrecio').hide();
                 $('#guardarCambios').attr('disabled',false);
             }
-        });
+        }));
     });
 // Para validar el precio
 //---------------------------------------------------------------------------------------------------
 // Para validar los radio boton
     $(document).ready(function(){
-        console.log($('#saga').val() );
-        if($('#saga').val() != ''){
         $('#option-1').prop('checked','checked');
         $('#if_si').show();
         $('#sagas').attr('required','required');
         $('#despues').attr('required','required');
         $('#antes').attr('required','required');
         $('#sagas').val('');
-        }else{
-          $('#option-2').prop('checked','checked'); 
-          $('#if_si').hide();
-          $('#sagas').removeAttr('required');
-          $('#despues').removeAttr('required');
-          $('#antes').removeAttr('required');
-          $('#sagas').val(''); 
-        }
     });
 
     function yesnoCheck() {
@@ -912,6 +909,24 @@ function maxLengthCheck(object) {
             width: "60%"
         });
 */
+
+
+        //conversion Ticket dolar
+        function ticket_dolar(cantidad, unidad) {
+            var conversion=cantidad*unidad;
+            return conversion;
+        }
+
+        document.getElementById("conversion").disabled = true;
+        var conversionInc=document.getElementById("precio").value*parseFloat("0.20");
+        document.getElementById("conversion").value= conversionInc.toFixed(2);
+
+        $( "#precio" ).on( 'keyup click', function() {
+            var conversion=ticket_dolar(document.getElementById("precio").value, parseFloat("0.20"));
+            document.getElementById("conversion").value=conversion.toFixed(2);
+        });
+
+//---------------------------------------------------------------------------------------------------
     </script>
 
     {{--manejo de la imager precargada--}}
