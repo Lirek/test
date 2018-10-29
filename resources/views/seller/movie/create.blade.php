@@ -150,14 +150,22 @@
                             {{--titulo original de la pelicula--}}
                             <label for="exampleInputFile" class="control-label">Título original</label>
                             <div id="mensajeTitulOriginal"></div>
-                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <br>
+                            {!! Form::text('original_title',null,['class'=>'form-control col-xs-2','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+
+                            <br><br>
 
                             {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
-                            <br>
+                            <div class="form-group row">
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                    {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                                </div>
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en dolares</label>
+                                    {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
+                                </div>
+                                <div class=" col-md-12" id="mensajePrecio"></div>
+                            </div>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
                             {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
@@ -454,7 +462,7 @@
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             {!! Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                             <br>
-                            
+
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="radio-inline">
@@ -474,7 +482,7 @@
                             <div class="" style="display:none" id="if_si">
                                 {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione una saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
                                 <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
-                                    <i class="fa fa-book"></i> 
+                                    <i class="fa fa-book"></i>
                                     Agregar saga
                                 </a>
                                 <br>
@@ -504,76 +512,76 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
-            {!! Form::close() !!}
-        </div>
-    </div>
-    <!-- /.modal  de sagas  -->
-    <div class="modal fade in modal-primary" id="modal-defaultMS">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h1 class="modal-title text-center">Agregar saga</h1>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true', 'id' => 'registro' ]) !!}
-                    {{ Form::token() }}
-                    <div class="box-body">
-                        <div class="col-md-6">
-                            
-                            {{--Imagen--}}
-                            <div id="mensajePortadaSaga"></div>
-                            <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group">
-                                <label for="imageSM-upload" id="image-label"> Imagen de la Saga</label>
-                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
-                                <div id="listModal"></div>
-                            </div>
-
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{--seleccion de rating--}}
-                            <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
-                            <br>
-
-                            {{--Nombre de la saga--}}
-                            <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga','required'=>'required']) !!}
-                            <br>
-
-                            {{--tipo de saga--}}
-                            <label for="exampleInputFile" class="control-label">Tipo de saga</label>
-                            {!! Form::select('type_saga',['2'=>'Peliculas'],null,
-                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
-                            <br>
-
-                            {{--Descripcion de  la saga--}}
-                            <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                            {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
-                        </div>
-                        <br>
-                    </div>
-                    <div align="center">
-                        {!! Form::submit('Guardar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
-                        {!! Form::close() !!}
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <div class="modal-footer">
-                    <div class="box-body">
-                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
+                {!! Form::close() !!}
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+        <!-- /.modal  de sagas  -->
+        <div class="modal fade in modal-primary" id="modal-defaultMS">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h1 class="modal-title text-center">Agregar saga</h1>
+                    </div>
+                    <div class="modal-body">
+                        {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true', 'id' => 'registro' ]) !!}
+                        {{ Form::token() }}
+                        <div class="box-body">
+                            <div class="col-md-6">
 
-    <!-- /.modal  de generos  -->
+                                {{--Imagen--}}
+                                <div id="mensajePortadaSaga"></div>
+                                <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group">
+                                    <label for="imageSM-upload" id="image-label"> Imagen de la Saga</label>
+                                    {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
+                                    <div id="listModal"></div>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{--seleccion de rating--}}
+                                <label for="exampleInputFile" class="control-label">Categoría</label>
+                                {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
+                                <br>
+
+                                {{--Nombre de la saga--}}
+                                <label for="exampleInputFile" class="control-label">Nombre</label>
+                                {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga','required'=>'required']) !!}
+                                <br>
+
+                                {{--tipo de saga--}}
+                                <label for="exampleInputFile" class="control-label">Tipo de saga</label>
+                                {!! Form::select('type_saga',['2'=>'Peliculas'],null,
+                                ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
+                                <br>
+
+                                {{--Descripcion de  la saga--}}
+                                <label for="exampleInputPassword1" class="control-label">Descripción</label>
+                                {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
+                            </div>
+                            <br>
+                        </div>
+                        <div align="center">
+                            {!! Form::submit('Guardar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
+                            {!! Form::close() !!}
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="box-body">
+                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <!-- /.modal  de generos  -->
         <div class="modal modal-primary fade" role="dialog" id="modalgenero">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -596,12 +604,12 @@
                         {!! Form::close() !!}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
-    <!-- /.modal -->
+        <!-- /.modal -->
 
     </section>
 
@@ -609,339 +617,357 @@
 
 @section('js')
 
-<script src="http://malsup.github.com/jquery.form.js"></script>
- 
-<script type="text/javascript">
- 
-    
- 
-    (function() {
- 
-    var bar = $('.bar');
-    var percent = $('.percent');
-    var status = $('#status');
- 
-    $('#registroPelicula').ajaxForm({
-        
-        beforeSend: function() {
-            status.empty();
-            var percentVal = '0%';
-            var posterValue = $('input[name=duration]').fieldValue();
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            $('#registrarPelicula').attr('disabled',true);
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        success: function() {
-            var percentVal = 'Completado..';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        complete: function(xhr) {
-            status.html(xhr.responseText);
-            // alert('Uploaded Successfully');
-            window.location.href = "{{URL::to('movies')}}"
+    <script src="http://malsup.github.com/jquery.form.js"></script>
 
-        }
-    });
-     
-    })();
-</script>
+    <script type="text/javascript">
+
+
+
+        (function() {
+
+            var bar = $('.bar');
+            var percent = $('.percent');
+            var status = $('#status');
+
+            $('#registroPelicula').ajaxForm({
+
+                beforeSend: function() {
+                    status.empty();
+                    var percentVal = '0%';
+                    var posterValue = $('input[name=duration]').fieldValue();
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    $('#registrarPelicula').attr('disabled',true);
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                success: function() {
+                    var percentVal = 'Completado..';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                complete: function(xhr) {
+                    status.html(xhr.responseText);
+                    // alert('Uploaded Successfully');
+                    window.location.href = "{{URL::to('movies')}}"
+
+                }
+            });
+
+        })();
+    </script>
 
     <script>
-//---------------------------------------------------------------------------------------------------
-// Para que se vea la imagen en el formulario
-    function archivo(evt) {
-        var files = evt.target.files;
-        for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
+        //---------------------------------------------------------------------------------------------------
+        // Para que se vea la imagen en el formulario
+        function archivo(evt) {
+            var files = evt.target.files;
+            for (var i = 0, f; f = files[i]; i++) {
+                if (!f.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(f);
+                reader.readAsDataURL(f);
             }
-            var reader = new FileReader();
-            reader.onload = (function(theFile) {
-                return function(e) {
-                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-                };
-            })(f);
-            reader.readAsDataURL(f);
         }
-    }
-    document.getElementById('image-upload').addEventListener('change', archivo, false);
-// Para que se vea la imagen en el formulario
-//---------------------------------------------------------------------------------------------------
-// Para que se vea la imagen en el modal
-    function modal(evt) {
-        var files = evt.target.files;
-        for (var i = 0, m; m = files[i]; i++) {
-            if (!m.type.match('image.*')) {
-                continue;
+        document.getElementById('image-upload').addEventListener('change', archivo, false);
+        // Para que se vea la imagen en el formulario
+        //---------------------------------------------------------------------------------------------------
+        // Para que se vea la imagen en el modal
+        function modal(evt) {
+            var files = evt.target.files;
+            for (var i = 0, m; m = files[i]; i++) {
+                if (!m.type.match('image.*')) {
+                    continue;
+                }
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        document.getElementById("listModal").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                    };
+                })(m);
+                reader.readAsDataURL(m);
             }
-            var reader = new FileReader();
-            reader.onload = (function(theFile) {
-                return function(e) {
-                document.getElementById("listModal").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-                };
-            })(m);
-            reader.readAsDataURL(m);
         }
-    }
-    document.getElementById('imageSM-upload').addEventListener('change', modal, false);
-// Para que se vea la imagen en el modal
-//---------------------------------------------------------------------------------------------------
-// Para validar el tamaño maximo de las imagenes y de la pelicula
-   // Portada de la pelicula
-  /*  $(document).ready(function(){
-        $('#image-upload').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePortadaPelicula').show();
-                $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePortadaPelicula').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajePortadaPelicula').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        document.getElementById('imageSM-upload').addEventListener('change', modal, false);
+        // Para que se vea la imagen en el modal
+        //---------------------------------------------------------------------------------------------------
+        // Para validar el tamaño maximo de las imagenes y de la pelicula
+        // Portada de la pelicula
+        /*  $(document).ready(function(){
+              $('#image-upload').change(function(){
+                  var tamaño = this.files[0].size;
+                  var tamañoKb = parseInt(tamaño/1024);
+                  if (tamañoKb>2048) {
+                      $('#mensajePortadaPelicula').show();
+                      $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                      $('#mensajePortadaPelicula').css('color','red');
+                      $('#registrarPelicula').attr('disabled',true);
+                  } else {
+                      $('#mensajePortadaPelicula').hide();
+                      $('#registrarPelicula').attr('disabled',false);
+                  }
+              });
+          });*/
+        // Portada de la pelicula
+        // Pelicula
+        /*
+        $(document).ready(function(){
+            $('#pelicula').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#mensajePelicula').show();
+                    $('#mensajePelicula').text('La pelicula es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePelicula').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajePelicula').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
+        });*/
+        // Pelicula
+        // Portada de la Saga
+        /*
+        $(document).ready(function(){
+            $('#imageSM-upload').change(function(){
+                var tamaño = this.files[0].size;
+                var tamañoKb = parseInt(tamaño/1024);
+                if (tamañoKb>2048) {
+                    $('#mensajePortadaSaga').show();
+                    $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $('#mensajePortadaSaga').css('color','red');
+                    $('#registrarSaga').attr('disabled',true);
+                } else {
+                    $('#mensajePortadaSaga').hide();
+                    $('#registrarSaga').attr('disabled',false);
+                }
+            });
+        });*/
+        // Portada de la Saga
+        // Para validar el tamaño maximo de las imagenes y de la pelicula
+        //---------------------------------------------------------------------------------------------------
+        // Para evitar los espacios vacios
+        /*
+        $(document).ready(function(){
+            $('#titulo').keyup(function(evento){
+                var titulOriginal = $('#titulo').val().trim();
+                console.log(titulOriginal.length);
+                if (titulOriginal.length==0) {
+                    $('#mensajeTitulo').show();
+                    $('#mensajeTitulo').text('El campo no debe estar vacio');
+                    $('#mensajeTitulo').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeTitulo').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });*/
-    // Portada de la pelicula
-    // Pelicula
-    /*
-    $(document).ready(function(){
-        $('#pelicula').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePelicula').show();
-                $('#mensajePelicula').text('La pelicula es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePelicula').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajePelicula').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        */
+        // Para evitar los espacios vacios
+        // PD: cocha con el siguiente script de validacion
+        //---------------------------------------------------------------------------------------------------
+        // Función que nos va a contar el número de caracteres
+        // Para el titulo
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#titulo').keyup(function(evento){
+                var titulo = $('#titulo').val();
+                numeroPalabras = titulo.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeTitulo').show();
+                    $('#mensajeTitulo').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
+                    $('#mensajeTitulo').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeTitulo').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });*/
-    // Pelicula
-    // Portada de la Saga
-    /*
-    $(document).ready(function(){
-        $('#imageSM-upload').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            if (tamañoKb>2048) {
-                $('#mensajePortadaSaga').show();
-                $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                $('#mensajePortadaSaga').css('color','red');
-                $('#registrarSaga').attr('disabled',true);
-            } else {
-                $('#mensajePortadaSaga').hide();
-                $('#registrarSaga').attr('disabled',false);
-            }
+        // Para el titulo
+        // Para el titulo original
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#titulOriginal').keyup(function(evento){
+                var titulOriginal = $('#titulOriginal').val();
+                numeroPalabras = titulOriginal.length;
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeTitulOriginal').show();
+                    $('#mensajeTitulOriginal').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
+                    $('#mensajeTitulOriginal').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeTitulOriginal').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });*/
-    // Portada de la Saga
-// Para validar el tamaño maximo de las imagenes y de la pelicula
-//---------------------------------------------------------------------------------------------------
-    // Para evitar los espacios vacios
-    /*
-    $(document).ready(function(){
-        $('#titulo').keyup(function(evento){
-            var titulOriginal = $('#titulo').val().trim();
-            console.log(titulOriginal.length);
-            if (titulOriginal.length==0) {
-                $('#mensajeTitulo').show();
-                $('#mensajeTitulo').text('El campo no debe estar vacio');
-                $('#mensajeTitulo').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulo').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        // Para el titulo original
+        // Para la sinopsis
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#sinopsis').keyup(function(evento){
+                var sinopsis = $('#sinopsis').val();
+                numeroPalabras = sinopsis.length;
+                $('#cantidadSinopsis').text(numeroPalabras+'/'+cantidadMaxima);
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeSinopsis').show();
+                    $('#mensajeSinopsis').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
+                    $('#mensajeSinopsis').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeSinopsis').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });
-    */
-    // Para evitar los espacios vacios
-    // PD: cocha con el siguiente script de validacion
-//---------------------------------------------------------------------------------------------------
-// Función que nos va a contar el número de caracteres
-    // Para el titulo
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#titulo').keyup(function(evento){
-            var titulo = $('#titulo').val();
-            numeroPalabras = titulo.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeTitulo').show();
-                $('#mensajeTitulo').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeTitulo').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulo').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        // Para la sinopsis
+        // Para la historia
+        $(document).ready(function(){
+            var cantidadMaxima = 191;
+            $('#historia').keyup(function(evento){
+                var historia = $('#historia').val();
+                numeroPalabras = historia.length;
+                $('#cantidadHistoria').text(numeroPalabras+'/'+cantidadMaxima);
+                if (numeroPalabras>cantidadMaxima) {
+                    $('#mensajeHistoria').show();
+                    $('#mensajeHistoria').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
+                    $('#mensajeHistoria').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeHistoria').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });
-    // Para el titulo
-    // Para el titulo original
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#titulOriginal').keyup(function(evento){
-            var titulOriginal = $('#titulOriginal').val();
-            numeroPalabras = titulOriginal.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeTitulOriginal').show();
-                $('#mensajeTitulOriginal').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeTitulOriginal').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeTitulOriginal').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        // Para la historia
+        // Función que nos va a contar el número de caracteres
+        //---------------------------------------------------------------------------------------------------
+        // Para validar la Fecha de Lanzamiento
+        $(document).ready(function(){
+            $('#fechaLanzamiento').keyup(function(evento){
+                var fechaActual = new Date();
+                var año = $('#fechaLanzamiento').val();
+                if (año > fechaActual.getFullYear()) {
+                    $('#mensajeFechaLanzamiento').show();
+                    $('#mensajeFechaLanzamiento').text('La fecha de lanzamiento no debe exceder el año actual');
+                    $('#mensajeFechaLanzamiento').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeFechaLanzamiento').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });
-    // Para el titulo original
-    // Para la sinopsis
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#sinopsis').keyup(function(evento){
-            var sinopsis = $('#sinopsis').val();
-            numeroPalabras = sinopsis.length;
-            $('#cantidadSinopsis').text(numeroPalabras+'/'+cantidadMaxima);
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeSinopsis').show();
-                $('#mensajeSinopsis').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeSinopsis').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeSinopsis').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para la sinopsis
-    // Para la historia
-    $(document).ready(function(){
-        var cantidadMaxima = 191;
-        $('#historia').keyup(function(evento){
-            var historia = $('#historia').val();
-            numeroPalabras = historia.length;
-            $('#cantidadHistoria').text(numeroPalabras+'/'+cantidadMaxima);
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeHistoria').show();
-                $('#mensajeHistoria').text('La cantidad máxima de caracteres es de '+cantidadMaxima);
-                $('#mensajeHistoria').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeHistoria').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-    // Para la historia
-// Función que nos va a contar el número de caracteres
-//---------------------------------------------------------------------------------------------------
-// Para validar la Fecha de Lanzamiento
-    $(document).ready(function(){
-        $('#fechaLanzamiento').keyup(function(evento){
-            var fechaActual = new Date();
-            var año = $('#fechaLanzamiento').val();
-            if (año > fechaActual.getFullYear()) {
-                $('#mensajeFechaLanzamiento').show();
-                $('#mensajeFechaLanzamiento').text('La fecha de lanzamiento no debe exceder el año actual');
-                $('#mensajeFechaLanzamiento').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeFechaLanzamiento').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-// Para validar la Fecha de Lanzamiento
-//---------------------------------------------------------------------------------------------------
-// Para validar el precio
-    $(document).ready(function(){
-        $('#precio').keyup(function(evento) {
-            var precio = $('#precio').val();
-            if (precio>999) {
-                $('#mensajePrecio').show();
-                $('#mensajePrecio').text('El costo de tickets no deben exceder los 999 Tickets');
-                $('#mensajePrecio').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else if (precio<0) {
-                $('#mensajePrecio').show();
-                $('#mensajePrecio').text('El costo de tickets debe ser mayor a 0');
-                $('#mensajePrecio').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajePrecio').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
-        });
-    });
-// Para validar el precio
-//---------------------------------------------------------------------------------------------------
-// Para validar los radio boton
-    $(document).ready(function(){
-        $('#option-2').prop('checked','checked');
-        $('#sagas').removeAttr('required');
-        $('#despues').removeAttr('required');
-        $('#antes').removeAttr('required');
-    });
+        // Para validar la Fecha de Lanzamiento
+        //---------------------------------------------------------------------------------------------------
+        // Para validar el precio
+        $(document).ready(function(){
 
-    function yesnoCheck() {
-        if (document.getElementById('option-1').checked) {
-            $('#if_si').show();
-            $('#sagas').attr('required','required');
-            $('#despues').attr('required','required');
-            $('#antes').attr('required','required');
-            $('#sagas').val('');
-        } else {
-            $('#if_si').hide();
+            $('#precio').on( 'keyup click',(function(evento) {
+                var precio = $('#precio').val();
+                if (precio>999) {
+                    $('#mensajePrecio').show();
+                    $('#mensajePrecio').text('El costo de tickets no deben exceder los 999 Tickets');
+                    $('#mensajePrecio').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else if (precio<0) {
+                    $('#mensajePrecio').show();
+                    $('#mensajePrecio').text('El costo de tickets debe ser mayor a 0');
+                    $('#mensajePrecio').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajePrecio').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            }));
+        });
+        // Para validar el precio
+        //---------------------------------------------------------------------------------------------------
+        // Para validar los radio boton
+        $(document).ready(function(){
+            $('#option-2').prop('checked','checked');
             $('#sagas').removeAttr('required');
-            $('#sagas').attr('novalidate',true);
             $('#despues').removeAttr('required');
             $('#antes').removeAttr('required');
-            $('#sagas').val('');
+        });
+
+        function yesnoCheck() {
+            if (document.getElementById('option-1').checked) {
+                $('#if_si').show();
+                $('#sagas').attr('required','required');
+                $('#despues').attr('required','required');
+                $('#antes').attr('required','required');
+                $('#sagas').val('');
+            } else {
+                $('#if_si').hide();
+                $('#sagas').removeAttr('required');
+                $('#sagas').attr('novalidate',true);
+                $('#despues').removeAttr('required');
+                $('#antes').removeAttr('required');
+                $('#sagas').val('');
+            }
         }
-    }
-// Para validar los radio boton
-//---------------------------------------------------------------------------------------------------
-// Para validar los capitulos de las sagas
-    $(document).ready(function(){
-        $('#despues').keyup(function(evento) {
-            var despues = $('#despues').val();
-            if (despues<0) {
-                $('#mensajeDespues').show();
-                $('#mensajeDespues').text('El número de la saga debe ser mayor a cero');
-                $('#mensajeDespues').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeDespues').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        // Para validar los radio boton
+        //---------------------------------------------------------------------------------------------------
+        // Para validar los capitulos de las sagas
+        $(document).ready(function(){
+            $('#despues').keyup(function(evento) {
+                var despues = $('#despues').val();
+                if (despues<0) {
+                    $('#mensajeDespues').show();
+                    $('#mensajeDespues').text('El número de la saga debe ser mayor a cero');
+                    $('#mensajeDespues').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeDespues').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });
-    $(document).ready(function(){
-        $('#antes').keyup(function(evento) {
-            var antes = $('#antes').val();
-            if (antes<0) {
-                $('#mensajeAntes').show();
-                $('#mensajeAntes').text('El número de la saga debe ser mayor a cero');
-                $('#mensajeAntes').css('color','red');
-                $('#registrarPelicula').attr('disabled',true);
-            } else {
-                $('#mensajeAntes').hide();
-                $('#registrarPelicula').attr('disabled',false);
-            }
+        $(document).ready(function(){
+            $('#antes').keyup(function(evento) {
+                var antes = $('#antes').val();
+                if (antes<0) {
+                    $('#mensajeAntes').show();
+                    $('#mensajeAntes').text('El número de la saga debe ser mayor a cero');
+                    $('#mensajeAntes').css('color','red');
+                    $('#registrarPelicula').attr('disabled',true);
+                } else {
+                    $('#mensajeAntes').hide();
+                    $('#registrarPelicula').attr('disabled',false);
+                }
+            });
         });
-    });
-// Para validar los capitulos de las sagas
-//---------------------------------------------------------------------------------------------------
+        // Para validar los capitulos de las sagas
+        //---------------------------------------------------------------------------------------------------
+
+
+        //conversion Ticket
+        function ticket_dolar(cantidad, unidad) {
+            var conversion=cantidad*unidad;
+            return conversion;
+        }
+
+        document.getElementById("conversion").disabled = true;
+        $( "#precio" ).on( 'keyup click', function() {
+            var conversion=ticket_dolar(document.getElementById("precio").value, parseFloat("0.20"));
+            document.getElementById("conversion").value=conversion.toFixed(2);
+            console.log(conversion.toFixed(2));
+        });
+
+        //---------------------------------------------------------------------------------------------------
+
     </script>
 @endsection

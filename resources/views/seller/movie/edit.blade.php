@@ -194,13 +194,21 @@
                             <br>
 
                             {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            @if($movie->status != 'Aprobado')
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
-                            @else
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
-                            @endif
+                            <div class="form-group row">
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                    @if($movie->status != 'Aprobado')
+                                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ]) !!}
+                                    @else
+                                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
+                                    @endif
+                                </div>
+                                <div class="col-md-6"><br>
+                                    <label for="exampleInputPassword1" class="control-label">Costo en dolares</label>
+                                    {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
+                                </div>
+                                <div class=" col-md-12" id="mensajePrecio"></div>
+                            </div>
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
@@ -683,7 +691,7 @@
 //---------------------------------------------------------------------------------------------------
 // Para validar el precio
     $(document).ready(function(){
-        $('#precio').keyup(function(evento) {
+        $('#precio').on( 'keyup click',(function(evento) {
             var precio = $('#precio').val();
             if (precio>999) {
                 $('#mensajePrecio').show();
@@ -699,7 +707,7 @@
                 $('#mensajePrecio').hide();
                 $('#guardarCambios').attr('disabled',false);
             }
-        });
+        }));
     });
 // Para validar el precio
 //---------------------------------------------------------------------------------------------------
@@ -780,6 +788,24 @@
             width: "60%"
         });
 */
+
+
+        //conversion Ticket dolar
+        function ticket_dolar(cantidad, unidad) {
+            var conversion=cantidad*unidad;
+            return conversion;
+        }
+
+        document.getElementById("conversion").disabled = true;
+        var conversionInc=document.getElementById("precio").value*parseFloat("0.20");
+        document.getElementById("conversion").value= conversionInc.toFixed(2);
+
+        $( "#precio" ).on( 'keyup click', function() {
+            var conversion=ticket_dolar(document.getElementById("precio").value, parseFloat("0.20"));
+            document.getElementById("conversion").value=conversion.toFixed(2);
+        });
+
+//---------------------------------------------------------------------------------------------------
     </script>
 
     {{--manejo de la imager precargada--}}
