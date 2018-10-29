@@ -65,21 +65,28 @@ class HomeController extends Controller
         $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
         $TransactionsTv=Tv::where('status','=','Aprobado')->count();
 
-        $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->get();
+        $Songs=Songs::where('album','=',0)->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Megazines=Megazines::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Megazines=Megazines::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
+        $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
-        
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->get();
+        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
 
         $Series=0;
         

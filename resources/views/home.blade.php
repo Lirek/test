@@ -1,33 +1,46 @@
 @extends('layouts.app')
 @section('css')
-<style>
+
+
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
+
+<style class="">
     .gly-spin {
         -webkit-animation: spin 0.8s infinite linear;
         -moz-animation: spin 0.8s infinite linear;
         -o-animation: spin 0.8s infinite linear;
         animation: spin 0.8s infinite linear;
     }
-    .btn-swal-center {
-        margin-right: 13em;
-    }
-    @media only screen and (max-width: 425px) {
-        .btn-swal-center {
-            margin-right: 10.5em;
-        }
-    }
-    @media only screen and (max-width: 375px) {
-        .btn-swal-center {
-            margin-right: 9em;
-        }
-    }
-    @media only screen and (max-width: 320px) {
-        .btn-swal-center {
-            margin-right: 7em;
-        }
-    }
+
     .justify {
       text-align: justify;
     }
+
+
+.swiper-container {
+        width: 90%;
+        height: 90%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      /*width:90%;*/ 
+    }
+
 </style>
 @endsection
 
@@ -248,148 +261,189 @@
                       @endif
  -->
 
-                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                        <!-- <div class="white-panel pe donut-chart" style=" background: #23b5e6 ">  BARRA AZUL-->
-                          <div class=""> 
-                          <div class="white">
-                              <h3><span class="card-title">
-                                    <u>
-                                      <em>Cartelera</em>
-                                    </u>
-                                  </span>
-                              </h3>      
-                          </div>
-                        </div>
-                      </div>
-                  <!--CONTENIDO RECIENTE-->
-                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
-                        <div class="white-panel panRf pe donut-chart">
-                          <!-- <div class="white-header">
-                            <h3><span class="card-title"></span></h3>                          
-                          </div> -->
-                          <div class="col-sm-12 col-xs-12 col-md-12 goleft">
-                            <table class="table table-striped table-advance table-hover">
-                                <thead>
-                                <tr>
-                                  <th></th>
-                                  <th><i class="fa fa-bullhorn" style="color: #23B5E6"></i>Nombre</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"  style="color: #23B5E6"></i>Tipo</th>
-                                  <th><i class="fa fa-money" style="color: #23B5E6"></i>Costo</th>
-                                  <th class="hidden-phone"><i class=" fa fa-edit"  style="color: #23B5E6"></i>Proveedor</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                
-                              @if($Albums)
-                              @foreach($Albums as $albums)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_vynil" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="#" onclick="fnOpenNormalDialog2('{!!$albums->cost!!}','{!!$albums->name_alb!!}','{!!$albums->id!!}')" id="modal-confirAlbum"> {{$albums->name_alb}}</a></td>
-                                  <td class="hidden-phone">Album Musical</td>
-                                  <td>{{$albums->cost}}</td>
-                                  <td class="hidden-phone">{{$albums->Seller->name}}</td>
-                                </tr>
-                                @endforeach
-                              @endif
-
-                              @if($Tv)
-                                @foreach($Tv as $tv)
-                                <tr class="letters">
-                                  <td><span class="bg-r"><i class="li_tv" style="color: #23B5E6"></i></span></td>
-                                  <td><a href="{{url('PlayTv/'.$tv->id)}}"> {{$tv->name_r}}</a></td>
-                                  <td class="hidden-phone">TV Online</td>
-                                  <td>Gratis</td>
-                                  <td class="hidden-phone">{{$tv->name}}</td>
-                                </tr>
-                                @endforeach
-                             @endif
-
-                            @if($Book)
-                              @foreach($Book as $book)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-book" style="color: #23B5E6"></i></span></td>
-                                <td><a href="#"  onclick="fnOpenNormalDialog3('{!!$book->cost!!}','{!!$book->title!!}','{!!$book->id!!}')"> {{$book->title}}</a></td>
-                                <td class="hidden-phone">Libro</td>
-                                <td>{{$book->cost}}</td>
-                                <td class="hidden-phone">{{$book->seller->name}}</td>
-                              </tr>
-                              @endforeach
-                            @endif
-
-                            @if($Megazines)
-                            @foreach($Megazines as $megazines)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="li_news" style="color: #23B5E6"></i></span></td>
-                                <td><a href=""> {{$megazines->title}}</a></td>
-                                <td class="hidden-phone">Revista</td>
-                                <td>{{$megazines->cost}}</td>
-                                <td class="hidden-phone">{{$megazines->Seller->name}}</td>
-                              </tr>
-                              @endforeach
-                            @endif
-
-                            @if($Radio)
-                              @foreach($Radio as $radio)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-microphone" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ListenRadio/'.$radio->id)}}"> {{$radio->name_r}}</a></td>
-                                <td class="hidden-phone">Radio Online</td>
-                                <td>Gratis</td>
-                                <td class="hidden-phone">{{$radio->name}}</td>
-                              </tr>
-                              @endforeach
-                            @endif
-
-                            @if($Movies)
-                            @foreach($Movies as $movies)
-                              <tr class="letters">
-                                <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                                <td><a href="{{url('ShowMovies/'.$movies->id)}}"> {{$movies->title}}</a></td>
-                                <td class="hidden-phone">Pelicula</td>
-                                <td>{{$movies->cost}}</td>
-                                <td class="hidden-phone">{{$movies->Seller->name}}</td>
-                              </tr>
-                              @endforeach
-                          @endif
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                
-                      <!--COMPRAR TICKETS-->
-                        <!-- <div class="col-md-5 col-sm-5 mb" style="margin-left: 2%">
-                          <div class="white-panel re">
-                            <div class="white-header">
-                               <h5>Tickets Disponible:</h5>
-                            </div>
-                            <div class="row white-size">
-                               <div class="col-sm-6 col-xs-6 goleft">
-                                @if(Auth::user()->credito != null)
-                                  <p><i class="fa fa-ticket"></i>{{Auth::user()->credito}}</p>
-                                @else
-                                  <p><i class="fa fa-ticket"></i>0</p>
-                                @endif
-                               </div>
-                               <div class="col-sm-6 col-xs-6"></div>
-                               <p><a href="{{url('SaleTickets')}}" class="">Recargar</a></p>
-                            </div>
-                            <div class="centered">
-                                
-                            </div>
-                          </div>
-                        </div> -->
-                        <div class="col-md-1">
-                          
-                        </div>
+        <!--CONTENIDO RECIENTE ALBUM
+          @if($Albums)
+          <div class="swiper-container">
+            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                <div class="white">
+                    <h3><span class="card-title">
+                          <u>
+                            <em>Cartelera de radio</em>
+                          </u>
+                        </span>
+                    </h3>      
+                </div>
+            </div>  
+              <div class="swiper-wrapper">
+                @foreach($Albums as $albums)
+                  <div class="swiper-slide">
+                    <img src="{{ asset($albums->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
                   </div>
-                              
-   
+                @endforeach
+              </div>
+              <!-- Add Pagination -->
+              <!--<div class="swiper-pagination"></div>
+          </div>
+          @endif-->
+
+        <!--CONTENIDO RECIENTE DE TV-->
+          @if($Tv)
+            <div class="swiper-container">
+              <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                  <div class="white">
+                      <h3><span class="card-title">
+                            <u>
+                              <em>Cartelera de televisión</em>
+                            </u>
+                          </span>
+                      </h3>      
+                  </div>
+                </div> 
+              <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                    @foreach($Tv as $tv)
+                      <div class="swiper-slide">
+                        <img src="{{ asset($tv->logo) }}" style="max-height: 100%; height: 60%; width: 60% ">
+                      </div>
+                    @endforeach
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          @endif
+
+        <!--CONTENIDO RECIENTE BOOK
+          @if($Book)
+          <div class="swiper-container">
+            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                <div class="white">
+                    <h3><span class="card-title">
+                          <u>
+                            <em>Cartelera de libros</em>
+                          </u>
+                        </span>
+                    </h3>      
+                </div>
+            </div>  
+              <div class="swiper-wrapper">
+                @foreach($Book as $book)
+                  <div class="swiper-slide">
+                    <img src="{{ asset($book->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
+                  </div>
+                @endforeach
+              </div>
+              <!-- Add Pagination -->
+              <!--<div class="swiper-pagination"></div>
+          </div>
+          @endif-->
+
+        <!--CONTENIDO RECIENTE REVISTAS
+        @if($Megazines)
+          <div class="swiper-container">
+            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                <div class="white">
+                    <h3><span class="card-title">
+                          <u>
+                            <em>Cartelera de revistas</em>
+                          </u>
+                        </span>
+                    </h3>      
+                </div>
+            </div>  
+              <div class="swiper-wrapper">
+                @foreach($Megazines as $megazines)
+                  <div class="swiper-slide">
+                    <img src="{{ asset($megazines->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
+                  </div>
+                @endforeach
+              </div>
+              <!-- Add Pagination -->
+              <!--<div class="swiper-pagination"></div>
+          </div>
+          @endif-->
+
+        <!--CONTENIDO RECIENTE RADIO-->
+          @if($Radio)
+          <div class="swiper-container">
+            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                <div class="white">
+                    <h3><span class="card-title">
+                          <u>
+                            <em>Cartelera de radio</em>
+                          </u>
+                        </span>
+                    </h3>      
+                </div>
+            </div>  
+              <div class="swiper-wrapper">
+                @foreach($Radio as $radio)
+                  <div class="swiper-slide">
+                    <img src="{{ asset($radio->logo) }}" style="max-height: 100%; height: 60%; width: 60% " >
+                  </div>
+                @endforeach
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+          </div>
+          @endif
+
+        <!--CONTENIDO RECIENTE PELICULAS
+        @if($Movies)
+          <div class="swiper-container">
+            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
+                <div class="white">
+                    <h3><span class="card-title">
+                          <u>
+                            <em>Cartelera de peliculas</em>
+                          </u>
+                        </span>
+                    </h3>      
+                </div>
+            </div>  
+              <div class="swiper-wrapper">
+                @foreach($Movies as $movies)
+                  <div class="swiper-slide">
+                    <img src="{{ asset($movies->img_poster) }}" style="max-height: 100%; height: 60%; width: 60% " >
+                  </div>
+                @endforeach
+              </div>
+              <!-- Add Pagination -->
+              <!--<div class="swiper-pagination"></div>
+          </div>
+          @endif-->
+
           <div id="modal-confirmation"></div> 
 
           @endsection
 
 @section('js')
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'>
+  
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
+<script >
+  var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+  spaceBetween: 0,
+        //loop: true,
+autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        slidesPerView: 4,
+        coverflow: {
+            rotate: 30,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        }
+    });
+
+//# sourceURL=pen.js
+</script>
 <script type="text/javascript">
 //---------------------------------------------------------------------------------------------------
 // Validacion cuando el usuario esta rechazado
