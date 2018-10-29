@@ -63,8 +63,9 @@
                             <label for="art_name" class="col-md-4 control-label">Titulo De La Cadena de Publicacion</label>
 
                             <div class="col-md-6">
-                                <input id="art_name" type="text" class="form-control" name="title" required autofocus>
+                                <input id="titulo" type="text" class="form-control" name="title" required autofocus>
                             </div>
+                            <div id="mensajeTitulo"></div>
                         </div>
 
 
@@ -83,21 +84,33 @@
                              @endforeach
                          </select>
                         
-                            
-                           <div id="image-preview">
-                          <label for="image-upload" id="image-label">Caratula</label>
-                          <input type="file" name="image" id="image-upload" class="form-control" />
+                        <!--     
+                        <div id="image-preview">
+                            <label for="image-upload" id="image-label">Caratula</label>
+                            <input type="file" name="image" id="image-upload" class="form-control" />
+
+                        </div> -->
+                        <br>
+                        <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Portada  </label>
+                              {!! Form::file('image',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                           <div id="list"></div>
                         </div>
                         </div>
                         <div class="form-group">
                             <label for="desc" class="col-md-4 control-label">Descripcion</label>
 
                             <div class="col-md-6">
-                                <textarea name="dsc" required>
-
-                                </textarea>
+                                <textarea name="dsc" required id="sinopsis" class="form-control" rows="3" cols="2"  placeholder="Descripción de la revista"></textarea>
+                                <div id="mensajeSinopsis"></div>
                             </div>
+                            
                         </div>
+
+                        {{--seleccion de rating--}}
+                            <label for="exampleInputFile" class="control-label">Categoría</label>
+                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <br>
 
 
                         <div class="form-group">
@@ -116,6 +129,36 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+   $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+   $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La descripción no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+</script>
 <script>
 
  $(document).ready(function() {
@@ -131,5 +174,24 @@ $(document).ready(function() {
     label_field: "#image-label"
   });
 });
+</script>
+<script>
+
+function portada(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('image-upload').addEventListener('change', portada, false);
 </script>
 @endsection

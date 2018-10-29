@@ -139,12 +139,12 @@
                         <div class="col-md-6">
                             {{--titulo de la serie--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            <div id="mensajeTitulo"></div>
                             @if($serie->status != 'Aprobado')
                             {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                             @else
                             {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo', 'readonly']) !!}
                             @endif
+                            <div id="mensajeTitulo"></div>
                             <br>
 
                             {{--Selecion tipo de publico de la serie--}}
@@ -154,12 +154,12 @@
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
                             @if($serie->status != 'Aprobado')
-                            {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
+                            {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0', 'oninput'=>"maxLengthCheck(this)"]) !!}
                             @else
                             {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'readonly', 'min'=>'0']) !!}
                             @endif
+                            <div id="mensajePrecio"></div>
                             <br>
 
                             {{--Categoria--}}
@@ -198,20 +198,20 @@
                             {{--historia de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
-                            <div id="mensajeHistoria"></div>
                             {!! Form::textarea('story',$serie->story,['class'=>'form-control','rows'=>'5','cols'=>'2','placeholder'=>'Historia de la serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
+                            <div id="mensajeHistoria"></div>
                             <br><br>
                         </div>
 
                         <div class="col-md-6">
                             {{--año de salida de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Año de Llanzamiento</label>
-                            <div id="mensajeFechaLanzamiento"></div>
                             @if($serie->status != 'Aprobado')
                             {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                             @else
                             {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'readonly']) !!}
                             @endif
+                             <div id="mensajeFechaLanzamiento"></div>
                             <br>
                         </div>
 
@@ -223,11 +223,11 @@
                             @else
                             {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'readonly', 'id'=>'link']) !!}
                             @endif
+                             <div id="mensajeLink"></div>
                             <br>
                         </div>
-
+                        <input type="hidden" id="saga" value="{{$serie->saga_id}}">
                         <div class="col-md-12">
-                            @if($serie->status != 'Aprobado')
                             <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="radio-inline">
@@ -265,7 +265,6 @@
                                     <div id="mensajeDespues"></div>
                                 </div>
                             </div>
-                            @endif
                         </div>
 
                         <div class="col-md-12" id="example-2">
@@ -288,7 +287,11 @@
 
                                             {{--precio--}}
                                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                            <input type="number" value="{{ $e->cost }}" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba el costo en tickets')" oninput="setCustomValidity('')">
+                                            @if($serie->status != 'Aprobado')
+                                            <input type="number" value="{{ $e->cost }}" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba el costo en tickets')" oninput="setCustomValidity('')" oninput="maxLengthCheck(this)">
+                                            @else
+                                            <input type="number" value="{{ $e->cost }}" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" readonly="true">
+                                            @endif
                                             <br>
 
                                             {{--link--}}
@@ -323,6 +326,7 @@
                                         <div id='mensajeEpisodio'></div>
                                         <div id='mensajePrecioEpisodio'></div>
                                         <div id='mensajeSinopsis'></div>
+                                        <div id="mensajeTrailerEpisodio"></div>
                                     </div>
                                     <br>
                                 </div>
@@ -354,6 +358,141 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+<script type="text/javascript">
+    $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#episodio_name").change(function(){
+        var nombre = $("#episodio_name").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajenombreEpisodio').show();
+            $('#mensajenombreEpisodio').text('El titulo no debe estar vacio');
+            $('#mensajenombreEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajenombreEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#precioEpisodio").change(function(){
+        var nombre = $("#precioEpisodio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecioEpisodio').show();
+            $('#mensajePrecioEpisodio').text('El precio no debe estar vacio');
+            $('#mensajePrecioEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecioEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La sinopsis no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#historia").change(function(){
+        var nombre = $("#historia").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeHistoria').show();
+            $('#mensajeHistoria').text('La historia no debe estar vacia');
+            $('#mensajeHistoria').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeHistoria').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#fechaLanzamiento").change(function(){
+        var nombre = $("#fechaLanzamiento").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeFechaLanzamiento').show();
+            $('#mensajeFechaLanzamiento').text('La fecha no debe estar vacia');
+            $('#mensajeFechaLanzamiento').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#link").change(function(){
+        var nombre = $("#link").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeLink').show();
+            $('#mensajeLink').text('El trailer no debe estar vacio');
+            $('#mensajeLink').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeLink').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#trailerEpisodio").change(function(){
+        var nombre = $("#trailerEpisodio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTrailerEpisodio').show();
+            $('#mensajeTrailerEpisodio').text('El trailer no debe estar vacio');
+            $('#mensajeTrailerEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTrailerEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+</script>
     <script>
 //---------------------------------------------------------------------------------------------------
     // Para que se vea la imagen en el formulario
@@ -562,27 +701,39 @@
     // Para validar el precio
 //---------------------------------------------------------------------------------------------------
     // Para validar los radio boton
-        $(document).ready(function(){
-            $('#option-1').prop('checked','checked');
+    $(document).ready(function(){
+        if($('#saga').val() != ''){
+        $('#option-1').prop('checked','checked');
+        $('#if_si').show();
+        $('#sagas').attr('required','required');
+        $('#despues').attr('required','required');
+        $('#antes').attr('required','required');
+        $('#sagas').val('');
+        }else{
+          $('#option-2').prop('checked','checked'); 
+          $('#if_si').hide();
+          $('#sagas').removeAttr('required');
+          $('#despues').removeAttr('required');
+          $('#antes').removeAttr('required');
+          $('#sagas').val(''); 
+        }
+    });
+
+    function yesnoCheck() {
+        if (document.getElementById('option-1').checked) {
             $('#if_si').show();
             $('#sagas').attr('required','required');
             $('#despues').attr('required','required');
             $('#antes').attr('required','required');
-        });
-
-        function yesnoCheck() {
-            if (document.getElementById('option-1').checked) {
-                $('#if_si').show();
-                $('#sagas').attr('required','required');
-                $('#despues').attr('required','required');
-                $('#antes').attr('required','required');
-            } else {
-                $('#if_si').hide();
-                $('#sagas').removeAttr('required');
-                $('#despues').removeAttr('required');
-                $('#antes').removeAttr('required');
-            }
+            $('#sagas').val('');
+        } else {
+            $('#if_si').hide();
+            $('#sagas').removeAttr('required');
+            $('#despues').removeAttr('required');
+            $('#antes').removeAttr('required');
+            $('#sagas').val('');
         }
+    }
     // Para validar los radio boton
 //---------------------------------------------------------------------------------------------------
     // Para validar los capitulos de las sagas

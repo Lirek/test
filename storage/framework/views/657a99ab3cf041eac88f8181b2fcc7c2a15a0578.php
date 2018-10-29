@@ -1,4 +1,3 @@
-@extends('seller.layouts')
 <style type="text/css">
 #image-preview {
   width: 400px;
@@ -35,40 +34,41 @@
 }
 
 </style>
-@section('content')
-@if ($errors->any())
+<?php $__env->startSection('content'); ?>
+<?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-@endif
+<?php endif; ?>
 <div class="content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Modificar</div>
                 <div class="panel-body">
-                    @include('flash::message')
+                    <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('megazine_i_update',$i_megazine->id) }}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('megazine_i_update',$i_megazine->id)); ?>" enctype="multipart/form-data">
+                        <?php echo e(csrf_field()); ?>
 
-                        <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
+
+                        <input type="hidden" name="id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
 
                         <div class="form-group">
                             <label for="art_name" class="col-md-4 control-label">Titulo De La Revista</label>
-                            @if($i_megazine->status != 'Aprobado')
+                            <?php if($i_megazine->status != 'Aprobado'): ?>
                             <div class="col-md-6">
-                                <input id="art_name" type="text" class="form-control" name="title" value="{{$i_megazine->title}}" required autofocus>
+                                <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($i_megazine->title); ?>" required autofocus>
                             </div>
-                            @else
+                            <?php else: ?>
                             <div class="col-md-6">
-                                <input id="art_name" type="text" class="form-control" name="title" value="{{$i_megazine->title}}" readonly>
+                                <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($i_megazine->title); ?>" readonly>
                             </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         
                         <div class="form-group">
@@ -76,11 +76,11 @@
                          Costo
                          </label>
                             <div class="col-md-6">
-                              @if($i_megazine->status != 'Aprobado')
-                                <input type="number" name="cost" class="form-control" value="{{$i_megazine->cost}}">
-                              @else
-                                <input type="number" name="cost" class="form-control" value="{{$i_megazine->cost}}" readonly>
-                              @endif                            
+                              <?php if($i_megazine->status != 'Aprobado'): ?>
+                                <input type="number" name="cost" class="form-control" value="<?php echo e($i_megazine->cost); ?>">
+                              <?php else: ?>
+                                <input type="number" name="cost" class="form-control" value="<?php echo e($i_megazine->cost); ?>" readonly>
+                              <?php endif; ?>                            
                               </div>
                         
 
@@ -91,7 +91,7 @@
 
                             <div class="col-md-6">
                                 <textarea name="dsc" required class="form-control" rows="3" cols="2">
-                                {{$i_megazine->descripcion}}</textarea>
+                                <?php echo e($i_megazine->descripcion); ?></textarea>
 
                             
                             </div>
@@ -101,31 +101,31 @@
                          <label for="tags"> 
                          Generos
                          </label>
-                       @if($i_megazine->status != 'Aprobado')
+                       <?php if($i_megazine->status != 'Aprobado'): ?>
                          <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple">
-                         @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                            @if($s->id == $genders->id) 
+                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                            <?php if($s->id == $genders->id): ?> 
                             selected
-                            @endif 
-                            @endforeach >{{$genders->tags_name}}  
+                            <?php endif; ?> 
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
                           </option>                                                 
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
-                        @else
+                        <?php else: ?>
                           <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" disabled="true">
-                         @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                            @if($s->id == $genders->id) 
+                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                            <?php if($s->id == $genders->id): ?> 
                             selected
-                            @endif 
-                            @endforeach >{{$genders->tags_name}}  
+                            <?php endif; ?> 
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
                           </option>                                                 
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
-                        @endif 
+                        <?php endif; ?> 
                         </div>
-                        @if($i_megazine->status != 'Aprobado')
+                        <?php if($i_megazine->status != 'Aprobado'): ?>
                         <div class="form-group">
                             <label for="country" class="col-md-4 control-label">Pais</label>
 
@@ -370,18 +370,19 @@
 
                             </div>
                         </div>
-                        @endif
+                        <?php endif; ?>
                         <div class="col-md-6">
-                                {{--Imagen--}}
+                                
                                 <div id="mensajeFotoLibro"></div>
                                 <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                     Si no selecciona una portada, se mantendrá la actual
                                 </label>
                                 <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-label"> Portada del Libro </label>
-                                        {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        <?php echo Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                     <div id="list">
-                                        <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($i_megazine->cover)}}"/>
+                                        <img style= "width:100%; height:100%; border-top:50%;" src="<?php echo e(asset($i_megazine->cover)); ?>"/>
                                     </div>
                                 </div>
                             </div>
@@ -399,9 +400,9 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 
 $(document).ready(function() {
@@ -417,4 +418,6 @@ $(document).ready(function() {
   });
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

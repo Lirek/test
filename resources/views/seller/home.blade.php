@@ -174,10 +174,22 @@
                     @foreach($Movies as $movies)
                       <tr class="letters">
                         <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
-                        <td><a href="#"> {{$movies->title}}</a></td>
+                        <td><a href="{{ route('movies.show', $movies->id) }}"> {{$movies->title}}</a></td>
                         <td class="hidden-phone">Pelicula</td>
                         <td class="hidden-phone">{{$movies->cost}}</td>
                         <td>{{$movies->status}}</td>
+                      </tr>
+                    @endforeach
+                  @endif
+
+                   @if($Series)
+                    @foreach($Series as $series)
+                      <tr class="letters">
+                        <td><span class="bg-r"><i class="fa fa-video-camera" style="color: #23B5E6"></i></span></td>
+                        <td><a href="{{ route('series.show',$series->id) }}"> {{$series->title}}</a></td>
+                        <td class="hidden-phone">Serie</td>
+                        <td class="hidden-phone">{{$series->cost}}</td>
+                        <td>{{$series->status}}</td>
                       </tr>
                     @endforeach
                   @endif

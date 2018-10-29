@@ -69,7 +69,7 @@
                         <div class="box-footer padding bg-gray">
                             <div class="text-center">
                                 <video style="" poster="<?php echo e(asset('movie/poster')); ?>/<?php echo e($movie->img_poster); ?>" id="player" controls>
-                                    <source src="<?php echo e(asset('/movie/film')); ?>/<?php echo e($movie->duration); ?>" type="video/mp4">
+                                    <source src="<?php echo e(asset('/movie/film')); ?>/<?php echo e($movie->duration); ?>" type="video/mp4 .mp4">
                                     <source src="<?php echo e(asset('/movie/film')); ?>/<?php echo e($movie->duration); ?>" type="video/webm">
                                 </video>
                             </div>

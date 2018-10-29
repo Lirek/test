@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #panel {
             /*Para la Sombra*/
@@ -7,7 +6,7 @@
             -moz-box-shadow: 8px 8px 15px #999;
             filter: shadow(color=#999999, direction=135, strength=8);
             /*Para la Sombra*/
-            background-image: url("{{ asset($megazine->cover)}}");
+            background-image: url("<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($book->cover); ?>");
             margin-top: 5%;
             background-position: center center;
             width: 100%;
@@ -40,49 +39,77 @@
             height:33px;
         }
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="widget-user-desc"><b>Libro:</b> "{{ $megazine->title }}"</h3>
-                <h3><b>{{ $megazine->cost }} tickets</b></h3>
+                <h2 class="widget-user-desc"><b>Libro:</b> "<?php echo e($book->title); ?>" (<?php echo e($book->release_year); ?>)</h2>
+                <h2><b><?php echo e($book->cost); ?> tickets</b></h2>
 
                 <div class="box box-widget widget-user-2">
                     <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>
+                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
                     </div>
                     <div id="panel" class="img-rounded img-responsive av text-center">
                     </div>
+                    <h5> <b>Genero:</b> 
+                        <?php $__currentLoopData = $book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <span>| <?php echo e($t->tags_name); ?> |</span>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </h5>
                     <br>
                     <div class="box-footer no-padding">
                         <div class="col-md-10 col-md-offset-1">
+                            <div class="widget-user-header bg-navy">
+                                <div class="widget-user-image">
+                                    <img class="img-rounded img-responsive av"src="<?php echo e(asset('images/authorbook')); ?>/<?php echo e($book->author->photo); ?>" style="width:70px;height:70px;" alt="User Avatar">
+                                </div>
+                                <!-- /.widget-user-image -->
+                                <h2 class="widget-user-username"><b>Autor:</b> <?php echo e($book->author->full_name); ?></h2>
+                            </div>
                             <ul class="nav nav-stacked">
                                 <li>
-                                    <h4><b>Categoría:</b><span> {{ $megazine->rating->r_name }} </span>
-                                    </h4>
+                                    <h2>
+                                        <b>Titulo original:</b>
+                                        <span>
+                                            "<?php echo e($book->original_title); ?>"
+                                        </span>
+                                    </h2>
                                 </li>
                                 <li>
-                                    <h5> <b>Genero:</b> 
-                                            @foreach($megazine->tags_megazines as $t)
-                                                <span>| {{ $t->tags_name }} |</span>
-                                            @endforeach
-                                    </h5>
-                                </li>
-                                <li>
-                                    <h4><b>Descripción: </b>
+                                    <h2><b>Sinopsis: </b>
                                         <span class="pull-right"></span>
-                                    </h4>
+                                    </h2>
                                     <h4 class="text-justify">
-                                        {{ $megazine->descripcion }}
+                                        <?php echo e($book->sinopsis); ?>
+
                                     </h4>
+                                </li>
+                                <li>
+                                    <h2><b>Categoría:</b><span> <?php echo e($book->rating->r_name); ?> </span>
+                                    </h2>
+                                </li>
+                                <li>
+                                    <?php if($book->saga!=null): ?>
+                                        <h2><b>Saga: </b><span><?php echo e($book->saga->sag_name); ?></span></h2>
+                                        <div class="col-xs-4">
+                                            <h3 class="pull-left"> <b>Antes:</b> <span> <?php echo e($book->before); ?> </span> </h3>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <h3 class="pull-left"> <b>Después:</b> <span> <?php echo e($book->after); ?> </span> </h3>
+                                            <br>
+                                        </div>
+                                    <?php else: ?>
+                                        <h2><b>Saga: </b><span>No tiene saga</span></h2>
+                                    <?php endif; ?>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-12" align="center">
-                        <a href="{{ url('/my_megazine/'.Auth::guard('web_seller')->user()->id)}}" class="btn btn-danger">Atrás</a>
+                        <a href="<?php echo e(url('/tbook')); ?>" class="btn btn-danger">Atrás</a>
                     </div>
                 </div>
             </div>
@@ -96,14 +123,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title text-center">{{ $megazine->title }}</h4>
+                        <h4 class="modal-title text-center"><?php echo e($book->title); ?></h4>
                     </div>
                     <div class="modal-body text-center">
                         <div class="pdf">
 
                             <div class="transparencia"></div>
                             <div class="bloqueo"></div>
-                            <object data="{{ asset($megazine->megazine_file) }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
+                            <object data="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
 
                         </div>
                     </div>
@@ -117,8 +144,8 @@
         </div>
         <!-- /.modal -->
     </section>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para evitar el click derecho sobre el modal del PDF        
@@ -152,7 +179,7 @@
             ctx = canvas.getContext('2d');
         /**
          * Get page info from document, resize canvas accordingly, and render page.
-         * @param num Page number.
+         * @param  num Page number.
          */
         function renderPage(num) {
             pageRendering = true;
@@ -227,4 +254,5 @@
 //---------------------------------------------------------------------------------------------------
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

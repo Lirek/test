@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<div class="container">
+<div class="content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-success">
@@ -15,7 +15,6 @@
                   <table class="table table-hover">
                 
                     <thead>   
-                
                             <tr>
                             <th>Cadena de Publicacion</th>
                             <th>Numero Revistas</th>
@@ -29,12 +28,12 @@
                             <?php $__currentLoopData = $collection; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pub_c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                          <tr>
                             <th><?php echo e($pub_c->sag_name); ?></th>
-                            <th><?php echo e(count($pub_c->megazines())); ?></th>
+                            <th>0</th>
                             <th><?php echo e($pub_c->created_at); ?></th>
                             <th><?php echo e($pub_c->status); ?></th>
                              <th>
                                 
-                                <a href="<?php echo e(url('/type_delete/'.$pub_c->id)); ?>"
+                                <!-- <a href="<?php echo e(url('/type_delete/'.$pub_c->id)); ?>"
                                    onclick="return confirm('¿ Desea eliminar la cadena de publicacion  <?php echo e($pub_c->sag_name); ?> ?')"
                                    class="btn btn-danger active ">
                                     <span class="glyphicon glyphicon-remove-circle"></span>
@@ -43,7 +42,7 @@
                                 <a href="<?php echo e(url('/type_update/'.$pub_c->id)); ?>" class="btn btn-warning active">
                                     <span class="glyphicon glyphicon-wrench"></span>
                                 </a>
-                                &nbsp;
+                                &nbsp; -->
                                 <a href="<?php echo e(url('/show_pub/'.$pub_c->id)); ?>" class="btn btn-info active">
                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
                                 </a>
@@ -95,12 +94,12 @@
                                 </a>
                                 </th>
                             <th>
-                                <a href="<?php echo e(url('/delete_megazine/'.$megazine->id)); ?>"
+                                <!-- <a href="<?php echo e(url('/delete_megazine/'.$megazine->id)); ?>"
                                    onclick="return confirm('¿ Desea eliminar la revista   <?php echo e($megazine->title); ?> ?')"
                                    class="btn btn-danger active ">
                                     <span class="glyphicon glyphicon-remove-circle"></span>
                                 </a>
-                                &nbsp;
+                                &nbsp; -->
                                 <a href="<?php echo e(url('/megazine_i_update/'.$megazine->id)); ?>" class="btn btn-warning active">
                                     <span class="glyphicon glyphicon-wrench"></span>
                                 </a>

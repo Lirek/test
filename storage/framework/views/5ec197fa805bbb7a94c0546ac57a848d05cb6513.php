@@ -146,23 +146,23 @@
 
                             
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            <div id="mensajeTitulo"></div>
                             <?php echo Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo de la película','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
+                            <div id="mensajeTitulo"></div>
                             <br>
 
                             
                             <label for="exampleInputFile" class="control-label">Título original</label>
-                            <div id="mensajeTitulOriginal"></div>
                             <?php echo Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
 
+                             <div id="mensajeTitulOriginal"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            <div id="mensajePrecio"></div>
-                            <?php echo Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']); ?>
+                            <?php echo Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]); ?>
 
+                            <div id="mensajePrecio"></div>
                             <br>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
@@ -198,24 +198,23 @@
                             
                             
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            <div id="mensajeFechaLanzamiento"></div>
-                            <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]); ?>
+                            <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'onkeypress' => 'return controltagNum(event)' ,'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]); ?>
 
+                            <div id="mensajeFechaLanzamiento"></div>
                             <br>
 
                             
                             <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                             <div id="cantidadSinopsis"></div>
-                            <div id="mensajeSinopsis"></div>
                             <?php echo Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
 
+                            <div id="mensajeSinopsis"></div>
                         </div>
 
                         <div class="form-group col-md-6">
                             
                             <label class="control-label">Pais</label>
-                            <select  name="country" id="paises" class="form-control">
-                                <option value="" selected>Seleccione una opción</option>
+                            <select  name="country" id="paises" class="form-control" required="required">
                                 <option value="AF">Afganistán</option>
                                 <option value="AL">Albania</option>
                                 <option value="DE">Alemania</option>
@@ -274,7 +273,7 @@
                                 <option value="DK">Dinamarca</option>
                                 <option value="DJ">Djibouti</option>
                                 <option value="DM">Dominica</option>
-                                <option value="EC">Ecuador</option>
+                                <option value="EC" selected>Ecuador</option>
                                 <option value="EG">Egipto</option>
                                 <option value="SV">El Salvador</option>
                                 <option value="AE">Emiratos Árabes Unidos</option>
@@ -457,6 +456,7 @@
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             <?php echo Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']); ?>
 
+                            <div id="mensajeLink"></div>
                             <br>
                             
                             <label class="control-label"> ¿Pertenece a una saga? </label>
@@ -593,9 +593,9 @@
 
                         <?php echo e(Form::token()); ?>
 
-                        <?php echo Form::hidden('seller_id',Auth::guard('web_seller')->user()->id); ?>
+                        <?php echo Form::hidden('seller_id',Auth::guard('web_seller')->user()->id,['id'=>'seller_id']); ?>
 
-                        <?php echo Form::hidden('type_tags','Peliculas'); ?>
+                        <?php echo Form::hidden('type_tags','Peliculas', ['id'=>'type_tags']); ?>
 
                         <?php echo Form::hidden('ruta','Peliculas'); ?>
 
@@ -604,7 +604,7 @@
 
                         <br>
                         <div align="center">
-                            <?php echo Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']); ?>
+                            <?php echo Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource', 'onclick'=>'callback()']); ?>
 
                         </div>
                         <?php echo Form::close(); ?>
@@ -623,6 +623,139 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+    
+       function callback() {
+            $('#save-resource').attr('disabled',true);
+            var tags_name= $("#new_tag").val();
+            var type_tags= $('#type_tags').val();
+            var seller_id = $('#seller_id').val();
+  
+                                $.ajax({
+                                url: "<?php echo e(url('/AddTags')); ?>",
+                                type: 'POST',
+                                data: {
+                                        _token: $('input[name=_token]').val(),
+                                        tags_name: tags_name,
+                                        type_tags: type_tags,
+                                        seller_id: seller_id,
+                                      
+                                      }, 
+
+                                success: function (result) {
+                                    
+                                    if(result==0){
+                                    swal("Genero "+tags_name +" agregado con exito y en espera de verificación","","success");
+                                    $('#modalgenero').toggle();
+                                    $('.modal-backdrop').remove();
+                                    }
+                                },
+
+                                error: function (result) {
+                                    swal('Existe un Error en su Solicitud','','error');
+                                
+                                },
+                                });  
+ }
+
+
+</script>
+
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+
+
+<script type="text/javascript">
+    $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#titulOriginal").change(function(){
+        var nombre = $("#titulOriginal").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulOriginal').show();
+            $('#mensajeTitulOriginal').text('El titulo no debe estar vacio');
+            $('#mensajeTitulOriginal').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulOriginal').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La sinopsis no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#fechaLanzamiento").change(function(){
+        var nombre = $("#fechaLanzamiento").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeFechaLanzamiento').show();
+            $('#mensajeFechaLanzamiento').text('La fecha no debe estar vacia');
+            $('#mensajeFechaLanzamiento').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+    $("#link").change(function(){
+        var nombre = $("#link").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeLink').show();
+            $('#mensajeLink').text('El trailer no debe estar vacio');
+            $('#mensajeLink').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        
+        }
+    })
+</script>
 
 <script src="http://malsup.github.com/jquery.form.js"></script>
  
@@ -959,5 +1092,29 @@
 // Para validar los capitulos de las sagas
 //---------------------------------------------------------------------------------------------------
     </script>
+<script type="text/javascript">
+    // Validacion de solo letas
+        function controltagLet(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
+        function controltagNum(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[0-9]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
