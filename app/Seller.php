@@ -128,5 +128,9 @@ class Seller extends Authenticatable
     {
     return $this->hasMany('App\Referals', 'user_id');
     }
+
+    public function PaymentSeller() {
+        return $this->hasMany('App\PaymentSeller', 'seller_id');
+    }
     
 }

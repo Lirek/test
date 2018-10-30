@@ -229,14 +229,13 @@
         }
 
          function yesnoCheck() {
-        if (document.getElementById('option-2').checked) 
-        {
+        if (document.getElementById('option-2').checked) {
             $('#if_no').show();
-        } 
-        else 
-        {
-            $('#if_no').hide();
-            $('#razon').val('');
+            $('#razon').attr('required','required');
+        } else {
+          $('#if_no').hide();
+          $('#razon').val('');
+          $('#razon').removeAttr('required');
         }
       }
     </script>

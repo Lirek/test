@@ -6,93 +6,65 @@
 @endsection
 @section('main')
 	<div class="row mt">
-		<h2><i class="fa fa-angle-right"></i>Libros</h2>
+		<h2><i class="fa fa-angle-right"></i>Pagos de Proveedores</h2>
 	</div>
-
 	<div class="container">
+
 		<ul class="nav nav-tabs nav-justified">
-			<li class="active"><a data-toggle="tab" id="opcion1"><h4>Libros pendientes</h4></a></li>
-			<li><a data-toggle="tab" id="opcion2"><h4>Libros aprobados</h4></a></li>
-			<li><a data-toggle="tab" id="opcion3"><h4>Libros rechazados</h4></a></li>
-			{{--<li><a data-toggle="tab" href="#menu1" id="pubTab"><h4>Saga, Trilogia u Otro</h4></a></li>--}}
+			<li class="active"><a data-toggle="tab" href="#pendientes" id="opcion1"><h4>Por cobrar</h4></a></li>
+			<li><a data-toggle="tab" href="#aprobadas" id="opcion2"><h4>Diferidos</h4></a></li>
+			<li><a data-toggle="tab" href="#rechazadas" id="opcion3"><h4>Pagados</h4></a></li>
 		</ul>
 
 		<div class="tab-content text-center">
 			<div id="pendientes" class="tab-pane fade in active">
 				<div class="col-lg-12">
 					<div class="table-responsive">
-						<table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="libros">
+						<table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="pagos">
 							<thead>
 								<tr>
-									<th class="non-numeric">Titulo</th>
-									<th class="non-numeric">Portada</th>
-									<th class="non-numeric">Restricción</th>
-									<th class="non-numeric">Proveedor</th>
-									<th class="non-numeric">Descripción</th>
-									<th class="non-numeric">Saga,Trilogia u Otro</th>
-									<th class="non-numeric">Costo</th>
-									<th class="non-numeric">Archivo</th>
-									<th class="non-numeric">Estatus</th>
-								</tr>
-							</thead>
-						</table>
+						        	<th class="non-numeric">Información del proveedor</th>
+						        	<th class="non-numeric">Imagen de factura</th>
+									<th class="non-numeric">Fecha para el retiro</th>
+									<th class="non-numeric">Tickets solicitados / Tickets disponibles</th>
+									<th class="non-numeric">Opciones</th>
+						        </tr>
+					    	</thead>
+					    </table>
 					</div>
 				</div>
 			</div>
-			{{--
-			<div id="menu1" class="tab-pane fade">
-				<div class="col-lg-12">
-					<div class="content-panel">
-						<h4>Saga,Trilogia u Otro</h4>
-						<br>
-						<table class="display responsive no-wrap datatable_wrapper" width="100%" id="PubChain">
-							<thead>
-								<tr>
-									<th class="non-numeric">Nombre</th>
-									<th class="non-numeric">Imagen</th>
-									<th class="non-numeric">Restriccion</th>
-									<th class="non-numeric">Proveedor</th>
-									<th class="non-numeric">Descripcion</th>
-									<th class="non-numeric">Estatus</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			--}}
 		</div>
+
 	</div>
-	@include('promoter.modals.BookViewModal')
 
 @endsection
 
 @section('js')
+@include('promoter.modals.PaymentsSellerViewModal')
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('js/jquery.mlens-1.7.min.js') }}"></script>
 <script>
 
 	$(document).ready(function(){
 
-		var libros = $('#libros').DataTable({
-		    processing: true,
-		    serverSide: true,
-		    responsive: true,
-		    destroy: true,
+		// listar los pagos por cobrar
+		var pagos = $('#pagos').DataTable({
+	        processing: true,
+	        serverSide: true,
+            responsive: true,
+            bDestroy: true,
 
-		    ajax: '{!! url('BooksData/En Revision') !!}',
-		    columns: [
-		        {data: 'title', name: 'title'},
-		        {data: 'cover', name: 'cover'},
-		        {data: 'rating_id', name: 'rating_id'},
-		        {data: 'seller_id', name: 'seller_id'},
-		        {data: 'sinopsis', name: 'sinopsis'},
-		        {data: 'saga_id', name: 'saga_id'},
-		        {data: 'cost', name: 'cost'},
-		        {data: 'books_file', name: 'books_file'},
-		        {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-		    ],
+	        ajax: '{!! url('PaymentsDataTable/Por cobrar') !!}',
+	        columns: [
+	        	{data: 'proveedor', name: 'proveedor'},
+	            {data: 'img_factura', name: 'img_factura'},
+	            {data: 'cita', name: 'cita'},
+	            {data: 'tickets', name: 'tickets'},
+	            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
+	        ],
 	        language: {
 	        	"processing": "Procesando...",
 	            "lengthMenu" : "Mostrar _MENU_ registros",
@@ -116,28 +88,27 @@
                     "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
-	        }
+	        },
+            "order": [[ 2, "desc" ]]
 		});
-		// listar libros pendientes
+		// listar los pagos por cobrar
+
+		// listar los pagos por cobrar
 		$(document).on('click','#opcion1', function() {
-			var librosPendientes = $('#libros').DataTable({
-			    processing: true,
-			    serverSide: true,
-			    responsive: true,
-			    bDestroy: true,
+			var pagosPorCobrar = $('#pagos').DataTable({
+		        processing: true,
+		        serverSide: true,
+	            responsive: true,
+	            destroy: true,
 
-			    ajax: '{!! url('BooksData/En Revision') !!}',
-			    columns: [
-			        {data: 'title', name: 'title'},
-			        {data: 'cover', name: 'cover'},
-			        {data: 'rating_id', name: 'rating_id'},
-			        {data: 'seller_id', name: 'seller_id'},
-			        {data: 'sinopsis', name: 'sinopsis'},
-			        {data: 'saga_id', name: 'saga_id'},
-			        {data: 'cost', name: 'cost'},
-			        {data: 'books_file', name: 'books_file'},
-			        {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-			    ],
+		        ajax: '{!! url('PaymentsDataTable/Por cobrar') !!}',
+		        columns: [
+		        	{data: 'proveedor', name: 'proveedor'},
+		            {data: 'img_factura', name: 'img_factura'},
+		            {data: 'cita', name: 'cita'},
+		            {data: 'tickets', name: 'tickets'},
+		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
+		        ],
 		        language: {
 		        	"processing": "Procesando...",
 		            "lengthMenu" : "Mostrar _MENU_ registros",
@@ -161,31 +132,28 @@
 	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                }
-		        }
+		        },
+            	"order": [[ 2, "desc" ]]
 			});
 		});
-		// listar libros pendientes
+		// listar los pagos pendientes
 
-		// listar libros aprobados
+		// listar los pagos diferidos
 		$(document).on('click','#opcion2', function() {
-			var liborsAprobados = $('#libros').DataTable({
-			    processing: true,
-			    serverSide: true,
-			    responsive: true,
-			    destroy: true,
+			var pagosDiferidos = $('#pagos').DataTable({
+		        processing: true,
+		        serverSide: true,
+	            responsive: true,
+	            destroy: true,
 
-			    ajax: '{!! url('BooksData/Aprobado') !!}',
-			    columns: [
-			        {data: 'title', name: 'title'},
-			        {data: 'cover', name: 'cover'},
-			        {data: 'rating_id', name: 'rating_id'},
-			        {data: 'seller_id', name: 'seller_id'},
-			        {data: 'sinopsis', name: 'sinopsis'},
-			        {data: 'saga_id', name: 'saga_id'},
-			        {data: 'cost', name: 'cost'},
-			        {data: 'books_file', name: 'books_file'},
-			        {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-			    ],
+		        ajax: '{!! url('PaymentsDataTable/Diferido') !!}',
+		        columns: [
+		        	{data: 'proveedor', name: 'proveedor'},
+		            {data: 'img_factura', name: 'img_factura'},
+		            {data: 'cita', name: 'cita'},
+		            {data: 'tickets', name: 'tickets'},
+		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
+		        ],
 		        language: {
 		        	"processing": "Procesando...",
 		            "lengthMenu" : "Mostrar _MENU_ registros",
@@ -209,31 +177,28 @@
 	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                }
-		        }
+		        },
+            	"order": [[ 2, "desc" ]]
 			});
 		});
-		// listar libros aprobados
+		// listar los pagos diferidos
 
-		// listar libros denegados
+		// listar los pagos realizados
 		$(document).on('click','#opcion3', function() {
-			var liborsDenegados = $('#libros').DataTable({
-			    processing: true,
-			    serverSide: true,
-			    responsive: true,
-			    destroy: true,
+			var pagosDiferidos = $('#pagos').DataTable({
+		        processing: true,
+		        serverSide: true,
+	            responsive: true,
+	            destroy: true,
 
-			    ajax: '{!! url('BooksData/Denegado') !!}',
-			    columns: [
-			        {data: 'title', name: 'title'},
-			        {data: 'cover', name: 'cover'},
-			        {data: 'rating_id', name: 'rating_id'},
-			        {data: 'seller_id', name: 'seller_id'},
-			        {data: 'sinopsis', name: 'sinopsis'},
-			        {data: 'saga_id', name: 'saga_id'},
-			        {data: 'cost', name: 'cost'},
-			        {data: 'books_file', name: 'books_file'},
-			        {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-			    ],
+		        ajax: '{!! url('PaymentsDataTable/Pagado') !!}',
+		        columns: [
+		        	{data: 'proveedor', name: 'proveedor'},
+		            {data: 'img_factura', name: 'img_factura'},
+		            {data: 'cita', name: 'cita'},
+		            {data: 'tickets', name: 'tickets'},
+		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
+		        ],
 		        language: {
 		        	"processing": "Procesando...",
 		            "lengthMenu" : "Mostrar _MENU_ registros",
@@ -257,21 +222,28 @@
 	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                }
-		        }
+		        },
+            	"order": [[ 2, "desc" ]]
 			});
 		});
-		// listar libros denegados
+		// listar los pagos realizados
 
-		// modificar el estaus del libro
-		$(document).on('click', '#status', function() {
-			var x = $(this).val();
-			$("#formStatus").on('submit', function(e){
-				var s =$("input[type='radio'][name=status]:checked").val();
-				var url = "{{ url('books_status/') }}/"+x;
-				var message = $('#razon').val();
-				e.preventDefault();
-				console.log(x,s,url,message);
-				var gif = "{{ asset('/sistem_images/loading.gif') }}";
+		// modificar el estaus del pago
+		$(document).on('click','#status', function() {
+			var idPago = $(this).val();
+			console.log(idPago);
+			var s = $(this).attr('value2');
+			console.log(s);
+			$("#formStatus").on('submit', function(e) {
+				var status = $("input[type='radio'][name=status]:checked").val();
+				if (status=="Rechazado") {
+					s = status;
+				}
+	            var url = "{{ url('/admin_payments/') }}/"+idPago;
+	            var message = $('#razon').val();
+	            console.log(status,url,message);
+	            e.preventDefault();
+	            var gif = "{{ asset('/sistem_images/loading.gif') }}";
 		        swal({
 		            title: "Procesando la información",
 		            text: "Espere mientras se procesa la información.",
@@ -280,49 +252,105 @@
 		            closeOnEsc: false,
 		            closeOnClickOutside: false
 		        });
-				$.ajax({
+		        $.ajax({
 					url: url,
 					type: 'post',
 					data: {
 						_token: $('input[name=_token]').val(),
 						status: s,
-						message: message
+						message: message,
 					}, 
 					success: function (result) {
 						console.log(result);
 						$('#myModal').toggle();
 						$('.modal-backdrop').remove();
-						swal("Se ha "+s+" con éxito","","success")
+						swal("Se ha "+status+" con éxito","","success")
 						.then((recarga) => {
 							location.reload();
 						});
 					},
 					error: function (result) {
-						console.log(result);
 						swal('Existe un error en su solicitud','','error')
 						.then((recarga) => {
 							location.reload();
 						});
+						console.log(result);
 					}
-				});
+				}); 
 			});
 		});
-		// modificar el estaus del libro
+		// modificar el estaus del pago
 
-		// mostrar el libro
-		$(document).on('click', '#file_b', function() {
-	       var x = $(this).val();
-	       console.log(x);
-	       $("#book_file").attr("src", x);
-	       $("#book_file").attr("data", x);
-    	});
-    	// mostrar el libro
+		// Modal de la imagen de la factura
+		$(document).on('click', '#factura', function() {
+			var x = $(this).val();
+			var file = $("#factura"+x).attr("src");
+			console.log(file);
+			$("#photo_factura").attr("src", file);
+			$("#photo_factura").attr("data-big", file);
+			$("#photo_factura").mlens({
+				imgSrc: $("#photo_factura").attr("data-big"),    // path of the hi-res version of the image
+				imgSrc2x: $("#photo_factura").attr("data-big2x"),  // path of the hi-res @2x version of the image
+                                                  //for retina displays (optional)
+                lensShape: "square",                // shape of the lens (circle/square)
+                lensSize: ["50%","50%"],            // lens dimensions (in px or in % with respect to image dimensions)
+                                        // can be different for X and Y dimension
+                borderSize: 5,                  // size of the lens border (in px)
+                borderColor: "#666",            // color of the lens border (#hex)
+                borderRadius: 10,                // border radius (optional, only if the shape is square)
+                imgOverlay: $("#photo_factura").attr("data-overlay"), // path of the overlay image (optional)
+                overlayAdapt: true,    // true if the overlay image has to adapt to the lens size (boolean)
+                zoomLevel: 5,          // zoom level multiplicator (number)
+                responsive: true       // true if mlens has to be responsive (boolean)
+            });
+		});
+		// Modal de la imagen de la factura
+		
+		// mostrar informacion del proveedor
+		$(document).on('click', '#seller', function() {
+			var idSeller = $(this).val();
+			console.log(idSeller);
+			var url = "{{ url('/infoSeller/') }}/"+idSeller;
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'json', 
+				success: function (result) {
+					console.log(result);
+					if (result.logo!=null) {	
+						var logoProveedor = "{{ asset('/') }}/"+result.logo;
+						$("#logoProveedor").attr('src',logoProveedor);
+					} else {
+						$("#logoProveedor").attr('src',"{{asset('plugins/img/sinPerfil.png')}}");
+					}
+					$("#nombreProveedor").text(result.name);
+					$("#correoProveedor").text(result.email);
+					$("#telefonoProveedor").text(result.tlf);
+					$("#rucProveedor").text(result.ruc_s);
+					if (result.adj_ruc!=null) {	
+						var imgRucProveedor = "{{ asset('/') }}"+result.adj_ruc;
+						$("#imgRucProveedor").attr('src',imgRucProveedor);
+					} else {
+						$("#imgRucProveedor").hide();
+						$("#mensajeImgRucProveedor").text("No tiene su imagen de RUC registrada");
+					}
+				},
+				error: function (result) {
+					console.log(result);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
+			}); 
+		});
+		// mostrar informacion del proveedor
 
-    	// Listar las negaciones
+		// Listar las negaciones
 		$(document).on('click', '#denegado', function() {
 			var id = $(this).val(); // id de la pelicula
 			console.log(id);
-			var modulo = "Books";
+			var modulo = "Payments Seller";
 			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
 			var historialRechazo = $('#historialRechazo').DataTable({
 				processing: true,
@@ -366,79 +394,6 @@
 			});
 		});
 		// Listar las negaciones
-
-    	/*
-    	$(document).on('click', '#Status', function() {
-    		var x = $(this).val();
-
-    		 $( "#formStatus" ).on( 'submit', function(e){
-                
-                var s=$("input[type='radio'][name=status_p]:checked").val();
-                var url = 'admin_chain/'+x;
-                var message=$('#razon').val();
-
-                    e.preventDefault();
-                    $.ajax({
-                            url: url,
-                            type: 'post',
-                            data: {
-                                    _token: $('input[name=_token]').val(),
-                                    status: s,
-                                    message: message,
-                                  }, 
-                            success: function (result) {
-
-                                                        $('#myModal').toggle();
-                                                        $('.modal-backdrop').remove();
-                                                        alert("Se ha "+s+" con exito");
-                                                        $('#saga'+x).fadeOut();
-                                                        
-
-                                                        },
-
-                            error: function (result) {
-                            alert('Existe un Error en su Solicitud');
-                            console.log(result);
-                            }
-                            });  
-                                            });
-    	});
-    	*/
-
-    	// Validacion de maximo de caracteres para la razon
-        var cantidadMaxima = 191;
-        $('#razon').keyup(function(evento){
-            var razon = $('#razon').val();
-            numeroPalabras = razon.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeMaximoRazon').show();
-                $('#mensajeMaximoRazon').text('Ha excedido la cantidad máxima de caracteres');
-                $('#mensajeMaximoRazon').css('color','red');
-                $('#rechazo').attr('disabled',true);
-            } else {
-                $('#mensajeMaximoRazon').hide();
-                $('#rechazo').attr('disabled',false);
-            }
-        });
-    	// Validacion de maximo de caracteres para la razon
-    	/*
-    	var PubChain = $('#PubChain').DataTable({
-			processing: true,
-			serverSide: true,
-			responsive: true,
-			destroy: true,
-
-			ajax: '{!! url('BSagasDataTable') !!}',
-			columns: [
-				{data: 'sag_name', name: 'sag_name'},
-				{data: 'img_saga', name: 'img_saga'},
-				{data: 'rating_id', name: 'rating_id'},
-				{data: 'seller_id', name: 'seller_id'},
-				{data: 'sag_description', name: 'sag_description'},
-				{data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-			]
-		});
-		*/
 	});
 </script>
 @endsection
