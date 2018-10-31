@@ -488,6 +488,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
 
     Route::post('seller_login', 'SellerAuth\LoginController@login');
 
+
 //------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
 
     Route::get('seller_password/reset', 'SellerAuth\ForgotPasswordController@showLinkRequestForm');
@@ -532,6 +533,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 
     Route::resource('sellers', 'SellerController');
+    
+    Route::get('SellerBalance','SellerController@balance');
+    Route::get('SellerRequest','SellerController@Fondos');
+    
+     Route::post('SellerFunds','SellerController@applicationFunds');
+
 
 
     /*----------------------------------------------------------------------------

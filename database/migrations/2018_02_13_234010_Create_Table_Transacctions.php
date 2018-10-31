@@ -25,6 +25,7 @@ class CreateTableTransacctions extends Migration
             $table->integer('episodes_id')->unsigned()->default('0');
             $table->integer('movies_id')->unsigned()->default('0');
             $table->integer('megazines_id')->unsigned()->default('0');
+            $table->integer('seller_id')->unsigned()->default('0');
             $table->integer('tickets')->default('0');
             $table->timestamps();
 
@@ -35,6 +36,7 @@ class CreateTableTransacctions extends Migration
             $table->foreign('song_id')->references('id')->on('songs');
             $table->foreign('books_id')->references('id')->on('books');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('seller_id')->references('id')->on('seller');
             });
     }
 

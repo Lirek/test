@@ -25,6 +25,7 @@
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Estatus</th>
+                                <th class="text-center">N° de compras</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                         <td class="text-center"> <?php echo e($b->release_year); ?> </td>
                                         
                                         <td class="text-center"> <?php echo e($b->status); ?> </td>
+                                        <td class="text-center"> <?php echo e($b->transaction->count()); ?> </td>
                                         <td class="text-center ">
                                             <a href="<?php echo e(route('tbook.show', $b->id)); ?>"
                                                class="btn btn-info btn-xs">
@@ -80,6 +82,7 @@
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Estatus</th>
+                                <th class="text-center">N° de compras</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>

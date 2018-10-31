@@ -33,6 +33,8 @@ class Seller extends Authenticatable
       'logo',
       'created_at',
       'updated_at',
+      'credito',
+      'credito_pendiente',
     ];
 
     //hidden attributes
@@ -117,6 +119,10 @@ class Seller extends Authenticatable
     {
         return $this->hasMany('App\Serie', 'seller_id');
     }
+     public function Transaction()
+    {
+        return $this->hasMany('App\Transaction', 'seller_id');
+    }
 
 //https://prueba.leipel.com.automatis.com.ec
     public function followers()
@@ -126,6 +132,9 @@ class Seller extends Authenticatable
     public function Referals()
     {
     return $this->hasMany('App\Referals', 'user_id');
+    }
+    public function PaymentSeller() {
+        return $this->hasMany('App\PaymentSeller', 'seller_id');
     }
     
 }

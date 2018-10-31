@@ -32,6 +32,7 @@
         </style>
         <!--NUMERO-->
         <link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">
+
         <style type="text/css">
             .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags.png')); ?>");}
 
@@ -129,7 +130,13 @@
 
                         </h5>
                         <div class="card-content white-text">
-                            <span class="card-title centered"><h6>Tickets Disponibles: <p><?php echo e(Auth::guard('web_seller')->user()->credito); ?></p></h6></span>
+                            <a href=""  data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
+                                <span class="card-title centered">
+                                    <h6 id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333">Tickets Disponibles: 
+                                        <p><?php echo e(Auth::guard('web_seller')->user()->credito); ?></p>
+                                    </h6>
+                                </span>
+                            </a>
                         </div>
                        <!--  <li class="mt">
                             <a class="active" href="<?php echo e(url('seller_home')); ?>">
@@ -144,17 +151,12 @@
                                 <span>Mi perfil</span></a>
                             </a>
                         </li>
-                        <!-- <li class="sub-menu">
-                            <a href="javascript:;" >
-                                <i class="fa fa-users"></i>
-                                <span>Referidos</span>
+                        <li class="sub-menu">
+                            <a href="<?php echo e(url('SellerRequest')); ?>" >
+                                <i class="fa fa-money"></i>
+                                <span>Retiro de fondos</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="#">Mis redes</a></li>
-                                <li><a href="#">Mis amigos</a></li>
-                                <li><a href="#">Referir</a></li>
-                            </ul>
-                        </li> -->
+                        </li>
                         <!-- <li class="sub-menu">
                             <a href="javascript:;" >
                                 <i class="fa fa-heart"></i>
@@ -417,14 +419,35 @@
                         <div class="col-lg-12 main-chart">
                             <?php echo $__env->yieldContent('content'); ?>
                         </div>
-                        <div class="col-lg-3 ds" style="margin-bottom: 15%;">
+                        <div class="col-lg-3 " style="margin-bottom: 15%;">
                             
                         </div><!-- /col-lg-3 -->
                     </div>
                 </section>
             </section> 
         
-
+    <!--MODAL-->
+<div id="myModalTotal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-ticket"></i> Mi Balance</h4>
+      </div>
+      <div class="modal-body">
+        <label class="control-label col-sm-12 col-xs-12 col-md-12">
+           <center><h4><b>Total de tickets disponibles:</b> <?php echo e(Auth::guard('web_seller')->user()->credito); ?></h4></center>
+        </label>
+        <center><a href="<?php echo e(url('SellerBalance')); ?>">Ver detalle</a></center>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL-->
     </body>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>

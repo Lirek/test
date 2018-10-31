@@ -25,7 +25,8 @@ class CreateSellersTable extends Migration
             $table->string('descs_s')->nullable();
             $table->string('adj_ruc')->nullable();
             $table->string('adj_ci')->nullable();
-            $table->integer('credito')->nullable();
+            $table->integer('credito')->nullable()->default(0);
+            $table->integer('credito_pendiente')->nullable()->default(0);
             $table->string('address')->nullable();
             $table->integer('promoter_id')->unsigned()->default(0);
             //$table->foreign('promoter_id')->references('id')->on('promoter');

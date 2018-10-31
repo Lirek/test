@@ -44,7 +44,7 @@
         </ul>
     </div>
 <?php endif; ?>
-<div class="container">
+<div class="content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -102,9 +102,7 @@
                             <label for="desc" class="col-md-4 control-label">Descripcion</label>
 
                             <div class="col-md-6">
-                                <textarea name="dsc" required id="sinopsis" class="form-control" rows="3" cols="2">
-
-                                </textarea>
+                                <textarea name="dsc" required id="sinopsis" class="form-control" rows="3" cols="2"  placeholder="Descripción de la revista"></textarea>
                                 <div id="mensajeSinopsis"></div>
                             </div>
                             
