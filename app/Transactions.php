@@ -18,7 +18,8 @@ class Transactions extends Model
         'episodes_id',
         'movies_id', 
         'megazines_id', 
-        'tickets'
+        'tickets',
+        'seller_id'
     ];
 
     public function Books()
@@ -59,5 +60,9 @@ class Transactions extends Model
     public function User()
     {
     return $this->belongsTo('App\User', 'user_id');
+    }
+    public function Seller()
+    {
+    return $this->belongsTo('App\Seller', 'seller_id');
     }
 }
