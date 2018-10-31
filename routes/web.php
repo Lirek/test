@@ -308,6 +308,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
 
                 Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
+
+                /*Agregada 30-10-2018*/
+                Route::get('/contenidoPendiente','AdminContentController@pendientes');
           //________________________________________________________________________
 
 
