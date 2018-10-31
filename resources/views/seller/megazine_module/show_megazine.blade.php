@@ -49,8 +49,6 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-
-
                     <div class="row" >
 
                         <div class=" col-sm-12 col-md-6">
@@ -66,6 +64,7 @@
 
                             <div class="col-sm-12 col-md-8">
                             <h3>Revista | {{ $megazine->title }}</h3>
+                                <h3><b>{{ $megazine->cost }} tickets</b></h3>
                             </div><!-- /. col titel megazine -->
 
                             <div class="row">
@@ -94,8 +93,6 @@
                             </div>
                         </div> <!-- /. col contenido megazine -->
                     </div> <!-- /. row contenido megazine -->
-
-
 
 
         <!-- /.modal -->
