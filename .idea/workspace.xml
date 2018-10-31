@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/seller/MyBalance.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/framework/views/ec77b0e6fc909e39b2437b0b7b33ababeffdb56d.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Book.php" afterPath="$PROJECT_DIR$/app/Book.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Seller.php" afterPath="$PROJECT_DIR$/app/Seller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Transactions.php" afterPath="$PROJECT_DIR$/app/Transactions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2017_01_28_151437_create_sellers_table.php" afterPath="$PROJECT_DIR$/database/migrations/2017_01_28_151437_create_sellers_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2018_02_13_234010_Create_Table_Transacctions.php" afterPath="$PROJECT_DIR$/database/migrations/2018_02_13_234010_Create_Table_Transacctions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_megazine_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_megazine_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController/AuthController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController/ContentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController/ContentController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController/PackageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController/PackageController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/logs/laravel.log" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,120 +102,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#2;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#3;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1541013116601" expanded="true" signature="2061:2128" ph="..." />
-                <marker date="1541013116601" expanded="true" signature="2074:2126" ph="..." />
-                <marker date="1541013116601" expanded="true" signature="2075:2125" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="7654:7686" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="7771:7803" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="7890:7922" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="8007:8039" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="8125:8157" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="8456:8488" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="8765:8794" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="8825:8831" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8831:8837" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8837:8843" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8843:8849" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8849:8855" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8855:8861" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8861:8867" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8867:8873" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8873:8879" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8879:8885" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8885:8891" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="8891:8897" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="10780:10812" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="11041:11085" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="11134:11164" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="11189:11195" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11195:11201" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11201:11207" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11207:11213" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11213:11219" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11219:11225" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11225:11231" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11231:11237" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11237:11243" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11243:11249" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11249:11255" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="11255:11261" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="13267:13296" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="14336:14365" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="15367:15375" ph="ú" />
-                <marker date="1541013116601" expanded="false" signature="15582:15588" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="15588:15594" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="15594:15600" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="16476:16484" ph="í" />
-                <marker date="1541013116601" expanded="false" signature="17013:17021" ph="ú" />
-                <marker date="1541013116601" expanded="false" signature="17817:18177" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="18617:19033" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="19473:19889" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="22638:22645" ph="×" />
-                <marker date="1541013116601" expanded="false" signature="22731:22737" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="23143:23176" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="24306:24320" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="25903:25911" ph="ó" />
-                <marker date="1541013116601" expanded="false" signature="26494:26511" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="26777:26793" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="26885:26899" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="28459:28473" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="29396:29410" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="30081:30089" ph="ó" />
-                <marker date="1541013116601" expanded="false" signature="31484:31491" ph="×" />
-                <marker date="1541013116601" expanded="false" signature="31577:31583" ph=" " />
-                <marker date="1541013116601" expanded="false" signature="33292:33306" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="34277:34291" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="35200:35214" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="36162:36176" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="36830:36847" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="36966:36982" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="37104:37120" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="37212:37226" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="37788:37803" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="39465:39479" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="40551:40565" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="41605:41619" ph="..." />
-                <marker date="1541013116601" expanded="false" signature="45671:45685" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playTv.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/contents/playTv.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3450">
-              <caret line="138" column="1" lean-forward="false" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListenRadio.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5075">
-              <caret line="203" column="54" lean-forward="false" selection-start-line="203" selection-start-column="54" selection-end-line="203" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShowRadios.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4050">
-              <caret line="162" column="38" lean-forward="false" selection-start-line="141" selection-start-column="32" selection-end-line="162" selection-end-column="38" />
+            <state relative-caret-position="533">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -257,6 +139,9 @@
     <dirStrings>
       <dir>C:\wamp64\www\Leipel</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -305,13 +190,13 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApiController/AuthController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/public/assets/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -378,28 +263,12 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="seller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="seller" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="movie" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -427,10 +296,18 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/Http/Controllers/SellerController.php&#10;#&#9;app/Seller.php&#10;#&#9;storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php&#10;#&#9;storage/logs/laravel.log">
+      <created>1541023197884</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1541023197884</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243298000" />
+    <option name="totallyTimeSpent" value="244180000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -443,16 +320,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27891654" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27891654" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.51756954" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296355" sideWeight="0.48243046" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.48243046" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -491,13 +367,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/tv/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/partials/sidebar.blade.php" />
     <entry file="file://$PROJECT_DIR$/../../bin/php/php-7.1.14-Win32-VC14-x64/php.ini" />
     <entry file="file://$PROJECT_DIR$/app/Rating.php">
@@ -721,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="824">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
@@ -897,6 +759,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="229" column="41" lean-forward="false" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/playTv.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="138" column="1" lean-forward="false" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
