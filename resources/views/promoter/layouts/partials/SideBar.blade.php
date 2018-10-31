@@ -27,7 +27,14 @@
                           <i class="fas fa-user-tie"></i>
                           <span>Proveedores</span>
                       </a>
-                  </li>                  
+                  </li>
+
+                  <li class="mt">
+                      <a href="{{url('admin_sellers_payments')}}">
+                          <i class="fas fa-credit-card"></i>
+                          <span>Pagos de Proveedores</span>
+                      </a>
+                  </li>
 
                   <li class="mt">
                       <a href="{{url('admin_applys')}}">
