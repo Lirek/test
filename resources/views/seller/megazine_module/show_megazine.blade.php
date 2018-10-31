@@ -9,8 +9,8 @@
             /*Para la Sombra*/
             background-image: url("{{ asset($megazine->cover)}}");
             margin-top: 5%;
-            background-position: center center;
             width: 100%;
+            max-height: 500px;
             min-height: 500px;
             -webkit-background-size: 100%;
             -moz-background-size: 100%;
@@ -23,6 +23,9 @@
         }
         .pdf{
             position:relative;
+        }
+        .colorbadge{
+            background-color:#428bca;
         }
         .transparencia {
             opacity: 0.1;
@@ -39,54 +42,61 @@
             width:80%;
             height:33px;
         }
+
     </style>
 @endsection
+
 @section('content')
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="widget-user-desc"><b>Libro:</b> "{{ $megazine->title }}"</h3>
-                <h3><b>{{ $megazine->cost }} tickets</b></h3>
 
-                <div class="box box-widget widget-user-2">
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>
-                    </div>
-                    <div id="panel" class="img-rounded img-responsive av text-center">
-                    </div>
-                    <br>
-                    <div class="box-footer no-padding">
-                        <div class="col-md-10 col-md-offset-1">
-                            <ul class="nav nav-stacked">
-                                <li>
-                                    <h4><b>Categoría:</b><span> {{ $megazine->rating->r_name }} </span>
+
+                    <div class="row" >
+
+                        <div class=" col-sm-12 col-md-6">
+                            <div class="row">
+                                <div class=" col-sm-12 col-md-4 col-lg-4"></div>
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+                                    <div id="panel" class="img-rounded img-responsive av text-center"></div>
+                                </div>
+                            </div>
+                        </div><!-- /. col img megazine -->
+
+                        <div class="col-sm-12 col-md-6">
+
+                            <div class="col-sm-12 col-md-8">
+                            <h3>Revista | {{ $megazine->title }}</h3>
+                            </div><!-- /. col titel megazine -->
+
+                            <div class="row">
+                                    <div class="col-sm-12 col-md-8">
+                                    <hr>
+                                    <h4>Descripción:</h4>
+                                    <p class="text-justify">{{ $megazine->descripcion }}</p>
+                                    <h4> <b>Géneros:</b>
+                                        @foreach($megazine->tags_megazines as $t)
+                                            <span class="badge badge-light colorbadge "> {{ $t->tags_name }} </span>
+                                        @endforeach
                                     </h4>
-                                </li>
-                                <li>
-                                    <h5> <b>Genero:</b> 
-                                            @foreach($megazine->tags_megazines as $t)
-                                                <span>| {{ $t->tags_name }} |</span>
-                                            @endforeach
-                                    </h5>
-                                </li>
-                                <li>
-                                    <h4><b>Descripción: </b>
-                                        <span class="pull-right"></span>
-                                    </h4>
-                                    <h4 class="text-justify">
-                                        {{ $megazine->descripcion }}
-                                    </h4>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-12" align="center">
-                        <a href="{{ url('/my_megazine/'.Auth::guard('web_seller')->user()->id)}}" class="btn btn-danger">Atrás</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                    <h4> <b>Categoria:</b> <span class="label label-success"> {{ $megazine->rating->r_name }} </span></h4>
+
+                                        <div class="row">
+                                        <div  class="col-md-12" >
+                                        <hr>
+                                        </div>
+                                        <div  class="col-md-6" >
+                                            <a href="{{ url('/my_megazine/'.Auth::guard('web_seller')->user()->id)}}" class="btn btn-danger pull-left">Atrás</a>
+                                        </div>
+                                        <div  class="col-md-6">
+                                            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div> <!-- /. col contenido megazine -->
+                    </div> <!-- /. row contenido megazine -->
+
+
+
 
         <!-- /.modal -->
         <div class="modal fade in modal-warning" id="modal-default">
@@ -118,6 +128,7 @@
         <!-- /.modal -->
     </section>
 @endsection
+
 @section('js')
     <script>
 //---------------------------------------------------------------------------------------------------
