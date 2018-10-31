@@ -295,7 +295,7 @@ class SellerController extends Controller
         $seller->email = $request->email;
         $seller->tlf = $request->phone;
         $seller->ruc_s = $request->ruc_s;
-        $seller->address = $request->direccion;
+        //$seller->address = $request->direccion;
         $seller->save();
 
         Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();

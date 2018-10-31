@@ -93,16 +93,28 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li><a href="<?php echo e(route('queEsLeipel')); ?>" target="_blank">¿QUE ES LEIPEL?</a></li>
-                <?php if(Auth::guest()): ?>
-                    <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
-                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
-                <?php else: ?>
+
                     
-                    <?php if(Auth::user()->img_perf): ?>
-                        <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="40" height="40"></a></p>
-                    <?php else: ?>
-                       <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="40" height="40"></a></p>
-                    <?php endif; ?>
+
+                            <?php if(Auth::guard('web_seller')->user()): ?>
+
+                                <?php if(Auth::guard('web_seller')->user()->logo): ?>
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/seller_home')); ?>"><img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>" class="img-circle" width="40" height="40"></a></p>
+                                <?php else: ?>
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="40" height="40"></a></p>
+                                <?php endif; ?>
+
+                            <?php elseif(Auth::user()): ?>
+
+                                <?php if(Auth::user()->img_perf): ?>
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img-circle" width="40" height="40"></a></p>
+                                <?php else: ?>
+                                   <p class="navbar-right" style="padding-top: 4px"><a href="<?php echo e(url('/home')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img-circle" width="40" height="40"></a></p>
+                                <?php endif; ?>
+
+                            <?php elseif(Auth::guest()): ?>
+                                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
+                                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
                 <?php endif; ?>
             </ul>
         </div>

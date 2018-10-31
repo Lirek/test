@@ -93,16 +93,28 @@
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
                 <li><a href="{{route('queEsLeipel')}}" target="_blank">¿QUE ES LEIPEL?</a></li>
-                @if (Auth::guest())
-                    <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
-                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
-                @else
+
                     {{--<li><a href="{{ url('/home')}}">INGRESAR</a></li>--}}
-                    @if(Auth::user()->img_perf)
-                        <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="40" height="40"></a></p>
-                    @else
-                       <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
-                    @endif
+
+                            @if(Auth::guard('web_seller')->user())
+
+                                @if (Auth::guard('web_seller')->user()->logo)
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/seller_home')}}"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="40" height="40"></a></p>
+                                @else
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                                @endif
+
+                            @elseif(Auth::user())
+
+                                @if(Auth::user()->img_perf)
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="40" height="40"></a></p>
+                                @else
+                                   <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                                @endif
+
+                            @elseif (Auth::guest())
+                                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
+                                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
                 @endif
             </ul>
         </div>
