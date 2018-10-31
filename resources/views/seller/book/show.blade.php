@@ -63,13 +63,6 @@
                     <br>
                     <div class="box-footer no-padding">
                         <div class="col-md-10 col-md-offset-1">
-                            <div class="widget-user-header bg-navy">
-                                <div class="widget-user-image">
-                                    <img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
-                                </div>
-                                <!-- /.widget-user-image -->
-                                <h2 class="widget-user-username"><b>Autor:</b> {{ $book->author->full_name }}</h2>
-                            </div>
                             <ul class="nav nav-stacked">
                                 <li>
                                     <h2>
