@@ -1979,18 +1979,16 @@ class AdminController extends Controller
           return "<button href='' data-toggle='modal' data-target='#facturaModal' value=".$payments->id."><img class='img-rounded img-responsive av' id='factura' src=".asset($payments->factura)." style='width:70px;height:70px;' alt='Factura'></button>";
         })
         ->addColumn('cita',function($payments){
-          $originalFecha = $payments->fecha_cita;
-          $fechaCita = date("d/m/Y", strtotime($originalFecha));
-          return $fechaCita;
+          if ($payments->fecha_cita==NULL) {
+            return "Cita no asiganda";
+          } else {
+            $cita = date('d-m-Y',strtotime($payments->fecha_cita));
+            return $cita;
+          }
         })
         ->addColumn('tickets',function($payments){
-          $payment = PaymentSeller::find($payments->id)->where('status','Disponible')->get();
-          if (isset($payment[0]->tickets)) {
-            $total = $payment[0]->tickets;
-          } else {
-            $total = 0;
-          }
-          return $payments->tickets." / ".$total;
+          $seller = Seller::find($payments->seller_id);
+          return $payments->tickets." / ".$seller->credito;
         })
         ->addColumn('opciones',function($payments){
           if ($payments->status=="Por cobrar") { 
@@ -2027,8 +2025,14 @@ class AdminController extends Controller
     $payments = PaymentSeller::find($id);
     $email = $payments->seller->email;
     $message = $request->message;
+    $seller = Seller::find($payments->seller_id);
     if ($request->status == 'Por cobrar') {
       $payments->status = 'Diferido';
+      $hoy = date('Y-m-d');
+      $cita = strtotime('+2 day',strtotime($hoy));
+      $cita = date('Y-m-d',$cita);
+      $seller->credito_pendiente = $seller->credito_pendiente - $payments->tickets;
+      $payments->fecha_cita = $cita;
     }
     elseif ($request->status == 'Diferido') {
        $payments->status = 'Pagado';
@@ -2038,12 +2042,13 @@ class AdminController extends Controller
       $rejection->id_module = $id;
       $rejection->reason = $message;
       $rejection->save();
-      $payment = PaymentSeller::where('seller_id',$payments->seller_id)->where('status','Disponible')->get();
-      $pay = PaymentSeller::find($payment[0]->id);
-      $pay->tickets = $pay->tickets+$payments->tickets;
+      $seller->credito = $seller->credito + $payments->tickets;
+      if ($seller->credito_pendiente>0) {
+        $seller->credito_pendiente = $seller->credito_pendiente - $payments->tickets;
+      }
       $payments->status = 'Rechazado';
-      $pay->save();
     }
+    $seller->save();
     $payments->save();
     Mail::to($email)->send(new StatusPayments($payments->fecha_cita,$request->status,$message));
     return response()->json($payments);
