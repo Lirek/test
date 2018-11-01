@@ -1244,7 +1244,7 @@
                 'email':email_data
             },
             success: function(result){
-                 if (result == 1) 
+                 if (result == 1)
                  {
                   $('#emailMenRU').hide();
                   $('#registroRU').attr('disabled',false);
@@ -1525,7 +1525,7 @@
         else if (tecla==13) return true;
         patron =/[0-9]/;// -> solo numeros
         te = String.fromCharCode(tecla);
-        return patron.test(te); 
+        return patron.test(te);
     }
 // $(document).ready(function(){
 //         $('#emailRP').keyup(function(evento){
@@ -1558,7 +1558,7 @@
                 'email':email_data
             },
             success: function(result){
-                 if (result == 1) 
+                 if (result == 1)
                  {
                   $('#mensajeCorreo').hide();
                   $('#registroRP').attr('disabled',false);
@@ -1675,22 +1675,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
-    
+
         $(document).ready(function(){
-            
+
             //var usuario = $('#usuario').attr('href');
 
             $('#modal-login').modal('show');
-         
-            
-            
+
+
+
             // $('[href="#'+id+'"]').tab('show');
-           
-            
+
+
             // #usuario
             // #proveedor
 
-             
+
         });
     </script>
 @endif
@@ -1707,7 +1707,7 @@
         });
         var activeTab = localStorage.getItem('activeTab');
             console.log(activeTab);
-        
+
     });
 
 </script>
@@ -1730,7 +1730,7 @@
 
         $('#email').keyup(function(evento){
             var email = $('#email').val().trim();
-            
+
             if (email.length==0) {
                 $('#emailMen').show();
                 $('#emailMen').text('El campo no debe estar vacio');
@@ -1739,13 +1739,13 @@
                 $('#iniciar').attr('disabled',true);
                 $('#iniciar').css('background-color','')
                 }else {
-                $('#emailMen').hide(); 
+                $('#emailMen').hide();
                 }
                 var password = $('#password').val().trim();
 
                 if (email.length !=0 && password.length !=0){
                     $('#iniciar').attr('disabled',false);
-                } 
+                }
         });
     });
     //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
@@ -1755,16 +1755,16 @@
             var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
             if (caract.test(email) == false){
-                
+
                 $('#emailMen').show();
                 $('#emailMen').text('Formato email incorrecto');
                 $('#emailMen').css('color','red');
                 $('#emailMen').css('font-size','60%');
                 $('#iniciar').attr('disabled',true);
                 $('#iniciar').css('background-color','')
-              
+
             }else{
-                
+
                 return true;
             }
         });
@@ -1774,7 +1774,7 @@
 
         $('#password').keyup(function(evento){
             var password = $('#password').val().trim();
-            
+
             if (password.length==0) {
                 $('#passwordMen').show();
                 $('#passwordMen').text('El campo no debe estar vacio');
@@ -1788,7 +1788,7 @@
             var email = $('#email').val().trim();
             if (email.length !=0 && password.length !=0){
                 $('#iniciar').attr('disabled',false);
-            } 
+            }
         });
     });
 //------------------------------------------------------------------------------------------------------
@@ -1808,7 +1808,7 @@
 
         $('#emailP').keyup(function(evento){
             var email = $('#emailP').val().trim();
-            
+
             if (email.length==0) {
                 $('#emailMenP').show();
                 $('#emailMenP').text('El campo no debe estar vacio');
@@ -1817,13 +1817,13 @@
                 $('#iniciarP').attr('disabled',true);
                 $('#iniciarP').css('background-color','')
                 }else {
-                $('#emailMenP').hide(); 
+                $('#emailMenP').hide();
                 }
                 var password = $('#passwordP').val().trim();
 
                 if (email.length !=0 && password.length !=0){
                     $('#iniciarP').attr('disabled',false);
-                } 
+                }
         });
     });
         //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
@@ -1833,16 +1833,16 @@
             var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
             if (caract.test(email) == false){
-                
+
                 $('#emailMenP').show();
                 $('#emailMenP').text('Formato email incorrecto');
                 $('#emailMenP').css('color','red');
                 $('#emailMenP').css('font-size','60%');
                 $('#iniciarP').attr('disabled',true);
                 $('#iniciarP').css('background-color','')
-              
+
             }else{
-                
+
                 return true;
             }
         });
@@ -1852,7 +1852,7 @@
 
         $('#passwordP').keyup(function(evento){
             var password = $('#passwordP').val().trim();
-            
+
             if (password.length==0) {
                 $('#passwordMenP').show();
                 $('#passwordMenP').text('El campo no debe estar vacio');
@@ -1866,7 +1866,7 @@
             var email = $('#emailP').val().trim();
             if (email.length !=0 && password.length !=0){
                 $('#iniciarP').attr('disabled',false);
-            } 
+            }
         });
     });
 //------------------------------------------------------------------------------------------------------
