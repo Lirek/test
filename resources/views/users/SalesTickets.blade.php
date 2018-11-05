@@ -140,7 +140,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                             <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> {{$ticket->name}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
+                                            <form class="form-horizontal" id="formPago" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -150,7 +150,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                     <label for="codigo" class="col-md-4 col-sm-4 col-xs-12 control-label" style="margin-left:25% "><h5><b>Cantidad de paquetes:</b></h5>
                                                     </label>
                                                     <div class="col-md-2 col-sm-2 col-xs-12" style="margin-top: 1%">
-                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" required="required" onkeypress="return controltagNum(event)">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
@@ -200,6 +200,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12" id="totalP-{{$ticket->id}}"></div>
+                                                    <div id="mensajeValidacionPuntos-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;"></div>
                                                 </div>
                                                 <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-{{$ticket->id}}" align="center">
                                                     <h4 style="color: black">
@@ -412,7 +413,20 @@ input[type="checkbox"]:disabled + .label-text:before{
                 });
             }
         });
+
+        $("#formPago").on('submit', function(e){
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+        });
     });
+
 
     function terminosCondiciones(id) {
         if (!($('input[name="checkTerminosCondiciones"]').is(':checked'))) {
@@ -430,81 +444,88 @@ input[type="checkbox"]:disabled + .label-text:before{
     }
 
     function callback(id) {
-        
-        var gif = "{{ asset('/sistem_images/loading.gif') }}";
-        swal({
-            title: "Procesando",
-            text: "Estamos procesando su pago, por favor espere un momento.",
-            icon: gif,
-            buttons: false,
-            closeOnEsc: false,
-            closeOnClickOutside: false,
-            onOpen: () => {
-                swal.showLoading()
-            }
-        });
-        var costo = $('#cost').val();
-        var puntos = $('#points').val();
-        var tickets = id;
         var cant = $('#Cantidad-'+id).val();
-        console.log(puntos);
-        var ruta = "{{ url('/BuyPuntos/') }}";
-        $.ajax({
-            url: ruta,
-            type: "post",
-            data: {
-                _token: $('input[name=_token]').val(),
-                cost: costo,
-                points: puntos,
-                ticket_id: tickets,
-                Cantidad: cant
-            },
-            success: function (result) {
-                console.log(result);
-                if (result==1) {
-                    swal({
-                        title: "Puntos insuficientes",
-                        text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
-                        icon: "warning",
-                        buttons: {
-                            accept: {
-                                text: "OK",
-                                value: true,
-                                className: "btn-swal-center"
-                            }
-                        },
-                        closeOnEsc: false,
-                        closeOnClickOutside: false
-                    });
-                } else {
-                    var idUser={!!Auth::user()->id!!};
-                    $.ajax({
-                        url     : 'MyTickets/'+idUser,
-                        type    : 'GET',
-                        dataType: "json",
-                        success: function (respuesta){
-                            console.log(respuesta);
-                            swal({
-                                title: "¡Pago exitoso!",
-                                icon: "success",
-                                buttons: {
-                                    accept: {
-                                        text: "OK",
-                                        value: true,
-                                        className: "btn-swal-center"
-                                    }
-                                },
-                                closeOnEsc: false,
-                                closeOnClickOutside: false
-                            })
-                            .then((ok) => {
-                                location.reload();
-                            });
-                        },
-                    });
+        console.log(cant);
+        if (cant=="" || cant==0) {
+            $('#mensajeValidacionPuntos-'+id).show();
+            $('#mensajeValidacionPuntos-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Debe indicar la cantidad</span> </h4>");
+            $('#Cantidad-'+id).focus();
+        } else {
+            $('#mensajeValidacionPuntos-'+id).hide();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando",
+                text: "Estamos procesando su pago, por favor espere un momento.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                onOpen: () => {
+                    swal.showLoading()
                 }
-            }
-        });
+            });
+            var costo = $('#cost').val();
+            var puntos = $('#points').val();
+            var tickets = id;
+            console.log(puntos);
+            var ruta = "{{ url('/BuyPuntos/') }}";
+            $.ajax({
+                url: ruta,
+                type: "post",
+                data: {
+                    _token: $('input[name=_token]').val(),
+                    cost: costo,
+                    points: puntos,
+                    ticket_id: tickets,
+                    Cantidad: cant
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result==1) {
+                        swal({
+                            title: "Puntos insuficientes",
+                            text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
+                            icon: "warning",
+                            buttons: {
+                                accept: {
+                                    text: "OK",
+                                    value: true,
+                                    className: "btn-swal-center"
+                                }
+                            },
+                            closeOnEsc: false,
+                            closeOnClickOutside: false
+                        });
+                    } else {
+                        var idUser={!!Auth::user()->id!!};
+                        $.ajax({
+                            url     : 'MyTickets/'+idUser,
+                            type    : 'GET',
+                            dataType: "json",
+                            success: function (respuesta){
+                                console.log(respuesta);
+                                swal({
+                                    title: "¡Pago exitoso!",
+                                    icon: "success",
+                                    buttons: {
+                                        accept: {
+                                            text: "OK",
+                                            value: true,
+                                            className: "btn-swal-center"
+                                        }
+                                    },
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false
+                                })
+                                .then((ok) => {
+                                    location.reload();
+                                });
+                            },
+                        });
+                    }
+                }
+            });
+        }
     }
 
 
@@ -1005,12 +1026,22 @@ input[type="checkbox"]:disabled + .label-text:before{
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
         var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
+        console.log(cantidadPaquetes);
 
-        if (numberPhone=="" || countryPrefix=="") {
-            $('#mensajePayPhone-'+id).hide();
-            $('#mensajeValidacion-'+id).show();
-            $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Los datos introducidos son erróneos</span> </h4>");
-            $('#ingresarPayPhone-'+id).removeAttr("disabled");
+        if (numberPhone=="" || countryPrefix=="" || (cantidadPaquetes=="" || cantidadPaquetes==0) ) {
+            if (cantidadPaquetes=="" || cantidadPaquetes==0) {
+                $('#mensajePayPhone-'+id).hide();
+                $('#mensajeValidacion-'+id).show();
+                $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Debe indicar la cantidad</span> </h4>");
+                $('#ingresarPayPhone-'+id).removeAttr("disabled");
+                $('#Cantidad-'+id).focus();
+            } else {
+                $('#mensajePayPhone-'+id).hide();
+                $('#mensajeValidacion-'+id).show();
+                $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Los datos introducidos son erróneos</span> </h4>");
+                $('#ingresarPayPhone-'+id).removeAttr("disabled");
+                $('#numero-'+id).focus();
+            }
         }
         else {
             $('#mensajeValidacion-'+id).hide();

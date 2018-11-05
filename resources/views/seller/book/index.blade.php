@@ -21,7 +21,6 @@
                             <tr>
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
-                                <th class="text-center">Autor</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>
@@ -39,9 +38,7 @@
                                             <a href="{{ route('tbook.show', $b->id) }}">
                                                 <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
                                             </a>
-                                        </td>
-                                        <td class="text-center"> {{ $b->author->full_name }} </td>
-                                        {{--
+                                        </td>{{--
                                             error en la pc de Breiddy
                                         --}}
                                         <td class="text-center"> {{ $b->rating->r_name }} </td>

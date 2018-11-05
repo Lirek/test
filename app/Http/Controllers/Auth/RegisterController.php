@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Events\WelcomeEmailEvent;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovalNotification;
 
 class RegisterController extends Controller
 {
@@ -82,9 +84,13 @@ class RegisterController extends Controller
             'codigo_ref' => $code,
             'credito'=> 0,
                 ]);
-            
+
             event(new WelcomeEmailEvent($user));
-        
+
+            $emailAdmin = "bcastillo@leipel.com";
+            $motivo = "Usuario pendiente por aprobar";
+            Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
+            
         return $user;
     }
 }

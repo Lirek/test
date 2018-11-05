@@ -10,6 +10,7 @@ use Spatie\Fractalistic\Fractal;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Log;
 
 
 use App\Events\PayementAprovalEvent;
@@ -50,87 +51,87 @@ class UserController extends Controller
 {
     public function UserData()
     {
-      $user=auth()->user();
+        $user=auth()->user();
 
-            $Json = Fractal::create()
-                           ->item($user)
-                           ->transformWith(new UserTransformer)                
-                           ->toArray();          
+        $Json = Fractal::create()
+            ->item($user)
+            ->transformWith(new UserTransformer)
+            ->toArray();
 
         return Response::json($Json);
     }
 
     public function WebsUser()
     {
-      $user= User::find(auth()->user()->id);
-          
-          $x= $user->Referals()->get();
-          $referals1 = [];
-          $referals2= [];
-          $referals3= [];
-          $WholeReferals = collect(new User);
-          
-          if ($user->Referals()->get()->isEmpty()) 
-          {            
+        $user= User::find(auth()->user()->id);
+
+        $x= $user->Referals()->get();
+        $referals1 = [];
+        $referals2= [];
+        $referals3= [];
+        $WholeReferals = collect(new User);
+
+        if ($user->Referals()->get()->isEmpty())
+        {
             return Response::json(['status'=>'Esta Vacio'], 204);
 
-          }
-          foreach ($user->Referals()->get() as $key) 
-          {
-              $referals1[]=$key->refered;
-              $WholeReferals->prepend(User::find($key->refered));
-          }
+        }
+        foreach ($user->Referals()->get() as $key)
+        {
+            $referals1[]=$key->refered;
+            $WholeReferals->prepend(User::find($key->refered));
+        }
 
-          if (count($referals1)>0) 
-              { 
-                
-                foreach ($referals1 as $key2) 
-                 {  
-                    $joker = User::find($key2);
-                    
-                    foreach($joker->Referals()->get() as $key2)
-                     {
-                       $referals2[]=$key2->refered;
-                       $WholeReferals->prepend(User::find($key2->refered));
-                     }                  
-                 }
-              }
-          else
-              {
-                $referals2=0;
-              }   
+        if (count($referals1)>0)
+        {
 
+            foreach ($referals1 as $key2)
+            {
+                $joker = User::find($key2);
 
-                               
-          if (count($referals2)>0) 
-              {
-                foreach ($referals2 as $key3) 
+                foreach($joker->Referals()->get() as $key2)
                 {
-                  $joker = User::find($key3);
-                    
-                    foreach($joker->Referals()->get() as $key3)
-                     {
-                       $referals3[]=$key3->refered;
-                       $WholeReferals->prepend(User::find($key3->refered));                       
-                     }         
+                    $referals2[]=$key2->refered;
+                    $WholeReferals->prepend(User::find($key2->refered));
                 }
-              }
+            }
+        }
+        else
+        {
+            $referals2=0;
+        }
 
-          else
-              {
-                $referals3=0;
-              }   
 
-                        
-                          
-            $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
-                        
-              if (in_array($item->id, $referals1)) { return $item->level=1;}
-              if (in_array($item->id, $referals2)) { return $item->level=2;}
-              if (in_array($item->id, $referals3)) { return $item->level=3;}
-                      });         
-              
-        return Datatables::of($WholeReferals)->toJson();  
+
+        if (count($referals2)>0)
+        {
+            foreach ($referals2 as $key3)
+            {
+                $joker = User::find($key3);
+
+                foreach($joker->Referals()->get() as $key3)
+                {
+                    $referals3[]=$key3->refered;
+                    $WholeReferals->prepend(User::find($key3->refered));
+                }
+            }
+        }
+
+        else
+        {
+            $referals3=0;
+        }
+
+
+
+        $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
+
+            if (in_array($item->id, $referals1)) { return $item->level=1;}
+            if (in_array($item->id, $referals2)) { return $item->level=2;}
+            if (in_array($item->id, $referals3)) { return $item->level=3;}
+        });
+
+        return Datatables::of($WholeReferals)->toJson();
     }
 
     public function UpdateData(Request $request)
@@ -140,48 +141,90 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
-        //$user->num_doc = $request->num_doc;
-
         $user->type= $request->type;
         $user->alias = $request->alias;
-        
-        if ($request->hasFile('img_perf'))
-        {
-
-
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
-
-         $request->file('img_perf')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
-        }
-        
         $user->fech_nac = $request->fech_nac;
+        $user->direccion = $request->address;
+        $user->phone = $request->phone;
 
-       
+        $user->save();
+
+        $Json = Fractal::create()
+            ->item($user)
+            ->transformWith(new UserTransformer)
+            ->toArray();
+
+
+        return Response::json($Json);
+    }
+
+    public function UploadDocument(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+
         if ($request->hasFile('img_doc'))
         {
 
 
-         $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+            $store_path = public_path().'/user/'.$user->id.'/profile/';
 
-         $request->file('img_doc')->move($store_path,$name);
+            $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
-         $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
+            $request->file('img_doc')->move($store_path,$name);
+
+            $real_path='/user/'.$user->id.'/profile/'.$name;
+
+            $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;
+
+            $user->save();
+
+            $Json = Fractal::create()
+                ->item($user)
+                ->transformWith(new UserTransformer)
+                ->toArray();
+
+
+            return Response::json($Json);
         }
-     
-        //dd($user);
-        $user->save();
+        else
+        {
 
-        return Response::json(['status'=>'OK'], 201);
+            return Response::json(['status'=>'Error'], 400);
+        }
+    }
+
+    public function UploadAvatar(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+
+        if ($request->hasFile('img_perf'))
+        {
+            $store_path = public_path().'/user/'.$user->id.'/profile/';
+
+            $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+
+            $request->file('img_perf')->move($store_path,$name);
+
+            $real_path='/user/'.$user->id.'/profile/'.$name;
+
+            $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;
+
+            $user->save();
+
+            $Json = Fractal::create()
+                ->item($user)
+                ->transformWith(new UserTransformer)
+                ->toArray();
+
+
+            return Response::json($Json);
+        }
+        else
+        {
+            return Response::json(['status'=>'ERROR'], 402);
+        }
+
+
     }
 
     public function BuyDepositPackage(Request $request)
@@ -191,21 +234,21 @@ class UserController extends Controller
         $Buy->package_id=$request->ticket_id;
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
-        $Buy->method='Dep贸sito';
+        $Buy->method='Deposito';
 
-         if ($request->hasFile('voucher'))
+        if ($request->hasFile('voucher'))
         {
 
 
-         $store_path = public_path().'/user/'.Auth::user()->id.'/ticketsDeposit/';
-         
-         $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
+            $store_path = public_path().'/user/'.Auth::user()->id.'/ticketsDeposit/';
 
-         $request->file('voucher')->move($store_path,$name);
+            $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
 
-         $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
-         
-         $Buy->voucher = $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name; 
+            $request->file('voucher')->move($store_path,$name);
+
+            $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
+
+            $Buy->voucher = $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
 
         }
         $Buy->status=2;
@@ -217,42 +260,42 @@ class UserController extends Controller
 
     public function BuyPayphonePackage(Request $request)
     {
-          $user = User::find(auth()->user()->id);    
+        $user = User::find(auth()->user()->id);
 
-            $Condition=Carbon::now()->firstOfMonth()->toDateString();
+        $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
-            $revenueMonth = Payments::where('user_id','=',$user->id)
+        $revenueMonth = Payments::where('user_id','=',$user->id)
             ->where('created_at', '>=',$Condition)
             ->where('status', '=','Aprobado')
             ->get();
 
-            $balance=  SistemBalance::find(1);
+        $balance=  SistemBalance::find(1);
 
-            $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+        $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
 
-            $balance->save();
+        $balance->save();
 
-          if ($revenueMonth->count()<=1) 
-          {
-           event(new AssingPointsEvents($user->id,$Buy->package_id));
-          }  
+        if ($revenueMonth->count()<=1)
+        {
+            event(new AssingPointsEvents($user->id,$Buy->package_id));
+        }
 
-          event(new PayementAprovalEvent($user->email));
+        event(new PayementAprovalEvent($user->email));
 
-          return Response::json(['status'=>'OK'], 201);    
+        return Response::json(['status'=>'OK'], 201);
     }
 
     public function BuyPointsPackage(Request $request)
     {
-        
+
         $user = User::find(auth()->user()->id);
         $TicketsPackage= TicketsPackage::find($request->ticket_id);
 
-        if ($request->cost > $user->points) 
+        if ($request->cost > $user->points)
         {
-             return Response::json(['status'=>'Puntos insuficientes'], 201);;  
+            return Response::json(['status'=>'Puntos insuficientes'], 201);;
         }
-        
+
         else
         {
             $Buy = new Payments;
@@ -263,11 +306,11 @@ class UserController extends Controller
             $Buy->status        = 1;
             $Buy->method        ='Puntos';
             $Buy->save();
-            
-            
+
+
             $ticket=$TicketsPackage->amount*$request->Cantidad;
             $cost=$request->Cantidad*$request->points;
-            
+
             $user->credito = $ticket;
             $user->point = $user->points - $cost;
             $user->save();
@@ -275,9 +318,9 @@ class UserController extends Controller
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
             $revenueMonth = Payments::where('user_id','=',$user->id)
-            ->where('created_at', '>=',$Condition)
-            ->where('status', '=','Aprobado')
-            ->get();
+                ->where('created_at', '>=',$Condition)
+                ->where('status', '=','Aprobado')
+                ->get();
 
             $balance=  SistemBalance::find(1);
 
@@ -285,13 +328,13 @@ class UserController extends Controller
 
             $balance->save();
 
-          if ($revenueMonth->count()<=1) 
-          {
-           event(new AssingPointsEvents($user->id,$Buy->package_id));
-          }
+            if ($revenueMonth->count()<=1)
+            {
+                event(new AssingPointsEvents($user->id,$Buy->package_id));
+            }
 
-          event(new PayementAprovalEvent($user->email));
+            event(new PayementAprovalEvent($user->email));
         }
-        return Response::json(['status'=>'OK'], 201);    
+        return Response::json(['status'=>'OK'], 201);
     }
 }

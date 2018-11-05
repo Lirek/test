@@ -34,7 +34,19 @@
           href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
 
     <style type="text/css">
-
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
     <!-- Scripts -->
@@ -44,6 +56,16 @@
         ]) !!};
     </script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-126665289-1');
+
+    </script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
@@ -71,11 +93,28 @@
             <ul class="nav navbar-nav navbar-right">
                 {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
                 <li><a href="{{route('queEsLeipel')}}" target="_blank">¿QUE ES LEIPEL?</a></li>
-                @if (Auth::guest())
-                    <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
-                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
-                @else
-                    <li><a href="{{ url('/home')}}">INGRESAR</a></li>
+
+                    {{--<li><a href="{{ url('/home')}}">INGRESAR</a></li>--}}
+
+                            @if(Auth::guard('web_seller')->user())
+
+                                @if (Auth::guard('web_seller')->user()->logo)
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/seller_home')}}"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="40" height="40"></a></p>
+                                @else
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                                @endif
+
+                            @elseif(Auth::user())
+
+                                @if(Auth::user()->img_perf)
+                                    <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset(Auth::user()->img_perf)}}" class="img-circle" width="40" height="40"></a></p>
+                                @else
+                                   <p class="navbar-right" style="padding-top: 4px"><a href="{{ url('/home')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="40" height="40"></a></p>
+                                @endif
+
+                            @elseif (Auth::guest())
+                                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
+                                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGISTRATE</a></li>
                 @endif
             </ul>
         </div>
@@ -164,13 +203,14 @@
         <div id="radios">
             @foreach($radio as $r)
                 <div class="contenidoGeneral">
-                    <figure class="snip1166 navy" style="display: block;">
-                        <img class="img-responsive imagenLogo" id="logoRadioGrande{{$iRadios}}">
+                    <figure class="snip1166 navy" style="display: block; cursor: pointer;" {{--onclick="masInfo('radio',{!!$r->id!!})"--}}>
+                        <img class="img-responsive imagenLogo"  id="logoRadio{{$iRadios}}">
                         <figcaption class="bandaAzul">
                             <h3>
-                                <small style="color: #fff; font-size: 100%;" id="nombreRadioGrande{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <small style="color: #fff; font-size: 100%;" id="nombreRadio{{$iRadios}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                                 <div align="left">
-                                    <li class="fa"></li>
+           
+                               <li class="fa"></li>
                                 </div>
                                 {{--
                                 <div align="left">
@@ -190,7 +230,7 @@
                                 --}}
                             </h3>
                             <div>
-                                <p id="emailRadioGrande{{$iRadios}}"></p>
+                                <p id="emailRadio{{$iRadios}}"></p>
                             </div>
                         </figcaption>
                     </figure>
@@ -203,11 +243,11 @@
         <div id="Tvs">
             @foreach($tv as $tvs)
                 <div class="contenidoGeneral">
-                    <figure class="snip1166 navy" style="display: block;">
-                        <img class="img-responsive imagenLogo" id="logoTvGrande{{$iTvs}}">
+                    <figure class="snip1166 navy" style="display: block; cursor: pointer;" {{--onclick="masInfo('tv',{!!$tvs->id!!})"--}}>
+                        <img class="img-responsive imagenLogo" id="logoTv{{$iTvs}}">
                         <figcaption class="bandaAzul">
                             <h3 style="white-space:nowrap; text-overflow: ellipsis;">
-                                <small style=" color: #fff; font-size: 100%;" id="nombreTvGrande{{$iTvs}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+                                <small style=" color: #fff; font-size: 100%;" id="nombreTv{{$iTvs}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
                                 <div align="left">
                                     <li class="fa"></li>
                                 </div>
@@ -229,7 +269,7 @@
                                 --}}
                             </h3>
                             <div>
-                                <p id="emailTvGrande{{$iTvs}}"></p>
+                                <p id="emailTv{{$iTvs}}"></p>
                             </div>
                         </figcaption>
                     </figure>
@@ -242,6 +282,62 @@
     </div>
 </div>
 <!--CONTENIDO END-->
+<br>
+<!-- Barra para como funcionan los puntos en leipel -->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
+        <div class="" id="barra" class="text-center">
+            <center>
+                <br>
+                <b style="color: #fff; font-size: 30px;">¿Cómo funciona Leipel?</b>
+                <br><br>
+            </center>
+        </div>
+        <div class="col-md-6" >
+            <br>
+                <div class="embed-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                </div>
+            </center><br>
+        </div>
+        <div class="col-md-6" >
+            <center><br>
+                <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </center><br>
+        </div>
+    </div>
+</div>
+<!-- Fin barra  como funcionan los puntos en leipel-->
+<!-- Barra para pantallas en leipel -->
+<div class="row" id="contenido">
+    <div class="col-md-12" >
+        <div class="" id="barra" class="text-center">
+            <center>
+                <br>
+                <b style="color: #fff; font-size: 30px;">Ve y escucha desde donde quieras</b>
+                <br><br>
+            </center>
+        </div>
+        <div class="col-md-2 col-xs-12 col-lg-2" >
+            <br>
+            <center>
+
+
+            </center>
+        </div>
+        <div class="col-md-8 col-xs-12 col-lg-8" height="190" width="190">
+            <center><br>
+                <img height="100%" width="100%" src="https://www.eltiempo.com/contenido/tecnosfera/tecnosfera-tv/IMAGEN/IMAGEN-16440490-2.jpg" >
+            </center>
+        </div>
+        <div class="col-md-2 col-xs-12 col-lg-2" >
+            <center><br>
+
+            </center>
+        </div>
+    </div>
+</div>
+<!-- Fin barra  pantallas leipel-->
 
 <!--FOOTER STAR -->
 
@@ -274,11 +370,11 @@
         <div class="col-md-3" id="sobre">
             <h1>Sobre</h1>
             <ul class="pages">
-                <li><a href="#">¿Que es Leipel?</a></li>
+                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿Que es Leipel?</a></li>
                 <br>
-                <li><a href="#">Terminos y condiciones</a></li>
+                <li><a href="{{route('terminosCondiciones')}}" target="_blank">Terminos y condiciones</a></li>
                 <br>
-                <li><a href="#">Reg&iacute;strate</a></li>
+                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register" >Reg&iacute;strate</a></li>
                 <br>
                 <li><a href="#">Beneficios adicionales</a></li>
                 <br>
@@ -288,15 +384,15 @@
         <div class="col-md-3" id="descubrir">
             <h1> Descubrir</h1>
             <ul class="list">
-                <li><a href="#">Cine</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Cine</a></li>
                 <br>
-                <li><a href="#">M&uacute;sica</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">M&uacute;sica</a></li>
                 <br>
-                <li><a href="#">Lectura</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Lectura</a></li>
                 <br>
-                <li><a href="#">Radio</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Radio</a></li>
                 <br>
-                <li><a href="#">Tv</a></li>
+                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Tv</a></li>
             </ul>
         </div>
         <div class="col-md-3" id="social">
@@ -426,12 +522,14 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </li>
-                    <!-- <li style="margin-top: -5%; margin-left: 18%">
+                    <!--
+                    -->
+                    <li style="margin-top: -5%; margin-left: 18%">
                         <a data-toggle="tab" href="#proveedor" i>
                             Proveedor
                             <span class="glyphicon glyphicon-briefcase"></span>
                         </a>
-                    </li> -->
+                    </li> 
                 </ul>
             </div>
             <div class="modal-body">
@@ -504,6 +602,7 @@
                         </form>
                     </div>
 <!--
+                -->
                     <div id="proveedor" class="tab-pane fade">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
                             {{ csrf_field() }}
@@ -557,7 +656,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div> -->
+                    </div> 
 
                 </div>
 
@@ -590,12 +689,14 @@
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
-                    <!-- <li>
+                    <!-- 
+                    -->
+                    <li>
                         <a data-toggle="tab" href="#new_proveedor">
                             Proveedor
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                    </li> -->
+                    </li> 
                 </ul>
             </div>
             <div class="modal-body">
@@ -605,6 +706,7 @@
                     <div id="new_usuario" class="tab-pane fade in active">
                         <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
                             {{ csrf_field() }}
+                            <input type="hidden" id="enlace" name="enlace">
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {{--<label for="name" class="col-md-4 control-label">Nombre</label>--}}
@@ -698,11 +800,12 @@
                     {{--Usuario--}}
 
                     <!--
+                    -->
                     {{--Solicitud de proveedor--}}
                     <div id="new_proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
+                        <form class="form-horizontal" id="formRP">
                             {{ csrf_field() }}
-                            {{--@include('flash::message')--}}
+                            @include('flash::message')
                             <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
                                 {{--<label for="tlf" class="col-md-6 control-label">Nombre comercial:</label>--}}
                                 <div class="col-md-12">
@@ -753,10 +856,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 {{--<label for="description" class="col-md-6 control-label">Descripción</label>--}}
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="description" id="description"
-                                              required="required"
-                                              placeholder="Descripción">
-                                    </textarea>
+                                    <textarea class="form-control" name="description" id="description" required="required" placeholder="Descripción"></textarea>
                                     @if ($errors->has('description'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -770,13 +870,11 @@
                                 <div class="col-md-12">
                                     <select class="form-control" name="content_type" id="content_type" required="required">
                                         <option value="">Seleccione el tipo contenido</option>
-                                        <option value="Musica">Musica</option>
-                                        <option value="Revistas">Revistas</option>
-                                        <option value="Libros">Libros</option>
-                                        <option value="Radios">Radios</option>
-                                        <option value="TV">Televisoras</option>
-                                        <option value="Peliculas">Peliculas</option>
-                                        <option value="Series">Series</option>
+                                        <option value="Peliculas">Cine: Películas | Series</option>
+                                        <option value="Musica">Música</option>
+                                        <option value="Libros">Lectura: Libros | Revistas</option>
+                                        <option value="Radios">Radio</option>
+                                        <option value="TV">Televisora</option>
                                     </select>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -785,14 +883,14 @@
                                     @endif
                                     <div id="subMenuMusica">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired1" class="form-control">
+                                        <select name="sub_desired_musica" id="sub_desired1" class="form-control">
                                             <option value="Artista">Artista</option>
                                             <option value="Productora">Productora</option>
                                         </select>
                                     </div>
                                     <div id="subMenuLibro">
                                         <br>
-                                        <select name="sub_desired" id="sub_desired2" class="form-control">
+                                        <select name="sub_desired_libros" id="sub_desired2" class="form-control">
                                             <option value="Escritor">Escritor</option>
                                             <option value="Editorial">Editorial</option>
                                         </select>
@@ -827,7 +925,7 @@
 
                 </div>
 
-            </div> -->
+            </div> 
             <div class="modal-footer" id="modal_footer">
                 <div class="text-center">
 
@@ -853,8 +951,21 @@
 
 
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.min.js"></script>
+
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+    --}}
+
 <script type="text/javascript">
     $(document).ready(function (){
+
         $('#radio').css("background-color","#337ab7");
         $('#Tvs').hide();
         $.ajax({
@@ -867,24 +978,12 @@
                     var rutaLogo = "{{asset('/')}}"+data[i].logo;
                     var nombreRadio = data[i].name_r;
                     var emailRadio = data[i].email_c;
-                    var logoRadioGrande = "#logoRadioGrande"+[i];
-                    var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
-                    var campoEmailRadioGrande = "#emailRadioGrande"+[i];
-                    var logoRadioMediano = "#logoRadioMediano"+[i];
-                    var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
-                    var campoEmailRadioMediano = "#emailRadioMediano"+[i];
-                    var logoRadioPequeño = "#logoRadioPequeño"+[i];
-                    var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
-                    var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
-                    $(logoRadioGrande).attr('src',rutaLogo);
-                    $(campoNombreRadioGrande).html(nombreRadio);
-                    $(campoEmailRadioGrande).html(emailRadio);
-                    $(logoRadioMediano).attr('src',rutaLogo);
-                    $(campoNombreRadioMediano).html(nombreRadio);
-                    $(campoEmailRadioMediano).html(emailRadio);
-                    $(logoRadioPequeño).attr('src',rutaLogo);
-                    $(campoNombreRadioPequeño).html(nombreRadio);
-                    $(campoEmailRadioPequeño).html(emailRadio);
+                    var logoRadio = "#logoRadio"+[i];
+                    var campoNombreRadio = "#nombreRadio"+[i];
+                    var campoEmailRadio = "#emailRadio"+[i];
+                    $(logoRadio).attr('src',rutaLogo);
+                    $(campoNombreRadio).html(nombreRadio);
+                    $(campoEmailRadio).html(emailRadio);
                 });
             }
         });
@@ -906,24 +1005,12 @@
                         var rutaLogo = "{{asset('/')}}"+data[i].logo;
                         var nombreRadio = data[i].name_r;
                         var emailRadio = data[i].email_c;
-                        var logoRadioGrande = "#logoRadioGrande"+[i];
-                        var campoNombreRadioGrande = "#nombreRadioGrande"+[i];
-                        var campoEmailRadioGrande = "#emailRadioGrande"+[i];
-                        var logoRadioMediano = "#logoRadioMediano"+[i];
-                        var campoNombreRadioMediano = "#nombreRadioMediano"+[i];
-                        var campoEmailRadioMediano = "#emailRadioMediano"+[i];
-                        var logoRadioPequeño = "#logoRadioPequeño"+[i];
-                        var campoNombreRadioPequeño = "#nombreRadioPequeño"+[i];
-                        var campoEmailRadioPequeño = "#emailRadioPequeño"+[i];
-                        $(logoRadioGrande).attr('src',rutaLogo);
-                        $(campoNombreRadioGrande).html(nombreRadio);
-                        $(campoEmailRadioGrande).html(emailRadio);
-                        $(logoRadioMediano).attr('src',rutaLogo);
-                        $(campoNombreRadioMediano).html(nombreRadio);
-                        $(campoEmailRadioMediano).html(emailRadio);
-                        $(logoRadioPequeño).attr('src',rutaLogo);
-                        $(campoNombreRadioPequeño).html(nombreRadio);
-                        $(campoEmailRadioPequeño).html(emailRadio);
+                        var logoRadio = "#logoRadio"+[i];
+                        var campoNombreRadio = "#nombreRadio"+[i];
+                        var campoEmailRadio = "#emailRadio"+[i];
+                        $(logoRadio).attr('src',rutaLogo);
+                        $(campoNombreRadio).html(nombreRadio);
+                        $(campoEmailRadio).html(emailRadio);
                     });
                 }
             });
@@ -946,24 +1033,12 @@
                         var rutaLogo = "{{asset('/')}}"+data[i].logo;
                         var nombreTv = data[i].name_r;
                         var emailTv = data[i].email_c;
-                        var logoTvGrande = "#logoTvGrande"+[i];
-                        var campoNombreTvGrande = "#nombreTvGrande"+[i];
-                        var campoEmailTvGrande = "#emailTvGrande"+[i];
-                        var logoTvMediano = "#logoTvMediano"+[i];
-                        var campoNombreTvMediano = "#nombreTvMediano"+[i];
-                        var campoEmailTvMediano = "#emailTvMediano"+[i];
-                        var logoTvPequeño = "#logoTvPequeño"+[i];
-                        var campoNombreTvPequeño = "#nombreTvPequeño"+[i];
-                        var campoEmailTvPequeño = "#emailTvPequeño"+[i];
-                        $(logoTvGrande).attr('src',rutaLogo);
-                        $(campoNombreTvGrande).html(nombreTv);
-                        $(campoEmailTvGrande).html(emailTv);
-                        $(logoTvMediano).attr('src',rutaLogo);
-                        $(campoNombreTvMediano).html(nombreTv);
-                        $(campoEmailTvMediano).html(emailTv);
-                        $(logoTvPequeño).attr('src',rutaLogo);
-                        $(campoNombreTvPequeño).html(nombreTv);
-                        $(campoEmailTvPequeño).html(emailTv);
+                        var logoTv = "#logoTv"+[i];
+                        var campoNombreTv = "#nombreTv"+[i];
+                        var campoEmailTv = "#emailTv"+[i];
+                        $(logoTv).attr('src',rutaLogo);
+                        $(campoNombreTv).html(nombreTv);
+                        $(campoEmailTv).html(emailTv);
                     });
                 }
             });
@@ -971,18 +1046,17 @@
     });
     $('#contenido').ready(function(){
         var ventana_ancho = $(window).width();
-        ajustarTiempo(ventana_ancho);
+        ajustarTamaño(ventana_ancho);
         $(window).resize(function(){
-            limpiarCalses();
+            limpiarClases();
             var ventana_ancho = $(window).width();
-            ajustarTiempo(ventana_ancho);
-
+            ajustarTamaño(ventana_ancho);
         });
-        function ajustarTiempo(ventana_ancho) {
+        function ajustarTamaño(ventana_ancho) {
             if (ventana_ancho<=425) {
                 $('.contenidoGeneral').addClass('col-xs-10');
                 $('.contenidoGeneral').css('margin-left','15%');
-                $('.imagenLogo').css('width','70%');
+                $('.imagenLogo').css('width','90%');
                 $('.bandaAzul').css('width','90%');
             } else if (ventana_ancho<= 1024) {
                 $('.contenidoGeneral').addClass('col-md-5');
@@ -993,11 +1067,11 @@
                 $('.contenidoGeneral').addClass('col-lg-3');
                 $('.contenidoGeneral').css('padding-left','3%');
                 $('.contenidoGeneral').css('width','265px');
-                $('.imagenLogo').css('width','90%');
+                $('.imagenLogo').css('width','100%');
                 $('.bandaAzul').css('width','107%');
             }
         }
-        function limpiarCalses() {
+        function limpiarClases() {
             $('.contenidoGeneral').removeClass('col-xs-10');
             $('.contenidoGeneral').removeClass('col-md-5');
             $('.contenidoGeneral').removeClass('col-lg-3');
@@ -1006,6 +1080,80 @@
             $('.bandaAzul').removeAttr('style');
         }
     });
+
+    function masInfo(tipo,id) {
+        console.log(tipo,id);
+        var usuarioActivo = "{{Auth::guest()}}";
+        console.log(usuarioActivo);
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ListenRadio/') }}/"+id;
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal-register').modal('show');
+                    }
+                });
+                /*
+                con sweetAlert2
+                swal({
+                    title: 'Ingrese al sistema',
+                    html: "Para poder ver el contenido es necesario estar <strong>registrado</strong> o <strong>iniciar sesión</strong>",
+                    //text: 'Para poder ver el contenido es necesario estar registrado e iniciar sesión',
+                    type: 'info',
+                    //showCancelButton: true,
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    //confirmButtonText: 'Iniciar sesión',
+                    //cancelButtonText: '<a class="btn btn-info"></a> Great!',
+                    footer: "<a href class='btn btn-info'>Iniciar sesión</a> <a href='#modal-register' data-toggle='modal' data-target='#modal-register' class='btn btn-info'>Registrarse</a>",
+                    allowEscapeKey: false,
+                    allowOutsideClick: false
+                });
+                .then((respuesta) => {
+                    console.log(respuesta);
+                    if (respuesta.value) {
+                        swal({
+                            title: ''
+                        });
+                    }
+                });
+                */
+            }
+        } else if (tipo=="tv") {
+            var ruta = "{{ url('/PlayTv/') }}/"+id;
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            }
+        }
+    }
 //---------------------------------------VALIDACIONES PARA REGISTRO DE USUARIO------------------------------------------
     //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
     function controltagLet(e) {
@@ -1191,6 +1339,41 @@
                     $('#registroRU').attr('disabled',false);
                 }
             }
+        });
+    });
+
+    $(document).ready(function(){
+        $("#formRP").on('submit',function(e){
+            var url = "{{ url('ApplysSubmit') }}";
+            e.preventDefault();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $("#formRP").serialize(),
+                success: function (result) {
+                    console.log(result);
+                    swal("Su solicitud está siendo procesada","","success")
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                },
+                error: function (result) {
+                    console.log(result);
+                    swal('Existe un Error en su Solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
         });
     });
 

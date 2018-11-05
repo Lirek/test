@@ -119,9 +119,9 @@
                             <!--Revisar este enlace -->
                             <a href="{{ url('/seller_home')}}">
                                 @if(Auth::guard('web_seller')->user()->logo)
-                                    <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="80">
+                                    <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle"  width="80" height="80">
                                 @else
-                                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80">
+                                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80" height="80">
                                 @endif
                             </a>
                         </p>
