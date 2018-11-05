@@ -742,7 +742,7 @@ function maxLengthCheck(object) {
     })
 </script>
 
-<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
  
 <script type="text/javascript">
  

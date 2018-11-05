@@ -562,11 +562,7 @@ class UserController extends Controller
     {
         $book= Book::find($id);
         $user = User::find(Auth::user()->id);
-
-        if ($book->cost > $user->credito) 
-        {
-            return response()->json(0);    
-        }
+      
 
         $check = Transactions::where('books_id','=',$book->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
@@ -575,9 +571,16 @@ class UserController extends Controller
         {
             return response()->json(1);   
         }
+        
+        if ($book->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
         else
         {
             $Transaction= new Transactions;
+            $Transaction->seller_id=$book->seller_id; 
             $Transaction->books_id=$book->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $book->cost*-1;
@@ -586,12 +589,16 @@ class UserController extends Controller
             $user->credito= $user->credito-$book->cost;
             $user->save(); 
 
+            $seller = Seller::find($book->seller_id);
+            $seller->credito=$seller->credito+$
+            $seller->save();
+
             $account=new AccountBalance;
             $account->seller_id=$book->seller_id;
             $account->balance=$book->cost;
             $account->save();
 
-            $this->SendMail($book->title,$book->cost);
+            //$this->SendMail($book->title,$book->cost);
 
             return response()->json($Transaction);
         }

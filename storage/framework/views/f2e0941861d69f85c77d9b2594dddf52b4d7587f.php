@@ -24,6 +24,7 @@
                                     <th class="text-center" width="300">Generos</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Fecha de registro</th>
+                                    <th class="text-center">N° de compras</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -48,6 +49,7 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </td>
                                             <td class="text-center"> <?php echo e($m->status); ?> </td>
+                                            <td class="text-center"> <?php echo e($m->transaction->count()); ?> </td>
                                             <td class="text-center"> <?php echo e($m->created_at); ?> </td>
                                             <td class="text-center">
                                                 <a href="<?php echo e(route('movies.show', $m->id)); ?>" class="btn btn-info btn-xs">
@@ -72,6 +74,7 @@
                                     <th class="text-center">Generos</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Fecha de registro</th>
+                                    <th class="text-center">N° de compras</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>

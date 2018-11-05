@@ -41,7 +41,7 @@
                 </div><!--/col-md-4 -->
                 @endforeach
                 @else
-                    <h1>No Posee Libros</h1>
+                    <h1>No Posee Libros adquiridos</h1>
                 @endif
             </div>
         </div> 

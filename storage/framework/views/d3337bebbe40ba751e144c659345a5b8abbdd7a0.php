@@ -519,34 +519,22 @@ restaFechas = function(f1,f2)
 function fnOpenNormalDialog(cost,name,id) {
 
 
-    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
-
-    // Define the Dialog and its properties.
-    $("#modal-confirmation").dialog({
-        resizable: false,
-        modal: true,
-        title: "Confirmar",
-        height: 250,
-        width: 400,
-        position: {
-          my: "center top",
-      at: "center top",
-      of: $("#principal"),
-      within: $("#principal")
-        },
-        buttons: {
-              "Si": function () {
-                $(this).dialog('close');
-                callback(true,id);
-            },
-                "No": function () {
-                $(this).dialog('close');
-                callback(false,id);
-            }
-        }
-    });
-}
-
+     swal({
+            title: "Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback(true,id);
+           
+          } else {
+            callback(false,id);
+          }
+        });
+    };
 
 
 function callback(value,id) {
@@ -593,33 +581,22 @@ function callback(value,id) {
   //-----COMPRA DE ALBUMS-----------------
 function fnOpenNormalDialog2(cost,name,id) {
 
-    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
-
-    // Define the Dialog and its properties.
-    $("#modal-confirmation").dialog({
-        resizable: false,
-        modal: true,
-        title: "Confirmar",
-        height: 250,
-        width: 400,
-        position: {
-          my: "center top",
-      at: "center top",
-      of: $("#principal"),
-      within: $("#principal")
-        },
-        buttons: {
-              "Si": function () {
-                $(this).dialog('close');
-                callback2(true,id);
-            },
-                "No": function () {
-                $(this).dialog('close');
-                callback2(false,id);
-            }
-        }
-    });
-}
+     swal({
+            title: "Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback2(true,id);
+           
+          } else {
+            callback2(false,id);
+          }
+        });
+    };
 
 
 function callback2(value,id) {
@@ -665,33 +642,22 @@ function callback2(value,id) {
 function fnOpenNormalDialog3(cost,name,id) {
 
 
-    $("#modal-confirmation").html('Desea comprar '+name+' ¿Con un valor de '+cost+' tickets?');
-
-    // Define the Dialog and its properties.
-    $("#modal-confirmation").dialog({
-        resizable: false,
-        modal: true,
-        title: "Confirmar",
-        height: 250,
-        width: 400,
-        position: {
-          my: "center top",
-      at: "center top",
-      of: $("#principal"),
-      within: $("#principal")
-        },
-        buttons: {
-              "Si": function () {
-                $(this).dialog('close');
-                callback(true,id);
-            },
-                "No": function () {
-                $(this).dialog('close');
-                callback(false,id);
-            }
-        }
-    });
-}
+     swal({
+            title: "Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback3(true,id);
+           
+          } else {
+            callback3(false,id);
+          }
+        });
+    };
 
 function callback3(value,id) {
     if (value) {

@@ -27,6 +27,7 @@
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center" width="60">Género</th>
                                     <th class="text-center">Fecha de registro</th>
+                                    <th class="text-center">N° de compras</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -55,6 +56,7 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </td>
                                             <td class="text-center"> <?php echo e($s->created_at); ?> </td>
+                                             <td class="text-center"> <?php echo e($s->Transactions->count()); ?> </td>
                                             <td class="text-center">
                                                 <a href="<?php echo e(route('series.show',$s->id)); ?>" class="btn btn-info btn-xs">
                                                     <span class="fa fa-play-circle" aria-hidden="true"></span>
@@ -81,6 +83,7 @@
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Género</th>
                                     <th class="text-center">Fecha de registro</th>
+                                    <th class="text-center">N° de compras</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </tfoot>

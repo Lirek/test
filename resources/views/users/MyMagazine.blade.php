@@ -40,7 +40,7 @@
                 </div><!--/col-md-4 -->
                 @endforeach
                 @else
-                    <h1>No Posee Magazines</h1>
+                    <h1>No Posee Revistas adquiridas</h1>
                 @endif
             </div>
         </div> 

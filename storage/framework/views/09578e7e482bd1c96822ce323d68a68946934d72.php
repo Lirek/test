@@ -127,23 +127,24 @@
                     </a>
                 </li>
 
-            <!-- <li class="sub-menu">
-                    <a href="javascript:;">
-                      <i class="fa fa-money"></i>
-                      <span>Adquirir Contenido</span>
-                    </a>
-                    <ul class="sub">
-                      <li><a href="<?php echo e(url('MusicContent')); ?>">Música</a></li>
-                      <li><a href="<?php echo e(url('ReadingsBooks')); ?>">Libros</a></li>
-                      <li><a href="<?php echo e(url('ShowMovies')); ?>">Peliculas</a></li>
-                    </ul>
-                  </li> -->
+
                 <li class="sub-menu">
                     <a href="<?php echo e(url('/home')); ?>" >
                         <i class="fa fa-search"></i>
                         <span>Cartelera</span>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                      <i class="fa fa-money"></i>
+                      <span>Adquirir Contenido</span>
+                    </a>
+                    <ul class="sub">
+                      <!-- <li><a href="<?php echo e(url('MusicContent')); ?>">Música</a></li> -->
+                      <li><a href="<?php echo e(url('ReadingsBooks')); ?>">Libros</a></li>
+                      <!-- <li><a href="<?php echo e(url('ShowMovies')); ?>">Peliculas</a></li> -->
+                    </ul>
+                  </li>
                 <li class="sub-menu">
                     <a href="javascript:;" >
                         <i class="fa fa-desktop"></i>
@@ -164,17 +165,16 @@
                             </ul>
                           </li> -->
 
-                    <!-- <li class="sub-menu">
+                    <li class="sub-menu">
                             <a href="javascript: ;">
                               <span>Lecturas</span>
                             </a>
                             <ul class="sub">
                               <li><a  href="<?php echo e(url('MyReads')); ?>">Mis libros</a></li>
                               <li><a  href="<?php echo e(url('MyMegazine')); ?>">Mis megazines</a></li>
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis libros</a></li>
-                              <li><a  href="#" data-toggle="modal" data-target="#myModalContenido">Mis megazines</a></li>
                             </ul>
-                          </li> -->
+                          </li>
+
                         <li><a  href="<?php echo e(url('ShowRadio')); ?>">Radio</a></li>
                         <li><a  href="<?php echo e(url('ShowTv')); ?>">Tv</a></li>
                     <!--  <li class="sub">
