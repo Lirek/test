@@ -77,56 +77,6 @@ class WelcomeController extends Controller
             ->with('music',$musica);
     }
 
-    public function welcome1()
-    {
-//        $sellers = Seller::orderBy('id', 'DESC')->paginate('10');
-        $sellers = Seller::all();
-        $books = Book::all();
-        $books->each(function ($books) {
-            $books->author;
-            $books->seller;
-            $books->saga;
-            $books->rating;
-        });
-//        $radios = Radio::all();
-        //$radios = Radio::orderBy('id','DESC')->paginate(5);
-        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
-        $radios->each(function ($radios){
-            $radios->seller;
-        });
-
-        //$tvs = Tv::all();
-        $tvs = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
-        $tvs->each(function ($tvs){
-            $tvs->seller;
-        });
-        $movies = Movie::all();
-        $movies->each(function ($movies) {
-            $movies->seller;
-            $movies->saga;
-            $movies->rating;
-        });
-
-        $musica = Albums::all();
-        $musica->each(function ($musica){
-            $musica->Seller;
-            $musica->Autors;
-        });
-
-        $iRadios = 0;
-        $iTvs = 0;
-
-        return view('welcome_new')
-            ->with('iRadios',$iRadios)
-            ->with('iTvs',$iTvs)
-            ->with('seller', $sellers)
-            ->with('book',$books)
-            ->with('movie',$movies)
-            ->with('tv',$tvs)
-            ->with('radio',$radios)
-            ->with('music',$musica);
-    }
-
     public function email(Request $request){
         $email=User::where('email','=',$request->email)->first();
         

@@ -37,6 +37,8 @@
 
     .img{margin-top: 7px;}
 
+    .curva{border-radius: 10px;}
+
     /*Color letras tabs*/
     .tabs .tab a{
         color:#00ACC1;
@@ -72,22 +74,108 @@
         width: 100%;
         height: 100%;
     }
+
+
+    /*slider tv*/
+    .card-image.img
+    {
+        height:150px; !important
+    }
+
+    .material-icons.md1::before{
+        content:"search";
+    }
+
+    .material-icons.md1:hover::before{
+        content:"navigate_next";
+    }
+
+    .carousel .carousel-item {
+        width:300px !important;
+    }
 </style>
 
-<div>
+
     <!--Menu-->
     <nav class="default_color" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es leipel?</b></a></li>
-                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
-                <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+                <?php if(Auth::guard('web_seller')->user()): ?>
+                    <?php if(Auth::guard('web_seller')->user()->logo): ?>
+                        <li>
+                            <a href="<?php echo e(url('/seller_home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                                <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>"  class="img circle" width="40" height="40">
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                                <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                <?php elseif(Auth::user()): ?>
+
+                    <?php if(Auth::user()->img_perf): ?>
+                        <li>
+                            <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                                <img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="<?php echo e(url('/home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                                <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                <?php elseif(Auth::guest()): ?>
+                    <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+                    <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+                <?php endif; ?>
             </ul>
 
             <ul id="nav-mobile" class="sidenav">
-                <li><a class="blue-text" href="#"><b>¿Qué es leipel?</b></a></li>
-                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
-                <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+                <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+                <?php if(Auth::guard('web_seller')->user()): ?>
+                    <?php if(Auth::guard('web_seller')->user()->logo): ?>
+                    <li>
+                        <a href="<?php echo e(url('/seller_home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>" class="img circle" width="40" height="40">
+                            <b> Ingresar</b>
+                        </a>
+                    </li>
+                    <?php else: ?>
+                     <li>
+                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                             <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
+                        </a>
+                     </li>
+                    <?php endif; ?>
+
+                <?php elseif(Auth::user()): ?>
+
+                    <?php if(Auth::user()->img_perf): ?>
+                    <li>
+                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img  src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                    <?php else: ?>
+                    <li>
+                        <a href="<?php echo e(url('/home')); ?>"  data-position="right"  class="tooltipped" data-tooltip="Ingresar" >
+                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
+                <?php elseif(Auth::guest()): ?>
+                    <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+                    <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+                <?php endif; ?>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="blue-text material-icons">menu</i></a>
         </div>
@@ -101,7 +189,7 @@
             <li>
                 <img src="<?php echo e(asset('plugins/materialize_index/img/piñas.jpg')); ?>" width="100%;" height="520px;"> <!-- random image -->
                 <div class="caption left-align">
-                    <h2><b>Leipel tu mejor opción</b></h2>
+                    <h2><b>Leipel</b></h2>
                 </div>
             </li>
             <li>
@@ -120,19 +208,19 @@
             <div class="col s12 m12 l12 xl12  center">
                 <h5>Red social de entretenimiento</h5>
             </div>
-            <div class="col s4 m4 l4 xl2 offset-xl1 center">
+            <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine">
                 <img src="<?php echo e(asset('plugins/materialize_index/img/cine.png')); ?>" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
             </div>
-            <div class="col s4 m4 l4 xl2 center">
+            <div class="col s4 m4 l4 xl2 center curva" id="musica">
                 <img src="<?php echo e(asset('plugins/materialize_index/img/musica.png')); ?>" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
             </div>
-            <div class="col s4 m4 l4 xl2 center">
+            <div class="col s4 m4 l4 xl2 center curva" id="libro">
                 <img src="<?php echo e(asset('plugins/materialize_index/img/libro.png')); ?>" width="50%" height="70%" title="Lectura"><br><b>Lectura</b><br><br>
             </div>
-            <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center">
+            <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center curva" id="radio"  >
                 <img src="<?php echo e(asset('plugins/materialize_index/img/radio.png')); ?>" width="50%" height="70%" title="Radio"><br><b>Radio</b><br><br>
             </div>
-            <div class="col s4 m4 l4 xl2   center">
+            <div class="col s4 m4 l4 xl2 center curva" id="tv"  >
                 <img src="<?php echo e(asset('plugins/materialize_index/img/tv.png')); ?>" width="50%" height="70%" title="Tv"><br><b>Tv</b><br><br>
             </div>
         </div>
@@ -140,75 +228,137 @@
     <!-- Fin franja  -->
 
     <!-- Contenido  -->
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+    <div id="peliculas">
+        <div class="row">
+            <!--Primero-->
+            <div class="col s12 m4 l3 xl3  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
             </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+            <!--Segundo-->
+            <div class="col s12 m4 l6 xl6  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+            </div>
+            <!--tercero-->
+            <div class="col s12 m4 l3 xl3  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
             </div>
         </div>
-        <!--Segundo-->
-        <div class="col s12 m4 l6 xl6  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+
+        <div class="row">
+            <!--Primero-->
+            <div class="col s12 m4 l4 xl4  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
             </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+            <!--Segundo-->
+            <div class="col s12 m2 l2 xl2  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
             </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+            <!--tercero-->
+            <div class="col s12 m4 l4 xl4  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+            </div>
+            <!--cuarto-->
+            <div class="col s12 m2 l2 xl2  center">
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
+                <div class="col s12 m12 l12 xl12  center">
+                    <br>
+                    <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+                </div>
             </div>
         </div>
     </div>
+    
+    
+        
+            
+                
+                    
+                
+                
+                    
+                
+            
+        
+    
 
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+
+    
+    <div class="row" id="radios">
+        <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="col s12 m4 l2 xl2  center">
+                <div class="card">
+                    <div class="card-image ">
+                        <img src="<?php echo e(asset($r->logo)); ?>">
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                remove_red_eye
+                            </i></a>
+                    </div>
+                    <div class="card-content">
+                        <p><?php echo e($r->email_c); ?></p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!--Segundo-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
+            <?php 
+                $iRadios++
+             ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+
+
+    
+    <div class="row" id="Tvs">
+            <?php $__currentLoopData = $tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            
+            <div class="col s12 m4 l2 xl2  center">
+                <div class="card">
+                    <div class="card-image ">
+                        <img src="<?php echo e(asset($tvs->logo)); ?>">
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                remove_red_eye
+                            </i></a>
+                    </div>
+                    <div class="card-content">
+                        <p><?php echo e($tvs->email_c); ?></p>
+                    </div>
+                </div>
             </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
-            </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
-            </div>
-        </div>
-        <!--cuarto-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="<?php echo e(asset('plugins/materialize_index/img/slaider3.jpeg')); ?>">
-            </div>
-        </div>
+                <?php 
+                    $iTvs++
+                 ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 
     <!-- Fin Contenido  -->
@@ -427,7 +577,6 @@
         </div>
 
     </div>
-</div>
 <!--Fin modal inicio de sesnion-->
 
 <!-- Modal Registro -->
@@ -648,6 +797,7 @@
     // Or with jQuery
     // Slider
     $(document).ready(function(){
+        $('.tooltipped').tooltip();
         $('.modal').modal();
         $('select').formSelect();
         $('.parallax').parallax();
@@ -655,6 +805,52 @@
         $('.slider').slider({
             indicators: false
         });
+        $('.carousel').carousel({
+            dist:0,
+            shift:0,
+            padding:20,
+
+        });
+
+        //Mostarar contenidos seleccionados
+        $('#radio').css("background-color","#42a5f5");
+        $('#Tvs').hide();
+        $('#peliculas').hide();
+        $('#libros').hide();
+
+        $('#radio').click(function(){
+            $('#radio').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#tv').css("background-color","#2196F3");
+            $('#Tvs').hide();
+            $('#libros').hide();
+            $('#radios').show();
+        });
+
+        $('#tv').click(function(){
+            $('#tv').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#libros').hide();
+            $('#Tvs').show();
+        });
+
+//        $('#libro').click(function(){
+//            $('#libro').css("background-color","#42a5f5");
+//            $('#cine').css("background-color","#2196F3");
+//            $('#musica').css("background-color","#2196F3");
+//            $('#tv').css("background-color","#2196F3");
+//            $('#radio').css("background-color","#2196F3");
+//            $('#radios').hide();
+//            $('#Tvs').hide();
+//            $('#libros').show();
+//        });
+
 
         $("#formRP").on('submit',function(e){
             var url = "<?php echo e(url('ApplysSubmit')); ?>";

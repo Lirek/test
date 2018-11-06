@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\View;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-//Route::get('/', 'WelcomeController@welcome');
-Route::get('/', 'WelcomeController@welcome1');
+Route::get('/', 'WelcomeController@welcome');
 
 // Agregadas 01-10-2018
 Route::get('indexRadio', 'WelcomeController@indexRadio');
