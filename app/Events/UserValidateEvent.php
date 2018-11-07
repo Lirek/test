@@ -19,9 +19,15 @@ class UserValidateEvent
      *
      * @return void
      */
-    public function __construct()
+    public $email;
+    public $status;
+    public $reason;
+
+    public function __construct($email,$status,$reason)
     {
-        //
+        $this->email = $email;
+        $this->status = $status;
+        $this->reason = $reason;
     }
 
     /**

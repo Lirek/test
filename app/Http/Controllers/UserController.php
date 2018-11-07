@@ -8,6 +8,8 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
+use App\Events\NewContentNotice;
+
 use File;
 use QrCode;
 use Carbon\Carbon;
@@ -149,6 +151,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->num_doc = $request->ci;
+        $user->direccion = $request->direccion;
+        $user->phone = $request->phone;
+        if ($user->verify==2) {
+            $user->verify = 0;
+        }
 
         
         if ($request->type != null){
@@ -160,10 +167,12 @@ class UserController extends Controller
         if ($request->hasFile('img_perf'))
         {
 
+         $nombre = $this->sinAcento($request->name);
+
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
          
-         $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
+         $name = 'userpic'.$nombre.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
 
          $request->file('img_perf')->move($store_path,$name);
 
@@ -179,9 +188,11 @@ class UserController extends Controller
         {
 
 
+         $nombre = $this->sinAcento($request->name);
+
          $store_path = public_path().'/user/'.$user->id.'/profile/';
          
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+         $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
 
@@ -192,9 +203,17 @@ class UserController extends Controller
      
         //dd($user);
         $user->save();
-        Flash('Se Han Modificado Sus Datos Con Exito')->success();
+        Flash('Se han modificado sus datos con exito')->success();
         //return view('home');
        return redirect()->action('HomeController@index');
+    }
+
+    public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        return $cadena;
     }
 
     /**
@@ -219,8 +238,8 @@ class UserController extends Controller
 
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
-         $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
+
+         $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
 
@@ -248,6 +267,9 @@ class UserController extends Controller
 
         $user->alias = $request->alias;
         $user->save();
+
+        event( new NewContentNotice($user->name,'Usuario'));
+        
         Flash('Completo Sus Datos Con Exito')->success();
        return redirect()->action('HomeController@index');
     }
@@ -331,6 +353,7 @@ class UserController extends Controller
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
+                    'id_payments' => $key->id,
                     'Id' => $key->user_id,
                     'Date' => $key->created_at->format('d/m/Y'),
                     'Cant' => $this->tickets($key->package_id)*$key->value,

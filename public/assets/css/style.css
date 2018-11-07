@@ -263,7 +263,10 @@ ul.top-menu > li > .logout {
     width: 210px;
     height: 100%;
     position: fixed;
-    background: #424a5d;
+    /*background: #424a5d;*/
+    background:url('../img/menu.jpg');
+    background-size: cover;
+    margin-top: 4%;
 }
 
 #sidebar h5 {
@@ -326,7 +329,7 @@ ul.sidebar-menu {
 }
 
 ul.sidebar-menu li ul.sub li{
-    background: #424a5d;
+    /*background: #424a5d;*/
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -381,7 +384,8 @@ ul.sidebar-menu li a span{
 }
 
 ul.sidebar-menu li a{
-    color: #aeb2b7;
+    /*color: #aeb2b7;*/
+    color: #ffffff;
     text-decoration: none;
     display: block;
     padding: 15px 0 15px 10px;
@@ -392,6 +396,8 @@ ul.sidebar-menu li a{
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    text-shadow: 0.1em 0.1em #333;
+    
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
@@ -462,7 +468,7 @@ a.logo {
     font-size: 20px;
     color: #ffffff;
     float: left;
-    margin-top: 15px;
+    margin-top: 5px;
     text-transform: uppercase;
 }
 
@@ -784,12 +790,20 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     display: none;
 }
 
-.sidebar-closed #main-content {
+.sidebar-closed #main-content{
     margin-left: 0px;
+    margin-top: 0px;
 }
 
 .sidebar-closed #sidebar {
     margin-left: -180px;
+    margin-top: -460px;
+}
+.sidebar-closed .main-chart {
+     margin-top: -20px;
+}
+.sidebar-close .main-chart{
+    margin-top: 0px;
 }
 
 
@@ -1091,7 +1105,7 @@ PANELS CONFIGURATIONS
 
 .darkblue-panel {
 	text-align: center;
-	background: #444c57;
+	background: #31b9ff;
 }
 .darkblue-panel .darkblue-header {
 	background: transparent;

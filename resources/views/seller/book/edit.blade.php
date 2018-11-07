@@ -76,7 +76,7 @@
                                 </label>
                                 <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-label"> Portada del Libro </label>
-                                    {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
                                     <div id="list">
                                         <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset('images/bookcover/') }}/{{$book->cover }}"/>
                                     </div>
@@ -124,27 +124,44 @@
 
                                 {{--titulo del libro--}}
                                 <label for="exampleInputFile" class="control-label">Título</label>
-                                {!! Form::text('title',$book->title,['class'=>'form-control','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @if($book->status != 'Aprobado')
+                                    {!! Form::text('title',$book->title,['class'=>'form-control','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @else
+                                    {!! Form::text('title',$book->title,['class'=>'form-control','placeholder'=>'Titulo del libro',' readonly']) !!}
+                                @endif
                                 <br>
 
                                 {{--titulo original del libro--}}
                                 <label for="exampleInputFile" class="control-label">Titulo original</label>
-                                {!! Form::text('original_title',$book->original_title,['class'=>'form-control','placeholder'=>'Título original','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @if($book->status != 'Aprobado')
+                                    {!! Form::text('original_title',$book->original_title,['class'=>'form-control','placeholder'=>'Título original','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @else
+                                    {!! Form::text('original_title',$book->original_title,['class'=>'form-control','placeholder'=>'Título original','placeholder'=>'Titulo del libro','readonly']) !!}
+                                @endif
                                 <br>
 
                                 {{--precio--}}
                                 <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                                 <div id="mensajePrecio"></div>
-                                {!! Form::number('cost',$book->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                                @if($book->status != 'Aprobado')
+                                    {!! Form::number('cost',$book->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                                @else
+                                    {!! Form::number('cost',$book->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','readonly']) !!}
+                                @endif
                                 <br>
 
                                 {{--seleccion de rating--}}
                                 <label for="exampleInputFile" class="control-label">Categoría</label>
-                                {!! Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @if($book->status != 'Aprobado')
+                                    {!! Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @else
+                                    {!! Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]) !!}
+                                @endif
                                 <br>
 
                                 {{--Categoria--}}
                                 <label for="tags"> Generos </label>
+                                @if($book->status != 'Aprobado')
                                 <select name="tags[]" multiple="true" class="form-control" required>
                                     @foreach($tags as $genders)
                                         <option value="{{$genders->id}}"
@@ -158,6 +175,21 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @else
+                                    <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                                    @foreach($tags as $genders)
+                                        <option value="{{$genders->id}}"
+                                            @foreach($s_tags as $s) 
+                                                @if($s->id == $genders->id) 
+                                                    selected 
+                                                @endif 
+                                            @endforeach
+                                            >
+                                            {{$genders->tags_name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @endif
                                 <br>
                                 <br>
                                 <br>
@@ -167,15 +199,18 @@
                             <div class="form-group col-md-6">
                                 
                                 {{--archivo del libro--}}
+                                @if($book->status != 'Aprobado')
                                 <label for="exampleInputFile" class="control-label">Cargar el libro</label>
                                 <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                     Si no selecciona un libro, se mantendrá el actual
                                 </label>
                                 <div id="mensajeDocumento"></div>
                                 {!! Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']) !!}
+                                @endif
                                 <br>
 
                                 {{--selecione el pais--}}
+                                @if($book->status != 'Aprobado')
                                 <label class="control-label">País</label><br>
                                 <label for="pais" id="pais" class="control-label" style="color: green;">
                                     Si no selecciona un país, se mantendrá el actual
@@ -417,7 +452,9 @@
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabue</option>
                                 </select>
+                                
                                 <br>
+                                @endif
 
                                 {{--sinopsis del libro--}}
                                 <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
@@ -429,10 +466,14 @@
                                 {{--año de salida del libro --}}
                                 <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                                 <div id="mensajeFechaLanzamiento"></div>
-                                {!! Form::number('release_year',$book->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @if($book->status != 'Aprobado')
+                                    {!! Form::number('release_year',$book->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
+                                @else
+                                    {!! Form::number('release_year',$book->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'readonly']) !!}
+                                @endif
                                 <br>
                             </div>
-
+                            <input type="hidden" id="saga" value="{{$book->saga_id}}">
                             <div class="form-group col-md-6">
                                 {{--tiene saga--}}
                                 <label class="control-label"> ¿Pertenece a una saga? </label>
@@ -621,12 +662,22 @@
 //---------------------------------------------------------------------------------------------------
 // Para validar los radio boton
     $(document).ready(function(){
+        console.log($('#saga').val() );
+        if($('#saga').val() != ''){
         $('#option-1').prop('checked','checked');
         $('#if_si').show();
         $('#sagas').attr('required','required');
         $('#despues').attr('required','required');
         $('#antes').attr('required','required');
         $('#sagas').val('');
+        }else{
+          $('#option-2').prop('checked','checked'); 
+          $('#if_si').hide();
+          $('#sagas').removeAttr('required');
+          $('#despues').removeAttr('required');
+          $('#antes').removeAttr('required');
+          $('#sagas').val(''); 
+        }
     });
 
     function yesnoCheck() {

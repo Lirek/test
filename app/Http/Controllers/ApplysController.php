@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ApplysSellers;
 use Laracasts\Flash\Flash;
+use App\Mail\ApprovalNotification;
+use Illuminate\Support\Facades\Mail;
 
 class ApplysController extends Controller
 {
@@ -14,8 +16,7 @@ class ApplysController extends Controller
     }
 
     public function SubmitApp (Request $request) {
-
-    	$applys = new ApplysSellers;
+        $applys = new ApplysSellers;
         
         $applys->name_c = $request->com_name;
         $applys->contact_s = $request->contact_name;
@@ -32,11 +33,11 @@ class ApplysController extends Controller
         
         $applys->save();
 
-        Flash::success('Su solicitud está siendo procesada')->important();
+        $emailAdmin = "bcastillo@leipel.com";
+        $motivo = "Usuario proveedor pendiente por aprobar";
+        Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
         
-        return redirect()->action(
-            'ApplysController@ShowApplysForm'
-        );
+        return response()->json($request->all());
     
     }
 

@@ -13,7 +13,7 @@
 @endif
                         <div class="form-group col-md-6">
                           
-                        <img src="{{$type->img_saga}}" class=".img-thumbnail" style="width:200px;height:200px;  " >
+                        <img src="{{asset($type->img_saga)}}" class=".img-thumbnail" style="width:200px;height:200px;  " >
 
                         </div>
                         
@@ -39,12 +39,12 @@
                             </th>
 
                             <th>
-                            <a href="{{ url('/delete_megazine/'.$megazines->id) }}"
+                            <!-- <a href="{{ url('/delete_megazine/'.$megazines->id) }}"
                             onclick="return confirm('多 Desea eliminar la revista  {{ $megazines->title }} ?')"
                             class="btn btn-danger active ">
                              <span class="glyphicon glyphicon-remove-circle"></span>
                          </a>
-                         &nbsp;
+                         &nbsp; -->
                          <a href="{{ url('/megazine_i_update/'.$megazines->id) }}" class="btn btn-warning active">
                              <span class="glyphicon glyphicon-wrench"></span>
                          </a>

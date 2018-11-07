@@ -83,7 +83,11 @@
             text-align: center;
         }
     </style>
-
+     <style>
+        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
 @endsection
 @section('content')
     
@@ -112,7 +116,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true' ]) !!}
+                    {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true', 'id' => 'registroSerie' ]) !!}
                     {{ Form::token() }}
                     {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                     <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
@@ -131,8 +135,8 @@
                         <div class="col-md-6">
                             {{--titulo de la serie--}}
                             <label for="exampleInputFile" class="control-label">Título</label>
-                            <div id="mensajeTitulo"></div>
                             {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Título de la serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <div id="mensajeTitulo"></div>
                             <br>
 
                             {{--Selecion tipo de publico de la serie--}}
@@ -142,8 +146,8 @@
 
                             {{--precio--}}
                             <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
                             <div id="mensajePrecio"></div>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0']) !!}
                             <br>
 
                             {{--Categoria--}}
@@ -164,16 +168,18 @@
                             {{--historia de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
-                            <div id="mensajeHistoria"></div>
+                            
                             {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
+                            <div id="mensajeHistoria"></div>
                             <br><br>
                         </div>
 
                         <div class="col-md-6">
                             {{--año de salida de la serie --}}
                             <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            <div id="mensajeFechaLanzamiento"></div>
+                            
                             {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                            <div id="mensajeFechaLanzamiento"></div>
                             <br>
                         </div>
 
@@ -181,6 +187,7 @@
                             {{--link--}}
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
                             {!! Form::url('trailer',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            <div id="mensajeLink"></div>
                             <br>
                         </div>
 
@@ -244,7 +251,7 @@
 
                                         {{--precio--}}
                                         <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                        <input type="number" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba un Precio')" oninput="setCustomValidity('')">
+                                        <input type="number" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba un Precio')" oninput="setCustomValidity('')" onkeypress="return controltagNum(event)" oninput="maxLengthCheck(this)" >
                                         <br>
                                     </div>
                                     <div class="col-md-6">
@@ -264,6 +271,7 @@
                                         <div id='mensajeEpisodio'></div>
                                         <div id='mensajePrecioEpisodio'></div>
                                         <div id='mensajeSinopsis'></div>
+                                        <div id="mensajeTrailerEpisodio"></div>
                                     </div>
                                     <br>
                                 </div>
@@ -272,6 +280,12 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
+                <div class="form-group col-md-12">
+                <div class="progress">
+                    <div class="bar"></div >
+                    <div class="percent">0%</div >
+                </div>
+            </div>
             </div>
             <div class="text-center">
                 {!! Form::submit('Registrar serie', ['class' => 'btn btn-primary','id'=>'registrarSerie']) !!}
@@ -356,14 +370,14 @@
                     <div class="modal-body">
                         {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
                         {{ Form::token() }}
-                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
-                        {!! Form::hidden('type_tags','Series') !!}
+                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id,['id'=>'seller_id']) !!}
+                        {!! Form::hidden('type_tags','Series', ['id'=>'type_tags']) !!}
                         {!! Form::hidden('ruta','Series') !!}
                         <label for="exampleInputFile" class="control-label">Nuevo género</label>
                         {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
                         <br>
                         <div align="center">
-                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource']) !!}
+                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource', 'onclick'=>'callback()']) !!}
                         </div>
                         {!! Form::close() !!}
                     </div>
@@ -381,6 +395,244 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    
+       function callback() {
+            $('#save-resource').attr('disabled',true);
+            var tags_name= $("#new_tag").val();
+            var type_tags= $('#type_tags').val();
+            var seller_id = $('#seller_id').val();
+  
+                                $.ajax({
+                                url: "{{ url('/AddTags') }}",
+                                type: 'POST',
+                                data: {
+                                        _token: $('input[name=_token]').val(),
+                                        tags_name: tags_name,
+                                        type_tags: type_tags,
+                                        seller_id: seller_id,
+                                      
+                                      }, 
+
+                                success: function (result) {
+                                    
+                                    if(result==0){
+                                    swal("Genero "+tags_name +" agregado con exito y en espera de verificación","","success");
+                                    $('#modalgenero').toggle();
+                                    $('.modal-backdrop').remove();
+                                    }
+                                },
+
+                                error: function (result) {
+                                    swal('Existe un Error en su Solicitud','','error');
+                                
+                                },
+                                });  
+ }
+
+
+</script>
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+<script type="text/javascript">
+    $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#episodio_name").change(function(){
+        var nombre = $("#episodio_name").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajenombreEpisodio').show();
+            $('#mensajenombreEpisodio').text('El titulo no debe estar vacio');
+            $('#mensajenombreEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajenombreEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#precioEpisodio").change(function(){
+        var nombre = $("#precioEpisodio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecioEpisodio').show();
+            $('#mensajePrecioEpisodio').text('El precio no debe estar vacio');
+            $('#mensajePrecioEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecioEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La sinopsis no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#historia").change(function(){
+        var nombre = $("#historia").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeHistoria').show();
+            $('#mensajeHistoria').text('La historia no debe estar vacia');
+            $('#mensajeHistoria').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeHistoria').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#fechaLanzamiento").change(function(){
+        var nombre = $("#fechaLanzamiento").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeFechaLanzamiento').show();
+            $('#mensajeFechaLanzamiento').text('La fecha no debe estar vacia');
+            $('#mensajeFechaLanzamiento').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeFechaLanzamiento').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#link").change(function(){
+        var nombre = $("#link").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeLink').show();
+            $('#mensajeLink').text('El trailer no debe estar vacio');
+            $('#mensajeLink').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeLink').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+    $("#trailerEpisodio").change(function(){
+        var nombre = $("#trailerEpisodio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTrailerEpisodio').show();
+            $('#mensajeTrailerEpisodio').text('El trailer no debe estar vacio');
+            $('#mensajeTrailerEpisodio').css('color','red');
+            $('#registrarSerie').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTrailerEpisodio').hide();
+            $('#registrarSerie').attr('disabled',false);
+        
+        }
+    })
+</script>
+<script type="text/javascript">
+    // Validacion de solo letas
+        function controltagLet(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
+        function controltagNum(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[0-9]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+</script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#registroSerie').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[id=episodio_file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            $('#registrarSerie').attr('disabled',true);
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "{{URL::to('series')}}"
+
+        }
+    });
+     
+    })();
+</script>
     <script>
 //---------------------------------------------------------------------------------------------------
     // Para que se vea la imagen en el formulario
@@ -423,57 +675,57 @@
 //---------------------------------------------------------------------------------------------------
     // Para validar el tamaño maximo de las imagenes de la Saga y de la Serie y el archivo de la serie
         // Portada de la serie
-        $(document).ready(function(){
-            $('#image-upload').change(function(){
-                var tamaño = this.files[0].size;
-                var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
-                    $('#mensajePortadaPelicula').show();
-                    $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                    $('#mensajePortadaPelicula').css('color','red');
-                    $('#registrarSerie').attr('disabled',true);
-                } else {
-                    $('#mensajePortadaPelicula').hide();
-                    $('#registrarSerie').attr('disabled',false);
-                }
-            });
-        });
-        // Portada de la serie
-        // Portada de la Saga
-        $(document).ready(function(){
-            $('#imageSM-upload').change(function(){
-                var tamaño = this.files[0].size;
-                var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
-                    $('#mensajePortadaSaga').show();
-                    $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                    $('#mensajePortadaSaga').css('color','red');
-                    $('#registrarSaga').attr('disabled',true);
-                } else {
-                    $('#mensajePortadaSaga').hide();
-                    $('#registrarSaga').attr('disabled',false);
-                }
-            });
-        });
-        // Portada de la Saga
-        // Archivo de la Saga
-        $(document).ready(function(){
-            $('#episodio_file').change(function(){
-                var tamaño = this.files[0].size;
-                var tamañoKb = parseInt(tamaño/1024);
-                if (tamañoKb>2048) {
-                    $('#mensajeEpisodio').show();
-                    $('#mensajeEpisodio').text('El archivo es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-                    $('#mensajeEpisodio').css('color','red');
-                    $('#btnAdd').attr('disabled',true);
-                    $('#registrarSaga').attr('disabled',true);
-                } else {
-                    $('#mensajeEpisodio').hide();
-                    $('#btnAdd').attr('disabled',false);
-                    $('#registrarSaga').attr('disabled',false);
-                }
-            });
-        });
+        // $(document).ready(function(){
+        //     $('#image-upload').change(function(){
+        //         var tamaño = this.files[0].size;
+        //         var tamañoKb = parseInt(tamaño/1024);
+        //         if (tamañoKb>2048) {
+        //             $('#mensajePortadaPelicula').show();
+        //             $('#mensajePortadaPelicula').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+        //             $('#mensajePortadaPelicula').css('color','red');
+        //             $('#registrarSerie').attr('disabled',true);
+        //         } else {
+        //             $('#mensajePortadaPelicula').hide();
+        //             $('#registrarSerie').attr('disabled',false);
+        //         }
+        //     });
+        // });
+        // // Portada de la serie
+        // // Portada de la Saga
+        // $(document).ready(function(){
+        //     $('#imageSM-upload').change(function(){
+        //         var tamaño = this.files[0].size;
+        //         var tamañoKb = parseInt(tamaño/1024);
+        //         if (tamañoKb>2048) {
+        //             $('#mensajePortadaSaga').show();
+        //             $('#mensajePortadaSaga').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+        //             $('#mensajePortadaSaga').css('color','red');
+        //             $('#registrarSaga').attr('disabled',true);
+        //         } else {
+        //             $('#mensajePortadaSaga').hide();
+        //             $('#registrarSaga').attr('disabled',false);
+        //         }
+        //     });
+        // });
+        // // Portada de la Saga
+        // // Archivo de la Saga
+        // $(document).ready(function(){
+        //     $('#episodio_file').change(function(){
+        //         var tamaño = this.files[0].size;
+        //         var tamañoKb = parseInt(tamaño/1024);
+        //         if (tamañoKb>2048) {
+        //             $('#mensajeEpisodio').show();
+        //             $('#mensajeEpisodio').text('El archivo es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+        //             $('#mensajeEpisodio').css('color','red');
+        //             $('#btnAdd').attr('disabled',true);
+        //             $('#registrarSaga').attr('disabled',true);
+        //         } else {
+        //             $('#mensajeEpisodio').hide();
+        //             $('#btnAdd').attr('disabled',false);
+        //             $('#registrarSaga').attr('disabled',false);
+        //         }
+        //     });
+        // });
         // Archivo de la Saga
     // Para validar el tamaño maximo de las imagenes de la Saga y de la Serie y el archivo de la serie
 //---------------------------------------------------------------------------------------------------
@@ -599,6 +851,25 @@
                 }
             });
         });
+         $(document).ready(function(){
+        $('#precio').keyup(function(evento) {
+            var precio = $('#precio').val();
+            if (precio>999) {
+                $('#mensajePrecio').show();
+                $('#mensajePrecio').text('El costo de tickets no deben exceder los 999 Tickets');
+                $('#mensajePrecio').css('color','red');
+                $('#registrarSerie').attr('disabled',true);
+            } else if (precio<0) {
+                $('#mensajePrecio').show();
+                $('#mensajePrecio').text('El costo de tickets debe ser mayor a 0');
+                $('#mensajePrecio').css('color','red');
+                $('#registrarSerie').attr('disabled',true);
+            } else {
+                $('#mensajePrecio').hide();
+                $('#registrarSerie').attr('disabled',false);
+            }
+        });
+    });
     // Para validar el precio
 //---------------------------------------------------------------------------------------------------
     // Para validar los radio boton

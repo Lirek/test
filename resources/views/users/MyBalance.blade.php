@@ -11,14 +11,21 @@
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
                 	<div class="text-center">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             @if(Auth::user()->points)
                                 <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
                             @else
                                 <h4><b>Total de puntos:</b> 0 </h4>
+                            @endif
+                        </div>
+                        <div class="col-sm-4">
+                            @if(Auth::user()->pending_points)
+                                <h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4>
+                            @else
+                                <h4><b>Total de puntos pendientes:</b> 0 </h4>
                             @endif
                         </div>
                     </div>
@@ -49,7 +56,15 @@
                                             <td>{{$balance['Method']}}</td>
                                             @if($balance['Method'] != 'Puntos')
                                                 <td>
-                                                    <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
+                                                    @if($balance['Factura']!=NULL)
+                                                        <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Ver 
+                                                        </a>
+                                                    @else
+                                                        <a onclick="generarFactura({!!$balance['id_payments']!!})" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Generar 
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             @else
                                                 <td>No Aplica</td>
@@ -99,5 +114,104 @@
                 "order": [[ 0, "desc" ]],
             });
 
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
+<script id="jsbin-javascript">
+
+    function generarFactura(id_payments) {
+        console.log(id_payments);
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
+        swal({
+            title: "¡Generando factura!",
+            text: "Estamos generando su factura...",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        var intento = 0;
+        var maxIntento = 5; // 30seg de espera // 10
+        var medio = "deposito_cuenta_bancaria";
+        getDatilAgain(id_payments,medio,function callback(infoFactura) {
+            console.log(infoFactura);
+            var idFactura = infoFactura.id;
+            console.log(idFactura);
+            if (intento <= maxIntento) {
+                if (idFactura!=undefined) {
+                    var parametros = "/"+idFactura+"/"+id_payments;
+                    var ruta = "{{ url('/generarFactura/') }}"+parametros;
+                    $.ajax({
+                        url     : ruta,
+                        type    : "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            var respuesta = data;
+                            console.log("lista la factura? "+respuesta);
+                        }
+                    });
+                    swal({
+                        title: "¡Factura Generada!",
+                        text: "Ya podrá ver la factura de su pago",
+                        icon: "success",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    })
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                    intento++;
+                } else {
+                    console.log('intento: '+intento);
+                    getDatilAgain(id_payments,medio,callback);
+                }
+            } else {
+                swal({
+                    title: "¡Ups!",
+                    text: "En estos momentos no podemos generar su factura, intente más tarde",
+                    icon: "info",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((recarga) => {
+                    location.reload();
+                });
+            }
+        });
+    }
+
+    function getDatil(idTicketSales,medio) {
+        return new Promise(function(resolve,reject) {
+            var parametros = "/"+idTicketSales+"/"+medio;
+            var url = "{{ url('/factura/') }}"+parametros;
+
+            var req = new XMLHttpRequest();
+            req.open("GET",url);
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req.response);
+                }
+                else {
+                    resolve(req.response);
+                }
+            };
+            req.onerror = function() {
+                reject(Error("Network Error"));
+            };
+            req.send();
+        });
+    }
+
+    function getDatilAgain(idTicketSales,medio,callback) {
+        var msn = "";
+        getDatil(idTicketSales,medio).then(function(response) {
+            var res = JSON.parse(response);
+            msn = res;
+        }, function(error) {
+            msn = error;
+        });
+        setTimeout(function() {
+            callback(msn);
+        },6000);
+    }
 </script>
 @endsection

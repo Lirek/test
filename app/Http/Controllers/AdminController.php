@@ -8,6 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
+use App\Mail\StatusMovies;
+use App\Mail\StatusSerie;
+use App\Mail\StatusSeller;
+use App\Mail\StatusBooks;
+use App\Mail\StatusPayments;
 use App\Events\ContentAprovalEvent;
 use App\Events\ContentDenialEvent;
 use App\Events\PayementAprovalEvent;
@@ -16,6 +21,7 @@ use App\Events\PasswordPromoter;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
 use App\Events\AssingPointsEvents;
+use App\Events\UserValidateEvent;
 use File;
 
 //-------------Modelos del sistema-----------------------
@@ -23,6 +29,7 @@ use App\Megazines;
 use App\Tags;
 use App\ApplysSellers;
 use App\Albums;
+use App\Serie;
 use App\Songs;
 use App\User;
 use App\Seller;
@@ -42,6 +49,10 @@ use App\Payments;
 use App\Referals;
 use App\PointsAssings;
 use App\SistemBalance;
+use App\Movie;
+use App\Rating;
+use App\Rejection;
+use App\PaymentSeller;
 
 //--------------------------------------------------------
 
@@ -70,7 +81,7 @@ class AdminController extends Controller
 */
     	public function ShowAlbums()
     	{	
-    		return view('promoter.ContentModules.MainContent.Albums');
+    		  return view('promoter.ContentModules.MainContent.Albums');
    		}
 
       public function AlbumsDataTable()
@@ -103,7 +114,7 @@ class AdminController extends Controller
                       
 
                       return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';;
+                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';
                     })
                     ->rawColumns(['Estatus','cover','songs'])
                     ->toJson();        
@@ -634,8 +645,15 @@ class AdminController extends Controller
                             return '<button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#myModal" id="status">'.$tv->status.'</button';
                           })
                           ->editColumn('logo',function($tv){
+                            /* solucion en produccion
+                            $ruta  = "leipel.com".$tv->logo;
+                            dd($ruta);
 
-                          return '<img class="img-rounded img-responsive av" src="/images/radio/"'.$tv->logo.'"
+                          return '<img class="img-rounded img-responsive av" src='.$ruta.'
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                          })
+                          */
+                          return '<img class="img-rounded img-responsive av" src='.asset($tv->logo).'
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
                           })
                           ->editColumn('streaming',function($tv){
@@ -676,6 +694,13 @@ class AdminController extends Controller
                             <button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
                           })
                           ->editColumn('logo',function($tv){
+                            /*
+                            produccion
+                            $ruta  = "https://leipel.com/".$tv->logo;
+                            return '<img class="img-rounded img-responsive av" src='.$ruta.'
+                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+                            })
+                            */
 
                           return '<img class="img-rounded img-responsive av" src="'.asset($tv->logo).'"
                                      style="width:70px;height:70px;" alt="User Avatar" id="photo">';
@@ -808,63 +833,63 @@ class AdminController extends Controller
    			return response()->json($tv);
    		}
 
-/*--------------------------------------------------------------------------------
------------------------FUNCIONES DE LIBROS-----------------------------------
------------------------------------------------------------------------
-*/   		
-  public function ShowBooks()
-  {
-        return view('promoter.ContentModules.MainContent.Books');
+/* 
+  ---------------------------------------------------------------
+  ----------------------- FUNCIONES DE LIBRO --------------------
+  ---------------------------------------------------------------
+*/  		
+  public function ShowBooks() {
+    return view('promoter.ContentModules.MainContent.Books');
   }
 
-  public function BooksDataTable()
-  {
-    $Books= Book::where('status','=','En Revision')->get();
+  public function BooksDataTable($status) {
+    $Books= Book::where('status',$status)->get();
     return Datatables::of($Books)
-                    ->addColumn('Estatus',function($Books){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$Books->id.' data-toggle="modal" data-target="#myModal" id="status">'.$Books->status.'</button';
-                    })
-                    ->editColumn('books_file',function($Books){
-
-                      return '<button type="button" class="btn btn-theme" value='.$Books->books_file.' data-toggle="modal" data-target="#file" id="file_b"></button';
-                    })
-                    ->editColumn('cover',function($Books){
-
-                      return '<img class="img-rounded img-responsive av" src="'.asset($Books->cover).'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                    })
-                    ->editColumn('saga_id',function($Books){
-                      
-                      if($Books->saga_id == 0 or $Books->saga_id == 'NULL')
-                          {
-                            return 'No';
-                          }
-                          else
-                          {
-                            return $Books->sagas->sag_name;
-                          }
-    
-                    
-                    })
-                    ->editColumn('author_id',function($Books){
-                      
-                        return $Books->author()->first()->full_name;
-
-                    })
-                    ->editColumn('rating_id',function($Books){
-
-                    return $Books->rating->r_name;
-
-                    })
-                    ->editColumn('seller_id',function($Books){
-
-                    return $Books->seller->name;
-
-                    })
-                    ->rawColumns(['Estatus','books_file','cover'])
-                    ->toJson();
-         
+      ->addColumn('cover',function($Books){
+        return "<img class='img-rounded img-responsive av' src='".asset('images/bookcover/').'/'.$Books->cover."' style='width:70px;height:70px;'' alt='Portada' id='photo'>";
+      })
+      ->addColumn('rating_id',function($Books){
+        return $Books->rating->r_name;
+      })
+      ->addColumn('seller_id',function($Books){
+        return $Books->seller->name;
+      })
+      ->addColumn('saga_id',function($Books){
+        if($Books->saga_id == 0 or $Books->saga_id == 'NULL') {
+          return 'No tiene saga';
+        } else {
+          return $Books->sagas->sag_name;
+        }
+      })
+      ->addColumn('books_file',function($Books){
+        return "<button type='button' class='btn btn-success' value='".asset('book/').'/'.$Books->books_file."' data-toggle='modal' data-target='#file' id='file_b'>Ver libro</button";
+      })
+      ->addColumn('Estatus',function($Books){
+        if ($Books->status=="Aprobado") {
+          $colorBoton = "btn-success";
+          $id = "status";
+          $modal = "myModal";
+          $texto = $Books->status;
+        }
+        else if ($Books->status=="En Revision") { 
+          $colorBoton = "btn-warning";
+          $id = "status";
+          $modal = "#myModal";
+          $texto = $Books->status;
+        }
+        else if ($Books->status=="Denegado") { 
+          $colorBoton = "btn-danger";
+          $id = "denegado";
+          $modal = "#negado";
+          $texto = "Ver negaciones";
+        }
+        return "<button type='button' class='btn ".$colorBoton."' value=".$Books->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button";
+      })
+      ->addColumn('author_id',function($Books){
+        return $Books->author()->first()->full_name;
+      })
+      ->rawColumns(['Estatus','books_file','cover'])
+      ->toJson();
   }
 
   public function BooksSagasDataTable()
@@ -893,16 +918,249 @@ class AdminController extends Controller
                     ->toJson();
   }
 
-  public function EstatusBooks(Request $request,$id)
-  {
-        $Book = Book::find($id);
-        $Book->status = $request->status; 
-
-        $this->SendEmails($request->status,$Book->title,$Book->seller->email,$request->message);        
-
-        $Book->save();
-        return response()->json($Book);
+  public function EstatusBooks(Request $request,$id) {
+    $book = Book::find($id);
+    $email = $book->seller->email;
+    $message = $request->message;
+    if ($request->status == 'Aprobado') {
+      $book->status = 1;
+    } else {
+      $rejection = new Rejection;
+      $rejection->module = "Books";
+      $rejection->id_module = $id;
+      $rejection->reason = $message;
+      $rejection->save();
+      $book->status = 3;
+    }
+    $book->save();
+    Mail::to($email)->send(new StatusBooks($book->title,$request->status,$message));
+    /*
+    $Book = Book::find($id);
+    $Book->status = $request->status; 
+    $this->SendEmails($request->status,$Book->title,$Book->seller->email,$request->message);
+    $Book->save();
+    */
+    return response()->json($book);
   }
+/* 
+  ---------------------------------------------------------------
+  ----------------------- FUNCIONES DE LIBRO --------------------
+  ---------------------------------------------------------------
+*/
+
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE PELICULA -------------------
+  ---------------------------------------------------------------
+*/
+    public function ShowMovies() {
+      return view('promoter.ContentModules.MainContent.Movies');
+    }
+
+    public function MoviesDataTable($status) {
+
+      $movies = Movie::where('status',$status);
+      //$movies = Movie::all();
+      return Datatables::of($movies)
+        ->addColumn('img_poster',function($movies){
+          return "<button href='' data-toggle='modal' data-target='#movieView' value=".$movies->id." id='viewMovie'><img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada'></button>";
+        })
+        ->addColumn('autor',function($movies){
+          return $movies->Seller()->first()->name;
+        })
+        ->addColumn('title',function($movies){
+          return $movies->title;
+        })
+        ->addColumn('original_title',function($movies){
+          return $movies->original_title;
+        })
+        ->addColumn('sinopsis',function($movies){
+          return $movies->based_on;
+        })
+        ->addColumn('categoria',function($movies){
+          return $movies->rating->r_descr;
+        })
+        ->addColumn('genero',function($movies){
+          foreach ($movies->tags_movie as $key) {
+            $tags[] = $key->tags_name;
+          }
+          return $tags;
+        })
+        ->addColumn('release_year',function($movies){
+          return $movies->release_year;
+        })
+        ->addColumn('created_at',function($movies){
+          return $movies->created_at;
+        })
+        ->addColumn('cost',function($movies){
+          return $movies->cost;
+        })
+        ->addColumn('Estatus',function($movies){
+          if ($movies->status=="Aprobado") { 
+            $colorBoton = "btn-success";
+            $id = "status";
+            $modal = "";
+            $texto = $movies->status;
+          }
+          else if ($movies->status=="En Proceso") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = $movies->status;
+          }
+          else if ($movies->status=="Denegado") { 
+            $colorBoton = "btn-danger";
+            $id = "denegado";
+            $modal = "#negado";
+            $texto = "Ver negaciones";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
+        })
+        ->rawColumns(['Estatus','img_poster'])
+        ->toJson();
+    }
+
+    public function MovieStatus(Request $request,$id) {
+      $movie = Movie::find($id);
+      $email = $movie->seller->email;
+      $message = $request->message;
+      if ($request->status == 'Aprobado') {
+        $movie->status = 1;
+      } else {
+        $rejection = new Rejection;
+        $rejection->module = "Movies";
+        $rejection->id_module = $id;
+        $rejection->reason = $message;
+        $rejection->save();
+        $movie->status = 3;
+      }
+      $movie->save();
+      Mail::to($email)->send(new StatusMovies($movie->title,$request->status,$message));
+      return response()->json($movie);
+    }
+
+    public function viewMovie($id) {
+      $movie = Movie::find($id);
+      $seller = $movie->seller;
+      return response()->json($movie);
+    }
+
+/* 
+  ---------------------------------------------------------------
+  --------------------- FUNCIONES DE PELICULA -------------------
+  ---------------------------------------------------------------
+*/
+/* 
+  ---------------------------------------------------------------
+  ---------------------- FUNCIONES DE SERIE ---------------------
+  ---------------------------------------------------------------
+*/
+  public function ShowSeries() {
+    return view('promoter.ContentModules.MainContent.Series');
+  }
+
+  public function SeriesDataTable($status) {
+
+      $serie = Serie::where('status',$status);
+      return Datatables::of($serie)
+        ->addColumn('img_poster',function($serie){
+          return "<img class='img-rounded img-responsive av' src='".asset($serie->img_poster)."' style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
+        })
+        ->addColumn('autor',function($serie){
+          return $serie->Seller()->first()->name;
+        })
+        ->addColumn('title',function($serie){
+          return $serie->title;
+        })
+        ->addColumn('historia',function($serie){
+          return $serie->story;
+        })
+        ->addColumn('release_year',function($serie){
+          return $serie->release_year;
+        })
+        ->addColumn('trailer',function($serie){
+          return "<a href=$serie->trailer target='_blank'>".$serie->trailer."</a>";
+        })
+        ->addColumn('cost',function($serie){
+          return $serie->cost;
+        })
+        ->addColumn('saga',function($serie){
+          if ($serie->saga!=null) {
+            $saga = "<button href='' value='".$serie->id."' data-toggle='modal' data-target='#ModalSaga' id='saga' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$serie->saga->sag_name."</button>";
+            //$saga = $serie->saga->sag_name;
+          } else {
+            $saga = "No tiene saga";
+          }
+          return $saga;
+        })
+        ->addColumn('estatusSerie',function($serie){
+          return $serie->status_series;
+        })
+        ->addColumn('Estatus',function($serie){
+          if ($serie->status=="Aprobado") { 
+            $colorBoton = "btn-success";
+            $id = "status";
+            $modal = "";
+            $texto = $serie->status;
+            $modal = "";
+          }
+          else if ($serie->status=="En Proceso") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "";
+            $texto = $serie->status;
+            $modal = "#myModal";
+          }
+          else if ($serie->status=="Denegado") { 
+            $colorBoton = "btn-danger";
+            $id = "denegado";
+            $modal = "#negado";
+            $texto = "Ver negaciones";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$serie->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
+        })
+        ->rawColumns(['Estatus','img_poster','trailer','saga'])
+        ->toJson();
+  }
+
+  public function sagaSerie($idSerie) {
+    $serie = Serie::find($idSerie);
+    $saga = $serie->saga;
+    $rating = $saga->rating;
+    for ($i=0; $i < count($saga); $i++) { 
+      $result[$i++] = $saga->img_saga;
+      $result[$i++] = $saga->sag_name;
+      $result[$i++] = $rating->r_descr;
+      $result[$i++] = $saga->status;
+      $result[$i++] = $saga->type_saga;
+      $result[$i++] = $saga->sag_description;
+    }
+    return response()->json($result);
+  }
+
+  public function SerieStatus(Request $request, $id) {
+    $serie = Serie::find($id);
+    $email = $serie->seller->email;
+    $message = $request->message;
+    if ($request->status == 'Aprobado') {
+      $serie->status = 1;
+    } else {
+      $rejection = new Rejection;
+      $rejection->module = "Series";
+      $rejection->id_module = $id;
+      $rejection->reason = $message;
+      $rejection->save();
+      $serie->status = 3;
+    }
+    $serie->save();
+    Mail::to($email)->send(new StatusSerie($serie->title,$request->status,$message));
+    return response()->json($serie);
+  }
+/* 
+  ---------------------------------------------------------------
+  ----------------------- FUNCIONES DE SERIE --------------------
+  ---------------------------------------------------------------
+*/
  /*---------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------FUNCIONES DE PROVEEDORES----------------------------------
 --------------------------------------------------------------------------------------
@@ -962,32 +1220,118 @@ class AdminController extends Controller
         return response()->json($data); 
       }
 
-      public function AproveOrDenialSeller(Request $request,$id)
-      {
-        if ($request->status=='Rechazado') 
-        {
-          $seller= Seller::find($id);
-          
-          $data=$seller->delete();          
+      public function AproveOrDenialSeller(Request $request,$id) {
+        $seller= Seller::find($id);
+        if ($request->status=='Rechazado') {
+          //$data=$seller->delete();
+          $seller->estatus = 3; // rechazado
+        } else {
+          $seller->estatus = 2; // aprobado
         }
-        else
-        {
-          $seller= Seller::find($id);
-          $seller->estatus=$request->status;          
-          $data=$seller->save();
-        }
-          return response()->json($data);          
+        $seller->save();
+        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
+        return response()->json($request->all());
       }
-//-------------Mostrar Solicitudes ---------------------------------
+//------------------------- Mostrar Proveedores ---------------------------------
    		
-      public function ShowApplys()
-    	{
-    		$applys= ApplysSellers::paginate(10);
-    		
-    		$Salesmans = Salesman::all();
-    		
-    		return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+      public function ShowApplys() {
+    		//$applys= ApplysSellers::paginate(10);
+    		$salesmans = Salesman::all();
+    		//return view('promoter.AdminModules.Applys')->with('applys',$applys)->with('salesmans',$Salesmans);
+        return view('promoter.AdminModules.Applys')->with('salesmans',$salesmans);
    		}
+
+      public function SellerDataTable($status) {
+        $ApplysSellers = ApplysSellers::where('status',$status);
+        return Datatables::of($ApplysSellers)
+          ->addColumn('nombreComercial',function($ApplysSellers){
+            return $ApplysSellers->name_c;
+          })
+          ->addColumn('nombreContacto',function($ApplysSellers){
+            return $ApplysSellers->contact_s;
+          })
+          ->addColumn('telefono',function($ApplysSellers){
+            return $ApplysSellers->phone_s;
+          })
+          ->addColumn('email',function($ApplysSellers){
+            return $ApplysSellers->email;
+          })
+          ->addColumn('tipo',function($ApplysSellers){
+            return $ApplysSellers->desired_m;
+          })
+          ->addColumn('subTipo',function($ApplysSellers){
+            if ($ApplysSellers->sub_desired_m!=NULL) {
+              $subTipo = $ApplysSellers->sub_desired_m;
+            } else {
+              $subTipo = "No aplica";
+            }
+            return $subTipo;
+          })
+          ->addColumn('vendedor',function($ApplysSellers){
+            if ($ApplysSellers->salesman_id != NULL) {
+              return 
+              "<span class='mdl-chip mdl-chip--deletable' id='a_".$ApplysSellers->salesman_id."_".$ApplysSellers->id."'>
+                <span class='mdl-chip__text' id='promoter_assing'>".$ApplysSellers->Salesman->name."</span> 
+                <button type='button' class='mdl-chip__action' value1='".$ApplysSellers->id."' value2='".$ApplysSellers->salesman_id."' name='apply' id='x'> 
+                  <i class='material-icons'>cancel</i> 
+                </button>
+              </span>";
+            } else {
+              return
+              "<button class='mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' id='add_promoter_to' value='".$ApplysSellers->id."' data-toggle='modal' data-target='#AssingPromoter'>
+                <i class='material-icons'>add</i>
+              </button>";
+            }
+          })
+          ->addColumn('created_at',function($ApplysSellers){
+            return $ApplysSellers->created_at;
+          })
+          ->addColumn('solicitud',function($ApplysSellers){
+            if ($ApplysSellers->status=="Aprobado") { 
+              $colorBoton = "btn-primary"; 
+              $id = "statusApplys"; 
+              $modal = "#myModal";
+              $texto = $ApplysSellers->status;
+            }
+            else if ($ApplysSellers->status=="En Proceso") { 
+              $colorBoton = "btn-warning"; 
+              $id = "statusApplys"; 
+              $modal = "#myModal";
+              $texto = $ApplysSellers->status;
+            }
+            else if ($ApplysSellers->status=="Denegado") { 
+              $colorBoton = "btn-danger"; 
+              $id = "denegado"; 
+              $modal = "#negado";
+              $texto = "Ver degaciones";
+            }
+            return "<button type='button' class='btn ".$colorBoton."' value=".$ApplysSellers->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
+          })
+          ->rawColumns(['solicitud','vendedor'])
+          ->toJson();
+      }
+
+      public function AddSalesMan($idApplySeller, $idSalesman) {
+        $applys = ApplysSellers::find($idApplySeller);
+        $applys->salesman_id = $idSalesman;
+        $applys->save();
+        return response()->json($applys); 
+      }
+
+      public function viewRejection($idModulo,$modulo) {
+        $rejection = Rejection::where('id_module',$idModulo)
+                              ->where('module',$modulo)
+                              ->get();
+        return Datatables::of($rejection)
+          ->addColumn('razon',function($rejection){
+            return $rejection->reason;
+          })
+          ->addColumn('created_at',function($rejection){
+            return $rejection->created_at;
+          })
+          ->toJson();
+          //return response()->json($rejection);
+      }
 //-------------------------------------------------------------------------------
 
 //-----------------------CRUD PROMOTORES------------------------------------
@@ -1075,43 +1419,37 @@ class AdminController extends Controller
   			return response()->json($applys);	
   		}
 
-  		public function StatusApllys($id,Request $request )
-  		{
+  		public function StatusApllys($id,Request $request ) {
   			$applys= ApplysSellers::find($id);
   			$applys->status = $request->status;
-  			
-        
-  			if ($request->status == 'Aprobado') 
-  			{
-  			
-  				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      			$charactersLength = strlen($characters);
-      			$randomString = '';
-      		
-      					for ($i = 0; $i < 10; $i++) 
-         						{
-          						$randomString .= $characters[rand(0, $charactersLength - 1)];
-     					 		  }
+        if ($request->status == 'Aprobado') {
+          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          $charactersLength = strlen($characters);
+          $randomString = '';
+          for ($i = 0; $i < 10; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+          }
   	
   				$applys->token= $randomString;
   			
   				$current = Carbon::now();
   	
   				$applys->expires_at= $current->addDays(7);
-  				
-  				
-  				Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
+
+          Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
 
   				$applys->save();
-  				return response()->json($applys);	
-  			}
-        else
-        {   
-            Mail::to($applys->email)->subject('Estado de Solicitud')->send(new StatusApplys($applys,$request->message));
+  				return response()->json($applys);
+  			} else {
+            $rejection = new Rejection;
+            $rejection->module = "Applys Seller";
+            $rejection->id_module = $id;
+            $rejection->reason = $request->message;
+            $rejection->save();
+            Mail::to($applys->email)->send(new StatusApplys($applys,$request->message));
             $applys->save();
-           return response()->json($applys);
-            
-        }	
+            return response()->json($applys);
+          }	
   		}
 
       public function DeleteApplysFromPromoter($promoter,$applys)
@@ -1195,7 +1533,9 @@ class AdminController extends Controller
           $user=User::where('verify','=','0')
                                              ->where('img_doc','<>','NULL')
                                              ->where('num_doc','<>','NULL')
-                                             ->get(); 
+                                             ->where('type','<>','Indefinido')
+                                             ->where('fech_nac','<>','NULL')
+                                             ->get();
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
                       
@@ -1208,9 +1548,74 @@ class AdminController extends Controller
                     })                                        
                     
                     ->editColumn('img_doc',function($user){
+                      /* solucion para produccion
+                      $ruta = "https://leipel.com/";
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'">
+                                 </button>';
+                      })
+                      */
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" style="width:70px;height:70px;" src="'.asset($user->img_doc).'"
+                                  alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name; 
+                    })
+                    ->rawColumns(['Estatus','img_doc','webs'])
+                    ->toJson();                                           
+      }
+
+      public function AllClientsData()
+      {
+          $user=User::where('verify','=','1')
+                                             ->get(); 
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" disabled >Aprobado</button';
+                    })
+
+                    ->addColumn('webs',function($user){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+                    })                                        
+                    
+                    ->editColumn('img_doc',function($user){
 
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($user->img_doc).'"
+                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
+                                 </button>';
+                    })
+                    ->editColumn('name',function($user){
+                       return $user->name.' '.$user->last_name;
+                    })
+                    ->rawColumns(['Estatus','img_doc','webs'])
+                    ->toJson();
+      }
+
+     public function RejectedClientsData()
+      {
+          $user=User::where('verify','=','2')
+                                             ->get();
+             return Datatables::of($user)
+                    ->addColumn('Estatus',function($user){
+
+                      return '<button type="button" class="btn btn-theme" disabled >Rechazado</button';
+                    })
+
+                    ->addColumn('webs',function($user){
+
+                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+                    })
+
+                    ->editColumn('img_doc',function($user){
+
+                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
                                  style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
                                  </button>';
                     })
@@ -1221,17 +1626,22 @@ class AdminController extends Controller
                     ->toJson();                                           
       }
 
+
       public function ValidateUser(Request $request,$id)
       {
         $User= User::find($id);
         
         if ($request->status == 'Aprobado')
           {
-            $User->verify=1;  
+            $User->verify=1;
+            
+            event(new UserValidateEvent($User->email,1,0));
           }
            else
           {
-          $User->verify=0; 
+            $User->verify=2;
+
+            event(new UserValidateEvent($User->email,2,$request->message));
           }
 
         $User->save();
@@ -1250,7 +1660,7 @@ class AdminController extends Controller
           
           if ($user->Referals()->get()->isEmpty()) 
           {
-            return Datatables::of($WholeReferals);
+            return Datatables::of($WholeReferals)->toJson();
           }
           foreach ($user->Referals()->get() as $key) 
           {
@@ -1360,13 +1770,29 @@ class AdminController extends Controller
       public function DepsitDataTable()
       {
         $deposit = Payments::where('status','=','En Revision')->with('TicketsUser')->with('Tickets');
+        /* solucion para produccion
+                      $ruta = "http://leipel.com";
+                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
+                                 </button> ';
+                      })
+                      */
 
         return Datatables::of($deposit)
                                     ->editColumn('voucher',function($deposit){
-
+                                      /*
+                                      $ruta = "http://leipel";
                       return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'" 
+                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
                                  style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                                 </button> ';
+                    })
+                    return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+<img class="img-rounded img-responsive av" src="'.asset($deposit->vouch).'"
+                                      */
+                    return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'"                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
                                  </button> ';
                     })
                     ->editColumn('user_id',function($deposit){
@@ -1392,7 +1818,7 @@ class AdminController extends Controller
         $deposit = Payments::find($id);
         
         
-        if($request->status == 'Aprobado')
+        if($request->status_p == 'Aprobado')
         {
 
           $user = User::find($deposit->user_id);
@@ -1424,10 +1850,8 @@ class AdminController extends Controller
           {
            event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
-          
 
-
-          //event(new PayementAprovalEvent($user->email));
+          event(new PayementAprovalEvent($user->email));
           
           return response()->json($user);
         }
@@ -1442,15 +1866,213 @@ class AdminController extends Controller
         }
       }
 
+      public function facturaDeposito($idTickets,$medio,$idUser) {
+        //dd($idTickets,$medio,$idUser);
+        $secuencial = rand(0,100000000);
+        $Buy = Payments::find($idTickets);
+        $paquete = TicketsPackage::find($Buy->package_id);
+        $user = User::find($idUser);
+        $nombrePaquete = $paquete->name;
+        $iva = 0.12;
+        $costoPaquete = $Buy->cost;
+        $cantidadPaquetes = $Buy->value;
+        $valor = ($costoPaquete*$iva)*$cantidadPaquetes;
+        $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
+        $total = $costoPaquete*$cantidadPaquetes;
+        $data = [
+        "ambiente" => 1, // 1: prueba; 2: produccion
+        "tipo_emision" => 1, // normal
+        "secuencial" => $secuencial, // Id de tickets_sales
+        "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
+        "emisor" => [
+            "ruc" => "0992897171001",
+            "obligado_contabilidad" => true,
+            "contribuyente_especial" => " ",
+            "nombre_comercial" => "LEIPEL / MuligHed",
+            "razon_social" => "Informeret S.A.",
+            "direccion" => "Torres del Mall del Sol, Torre B, Piso 4 (Av. Joaquín Orrantia y Juan Tanca Marengo)",
+            "establecimiento" => [
+                "punto_emision" => "002",
+                "codigo" => "001",
+                "direccion" => "Torres del Mall del Sol, Torre B, Piso 4 (Av. Joaquín Orrantia y Juan Tanca Marengo)"
+            ]
+        ],
+        "moneda" =>"USD",
+        "totales" => [
+            "impuestos" => [[
+                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
+                "valor" => $valor, //1.2, // 12% del precio del paquete
+                "codigo" => "2", // IVA
+                "codigo_porcentaje" => "2" // 12%
+            ]],
+            "total_sin_impuestos" => $base_imponible, // 8.8,
+            "importe_total" => $total, // 10.0, // precio del paquete de tickets
+            "propina" => 0.0,
+            "descuento" => 0.0
+        ],
+        "comprador" => [ // datos del usuario
+            "email" => $user->email,
+            "identificacion" => $user->num_doc,
+            "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
+            "razon_social" => $user->name." ".$user->last_name,
+            "direccion" => $user->direccion
+        ],
+        "items" => [[
+            "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados
+            "precio_unitario" => $costoPaquete, // 10.0, // precio del paquete de tickets
+            "descripcion" => "Compra de Paquete de Tickets Leipel. ".$nombrePaquete, // "Compra de Paquete de Tickets Leipel", // nombre del paquete
+            "precio_total_sin_impuestos" => $total, // 10.0, // cantidad*precio_unitario //cambiado
+            "impuestos" => [[
+                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
+                "valor" => $valor, // 1.2, // 12% del precio del paquete
+                "tarifa" => 12.0, // 12%
+                "codigo" => "2", // IVA
+                "codigo_porcentaje" => "2" // 12%
+                ]],
+            "descuento" => 0.0
+            ]],
+        "pagos" => [[
+            "medio" => $medio, // "deposito_cuenta_bancaria", // deposito_cuenta_bancaria/dinero_electronico_ec
+            "total" => $total // 10.0 // precio del paquete de tickets
+            ]]
+        ];
+        $urlEmision = "https://link.datil.co/invoices/issue";
+        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: DTleipel8892");
+        $datapost   = json_encode($data);
+        $ch         = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$urlEmision);
+        curl_setopt($ch,CURLOPT_POST, 1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$datapost);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+        curl_setopt($ch,CURLOPT_TIMEOUT, 20);
+        curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
+        $response = curl_exec($ch);
+        curl_close ($ch);
+        $respuesta = json_decode($response);
+        return Response()->json($respuesta);
+      }
+
+      public function setFactura($idTicketSales,$idFactura) {
+        $ticketSale = Payments::find($idTicketSales);
+        $ticketSale->factura_id = $idFactura;
+        $ticketSale->save();
+        return Response()->json($ticketSale);
+      }
+/* 
+  ---------------------------------------------------------------
+  --------------- FUNCIONES DE CANJE DE TICKETS -----------------
+  ---------------------------------------------------------------
+*/
+  public function ShowPaymentsSellers() {
+    return view('promoter.AdminModules.PaymentsSellers');
+  }
+
+  public function PaymentsDataTable($status) {
+    $payments = PaymentSeller::where('status',$status);
+      return Datatables::of($payments)
+        ->addColumn('proveedor',function($payments){
+          $seller = "<button href='' value='".$payments->seller->id."' data-toggle='modal' data-target='#ModalSeller' id='seller' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$payments->seller->name."</button>";
+          return $seller;
+        })
+        ->addColumn('img_factura',function($payments){
+          return "<button href='' data-toggle='modal' data-target='#facturaModal' value=".$payments->id."><img class='img-rounded img-responsive av' id='factura' src=".asset($payments->factura)." style='width:70px;height:70px;' alt='Factura'></button>";
+        })
+        ->addColumn('cita',function($payments){
+          if ($payments->fecha_cita==NULL) {
+            return "Cita no asiganda";
+          } else {
+            $cita = date('d-m-Y',strtotime($payments->fecha_cita));
+            return $cita;
+          }
+        })
+        ->addColumn('tickets',function($payments){
+          $seller = Seller::find($payments->seller_id);
+          return $payments->tickets." / ".$seller->credito;
+        })
+        ->addColumn('opciones',function($payments){
+          if ($payments->status=="Por cobrar") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = "Pagar o revertir";
+            $value2 = "Por cobrar";
+            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
+          }
+          else if ($payments->status=="Diferido") { 
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = "Pagar o revertir";
+            $value2 = "Diferido";
+            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
+          }
+          else if ($payments->status=="Pagado") { 
+            $colorBoton = "btn-success";
+            $id = "pagado";
+            $modal = "";
+            $texto = $payments->status;
+            $value2 = "";
+            $rechazo = "";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$payments->id." data-toggle='modal' data-target='".$modal."' id='".$id."' value2='".$value2."'>".$texto."</button>".$rechazo;
+        })
+        ->rawColumns(['proveedor','img_factura','opciones'])
+        ->toJson();
+  }
+
+  public function admin_payments(Request $request,$id) {
+    $payments = PaymentSeller::find($id);
+    $email = $payments->seller->email;
+    $message = $request->message;
+    $seller = Seller::find($payments->seller_id);
+    if ($request->status == 'Por cobrar') {
+      $payments->status = 'Diferido';
+      $hoy = date('Y-m-d');
+      $cita = strtotime('+2 day',strtotime($hoy));
+      $cita = date('Y-m-d',$cita);
+      $seller->credito_pendiente = $seller->credito_pendiente - $payments->tickets;
+      $payments->fecha_cita = $cita;
+    }
+    elseif ($request->status == 'Diferido') {
+       $payments->status = 'Pagado';
+    } else {
+      $rejection = new Rejection;
+      $rejection->module = "Payments Seller";
+      $rejection->id_module = $id;
+      $rejection->reason = $message;
+      $rejection->save();
+      $seller->credito = $seller->credito + $payments->tickets;
+      if ($seller->credito_pendiente>0) {
+        $seller->credito_pendiente = $seller->credito_pendiente - $payments->tickets;
+      }
+      $payments->status = 'Rechazado';
+    }
+    $seller->save();
+    $payments->save();
+    Mail::to($email)->send(new StatusPayments($payments->fecha_cita,$request->status,$message));
+    return response()->json($payments);
+  }
+
+  public function infoSeller($idSeller) {
+    $seller = Seller::find($idSeller);
+    return response()->json($seller);
+  }
+/* 
+  ---------------------------------------------------------------
+  --------------- FUNCIONES DE CANJE DE TICKETS -----------------
+  ---------------------------------------------------------------
+*/
+
 
 //------------------------------------------------------------
 
 //--------------------------Funcion de Pruueba----------------
     public function test()
       {
-        
       }
 //-------------------------------------------------------------
 
 
 }
+ 

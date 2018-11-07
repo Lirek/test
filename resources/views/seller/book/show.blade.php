@@ -39,81 +39,92 @@
             width:80%;
             height:33px;
         }
+        .colorbadge{
+            background-color:#428bca;
+        }
     </style>
 @endsection
 @section('content')
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Libro:</b> "{{ $book->title }}" ({{ $book->release_year }})</h2>
-                <h2><b>{{ $book->cost }} tickets</b></h2>
 
-                <div class="box box-widget widget-user-2">
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
-                    </div>
-                    <div id="panel" class="img-rounded img-responsive av text-center">
-                    </div>
-                    <h5> <b>Genero:</b> 
-                        @foreach($book->tags_book as $t)
-                            <span>| {{ $t->tags_name }} |</span>
-                        @endforeach
-                    </h5>
-                    <br>
-                    <div class="box-footer no-padding">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="widget-user-header bg-navy">
-                                <div class="widget-user-image">
-                                    <img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
-                                </div>
-                                <!-- /.widget-user-image -->
-                                <h2 class="widget-user-username"><b>Autor:</b> {{ $book->author->full_name }}</h2>
-                            </div>
-                            <ul class="nav nav-stacked">
-                                <li>
-                                    <h2>
-                                        <b>Titulo original:</b>
-                                        <span>
-                                            "{{ $book->original_title }}"
-                                        </span>
-                                    </h2>
-                                </li>
-                                <li>
-                                    <h2><b>Sinopsis: </b>
-                                        <span class="pull-right"></span>
-                                    </h2>
-                                    <h4 class="text-justify">
-                                        {{ $book->sinopsis }}
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h2><b>Categoría:</b><span> {{ $book->rating->r_name }} </span>
-                                    </h2>
-                                </li>
-                                <li>
-                                    @if($book->saga!=null)
-                                        <h2><b>Saga: </b><span>{{ $book->saga->sag_name }}</span></h2>
-                                        <div class="col-xs-4">
-                                            <h3 class="pull-left"> <b>Antes:</b> <span> {{ $book->before }} </span> </h3>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <h3 class="pull-left"> <b>Después:</b> <span> {{ $book->after }} </span> </h3>
-                                            <br>
-                                        </div>
-                                    @else
-                                        <h2><b>Saga: </b><span>No tiene saga</span></h2>
-                                    @endif
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-12" align="center">
-                        <a href="{{ url('/tbook') }}" class="btn btn-danger">Atrás</a>
+        <div class="row" >
+
+            <div class=" col-sm-12 col-md-6">
+                <div class="row">
+                    <div class=" col-sm-12 col-md-4 col-lg-4"></div>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div id="panel" class="img-rounded img-responsive av text-center"></div>
                     </div>
                 </div>
+            </div><!-- /. col img book -->
+
+            <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-8">
+                    <h3>Libro | "{{ $book->title }}" ({{ $book->release_year }})</h3>
+                    <h4><b>{{ $book->cost }} tickets</b></h4>
+                </div><!-- /. col titel book -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-8">
+                        <hr>
+                        <h5> <b>Sinopsis:</b></h5>
+                        <p class="text-justify">{{ $book->sinopsis }}</p>
+                        <h5><b>Titulo original: </b><span>{{ $book->original_title }}</span></h5>
+
+                    <!-- / <div class="widget-user-image">
+                            <img class="img-rounded img-responsive av"src=" //asset('images/authorbook') //$book->author->photo " style="width:70px;height:70px;" alt="User Avatar">
+                        </div>
+                        <!-- /.widget-user-image
+                        <h2 class="widget-user-username"><b>Autor:</b>  //$book->author->full_name </h2>
+                        -->
+
+                        <h5> <b>Géneros:</b>
+                            @foreach($book->tags_book as $t)
+                                <span class="badge badge-light colorbadge"> {{ $t->tags_name }} </span>
+                            @endforeach
+                        </h5>
+                        <h5> <b>Categoria:</b> <span class="label label-success"> {{ $book->rating->r_name }} </span></h5>
+
+                        <div class="row">
+                            @if($book->saga!=null)
+
+                                <div class="col-md-12">
+                                    <h5><b>Saga: </b><span>{{ $book->saga->sag_name }}</span></h5>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <h5 class="pull-left"> <b>Antes:</b> <span> {{ $book->before }} </span> </h5>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <h5 class="pull-left"> <b>Después:</b> <span> {{ $book->after }} </span> </h5>
+                                    <br>
+                                </div>
+                            @else
+                                <div class="col-md-12">
+                                    <h5><b>Saga: </b><span>No tiene saga</span></h5>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="row">
+                            <div  class="col-md-12" >
+                                <hr>
+                            </div>
+                            <div  class="col-md-6" >
+                                <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
+                            </div>
+                            <div  class="col-md-6">
+                                <a href="{{ url('/tbook') }}" class="btn btn-danger">Atrás</a>
+                            </div>
+                        </div>
+                    </div> <!-- /. col contenido book -->
+
+                </div>
             </div>
-        </div>
+        </div> <!-- /. row contenido book -->
+
+
+
 
         <!-- /.modal -->
         <div class="modal fade in modal-warning" id="modal-default">
@@ -147,23 +158,23 @@
 @endsection
 @section('js')
     <script>
-//---------------------------------------------------------------------------------------------------
-// Para evitar el click derecho sobre el modal del PDF        
+        //---------------------------------------------------------------------------------------------------
+        // Para evitar el click derecho sobre el modal del PDF
         document.getElementById('modal-default').oncontextmenu = function() {
             return false
         }
         function right(e) {
-        if (navigator.appName == 'Netscape' && e.which == 3) {
-            return false;
-        } else if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
-            return false;
-        }
+            if (navigator.appName == 'Netscape' && e.which == 3) {
+                return false;
+            } else if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
+                return false;
+            }
             return true;
         }
         document.getElementById('modal-default').onmousedown = right;
-// Para evitar el click derecho sobre el modal del PDF
-//---------------------------------------------------------------------------------------------------
-// Para visualizar el PDF
+        // Para evitar el click derecho sobre el modal del PDF
+        //---------------------------------------------------------------------------------------------------
+        // Para visualizar el PDF
 
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
@@ -232,7 +243,7 @@
         /**
          * Displays next page.
          */
-         function onNextPage() {
+        function onNextPage() {
             if (pageNum >= pdfDoc.numPages) {
                 return;
             }
@@ -250,8 +261,8 @@
             // Initial/first page rendering
             renderPage(pageNum);
         });
-// Para visualizar el PDF
-//---------------------------------------------------------------------------------------------------
+        // Para visualizar el PDF
+        //---------------------------------------------------------------------------------------------------
     </script>
 
 @endsection

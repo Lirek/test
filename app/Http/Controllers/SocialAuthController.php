@@ -6,9 +6,12 @@ use App\User;
 use Illuminate\Http\Request;
 //use Laravel\Socialite;
 
-use App\Events\CreateCodeSocialUserEvent;
+use App\Events\WelcomeEmailEvent;
 
 use Socialite;
+
+use App\Mail\ApprovalNotification;
+use Illuminate\Support\Facades\Mail;
 
 class SocialAuthController extends Controller
 {
@@ -21,16 +24,35 @@ class SocialAuthController extends Controller
     public function handleProviderCallback($provider)
     {
         try {
-            $user = Socialite::driver($provider)->user();
-//            dd($user);
+                $user = Socialite::driver($provider)->user();
+                //dd($user);
+                 
+                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                 $charactersLength = strlen($characters);
+                 $randomString = '';
+        
+                   for ($i = 0; $i < 6; $i++) 
+                      {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                      }
+
+
+                 $code=$randomString;
             $createUser = User::firstOrCreate(
                 ['email' => $user->getEmail()],
                 ['name' => $user->getName(),
-                'img_perf' => $user->getAvatar()]
+                'img_perf' => $user->getAvatar(),
+                'codigo_ref'=>$code]
             );
-
-            event(new CreateCodeSocialUserEvent($createUser->id));
             
+            if($createUser->wasRecentlyCreated)
+             {
+                event(new WelcomeEmailEvent($createUser));
+                $emailAdmin = "bcastillo@leipel.com";
+                $motivo = "Usuario pendiente por aprobar";
+                Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
+             }
+
             auth()->login($createUser);
             
             return redirect('/home')

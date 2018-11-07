@@ -61,18 +61,19 @@
         <div class="form-group">
                             <label for="art_name" class="col-md-4 control-label">Titulo De La Revista</label>
                             <div class="col-md-6">
-                                <input id="art_name" type="text" class="form-control" name="title" required autofocus>
+                                <input id="titulo" type="text" class="form-control" name="title" required autofocus placeholder="Titulo de la revista">
+                                <div id="mensajeTitulo"></div>
                             </div>
               </div>
 
         <div class="form-group">
-               <label for="desc" class="col-md-4 control-label">Descripcion</label>
+               <label for="desc" class="col-md-4 control-label">Descripción</label>
 
                             <div class="col-md-6">
-                                <textarea name="dsc" required>
-
-                                </textarea>
+                                <textarea name="dsc"  class="form-control" placeholder="Descripción de la revista" rows="3" cols="2" id="sinopsis"  required ></textarea>
+                                <div id="mensajeSinopsis"></div>
                             </div>
+                            
               </div>
 
               <div class="form-group">
@@ -82,16 +83,16 @@
                         @foreach($sagas as $saga)
                         <option value="{{$saga->id}}">{{$saga->sag_name}}</option>
                          @endforeach
-                        <option value="" selected>Seleccione una Opcion</option>
+                        <option value="0" selected>Revista independiente</option>
                     </select>
-                </div>
+                  </div>
               </div>
 
               <div class="form-group">
                             <label for="country" class="col-md-4 control-label">Pais</label>
 
                             <div class="col-md-6">
-                <select  name="x12" class="form-control js-example-basic-single">
+                <select  name="country" class="form-control js-example-basic-single">
                 <option value="AF">Afganistán</option>                                         
                               <option value="AL">Albania</option>                                         
                               <option value="DE">Alemania</option>                                         
@@ -150,7 +151,7 @@
                               <option value="DK">Dinamarca</option>                                         
                               <option value="DJ">Djibouti</option>                                         
                               <option value="DM">Dominica</option>                                         
-                              <option value="EC">Ecuador</option>                                         
+                              <option value="EC" selected>Ecuador</option>                                         
                               <option value="EG">Egipto</option>                                         
                               <option value="SV">El Salvador</option>                                         
                               <option value="AE">Emiratos Árabes Unidos</option>                                         
@@ -326,28 +327,45 @@
                               <option value="YU">Yugoslavia</option>
                               <option value="ZM">Zambia</option>
                               <option value="ZW">Zimbabue</option>              
-                              <option value="" selected>Seleccione una Opcion</option>
+                              
                 </select>
                             </div>
               </div>
-
-        <div class="form-group">
+              
+              <div class="form-group">
                 <label for="megazine_file" class="col-md-4 control-label">Archivo de la Revista</label>
                    <div class="col-md-6">
                      <input type="file" name="pdf_file" />
                    </div>
               </div>
-
+              <div class="form-group col-md-6">         
+                <label for="tags"> Generos</label>
+                  <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
+                  @foreach($tags as $genders)
+                      @if($genders->type_tags=='Revistas')
+                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                      @endif
+                  @endforeach
+                  </select>
+                         
+              </div>
               <div class="form-group">
                <label for="cost" class="col-md-4 control-label">Costo</label>
                    <div class="col-md-6">
-                     <input type="number" name="cost" class="form-control">                            
+                     <input type="number" name="cost" class="form-control" oninput="maxLengthCheck(this)" onkeypress="return controltagNum(event)" id="precio" placeholder="Costo en tickets" min="0"> 
+                     <div id="mensajePrecio"></div>                            
                    </div>
+                   
               </div>
+           
+             {{--seleccion de rating--}}
+                
+                {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <br>
            
         <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="guardarRevista">
                        Registrar
                     </button>
                 </div>
@@ -366,10 +384,10 @@
           <div class="box-body">
             
             
-             <div id="image-preview" style="border:#000000 1px solid ;" class="col-md-1">
-                <label for="image-upload" id="image-label">Portada</label>
-                 <input type="file" name="photo" accept=".jpg" id="image-upload" oninvalid="this.setCustomValidity('Ingrese Una Portada')"
-                          oninput="setCustomValidity('')" required/>
+             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                  <label for="image-upload" id="image-label"> Portada del Libro </label>
+                    {!! Form::file('photo',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                 <div id="list"></div>
             </div>
           </div>
       </div>
@@ -380,20 +398,98 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    /*Para maxlength del costo*/
+function maxLengthCheck(object) {
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+  }
+</script>
+<script type="text/javascript">
+  $("#precio").change(function(){
+        var nombre = $("#precio").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajePrecio').show();
+            $('#mensajePrecio').text('El precio no debe estar vacio');
+            $('#mensajePrecio').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajePrecio').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+  $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+  $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La descripción no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+</script>
 <script>
 
- $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-
-
-
-$(document).ready(function() {
-  $.uploadPreview({
-    input_field: "#image-upload",
-    preview_box: "#image-preview",
-    label_field: "#image-label"
-  });
-});
+function portada(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('image-upload').addEventListener('change', portada, false);
+</script>
+<script type="text/javascript">
+    // Validacion de solo letas
+        function controltagLet(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+        // Validacion de solo letas
+        //---------------------------------------------------------------------------------------------------
+        // Validacion de solo numeros
+        function controltagNum(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla==8) return true; // para la tecla de retroseso
+            else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+            else if (tecla==13) return true;
+            patron =/[0-9]/;// -> solo numeros
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
 </script>
 @endsection

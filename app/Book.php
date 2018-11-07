@@ -39,5 +39,9 @@ class Book extends Model
     public function tags_book() {
       return $this->belongsToMany('App\Tags','books_tags','books_id','tags_id');
     }
+     public function transaction()
+    {
+        return $this->hasMany('App\Transactions','books_id');
+    }
 
 }

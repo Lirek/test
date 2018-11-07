@@ -8,36 +8,71 @@
         animation: spin 0.8s infinite linear;
     }
     .btn-swal-center {
-        /*
-        width: 5em;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        position:absolute; 
-        width:100%; left:0;
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        */
         margin-right: 13em;
-        /*margin-left: 30em;*/
     }
     @media only screen and (max-width: 425px) {
         .btn-swal-center {
             margin-right: 10.5em;
         }
-    } 
+    }
     @media only screen and (max-width: 375px) {
         .btn-swal-center {
             margin-right: 9em;
         }
-    } 
+    }
     @media only screen and (max-width: 320px) {
         .btn-swal-center {
             margin-right: 7em;
         }
-    } 
+    }
+
+label{
+    position: relative;
+    cursor: pointer;
+    color: #666;
+    font-size: 100%;
+}
+
+input[type="checkbox"]{
+    position: absolute;
+    right: 9000px;
+}
+
+input[type="checkbox"] + .label-text:before{
+    content: "\f096";
+    font-family: "FontAwesome";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing:antialiased;
+    width: 1em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+input[type="checkbox"]:checked + .label-text:before{
+    content: "\f14a";
+    color: #2980b9;
+    animation: effect 250ms ease-in;
+}
+
+input[type="checkbox"]:disabled + .label-text{
+    color: #aaa;
+}
+
+input[type="checkbox"]:disabled + .label-text:before{
+    content: "\f0c8";
+    color: #ccc;
+}
+@keyframes effect{
+    0%{transform: scale(0);}
+    25%{transform: scale(1.3);}
+    75%{transform: scale(1.4);}
+    100%{transform: scale(1);}
+}
 </style>
 @endsection
 @section('main') 
@@ -47,8 +82,8 @@
         <div class="row-edit">
             <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="">
+                        <div class="">
                             <div class="white-header"><br>
                                 <h2>
                                     <span class="card-title">
@@ -59,11 +94,11 @@
                             </div>
 
                     @foreach($package as $ticket)
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="white-panel">
-                                    <div class="white-header" style="padding: 45px">
+                                    <div class="white-header" style="padding: 10px">
                                         <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1>{{$ticket->name}}</h1></span>
                                     </div>
                                     <div class="row">
@@ -74,7 +109,7 @@
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL)
+                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL && Auth::user()->phone!=NULL)
                                                     @if(Auth::user()->verify==0)
                                                         <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-{{$ticket->id}}" onclick="esperarAprobacion()">
                                                             <h5><i class="fa fa-ticket"></i> Comprar</h5>
@@ -105,7 +140,7 @@
                                             <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> {{$ticket->name}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
+                                            <form class="form-horizontal" id="formPago" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -115,7 +150,7 @@
                                                     <label for="codigo" class="col-md-4 col-sm-4 col-xs-12 control-label" style="margin-left:25% "><h5><b>Cantidad de paquetes:</b></h5>
                                                     </label>
                                                     <div class="col-md-2 col-sm-2 col-xs-12" style="margin-top: 1%">
-                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" required="required" onkeypress="return controltagNum(event)">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
@@ -149,7 +184,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none;" id="puntos-{{$ticket->id}}" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="puntos-{{$ticket->id}}" align="center">
                                                     <div class="col-md-12">
                                                         <label class="control-label"><h5><b>Sus puntos: </b>
                                                             @if(Auth::user()->points)
@@ -165,8 +200,14 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12" id="totalP-{{$ticket->id}}"></div>
+                                                    <div id="mensajeValidacionPuntos-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;"></div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none;" id="deposito-{{$ticket->id}}" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-{{$ticket->id}}" align="center">
+                                                    <h4 style="color: black">
+                                                        <b>
+                                                            Depósito a Cta.Cte PRODUBANCO #02 72 800 11 32 <br> INFORMERET S.A.
+                                                        </b>
+                                                    </h4>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Número de depósito:</b>
                                                             <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
@@ -174,11 +215,12 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Recibo:</b>
-                                                            <input id="voucher-{{$ticket->id}}" type="file" accept=".jpg" class="form-control" name="voucher" value="{{ old('voucher') }}" >
+                                                            <input id="voucher-{{$ticket->id}}" type="file" accept="image/*" class="form-control" onchange="validarVoucher({!!$ticket->id!!})" name="voucher" value="{{ old('voucher') }}" >
                                                         </label>
                                                     </div>
+                                                    <div id="mensajeImgVoucher-{{$ticket->id}}"></div>
                                                 </div>
-                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none;">
+                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none; margin-bottom: 5%">
                                                     <div class="col-md-12">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" id="codCountry-{{$ticket->id}}"></span>
@@ -192,13 +234,24 @@
                                                     <div id="mensajePayPhone-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%">
                                                     </div>
                                                 </div>
+                                                <div class="form-check text-center" style="padding-top: 5%">
+                                                    <div id="mensajeTerminosCondiciones-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
+                                                    </div>
+                                                    <label>
+                                                        <input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-{{$ticket->id}}">
+                                                        <span class="label-text" onclick="terminosCondiciones({!!$ticket->id!!})">
+                                                            Al comprar estas aceptando nuestros
+                                                        </span>
+                                                    </label>
+                                                    <a href="" target="_blank">Términos</a> y <a href="" target="_blank">Condiciones</a>.
+                                                </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div class="col-md-12" align="center">
                                                         <a class="btn btn-default" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div class="col-md-12" align="center">
                                                         <button type="submit" class="btn btn-default" id="ingresar-{{$ticket->id}}">Comprar</button>
                                                     </div>
                                                 </div>
@@ -230,14 +283,21 @@
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
                     <div class="text-center">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             @if(Auth::user()->points)
                                 <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
                             @else
                                 <h4><b>Total de puntos:</b> 0 </h4>
+                            @endif
+                        </div>
+                        <div class="col-sm-4">
+                            @if(Auth::user()->pending_points)
+                                <h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4>
+                            @else
+                                <h4><b>Total de puntos pendientes:</b> 0 </h4>
                             @endif
                         </div>
                     </div>
@@ -269,7 +329,15 @@
                                             <td>{{$balance['Method']}}</td>
                                             @if($balance['Method'] != 'Puntos')
                                                 <td>
-                                                    <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-external-link"></i> Ver </a>
+                                                    @if($balance['Factura']!=NULL)
+                                                        <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Ver
+                                                        </a>
+                                                    @else
+                                                        <a onclick="generarFactura({!!$balance['id_payments']!!})" class="btn btn-info btn-xs">
+                                                            <i class="fa fa-external-link"></i> Generar
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             @else
                                                 <td>No Aplica</td>
@@ -320,19 +388,7 @@
     });
 </script>
 <script type="text/javascript" id="jsbin-javascript">
-    /*
-    // para bloquear el click izquierdo
-    function izquierda(e) {
-        if (navigator.appName == 'Netscape' && (e.which == 1 || e.which == 2)) {
-            alert('Botón izquierdo inhabilitado');
-            return false;
-        } else if (navigator.appName == 'Microsoft Internet Explorer' && (event.button == 1)){
-            alert('Botón izquierdo inhabilitado');
-            return false;
-        }
-    }
-    document.onmousedown=izquierda
-    */
+
     $(document).ready(function(){
 
         var ruta = "https://pay.payphonetodoesposible.com/api/Regions";
@@ -357,82 +413,119 @@
                 });
             }
         });
+
+        $("#formPago").on('submit', function(e){
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+        });
     });
 
+
+    function terminosCondiciones(id) {
+        if (!($('input[name="checkTerminosCondiciones"]').is(':checked'))) {
+            $('#mensajeTerminosCondiciones-'+id).hide();
+            $("#ingresar-"+id).attr('disabled',false);
+            $("#ingresarPunto-"+id).attr('disabled',false);
+            $("#ingresarPayPhone-"+id).attr('disabled',false);
+        } else {
+            $("#ingresar-"+id).attr('disabled',true);
+            $("#ingresarPunto-"+id).attr('disabled',true);
+            $("#ingresarPayPhone-"+id).attr('disabled',true);
+            $('#mensajeTerminosCondiciones-'+id).show();
+            $('#mensajeTerminosCondiciones-'+id).html("<h6> <i class='glyphicon glyphicon-warning-sign'></i> <span>Por favor marque la casilla de 'Términos y Condiciones' antes de realizar la compra</span> </h6>");
+        }
+    }
+
     function callback(id) {
-        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
-        swal({
-            title: "Procesando",
-            text: "Estamos procesando su pago, por favor espere un momento.",
-            icon: gif,
-            buttons: false,
-            closeOnEsc: false,
-            closeOnClickOutside: false,
-            onOpen: () => {
-                swal.showLoading()
-            }
-        });
-        var costo = $('#cost').val();
-        var puntos = $('#points').val();
-        var tickets = id;
         var cant = $('#Cantidad-'+id).val();
-        console.log(puntos);
-        $.ajax({
-            url:'BuyPuntos',
-            type: 'post',
-            data: {
-                _token: $('input[name=_token]').val(),
-                cost: costo,
-                points: puntos,
-                ticket_id: tickets,
-                Cantidad: cant
-            },
-            success: function (result) {
-                console.log(result);
-                if (result==1) {
-                    swal({
-                        title: "Puntos insuficientes",
-                        text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
-                        icon: " warning",
-                        buttons: {
-                            accept: {
-                                text: "OK",
-                                value: true,
-                                className: "btn-swal-center"
-                            }
-                        },
-                        closeOnEsc: false,
-                        closeOnClickOutside: false
-                    });
-                } else {
-                    var idUser={!!Auth::user()->id!!};
-                    $.ajax({
-                        url     : 'MyTickets/'+idUser,
-                        type    : 'GET',
-                        dataType: "json",
-                        success: function (respuesta){
-                            console.log(respuesta);
-                            swal({
-                                title: "¡Pago exitoso!",
-                                icon: "success",
-                                buttons: {
-                                    accept: {
-                                        text: "OK",
-                                        value: true,
-                                        className: "btn-swal-center"
-                                    }
-                                },
-                                closeOnEsc: false,
-                                closeOnClickOutside: false
-                            })
-                            .then((ok) => {
-                                location.reload();
-                            });
-                        },
-                    });
+        console.log(cant);
+        if (cant=="" || cant==0) {
+            $('#mensajeValidacionPuntos-'+id).show();
+            $('#mensajeValidacionPuntos-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Debe indicar la cantidad</span> </h4>");
+            $('#Cantidad-'+id).focus();
+        } else {
+            $('#mensajeValidacionPuntos-'+id).hide();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando",
+                text: "Estamos procesando su pago, por favor espere un momento.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                onOpen: () => {
+                    swal.showLoading()
                 }
-            }
-        });
+            });
+            var costo = $('#cost').val();
+            var puntos = $('#points').val();
+            var tickets = id;
+            console.log(puntos);
+            var ruta = "{{ url('/BuyPuntos/') }}";
+            $.ajax({
+                url: ruta,
+                type: "post",
+                data: {
+                    _token: $('input[name=_token]').val(),
+                    cost: costo,
+                    points: puntos,
+                    ticket_id: tickets,
+                    Cantidad: cant
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result==1) {
+                        swal({
+                            title: "Puntos insuficientes",
+                            text: "Sus puntos no son suficientes para realizar esta compra, le invitamos a cambiar la cantidad de paquetes o a elegir otra forma de pago.",
+                            icon: "warning",
+                            buttons: {
+                                accept: {
+                                    text: "OK",
+                                    value: true,
+                                    className: "btn-swal-center"
+                                }
+                            },
+                            closeOnEsc: false,
+                            closeOnClickOutside: false
+                        });
+                    } else {
+                        var idUser={!!Auth::user()->id!!};
+                        $.ajax({
+                            url     : 'MyTickets/'+idUser,
+                            type    : 'GET',
+                            dataType: "json",
+                            success: function (respuesta){
+                                console.log(respuesta);
+                                swal({
+                                    title: "¡Pago exitoso!",
+                                    icon: "success",
+                                    buttons: {
+                                        accept: {
+                                            text: "OK",
+                                            value: true,
+                                            className: "btn-swal-center"
+                                        }
+                                    },
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false
+                                })
+                                .then((ok) => {
+                                    location.reload();
+                                });
+                            },
+                        });
+                    }
+                }
+            });
+        }
     }
 
 
@@ -471,6 +564,7 @@
             $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
             if(totalP > Mypoints){
                 $('#ingresarPunto-'+id).attr('disabled',true);
+                $("#ingresar-"+id).attr('disabled',true);
             }else{
                 $('#ingresarPunto-'+id).attr('disabled',false);
             }
@@ -486,15 +580,12 @@
             if (isNaN(ticket)) {
                 ticket = 0;
             }
-            totalP=parseFloat(documento*points)
-            if (isNaN(totalP)) {
-                totalP = 0;
-            }
             $('#total-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +total+ ' $</h5><hr>');
             $('#cantidadTickets-'+id).html('<h5 align="center"><b>Cantidad de tickets:</b> ' + ticket +'</h5>');
             $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
             if(totalP > Mypoints){
                 $('#ingresarPunto-'+id).attr('disabled',true);
+                $("#ingresar-"+id).attr('disabled',true);
             }else{
                 $('#ingresarPunto-'+id).attr('disabled',false);
             }
@@ -505,6 +596,7 @@
         $('#totalP-'+id).html('<h5 align="center"><b>Total a pagar:</b> ' +totalP+ ' puntos</h5>');
         if(totalP > Mypoints){
             $('#ingresarPunto-'+id).attr('disabled',true);
+            $("#ingresar-"+id).attr('disabled',true);
         }else{
             $('#ingresarPunto-'+id).attr('disabled',false);
         }
@@ -535,12 +627,13 @@
 
         var valor = $("input:radio[id=pago-"+id+"]:checked").val();
         if(valor == 'Deposito'){
+            $("#ingresar-"+id).attr('disabled',false);
+            $("#deposito-"+id).show();
             $("#ingresar-"+id).show();
             $("#ingresarPayPhone-"+id).hide();
             $("#ingresarPunto-"+id).hide();
-            $("#deposito-"+id).show();
-            $("#payphone-"+id).hide();
             $("#puntos-"+id).hide();
+            $("#payphone-"+id).hide();
             $('#voucher-'+id).attr('required','required');
             $('#references-'+id).attr('required','required');
             $('#references-'+id).focus();
@@ -548,22 +641,24 @@
             $('#numero-'+id).removeAttr('required');
         }else if(valor == 'puntos'){
             $("#ingresarPunto-"+id).show();
-            $("#ingresar-"+id).hide();
+            $("#puntos-"+id).show();
             $("#payphone-"+id).hide();
+            $("#deposito-"+id).hide();
+            $("#ingresar-"+id).hide();
             $("#ingresarPayPhone-"+id).hide();
+            $("#ingresar-"+id).attr('disabled',true);
             $('#pais-'+id).removeAttr('required');
             $('#numero-'+id).removeAttr('required');
-            $("#deposito-"+id).hide();
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
-            $("#puntos-"+id).show();
         }else{
             $("#ingresarPayPhone-"+id).show();
+            $("#payphone-"+id).show();
+            $("#puntos-"+id).hide();
             $("#ingresarPunto-"+id).hide();
             $("#ingresar-"+id).hide();
-            $("#payphone-"+id).show();
             $("#deposito-"+id).hide();
-            $("#puntos-"+id).hide();
+            $("#ingresar-"+id).attr('disabled',true);
             $('#voucher-'+id).removeAttr('required','required');
             $('#references-'+id).removeAttr('required','required');
             $('#pais-'+id).attr('required','required');
@@ -615,9 +710,88 @@
             }
         });
     }
+    //---------------------------------------------------------------------------------------------------
+    // Validar formato del voucher
+        function validarVoucher(id) {
+            var img_voucher = $('#voucher-'+id).val();
+            console.log(img_voucher);
+            var extension = img_voucher.substring(img_voucher.lastIndexOf("."));
+            console.log(extension);
+            if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                $('#ingresar-'+id).attr('disabled',false);
+                $('#mensajeImgVoucher-'+id).hide();
+            } else {
+                $('#ingresar-'+id).attr('disabled',true);
+                $('#mensajeImgVoucher-'+id).show();
+                $('#mensajeImgVoucher-'+id).text('El recibo debe estar en formato jpeg, jpg o png');
+                $('#mensajeImgVoucher-'+id).css('color','red');
+            }
+        }
+    // Validar formato del voucher
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>
 <script id="jsbin-javascript">
+
+    function generarFactura(id_payments) {
+        console.log(id_payments);
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
+        swal({
+            title: "¡Generando factura!",
+            text: "Estamos generando su factura...",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        var intento = 0;
+        var maxIntento = 5; // 30seg de espera // 10
+        var medio = "deposito_cuenta_bancaria";
+        getDatilAgain(id_payments,medio,function callback(infoFactura) {
+            console.log(infoFactura);
+            var idFactura = infoFactura.id;
+            console.log(idFactura);
+            if (intento <= maxIntento) {
+                if (idFactura!=undefined) {
+                    var parametros = "/"+idFactura+"/"+id_payments;
+                    var ruta = "{{ url('/generarFactura/') }}"+parametros;
+                    $.ajax({
+                        url     : ruta,
+                        type    : "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            var respuesta = data;
+                            console.log("lista la factura? "+respuesta);
+                        }
+                    });
+                    swal({
+                        title: "¡Factura Generada!",
+                        text: "Ya podrá ver la factura de su pago",
+                        icon: "success",
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    })
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                    intento++;
+                } else {
+                    console.log('intento: '+intento);
+                    getDatilAgain(id_payments,medio,callback);
+                }
+            } else {
+                swal({
+                    title: "¡Ups!",
+                    text: "En estos momentos no podemos generar su factura, intente más tarde",
+                    icon: "info",
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((recarga) => {
+                    location.reload();
+                });
+            }
+        });
+    }
 
     function bdd(id,cost,callback){
         var value = $('#Cantidad-'+id).val();
@@ -852,12 +1026,22 @@
         var countryPrefix = $('#pais-'+id).val();
         var cantidadPaquetes = $('#Cantidad-'+id).val();
         var tickets = parseFloat(cantidadTickets*cantidadPaquetes);
+        console.log(cantidadPaquetes);
 
-        if (numberPhone=="" || countryPrefix=="") {
-            $('#mensajePayPhone-'+id).hide();
-            $('#mensajeValidacion-'+id).show();
-            $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Los datos introducidos son erróneos</span> </h4>");
-            $('#ingresarPayPhone-'+id).removeAttr("disabled");
+        if (numberPhone=="" || countryPrefix=="" || (cantidadPaquetes=="" || cantidadPaquetes==0) ) {
+            if (cantidadPaquetes=="" || cantidadPaquetes==0) {
+                $('#mensajePayPhone-'+id).hide();
+                $('#mensajeValidacion-'+id).show();
+                $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Debe indicar la cantidad</span> </h4>");
+                $('#ingresarPayPhone-'+id).removeAttr("disabled");
+                $('#Cantidad-'+id).focus();
+            } else {
+                $('#mensajePayPhone-'+id).hide();
+                $('#mensajeValidacion-'+id).show();
+                $('#mensajeValidacion-'+id).html("<h4> <i class='glyphicon glyphicon-warning-sign'></i> <span>Los datos introducidos son erróneos</span> </h4>");
+                $('#ingresarPayPhone-'+id).removeAttr("disabled");
+                $('#numero-'+id).focus();
+            }
         }
         else {
             $('#mensajeValidacion-'+id).hide();
@@ -920,18 +1104,26 @@
                                 $('#mensajePayPhone-'+id).show();
                                 $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
                                 console.log("id: "+id+" cost: "+cost);
+                                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                                swal({
+                                    title: "¡Procesando información!",
+                                    text: "Estamos procesando su información...",
+                                    icon: gif,
+                                    buttons: false,
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false
+                                });
                                 bdd(id,cost,function(idTicketSales) {
                                     console.log("idTicketSales: "+idTicketSales);
+                                    swal({
+                                        title: "¡Listo! Estamos esperando su confirmación...",
+                                        text: "Verifique su teléfono y seleccione una opción.",
+                                        icon: gif,
+                                        buttons: false,
+                                        closeOnEsc: false,
+                                        closeOnClickOutside: false
+                                    });
                                     postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
-                                        var gif = "{{ asset('/sistem_images/Loading.gif') }}";
-                                        swal({
-                                            title: "¡Listo! Estamos esperando su confirmación...",
-                                            text: "Verifique su teléfono y seleccione una opción.",
-                                            icon: gif,
-                                            buttons: false,
-                                            closeOnEsc: false,
-                                            closeOnClickOutside: false
-                                        });
                                         var intento = 0;
                                         var maxIntento = 90; // 1min y 1/2 de espera
                                         var transaction = JSON.parse(response);

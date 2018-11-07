@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\User;
+use QrCode;
 
 class UserTransformer extends TransformerAbstract
 {
@@ -14,6 +15,7 @@ class UserTransformer extends TransformerAbstract
      */
     public function transform(User $User)
     {
+        $code=QrCode::format('svg')->generate( url('/').'/register/'.$User->codigo_ref);
         return [
                 'name' => $User->name, 
                 'last_name'=> $User->last_name,
@@ -31,7 +33,8 @@ class UserTransformer extends TransformerAbstract
                 'id'=> $User->id,
                 'verify'=> $User->verify,
                 'points'=> $User->points,
-                'pending_points'=> $User->pending_points
+                'pending_points'=> $User->pending_points,
+                'qr'=>$code
 
         ];
     }

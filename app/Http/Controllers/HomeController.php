@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Auth;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\User;
 use App\Megazines;
@@ -20,13 +22,19 @@ use App\Referals;
 use App\Movie;
 use App\TicketsPackage;
 use App\Payments;
+use App\SistemBalance;
 
 use App\AccountBalance;
 use App\Serie;
 use App\Episode;
 
+use App\PointsAssings; //
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
+use App\Mail\ApprovalNotification;
+
+use App\Events\AssingPointsEvents;
 
 class HomeController extends Controller
 {
@@ -57,21 +65,28 @@ class HomeController extends Controller
         $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
         $TransactionsTv=Tv::where('status','=','Aprobado')->count();
 
-        $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->first();
+        $Songs=Songs::where('album','=',0)->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Megazines=Megazines::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Megazines=Megazines::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
+        $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
         
-        $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
-        
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->first();
+        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->take(10)->orderBy('created_at','desc')
+->get();
 
         $Series=0;
         
@@ -80,7 +95,8 @@ class HomeController extends Controller
         if ($Radio==NULL) { $Radio=False; }
         if ($Megazines==NULL) { $Megazines=False; }
         if ($Albums==NULL) { $Albums=False; }
-        if ($Songs==NULL) { $Songs=False; }           
+        if ($Songs==NULL) { $Songs=False; }  
+        if($Book==NULL){ $Book=False; }         
 
         if($user['status']=='admin')
         {
@@ -143,7 +159,79 @@ class HomeController extends Controller
     public function MyTickets($id)
     {
         $MyTickets=Auth::user()->credito;
-        return Response()->json($MyTickets);
+        $Points=Auth::user()->points;
+        $Pending=Auth::user()->pending_points;
+        //dd($MyTickets);
+        if ($MyTickets==null){
+            $MyTickets = 0;
+        }
+        if ($Points==null){
+            $Points = 0;
+        }
+        if ($Pending==null){
+            $Pending = 0;
+        }
+        $respuesta=$MyTickets." T/ ".$Points." P/ ".$Pending." PP";
+        return Response()->json($respuesta);
+    }
+
+    public function validarPatrocinador($codigo) {
+        $ids = NULL;
+        $cods = NULL;
+        $user = User::find(Auth::user()->id);
+        //$user = User::find(5);
+        $datos1 = $user->referals()->get();
+        if ($datos1->count()>0) {
+            foreach ($datos1 as $info) {
+                $ids[] = $info->refered;
+            }
+        }
+        if ($ids!=NULL) {
+            for ($i=0; $i < count($ids); $i++) { 
+                $user = User::find($ids[$i]);
+                $datos = $user->referals()->get();
+                if ($datos->count()>0) {
+                    foreach ($datos as $info) {
+                        $ids[] = $info->refered;
+                    }
+                }
+            }
+            $info = User::select('codigo_ref')->whereIn("id",$ids)->get();
+            foreach ($info as $key) {
+                $cods[] = $key->codigo_ref;
+            }
+        }
+        //dd($cods);
+        if ($cods===NULL) { // si es NULL se agrega sin problema porque esa persona no tiene red
+            $agregar = 3;
+        } else { // si tiene red hay que revisar que el codigo no pertenezca a alguien de dicha red
+            $busqueda = in_array($codigo, $cods);
+            if ($busqueda===true) { // el codigo ya lo tiene alguien de su red
+                $agregar = 2;
+            } else { // puede agregar ese codigo sin problema
+                $agregar = 3;
+            }
+        }
+        return $agregar;
+    }
+    
+    public function sponsor($codigo){
+        $validarPatrocinador = $this->validarPatrocinador($codigo);
+        $miCod = Auth::user()->codigo_ref;
+        if ($miCod==$codigo) {
+            return Response()->json(1);
+        } else {
+            if ($validarPatrocinador==2) {
+                return Response()->json($validarPatrocinador);
+            } else {
+                $sponsor=User::where('codigo_ref','=',$codigo)->first();
+                if ($sponsor) {
+                    return Response()->json($sponsor);
+                }else{
+                    return Response()->json(0);
+                }
+            }
+        }
     }
 
     public function SaleTickets(){
@@ -200,6 +288,7 @@ class HomeController extends Controller
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
+                    'id_payments' => $key->id,
                     'Id' => $key->user_id,
                     'Date' => $key->created_at->format('d/m/Y'),
                     'Cant' => $this->tickets($key->package_id)*$key->value,
@@ -219,6 +308,7 @@ class HomeController extends Controller
     }
 
     public function BuyPlan(Request $request){
+        //dd($request->all());
         $Buy = new Payments;
         $Buy->user_id=Auth::user()->id;
         $Buy->package_id=$request->ticket_id;
@@ -244,22 +334,21 @@ class HomeController extends Controller
         $Buy->status=2;
         $Buy->reference=$request->references;
         $Buy->save();
+        $emailAdmin = "bcastillo@leipel.com";
+        $motivo = "Pago por depósito pendiente por aprobar";
+        Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
         Flash('Pago registrado, en proceso de validación')->success();
         return redirect()->action('HomeController@index');
 
     }
-    public function BuyPoints(Request $request)
-    {
+    
+    public function BuyPoints(Request $request) {
         
         $user = User::find(Auth::user()->id);
 
-        if ($request->cost > $user->points) 
-        {
+        if ($request->cost > $user->points) {
              return response()->json(1);  
-        }
-        
-        else
-        {
+        } else {
             $Buy = new Payments;
             $Buy->user_id       = Auth::user()->id;
             $Buy->package_id    =$request->ticket_id;
@@ -268,19 +357,31 @@ class HomeController extends Controller
             $Buy->status        = 1;
             $Buy->method        ='Puntos';
             $Buy->save();
-            
             $cant=$this->tickets($request->ticket_id);
             $ticket=$cant*$request->Cantidad;
-
             $cost=$request->Cantidad*$request->points;
-
             $this->creditos($ticket);
             $this->points($cost);
+            if ($user->pending_points != 0 && $user->points < $user->limit_points) {
+                $user->points = $user->points + $user->pending_points;
+                $user->pending_points = 0;
+            }
+            $user->save();
+            $Condition = Carbon::now()->firstOfMonth()->toDateString();
+            $revenueMonth = Payments::where('user_id',Auth::user()->id)
+                ->where('created_at','>=',$Condition)
+                ->where('status','Aprobado')
+                ->get();
+            $balance = SistemBalance::find(1);
+            $TicketsPackage = TicketsPackage::find($request->ticket_id);
+            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
+            $balance->save();
+            if ($revenueMonth->count()<=1) {
+                event(new AssingPointsEvents(Auth::user()->id,$request->ticket_id));
+            }
             $this->correo();
-
             return response()->json($Buy);
         }
-    
     }
 
     public function BuyPayphone($id,$cost,$value) {
@@ -306,14 +407,32 @@ class HomeController extends Controller
         return Response()->json($respuesta);
     }
 
-    public function TransactionApproved($id,$reference,$ticket,$idFactura) {
+    public function TransactionApproved($id,$reference,$tickets,$idFactura) {
         
         $Buy = Payments::find($id);
         $Buy->status    = 1;
         $Buy->reference = $reference;
         $Buy->factura_id = $idFactura;
         $Buy->save();
-        $this->creditos($ticket);
+        $this->creditos($tickets);
+        $user = User::find(Auth::user()->id);
+        if ($user->pending_points != 0 && $user->points < $user->limit_points) {
+            $user->points = $user->points + $user->pending_points;
+            $user->pending_points = 0;
+            $user->save();
+        }
+        $Condition = Carbon::now()->firstOfMonth()->toDateString();
+        $revenueMonth = Payments::where('user_id',Auth::user()->id)
+            ->where('created_at','>=',$Condition)
+            ->where('status','Aprobado')
+            ->get();
+        $balance = SistemBalance::find(1);
+        $TicketsPackage = TicketsPackage::find($Buy->package_id);
+        $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
+        $balance->save();
+        if ($revenueMonth->count()<=1) {
+            event(new AssingPointsEvents(Auth::user()->id,$Buy->package_id));
+        }
         $this->correo();
         $respuesta = "todo bien";
         return Response()->json($respuesta);
@@ -345,6 +464,14 @@ class HomeController extends Controller
         Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));
     }
 
+    public function generarFactura($idFactura,$id_payments) {
+        $Buy = Payments::find($id_payments);
+        $Buy->factura_id = $idFactura;
+        $Buy->save();
+        $respuesta = "lista factura";
+        return Response()->json($respuesta);
+    }
+
     public function factura($idTickets,$medio) {
 
         $secuencial = rand(0,100000000);
@@ -358,7 +485,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 2, // 1: prueba; 2: produccion
+        "ambiente" => 1, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, // Id de tickets_sales
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
@@ -389,10 +516,11 @@ class HomeController extends Controller
             "descuento" => 0.0
         ],
         "comprador" => [ // datos del usuario
-            "email" => Auth::user()->email, // "pachecojose0908@gmail.com",
-            "identificacion" => Auth::user()->num_doc, // "24218005",
+            "email" => Auth::user()->email,
+            "identificacion" => Auth::user()->num_doc,
             "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
-            "razon_social" => Auth::user()->name." ".Auth::user()->last_name // "José Pacheco"
+            "razon_social" => Auth::user()->name." ".Auth::user()->last_name,
+            "direccion" => Auth::user()->direccion
         ],
         "items" => [[
             "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados

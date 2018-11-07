@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +30,17 @@
                 font-family: 'Roboto', sans-serif;
             }
         </style>
+        <!--NUMERO-->
+        <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+
+        <style type="text/css">
+            .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+                .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+
+            }
+        </style>
 
         @yield('css')
 
@@ -49,73 +60,41 @@
             TOP BAR CONTENT & NOTIFICATIONS
             -->
             <!--header start-->
-            <header class="header black-bg">
+            <header class="header" style="background: white">
                 <div class="sidebar-toggle-box">
-                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title=""></div>
                 </div>
                 <!--logo start-->
-                <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></b></a>
-                <!--logo end-->
+                <a href="{{ url('/home')}}" class="logo"><b><img src="{{asset('sistem_images/Logo-Leipel.png')}}" width="150px">
+            </b></a>
+             @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
+                <div class="nav pull-right top-menu" id="boton" >
+                    <div class="navbar-right" style="margin-top: 12px;">
+                        @if($modulos!=false)
+                            @foreach($modulos as $mod)
+                                @if($mod->name == 'Peliculas')
+                                    <a href="{{ url('/movies') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/cine.png')}}"></b></a>
+                                @endif                          
+                                @if($mod->name == 'Musica')
+                                    <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/musica.png')}}"></b></a>
+                                @endif
+                                @if($mod->name == 'Libros')
+                                    <a href="{{ url('/tbook') }}" class="logo"><b><img height="39px" src="{{asset('plugins/img/lectura.png')}}"></b></a>
+                                @endif
+                                @if($mod->name == 'Radios')
+                                    <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/radio.png')}}"> </b></a>
+                                @endif
+                                @if($mod->name == 'TV')
+                                    <a href="#" class="logo"><b><img height="39px" src="{{asset('plugins/img/tv.png')}}"></b></a>
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                @endif
                 <div class="nav notify-row" id="top_menu">
-                    <!--  notification start -->
-                    <ul class="nav top-menu">
-                        <!-- settings start -->
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-tasks"></i>
-                                <span class="badge bg-theme">4</span>
-                            </a>
-                            <ul class="dropdown-menu extended tasks-bar">
-                                <div class="notify-arrow notify-arrow-green"></div>
-                                <li>
-                                    <p class="green">You have 4 pending tasks</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="task-info">
-                                            <div class="desc">DashGum Admin Panel</div>
-                                            <div class="percent">40%</div>
-                                        </div>
-                                        <div class="progress progress-striped">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40% Complete (success)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- settings end -->
-                        <!-- inbox dropdown start-->
-                        <li id="header_inbox_bar" class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-theme">5</span>
-                            </a>
-                            <ul class="dropdown-menu extended inbox">
-                                <div class="notify-arrow notify-arrow-green"></div>
-                                <li>
-                                    <p class="green">You have 5 new messages</p>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo">
-                                            <img alt="avatar" src="{{ asset('assets/img/ui-zac.jpg') }}">
-                                        </span>
-                                        <span class="subject">
-                                            <span class="from">Zac Snider</span>
-                                            <span class="time">Just now</span>
-                                        </span>
-                                        <span class="message">
-                                            Hi mate, how is everything?
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- inbox dropdown end -->
-                    </ul>
-                    <!--  notification end -->
+                    
+                    
                 </div>
                 <!--
                 <div class="top-menu">
@@ -135,45 +114,49 @@
             <aside>
                 <div id="sidebar"  class="nav-collapse ">
                     <!-- sidebar menu start-->
-                    <ul class="sidebar-menu" id="nav-accordion">
+                    <ul class="sidebar-menu" id="nav-accordion" style="margin-top: 25%; display: none;">
                         <p class="centered">
                             <!--Revisar este enlace -->
-                            <a href="{{ url('/home')}}">
-                                @if(Auth::guard('web_seller')->user()->logo!="NULL")
-                                    <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle" width="80">
+                            <a href="{{ url('/seller_home')}}">
+                                @if(Auth::guard('web_seller')->user()->logo)
+                                    <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img-circle"  width="80" height="80">
                                 @else
-                                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80">
+                                    <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80" height="80">
                                 @endif
                             </a>
                         </p>
-                        <h5 class="centered">{{Auth::guard('web_seller')->user()->name}}</h5>
+                        <h5 class="centered" style="text-shadow: 0.1em 0.1em #333">
+                            {{Auth::guard('web_seller')->user()->name}}
+                        </h5>
                         <div class="card-content white-text">
-                            <span class="card-title centered"><h6>Tickets Disponibles: <p>{{Auth::guard('web_seller')->user()->credito}}</p></h6></span>
+                            <a href=""  data-toggle="modal" data-target="#myModalTotal" title="Mi balance">
+                                <span class="card-title centered">
+                                    <h6 id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333">Tickets Disponibles: 
+                                        <p>{{Auth::guard('web_seller')->user()->credito}}</p>
+                                    </h6>
+                                </span>
+                            </a>
                         </div>
-                        <li class="mt">
+                       <!--  <li class="mt">
                             <a class="active" href="{{ url('seller_home') }}">
                                 <i class="glyphicon glyphicon-home"></i>
                                 <span>Escritorio</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="sub-menu">
                             <a href="javascript:;">
+                                <a href="{{url('seller_edit')}}">
                                 <i class="fa fa-user"></i>
-                                <span>Mi perfil</span>
+                                <span>Mi perfil</span></a>
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;" >
-                                <i class="fa fa-users"></i>
-                                <span>Referidos</span>
+                            <a href="{{url('SellerRequest')}}" >
+                                <i class="fa fa-money"></i>
+                                <span>Retiro de fondos</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="#">Mis redes</a></li>
-                                <li><a href="#">Mis amigos</a></li>
-                                <li><a href="#">Referir</a></li>
-                            </ul>
                         </li>
-                        <li class="sub-menu">
+                        <!-- <li class="sub-menu">
                             <a href="javascript:;" >
                                 <i class="fa fa-heart"></i>
                                 <span>Seguidos</span>
@@ -183,7 +166,7 @@
                                 <li><a href="#">Mis seguidores</a></li>
                                 <li><a href="#">Proveedores</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
 
@@ -237,7 +220,7 @@
                                                                 @else
                                                                     <li>
                                                                         <a href="{{ url('/modify_artist') }}">
-                                                                            Modificar datos de artista
+                                                                            Artista
                                                                         </a>
                                                                     </li>
                                                                 @endif
@@ -272,10 +255,11 @@
                                                         <span>Revistas</span>
                                                     </a>
                                                     <ul class="sub">
-                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li>
-                                                        <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li>
-                                                        <li><a href="{{ url('/type') }}">Registrar cadena de publicaciones</a></li>
-                                                        <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                        <li><a href="{{ url('/megazine_form') }}">Registrar revista </a></li>
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Registrar revista independiente</a></li> -->
+                                                        <!-- <li><a href="{{ url('/megazine_form') }}">Agregar revistas a cadenas de publicación</a></li> -->
+                                                        <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
+                                                        <li style="top: 20px"><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
                                                     </ul>
                                                 </li>
                                             @endif
@@ -399,7 +383,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="sub-menu sidebar-menu hidden-xs hidden-sm" id="nav-accordion" style="position: fixed; bottom: 0px; width: 13.5%;">
+                        <li class="sub-menu  hidden-xs hidden-sm"  style="position: relative;  top: 1%  ">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -410,7 +394,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        <li class="sub-menu sidebar-menu hidden-md hidden-lg hidden-xg" id="nav-accordion">
+                        <li class="sub-menu sidebar-menu  hidden-md hidden-lg hidden-xg" id="nav-accordion">
                             <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <span>
                                     <i class="glyphicon glyphicon-off"></i>
@@ -429,17 +413,38 @@
             <section id="main-content">
                 <section class="wrapper">
                     <div class="row">
-                        <div class="col-lg-9 main-chart">
+                        <div class="col-lg-12 main-chart">
                             @yield('content')
                         </div>
-                        <div class="col-lg-3 ds" style="margin-bottom: 50%;">
-                            @include('seller.partials.siderRigth') 
+                        <div class="col-lg-3 " style="margin-bottom: 15%;">
+                           {{-- @include('seller.partials.siderRigth')--}} 
                         </div><!-- /col-lg-3 -->
                     </div>
                 </section>
             </section> 
         @extends('seller.partials.footer')
-
+    <!--MODAL-->
+<div id="myModalTotal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-ticket"></i> Mi Balance</h4>
+      </div>
+      <div class="modal-body">
+        <label class="control-label col-sm-12 col-xs-12 col-md-12">
+           <center><h4><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h4></center>
+        </label>
+        <center><a href="{{url('SellerBalance')}}">Ver detalle</a></center>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL-->
     </body>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{asset('assets/js/jquery.js') }}"></script>
@@ -460,7 +465,11 @@
     <!--script for this page-->
     <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
     {{--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> --}}
+    <!--telefono-->
+<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
+<script src="{{ asset('plugins/telefono/utils.js') }}"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--SCRIPS JS-->
   
@@ -500,6 +509,34 @@
         }
     */
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        if ((screen.width <= 768)) {
+            //alert('Resolucion: 1024x768 o mayor');
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
+        }else{
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
+        }
+
+    });
+</script>
+<script type="text/javascript">
+    $(window).resize(function() {
+        console.log($(window).width());
+        if ($(window).width() <= 768)
+        {
+            $('#container').addClass('sidebar-closed');
+            $('#nav-accordion').css('display','none');
+        }
+        else
+        {
+            $('#container').removeClass('sidebar-closed');
+            $('#nav-accordion').css('display','block');
+        }
+    });
+</script>
     @yield('js')
 
 

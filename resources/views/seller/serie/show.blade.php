@@ -28,50 +28,14 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h2>
 
-                <div class="col-md-7">
-                    <ul class="nav nav-stacked">
-                        <li>
-                            <h2> 
-                                <b>{{ $serie->cost }} tickets</b>
-                            </h2>
-                        </li>
-                        <li>
-                            <h3> <b>Estatus:</b> 
-                                <span class="pull-right ">{{ $serie->status_series }}</span>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3> <b>Historia:</b>
-                                <br>
-                                <h4><p class="text-justify"> {{ $serie->story }} </p></h4>
-                            </h3>
-                        </li>
-                        <li>
-                            @if($serie->saga_id!=null)
-                                <h3> <b>Saga:</b> <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h3>
-                                <div class="col-xs-5">
-                                    <h3> <b>Antes:</b> <span class=""> {{ $serie->before }} </span> </h3>
-                                </div>
-                                <div class="col-xs-7">
-                                    <h3> <b>Después:</b> <span class=""> {{ $serie->after }} </span> </h3>
-                                    <br>
-                                </div>
-                            @else
-                                <h3> <b>Saga:</b> <span class="pull-right ">No tiene saga</span></h3>
-                            @endif
-                        </li>
-                        <li>
-                            <h3>
-                                <a href="{{ $serie->trailer }}" target="_blank"><span class="glyphicon glyphicon-link"></span><b> Ver trailer</b></a>
-                            </h3>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5">
+                <div class="col-md-5 col-xs-12">
                     <div id="panel" class="img-rounded img-responsive av text-center">
+                        <div class="widget-user-header bg-black">
+                            <div class="widget-user-image">
+                                <img class="img-responsive av" src="{{ asset($serie->img_poster) }}" style="width:100%; height:500px; border-radius:2%;" alt="">
+                            </div>
+                        </div>
                     </div>
                     <ul class="nav nav-stacked">
                         <li>
@@ -83,12 +47,53 @@
                         </li>
                     </ul>
                 </div>
-
-                
-                <div class="box box-widget widget-user-2">
-                    <div class="box-footer no-padding">
-                        <div class="col-md-12 table-responsive">
-                            <h2><b>Episodios:</b></h2>
+                <div class="col-md-7" style="margin-top: 1%">
+                    <h4 class="widget-user-desc"><b>Serie:</b> "{{ $serie->title }}" ({{ $serie->release_year }})</h4>
+                    <ul class="nav nav-stacked">
+                        <li>
+                            <h4> 
+                                <b>{{ $serie->cost }} tickets</b>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4> <b>Estatus de transmisión:</b> 
+                                <span class="pull-right ">{{ $serie->status_series }}</span>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4> <b>Historia:</b>
+                                <br>
+                                <h4><p class="text-justify"> {{ $serie->story }} </p></h4>
+                            </h4>
+                        </li>
+                        <li>
+                            @if($serie->saga_id!=null)
+                                <h4> <b>Saga:</b> <span class="pull-right "> {{ $serie->saga->sag_name }} </span></h4>
+                                <div class="col-xs-5">
+                                    <h4> <b>Antes:</b> <span class=""> {{ $serie->before }} </span> </h4>
+                                </div>
+                                <div class="col-xs-7">
+                                    <h4> <b>Después:</b> <span class=""> {{ $serie->after }} </span> </h4>
+                                    <br>
+                                </div>
+                            @else
+                                <h4> <b>Saga:</b> <span class="pull-right ">No tiene saga</span></h4>
+                            @endif
+                        </li>
+                        <li>
+                            <h4> <b>Estatus de aprobación:</b> 
+                                <span class="pull-right ">{{ $serie->status }}</span>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href="{{ $serie->trailer }}" target="_blank"><span class="glyphicon glyphicon-link"></span><b> Ver trailer</b></a>
+                            </h4>
+                        </li>
+                    </ul>
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <div class="box-footer no-padding">
+                            <h3><b>Episodios:</b></h3>
                             @if($episodes!=null)
                                 <h4>
                                     <table class="table table-hover">
@@ -101,32 +106,39 @@
                                                 <th>Costo</th>
                                             </tr>
                                         </thead>
-                                        @foreach($episodes as $episode)
-                                            <tbody class="text-center">
-                                                <tr>
-                                                    <td> {{ $episode->episode_name }} </td>
-                                                    <td class="text-justify"> {{ $episode->sinopsis }} </td>
-                                                    <td>
-                                                        <a href="{{ $episode->trailer_url }}" target="_blank">
-                                                        <span class="glyphicon glyphicon-link"></span>
-                                                        </a>
-                                                    </td>
-                                                    <td> 
-                                                        <a href="{{ route('series.showEpisode',[$episode->id,$serie->id]) }}" class="btn btn-info btn-xs">
-                                                            <span class="fa fa-play-circle" aria-hidden="true"></span>
-                                                        </a>
-                                                    </td>
-                                                    <td> {{ $episode->cost }} </td>
-                                                </tr>
-                                            </tbody>
-                                        @endforeach
-                                    </table>
-                                </h4>
-                            @else
-                                <span class="pull-right"> No tiene episodios </span>
-                            @endif
-                        </div>
+                                    @foreach($episodes as $episode)
+                                        <tbody class="text-center">
+                                        <tr>
+                                            <td> {{ $episode->episode_name }} </td>
+                                            <td class="text-justify"> {{ $episode->sinopsis }} </td>
+                                            <td>
+                                                <a href="{{ $episode->trailer_url }}" target="_blank">
+                                                <span class="glyphicon glyphicon-link"></span>
+                                                </a>
+                                            </td>
+                                            <td> 
+                                            <a href="{{ route('series.showEpisode',[$episode->id,$serie->id]) }}" class="btn btn-info btn-xs">
+                                                <span class="fa fa-play-circle" aria-hidden="true"></span>
+                                            </a>
+                                            </td>
+                                            <td> {{ $episode->cost }} </td>
+                                        </tr>
+                                    </tbody>
+                                    @endforeach
+                                </table>
+                            </h4>
+                        @else
+                            <span class="pull-right"> No tiene episodios </span>
+                        @endif
                     </div>
+                    </div>
+                </div>
+
+
+
+                
+                <div class="col-md-12">
+                    
                     <div class="col-xs-6">
                         <div align="right">
                             <a href="{{ url('/series') }}" class="btn btn-danger">Atrás</a>
