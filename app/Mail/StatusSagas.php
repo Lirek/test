@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class StatusBooks extends Mailable
+class StatusSagas extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,9 +33,9 @@ class StatusBooks extends Mailable
      */
     public function build() {
         if ($this->status=="Aprobado") {
-            return $this->view('admin.mails.statusBookAproval')->subject('Libro aprobado')->with('title',$this->title);
+            return $this->view('admin.mails.statusSagasAproval')->subject('Saga aprobada')->with('title',$this->title);
         } else {
-            return $this->view('admin.mails.statusBookDenial')->subject('Libro rechazado')->with('title',$this->title)->with('m',$this->message);
+            return $this->view('admin.mails.statusSagasDenial')->subject('Saga rechazada')->with('title',$this->title)->with('m',$this->message);
         }
     }
 }
