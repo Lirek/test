@@ -132,65 +132,63 @@
             	<div class="control-label">
             		<div class="white-header">
             			<div class="col-sm-12 col-xs-12 col-md-12">
-            				<h3><span class="card-title"><i class="fa fa-angle-right"> Libros</i></span></h3> 
-            				<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchProfileAuthor')); ?>"><?php echo e(csrf_field()); ?>
+            				<h3><span class="card-title"><i class="fa fa-angle-right"> Revistas</i></span></h3> 
+            				<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchProfileMegazine')); ?>"><?php echo e(csrf_field()); ?>
 
                     			<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
                     			<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar...</button>
        						</form>
        						<div  class="col-sm-12 col-xs-12 col-md-12" id="principal">
-       						<?php echo e($Books->links()); ?>
+       						<?php echo e($Megazines->links()); ?>
 
        						</div>
-       						<?php if($Books != null): ?>
+       						<?php if($Megazines != null): ?>
                 			<!-- PROFILE 01 PANEL -->
                 			
-                			<?php $__currentLoopData = $Books; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                			<?php $__currentLoopData = $Megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $megazines): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                 			<div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 2%">
                     			<div class="movie-card" style="  border-radius: 10px;">
                         			<div id="movie-header" style="">
-                                <a href="#" data-toggle="modal" data-target="#myModal-<?php echo e($Book->id); ?>" style="color: #ffff">
-                            		<?php if($Book->cover): ?>
-                                		<img src="images/bookcover/<?php echo e($Book->cover); ?>" width="100%" height="220" style="">
+                                <a href="#" data-toggle="modal" data-target="#myModal-<?php echo e($megazines->id); ?>" style="color: #ffff">
+                            		<?php if($megazines->cover): ?>
+                                		<img src="<?php echo e(asset($megazines->cover)); ?>" width="100%" height="220" style="">
                             		<?php else: ?>
                                 		<img src="#" width="100%" height="220" style="">
                             		<?php endif; ?>
                                 </a>  
                         			</div>
                         			<!-- <div class="profile-01 centered">
-                            			<p><a href="#" data-toggle="modal" data-target="#myModal-<?php echo e($Book->id); ?>" style="color: #ffff">Ver mas</p></a>
+                            			<p><a href="#" data-toggle="modal" data-target="#myModal-<?php echo e($megazines->id); ?>" style="color: #ffff">Ver mas</p></a>
                         			</div> -->
                         			<div class="movie-content">
-                            			<center><h3><?php echo e($Book->title); ?></h3></center>
-                            			<h6><b>Autor:</b> <a href="ProfileBookAuthor/<?php echo e($Book->id); ?>"><?php echo e($Book->author->full_name); ?></a></h6>
+                            			<center><h3><?php echo e($megazines->title); ?></h3></center>
                                   <h6> <b>Géneros:</b>
-                                        <?php $__currentLoopData = $Book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $megazines->tags_megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <span class="badge badge-light colorbadge"> <?php echo e($t->tags_name); ?> </span>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                   </h6>
-                            			<h6><b>Lanzamiento:</b> <?php echo e($Book->release_year); ?></h6>
-                                  <h6><b>Costo:</b> <?php echo e($Book->cost); ?> tickets</h6>
-                            			<center><a href="#" class=""  id="modal-confir.<?php echo e($Book->id); ?>" onclick="fnOpenNormalDialog('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"><b>Adquirir</b></a></p></center>
-                            		<!-- <p class="sinopsis"><b>Sinopsis:</b><?php echo e($Book->sinopsis); ?></p> -->
+                                  <h6><b>Costo:</b> <?php echo e($megazines->cost); ?> tickets</h6>
+                            			<center><a href="#" class=""  id="modal-confir.<?php echo e($megazines->id); ?>" onclick="fnOpenNormalDialog('<?php echo $megazines->cost; ?>','<?php echo $megazines->title; ?>','<?php echo $megazines->id; ?>')"><b>Adquirir</b></a></p></center>
+                            		<!-- <p class="sinopsis"><b>Sinopsis:</b><?php echo e($megazines->sinopsis); ?></p> -->
                         			</div>
                     			</div><!--/content-panel -->
                 			</div><!--/col-md-4 -->
                 			<!--MODAL-->
-								 <div id="myModal-<?php echo e($Book->id); ?>" class="modal fade" role="dialog">
+								 <div id="myModal-<?php echo e($megazines->id); ?>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                       <!-- Modal content-->
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title"><?php echo e($Book->title); ?></h4>
+                                            <h4 class="modal-title"><?php echo e($megazines->title); ?></h4>
                                         </div>
                                         <div class="modal-body">
                                         	<div id="panel" class="img-rounded img-responsive av text-center col-lg-12 col-md-12 col-sm-12 mb" style="-webkit-box-shadow: 8px 8px 15px #999;
             									-moz-box-shadow: 8px 8px 15px #999;
             									filter: shadow(color=#999999, direction=135, strength=8);
             									/*Para la Sombra*/
-            									background-image: url('images/bookcover/<?php echo e($Book->cover); ?>');
+            									background-image: url('<?php echo e(asset($megazines->cover)); ?>');
             									margin-top: 5%;
             									background-position: center center;
             									width: 100%;
@@ -203,36 +201,30 @@
             									-moz-background-size: cover;
             									-o-background-size: cover;
             									background-size: cover;">
-            									<button type="button" class="btn btn-primary" data-dismiss="modal"   id="modal-confir" style="margin-left: 87%" onclick="fnOpenNormalDialog('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')">Adquirir</button>
+            									<button type="button" class="btn btn-primary" data-dismiss="modal"   id="modal-confir" style="margin-left: 87%" onclick="fnOpenNormalDialog('<?php echo $megazines->cost; ?>','<?php echo $megazines->title; ?>','<?php echo $megazines->id; ?>')">Adquirir</button>
                     						</div>
                     						<div class="col-lg-12 col-md-12 col-sm-12 mb">
-                    							<p class="sinopsis"><h5><b>Sinopsis:</b></h5>
-                    							<?php echo e($Book->sinopsis); ?></p>
+                    							<p class="sinopsis"><h5><b>Descripción:</b></h5>
+                    							<?php echo e($megazines->descripcion); ?></p>
                                 
                     							
                     						</div>
 
                     						<div class="box-footer no-padding">
                     							<div class="col-md-8 col-sm-8 col-lg-12">
-                    							<h5><b>Costo:</b> <?php echo e($Book->cost); ?></h5>
-                        						<h5><b>Titulo original:</b> <?php echo e($Book->original_title); ?> </h5>
-                        						<h5><b> Categoría:</b> <?php echo e($Book->rating->r_name); ?> </h5>
+                    							<h5><b>Costo:</b> <?php echo e($megazines->cost); ?></h5>
+                        						<h5><b> Categoría:</b> <span class="label label-success"> <?php echo e($megazines->rating->r_name); ?> </span> </h5>
                                     <h5> <b>Géneros:</b>
-                                        <?php $__currentLoopData = $Book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $megazines->tags_megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <span class="badge badge-light colorbadge"> <?php echo e($t->tags_name); ?> </span>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </h5>
                             
-                        						<?php if($Book->sagas!=null): ?>
-                                        			<h5><b>Saga:</b> <?php echo e($Book->sagas->sag_name); ?></h5>
+                        						<?php if($megazines->sagas!=null): ?>
+                                        			<h5><b>Tipo de publicación:</b> <?php echo e($megazines->sagas->sag_name); ?></h5>
                                    			 	<?php else: ?>
-                                        			<h5><b>Saga:</b> No tiene Saga</span></h5>
+                                        			<h5><b>Tipo de publicación:</b> Independiente</span></h5>
                                     			<?php endif; ?>
-                                    				<div class="widget-user-image">
-                                						<img class="img-rounded img-responsive av"src="<?php echo e(asset('images/authorbook')); ?>/<?php echo e($Book->author->photo); ?>" style="width:70px;height:70px;" alt="User Avatar">
-                            					</div>
-                            					<!-- /.widget-user-image -->
-                            					<h5 class="widget-user-username"><b>Autor:</b> <a href="ProfileBookAuthor/<?php echo e($Book->id); ?>"><?php echo e($Book->author->full_name); ?></a></h5>
                         						<hr>
                     						</div>
                     							</div>
@@ -250,11 +242,11 @@
                 			
                 			<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 			 <div  class="col-sm-12 col-xs-12 col-md-12">
-       						<?php echo e($Books->links()); ?>
+       						<?php echo e($Megazines->links()); ?>
 
        						</div>
                 			<?php else: ?>
-                    			<h1>No Posee Libros</h1>
+                    			<h1>No Posee Revistas</h1>
                				<?php endif; ?>
             			</div>
             		</div>
@@ -275,7 +267,7 @@ $(document).ready(function(){
 	});
 	$('#buscar').attr('disabled',true);
       $('#seach').autocomplete({
-      	source: "SearchAuthor",
+      	source: "SearchMegazine",
       	minLength: 2,
       	select: function(event, ui){		
       		$('#seach').val(ui.item.value);
@@ -326,7 +318,7 @@ function callback(value,id) {
             })
          $.ajax({
                     
-            url:'BuyBook/'+id,
+            url:'BuyMagazines/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
@@ -343,7 +335,7 @@ function callback(value,id) {
                     }
                     else if (result==1) 
                     {
-                      swal('El libro ya forma parte de su colección','','error');
+                      swal('La revista ya forma parte de su colección','','error');
                     }
                     else
                     {	
@@ -359,7 +351,7 @@ function callback(value,id) {
                   
                       },
                     });
-                    	swal('Libro comprado con exito','','success');
+                    	swal('Revista comprada con exito','','success');
                   		 console.log(result);
                   	}	 
                 },

@@ -1,14 +1,13 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!--DataTables-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                @include('flash::message')
+                <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 <!-- box -->
                 <div class="box box-primary">
                     <div class="box-header with-border bg bg-black-gradient">
@@ -30,48 +29,46 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($book as $b)
-                                @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
+                            <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if(Auth::guard('web_seller')->user()->id === $b->seller_id): ?>
                                     <tr>
-                                        <td class="text-center"> {{ $b->title }} </td>
+                                        <td class="text-center"> <?php echo e($b->title); ?> </td>
                                         <td class="text-center">
-                                            <a href="{{ route('tbook.show', $b->id) }}">
-                                                <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
+                                            <a href="<?php echo e(route('tbook.show', $b->id)); ?>">
+                                                <img class="img-rounded img-responsive text-center" src="<?php echo e(asset('/images/bookcover')); ?>/<?php echo e($b->cover); ?>" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
                                             </a>
-                                        </td>{{--
-                                            error en la pc de Breiddy
-                                        --}}
-                                        <td class="text-center"> {{ $b->rating->r_name }} </td>
-                                        <td class="text-center">
-                                            @php
-                                                $tags = $b->tags_book;
-                                            @endphp
-                                            @foreach($tags as $t)
-                                                {{ $t->tags_name }}
-                                            @endforeach
                                         </td>
-                                        <td class="text-center"> {{ $b->release_year }} </td>
-                                        {{--
-                                        --}}
-                                        <td class="text-center"> {{ $b->status }} </td>
-                                        <td class="text-center"> {{$b->transaction->count()}} </td>
+                                        <td class="text-center"> <?php echo e($b->rating->r_name); ?> </td>
+                                        <td class="text-center">
+                                            <?php 
+                                                $tags = $b->tags_book;
+                                             ?>
+                                            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php echo e($t->tags_name); ?>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </td>
+                                        <td class="text-center"> <?php echo e($b->release_year); ?> </td>
+                                        
+                                        <td class="text-center"> <?php echo e($b->status); ?> </td>
+                                        <td class="text-center"> <?php echo e($b->transaction->count()); ?> </td>
                                         <td class="text-center ">
-                                            <a href="{{ route('tbook.show', $b->id) }}"
+                                            <a href="<?php echo e(route('tbook.show', $b->id)); ?>"
                                                class="btn btn-info btn-xs">
                                                 <span class="fa fa-eye" aria-hidden="true"></span>
                                             </a>
-                                            <a href="{{ route('tbook.edit', $b->id) }}"
+                                            <a href="<?php echo e(route('tbook.edit', $b->id)); ?>"
                                                class="btn btn-warning btn-xs">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <!-- <a href="{{ route('tbook.destroy',$b->id) }}"
-                                               onclick="return confirm('¿Desea eliminar el libro {{ $b->title }}?')" class="btn btn-danger btn-xs ">
+                                            <!-- <a href="<?php echo e(route('tbook.destroy',$b->id)); ?>"
+                                               onclick="return confirm('¿Desea eliminar el libro <?php echo e($b->title); ?>?')" class="btn btn-danger btn-xs ">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </a> -->
                                         </td>
                                     </tr>
-                                @endif
-                            @endforeach
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                             <tfoot>
                             <tr>
@@ -93,7 +90,7 @@
             </div>
         </div>
         <div class="col-md-offset-9">
-            <a href="{{ route('tbook.create') }}" class="btn btn-info">
+            <a href="<?php echo e(route('tbook.create')); ?>" class="btn btn-info">
                 <b class="box-header with-border bg bg-black-gradient">
                     <div class="box-title">
                         <i class="fa fa-book"></i>
@@ -105,8 +102,8 @@
             </a>
         </div>
     </section>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <!--DataTables-->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -149,4 +146,5 @@
             })
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

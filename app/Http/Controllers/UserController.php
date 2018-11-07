@@ -557,6 +557,52 @@ class UserController extends Controller
 
     }
 //-------------------------------------------------------------------------
+        public function BuyMagazines(Request $request,$id)
+    {
+        $megazine= Megazines::find($id);
+        $user = User::find(Auth::user()->id);
+      
+
+        $check = Transactions::where('megazines_id','=',$megazine->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        
+        if ($megazine->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->seller_id=$megazine->seller_id; 
+            $Transaction->megazines_id=$megazine->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $megazine->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$megazine->cost;
+            $user->save(); 
+
+            $seller = Seller::find($megazine->seller_id);
+            $seller->credito=$seller->credito+$megazine->cost;
+            $seller->save();
+
+            $account=new AccountBalance;
+            $account->seller_id=$megazine->seller_id;
+            $account->balance=$megazine->cost;
+            $account->save();
+
+            //$this->SendMail($book->title,$book->cost);
+
+            return response()->json($Transaction);
+        }
+
+    }
 
     public function BuyBook(Request $request,$id)
     {

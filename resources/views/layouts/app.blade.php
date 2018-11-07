@@ -143,6 +143,7 @@
                     <ul class="sub">
                       <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
                       <li><a href="{{url('ReadingsBooks')}}">Libros</a></li>
+                       <li><a href="{{url('ReadingsMegazines')}}">Revistas</a></li>
                       <!-- <li><a href="{{url('ShowMovies')}}">Peliculas</a></li> -->
                     </ul>
                   </li>
@@ -172,7 +173,7 @@
                             </a>
                             <ul class="sub">
                               <li><a  href="{{url('MyReads')}}">Mis libros</a></li>
-                              <li><a  href="{{url('MyMegazine')}}">Mis megazines</a></li>
+                              <li><a  href="{{url('MyMegazine')}}">Mis Revistas</a></li>
                             </ul>
                           </li>
 

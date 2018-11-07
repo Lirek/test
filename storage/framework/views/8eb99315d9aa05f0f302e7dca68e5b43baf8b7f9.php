@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #panel {
             /*Para la Sombra*/
@@ -7,10 +6,10 @@
             -moz-box-shadow: 8px 8px 15px #999;
             filter: shadow(color=#999999, direction=135, strength=8);
             /*Para la Sombra*/
-            background-image: url("{{ asset('images/bookcover/') }}/{{$book->cover}}");
+            background-image: url("<?php echo e(asset($megazine->cover)); ?>");
             margin-top: 5%;
-            background-position: center center;
             width: 100%;
+            max-height: 500px;
             min-height: 500px;
             -webkit-background-size: 100%;
             -moz-background-size: 100%;
@@ -23,6 +22,9 @@
         }
         .pdf{
             position:relative;
+        }
+        .colorbadge{
+            background-color:#428bca;
         }
         .transparencia {
             opacity: 0.1;
@@ -39,93 +41,60 @@
             width:80%;
             height:33px;
         }
-        .colorbadge{
-            background-color:#428bca;
-        }
+
     </style>
-@endsection
-@section('main')
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class=" col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class=" col-sm-12 col-md-12 col-lg-12"></div>
-                        <div class="col-sm-12 col-md-8 col-lg-8">
-                            <div class="box box-widget widget-user-2">
-                                <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Libro</a>
+                    <div class="row" >
+
+                        <div class=" col-sm-12 col-md-6">
+                            <div class="row">
+                                <div class=" col-sm-12 col-md-4 col-lg-4"></div>
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+                                    <div id="panel" class="img-rounded img-responsive av text-center"></div>
                                 </div>
-                                <div id="panel" class="img-rounded img-responsive av text-center"></div>
                             </div>
-                        </div>
-                    </div><!-- /. col img book -->
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="col-sm-12 col-md-8">
-                        <h3>Libro | "{{ $book->title }}" ({{ $book->release_year }})</h3>
-                    </div><!-- /. col titel book -->
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8">
-                            <hr>
-                            <h5> <b>Sinopsis:</b></h5>
-                            <p class="text-justify">{{ $book->sinopsis }}</p>
-                            <h5><b>Titulo original: </b><span>{{ $book->original_title }}</span></h5>
+                        </div><!-- /. col img megazine -->
 
+                        <div class="col-sm-12 col-md-6">
 
-                            <h5> <b>Géneros:</b>
-                                @foreach($book->tags_book as $t)
-                                    <span class="badge badge-light colorbadge"> {{ $t->tags_name }} </span>
-                                @endforeach
-                            </h5>
-                            <h5> <b>Categoria:</b> <span class="label label-success"> {{ $book->rating->r_name }} </span></h5>
+                            <div class="col-sm-12 col-md-8">
+                            <h3>Revista | <?php echo e($megazine->title); ?></h3>
+                                <h3><b><?php echo e($megazine->cost); ?> tickets</b></h3>
+                            </div><!-- /. col titel megazine -->
 
                             <div class="row">
-                                @if($book->saga!=null)
-
-                                    <div class="col-md-12">
-                                        <h5><b>Saga: </b><span>{{ $book->saga->sag_name }}</span></h5>
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-6">
-                                        <h5 class="pull-left"> <b>Antes:</b> <span> {{ $book->before }} </span> </h5>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <h5 class="pull-left"> <b>Después:</b> <span> {{ $book->after }} </span> </h5>
-                                        <br>
-                                    </div>
-                                @else
-                                    <div class="col-md-12">
-                                        <h5><b>Saga: </b><span>No tiene saga</span></h5>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="widget-user-image">
-                                <img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
-                            </div>
-                            <!-- /.widget-user-image -->
-                            <h5 class="widget-user-username"><b>Autor:</b> <a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></h5>
-
-                            <div class="row">
-                                <div  class="col-md-12" >
+                                    <div class="col-sm-12 col-md-8">
                                     <hr>
-                                </div>
-                                <div  class="col-md-6" >
-                                    <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
-                                </div>
-                                <div  class="col-md-6">
-                                    <a href="{{ url('MyReads') }}" class="btn btn-danger">Atrás</a>
-                                </div>
+                                    <h4>Descripción:</h4>
+                                    <p class="text-justify"><?php echo e($megazine->descripcion); ?></p>
+                                    <h4> <b>Géneros:</b>
+                                        <?php $__currentLoopData = $megazine->tags_megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <span class="badge badge-light colorbadge "> <?php echo e($t->tags_name); ?> </span>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </h4>
+                                    <h4> <b>Categoria:</b> <span class="label label-success"> <?php echo e($megazine->rating->r_name); ?> </span></h4>
+
+                                        <div class="row">
+                                        <div  class="col-md-12" >
+                                        <hr>
+                                        </div>
+                                        <div  class="col-md-6" >
+                                            <a href="<?php echo e(url('/my_megazine/'.Auth::guard('web_seller')->user()->id)); ?>" class="btn btn-danger pull-left">Atrás</a>
+                                        </div>
+                                        <div  class="col-md-6">
+                                            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>                                        </div>
+                                        </div>
+                                    </div>
                             </div>
-                        </div> <!-- /. col contenido book -->
+                        </div> <!-- /. col contenido megazine -->
+                    </div> <!-- /. row contenido megazine -->
 
-                    </div>
-                </div>
-            </div>
-        </div>
 
-     <!-- /.modal -->
+        <!-- /.modal -->
         <div class="modal fade in modal-warning" id="modal-default">
             <div class="modal-body">
                 <div class="modal-content">
@@ -133,16 +102,19 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title text-center">{{ $book->title }}</h4>
+                        <h4 class="modal-title text-center"><?php echo e($megazine->title); ?></h4>
                     </div>
                     <div class="modal-body text-center">
                         <div class="pdf">
 
                             <div class="transparencia"></div>
                             <div class="bloqueo"></div>
-                            <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
+                            <object data="<?php echo e(asset($megazine->megazine_file)); ?>" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
 
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-center" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -151,10 +123,10 @@
         </div>
         <!-- /.modal -->
     </section>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
 
-  <script>
+<?php $__env->startSection('js'); ?>
+    <script>
 //---------------------------------------------------------------------------------------------------
 // Para evitar el click derecho sobre el modal del PDF        
         document.getElementById('modal-default').oncontextmenu = function() {
@@ -187,7 +159,7 @@
             ctx = canvas.getContext('2d');
         /**
          * Get page info from document, resize canvas accordingly, and render page.
-         * @param num Page number.
+         * @param  num Page number.
          */
         function renderPage(num) {
             pageRendering = true;
@@ -260,6 +232,7 @@
         });
 // Para visualizar el PDF
 //---------------------------------------------------------------------------------------------------
-    </script>   
+    </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
