@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('plugins/materialize_index/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -317,11 +319,11 @@
 
 {{--radios--}}
 <div class="row" id="radios">
+    <div id="featured" class="owl-carousel featured">
     @foreach($radio as $r)
-        <div class="col s12 m4 l2 xl2  center">
             <div class="card">
                 <div class="card-image ">
-                    <img src="{{asset($r->logo)}}">
+                    <img src="{{asset($r->logo)}}" width="100%" height="200px">
                     <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
                             remove_red_eye
                         </i></a>
@@ -330,19 +332,19 @@
                     <p>{{$r->email_c}}</p>
                 </div>
             </div>
-        </div>
         @php
             $iRadios++
         @endphp
     @endforeach
+    </div>
 </div>
 
 
 {{--tv--}}
 <div class="row" id="Tvs">
+    <div id="featured1" class="owl-carousel featured">
     @foreach($tv as $tvs)
         {{--item--}}
-        <div class="col s12 m4 l2 xl2  center">
             <div class="card">
                 <div class="card-image ">
                     <img src="{{asset($tvs->logo)}}">
@@ -354,11 +356,11 @@
                     <p>{{$tvs->email_c}}</p>
                 </div>
             </div>
-        </div>
         @php
             $iTvs++
         @endphp
     @endforeach
+    </div>
 </div>
 
 <!-- Fin Contenido  -->
@@ -403,7 +405,7 @@
     </div>
 </div>
 <!-- Fin tabs  -->
-
+{{--Pie de pagina--}}
 <footer class="page-footer blue">
     <div class="container">
         <div class="row">
@@ -764,6 +766,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
+<script src="{{asset('js/owl.carousel.min.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
@@ -801,11 +804,86 @@
         $('.slider').slider({
             indicators: false
         });
-        $('.carousel').carousel({
-            dist:0,
-            shift:0,
-            padding:20,
 
+
+        /*==========  Featured Cars  ==========*/
+        $('#featured-cars').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                }
+            }
+        });
+        $('#featured').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured-cars-three').owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                }
+            }
+        });
+
+        $('#featured1').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
         });
 
         //Mostarar contenidos seleccionados

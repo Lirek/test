@@ -40,7 +40,7 @@ class WelcomeController extends Controller
         });
 //        $radios = Radio::all();
         //$radios = Radio::orderBy('id','DESC')->paginate(5);
-        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         $radios->each(function ($radios){
             $radios->seller;
         });
