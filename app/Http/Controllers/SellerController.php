@@ -11,11 +11,23 @@ use Illuminate\Support\Facades\Validator;
 
 //Seller Model
 use App\Seller;
+use App\User;
 use App\SellersRoles;
 use App\ApplysSellers;
+use App\Transactions;
 use App\SellersAcces;
 use Laracasts\Flash\Flash;
 //use App\music_authors;
+use App\Albums;
+use App\Songs;
+use App\Megazines;
+use App\Radio;
+use App\Book;
+use App\Tv;
+use App\Movie;
+use App\Serie;
+use App\Episode;
+use App\PaymentSeller;
 
 class SellerController extends Controller
 {
@@ -172,7 +184,7 @@ class SellerController extends Controller
                 return view('seller.complete');
             } else {
                 flash()->error('El enlace procesado no corresponde a nuestros registros');
-                return view('seller.auth.login');   
+                return view('seller.auth.login');
             }
         } else {
             return view('seller.complete');
@@ -186,9 +198,9 @@ class SellerController extends Controller
         $ApplysSellers = ApplysSellers::find($id);
         if ($ApplysSellers!=null) { // si existe ese registro con ese id
             if ($ApplysSellers->token === $token) { // si coincide el token que se envia con el del registro
-                return response()->json($ApplysSellers); // retorna la informacion 
+                return response()->json($ApplysSellers); // retorna la informacion
             } else {
-                return response()->json(1); // si no corresponde el token 
+                return response()->json(1); // si no corresponde el token
             }
         } else {
             return response()->json(0); // si no existe el registro con ese id
@@ -304,6 +316,118 @@ class SellerController extends Controller
         return redirect()->action('SellerController@homeSeller');
 
     }
-    
+    public function balance(){
+        $Transaction=Transactions::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
+        if ($Transaction->count()!= 0) {
+            foreach ($Transaction as $key)  {
+                if($key->books_id != 0){
+                    $accionM=Book::find($key->books_id);
+                    $accion=$accionM->title;
+                    $Contenido='Libro';
+                }
+                elseif($key->album_id != 0){
+                    $accionM=Albums::find($key->album_id);
+                    $accion=$accionM->name_alb;
+                    $Contenido='Album';
+                }
+                elseif($key->song_id != 0){
+                    $accionM=Songs::find($key->song_id);
+                    $accion=$accionM->song_name;
+                    $Contenido='Sencillo';
+                }
+                elseif($key->series_id != 0){
+                    $accionM=Serie::find($key->series_id);
+                    $accion=$accionM->title;
+                    $Contenido='Serie';
+                }
+                elseif($key->episodes_id != 0){
+                    $accionM=Episode::find($key->episodes_id);
+                    $accion=$accionM->episode_name;
+                    $Contenido='Episodio';
+                }
+                elseif($key->movies_id != 0){
+                    $accionM=Movie::find($key->movies_id);
+                    $accion=$accionM->title;
+                    $Contenido='Pelicula';
+                }
+                elseif($key->megazines_id != 0){
+                    $accionM=Megazines::find($key->megazines_id);
+                    $accion=$accionM->title;
+                    $Contenido='Revista';
+                }
+                $user= User::find($key->user_id);
+
+                $Balance[]=array(
+                        'User' => $user->alias,
+                        'Date'=>$key->created_at->format('d/m/Y'),
+                        'Cant'=>$key->tickets,
+                        'Content'=>$Contenido,
+                        'Transaction'=>$accion,
+                        'Type' => 1,
+                        //'Factura' => $key->factura_id
+                    );
+            }
+        }else{
+
+            $Balance[]=0;
+        }
+        $Payment=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
+        if ($Payment->count() != 0) {
+            foreach ($Payment as $key) {
+                $Balance[]=array(
+                    'User' => 'No aplica',
+                    'Date' => $key->created_at->format('d/m/Y'),
+                    'Cant' => $key->tickets,
+                    'Content'=>$key->status,
+                    'Transaction' => 'Retiro de fondos',
+                    'Type' => 2,
+                );
+            }
+        }else{
+            $Balance[]=0;
+        }
+        $diferido=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Diferido')->sum('tickets');
+         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+
+        return view('seller.MyBalance')->with('Balance',$ordenBalance)->with('diferido',$diferido);
+    }
+
+     public function Fondos(){
+        $payment = PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
+        $diferido=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Diferido')->sum('tickets');
+        return view('seller.Fondos')->with('payment',$payment)->with('diferido',$diferido);
+     }
+
+     public function applicationFunds(Request $request)
+    {
+        $seller = Seller::find(Auth::guard('web_seller')->user()->id);
+
+        $seller->credito_pendiente=$seller->credito_pendiente+$request->cant;
+        $seller->credito= $seller->credito-$request->cant;
+        $seller->save();
+
+        $payment= new PaymentSeller;
+        $payment->seller_id= Auth::guard('web_seller')->user()->id;
+
+        if ($request->factura <> null) {
+            $file = $request->file('factura');
+            $name = 'factura_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '/images/producer/factura';
+            $file->move($path, $name);
+            $payment->factura ='/images/producer/factura/'.$name;
+        }
+
+        $payment->tickets= $request->cant;
+        $payment->status=2;
+
+        $payment->save();
+
+        Flash::warning('Su solicitud de retiro se envio de forma exitosa')->important();
+
+        //return view('seller.edit')->with('seller',$seller);
+        return redirect()->action('SellerController@Fondos');
+
+    }
+
 }
 	

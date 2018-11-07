@@ -120,15 +120,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function redirectToProvider($provider)
+    public function AuthSocialUser(Request $request)
     {
-        return Socialite::driver($provider)->stateless()->redirect();
-    }
-
-    public function handleProviderCallback($provider)
-    {
-        try {
-            $user = Socialite::driver($provider)->stateless()->user();
 
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -142,9 +135,9 @@ class AuthController extends Controller
 
             $code=$randomString;
             $createUser = User::firstOrCreate(
-                ['email' => $user->getEmail()],
-                ['name' => $user->getName(),
-                    'img_perf' => $user->getAvatar(),
+                ['email' => $request->email],
+                ['name' => $request->name,
+                    'img_perf' => $request->avatar,
                     'codigo_ref'=>$code]
             );
 
@@ -157,9 +150,6 @@ class AuthController extends Controller
 
             return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
 
-        }catch (\GuzzleHttp\Exception\ClientException $e){
-            dd($e);
-        }
     }
 
 }

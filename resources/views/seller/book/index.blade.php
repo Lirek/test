@@ -21,11 +21,11 @@
                             <tr>
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
-                                <th class="text-center">Autor</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Estatus</th>
+                                <th class="text-center">N° de compras</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -38,9 +38,7 @@
                                             <a href="{{ route('tbook.show', $b->id) }}">
                                                 <img class="img-rounded img-responsive text-center" src="{{ asset('/images/bookcover') }}/{{ $b->cover }}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
                                             </a>
-                                        </td>
-                                        <td class="text-center"> {{ $b->author->full_name }} </td>
-                                        {{--
+                                        </td>{{--
                                             error en la pc de Breiddy
                                         --}}
                                         <td class="text-center"> {{ $b->rating->r_name }} </td>
@@ -56,6 +54,7 @@
                                         {{--
                                         --}}
                                         <td class="text-center"> {{ $b->status }} </td>
+                                        <td class="text-center"> {{$b->transaction->count()}} </td>
                                         <td class="text-center ">
                                             <a href="{{ route('tbook.show', $b->id) }}"
                                                class="btn btn-info btn-xs">
@@ -83,6 +82,7 @@
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>
                                 <th class="text-center">Estatus</th>
+                                <th class="text-center">N° de compras</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </tfoot>

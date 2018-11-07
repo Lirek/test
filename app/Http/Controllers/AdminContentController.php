@@ -23,6 +23,8 @@ use App\Promoters;
 use App\PromotersRoles;
 use App\Movie;
 use App\Serie;
+use App\PaymentSeller;
+use App\Payments;
 
 class AdminContentController extends Controller
 {
@@ -206,5 +208,40 @@ class AdminContentController extends Controller
             $Content=array($Musician, $Band);
 
       return Response()->json($Content); 
+  }
+
+  public function pendientes() {
+    $albums= Albums::where('status','En Revision')->count();
+    $books= Book::where('status','En Revision')->count();
+    $bookAuthor= BookAuthor::where('status','En Revision')->count();
+    $megazines= Megazines::where('status','En Revision')->count();
+    $movies = Movie::where('status','En Proceso')->count();
+    $radios= Radio::where('status','En Proceso')->count();
+    $series = Serie::where('status','En Proceso')->count();
+    $singles= Songs::where('status','En Revision')->whereNull('album')->count();
+    $tags= Tags::where('status','En Proceso')->count();
+    $tv= Tv::where('status','En Proceso')->count();
+    $contenidoPendiente = $albums+$books+$bookAuthor+$megazines+$movies+$radios+$series+$singles+$tags+$tv;
+
+    $proveedores = Seller::where('estatus','<>','Aprobado')->count();
+
+    $pagosProveedores = PaymentSeller::where('status','Por cobrar')->orWhere('status','Diferido')->count();
+
+    $solicitudesProveedores = ApplysSellers::where('status','En Proceso')->count();
+
+    $solicitudesUsuarios = User::where('verify','0')->count();
+
+    $pagosUsuarios = Payments::where('status','En Revision')->count();
+
+    $pendientes = [
+      'contenido' => $contenidoPendiente,
+      'proveedores' => $proveedores,
+      'pagosP' => $pagosProveedores,
+      'solicitudesP' => $solicitudesProveedores,
+      'solicitudesU' => $solicitudesUsuarios,
+      'pagosU' => $pagosUsuarios
+    ];
+    return response()->json($pendientes);
+    
   }
 }

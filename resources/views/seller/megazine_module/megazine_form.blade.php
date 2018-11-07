@@ -69,8 +69,8 @@
         <div class="form-group">
                <label for="desc" class="col-md-4 control-label">Descripción</label>
 
-                            <div class="col-md-6" id="sinopsis">
-                                <textarea name="dsc"  class="form-control" placeholder="Descripción de la revista" rows="3" cols="2"   required ></textarea>
+                            <div class="col-md-6">
+                                <textarea name="dsc"  class="form-control" placeholder="Descripción de la revista" rows="3" cols="2" id="sinopsis"  required ></textarea>
                                 <div id="mensajeSinopsis"></div>
                             </div>
                             

@@ -219,6 +219,19 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('/admin_sellers','AdminController@ShowSellers');
 
+            /*
+            Rutas para canje de tickets a dinero
+            Agregada 26-10-2018
+            */
+            Route::get('/admin_sellers_payments','AdminController@ShowPaymentsSellers');
+            Route::get('/PaymentsDataTable/{status}','AdminController@PaymentsDataTable');
+            Route::post('admin_payments/{id}','AdminController@admin_payments');
+            Route::get('/infoSeller/{idSeller}','AdminController@infoSeller');
+            /*
+            Rutas para canje de tickets a dinero
+            Agregada 26-10-2018
+            */
+
             //Route::get('/admin_modules/{id_seller}/{id_module}','AdminController@DeleteModule');
             Route::get('/delete_mod/{id_seller}/{id_module}','AdminController@DeleteModule');
 
@@ -295,6 +308,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('MusicianStatusGraphData','AdminContentController@MusicianPieGraphData');
 
                 Route::get('MusicianGraphData','AdminContentController@MusicianBarrGraphData');
+
+                /*Agregada 30-10-2018*/
+                Route::get('/contenidoPendiente','AdminContentController@pendientes');
           //________________________________________________________________________
 
 
@@ -342,7 +358,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
            //------------------------------------------------------------------------
            //---------------LIBROS,SAGAS,TRILOGIAS, ETC------------------------------
                 Route::get('admin_books','AdminController@ShowBooks');
-                Route::get('BooksData','AdminController@BooksDataTable');
+                Route::get('BooksData/{status}','AdminController@BooksDataTable');
                 Route::post('books_status/{id}','AdminController@EstatusBooks');
                 Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
                 Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
@@ -492,6 +508,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
     //agregada 10-10-2018
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
+
 //------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
 
     Route::get('seller_password/reset', 'SellerAuth\ForgotPasswordController@showLinkRequestForm');
@@ -536,6 +553,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 
     Route::resource('sellers', 'SellerController');
+    
+    Route::get('SellerBalance','SellerController@balance');
+    Route::get('SellerRequest','SellerController@Fondos');
+    
+     Route::post('SellerFunds','SellerController@applicationFunds');
+
 
 
     /*----------------------------------------------------------------------------
