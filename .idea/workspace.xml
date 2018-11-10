@@ -3,31 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/css/demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/css/jquery.jscrollpane.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/css/reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/ImageAttribution.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/Thumbs.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/arrows.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/biblioteca.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/camara.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/cerrar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/cerrar3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/cerrar4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/controlar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/cross.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/microfono.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/musica.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/pattern.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/revista.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/images/tv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/js/jquery.contentcarousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/js/jquery.contentcarousel.js.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/js/jquery.easing.1.3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/carusel/js/jquery.mousewheel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,9 +21,11 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.105" value="1" />
+          <entry key="project.open.time.107" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -57,6 +38,14 @@
           <entry key="PLAIN_TEXT" value="48" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.php.new.test" />
+      <usages-collector id="statistics.php.composer.actions" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.php.rename.constructor" />
+      <usages-collector id="statistics.file.types.open" />
+      <usages-collector id="statistics.php.composer.command.options" />
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.php.new.class" />
     </session>
     <session id="897122915">
       <usages-collector id="statistics.lifecycle.project">
@@ -122,60 +111,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="875" column="7" lean-forward="true" selection-start-line="875" selection-start-column="7" selection-end-line="875" selection-end-column="7" />
-              <folding>
-                <element signature="n#style#0;n#div#5;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#18881#18887#0#HTML" expanded="true" />
-                <element signature="e#18894#18900#0#HTML" expanded="true" />
-                <element signature="e#18900#18906#0#HTML" expanded="true" />
-                <element signature="e#18906#18912#0#HTML" expanded="true" />
-                <element signature="e#18912#18918#0#HTML" expanded="true" />
-                <element signature="e#18926#18932#1#HTML" expanded="true" />
-                <element signature="e#19146#19152#0#HTML" expanded="true" />
-                <element signature="e#19160#19166#0#HTML" expanded="true" />
-                <element signature="e#19166#19172#0#HTML" expanded="true" />
-                <element signature="e#19172#19178#0#HTML" expanded="true" />
-                <element signature="e#19186#19192#1#HTML" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#2;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="42" column="82" selection-start-line="42" selection-start-column="80" selection-end-line="42" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -408,9 +344,6 @@
     <option name="width" value="1379" />
     <option name="height" value="735" />
   </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -442,10 +375,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../material" />
+    <property name="nodejs_interpreter_path" value="node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -483,6 +416,7 @@
       <workItem from="1541511799168" duration="1236000" />
       <workItem from="1541521415727" duration="1297000" />
       <workItem from="1541525296005" duration="2911000" />
+      <workItem from="1541892892074" duration="588000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -498,11 +432,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541111594142</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="...........">
+      <created>1541598849148</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1541598849148</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="321786000" />
+    <option name="totallyTimeSpent" value="323115000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -516,7 +457,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26626325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20574887" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -586,13 +527,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Cambio vista index" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Rating.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Saga.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -746,8 +680,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -904,31 +838,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
           <caret line="875" column="7" lean-forward="true" selection-start-line="875" selection-start-column="7" selection-end-line="875" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#5;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#18881#18887#0#HTML" expanded="true" />
-            <element signature="e#18894#18900#0#HTML" expanded="true" />
-            <element signature="e#18900#18906#0#HTML" expanded="true" />
-            <element signature="e#18906#18912#0#HTML" expanded="true" />
-            <element signature="e#18912#18918#0#HTML" expanded="true" />
-            <element signature="e#18926#18932#1#HTML" expanded="true" />
-            <element signature="e#19146#19152#0#HTML" expanded="true" />
-            <element signature="e#19160#19166#0#HTML" expanded="true" />
-            <element signature="e#19166#19172#0#HTML" expanded="true" />
-            <element signature="e#19172#19178#0#HTML" expanded="true" />
-            <element signature="e#19186#19192#1#HTML" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#2;n#div#0;n#div#7;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#1;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#form#0;n#div#2;n#div#0;n#div#8;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="293" column="47" selection-start-line="293" selection-start-column="47" selection-end-line="293" selection-end-column="47" />
         </state>
       </provider>
     </entry>
