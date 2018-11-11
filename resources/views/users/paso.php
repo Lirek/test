@@ -8,6 +8,7 @@
 
     <title>Leipel</title>
 
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
@@ -20,11 +21,30 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
+<style type="">
+    html {
+        min-height: 100%;
+        position: relative;
+    }
+
+    body {
+        margin: 0;
+        margin-bottom: 40px;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+    }
+
+</style>
 <body>
 <!--HEADER START-->
-<div class="main-navigation ">
+<div id="wrapper" class="main-navigation ">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -32,8 +52,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
-                                                                   width="150" height="50" alt=""></a>
+                <a href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
+                                              width="150" height="50" alt=""></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -44,6 +64,9 @@
         </div>
     </nav>
 
+    <div class="img-responsive"></div>
+    <img src="{{asset('plugins/img/piñas.jpg')}}" style="  background-size: cover; position: absolute; width: 100%; height: 100% ">
+
     <!--HEADER END-->
 
     <div class="container">
@@ -51,23 +74,23 @@
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-
+                <br>
                 <div class="panel panel-default">
                     <div class="panel-heading">Registro</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
+                        <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Nombre</label>
-
+                                <input type="text" name="user_code" value="{{$user_code}}" hidden>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
                                            value="{{ old('name') }}">
 
                                     @if ($errors->has('name'))
-                                        <span class="help-block">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
@@ -83,7 +106,7 @@
                                            value="{{ old('email') }}">
 
                                     @if ($errors->has('email'))
-                                        <span class="help-block">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     @endif
@@ -95,10 +118,10 @@
                                 <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password">
+                                    <input id="password" type="password" class="form-control" name="password" autocomplete="off">
 
                                     @if ($errors->has('password'))
-                                        <span class="help-block">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                     @endif
@@ -112,10 +135,10 @@
 
                                 <div class="col-md-6">
                                     <input id="password_confirm" type="password" class="form-control"
-                                           name="password_confirm">
+                                           name="password_confirmation" autocomplete="off">
 
                                     @if ($errors->has('password_confirm'))
-                                        <span class="help-block">
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
                                     </span>
                                     @endif
@@ -131,14 +154,25 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
 
             </div>
 
         </div>
-
     </div>
+    <footer>
+        <div class="col-lg-12" style="background-color: #21a4de" >
+            <div class="text-center">
+                <center>
+                    <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-2.png')}}">
+                    <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-4.png')}}">
+                    <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon.png')}}">
+                    <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-5.png')}}">
+                    <img height="60px" style="padding: 0% 3%" src="{{asset('plugins/img/logo-icon-3.png')}}">
+                </center>
+            </div>
+        </div>
+    </footer>
 
 
     <!--Seccion de Scripts-->
@@ -150,6 +184,9 @@
     <script>
 
         $(document).ready(function () {
+            jQuery.validator.addMethod("lettersonly", function(value, element, param) {
+                return value.match(new RegExp("." + param + "$"));
+            });
 
             $.mockjax({
                 url: "emails.action",
@@ -171,20 +208,29 @@
                 rules: {
                     name: {
                         required: true,
-                        minlength: 2
+                        minlength: 2,
+                        lettersonly: "[a-zA-Z]+"
                     },
                     email: {
                         required: true,
                         email: true,
-                        remote: "emails.action"
+                        remote: {
+                            url: "{{url ('RegisterEmail')}}",
+                            type:"POST",
+                            data:{
+                                _token: $('input[name=_token]').val(),
+                                'email': function(){ return $('#email').val();}
+                            }
+
+                        }
                     },
                     password: {
                         required: true,
-                        minlength: 5
+                        minlength: 6
                     },
-                    password_confirm: {
+                    password_confirmation: {
                         required: true,
-                        minlength: 5,
+                        minlength: 6,
                         equalTo: "#password"
                     },
                 },
@@ -192,21 +238,22 @@
                 messages: {
                     name: {
                         required: " Ingresar su nombre",
-                        minlength: "Su nombre debe tener minimo 2 caracteres"
+                        minlength: "Su nombre debe tener minimo 2 caracteres",
+                        lettersonly:'Solo debe ingresar letras'
                     },
                     password: {
                         required: "Ingresar clave",
-                        minlength: "Debe tener minim 5 caracteres"
+                        minlength: "Debe tener minimo 6 caracteres"
                     },
-                    password_confirm: {
+                    password_confirmation: {
                         required: "Ingresar contraseña",
-                        minlength: "Debe tener minimo 5 caracteres",
-                        equalTo: "Ingrese la misma contraseña"
+                        minlength: "Debe tener minimo 6 caracteres",
+                        equalTo: "Las contraseña deben coincidir"
                     },
                     email: {
                         required: "Ingresar un correo valido",
                         email: "Formato de correo invalido",
-                        remote: ("Ya se ha registrado")
+                        remote: ("Email ya se encuentra registrado")
                     }
                 },
 
