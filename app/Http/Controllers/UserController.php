@@ -63,7 +63,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $user = new User;
         
@@ -636,7 +636,7 @@ class UserController extends Controller
             $user->save(); 
 
             $seller = Seller::find($book->seller_id);
-            $seller->credito=$seller->credito+$
+            $seller->credito=$seller->credito+$book->cost;
             $seller->save();
 
             $account=new AccountBalance;
