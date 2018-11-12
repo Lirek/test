@@ -19,7 +19,7 @@
                       <a href="{{url('AdminContent')}}">
                           <i class="fas fa-suitcase"></i>
                           <span>Contenido</span>
-                          <span class="badge" id="badgeContenido" style="display: none;"></span>
+                          <span class="badge" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
                       </a>
                   </li>
 
@@ -27,7 +27,7 @@
                       <a href="{{url('admin_sellers')}}">
                           <i class="fas fa-user-tie"></i>
                           <span>Proveedores</span>
-                          <span class="badge" id="badgeProveedores" style="display: none;"></span>
+                          <span class="badge" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
                       </a>
                   </li>
 
@@ -35,7 +35,7 @@
                       <a href="{{url('admin_sellers_payments')}}">
                           <i class="fas fa-credit-card"></i>
                           <span>Pagos de Proveedores</span>
-                          <span class="badge" id="badgePagos" style="display: none;"></span>
+                          <span class="badge" id="badgePagos" style="display: none; background-color: #d9534f;"></span>
                       </a>
                   </li>
 
@@ -43,7 +43,7 @@
                       <a href="{{url('admin_applys')}}">
                           <i class="fas fa-archive"></i>
                           <span>Solicitudes</span>
-                          <span class="badge" id="badgeSolicitudProveedor" style="display: none;"></span>
+                          <span class="badge" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
                       </a>
                   </li>
 
@@ -51,7 +51,7 @@
                       <a href="{{url('admin_clients')}}">
                           <i class="fa fa-users"></i>
                           <span>Clientes</span>
-                          <span class="badge" id="badgeSolicitudUsuario" style="display: none;"></span>
+                          <span class="badge" id="badgeSolicitudUsuario" style="display: none; background-color: #d9534f;"></span>
                       </a>
                   </li>                  
                   
