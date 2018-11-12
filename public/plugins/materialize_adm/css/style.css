@@ -93,6 +93,12 @@ nav .nav-wrapper {
         }
 }
 
+/*Modal */
+.modal .modal-content {
+    padding: 0px;
+}
+/*Modal */
+
 
 /*Pantallas menores de 400px*/
 @media only screen and (max-width : 400px){
