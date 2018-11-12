@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>{{ config('app.name', 'Leipel') }}</title>
+    <title><?php echo e(config('app.name', 'Leipel')); ?></title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ asset('plugins/materialize_index/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<?php echo e(asset('plugins/materialize_index/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<?php echo e(asset('plugins/materialize_index/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<?php echo e(asset('css/owl.carousel.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<?php echo e(asset('css/owl.theme.default.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
-        window.Laravel = {!! json_encode([
+        window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]) !!};
+        ]); ?>;
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
@@ -107,84 +107,84 @@
 
 <!--Menu-->
 <nav class="default_color" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/') }}" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="<?php echo e(url('/')); ?>" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
-            @if(Auth::guard('web_seller')->user())
-                @if (Auth::guard('web_seller')->user()->logo)
+            <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es leipel?</b></a></li>
+            <?php if(Auth::guard('web_seller')->user()): ?>
+                <?php if(Auth::guard('web_seller')->user()->logo): ?>
                     <li>
-                        <a href="{{ url('/seller_home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}"  class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/seller_home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>"  class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @else
+                <?php else: ?>
                     <li>
-                        <a href="{{ url('/home')}}"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @endif
+                <?php endif; ?>
 
-            @elseif(Auth::user())
+            <?php elseif(Auth::user()): ?>
 
-                @if(Auth::user()->img_perf)
+                <?php if(Auth::user()->img_perf): ?>
                     <li>
-                        <a href="{{ url('/home')}}"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset(Auth::user()->img_perf)}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @else
+                <?php else: ?>
                     <li>
-                        <a href="{{ url('/home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @endif
+                <?php endif; ?>
 
-            @elseif (Auth::guest())
+            <?php elseif(Auth::guest()): ?>
                 <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
                 <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
-            @endif
+            <?php endif; ?>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
             <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
-            @if(Auth::guard('web_seller')->user())
-                @if (Auth::guard('web_seller')->user()->logo)
+            <?php if(Auth::guard('web_seller')->user()): ?>
+                <?php if(Auth::guard('web_seller')->user()->logo): ?>
                     <li>
-                        <a href="{{ url('/seller_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/seller_home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>" class="img circle" width="40" height="40">
                             <b> Ingresar</b>
                         </a>
                     </li>
-                @else
+                <?php else: ?>
                     <li>
-                        <a href="{{ url('/home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @endif
+                <?php endif; ?>
 
-            @elseif(Auth::user())
+            <?php elseif(Auth::user()): ?>
 
-                @if(Auth::user()->img_perf)
+                <?php if(Auth::user()->img_perf): ?>
                     <li>
-                        <a href="{{ url('/home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img  src="{{asset(Auth::user()->img_perf)}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img  src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @else
+                <?php else: ?>
                     <li>
-                        <a href="{{ url('/home')}}"  data-position="right"  class="tooltipped" data-tooltip="Ingresar" >
-                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        <a href="<?php echo e(url('/home')); ?>"  data-position="right"  class="tooltipped" data-tooltip="Ingresar" >
+                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
                         </a>
                     </li>
-                @endif
+                <?php endif; ?>
 
-            @elseif (Auth::guest())
+            <?php elseif(Auth::guest()): ?>
                 <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
                 <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
-            @endif
+            <?php endif; ?>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="blue-text material-icons">menu</i></a>
     </div>
@@ -199,56 +199,57 @@
     <div class="col s12 m8 offset-m2">
         <div class="card horizontal curva">
             <div class="card-image curva">
-                <img src="{{asset('plugins/img/piñas.jpg')}}">
+                <img src="<?php echo e(asset('plugins/img/piñas.jpg')); ?>">
             </div>
-            <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
-                {{ csrf_field() }}
+            <form class="form-horizontal" method="POST" action="<?php echo e(route('users.store')); ?>" id="formR1">
+                <?php echo e(csrf_field()); ?>
+
             <div class="card-stacked">
                 <div class="card-content">
                     <h5 class="center">
                         <b class="blue-text">Registro</b>
                     </h5><br>
-                        <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input type="text" name="user_code" value="{{$user_code}}" hidden>
+                        <div class="input-field col s12  <?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
+                            <input type="text" name="user_code" value="<?php echo e($user_code); ?>" hidden>
                             <i class="material-icons prefix blue-text">face</i>
-                            <input type="text" id="name" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
+                            <input type="text" id="name" value="<?php echo e(old('name')); ?>"  name="name" class="autocomplete"  required>
                             <label for="autocomplete-input">Nombre</label>
-                            @if ($errors->has('name'))
+                            <?php if($errors->has('name')): ?>
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong><?php echo e($errors->first('name')); ?></strong>
                                     </span>
-                            @endif
+                            <?php endif; ?>
                         </div>
-                        <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="input-field col s12  <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                             <i class="material-icons prefix blue-text">email</i>
-                            <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
+                            <input type="email" id="email-valid" value="<?php echo e(old('email')); ?>"  name="email" class="autocomplete"  required>
                             <label for="autocomplete-input">Dirección de Correo</label>
-                            @if ($errors->has('email'))
+                            <?php if($errors->has('email')): ?>
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                            @endif
+                            <?php endif; ?>
 
                         </div>
-                        <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="input-field col s12  <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                             <i class="material-icons prefix blue-text">vpn_key</i>
-                            <input type="password" id="password-valid" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
+                            <input type="password" id="password-valid" value="<?php echo e(old('password')); ?>"  name="password" class="autocomplete"  required autocomplete="off">
                             <label for="autocomplete-input">Contraseña</label>
-                            @if ($errors->has('password'))
+                            <?php if($errors->has('password')): ?>
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">vpn_key</i>
                             <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
                             <label for="autocomplete-input">Repetir</label>
-                            @if ($errors->has('password_confirm'))
+                            <?php if($errors->has('password_confirm')): ?>
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirm') }}</strong>
+                                        <strong><?php echo e($errors->first('password_confirm')); ?></strong>
                                     </span>
-                            @endif
+                            <?php endif; ?>
                         </div>
                 </div>
                 <div class="card-action">
@@ -267,12 +268,12 @@
 <!-- Fin Contenido  -->
 
 <!-- Parallax  -->
-{{--<div class="parallax-container" style="width: 100%; ">--}}
-{{--<div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>--}}
-{{--</div>--}}
+
+
+
 <!--Fin parallax-->
 
-{{--Pie de pagina--}}
+
 <footer class="page-footer blue">
     <div class="container">
         <div class="row">
@@ -299,8 +300,8 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Sobre</h5>
                 <ul>
-                    <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
-                    <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
+                    <li><a class="white-text" href="<?php echo e(route('queEsLeipel')); ?>">¿Qué es Leipel?</a></li>
+                    <li><a class="white-text" href="<?php echo e(route('terminosCondiciones')); ?>">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
                     <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
                     <li><a class="white-text" href="#!">Contactos</a></li>
@@ -323,8 +324,8 @@
                             <i class="fa fa-youtube"></i> &nbsp;YouTube&nbsp;&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
                     <li><a class="curvaBoton waves-effect waves-light btn   blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
                             <i class="fa fa-facebook"></i> &nbsp;Facebook&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
-                    {{--<li><a class="waves-effect waves-light btn purple darken-4 left">--}}
-                    {{--<i class="fa fa-instagram"></i> &nbsp;Instagram</a><br>&nbsp;</li>--}}
+                    
+                    
                 </ul>
             </div>
         </div>
@@ -356,39 +357,40 @@
             </div>
         </div>
 
-        {{--Modal innicio de sesion usuario--}}
+        
         <div id="usuario" class="col s12 center">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                {{ csrf_field() }}
+            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
+                <?php echo e(csrf_field()); ?>
+
                 <div class="row">
-                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">email</i>
-                        <input type="text" id="email" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <input type="text" id="email" name="email" class="autocomplete" value="<?php echo e(old('email')); ?>" required autofocus>
                         <label  for="email">Correo</label>
                         <div id="emailMen" style="margin-top: 1%"></div>
-                        @if ($errors->has('email'))
+                        <?php if($errors->has('email')): ?>
                             <span class="help-block">
-                                            <strong class="red-text">{{ $errors->first('email') }}</strong>
+                                            <strong class="red-text"><?php echo e($errors->first('email')); ?></strong>
                                         </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">vpn_key</i>
-                        <input id="password" type="password" name="password" class="autocomplete" value="{{ old('password') }}" required autofocus>
+                        <input id="password" type="password" name="password" class="autocomplete" value="<?php echo e(old('password')); ?>" required autofocus>
                         <label for="password">Contraseña</label>
                         <div id="passwordMen" ></div>
-                        @if ($errors->has('password'))
+                        <?php if($errors->has('password')): ?>
                             <span class="help-block">
-                                    <strong class="red-text">{{ $errors->first('password') }}</strong>
+                                    <strong class="red-text"><?php echo e($errors->first('password')); ?></strong>
                                 </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
 
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
-                        <a class="blue-text" href="{{ url('/password/reset') }}">
+                        <a class="blue-text" href="<?php echo e(url('/password/reset')); ?>">
                             Olvide mi contraseña
                         </a>
                     </div>
@@ -405,32 +407,33 @@
                 </div>
             </form>
         </div>
-        {{--Modal inicio de sesion proveedor--}}
+        
         <div id="proveedor" class="col s12 center">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
-                {{ csrf_field() }}
+            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/seller_login')); ?>">
+                <?php echo e(csrf_field()); ?>
+
                 <div class="row">
-                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">email</i>
-                        <input type="text" id="emailP" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <input type="text" id="emailP" name="email" class="autocomplete" value="<?php echo e(old('email')); ?>" required autofocus>
                         <label for="emailP">Correo</label>
                         <div id="emailMenP" style="margin-top: 1%"></div>
-                        @if ($errors->has('email'))
+                        <?php if($errors->has('email')): ?>
                             <span class="help-block red-text" >
-                                            <strong >{{ $errors->first('email') }}</strong>
+                                            <strong ><?php echo e($errors->first('email')); ?></strong>
                                         </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" id="passwordP" class="autocomplete" name="password" required>
                         <label for="passwordP">Contraseña</label>
                         <div id="passwordMenP" style="margin-top: 1%" ></div>
-                        @if ($errors->has('password'))
+                        <?php if($errors->has('password')): ?>
                             <span class="help-block">
-                                            <strong class="text-red">{{ $errors->first('password') }}</strong>
+                                            <strong class="text-red"><?php echo e($errors->first('password')); ?></strong>
                                         </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
@@ -455,60 +458,61 @@
                 <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
             </ul>
         </div>
-        {{--registro usuario--}}
+        
         <div id="usuario1" class="col s12 center">
             <div class="row">
-                <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
-                    {{ csrf_field() }}
+                <form class="form-horizontal" method="POST" action="<?php echo e(route('register')); ?>" id="formR">
+                    <?php echo e(csrf_field()); ?>
+
                     <input type="hidden" id="enlace" name="enlace">
-                    <div class="input-field col s12 {{ $errors->has('name') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">face</i>
-                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required">
+                        <input type="text" class="autocomplete" name="name" id="name" value="<?php echo e(old('name')); ?>" required="required">
                         <label for="name">Nombre</label>
                         <div id="nameMen" style="margin-top: 1%"></div>
-                        @if ($errors->has('name'))
+                        <?php if($errors->has('name')): ?>
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('name') }}</strong>
+                                <strong class="red-text"><?php echo e($errors->first('name')); ?></strong>
                             </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRU" name="email" class="autocomplete" required="required">
                         <label for="emailRU">Correo</label>
                         <div id="emailMenRU" style="margin-top: 1%"></div>
-                        @if ($errors->has('email'))
+                        <?php if($errors->has('email')): ?>
                             <span class="help-block">
-                                        <strong class="red-text">{{ $errors->first('email') }}</strong>
+                                        <strong class="red-text"><?php echo e($errors->first('email')); ?></strong>
                                     </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" name="password" id="passwordRU" class="autocomplete" required="required">
                         <label for="passwordRU">Contraseña</label>
                         <div id="passwordMenRU" style="margin-top: 1%"></div>
-                        @if ($errors->has('password'))
+                        <?php if($errors->has('password')): ?>
                             <span class="help-block">
-                                        <strong class="red-text">{{ $errors->first('password') }}</strong>
+                                        <strong class="red-text"><?php echo e($errors->first('password')); ?></strong>
                                     </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" name="password_confirm" id="password_confirm" class="autocomplete" required="required">
                         <label for="password_confirm">Repetir Contraseña</label>
                         <div id="passwordCMenRU" style="margin-top: 1%"></div>
-                        @if ($errors->has('password_confirm'))
+                        <?php if($errors->has('password_confirm')): ?>
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('password_confirm') }}</strong>
+                                <strong class="red-text"><?php echo e($errors->first('password_confirm')); ?></strong>
                             </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div>
                         <label>
                             <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
-                            <span>He leído y acepto los </span> <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
+                            <span>He leído y acepto los </span> <a href="<?php echo e(route('terminosCondiciones')); ?>" target="_blank">Términos y Condiciones</a>.
                         </label>
                     </div>
 
@@ -529,66 +533,67 @@
                 </form>
             </div>
         </div>
-        {{--registro proveedor--}}
+        
         <div id="proveedor1" class="col s12 center">
             <form class="form-horizontal" id="formRP">
-                {{ csrf_field() }}
-                @include('flash::message')
+                <?php echo e(csrf_field()); ?>
+
+                <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 <div class="row">
-                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">store</i>
                         <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="com_name">Nombre comercial</label>
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
-                        @if ($errors->has('tlf'))
+                        <?php if($errors->has('tlf')): ?>
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('com_name') }}</strong>
+                                <strong class="red-text"><?php echo e($errors->first('com_name')); ?></strong>
                             </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">person</i>
                         <input type="text" id="contact_name" class="autocomplete" name="contact_name"
                                required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="contact_name">Nombre de contacto</label>
                         <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
-                        @if ($errors->has('tlf'))
+                        <?php if($errors->has('tlf')): ?>
                             <span class="help-block">
-                                <strong>{{ $errors->first('contact_name') }}</strong>
+                                <strong><?php echo e($errors->first('contact_name')); ?></strong>
                            </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">phone</i>
-                        <input type="text"  id="tlf" name="tlf"  value="{{ old('tlf') }}" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                        <input type="text"  id="tlf" name="tlf"  value="<?php echo e(old('tlf')); ?>" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+">
                         <label for="tlf">Teléfono</label>
                         <div id="mensajeTelefono" style="margin-top: 1%"></div>
-                        @if ($errors->has('tlf'))
+                        <?php if($errors->has('tlf')): ?>
                             <span class="help-block">
-                                            <strong>{{ $errors->first('tlf') }}</strong>
+                                            <strong><?php echo e($errors->first('tlf')); ?></strong>
                                         </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                    <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
+                    <div class="input-field col s12 <?php echo e($errors->has('description') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">assignment</i>
                         <input type="text" id="description" name="description" required="required" class="autocomplete">
                         <label for="description-input14">Descripción</label>
-                        @if ($errors->has('description'))
+                        <?php if($errors->has('description')): ?>
                             <span class="help-block">
-                                            <strong>{{ $errors->first('description') }}</strong>
+                                            <strong><?php echo e($errors->first('description')); ?></strong>
                                         </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         <label for="autocomplete-input9">Correo</label>
                         <div id="mensajeCorreo" style="margin-top: 1%"></div>
-                        @if ($errors->has('email'))
+                        <?php if($errors->has('email')): ?>
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong><?php echo e($errors->first('email')); ?></strong>
                             </span>
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="col s11 right">
                         <select name="content_type" id="content_type" required="required">
@@ -631,12 +636,12 @@
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
-<script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
-<script src="{{asset('js/owl.carousel.min.js') }}"></script>
+<script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>
+<script src="<?php echo e(asset('js/owl.carousel.min.js')); ?>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js') }}"></script>
-<script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery-validation/dist/jquery.validate.js')); ?>"></script>
 <script type="text/javascript">
 
     // Tabs
@@ -826,7 +831,7 @@
                     required: true,
                     email: true,
                     remote: {
-                        url: "{{url ('RegisterEmail')}}",
+                        url: "<?php echo e(url ('RegisterEmail')); ?>",
                         type:"POST",
                         data:{
                             _token: $('input[name=_token]').val(),
@@ -1355,16 +1360,16 @@
     });
 </script>
 
-@if (count($errors) > 0)
+<?php if(count($errors) > 0): ?>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
-    <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
+    <script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
+    <script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>
     <script>
         $(document).ready(function(){
             $('#modal1').modal('open');
         });
     </script>
-    @endif
+    <?php endif; ?>
 
     </body>
 </html>
