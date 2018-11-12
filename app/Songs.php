@@ -46,4 +46,8 @@ class Songs extends Model
     {
     return $this->belongsTo('App\Rating', 'rating_id');
     }
+    public function transaction()
+    {
+        return $this->hasMany('App\Transactions','song_id');
+    }
 }

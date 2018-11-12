@@ -46,19 +46,19 @@ class BooksController extends Controller
     public function store(BookRequest $request)
     {
         $file = $request->file('cover');
-        $name = 'cover_'.time().'.'.$file->getClientOriginalExtension();
+        $name = $this->sinAcento('cover_'.time().'.'.$file->getClientOriginalExtension());
         $path1 = public_path().'/images/bookcover/';
         $file->move($path1, $name);
 
         $files = $request->file('books_file');
-        $names = 'book_'.$request->title.'_'.time().'.'.$files->getClientOriginalExtension();
+        $names = $this->sinAcento('book_'.$request->title.'_'.time().'.'.$files->getClientOriginalExtension());
         $path2 = public_path() . '/book/';
         $files->move($path2, $names);
 
         $book = new Book($request->all());
         $book->seller_id = \Auth::guard('web_seller')->user()->id;
-        $book->cover = $name;
-        $book->books_file = $names;
+        $book->cover = $this->sinAcento($name);
+        $book->books_file = $this->sinAcento($names);
         $book->status = 2;
         $book->save();
 
@@ -112,18 +112,18 @@ class BooksController extends Controller
         $book->original_title = $request->original_title;
         if ($request->cover <> null) {
             $file = $request->file('cover');
-            $name = 'cover_' . time() . '.' . $file->getClientOriginalExtension();
+            $name = $this->sinAcento('cover_' . time() . '.' . $file->getClientOriginalExtension());
             $path1 = public_path() . '/images/bookcover/';
             $file->move($path1, $name);
-            $book->cover = $name;
+            $book->cover = $this->sinAcento($name);
         }
         $book->sinopsis = $request->sinopsis;
         if ($request->books_file <> null) {
             $files = $request->file('books_file');
-            $names = 'book_'.$request->title.'_' . time() . '.' . $files->getClientOriginalExtension();
+            $names = $this->sinAcento('book_'.$request->title.'_' . time() . '.' . $files->getClientOriginalExtension());
             $path2 = public_path() . '/book/';
             $files->move($path2, $names);
-            $book->books_file = $names;
+            $book->books_file = $this->sinAcento($names);
         }
         $book->country = $request->country;
         $book->after = $request->after;
@@ -181,5 +181,12 @@ class BooksController extends Controller
             return redirect()->route('tbook.index');
 
         }
+    }
+     public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        return $cadena;
     }
 }

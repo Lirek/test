@@ -72,7 +72,7 @@
                                 <label for="codigo" class="col-md-7 col-sm-7 col-xs-12 control-label" style=" "><h4><b><center>Cantidad de tickets a retirar:</center></b></h4>
                                 </label>
                                 <div class="col-md-4 col-sm-4 col-xs-12" style=" margin-bottom: 5%">
-                                    <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="1" class="form-control input-xs" name="Cantidad" id="monto" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                                    <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
                                     <div id="mensajeMonto"></div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                             </table>
                          </div>
                     </div>
-            	</div>
+                </div>
             </div>
         </div>
     </div>
@@ -200,6 +200,9 @@
 @endsection
 @section('js')
 <script type="text/javascript">
+     $(document).ready(function(){
+         $('#solicitar').attr('disabled',true);
+     });
      $("#monto").change(function(){
         var nombre = $("#monto").val().trim();
         var nombre2 = $("#monto").val();
@@ -212,6 +215,12 @@
         else if (nombre > {!!Auth::guard('web_seller')->user()->credito!!} ){
             $('#mensajeMonto').show();
             $('#mensajeMonto').text('Fondos insuficientes');
+            $('#mensajeMonto').css('color','red');
+            $('#solicitar').attr('disabled',true);
+        }
+        else if(nombre2 == 0){
+             $('#mensajeMonto').show();
+            $('#mensajeMonto').text('Monto debe ser mayor a 0');
             $('#mensajeMonto').css('color','red');
             $('#solicitar').attr('disabled',true);
         }
@@ -263,6 +272,7 @@
                 }
             });
         });
+    
            
 </script>
 <script type="text/javascript">

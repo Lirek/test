@@ -9,8 +9,8 @@
             /*Para la Sombra*/
             background-image: url("{{ asset($megazines->cover)}}");
             margin-top: 5%;
-            background-position: center center;
             width: 100%;
+            max-height: 500px;
             min-height: 500px;
             -webkit-background-size: 100%;
             -moz-background-size: 100%;
@@ -38,7 +38,10 @@
             background-color: black;
             width:80%;
             height:33px;
-        }        
+        }  
+        .colorbadge{
+            background-color:#428bca;
+        }      
     </style>
 @endsection
 @section('main')
@@ -46,49 +49,58 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Revista:</b> "{{ $megazines->title }}"</h2>
-
-                <div class="box box-widget widget-user-2">
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Revista</a>
-                       <!--  <a href="{{url('Read/'.$megazines->id)}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="">Leer Libro</a> -->
-                    </div>
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div id="panel" style="" class="img-rounded img-responsive av text-center">
-                    </div>
-                    <br>
-                    <div class="box-footer no-padding">
-                        <div class="col-md-8 col-md-offset-2">
-                            <ul class="nav nav-stacked">
-                                <li>
-                                    <h4>
-                                        Número de paginas:
-                                        <span class="pull-right ">
-                                            "{{ $megazines->num_pages }}"
-                                        </span>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4>Descripción: <span class="pull-right "></span></h4>{{ $megazines->descripcion }}
-                                </li>
-                                <li>
-                                    @if($megazines->sagas !=null)
-                                        <h4>Saga: <span class="pull-right ">{{ $megazines->sagas->sag_name }}</span></h4>
-                                    @else
-                                        <h4>Saga: <span class="pull-right ">No tiene Saga</span></h4>
-                                    @endif
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="form-group">
-                            <a href="{{ url('MyMegazine') }}" class="btn btn-danger">Atrás</a>
+                <div class=" col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class=" col-sm-12 col-md-12 col-lg-12"></div>
+                        <div class="col-sm-12 col-md-8 col-lg-8">
+                            <div class="box box-widget widget-user-2">
+                                <div class="col-md-4">
+                                    <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Revista</a>
+                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                </div>
+                                <div id="panel" style="" class="img-rounded img-responsive av text-center"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                 <div class="col-sm-12 col-md-6">
+
+                            <div class="col-sm-12 col-md-8">
+                                <h3>Revista | {{ $megazines->title }}</h3>   
+                            </div><!-- /. col titel megazine -->
+
+                            <div class="row">
+                                    <div class="col-sm-12 col-md-8">
+                                    <hr>
+                                    <h5>Descripción:</h5>
+                                    <p class="text-justify">{{ $megazines->descripcion }}</p>
+                                    <h5> <b>Géneros:</b>
+                                        @foreach($megazines->tags_megazines as $t)
+                                            <span class="badge badge-light colorbadge "> {{ $t->tags_name }} </span>
+                                        @endforeach
+                                    </h5>
+                                    <h5> <b>Categoria:</b> <span class="label label-success"> {{ $megazines->rating->r_name }} </span></h5>
+
+                                        <div class="row">
+                                        <div  class="col-md-12" >
+                                            @if($megazines->sagas !=null)
+                                                <h5><b>Cadena de publicación:</b> {{ $megazines->sagas->sag_name }}</h5>
+                                            @else
+                                                <h5><b>Cadena de publicación:</b>Independiente</h5>
+                                            @endif
+                                        <hr>
+                                        </div>
+                                        <div  class="col-md-6" >
+                                            <a href="{{ url('MyMegazine')}}" class="btn btn-danger pull-left">Atrás</a>
+                                        </div>
+                                        <div  class="col-md-6">
+                                            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div> <!-- /. col contenido megazine -->
+                    </div> <!-- /. row contenido megazine -->
 
         <!-- /.modal -->
         <div class="modal fade in modal-warning" id="modal-default" role="dialog">
