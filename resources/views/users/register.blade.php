@@ -195,70 +195,71 @@
 
 <!-- Contenido  -->
 <br><br>
+
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        <div class="card horizontal curva">
-            <div class="card-image curva">
-                <img src="{{asset('plugins/img/piñas.jpg')}}">
-            </div>
-            <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
-                {{ csrf_field() }}
-            <div class="card-stacked">
-                <div class="card-content">
-                    <h5 class="center">
-                        <b class="blue-text">Registro</b>
-                    </h5><br>
-                        <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input type="text" name="user_code" value="{{$user_code}}" hidden>
-                            <i class="material-icons prefix blue-text">face</i>
-                            <input type="text" id="name" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
-                            <label for="autocomplete-input">Nombre</label>
-                            @if ($errors->has('name'))
-                                <span class="help-block">
+        <div class="card curva">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 m8 center">
+                        <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
+                            {{ csrf_field() }}
+                            <h5 class="center">
+                                <b class="blue-text">Registro</b>
+                            </h5><br>
+                            <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
+                                <input type="text" name="user_code" value="{{$user_code}}" hidden>
+                                <i class="material-icons prefix blue-text">face</i>
+                                <input type="text" id="name" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
+                                <label for="autocomplete-input">Nombre</label>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                        <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <i class="material-icons prefix blue-text">email</i>
-                            <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
-                            <label for="autocomplete-input">Dirección de Correo</label>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
+                                @endif
+                            </div>
+                            <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <i class="material-icons prefix blue-text">email</i>
+                                <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
+                                <label for="autocomplete-input">Dirección de Correo</label>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                            @endif
+                                @endif
 
-                        </div>
-                        <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <i class="material-icons prefix blue-text">vpn_key</i>
-                            <input type="password" id="password-valid" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
-                            <label for="autocomplete-input">Contraseña</label>
-                            @if ($errors->has('password'))
-                                <span class="help-block">
+                            </div>
+                            <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
+                                <i class="material-icons prefix blue-text">vpn_key</i>
+                                <input type="password" id="password-valid" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
+                                <label for="autocomplete-input">Contraseña</label>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                        <div class="input-field col s12 ">
-                            <i class="material-icons prefix blue-text">vpn_key</i>
-                            <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
-                            <label for="autocomplete-input">Repetir</label>
-                            @if ($errors->has('password_confirm'))
-                                <span class="help-block">
+                                @endif
+                            </div>
+                            <div class="input-field col s12 ">
+                                <i class="material-icons prefix blue-text">vpn_key</i>
+                                <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
+                                <label for="autocomplete-input">Repetir</label>
+                                @if ($errors->has('password_confirm'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                </div>
-                <div class="card-action">
-                    <div class="input-field col s12 center">
-                        <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="registro" >Enviar
-                            <i class="material-icons right">send</i>
-                        </button>
+                                @endif
+                            </div>
+                            <div class="input-field col s12 center">
+                                <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="registro" >Enviar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col s12 m4 left"><br><br>
+                        <img src="{{asset('plugins/materialize_index/img/registro_leipel.png')}}" width="100%">
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>
