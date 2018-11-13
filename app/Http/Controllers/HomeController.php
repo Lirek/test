@@ -105,6 +105,7 @@ class HomeController extends Controller
 
         $TransacctionsMusic=$TransacctionsSingle+$TransacctionsAlbum;
         $TransactionsLecture=$TransacctionsMegazine+$TransacctionsBook;
+
         return view('home')
                              ->with('TransactionsMusic',$TransacctionsMusic)
                              ->with('TransacctionsLecture',$TransactionsLecture)

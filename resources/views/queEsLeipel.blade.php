@@ -1,1073 +1,847 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/LTE/thema/dist/css/AdminLTE.min.css') }}">
-
-<!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>{{ config('app.name', 'Leipel') }}</title>
 
-    <!-- Styles -->
-    {{--<link href="/css/app.css" rel="stylesheet">--}}
-    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('plugins/materialize_index/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    {{--    <link rel="stylesheet" href="{{ asset('plugins/bootstrapV3.3/css/bootstrap.min.css') }}">--}}
-    <link rel="stylesheet" href="{{ asset('plugins/index/css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/index/css/content1.css') }}">
-
-    <link rel="stylesheet" type="text/css"
-          href="{{ asset('plugins/LTE/thema/font-awesome/css/font-awesome.min.css') }}">
-
-    <!-- Scripts
+    <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
-    </script> -->
+    </script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+        gtag('config', 'UA-126665289-1');
 
-
+    </script>
 </head>
+
 <style type="text/css">
-    .timeline {
-    list-style: none;
-    padding: 20px 0 20px;
-    position: relative;
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+    
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-    .timeline:before {
-        top: 0;
-        bottom: 0;
-        position: absolute;
-        content: " ";
-        width: 3px;
-        background-color: #eeeeee;
-        left: 50%;
-        margin-left: -1.5px;
-    }
+body {
+  font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+  color: black;
+  overflow-x: hidden;
+}  /* INTRO SECTION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-    .timeline > li {
-        margin-bottom: 20px;
-        position: relative;
-    }
-
-        .timeline > li:before,
-        .timeline > li:after {
-            content: " ";
-            display: table;
-        }
-
-        .timeline > li:after {
-            clear: both;
-        }
-
-        .timeline > li:before,
-        .timeline > li:after {
-            content: " ";
-            display: table;
-        }
-
-        .timeline > li:after {
-            clear: both;
-        }
-
-        .timeline > li > .timeline-panel {
-            width: 46%;
-            float: left;
-            border: 1px solid #d4d4d4;
-            border-radius: 2px;
-            padding: 20px;
-            position: relative;
-            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-            background: #eee;
-        }
-
-            .timeline > li > .timeline-panel:before {
-                position: absolute;
-                top: 26px;
-                right: -15px;
-                display: inline-block;
-                border-top: 15px solid transparent;
-                border-left: 15px solid #ccc;
-                border-right: 0 solid #ccc;
-                border-bottom: 15px solid transparent;
-                content: " ";
-            }
-
-            .timeline > li > .timeline-panel:after {
-                position: absolute;
-                top: 27px;
-                right: -14px;
-                display: inline-block;
-                border-top: 14px solid transparent;
-                border-left: 14px solid #eee;
-                border-right: 0 solid #eee;
-                border-bottom: 14px solid transparent;
-                content: " ";
-            }
-
-        .timeline > li > .timeline-badge {
-            color: #fff;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            font-size: 1.4em;
-            text-align: center;
-            position: absolute;
-            top: 16px;
-            left: 50%;
-            margin-left: -25px;
-            background-color: #21a4de;
-            z-index: 100;
-            border-top-right-radius: 50%;
-            border-top-left-radius: 50%;
-            border-bottom-right-radius: 50%;
-            border-bottom-left-radius: 50%;
-        }
-
-        .timeline > li.timeline-inverted > .timeline-panel {
-            float: right;
-        }
-
-            .timeline > li.timeline-inverted > .timeline-panel:before {
-                border-left-width: 0;
-                border-right-width: 15px;
-                left: -15px;
-                right: auto;
-            }
-
-            .timeline > li.timeline-inverted > .timeline-panel:after {
-                border-left-width: 0;
-                border-right-width: 14px;
-                left: -14px;
-                right: auto;
-            }
-
-.timeline-badge.primary {
-    background-color: #21a4de !important;
+.intro {
+  padding: 100px 0;
 }
 
-.timeline-badge.success {
-    background-color: #21a4de !important;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.timeline-badge.warning {
-    background-color: #21a4de !important;
+h1 {
+  font-size: 2.5rem;
 }
 
-.timeline-badge.danger {
-    background-color: #21a4de !important;
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul {
+  padding: 50px 0;
 }
 
-.timeline-badge.info {
-    background-color: #21a4de !important;
+.timeline ul li {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background: #d4d4d4;
 }
 
-.timeline-title {
-    margin-top: 0;
-    color: inherit;
+.timeline ul li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: inherit;
 }
 
-.timeline-body > p,
-.timeline-body > ul {
-    margin-bottom: 0;
+.timeline ul li div {
+  position: relative;
+  bottom: 0;
+  width: 400px;
+  padding: 15px;
+  background: #d4d4d4;
 }
 
-    .timeline-body > p + p {
-        margin-top: 5px;
-    }
+.timeline ul li div::before {
+  content: '';
+  position: absolute;
+  bottom: 7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
 
-@media (max-width: 767px) {
-    ul.timeline:before {
-        left: 40px;
-    }
+.timeline ul li:nth-child(odd) div {
+  left: 45px;
+}
 
-    ul.timeline > li > .timeline-panel {
-        width: calc(100% - 90px);
-        width: -moz-calc(100% - 90px);
-        width: -webkit-calc(100% - 90px);
-    }
+.timeline ul li:nth-child(odd) div::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent #d4d4d4 transparent transparent;
+}
 
-    ul.timeline > li > .timeline-badge {
-        left: 15px;
-        margin-left: 0;
-        top: 16px;
-    }
+.timeline ul li:nth-child(even) div {
+  left: -439px;
+}
 
-    ul.timeline > li > .timeline-panel {
-        float: right;
-    }
+.timeline ul li:nth-child(even) div::before {
+  right: -15px;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent #d4d4d4;
+}
 
-        ul.timeline > li > .timeline-panel:before {
-            border-left-width: 0;
-            border-right-width: 15px;
-            left: -15px;
-            right: auto;
-        }
+time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
 
-        ul.timeline > li > .timeline-panel:after {
-            border-left-width: 0;
-            border-right-width: 14px;
-            left: -14px;
-            right: auto;
-        }
+
+/* EFFECTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul li::after {
+  transition: background .5s ease-in-out;
+}
+
+.timeline ul li.in-view::after {
+  background: #21a4de;
+}
+
+.timeline ul li div {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.timeline ul li:nth-child(odd) div {
+  transform: translate3d(200px, 0, 0);
+}
+
+.timeline ul li:nth-child(even) div {
+  transform: translate3d(-200px, 0, 0);
+}
+
+.timeline ul li.in-view div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .timeline ul li div {
+    width: 250px;
+  }
+  .timeline ul li:nth-child(even) div {
+    left: -289px;
+    /*250+45-6*/
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .timeline ul li {
+    margin-left: 20px;
+  }
+  .timeline ul li div {
+    width: calc(100vw - 91px);
+  }
+  .timeline ul li:nth-child(even) div {
+    left: 45px;
+  }
+  .timeline ul li:nth-child(even) div::before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #d4d4d4 transparent transparent;
+  }
 }
 </style>
-<body>
 
-<!-- NAVBAR STAR-->
+<!--Menu-->
+<nav class="default_color" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
+            @if(Auth::guard('web_seller')->user())
+                @if (Auth::guard('web_seller')->user()->logo)
+                    <li>
+                        <a href="{{ url('/seller_home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}"  class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
 
-{{--<div class="main-navigation navbar">--}}
-<nav class="navbar navbar-default ">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{Request::url()}}">
-                <img id="logo" src="{{asset('plugins/img/Logo-Leipel.png')}}">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                {{--<li class="active"><a href="{{Request::url()}}">Inicio</a></li>--}}
-                <li><a href="#leipel">¿QUE ES LEIPEL?</a></li>
-                @if (Auth::guest())
-                    <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">INICIAR SESION</a></li>
-                    <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register">REGRISTRATE</a></li>
-                @endif              
-            </ul>
-        </div>
+            @elseif(Auth::user())
+
+                @if(Auth::user()->img_perf)
+                    <li>
+                        <a href="{{ url('/home')}}"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::user()->img_perf)}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
+
+            @elseif (Auth::guest())
+                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+                <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+            @endif
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+            @if(Auth::guard('web_seller')->user())
+                @if (Auth::guard('web_seller')->user()->logo)
+                    <li>
+                        <a href="{{ url('/seller_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img circle" width="40" height="40">
+                            <b> Ingresar</b>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
+
+            @elseif(Auth::user())
+
+                @if(Auth::user()->img_perf)
+                    <li>
+                        <a href="{{ url('/home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img  src="{{asset(Auth::user()->img_perf)}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}"  data-position="right"  class="tooltipped" data-tooltip="Ingresar" >
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
+
+            @elseif (Auth::guest())
+                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+                <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
+            @endif
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="blue-text material-icons">menu</i></a>
     </div>
 </nav>
-
-
-
+<!--Fin Menu-->
 <div class="container">
-    <ul class="timeline">
-        <li>
-          <div class="timeline-badge"><i class="glyphicon glyphicon-question-sign"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿QUÉ ES LEIPEL?</h4>
-              <br>
-            </div>
-            <div class="timeline-body">
-              <p>Leipel es una red social de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge warning"><i class="fa fa-ticket"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿QUÉ SON LO TICKETS Y PARA QUE SIRVEN?</h4>
-              <br>
-            </div>
-            <div class="timeline-body">
-              <p>Los ticket son la moneda interna de Leipel, con ellos pordrás adquirir los contenidos que no sean gratis dentro de Leipel. Si se te acaban, siempre puedes comprar más.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-record"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿QUÈ SON LOS PUNTOS Y PARA QUÉ SIRVEN?</h4>
-              <br>
-            </div>
-            <div class="timeline-body">
-              <p>En Leipel tenemos una manera de agradecerte por ayudarnos a llegar a más personas, a cambio de esto te regalamos puntos leipel, los cuales vas a poder canjear por viajes, más tickets y otros beneficios.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge warning"><i class="glyphicon glyphicon-piggy-bank"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿POR QUÈ POR EL PAGO NO TENGO TODO GRATIS?</h4>
-              <br>
-            </div>
-            <div class="timeline-body">
-              <p>Es fácil, nosotros colaboramos para que los autores ganen más dinero entre más se vende su obra. Actualmente en muchas páginas esto no pasa, simplemente les dan un valor pequeño se venda o no, con Leipel el autor depende de su gran talento para que su contenido se haga viral y así poder ganar como siempre han querido. Y como a fin de cuenta, los que compramos ya estamos mal acostumbrados a que nos regalen todo por internet, es por esto que Leipel da puntos para que te puedas llevar viajes y otros beneficios GRATIS.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-badge danger"><i class="fa fa-gift"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿CÓMO GANO PUNTOS?</h4>
-            </div>
-            <div class="timeline-body">
-                <br>
-                <p class="text-center text-justify">Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
-                <br>
-                <br>
-                *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
-                <br>
-                <br> 
-                *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
-                <br>
-                <br>
-                *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge success"><i class="fa fa-handshake-o"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">¿CON QUÉ CANJEO LOS PUNTOS?</h4>
-              <br>
-            </div>
-            <div class="timeline-body">
-              <p>Por lo general con viajes, sin embargo habràn màs sorpresas. Una vez hayas acumulado los puntos necesarios para lo que deseas, deberàs enviarnos un mail con título CANJE DE PUNTOS a info@leipel.com y en el mail nos escribes tu nombre de usuario y número de cédula, recueda indicarnos en qué vas a canjear los puntos.</p>
-            </div>
-          </div>
-        </li>
-    </ul>
+<section class="timeline">
+  <ul>
+    <li>
+      <div>
+        <time>¿QUÉ ES LEIPEL?</time>
+        Leipel es una red social de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.
+      </div>
+    </li>
+    <li>
+      <div>
+        <time>¿QUÉ SON LO TICKETS Y PARA QUE SIRVEN?</time>
+        Los ticket son la moneda interna de Leipel, con ellos pordrás adquirir los contenidos que no sean gratis dentro de Leipel. Si se te acaban, siempre puedes comprar más.
+      </div>
+    </li>
+    <li>
+      <div>
+        <time>¿QUÈ SON LOS PUNTOS Y PARA QUÉ SIRVEN?</time>
+        En Leipel tenemos una manera de agradecerte por ayudarnos a llegar a más personas, a cambio de esto te regalamos puntos leipel, los cuales vas a poder canjear por viajes, más tickets y otros beneficios.
+      </div>
+    </li>
+    <li>
+      <div>
+        <time>¿POR QUÉ POR EL PAGO NO TENGO TODO GRATIS?</time>
+        Es fácil, nosotros colaboramos para que los autores ganen más dinero entre más se vende su obra. Actualmente en muchas páginas esto no pasa, simplemente les dan un valor pequeño se venda o no, con Leipel el autor depende de su gran talento para que su contenido se haga viral y así poder ganar como siempre han querido. Y como a fin de cuenta, los que compramos ya estamos mal acostumbrados a que nos regalen todo por internet, es por esto que Leipel da puntos para que te puedas llevar viajes y otros beneficios GRATIS.
+      </div>
+    </li>
+    <li>
+      <div>
+        <time>¿CÓMO GANO PUNTOS?</time>
+        Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
+        <br>
+        <br>
+        *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
+        <br>
+        <br> 
+        *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
+        <br>
+        <br>
+        *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.
+      </div>
+    </li>
+    <li>
+      <div>
+        <time>¿CON QUÉ CANJEO LOS PUNTOS?</time>
+        Por lo general con viajes, sin embargo habràn màs sorpresas. Una vez hayas acumulado los puntos necesarios para lo que deseas, deberàs enviarnos un mail con título CANJE DE PUNTOS a info@leipel.com y en el mail nos escribes tu nombre de usuario y número de cédula, recueda indicarnos en qué vas a canjear los puntos.
+      </div>
+    </li>
+  </ul>
+</section>
 </div>
-<!--FOOTER STAR -->
 
-
-<footer class="footer">
-    <div class="row col-md-12" id="leipel">
-        <div class="col-md-3">
-            <h1>
-                <img src="{{asset('plugins/img/Logo-Leipel.png')}}" id="logo">
-            </h1>
-            <p class="text-left">
-                Red social de entretenimiento: Cine, m&uacute;sica, lectura, radio y tv
-            </p>
-            <br/>
-            <ul id="list">
-                <li class="lista">
-                    <i class="fa fa-map-marker text-info "></i>
-                    &nbsp;&nbsp;&nbsp;Guayaquil, Ecuador
-                </li>
-                <!-- <li class="lista">
-                    <i class="fa fa-phone text-info "></i>
-                    &nbsp;&nbsp;+123 4567 987
-                </li>
- -->                <li class="lista">
-                    <i class="fa fa-envelope-o text-info"></i>
-                    info@leipel.com
-                </li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="col-md-3" id="sobre">
-            <h1>Sobre</h1>
-            <ul class="pages">
-                <li><a href="{{route('queEsLeipel')}}" target="_blank">¿Que es Leipel?</a></li>
-                <br>
-                <li><a href="{{route('terminosCondiciones')}}" target="_blank">Terminos y condiciones</a></li>
-                <br>
-                <li><a href="#modal-register" data-toggle="modal" data-target="#modal-register" >Reg&iacute;strate</a></li>
-                <br>
-                <li><a href="#">Beneficios adicionales</a></li>
-                <br>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3" id="descubrir">
-            <h1> Descubrir</h1>
-            <ul class="list">
-                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Cine</a></li>
-                <br>
-                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">M&uacute;sica</a></li>
-                <br>
-                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Lectura</a></li>
-                <br>
-                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Radio</a></li>
-                <br>
-                <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Tv</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3" id="social">
-            <h1>Social</h1>
-            <ul id=>
-                <li><a href="#">Youtube</a></li>
-                <br>
-                <li><a href="#">Facebook</a></li>
-                <br>
-                <li><a href="#">Instagram</a></li>
-            </ul>
-        </div>
-
-    <div class="col-md-12 hidden-sm hidden-xs" style=" font-family: Roboto;
-                                        background: #21a4de;
-                                        height: 40px;
-                                        padding-top: 8px;
-                                        text-align: center;
-                                        color: white;
-                                        width: 105%">
-        <div class="col-md-4" id="footer1">
-            <p>
-                Copyright © 2018 Todos lo derechos reservados
-            </p>
-        </div>
-        <div class="col-md-4" id="footer2">
-            <a href="">Inicio</a>
-            <a href="">Sobre nosotros</a>
-            <a href="">Servicios</a>
-            <a href="">Contacto</a>
+{{--Pie de pagina--}}
+<footer class="page-footer blue">
+    <div class="container">
+        <div class="row">
+            <div class="col l3 s12">
+                <h5 class="white-text">Leipel</h5>
+                <p class="grey-text text-lighten-4">Red social de entretenimiento: Cine, música, lectura, radio y tv</p>
+                <div class="row">
+                    <div class="col s2 m2 l2 xl2 ">
+                        <i class="material-icons">place</i>
+                    </div>
+                    <div class="col s10 m10 l10 xl10 ">
+                        Guayaquil, Ecuador
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s2 m2 l2 xl2 ">
+                        <i class="material-icons">email</i>
+                    </div>
+                    <div class="col s10 m10 l10 xl10 ">
+                        info@leipel.com
+                    </div>
+                </div>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Sobre</h5>
+                <ul>
+                    <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
+                    <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
+                    <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
+                    <li><a class="white-text" href="#!">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Descubrir</h5>
+                <ul>
+                    <li><a class="white-text modal-trigger" href="#modal1">Cine</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Música</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Lectura</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Radio</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">TV</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                    <li><a class="waves-effect waves-light btn red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
+                            <i class="fa fa-youtube"></i> &nbsp;YouTube&nbsp;&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
+                    <li><a class="waves-effect waves-light btn   blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
+                            <i class="fa fa-facebook"></i> &nbsp;Facebook&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
+                    {{--<li><a class="waves-effect waves-light btn purple darken-4 left">--}}
+                    {{--<i class="fa fa-instagram"></i> &nbsp;Instagram</a><br>&nbsp;</li>--}}
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col-sm-12 hidden-lg hidden-md hidden-xs" style=" font-family: Roboto;
-                                        background: #21a4de;
-                                        height: 50px;
-                                        padding-top: 8px;
-                                        text-align: center;
-                                        color: white;
-                                        width: 102%;
-                                        margin-top: 1%">
-        <div class="col-md-4" id="footer1">
-            <p>
-                Copyright © 2018 Todos lo derechos reservados
-            </p>
-        </div>
-        <div class="col-md-6" id="footer2">
-            <a href="">Inicio</a>
-            <a href="">Sobre nosotros</a>
-            <a href="">Servicios</a>
-            <a href="">Contacto</a>
+    <div class="footer-copyright">
+        <div class="container center">
+            Copyright © 2018 Todos lo derechos reservados
         </div>
     </div>
-    <div class="col-xs-12 hidden-lg hidden-md hidden-sm" style=" font-family: Roboto;
-                                        background: #21a4de;
-                                        height: 60px;
-                                        padding-top: 8px;
-                                        text-align: center;
-                                        color: white;
-                                        width: 102%;
-                                        margin-top: 5%">
-        <div class="col-md-4" id="footer1">
-            <p>
-                Copyright © 2018 Todos lo derechos reservados
-            </p>
-        </div>
-        <div class="col-md-6" id="footer2">
-            <a href="">Inicio</a>
-            <a href="">Sobre nosotros</a>
-            <a href="">Servicios</a>
-            <a href="">Contacto</a>
-        </div>
-    </div>
-</div>
 </footer>
 
+<!--Modales para index -->
+<!--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>-->
 
-
-<!--FOOTER END -->
-
-<!-- Scripts -->
-
-<!-- /.LOGIN STAR -->
-<div class="modal fade login-register-form row" id="modal-login">
-    <!-- modal-dialog -->
-    <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-8 align-center">--}}
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title text-center">&nbsp;</h4>
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a data-toggle="tab" href="#usuario">
-                            Usuario
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a>
+<!-- Modal inicio de sesion -->
+<div id="modal1" class="modal">
+    <div class="modal-content center blue-text">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s6">
+                        <a href="#usuario"><i class="material-icons prefix">face</i><b> Usuario</b></a>
                     </li>
-                    <li>
-                        <a data-toggle="tab" href="#proveedor">
-                            Proveedor
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a>
+                    <li class="tab col s6">
+                        <a href="#proveedor"><i class="material-icons prefix">store</i><b> Proveedor</b></a>
                     </li>
+
                 </ul>
             </div>
-            <div class="modal-body">
-
-                <div class="tab-content">
-
-                    <div id="usuario" class="tab-pane fade in active">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           placeholder="contraseña" required>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary form-control">
-                                        Inicia sesi&oacute;n
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4 ">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            Recuerdame
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="modal-footer" id="modal_footer">
-                            <div class="text-center">
-
-                                <a href="login/facebook" class="btn btn-facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-
-                                <a href="login/twitter" class="btn btn-twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-
-                                <a href="login/google" class="btn btn-google" style="font-size: 10px">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div id="proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">Correo </label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           placeholder="correo" value="{{ old('email') }}" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           placeholder="contraseña" required>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary form-control">
-                                        Inicia sesi&oacute;n
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4 ">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            Recuerdame
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-    {{--</div>--}}
 
-    <!-- modal-content -->
+        {{--Modal inicio de sesion usuario--}}
+        <div id="usuario" class="col s12 center">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="text" id="email" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <label  for="email">Correo</label>
+                        <div id="emailMen" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                            <strong class="red-text">{{ $errors->first('email') }}</strong>
+                                        </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input id="password" type="password" name="password" class="autocomplete" value="{{ old('password') }}" required autofocus>
+                        <label for="password">Contraseña</label>
+                        <div id="passwordMen" ></div>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                    <strong class="red-text">{{ $errors->first('password') }}</strong>
+                                </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+
+                        <button class="btn waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
+                            <i class="material-icons right">send</i>
+                        </button><br>
+                        <a class="blue-text" href="{{ url('/password/reset') }}">
+                            Olvide mi contraseña
+                        </a>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                            <i class="fa fa-google"></i> Google</a><br><br>
+                        </a>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                            <i class="fa fa-facebook"></i> Facebook</a><br>
+                    </div>
+                    <div class="col s12 center">Inicio de sesión con redes sociales</div>
+                </div>
+            </form>
+        </div>
+        {{--Modal inicio de sesion proveedor--}}
+        <div id="proveedor" class="col s12 center">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_login') }}">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="text" id="emailP" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <label for="emailP">Correo</label>
+                        <div id="emailMenP" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block red-text" >
+                                            <strong >{{ $errors->first('email') }}</strong>
+                                        </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input type="password" id="passwordP" class="autocomplete" name="password" required>
+                        <label for="passwordP">Contraseña</label>
+                        <div id="passwordMenP" style="margin-top: 1%" ></div>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                            <strong class="text-red">{{ $errors->first('password') }}</strong>
+                                        </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
+                            <i class="material-icons right">send</i>
+                        </button><br>
+                        <a class="blue-text" href="#">Olvide mi contraseña </a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <!-- modal-dialog -->
+
 </div>
-<!-- /.LOGIN END -->
+<!--Fin modal inicio de sesnion-->
 
-<!-- /. REGISTRARSE STAR -->
-<div class="modal fade login-register-form row" id="modal-register">
-    <!-- modal-dialog -->
-    <div class="modal-dialog modal-sm">
-        {{--<div class="col-md-8 align-center">--}}
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title text-center">&nbsp;</h4>
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a data-toggle="tab" href="#new_usuario">
-                            Usuario
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#new_proveedor">
-                            Proveedor
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="modal-body">
-
-                <div class="tab-content">
-                    {{--usuario--}}
-                    <div id="new_usuario" class="tab-pane fade in active">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                {{--<label for="name" class="col-md-4 control-label">Nombre</label>--}}
-                                <div class="col-md-12">
-                                    <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" placeholder="Nombre">
-
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
+<!-- Modal Registro -->
+<div id="modal2" class="modal">
+    <div class="modal-content center blue-text">
+        <div class="row">
+            <ul class="tabs">
+                <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
+                <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
+            </ul>
+        </div>
+        {{--registro usuario--}}
+        <div id="usuario1" class="col s12 center">
+            <div class="row">
+                <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="formR">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="enlace" name="enlace">
+                    <div class="input-field col s12 {{ $errors->has('name') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">face</i>
+                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required">
+                        <label for="name">Nombre</label>
+                        <div id="nameMen" style="margin-top: 1%"></div>
+                        @if ($errors->has('name'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                                    @endif
-
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                {{--<label for="email" class="col-md-4 control-label">Direccion de Correo</label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" placeholder="Correo">
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="email" id="emailRU" name="email" class="autocomplete" required="required">
+                        <label for="emailRU">Correo</label>
+                        <div id="emailMenRU" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                    @endif
-
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                {{--<label for="password" class="col-md-4 control-label">Contraseña</label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           placeholder="Contraseña">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input type="password" name="password" id="passwordRU" class="autocomplete" required="required">
+                        <label for="passwordRU">Contraseña</label>
+                        <div id="passwordMenRU" style="margin-top: 1%"></div>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                    @endif
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{--<label for="password_confirm" class="col-md-4 control-label">Confirmar--}}
-                                {{--Contraseña</label>--}}
-
-                                <div class="col-md-12">
-                                    <input id="password_confirm" type="password" class="form-control"
-                                           name="password_confirm" placeholder="Confirmar Contraseña">
-
-                                    @if ($errors->has('password_confirm'))
-                                        <span class="help-block">
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input type="password" name="password_confirm" id="password_confirm" class="autocomplete" required="required">
+                        <label for="password_confirm">Repetir Contraseña</label>
+                        <div id="passwordCMenRU" style="margin-top: 1%"></div>
+                        @if ($errors->has('password_confirm'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" id="submit" class="btn btn-primary">
-                                        Registrarse
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        @endif
                     </div>
-                    {{--Usuario--}}
+                    <div>
+                        <label>
+                            <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
+                            <span>He leído y acepto los </span> <a href="{{route('terminosCondiciones')}}" target="_blank">Términos y Condiciones</a>.
+                        </label>
+                    </div>
 
-                    {{--Solicitud de proveedor--}}
-                    <div id="new_proveedor" class="tab-pane fade">
-                        <form class="form-horizontal" method="POST" action="{{ url('ApplysSubmit') }}" id="formRP">
-                            {{ csrf_field() }}
-                            {{--@include('flash::message')--}}
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-6 control-label">Nombre comercial:</label>--}}
-                                <div class="col-md-12">
-                                    <div id="mensajeNombreComercial"></div>
-                                    <input id="com_name" type="text" class="form-control" name="com_name"
-                                           required="required"
-                                           placeholder="Nombre comercial" autofocus>
-                                    @if ($errors->has('tlf'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('com_name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-6 control-label">Nombre del contacto</label>--}}
-                                <div class="col-md-12">
-                                    <div id="mensajeNombreContacto"></div>
-                                    <input id="contact_name" type="text" class="form-control" name="contact_name"
-                                           required="required"
-                                           placeholder="Nombre del contacto">
-                                    @if ($errors->has('tlf'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('contact_name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('tlf') ? ' has-error' : '' }}">
-                                {{--<label for="tlf" class="col-md-12 control-label">Teléfono</label>--}}
-                                <div class="col-md-12">
-                                    <div id="mensajeTelefono"></div>
-                                    <input id="tlf" type="text" class="form-control" name="tlf" value="{{ old('tlf') }}"
-                                           required="required"
-                                           placeholder="Teléfono">
-                                    @if ($errors->has('tlf'))
-                                        <span class="help-block">
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light green" id="registroRU" type="submit" name="action">Registrarse
+                            <i class="material-icons right">send</i>
+                        </button><br>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                            <i class="fa fa-google"></i> Google</a><br><br>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                            <i class="fa fa-facebook"></i> Facebook</a><br>
+                    </div>
+                    <div class="col s12 center">Inicio de sesión con redes sociales</div>
+                </form>
+            </div>
+        </div>
+        {{--registro proveedor--}}
+        <div id="proveedor1" class="col s12 center">
+            <form class="form-horizontal" id="formRP">
+                {{ csrf_field() }}
+                @include('flash::message')
+                <div class="row">
+                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">store</i>
+                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <label for="com_name">Nombre comercial</label>
+                        <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
+                        @if ($errors->has('tlf'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('com_name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">person</i>
+                        <input type="text" id="contact_name" class="autocomplete" name="contact_name"
+                               required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <label for="contact_name">Nombre de contacto</label>
+                        <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
+                        @if ($errors->has('tlf'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact_name') }}</strong>
+                           </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">phone</i>
+                        <input type="text"  id="tlf" name="tlf"  value="{{ old('tlf') }}" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                        <label for="tlf">Teléfono</label>
+                        <div id="mensajeTelefono" style="margin-top: 1%"></div>
+                        @if ($errors->has('tlf'))
+                            <span class="help-block">
                                             <strong>{{ $errors->first('tlf') }}</strong>
                                         </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                                {{--<label for="description" class="col-md-6 control-label">Descripción</label>--}}
-                                <div class="col-md-12">
-                                    <textarea class="form-control" name="description" id="description"
-                                              required="required"
-                                              placeholder="Descripción">
-                                    </textarea>
-                                    @if ($errors->has('description'))
-                                        <span class="help-block">
+                        @endif
+                    </div>
+                    <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">assignment</i>
+                        <input type="text" id="description" name="description" required="required" class="autocomplete">
+                        <label for="description-input14">Descripción</label>
+                        @if ($errors->has('description'))
+                            <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
                                         </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{--<label for="content_type" class="col-md-6 control-label">Tipo de contenido</label>--}}
-                                <div class="col-md-12">
-                                    <select class="form-control" name="content_type" id="content_type">
-                                        <option value="">Seleccione el tipo contenido</option>
-                                        <option value="Musica">Musica</option>
-                                        <option value="Revistas">Revistas</option>
-                                        <option value="Libros">Libros</option>
-                                        <option value="Radios">Radios</option>
-                                        <option value="TV">Televisoras</option>
-                                        <option value="Peliculas">Peliculas</option>
-                                        <option value="Series">Series</option>
-                                    </select>
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('content_type') }}</strong>
-                                        </span>
-                                    @endif
-                                    <div id="subMenuMusica">
-                                        <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
-                                            <option value="Artista">Artista</option>
-                                            <option value="Productora">Productora</option>
-                                        </select>
-                                    </div>
-                                    <div id="subMenuLibro">
-                                        <br>
-                                        <select name="sub_desired" id="sub_desired" class="form-control">
-                                            <option value="Escritor">Escritor</option>
-                                            <option value="Editorial">Editorial</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{--<label for="email" class="col-md-6 control-label">Correo</label>--}}
-                                <div class="col-md-12">
-                                    <div id="mensajeCorreo"></div>
-                                    <input id="email" type="email" class="form-control" name="email" required="required"
-                                           placeholder="Correo">
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary">
-                                        Solicitar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        @endif
                     </div>
-                    {{--Solicitud de proveedor--}}
-
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        <label for="autocomplete-input9">Correo</label>
+                        <div id="mensajeCorreo" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col s11 right">
+                        <select name="content_type" id="content_type" required="required">
+                            <option value="" disabled selected>Tipo de contenido</option>
+                            <option value="Cine">Cine</option>
+                            <option value="Musica">Música</option>
+                            <option value="Libros">Lectura</option>
+                            <option value="Radio">Radio</option>
+                            <option value="Tv">Tv</option>
+                        </select>
+                    </div>
+                    <div class="col s11 right" id="subMenuMusica">
+                        <br>
+                        <select name="sub_desired_musica" id="sub_desired1" class="form-control">
+                            <option value="Artista">Artista</option>
+                            <option value="Productora">Productora</option>
+                        </select>
+                    </div>
+                    <div class="col s11 right" id="subMenuLibro">
+                        <br>
+                        <select name="sub_desired_libros" id="sub_desired2" class="form-control">
+                            <option value="Escritor">Escritor</option>
+                            <option value="Editorial">Editorial</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light green" id="registroRP" type="submit" >Enviar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
                 </div>
-
-            </div>
-            <div class="modal-footer" id="modal_footer">
-                <div class="text-center">
-
-                </div>
-
-            </div>
-
+            </form>
         </div>
-    {{--</div>--}}
-
-    <!-- modal-content -->
     </div>
-    <!-- modal-dialog -->
+
 </div>
-<!-- /. REGISTRARSE END -->
+</div>
+<!--Fin modal inicio de registro-->
 
 
-{{--<script src="/js/app.js"></script>--}}
-<script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
-<script src="{{ asset('plugins/bootstrapV3.3/js/bootstrap.min.js') }}"></script>
-{{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
-<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery-3.1.1.js') }}"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
+<script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
+<script src="{{asset('js/owl.carousel.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-{{--CONFIG DEL SLIDER STAR--}}
+<script type="text/javascript">
+    (function() {
 
-{{--validaciones --}}
-{{--registrar usuario star--}}
-<script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js') }}"></script>
-<script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
-<script>
-    $(document).ready(function () {
+  'use strict';
 
-        $.mockjax({
-            url: "emails.action",
-            response: function (settings) {
-                var email = settings.data.email, //original del archivo no cambiar
-                    emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
-                // emails = mys;
-                this.responseText = "true";
-                if ($.inArray(email, emails) !== -1) {
-                    this.responseText = "false";
-                }
-            },
-            responseTime: 500
-        });
+  // define variables
+  var items = document.querySelectorAll(".timeline li");
 
+  // check if an element is in viewport
+  // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
 
-        $("#formR").validate({
+  function callbackFunc() {
+    for (var i = 0; i < items.length; i++) {
+      if (isElementInViewport(items[i])) {
+        items[i].classList.add("in-view");
+      }
+    }
+  }
 
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: {
-                    required: true,
-                    email: true,
-                    remote: "emails.action"
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                password_confirm: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-            },
+  // listen for events
+  window.addEventListener("load", callbackFunc);
+  window.addEventListener("resize", callbackFunc);
+  window.addEventListener("scroll", callbackFunc);
 
-            messages: {
-                name: {
-                    required: " Ingresar su nombre",
-                    minlength: "Su nombre debe tener minimo 2 caracteres"
-                },
-                password: {
-                    required: "Ingresar clave",
-                    minlength: "Debe tener minim 5 caracteres"
-                },
-                password_confirm: {
-                    required: "Ingresar contraseña",
-                    minlength: "Debe tener minimo 5 caracteres",
-                    equalTo: "Ingrese la misma contraseña"
-                },
-                email: {
-                    required: "Ingresar un correo valido",
-                    minlength: "debe tener mas caracteres",
-                    remote: ("Ya se ha registrado")
-                }
-            },
-
-            errorElement: "em",
-            errorPlacement: function (error, element) {
-                error.addClass("help-block");
-
-                element.parents(".col-md-6").addClass("has-feedback");
-
-                if (element.prop("type") === "checkbox") {
-                    error.insertAfter(element.parent("label"));
-                } else {
-                    error.insertAfter(element);
-                }
-
-                if (!element.next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-remove form-control-feedback'></span> ").insertAfter(element);
-                }
-            },
-
-            success: function (label, element) {
-                if (!$(element).next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
-                }
-            },
-
-            highlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-error").removeClass("has-success");
-                $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
-            },
-
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-success").removeClass("has-error");
-                $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
-            }
-
-        })
-
-
-    })
+})();
 </script>
-{{--registrar usuario end--}}
 
-{{--registrar proveedor star--}}
-{{--<script src="{{asset('assets/js/jquery.js') }}"></script>--}}
-{{--<script src="{{ asset('plugins/bubbles/movingbubbles.js') }}" type="text/javascript"></script>--}}
-<script>
-    //---------------------------------------------------------------------------------------------------
+<script type="text/javascript">
 
-    // funcion para mostrar el submenu de los modulos de libro y de musica
-    $(document).ready(function () {
-        $('#subMenuMusica').hide();
-        $('#subMenuLibro').hide();
-        $('#content_type').on('change', function () {
-            if (this.value == 'Musica') {
-                $('#subMenuLibro').hide();
-                $('#subMenuMusica').show();
-            } else if (this.value == 'Libros') {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').show();
-            } else {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').hide();
-            }
-        });
+    // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
     })
-    // funcion para mostrar el submenu de los modulos de libro y de musica
-    //---------------------------------------------------------------------------------------------------
-    // Función que nos va a contar el número de caracteres
-    $(document).ready(function () {
-        var cantidadMaxima = 191;
-        $('#com_name').keyup(function (evento) {
-            var nombreComercial = $('#com_name').val();
-            numeroPalabras = nombreComercial.length;
-            if (numeroPalabras > cantidadMaxima) {
-                $('#mensajeNombreComercial').show();
-                $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                $('#mensajeNombreComercial').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
-                $('#mensajeNombreComercial').hide();
-                $('#solicitar').attr('disabled', false);
-            }
-        });
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
     });
 
-    $(document).ready(function () {
-        var cantidadMaxima = 191;
-        $('#contact_name').keyup(function (evento) {
-            var nombreCotacto = $('#contact_name').val();
-            numeroPalabras = nombreCotacto.length;
-            if (numeroPalabras > cantidadMaxima) {
-                $('#mensajeNombreContacto').show();
-                $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                $('#mensajeNombreContacto').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
-                $('#mensajeNombreContacto').hide();
-                $('#solicitar').attr('disabled', false);
+    // Or with jQuery
+   
+
+        
+
+        $("#formRP").on('submit',function(e){
+            var url = "{{ url('ApplysSubmit') }}";
+            e.preventDefault();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $("#formRP").serialize(),
+                success: function (result) {
+                    console.log(result);
+                    swal("Su solicitud está siendo procesada","","success")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                },
+                error: function (result) {
+                    console.log(result);
+                    swal('Existe un Error en su Solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                }
+            });
+        });
+
+
+    function controltagNum(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[0-9]/;// -> solo numeros
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+
+    //---------------------Validacion registros----------------------------------
+    $("#emailRP").on('keyup change',function(){
+        var email_data = $("#emailRP").val();
+        $.ajax({
+            url: 'RegisterEmailSeller',
+            type: 'POST',
+            data:{
+                _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                if (result == 1)
+                {
+                    $('#mensajeCorreo').hide();
+                    $('#registroRP').attr('disabled',false);
+                    return true;
+                }
+                else
+                {
+                    $('#mensajeCorreo').show();
+                    $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                    $('#mensajeCorreo').css('font-size','60%');
+                    $('#mensajeCorreo').css('color','red');
+                    $('#registroRP').attr('disabled',true);
+                    console.log(result);
+                }
             }
         });
     });
@@ -1081,141 +855,415 @@
                 $('#mensajeTelefono').show();
                 $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
                 $('#mensajeTelefono').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
-                $('#mensajeTelefono').hide();
-                $('#solicitar').attr('disabled', false);
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
             }
-        });
-    });
-    // Función que nos va a contar el número de caracteres
-    //---------------------------------------------------------------------------------------------------
-    // Funcion de solo numero
-    $(document).ready(function () {
-        $("#tlf").keypress(function (event) {
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
+            if (numeroPalabras < 9) {
                 $('#mensajeTelefono').show();
-                $('#mensajeTelefono').text('Solo números');
+                $('#mensajeTelefono').text('Minimo 9 numeros');
                 $('#mensajeTelefono').css('color', 'red');
-                $('#solicitar').attr('disabled', true);
-            } else {
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
                 $('#mensajeTelefono').hide();
-                $('#solicitar').attr('disabled', false);
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                if (email.length!=0 || nameC.length !=0 || name.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
             }
         });
     });
-    // Funcion de solo numero
-    //---------------------------------------------------------------------------------------------------
-    // Funcion para validar el correo
+
     $(document).ready(function () {
-        $('#solicitar').click(function () {
-            var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-            if (regex.test($('#email').val().trim())) {
-                $("#form").submit();
+        var cantidadMaxima = 191;
+        $('#contact_name').keyup(function (evento) {
+            var nombreCotacto = $('#contact_name').val();
+            numeroPalabras = nombreCotacto.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            if (numeroPalabras < 3) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('Minimo 3 caracteres');
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+
             } else {
-                $('#mensajeCorreo').show();
-                $('#mensajeCorreo').text('El correo introducido no es valido');
-                $('#mensajeCorreo').css('color', 'red');
-                event.preventDefault();
+                $('#mensajeNombreContacto').hide();
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length!=0 && nameC.length !=0 && tlf.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
             }
         });
     });
-    // Funcion para validar el correo
+
+    //---------------------------------------------------------------------------------------------------
+    // Función que nos va a contar el número de caracteres
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#com_name').keyup(function (evento) {
+            var nombreComercial = $('#com_name').val();
+            numeroPalabras = nombreComercial.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            } if (numeroPalabras < 3){
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('Minimo 3 caracteres');
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
+                $('#mensajeNombreComercial').hide();
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length !=0 || name.length !=0 || tlf.length !=0){
+                    $('#registroRP').attr('disabled', false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
+
+        if (email.length==0 || name.length ==0 || nameC.length == 0 || tlf.length==0){
+            $('#registroRP').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
+
+        if (email.length !=0 && name.length  != 0 && nameC.length !=0 && tlf.length !=0){
+            $('#registroRP').attr('disabled',false);
+        }
+    });
+    $("#emailRU").on('keyup change',function(){
+        var email_data = $("#emailRU").val();
+        $.ajax({
+            url: 'EmailValidate',
+            type: 'POST',
+            data:{
+                _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                if (result == 1)
+                {
+                    $('#emailMenRU').hide();
+                    $('#registroRU').attr('disabled',false);
+                    return true;
+                }
+                else
+                {
+                    $('#emailMenRU').show();
+                    $('#emailMenRU').text('Este email ya se encuentra regitrado');
+                    $('#emailMenRU').css('font-size','60%');
+                    $('#emailMenRU').css('color','red');
+                    $('#registroRU').attr('disabled',true);
+                    console.log(result);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+
+        $('#passwordRU').keyup(function(evento){
+            var password = $('#passwordRU').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('El campo no debe estar vacio');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('La contaseña debe tener 5 caracteres');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#email').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                console.log(email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo);
+                if ( email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo ){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password = $('#password_confirm').val().trim();
+
+            if (password.length==0) {
+                $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('El campo no debe estar vacio');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var password1 = $('#passwordRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password1 = $('#passwordRU').val();
+            var password = $('#password_confirm').val();
+
+            if (password != password1) {
+                $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('Ambas contraseña deben coincidir');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordCMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
+    function controltagLet(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+    //---------BLOQUEAR BOTON 1----------------------
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
+
+        if (email.length==0 || name.length ==0 || password.length == 0 || password1.length==0){
+            $('#registroRU').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
+
+        if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0){
+            $('#registroRU').attr('disabled',false);
+        }
+    });
+    $(document).ready(function(){
+        $('#name').keyup(function(evento){
+            var name = $('#name').val().trim();
+            console.log(name.length);
+            if (name.length==0) {
+                $('#nameMen').show();
+                $('#nameMen').text('Campo obligatorio');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            if (name.length < 3) {
+                $('#nameMen').show();
+                $('#nameMen').text('Minimo 3 caracteres');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }else {
+                $('#nameMen').hide();
+                var email = $('#email').val().trim();
+                var password = $('#password').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && password.length  != 0 && password1.length !=0 && valCorreo) {
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+
     //---------------------------------------------------------------------------------------------------
 
-</script>
-{{--registrar proveedor end--}}
-{{--validaciones --}}
 
-{{--CONFIG DEL SLIDER STAR--}}
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script>"use strict";
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#email').keyup(function(evento){
+            var email = $('#email').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
-    var $slides = undefined,
-        interval = undefined,
-        $selectors = undefined,
-        $btns = undefined,
-        currentIndex = undefined,
-        nextIndex = undefined;
+            if (caract.test(email) == false){
 
-    var cycle = function cycle(index) {
-        var $currentSlide = undefined,
-            $nextSlide = undefined,
-            $currentSelector = undefined,
-            $nextSelector = undefined;
+                $('#emailMen').show();
+                $('#emailMen').text('Formato email incorrecto');
+                $('#emailMen').css('color','red');
+                $('#emailMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+                $('#iniciar').css('background-color','')
 
-        nextIndex = index !== undefined ? index : nextIndex;
+            }else{
 
-        $currentSlide = $($slides.get(currentIndex));
-        $currentSelector = $($selectors.get(currentIndex));
-
-        $nextSlide = $($slides.get(nextIndex));
-        $nextSelector = $($selectors.get(nextIndex));
-
-        $currentSlide.removeClass("active").css("z-index", "0");
-
-        $nextSlide.addClass("active").css("z-index", "1");
-
-        $currentSelector.removeClass("current");
-        $nextSelector.addClass("current");
-
-        currentIndex = index !== undefined ? nextIndex : currentIndex < $slides.length - 1 ? currentIndex + 1 : 0;
-
-        nextIndex = currentIndex + 1 < $slides.length ? currentIndex + 1 : 0;
-    };
-
-    $(function () {
-        currentIndex = 0;
-        nextIndex = 1;
-
-        $slides = $(".slide");
-        $selectors = $(".selector");
-        $btns = $(".btn");
-
-        $slides.first().addClass("active");
-        $selectors.first().addClass("current");
-
-        interval = window.setInterval(cycle, 6000);
-
-        $selectors.on("click", function (e) {
-            var target = $selectors.index(e.target);
-            if (target !== currentIndex) {
-                window.clearInterval(interval);
-                cycle(target);
-                interval = window.setInterval(cycle, 6000);
+                return true;
             }
-        });
-
-        $btns.on("click", function (e) {
-            window.clearInterval(interval);
-            if ($(e.target).hasClass("prev")) {
-                var target = currentIndex > 0 ? currentIndex - 1 : $slides.length - 1;
-                cycle(target);
-            } else if ($(e.target).hasClass("next")) {
-                cycle();
-            }
-            interval = window.setInterval(cycle, 6000);
         });
     });
-    //# sourceURL=pen.js
-</script>
-{{--CONFIG DEL SLIDER END--}}
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
 
+        $('#password').keyup(function(evento){
+            var password = $('#password').val().trim();
 
-<script>
+            if (password.length==0) {
+                $('#passwordMen').show();
+                $('#passwordMen').text('El campo no debe estar vacio');
+                $('#passwordMen').css('color','red');
+                $('#passwordMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+            } else {
+                $('#passwordMen').hide();
+                $('#iniciar').attr('disabled',false);
+            }
+            var email = $('#email').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciar').attr('disabled',false);
+            }
+        });
+    });
+    //------------------------------------------------------------------------------------------------------
+    //-------------------------------------VALICACIONES LOGIN PROMOTOR--------------------------------------
+    //---------BLOQUEAR BOTON 2----------------------
+    $(document).ready(function(){
+        var email = $('#emailP').val().trim();
+        var password = $('#passwordP').val().trim();
 
-    /* Demo purposes only */
-
-    $(".hover").mouseleave(
-        function () {
-            $(this).removeClass("hover");
+        if (email.length==0 || password.length ==0){
+            $('#iniciarP').attr('disabled',true);
         }
-    );
+    });
 
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val().trim();
+
+            if (email.length==0) {
+                $('#emailMenP').show();
+                $('#emailMenP').text('El campo no debe estar vacio');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+            }else {
+                $('#emailMenP').hide();
+            }
+            var password = $('#passwordP').val().trim();
+
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false){
+
+                $('#emailMenP').show();
+                $('#emailMenP').text('Formato email incorrecto');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+
+            }else{
+
+                return true;
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#passwordP').keyup(function(evento){
+            var password = $('#passwordP').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenP').show();
+                $('#passwordMenP').text('El campo no debe estar vacio');
+                $('#passwordMenP').css('color','red');
+                $('#passwordMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+            } else {
+                $('#emailMenP').hide();
+                $('#iniciarP').attr('disabled',false);
+            }
+            var email = $('#emailP').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
 </script>
 
-</body>
+@if (count($errors) > 0)
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
+    <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#modal1').modal('open');
+        });
+    </script>
+    @endif
+
+    </body>
 </html>
