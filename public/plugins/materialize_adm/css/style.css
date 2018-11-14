@@ -10,6 +10,14 @@ header, footer{
 main {
   padding-left: 320px;
   padding-right: 15px;
+    flex: 1 0 auto;
+}
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 
@@ -31,11 +39,21 @@ nav .nav-wrapper {
 
 /*justification of the header and li*/
 .sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
-  padding: 0px 35px 0px 35px;
+  padding: 0px 20px 0px 20px;
 }
 
 .sidenav .collapsible-body li a, .sidenav.fixed .collapsible-body li a {
-  padding: 0px 55px 0px 55px;
+  padding: 0px 40px 0px 40px;
+}
+
+.sidenav li > a {
+    color: rgba(0, 0, 0, 0.87);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0px 20px 0px 20px;
 }
 /* End justification of the header and li*/
 
@@ -50,14 +68,15 @@ nav .nav-wrapper {
     height: auto;
 }
 
-.img-contenidos{
-  padding-top: 8px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-
-    width: 70px;
+.img-contentype{
+    padding: 0px 0px 0px 0px;
+    width: 45px;
     height: auto;
+}
+
+.contentype-adjust{
+    height: auto;
+    padding: 10px 4px 2px 1px;
 }
 
 .img-perfil{
@@ -72,6 +91,11 @@ nav .nav-wrapper {
     background-color: #bbdefb;
 }
 
+/*Modal */
+.modal .modal-content {
+    padding: 0px;
+}
+/*Modal */
 
 
 /*Pantallas mayores de 400px and menores 992px*/
@@ -80,25 +104,23 @@ nav .nav-wrapper {
     padding-left: 0;
     padding-right: 0;
   }
-      .img-contenidos{
-       padding: 15px 0px 0px 0px;
-       width: 44px;
-       height: auto;
-      }
 
-       nav .nav-wrapper {
+    .contentype-adjust{
+        height: auto;
+        padding: 12px 4px 2px 1px;
+    }
+
+    .img-contentype{
+        width: 40px;
+        height: auto;
+    }
+
+    nav .nav-wrapper {
             padding-right: 5px;
             position: relative;
             height: 100%;
-        }
+    }
 }
-
-/*Modal */
-.modal .modal-content {
-    padding: 0px;
-}
-/*Modal */
-
 
 /*Pantallas menores de 400px*/
 @media only screen and (max-width : 400px){
@@ -107,14 +129,13 @@ nav .nav-wrapper {
          position: relative;
          height: 100%;
         }
-
-        .img-contenidos{
-        padding: 18px 0px 0px 0px;
-        width: 35px;
-        height: auto;
-    }
-}
-
+        .img-contentype{
+            padding: 0px 0px 0px 0px;
+            width: 30px;
+            height: auto;
+        }
+      }
+/*End pantallas menores de 400px*/
 
 
 
