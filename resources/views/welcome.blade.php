@@ -392,18 +392,42 @@
             <br>
         </div>
         <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="10%" height="10%" title="youtube"><br>
+            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="20%" height="20%" title="youtube"><br>
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
     <div id="test2" class="col s12 center">
-        viajes
+        <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
+            <img src="{{asset('plugins/materialize_index/img/viajes.svg') }}" width="20%" height="20%" title="youtube"><br>
+            <h5> Viaja gratis con leipel.</h5>
+
+        </div>
+        <div class="col s12 m6 l6 xl6 center" >
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div><br>
+        </div>
     </div>
     <div id="test3" class="col s12 center">
-        registro
+        <div class="col s12 m6 l6 xl6 center">
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <br>
+        </div>
+        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
+            <img src="{{asset('plugins/materialize_index/img/nota.svg') }}" width="20%" height="20%" title="youtube"><br>
+            <h5> Registro gratuito.</h5>
+        </div>
     </div>
     <div id="test4" class="col s12 center">
-        Marcas
+        <div class="col s12 m6 l12 xl12 center"><br><br>
+            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="5%" height="5%" title="youtube"><br>
+            <h5> Marcas relacionadas.</h5>
+
+        </div>
     </div>
 </div>
 <!-- Fin tabs  -->
