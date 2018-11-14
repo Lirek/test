@@ -232,78 +232,78 @@
 <!-- Fin franja  -->
 
 <!-- Contenido  -->
-<div id="peliculas">
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--Segundo-->
-        <div class="col s12 m4 l6 xl6  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-    </div>
+{{--<div id="peliculas">--}}
+    {{--<div class="row">--}}
+        {{--<!--Primero-->--}}
+        {{--<div class="col s12 m4 l3 xl3  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--Segundo-->--}}
+        {{--<div class="col s12 m4 l6 xl6  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--tercero-->--}}
+        {{--<div class="col s12 m4 l3 xl3  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--Segundo-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--cuarto-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-    </div>
-</div>
+    {{--<div class="row">--}}
+        {{--<!--Primero-->--}}
+        {{--<div class="col s12 m4 l4 xl4  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--Segundo-->--}}
+        {{--<div class="col s12 m2 l2 xl2  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--tercero-->--}}
+        {{--<div class="col s12 m4 l4 xl4  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--cuarto-->--}}
+        {{--<div class="col s12 m2 l2 xl2  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 {{--libros--}}
 {{--<div class="row" id="libros">--}}
 {{--<div class="col s12 m6 l4 xl4  center">--}}
@@ -321,47 +321,55 @@
 
 {{--radios--}}
 <div class="row" id="radios">
-    <div id="featured" class="owl-carousel featured">
-    @foreach($radio as $r)
-            <div class="card">
-                <div class="card-image ">
-                    <img src="{{asset($r->logo)}}" width="100%" height="200px">
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                            radio
-                        </i></a>
+    <div class="col s12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($radio as $r)
+                <div class="col s12">
+                    <div class="card curva">
+                        <div class="card-image ">
+                            <img src="{{asset($r->logo)}}" width="100%" height="200px">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                    radio
+                                </i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{$r->email_c}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{$r->email_c}}</p>
-                </div>
-            </div>
-        @php
-            $iRadios++
-        @endphp
-    @endforeach
+            @php
+                $iRadios++
+            @endphp
+        @endforeach
+        </div>
     </div>
 </div>
 
 
 {{--tv--}}
 <div class="row" id="Tvs">
-    <div id="featured1" class="owl-carousel featured">
-    @foreach($tv as $tvs)
-        {{--item--}}
-            <div class="card">
-                <div class="card-image ">
-                    <img src="{{asset($tvs->logo)}}"  width="100%" height="200px">
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                            remove_red_eye
-                        </i></a>
+    <div class="col s12">
+        <div id="featured1" class="owl-carousel featured">
+        @foreach($tv as $tvs)
+            {{--item--}}
+                <div class="col s12">
+                    <div class="card curva">
+                        <div class="card-image ">
+                            <img src="{{asset($tvs->logo)}}"  width="100%" height="200px">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                    remove_red_eye
+                                </i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{$tvs->email_c}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{$tvs->email_c}}</p>
-                </div>
-            </div>
-        @php
-            $iTvs++
-        @endphp
-    @endforeach
+            @php
+                $iTvs++
+            @endphp
+        @endforeach
+        </div>
     </div>
 </div>
 
