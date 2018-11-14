@@ -14,6 +14,33 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         <title>{{ config('app.name', 'Leipel') }}</title>
+
+        <!--external css-->
+        <!--<link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />-->
+        <!--<link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">-->
+        <!--<link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />-->
+
+        <!-- Custom styles for this template -->
+        <!--<link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">-->
+        <!-- <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">-->
+
+        <!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
+
+        <!--NUMERO-->
+         <!--<link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">-->
+
+            <!--<style type="text/css">
+            .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+                .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+
+            }
+        </style>-->
+
+        @yield('css')
+
+        <!--<script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>-->
     </head>
 
     <body>
@@ -40,27 +67,27 @@
                                         @foreach($modulos as $mod)
                                             @if($mod->name == 'Peliculas')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-2.png') }}">
+                                                    <a href="{{ url('/movies') }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/cine.svg')}}"> </b></a>
                                                 </li>
                                             @endif
                                             @if($mod->name == 'Musica')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-4.png')  }}">
+                                                    <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
                                                 </li>
                                             @endif
                                             @if($mod->name == 'Libros')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon.png')  }}">
+                                                    <a href="{{ url('/tbook')  }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/lectura.svg')}}"> </b></a>
                                                 </li>
                                             @endif
                                             @if($mod->name == 'Radios')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-5.png')  }}">
+                                                    <a href="#"  class="contentype-adjust"><b><img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
                                                 </li>
                                             @endif
                                             @if($mod->name == 'TV')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-3.png') }}">
+                                                    <a href="#"  class="contentype-adjust"><b><img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/tv.svg') }}"> </b></a>
                                                 </li>
                                             @endif
                                         @endforeach
@@ -461,6 +488,61 @@
             <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
 
 
+
+            <script src="{{asset('assets/js/jquery.js') }}"></script>
+            {{--<script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>--}}
+            <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+            <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+            <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+            <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+
+
+            <!--common script for all pages-->
+            <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+
+            <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
+            <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+
+            <!--script for this page-->
+            <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>
+            {{--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> --}}
+            <!--telefono-->
+            <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
+            <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
+
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    if ((screen.width <= 768)) {
+                        //alert('Resolucion: 1024x768 o mayor');
+                        $('#container').addClass('sidebar-closed');
+                        $('#nav-accordion').css('display','none');
+                    }else{
+                        $('#container').removeClass('sidebar-closed');
+                        $('#nav-accordion').css('display','block');
+                    }
+
+                });
+            </script>
+            <script type="text/javascript">
+                $(window).resize(function() {
+                    console.log($(window).width());
+                    if ($(window).width() <= 768)
+                    {
+                        $('#container').addClass('sidebar-closed');
+                        $('#nav-accordion').css('display','none');
+                    }
+                    else
+                    {
+                        $('#container').removeClass('sidebar-closed');
+                        $('#nav-accordion').css('display','block');
+                    }
+                });
+            </script>
+
+            @yield('js')
 
 
 
