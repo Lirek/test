@@ -94,8 +94,9 @@
         content:"navigate_next";
     }
 
-    .carousel .carousel-item {
-        width:300px !important;
+    /*evitar que el texto salga*/
+    .break-word {
+        word-break: break-all;
     }
 </style>
 
@@ -327,12 +328,12 @@
                 <div class="col s12">
                     <div class="card curva">
                         <div class="card-image ">
-                            <img src="{{asset($r->logo)}}" width="100%" height="200px">
+                            <img src="{{asset($r->logo)}}" width="100%" height="150px">
                             <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
                                     radio
                                 </i></a>
                         </div>
-                        <div class="card-content">
+                        <div class="card-content break-word">
                             <p>{{$r->email_c}}</p>
                         </div>
                     </div>
@@ -355,12 +356,12 @@
                 <div class="col s12">
                     <div class="card curva">
                         <div class="card-image ">
-                            <img src="{{asset($tvs->logo)}}"  width="100%" height="200px">
+                            <img src="{{asset($tvs->logo)}}"  width="100%" height="150px">
                             <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
                                     remove_red_eye
                                 </i></a>
                         </div>
-                        <div class="card-content">
+                        <div class="card-content break-word">
                             <p>{{$tvs->email_c}}</p>
                         </div>
                     </div>
