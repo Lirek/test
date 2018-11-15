@@ -26,6 +26,8 @@
     </div>
   </div>
 </div>
+@endsection
+@section('js')
 <script type="text/javascript">
   
   var instance = M.Tabs.init(el, options);
@@ -37,8 +39,6 @@
   });
      
 </script>
-@endsection
-@section('js')
   <!--
     <script>
         $.widget.bridge('uibutton', $.ui.button);
