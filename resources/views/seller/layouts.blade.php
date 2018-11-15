@@ -489,7 +489,7 @@
 
 
 
-            <script src="{{asset('assets/js/jquery.js') }}"></script>
+            {{--<script src="{{asset('assets/js/jquery.js') }}"></script>--}}
             {{--<script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>--}}
             <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
             <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
