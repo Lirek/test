@@ -22384,3 +22384,6 @@ Stack trace:
 #48 C:\wamp64\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #49 C:\wamp64\www\Leipel\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 {main}  
+[2018-11-16 17:38:10] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Auth\Access\AuthorizesRequests.php:7
+Stack trace:
+#0 {main}  
