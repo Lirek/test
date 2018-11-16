@@ -63,7 +63,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $user = new User;
         
@@ -557,16 +557,58 @@ class UserController extends Controller
 
     }
 //-------------------------------------------------------------------------
+        public function BuyMagazines(Request $request,$id)
+    {
+        $megazine= Megazines::find($id);
+        $user = User::find(Auth::user()->id);
+      
+
+        $check = Transactions::where('megazines_id','=',$megazine->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        
+        if ($megazine->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->seller_id=$megazine->seller_id; 
+            $Transaction->megazines_id=$megazine->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $megazine->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$megazine->cost;
+            $user->save(); 
+
+            $seller = Seller::find($megazine->seller_id);
+            $seller->credito=$seller->credito+$megazine->cost;
+            $seller->save();
+
+            $account=new AccountBalance;
+            $account->seller_id=$megazine->seller_id;
+            $account->balance=$megazine->cost;
+            $account->save();
+
+            //$this->SendMail($book->title,$book->cost);
+
+            return response()->json($Transaction);
+        }
+
+    }
 
     public function BuyBook(Request $request,$id)
     {
         $book= Book::find($id);
         $user = User::find(Auth::user()->id);
-
-        if ($book->cost > $user->credito) 
-        {
-            return response()->json(0);    
-        }
+      
 
         $check = Transactions::where('books_id','=',$book->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
@@ -575,9 +617,16 @@ class UserController extends Controller
         {
             return response()->json(1);   
         }
+        
+        if ($book->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
         else
         {
             $Transaction= new Transactions;
+            $Transaction->seller_id=$book->seller_id; 
             $Transaction->books_id=$book->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $book->cost*-1;
@@ -586,12 +635,16 @@ class UserController extends Controller
             $user->credito= $user->credito-$book->cost;
             $user->save(); 
 
+            $seller = Seller::find($book->seller_id);
+            $seller->credito=$seller->credito+$book->cost;
+            $seller->save();
+
             $account=new AccountBalance;
             $account->seller_id=$book->seller_id;
             $account->balance=$book->cost;
             $account->save();
 
-            $this->SendMail($book->title,$book->cost);
+            //$this->SendMail($book->title,$book->cost);
 
             return response()->json($Transaction);
         }

@@ -47,4 +47,9 @@ class Megazines extends Model
     return $this->belongsTo('App\Rating', 'rating_id');
     }
 
+    public function transaction()
+    {
+        return $this->hasMany('App\Transactions','megazines_id');
+    }
+
 }

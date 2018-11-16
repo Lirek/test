@@ -24,11 +24,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-126665289-1');
+        // window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        //
+        // gtag('config', 'UA-126665289-1');
 
     </script>
 </head>
@@ -94,8 +94,9 @@
         content:"navigate_next";
     }
 
-    .carousel .carousel-item {
-        width:300px !important;
+    /*evitar que el texto salga*/
+    .break-word {
+        word-break: break-all;
     }
 </style>
 
@@ -104,7 +105,7 @@
 <nav class="default_color" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
+            <li><a class="blue-text" href="{{route('queEsLeipel')}}" target="_blank"><b>¿Qué es leipel?</b></a></li>
             @if(Auth::guard('web_seller')->user())
                 @if (Auth::guard('web_seller')->user()->logo)
                     <li>
@@ -143,7 +144,7 @@
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-            <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+            <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
             @if(Auth::guard('web_seller')->user())
                 @if (Auth::guard('web_seller')->user()->logo)
                     <li>
@@ -232,78 +233,78 @@
 <!-- Fin franja  -->
 
 <!-- Contenido  -->
-<div id="peliculas">
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--Segundo-->
-        <div class="col s12 m4 l6 xl6  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l3 xl3  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-    </div>
+{{--<div id="peliculas">--}}
+    {{--<div class="row">--}}
+        {{--<!--Primero-->--}}
+        {{--<div class="col s12 m4 l3 xl3  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--Segundo-->--}}
+        {{--<div class="col s12 m4 l6 xl6  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--tercero-->--}}
+        {{--<div class="col s12 m4 l3 xl3  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
-    <div class="row">
-        <!--Primero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--Segundo-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--tercero-->
-        <div class="col s12 m4 l4 xl4  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-        <!--cuarto-->
-        <div class="col s12 m2 l2 xl2  center">
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-            <div class="col s12 m12 l12 xl12  center">
-                <br>
-                <img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">
-            </div>
-        </div>
-    </div>
-</div>
+    {{--<div class="row">--}}
+        {{--<!--Primero-->--}}
+        {{--<div class="col s12 m4 l4 xl4  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--Segundo-->--}}
+        {{--<div class="col s12 m2 l2 xl2  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--tercero-->--}}
+        {{--<div class="col s12 m4 l4 xl4  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!--cuarto-->--}}
+        {{--<div class="col s12 m2 l2 xl2  center">--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+            {{--<div class="col s12 m12 l12 xl12  center">--}}
+                {{--<br>--}}
+                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 {{--libros--}}
 {{--<div class="row" id="libros">--}}
 {{--<div class="col s12 m6 l4 xl4  center">--}}
@@ -321,47 +322,55 @@
 
 {{--radios--}}
 <div class="row" id="radios">
-    <div id="featured" class="owl-carousel featured">
-    @foreach($radio as $r)
-            <div class="card">
-                <div class="card-image ">
-                    <img src="{{asset($r->logo)}}" width="100%" height="200px">
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                            radio
-                        </i></a>
+    <div class="col s12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($radio as $r)
+                <div class="col s12">
+                    <div class="card curva">
+                        <div class="card-image ">
+                            <img src="{{asset($r->logo)}}" width="100%" height="150px">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                    radio
+                                </i></a>
+                        </div>
+                        <div class="card-content break-word">
+                            <p>{{$r->email_c}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{$r->email_c}}</p>
-                </div>
-            </div>
-        @php
-            $iRadios++
-        @endphp
-    @endforeach
+            @php
+                $iRadios++
+            @endphp
+        @endforeach
+        </div>
     </div>
 </div>
 
 
 {{--tv--}}
 <div class="row" id="Tvs">
-    <div id="featured1" class="owl-carousel featured">
-    @foreach($tv as $tvs)
-        {{--item--}}
-            <div class="card">
-                <div class="card-image ">
-                    <img src="{{asset($tvs->logo)}}"  width="100%" height="200px">
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                            remove_red_eye
-                        </i></a>
+    <div class="col s12">
+        <div id="featured1" class="owl-carousel featured">
+        @foreach($tv as $tvs)
+            {{--item--}}
+                <div class="col s12">
+                    <div class="card curva">
+                        <div class="card-image ">
+                            <img src="{{asset($tvs->logo)}}"  width="100%" height="150px">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
+                                    remove_red_eye
+                                </i></a>
+                        </div>
+                        <div class="card-content break-word">
+                            <p>{{$tvs->email_c}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{$tvs->email_c}}</p>
-                </div>
-            </div>
-        @php
-            $iTvs++
-        @endphp
-    @endforeach
+            @php
+                $iTvs++
+            @endphp
+        @endforeach
+        </div>
     </div>
 </div>
 
@@ -392,18 +401,42 @@
             <br>
         </div>
         <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="10%" height="10%" title="youtube"><br>
+            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="20%" height="20%" title="youtube"><br>
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
     <div id="test2" class="col s12 center">
-        viajes
+        <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
+            <img src="{{asset('plugins/materialize_index/img/viajes.svg') }}" width="20%" height="20%" title="youtube"><br>
+            <h5> Viaja gratis con leipel.</h5>
+
+        </div>
+        <div class="col s12 m6 l6 xl6 center" >
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div><br>
+        </div>
     </div>
     <div id="test3" class="col s12 center">
-        registro
+        <div class="col s12 m6 l6 xl6 center">
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <br>
+        </div>
+        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
+            <img src="{{asset('plugins/materialize_index/img/nota.svg') }}" width="20%" height="20%" title="youtube"><br>
+            <h5> Registro gratuito.</h5>
+        </div>
     </div>
     <div id="test4" class="col s12 center">
-        Marcas
+        <div class="col s12 m6 l12 xl12 center"><br><br>
+            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="5%" height="5%" title="youtube"><br>
+            <h5> Marcas relacionadas.</h5>
+
+        </div>
     </div>
 </div>
 <!-- Fin tabs  -->

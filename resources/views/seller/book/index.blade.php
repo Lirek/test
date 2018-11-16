@@ -64,10 +64,10 @@
                                                class="btn btn-warning btn-xs">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
-                                            <a href="{{ route('tbook.destroy',$b->id) }}"
+                                            <!-- <a href="{{ route('tbook.destroy',$b->id) }}"
                                                onclick="return confirm('¿Desea eliminar el libro {{ $b->title }}?')" class="btn btn-danger btn-xs ">
                                                 <span class="glyphicon glyphicon-remove"></span>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 @endif
@@ -77,7 +77,6 @@
                             <tr>
                                 <th class="text-center">Título</th>
                                 <th class="text-center">Portada</th>
-                                <th class="text-center">Autor</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center" width="80">Generos</th>
                                 <th class="text-center">Año de lanzamiento</th>

@@ -34,6 +34,11 @@
 </head>
 
 <style type="text/css">
+    div.error {
+      color: red;
+      padding: 0;
+      font-size: 0.9em;
+    }
 
     .default_color{background-color: #FFFFFF !important;}
 
@@ -190,70 +195,71 @@
 
 <!-- Contenido  -->
 <br><br>
+
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        <div class="card horizontal curva">
-            <div class="card-image curva">
-                <img src="{{asset('plugins/img/piñas.jpg')}}">
-            </div>
-            <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
-                {{ csrf_field() }}
-            <div class="card-stacked">
-                <div class="card-content">
-                    <h5 class="center">
-                        <b class="blue-text">Registro</b>
-                    </h5><br>
-                        <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input type="text" name="user_code" value="{{$user_code}}" hidden>
-                            <i class="material-icons prefix blue-text">face</i>
-                            <input type="text" id="email" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
-                            <label for="autocomplete-input">Nombre</label>
-                            @if ($errors->has('name'))
-                                <span class="help-block">
+        <div class="card curva">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 m8 center">
+                        <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
+                            {{ csrf_field() }}
+                            <h5 class="center">
+                                <b class="blue-text">Registro</b>
+                            </h5><br>
+                            <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
+                                <input type="text" name="user_code" value="{{$user_code}}" hidden>
+                                <i class="material-icons prefix blue-text">face</i>
+                                <input type="text" id="name" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
+                                <label for="autocomplete-input">Nombre</label>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                        <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <i class="material-icons prefix blue-text">email</i>
-                            <input type="email" id="email" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
-                            <label for="autocomplete-input">Dirección de Correo</label>
-                            @if ($errors->has('email'))
-                                <span class="help-block">
+                                @endif
+                            </div>
+                            <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <i class="material-icons prefix blue-text">email</i>
+                                <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
+                                <label for="autocomplete-input">Dirección de Correo</label>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                            @endif
+                                @endif
 
-                        </div>
-                        <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <i class="material-icons prefix blue-text">vpn_key</i>
-                            <input type="password" id="password" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
-                            <label for="autocomplete-input">Contraseña</label>
-                            @if ($errors->has('password'))
-                                <span class="help-block">
+                            </div>
+                            <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
+                                <i class="material-icons prefix blue-text">vpn_key</i>
+                                <input type="password" id="password-valid" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
+                                <label for="autocomplete-input">Contraseña</label>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                        <div class="input-field col s12 ">
-                            <i class="material-icons prefix blue-text">vpn_key</i>
-                            <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
-                            <label for="autocomplete-input">Repetir</label>
-                            @if ($errors->has('password_confirm'))
-                                <span class="help-block">
+                                @endif
+                            </div>
+                            <div class="input-field col s12 ">
+                                <i class="material-icons prefix blue-text">vpn_key</i>
+                                <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
+                                <label for="autocomplete-input">Repetir</label>
+                                @if ($errors->has('password_confirm'))
+                                    <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                </div>
-                <div class="card-action">
-                    <div class="input-field col s12 center">
-                        <button class="btn curvaBoton waves-effect waves-light green" type="submit" >Enviar
-                            <i class="material-icons right">send</i>
-                        </button>
+                                @endif
+                            </div>
+                            <div class="input-field col s12 center">
+                                <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="registro" >Enviar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col s12 m4 left"><br><br>
+                        <img src="{{asset('plugins/materialize_index/img/registro_leipel.png')}}" width="100%">
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>
@@ -807,7 +813,8 @@
             responseTime: 500
         });
 
-
+        var email = $('#email-valid').val();
+        var password = $('#password-valid').val();
         $("#formR1").validate({
 
             rules: {
@@ -824,7 +831,7 @@
                         type:"POST",
                         data:{
                             _token: $('input[name=_token]').val(),
-                            'email': function(){ return $('#email').val();}
+                            'email': function(){ return $('#email-valid').val();}
                         }
 
                     }
@@ -836,7 +843,7 @@
                 password_confirm: {
                     required: true,
                     minlength: 6,
-                    equalTo: "#password"
+                    equalTo: "#password-valid"
                 },
             },
 
@@ -862,38 +869,20 @@
                 }
             },
 
-            errorElement: "em",
-            errorPlacement: function (error, element) {
-                error.addClass("help-block");
-
-                element.parents(".col-md-6").addClass("has-feedback");
-
-                if (element.prop("type") === "checkbox") {
-                    error.insertAfter(element.parent("label"));
-                } else {
-                    error.insertAfter(element);
-                }
-
-                if (!element.next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-remove form-control-feedback red-text'></span> ").insertAfter(element);
-                }
-            },
-
-            success: function (label, element) {
-                if (!$(element).next("span")[0]) {
-                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
-                }
-            },
-
-            highlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-error").removeClass("has-success");
-                $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
-            },
-
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-md-6").addClass("has-success").removeClass("has-error");
-                $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
-            }
+            errorElement : 'div',
+        errorPlacement: function(error, element) {
+            console.log(error)
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+            $('#registro').attr('disabled', true);
+          }
+        },
+        success: function(element) {
+            $('#registro').attr('disabled', false);
+        }
 
         })
 

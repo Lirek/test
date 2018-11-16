@@ -39,6 +39,9 @@
             width:80%;
             height:33px;
         }
+        .colorbadge{
+            background-color:#428bca;
+        }
     </style>
 @endsection
 @section('main')
@@ -46,56 +49,77 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="widget-user-desc"><b>Libro:</b> "{{ $book->title }}"</h2>
-
-                <div class="box box-widget widget-user-2">
-                    <div class="col-md-12">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Libro</a>
-                       <!--  <a href="{{url('Read/'.$book->id)}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="">Leer Libro</a> -->
-                    </div>
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div id="panel" style="" class="img-rounded img-responsive av text-center">
-                    </div>
-                    <br>
-                    <div class="box-footer no-padding">
-                        <div class="col-md-8 col-md-offset-2">
-                            <ul class="nav nav-stacked">
-                                <li>
-                                    <h4>
-                                        Titulo original:
-                                        <span class="pull-right ">
-                                            "{{ $book->original_title }}""
-                                        </span>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4>Sinopsis: <span class="pull-right "></span></h4>{{ $book->sinopsis }}
-                                </li>
-                                <li>
-                                    <h4> Categoría: <span class="pull-right"> {{ $book->rating->r_name }} </span>
-                                    </h4>
-                                </li>
-                                <li>
-                                    @if($book->sagas!=null)
-                                        <h4>Saga: <span class="pull-right ">{{ $book->sagas->sag_name }}</span></h4>
-                                    @else
-                                        <h4>Saga: <span class="pull-right ">No tiene Saga</span></h4>
-                                    @endif
-                                </li>
-                            </ul>
+                <div class=" col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class=" col-sm-12 col-md-12 col-lg-12"></div>
+                        <div class="col-sm-12 col-md-8 col-lg-8">
+                            <div class="box box-widget widget-user-2">
+                                <div class="col-md-4">
+                                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Libro</a>
+                                </div>
+                                <div id="panel" class="img-rounded img-responsive av text-center"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="widget-user-header bg-navy">
+                    </div><!-- /. col img book -->
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-8">
+                        <h3>Libro | "{{ $book->title }}" ({{ $book->release_year }})</h3>
+                    </div><!-- /. col titel book -->
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8">
+                            <hr>
+                            <h5> <b>Sinopsis:</b></h5>
+                            <p class="text-justify">{{ $book->sinopsis }}</p>
+                            <h5><b>Titulo original: </b><span>{{ $book->original_title }}</span></h5>
+
+
+                            <h5> <b>Géneros:</b>
+                                @foreach($book->tags_book as $t)
+                                    <span class="badge badge-light colorbadge"> {{ $t->tags_name }} </span>
+                                @endforeach
+                            </h5>
+                            <h5> <b>Categoria:</b> <span class="label label-success"> {{ $book->rating->r_name }} </span></h5>
+
+                            <div class="row">
+                                @if($book->saga!=null)
+
+                                    <div class="col-md-12">
+                                        <h5><b>Saga: </b><span>{{ $book->saga->sag_name }}</span></h5>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <h5 class="pull-left"> <b>Antes:</b> <span> {{ $book->before }} </span> </h5>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <h5 class="pull-left"> <b>Después:</b> <span> {{ $book->after }} </span> </h5>
+                                        <br>
+                                    </div>
+                                @else
+                                    <div class="col-md-12">
+                                        <h5><b>Saga: </b><span>No tiene saga</span></h5>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="widget-user-image">
                                 <img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
                             </div>
                             <!-- /.widget-user-image -->
-                            <h4 class="widget-user-username"><b>Autor:</b> {{ $book->author->full_name }}</h4>
-                        </div>
-                        <div class="form-group">
-                            <a href="{{ url('MyReads') }}" class="btn btn-danger">Atrás</a>
-                        </div>
+                            <h5 class="widget-user-username"><b>Autor:</b> <a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></h5>
+
+                            <div class="row">
+                                <div  class="col-md-12" >
+                                    <hr>
+                                </div>
+                                <div  class="col-md-6" >
+                                    <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
+                                </div>
+                                <div  class="col-md-6">
+                                    <a href="{{ url('MyReads') }}" class="btn btn-danger">Atrás</a>
+                                </div>
+                            </div>
+                        </div> <!-- /. col contenido book -->
+
                     </div>
                 </div>
             </div>

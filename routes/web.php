@@ -101,6 +101,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::post('BuySong/{id}','UserController@BuySingle');
 Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
 Route::post('BuyBook/{id}','UserController@BuyBook');
+Route::post('BuyMagazines/{id}','UserController@BuyMagazines');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
@@ -142,6 +143,7 @@ Route::post('Invite','UserController@Invite');
 
      //Agregada 8/8/2018
     Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
+    Route::get('/SearchMegazine',array('as'=>'SearchMegazine','uses'=>'ContentController@seachMegazines'));
 
 
     //Agregada 8/8/2018
@@ -178,7 +180,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('PlayTv/{id}','ContentController@PlayTv');
     Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
     Route::post('SearchPlayTv','ContentController@ShowPlayTv');
-
+//Agregada 6/11/2018
+    Route::post('SearchProfileMegazine','ContentController@ShowProfileMegazine');
 //---------------------------------------------------------------------------
 
 
@@ -218,6 +221,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
    Route::group(['middleware' => ['Admin']], function (){
 
             Route::get('/admin_sellers','AdminController@ShowSellers');
+            Route::get('/SellerDataTable','AdminController@SellerDataTable');
 
             /*
             Rutas para canje de tickets a dinero
@@ -275,7 +279,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
         //-----------------Rutas de Solicitudes-------------------------------------
             Route::get('/admin_applys','AdminController@ShowApplys');
-            Route::get('SellerDataTable/{status}','AdminController@SellerDataTable');
+            Route::get('SellerApplyDataTable/{status}','AdminController@SellerApplyDataTable');
 
             Route::post('/add_salesman_to/{id}','AdminController@AddSalesmanToApllys');
             Route::get('/AddSalesMan/{idApplySeller}/{idSalesman}','AdminController@AddSalesMan');
@@ -344,9 +348,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_megazine','AdminController@ShowMegazine');
 
-                Route::get('MegazineDataTable','AdminController@MegazineDataTable');
+                Route::get('MegazineDataTable/{status}','AdminController@MegazineDataTable');
 
-                Route::get('PubChainDataTable','AdminController@ShowPublicationChain');
+                Route::get('PubChainDataTable/{status}','AdminController@ShowPublicationChain');
 
                 Route::post('/admin_chain/{id}','AdminController@PublicationChainStatus');
 
@@ -360,8 +364,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('admin_books','AdminController@ShowBooks');
                 Route::get('BooksData/{status}','AdminController@BooksDataTable');
                 Route::post('books_status/{id}','AdminController@EstatusBooks');
-                Route::get('BSagasDataTable','AdminController@BooksSagasDataTable');
+                Route::get('BSagasDataTable/{status}','AdminController@BooksSagasDataTable');
                 Route::post('books_saga/{id}','AdminController@BooksSagasStatus');
+                Route::post('/statusSaga/{id}','AdminController@statusSaga');
            //------------------------------------------------------------------------
            //--------------------AUTORES LITERARIOS----------------------------------
                 Route::get('admin_authors_b','AdminController@ShowBooksAuthor');

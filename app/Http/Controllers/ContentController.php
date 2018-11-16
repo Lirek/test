@@ -118,9 +118,32 @@ class ContentController extends Controller
 
     public function ShowReadingsMegazines()
     {
-        $Megazines= Megazines::where('status','=','Aprobado')->get();
+        $Megazines= Megazines::where('status','=','Aprobado')->paginate(9);
 
         return view('contents.Megazines')->with('Megazines',$Megazines);
+    }
+     public function seachMegazines(){
+        $query=Input::get('term');
+        $Author=Megazines::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
+        // $book=Book::where('title','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Author as $key) {
+
+            $data[]=['id' => $key->id, 'value' => $key->title, 'type' => 'titulo'];
+        }
+        // foreach ($book as $key1 ) {
+        //     $data[]=['id' => $key1->id, 'value' => $key1->title];
+        // }
+        if(count($data))
+        {
+            return response()->json($data);
+        }else
+        {
+            return ['value'=>'No se encuentra...','id'=>''];
+        }
+
     }
 
     public function seachAuthor(){
@@ -170,6 +193,18 @@ class ContentController extends Controller
         }
 
         return $prueba;
+    }
+
+    public function ShowProfileMegazine(Request $request)
+    {
+        $Megazines=Megazines::where('title','=',$request->seach)->where('status','=','Aprobado')->paginate(9);
+
+        // foreach ($Artist as $key) {
+
+        //     $prueba=$this->ShowAuthor($key->id);
+        // }
+
+        return view('contents.Megazines')->with('Megazines',$Megazines);
     }
 //-------------------------------------------RADIO---------------------------------------
     public function ShowRadio(){
