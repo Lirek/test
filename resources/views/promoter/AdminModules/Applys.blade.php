@@ -58,7 +58,7 @@ $( document ).ready(function() {
     responsive: true,
     bDestroy: true,
 
-    ajax: '{!! url('SellerDataTable/En Proceso') !!}',
+    ajax: '{!! url('SellerApplyDataTable/En Proceso') !!}',
     columns: [
       {data: 'nombreComercial', name: 'nombreComercial'},
       {data: 'nombreContacto', name: 'nombreContacto'},
@@ -105,7 +105,7 @@ $( document ).ready(function() {
       responsive: true,
       bDestroy: true,
 
-      ajax: '{!! url('SellerDataTable/En Proceso') !!}',
+      ajax: '{!! url('SellerApplyDataTable/En Proceso') !!}',
       columns: [
         {data: 'nombreComercial', name: 'nombreComercial'},
         {data: 'nombreContacto', name: 'nombreContacto'},
@@ -154,7 +154,7 @@ $( document ).ready(function() {
       responsive: true,
       destroy: true,
 
-      ajax: '{!! url('SellerDataTable/Denegado') !!}',
+      ajax: '{!! url('SellerApplyDataTable/Denegado') !!}',
       columns: [
         {data: 'nombreComercial', name: 'nombreComercial'},
         {data: 'nombreContacto', name: 'nombreContacto'},

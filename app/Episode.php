@@ -28,4 +28,8 @@ class Episode extends Model
     public function Seller() {
         return $this->belongsTo('App\Seller', 'seller_id');
     }
+    public function transaction()
+    {
+        return $this->hasMany('App\Transactions','episodes_id');
+    }
 }

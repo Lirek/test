@@ -24,7 +24,9 @@ use App\Radio;
 use App\Sagas;
 use App\BookAuthor;
 use App\Book;
+use App\Movie;
 use App\Tv;
+use App\Serie;
 use App\music_authors;
 use App\SellersRoles;
 use App\Promoters;
@@ -33,125 +35,86 @@ use App\LoginControl;
 
 class PromoterController extends Controller
 {
-    public function index()
-    {
-    	$promoter = Auth::guard('Promoter')->user()->id;
-
-    	$aplyss = ApplysSellers::where('status','=','En Proceso')->count();
-    	
-    	$sellers = Seller::where('estatus','=','En Proceso')->count();
-
-    	$user = Seller::all();  
-
-    	$content_total=0;
-
+    public function index() {
+      $promoter = Auth::guard('Promoter')->user()->id;
+      $aplyss = ApplysSellers::where('status','En Proceso')->count();
+      $sellers = Seller::where('estatus','En Proceso')->count();
+      $user = Seller::all();
+      $content_total=0;
       $TicketsPackage = TicketsPackage::all();
-
-    	foreach ($user as $key1) 
-    	{
-
-    		if ($key1->has('sagas')) 
-    		{
-
-    			$content_total=$content_total+$key1->sagas()->where('status','=','En Revision')->count();
-    		}
-
-
-    		if ($key1->has('MusicAuthors')) 
-    		{
-    			$content_total=$content_total+$key1->MusicAuthors()->where('status','=','En Proceso')->count();		
-    		}
-
-    		
-    		if ($key1->has('BooksAuthors')) 
-    		{
-    			$content_total=$content_total+$key1->BooksAuthors()->where('status','=','En Revision')->count();		
-    		}
-
-    		
-    		if ($key1->has('Tags'))
-    		{
-    			$content_total=$content_total+$key1->Tags()->where('status','=','En Proceso')->count();		
-    		}
-    		
-
-    		if ($key1->roles->has('roles') != FALSE)
-    		{
-    			foreach ($content->roles() as $modules) 
-    			{
-    				   switch ($role->name) 
-            			{
-                
-                			case 'Musica':
-                    		
-                    			$Musica = $key1->albums()->where('status','=','En Revision')->count();
-                    		
-                    			$songs=0;
-                    			
-                    			foreach ($key1->songs()->where('status','=','En Revision')->get() as $key) 
-                    			{
-                        			if ($key->album =! NULL or $key->album =! 0) 
-                        			{
-                            			$songs++;
-                        			}  
-                    			}
-
-                    				$content_total=$Musica+$songs;
-                    		break;
-
-			                
-			                case 'Peliculas':
-            		        
-            		        	$Movies_content=0;
-                   			
-                   			break;
-                
-                			case 'Libros':
-                    		
-                    		$Books_content=$key1->Books()->where('status','=','En Revision')->count();
-
-                    		$content_total=$Books_content+$content_total;
-                    		
-                    		break;
-                
-                			case 'Series':
-                    		$series_content=0;
-                    		break;
-
-                			case 'Revistas':
-                    		
-                    		$Megazine_content=$key1->Megazines()->where('status','=','En Revision')->count();
-                    		
-                    		$content_total=$Megazine_content+$content_total;
-
-                    		break;
-
-                			case 'Radios':
-                    		
-                    		$radios_content=$key1->Radio()->where('status','=','En Proceso')->count();
-                    		
-							$content_total=$radios_content+$content_total;
-
-                    		break;
-
-                			case 'TV':
-                   			
-                   			$aproved_tv=$key1->Tv()->where('status','=','En Proceso')->count();
-                    		
-                    		$content_total=$aproved_tv+$content_total;
-                    		break;
-                
-                			default:
-                    		# code...
-                    		break;
-            			};
-    			}
-    		}
-    	}
-		
-
-
-    	return view('promoter.home')->with('sellers',$sellers)->with('aplyss',$aplyss)->with('content_total',$content_total)->with('TicketsPackage',$TicketsPackage);
+      $albums = Albums::where('status','En Revision')->count();
+      $books = Book::where('status','En Revision')->count();
+      $bookAuthor = BookAuthor::where('status','En Revision')->count();
+      $megazines = Megazines::where('status','En Revision')->count();
+      $movies = Movie::where('status','En Proceso')->count();
+      $musicAuthors = music_authors::where('status','En Proceso')->count();
+      $publicationChain = Sagas::where('status','En Proceso')->where('type_saga','Revistas')->count();
+      $radios= Radio::where('status','En Proceso')->count();
+      $sagaBooks = Sagas::where('status','En Proceso')->where('type_saga','Libros')->count();
+      $series = Serie::where('status','En Proceso')->count();
+      $singles = Songs::where('status','En Revision')->whereNull('album')->count();
+      $tv = Tv::where('status','En Proceso')->count();
+      $contenidoPendiente = $albums+$books+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tv;
+      return view('promoter.home')
+              ->with('sellers',$sellers)
+              ->with('aplyss',$aplyss)
+              ->with('content_total',$contenidoPendiente)
+              ->with('TicketsPackage',$TicketsPackage);
+      /*
+      foreach ($user as $key1) {
+        if ($key1->has('sagas')) {
+          $content_total=$content_total+$key1->sagas()->where('status','=','En Revision')->count();
+        }
+        if ($key1->has('MusicAuthors')) {
+          $content_total=$content_total+$key1->MusicAuthors()->where('status','=','En Proceso')->count();   
+        }
+        if ($key1->has('BooksAuthors')) {
+          $content_total=$content_total+$key1->BooksAuthors()->where('status','=','En Revision')->count();    
+        }
+        if ($key1->has('Tags')) {
+          $content_total=$content_total+$key1->Tags()->where('status','=','En Proceso')->count();   
+        }
+        //dd($key1->roles->has('roles') != FALSE);
+        if ($key1->roles->has('roles') != FALSE) {
+          foreach ($content->roles() as $modules) {
+            switch ($role->name) {
+              case 'Musica':
+                $Musica = $key1->albums()->where('status','=','En Revision')->count();
+                $songs = 0;
+                foreach ($key1->songs()->where('status','=','En Revision')->get() as $key) {
+                  if ($key->album =! NULL or $key->album =! 0) {
+                    $songs++;
+                  }
+                }
+                $content_total=$Musica+$songs;
+              break;
+              case 'Peliculas':
+                $Movies_content=0;
+              break;
+              case 'Libros':
+                $Books_content=$key1->Books()->where('status','=','En Revision')->count();
+                $content_total=$Books_content+$content_total;
+              break;
+              case 'Series':
+                $series_content=0;
+              break;
+              case 'Revistas':
+                $Megazine_content=$key1->Megazines()->where('status','=','En Revision')->count();
+                $content_total=$Megazine_content+$content_total;
+              break;
+              case 'Radios':
+                $radios_content=$key1->Radio()->where('status','=','En Proceso')->count();
+                $content_total=$radios_content+$content_total;
+              break;
+              case 'TV':
+                $aproved_tv=$key1->Tv()->where('status','=','En Proceso')->count();
+                $content_total=$aproved_tv+$content_total;
+              break;
+            };
+          }
+        }
+      }
+      */
     }
 
     public function ShowSellers()
