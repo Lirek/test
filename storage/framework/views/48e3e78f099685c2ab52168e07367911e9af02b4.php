@@ -6,7 +6,7 @@
         <!--Import materialize.css-->
         <link href="<?php echo e(asset('plugins/materialize_adm/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo e(asset('plugins/materialize_adm/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+        <?php echo $__env->yieldContent('css'); ?>
         <!--Let browser know website is optimized for mobile-->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -87,17 +87,21 @@
                     </div>
                     <div class="container">
                                 <a href="#">
-                                    <span class="name white-text"><?php echo e(Auth::guard('web_seller')->user()->name); ?></span>
+                                    <h4 class="name white-text"><?php echo e(Auth::guard('web_seller')->user()->name); ?></h4>
                                 </a>
-                                
-                               Tickets Disponibles:
+
+                        <a class="modal-trigger" href="#myModalTotal">
+                            <span class="name white-text"> Tickets Disponibles: <?php echo e(Auth::guard('web_seller')->user()->credito); ?></span>
+                        </a>
+                        <br>
+
+                    </div>
                     </div>
                 </li><!--End eccion de usuario -->
 
-                    <li>
-                    <a href="<?php echo e(url('seller_edit')); ?>" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
+                <li><a href="<?php echo e(url('seller_edit')); ?>" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
                     <li><div class="divider"></div></li>
-                    <li><a href="<?php echo e(url('SellerRequest')); ?>" class="waves-effect waves-blue "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
+                <li><a href="<?php echo e(url('SellerRequest')); ?>" class="waves-effect waves-blue "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
 
 <!-- ////////////////////////////////////////////////////////////          Contenidos          ////////////////////////////////////////-->
 
@@ -105,22 +109,30 @@
             <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
 
                                         
-                                    <li> <!-- COMTENIDOS -->
-                                        <ul class= "collapsible collapsible-accordion" >
 
-                                            <li>
-                                              <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
 
-                                           
-                                                <?php if($modulos==false): ?>
-                                                <div class="collapsible-body">
-                                                <blockquote>Aún no posee módulos asignados.</blockquote>
-                                                </div>
-                                                <div class="collapsible-body"> <!--Inicio body ul contenido sin módulos asignado -->
-                                                <ul> <!--END ul contenidos -->
-                                                <?php else: ?>
-                                                <div class="collapsible-body"> <!--Inicio body ul contenido con módulos asignado -->
-                                                <ul> <!--END ul contenidos -->
+                    <?php if($modulos==false): ?>
+                        <li>
+                            <ul class= "collapsible collapsible-accordion" >
+
+                                <li>
+                                    <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
+
+                                    <div class="collapsible-body">
+                                            <blockquote>Aún no posee módulos asignados.</blockquote>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                    <?php else: ?>
+
+                        <li><!-- LI CONTENIDOS GENERAL -->
+                            <ul class= "collapsible collapsible-accordion" >
+                                <li> <!-- LI CONTENIDOS interno-->
+                                    <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
+                                    <div class="collapsible-body">
+                                        <ul>
                                                     <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         
                                                         <?php if($mod->name == 'Musica'): ?>
@@ -307,59 +319,72 @@
                                                             </li><!--End Tv  -->
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                <?php endif; ?>
+                                        </ul><!--END ul todos los contenidos -->
+                                    </div><!-- Body ul contenidos -->
+                                </li><!--li interno contenidos -->
+                            </ul><!--End  externo collapsible -->
+                        </li> <!--End li contenido GENERAL-->
+                    <?php endif; ?>
 
-                                            </ul><!--END ul todos los contenidos -->
-                                            </div><!-- Body ul contenidos -->
-                                            </li><!--li interno contenidos -->
-                                        </ul><!--End  externo collapsible -->
-                                 </li> <!--End li externo COMTENIDOS -->
+
 
 <!-- //////////////////////////////////////////////////////////// END  contenidos ////////////////////////////////////////-->
 
                                 
             <?php elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado'): ?>
-                                <li>
-                                    <a href="#">
-                                                <span>
-                                                    <i class="fa fa-warning"></i>
-                                                    <br>
-                                                    Su solicitud de cuenta como
-                                                    productora está en proceso de
-                                                    analisis por parte de
-                                                    nuestros analistas, pronto nos
-                                                    comunicaremos con ustedes.
-                                                </span>
-                                    </a>
-                                </li>
+
+                            <li>
+                                <ul class= "collapsible collapsible-accordion" >
+
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Cuenta en revisión<i class="material-icons right" >expand_more</i></a>
+                                        <div class="collapsible-body">
+                                            <blockquote> Su solicitud de cuenta como
+                                                productora está en proceso de
+                                                analisis por parte de
+                                                nuestros analistas, pronto nos
+                                                comunicaremos con ustedes..</blockquote>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
                                 
             <?php elseif(Auth::guard('web_seller')->user()->estatus === 'En Proceso'): ?>
-                                <li>
-                                    <a href="#">
-                                                <span>
-                                                    <i class="fa fa-warning"></i>
 
-                                                    Su solicitud de cuenta como
-                                                    productora está en proceso
-                                                    por favor finalice el
-                                                    registro para continuar
-                                                </span>
-                                    </a>
-                                </li>
+                            <li>
+                                <ul class= "collapsible collapsible-accordion" >
+
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>En Proceso<i class="material-icons right" >expand_more</i></a>
+                                        <div class="collapsible-body">
+                                            <blockquote>  Su solicitud de cuenta como
+                                                productora está en proceso
+                                                por favor finalice el
+                                                registro para continuar.</blockquote>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
                                 
             <?php else: ?>
-                                <li>
-                                    <a href="#">
-                                                <span>
-                                                    <i class="fa fa-warning"></i>
 
-                                                    Su solicitud de cuenta como
-                                                    productora fue rechazada
-                                                    por favor pongase en contacto
-                                                    con el administrados de sistema
-                                                </span>
-                                    </a>
-                                </li>
+                            <li>
+                                <ul class= "collapsible collapsible-accordion" >
+
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Cuenta Rechazada<i class="material-icons right" >expand_more</i></a>
+                                        <div class="collapsible-body">
+                                            <blockquote>   Su solicitud de cuenta como
+                                                productora fue rechazada
+                                                por favor pongase en contacto
+                                                con el administrados de sistema.</blockquote>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <?php endif; ?>
                          <!--    <li>
                                 <a href="<?php echo e(url('/seller_logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -374,28 +399,15 @@
                                 </form>
                             </li> -->
                             <li>
-
-                                <a href="<?php echo e(url('/seller_logout')); ?>" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a>
-                                            
-                                               
-                                              
-                                            
-                                </a>
+                                <a href="<?php echo e(url('/seller_logout')); ?>" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
                                 <form id="logout-form" action="<?php echo e(url('/seller_logout')); ?>" method="POST" style="display: none;">
                                     <?php echo e(csrf_field()); ?>
 
                                 </form>
                             </li>
 
-
-                        </ul><!-- End -->
-
-
-
-
-
-
-
+            </ul><!-- End  sidenav-->
+            <!-- End Menu lateral sidenav-->
 
                     </li>
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a><!-- boton Hamburguesa menu -->
@@ -423,14 +435,36 @@
 
 
 
+            <div id="myModalTotal" class="modal modal-s" >
+                <div class="modal-content">
+                <div class=" blue"><br>
+                   <h4 class="center white-text" ><i class="small material-icons">timeline</i> Mi Balance</h4>
+                    <br>
+                </div>
+                    <br>
+                    <blockquote class="center">
+                    <h5 class="grey-text"><b>Total de tickets disponibles:</b> <?php echo e(Auth::guard('web_seller')->user()->credito); ?></h5>
+                    <h5><a href="<?php echo e(url('SellerBalance')); ?>" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
+                    </blockquote>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+                </div>
+            </div>
 
-            <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+
+
+
+
+            <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
             <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
             <!--Import jQuery before materialize.js-->
             <script src="<?php echo e(asset('plugins/materialize_adm/js/materialize.js')); ?>"></script>
             <script src="<?php echo e(asset('plugins/materialize_adm/js/init.js')); ?>"></script>
 
 
+            <?php echo $__env->yieldContent('js'); ?>
 
-    </body><!-- End body -->
+
+       </body><!-- End body -->
 </html>
