@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
     <head>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        @yield('css')
+        <link href="<?php echo e(asset('plugins/materialize_adm/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="<?php echo e(asset('plugins/materialize_adm/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <?php echo $__env->yieldContent('css'); ?>
         <!--Let browser know website is optimized for mobile-->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-        <title>{{ config('app.name', 'Leipel') }}</title>
+        <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
+        <title><?php echo e(config('app.name', 'Leipel')); ?></title>
     </head>
 
     <body>
@@ -28,45 +28,45 @@
                             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons ">menu</i></a>
 
                             <!-- Logo principal -->
-                            <a href="{{ url('/home')}}" class="brand-logo left logo-adjust">
-                                <img class="responsive-img img-logo" src="{{asset('sistem_images/Leipel Logo1-01.png')}}">
+                            <a href="<?php echo e(url('/home')); ?>" class="brand-logo left logo-adjust">
+                                <img class="responsive-img img-logo" src="<?php echo e(asset('sistem_images/Leipel Logo1-01.png')); ?>">
                             </a>
                             <!-- End logo principal -->
 
                             <!-- Img Contenido superior -->
-                            @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
+                            <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
                                 <ul class="right" >
-                                    @if($modulos!=false)
-                                        @foreach($modulos as $mod)
-                                            @if($mod->name == 'Peliculas')
+                                    <?php if($modulos!=false): ?>
+                                        <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($mod->name == 'Peliculas'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-2.png') }}">
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-2.png')); ?>">
                                                 </li>
-                                            @endif
-                                            @if($mod->name == 'Musica')
+                                            <?php endif; ?>
+                                            <?php if($mod->name == 'Musica'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-4.png')  }}">
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-4.png')); ?>">
                                                 </li>
-                                            @endif
-                                            @if($mod->name == 'Libros')
+                                            <?php endif; ?>
+                                            <?php if($mod->name == 'Libros'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon.png')  }}">
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon.png')); ?>">
                                                 </li>
-                                            @endif
-                                            @if($mod->name == 'Radios')
+                                            <?php endif; ?>
+                                            <?php if($mod->name == 'Radios'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-5.png')  }}">
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-5.png')); ?>">
                                                 </li>
-                                            @endif
-                                            @if($mod->name == 'TV')
+                                            <?php endif; ?>
+                                            <?php if($mod->name == 'TV'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-3.png') }}">
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-3.png')); ?>">
                                                 </li>
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
                                 </ul>
-                            @endif
+                            <?php endif; ?>
                             <!-- End Img Contenido superior -->
 
                         </div><!-- End nav-wrapper -->
@@ -79,19 +79,19 @@
                 <li><!--Seccion de usuario -->
                     <div class="user-view blue">
                     <div class="container">
-                                @if(Auth::guard('web_seller')->user()->logo)
-                                    <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
-                                @else
-                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
-                                @endif
+                                <?php if(Auth::guard('web_seller')->user()->logo): ?>
+                                    <a href="#"><img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                <?php else: ?>
+                                    <a href="#"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                <?php endif; ?>
                     </div>
                     <div class="container">
                                 <a href="#">
-                                    <h4 class="name white-text">{{Auth::guard('web_seller')->user()->name}}</h4>
+                                    <h4 class="name white-text"><?php echo e(Auth::guard('web_seller')->user()->name); ?></h4>
                                 </a>
 
                         <a class="modal-trigger" href="#myModalTotal">
-                            <span class="name white-text"> Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}</span>
+                            <span class="name white-text"> Tickets Disponibles: <?php echo e(Auth::guard('web_seller')->user()->credito); ?></span>
                         </a>
                         <br>
 
@@ -99,19 +99,19 @@
                     </div>
                 </li><!--End eccion de usuario -->
 
-                <li><a href="{{url('seller_edit')}}" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
+                <li><a href="<?php echo e(url('seller_edit')); ?>" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
                     <li><div class="divider"></div></li>
-                <li><a href="{{url('SellerRequest')}}" class="waves-effect waves-blue "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
+                <li><a href="<?php echo e(url('SellerRequest')); ?>" class="waves-effect waves-blue "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
 
 <!-- ////////////////////////////////////////////////////////////          Contenidos          ////////////////////////////////////////-->
 
 
-            @if(Auth::guard('web_seller')->user()->estatus ==='Aprobado')
+            <?php if(Auth::guard('web_seller')->user()->estatus ==='Aprobado'): ?>
 
-                                        {{--Accesos a los modulos --}}
+                                        
 
 
-                    @if($modulos==false)
+                    <?php if($modulos==false): ?>
                         <li>
                             <ul class= "collapsible collapsible-accordion" >
 
@@ -125,7 +125,7 @@
                             </ul>
                         </li>
 
-                    @else
+                    <?php else: ?>
 
                         <li><!-- LI CONTENIDOS GENERAL -->
                             <ul class= "collapsible collapsible-accordion" >
@@ -133,9 +133,9 @@
                                     <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
                                     <div class="collapsible-body">
                                         <ul>
-                                                    @foreach($modulos as $mod)
-                                                        {{--musica--}}
-                                                        @if($mod->name == 'Musica')
+                                                    <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        
+                                                        <?php if($mod->name == 'Musica'): ?>
                                                             <li><!-- musica -->
                                                             <ul class= "collapsible collapsible-accordion" >
                                                             <li>
@@ -144,43 +144,43 @@
                                                                
                                                                 <div class="collapsible-body">
                                                                 <ul>
-                                                                    <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
-                                                                    <li><a href="{{ url('/single_registration') }}">Registrar canciones</a></li>
-                                                                    @foreach($modulos as $mod)
-                                                                        @if($mod->name == 'Productora')
+                                                                    <li><a href="<?php echo e(url('/albums')); ?>">Registrar álbum</a></li>
+                                                                    <li><a href="<?php echo e(url('/single_registration')); ?>">Registrar canciones</a></li>
+                                                                    <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <?php if($mod->name == 'Productora'): ?>
                                                                             <li>
-                                                                                <a href="{{ url('/showArtist') }}">
+                                                                                <a href="<?php echo e(url('/showArtist')); ?>">
                                                                                         Listar artistas
                                                                                 </a>
                                                                             </li>
-                                                                        @elseif($mod->name == 'Artista')
-                                                                            @if(count(App\music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                                        <?php elseif($mod->name == 'Artista'): ?>
+                                                                            <?php if(count(App\music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0): ?>
                                                                                 <!-- Validar que las frases quepan en el espacio mostrado -->
                                                                                 <li>
-                                                                                    <a href="{{ url('/artist_form') }}">
+                                                                                    <a href="<?php echo e(url('/artist_form')); ?>">
                                                                                             Registrar grupo o solista
                                                                                     </a>
                                                                                 </li>
                                                                                 <!-- Validar que las frases quepan en el espacio mostrado -->
-                                                                            @else
+                                                                            <?php else: ?>
                                                                                 <li>
-                                                                                    <a href="{{ url('/modify_artist') }}">
+                                                                                    <a href="<?php echo e(url('/modify_artist')); ?>">
                                                                                         Artista
                                                                                     </a>
                                                                                 </li>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                    <li><a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}">Mi música</a></li>
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    <li><a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>">Mi música</a></li>
                                                                     <li><div class="divider"></div></li>
                                                                 </ul>
                                                                 </div>
                                                                 </li>
                                                             </ul>
                                                             </li><!--End musica -->
-                                                        @endif
-                                                        {{--peliculas--}}
-                                                        @if($mod->name =='Peliculas')
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if($mod->name =='Peliculas'): ?>
                                                             <li><!--Peliculas -->
                                                                  <ul class= "collapsible collapsible-accordion" >
                                                                     <li>
@@ -189,17 +189,17 @@
                                                                 
                                                                         <div class="collapsible-body">
                                                                             <ul>
-                                                                                <li><a href="{{ url('/movies/create') }}">Registrar película</a></li>
-                                                                                <li><a href="{{ url('/movies') }}">Películas registradas</a></li>
+                                                                                <li><a href="<?php echo e(url('/movies/create')); ?>">Registrar película</a></li>
+                                                                                <li><a href="<?php echo e(url('/movies')); ?>">Películas registradas</a></li>
                                                                                 <li><div class="divider"></div></li>
                                                                             </ul>
                                                                         </div>
                                                                  </li>
                                                                 </ul>
                                                             </li><!-- End Peliculas -->
-                                                        @endif
-                                                        {{--revistas--}}
-                                                        @if($mod->name == 'Revistas')
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if($mod->name == 'Revistas'): ?>
                                                             <li> <!-- REvistas -->
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
@@ -208,18 +208,18 @@
 
                                                                  <div class="collapsible-body">
                                                                         <ul>
-                                                                            <li><a href="{{ url('/megazine_form') }}">Registrar revista</a></li>
-                                                                            <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
-                                                                            <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                                            <li><a href="<?php echo e(url('/megazine_form')); ?>">Registrar revista</a></li>
+                                                                            <li><a href="<?php echo e(url('/type')); ?>">Cadena de publicaciones</a></li>
+                                                                            <li><a href="<?php echo e(url('/my_megazine',Auth::guard('web_seller')->user()->id)); ?>">Mis revistas</a></li>
                                                                             <li><div class="divider"></div></li>
                                                                         </ul>
                                                                 </div>
                                                                 </li>
                                                                 </ul>
                                                             </li><!-- End Revistas -->
-                                                        @endif
-                                                        {{--series--}}
-                                                        @if($mod->name == 'Series')
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if($mod->name == 'Series'): ?>
                                                             <li><!-- Series-->
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
@@ -228,8 +228,8 @@
 
                                                                 <div class="collapsible-body">
                                                                  <ul>
-                                                                    <li><a href="{{ url('/series/create') }}">Registrar serie</a></li>
-                                                                    <li><a href="{{ url('/series') }}">Series registradas</a></li>
+                                                                    <li><a href="<?php echo e(url('/series/create')); ?>">Registrar serie</a></li>
+                                                                    <li><a href="<?php echo e(url('/series')); ?>">Series registradas</a></li>
                                                                     <li><div class="divider"></div></li>
 
                                                                 </ul>
@@ -237,9 +237,9 @@
                                                                 </li>
                                                                 </ul>
                                                             </li><!-- End Series -->
-                                                        @endif
-                                                        {{--libros--}}
-                                                        @if($mod->name == 'Libros')
+                                                        <?php endif; ?>
+                                                        
+                                                        <?php if($mod->name == 'Libros'): ?>
                                                             <li><!-- Libros-->
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
@@ -248,38 +248,38 @@
 
                                                                 <div class="collapsible-body">
                                                                 <ul>
-                                                                    <li><a href="{{ url('/tbook/create') }}">Registrar libro</a></li>
-                                                                    <li><a href="{{ url('/tbook') }}">Libros registrados</a></li>
-                                                                    @foreach($modulos as $mod)
-                                                                        @if($mod->name == 'Editorial')
+                                                                    <li><a href="<?php echo e(url('/tbook/create')); ?>">Registrar libro</a></li>
+                                                                    <li><a href="<?php echo e(url('/tbook')); ?>">Libros registrados</a></li>
+                                                                    <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <?php if($mod->name == 'Editorial'): ?>
                                                                             <li>
-                                                                                <a href="{{ url('/authors_books') }}">Listar autores</a>
+                                                                                <a href="<?php echo e(url('/authors_books')); ?>">Listar autores</a>
                                                                             </li>
-                                                                        @elseif($mod->name == 'Escritor')
-                                                                            @if(count(App\BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0)
+                                                                        <?php elseif($mod->name == 'Escritor'): ?>
+                                                                            <?php if(count(App\BookAuthor::where('seller_id',Auth::guard('web_seller')->user()->id)->get())==0): ?>
                                                                                 <li>
-                                                                                    <a href="{{ url('/authors_books/create') }}">Registrar autor</a>
+                                                                                    <a href="<?php echo e(url('/authors_books/create')); ?>">Registrar autor</a>
                                                                                 </li>
-                                                                            @else
+                                                                            <?php else: ?>
                                                                                 <li>
-                                                                                    @php
+                                                                                    <?php 
                                                                                         $id = App\BookAuthor::where('seller_id',\Auth::guard('web_seller')->user()->id)->get()
-                                                                                    @endphp
-                                                                                    <a href="{{ route('authors_books.edit',$id[0]) }}">Modificar autor</a>
+                                                                                     ?>
+                                                                                    <a href="<?php echo e(route('authors_books.edit',$id[0])); ?>">Modificar autor</a>
                                                                                 </li>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     <li><div class="divider"></div></li>
                                                                 </ul>
                                                                 </div>
                                                                 </li>
                                                                 </ul>
                                                             </li><!-- End Libros -->
-                                                        @endif
+                                                        <?php endif; ?>
 
-                                                        {{--radios--}}
-                                                        @if($mod->name == 'Radios')
+                                                        
+                                                        <?php if($mod->name == 'Radios'): ?>
                                                             <li><!-- Radios -->
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
@@ -288,8 +288,8 @@
 
                                                                         <div class="collapsible-body">
                                                                             <ul class="sub">
-                                                                                <li><a href="{{ url('/radios') }}">Registro de radios</a></li>
-                                                                                <li><a href="{{ url('/radios/create') }}">Registrar radio</a></li>
+                                                                                <li><a href="<?php echo e(url('/radios')); ?>">Registro de radios</a></li>
+                                                                                <li><a href="<?php echo e(url('/radios/create')); ?>">Registrar radio</a></li>
                                                                                 <li><div class="divider"></div></li>
 
                                                                             </ul>
@@ -297,10 +297,10 @@
                                                                   </li>
                                                                   </ul>
                                                             </li><!-- End Radios -->
-                                                        @endif
-                                                        {{--Tvs--}}
+                                                        <?php endif; ?>
+                                                        
 
-                                                        @if($mod->name == 'TV')
+                                                        <?php if($mod->name == 'TV'): ?>
                                                             <li ><!--Tv  -->
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
@@ -309,29 +309,29 @@
 
                                                                  <div class="collapsible-body">
                                                                 <ul>
-                                                                    <li><a href="{{ url('/tvs') }}">Registro de TV's</a></li>
-                                                                    <li><a href="{{ url('/tvs/create') }}">Registrar TV's</a></li>
+                                                                    <li><a href="<?php echo e(url('/tvs')); ?>">Registro de TV's</a></li>
+                                                                    <li><a href="<?php echo e(url('/tvs/create')); ?>">Registrar TV's</a></li>
                                                                     <li><div class="divider"></div></li>
                                                                 </ul>
                                                                   </div>
                                                                   </li>
                                                                   </ul>
                                                             </li><!--End Tv  -->
-                                                        @endif
-                                                    @endforeach
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul><!--END ul todos los contenidos -->
                                     </div><!-- Body ul contenidos -->
                                 </li><!--li interno contenidos -->
                             </ul><!--End  externo collapsible -->
                         </li> <!--End li contenido GENERAL-->
-                    @endif
+                    <?php endif; ?>
 
 
 
 <!-- //////////////////////////////////////////////////////////// END  contenidos ////////////////////////////////////////-->
 
-                                {{--Cuenta en proceso de Pre-Aprobación--}}
-            @elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado')
+                                
+            <?php elseif(Auth::guard('web_seller')->user()->estatus ==='Pre-Aprobado'): ?>
 
                             <li>
                                 <ul class= "collapsible collapsible-accordion" >
@@ -349,8 +349,8 @@
                                 </ul>
                             </li>
 
-                                {{--Cuenta en proceso de revision--}}
-            @elseif(Auth::guard('web_seller')->user()->estatus === 'En Proceso')
+                                
+            <?php elseif(Auth::guard('web_seller')->user()->estatus === 'En Proceso'): ?>
 
                             <li>
                                 <ul class= "collapsible collapsible-accordion" >
@@ -367,8 +367,8 @@
                                 </ul>
                             </li>
 
-                                {{--Cuenta con estatus de Rechazado--}}
-            @else(Auth::guard('web_seller')->user()->estatus === 'Rechazado')
+                                
+            <?php else: ?>
 
                             <li>
                                 <ul class= "collapsible collapsible-accordion" >
@@ -385,22 +385,24 @@
                                 </ul>
                             </li>
 
-                            @endif
+                            <?php endif; ?>
                          <!--    <li>
-                                <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="<?php echo e(url('/seller_logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <span>
                                                 <i class="glyphicon glyphicon-off"></i>
                                                 Salir
                                             </span>
                                 </a>
-                                <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
+                                <form id="logout-form" action="<?php echo e(url('/seller_logout')); ?>" method="POST" style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
                                 </form>
                             </li> -->
                             <li>
-                                <a href="{{ url('/seller_logout') }}" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
-                                <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
+                                <a href="<?php echo e(url('/seller_logout')); ?>" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
+                                <form id="logout-form" action="<?php echo e(url('/seller_logout')); ?>" method="POST" style="display: none;">
+                                    <?php echo e(csrf_field()); ?>
+
                                 </form>
                             </li>
 
@@ -417,7 +419,7 @@
                 <section id="main-content" class="section section-daily-stats center">
 
                     <div class="row">
-                       @yield('content')  
+                       <?php echo $__env->yieldContent('content'); ?>  
                     </div>
 
                 </section>
@@ -441,8 +443,8 @@
                 </div>
                     <br>
                     <blockquote class="center">
-                    <h5 class="grey-text"><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
-                    <h5><a href="{{url('SellerBalance')}}" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
+                    <h5 class="grey-text"><b>Total de tickets disponibles:</b> <?php echo e(Auth::guard('web_seller')->user()->credito); ?></h5>
+                    <h5><a href="<?php echo e(url('SellerBalance')); ?>" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
                     </blockquote>
                 </div>
                 <div class="modal-footer">
@@ -455,13 +457,13 @@
 
 
             <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
-            <script src="{{asset('assets/js/jquery.js') }}"></script>
+            <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
             <!--Import jQuery before materialize.js-->
-            <script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
-            <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
+            <script src="<?php echo e(asset('plugins/materialize_adm/js/materialize.js')); ?>"></script>
+            <script src="<?php echo e(asset('plugins/materialize_adm/js/init.js')); ?>"></script>
 
 
-            @yield('js')
+            <?php echo $__env->yieldContent('js'); ?>
 
 
        </body><!-- End body -->

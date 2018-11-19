@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
@@ -163,84 +162,88 @@
     }
     
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
     <!-- Main content -->
-        @if (count($errors)>0)
+        <?php if(count($errors)>0): ?>
             <div class="col s6 col-md-offset-3">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <ul>
-                        @foreach($errors->all() as $error)
-                            <li> {{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li> <?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
             </div>
-        @endif
+        <?php endif; ?>
 
         <div class="row">
             <div class="col s12 m12">
-                @include('flash::message')
+                <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 <div class="card-panel curva">
                     <h3 class="center">
                         Registrar libro 
                     </h3>
                     <br>
                     <!-- form start -->
-                    {!! Form::open(['route'=>'tbook.store', 'method'=>'POST','files' => 'true', 'id'=>'libro']) !!}
-                    {{ Form::token() }}
+                    <?php echo Form::open(['route'=>'tbook.store', 'method'=>'POST','files' => 'true', 'id'=>'libro']); ?>
+
+                    <?php echo e(Form::token()); ?>
+
                     
 
                         <div class="col s12 m6">
-                            {{--Imagen--}}
+                            
                             <div id="mensajeFotoLibro"></div>
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col m1">
                                 <label for="image-upload" id="image-label"> Portada del Libro </label>
-                                {!! Form::file('cover',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <?php echo Form::file('cover',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <div id="list"></div>
                             </div>
                         </div>
                         <br>
                         <div class="col s12 m6">
-                            {{--Selecion el autor--}}
-                            @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
-                                @if($mod->name == 'Editorial')
-                                    @if(count($author)!=0)
+                            
+                            <?php $__currentLoopData = App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($mod->name == 'Editorial'): ?>
+                                    <?php if(count($author)!=0): ?>
                                     <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                        {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        <?php echo Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                         <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                                        <a class="btn btn-success" href="{{url('authors_books/create')}}">
+                                        <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
                                         </a>
                                     </div>
                                         <br><br>
-                                    @else
+                                    <?php else: ?>
                                         <label id="faltaRegistro" style="color: red;"> 
                                             Usted aun no tiene registros de datos de autores de libros, por favor agregue dichos datos primero
                                         </label>
                                         <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                            <a class="btn btn-success" href="{{url('authors_books/create')}}">
+                                            <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
                                             
                                             Agregar autor
                                             </a>
                                         </div>
                                         <br><br>
-                                    @endif
-                                @elseif($mod->name == 'Escritor')
-                                    @if(count($author)!=0)
+                                    <?php endif; ?>
+                                <?php elseif($mod->name == 'Escritor'): ?>
+                                    <?php if(count($author)!=0): ?>
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text valign-wrapper" >face</i>
                                         
-                                        {!! Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!} 
+                                        <?php echo Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?> 
                                         <label for="exampleInputFile" class="">Nombre de autor</label>  
                                         <br>
                                     </div>
-                                    @else
+                                    <?php else: ?>
                                         
                                             <label id="faltaRegistro" style="color: red;"> 
                                                 Usted aun no tiene registros de sus datos como autor de libros, por favor agregue dichos datos primero
@@ -248,39 +251,42 @@
                                         
                                         <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                            <a class="btn btn-success" href="{{url('authors_books/create')}}" style="">
+                                            <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>" style="">
                                                 <i class="fa fa-user"></i>
                                                 Agregar autor
                                             </a>
                                         </div>
                                         <br><br>
-                                    @endif
-                                @endif
-                            @endforeach
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                            {{--titulo del libro--}}
+                            
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
                                 <label for="autocomplete-input" class="">Título</label>
-                                {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <?php echo Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <div id="mensajeTitulo"></div>
                                 <br>
                             </div>
 
-                            {{--titulo original del libro--}}
+                            
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i> 
                                 <label for="exampleInputFile" class="control-label">Título original</label>
-                                {!! Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <?php echo Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                  <div id="mensajeTitulOriginal"></div>
                                 <br>
                             </div>
 
-                            {{--precio--}}
+                            
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">local_play</i>
                                 <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','oninput'=>"maxLengthCheck(this)"]) !!}
+                                <?php echo Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','oninput'=>"maxLengthCheck(this)"]); ?>
+
                                 <div id="mensajePrecio"></div>
                                 <br>
                             </div>
@@ -291,9 +297,10 @@
                             <div class="col s12 m6">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                                    {{--seleccion de rating--}}
                                     
-                                    {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    
+                                    <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                     <label for="exampleInputFile" class="control-label">Categoría</label>
                                 </div>
                             </div>
@@ -301,15 +308,15 @@
 
                             <div class="col s12 m6">
                                 <div class="input-field col s12">
-                                    {{--Categoria--}}
+                                    
                                     <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                                     
                                         <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
-                                            @foreach($tags as $genders)
-                                                @if($genders->type_tags=='Peliculas')
-                                                    <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
-                                                @endif
-                                            @endforeach
+                                            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($genders->type_tags=='Peliculas'): ?>
+                                                    <option value="<?php echo e($genders->id); ?>"><?php echo e($genders->tags_name); ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="tags">Géneros</label>
                                     <button type="button" class="btn btn-primary modal-trigger" href="#modalgenero">
@@ -324,13 +331,14 @@
                             <div class="col s12 m6">
 
                                 <div class="file-field input-field">
-                                    {{--archivo del libro--}}
+                                    
                                     <label for="exampleInputFile" class="control-label">Cargar el Libro</label>
                                     <br><br>
                                         <div id="mensajeDocumento"></div>
                                         <div class="btn blue">
                                             <span><i class="material-icons">picture_as_pdf</i></span>
-                                            {!! Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'Cargar libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']) !!}
+                                            <?php echo Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'Cargar libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']); ?>
+
                                             <div id="mensajeLibro"></div>
                                         </div>
                                         <div class="file-path-wrapper">
@@ -343,7 +351,7 @@
                             <div class="col s12 m6">
                                 <br><br>
                                 <div class="input-field col s12">
-                                    {{--selecione el pais--}}
+                                    
                                     <i class="material-icons prefix blue-text valign-wrapper">room</i>
                                     <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
                                         <option value="AF">Afganistán</option>
@@ -590,22 +598,24 @@
                             <div class="col s12 m6">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                                    {{--sinopsis del libro--}}
+                                    
                                     <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
-                                    {!! Form::textarea('sinopsis',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                                    <?php echo Form::textarea('sinopsis',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
+
                                     <div id="mensajeSinopsis"></div>
                                     <br>
                                 </div>
                             </div>
                             <div class="col s12 m6">
                                  <div class="input-field col s12">
-                                    {{--año de lanzamiento--}}
+                                    
                                     <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
                                     <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
                                     <div id="mensajeFechaLanzamiento"></div>
-                                    {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                     <div id="mensajeFechaLanzamiento"></div>
                                 </div>
                             </div>
@@ -616,7 +626,7 @@
 
                          <div class="col s12 m12">
 
-                            {{--tiene saga--}}
+                            
                             <label class="control-label" style="left: 50%"> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="">
@@ -637,9 +647,10 @@
 
                             <div style="display:none" id="if_si" class="">
                                 <div class="input-field col s12">
-                                {{--saga del libro--}}
+                                
                                 <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control','placeholder'=>'Selecione saga del libro','id'=>'sagas']) !!}
+                                <?php echo Form::select('saga_id',$saga,null,['class'=>'form-control','placeholder'=>'Selecione saga del libro','id'=>'sagas']); ?>
+
                                 <label for="sagas" class="control-label">Saga del libro</label>
                                 <a class="btn  modal-trigger"  href="#modal-defaultMS">
                                     <i class="fa fa-book"></i>
@@ -648,18 +659,20 @@
                                 <br><br>
                             </div>
                                 <div class="input-field col s6">
-                                    {{--capitulo que se le antepone--}}
+                                    
                                     <i class="material-icons prefix blue-text valign-wrapper">remove</i>
                                     <label for="antes" class="control-label">Antes</label>
-                                    {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                    <?php echo Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']); ?>
+
                                     <br>
                                 </div>
                                 <div class="input-field col s6">
-                                    {{--capitulo que le sigue--}}
+                                    
                                     
                                     <i class="material-icons prefix blue-text valign-wrapper">add</i>
                                     <label for="despues" class="control-label">Despúes</label>
-                                    {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
+                                    <?php echo Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']); ?>
+
                                 </div>
                             <br>
                         </div>
@@ -670,10 +683,12 @@
                 <div class="percent">0%</div >
             </div>
             <div class="text-center">
-                {!! Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']) !!}
+                <?php echo Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']); ?>
+
             </div>
         </div>
-        {!! Form::close() !!}
+        <?php echo Form::close(); ?>
+
     </div>
 </div>
 
@@ -692,63 +707,68 @@
                         <h1 class="modal-title text-center">Agregar autor</h1>
                     </div>
                     <div class="modal-body ">
-                        {!! Form::open(['route'=>'authors_books.register', 'method'=>'POST','files' => 'true' ]) !!}
-                        {{ Form::token() }}
+                        <?php echo Form::open(['route'=>'authors_books.register', 'method'=>'POST','files' => 'true' ]); ?>
+
+                        <?php echo e(Form::token()); ?>
+
                         <div class="box-body">
                             <div class="col-md-6">
 
-                                {{--Imagen--}}
+                                
                                 <div id="mensajeFotoAutor"></div>
                                 <div id="imageAM-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                                     <label for="image-upload" id="image-autor"> Foto del autor </label>
-                                    {!! Form::file('photo',['class'=>'form-control-file','control-label','accept'=>'image/*','id'=>'imageAM-upload','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                                    <?php echo Form::file('photo',['class'=>'form-control-file','control-label','accept'=>'image/*','id'=>'imageAM-upload','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']); ?>
+
                                     <div id="fotoAutor"></div>
                                 </div>
                             </div>
 
                             <div class="form-group col-sm-6">
-                                {{--nombre del autor--}}
+                                
                                 <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
-                                {!! Form::text('full_name',null,['class'=>'form-control','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <?php echo Form::text('full_name',null,['class'=>'form-control','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <br>
 
-                                {{--correo o email del autor--}}
+                                
                                 <label for="exampleInputEmail1">Correo electrónico</label>
-                                {!! Form::email('email_c',null,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
+                                <?php echo Form::email('email_c',null,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 <br>
 
-                                {{--inicio de la agrupacion--}}
-                                {{--link de google+--}}
+                                
+                                
                                 <label for="Redes Sociales" class="control-label">Redes sociales</label>
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-google-plus-square"></i></span>
-                                    {!! Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <?php echo Form::text('google',null,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 </div>
-                                {{--link de instagram--}}
+                                
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                    {!! Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <?php echo Form::text('instagram',null,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 </div>
-                                {{--link de facebook--}}
+                                
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                                    {!! Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <?php echo Form::text('facebook',null,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                                 </div>
 
-                                {{--link de twitter--}}
-                                {{--
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                    {!! Form::text('twitter',null,['class'=>'form-control','placeholder'=>'Twitter','id'=>'twitter', 'pattern'=>'http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Twitter valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                                </div>
-                                --}}
+                                
+                                
                             </div>
-                            {{--final de la agrupacion--}}
+                            
 
                         </div>
                         <div align="center">
-                            {!! Form::submit('Agregar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!}
-                            {!! Form::close() !!}
+                            <?php echo Form::submit('Agregar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']); ?>
+
+                            <?php echo Form::close(); ?>
+
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -774,56 +794,65 @@
         <br>
         <div class="col s12">
             <div id="" class="col s12 center">
-                {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
-                {{ Form::token() }}
+                <?php echo Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]); ?>
+
+                <?php echo e(Form::token()); ?>
+
                 <div class="row">
                     <div class="col s6">
-                        {{--Imagen--}}
+                        
                         <div id="mensajeFotoSaga"></div>
                         <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                             <label for="image-upload" id="image-label"> Imagen de la saga</label>
-                            {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                            <?php echo Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']); ?>
+
                             <div id="fotoSaga"></div>
                         </div>
                     </div>
 
                     <div class="col s6">
                         <div class="input-field col s12">
-                            {{--seleccion de rating--}}
+                            
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']); ?>
+
                             <label for="exampleInputFile" class="control-label">Categoría</label>
                             <br>
                         </div>
 
-                        {{--Nombre de la saga--}}
+                        
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text">create</i>
                             <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
+                            <?php echo Form::text('sag_name',null,['class'=>'form-control','required'=>'required']); ?>
+
                             <br>
                         </div>
 
-                        {{--tipo de saga--}}
+                        
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text  valign-wrapper">star</i>
                             
-                            {!! Form::select('type_saga',['1'=>'Libros'],null,
-                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <?php echo Form::select('type_saga',['1'=>'Libros'],null,
+                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']); ?>
+
                             <label for="exampleInputFile" class="control-label">Tipo de saga</label>
                             <br>
                         </div>
-                        {{--Descripcion de  la saga--}}
+                        
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text  valign-wrapper">create</i>
                             <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                            {!! Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <?php echo Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']); ?>
+
                         </div>
                     </div>
                     <br>
                      <div align="center">
-                            {!! Form::submit('Agregar saga', ['class' => 'btn btn-primary','id'=>'guardarSaga']) !!}
-                            {!! Form::close() !!}
+                            <?php echo Form::submit('Agregar saga', ['class' => 'btn btn-primary','id'=>'guardarSaga']); ?>
+
+                            <?php echo Form::close(); ?>
+
                         </div>
                 </div>
             </div>
@@ -842,11 +871,13 @@
         </div>
         <br>
        
-                {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
-                {{ Form::token() }}
+                <?php echo Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]); ?>
+
+                <?php echo e(Form::token()); ?>
+
                 <div class="row">
                     <div class="col s12">
-                        <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id}}" id="seller_id">
+                        <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>" id="seller_id">
                         <input type="hidden" name="type_tags" value="Libros" id="type_tags">
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
@@ -868,8 +899,8 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
     </div>
 </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
 <script type="text/javascript">
            // Tabs
@@ -919,7 +950,7 @@
             var seller_id = $('#seller_id').val();
   
                                 $.ajax({
-                                url: "{{ url('/AddTags') }}",
+                                url: "<?php echo e(url('/AddTags')); ?>",
                                 type: 'POST',
                                 data: {
                                         _token: $('input[name=_token]').val(),
@@ -1091,7 +1122,7 @@ function maxLengthCheck(object) {
         complete: function(xhr) {
             status.html(xhr.responseText);
             // alert('Uploaded Successfully');
-            window.location.href = "{{URL::to('tbook')}}"
+            window.location.href = "<?php echo e(URL::to('tbook')); ?>"
 
         }
     });
@@ -1371,4 +1402,5 @@ function maxLengthCheck(object) {
             return patron.test(te);
         }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
