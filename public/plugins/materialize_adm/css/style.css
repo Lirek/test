@@ -20,10 +20,9 @@ body {
     flex-direction: column;
 }
 
-
-/*-------------------
-End Layout Style CSS
---------------------*/
+/*
+* End Layout Style CSS
+*/
 
  
 /* ----------------------------
@@ -91,11 +90,64 @@ nav .nav-wrapper {
     background-color: #bbdefb;
 }
 
+/* ----------------------------
+ * End
+ * ----------------------------
+ */
+
 /*Modal */
 .modal .modal-content {
     padding: 0px;
 }
-/*Modal */
+/* End Modal */
+
+/*
+* Tab
+*/
+
+.tabs .tab a{
+    color:#29b6f6;
+}
+.tabs .tab a.active {
+    border-bottom: 2px solid #29b6f6
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: transparent;
+    color: #00ACC1;
+}
+
+.tabs .tab a.active {
+    background-color: transparent;
+    color: #29b6f6;
+}
+
+.tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #29b6f6;
+    will-change: left, right;
+}
+
+.tabs .tab a {
+    color: #29b6f6;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0 24px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-transition: color .28s ease, background-color .28s ease;
+    transition: color .28s ease, background-color .28s ease;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgba(29, 157, 238, 0.2);
+    outline: none;
+}
+/*End Tab */
 
 
 /*Pantallas mayores de 400px and menores 992px*/
