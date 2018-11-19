@@ -334,7 +334,7 @@
                                 </i></a>
                         </div>
                         <div class="card-content break-word">
-                            <p>{{$r->email_c}}</p>
+                            <p>{{$r->name_r}}</p>
                         </div>
                     </div>
                 </div>
@@ -362,7 +362,7 @@
                                 </i></a>
                         </div>
                         <div class="card-content break-word">
-                            <p>{{$tvs->email_c}}</p>
+                            <p>{{$tvs->name_c}}</p>
                         </div>
                     </div>
                 </div>
