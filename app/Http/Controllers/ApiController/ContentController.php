@@ -21,6 +21,8 @@ use App\Transformers\BooksTransformer;
 use App\Transformers\MegazinesTransformer;
 use App\Transformers\RadioTransformer;
 use App\Transformers\TvTransformer;
+use App\Transformers\MovieTransformer;
+use App\Transformers\EpisodeTransformer;
 
 use App\Events\TvTraceEvent;
 use App\Events\RadioTraceEvent;
@@ -43,6 +45,15 @@ use App\Tv;
 use App\music_authors;
 use App\Movie;
 use App\Series;
+use App\RadiosTrace;
+use App\TvTrace;
+use App\MoviesTrace;
+use App\MegazineTrace;
+use App\BooksTrace;
+use App\SongsTrace;
+use App\EpisodeTrace;
+use App\Episode;
+use App\AlbumsTrace;
 
 class ContentController extends Controller
 {
@@ -363,4 +374,148 @@ class ContentController extends Controller
         return Response::json(['status'=>'OK'], 200);
     }
 //-----------------------------------------------------------------------------------------
+//-------------------------RUTAS DE CONTENIDO DESTACADO--------------------------------
+    public function contenidoDestacado() {
+      $contenidoDestacado = [];
+      $radios = RadiosTrace::all()->groupBy('radio_id');
+      if (!$radios->isEmpty()) {
+        foreach($radios as $key => $source) {
+          $radio[$key] = $source->count();
+        }
+        $idRadioDestacada = array_search(max($radio), $radio);
+        $radioDestacada = Radio::find($idRadioDestacada);
+        $radioDestacadaR = [
+          'id' => $radioDestacada->id,
+          'nombre' => $radioDestacada->name_r,
+          'portada' => $radioDestacada->logo,
+          'tipoContenido' => "Radio"
+        ];
+        array_push($contenidoDestacado, $radioDestacadaR);
+      }
+
+      $tvs = TvTrace::all()->groupBy('tv_id');
+      if (!$tvs->isEmpty()) {
+        foreach ($tvs as $key => $source) {
+          $tv[$key] = $source->count();
+        }
+        $idTvDestacada = array_search(max($tv), $tv);
+        $tvDestacada = Tv::find($idTvDestacada);
+        $tvDestacadaR = [
+          'id' => $tvDestacada->id,
+          'nombre' => $tvDestacada->name_r,
+          'portada' => $tvDestacada->logo,
+          'tipoContenido' => "TV"
+        ];
+        array_push($contenidoDestacado, $tvDestacadaR);
+      }
+
+      $libros = BooksTrace::all()->groupBy('books_id');
+      if (!$libros->isEmpty()) {
+        foreach ($libros as $key => $source) {
+          $libro[$key] = $source->count();
+        }
+        $idLibroDestacado = array_search(max($libro), $libro);
+        $libroDestacado = Book::find($idLibroDestacado);
+        $libroDestacadoR = [
+          'id' => $libroDestacado->id,
+          'nombre' => $libroDestacado->title,
+          'portada' => $libroDestacado->cover,
+          'tipoContenido' => "Libro"
+        ];
+        array_push($contenidoDestacado, $libroDestacadoR);
+      }
+
+      $revistaDestacadaR = "";
+      $revista = MegazineTrace::all()->groupBy('megazine_id');
+      if (!$revista->isEmpty()) {
+        foreach ($revista as $key => $source) {
+          $revista[$key] = $source->count();
+        }
+        $idRevistaDestacada = array_search(max($revista), $revista);
+        $revistaDestacada = Megazine::find($idRevistaDestacada);
+        $revistaDestacadaR = [
+          'id' => $revistaDestacada->id,
+          'nombre' => $revistaDestacada->title,
+          'portada' => $revistaDestacada->cover,
+          'tipoContenido' => "Revista"
+        ];
+        array_push($contenidoDestacado, $revistaDestacadaR);
+      }
+
+      $peliculaDestacadaR = "";
+      $pelicula = MoviesTrace::all()->groupBy('movies_id');
+      if (!$pelicula->isEmpty()) {
+        foreach ($pelicula as $key => $source) {
+          $pelicula[$key] = $source->count();
+        }
+        $idPeliculaDestacada = array_search(max($pelicula), $pelicula);
+        $peliculaDestacada = Movie::find($idPeliculaDestacada);
+        $peliculaDestacadaR = [
+          'id' => $peliculaDestacada->id,
+          'nombre' => $peliculaDestacada->title,
+          'portada' => $peliculaDestacada->img_poster,
+          'tipoContenido' => "Película"
+        ];
+        array_push($contenidoDestacado, $peliculaDestacadaR);
+      }
+
+      $cancionDestacadaR = "";
+      $cancion = SongsTrace::all()->groupBy('songs_id');
+      if (!$cancion->isEmpty()) {
+        foreach ($cancion as $key => $source) {
+          $cancion[$key] = $source->count();
+        }
+        $idCancionDestacada = array_search(max($cancion), $cancion);
+        $cancionDestacada = Songs::find($idCancionDestacada);
+        $cancionDestacadaR = [
+          'id' => $cancionDestacada->id,
+          'nombre' => $cancionDestacada->song_name,
+          'portada' => "",
+          'tipoContenido' => "Canción"
+        ];
+        array_push($contenidoDestacado, $cancionDestacadaR);
+      }
+
+      $episodioDestacadoR = "";
+      $episodio = EpisodeTrace::all()->groupBy('episodes_id');
+      if (!$episodio->isEmpty()) {
+        foreach ($episodio as $key => $source) {
+          $episodio[$key] = $source->count();
+        }
+        $idEpisodioDestacado = array_search(max($episodio), $episodio);
+        $episodioDestacado = Episode::find($idEpisodioDestacado);
+        $episodioDestacadoR = [
+          'id' => $episodioDestacado->id,
+          'nombre' => $episodioDestacado->episode_name,
+          'portada' => "",
+          'tipoContenido' => "Episodio"
+        ];
+        array_push($contenidoDestacado, $episodioDestacadoR);
+      }
+
+      $albumDestacadoR = "";
+      $album = AlbumsTrace::all()->groupBy('albums_id');
+      if (!$album->isEmpty()) {
+        foreach ($album as $key => $source) {
+          $album[$key] = $source->count();
+        }
+        $idAlbumDestacado = array_search(max($album), $album);
+        $albumDestacado = Albums::find($idAlbumDestacado);
+        $albumDestacadoR = [
+          'id' => $albumDestacado->id,
+          'nombre' => $albumDestacado->name_alb,
+          'portada' => $albumDestacado->cover,
+          'tipoContenido' => "Álbum"
+        ];
+        array_push($contenidoDestacado, $albumDestacadoR);
+      
+}
+      if (count($contenidoDestacado)==0) {
+        $contenidoDestacado = ['status'=>'No hay contenido destacado',204];
+      }
+
+      return Response::json($contenidoDestacado);
+
+    }
+//-------------------------RUTAS DE CONTENIDO DESTACADO--------------------------------
 }
