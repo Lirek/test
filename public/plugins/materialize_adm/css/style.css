@@ -1,0 +1,130 @@
+/**
+ * Layout Style CSS
+ */
+
+header, footer{
+  padding-left: 300px;
+
+}
+
+main {
+  padding-left: 320px;
+  padding-right: 15px;
+}
+
+
+/*-------------------
+End Layout Style CSS
+--------------------*/
+
+ 
+/* ----------------------------
+ * Navbar
+ * ----------------------------
+ */
+
+nav .nav-wrapper {
+    padding-right: 315px; 
+    position: relative;
+    height: 100%;
+}
+
+/*justification of the header and li*/
+.sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
+  padding: 0px 35px 0px 35px;
+}
+
+.sidenav .collapsible-body li a, .sidenav.fixed .collapsible-body li a {
+  padding: 0px 55px 0px 55px;
+}
+/* End justification of the header and li*/
+
+.logo-adjust{
+    margin-left: 25px;
+    margin-top: 2px;
+}
+
+.img-logo{
+    margin-top: 10px;
+    width: 120px;
+    height: auto;
+}
+
+.img-contenidos{
+  padding-top: 8px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+
+    width: 70px;
+    height: auto;
+}
+
+.img-perfil{
+    width: 40px;
+    height: auto;
+}
+
+/*color efecto menu navbar*/
+.waves-effect.waves-blue .waves-ripple {
+   /* The alpha value allows the text and background color
+   of the button to still show through. */
+    background-color: #bbdefb;
+}
+
+
+
+/*Pantallas mayores de 400px and menores 992px*/
+@media only screen and (max-width : 992px){
+  header, main, footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+      .img-contenidos{
+       padding: 15px 0px 0px 0px;
+       width: 44px;
+       height: auto;
+      }
+
+       nav .nav-wrapper {
+            padding-right: 5px;
+            position: relative;
+            height: 100%;
+        }
+}
+
+/*Modal */
+.modal .modal-content {
+    padding: 0px;
+}
+/*Modal */
+
+
+/*Pantallas menores de 400px*/
+@media only screen and (max-width : 400px){
+        nav .nav-wrapper {
+         padding-right: 5px;
+         position: relative;
+         height: 100%;
+        }
+
+        .img-contenidos{
+        padding: 18px 0px 0px 0px;
+        width: 35px;
+        height: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -156,7 +156,7 @@
                 response: function (settings) {
                     var email = settings.data.email, //original del archivo no cambiar
                         emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
-                        // emails = mys;
+                    // emails = mys;
                     this.responseText = "true";
                     if ($.inArray(email, emails) !== -1) {
                         this.responseText = "false";
