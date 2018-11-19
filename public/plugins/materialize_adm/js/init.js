@@ -6,6 +6,7 @@ $(document).ready(function(){
         $('.modal').modal();
         $('.collapsible').collapsible();
         $('.dropdown-trigger').dropdown();
+        $('.tabs').tabs();
     });
 
 })(jQuery); // end of jQuery name space
