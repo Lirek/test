@@ -1,34 +1,45 @@
 @extends('seller.layouts')
 @section('content')
-    <style>
-        #panel {
-            /*Para la Sombra*/
-            -webkit-box-shadow: 8px 8px 15px #999;
-            -moz-box-shadow: 8px 8px 15px #999;
-            filter: shadow(color=#999999, direction=135, strength=8);
-            /*Para la Sombra*/
-            background-image: url("{{asset('plugins/img/estatica.jpg')}}");
-            background-position: center center;
-            width: 100%;
-            min-height: 350px;
-            min-width: 100%;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+<style type="text/css">
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 98%;
+  }
+}
+
+h5.breadcrumbs-header {
+  font-size: 1.64rem;
+  line-height: 1.804rem;
+  margin: 1.5rem 0 0 0;
+}
+
+#work-collections .collection-header {
+  font-size: 2.0rem;
+  font-weight: 500;
+}
+
+#profile-card .card-image {
+  height: 150px;
+}
+#profile-card .card-content p {
+  font-size: 1.2rem;
+  margin: 10px 0 12px 0;
+}
+
+#profile-card .btn-move-up {
+  position: relative;
+  top: -60px;
+  right: -18px;
+  margin-right: 10px !important;
+}
+
 
         #image-preview {
-            width: 300px;
-            height: 350px;
-            position: relative;
-            overflow: hidden;
-            padding-top: 10px;
-            padding-left: 55px;
+            width: 70px;
+            height: 70px;
+            padding-top: 0px;
+            padding-left: 0px;
         }
 
         #image-preview input {
@@ -40,7 +51,6 @@
         }
 
         #image-preview label {
-            position: absolute;
             z-index: 5;
             opacity: 0.8;
             cursor: pointer;
@@ -50,10 +60,6 @@
             font-size: 15px;
             line-height: 50px;
             text-transform: uppercase;
-            top: 70;
-            left: 0;
-            right: 0;
-            bottom: 0;
             margin: auto;
             text-align: center;
         }
@@ -61,91 +67,90 @@
             width: 100%;
         }
 
-    </style>
-
+</style>
+            <!-- START CONTENT -->
     <div class="row">
-        <div class="form-group">
-            <div class="row-edit">
-                <h4><i class="fa fa-angle-right"></i> Modificar Perfil</h4>
-                <div class="col-md-12 col-sm-12 mb">
-                    <div class="form-group">
-                        {!! Form::open(['route'=>['sellers.update',$seller],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
-                        {{ Form::token() }}
 
+      <div class="col s4">
+        <!-- Promo Content 1 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 2 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 3 goes here -->
+      </div>
 
-
-
-                        {{--LOGO--}}
-                        <div class="row">
-                            <div class="group-input">
-                                <div class="box box-widget widget-user-1">
-                                    <div class="col-md-6">
-                                        <div id="image-preview" class="form-group btn pull-left col-md-1">
-                                            {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                            {!! Form::hidden('img_posterOld',$seller->logo)!!}
-                                            <div id="list">
-                                                @if ($seller->logo)
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
-                                                @else
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="panel" class="img-rounded img-responsive"></div>
-                                    <br>
-                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label">
-                                        <div id="mensajeImgPerf"></div>
-                                        Haga click sobre la imagen de perfil para cambiarla
-                                    </label>
+    </div>
+    <!--inicio contenido-->
+    {!! Form::open(['route'=>['sellers.update',$seller],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
+    {{ Form::token() }}
+    <div class="container">
+        <div id="work-collections">
+            <div class="row">
+                <div class="col s12">
+                    <div id="profile-card" class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" alt="user background">
+                        </div>
+                        <div class="card-content">
+                            <div id="image-preview" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
+                                {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
+                                {!! Form::hidden('img_posterOld',$seller->logo)!!}
+                                <div id="list">
+                                    @if ($seller->logo)
+                                        <img style="width:70px; height:70px; " class="img-rounded" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
+                                    @else
+                                        <img width="70" height="70" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                    @endif
                                 </div>
                             </div>
+                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right" style="margin-top: 18px">
+                            </a>
+                            <p><i class="mdi-action-perm-identity cyan-text text-darken-2" style="padding: 0px 5%"></i>
+                            {{Auth::guard('web_seller')->user()->name}}
+                            <i class=" mdi-action-perm-identity cyan-text text-darken-2" style="padding: 0px 5%"></i>{{Auth::guard('web_seller')->user()->email}}
+                            <i class=" mdi-action-perm-phone-msg cyan-text text-darken-2" style="padding: 0px 5%"></i>{{Auth::guard('web_seller')->user()->ruc_s}}
+                            </p>
                         </div>
+                    </div>
+                </div>
 
-                        {{--Nombre--}}
-                        <div class="form-group ">
-                            <div class="col-md-4  control-label">
-                                {!! Form::label('name','Nombre',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6  control-label">
-                                <div id="mensajeMaximoNombre"></div>
+                <div class="col s12 m12">
+                    <ul id="projects-collection" class="collection">
+                        <li class="collection-item avatar">
+                            <i class="mdi-file-folder circle light-blue darken-2"></i>
+                            <span class="collection-header center">datos a editar</span>
+                        </li>
+                            <!--nombre-->
+                            <div class="input-field col s12 ">
+                                <i class="material-icons prefix blue-text">face</i>
                                 {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
                                 <div id="mensajeNombre"></div>
+                                <label for="name">Nombre</label>
                             </div>
-                        </div>
-
-                        {{--Correo--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('email','Correo',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
+                            <!--email-->
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text">email</i>
                                 {!! Form::text('email',$seller->email,['class'=>'form-control','readonly']) !!}
+                                <label  for="email">Correo</label>
                             </div>
-                        </div>
-
-                        {{--RUC--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('ruc_s','Registro único de contribuyente',['class'=>'control-label']) !!}
-                            </div>
-
-                            <div class="col-md-6 control-label">
+                            <!--RUC-->
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text">assignment_ind</i>
                                 @if($seller->estatus == 'Aprobado')
                                     {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','readonly']) !!}
                                 @else
                                     {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                     <div id="mensajeRuc"></div>
                                 @endif
+                                <label  for="ruc">(RUC) Registro único de contribuyente</label>
                             </div>
-                        </div>
-
-                        {{--Imagen ruc--}}
-
-                        <div class="form-group ">
+                            
+                            <!-- imagen de RUC-->
+                            <div class="form-group ">
                             <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Foto del Registro único de contribuyente',['class'=>'control-label']) !!}
+                                {!! Form::label('documento','Foto del Registro único de contribuyente (RUC)',['class'=>'control-label']) !!}
                             </div>
                             <div  class="col-md-4">
                                 @if ($seller->adj_ruc)
@@ -161,44 +166,52 @@
                             </div>
                         </div>
 
-                        {{--Direccion--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('direccion','Dirección',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
+                            <!--direccion-->
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text">navigation</i>
                                 {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion', 'required'=>'required']) !!}
                                 <div id="mensajeMaximoDireccion"></div>
+                                <label  for="ruc">Dirección</label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-4 control-label">
-                                <label  for="phone">Telefono de Contacto</label>
-                            </div>
-                            <div class="col-md-6 control-label">
+                            <!--telefono-->
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text">local_phone</i>
                                 <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
                                 <input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">
                                 <div id="mensajePhone"></div>
+                                <label  for="ruc">Telefono</label>
                             </div>
-                        </div>
-
-                        {{--Boton--}}
-                        <div class="form-group text-center">
+                        <div class="input-field col s12">
                             {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
                         </div>
-
-
-                        {!! Form::close() !!}
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    
 
-@endsection
+    <!-- chartist -->
+    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
+
+    <!-- chartjs -->
+    <script type="text/javascript" src="js/plugins/chartjs/chart.min.js"></script>
+    <script type="text/javascript" src="js/plugins/chartjs/chart-script.js"></script>
+
+    <!-- sparkline -->
+    <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="js/plugins/sparkline/sparkline-script.js"></script>
+    
+    <!-- google map api -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
 
 
-@section('js')
 <script type="text/javascript">
     $("#nombre").change(function(){
         var nombre = $("#nombre").val().trim();
@@ -537,6 +550,4 @@
         // Validar formato de imagen de perfil y del documento
         //---------------------------------------------------------------------------------------------------
     </script>
-
-
 @endsection

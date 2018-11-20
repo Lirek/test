@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <!--Let browser know website is optimized for mobile-->
         <meta charset="utf-8" />
@@ -10,39 +15,32 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         <title>{{ config('app.name', 'Leipel') }}</title>
 
-
-        <!--Old layouts Css-->
         <!--external css-->
         <!--<link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />-->
         <!--<link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">-->
         <!--<link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />-->
+
         <!-- Custom styles for this template -->
         <!--<link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">-->
         <!-- <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">-->
+
         <!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
+
         <!--NUMERO-->
          <!--<link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">-->
+
             <!--<style type="text/css">
             .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+
             @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
                 .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+
             }
-            </style>-->
+        </style>-->
 
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!--Import Chart https://www.chartjs.org/docs/latest/getting-started/-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
-        <!--Import materialize.css-->
-        <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         @yield('css')
 
-
-
-
+        <!--<script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>-->
     </head>
 
     <body>
@@ -415,7 +413,7 @@
                             </li>
 
                             @endif
-                            <!--  <li>
+                         <!--    <li>
                                 <a href="{{ url('/seller_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <span>
                                                 <i class="glyphicon glyphicon-off"></i>
@@ -425,7 +423,7 @@
                                 <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </li>-->
+                            </li> -->
                             <li>
                                 <a href="{{ url('/seller_logout') }}" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
                                 <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
@@ -482,35 +480,40 @@
 
 
 
-            <!-- NEW Js Material-->
-            <!--Import jQuery-->
+
+            <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
             <script src="{{asset('assets/js/jquery.js') }}"></script>
             <!--Import jQuery before materialize.js-->
             <script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
             <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
-            <!-- End Js Material-->
 
 
-            <!-- OLD Layouts-->
-            <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-            <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+
+            {{--<script src="{{asset('assets/js/jquery.js') }}"></script>--}}
             {{--<script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>--}}
-            {{--<script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>--}}
-            {{--<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>--}}
-            {{--<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>--}}
+            <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+            <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+            <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+            <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+
+
             <!--common script for all pages-->
-            {{-- <script src="{{asset('assets/js/common-scripts.js')}}"></script>--}}
-            {{--<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>--}}
-            {{--<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>--}}
-            {{--script for this page-->
-            {{--<script src="{{asset('assets/js/sparkline-chart.js')}}"></script>--}}
+            <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+
+            <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
+            <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+
+            <!--script for this page-->
+            <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>
             {{--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> --}}
             <!--telefono-->
-            {{--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>--}}
-            {{--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>--}}
-            {{--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--}}
+            <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
+            <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
 
-            {{--<script type="text/javascript">
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+            <script type="text/javascript">
                 $(document).ready(function() {
                     if ((screen.width <= 768)) {
                         //alert('Resolucion: 1024x768 o mayor');
@@ -522,9 +525,8 @@
                     }
 
                 });
-            </script>--}}
-
-            {{--<script type="text/javascript">
+            </script>
+            <script type="text/javascript">
                 $(window).resize(function() {
                     console.log($(window).width());
                     if ($(window).width() <= 768)
@@ -538,11 +540,11 @@
                         $('#nav-accordion').css('display','block');
                     }
                 });
-            </script>--}}
-          <!--End OLD Layouts-->
-@yield('js')
+            </script>
+
+            @yield('js')
 
 
 
-</body><!-- End body -->
+       </body><!-- End body -->
 </html>
