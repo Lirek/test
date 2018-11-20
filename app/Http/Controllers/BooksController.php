@@ -17,7 +17,7 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->get();
+        $books = Book::orderBy('id', 'DESC')->paginate(9);
         $books->each(function ($books) {
             $books->author;
             $books->seller;

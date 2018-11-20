@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -364,7 +370,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -402,6 +407,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -455,7 +461,8 @@
       <workItem from="1541947823049" duration="18617000" />
       <workItem from="1542025570059" duration="3675000" />
       <workItem from="1542040512625" duration="190000" />
-      <workItem from="1542329632685" duration="252000" />
+      <workItem from="1542329632685" duration="546000" />
+      <workItem from="1542726372089" duration="2013000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -478,11 +485,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541770171107</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Cambios en el registro y modificacion de libros">
+      <created>1542329929178</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1542329929178</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="399445000" />
+    <option name="totallyTimeSpent" value="401752000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -503,7 +517,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16111952" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1633888" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

@@ -198,7 +198,7 @@
                                 <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                                     Si no selecciona una portada, se mantendrá la actual
                                 </label>
-                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col m1">
+                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="">
                                     <label for="image-upload" id="image-label"> Portada del Libro </label>
                                         {!! Form::file('cover',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
                                     <div id="list">
@@ -669,18 +669,16 @@
                             </div>
                             
                             <input type="hidden" id="saga" value="{{$book->saga_id}}">
-                            <div class="col m12 s12">
+                            <div class="">
                                 {{--tiene saga--}}
-                                <label class="control-label"> ¿Pertenece a una saga? </label>
+                                <label> ¿Pertenece a una saga? </label>
                                 <br>
                                 <div class="radio-inline">
-                                    <label class="control-label" for="option-1">
+                                    <label class="" for="option-1">
                                         <input type="radio" id="option-1" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
                                         <span class="mdl-radio__label">Si</span>
                                     </label>
-                                </div>
-
-                                <div class="radio-inline">
+                                
                                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
                                         <input type="radio" id="option-2" class="mdl-radio__button with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
                                         <span class="mdl-radio__label">No</span>

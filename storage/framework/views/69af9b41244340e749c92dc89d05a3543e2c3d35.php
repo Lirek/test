@@ -1,150 +1,90 @@
 <?php $__env->startSection('css'); ?>
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
+ <style>
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    .card
+    {
+    height:430px;
+    }
+    
+</style>
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                <!-- box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Libros registrados</h3>
+<div class="row">
+    <div class="col s12 m12">
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="card-panel curva">
+            <h3 class="center">
+                Libros registrados 
+            </h3>
+            <div class="row">
+                <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if(Auth::guard('web_seller')->user()->id === $b->seller_id): ?>
+                <div class="col s12 m3">
+                  <div class="card">
+                    <div class="card-image">
+                        <a href="<?php echo e(route('tbook.show', $b->id)); ?>">
+                      <img src="<?php echo e(asset('/images/bookcover')); ?>/<?php echo e($b->cover); ?>" width="100%" height="300px">
+                      </a>
+                      <!-- <span class="card-title">Card Title</span> -->
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="<?php echo e(route('tbook.edit', $b->id)); ?>"><i class="material-icons">create</i></a>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Portada</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center" width="80">Generos</th>
-                                <th class="text-center">Año de lanzamiento</th>
-                                <th class="text-center">Estatus</th>
-                                <th class="text-center">N° de compras</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if(Auth::guard('web_seller')->user()->id === $b->seller_id): ?>
-                                    <tr>
-                                        <td class="text-center"> <?php echo e($b->title); ?> </td>
-                                        <td class="text-center">
-                                            <a href="<?php echo e(route('tbook.show', $b->id)); ?>">
-                                                <img class="img-rounded img-responsive text-center" src="<?php echo e(asset('/images/bookcover')); ?>/<?php echo e($b->cover); ?>" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
-                                            </a>
-                                        </td>
-                                        <td class="text-center"> <?php echo e($b->rating->r_name); ?> </td>
-                                        <td class="text-center">
-                                            <?php 
-                                                $tags = $b->tags_book;
-                                             ?>
-                                            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <?php echo e($t->tags_name); ?>
-
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </td>
-                                        <td class="text-center"> <?php echo e($b->release_year); ?> </td>
-                                        
-                                        <td class="text-center"> <?php echo e($b->status); ?> </td>
-                                        <td class="text-center"> <?php echo e($b->transaction->count()); ?> </td>
-                                        <td class="text-center ">
-                                            <a href="<?php echo e(route('tbook.show', $b->id)); ?>"
-                                               class="btn btn-info btn-xs">
-                                                <span class="fa fa-eye" aria-hidden="true"></span>
-                                            </a>
-                                            <a href="<?php echo e(route('tbook.edit', $b->id)); ?>"
-                                               class="btn btn-warning btn-xs">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </a>
-                                            <!-- <a href="<?php echo e(route('tbook.destroy',$b->id)); ?>"
-                                               onclick="return confirm('¿Desea eliminar el libro <?php echo e($b->title); ?>?')" class="btn btn-danger btn-xs ">
-                                                <span class="glyphicon glyphicon-remove"></span>
-                                            </a> -->
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Portada</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center" width="80">Generos</th>
-                                <th class="text-center">Año de lanzamiento</th>
-                                <th class="text-center">Estatus</th>
-                                <th class="text-center">N° de compras</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                    <div class="card-content">
+                        <div class="col m12">
+                            <p class=""><?php echo e($b->title); ?></p>
+                        </div>
+                        <div class="col m12 ">
+                            <small><b>Estatus:</b> <?php echo e($b->status); ?></small>
+                        </div>
+                        
+                            <small><b>N° de compras</b> <?php echo e($b->transaction->count()); ?></small>
+                        
                     </div>
-                    <!-- /.box-body -->
+                  </div>
                 </div>
-                <!-- /.box -->
+                <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+            <?php echo e($book->links()); ?>
+
+            <a href="<?php echo e(route('tbook.create')); ?>" class="btn curvaBoton waves-effect waves-light green">   
+                <span>Agregar más libros</span>
+            </a>       
         </div>
-        <div class="col-md-offset-9">
-            <a href="<?php echo e(route('tbook.create')); ?>" class="btn btn-info">
-                <b class="box-header with-border bg bg-black-gradient">
-                    <div class="box-title">
-                        <i class="fa fa-book"></i>
-                        <span>
-                            Agregar más libros
-                        </span>
-                    </div>
-                </b>
-            </a>
-        </div>
-    </section>
+    </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-    <!--DataTables-->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <script>
-        $(function () {
-            $('#example1').DataTable({
-                "language": {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
-            });
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
-        })
-    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
