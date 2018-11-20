@@ -98,6 +98,11 @@
     .break-word {
         word-break: break-all;
     }
+
+    element.style {
+        height: 600px; !important;
+    }
+
 </style>
 
 
@@ -189,19 +194,25 @@
 
 <!-- SLIDER  -->
 
-<div class="slider ">
+<div class="slider">
     <ul class="slides">
         <li>
-            <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="520px;"> <!-- random image -->
-            <div class="caption left-align">
-                <h2><b>Leipel</b></h2>
+            <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="100%"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h2 ><b>Red social <br>de entretenimiento</b></h2>
             </div>
         </li>
         <li>
-            <img src="{{ asset('plugins/materialize_index/img/slaider2.jpeg') }}" width="100%;" height="520px;"> <!-- random image -->
+            <img src="{{ asset('plugins/materialize_index/img/gana_viajes.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption right-align break-word">
+                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+            </div>
         </li>
         <li>
-            <img src="{{  asset('plugins/materialize_index/img/slaider3.jpeg') }}" width="100%;" height="520px;"> <!-- random image -->
+            <img src="{{  asset('plugins/materialize_index/img/amigos_con_cola.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+            </div>
         </li>
     </ul>
 </div>

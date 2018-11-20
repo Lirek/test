@@ -2,11 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcdd298a-d046-40c5-9ec6-f8e7c9c3166e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/book/book_La verdad_1542634428.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/Tv/radiologo_1541526528.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1542634428.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1541771093.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1542119679.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444939.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444951.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444964.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444983.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444994.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541549232.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541549262.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/amigos_con_cola.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/gana_viajes.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/113/profile/userpicrafael1542209409.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/04bc07098543ed4dd571ff8488b2599e943a555c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0676efc4994fcc1fb740ac6107a44ea7d57b817b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0dcf7d0cfdb459b66c07b216284cc210b6690de8.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/16e2a722530e88b067ad85c9703e44beb2eaea0c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/16f048eebddbc3222ebae60bd0f6bdb16850d683.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/218f7dd3b373c36fa54d281e173568ff504117fe.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2717df695ec1d734e3f1463b2a6de9ee031cff5b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3533b32d1851ca587f80c8b6c956bebc3e6b1ae0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/37d53b975ce882058b196b843a342d133ed95043.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5bc57f1b325214822a0a064864a0b1b8ad2af815.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6084194a126f354316b176c9d12d7afa74448825.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/63fabce5d6fd4a9c9a4de58a2ca933f5f02f19ae.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6b32c02550c1c000856074ade63745270e5aeffd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/729e5f92a617279255a09f4469f99715c0781384.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/8c0b78579fdf25a0d68f8fcec22aaab0fd15396b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/8ef52a8c344cc348e5546117446aaeec3a330867.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/971e4880ed442f73aef3a08315d49b86cf2cd69b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/9b87bec5acae217941f85693a321270a7595e093.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a9a29935953647eefd9fede9c7dc61930267c37e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b510d6c7b8bc7b053b470aef00a13cf83359b669.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b57b72c6579980e2b3a1e84af6471da4cf01b1a0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b5d6613bec02a4eee6474bcb5bfc5404e5918562.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bb1899d9dff7ab8df0885b525d7e0594b3fd1d5f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bc3b023dee8a90de9580e913f8766f6925e7735e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c41749d6f36594cb290aafc5c55169ea2cb456eb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cb9f2007c4c9ac365506bcf00d8d77bb7f616c60.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cbbd28572058acbb9436fdf9e64a1b4a80a263f4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cbc852bb71f52cdd15e1c023ca07883c29d84caf.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ce76dcd37c2da1df3d0fe31ab5fc539639bb4be0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/db6a2e02701e33197bf78f5e055bb0a2ed2cf715.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/dbb04817f8c813633edb8f939cc30380b5308ab8.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e2399dd1904fa764cd8a9b58565a7d97a461db7b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e5ecde598b254c853bf1cc5dbefbc8ba2b102624.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e80d37f50c505700caa8cd4067819f34c59d9e1d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e92e960ca2311e7fbcc62e0cc3168b500bda4217.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/edd809186a1b8daac874623d4fd01e78af29db00.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f7686ed8642cca46ec515967774d7cff308b99ed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f9885d4db44bda692faffb981dd37f606e1cea1c.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/piñas.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/piñas.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/slaider2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/slaider3.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,13 +133,13 @@
           <entry key="css" value="79" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="4078" />
+          <entry key="php" value="4343" />
           <entry key="txt" value="273" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="4069" />
+          <entry key="Blade" value="4334" />
           <entry key="CSS" value="79" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="9" />
@@ -93,7 +148,7 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.1568" value="1" />
           <entry key="project.open.time.199" value="1" />
           <entry key="project.open.time.30" value="1" />
@@ -106,10 +161,13 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.57" value="1" />
+          <entry key="project.open.time.66" value="1" />
           <entry key="project.open.time.68" value="1" />
           <entry key="project.open.time.81" value="1" />
+          <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -122,15 +180,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="500">
               <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-              <folding>
-                <element signature="e#1304#1326#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -138,8 +193,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="364" column="35" lean-forward="true" selection-start-line="364" selection-start-column="35" selection-end-line="364" selection-end-column="35" />
+            <state relative-caret-position="225">
+              <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
             </state>
           </provider>
         </entry>
@@ -372,8 +427,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="1189" />
+    <option name="y" value="-27" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -391,6 +446,32 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="materialize_index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="materialize_index" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
@@ -479,6 +560,9 @@
       <workItem from="1542025570059" duration="3675000" />
       <workItem from="1542135089652" duration="920000" />
       <workItem from="1542202541023" duration="5147000" />
+      <workItem from="1542652368524" duration="217000" />
+      <workItem from="1542663053175" duration="3262000" />
+      <workItem from="1542729822283" duration="194000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -522,11 +606,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542294345520</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR">
+      <created>1542652549747</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542652549747</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="419281000" />
+    <option name="totallyTimeSpent" value="422954000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -538,10 +629,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22541603" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24838188" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -564,6 +654,30 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -854,16 +968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
           <caret line="36" lean-forward="true" selection-end-line="256" />
-          <folding>
-            <element signature="e#3050#3072#0#HTML" expanded="true" />
-            <element signature="e#3350#3373#0#HTML" expanded="true" />
-            <element signature="e#3523#3546#0#HTML" expanded="true" />
-            <element signature="e#3747#3804#0#HTML" expanded="true" />
-            <element signature="e#4079#4136#0#HTML" expanded="true" />
-            <element signature="e#4407#4464#0#HTML" expanded="true" />
-            <element signature="e#4739#4796#0#HTML" expanded="true" />
-            <element signature="e#6392#6418#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,27 +976,18 @@
         <state relative-caret-position="-2702" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/paso">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="129" column="32" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/paso" />
     <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="500">
           <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#1304#1326#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="364" column="35" lean-forward="true" selection-start-line="364" selection-start-column="35" selection-end-line="364" selection-end-column="35" />
+        <state relative-caret-position="225">
+          <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
         </state>
       </provider>
     </entry>
