@@ -6,7 +6,43 @@
         <!--Import materialize.css-->
         <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <style type="text/css">
+             div.error {
+      color: red;
+      padding: 0;
+      font-size: 0.9em;
+    }
 
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+        </style>
+        @yield('css')
         <!--Let browser know website is optimized for mobile-->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -82,12 +118,12 @@
                                             @endif
                                             @if($mod->name == 'Radios')
                                                 <li>
-                                                    <a href="#"  class="contentype-adjust"><b><img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
+                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-5.png')  }}">
                                                 </li>
                                             @endif
                                             @if($mod->name == 'TV')
                                                 <li>
-                                                    <a href="#"  class="contentype-adjust"><b><img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/tv.svg') }}"> </b></a>
+                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-3.png') }}">
                                                 </li>
                                             @endif
                                         @endforeach

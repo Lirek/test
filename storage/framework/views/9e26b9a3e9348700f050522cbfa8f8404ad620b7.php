@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
@@ -163,94 +162,98 @@
     }
     
     </style>
-@endsection
-@section('content')
-@if (count($errors)>0)
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php if(count($errors)>0): ?>
 <div class="col m6">
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <ul>
-            @foreach($errors->all() as $error)
-                <li> {{ $error }}</li>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li> <?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
 </div>
-@endif
+<?php endif; ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h3 class="center">
                 Modificar Cadena de Publicaciones
             </h3>
             <div class="row">
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update',$pub_type->id) }}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
+                <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type_update',$pub_type->id)); ?>" enctype="multipart/form-data">
+                        <?php echo e(csrf_field()); ?>
+
+                <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
                 <div class="input-fiel col m6 s12">
-                    {{--Imagen--}}
+                    
                     <div id="mensajeFotoLibro"></div>
                     <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
                         Si no selecciona una portada, se mantendrá la actual
                     </label>
                     <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
                         <label for="image-upload" id="image-label"> Portada del Libro </label>
-                            {!! Form::file('image',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::file('image',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <div id="list">
-                                <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($pub_type->img_saga)}}"/>
+                                <img style= "width:100%; height:100%; border-top:50%;" src="<?php echo e(asset($pub_type->img_saga)); ?>"/>
                             </div>
                     </div>
                 </div>
                 <div class="input-field col m6 s12">
                     <label for="art_name" class="">Titulo de la cadena de publicación</label>
-                    @if($pub_type->status != 'Aprobado')
-                        <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" required autofocus>
-                    @else
-                        <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" readonly>
-                    @endif       
+                    <?php if($pub_type->status != 'Aprobado'): ?>
+                        <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($pub_type->sag_name); ?>" required autofocus>
+                    <?php else: ?>
+                        <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($pub_type->sag_name); ?>" readonly>
+                    <?php endif; ?>       
                 </div>
                <!--  <div class="input-field col m6 s12">
                     <label for="tags"> 
                         Generos
                     </label> 
-                        @if($pub_type->status != 'Aprobado')
+                        <?php if($pub_type->status != 'Aprobado'): ?>
                         <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple">
-                            @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                                @if($s->id == $genders->id) 
+                            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                                <?php if($s->id == $genders->id): ?> 
                                 selected
-                                @endif 
-                                @endforeach >{{$genders->tags_name}}  
+                                <?php endif; ?> 
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
                             </option>                                                 
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
-                        @else
+                        <?php else: ?>
                           <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" disabled="true">
-                         @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                            @if($s->id == $genders->id) 
+                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                            <?php if($s->id == $genders->id): ?> 
                             selected
-                            @endif 
-                            @endforeach >{{$genders->tags_name}}  
+                            <?php endif; ?> 
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
                             </option>                                                 
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
-                        @endif 
+                        <?php endif; ?> 
                 </div> -->
                 <div class="input-field col s12 m6">
                     <label for="desc" class="">Descripción</label>
-                    <textarea name="dsc" required class="materialize-textarea" rows="3" cols="2">{{$pub_type->sag_description}}</textarea>
+                    <textarea name="dsc" required class="materialize-textarea" rows="3" cols="2"><?php echo e($pub_type->sag_description); ?></textarea>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                    {{--seleccion de rating--}}
+                    
                                         
-                    @if($pub_type->status != 'Aprobado')
-                        {!! Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                    @else
-                        {!! Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]) !!}
-                    @endif
+                    <?php if($pub_type->status != 'Aprobado'): ?>
+                        <?php echo Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+
+                    <?php else: ?>
+                        <?php echo Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]); ?>
+
+                    <?php endif; ?>
                     <label for="exampleInputFile" class="control-label">Categoría</label>
                 </div>
                 <button type="submit" class="btn curvaBoton waves-effect waves-light green">
@@ -262,8 +265,8 @@
     </div>
 </div>
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
            // Tabs
     var elem = $('.tabs')
@@ -368,4 +371,5 @@ function portada(evt) {
     }
     document.getElementById('image-upload').addEventListener('change', portada, false);
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

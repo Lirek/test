@@ -1,67 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bcdd298a-d046-40c5-9ec6-f8e7c9c3166e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/book/book_La verdad_1542634428.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/Tv/radiologo_1541526528.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1542634428.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1541771093.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1542119679.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444939.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444951.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444964.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444983.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541444994.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541549232.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1541549262.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/amigos_con_cola.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/gana_viajes.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/user/113/profile/userpicrafael1542209409.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/04bc07098543ed4dd571ff8488b2599e943a555c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0676efc4994fcc1fb740ac6107a44ea7d57b817b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0dcf7d0cfdb459b66c07b216284cc210b6690de8.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/16e2a722530e88b067ad85c9703e44beb2eaea0c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/16f048eebddbc3222ebae60bd0f6bdb16850d683.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/218f7dd3b373c36fa54d281e173568ff504117fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2717df695ec1d734e3f1463b2a6de9ee031cff5b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3533b32d1851ca587f80c8b6c956bebc3e6b1ae0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/37d53b975ce882058b196b843a342d133ed95043.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5bc57f1b325214822a0a064864a0b1b8ad2af815.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6084194a126f354316b176c9d12d7afa74448825.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/63fabce5d6fd4a9c9a4de58a2ca933f5f02f19ae.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6b32c02550c1c000856074ade63745270e5aeffd.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/729e5f92a617279255a09f4469f99715c0781384.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8c0b78579fdf25a0d68f8fcec22aaab0fd15396b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8ef52a8c344cc348e5546117446aaeec3a330867.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/971e4880ed442f73aef3a08315d49b86cf2cd69b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/9b87bec5acae217941f85693a321270a7595e093.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a9a29935953647eefd9fede9c7dc61930267c37e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b510d6c7b8bc7b053b470aef00a13cf83359b669.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b57b72c6579980e2b3a1e84af6471da4cf01b1a0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b5d6613bec02a4eee6474bcb5bfc5404e5918562.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bb1899d9dff7ab8df0885b525d7e0594b3fd1d5f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bc3b023dee8a90de9580e913f8766f6925e7735e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c41749d6f36594cb290aafc5c55169ea2cb456eb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cb9f2007c4c9ac365506bcf00d8d77bb7f616c60.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cbbd28572058acbb9436fdf9e64a1b4a80a263f4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cbc852bb71f52cdd15e1c023ca07883c29d84caf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ce76dcd37c2da1df3d0fe31ab5fc539639bb4be0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/db6a2e02701e33197bf78f5e055bb0a2ed2cf715.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/dbb04817f8c813633edb8f939cc30380b5308ab8.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e2399dd1904fa764cd8a9b58565a7d97a461db7b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e5ecde598b254c853bf1cc5dbefbc8ba2b102624.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e80d37f50c505700caa8cd4067819f34c59d9e1d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e92e960ca2311e7fbcc62e0cc3168b500bda4217.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/edd809186a1b8daac874623d4fd01e78af29db00.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/f7686ed8642cca46ec515967774d7cff308b99ed.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/f9885d4db44bda692faffb981dd37f606e1cea1c.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/piñas.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/materialize_index/img/piñas.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/slaider2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_index/img/slaider3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0b6fdb9e48bb2d9c6e4eb807059be8c5e6b3370f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/146d79dee6095c3e73fbfe5244935efda7539ad5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/16ad08fa7a1eb026aec31ce25fe8122947e9336a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1783c81c9e8e31509c150caca3dcf503c6c9830e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/21c815bd683159a9885d7f58c097a70c5abf0cce.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2671df9f5bce9b2b56de146bdb7cae6068c94c08.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/26b835d8a1d4a76b66cf64d2cf3881e8f998fdbc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/278857fe3f86b4b6fac34d6f31cbd6e733422fd6.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2c8a0377e4d48ad6fcbcb5de6f53ef73a710f17c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2d350113c78244df67e95d34a1fddf852b1a0d39.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2e7bf136ff5c6bd391a03c9eb5e2eca18c5fc7dd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3a6b16190892332018bf912dfab74b93d3f63a99.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3cf096d7b6b32b4ab89c91e20ed755dc85167b16.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/40d91ec1f31533a2c397f445a54b3a2c14c8271b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/59f76e7c8df6c2b985516d122a213dc53510ebfe.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/67b497535d72ff49580e9680e8d2ddfd16df4857.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6c9cda4518551a7432e67cf154d4c2b09c2e79fe.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6f95a3763be4649104869578b4adcaf49bdad66d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/75c97e6a2c6ef45db1ed99ef3de601d00c922ec7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/913078ab57ed4bd82f52348473f8f5a3abb1efdb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/94c2e4a418d4c536ece06eb8827557733ac5432f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/9e26b9a3e9348700f050522cbfa8f8404ad620b7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b003d08ad6a79ac1c9e184086f2f20823f7e47ec.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bb49fb08d8973dfaadc36534174dcd99599065f9.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/be97869d1ad59697bf2c887eef1cbfbb1713a82a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c2da9c734badf082141f5dbcdd682a904ab76d91.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cf684c32bfa1bb650876985e02c782d19f5734fb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2d93e3faa43bb577145f339eeb08f7eff834799.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/de0c25fdab60efc9c4b9ae5bafcdc16082715367.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ead00b149392a1ba39c7a0257cd07a210baef2cc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec77b0e6fc909e39b2437b0b7b33ababeffdb56d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ed32cc4da1d431f541fc3ea2c8a322defb248fc5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/edef2a61482ccd0558d0c4c7f571b71dec58ba4a.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -180,26 +173,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -432,46 +406,28 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="materialize_index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="materialize_index" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
@@ -490,17 +446,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="contents" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -617,7 +562,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422954000" />
+    <option name="totallyTimeSpent" value="423614000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -629,9 +574,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24838188" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25642964" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -703,7 +648,8 @@
     <MESSAGE value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="1- MEJORA INDEX" />
     <MESSAGE value="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR" />
-    <option name="LAST_COMMIT_MESSAGE" value="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR" />
+    <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">

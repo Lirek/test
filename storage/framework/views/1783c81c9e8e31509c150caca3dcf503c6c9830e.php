@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #image-preview {
@@ -163,82 +162,91 @@
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
     </style>
-@endsection
-@section('content')
-@if (count($errors)>0)
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php if(count($errors)>0): ?>
     <div class="col m6">
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <ul>
-                @foreach($errors->all() as $error)
-                    <li> {{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li> <?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
     </div>
-@endif
+<?php endif; ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h3 class="center">
                 Registrar autor 
             </h3>
             <br>
-                {!! Form::open(['route'=>'authors_books.store', 'method'=>'POST','files' => 'true' ]) !!}
-                {{ Form::token() }}
+                <?php echo Form::open(['route'=>'authors_books.store', 'method'=>'POST','files' => 'true' ]); ?>
+
+                <?php echo e(Form::token()); ?>
+
             <div class="row">
                 <div class="input-field col s12 m6">
-                    {{--Imagen--}}
+                    
                     <div id="mensajeFotoAutor"></div>
                     <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col m1">
                         <label for="image-upload" id="image-label"> Foto del Autor </label>
-                        {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <?php echo Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')"]); ?>
+
                         <div id="list"></div>
                     </div>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{--nombre del autor--}}
+                    
                     <i class="material-icons prefix blue-text">face</i>
                     <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
-                    {!! Form::text('full_name',null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('full_name',null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y apellido')",'oninput'=>"setCustomValidity('')"]); ?>
+
                     <br>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{--correo o email del autor--}}
+                    
                     <i class="material-icons prefix blue-text">email</i>
                     <label for="exampleInputEmail1">Correo electrónico</label>
-                    {!! Form::email('email_c',null,['class'=>'form-control','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
+                    <?php echo Form::email('email_c',null,['class'=>'form-control','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"]); ?>
+
                     <br>
                 </div>
                 
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-google-plus blue-text"></i>
                     <label for="google">Google +</label>
-                    {!! Form::text('google',null,['class'=>'form-control','id'=>'google', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('google',null,['class'=>'form-control','id'=>'google', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
-                {{--link de instagram--}}
+                
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-instagram blue-text"></i>
                     <label for="instagram">Instagram</label>
-                    {!! Form::text('instagram',null,['class'=>'form-control','id'=>'instagram', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('instagram',null,['class'=>'form-control','id'=>'instagram', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
-                {{--link de facebook--}}
+                
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-facebook blue-text"></i>
                     <label for="facebook">Facebook</label>
-                    {!! Form::text('facebook',null,['class'=>'form-control','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('facebook',null,['class'=>'form-control','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
             </div>
-             <!-- {!! Form::submit('Registrar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!} -->
+             <!-- <?php echo Form::submit('Registrar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']); ?> -->
              <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarAutor" >Registrar autor</button>
-             {!! Form::close() !!}
+             <?php echo Form::close(); ?>
+
         </div>
     </div>
 </div>
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
            // Tabs
     var elem = $('.tabs')
@@ -319,4 +327,5 @@
     // Foto del Autor
 //---------------------------------------------------------------------------------------------------
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

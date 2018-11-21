@@ -1,6 +1,4 @@
-@extends('seller.layouts')
-@section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
@@ -162,83 +160,83 @@
         border-bottom: 1px solid #29B6F6 !important;
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
+    
     </style>
-@endsection
-@section('content')
-@if (count($errors)>0)
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php if(count($errors)>0): ?>
     <div class="col m6">
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <ul>
-                @foreach($errors->all() as $error)
-                    <li> {{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li> <?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
     </div>
-@endif
+<?php endif; ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h3 class="center">
-                Registrar autor 
+                Registrar Cadena de Publicaciones
             </h3>
             <br>
-                {!! Form::open(['route'=>'authors_books.store', 'method'=>'POST','files' => 'true' ]) !!}
-                {{ Form::token() }}
-            <div class="row">
+            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type')); ?>" enctype="multipart/form-data">
+            <?php echo e(csrf_field()); ?>
+
+             <div class="row"> 
+                <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
                 <div class="input-field col s12 m6">
-                    {{--Imagen--}}
-                    <div id="mensajeFotoAutor"></div>
-                    <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col m1">
-                        <label for="image-upload" id="image-label"> Foto del Autor </label>
-                        {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                        <label for="image-upload" id="image-label"> Portada  </label>
+                            <?php echo Form::file('image',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]); ?>
+
                         <div id="list"></div>
                     </div>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{--nombre del autor--}}
-                    <i class="material-icons prefix blue-text">face</i>
-                    <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
-                    {!! Form::text('full_name',null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <i class="material-icons prefix blue-text">create</i> 
+                    <label for="art_name" class="col-md-4 control-label">Titulo De La Cadena de Publicación</label>
+                    <input id="titulo" type="text" class="" name="title" required autofocus>
+                    <div id="mensajeTitulo"></div>
+                </div>
+                <div class="input-field  col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                    <select name="tags[]" multiple="true"  class="">
+                        <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                            <option value="<?php echo e($genders->id); ?>"><?php echo e($genders->tags_name); ?></option> 
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                    <label for="tags"> 
+                        Generos
+                    </label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                    <label for="desc" class="col-md-4 control-label">Descripción</label>
+                    <textarea name="dsc" required id="sinopsis" class="materialize-textarea" rows="3" cols="2"></textarea>
+                    <div id="mensajeSinopsis"></div>
+                </div>
+                <div class="input-field col s12 m6">
+                    
+                    <i class="material-icons prefix blue-text valign-wrapper">star</i>
+                    <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+
+                    <label for="exampleInputFile" class="control-label">Categoría</label>
                     <br>
                 </div>
-                <div class="input-field col s12 m6">
-                    {{--correo o email del autor--}}
-                    <i class="material-icons prefix blue-text">email</i>
-                    <label for="exampleInputEmail1">Correo electrónico</label>
-                    {!! Form::email('email_c',null,['class'=>'form-control','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
-                    <br>
-                </div>
-                
-                <div class="input-field col s12 m6">
-                    <i class="prefix fa fa-google-plus blue-text"></i>
-                    <label for="google">Google +</label>
-                    {!! Form::text('google',null,['class'=>'form-control','id'=>'google', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                </div>
-                {{--link de instagram--}}
-                <div class="input-field col s12 m6">
-                    <i class="prefix fa fa-instagram blue-text"></i>
-                    <label for="instagram">Instagram</label>
-                    {!! Form::text('instagram',null,['class'=>'form-control','id'=>'instagram', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                </div>
-                {{--link de facebook--}}
-                <div class="input-field col s12 m6">
-                    <i class="prefix fa fa-facebook blue-text"></i>
-                    <label for="facebook">Facebook</label>
-                    {!! Form::text('facebook',null,['class'=>'form-control','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
-                </div>
+                <button type="submit" class="btn curvaBoton waves-effect waves-light green">
+                    Registrar
+                </button>
             </div>
-             <!-- {!! Form::submit('Registrar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!} -->
-             <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarAutor" >Registrar autor</button>
-             {!! Form::close() !!}
         </div>
     </div>
 </div>
-
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
            // Tabs
     var elem = $('.tabs')
@@ -278,10 +276,55 @@
 
        
     </script>
-    <script>
-//---------------------------------------------------------------------------------------------------
-    // Para la foto del Autor
-    function autor(evt) {
+<script type="text/javascript">
+   $("#titulo").change(function(){
+        var nombre = $("#titulo").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeTitulo').show();
+            $('#mensajeTitulo').text('El titulo no debe estar vacio');
+            $('#mensajeTitulo').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeTitulo').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+   $("#sinopsis").change(function(){
+        var nombre = $("#sinopsis").val().trim();
+        if (nombre.length < 1 ){
+            $('#mensajeSinopsis').show();
+            $('#mensajeSinopsis').text('La descripción no debe estar vacia');
+            $('#mensajeSinopsis').css('color','red');
+            $('#guardarRevista').attr('disabled',true);
+        }
+        else {
+            $('#mensajeSinopsis').hide();
+            $('#guardarRevista').attr('disabled',false);
+        
+        }
+    })
+</script>
+<script>
+
+ $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
+
+
+$(document).ready(function() {
+  $.uploadPreview({
+    input_field: "#image-upload",
+    preview_box: "#image-preview",
+    label_field: "#image-label"
+  });
+});
+</script>
+<script>
+
+function portada(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
             if (!f.type.match('image.*')) {
@@ -296,27 +339,7 @@
             reader.readAsDataURL(f);
         }
     }
-    document.getElementById('image-upload').addEventListener('change', autor, false);
-    // Para la foto del Autor
-//---------------------------------------------------------------------------------------------------
-    // Foto del Autor
-    $(document).ready(function(){
-        $('#image-upload').change(function(){
-            var tamaño = this.files[0].size;
-            var tamañoKb = parseInt(tamaño/1024);
-            // maximo 2048Kb
-            if (tamañoKb>2048) {
-                $('#mensajeFotoAutor').show();
-                $('#mensajeFotoAutor').text('La imagen es demasiado grande, el tamaño maximo permitido es de 2.048 KiloBytes');
-                $('#mensajeFotoAutor').css('color','red');
-                $('#guardarAutor').attr('disabled',true);
-            } else {
-                $('#mensajeFotoAutor').hide();
-                $('#guardarAutor').attr('disabled',false);
-            }
-        });
-    });
-    // Foto del Autor
-//---------------------------------------------------------------------------------------------------
-    </script>
-@endsection
+    document.getElementById('image-upload').addEventListener('change', portada, false);
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -17,13 +17,10 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'DESC')->get();
-        $books->each(function ($books) {
-            $books->author;
-            $books->seller;
-            $books->saga;
-            $books->rating;
-        });
+        $books = Book::where('seller_id',Auth::guard('web_seller')->user()->id)
+                        ->orderBy('id', 'DESC')
+                        ->paginate(8);
+        
         return view('seller.book.index')->with('book', $books);
     }
 

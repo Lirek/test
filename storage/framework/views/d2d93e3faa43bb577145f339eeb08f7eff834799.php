@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #image-preview {
@@ -163,125 +162,84 @@
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
     </style>
-@endsection
-@section('content')
-@if (count($errors)>0)
-    <div class="col m6">
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li> {{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
-@endif
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h3 class="center">
-                Registrar autor 
+                Editar datos de autor 
             </h3>
-            <br>
-                {!! Form::open(['route'=>'authors_books.store', 'method'=>'POST','files' => 'true' ]) !!}
-                {{ Form::token() }}
+            <?php echo Form::open(['route'=>['authors_books.update',$author], 'method'=>'PUT','files' => 'true' ]); ?>
+
+            <?php echo e(Form::token()); ?>
+
             <div class="row">
                 <div class="input-field col s12 m6">
-                    {{--Imagen--}}
-                    <div id="mensajeFotoAutor"></div>
-                    <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col m1">
-                        <label for="image-upload" id="image-label"> Foto del Autor </label>
-                        {!! Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'.jpg','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una foto del autor')",'oninput'=>"setCustomValidity('')"]) !!}
-                        <div id="list"></div>
+                        
+                        <div id="mensajeFotoLibro"></div>
+                        <label for="cargaPelicula" id="cargaPelicula" class="control-label" style="color: green;">
+                            Si no selecciona una foto, se mantendrá la actual
+                        </label>
+                    <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="">
+                            <label for="image-upload" id="image-label"> Foto del autor </label>
+                            <?php echo Form::file('photo',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','oninvalid'=>"this.setCustomValidity('Seleccione una Foto del Autor')",'oninput'=>"setCustomValidity('')"]); ?>
+
+                        <div id="list">
+                            <img style= "width:100%; height:100%; border-top:50%;" src="<?php echo e(asset('images/authorbook')); ?>/<?php echo e($author->photo); ?>"/>
+                        </div>
                     </div>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{--nombre del autor--}}
+                    
                     <i class="material-icons prefix blue-text">face</i>
                     <label for="exampleInputFile" class="control-label">Nombres y apellidos</label>
-                    {!! Form::text('full_name',null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un Nombre y apellido')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('full_name',$author->full_name,['class'=>'form-control autofocus','placeholder'=>'Nombre completo del autor','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un nombre y apellido')",'oninput'=>"setCustomValidity('')"]); ?>
+
                     <br>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{--correo o email del autor--}}
+                    
                     <i class="material-icons prefix blue-text">email</i>
                     <label for="exampleInputEmail1">Correo electrónico</label>
-                    {!! Form::email('email_c',null,['class'=>'form-control','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"])!!}
+                    <?php echo Form::email('email_c',$author->email_c,['class'=>'form-control','placeholder'=>'example@correo.com','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un correo electrónico')",'oninput'=>"setCustomValidity('')"]); ?>
+
                     <br>
                 </div>
-                
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-google-plus blue-text"></i>
                     <label for="google">Google +</label>
-                    {!! Form::text('google',null,['class'=>'form-control','id'=>'google', 'pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('google',$author->google,['class'=>'form-control','placeholder'=>'Google+','id'=>'exampleInputFile','pattern'=>'http(s)?:\/\/(www\.)?plus.google\.com\/u\/o\/([0-9_]','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Google+ valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
-                {{--link de instagram--}}
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-instagram blue-text"></i>
                     <label for="instagram">Instagram</label>
-                    {!! Form::text('instagram',null,['class'=>'form-control','id'=>'instagram', 'pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('instagram',$author->instagram,['class'=>'form-control','placeholder'=>'Instagram','id'=>'exampleInputFile','pattern'=>'https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Instagram valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
-                {{--link de facebook--}}
                 <div class="input-field col s12 m6">
                     <i class="prefix fa fa-facebook blue-text"></i>
                     <label for="facebook">Facebook</label>
-                    {!! Form::text('facebook',null,['class'=>'form-control','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]) !!}
+                    <?php echo Form::text('facebook',$author->facebook,['class'=>'form-control','placeholder'=>'Facebook','id'=>'facebook', 'pattern'=>'http(s)?:\/\/(www\.)?(facebook|fb)\.com\/[A-z . 0-9_]+\/?','oninvalid'=>"this.setCustomValidity('Ingrese una cuenta de Facebook valida')",'oninput'=>"setCustomValidity('')"]); ?>
+
                 </div>
             </div>
-             <!-- {!! Form::submit('Registrar autor', ['class' => 'btn btn-primary','id'=>'guardarAutor']) !!} -->
-             <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarAutor" >Registrar autor</button>
-             {!! Form::close() !!}
+            <!-- <?php echo Form::submit('Editar autor', ['class' => 'btn curvaBoton waves-effect waves-light green','id'=>'guardarCambios' ]); ?> -->
+            <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarCambios" >Editar autor</button>
+            <?php echo Form::close(); ?>
+
         </div>
     </div>
 </div>
 
-@endsection
-@section('js')
-<script type="text/javascript">
-           // Tabs
-    var elem = $('.tabs')
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    //or Without Jquery
-
-
-    //var elem = document.querySelector('.tabs');
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, options);
-    })
-    //Modal
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems, options);
-    });
-
-    // Or with jQuery
-    // Slider
-    $(document).ready(function(){
-        $('.tooltipped').tooltip();
-        $('.modal').modal();
-        $('select').formSelect();
-        $('.parallax').parallax();
-        $('.materialboxed').materialbox();
-        $('.slider').slider({
-            indicators: false
-        });
-    });
-
-
-       
-    </script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <script>
 //---------------------------------------------------------------------------------------------------
-    // Para la foto del Autor
-    function autor(evt) {
+// Para la Portada del Libro
+    function portada(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
             if (!f.type.match('image.*')) {
@@ -296,27 +254,37 @@
             reader.readAsDataURL(f);
         }
     }
-    document.getElementById('image-upload').addEventListener('change', autor, false);
-    // Para la foto del Autor
+    document.getElementById('image-upload').addEventListener('change', portada, false);
+// Para la Portada del Libro
 //---------------------------------------------------------------------------------------------------
-    // Foto del Autor
+// Para validar el tamaño maximo de las imagenes y del documento
+    // Foto del Libro
     $(document).ready(function(){
         $('#image-upload').change(function(){
             var tamaño = this.files[0].size;
             var tamañoKb = parseInt(tamaño/1024);
-            // maximo 2048Kb
             if (tamañoKb>2048) {
-                $('#mensajeFotoAutor').show();
-                $('#mensajeFotoAutor').text('La imagen es demasiado grande, el tamaño maximo permitido es de 2.048 KiloBytes');
-                $('#mensajeFotoAutor').css('color','red');
-                $('#guardarAutor').attr('disabled',true);
+                $('#mensajeFotoLibro').show();
+                $('#mensajeFotoLibro').text('La imagen es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                $('#mensajeFotoLibro').css('color','red');
+                $('#guardarCambios').attr('disabled',true);
             } else {
-                $('#mensajeFotoAutor').hide();
-                $('#guardarAutor').attr('disabled',false);
+                $('#mensajeFotoLibro').hide();
+                $('#guardarCambios').attr('disabled',false);
             }
         });
     });
-    // Foto del Autor
+    // Foto del Libro
 //---------------------------------------------------------------------------------------------------
+    /*
+        $(document).ready(function () {
+            $.uploadPreview({
+                input_field: "#image-upload",
+                preview_box: "#image-preview",
+                label_field: "#image-label"
+            });
+        });
+    */
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
