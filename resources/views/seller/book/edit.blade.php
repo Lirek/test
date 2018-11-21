@@ -188,6 +188,7 @@
                                 Editar libro
                             </h3>
                         <br>
+                        <div class="row">
                         <!-- /.box-header -->
                         <!-- form start -->
                         {!! Form::open(['route'=>['tbook.update',$book], 'method'=>'PUT','files' => 'true' ]) !!}
@@ -723,14 +724,13 @@
                                 <div align="">
                                     {!! Form::submit('Editar libro', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
                                 </div>
-                            </div>
-                          
-                        
+                            </div>    
                     {!! Form::close() !!}
-                @endif
-                
+                </div>
             </div>
-        </div>
+        @endif
+    </div>
+</div>
 @endsection
 
 @section('js')

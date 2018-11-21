@@ -33,9 +33,8 @@
         border-bottom: 1px solid #29B6F6 !important;
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
-    .card
-    {
-    height:430px;
+    .card{
+        height:430px;
     }
     
 </style>
@@ -69,8 +68,7 @@
                             <small><b>Estatus:</b> {{ $b->status }}</small>
                         </div>
                         
-                            <small><b>N° de compras</b> {{$b->transaction->count()}}</small>
-                        
+                            <small><b>N° de compras</b> {{$b->transaction->count()}}</small> 
                     </div>
                   </div>
                 </div>

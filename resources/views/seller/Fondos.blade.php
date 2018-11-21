@@ -1,7 +1,40 @@
 @extends('seller.layouts')
 @section('css')
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+ <style>
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    .card{
+        height:430px;
+    }
+    
+</style>
+<link rel="stylesheet" href="https://unpkg.com/angular2-data-table/release/material.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
 <style type="text/css">
             #image-preview {
@@ -39,59 +72,107 @@
             margin: auto;
             text-align: center;
         }
+        .gradient-45deg-light-blue-cyan.gradient-shadow {
+            box-shadow: 0 6px 20px 0 rgba(38, 198, 218, 0.5);
+        }
+        .gradient-45deg-light-blue-cyan {
+            background: #0288d1;
+            background: -webkit-linear-gradient(45deg, #0288d1 0%, #26c6da 100%);
+            background: linear-gradient(45deg, #0288d1 0%, #26c6da 100%);
+        }
+        .min-height-100 {
+            min-height: 100px !important;
+        }
+        .background-round {
+            background-color: rgba(0, 0, 0, 0.18);
+            padding: 15px;
+            border-radius: 50%;
+        }
+        .gradient-45deg-green-teal.gradient-shadow {
+            box-shadow: 0 6px 20px 0 rgba(77, 182, 172, 0.5);
+        } 
+        .gradient-45deg-green-teal {
+            background: #43A047;
+            background: -webkit-linear-gradient(45deg, #43A047 0%, #1de9b6 100%);
+            background: linear-gradient(45deg, #43A047 0%, #1de9b6 100%);
+        }  
+        .gradient-45deg-red-pink.gradient-shadow {
+            box-shadow: 0 6px 20px 0 rgba(244, 143, 177, 0.5);
+        }
+        .gradient-45deg-red-pink {
+            background: #FF5252;
+            background: -webkit-linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
+            background: linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
+        }
 </style>
 @endsection
 @section('content')
-<div class="row" style="margin-bottom: 0%">
-    <div class="form-group"> 
-        <div class="row-edit">
-            <div class="col-md-12 col-sm-12">
-                @include('flash::message')
-                <div class="col-sm-12 col-xs-12 col-md-12">
-                    <div class="text-center">
-                        <div class="col-sm-4">
-                            <h4><b>Tickets disponible:</b> {{Auth::guard('web_seller')->user()->credito}}</h4>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4><b>Tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h4>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4><b>Tickets Diferidos:</b> {{ $diferido}}</h4>
+<div class="row">
+    <div class="col s12 m12">
+        @include('flash::message')
+        <div class="card-panel curva">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
+                        <div class="padding-4" style="padding: 4%"> 
+                            <div class="col m4">
+                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
+                            </div>
+                            <div class="col m7">
+                                <h5 style="color: white"><b>Tickets disponible:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="control-label" style="margin-top: 5%">
-                    <div class="col-sm-12 col-xs-12 col-md-12">
-                        <div class="white-header">
-                             <h3><span class="card-title"><center><i class="fa fa-ticket"></i> <u>Solicitar retiro de fondos</u></center></span></h3><br>          
+                <div class="col s12 m4">
+                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
+                        <div class="padding-4" style="padding: 4%"> 
+                            <div class="col m4">
+                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">search</i>
+                            </div>
+                            <div class="col m7">
+                               <h5 style="color: white"><b>Tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="col-md-3 col-sm-3"></div>
-                            <div class="col-md-6 col-sm-6">
-                                
-                                <label for="codigo" class="col-md-7 col-sm-7 col-xs-12 control-label" style=" "><h4><b><center>Cantidad de tickets a retirar:</center></b></h4>
-                                </label>
-                                <div class="col-md-4 col-sm-4 col-xs-12" style=" margin-bottom: 5%">
-                                    <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
-                                    <div id="mensajeMonto"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                    <center><button type="submit" class="btn btn-primary" id="solicitar" data-toggle="modal" data-target="#myModalRequest">
-                                       Retirar
-                                    </button></center>
-                                </div>
-                            </div>
-                        </div>    
                     </div>
-                    <div class="col-sm-12 col-xs-12 col-md-12" style="margin-top: 5%">
-                        <div class="white-header">
-                             <h3><span class="card-title"><center><i class="fa fa-check"></i> <u>Mis solicitudes</u></center></span></h3><br>          
+                </div>
+                <div class="col s12 m4">
+                    <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 150px">
+                        <div class="padding-4" style="padding: 4%"> 
+                            <div class="col m4">
+                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">monetization_on</i>
+                            </div>
+                            <div class="col m7">
+                               <h5 style="color: white"><b>Tickets Diferidos</b> {{ $diferido}}</h5>
+                            </div>
                         </div>
-                         <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
-                            
-                            <table class="table table-striped table-advance table-hover" id="myTable">
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <br>
+                    <div class="card" style="height: 320px">
+                        <br>
+                         <h3><center>Solicitar retiro de fondos</center></h3>
+                         <br> 
+                         <div class="input-field col s12 m8 offset-m2">
+                            <i class="material-icons prefix blue-text valign-wrapper">local_activity</i>
+                            <label for="monto">Cantidad de tickets a retirar:</label>
+                            <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                            <div id="mensajeMonto"></div>
+
+                           
+                            <a href="#myModalRequest" class="btn curvaBoton waves-effect waves-light green modal-trigger" id="solicitar"> Retirar </a>
+                         </div>   
+                    </div>
+                </div> 
+                <div class="col s12 m6">
+                    <br>
+                    <div class="">
+                        <br>
+                        <h5><center><i class="fa fa-check"></i>Mis solicitudes</center></h5><br>
+                        <div class="col s12 m12">
+                            <div class="">
+                            <table class="table-responsive" id="myTable" >
                                 <thead>
                                     <tr>
                                         <th><i class="fa fa-calendar" style="color: #23B5E6"></i> Fecha</th>
@@ -111,94 +192,127 @@
                                                 <td>{{$Payments->status}}</td>
                                             </tr>
                                         @endif
-                                        <!--MODAL Fatura-->
-                                        <div id="myModal-{{$Payments->id}}" class="modal fade" role="dialog">                                     
-                                             <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                                  <div class="modal-content">
-                                                      <div class="modal-header">
-                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                          <h4 class="modal-title">Factura </h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <center>
-                                                          <img src="{{asset($Payments->factura)}}" class="img-rounded img-responsive av" style="width:100%;height:100%;" alt="User Avatar" id="cover">
-                                                        </center>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                                        </div>
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
-                         </div>
-                    </div>
+                        </div>
+                        </div>
+                    </div>  
                 </div>
             </div>
         </div>
     </div>
 </div>
-   <!--MODAL-->
-<div id="myModalRequest" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-  <!-- Modal content-->
+
+<!-- /.modal  de Fondos  -->
+<div id="myModalRequest" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <center><h4 class="modal-title"><i class="fa fa-ticket"></i> Datos para facturación por cobro de tickets</h4></center>
-      </div>
-      <div class="modal-body">
-            <div class="col-sm-12 col-xs-12 col-md-12" style="">            
-                <div class="col-md-12">
-                    <center><h5><b>A nombre de:</b> INFORMERET S.A.</h5></center>
-                    <center><h5><b>Ruc:</b> 09928971710001</h5></center>
-                    <center><h5><b>Teléfono:</b> 0982042816</h5></center>
-                    <center><h5><b>Fecha:</b> {{date('d/m/Y')}}</h5></center>
-                    <center><h5><b>Dirección:</b> Torres de Mall del Sol, Torre B, Piso 4</h5></center>
-                    <div id="tickets"></div>
-                    <center><h5><b>Descripción:</b> Canje de tickets por venta de contenidos digitales.</h5></center>
-                    <center><h5><b>Precio unitario:</b> $0,18 Ctvs</h5></center>
-                    <div id="subtotal"></div>
-                    <div id="iva"></div>
-                    <div id="dolar"></div>
-                </div>
-                <div class="col-md-12" style="margin-top: 2%">
-                    <form class="form-horizontal" method="POST" action="{{url('SellerFunds')}}" enctype="multipart/form-data">{{ csrf_field() }}
-                    <div class="form-group" align="center">
-                        <label for="file" class="col-md-4 col-xs-12 control-label"><b>Imagen de la factura</b></label>
-                        <div class="col-md-6">
-                            <input type="hidden" name="cant" id="cant">
-                            <input type="file" name="factura" id="factura" accept=".jpg" required="required" class="" style="margin-top: 5px">
-                             <div id="mensajeImgDoc"></div>
-                        </div>
-                        <div class="col-md-6" style="margin-top: %">
-                            <img id="preview_img_doc" src="" name='ci' />
-                        </div>
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons">local_activity</i> Datos para facturación por cobro de tickets</h4>
+            <br>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col s12 m12">
+                    <div class="col m7">
+                        <h6><b>Fecha:</b> {{date('d/m/Y')}}</h6>
                     </div>
-                </div>  
-        </div>
-        <div class="col-md-12" style="margin-top: 2%">
-                <div class="text-center">
-                    <center><button type="submit" class="btn btn-primary" id="soli">
-                        Solicitar retiro
-                    </button></center>
-                </div>
-                </form>
-        </div>
-          </div>
-          <div class="modal-footer" style="border-top: 0px">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-          </div>
-        </div>
-    </form>
-  </div>
+                    <div class="col m6">
+                        <h6><b>A nombre de:</b> INFORMERET S.A.</h6>
+                    </div>
+                    <div class="col m6">
+                        <h6><b>Ruc:</b> 09928971710001</h6>
+                    </div>
+                    <div class="col m6">
+                        <h6><b>Teléfono:</b> 0982042816</h6>
+                    </div>
+                    <div class="col m6">
+                       <h6><b>Dirección:</b> Torres de Mall del Sol, Torre B, Piso 4</h6>
+                       <br>
+                    </div>
+                    <div class="col m12">
+                       <h6><b>Descripción:</b> Canje de tickets por venta de contenidos digitales.</h6>
+                    </div>
+                    <div class="col m12">
+                        <h6><b>Precio unitario:</b> $0,18 Ctvs</h6>
+                        <div id="tickets"></div>
+                        <div id="subtotal"></div>
+                        <div id="iva"></div>
+                        <div id="dolar"></div>
+                    </div>
+                    <div class="col m12">
+                        <form class="form-horizontal" method="POST" action="{{url('SellerFunds')}}" enctype="multipart/form-data">{{ csrf_field() }}
+                            <div class="file-field input-field col m6 offset-m3">
+                                <label for="file">Imagen de la factura</label>
+                                <br><br>
+                                <div class="btn blue">
+                                    <span><i class="material-icons">archive</i></span>
+                                    <input type="file" name="factura" id="factura" accept=".jpg" required="required" class="" style="margin-top: 5px">
+                                    <div id="mensajeImgDoc"></div>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                                <input type="hidden" name="cant" id="cant">
+                                <div class="col m6">
+                                    <img id="preview_img_doc" src="" name='ci' />
+                                </div>
+                            </div>
+                             <div class="col m12">
+                                <button type="submit" class="btn curvaBoton waves-effect waves-light green" id="soli">
+                                    Solicitar retiro
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>   
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+    </div>
 </div>
-<!--FIN DEL MODAL-->
 @endsection
 @section('js')
+<script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+
+
+       
+    </script>
 <script type="text/javascript">
      $(document).ready(function(){
          $('#solicitar').attr('disabled',true);
@@ -249,10 +363,10 @@
         var iva = dolar*0.12;
         var subtotal=dolar-iva;
         $('#cant').val(tickets);
-        $('#tickets').html('<center><h5><b>Cantidad:</b> '+ tickets+'</h5></center>');
-        $('#subtotal').html('<center><h5><b>Sub-total:</b> $'+ subtotal.toFixed(2)+'</h5></center>');
-        $('#iva').html('<center><h5><b>Iva 12%:</b> $'+ iva.toFixed(2)+' </h5></center>');
-        $('#dolar').html('<center><h5><b>Total:</b>  $'+ dolar.toFixed(2)+' </h5></center>');
+        $('#tickets').html('<h6><b>Cantidad:</b> '+ tickets+'</h6>');
+        $('#subtotal').html('<h6><b>Sub-total:</b> $'+ subtotal.toFixed(2)+'</h6>');
+        $('#iva').html('<h6><b>Iva 12%:</b> $'+ iva.toFixed(2)+' </h6>');
+        $('#dolar').html('<h6><b>Total:</b>  $'+ dolar.toFixed(2)+' </h6>');
 
 });
      $('#solicitar').click(function(){
@@ -309,6 +423,8 @@
                 },
                 "processing": true,
                 "order": [[ 0, "desc" ]],
+                "responsive": true,
+                "pageLength": 5
             });
 
 </script>
