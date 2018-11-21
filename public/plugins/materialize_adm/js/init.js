@@ -7,7 +7,8 @@ $(document).ready(function(){
         $('.collapsible').collapsible();
         $('.dropdown-trigger').dropdown();
         $('.tabs').tabs();
-    });
+        $('.tooltipped').tooltip();
+});
 
 })(jQuery); // end of jQuery name space
 

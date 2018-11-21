@@ -13,7 +13,6 @@ main {
     flex: 1 0 auto;
 }
 
-
 body {
     display: flex;
     min-height: 100vh;
@@ -24,7 +23,7 @@ body {
 * End Layout Style CSS
 */
 
- 
+
 /* ----------------------------
  * Navbar
  * ----------------------------
@@ -34,6 +33,14 @@ nav .nav-wrapper {
     padding-right: 315px; 
     position: relative;
     height: 100%;
+}
+
+nav li:hover{ /*Texto posicionandonos encima */
+    line-height: 28px;
+}
+
+nav ul a {
+    line-height: 28px;
 }
 
 /*justification of the header and li*/
@@ -68,14 +75,13 @@ nav .nav-wrapper {
 }
 
 .img-contentype{
-    padding: 0px 0px 0px 0px;
     width: 45px;
     height: auto;
 }
 
 .contentype-adjust{
     height: auto;
-    padding: 10px 4px 2px 1px;
+    padding: 10px 2px 2px 2px;
 }
 
 .img-perfil{
@@ -88,6 +94,11 @@ nav .nav-wrapper {
    /* The alpha value allows the text and background color
    of the button to still show through. */
     background-color: #bbdefb;
+}
+
+
+.curvaBoton {
+    border-radius: 20px;
 }
 
 /* ----------------------------
@@ -152,14 +163,14 @@ nav .nav-wrapper {
 
 /*Pantallas mayores de 400px and menores 992px*/
 @media only screen and (max-width : 992px){
-  header, main, footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
+    header, main, footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
     .contentype-adjust{
         height: auto;
-        padding: 12px 4px 2px 1px;
+        padding: 10px 4px 2px 2px;
     }
 
     .img-contentype{
@@ -172,18 +183,27 @@ nav .nav-wrapper {
             position: relative;
             height: 100%;
     }
+
+
 }
 
 /*Pantallas menores de 400px*/
 @media only screen and (max-width : 400px){
+
         nav .nav-wrapper {
          padding-right: 5px;
          position: relative;
          height: 100%;
         }
+
+        .contentype-adjust{
+            height: auto;
+            padding: 15px 4px 1px 1px;
+        }
+
         .img-contentype{
             padding: 0px 0px 0px 0px;
-            width: 30px;
+            width: 28px;
             height: auto;
         }
       }

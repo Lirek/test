@@ -19,6 +19,9 @@
 
     .curva{border-radius: 10px;}
 
+        <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
     .curvaBoton{border-radius: 20px;}
 
     /*Color letras tabs*/
