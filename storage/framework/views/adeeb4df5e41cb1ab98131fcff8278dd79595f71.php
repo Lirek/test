@@ -141,8 +141,8 @@
                             <div class="col m4">
                                 <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">monetization_on</i>
                             </div>
-                            <div class="col m7">
-                               <h5 style="color: white"><b>Tickets Diferidos</b> <?php echo e($diferido); ?></h5>
+                            <div class="col m6">
+                               <h5 style="color: white"><b>Tickets Diferidos:</b> <?php echo e($diferido); ?></h5>
                             </div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         <br>
                         <h5><center><i class="fa fa-check"></i>Mis solicitudes</center></h5><br>
                         <div class="col s12 m12">
-                            <div class="">
+                            <div class="dataTables_wrapper">
                             <table class="table-responsive" id="myTable" >
                                 <thead>
                                     <tr>
@@ -194,7 +194,7 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
-                        </div>
+                            </div>
                         </div>
                     </div>  
                 </div>
@@ -422,7 +422,7 @@
                     }
                 },
                 "processing": true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "asc" ]],
                 "responsive": true,
                 "pageLength": 5
             });

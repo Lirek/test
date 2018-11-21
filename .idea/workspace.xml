@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="">
+    <list default="true" id="4c6d0b9a-2629-48e4-a386-fbb31bbe4a3c" name="Default" comment="Listado de libro del proveedor">
       <change afterPath="$PROJECT_DIR$/public/Music/7/profileArtist/Musua.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/albumcover_Let it be1539016398.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/song_Madre tierra1539016398.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539708625.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539711521.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714306.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714437.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714474.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715092.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715626.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539808985.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539708625.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539711521.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714306.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714437.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714474.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715092.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715626.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539808985.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/js/book/3dflipbook.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Harry Potter y la piedra filosofal_1542661720.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017694.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017819.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539102702.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540855923.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540858908.pdf" afterDir="false" />
@@ -40,6 +59,7 @@
       <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1541012552.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1541039787.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1542750192.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1542812281.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539286856.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287281.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/producer/ruc/ruc_1539287548.jpeg" afterDir="false" />
@@ -47,6 +67,8 @@
       <change afterPath="$PROJECT_DIR$/public/images/radio/descarga.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1534450759.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/images/rctv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539698866.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539699197.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_Prueba1540575968.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572404.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572581.jpg" afterDir="false" />
@@ -99,46 +121,28 @@
       <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba2_1539796405.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba_1539793992.mp4" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/film/loading_1539730849.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539730849.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539793992.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539796405.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540415327.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540417198.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade(old).php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade(old).php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/16ad08fa7a1eb026aec31ce25fe8122947e9336a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1783c81c9e8e31509c150caca3dcf503c6c9830e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/21c815bd683159a9885d7f58c097a70c5abf0cce.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2671df9f5bce9b2b56de146bdb7cae6068c94c08.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/26b835d8a1d4a76b66cf64d2cf3881e8f998fdbc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2c8a0377e4d48ad6fcbcb5de6f53ef73a710f17c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3cf096d7b6b32b4ab89c91e20ed755dc85167b16.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/59f76e7c8df6c2b985516d122a213dc53510ebfe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6c9cda4518551a7432e67cf154d4c2b09c2e79fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6f95a3763be4649104869578b4adcaf49bdad66d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/913078ab57ed4bd82f52348473f8f5a3abb1efdb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/9e26b9a3e9348700f050522cbfa8f8404ad620b7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b003d08ad6a79ac1c9e184086f2f20823f7e47ec.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bb49fb08d8973dfaadc36534174dcd99599065f9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/be97869d1ad59697bf2c887eef1cbfbb1713a82a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cf684c32bfa1bb650876985e02c782d19f5734fb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2d93e3faa43bb577145f339eeb08f7eff834799.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/de0c25fdab60efc9c4b9ae5bafcdc16082715367.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ead00b149392a1ba39c7a0257cd07a210baef2cc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec77b0e6fc909e39b2437b0b7b33ababeffdb56d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ed32cc4da1d431f541fc3ea2c8a322defb248fc5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/edef2a61482ccd0558d0c4c7f571b71dec58ba4a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0b6fdb9e48bb2d9c6e4eb807059be8c5e6b3370f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/146d79dee6095c3e73fbfe5244935efda7539ad5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/278857fe3f86b4b6fac34d6f31cbd6e733422fd6.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2d350113c78244df67e95d34a1fddf852b1a0d39.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2e7bf136ff5c6bd391a03c9eb5e2eca18c5fc7dd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3a6b16190892332018bf912dfab74b93d3f63a99.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/40d91ec1f31533a2c397f445a54b3a2c14c8271b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/67b497535d72ff49580e9680e8d2ddfd16df4857.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/75c97e6a2c6ef45db1ed99ef3de601d00c922ec7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/94c2e4a418d4c536ece06eb8827557733ac5432f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c2da9c734badf082141f5dbcdd682a904ab76d91.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" afterDir="false" />
@@ -500,34 +504,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="materialize_adm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="materialize_adm" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -588,7 +566,7 @@
       <workItem from="1542040512625" duration="190000" />
       <workItem from="1542329632685" duration="546000" />
       <workItem from="1542726372089" duration="2288000" />
-      <workItem from="1542808465833" duration="253000" />
+      <workItem from="1542808465833" duration="1512000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -625,11 +603,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542729278614</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Listado de libro del proveedor">
+      <created>1542809157530</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1542809157530</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402280000" />
+    <option name="totallyTimeSpent" value="403539000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -646,7 +631,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.32838285" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />

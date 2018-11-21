@@ -48,6 +48,7 @@
             <h3 class="center">
                 Libros registrados 
             </h3>
+            @if($book->count() != 0 )
             <div class="row">
                 @foreach($book as $b)
                 @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
@@ -76,6 +77,15 @@
                 @endforeach
             </div>
             {{$book->links()}}
+            @else
+            <div class="col m12">
+            <blockquote >
+                <i class="material-icons fixed-width large grey-text">book</i><br><h5>No Posee Libros registrados</h5>
+            </blockquote>
+            <br>
+            </div>
+            @endif
+
             <a href="{{ route('tbook.create') }}" class="btn curvaBoton waves-effect waves-light green">   
                 <span>Agregar más libros</span>
             </a>       

@@ -47,6 +47,7 @@
             <h3 class="center">
                 Libros registrados 
             </h3>
+            <?php if($book->count() != 0 ): ?>
             <div class="row">
                 <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if(Auth::guard('web_seller')->user()->id === $b->seller_id): ?>
@@ -75,6 +76,15 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             <?php echo e($book->links()); ?>
+
+            <?php else: ?>
+            <div class="col m12">
+            <blockquote >
+                <i class="material-icons fixed-width large grey-text">book</i><br><h5>No Posee Libros registrados</h5>
+            </blockquote>
+            <br>
+            </div>
+            <?php endif; ?>
 
             <a href="<?php echo e(route('tbook.create')); ?>" class="btn curvaBoton waves-effect waves-light green">   
                 <span>Agregar más libros</span>
