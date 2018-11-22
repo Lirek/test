@@ -71,11 +71,11 @@ class SellerController extends Controller
                 
                 case 'Musica':
                     $content_album = count($seller->albums()->get());
-                  $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
+                    $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
                     $content_song = count($seller->songs()->where('album',0)->get());
-                   $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
+                    $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
                     $musical_content = $content_album+$content_song;
-                   $musical_aproved = $aproved_album+$aproved_song;
+                    $musical_aproved = $aproved_album+$aproved_song;
                     
                     break;
 
@@ -272,7 +272,89 @@ class SellerController extends Controller
     public function edit()
     {
         $seller = Seller::find(Auth::guard('web_seller')->user()->id);
-        return view('seller.edit')->with('seller',$seller);
+
+        $tv_content = 0;
+        $radio_content = 0;
+        $megazine_content = 0;
+        $serie_content = 0;
+        $book_content = 0;
+        $movie_content = 0;
+        $musical_content = 0;
+
+        $tv_aproved = 0;
+        $radio_aproved = 0;
+        $megazine_aproved = 0;
+        $serie_aproved = 0;
+        $book_aproved = 0;
+        $movie_aproved = 0;
+        $musical_aproved = 0;
+
+
+        foreach ($seller->roles as $role) 
+        {
+            $seller_modules[] = $role;
+
+            switch ($role->name) 
+            {
+                
+                case 'Musica':
+                    $content_album = count($seller->albums()->get());
+                    $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
+                    $content_song = count($seller->songs()->where('album',0)->get());
+                    $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
+                    $musical_content = $content_album+$content_song;
+                    $musical_aproved = $aproved_album+$aproved_song;
+                    
+                    break;
+
+                case 'Peliculas':
+                    $movie_content = count($seller->movies()->get());
+                    $movie_aproved = count($seller->movies()->where('status','Aprobado')->get());
+                   
+                    break;
+                
+                case 'Libros':
+                    $book_content = count($seller->Books()->get());
+                    $book_aproved = count($seller->Books()->where('status','Aprobado')->get());
+                    
+                    break;
+                
+                case 'Series':
+                    $serie_content = count($seller->series()->get());
+                    $serie_aproved = count($seller->series()->where('status','Aprobado')->get());
+                    
+                    break;
+
+                case 'Revistas':
+                    $megazine_content = count($seller->Megazines()->get());
+                    $megazine_aproved = count($seller->Megazines()->where('status','Aprobado')->get());
+                     
+                    break;
+
+                case 'Radios':
+                    $radio_content = count($seller->Radio()->get());
+                    $radio_aproved = count($seller->Radio()->where('status','Aprobado')->get());
+                    
+                    break;
+
+                case 'TV':
+                    $tv_content = count($seller->Tv()->get());
+                    $tv_aproved = count($seller->Tv()->where('status','Aprobado')->get());
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            };
+
+        };
+    
+        $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
+        $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+      
+        return view('seller.edit')  ->with('seller',$seller)
+                                    ->with('total_content',$total_content)
+                                    ->with('total_aproved',$total_aproved);
     }
 
     public function update(Request $request)

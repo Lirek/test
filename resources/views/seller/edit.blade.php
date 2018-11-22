@@ -20,11 +20,11 @@ h5.breadcrumbs-header {
 }
 
 #profile-card .card-image {
-  height: 150px;
+  height: 210px;
 }
 #profile-card .card-content p {
   font-size: 1.2rem;
-  margin: 10px 0 12px 0;
+  margin: 0px 0 0px 0;
 }
 
 #profile-card .btn-move-up {
@@ -51,6 +51,35 @@ h5.breadcrumbs-header {
         }
 
         #image-preview label {
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 70%;
+            height: 30px;
+            font-size: 15px;
+            line-height: 50px;
+            text-transform: uppercase;
+            margin: auto;
+            text-align: center;
+        }
+
+        #image-preview1 {
+            width: 180px;
+            height: 180px;
+            padding-top: 0px;
+            padding-left: 0px;
+        }
+
+        #image-preview1 input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #image-preview1 label {
             z-index: 5;
             opacity: 0.8;
             cursor: pointer;
@@ -99,29 +128,39 @@ h5.breadcrumbs-header {
                                 {!! Form::hidden('img_posterOld',$seller->logo)!!}
                                 <div id="list">
                                     @if ($seller->logo)
-                                        <img style="width:70px; height:70px; " class="img-rounded" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
+                                        <img width="70" height="70" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
                                     @else
-                                        <img width="70" height="70" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                        <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
                                     @endif
                                 </div>
                             </div>
-                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right" style="margin-top: 18px">
-                            </a>
-                            <p><i class="mdi-action-perm-identity cyan-text text-darken-2" style="padding: 0px 5%"></i>
-                            {{Auth::guard('web_seller')->user()->name}}
-                            <i class=" mdi-action-perm-identity cyan-text text-darken-2" style="padding: 0px 5%"></i>{{Auth::guard('web_seller')->user()->email}}
-                            <i class=" mdi-action-perm-phone-msg cyan-text text-darken-2" style="padding: 0px 5%"></i>{{Auth::guard('web_seller')->user()->ruc_s}}
-                            </p>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="col s4">
+                                        <h5><i class="material-icons prefix blue-text">face</i>
+                                        {{Auth::guard('web_seller')->user()->name}}</h5>
+                                    </div>
+                                    <div class="col s4">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>{{$total_content}}<br>
+                                        <label>contenido total</label>
+                                    </div>
+                                    <div class="col s4">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>{{$total_aproved}}<br>
+                                        <label>contenido aprovado</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col s12 m12">
-                    <ul id="projects-collection" class="collection">
-                        <li class="collection-item avatar">
-                            <i class="mdi-file-folder circle light-blue darken-2"></i>
-                            <span class="collection-header center">datos a editar</span>
-                        </li>
+</div>
+    <div id="work-collections">
+        <div class="row">   
+          <div class="col s12 m12 l8">
+              <ul id="projects-collection" class="collection">
+                  <li class="collection-item avatar">
+                    <i class="mdi-file-folder circle light-blue darken-2"></i>
+                    <span class="collection-header center">datos a editar</span>
+                  </li>
                             <!--nombre-->
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix blue-text">face</i>
@@ -149,22 +188,23 @@ h5.breadcrumbs-header {
                             
                             <!-- imagen de RUC-->
                             <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Foto del Registro único de contribuyente (RUC)',['class'=>'control-label']) !!}
-                            </div>
-                            <div  class="col-md-4">
-                                @if ($seller->adj_ruc)
-                                    <img id="preview_img_doc" src="{{asset($seller->adj_ruc)}}" name='ci' alt="your image" width="180" height="180" />
-                                @endif
-                                <div class="col-md-10 control-label">
-                                    @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
-                                        <img id="preview_img_doc" src="" name='ci'/>
-                                        <input type='file' name="adj_ruc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
+                                <div class="col m4">
+                                    {!! Form::label('documento','Foto del Registro único de contribuyente (RUC)',['class'=>'control-label']) !!}
+                                </div>
+                                <div  class="col m4">
+                                    @if ($seller->adj_ruc)
+                                        <img id="preview_img_doc" src="{{asset($seller->adj_ruc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @endif
-                                    <div id="mensajeImgDoc"></div>
+                                    <div class="col m4 control-label">
+                                        @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
+                                            <img id="preview_img_doc" src="" name='ci'/>
+                                            <input type='file' name="adj_ruc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
+                                        @endif
+                                        <div id="mensajeImgDoc"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
 
                             <!--direccion-->
                             <div class="input-field col s12">
@@ -181,12 +221,27 @@ h5.breadcrumbs-header {
                                 <div id="mensajePhone"></div>
                                 <label  for="ruc">Telefono</label>
                             </div>
-                        <div class="input-field col s12">
-                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                                  <div class="input-field col s12">
+                                      {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                                  </div>
+                                </ul>
+                            </div>
+                            <div class="col s12 m6 l4">
+                                <div id="profile-card" class="card">
+                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                        <span class="collection-header center">sobre mi</span>
+                                      </li>
+                                    </div>
+                                    <div class="card-content">
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
+                                    </div>
+                                </div>
+                            </div>
+  
+
                         </div>
-                    </ul>
-                </div>
-            </div>
+                    </div>
+
         </div>
     </div>
     {!! Form::close() !!}
