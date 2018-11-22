@@ -2,59 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0b6fdb9e48bb2d9c6e4eb807059be8c5e6b3370f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/146d79dee6095c3e73fbfe5244935efda7539ad5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/16ad08fa7a1eb026aec31ce25fe8122947e9336a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1783c81c9e8e31509c150caca3dcf503c6c9830e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/21c815bd683159a9885d7f58c097a70c5abf0cce.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2671df9f5bce9b2b56de146bdb7cae6068c94c08.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/26b835d8a1d4a76b66cf64d2cf3881e8f998fdbc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/278857fe3f86b4b6fac34d6f31cbd6e733422fd6.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2c8a0377e4d48ad6fcbcb5de6f53ef73a710f17c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2d350113c78244df67e95d34a1fddf852b1a0d39.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2e7bf136ff5c6bd391a03c9eb5e2eca18c5fc7dd.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3a6b16190892332018bf912dfab74b93d3f63a99.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3cf096d7b6b32b4ab89c91e20ed755dc85167b16.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/40d91ec1f31533a2c397f445a54b3a2c14c8271b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/59f76e7c8df6c2b985516d122a213dc53510ebfe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/67b497535d72ff49580e9680e8d2ddfd16df4857.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6c9cda4518551a7432e67cf154d4c2b09c2e79fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6f95a3763be4649104869578b4adcaf49bdad66d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/75c97e6a2c6ef45db1ed99ef3de601d00c922ec7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/7a6a3359700891b49b2c18c82e1c81371c117e40.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/913078ab57ed4bd82f52348473f8f5a3abb1efdb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/94c2e4a418d4c536ece06eb8827557733ac5432f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/9e26b9a3e9348700f050522cbfa8f8404ad620b7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b003d08ad6a79ac1c9e184086f2f20823f7e47ec.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bb49fb08d8973dfaadc36534174dcd99599065f9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/be97869d1ad59697bf2c887eef1cbfbb1713a82a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c2da9c734badf082141f5dbcdd682a904ab76d91.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cf684c32bfa1bb650876985e02c782d19f5734fb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2d93e3faa43bb577145f339eeb08f7eff834799.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/de0c25fdab60efc9c4b9ae5bafcdc16082715367.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ead00b149392a1ba39c7a0257cd07a210baef2cc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec77b0e6fc909e39b2437b0b7b33ababeffdb56d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ed32cc4da1d431f541fc3ea2c8a322defb248fc5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/edef2a61482ccd0558d0c4c7f571b71dec58ba4a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/pub_type_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/update_type_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,12 +58,12 @@
           <entry key="css" value="2" />
           <entry key="js" value="2" />
           <entry key="paso" value="1" />
-          <entry key="php" value="38" />
+          <entry key="php" value="39" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="32" />
+          <entry key="Blade" value="33" />
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="6" />
@@ -126,13 +75,13 @@
           <entry key="css" value="79" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="4343" />
+          <entry key="php" value="4383" />
           <entry key="txt" value="273" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="4334" />
+          <entry key="Blade" value="4374" />
           <entry key="CSS" value="79" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="9" />
@@ -141,7 +90,7 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.1568" value="1" />
           <entry key="project.open.time.199" value="1" />
           <entry key="project.open.time.30" value="1" />
@@ -159,8 +108,9 @@
           <entry key="project.open.time.68" value="1" />
           <entry key="project.open.time.81" value="1" />
           <entry key="project.open.time.84" value="1" />
+          <entry key="project.open.time.88" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -173,7 +123,17 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="365" column="26" lean-forward="true" selection-start-line="365" selection-start-column="26" selection-end-line="365" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -401,10 +361,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1189" />
-    <option name="y" value="-27" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="713" />
+    <option name="width" value="734" />
+    <option name="height" value="907" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -483,7 +442,7 @@
       <updated>1541028165650</updated>
     </task>
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bcdd298a-d046-40c5-9ec6-f8e7c9c3166e" name="Default Changelist" comment="" />
+      <changelist id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="" />
       <created>1541077694393</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -508,6 +467,7 @@
       <workItem from="1542652368524" duration="217000" />
       <workItem from="1542663053175" duration="3262000" />
       <workItem from="1542729822283" duration="194000" />
+      <workItem from="1542891000297" duration="3404000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -558,11 +518,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542652549747</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/seller/layouts.blade.php">
+      <created>1542829136818</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1542829136818</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="423614000" />
+    <option name="totallyTimeSpent" value="428805000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -575,8 +542,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25642964" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -600,7 +568,7 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -649,7 +617,8 @@
     <MESSAGE value="1- MEJORA INDEX" />
     <MESSAGE value="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR" />
     <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/seller/layouts.blade.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/seller/layouts.blade.php" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">
@@ -932,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
+        <state relative-caret-position="287">
+          <caret line="365" column="26" lean-forward="true" selection-start-line="365" selection-start-column="26" selection-end-line="365" selection-end-column="26" />
         </state>
       </provider>
     </entry>
