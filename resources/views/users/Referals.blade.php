@@ -1,161 +1,121 @@
 @extends('layouts.app')
-
 @section('main')     
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-<div class="col-lg-8 col-md-8" >
-    <div class="row mtbox" style="margin-top: 20px">  
+     <div class="row">
+         <div class="col s12 m12">
+             <div class="card ">
+                 <div class="card-content curva">
+                     <div class="row">
+                         <div class="col s12 m8">
+                             <ul class="collection">
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s4"><br>
+                                             <i class="material-icons blue circle prefix">code</i>
+                                             <h6 class="left"><b>Mi Código:</b></h6>
+                                         </div>
+                                         <div class="col s8 left">
+                                            <h4 class="grey-text">{{Auth::user()->codigo_ref}}</h4>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s4"><br>
+                                             <i class="material-icons blue circle prefix">reply</i>
+                                             <h6 class="left"><b>Mi Enlace:</b></h6>
+                                         </div>
+                                         <div class="col s8 left">
+                                             <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
+                                             <p>
+                                             <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                                             </p>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s4"><br>
+                                             <i class="material-icons blue circle prefix">email</i>
+                                             <h6 class="left"><b>Invitar por correo:</b></h6>
+                                         </div>
+                                         <div class="col s8 left"><br>
+                                             <a href="#myModal"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Enviar</a>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s4"><br><br>
+                                             <i class="material-icons blue circle prefix">people</i>
+                                             <h6 class="left"><b>Total referidos:</b></h6>
+                                         </div>
+                                         <div class="col s8 left">
+                                             <p>
+                                             <h4 ><a href="#" class="blue-text">
+                                                     <center>{{$referals1+$referals2+$referals3}}</center>
+                                                 </a>
+                                             </h4>
+                                             <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+                                             </p>
+                                         </div>
+                                     </div>
+                                 </li>
+                             </ul>
 
-        <!-- <div class="col-md-12 col-sm-12">
-          <div class="col-md-6 col-sm-6" >
-            <center><h3 style="color: #23B5E6">Invitar por whatsApp</h3></center>
-          </div>
-          <div class="col-md-6 col-sm-6">
-            <p>
-              <img src="{{asset('sistem_images/WhatsApp.png')}}" width="20%">
-            </p>
-          </div>
-        </div> -->
+                         </div>
+                         <div class="col s12 m4">
+                             <div class="card ">
+                                 <div class="card-content curva">
+                                     <div class="row">
+                                     <div class="col s12 m12">
+                                     <h5>Mi código QR:</h5>
+                                         {!! QrCode::size(250)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                                         <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr" class="waves-effect green curvaBoton waves-light btn-small"><i class="material-icons right">cloud_download</i>Descargar</a>
 
-        <div class="col-md-12 col-sm-12">
-          <dir class="col-md-6 col-sm-6" >
-            <div class="panel2">
-              <center><h5><i class="fa fa-user"></i> Mi Código:</h5></center>
-            </div>
-          </dir>
-          <div class="col-md-6 col-sm-6">
-            <p>
-              <h2>{{Auth::user()->codigo_ref}}</h2>
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
-          <dir class="col-md-6 col-sm-6" >
-            <div class="panel2">
-              <center><h5><i class="fa fa-user"></i> Mi Enlace:</h5></center>
-            </div>
-          </dir>
-          <div class="col-md-6 col-sm-6" style="margin-top: %">
-            <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
-            <p>
-              <h5><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h5>
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
-          <dir class="col-md-6 col-sm-6" >
-            <div class="panel2">
-              <center><h5><i class="fa fa-envelope-o"></i> Invitar por correo</h5></center>
-            </div>
-          </dir>
-          <div class="col-md-6 col-sm-6" style="  ">
-            <p>
-              <h3>
-                  <a href="#myModal" data-toggle="modal" class="btn btn-info">
-                    Enviar     
-                  </a>
-              </h3>
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-12 col-sm-12" style="margin-top: 5%">
-          <dir class="col-md-6 col-sm-6" style="">
-            <div class="panel2">
-              <center><h5><i class="fa fa-user"></i> Total de referidos:</h5></center>
-            </div>
-          </dir>
-          <div class="col-md-6 col-sm-6" style="margin-top: -3%">
-            <p>
-              <h2><a href="#">
-                      <center>{{$referals1+$referals2+$referals3}}</center>
-                  </a>
-              </h2>
-              <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
-            </p>
-          </div>
-        </div>
-
-  </div>
-</div>
+                                     </div>
+                                 </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
 
 
-<div class="col-md-4 col-sm-4" style="margin-top: 5%">
-<dir class="col-md-12 col-sm-12" style="margin-top: 25%;">
-  <div class="panel2" style="margin-bottom: -5%; ">
-    <center> <h5><i class="fa fa-user"></i> Mi Código Qr:</h5></center>
-  </div>
-</dir>
-<div class="col-md-12 col-sm-12 col-xs-12" style="  ">
-    <p>
-      <div class="center">
-        <div style="margin-left: 3%">{!! QrCode::size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}</div>
-        <center><a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr">Descargar</a></center>
-      </div>
-    </p>
-  </div>
-</div>
-<!--ANTIGUA BARRA DE REFERIDOS-->
-<!-- @if ($refered != null)
-<div class="col-lg-3 col-md-3 ds" >
-  <div class="panel panel-default">
-    <h3>Mis referidos directos:</h3>
-    @foreach($refered as $refereds)
-    <div class="desc">
-      <div class="thumb">
-        @if($refereds->img_perf)
-          <img class="img-circle" src="{{asset('assets/img/ui-divya.jpg')}}" width="35px" height="35px" align="">
-        @else
-          <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="35px" height="35px" align="">
-        @endif
-      </div>
-    <div class="details" style="margin-top: 3%">
-      <p><a href="#">{{$refereds->name}}</a><br/></p>
-    </div>
-  </div>
-  @endforeach
- {{  $refered->links() }}
-</div>
-</div>
-@endif -->
 
-<!--MODAL PARA ENVIAR REFERIDOS-->
-<div id="myModal" class="modal fade" role="dialog">                                     
-     <div class="modal-dialog">
-    <!-- Modal content-->
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Introduzca el Correo que desea invitar</h4>
-              </div>
-              <div class="modal-body">
-                  <form class="form-horizontal" method="POST" action="{{url('Invite')}}">{{ csrf_field() }}
+     <!--MODAL PARA ENVIAR REFERIDOS-->
+     <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-content">
+             <h5 class="modal-title">Introduzca el Correo que desea invitar</h5>
+             <form class="form-horizontal" method="POST" action="{{url('Invite')}}">{{ csrf_field() }}
 
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Email</label>
-                        <div class="col-lg-10">
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
-                          <div id="emailMen"></div>
-                        </div>
-                    </div>
-                                              
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-5">
-                          <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
-                        </div>
-                    </div>
-                    </form>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                    </div>
-            </div>
-          </div>
-    </div>
-</div>
+                 <div class="form-group">
+                     <div class="col s12">
+                             Correo del la persona que desea invitar:
+                             <div class="input-field inline">
+                                 <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
+                                 <label for="email_inline">Correo</label>
+                             </div>
+                             <div id="emailMen"></div>
+                     </div>
+
+                 <div class="form-group">
+                     <div class="col-md-6 col-md-offset-5">
+
+                         <button class="btn curvaBoton waves-effect green waves-light" type="submit" id="enviar" name="enviar">Enviar
+                             <i class="material-icons right">send</i>
+                         </button>
+                     </div>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+             <a href="#!" class="modal-close waves-effect curvaBoton red waves-green btn-flat"><b class="white-text">Salir <i class="material-icons right">close</i></b></a>
+         </div>
+
+     </div>
 @endsection
 
 @section('js')
