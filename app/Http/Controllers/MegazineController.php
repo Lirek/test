@@ -63,7 +63,6 @@ class MegazineController extends Controller
         $saga = Sagas::find($id); 
         $tags = Tags::where('type_tags','=','Revistas')->get();
         $selected = $saga->tags_sagas()->get();
-
          return view('seller.megazine_module.update_type_form')->
          with('tags',$tags)->
          with('pub_type',$saga)->
@@ -119,11 +118,13 @@ class MegazineController extends Controller
 
     public function AddPType(Request $request)
     {
+
+      //dd($request->all());
         $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$request->title;
 	
     	$file = $request->file('image');
     
-        $name1 = $this->sinAcento('/saga_'.$request->title. time() . '.'. $file->getClientOriginalExtension());
+        $name1 = '/saga_'.$request->title. time() . '.'. $file->getClientOriginalExtension();
     
         $file->move(public_path().$store_path,$name1);
     
@@ -136,7 +137,7 @@ class MegazineController extends Controller
         $saga->type_saga = 'Revistas';
         $saga->sag_description = $request->dsc;
         $saga->status = 'En Proceso';
-        $saga->img_saga = $this->sinAcento($path);
+        $saga->img_saga = $path;
         $saga->save();
         
         //$saga->tags_sagas()->attach($request->tags);
@@ -152,16 +153,19 @@ class MegazineController extends Controller
         $saga= Sagas::find($request->type_megazine);
         if($saga)
         {
-          $store_path = $this->sinAcento('/megazine/'.Auth::guard('web_seller')->user()->id.'/sagas/'.$saga->sag_name);
+        $store_path = '/megazine/'.Auth::guard('web_seller')->user()->id.'/sagas/'.$saga->sag_name;
     	   }else{
-          $store_path = $this->sinAcento('/megazine/'.Auth::guard('web_seller')->user()->id.'/independientes/');
+          $store_path = '/megazine/'.Auth::guard('web_seller')->user()->id.'/independientes/';
          }
+
+      //dd($request->all());
+
     	$file1 = $request->file('pdf_file');
     	$file2 = $request->file('photo');
-    	
-        $name1 = $this->sinAcento('/megazine_'.$request->title. time() . '.'. $file1->getClientOriginalExtension());
+
+        $name1 = '/megazine_'.$request->title. time() . '.'. $file1->getClientOriginalExtension();
         
-        $name2 = $this->sinAcento('/cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension());
+        $name2 = '/cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension();
         
         $file1->move(public_path().'/'.$store_path,$name1);
         
@@ -175,10 +179,10 @@ class MegazineController extends Controller
       $megazine = new Megazines;
       $megazine->seller_id=Auth::guard('web_seller')->user()->id;
       $megazine->title=$request->title; 
-      $megazine->cover=$this->sinAcento($path2);
+      $megazine->cover=$path2;
       $megazine->num_pages=0;
       $megazine->descripcion=$request->dsc;
-      $megazine->megazine_file=$this->sinAcento($path1);
+      $megazine->megazine_file=$path1;
       if($request->type_megazine != 0){
         $megazine->saga_id=$request->type_megazine;
       }else{
@@ -210,9 +214,9 @@ class MegazineController extends Controller
     	$file1 = $request->file('pdf_file');
     	$file2 = $request->file('photo');
     	
-        $name1 = $this->sinAcento('megazine_'.$request->title. time() . '.'. $file1->getClientOriginalExtension());
+        $name1 = 'megazine_'.$request->title. time() . '.'. $file1->getClientOriginalExtension();
         
-        $name2 = $this->sinAcento('cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension());
+        $name2 = 'cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension();
         
         $file1->move(public_path().$store_path,$name1);
         
@@ -226,10 +230,10 @@ class MegazineController extends Controller
       $megazine = new Megazines;
       $megazine->seller_id=$request->seller_id;
       $megazine->title=$request->title; 
-      $megazine->cover=$this->sinAcento($path2);
+      $megazine->cover=$path2;
       $megazine->num_pages=0;
       $megazine->descripcion=$request->dsc;
-      $megazine->megazine_file=$this->sinAcento($path1);
+      $megazine->megazine_file=$path1;
       $megazine->saga_id=NULL;
       $megazine->cost=$request->cost;
       $megazine->status=2;
@@ -264,20 +268,20 @@ class MegazineController extends Controller
 
         if ($request->hasFile('photo')) 
         {
-          
-          $file2=$request->file('photo');
-          
-          $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$saga->sag_name;
+        
+        $file2=$request->file('photo');
+        
+        $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$saga->sag_name;
 
-          File::delete(public_path().$megazine->cover);
+        File::delete(public_path().$megazine->cover);
 
-          $name2 = $this->sinAcento('cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension());
+        $name2 = 'cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension();
 
-          $file2->move(public_path().$store_path,$name2);
-          
-          $path2 = $store_path.'/'.$name2;
+        $file2->move(public_path().$store_path,$name2);
+        
+        $path2 = $store_path.'/'.$name2;
 
-          $megazine->cover =$this->sinAcento($path2);
+        $megazine->cover =$path2;
         }
         $megazine->title=$request->title;
         $megazine->descripcion=$request->dsc;
@@ -306,19 +310,19 @@ class MegazineController extends Controller
         if ($request->hasFile('photo')) 
         {
         
-          $file2=$request->file('photo');
-          
-          $store_path = '/megazine/'.$megazine->seller_id.'/one_shot';
+        $file2=$request->file('photo');
+        
+        $store_path = '/megazine/'.$megazine->seller_id.'/one_shot';
 
-          File::delete(public_path().$megazine->cover);
+        File::delete(public_path().$megazine->cover);
 
-          $name2 = $this->sinAcento('cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension());
+        $name2 = 'cover_'.$request->title. time() . '.'. $file2->getClientOriginalExtension();
 
-          $file2->move(public_path().$store_path,$name2);
-          
-          $path2 = $store_path.'/'.$name2;
+        $file2->move(public_path().$store_path,$name2);
+        
+        $path2 = $store_path.'/'.$name2;
 
-          $megazine->cover =$this->sinAcento($path2);
+        $megazine->cover =$path2;
         }
         $megazine->title=$request->title;
         $megazine->descripcion=$request->dsc;
@@ -432,12 +436,5 @@ class MegazineController extends Controller
 ------------------Fin de Funciones de Eliminar Contenido-----------------------
 --------------------------------------------------------------------------------
 */
- public function sinAcento($cadena) {
-        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
-        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
-        $cadena = utf8_decode($cadena);
-        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
-        return $cadena;
-    }
     
 }

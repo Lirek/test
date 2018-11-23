@@ -807,7 +807,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 //------------Rutas de "Crear Cadena de Publicaciones"------------
     Route::get('/type', 'MegazineController@ShowPTypeForm');
-    Route::post('/type', 'MegazineController@AddPType');
+    Route::post('/type_megazine', 'MegazineController@AddPType');
 //-------------Fin de las Rutas-----------------------------------------------
 
 //------------Rutas de Registrar Revista Independiente----------------------

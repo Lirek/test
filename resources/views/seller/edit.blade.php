@@ -64,34 +64,6 @@ h5.breadcrumbs-header {
             text-align: center;
         }
 
-        #image-preview1 {
-            width: 180px;
-            height: 180px;
-            padding-top: 0px;
-            padding-left: 0px;
-        }
-
-        #image-preview1 input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #image-preview1 label {
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 70%;
-            height: 30px;
-            font-size: 15px;
-            line-height: 50px;
-            text-transform: uppercase;
-            margin: auto;
-            text-align: center;
-        }
         .intl-tel-input{
             width: 100%;
         }
@@ -157,8 +129,7 @@ h5.breadcrumbs-header {
         <div class="row">   
           <div class="col s12 m12 l8">
               <ul id="projects-collection" class="collection">
-                  <li class="collection-item avatar">
-                    <i class="mdi-file-folder circle light-blue darken-2"></i>
+                  <li class="collection-item avatar center">
                     <span class="collection-header center">datos a editar</span>
                   </li>
                             <!--nombre-->
@@ -229,11 +200,11 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center">sobre mi</span>
+                                        <span class="collection-header center" style="color: white ">sobre mi</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
-                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i>{{$seller->descs_s}}</p>
                                     </div>
                                 </div>
                             </div>

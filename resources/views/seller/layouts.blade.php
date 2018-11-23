@@ -50,7 +50,7 @@
                                             @endif
                                             @if($mod->name == 'Libros')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon.png')  }}">
+                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon.png')  }} " height="70" width="70">
                                                 </li>
                                             @endif
                                             @if($mod->name == 'Radios')
