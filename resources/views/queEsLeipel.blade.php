@@ -40,6 +40,30 @@
     .img{margin-top: 7px;}
 
     .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+        /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+
     
 *,
 *::before,
@@ -390,9 +414,9 @@ time {
             <div class="col l3 s12">
                 <h5 class="white-text">Social</h5>
                 <ul>
-                    <li><a class="waves-effect waves-light btn red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
+                    <li><a class="waves-effect waves-light btn curvaBoton red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
                             <i class="fa fa-youtube"></i> &nbsp;YouTube&nbsp;&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
-                    <li><a class="waves-effect waves-light btn   blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
+                    <li><a class="waves-effect waves-light btn curvaBoton  blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
                             <i class="fa fa-facebook"></i> &nbsp;Facebook&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
                     {{--<li><a class="waves-effect waves-light btn purple darken-4 left">--}}
                     {{--<i class="fa fa-instagram"></i> &nbsp;Instagram</a><br>&nbsp;</li>--}}
@@ -456,7 +480,7 @@ time {
                     </div>
                     <div class="input-field col s12">
 
-                        <button class="btn waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
+                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="{{ url('/password/reset') }}">
@@ -464,12 +488,12 @@ time {
                         </a>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                        <a class="waves-effect waves-light btn curvaBoton social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -504,7 +528,7 @@ time {
                         @endif
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
+                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="#">Olvide mi contraseña </a>
@@ -584,16 +608,16 @@ time {
                     </div>
 
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="registroRU" type="submit" name="action">Registrarse
+                        <button class="btn waves-effect curvaBoton waves-light green" id="registroRU" type="submit" name="action">Registrarse
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                        <a class="waves-effect waves-light curvaBoton btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -686,7 +710,7 @@ time {
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="registroRP" type="submit" >Enviar
+                        <button class="btn waves-effect curvaBoton waves-light green" id="registroRP" type="submit" >Enviar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>

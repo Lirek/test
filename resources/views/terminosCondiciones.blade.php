@@ -41,6 +41,8 @@
 
     .curva{border-radius: 10px;}
 
+    .curvaBoton{border-radius: 20px;}
+
     /*Color letras tabs*/
     .tabs .tab a{
         color:#00ACC1;
@@ -62,39 +64,6 @@
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
 
-    /*videos de youtube*/
-    .embed-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-    }
-    .embed-container iframe {
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-
-    /*slider tv*/
-    .card-image.img
-    {
-        height:150px; !important
-    }
-
-    .material-icons.md1::before{
-        content:"search";
-    }
-
-    .material-icons.md1:hover::before{
-        content:"navigate_next";
-    }
-
-    .carousel .carousel-item {
-        width:300px !important;
-    }
 </style>
 
 
@@ -185,6 +154,9 @@
 <!--Fin Menu-->
 <div class="container">
     <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">
+        <br>
+        <h3 class="center blue-text"><u> terminos y condiciones</u></h3>
+        <br>
         <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%">
 Estos Términos de uso incluyen y pueden incluir otros temas, a los cuales se accede a través de hipervínculos, por lo cual deberá leer el contenido total de los presentes Términos y Condiciones de Uso antes de aceptarlos. SI NO ACEPTA ESTOS TÉRMINOS DE USO, NO UTILICE EL SERVICIO DE LEIPEL.
 Los presentes Términos y condiciones de uso rigen estrictamente la utilización que haga de nuestro servicio.  LEIPEL es el nombre comercial bajo la razón social INFORMERET S.A. y según se utilice en estos términos y condiciones de uso, en todo momento que se mencione a LEIPEL en el presente documento, es equivalente a mencionar al servicio que ofrecemos desde www.leipel.com y sus páginas derivadascomo por ejemplo www.leipel.com/perfil , también en todo momento que se mencione a UN USUARIO, AL USUARIO, DEL USUARIO, EL USUARIO, LOS USUARIOS o  USUARIO en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a poder adquirir de manera gratuita o bajo costos los diferentes contenidos existentes dentro de LEIPEL, de la misma manera, en todo momento que se mencione a UN PROVEEDOR, EL PROVEEDOR, LOS PROVEEDOR o PROVEEDOR en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a proveer de contenidos a LEIPEL de manera gratuita, libre y voluntaria. Todas las cuentas dentro de Leipel pertenecen a personas naturales o jurídicas las cuales afirman haber leído y aceptado en la plenitud de sus facultades físicas y mentales, los presentes términos y condiciones de uso. 
@@ -463,9 +435,9 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
             <div class="col l3 s12">
                 <h5 class="white-text">Social</h5>
                 <ul>
-                    <li><a class="waves-effect waves-light btn red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
+                    <li><a class="waves-effect waves-light curvaBoton btn red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
                             <i class="fa fa-youtube"></i> &nbsp;YouTube&nbsp;&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
-                    <li><a class="waves-effect waves-light btn   blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
+                    <li><a class="waves-effect waves-light btn curvaBoton blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
                             <i class="fa fa-facebook"></i> &nbsp;Facebook&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
                     {{--<li><a class="waves-effect waves-light btn purple darken-4 left">--}}
                     {{--<i class="fa fa-instagram"></i> &nbsp;Instagram</a><br>&nbsp;</li>--}}
@@ -529,7 +501,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     </div>
                     <div class="input-field col s12">
 
-                        <button class="btn waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
+                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="{{ url('/password/reset') }}">
@@ -537,12 +509,12 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                         </a>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                        <a class="waves-effect waves-light btn curvaBoton social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -577,7 +549,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                         @endif
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
+                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="#">Olvide mi contraseña </a>
@@ -657,16 +629,16 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     </div>
 
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="registroRU" type="submit" name="action">Registrarse
+                        <button class="btn waves-effect waves-light curvaBoton green" id="registroRU" type="submit" name="action">Registrarse
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn social google red right" href="login/google">
+                        <a class="waves-effect waves-light curvaBoton btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                     </div>
                     <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                        <a class="waves-effect waves-light btn curvaBoton blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -759,7 +731,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light green" id="registroRP" type="submit" >Enviar
+                        <button class="btn waves-effect waves-light curvaBoton green" id="registroRP" type="submit" >Enviar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
