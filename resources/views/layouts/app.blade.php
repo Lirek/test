@@ -16,8 +16,6 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <title>{{ config('app.name', 'Leipel') }}</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--  <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet"> -->
     <!--external css
     <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
@@ -55,6 +53,9 @@
     <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <![endif]-->
+
+    <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 
 <body>
@@ -318,52 +319,56 @@
 
 </body>
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="{{asset('assets/js/jquery.js') }}"></script>
-<script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>
 
-<script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
-
+<!-- <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>-->
 
 <!--common script for all pages-->
-<script src="{{asset('assets/js/common-scripts.js')}}"></script>
+<!--<script src="{{asset('assets/js/common-scripts.js')}}"></script>-->
 
-<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+<!--<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>-->
+<!--<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>-->
 
 <!--script for this page-->
-<script src="{{asset('assets/js/sparkline-chart.js')}}"></script>
-<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script>
+<!--<script src="{{asset('assets/js/sparkline-chart.js')}}"></script>-->
+<!--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script>-->
 
 <!--Script Plyr-->
-<script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
-
-<!--PDF.JS-->
-<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+<!--<script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>-->
 
 <!--Datatables-->
+<!--
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+-->
 
-<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
+<!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 <!--telefono-->
-<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
-<script src="{{ asset('plugins/telefono/utils.js') }}"></script>
+<!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
+<!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
 <!--SCRIPS JS-->
 
 <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="{{asset('assets/js/jquery.js') }}"></script>
+
+
+<!-- <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>-->
+<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+
+<!--PDF.JS-->
+<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+
 <!--Import jQuery before materialize.js-->
 <script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
 
 
-<script type="application/javascript">
+<!--<script type="application/javascript">
     $(document).ready(function () {
         $("#date-popover").popover({html: true, trigger: "manual"});
         $("#date-popover").hide();
@@ -396,8 +401,9 @@
         var to = $("#" + id).data("to");
         console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
-</script>
-<script>
+</script>-->
+
+<!--<script>
     $(document).ready(function(){
         var id={!!Auth::user()->id!!};
         $.ajax({
@@ -412,8 +418,8 @@
             },
         });
     });
-</script>
-<script type="text/javascript">
+</script>-->
+<!--<script type="text/javascript">
     $(document).ready(function() {
         if ((screen.width <= 768)) {
             //alert('Resolucion: 1024x768 o mayor');
@@ -425,8 +431,8 @@
         }
 
     });
-</script>
-<script type="text/javascript">
+</script>-->
+<!--<script type="text/javascript">
     $(window).resize(function() {
         console.log($(window).width());
         if ($(window).width() <= 768)
@@ -440,10 +446,9 @@
             $('#nav-accordion').css('display','block');
         }
     });
-</script>
+</script>-->
 
 @yield('js')
-
 
 </html>
 
