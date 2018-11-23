@@ -158,7 +158,7 @@
                                             </center>
                                             </div>
                                             <div class="col-md-3">
-                                                
+
                                             </div>
                                             <div class="col-sm-12 col-xs-12 col-md-6" align="center">
                                                 <audio  id="player" controls  data-plyr-config='{"autoplay": true}'>
@@ -166,7 +166,7 @@
                                                 </audio>
                                             </div>
                                             <div class="col-md-3">
-                                                
+
                                             </div>
                                         @endforeach
                                         <div class="col-sm-12 col-xs-12 col-md-12">

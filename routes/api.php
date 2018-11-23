@@ -46,8 +46,12 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     //---------------------------COMPRAS DE PAQUETES--------------------------------------
     Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
-    Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
-    Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+    Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
+    //Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+    Route::get('BuyPayphone/{id}/{cost}/{value}','ApiController\PaymentController@BuyPayphone');
+    Route::get('factura/{id}/{medio}','ApiController\PaymentController@factura');
+    Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','ApiController\PaymentController@TransactionApproved');
+    Route::get('TransactionCanceled/{id}/{reference}','ApiController\PaymentController@TransactionCanceled');
     //-----------------------------------------------------------------------------------
 
     //--------------------------------------------------------------------------
@@ -83,7 +87,8 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     //-------------------------------------------------------------------------------
 
+    //-------------------------RUTA DE CONTENIDOS DESTACADOS--------------------------------
+    Route::get('contenidoDestacado','ApiController\ContentController@contenidoDestacado');
+    //-------------------------RUTA DE CONTENIDOS DESTACADOS--------------------------------
+
 });
-
-
-

@@ -32,8 +32,12 @@
 
     </script>
 </head>
-
 <style type="text/css">
+    div.error {
+      color: red;
+      padding: 0;
+      font-size: 0.9em;
+    }
 
     .default_color{background-color: #FFFFFF !important;}
 
@@ -98,8 +102,6 @@
         width:300px !important;
     }
 </style>
-
-
 <!--Menu-->
 <nav class="default_color" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/') }}" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
@@ -185,93 +187,62 @@
     </div>
 </nav>
 <!--Fin Menu-->
-
-
-
-<!-- Contenido  -->
 <br><br>
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        <div class="card horizontal curva">
-            <div class="card-image curva">
-                <img src="{{asset('plugins/img/piñas.jpg')}}" sizes="10" >
+        <div class="card-panel curva">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+        <h5 class="center">
+            <b class="blue-text">Restaurar contraseña </b>
+        </h5><br>
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}" id="change">
+            {{ csrf_field() }}
+            <input type="hidden" name="token" value="{{ $token }}">
+            <div class="row">
+                <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
+                    <i class="material-icons prefix blue-text">email</i>
+                    <input id="verEmail" type="email" class="form-control" name="email" value="{{ old('email', $email) }}" readonly="true" autofocus >
+                    <label for="autocomplete-input">Correo</label>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
+                    <i class="material-icons prefix blue-text">vpn_key</i>
+                    <input id="password-valid" type="password" class="form-control" name="password" required>
+                    <label for="autocomplete-input">Contraseña</label>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-field col s12  {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                    <i class="material-icons prefix blue-text">vpn_key</i>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    <label for="autocomplete-input">Confirmar Contraseña</label>
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-field col s12 center">
+                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="password-change" >Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
-                    
-
-
-
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                        {{ csrf_field() }}
-
-                                    <div class="card-stacked">
-                <div class="card-content">
-                    <h5 class="center">
-                        <b class="blue-text">Restaurar contraseña</b>
-                    </h5><br>
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <i class="material-icons prefix blue-text">correo electronico</i>
-                            <input id="verEmail" type="email" class="form-control" name="email" value="{{ old('email', $email) }}" readonly="true" autofocus >
-                            <label for="autocomplete-input">Correo Electronico</label>                            
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="input-field col s12 {{ $errors->has('password') ? ' has-error' : '' }}">
-                        <i class="material-icons prefix blue-text">vpn_key</i>
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text">vpn_key</i>
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                    <div class="input-field col s12 center">
-                        <button class="btn curvaBoton waves-effect waves-light green" type="submit" >confirmar
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                    </form>
-            </div>
+        </form>
         </div>
     </div>
 </div>
-
-<!-- Fin Contenido  -->
-
-<!-- Parallax  -->
-{{--<div class="parallax-container" style="width: 100%; ">--}}
-{{--<div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>--}}
-{{--</div>--}}
-<!--Fin parallax-->
-
 {{--Pie de pagina--}}
 <footer class="page-footer blue">
     <div class="container">
@@ -335,7 +306,6 @@
         </div>
     </div>
 </footer>
-
 <!--Modales para index -->
 <!--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>-->
 
@@ -468,8 +438,8 @@
                         <div id="nameMen" style="margin-top: 1%"></div>
                         @if ($errors->has('name'))
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('name') }}</strong>
-                            </span>
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
                         @endif
                     </div>
                     <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -479,7 +449,7 @@
                         <div id="emailMenRU" style="margin-top: 1%"></div>
                         @if ($errors->has('email'))
                             <span class="help-block">
-                                        <strong class="red-text">{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                         @endif
                     </div>
@@ -490,7 +460,7 @@
                         <div id="passwordMenRU" style="margin-top: 1%"></div>
                         @if ($errors->has('password'))
                             <span class="help-block">
-                                        <strong class="red-text">{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                         @endif
                     </div>
@@ -501,8 +471,8 @@
                         <div id="passwordCMenRU" style="margin-top: 1%"></div>
                         @if ($errors->has('password_confirm'))
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('password_confirm') }}</strong>
-                            </span>
+                                        <strong>{{ $errors->first('password_confirm') }}</strong>
+                                    </span>
                         @endif
                     </div>
                     <div>
@@ -542,7 +512,7 @@
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                         @if ($errors->has('tlf'))
                             <span class="help-block">
-                                <strong class="red-text">{{ $errors->first('com_name') }}</strong>
+                                <strong>{{ $errors->first('com_name') }}</strong>
                             </span>
                         @endif
                     </div>
@@ -627,10 +597,7 @@
 </div>
 </div>
 <!--Fin modal inicio de registro-->
-
-
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
@@ -643,12 +610,220 @@
         $(document).ready(function() {
                 var pathname = window.location.pathname;
                 separador = "/";
-                urlSeparada = pathname.split(separador);
-                //console.log(urlSeparada[6]);
-                $("#verEmail").val(urlSeparada[7]);
-                console.log($("#verEmail"));
+                urlSeparada = pathname.split(separador).pop();
+                console.log(urlSeparada);
+                $("#verEmail").val(urlSeparada);
+                //console.log($("#verEmail"));
         });
 
+    </script>
+    <script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+
+
+        /*==========  Featured Cars  ==========*/
+        $('#featured-cars').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                }
+            }
+        });
+        $('#featured').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured-cars-three').owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                }
+            }
+        });
+
+        $('#featured1').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        //Mostarar contenidos seleccionados
+        $('#radio').css("background-color","#42a5f5");
+        $('#Tvs').hide();
+        $('#peliculas').hide();
+        $('#libros').hide();
+
+        $('#radio').click(function(){
+            $('#radio').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#tv').css("background-color","#2196F3");
+            $('#Tvs').hide();
+            $('#libros').hide();
+            $('#radios').show();
+        });
+
+        $('#tv').click(function(){
+            $('#tv').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#libros').hide();
+            $('#Tvs').show();
+        });
+    });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+             $.mockjax({
+            url: "emails.action",
+            response: function (settings) {
+                var email = settings.data.email, //original del archivo no cambiar
+                    emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
+                // emails = mys;
+                this.responseText = "true";
+                if ($.inArray(email, emails) !== -1) {
+                    this.responseText = "false";
+                }
+            },
+            responseTime: 500
+        });
+
+        var password = $('#password-valid').val();
+        $("#change").validate({
+
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                password_confirmation: {
+                    required: true,
+                    minlength: 6,
+                    equalTo: "#password-valid"
+                },
+            },
+
+            messages: {
+                password: {
+                    required: "Ingresar clave",
+                    minlength: "Debe tener minimo 6 caracteres"
+                },
+                password_confirmation: {
+                    required: "Ingresar contraseña",
+                    minlength: "Debe tener minimo 6 caracteres",
+                    equalTo: "Las contraseña deben coincidir"
+                },
+            },
+
+            errorElement : 'div',
+        errorPlacement: function(error, element) {
+            console.log(error)
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+            $('#password-change').attr('disabled', true);
+          }
+        },
+        success: function(element) {
+            $('#password-change').attr('disabled', false);
+        }
+
+        })
+
+    });
     </script>
 <script type="text/javascript">
 

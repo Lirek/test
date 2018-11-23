@@ -12,7 +12,6 @@ use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Log;
 
-
 use App\Events\PayementAprovalEvent;
 use App\Events\PaymentDenialEvent;
 use App\Events\AssingPointsEvents;
@@ -46,6 +45,9 @@ use App\SistemBalance;
 
 use App\Transformers\UserTransformer;
 use Auth;
+use Carbon\Carbon; //
+use App\Mail\TransactionApproved; //
+use Illuminate\Support\Facades\Mail; //
 
 class UserController extends Controller
 {
@@ -258,33 +260,7 @@ class UserController extends Controller
         return Response::json(['status'=>'OK'], 201);
     }
 
-    public function BuyPayphonePackage(Request $request)
-    {
-        $user = User::find(auth()->user()->id);
-
-        $Condition=Carbon::now()->firstOfMonth()->toDateString();
-
-        $revenueMonth = Payments::where('user_id','=',$user->id)
-            ->where('created_at', '>=',$Condition)
-            ->where('status', '=','Aprobado')
-            ->get();
-
-        $balance=  SistemBalance::find(1);
-
-        $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
-
-        $balance->save();
-
-        if ($revenueMonth->count()<=1)
-        {
-            event(new AssingPointsEvents($user->id,$Buy->package_id));
-        }
-
-        event(new PayementAprovalEvent($user->email));
-
-        return Response::json(['status'=>'OK'], 201);
-    }
-
+    /*
     public function BuyPointsPackage(Request $request)
     {
 
@@ -337,4 +313,33 @@ class UserController extends Controller
         }
         return Response::json(['status'=>'OK'], 201);
     }
+
+
+    public function BuyPayphonePackage(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+
+        $Condition=Carbon::now()->firstOfMonth()->toDateString();
+
+        $revenueMonth = Payments::where('user_id','=',$user->id)
+            ->where('created_at', '>=',$Condition)
+            ->where('status', '=','Aprobado')
+            ->get();
+
+        $balance=  SistemBalance::find(1);
+
+        $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+
+        $balance->save();
+
+        if ($revenueMonth->count()<=1)
+        {
+            event(new AssingPointsEvents($user->id,$Buy->package_id));
+        }
+
+        event(new PayementAprovalEvent($user->email));
+
+        return Response::json(['status'=>'OK'], 201);
+    }
+    */
 }

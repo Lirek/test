@@ -98,6 +98,11 @@
     .break-word {
         word-break: break-all;
     }
+
+    element.style {
+        height: 600px; !important;
+    }
+
 </style>
 
 
@@ -189,19 +194,25 @@
 
 <!-- SLIDER  -->
 
-<div class="slider ">
+<div class="slider">
     <ul class="slides">
         <li>
-            <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="520px;"> <!-- random image -->
-            <div class="caption left-align">
-                <h2><b>Leipel</b></h2>
+            <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="100%"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h2 ><b>Red social <br>de entretenimiento</b></h2>
             </div>
         </li>
         <li>
-            <img src="{{ asset('plugins/materialize_index/img/slaider2.jpeg') }}" width="100%;" height="520px;"> <!-- random image -->
+            <img src="{{ asset('plugins/materialize_index/img/gana_viajes.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption right-align break-word">
+                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+            </div>
         </li>
         <li>
-            <img src="{{  asset('plugins/materialize_index/img/slaider3.jpeg') }}" width="100%;" height="520px;"> <!-- random image -->
+            <img src="{{  asset('plugins/materialize_index/img/amigos_con_cola.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+            </div>
         </li>
     </ul>
 </div>
@@ -322,19 +333,13 @@
 
 {{--radios--}}
 <div class="row" id="radios">
-    <div class="col s12">
+    <div class="col s12 m12">
         <div id="featured" class="owl-carousel featured">
         @foreach($radio as $r)
-                <div class="col s12">
-                    <div class="card curva">
+                <div class="col s12 m12">
+                    <div class="card">
                         <div class="card-image ">
                             <img src="{{asset($r->logo)}}" width="100%" height="150px">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                                    radio
-                                </i></a>
-                        </div>
-                        <div class="card-content break-word">
-                            <p>{{$r->email_c}}</p>
                         </div>
                     </div>
                 </div>
@@ -354,15 +359,9 @@
         @foreach($tv as $tvs)
             {{--item--}}
                 <div class="col s12">
-                    <div class="card curva">
+                    <div class="card">
                         <div class="card-image ">
                             <img src="{{asset($tvs->logo)}}"  width="100%" height="150px">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                                    remove_red_eye
-                                </i></a>
-                        </div>
-                        <div class="card-content break-word">
-                            <p>{{$tvs->email_c}}</p>
                         </div>
                     </div>
                 </div>

@@ -1,181 +1,195 @@
 @extends('layouts.app')
 @section('css')
-<style>
-.lista {
-  height: 30em;
-  overflow: auto;
-}
-</style>
+
 @endsection
-@section('main')     
+@section('main')
   <!-- **********************************************************************************************************************************************************
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
   <!--main content start-->
-  <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
-  <div class="row mtbox" style="margin-top: 2%">
-    <div class="col-sm-6 col-md-6">
-        <div class="col-md-12 col-sm-12 mb" style="margin-left:">
-            <div class="darkblue-panel pn">
-                <div class="darkblue-header">
-                    <h2 style="color: #fff">Total de referidos:</h2>
-                </div>
-                <h4 class="mt" style="color: #fff"><i class="fa fa-users fa-3x"></i></h4>
-                <div class="centered">
-                    <h2 style="color: #fff">{{$referals1+$referals2+$referals3}}</h2>
-                </div>
-                <footer><br>
-                    <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+  <h4 class="modal-title">Mis referidos:</h4>
 
-                </footer>
-            </div>
-        </div>
-      <!--REFERIR-->
-      @if(Auth::user()->UserRefered()->count()==0) 
-        <div class="col-md-12 col-sm-12 mb" id="referir">
-          <div class="white-panel panRf refe donut-chart">
-            <div class="white-header">
-              <h5>Agregar codigo de patrocinador</h5>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 col-xs-12 col-md-12 goleft">
-                <div class="paragraph">
-                  <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                  <p class="center" id="mensaje"></p>
-                  <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
-                </div> 
+  <!--REFERIR-->
+  @if(Auth::user()->UserRefered()->count()==0)
+      <div   class="col s12  m3 offset-m1 ">
+          <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
               </div>
-            </div>
+              <a class="btn-floating halfway-fab activator btn-small waves-effect waves-light  blue"><i class="material-icons">arrow_upward</i></a>
+              <div class="card-content">
+                  <i class="material-icons medium blue-text">assignment_ind</i>
+                  <h6 class=" blue-text">Total de referidos:</h6>
+                  <h4 class=" blue-text"><b>{{$referals1+$referals2+$referals3}}</b></h4>
+              </div>
+              <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
+                  <br>
+                  <p class="valign-wrapper grey-text">Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</p>
+              </div>
           </div>
-        </div>
-      @endif
-      @if ($refered != null)
-        <h5 style="margin-left: 3%">Mis referidos directos: <span class="badge bg-info">{{$referals1}}</span></h5>
-        <div class="col-md-12 col-sm-12" style="margin-left: 1%; margin-top: 1%">
-          <div class="row lista">
-            @foreach($refered as $refereds) <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                <a href="#" data-toggle="modal" data-target="#myModal-{{$refereds->id}}">
-                    <div class="col-xs-3 col-sm-3 col-lg-3">
-                      @if($refereds->img_perf)
-                        <img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60">
-                      @else
-                        <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="60">
-                      @endif
-                    </div>
-                    <div class="col-sm-9 col-lg-9" style="margin-top: 7%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                      {{$refereds->name}} {{$refereds->last_name}}
-                    </div>
-                </a>
+      </div>
+
+
+
+      <div class="col m4 s12">
+          <div class="card-panel  center">
+              <i class="material-icons blue-text medium">person_add</i>
+              <h6 class="blue-text">Agregar código de patrocinador</h6>
+              <br>
+              <a   href="#myModalRefe" class="modal-trigger waves-effect waves-light btn curvaBoton">Agregar<i class="material-icons left">add</i></a>
+      </div>
+
+      </div>
+      <div class="col s12 m3">
+          <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
               </div>
-                <!--MODAL DATOS-->
-                <div id="myModal-{{$refereds->id}}" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Mi referido:</h4>
-                      </div>
-                      <div class="modal-body">
-                          @if($refereds->img_perf)
-                            <center><img src="{{asset($refereds->img_perf)}}" class="img-circle" width="60" height="60"></center>
+              <a class="btn-floating halfway-fab activator btn-small waves-effect waves-light  blue"><i class="material-icons">arrow_upward</i></a>
+              <div class="card-content">
+                  <i class="material-icons medium blue-text">group_work</i>
+                  <h6 class=" blue-text">Total de puntos:</h6>
+                  <h4 class=" blue-text"><b>
+                          @if(Auth::user()->points!=NULL)
+                              {{Auth::user()->points}}
                           @else
-                            <center><img src="{{asset('sistem_images/DefaultUser.png')}}" class="img-circle" width="80"></center>
+                              0
                           @endif
-                          <center>
-                              <h5 style="margin-top: 2%"><b>Nombre: </b> {{$refereds->name}} {{$refereds->last_name}}</h5>
-                          </center>
-                          <center>
-                              <h5 style="margin-top: 2%"><b>Email: </b> {{$refereds->email}}</h5>
-                          </center>
-                          <center>
-                            @if($refereds->phone)
-                              <h5 style="margin-top: 2%"><b>Teléfono: </b> {{$refereds->phone}}</h5>
-                            @else
-                              <h5 style="margin-top: 2%"><b>Teléfono: </b> No posee teléfono registrado</h5>
-                            @endif
-                          </center>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--FIN DEL MODAL-->
-            @endforeach
-          </div>
-        </div>
-      @endif
-    </div>
-    <div class="col-sm-6 col-md-6">
-
-        <div class="col-md-12 col-sm-12 mb" style="margin-left:">
-            <div class="darkblue-panel pn">
-                <div class="darkblue-header">
-                    <h2 style="color: #fff">Total de puntos:</h2>
-                </div>
-                <h1 class="mt" style="color: #fff"><i class="fa fa-check-circle"></i></h1>
-                <div class="centered">
-                    <h2 style="color: #fff">
-                        @if(Auth::user()->points!=NULL)
-                             {{Auth::user()->points}}
-                        @else
-                             0
-                        @endif
-                    </h2>
-                </div>
-                <footer><br>
-                    <h6>Estos son los puntos que se han generado de tus referidos directos e indirectos</h6>
-
-                </footer>
-            </div>
-        </div>
-        {{--Viaje--}}
-      <div class="col-md-12 col-sm-12 text-center" style="margin-left: 1%; margin-top: 1%">
-        <img src="{{asset('prom ociones/PromocionGalapagosImg.jpg')}}" style="width: 80%;">
-        <a style="margin-top: 3%;" target="_blank" href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" class="btn btn-primary">Detalles del viaje (Descargar en PDF)</a>
-      </div>
-    </div>
-
-    <!--MODAL-->
-    <div id="myModalRefe" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Ingrese el codigo</h4>
-          </div>
-          <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="{{url('Referals')}}" id="patrocinador">{{ csrf_field() }}
-
-                <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
-                        <label for="codigo" class="col-md-4 control-label">Codigo</label>
-                        <div class="col-md-6">
-                            <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required="required">
-                            <div id="codigoMen"></div>
-                        </div>
-
-                </div>
-                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary" id='ingresar'>Ingresar</button>
-                    </div>
-                  </div>
-              </form>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                      </b></h4>
+              </div>
+              <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
+                  <br>
+                  <p class="valign-wrapper grey-text">Estos son los puntos que se han generado de tus referidos directos e indirectos</p>
               </div>
           </div>
-        </div>
       </div>
-    </div>
-    <!--FIN DEL MODAL-->
+  @endif
+
+
+  @if(Auth::user()->UserRefered()->count() <> 0)
+      <div class="col s12 m5 offset-m1">
+          <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+              </div>
+              <a class="btn-floating halfway-fab activator btn-small waves-effect waves-light  blue"><i class="material-icons">arrow_upward</i></a>
+              <div class="card-content">
+              <i class="material-icons medium blue-text">assignment_ind</i>
+              <h6 class=" blue-text">Total de referidos:</h6>
+              <h4 class=" blue-text"><b>{{$referals1+$referals2+$referals3}}</b></h4>
+              </div>
+              <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
+                  <br>
+                  <p class="valign-wrapper grey-text">Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="col s12 m5">
+          <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+              </div>
+              <a class="btn-floating halfway-fab activator btn-small waves-effect waves-light  blue"><i class="material-icons">arrow_upward</i></a>
+              <div class="card-content">
+                  <i class="material-icons medium blue-text">group_work</i>
+                  <h6 class=" blue-text">Total de puntos:</h6>
+                  <h4 class=" blue-text"><b>
+                          @if(Auth::user()->points!=NULL)
+                             {{Auth::user()->points}}
+                          @else
+                              0
+                          @endif
+                      </b></h4>
+              </div>
+              <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
+                  <br>
+                  <p class="valign-wrapper grey-text">Estos son los puntos que se han generado de tus referidos directos e indirectos</p>
+              </div>
+          </div>
+      </div>
+
+  @endif
 
 
 
-  </div><!-- /row -->
+  @if ($refered != null)
+  <div class=" s12 col m5 offset-m1  ">
+      <h6 class="left-align grey-text">Lista de referidos:</h6>
+              <ul class="collection">
+                  @foreach($refered as $refereds)
+                  <li class="collection-item avatar">
+                      @if($refereds->img_perf)
+                          <img src="{{asset($refereds->img_perf)}}" alt="avatar" class="z-depth-3 responsive-img circle" width="60" height="60">
+                      @else
+                          <img src="{{asset('sistem_images/DefaultUser.png')}}" alt="avatar" class=" z-depth-3 responsive-img circle" width="60" height="60">
+                      @endif
+                      <span class="title blue-text"><b>{{$refereds->name}} {{$refereds->last_name}}</b></span><br>
+                      <span><b>Email: </b> {{$refereds->email}}</span><br>
+                          @if($refereds->phone)
+                              <span><b>Teléfono:</b>{{$refereds->phone}}</span>
+                          @else
+                              <span><b>Teléfono:</b>No posee teléfono registrado</span>
+                          @endif
+                  </li>
+                  @endforeach
+              </ul>
+  </div>
+  @else
+      <div class="col s12 m5  offset-m1  ">
+          <h6 class="left-align grey-text">Lista de referidos:</h6>
+            <blockquote class="center grey lighten-4 grey-text ">
+              <br> <i class="material-icons">sentiment_very_dissatisfied</i>
+              <br>Aún no tienes Referidos <br>
+            </blockquote>
+      </div>
+  @endif
+
+  <div  class="col m5 s12 ">
+      <div class="card">
+          <div class="card-image">
+              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" >
+          </div>
+          <div class="card-action">
+              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
+              <br>
+          </div>
+      </div>
+  </div>
+
+  <!--MODAL ToTal-->
+  <div id="myModalRefe" class="modal modal-s" >
+      <div class="modal-content">
+          <div class=" blue"><br>
+              <h4 class="center white-text" >Ingrese el código</h4>
+              <br>
+          </div>
+          <br>
+          <div class="row">
+              <form class="col m6 offset-m3"  method="POST" action="{{url('Referals')}}" id="patrocinador" >{{ csrf_field() }}
+                      <div class="input-field col m12 ">
+                          <i class="material-icons prefix">vpn_key</i>
+                          <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
+                          <label for="first_name">Código</label>
+                          <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
+                          <div id="codigoMen"></div>
+                      </div>
+                      <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Submit
+                          <i class="material-icons right">send</i>
+                      </button>
+              </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+      </div>
+  </div>
+  <!--FIN DEL MODAL-->
+
+
+
+
+
 
 @endsection
 
@@ -270,7 +284,7 @@ document.querySelector('#patrocinador').addEventListener('submit', function(e) {
 
   var tiempo=restaFechas(f1,f2);
   if (tiempo > 7){
-    document.getElementById('referir').style.display='none';  
+    document.getElementById('referir').style.display='none';
   }else{
     var total=6-tiempo;
     console.log(tiempo);

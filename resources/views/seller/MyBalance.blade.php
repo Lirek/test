@@ -30,7 +30,6 @@
                     <br>
 
                     <ul class="collapsible popout">
-
                         <li>
                             <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 >Tickets Pendientes</h6></div>
                             <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>{{Auth::guard('web_seller')->user()->credito_pendiente}}</b></a><br><br></div>
@@ -46,9 +45,7 @@
                         <li>
                             <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Diferidos</h6></div>
                             <div class="collapsible-body">  <a class="btn-floating btn-large  amber lighten-2"> <b>{{ $diferido}}</b></a><br><br></div>
-
                         </li>
-
                     </ul>
 
                 </div>
