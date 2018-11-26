@@ -387,9 +387,27 @@ class SellerController extends Controller
             $Balance[]=0;
         }
         $diferido=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Diferido')->sum('tickets');
-         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+        $pagado=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Pagado')->sum('tickets');
+        $rechazado=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Rechazado')->sum('tickets');
 
-        return view('seller.MyBalance')->with('Balance',$ordenBalance)->with('diferido',$diferido);
+
+        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+
+        return view('seller.MyBalance')->with('Balance',$ordenBalance)->with('diferido',$diferido)->with('pagado',$pagado)->with('rechazado',$rechazado);
+    }
+
+    //function para grafica balance seller
+    public function DonutGraph() {
+        $pendientes=Auth::guard('web_seller')->user()->credito_pendiente;
+        $credito=Auth::guard('web_seller')->user()->credito;
+        $diferido=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Diferido')->sum('tickets');
+
+        $Content=array(
+            $credito,
+            $pendientes,
+            $diferido
+        );
+        return Response()->json($Content);
     }
 
      public function Fondos(){

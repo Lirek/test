@@ -110,7 +110,7 @@
                     <div class="user-view blue">
                     <div class="container">
                                 @if(Auth::guard('web_seller')->user()->logo)
-                                    <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil" height="500" width="500"></a><!-- logo user -->
                                 @else
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
@@ -472,7 +472,9 @@
                     <br>
                     <blockquote class="center">
                     <h5 class="grey-text"><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                     <h5><a href="{{url('SellerBalance')}}" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
+
                     </blockquote>
                 </div>
                 <div class="modal-footer">

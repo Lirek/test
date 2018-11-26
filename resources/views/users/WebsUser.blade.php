@@ -7,7 +7,7 @@
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
   <!--main content start-->
-  <h4 class="modal-title">Mis referidos:</h4>
+  <h4>Mis referidos:</h4>
 
   <!--REFERIR-->
   @if(Auth::user()->UserRefered()->count()==0)
@@ -174,7 +174,7 @@
                           <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
                           <div id="codigoMen"></div>
                       </div>
-                      <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Submit
+                      <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Enviar
                           <i class="material-icons right">send</i>
                       </button>
               </form>
