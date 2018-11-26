@@ -43,6 +43,13 @@ nav ul a {
     line-height: 28px;
 }
 
+/*tamaño img perfil */
+.sidenav .user-view .circle {
+    height: 90px;
+    width: 90px;
+}
+
+
 /*justification of the header and li*/
 .sidenav .collapsible-header, .sidenav.fixed .collapsible-header {
   padding: 0px 20px 0px 20px;

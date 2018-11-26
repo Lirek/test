@@ -560,9 +560,13 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::resource('sellers', 'SellerController');
     
     Route::get('SellerBalance','SellerController@balance');
+
+    //agregada 26-11-2018
+    Route::get('BalanceSellerGraph','SellerController@DonutGraph');
+
     Route::get('SellerRequest','SellerController@Fondos');
     
-     Route::post('SellerFunds','SellerController@applicationFunds');
+    Route::post('SellerFunds','SellerController@applicationFunds');
 
 
 
@@ -1020,3 +1024,5 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
+
+
