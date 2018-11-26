@@ -19,9 +19,6 @@
 
     .curva{border-radius: 10px;}
 
-        <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
     .curvaBoton{border-radius: 20px;}
 
     /*Color letras tabs*/
@@ -141,7 +138,7 @@
 
             <!--Menu lateral sidenav-->
             <ul id="slide-out" class="sidenav sidenav-fixed">
-                    
+
                 <li><!--Seccion de usuario -->
                     <div class="user-view blue">
                     <div class="container">
@@ -207,7 +204,7 @@
                                                             <li>
 
                                                             <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Musica<i class="material-icons right">expand_more</i></a>
-                                                               
+
                                                                 <div class="collapsible-body">
                                                                 <ul>
                                                                     <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
@@ -252,7 +249,7 @@
                                                                     <li>
 
                                                                         <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Películas<i class="material-icons right">expand_more</i></a>
-                                                                
+
                                                                         <div class="collapsible-body">
                                                                             <ul>
                                                                                 <li><a href="{{ url('/movies/create') }}">Registrar película</a></li>
@@ -483,7 +480,7 @@
                 <section id="main-content" class="section section-daily-stats center">
 
                     <div class="row">
-                       @yield('content')  
+                       @yield('content')
                     </div>
 
                 </section>
@@ -582,7 +579,8 @@
                     }
                 });
             </script>
-
+            <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
             @yield('js')
 
 
