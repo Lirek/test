@@ -140,7 +140,7 @@
             <ul id="slide-out" class="sidenav sidenav-fixed">
 
                 <li><!--Seccion de usuario -->
-                    <div class="user-view blue">
+                  <div class="user-view">
                     <div class="container">
                                 @if(Auth::guard('web_seller')->user()->logo)
                                     <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil" height="500" width="500"></a><!-- logo user -->
@@ -148,18 +148,21 @@
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
                     </div>
-                    <div class="container">
-                                <a href="#">
-                                    <h4 class="name white-text">{{Auth::guard('web_seller')->user()->name}}</h4>
-                                </a>
 
-                        <a class="modal-trigger" href="#myModalTotal">
-                            <span class="name white-text"> Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}</span>
-                        </a>
-                        <br>
+                    <div class="info-container">
+                        <div class="name ">
+                            <a class="white-text" href="#">
+                              {{Auth::guard('web_seller')->user()->name}}
+                            </a>
+                        </div>
+                        <div class="name" data-toggle="dropdown" >
+                            <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
+                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}
+                            </a>
+                        </div>
+                    </div>
 
-                    </div>
-                    </div>
+            </div>
                 </li><!--End eccion de usuario -->
 
                 <li><a href="{{url('seller_edit')}}" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>

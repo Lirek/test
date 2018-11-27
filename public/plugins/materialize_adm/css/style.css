@@ -43,12 +43,32 @@ nav ul a {
     line-height: 28px;
 }
 
+
+.sidenav .user-view {
+    background-image: url("../img/user-background-azul2.jpg");
+
+}
 /*tamaño img perfil */
 .sidenav .user-view .circle {
     height: 90px;
     width: 90px;
 }
 
+.sidenav .user-view .info-container {
+     padding: 5px 15px 15px 15px;
+}
+
+.sidenav .user-view .name {
+ white-space: nowrap;
+ -ms-text-overflow: ellipsis;
+ -o-text-overflow: ellipsis;
+ text-overflow: ellipsis;
+ overflow: hidden;
+ font-size: 14px;
+ max-width: 200px;
+ color: #fff;
+ margin: 5px 5px 5px 5px;
+}
 
 /*justification of the header and li*/
 .sidenav .collapsible-header, .sidenav.fixed .collapsible-header {

@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
             <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#test1"><i class="material-icons prefix">timeline</i><b>Mi Balance</b></a></li>
-                <li class="tab col s4"><a  href="#test2"><i class="material-icons prefix">add_circle_outline</i><b>Detalles</b></a></li>
+                <li class="tab col s4"><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
+                <li  class="tab col s4"><a href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
             </ul>
         </div>
 
@@ -26,23 +26,23 @@
                     <br>
                     <ul class="collapsible popout">
                         <li class="active">
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Disponible</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Disponible</h6></div>
                             <div class="collapsible-body"><a class="btn-floating btn-large  blue lighten-2"><b>{{Auth::guard('web_seller')->user()->credito}}</b></a><br><br></div>
                         </li>
                         <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Diferidos</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Diferidos</h6></div>
                             <div class="collapsible-body">  <a class="btn-floating btn-large  amber lighten-2"> <b>{{ $diferido}}</b></a><br><br></div>
                         </li>
                         <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 >Tickets Pendientes</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 class="grey-text">Tickets Pendientes</h6></div>
                             <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>{{Auth::guard('web_seller')->user()->credito_pendiente}}</b></a><br><br></div>
                         </li>
                         <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Pagados</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Pagados</h6></div>
                             <div class="collapsible-body">  <a class="btn-floating btn-large  green  lighten-2"> <b>{{ $pagado}}</b></a><br><br></div>
                         </li>
                         <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Rechazados</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Rechazados</h6></div>
                             <div class="collapsible-body">  <a class="btn-floating btn-large  red lighten-2"> <b>{{ $rechazado}}</b></a><br><br></div>
                         </li>
                     </ul>
