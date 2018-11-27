@@ -214,32 +214,136 @@
         <br>
         <div class="row">
             <div class="col s12 m12">
-                    <div class="col m7">
-                        <h6><b>Fecha:</b> {{date('d/m/Y')}}</h6>
-                    </div>
-                    <div class="col m6">
-                        <h6><b>A nombre de:</b> INFORMERET S.A.</h6>
-                    </div>
-                    <div class="col m6">
-                        <h6><b>Ruc:</b> 09928971710001</h6>
-                    </div>
-                    <div class="col m6">
-                        <h6><b>Teléfono:</b> 0982042816</h6>
-                    </div>
-                    <div class="col m6">
-                       <h6><b>Dirección:</b> Torres de Mall del Sol, Torre B, Piso 4</h6>
-                       <br>
-                    </div>
-                    <div class="col m12">
-                       <h6><b>Descripción:</b> Canje de tickets por venta de contenidos digitales.</h6>
-                    </div>
-                    <div class="col m12">
-                        <h6><b>Precio unitario:</b> $0,18 Ctvs</h6>
-                        <div id="tickets"></div>
-                        <div id="subtotal"></div>
-                        <div id="iva"></div>
-                        <div id="dolar"></div>
-                    </div>
+            <div class="col s12 m12">
+                 <!-- <a id="menu" class="waves-effect waves-light btn btn-floating left" ><i class="material-icons">menu</i></a> -->
+                 <a class="btn tooltipped btn-floating blue left" data-position="right" data-tooltip="Adjunte una foto de la factura con los siguientes datos"><i class="material-icons">info_outline</i></a>
+            </div>  
+                <div class="col m9 s12 offset-m2">
+                    <ul class="collection z-depth-1" >
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">event</i>
+                                    <b class="left">Fecha: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    {{date('d/m/Y')}}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">assignment_ind</i>
+                                    <b class="left">A nombre de: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                     INFORMERET S.A.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">business_center</i>
+                                    <b class="left">Ruc: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    09928971710001
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">call</i>
+                                    <b class="left">Teléfono: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    0982042816
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">location_on</i>
+                                    <b class="left">Dirección: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    Torres de Mall del Sol, Torre B, Piso 4
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">create</i>
+                                    <b class="left">Descripción: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    Canje de tickets por venta de contenidos digitales.
+                                </div>
+                            </div>
+                        </li>
+                         <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">add_shopping_cart</i>
+                                    <b class="left">Cantidad: </b>
+                                </div>
+                                <div class="col s12 m7" id="tickets">
+                                   
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">monetization_on</i>
+                                    <b class="left">Precio unitario: </b>
+                                </div>
+                                <div class="col s12 m7">
+                                    $0,18 Ctvs
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">monetization_on</i>
+                                    <b class="left">Sub-total: </b>
+                                </div>
+                                <div class="col s12 m7" id="subtotal">
+                                   
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">monetization_on</i>
+                                    <b class="left">Iva 12%: </b>
+                                </div>
+                                <div class="col s12 m7" id="iva">
+                                   
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item" style="padding: 10px ">
+                            <div class="row">
+                                <div class="col s12 m5">
+                                    <i class="material-icons circle left">monetization_on</i>
+                                    <b class="left">Total:: </b>
+                                </div>
+                                <div class="col s12 m7" id="dolar">
+                                   
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
                     <div class="col m12">
                         <form class="form-horizontal" method="POST" action="{{url('SellerFunds')}}" enctype="multipart/form-data">{{ csrf_field() }}
                             <div class="file-field input-field col m6 offset-m3">
@@ -363,10 +467,10 @@
         var iva = dolar*0.12;
         var subtotal=dolar-iva;
         $('#cant').val(tickets);
-        $('#tickets').html('<h6><b>Cantidad:</b> '+ tickets+'</h6>');
-        $('#subtotal').html('<h6><b>Sub-total:</b> $'+ subtotal.toFixed(2)+'</h6>');
-        $('#iva').html('<h6><b>Iva 12%:</b> $'+ iva.toFixed(2)+' </h6>');
-        $('#dolar').html('<h6><b>Total:</b>  $'+ dolar.toFixed(2)+' </h6>');
+        $('#tickets').html(tickets);
+        $('#subtotal').html(subtotal.toFixed(2)+'$');
+        $('#iva').html(iva.toFixed(2)+'$');
+        $('#dolar').html(dolar.toFixed(2)+'$');
 
 });
      $('#solicitar').click(function(){

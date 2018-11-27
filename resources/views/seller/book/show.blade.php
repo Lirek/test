@@ -36,13 +36,13 @@
     
     </style>
     <style>
-        .modal {
+        /*.modal {
         max-height: 100%;
         }
         object {
      width:100%;
      max-height:100%;
-}
+}*/
         #panel {
             /*Para la Sombra*/
             -webkit-box-shadow: 8px 8px 15px #999;
@@ -59,7 +59,7 @@
             display: inline-block;
             position:absolute;
             background-color: black;
-            width:79%;
+            width:97%;
             height:99%;
         }
         .bloqueo{
@@ -249,7 +249,7 @@
 
 <!--Modal-->
 <!-- /.modal  de sagas  -->
-<div id="modal-default" class="modal" style="width:100%;height:100%;">
+<div id="modal-default" class="modal" >
     <div class="modal-content modal-lg">
         <div class=" blue"><br>
             <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $book->title }}"</h4>

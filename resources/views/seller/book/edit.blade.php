@@ -330,6 +330,7 @@
                                     {{--Categoria--}}
                                    
                                         @if($book->status != 'Aprobado')
+                                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                                         <select name="tags[]" multiple="true" class="form-control" required>
                                             @foreach($tags as $genders)
                                                 <option value="{{$genders->id}}"
@@ -344,6 +345,7 @@
                                             @endforeach
                                         </select>
                                         @else
+                                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                                         <select name="tags[]" multiple="true" class="form-control" disabled="true">
                                         @foreach($tags as $genders)
                                             <option value="{{$genders->id}}"
@@ -715,14 +717,13 @@
                            
                         </div>
                         
-                            <div class="col m6 s6">
-                                <div align="">
-                                    <a href="{{ url('/tbook') }}" class="btn btn-danger">Atrás</a>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div align="">
-                                    {!! Form::submit('Editar libro', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
+                            <div class="col m12 s12">
+                                <div>
+                                    <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                                    
+                                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarCambios">Editar libro</button>
+
+                                    <!-- {!! Form::submit('Editar libro', ['class' => 'btn curvaBoton waves-effect waves-light green','id'=>'guardarCambios']) !!} -->
                                 </div>
                             </div>    
                     {!! Form::close() !!}

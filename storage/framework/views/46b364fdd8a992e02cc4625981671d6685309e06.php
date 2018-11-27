@@ -342,6 +342,7 @@
                                     
                                    
                                         <?php if($book->status != 'Aprobado'): ?>
+                                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                                         <select name="tags[]" multiple="true" class="form-control" required>
                                             <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($genders->id); ?>"
@@ -357,6 +358,7 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <?php else: ?>
+                                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                                         <select name="tags[]" multiple="true" class="form-control" disabled="true">
                                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($genders->id); ?>"
@@ -736,15 +738,13 @@
                            
                         </div>
                         
-                            <div class="col m6 s6">
-                                <div align="">
-                                    <a href="<?php echo e(url('/tbook')); ?>" class="btn btn-danger">Atrás</a>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div align="">
-                                    <?php echo Form::submit('Editar libro', ['class' => 'btn btn-primary','id'=>'guardarCambios']); ?>
+                            <div class="col m12 s12">
+                                <div>
+                                    <a href="<?php echo e(url('/tbook')); ?>" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                                    
+                                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarCambios">Editar libro</button>
 
+                                    <!-- <?php echo Form::submit('Editar libro', ['class' => 'btn curvaBoton waves-effect waves-light green','id'=>'guardarCambios']); ?> -->
                                 </div>
                             </div>    
                     <?php echo Form::close(); ?>
