@@ -185,13 +185,13 @@
                 Registrar Cadena de Publicaciones
             </h3>
             <br>
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/type') }}" enctype="multipart/form-data">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_megazine') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
              <div class="row"> 
-                <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
                 <div class="input-field col s12 m6">
                     <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
-                        <label for="image-upload" id="image-label"> Portada  </label>
+                        <label for="image-upload" id="image-label"> Cadena de publicación  </label>
                             {!! Form::file('image',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
                         <div id="list"></div>
                     </div>

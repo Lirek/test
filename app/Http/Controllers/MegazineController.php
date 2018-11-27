@@ -26,7 +26,7 @@ class MegazineController extends Controller
      {
         $user= Auth::guard('web_seller')->user()->id;
 
-        $sagas= Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->get();
+        $sagas= Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->orderBy('id', 'ASC')->pluck('sag_name', 'id');
 
         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
 
@@ -37,10 +37,9 @@ class MegazineController extends Controller
      }
 
      public function ShowPTypeForm()
-     {
-         
+     { 
         $tags = Tags::where('type_tags','=','Revistas')->get();
-         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
+        $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
      	return view('seller.megazine_module.pub_type_form')->with('tags',$tags) ->with('ratin',$rating);
      }
      
@@ -74,20 +73,26 @@ class MegazineController extends Controller
         $smegazine = Megazines::find($id);
         $tags = Tags::where('type_tags','=','Revistas')->get();
         $selected = $smegazine->tags_megazines()->get();
+        $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
 
          return view('seller.megazine_module.megazine_i_update')->
          with('tags',$tags)->
-         with('i_megazine',$smegazine)->with('s_tags',$selected);
+         with('i_megazine',$smegazine)->with('s_tags',$selected)->
+         with('rating',$rating);
      }
      
     public function MyMegazine($id)
     {
      
-        $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$id)->simplePaginate(10);
+      $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id',Auth::guard('web_seller')->user()->id)
+                        ->orderBy('id', 'DESC')
+                        ->simplepaginate(8);
 
-    	$single = Megazines::where('seller_id','=',$id)->where('saga_id','=',NULL)->simplePaginate(10);
+    	$single = Megazines::where('saga_id','=',NULL)->where('seller_id',Auth::guard('web_seller')->user()->id)
+                        ->orderBy('id', 'DESC')
+                        ->simplepaginate(8);;
     	
-       return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
+      return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
         
     }
     
@@ -150,15 +155,14 @@ class MegazineController extends Controller
     
         public function AddMegazine(Request $request)
     {
+
         $saga= Sagas::find($request->type_megazine);
         if($saga)
         {
         $store_path = '/megazine/'.Auth::guard('web_seller')->user()->id.'/sagas/'.$saga->sag_name;
     	   }else{
-          $store_path = '/megazine/'.Auth::guard('web_seller')->user()->id.'/independientes/';
+          $store_path = '/megazine/'.Auth::guard('web_seller')->user()->id.'/independientes';
          }
-
-      //dd($request->all());
 
     	$file1 = $request->file('pdf_file');
     	$file2 = $request->file('photo');
@@ -181,10 +185,10 @@ class MegazineController extends Controller
       $megazine->title=$request->title; 
       $megazine->cover=$path2;
       $megazine->num_pages=0;
-      $megazine->descripcion=$request->dsc;
+      $megazine->descripcion=$request->descripcion;
       $megazine->megazine_file=$path1;
-      if($request->type_megazine != 0){
-        $megazine->saga_id=$request->type_megazine;
+      if($request->saga_id != NULL){
+        $megazine->saga_id=$request->saga_id;
       }else{
         $megazine->saga_id=NULL;
       }
@@ -196,12 +200,10 @@ class MegazineController extends Controller
         
         $megazine->tags_megazines()->attach($request->tags);
         Flash('Se ha registrado '.$request->title)->success();
-        $user= Auth::guard('web_seller')->user()->id;
-       $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->simplePaginate(10);
-
-      $single = Megazines::where('seller_id','=',$user)->where('saga_id','=',NULL)->simplePaginate(10);
-      
-       return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
+       
+       return redirect()->action(
+            'MegazineController@MyMegazine',['id'=>Auth::guard('web_seller')->user()->id]
+        );
     }
     
     
@@ -295,8 +297,11 @@ class MegazineController extends Controller
         $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->simplePaginate(10);
 
     	$single = Megazines::where('seller_id','=',$id)->where('saga_id','=',NULL)->simplePaginate(10);
+
         
         Flash('Se ha Modificado '.$request->title)->success();
+
+
         
        return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
 
@@ -344,32 +349,21 @@ class MegazineController extends Controller
             }
         }
       }
-
-
-
-        $user= Auth::guard('web_seller')->user()->id;
-
-        $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->simplePaginate(10);
-
-    	$single = Megazines::where('seller_id','=',$id)->where('saga_id','=',NULL)->simplePaginate(10);
         
         Flash('Se ha Modificado '.$request->title)->success();
         
-       return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
+       return redirect()->action(
+            'MegazineController@MyMegazine',['id'=>Auth::guard('web_seller')->user()->id]
+        );
 
     }
 
     public function UpdatePType(Request $request,$id)
     {
 
-
-
-
-
-
         $user= Auth::guard('web_seller')->user()->id;
         $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->simplePaginate(10);
-    	$single = Megazines::where('seller_id','=',$id)->where('saga_id','=',NULL)->simplePaginate(10);
+        $single = Megazines::where('seller_id','=',$id)->where('saga_id','=',NULL)->simplePaginate(10);
         
         Flash('Se ha Modificado '.$request->title)->success();
         

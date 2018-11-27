@@ -199,7 +199,7 @@
                                 <div class="input-field col s12">
                                     {{--selecione el pais--}}
                                     <i class="material-icons prefix blue-text valign-wrapper">room</i>
-                                    <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
+                                    <select  name="country" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
                                         <option value="AF">Afganistán</option>
                                         <option value="AL">Albania</option>
                                         <option value="DE">Alemania</option>
@@ -448,25 +448,66 @@
                                     <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
-                                    {!! Form::textarea('sinopsis',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                                    {!! Form::textarea('descripcion',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
                                     <div id="mensajeSinopsis"></div>
                                     <br>
-                                </div>
-                            </div>
-                            <div class="col s12 m6">
-                                 <div class="input-field col s12">
-                                    {{--año de lanzamiento--}}
-                                    <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                                    <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                                    <div id="mensajeFechaLanzamiento"></div>
-                                    {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
-                                    <div id="mensajeFechaLanzamiento"></div>
                                 </div>
                             </div>
                             <br>
                             <br>
 
+
+                            <div class="col s12 m12">
+
+                                {{--tiene cadena de publicacion--}}
+                                <label> ¿Pertenece a una cadena de publicación? </label>
+                                <br>
+                                <div class="">
+                                    <label class="" for="option-1">
+                                        <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                        <span class="mdl-radio__label">Si</span>
+                                    </label>
+                                
+                                    <label class="" for="option-2">
+                                        <input type="radio" id="option-2" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                        <span class="mdl-radio__label">No</span>
+                                    </label>
+
+                                </div>
+                                <br/>
+
+                                <div style="display:none" id="if_si" class="">
+                                    <div class="input-field col s12">
+                                    {{--cadena de la revista--}}
+                                    <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                                    {!! Form::select('saga_id',$sagas,null,['class'=>'form-control','placeholder'=>'Selecione cadena de publicación','id'=>'sagas']) !!}
+                                    <label for="sagas" class="control-label">cadena de publicación de revista</label>
+                                    <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="{{ url('/type') }}">
+                                        <i class="fa fa-book"></i>
+                                        Agregar cadena de publicacion
+                                    </a>
+                                    <br><br>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        {{--capitulo que se le antepone--}}
+                                        <i class="material-icons prefix blue-text valign-wrapper">remove</i>
+                                        <label for="antes" class="control-label">Antes</label>
+                                        {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                        <br>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        {{--capitulo que le sigue--}}
+                                        
+                                        <i class="material-icons prefix blue-text valign-wrapper">add</i>
+                                        <label for="despues" class="control-label">Despúes</label>
+                                        {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
+                                        <br>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
                         </div>
+
 
                          
         <div class="">
@@ -672,47 +713,7 @@ function maxLengthCheck(object) {
     })
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
- 
-<script type="text/javascript">
- 
-    
- 
-    (function() {
- 
-    var bar = $('.bar');
-    var percent = $('.percent');
-    var status = $('#status');
- 
-    $('#revista').ajaxForm({
-        
-        beforeSend: function() {
-            status.empty();
-            var percentVal = '0%';
-            var posterValue = $('input[name=books_file]').fieldValue();
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            $('#guardarRevista').attr('disabled',true);
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        success: function() {
-            var percentVal = 'Completado..';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        complete: function(xhr) {
-            status.html(xhr.responseText);
-            // alert('Uploaded Successfully');
-            window.location.href = "{{URL::to('tbook')}}"
 
-        }
-    });
-     
-    })();
-</script>
     <script>
 //---------------------------------------------------------------------------------------------------
 // Para que se vea la portada del libro, los modales de Autor y de Saga
