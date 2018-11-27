@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
  <style>
         .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
         .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
@@ -73,75 +72,75 @@
             background-color:#428bca;
         }
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h4 class="center">
-                "{{ $book->title }}" ({{ $book->release_year }})
+                "<?php echo e($book->title); ?>" (<?php echo e($book->release_year); ?>)
             </h4>
             <br>
             <div class="row">
                 <div class="col s12 m4">
-                    <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" width="100%" height="300" style="bor<der-radius: 10px" id="panel">
+                    <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($book->cover); ?>" width="100%" height="300" style="bor<der-radius: 10px" id="panel">
                     <br><br>
                     <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
-                        <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                        <a href="<?php echo e(url('/tbook')); ?>" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                 </div>
                <!--  <div class="col s12 m8">
                     <br>
                     <div class="right">
                         <i class="material-icons prefix blue-text valign-wrapper">person</i>
-                        <span><b>N° de compras</b> {{$book->transaction->count()}}</span>
+                        <span><b>N° de compras</b> <?php echo e($book->transaction->count()); ?></span>
                     </div>
                     <div class="left">
                         <br>
-                        <b>Titulo original: </b><span>"{{ $book->original_title }}"</span>
+                        <b>Titulo original: </b><span>"<?php echo e($book->original_title); ?>"</span>
                     </div>
                 </div>
                 <div class="col s12 m8">
                     <div class="left">
                         <b>Géneros:</b>
-                            @foreach($book->tags_book as $t)
-                                <span class=""> {{ $t->tags_name }} </span>
-                            @endforeach                       
+                            <?php $__currentLoopData = $book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <span class=""> <?php echo e($t->tags_name); ?> </span>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                       
                     </div>
                 </div>
                 <div class="col s12 m8">
                     <div class="left">
-                        <b>Categoria:</b> <span class=""> {{ $book->rating->r_name }} </span>
+                        <b>Categoria:</b> <span class=""> <?php echo e($book->rating->r_name); ?> </span>
                     </div>
                 </div>
-                @if($book->saga!=null)
+                <?php if($book->saga!=null): ?>
 
                 <div class="col m12">
-                    <b>Saga: </b><span>{{ $book->saga->sag_name }}</span>
+                    <b>Saga: </b><span><?php echo e($book->saga->sag_name); ?></span>
                 </div>
                 <div class="col s12 m8">
-                    <b>Antes:</b> <span> {{ $book->before }} </span>
+                    <b>Antes:</b> <span> <?php echo e($book->before); ?> </span>
                 </div>
                 <div class="col s12 m8">
-                    <b>Después:</b> <span> {{ $book->after }} </span>
+                    <b>Después:</b> <span> <?php echo e($book->after); ?> </span>
                 </div>
-                @else
+                <?php else: ?>
                 <div class="col m8">
                     <div class="left">
                         <b>Saga: </b><span>No pertenece a una saga</span>
                     </div>
                 </div>
-                @endif
+                <?php endif; ?>
                 <div class="col m8 s12">
                     <div class="col m12 s12">
                         <br><br><br>
                         <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
-                        <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                        <a href="<?php echo e(url('/tbook')); ?>" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                     </div>
                 </div>
                 <div class="col m12"> 
                     <h5> <b>Sinopsis:</b></h5>
-                        <p class="text-justify">{{ $book->sinopsis }}</p>
+                        <p class="text-justify"><?php echo e($book->sinopsis); ?></p>
                 </div> -->
                 <div class="col m6 s12">
                     <ul class="collection z-depth-1" >
@@ -152,7 +151,8 @@
                                     <b class="left">Titulo original: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{ $book->original_title }}
+                                    <?php echo e($book->original_title); ?>
+
                                 </div>
                             </div>
                         </li>
@@ -163,9 +163,9 @@
                                     <b class="left">Géneros: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                     @foreach($book->tags_book as $t)
-                                    <span class=""> {{ $t->tags_name }} </span>
-                                    @endforeach
+                                     <?php $__currentLoopData = $book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <span class=""> <?php echo e($t->tags_name); ?> </span>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
                         </li>
@@ -176,11 +176,12 @@
                                     <b class="left">Categoria: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{ $book->rating->r_name }}
+                                    <?php echo e($book->rating->r_name); ?>
+
                                 </div>
                             </div>
                         </li>
-                        @if($book->saga!=null)
+                        <?php if($book->saga!=null): ?>
                         <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">
@@ -188,11 +189,12 @@
                                     <b class="left">Saga: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{ $book->saga->sag_name }}
+                                    <?php echo e($book->saga->sag_name); ?>
+
                                 </div>
                             </div>
                         </li>
-                        @else
+                        <?php else: ?>
                         <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">
@@ -204,7 +206,7 @@
                                 </div>
                             </div>
                         </li>
-                        @endif
+                        <?php endif; ?>
                         <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">
@@ -212,7 +214,7 @@
                                     <b class="left">Costo: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{ $book->cost }} Tickets
+                                    <?php echo e($book->cost); ?> Tickets
                                 </div>
                             </div>
                         </li>
@@ -234,7 +236,8 @@
                         <div class="card-content white-text center-align">
                             <p class="card-title">
                                 <i class="material-icons">group add</i>
-                                {{$book->transaction->count()}}
+                                <?php echo e($book->transaction->count()); ?>
+
                             </p>
                             <p>
                                 N° de compras
@@ -252,14 +255,14 @@
 <div id="modal-default" class="modal" >
     <div class="modal-content modal-lg">
         <div class=" blue"><br>
-            <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $book->title }}"</h4>
+            <h4 class="center white-text" ><i class="small material-icons">book</i>"<?php echo e($book->title); ?>"</h4>
             <br>
         </div>
         <br>
         <div class="pdf">
             <div class="transparencia"></div>
             <div class="bloqueo"></div>
-            <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
+            <object data="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
         </div>  
         
     </div>
@@ -272,13 +275,14 @@
   <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
       <h6><b>Sinopsis:</b></h6>
-      <p>{{ $book->sinopsis }}</p>
+      <p><?php echo e($book->sinopsis); ?></p>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
     </div>
   </div>
 
-@endsection
-@section('js')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

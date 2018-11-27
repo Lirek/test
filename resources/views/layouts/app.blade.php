@@ -350,7 +350,7 @@
 <!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
 <!--SCRIPS JS-->
 
-<!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{asset('assets/js/jquery.js') }}"></script>
 
 

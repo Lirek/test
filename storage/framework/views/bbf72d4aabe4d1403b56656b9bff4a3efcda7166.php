@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('css')
+<?php $__env->startSection('css'); ?>
 <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 <style>
 
@@ -12,9 +10,9 @@
     }
 
   </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('main')
+<?php $__env->startSection('main'); ?>
 <div class="row">
 	<div class="col s12 m12">
 		<div class="card">
@@ -22,8 +20,9 @@
 				<span class="grey-text"><h4><b><i class="material-icons small">book</i> Libros</b></h4></span>
                 <div class="row">
                 	<div class="input-field col s12 m6 offset-m3">
-                		<form method="POST"  id="SaveSong" action="{{url('SearchProfileAuthor')}}">
-                			{{ csrf_field() }}
+                		<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchProfileAuthor')); ?>">
+                			<?php echo e(csrf_field()); ?>
+
                 			<i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
@@ -34,40 +33,40 @@
                 	</div>
                 </div>
                 <div class="row">
-                	@if($Books->count() != 0 )
-                		@foreach($Books as $Book)
+                	<?php if($Books->count() != 0 ): ?>
+                		<?php $__currentLoopData = $Books; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Book): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 		<div class="col s12 m3">
 		                  <div class="card" style="height: 430px">
 		                    <div class="card-image">
-		                        <a href="#myModal-{{$Book->id}}" class="modal-trigger">
-		                      <img src="{{ asset('/images/bookcover') }}/{{ $Book->cover }}" width="100%" height="300px">
+		                        <a href="#myModal-<?php echo e($Book->id); ?>" class="modal-trigger">
+		                      <img src="<?php echo e(asset('/images/bookcover')); ?>/<?php echo e($Book->cover); ?>" width="100%" height="300px">
 		                      </a>
 		                      <!-- <span class="card-title">Card Title</span> -->
-		                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+		                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.<?php echo e($Book->id); ?>" onclick="fnOpenNormalDialog('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
 		                    </div>
 		                    <div class="card-content">
 		                        <div class="col m12">
-		                            <p class="grey-text">{{ $Book->title }}</p>
+		                            <p class="grey-text"><?php echo e($Book->title); ?></p>
 		                        </div>
 		                        <div class="">
-		                            <small class="grey-text"><b>Autor: </b>{{$Book->author->full_name}}</small>
+		                            <small class="grey-text"><b>Autor: </b><?php echo e($Book->author->full_name); ?></small>
 		                        </div>
-		                            <small class="grey-text"><b>Costo: </b> {{$Book->cost}} tickets</small> 
+		                            <small class="grey-text"><b>Costo: </b> <?php echo e($Book->cost); ?> tickets</small> 
 		                    </div>
 		                  </div>
 		                </div>
 
 		                <!--MODAL DETALLE DE LIBRO-->
-		                <div id="myModal-{{$Book->id}}" class="modal">
+		                <div id="myModal-<?php echo e($Book->id); ?>" class="modal">
 						    <div class="modal-content">
 						     	<div class="blue"><br>
-						            <h4 class="center white-text" ><i class="small material-icons">book</i> {{$Book->title}}</h4>
+						            <h4 class="center white-text" ><i class="small material-icons">book</i> <?php echo e($Book->title); ?></h4>
 						            <br>
 						     	</div>
 						      	<div class="col s12 m4">
 						      		<br>
-			                    	<img src="{{ asset('images/bookcover/') }}/{{$Book->cover}}" width="100%" height="300"  id="panel">
-			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+			                    	<img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($Book->cover); ?>" width="100%" height="300"  id="panel">
+			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.<?php echo e($Book->id); ?>" onclick="fnOpenNormalDialog('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
 			                    	<br><br>
 			                 	</div>
 						    </div>
@@ -81,7 +80,8 @@
 		                                    <b class="left">Titulo original: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{$Book->original_title}}
+		                                    <?php echo e($Book->original_title); ?>
+
 		                                </div>
 		                            </div>
 		                        </li>
@@ -92,9 +92,9 @@
 		                                    <b class="left">Géneros: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                     @foreach($Book->tags_book as $t)
-		                                    <span class=""> {{ $t->tags_name }} </span>
-		                                    @endforeach
+		                                     <?php $__currentLoopData = $Book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		                                    <span class=""> <?php echo e($t->tags_name); ?> </span>
+		                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 		                                </div>
 		                            </div>
 		                        </li>
@@ -105,11 +105,12 @@
 		                                    <b class="left">Categoria: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $Book->rating->r_name }}
+		                                    <?php echo e($Book->rating->r_name); ?>
+
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @if($Book->saga!=null)
+		                        <?php if($Book->saga!=null): ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
@@ -117,11 +118,12 @@
 		                                    <b class="left">Saga: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $book->saga->sag_name }}
+		                                    <?php echo e($book->saga->sag_name); ?>
+
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @else
+		                        <?php else: ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
@@ -133,7 +135,7 @@
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @endif
+		                        <?php endif; ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
@@ -141,7 +143,7 @@
 		                                    <b class="left">Costo: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $Book->cost }} Tickets
+		                                    <?php echo e($Book->cost); ?> Tickets
 		                                </div>
 		                            </div>
 		                        </li>
@@ -149,7 +151,7 @@
 		                	</div>
 		                	<div class="col s12 m12" style="color: black">
 		                		<b class="left">Sinopsis:</b>
-		                		<p>{{ $Book->sinopsis }}</p>
+		                		<p><?php echo e($Book->sinopsis); ?></p>
 		                	</div>
 		                	<div class="col s12 m12">
 							    <div class="modal-footer">
@@ -158,26 +160,27 @@
 							</div>
 						</div>
 
-                		@endforeach
+                		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 		<div class="col m12">
-                		{{  $Books->links() }}
+                		<?php echo e($Books->links()); ?>
+
                 		</div>
-                	@else
+                	<?php else: ?>
                 	<div class="col m12">
 		            <blockquote >
 		                <i class="material-icons fixed-width large grey-text">book</i><br><h5 class="grey-text">No hay libros disponibles</h5>
 		            </blockquote>
 		            <br>
 		            </div>
-                	@endif
+                	<?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
 
 <script type="text/javascript">
@@ -219,7 +222,7 @@
 
        
     </script>
-<script src="{{asset('assets/js/jquery.js') }}"></script>
+<script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript">
 
@@ -302,7 +305,7 @@ function callback(value,id) {
                     }
                     else
                     {	
-                    var idUser={!!Auth::user()->id!!};
+                    var idUser=<?php echo Auth::user()->id; ?>;
                     $.ajax({ 
                 
                       url     : 'MyTickets/'+idUser,
@@ -329,4 +332,5 @@ function callback(value,id) {
     }
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

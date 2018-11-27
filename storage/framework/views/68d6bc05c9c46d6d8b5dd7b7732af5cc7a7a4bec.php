@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('css')
+<?php $__env->startSection('css'); ?>
 <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 <style>
 
@@ -12,18 +10,19 @@
     }
 
   </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('main')
+<?php $__env->startSection('main'); ?>
 <div class="row">
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-				<span class="grey-text"><h4><b><i class="material-icons small">book</i> Libros</b></h4></span>
-                <div class="row">
+				<span class="grey-text"><h4><b><i class="material-icons small">book</i> Revistas</b></h4></span>
+				<div class="row">
                 	<div class="input-field col s12 m6 offset-m3">
-                		<form method="POST"  id="SaveSong" action="{{url('SearchProfileAuthor')}}">
-                			{{ csrf_field() }}
+                		<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchProfileMegazine')); ?>">
+                			<?php echo e(csrf_field()); ?>
+
                 			<i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
@@ -34,40 +33,44 @@
                 	</div>
                 </div>
                 <div class="row">
-                	@if($Books->count() != 0 )
-                		@foreach($Books as $Book)
+                	<?php if($Megazines->count() != 0): ?>
+                		<?php $__currentLoopData = $Megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $megazines): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 		<div class="col s12 m3">
 		                  <div class="card" style="height: 430px">
 		                    <div class="card-image">
-		                        <a href="#myModal-{{$Book->id}}" class="modal-trigger">
-		                      <img src="{{ asset('/images/bookcover') }}/{{ $Book->cover }}" width="100%" height="300px">
+		                        <a href="#myModal-<?php echo e($megazines->id); ?>" class="modal-trigger">
+		                      <img src="<?php echo e(asset($megazines->cover)); ?>" width="100%" height="300px">
 		                      </a>
 		                      <!-- <span class="card-title">Card Title</span> -->
-		                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+		                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.<?php echo e($megazines->id); ?>" onclick="fnOpenNormalDialog('<?php echo $megazines->cost; ?>','<?php echo $megazines->title; ?>','<?php echo $megazines->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
 		                    </div>
 		                    <div class="card-content">
 		                        <div class="col m12">
-		                            <p class="grey-text">{{ $Book->title }}</p>
+		                            <p class="grey-text"><?php echo e($megazines->title); ?></p>
 		                        </div>
 		                        <div class="">
-		                            <small class="grey-text"><b>Autor: </b>{{$Book->author->full_name}}</small>
+		                            <small class="grey-text"><b>Géneros: </b>
+		                            	<?php $__currentLoopData = $megazines->tags_megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                           <?php echo e($t->tags_name); ?> 
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                   </small>
 		                        </div>
-		                            <small class="grey-text"><b>Costo: </b> {{$Book->cost}} tickets</small> 
+		                            <small class="grey-text"><b>Costo: </b> <?php echo e($megazines->cost); ?> tickets</small> 
 		                    </div>
 		                  </div>
 		                </div>
 
-		                <!--MODAL DETALLE DE LIBRO-->
-		                <div id="myModal-{{$Book->id}}" class="modal">
+		            <!--MODAL DETALLE DE REVISTA-->
+		                <div id="myModal-<?php echo e($megazines->id); ?>" class="modal">
 						    <div class="modal-content">
 						     	<div class="blue"><br>
-						            <h4 class="center white-text" ><i class="small material-icons">book</i> {{$Book->title}}</h4>
+						            <h4 class="center white-text" ><i class="small material-icons">book</i> <?php echo e($megazines->title); ?></h4>
 						            <br>
 						     	</div>
 						      	<div class="col s12 m4">
 						      		<br>
-			                    	<img src="{{ asset('images/bookcover/') }}/{{$Book->cover}}" width="100%" height="300"  id="panel">
-			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+			                    	<img src="<?php echo e(asset($megazines->cover)); ?>" width="100%" height="300"  id="panel">
+			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.<?php echo e($megazines->id); ?>" onclick="fnOpenNormalDialog('<?php echo $megazines->cost; ?>','<?php echo $megazines->title; ?>','<?php echo $megazines->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
 			                    	<br><br>
 			                 	</div>
 						    </div>
@@ -77,24 +80,13 @@
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
-		                                    <i class="material-icons circle left">create</i>
-		                                    <b class="left">Titulo original: </b>
-		                                </div>
-		                                <div class="col s12 m7">
-		                                    {{$Book->original_title}}
-		                                </div>
-		                            </div>
-		                        </li>
-		                        <li class="collection-item" style="padding: 10px ">
-		                            <div class="row">
-		                                <div class="col s12 m5">
 		                                    <i class="material-icons circle left">turned_in</i>
 		                                    <b class="left">Géneros: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                     @foreach($Book->tags_book as $t)
-		                                    <span class=""> {{ $t->tags_name }} </span>
-		                                    @endforeach
+		                                    <?php $__currentLoopData = $megazines->tags_megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		                                    <span class=""> <?php echo e($t->tags_name); ?> </span>
+		                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 		                                </div>
 		                            </div>
 		                        </li>
@@ -105,35 +97,37 @@
 		                                    <b class="left">Categoria: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $Book->rating->r_name }}
+		                                    <?php echo e($megazines->rating->r_name); ?>
+
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @if($Book->saga!=null)
+		                       <?php if($megazines->sagas!=null): ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
 		                                    <i class="material-icons circle left">folder</i>
-		                                    <b class="left">Saga: </b>
+		                                    <b class="left">Tipo de publicación: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $book->saga->sag_name }}
+		                                    <?php echo e($megazines->sagas->sag_name); ?>
+
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @else
+		                        <?php else: ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
 		                                    <i class="material-icons circle left">folder</i>
-		                                    <b class="left">Saga: </b>
+		                                    <b class="left">Tipo de publicación: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    No pertenece a una saga
+		                                    Independiente
 		                                </div>
 		                            </div>
 		                        </li>
-		                        @endif
+		                        <?php endif; ?>
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
@@ -141,15 +135,15 @@
 		                                    <b class="left">Costo: </b>
 		                                </div>
 		                                <div class="col s12 m7">
-		                                    {{ $Book->cost }} Tickets
+		                                    <?php echo e($megazines->cost); ?> Tickets
 		                                </div>
 		                            </div>
 		                        </li>
 		                    </ul>
 		                	</div>
 		                	<div class="col s12 m12" style="color: black">
-		                		<b class="left">Sinopsis:</b>
-		                		<p>{{ $Book->sinopsis }}</p>
+		                		<b class="left">Descripción:</b>
+		                		<p><?php echo e($megazines->descripcion); ?></p>
 		                	</div>
 		                	<div class="col s12 m12">
 							    <div class="modal-footer">
@@ -158,68 +152,21 @@
 							</div>
 						</div>
 
-                		@endforeach
+                		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 		<div class="col m12">
-                		{{  $Books->links() }}
+                			<?php echo e($Megazines->links()); ?>
+
                 		</div>
-                	@else
-                	<div class="col m12">
-		            <blockquote >
-		                <i class="material-icons fixed-width large grey-text">book</i><br><h5 class="grey-text">No hay libros disponibles</h5>
-		            </blockquote>
-		            <br>
-		            </div>
-                	@endif
+                	<?php else: ?>
+                	<?php endif; ?>
                 </div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
-
-@endsection
-@section('js')
-
-
-<script type="text/javascript">
-           // Tabs
-    var elem = $('.tabs')
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    //or Without Jquery
-
-
-    //var elem = document.querySelector('.tabs');
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, options);
-    })
-    //Modal
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems, options);
-    });
-
-    // Or with jQuery
-    // Slider
-    $(document).ready(function(){
-        $('.tooltipped').tooltip();
-        $('.modal').modal();
-        $('select').formSelect();
-        $('.parallax').parallax();
-        $('.materialboxed').materialbox();
-        $('.slider').slider({
-            indicators: false
-        });
-    });
-
-
-       
-    </script>
-<script src="{{asset('assets/js/jquery.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
 <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript">
 
@@ -229,7 +176,7 @@ $(document).ready(function(){
 	});
 	$('#buscar').attr('disabled',true);
       $('#seach').autocomplete({
-      	source: "SearchAuthor",
+      	source: "SearchMegazine",
       	minLength: 2,
       	select: function(event, ui){		
       		$('#seach').val(ui.item.value);
@@ -237,9 +184,8 @@ $(document).ready(function(){
           console.log(ui.item.type);
       		if (valor=='No se encuentra...'){
       			$('#buscar').attr('disabled',true);
-      			swal('No se encuentra regitrado','','error');
+      			swal('Autor no se encuentra regitrado','','error');
       		}else{
-            $('#type').val(ui.item.type);
       			$('#buscar').attr('disabled',false);
       		}
       	}
@@ -252,7 +198,7 @@ $(document).ready(function(){
 function fnOpenNormalDialog(cost,name,id) {
   
    swal({
-            title: "¿Estas seguro?",
+            title: "Estas seguro?",
             text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
@@ -281,7 +227,7 @@ function callback(value,id) {
             })
          $.ajax({
                     
-            url:'BuyBook/'+id,
+            url:'BuyMagazines/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
@@ -298,11 +244,11 @@ function callback(value,id) {
                     }
                     else if (result==1) 
                     {
-                      swal('El libro ya forma parte de su colección','','error');
+                      swal('La revista ya forma parte de su colección','','error');
                     }
                     else
                     {	
-                    var idUser={!!Auth::user()->id!!};
+                    var idUser=<?php echo Auth::user()->id; ?>;
                     $.ajax({ 
                 
                       url     : 'MyTickets/'+idUser,
@@ -314,7 +260,7 @@ function callback(value,id) {
                   
                       },
                     });
-                    	swal('Libro comprado con exito','','success');
+                    	swal('Revista comprada con exito','','success');
                   		 console.log(result);
                   	}	 
                 },
@@ -329,4 +275,5 @@ function callback(value,id) {
     }
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

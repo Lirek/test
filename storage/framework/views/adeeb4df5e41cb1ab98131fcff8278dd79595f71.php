@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
  <style>
     .default_color{background-color: #FFFFFF !important;}
 
@@ -105,11 +104,11 @@
             background: linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
         }
 </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col s12 m12">
-        @include('flash::message')
+        <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <div class="row">
                 <div class="col s12 m4">
@@ -119,7 +118,7 @@
                                 <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
                             </div>
                             <div class="col m7">
-                                <h5 style="color: white"><b>Tickets disponible:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                                <h5 style="color: white"><b>Tickets disponible:</b> <?php echo e(Auth::guard('web_seller')->user()->credito); ?></h5>
                             </div>
                         </div>
                     </div>
@@ -131,7 +130,7 @@
                                 <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">search</i>
                             </div>
                             <div class="col m7">
-                               <h5 style="color: white"><b>Tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
+                               <h5 style="color: white"><b>Tickets Pendientes:</b> <?php echo e(Auth::guard('web_seller')->user()->credito_pendiente); ?></h5>
                             </div>
                         </div>
                     </div>
@@ -143,7 +142,7 @@
                                 <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">monetization_on</i>
                             </div>
                             <div class="col m6">
-                               <h5 style="color: white"><b>Tickets Diferidos:</b> {{ $diferido}}</h5>
+                               <h5 style="color: white"><b>Tickets Diferidos:</b> <?php echo e($diferido); ?></h5>
                             </div>
                         </div>
                     </div>
@@ -157,7 +156,7 @@
                          <div class="input-field col s12 m8 offset-m2">
                             <i class="material-icons prefix blue-text valign-wrapper">local_activity</i>
                             <label for="monto">Cantidad de tickets a retirar:</label>
-                            <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                            <input type="number" min="1" max="<?php echo e(Auth::guard('web_seller')->user()->credito); ?>" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="<?php echo e(old('Cantidad')); ?>" onkeypress="return controltagNum(event)">
                             <div id="mensajeMonto"></div>
 
                            
@@ -182,17 +181,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($payment as $Payments)
-                                        @if($Payments != null)
+                                    <?php $__currentLoopData = $payment; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Payments): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($Payments != null): ?>
                                             <tr class="letters">
-                                                <td>{{$Payments->created_at->format('d/m/Y')}}</td>
+                                                <td><?php echo e($Payments->created_at->format('d/m/Y')); ?></td>
                                                 
-                                                <td><a href="" data-toggle="modal" data-target="#myModal-{{$Payments->id}}"><img src="{{asset($Payments->factura)}}" class="img-rounded img-responsive av" style="width:70px;height:70px;" alt="User Avatar" id="cover"></a></td>
-                                                <td>{{$Payments->tickets}}</td>
-                                                <td>{{$Payments->status}}</td>
+                                                <td><a href="" data-toggle="modal" data-target="#myModal-<?php echo e($Payments->id); ?>"><img src="<?php echo e(asset($Payments->factura)); ?>" class="img-rounded img-responsive av" style="width:70px;height:70px;" alt="User Avatar" id="cover"></a></td>
+                                                <td><?php echo e($Payments->tickets); ?></td>
+                                                <td><?php echo e($Payments->status); ?></td>
                                             </tr>
-                                        @endif
-                                    @endforeach
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                             </div>
@@ -227,7 +226,8 @@
                                     <b class="left">Fecha: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{date('d/m/Y')}}
+                                    <?php echo e(date('d/m/Y')); ?>
+
                                 </div>
                             </div>
                         </li>
@@ -345,7 +345,8 @@
                     </ul>
                 </div>
                     <div class="col m12">
-                        <form class="form-horizontal" method="POST" action="{{url('SellerFunds')}}" enctype="multipart/form-data">{{ csrf_field() }}
+                        <form class="form-horizontal" method="POST" action="<?php echo e(url('SellerFunds')); ?>" enctype="multipart/form-data"><?php echo e(csrf_field()); ?>
+
                             <div class="file-field input-field col m6 offset-m3">
                                 <label for="file">Imagen de la factura</label>
                                 <br><br>
@@ -376,8 +377,8 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
     </div>
 </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
            // Tabs
     var elem = $('.tabs')
@@ -430,7 +431,7 @@
             $('#mensajeMonto').css('color','red');
             $('#solicitar').attr('disabled',true);
         }
-        else if (nombre > {!!Auth::guard('web_seller')->user()->credito!!} ){
+        else if (nombre > <?php echo Auth::guard('web_seller')->user()->credito; ?> ){
             $('#mensajeMonto').show();
             $('#mensajeMonto').text('Fondos insuficientes');
             $('#mensajeMonto').css('color','red');
@@ -533,4 +534,5 @@
 
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

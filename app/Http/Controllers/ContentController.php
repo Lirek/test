@@ -110,7 +110,7 @@ class ContentController extends Controller
 //----------------------------------------LECTURA------------------------------------------------------
     public function ShowReadingsBooks()
     {
-        $Books= Book::where('status','=','Aprobado')->paginate(9);
+        $Books= Book::where('status','=','Aprobado')->orderBy('id', 'DESC')->paginate(8);
 
 
         return view('contents.Readings')->with('Books',$Books);
@@ -149,7 +149,7 @@ class ContentController extends Controller
     public function seachAuthor(){
         $query=Input::get('term');
         $Author=BookAuthor::where('full_name','LIKE','%'.$query.'%')->get();
-        // $book=Book::where('title','LIKE','%'.$query.'%')->get();
+        $book=Book::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
 
         $data=array();
 
@@ -157,9 +157,9 @@ class ContentController extends Controller
 
             $data[]=['id' => $key->id, 'value' => $key->full_name, 'type' => 'author'];
         }
-        // foreach ($book as $key1 ) {
-        //     $data[]=['id' => $key1->id, 'value' => $key1->title];
-        // }
+        foreach ($book as $key1 ) {
+            $data[]=['id' => $key1->id, 'value' => $key1->title, 'type'=> 'book'];
+        }
         if(count($data))
         {
             return response()->json($data);
@@ -185,14 +185,20 @@ class ContentController extends Controller
 
     public function ShowProfileAuthor(Request $request)
     {
-        $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
-
+        if ($request->type=='book'){
+            $Books = Book::where('status','=','Aprobado')->where('title','=',$request->seach)->paginate(1);
+            return view('contents.Readings')->with('Books',$Books);
+            
+        }
+        elseif ($request->type=='author'){
+            $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
         foreach ($Artist as $key) {
-
-            $prueba=$this->ShowAuthor($key->id);
+            $Books = Book::where('status','=','Aprobado')->where('author_id','=',$key->id)->paginate(8);
+            return view('contents.Readings')->with('Books',$Books);
         }
 
-        return $prueba;
+        }
+        
     }
 
     public function ShowProfileMegazine(Request $request)
