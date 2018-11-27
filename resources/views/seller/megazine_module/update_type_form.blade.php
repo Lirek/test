@@ -52,81 +52,6 @@
             background: transparent !important;
         }
 
-        /*es es del modal de autor*/
-        #imageAM-preview {
-            width: 100%;
-            height: 305px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #2b81af;
-            border-radius: 10px;
-        }
-
-        #imageAM-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #imageAM-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 200px;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
-
-        /*es es del modal de autor*/
-        #imageSM-preview {
-            width: 100%;
-            height: 380px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #2b81af;
-            border-radius: 10px;
-        }
-
-        #imageSM-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #imageSM-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 90%;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
     </style>
     <style>
         .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
@@ -185,7 +110,7 @@
                 Modificar Cadena de Publicaciones
             </h3>
             <div class="row">
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update',$pub_type->id) }}" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update_cad',$pub_type->id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                 <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
                 <div class="input-fiel col m6 s12">
@@ -203,6 +128,7 @@
                     </div>
                 </div>
                 <div class="input-field col m6 s12">
+                    <i class="material-icons prefix blue-text">create</i>
                     <label for="art_name" class="">Titulo de la cadena de publicación</label>
                     @if($pub_type->status != 'Aprobado')
                         <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" required autofocus>
@@ -210,49 +136,36 @@
                         <input id="art_name" type="text" class="form-control" name="title" value="{{$pub_type->sag_name}}" readonly>
                     @endif       
                 </div>
-               <!--  <div class="input-field col m6 s12">
+                {{--<div class="input-field  col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                    <select name="tags[]" multiple="true"  class="">
+                        @foreach($tags as $genders) 
+                            <option value="{{$genders->id}}">{{$genders->tags_name}}</option> 
+                        @endforeach
+                    </select>
                     <label for="tags"> 
                         Generos
-                    </label> 
-                        @if($pub_type->status != 'Aprobado')
-                        <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple">
-                            @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                                @if($s->id == $genders->id) 
-                                selected
-                                @endif 
-                                @endforeach >{{$genders->tags_name}}  
-                            </option>                                                 
-                            @endforeach
-                        </select>
-                        @else
-                          <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" disabled="true">
-                         @foreach($tags as $genders)
-                            <option value="{{$genders->id}}" @foreach($s_tags as $s) 
-                            @if($s->id == $genders->id) 
-                            selected
-                            @endif 
-                            @endforeach >{{$genders->tags_name}}  
-                            </option>                                                 
-                        @endforeach
-                        </select>
-                        @endif 
-                </div> -->
+                    </label>
+                </div>--}}
+
                 <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">book</i>
                     <label for="desc" class="">Descripción</label>
                     <textarea name="dsc" required class="materialize-textarea" rows="3" cols="2">{{$pub_type->sag_description}}</textarea>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                    {{--seleccion de rating--}}
-                                        
-                    @if($pub_type->status != 'Aprobado')
-                        {!! Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                    @else
-                        {!! Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]) !!}
-                    @endif
-                    <label for="exampleInputFile" class="control-label">Categoría</label>
-                </div>
+                      <div class="input-field col s12">
+                      {{--Categoria--}}
+                          <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                          @if($pub_type->status != 'Aprobado')
+                          {!! Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                          @else
+                          {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']) !!}
+                      </select>
+                      @endif
+                       <label for="tags">Generos</label>
+                      </div>
+                  </div>
                 <button type="submit" class="btn curvaBoton waves-effect waves-light green">
                         Modificar
                 </button>

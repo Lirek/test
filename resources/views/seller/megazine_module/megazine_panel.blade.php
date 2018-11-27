@@ -60,6 +60,7 @@
                       <img src="{{asset($b->img_saga)}}" width="100%" height="300px">
                       </a>
                       <!-- <span class="card-title">Card Title</span> -->
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('/type_update/'.$b->id) }}"><i class="material-icons">create</i></a>
                     </div>
                     <div class="card-content">
                         <div class="col m12">
