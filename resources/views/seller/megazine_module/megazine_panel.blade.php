@@ -1,127 +1,144 @@
 @extends('seller.layouts')
+@section('css')
+ <style>
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
 
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    .card{
+        height:430px;
+    }
+    
+</style>
+
+@endsection
 @section('content')
-<div class="content">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-success">
-                <div class="panel-heading">Panel de Contenido </div>
-                @include('flash::message')
-                <div class="panel-body">
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>Mis Revistas</h3>
-                </div>
-            <div class="panel-body">
-                  <table class="table table-hover">
-                
-                    <thead>   
-                            <tr>
-                            <th>Cadena de Publicacion</th>
-                            <th>Numero Revistas</th>
-                            <th>Fecha de Publicacion</th>
-                            <th>Estatus</th>
-                        </tr>
-                
-                    </thead>
-                
-                    <tbody>
-                            @foreach($collection as $pub_c)
-                         <tr>
-                            <th>{{$pub_c->sag_name}}</th>
-                            <th>0</th>
-                            <th>{{$pub_c->created_at}}</th>
-                            <th>{{$pub_c->status}}</th>
-                             <th>
-                                
-                                <!-- <a href="{{ url('/type_delete/'.$pub_c->id) }}"
-                                   onclick="return confirm('¿ Desea eliminar la cadena de publicacion  {{ $pub_c->sag_name }} ?')"
-                                   class="btn btn-danger active ">
-                                    <span class="glyphicon glyphicon-remove-circle"></span>
-                                </a>
-                                &nbsp;
-                                <a href="{{ url('/type_update/'.$pub_c->id) }}" class="btn btn-warning active">
-                                    <span class="glyphicon glyphicon-wrench"></span>
-                                </a>
-                                &nbsp; -->
-                                <a href="{{ url('/show_pub/'.$pub_c->id) }}" class="btn btn-info active">
-                                    <span class="fa fa-play-circle" aria-hidden="true"></span>
-                                </a>
-                            </th>
-                        </tr>
-                            @endforeach
+<div class="row">
+    <div class="col s12 m12">
+        @include('flash::message')
 
-                    </tbody>
-
-                  </table> 
+        <div class="card-panel curva">
+            <h3 class="center">
+                revistas registradas 
+            </h3>
+            @if($collection->count() != 0 )
+            <div class="row">
+                @foreach($collection as $b)
+                @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
+                <div class="col s12 m3">
+                  <div class="card">
+                    <div class="card-image">
+                        <a href="{{ url('/show_pub/'.$b->id) }}">
+                      <img src="{{asset($b->img_saga)}}" width="100%" height="300px">
+                      </a>
+                      <!-- <span class="card-title">Card Title</span> -->
+                    </div>
+                    <div class="card-content">
+                        <div class="col m12">
+                            <p class="">{{ $b->sag_name }}</p>
+                        </div>
+                        <div class="col m12 ">
+                            <small><b>Estatus:</b> {{ $b->status }}</small>
+                        </div>  
+                            <small><b>Genero:</b> {{ $b->rating->r_name }}</small>
+                                           
+                    </div>
+                  </div>
                 </div>
-            {!! $collection->render() !!}
+                @endif
+                @endforeach
             </div>
-
-
-            <div class="panel panel-default">
-
-            <div class="panel-heading">
-                    <h3>Mis Revistas Independientes</h3>
+            {{$collection->links()}}
+            @else
+            <div class="col m12">
+            <blockquote >
+                <i class="material-icons fixed-width large grey-text">book</i><br><h5>No Posee revistas registradas</h5>
+            </blockquote>
+            <br>
             </div>
+            @endif
 
-              <div class="col-md-8">
+            <a href="{{ url('/type') }}" class="btn curvaBoton waves-effect waves-light green">   
+                <span>Agregar más cadena de publicación</span>
+            </a>       
+        </div>
 
-                  <table class="table table-hover">
-                
-                    <thead>   
-                
-                            <tr>
-                            <th>Revista</th>
-                            <th>Costo</th>
-                            <th>Fecha de Publicacion</th>
-                            <th>Estatus</th>
-                            <th>Acciones</th>
-                        </tr>
-                
-                    </thead>
-                
-                     @foreach($single as $megazine)
-                         <tr>
-                            <th>{{$megazine->title}}</th>
-                            <th>{{$megazine->cost}}</th>
-                            <th>{{$megazine->created_at}}</th>
-                            <th>{{$megazine->status}}</th>
-
-                            <th>
-                                <a href="{{ url('/show_megazine/'.$megazine->id) }}" class="btn btn-info active">
-                                    <span class="fa fa-play-circle" aria-hidden="true"></span>
-                                </a>
-                                </th>
-                            <th>
-                                <!-- <a href="{{ url('/delete_megazine/'.$megazine->id) }}"
-                                   onclick="return confirm('¿ Desea eliminar la revista   {{ $megazine->title }} ?')"
-                                   class="btn btn-danger active ">
-                                    <span class="glyphicon glyphicon-remove-circle"></span>
-                                </a>
-                                &nbsp; -->
-                                <a href="{{ url('/megazine_i_update/'.$megazine->id) }}" class="btn btn-warning active">
-                                    <span class="glyphicon glyphicon-wrench"></span>
-                                </a>
-                            </th>
-                        </tr>
-                            @endforeach
-
-                    </tbody>
-
-                  </table> 
+        <div class="card-panel curva">
+            <h3 class="center">
+                revistas independientes registradas 
+            </h3>
+            @if($single->count() != 0 )
+            <div class="row">
+                @foreach($single as $b)
+                @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
+                <div class="col s12 m3">
+                  <div class="card">
+                    <div class="card-image">
+                        <a href="{{ url('/show_megazine/'.$b->id) }}">
+                      <img src="{{asset($b->cover)}}" width="100%" height="300px">
+                      </a>
+                      <!-- <span class="card-title">Card Title</span> -->
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('/megazine_i_update/'.$b->id) }}"><i class="material-icons">create</i></a>
+                    </div>
+                    <div class="card-content">
+                        <div class="col m12">
+                            <p class="">{{ $b->title }}</p>
+                        </div>
+                        <div class="col m12 ">
+                            <small><b>Estatus:</b> {{ $b->status }}</small>
+                        </div>
+                        
+                            <small><b>N° de compras</b> {{$b->transaction->count()}}</small> 
+                    </div>
+                  </div>
                 </div>
-            {!! $single->render() !!}                  
-                </div>
-            </div>                
-                
-                
-              </div>
+                @endif
+                @endforeach
             </div>
+            {{$single->links()}}
+            @else
+            <div class="col m12">
+            <blockquote >
+                <i class="material-icons fixed-width large grey-text">book</i><br><h5>No Posee revistas independientes registradas</h5>
+            </blockquote>
+            <br>
+            </div>
+            @endif
+
+            <a href="{{ url('/megazine_form') }}" class="btn curvaBoton waves-effect waves-light green">   
+                <span>Agregar más revistas independientes</span>
+            </a>       
         </div>
     </div>
-
 </div>
-
+@endsection
+@section('js')
 @endsection

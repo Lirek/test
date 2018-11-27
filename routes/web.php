@@ -827,13 +827,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 //------------Rutas de Modificar Revista Independiente----------------------------
     Route::get('/megazine_i_update/{id}', 'MegazineController@ShowUpdateSingleMegazineForm');
-    Route::post('/megazine_i_update/{id}', 'MegazineController@UpdateIdMegazine');
+    Route::post('/megazine_inde_update/{id}', 'MegazineController@UpdateIdMegazine');
 //-----------Fin de las Rutas-----------------------------------------------------
 
 //------------Rutas de Borrar Revistas ----------------------------
     Route::get('/delete_megazine/{id}', 'MegazineController@DeleteMegazine');
 //-----------Fin de las Rutas-----------------------------------------------------
-
 
 //------------Rutas de Borrar Cadenas de Publicacion ----------------------------
     Route::get('/type_delete/{id}', 'MegazineController@DeleteType');
