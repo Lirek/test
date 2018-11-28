@@ -247,7 +247,7 @@ $(document).ready(function(){
    });
   });
 </script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function fnOpenNormalDialog(cost,name,id) {
   
@@ -293,7 +293,7 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                        console.log(result);
                     }
                     else if (result==1) 
