@@ -134,20 +134,18 @@ class AuthController extends Controller
 
 
             $code=$randomString;
-            $createUser = User::firstOrCreate(
-                ['email' => $request->email],
-                ['name' => $request->name,
-                    'img_perf' => $request->avatar,
-                    'codigo_ref'=>$code]
-            );
+            $createUser = User::firstOrCreate(['email' => $request->email]);
 
             if($createUser->wasRecentlyCreated)
             {
+                $createUser->img_perf = $request->avatar;
+                $createUser->name = $request->name;
+                $createUser->codigo_ref=$code;
                 event(new WelcomeEmailEvent($createUser));
             }
 
             $token = JWTAuth::fromUser($createUser);
-
+            Log::info($token);
             return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
 
     }

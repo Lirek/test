@@ -244,6 +244,11 @@
 
         <main>
             <section id="main-content" class="section section-daily-stats center">
+
+                @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                
                 <div class="row">
                     @yield('main')
                 </div>
