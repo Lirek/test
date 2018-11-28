@@ -193,7 +193,7 @@ $(document).ready(function(){
    });
   });
 </script>
-
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script>
 function fnOpenNormalDialog(cost,name,id) {
   

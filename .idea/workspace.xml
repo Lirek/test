@@ -117,36 +117,11 @@
       <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade(old).php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2c1429218e9bb8ef3817c47cd46f670aa423499c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6650b7696a3b17468846a1bb8318ccf73f3b6fd8.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a6f41a51418cd97d7a65a8467d2a65340d7fd567.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a8903778185abcf2a7eb6d82f272ed87afa91348.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b49f79517130fca1aa1705fb31552553c1c8125d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b6bc5537e10cfd4bf7ace3547ed4b850b66f156a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cd6d2c108dcf00695cdb796954eba5172a3fa0ef.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2a1dcdec34fd67f3b59ef594b863e182c9cc531.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d3337bebbe40ba751e144c659345a5b8abbdd7a0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e7a88b60edb039413373e20ec6c38b97223b31f1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -585,7 +560,8 @@
       <workItem from="1542652368524" duration="217000" />
       <workItem from="1542663053175" duration="3262000" />
       <workItem from="1542729822283" duration="194000" />
-      <workItem from="1543357242647" duration="1436000" />
+      <workItem from="1543357242647" duration="1635000" />
+      <workItem from="1543416905620" duration="205000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -636,11 +612,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542652549747</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)">
+      <created>1543358735589</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1543358735589</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="425122000" />
+    <option name="totallyTimeSpent" value="425624000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -661,7 +644,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -672,17 +655,17 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -690,14 +673,14 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
