@@ -6,11 +6,10 @@
 @section('main')
 
 
-
                     <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
                         <ul class="tabs">
-                            <li class="tab col s4"><a  href="#test1" class="active"><i class="material-icons prefix">timeline</i><b>Mi Balance</b></a></li>
-                            <li class="tab col s4"><a  href="#test2"><i class="material-icons prefix">add_circle_outline</i><b>Detalles</b></a></li>
+                            <li class="tab col s4"><a  href="#test1" class="active"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
+                            <li class="tab col s4"><a  href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
                         </ul>
                     </div>
 
@@ -24,23 +23,23 @@
                                     <br>
                                     <ul class="collapsible popout">
                                         <li>
-                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6>Total de puntos:</h6></div>
+                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 class="grey-text">Total de puntos:</h6></div>
                                         @if(Auth::user()->points)
-                                            <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>{{Auth::user()->points}}</b></a><br><br></div>
+                                            <div class="collapsible-body"> <a class="btn-floating btn-large blue lighten-2 "> <b>{{Auth::user()->points}}</b></a><br><br></div>
                                         @else
-                                            <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>0</b></a><br><br></div>
+                                            <div class="collapsible-body"> <a class="btn-floating btn-large blue lighten-2 "> <b>0</b></a><br><br></div>
                                         @endif
                                         </li>
                                         <li class="active">
-                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Total de tickets:</h6></div>
-                                            <div class="collapsible-body"><a class="btn-floating btn-large  blue lighten-2"><b>{{Auth::user()->credito}}</b></a><br><br></div>
+                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Total de tickets:</h6></div>
+                                            <div class="collapsible-body"><a class="btn-floating btn-large amber lighten-2"><b>{{Auth::user()->credito}}</b></a><br><br></div>
                                         </li>
                                         <li>
-                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Total de puntos pendientes:</h6></div>
+                                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Total de puntos pendientes:</h6></div>
                                             @if(Auth::user()->pending_points)
-                                                <div class="collapsible-body">  <a class="btn-floating btn-large  amber lighten-2"> <b> {{Auth::user()->pending_points}}</b></a><br><br></div>
+                                                <div class="collapsible-body">  <a class="btn-floating btn-large  deep-orange lighten-2"> <b> {{Auth::user()->pending_points}}</b></a><br><br></div>
                                             @else
-                                                <div class="collapsible-body">  <a class="btn-floating btn-large  amber lighten-2"> <b>0</b></a><br><br></div>
+                                                <div class="collapsible-body">  <a class="btn-floating btn-large  deep-orange lighten-2"> <b>0</b></a><br><br></div>
                                             @endif
                                         </li>
                                     </ul>
@@ -113,52 +112,52 @@
     <script>
 
         $(document).ready(function(){
-            // grafica de torta para las etiquetas por aprobar y las aprobadas
 
+                // grafica de disponibilidad
+                $.ajax({
+                    url:"{{url('BalanceUserGraph')}}",
+                    type:'GET',
+                    success:function(info) {
+                        console.log(info);
+                        var ctx = $("#myChart");
+                        var data = {
+                            datasets: [{
+                                data: info,
+                                backgroundColor: [
+                                    '#64B5F6',
+                                    '#ff8a65',
+                                ],
+                                borderColor: [
+                                    '#fff'
+                                ],
+                                borderWidth: 5
+                            }],
+                            labels:
+                                ["Puntos", "Puntos Pendientes"],
+                        };
 
-            var ctx = $("#myChart");
+                        var myPieChart = new Chart(ctx,{
+                            type: 'doughnut',
+                            data: data,
+                            options: {
 
-
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'doughnut',
-                position: 'left',
-
-                // The data for our dataset
-                data: {
-                    labels: ["Putos", "tickets", "Pendientes"],
-                    datasets: [{
-
-                        data: [1, 20, 0],
-                        backgroundColor: [
-                            '#64B5F6',
-                            '#ff8a65',
-                            '#ffd54f',
-                        ],
-                        borderColor: [
-                            '#fff'
-                        ],
-                        borderWidth: 1
-
-                    }]
-
-
-                },
-
-                // Configuration options go here
-                options: {
-
-                    legend: {
-                        position: 'bottom'
+                                legend: {
+                                    position: 'bottom'
+                                },
+                            }
+                        });
                     },
+                    error:function(info) {
+                        console.log(info);
+                    }
+
+                });
+                // grafica de doughnut disponibilidad user
 
 
 
-                }
             });
-            // grafica de torta para las etiquetas por aprobar y las aprobadas
 
-        });
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/1.2.2/bluebird.js"></script>

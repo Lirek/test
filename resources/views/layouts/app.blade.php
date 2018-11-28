@@ -100,16 +100,22 @@
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
                             </div>
-                            <div class="container">
-                                @if(Auth::user()->alias == null)
-                                    <h5 class="name white-text">{{Auth::user()->name}}</h5>
-                                @else
-                                    <h5 class="name white-text">{{Auth::user()->alias}}</h5>
-                                @endif
-                                <a class="modal-trigger" href="#myModalTotal">
-                                    <span class="name white-text"> Mi balance</span>
-                                </a>
-                                <br>
+
+                            <div class="info-container">
+                                <div class="name ">
+                                    <a class="white-text" href="#">
+                                        @if(Auth::user()->alias == null)
+                                           {{Auth::user()->name}}
+                                        @else
+                                            {{Auth::user()->alias}}
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="name" data-toggle="dropdown" >
+                                    <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
+                                        <i class="material-icons ">local_activity</i>&nbsp;Mi balance
+                                    </a>
+                                </div>
                             </div>
                         </div>
                    </li><!--End seccion de usuario -->

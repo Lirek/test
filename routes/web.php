@@ -69,6 +69,9 @@ Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCal
 
 Route::resource('users', 'UserController');
 
+//agregada 27-11-2018
+Route::get('BalanceUserGraph','UserController@DonutGraph');
+
 Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
