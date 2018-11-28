@@ -6,8 +6,7 @@ use Closure;
 use Exception;
 
 use Auth;
-use User;
-use Transactions;
+use App\Transactions;
 
 class MyAlbums
 {
@@ -22,19 +21,18 @@ class MyAlbums
     {
         $albums=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
+        $user=Auth::guard()->user()->id;
 
-        $x=Transactions::where('album_id','=',$albums)
+        try 
+        {
+            $x=Transactions::where('album_id','=',$albums)
                         ->where('user_id','=',$user)
-                        ->count();
-       
-        if ($x==1) 
+                        ->firstOrfail();   
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) 
         {
-            return $next($request);    
+            return redirect('/home')->withError('El Contenido No Forma Parte de Su Coleccion.');
         }
-        else
-        {
-            return response()->json(['message'=>'El Contenido No Forma Parte de Su Coleccion'],401);
-        }
+
     }
 }

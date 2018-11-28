@@ -8,8 +8,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
@@ -112,6 +112,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
             'Lcobucci\\JWT\\' => 13,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\Socialite\\' => 18,
+        ),
+        'J' => 
+        array (
+            'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
+            'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'I' => 
         array (
@@ -315,6 +320,14 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         array (
             0 => __DIR__ . '/..' . '/laravel/socialite/src',
         ),
+        'JakubOnderka\\PhpConsoleHighlighter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
+        ),
+        'JakubOnderka\\PhpConsoleColor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -412,17 +425,6 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
             'Laracasts\\Flash' => 
             array (
                 0 => __DIR__ . '/..' . '/laracasts/flash/src',
-            ),
-        ),
-        'J' => 
-        array (
-            'JakubOnderka\\PhpConsoleHighlighter' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-            'JakubOnderka\\PhpConsoleColor' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
         'H' => 
@@ -526,6 +528,13 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Middleware\\AuthenticatePromoter' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticatePromoter.php',
         'App\\Http\\Middleware\\AuthenticateSeller' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateSeller.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\MyAlbums' => __DIR__ . '/../..' . '/app/Http/Middleware/MyAlbums.php',
+        'App\\Http\\Middleware\\MyBooks' => __DIR__ . '/../..' . '/app/Http/Middleware/MyBooks.php',
+        'App\\Http\\Middleware\\MyContent' => __DIR__ . '/../..' . '/app/Http/Middleware/MyContent.php',
+        'App\\Http\\Middleware\\MyMegazine' => __DIR__ . '/../..' . '/app/Http/Middleware/MyMegazine.php',
+        'App\\Http\\Middleware\\MyMovies' => __DIR__ . '/../..' . '/app/Http/Middleware/MyMovies.php',
+        'App\\Http\\Middleware\\MySeries' => __DIR__ . '/../..' . '/app/Http/Middleware/MySeries.php',
+        'App\\Http\\Middleware\\MySingles' => __DIR__ . '/../..' . '/app/Http/Middleware/MySingles.php',
         'App\\Http\\Middleware\\OperatorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/OperatorMiddleware.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\RedirectIfPromoterAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfPromoterAuthenticated.php',
@@ -577,13 +586,18 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Mail\\PromoterPassword' => __DIR__ . '/../..' . '/app/Mail/PromoterPassword.php',
         'App\\Mail\\StatusApplys' => __DIR__ . '/../..' . '/app/Mail/StatusApplys.php',
         'App\\Mail\\StatusBooks' => __DIR__ . '/../..' . '/app/Mail/StatusBooks.php',
+        'App\\Mail\\StatusMagazines' => __DIR__ . '/../..' . '/app/Mail/StatusMagazines.php',
         'App\\Mail\\StatusMovies' => __DIR__ . '/../..' . '/app/Mail/StatusMovies.php',
+        'App\\Mail\\StatusPayments' => __DIR__ . '/../..' . '/app/Mail/StatusPayments.php',
+        'App\\Mail\\StatusPublicationChain' => __DIR__ . '/../..' . '/app/Mail/StatusPublicationChain.php',
+        'App\\Mail\\StatusSagas' => __DIR__ . '/../..' . '/app/Mail/StatusSagas.php',
         'App\\Mail\\StatusSeller' => __DIR__ . '/../..' . '/app/Mail/StatusSeller.php',
         'App\\Mail\\StatusSerie' => __DIR__ . '/../..' . '/app/Mail/StatusSerie.php',
         'App\\Mail\\TransactionApproved' => __DIR__ . '/../..' . '/app/Mail/TransactionApproved.php',
         'App\\Mail\\UserAprobal' => __DIR__ . '/../..' . '/app/Mail/UserAprobal.php',
         'App\\Mail\\UserDenial' => __DIR__ . '/../..' . '/app/Mail/UserDenial.php',
         'App\\Mail\\WelcomeEmail' => __DIR__ . '/../..' . '/app/Mail/WelcomeEmail.php',
+        'App\\MegazineTags' => __DIR__ . '/../..' . '/app/MegazineTags.php',
         'App\\MegazineTrace' => __DIR__ . '/../..' . '/app/MegazineTrace.php',
         'App\\Megazines' => __DIR__ . '/../..' . '/app/Megazines.php',
         'App\\Movie' => __DIR__ . '/../..' . '/app/Movie.php',
@@ -591,6 +605,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\MoviesTrace' => __DIR__ . '/../..' . '/app/MoviesTrace.php',
         'App\\MusicTags' => __DIR__ . '/../..' . '/app/MusicTags.php',
         'App\\Notifications\\SellerResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/SellerResetPasswordNotification.php',
+        'App\\PaymentSeller' => __DIR__ . '/../..' . '/app/PaymentSeller.php',
         'App\\Payments' => __DIR__ . '/../..' . '/app/Payments.php',
         'App\\PointsAssings' => __DIR__ . '/../..' . '/app/PointsAssings.php',
         'App\\PointsSells' => __DIR__ . '/../..' . '/app/PointsSells.php',
@@ -2160,9 +2175,9 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
-        'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
-        'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
-        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
+        'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
+        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'Laracasts\\Flash\\Flash' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Flash.php',
         'Laracasts\\Flash\\FlashNotifier' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/FlashNotifier.php',
@@ -2185,6 +2200,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Laravel\\Socialite\\Two\\BitbucketProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/BitbucketProvider.php',
         'Laravel\\Socialite\\Two\\FacebookProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/FacebookProvider.php',
         'Laravel\\Socialite\\Two\\GithubProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/GithubProvider.php',
+        'Laravel\\Socialite\\Two\\GitlabProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/GitlabProvider.php',
         'Laravel\\Socialite\\Two\\GoogleProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/GoogleProvider.php',
         'Laravel\\Socialite\\Two\\InvalidStateException' => __DIR__ . '/..' . '/laravel/socialite/src/Two/InvalidStateException.php',
         'Laravel\\Socialite\\Two\\LinkedInProvider' => __DIR__ . '/..' . '/laravel/socialite/src/Two/LinkedInProvider.php',
@@ -2429,6 +2445,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Monolog\\Handler\\HandlerWrapper' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/HandlerWrapper.php',
         'Monolog\\Handler\\HipChatHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/HipChatHandler.php',
         'Monolog\\Handler\\IFTTTHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/IFTTTHandler.php',
+        'Monolog\\Handler\\InsightOpsHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/InsightOpsHandler.php',
         'Monolog\\Handler\\LogEntriesHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/LogEntriesHandler.php',
         'Monolog\\Handler\\LogglyHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/LogglyHandler.php',
         'Monolog\\Handler\\MailHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/MailHandler.php',
@@ -2467,11 +2484,15 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Monolog\\Processor\\MemoryUsageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MemoryUsageProcessor.php',
         'Monolog\\Processor\\MercurialProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/MercurialProcessor.php',
         'Monolog\\Processor\\ProcessIdProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/ProcessIdProcessor.php',
+        'Monolog\\Processor\\ProcessorInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/ProcessorInterface.php',
         'Monolog\\Processor\\PsrLogMessageProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/PsrLogMessageProcessor.php',
         'Monolog\\Processor\\TagProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/TagProcessor.php',
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'Monolog\\ResettableInterface' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ResettableInterface.php',
+        'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
+        'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
         'MoviesTags' => __DIR__ . '/../..' . '/database/migrations/2018_08_20_160433_movies_tags.php',
         'MoviesTraceTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_30_181057_MoviesTraceTable.php',
         'Namshi\\JOSE\\Base64\\Base64Encoder' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Base64/Base64Encoder.php',
@@ -2909,6 +2930,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'PhpParser\\Builder\\Namespace_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Namespace_.php',
         'PhpParser\\Builder\\Param' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Param.php',
         'PhpParser\\Builder\\Property' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Property.php',
+        'PhpParser\\Builder\\TraitUse' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/TraitUse.php',
+        'PhpParser\\Builder\\TraitUseAdaptation' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/TraitUseAdaptation.php',
         'PhpParser\\Builder\\Trait_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Trait_.php',
         'PhpParser\\Builder\\Use_' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder/Use_.php',
         'PhpParser\\Comment' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Comment.php',
@@ -3145,6 +3168,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Prophecy\\Doubler\\ClassPatch\\ProphecySubjectPatch' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/ClassPatch/ProphecySubjectPatch.php',
         'Prophecy\\Doubler\\ClassPatch\\ReflectionClassNewInstancePatch' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/ClassPatch/ReflectionClassNewInstancePatch.php',
         'Prophecy\\Doubler\\ClassPatch\\SplFileInfoPatch' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/ClassPatch/SplFileInfoPatch.php',
+        'Prophecy\\Doubler\\ClassPatch\\ThrowablePatch' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/ClassPatch/ThrowablePatch.php',
         'Prophecy\\Doubler\\ClassPatch\\TraversablePatch' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/ClassPatch/TraversablePatch.php',
         'Prophecy\\Doubler\\DoubleInterface' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/DoubleInterface.php',
         'Prophecy\\Doubler\\Doubler' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Doubler/Doubler.php',
@@ -3219,6 +3243,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psy\\CodeCleaner' => __DIR__ . '/..' . '/psy/psysh/src/CodeCleaner.php',
         'Psy\\CodeCleaner\\AbstractClassPass' => __DIR__ . '/..' . '/psy/psysh/src/CodeCleaner/AbstractClassPass.php',
         'Psy\\CodeCleaner\\AssignThisVariablePass' => __DIR__ . '/..' . '/psy/psysh/src/CodeCleaner/AssignThisVariablePass.php',
@@ -3873,6 +3898,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Symfony\\Component\\HttpKernel\\HttpCache\\Ssi' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/Ssi.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\Store' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/Store.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\StoreInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/StoreInterface.php',
+        'Symfony\\Component\\HttpKernel\\HttpCache\\SubRequestHandler' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/SubRequestHandler.php',
         'Symfony\\Component\\HttpKernel\\HttpCache\\SurrogateInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpCache/SurrogateInterface.php',
         'Symfony\\Component\\HttpKernel\\HttpKernel' => __DIR__ . '/..' . '/symfony/http-kernel/HttpKernel.php',
         'Symfony\\Component\\HttpKernel\\HttpKernelInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpKernelInterface.php',

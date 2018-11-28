@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-use User;
-use Transactions;
+use App\Transactions;
+
 
 class MyMovies
 {
@@ -20,19 +20,19 @@ class MyMovies
     {
         $Content=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
-
-        $x=Transactions::where('movies_id','=',$Content)
-                        ->where('user_id','=',$user)
-                        ->count();
+        $user=Auth::guard()->user()->id;
        
-        if ($x==1) 
+        try 
         {
-            return $next($request);    
-        }
-        else
+                $x=Transactions::where('movies_id','=',$Content)
+                        ->where('user_id','=',$user)
+                        ->firstOrfail();   
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) 
         {
-            return response()->json(['message'=>'El Contenido No Forma Parte de Su Coleccion'],401);
+            return redirect('/home')->withError('El Contenido No Forma Parte de Su Coleccion.');
         }
+
+        return $next($request);
     }
 }

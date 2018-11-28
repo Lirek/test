@@ -3,10 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
 use Auth;
-use User;
-use Transactions;
+use App\Transactions;
 
 class MyBooks
 {
@@ -21,19 +19,18 @@ class MyBooks
     {
         $Content=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
+        $user=Auth::guard()->user()->id;
 
-        $x=Transactions::where('books_id','=',$Content)
-                        ->where('user_id','=',$user)
-                        ->count();
-       
-        if ($x==1) 
+        try 
         {
-            return $next($request);    
+            $x=Transactions::where('books_id','=',$Content)                                                         ->where('user_id','=',$user)->firstOrfail();                
         }
-        else
+        catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e)
         {
-            return response()->json(['message'=>'El Contenido No Forma Parte de Su Coleccion'],401);
+            return redirect('/home')->withError('El Contenido No Forma Parte de Su Coleccion.');
+
         }
+
+        return $next($request);
     }
 }

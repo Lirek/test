@@ -20,19 +20,16 @@ class MySingles
     {
         $Content=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
-
-        $x=Transactions::where('song_id','=',$Content)
-                        ->where('user_id','=',$user)
-                        ->count();
-       
-        if ($x==1) 
+        $user=Auth::guard()->user()->id;
+                        
+        try 
         {
-            return $next($request);    
-        }
-        else
+            $x=Transactions::where('song_id','=',$Content)
+                        ->where('user_id','=',$user)->firstOrfail();   
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) 
         {
-            return response()->json(['message'=>'El Contenido No Forma Parte de Su Coleccion'],401);
+            return redirect('/home')->withError('El Contenido No Forma Parte de Su Coleccion.');
         }
     }
 }

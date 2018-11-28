@@ -4,8 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-use User;
-use Transactions;
+use App\Transactions;
 
 class MySeries
 {
@@ -17,22 +16,22 @@ class MySeries
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-         $Content=$request->route()->parameter('id');
+    { 
+        $Content=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
+        $user=Auth::guard()->user()->id;
 
-        $x=Transactions::where('series_id','=',$Content)
+      try 
+        {
+                $x=Transactions::where('series_id','=',$Content)
                         ->where('user_id','=',$user)
-                        ->count();
-       
-        if ($x==1) 
+                        ->firstOrfail();   
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) 
         {
-            return $next($request);    
+            return redirect('/home')->withError('El Contenido No Forma Parte de Su Coleccion.');
         }
-        else
-        {
-            return response()->json(['message'=>'El Contenido No Forma Parte de Su Coleccion'],401);
-        }
+
+        return $next($request);
     }
 }

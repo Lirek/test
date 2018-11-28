@@ -117,8 +117,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user= User::where('codigo_ref','=',$id)->get();
-
+        try 
+        {
+          $user= User::where('codigo_ref','=',$id)->firstOrFail();  
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
+        {
+           return view('errors.unauthorized')->with('error','El Codigo Coincide Con Nuestros Registros');
+        }
         return view('users.register')->with('user_code',$id);
     }
 
