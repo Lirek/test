@@ -1,4 +1,5 @@
-<?php $__env->startSection('css'); ?>
+@extends('layouts.app')
+@section('css')
 <style>
     .gly-spin {
         -webkit-animation: spin 0.8s infinite linear;
@@ -9,17 +10,17 @@
     .btn-swal-center {
         margin-right: 13em;
     }
-    @media  only screen and (max-width: 425px) {
+    @media only screen and (max-width: 425px) {
         .btn-swal-center {
             margin-right: 10.5em;
         }
     }
-    @media  only screen and (max-width: 375px) {
+    @media only screen and (max-width: 375px) {
         .btn-swal-center {
             margin-right: 9em;
         }
     }
-    @media  only screen and (max-width: 320px) {
+    @media only screen and (max-width: 320px) {
         .btn-swal-center {
             margin-right: 7em;
         }
@@ -66,15 +67,15 @@ input[type="checkbox"]:disabled + .label-text:before{
     content: "\f0c8";
     color: #ccc;
 }
-@keyframes  effect{
+@keyframes effect{
     0%{transform: scale(0);}
     25%{transform: scale(1.3);}
     75%{transform: scale(1.4);}
     100%{transform: scale(1);}
 }
 </style>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('main'); ?> 
+@endsection
+@section('main') 
 
 <div class="row" style="margin-bottom: -20%">
     <div class="form-group"> 
@@ -92,37 +93,37 @@ input[type="checkbox"]:disabled + .label-text:before{
                                 <br>
                             </div>
 
-                    <?php $__currentLoopData = $package; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ticket): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    @foreach($package as $ticket)
                     <div class="col-md-3 col-sm-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="white-panel">
                                     <div class="white-header" style="padding: 10px">
-                                        <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1><?php echo e($ticket->name); ?></h1></span>
+                                        <span><i class="fa fa-ticket" style="font-size: 50px"></i><h1>{{$ticket->name}}</h1></span>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-10 col-xs-10 col-md-10">
                                             <h4 style="margin-left: 20%; color: #000;">
-                                                <b>Costo:</b> $<?php echo e($ticket->cost); ?> <br> (Incluido IVA)
+                                                <b>Costo:</b> ${{$ticket->cost}} <br> (Incluido IVA)
                                             </h4>
                                             <br>
                                             <div class="paragraph">
                                                 <p class="center" id="mensaje"></p>
-                                                <?php if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL && Auth::user()->phone!=NULL): ?>
-                                                    <?php if(Auth::user()->verify==0): ?>
-                                                        <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-<?php echo e($ticket->id); ?>" onclick="esperarAprobacion()">
+                                                @if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL && Auth::user()->phone!=NULL)
+                                                    @if(Auth::user()->verify==0)
+                                                        <a href="#" class="buttonCenter btn btn-info" id="esperarAprobacion-{{$ticket->id}}" onclick="esperarAprobacion()">
                                                             <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                         </a>
-                                                    <?php else: ?>
-                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-<?php echo e($ticket->id); ?>" onclick="total(<?php echo $ticket->id; ?>,<?php echo $ticket->cost; ?>,<?php echo $ticket->amount; ?>,<?php echo $ticket->points_cost; ?>)">
+                                                    @else
+                                                        <a href="#" class="buttonCenter btn btn-info" role="button" data-toggle="modal" data-target="#myModal-{{$ticket->id}}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">
                                                             <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                         </a>
-                                                    <?php endif; ?>
-                                                <?php else: ?>
-                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-<?php echo e($ticket->id); ?>" onclick="completar()">
+                                                    @endif
+                                                @else
+                                                    <a href="#" class="buttonCenter btn btn-info" id="completar-{{$ticket->id}}" onclick="completar()">
                                                         <h5><i class="fa fa-ticket"></i> Comprar</h5>
                                                     </a>
-                                                <?php endif; ?>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -130,80 +131,78 @@ input[type="checkbox"]:disabled + .label-text:before{
                             </div>
 
                                                     <!--MODAL-->
-                            <div id="myModal-<?php echo e($ticket->id); ?>" class="modal fade" role="dialog">
+                            <div id="myModal-{{$ticket->id}}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                 <!-- Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> <?php echo e($ticket->name); ?></h4>
+                                            <h4 class="modal-title" align="center"><i class="fa fa-ticket"></i> {{$ticket->name}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="form-horizontal" id="formPago" method="POST" action="<?php echo e(url('BuyPlan')); ?>" enctype="multipart/form-data">
-                                                <?php echo e(csrf_field()); ?>
-
-                                                <input type="hidden" name="ticket_id" value="<?php echo e($ticket->id); ?>">
+                                            <form class="form-horizontal" id="formPago" method="POST" action="{{url('BuyPlan')}}" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="ticket_id" value="{{$ticket->id }}">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <img src="<?php echo e(asset('assets/img/tickets.png')); ?>" class="img-responsive center-block">
+                                                    <img src="{{asset('assets/img/tickets.png')}}" class="img-responsive center-block">
                                                 </div>
-                                                <div class="form-group<?php echo e($errors->has('codigo') ? ' has-error' : ''); ?>">
+                                                <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
                                                     <label for="codigo" class="col-md-4 col-sm-4 col-xs-12 control-label" style="margin-left:25% "><h5><b>Cantidad de paquetes:</b></h5>
                                                     </label>
                                                     <div class="col-md-2 col-sm-2 col-xs-12" style="margin-top: 1%">
-                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-<?php echo e($ticket->id); ?>" value="<?php echo e(old('Cantidad')); ?>" required="required" onkeypress="return controltagNum(event)">
+                                                        <input type="number" min="1" max="20" value="1" class="form-control input-sm" name="Cantidad" id="Cantidad-{{$ticket->id}}" value="{{ old('Cantidad') }}" required="required" onkeypress="return controltagNum(event)">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%">
-                                                    <input type="hidden" name="cost" id="cost" value="<?php echo e($ticket->cost); ?>">
-                                                    <input type="hidden" name="points" id="points" value="<?php echo e($ticket->points_cost); ?>">
-                                                    <h5 align="center"><b>Costo: </b><?php echo e($ticket->cost); ?>$</h5>
-                                                    <div id="cantidadTickets-<?php echo e($ticket->id); ?>"></div>
+                                                    <input type="hidden" name="cost" id="cost" value="{{$ticket->cost}}">
+                                                    <input type="hidden" name="points" id="points" value="{{$ticket->points_cost}}">
+                                                    <h5 align="center"><b>Costo: </b>{{$ticket->cost}}$</h5>
+                                                    <div id="cantidadTickets-{{$ticket->id}}"></div>
                                                 </div>
-                                                <div class="col-md-12 col-sm-12 col-xs-12" id="total-<?php echo e($ticket->id); ?>"></div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12" id="total-{{$ticket->id}}"></div>
                                                 <h5 align="center"><b>Método de pago</b></h5>
                                                 <div class="radio" align="center">
-                                                    <input type="hidden" name="id" id="id" value="<?php echo e($ticket->id); ?>">
+                                                    <input type="hidden" name="id" id="id" value="{{$ticket->id}}">
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <h4>
-                                                                <input type="radio" name="pago" id="pago-<?php echo e($ticket->id); ?>" value="Deposito" required onclick="tipo(<?php echo $ticket->id; ?>)">
+                                                                <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="Deposito" required onclick="tipo({!!$ticket->id!!})">
                                                                 <i class="fa fa-money"> Depósito </i>
                                                             </h4>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <h4>
-                                                                <input type="radio" name="pago" id="pago-<?php echo e($ticket->id); ?>" value="payphone" required onclick="tipo(<?php echo $ticket->id; ?>)">
+                                                                <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="payphone" required onclick="tipo({!!$ticket->id!!})">
                                                                 <i class="fa fa-money"> PayPhone </i>
                                                             </h4>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <h4>
-                                                                <input type="radio" name="pago" id="pago-<?php echo e($ticket->id); ?>" value="puntos" required onclick="tipo(<?php echo $ticket->id; ?>)">
+                                                                <input type="radio" name="pago" id="pago-{{$ticket->id}}" value="puntos" required onclick="tipo({!!$ticket->id!!})">
                                                                 <i class="fa fa-money"> Puntos </i>
                                                             </h4>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="puntos-<?php echo e($ticket->id); ?>" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="puntos-{{$ticket->id}}" align="center">
                                                     <div class="col-md-12">
                                                         <label class="control-label"><h5><b>Sus puntos: </b>
-                                                            <?php if(Auth::user()->points): ?>
-                                                                <?php echo e(Auth::user()->points); ?>
-
-                                                            <?php else: ?>
+                                                            @if(Auth::user()->points)
+                                                                {{Auth::user()->points}}
+                                                            @else
                                                                  0
-                                                            <?php endif; ?>
+                                                            @endif
                                                             </h5>
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label class="control-label"><h5><b>Costo por paquete: </b> <?php echo e($ticket->points_cost); ?> puntos</h5>
+                                                        <label class="control-label"><h5><b>Costo por paquete: </b> {{$ticket->points_cost}} puntos</h5>
                                                         </label>
                                                     </div>
-                                                    <div class="col-md-12" id="totalP-<?php echo e($ticket->id); ?>"></div>
-                                                    <div id="mensajeValidacionPuntos-<?php echo e($ticket->id); ?>" class="col-md-12" align="center" style="margin-top: 2%; color: red;"></div>
+                                                    <div class="col-md-12" id="totalP-{{$ticket->id}}"></div>
+                                                    <div id="mensajeValidacionPuntos-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;"></div>
                                                 </div>
-                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-<?php echo e($ticket->id); ?>" align="center">
+                                                <div class="col-md-12" style="display:none; margin-bottom: 5%" id="deposito-{{$ticket->id}}" align="center">
                                                     <h4 style="color: black">
                                                         <b>
                                                             Depósito a Cta.Cte PRODUBANCO #02 72 800 11 32 <br> INFORMERET S.A.
@@ -211,36 +210,36 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                     </h4>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Número de depósito:</b>
-                                                            <input type="text" name="references" id="references-<?php echo e($ticket->id); ?>" class="form-control col-md-12" value="<?php echo e(old('references')); ?>" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
+                                                            <input type="text" name="references" id="references-{{$ticket->id}}" class="form-control col-md-12" value="{{ old('references') }}" placeholder="Ingrese el número de depósito" size="28" onkeypress="return controltagNum(event)">
                                                         </label>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label class="control-label"><b>Recibo:</b>
-                                                            <input id="voucher-<?php echo e($ticket->id); ?>" type="file" accept="image/*" class="form-control" onchange="validarVoucher(<?php echo $ticket->id; ?>)" name="voucher" value="<?php echo e(old('voucher')); ?>" >
+                                                            <input id="voucher-{{$ticket->id}}" type="file" accept="image/*" class="form-control" onchange="validarVoucher({!!$ticket->id!!})" name="voucher" value="{{ old('voucher') }}" >
                                                         </label>
                                                     </div>
-                                                    <div id="mensajeImgVoucher-<?php echo e($ticket->id); ?>"></div>
+                                                    <div id="mensajeImgVoucher-{{$ticket->id}}"></div>
                                                 </div>
-                                                <div class="payphone" id="payphone-<?php echo e($ticket->id); ?>" style="display:none; margin-bottom: 5%">
+                                                <div class="payphone" id="payphone-{{$ticket->id}}" style="display:none; margin-bottom: 5%">
                                                     <div class="col-md-12">
                                                         <div class="input-group">
-                                                            <span class="input-group-addon" id="codCountry-<?php echo e($ticket->id); ?>"></span>
-                                                            <select name="pais" id="pais-<?php echo e($ticket->id); ?>" class="form-control pais">
+                                                            <span class="input-group-addon" id="codCountry-{{$ticket->id}}"></span>
+                                                            <select name="pais" id="pais-{{$ticket->id}}" class="form-control pais">
                                                             </select>
                                                         </div>
-                                                        <input type="number" id="numero-<?php echo e($ticket->id); ?>" min="1" name="numero" class="form-control" placeholder="Número de teléfono" onkeypress="return controltagNumForm(event,<?php echo $ticket->id; ?>,<?php echo $ticket->cost; ?>,<?php echo $ticket->amount; ?>)">
+                                                        <input type="number" id="numero-{{$ticket->id}}" min="1" name="numero" class="form-control" placeholder="Número de teléfono" onkeypress="return controltagNumForm(event,{!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
                                                     </div>
-                                                    <div id="mensajeValidacion-<?php echo e($ticket->id); ?>" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
+                                                    <div id="mensajeValidacion-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
                                                     </div>
-                                                    <div id="mensajePayPhone-<?php echo e($ticket->id); ?>" class="col-md-12" align="center" style="margin-top: 2%">
+                                                    <div id="mensajePayPhone-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%">
                                                     </div>
                                                 </div>
                                                 <div class="form-check text-center" style="padding-top: 5%">
-                                                    <div id="mensajeTerminosCondiciones-<?php echo e($ticket->id); ?>" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
+                                                    <div id="mensajeTerminosCondiciones-{{$ticket->id}}" class="col-md-12" align="center" style="margin-top: 2%; color: red;">
                                                     </div>
                                                     <label>
-                                                        <input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-<?php echo e($ticket->id); ?>">
-                                                        <span class="label-text" onclick="terminosCondiciones(<?php echo $ticket->id; ?>)">
+                                                        <input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-{{$ticket->id}}">
+                                                        <span class="label-text" onclick="terminosCondiciones({!!$ticket->id!!})">
                                                             Al comprar estas aceptando nuestros
                                                         </span>
                                                     </label>
@@ -248,17 +247,17 @@ input[type="checkbox"]:disabled + .label-text:before{
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center">
-                                                        <a class="btn btn-default" id="ingresarPayPhone-<?php echo e($ticket->id); ?>" onclick="comprar(<?php echo $ticket->id; ?>,<?php echo $ticket->cost; ?>,<?php echo $ticket->amount; ?>)">Comprar</a>
+                                                        <a class="btn btn-default" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center">
-                                                        <button type="submit" class="btn btn-default" id="ingresar-<?php echo e($ticket->id); ?>">Comprar</button>
+                                                        <button type="submit" class="btn btn-default" id="ingresar-{{$ticket->id}}">Comprar</button>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12" align="center" style="margin-top: -5%">
-                                                        <a class="btn btn-default" id="ingresarPunto-<?php echo e($ticket->id); ?>" onclick="callback(<?php echo $ticket->id; ?>)">Comprar</a>
+                                                        <a class="btn btn-default" id="ingresarPunto-{{$ticket->id}}" onclick="callback({!!$ticket->id!!})">Comprar</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -269,7 +268,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                         </div>
                     </div>
                    <!--FIN DEL MODAL-->
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    @endforeach
                     </div>
                 </div>
             </div>
@@ -285,21 +284,21 @@ input[type="checkbox"]:disabled + .label-text:before{
                 <div class="col-sm-12 col-xs-12 col-md-12 goleft table-responsive">
                     <div class="text-center">
                         <div class="col-sm-4">
-                            <h4><b>Total de tickets:</b> <?php echo e(Auth::user()->credito); ?></h4>
+                            <h4><b>Total de tickets:</b> {{Auth::user()->credito}}</h4>
                         </div>
                         <div class="col-sm-4">
-                            <?php if(Auth::user()->points): ?>
-                                <h4><b>Total de puntos:</b> <?php echo e(Auth::user()->points); ?></h4>
-                            <?php else: ?>
+                            @if(Auth::user()->points)
+                                <h4><b>Total de puntos:</b> {{Auth::user()->points}}</h4>
+                            @else
                                 <h4><b>Total de puntos:</b> 0 </h4>
-                            <?php endif; ?>
+                            @endif
                         </div>
                         <div class="col-sm-4">
-                            <?php if(Auth::user()->pending_points): ?>
-                                <h4><b>Total de puntos pendientes:</b> <?php echo e(Auth::user()->pending_points); ?></h4>
-                            <?php else: ?>
+                            @if(Auth::user()->pending_points)
+                                <h4><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h4>
+                            @else
                                 <h4><b>Total de puntos pendientes:</b> 0 </h4>
-                            <?php endif; ?>
+                            @endif
                         </div>
                     </div>
                     <table class="table table-striped table-advance table-hover" id="myTable">
@@ -314,39 +313,39 @@ input[type="checkbox"]:disabled + .label-text:before{
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__currentLoopData = $Balance; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $balance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($balance != 0): ?>
+                            @foreach ($Balance as $balance)
+                                @if($balance != 0)
                                     <tr class="letters">
-                                        <td><?php echo e($balance['Date']); ?></td>
-                                        <td><?php echo e($balance['Transaction']); ?></td>
-                                        <?php if($balance['Type']==1): ?>
+                                        <td>{{$balance['Date']}}</td>
+                                        <td>{{$balance['Transaction']}}</td>
+                                        @if($balance['Type']==1)
                                             <td></td>
-                                            <td><?php echo e($balance['Cant']); ?></td>
+                                            <td>{{$balance['Cant']}}</td>
                                             <td></td>
                                             <td></td>
-                                        <?php else: ?>
-                                            <td><?php echo e($balance['Cant']); ?></td>
+                                        @else
+                                            <td>{{$balance['Cant']}}</td>
                                             <td></td>
-                                            <td><?php echo e($balance['Method']); ?></td>
-                                            <?php if($balance['Method'] != 'Puntos'): ?>
+                                            <td>{{$balance['Method']}}</td>
+                                            @if($balance['Method'] != 'Puntos')
                                                 <td>
-                                                    <?php if($balance['Factura']!=NULL): ?>
-                                                        <a href="https://app.datil.co/ver/<?php echo e($balance['Factura']); ?>/ride" target="_blank" class="btn btn-info btn-xs">
+                                                    @if($balance['Factura']!=NULL)
+                                                        <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn btn-info btn-xs">
                                                             <i class="fa fa-external-link"></i> Ver
                                                         </a>
-                                                    <?php else: ?>
-                                                        <a onclick="generarFactura(<?php echo $balance['id_payments']; ?>)" class="btn btn-info btn-xs">
+                                                    @else
+                                                        <a onclick="generarFactura({!!$balance['id_payments']!!})" class="btn btn-info btn-xs">
                                                             <i class="fa fa-external-link"></i> Generar
                                                         </a>
-                                                    <?php endif; ?>
+                                                    @endif
                                                 </td>
-                                            <?php else: ?>
+                                            @else
                                                 <td>No Aplica</td>
-                                            <?php endif; ?>
-                                       <?php endif; ?>
+                                            @endif
+                                       @endif
                                     </tr>
-                                <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -355,9 +354,9 @@ input[type="checkbox"]:disabled + .label-text:before{
         </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('js'); ?>
+@section('js')
 <script type="text/javascript">
     $('#myTable').DataTable({
         "language": {
@@ -416,7 +415,7 @@ input[type="checkbox"]:disabled + .label-text:before{
         });
 
         $("#formPago").on('submit', function(e){
-            var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
             swal({
                 title: "Procesando la información",
                 text: "Espere mientras se procesa la información.",
@@ -453,7 +452,7 @@ input[type="checkbox"]:disabled + .label-text:before{
             $('#Cantidad-'+id).focus();
         } else {
             $('#mensajeValidacionPuntos-'+id).hide();
-            var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
             swal({
                 title: "Procesando",
                 text: "Estamos procesando su pago, por favor espere un momento.",
@@ -469,7 +468,7 @@ input[type="checkbox"]:disabled + .label-text:before{
             var puntos = $('#points').val();
             var tickets = id;
             console.log(puntos);
-            var ruta = "<?php echo e(url('/BuyPuntos/')); ?>";
+            var ruta = "{{ url('/BuyPuntos/') }}";
             $.ajax({
                 url: ruta,
                 type: "post",
@@ -498,7 +497,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                             closeOnClickOutside: false
                         });
                     } else {
-                        var idUser=<?php echo Auth::user()->id; ?>;
+                        var idUser={!!Auth::user()->id!!};
                         $.ajax({
                             url     : 'MyTickets/'+idUser,
                             type    : 'GET',
@@ -539,8 +538,7 @@ input[type="checkbox"]:disabled + .label-text:before{
         var total=parseFloat(costo*documento);
         var  ticket=parseFloat(cant*documento);
         var totalP=parseFloat(documento*points);
-        var Mypoints = <?php echo Auth::user()->points; ?>
-
+        var Mypoints = {!!Auth::user()->points!!}
 
         $("#Cantidad-"+id).change(function(){
             documento=parseFloat($('#Cantidad').val());
@@ -694,7 +692,7 @@ input[type="checkbox"]:disabled + .label-text:before{
             }
         })
         .then((completar) => {
-            var ruta = "<?php echo e(url('EditProfile')); ?>";
+            var ruta = "{{url('EditProfile')}}";
             $(location).attr('href',ruta);
         });
     }
@@ -736,7 +734,7 @@ input[type="checkbox"]:disabled + .label-text:before{
 
     function generarFactura(id_payments) {
         console.log(id_payments);
-        var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
+        var gif = "{{ asset('/sistem_images/loading.gif') }}";
         swal({
             title: "¡Generando factura!",
             text: "Estamos generando su factura...",
@@ -755,7 +753,7 @@ input[type="checkbox"]:disabled + .label-text:before{
             if (intento <= maxIntento) {
                 if (idFactura!=undefined) {
                     var parametros = "/"+idFactura+"/"+id_payments;
-                    var ruta = "<?php echo e(url('/generarFactura/')); ?>"+parametros;
+                    var ruta = "{{ url('/generarFactura/') }}"+parametros;
                     $.ajax({
                         url     : ruta,
                         type    : "GET",
@@ -798,7 +796,7 @@ input[type="checkbox"]:disabled + .label-text:before{
     function bdd(id,cost,callback){
         var value = $('#Cantidad-'+id).val();
         var parametros = "/"+id+"/"+cost+"/"+value;
-        var ruta = "<?php echo e(url('/BuyPayphone/')); ?>"+parametros;
+        var ruta = "{{ url('/BuyPayphone/') }}"+parametros;
         var id = 0;
 
         $.ajax({
@@ -815,7 +813,7 @@ input[type="checkbox"]:disabled + .label-text:before{
 
     function transactionCanceled(reference,id,callback) {
         var parametros = "/"+id+"/"+reference;
-        var ruta = "<?php echo e(url('/TransactionCanceled/')); ?>"+parametros;
+        var ruta = "{{ url('/TransactionCanceled/') }}"+parametros;
         var cancelar = true;
 
         $.ajax({
@@ -832,7 +830,7 @@ input[type="checkbox"]:disabled + .label-text:before{
 
     function transactionApproved(id,reference,ticket,idFactura,callback) {
         var parametros = "/"+id+"/"+reference+"/"+ticket+"/"+idFactura;
-        var ruta = "<?php echo e(url('/TransactionApproved/')); ?>"+parametros;
+        var ruta = "{{ url('/TransactionApproved/') }}"+parametros;
         var aprobar = true;
 
         $.ajax({
@@ -849,7 +847,7 @@ input[type="checkbox"]:disabled + .label-text:before{
     /*
     function transactionPending(reference,id,callback) {
         var parametros = "/"+id+"/"+reference;
-        var ruta = "<?php echo e(url('/TransactionPending/')); ?>"+parametros;
+        var ruta = "{{ url('/TransactionPending/') }}"+parametros;
         var pendiente = true;
 
         $.ajax({
@@ -894,7 +892,7 @@ input[type="checkbox"]:disabled + .label-text:before{
     function getDatil(idTicketSales,medio) {
         return new Promise(function(resolve,reject) {
             var parametros = "/"+idTicketSales+"/"+medio;
-            var url = "<?php echo e(url('/factura/')); ?>"+parametros;
+            var url = "{{ url('/factura/') }}"+parametros;
 
             var req = new XMLHttpRequest();
             req.open("GET",url);
@@ -1106,7 +1104,7 @@ input[type="checkbox"]:disabled + .label-text:before{
                                 $('#mensajePayPhone-'+id).show();
                                 $('#mensajePayPhone-'+id).html("<h4> <i class='glyphicon glyphicon-refresh gly-spin'></i> <span>Conectando con PayPhone...</span> </h4>");
                                 console.log("id: "+id+" cost: "+cost);
-                                var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
+                                var gif = "{{ asset('/sistem_images/loading.gif') }}";
                                 swal({
                                     title: "¡Procesando información!",
                                     text: "Estamos procesando su información...",
@@ -1319,6 +1317,4 @@ input[type="checkbox"]:disabled + .label-text:before{
         return false;
     }
 </script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection
