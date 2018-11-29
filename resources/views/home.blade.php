@@ -33,6 +33,7 @@
                         </div>
                     @endif
 
+                        <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
 
         <!--CONTENIDO RECIENTE BOOK-->
           @if(count($Book)> 0)
