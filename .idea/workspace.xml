@@ -118,10 +118,14 @@
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerAuth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerAuth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/SellerResetPasswordNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/SellerResetPasswordNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/passwords/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/913078ab57ed4bd82f52348473f8f5a3abb1efdb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/913078ab57ed4bd82f52348473f8f5a3abb1efdb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -561,7 +565,8 @@
       <workItem from="1542663053175" duration="3262000" />
       <workItem from="1542729822283" duration="194000" />
       <workItem from="1543357242647" duration="1635000" />
-      <workItem from="1543416905620" duration="205000" />
+      <workItem from="1543416905620" duration="938000" />
+      <workItem from="1543510687810" duration="586000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -619,11 +624,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543358735589</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Solucion al error del modal de compra">
+      <created>1543417247260</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1543417247260</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="425624000" />
+    <option name="totallyTimeSpent" value="426845000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -644,7 +656,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -661,11 +673,11 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -673,14 +685,14 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -711,7 +723,8 @@
     <MESSAGE value="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR" />
     <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)" />
+    <MESSAGE value="Solucion al error del modal de compra" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucion al error del modal de compra" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">
