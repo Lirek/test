@@ -377,6 +377,30 @@ class UserController extends Controller
        
         return view('users.MyBalance')->with('Balance',$ordenBalance);
     }
+
+
+    //function para grafica balance user
+    public function DonutGraph() {
+
+       if(Auth::user()->points){
+          $points=Auth::user()->points;
+       }else{
+           $points=0;
+        }
+
+       if(Auth::user()->pending_points){
+           $pending_points=Auth::user()->pending_points;
+       }  else{
+           $pending_points=0;
+       }
+
+        $Content=array(
+            $points,
+            $pending_points
+        );
+        return Response()->json($Content);
+    }
+
     public function tickets($id){
         $cantidad=TicketsPackage::find($id);
         return $cantidad->amount;
