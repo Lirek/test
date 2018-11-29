@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
 use App\Events\WelcomeEmailEvent;
 
+use Auth;
+
 
 class AuthController extends Controller
 {
@@ -122,32 +124,104 @@ class AuthController extends Controller
 
     public function AuthSocialUser(Request $request)
     {
+    /*
 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < 6; $i++)
+        {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+
+        $code=$randomString;
+        $createUser = User::firstOrCreate(
+            ['email' => $request->email],
+            ['name' => $request->name,
+                'img_perf' => $request->avatar,
+                'codigo_ref'=>$code]
+        );
+
+        if($createUser->wasRecentlyCreated)
+        {
+            event(new WelcomeEmailEvent($createUser));
+        }
+
+        $token = JWTAuth::fromUser($createUser);
+
+        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+    */
+    /*
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < 6; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $code = $randomString;
+        $createUser = User::firstOrCreate([
+            'email' => $request->email
+        ], [
+            'name' => $request->name,
+            'codigo_ref'=> $code,
+            'img_perf' => $request->avatar
+        ]);
+        if($createUser->wasRecentlyCreated) {
+            event(new WelcomeEmailEvent($createUser));
+        }
+        auth()->login($createUser);
+        $token = JWTAuth::fromUser($createUser);
+        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+    */
+        $createUser = User::firstOrCreate([
+            'email' => $request->email
+        ], [
+            'name' => $request->name
+        ]);
+        auth()->login($createUser);
+        if($createUser->wasRecentlyCreated) {
+            if ($request->tipo=="facebook") {
+                $url = "https://graph.facebook.com/".$request->idSocial."/picture?type=large";
+                $headers = get_headers($url, 1);
+                if( isset($headers['Location']) ){
+                    $archivo = $headers['Location'];
+                    $imgFile = file_get_contents($archivo);
+                    $store_path = public_path().'/user/'.auth()->user()->id.'/profile/';
+                    //$nameFile = 'userpic'.$request->name.time().'.jpg';
+                    $nameFile = 'userpic'.$request->name.'.jpg';
+                    if (!file_exists($store_path)) {
+                        mkdir($store_path, 0777, true);
+                    }
+                    $filex = $store_path.$nameFile;
+                    $fh = fopen($filex, 'w');
+                    fputs($fh,$imgFile);
+                    fclose($fh);
+                    $path = '/user/'.auth()->user()->id.'/profile/'.$nameFile;
+                } else {
+                    $path = "";
+                }
+            } else {
+                //logica para el enlace de google
+            }
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
             $randomString = '';
 
-            for ($i = 0; $i < 6; $i++)
-            {
+            for ($i = 0; $i < 6; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
-
-
-            $code=$randomString;
-            $createUser = User::firstOrCreate(['email' => $request->email]);
-
-            if($createUser->wasRecentlyCreated)
-            {
-                $createUser->img_perf = $request->avatar;
-                $createUser->name = $request->name;
-                $createUser->codigo_ref=$code;
-                event(new WelcomeEmailEvent($createUser));
-            }
-
-            $token = JWTAuth::fromUser($createUser);
-            Log::info($token);
-            return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
-
+            $code = $randomString;
+            $user = User::find(auth()->user()->id);
+            $user->img_perf = $path;
+            $user->codigo_ref = $code;
+            $user->save();
+            event(new WelcomeEmailEvent($createUser));
+        }
+        $token = JWTAuth::fromUser($createUser);
+        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
     }
 
 }

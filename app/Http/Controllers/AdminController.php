@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+//use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
@@ -898,7 +898,11 @@ class AdminController extends Controller
         return $verArchivo."<br>".$estatus;
       })
       ->addColumn('author_id',function($Books){
-        return $Books->author()->first()->full_name;
+        if ($Books->author_id!=NULL) {
+          return $Books->author()->first()->full_name;
+        } else {
+          return "No tiene autor";
+        }
       })
       ->rawColumns(['opciones','books_file','cover'])
       ->toJson();
@@ -2189,9 +2193,8 @@ class AdminController extends Controller
 //------------------------------------------------------------
 
 //--------------------------Funcion de Pruueba----------------
-    public function test()
-      {
-      }
+    public function test() {
+    }
 //-------------------------------------------------------------
 
 
