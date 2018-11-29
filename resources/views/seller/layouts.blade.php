@@ -19,9 +19,6 @@
 
     .curva{border-radius: 10px;}
 
-        <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
     .curvaBoton{border-radius: 20px;}
 
     /*Color letras tabs*/
@@ -141,28 +138,31 @@
 
             <!--Menu lateral sidenav-->
             <ul id="slide-out" class="sidenav sidenav-fixed">
-                    
+
                 <li><!--Seccion de usuario -->
-                    <div class="user-view blue">
+                  <div class="user-view">
                     <div class="container">
                                 @if(Auth::guard('web_seller')->user()->logo)
-                                    <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil" height="500" width="500"></a><!-- logo user -->
                                 @else
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
                     </div>
-                    <div class="container">
-                                <a href="#">
-                                    <h4 class="name white-text">{{Auth::guard('web_seller')->user()->name}}</h4>
-                                </a>
 
-                        <a class="modal-trigger" href="#myModalTotal">
-                            <span class="name white-text"> Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}</span>
-                        </a>
-                        <br>
+                    <div class="info-container">
+                        <div class="name ">
+                            <a class="white-text" href="#">
+                              {{Auth::guard('web_seller')->user()->name}}
+                            </a>
+                        </div>
+                        <div class="name" data-toggle="dropdown" >
+                            <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
+                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}
+                            </a>
+                        </div>
+                    </div>
 
-                    </div>
-                    </div>
+            </div>
                 </li><!--End eccion de usuario -->
 
                 <li><a href="{{url('seller_edit')}}" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
@@ -207,7 +207,7 @@
                                                             <li>
 
                                                             <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Musica<i class="material-icons right">expand_more</i></a>
-                                                               
+
                                                                 <div class="collapsible-body">
                                                                 <ul>
                                                                     <li><a href="{{ url('/albums') }}">Registrar álbum</a></li>
@@ -252,7 +252,7 @@
                                                                     <li>
 
                                                                         <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Películas<i class="material-icons right">expand_more</i></a>
-                                                                
+
                                                                         <div class="collapsible-body">
                                                                             <ul>
                                                                                 <li><a href="{{ url('/movies/create') }}">Registrar película</a></li>
@@ -483,7 +483,7 @@
                 <section id="main-content" class="section section-daily-stats center">
 
                     <div class="row">
-                       @yield('content')  
+                       @yield('content')
                     </div>
 
                 </section>
@@ -508,7 +508,9 @@
                     <br>
                     <blockquote class="center">
                     <h5 class="grey-text"><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                     <h5><a href="{{url('SellerBalance')}}" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
+
                     </blockquote>
                 </div>
                 <div class="modal-footer">
@@ -580,7 +582,8 @@
                     }
                 });
             </script>
-
+            <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
             @yield('js')
 
 

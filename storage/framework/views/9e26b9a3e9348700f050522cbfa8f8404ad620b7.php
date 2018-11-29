@@ -51,81 +51,6 @@
             background: transparent !important;
         }
 
-        /*es es del modal de autor*/
-        #imageAM-preview {
-            width: 100%;
-            height: 305px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #2b81af;
-            border-radius: 10px;
-        }
-
-        #imageAM-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #imageAM-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 200px;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
-
-        /*es es del modal de autor*/
-        #imageSM-preview {
-            width: 100%;
-            height: 380px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #2b81af;
-            border-radius: 10px;
-        }
-
-        #imageSM-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        #imageSM-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 90%;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
     </style>
     <style>
         .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
@@ -184,7 +109,7 @@
                 Modificar Cadena de Publicaciones
             </h3>
             <div class="row">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type_update',$pub_type->id)); ?>" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type_update_cad',$pub_type->id)); ?>" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 
                 <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
@@ -204,6 +129,7 @@
                     </div>
                 </div>
                 <div class="input-field col m6 s12">
+                    <i class="material-icons prefix blue-text">create</i>
                     <label for="art_name" class="">Titulo de la cadena de publicación</label>
                     <?php if($pub_type->status != 'Aprobado'): ?>
                         <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($pub_type->sag_name); ?>" required autofocus>
@@ -211,51 +137,28 @@
                         <input id="art_name" type="text" class="form-control" name="title" value="<?php echo e($pub_type->sag_name); ?>" readonly>
                     <?php endif; ?>       
                 </div>
-               <!--  <div class="input-field col m6 s12">
-                    <label for="tags"> 
-                        Generos
-                    </label> 
-                        <?php if($pub_type->status != 'Aprobado'): ?>
-                        <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple">
-                            <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
-                                <?php if($s->id == $genders->id): ?> 
-                                selected
-                                <?php endif; ?> 
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
-                            </option>                                                 
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                        <?php else: ?>
-                          <select name="tags[]" multiple="true"  class="form-control js-example-basic-multiple" disabled="true">
-                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($genders->id); ?>" <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
-                            <?php if($s->id == $genders->id): ?> 
-                            selected
-                            <?php endif; ?> 
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> ><?php echo e($genders->tags_name); ?>  
-                            </option>                                                 
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                        <?php endif; ?> 
-                </div> -->
+                
+
                 <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">book</i>
                     <label for="desc" class="">Descripción</label>
                     <textarea name="dsc" required class="materialize-textarea" rows="3" cols="2"><?php echo e($pub_type->sag_description); ?></textarea>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                    
-                                        
-                    <?php if($pub_type->status != 'Aprobado'): ?>
-                        <?php echo Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+                      <div class="input-field col s12">
+                      
+                          <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                          <?php if($pub_type->status != 'Aprobado'): ?>
+                          <?php echo Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                    <?php else: ?>
-                        <?php echo Form::select('rating_id',$s_tags,$pub_type->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]); ?>
+                          <?php else: ?>
+                          <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']); ?>
 
-                    <?php endif; ?>
-                    <label for="exampleInputFile" class="control-label">Categoría</label>
-                </div>
+                      </select>
+                      <?php endif; ?>
+                       <label for="tags">Generos</label>
+                      </div>
+                  </div>
                 <button type="submit" class="btn curvaBoton waves-effect waves-light green">
                         Modificar
                 </button>

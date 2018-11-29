@@ -333,19 +333,13 @@
 
 {{--radios--}}
 <div class="row" id="radios">
-    <div class="col s12">
+    <div class="col s12 m12">
         <div id="featured" class="owl-carousel featured">
         @foreach($radio as $r)
-                <div class="col s12">
-                    <div class="card curva">
+                <div class="col s12 m12">
+                    <div class="card">
                         <div class="card-image ">
                             <img src="{{asset($r->logo)}}" width="100%" height="150px">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                                    radio
-                                </i></a>
-                        </div>
-                        <div class="card-content break-word">
-                            <p>{{$r->name_r}}</p>
                         </div>
                     </div>
                 </div>
@@ -365,15 +359,9 @@
         @foreach($tv as $tvs)
             {{--item--}}
                 <div class="col s12">
-                    <div class="card curva">
+                    <div class="card">
                         <div class="card-image ">
                             <img src="{{asset($tvs->logo)}}"  width="100%" height="150px">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">
-                                    remove_red_eye
-                                </i></a>
-                        </div>
-                        <div class="card-content break-word">
-                            <p>{{$tvs->name_c}}</p>
                         </div>
                     </div>
                 </div>

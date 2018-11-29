@@ -69,6 +69,9 @@ Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCal
 
 Route::resource('users', 'UserController');
 
+//agregada 27-11-2018
+Route::get('BalanceUserGraph','UserController@DonutGraph');
+
 Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
@@ -122,10 +125,10 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
 
     //Agregada 14/7/18
-    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
+    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
 
     //Agregada 15/7/18
-    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
+    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
 
     //Agregada 18/7/18
     Route::post('CompleteProfile','UserController@CompleteProfile');
@@ -133,7 +136,7 @@ Route::post('Invite','UserController@Invite');
 
     //Agregada 23/7/2018
     Route::get('MyMovies','UserController@MyMovies');
-    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
+    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie')->middleware('MyMovies');
 
     //Agregada 31/7/2018
     Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));
@@ -560,9 +563,13 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::resource('sellers', 'SellerController');
     
     Route::get('SellerBalance','SellerController@balance');
+
+    //agregada 26-11-2018
+    Route::get('BalanceSellerGraph','SellerController@DonutGraph');
+
     Route::get('SellerRequest','SellerController@Fondos');
     
-     Route::post('SellerFunds','SellerController@applicationFunds');
+    Route::post('SellerFunds','SellerController@applicationFunds');
 
 
 
@@ -807,7 +814,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 //------------Rutas de "Crear Cadena de Publicaciones"------------
     Route::get('/type', 'MegazineController@ShowPTypeForm');
-    Route::post('/type', 'MegazineController@AddPType');
+    Route::post('/type_megazine', 'MegazineController@AddPType');
 //-------------Fin de las Rutas-----------------------------------------------
 
 //------------Rutas de Registrar Revista Independiente----------------------
@@ -827,13 +834,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 //------------Rutas de Modificar Revista Independiente----------------------------
     Route::get('/megazine_i_update/{id}', 'MegazineController@ShowUpdateSingleMegazineForm');
-    Route::post('/megazine_i_update/{id}', 'MegazineController@UpdateIdMegazine');
+    Route::post('/megazine_inde_update/{id}', 'MegazineController@UpdateIdMegazine');
 //-----------Fin de las Rutas-----------------------------------------------------
 
 //------------Rutas de Borrar Revistas ----------------------------
     Route::get('/delete_megazine/{id}', 'MegazineController@DeleteMegazine');
 //-----------Fin de las Rutas-----------------------------------------------------
-
 
 //------------Rutas de Borrar Cadenas de Publicacion ----------------------------
     Route::get('/type_delete/{id}', 'MegazineController@DeleteType');
@@ -1020,3 +1026,5 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
+
+

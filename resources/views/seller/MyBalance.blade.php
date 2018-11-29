@@ -1,8 +1,6 @@
 @extends('seller.layouts')
 @section('css')
-    <!--DataTables
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">-->
+
 @endsection
 @section('content')
 
@@ -10,48 +8,46 @@
     <div class="row">
         <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
             <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#test1"><i class="material-icons prefix">timeline</i><b>Mi Balance</b></a></li>
-                <li class="tab col s4"><a  href="#test2"><i class="material-icons prefix">add_circle_outline</i><b>Detalles</b></a></li>
-
+                <li class="tab col s4"><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
+                <li  class="tab col s4"><a href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
             </ul>
         </div>
 
         <div id="test1" class="col s12 m12 l12">
             <br>
-
             <div class="row">
 
                 <div class="col s12 m6 l6">
                     <br><br>
                     <canvas id="myChart" height="300" width="400"></canvas>
                 </div>
+
                 <div class="col col s12 m6 l6">
-
                     <br>
-
                     <ul class="collapsible popout">
-                        <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 >Tickets Pendientes</h6></div>
-                            <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>{{Auth::guard('web_seller')->user()->credito_pendiente}}</b></a><br><br></div>
-                        </li>
-
-
                         <li class="active">
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Disponible</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Disponible</h6></div>
                             <div class="collapsible-body"><a class="btn-floating btn-large  blue lighten-2"><b>{{Auth::guard('web_seller')->user()->credito}}</b></a><br><br></div>
                         </li>
-
-
                         <li>
-                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6>Tickets Diferidos</h6></div>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Diferidos</h6></div>
                             <div class="collapsible-body">  <a class="btn-floating btn-large  amber lighten-2"> <b>{{ $diferido}}</b></a><br><br></div>
                         </li>
+                        <li>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd;"><h6 class="grey-text">Tickets Pendientes</h6></div>
+                            <div class="collapsible-body"> <a class="btn-floating btn-large deep-orange lighten-2 "> <b>{{Auth::guard('web_seller')->user()->credito_pendiente}}</b></a><br><br></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Pagados</h6></div>
+                            <div class="collapsible-body">  <a class="btn-floating btn-large  green  lighten-2"> <b>{{ $pagado}}</b></a><br><br></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header center" style="display: block; border-bottom: 0px solid #ddd; "><h6 class="grey-text">Tickets Rechazados</h6></div>
+                            <div class="collapsible-body">  <a class="btn-floating btn-large  red lighten-2"> <b>{{ $rechazado}}</b></a><br><br></div>
+                        </li>
                     </ul>
-
                 </div>
-
             </div>
-
         </div>
 
         <div id="test2" class="col s12">
@@ -115,50 +111,51 @@
 <script>
 
     $(document).ready(function(){
-    // grafica de torta para las etiquetas por aprobar y las aprobadas
 
+        // grafica de disponibilidad
+        $.ajax({
+            url:"{{url('BalanceSellerGraph')}}",
+            type:'GET',
+            success:function(info) {
+                console.log(info);
+                var ctx = $("#myChart");
+                var data = {
+                    datasets: [{
+                        data: info,
+                        backgroundColor: [
 
-        var ctx = $("#myChart");
+                            '#64B5F6',
+                            '#ff8a65',
+                            '#ffd54f'
+                        ],
+                        borderColor: [
+                            '#fff'
+                        ],
+                        borderWidth: 5
+                    }],
+                    labels:
+                   ["Disponibles", "Pendientes", "Diferidos"],
+                };
 
+                var myPieChart = new Chart(ctx,{
+                    type: 'doughnut',
+                    data: data,
+                    options: {
 
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'doughnut',
-            position: 'left',
-
-            // The data for our dataset
-            data: {
-                labels: ["Disponibles", "Pendientes", "Diferidos"],
-                datasets: [{
-
-                    data: [90, 10, 5],
-                    backgroundColor: [
-                        '#64B5F6',
-                        '#ff8a65',
-                        '#ffd54f',
-                    ],
-                    borderColor: [
-                        '#fff'
-                    ],
-                    borderWidth: 1
-
-                }]
-
-
+                        legend: {
+                            position: 'bottom'
+                        },
+                    }
+                });
             },
-
-            // Configuration options go here
-            options: {
-
-                legend: {
-                    position: 'bottom'
-                },
-
-
-
+            error:function(info) {
+                console.log(info);
             }
+
         });
-    // grafica de torta para las etiquetas por aprobar y las aprobadas
+        // grafica de doughnut disponibilidad seller
+
+
 
     });
 </script>

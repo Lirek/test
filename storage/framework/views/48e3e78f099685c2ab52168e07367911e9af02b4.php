@@ -6,45 +6,6 @@
         <!--Import materialize.css-->
         <link href="<?php echo e(asset('plugins/materialize_adm/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo e(asset('plugins/materialize_adm/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <style type="text/css">
-             div.error {
-      color: red;
-      padding: 0;
-      font-size: 0.9em;
-    }
-
-    .default_color{background-color: #FFFFFF !important;}
-
-    .img{margin-top: 7px;}
-
-    .curva{border-radius: 10px;}
-
-        <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
-    .curvaBoton{border-radius: 20px;}
-
-    /*Color letras tabs*/
-    .tabs .tab a{
-        color:#00ACC1;
-    }
-    /*Indicador del tabs*/
-    .tabs .indicator {
-        display: none;
-    }
-    .tabs .tab a.active {
-        border-bottom: 2px solid #29B6F6;
-    }
-    /* label focus color */
-    .input-field input:focus + label {
-        color: #29B6F6 !important;
-    }
-    /* label underline focus color */
-    .row .input-field input:focus {
-        border-bottom: 1px solid #29B6F6 !important;
-        box-shadow: 0 1px 0 0 #29B6F6 !important
-    }
-        </style>
         <?php echo $__env->yieldContent('css'); ?>
         <!--Let browser know website is optimized for mobile-->
         <meta charset="utf-8" />
@@ -53,33 +14,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
         <title><?php echo e(config('app.name', 'Leipel')); ?></title>
-
-        <!--external css-->
-        <!--<link href="<?php echo e(asset('assets/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet" />-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo e(asset ('assets/css/zabuto_calendar.css')); ?>">-->
-        <!--<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/js/gritter/css/jquery.gritter.css')); ?>" />-->
-
-        <!-- Custom styles for this template -->
-        <!--<link href="<?php echo e(asset ('assets/css/style.css')); ?>" rel="stylesheet">-->
-        <!-- <link href="<?php echo e(asset ('assets/css/style-responsive.css')); ?>" rel="stylesheet">-->
-
-        <!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
-
-        <!--NUMERO-->
-         <!--<link rel="stylesheet" href="<?php echo e(asset('plugins/telefono/intlTelInput.css')); ?>">-->
-
-            <!--<style type="text/css">
-            .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags.png')); ?>");}
-
-            @media  only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-                .iti-flag {background-image: url("<?php echo e(asset('plugins/telefono/flags2x.png')); ?>");}
-
-            }
-        </style>-->
-
-        <?php echo $__env->yieldContent('css'); ?>
-
-        <!--<script src="<?php echo e(asset ('assets/js/chart-master/Chart.js')); ?>"></script>-->
     </head>
 
     <body>
@@ -106,17 +40,17 @@
                                         <?php $__currentLoopData = $modulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($mod->name == 'Peliculas'): ?>
                                                 <li>
-                                                    <a href="<?php echo e(url('/movies')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/cine.svg')); ?>"> </b></a>
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-2.png')); ?>">
                                                 </li>
                                             <?php endif; ?>
                                             <?php if($mod->name == 'Musica'): ?>
                                                 <li>
-                                                    <a href="<?php echo e(url('/my_music_panel/'.Auth::guard('web_seller')->user()->id)); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/musica.svg')); ?>"> </b></a>
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-4.png')); ?>">
                                                 </li>
                                             <?php endif; ?>
                                             <?php if($mod->name == 'Libros'): ?>
                                                 <li>
-                                                    <a href="<?php echo e(url('/tbook')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/lectura.svg')); ?>"> </b></a>
+                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon.png')); ?>">
                                                 </li>
                                             <?php endif; ?>
                                             <?php if($mod->name == 'Radios'): ?>
@@ -529,62 +463,7 @@
             <script src="<?php echo e(asset('plugins/materialize_adm/js/init.js')); ?>"></script>
 
 
-
-            
-            
-            <script class="include" type="text/javascript" src="<?php echo e(asset('assets/js/jquery.dcjqaccordion.2.7.js')); ?>"></script>
-            <script src="<?php echo e(asset('assets/js/jquery.scrollTo.min.js')); ?>"></script>
-            <script src="<?php echo e(asset('assets/js/jquery.nicescroll.js')); ?>" type="text/javascript"></script>
-            <script src="<?php echo e(asset('assets/js/jquery.sparkline.js')); ?>"></script>
-
-
-            <!--common script for all pages-->
-            <script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>
-
-            <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter/js/jquery.gritter.js')); ?>"></script>
-            <script type="text/javascript" src="<?php echo e(asset('assets/js/gritter-conf.js')); ?>"></script>
-
-            <!--script for this page-->
-            <script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>
-            
-            <!--telefono-->
-            <script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>
-            <script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>
-
-            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    if ((screen.width <= 768)) {
-                        //alert('Resolucion: 1024x768 o mayor');
-                        $('#container').addClass('sidebar-closed');
-                        $('#nav-accordion').css('display','none');
-                    }else{
-                        $('#container').removeClass('sidebar-closed');
-                        $('#nav-accordion').css('display','block');
-                    }
-
-                });
-            </script>
-            <script type="text/javascript">
-                $(window).resize(function() {
-                    console.log($(window).width());
-                    if ($(window).width() <= 768)
-                    {
-                        $('#container').addClass('sidebar-closed');
-                        $('#nav-accordion').css('display','none');
-                    }
-                    else
-                    {
-                        $('#container').removeClass('sidebar-closed');
-                        $('#nav-accordion').css('display','block');
-                    }
-                });
-            </script>
-
             <?php echo $__env->yieldContent('js'); ?>
-
 
 
        </body><!-- End body -->
