@@ -16,6 +16,11 @@
 
     
     <body>
+
+        <?php if(session('error')): ?>
+            <div class="alert alert-danger"><?php echo e(session('error')); ?></div>
+        <?php endif; ?>
+        
         <img src="<?php echo e(asset('sistem_images/404.jpg')); ?>" style="height: 100%; max-width: 100%; display: block;
     margin-left: auto;
     margin-right: auto;">

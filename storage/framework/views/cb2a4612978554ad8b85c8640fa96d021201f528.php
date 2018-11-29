@@ -215,7 +215,7 @@
                                         <?php echo Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                         <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                                        <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
+                                        <a class="btn curvaBoton waves-effect waves-light green" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
                                         </a>
@@ -227,7 +227,7 @@
                                         </label>
                                         <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                            <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>">
+                                            <a class="btn curvaBoton waves-effect waves-light green" href="<?php echo e(url('authors_books/create')); ?>">
                                             
                                             Agregar autor
                                             </a>
@@ -251,7 +251,7 @@
                                         
                                         <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                            <a class="btn btn-success" href="<?php echo e(url('authors_books/create')); ?>" style="">
+                                            <a class="btn curvaBoton waves-effect waves-light green" href="<?php echo e(url('authors_books/create')); ?>" style="">
                                                 <i class="fa fa-user"></i>
                                                 Agregar autor
                                             </a>
@@ -319,9 +319,10 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <label for="tags">Géneros</label>
-                                    <button type="button" class="btn btn-primary modal-trigger" href="#modalgenero">
+                                    <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero">
                                         Agregar género
                                     </button>
+
                                 </div>
                             </div>
                         <br>
@@ -627,18 +628,16 @@
                          <div class="col s12 m12">
 
                             
-                            <label class="control-label" style="left: 50%"> ¿Pertenece a una saga? </label>
+                            <label> ¿Pertenece a una saga? </label>
                             <br>
                             <div class="">
-                                <label class="control-label" for="option-1">
+                                <label class="" for="option-1">
                                     <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
                                     <span class="mdl-radio__label">Si</span>
                                 </label>
-                            </div>
-
-                            <div class="">
-                                <label class="control-label" for="option-2">
-                                    <input type="radio" id="option-2" class="mdl-radio__button with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                            
+                                <label class="" for="option-2">
+                                    <input type="radio" id="option-2" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
                                     <span class="mdl-radio__label">No</span>
                                 </label>
 
@@ -652,7 +651,7 @@
                                 <?php echo Form::select('saga_id',$saga,null,['class'=>'form-control','placeholder'=>'Selecione saga del libro','id'=>'sagas']); ?>
 
                                 <label for="sagas" class="control-label">Saga del libro</label>
-                                <a class="btn  modal-trigger"  href="#modal-defaultMS">
+                                <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="#modal-defaultMS">
                                     <i class="fa fa-book"></i>
                                     Agregar saga
                                 </a>
@@ -673,6 +672,7 @@
                                     <label for="despues" class="control-label">Despúes</label>
                                     <?php echo Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']); ?>
 
+                                    <br>
                                 </div>
                             <br>
                         </div>
@@ -683,8 +683,8 @@
                 <div class="percent">0%</div >
             </div>
             <div class="text-center">
-                <?php echo Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']); ?>
-
+                
+                <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarLibro" >Registrar libro</button>
             </div>
         </div>
         <?php echo Form::close(); ?>
@@ -799,7 +799,7 @@
                 <?php echo e(Form::token()); ?>
 
                 <div class="row">
-                    <div class="col s6">
+                    <div class="input-field col s12 m6">
                         
                         <div id="mensajeFotoSaga"></div>
                         <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
@@ -810,18 +810,17 @@
                         </div>
                     </div>
 
-                    <div class="col s6">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6">
                             
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                             <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']); ?>
 
                             <label for="exampleInputFile" class="control-label">Categoría</label>
-                            <br>
+                            
                         </div>
 
                         
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text">create</i>
                             <label for="exampleInputFile" class="control-label">Nombre</label>
                             <?php echo Form::text('sag_name',null,['class'=>'form-control','required'=>'required']); ?>
@@ -830,7 +829,7 @@
                         </div>
 
                         
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">star</i>
                             
                             <?php echo Form::select('type_saga',['1'=>'Libros'],null,
@@ -840,20 +839,19 @@
                             <br>
                         </div>
                         
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">create</i>
                             <label for="exampleInputPassword1" class="control-label">Descripción</label>
                             <?php echo Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']); ?>
 
                         </div>
-                    </div>
                     <br>
-                     <div align="center">
-                            <?php echo Form::submit('Agregar saga', ['class' => 'btn btn-primary','id'=>'guardarSaga']); ?>
-
+                    <div align="center">
+                            <button class="btn curvaBoton waves-effect waves-light green" id="guardarSaga">Agregar saga
+                            </button>
                             <?php echo Form::close(); ?>
 
-                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -890,7 +888,7 @@
                     </div>
                 </div>
                 <div align="center">
-                    <button class="btn btn-primary"  id="save-resource" onclick="callback()">Guardar género</button>
+                    <button class="btn curvaBoton waves-effect waves-light green"  id="save-resource" onclick="callback()">Guardar género</button>
                 </div>
             
         

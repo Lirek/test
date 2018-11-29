@@ -256,6 +256,7 @@
 
                                 <div class="input-field col s12">
                                     <div class="input-field col s12">
+                                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i> 
                                     {{--Categoria--}}
                                    
                                         @if($i_megazine->status != 'Aprobado')
@@ -577,7 +578,7 @@
                                     <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
-                                    {!! Form::textarea('descripcion',$i_megazine->sinopsis,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la revista','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                                    {!! Form::textarea('descripcion',$i_megazine->descripcion,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la revista','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
                                     <br>
                                 </div>
                             </div>
@@ -586,12 +587,12 @@
                         
                             <div class="col m6 s6">
                                 <div align="">
-                                    <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}" class="btn btn-danger">Atrás</a>
+                                    <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}" class="btn btn-danger curvaBoton red">Atrás</a>
                                 </div>
                             </div>
                             <div class="col m6 s6">
                                 <div align="">
-                                    {!! Form::submit('Editar revista', ['class' => 'btn btn-primary','id'=>'guardarCambios']) !!}
+                                    {!! Form::submit('Editar revista', ['class' => 'btn btn-primary curvaBoton green','id'=>'guardarCambios']) !!}
                                 </div>
                             </div>    
                     {!! Form::close() !!}

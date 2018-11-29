@@ -670,7 +670,7 @@
                 <div class="percent">0%</div >
             </div>
             <div class="text-center">
-                <!-- {!! Form::submit('Registrar libro', ['class' => 'btn btn-primary','id'=>'guardarLibro']) !!} -->
+                
                 <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="guardarLibro" >Registrar libro</button>
             </div>
         </div>

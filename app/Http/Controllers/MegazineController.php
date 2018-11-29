@@ -62,10 +62,11 @@ class MegazineController extends Controller
         $saga = Sagas::find($id); 
         $tags = Tags::where('type_tags','=','Revistas')->get();
         $selected = $saga->tags_sagas()->get();
+        $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
          return view('seller.megazine_module.update_type_form')->
          with('tags',$tags)->
          with('pub_type',$saga)->
-         with('s_tags',$selected);
+         with('s_tags',$selected)->with('rating',$rating);
      }
      
      public function ShowUpdateSingleMegazineForm($id)
@@ -286,7 +287,7 @@ class MegazineController extends Controller
         $megazine->cover =$path2;
         }
         $megazine->title=$request->title;
-        $megazine->descripcion=$request->dsc;
+        $megazine->descripcion=$request->descripcion;
         $megazine->cost=$request->cost;
         $megazine->status=2;
         $megazine->country=$request->country;
@@ -330,7 +331,7 @@ class MegazineController extends Controller
         $megazine->cover =$path2;
         }
         $megazine->title=$request->title;
-        $megazine->descripcion=$request->dsc;
+        $megazine->descripcion=$request->descripcion;
         $megazine->saga_id=NULL;
         $megazine->cost=$request->cost;
         $megazine->status=2;
@@ -360,6 +361,31 @@ class MegazineController extends Controller
 
     public function UpdatePType(Request $request,$id)
     {
+      $saga= Sagas::find($id);
+      if ($request->hasFile('image')) 
+        {
+        
+        $file2=$request->file('image');
+        
+        $store_path = '/megazine/'.$request->seller_id.'/sagas/'.$request->title;
+  
+        $file = $request->file('image');
+    
+        $name1 = '/saga_'.$request->title. time() . '.'. $file->getClientOriginalExtension();
+    
+        $file->move(public_path().$store_path,$name1);
+    
+        $path = $store_path.$name1;
+
+        $saga->img_saga=$path;
+        }
+
+      $saga->sag_name = $request->title;
+      $saga->sag_description = $request->dsc;
+      $saga->rating_id = $request->rating_id;
+      $saga->save();
+
+
 
         $user= Auth::guard('web_seller')->user()->id;
         $collection = Sagas::where('type_saga','=','Revistas')->where('seller_id','=',$user)->simplePaginate(10);
@@ -367,7 +393,10 @@ class MegazineController extends Controller
         
         Flash('Se ha Modificado '.$request->title)->success();
         
-       return view('seller.megazine_module.megazine_panel')->with('collection', $collection)->with('single', $single);
+       
+      return redirect()->action(
+            'MegazineController@MyMegazine',['id'=>Auth::guard('web_seller')->user()->id]
+        );
     }
 
 /*------------------------------------------------------------------------------

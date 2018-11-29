@@ -109,7 +109,7 @@
                 Modificar Cadena de Publicaciones
             </h3>
             <div class="row">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type_update_cad',$pub_type->id)); ?>" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/type_update',$pub_type->id)); ?>" enctype="multipart/form-data">
                         <?php echo e(csrf_field()); ?>
 
                 <input type="hidden" name="seller_id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
@@ -152,7 +152,7 @@
                           <?php echo Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
 
                           <?php else: ?>
-                          <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']); ?>
+                          <?php echo Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']); ?>
 
                       </select>
                       <?php endif; ?>
