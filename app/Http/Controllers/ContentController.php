@@ -171,7 +171,7 @@ class ContentController extends Controller
     }
     public function ShowAuthor($id)
     {
-        $Author= BookAuthor::find($id);
+        $Author= BookAuthor::findOrfail($id);
 
         $Books = Book::where('status','=','Aprobado')->where('author_id','=',$id)->get();
 

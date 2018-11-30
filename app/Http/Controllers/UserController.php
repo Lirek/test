@@ -765,9 +765,10 @@ class UserController extends Controller
 
             return view('users.showMovie')->with('Movies',$Movies);
     }
+    
     public function BuyMovie(Request $request,$id)
     {
-        $movie= Movie::find($id);
+        $movie= Movie::findOrfail($id);
         $user = User::find(Auth::user()->id);
 
         if ($movie->cost > $user->credito) 
