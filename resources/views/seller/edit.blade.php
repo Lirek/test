@@ -1,39 +1,39 @@
 @extends('seller.layouts')
-@section('content')
-<style type="text/css">
+@section('css')
+    <style type="text/css">
 
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 98%;
-  }
-}
+        @media only screen and (min-width: 993px) {
+            .container {
+                width: 98%;
+            }
+        }
 
-h5.breadcrumbs-header {
-  font-size: 1.64rem;
-  line-height: 1.804rem;
-  margin: 1.5rem 0 0 0;
-}
+        h5.breadcrumbs-header {
+            font-size: 1.64rem;
+            line-height: 1.804rem;
+            margin: 1.5rem 0 0 0;
+        }
 
-#work-collections .collection-header {
-  font-size: 2.0rem;
-  font-weight: 500;
-}
+        #work-collections .collection-header {
+            font-size: 2.0rem;
+            font-weight: 500;
+        }
 
-#profile-card .card-image {
-  height: 210px;
-}
-#profile-card .card-content p {
-  font-size: 1.2rem;
-  margin: 0px 0 0px 0;
-}
+        #profile-card .card-image {
+            height: 210px;
+        }
 
-#profile-card .btn-move-up {
-  position: relative;
-  top: -60px;
-  right: -18px;
-  margin-right: 10px !important;
-}
+        #profile-card .card-content p {
+            font-size: 1.2rem;
+            margin: 0px 0 0px 0;
+        }
 
+        #profile-card .btn-move-up {
+            position: relative;
+            top: -60px;
+            right: -18px;
+            margin-right: 10px !important;
+        }
 
         #image-preview {
             width: 70px;
@@ -67,8 +67,9 @@ h5.breadcrumbs-header {
         .intl-tel-input{
             width: 100%;
         }
-
-</style>
+    </style>
+@endsection
+@section('content')
             <!-- START CONTENT -->
     <div class="row">
 
@@ -130,7 +131,7 @@ h5.breadcrumbs-header {
           <div class="col s12 m12 l8">
               <ul id="projects-collection" class="collection">
                   <li class="collection-item avatar center">
-                    <span class="collection-header center">datos a editar</span>
+                    <span class="collection-header center">Datos a editar</span>
                   </li>
                             <!--nombre-->
                             <div class="input-field col s12 ">
@@ -186,9 +187,9 @@ h5.breadcrumbs-header {
                             </div>
                             <!--telefono-->
                             <div class="input-field col s12">
-                                <i class="material-icons prefix blue-text">local_phone</i>
-                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
-                                <input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">
+                                <i class="material-icons left prefix blue-text">local_phone</i>
+                                <input class="form-control" type="tel" name="phone" id="phone_s" required="required" onkeypress="return controltagNum(event)" maxlength="15" value="{{$seller->tlf}}">
+                                {{--<input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">--}}
                                 <div id="mensajePhone"></div>
                                 <label  for="ruc">Telefono</label>
                             </div>
@@ -200,7 +201,7 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">sobre mi</span>
+                                        <span class="collection-header center" style="color: white ">Sobre mi</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -216,6 +217,9 @@ h5.breadcrumbs-header {
         </div>
     </div>
     {!! Form::close() !!}
+@endsection
+@section('js')
+{{--
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
     <!--materialize js-->
     <script type="text/javascript" src="js/materialize.js"></script>
@@ -236,6 +240,7 @@ h5.breadcrumbs-header {
     
     <!-- google map api -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
+--}}
 
 
 <script type="text/javascript">
@@ -300,10 +305,12 @@ h5.breadcrumbs-header {
     })
 </script>
     <script type="text/javascript">
+        /*
         $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){
                 var phone = $("#phone2").val();
+                console.log(phone);
                 $("#phone_s").intlTelInput();
                 $("#phone_s").intlTelInput("setNumber",phone );
                 $("#phone_s").val(phone);
@@ -319,6 +326,7 @@ h5.breadcrumbs-header {
             });
 
         })
+        */
     </script>
     <script type="text/javascript">
 

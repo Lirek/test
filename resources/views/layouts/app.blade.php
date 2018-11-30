@@ -355,7 +355,7 @@
 -->
 
 <!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
-<!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--telefono-->
 <!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
 <!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
