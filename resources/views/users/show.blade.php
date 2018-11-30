@@ -8,10 +8,10 @@
             filter: shadow(color=#999999, direction=135, strength=8);
             /*Para la Sombra*/
             background-image: url("{{ asset('images/bookcover/') }}/{{$book->cover}}");
-            margin-top: 5%;
+            margin-top: 2%;
             background-position: center center;
             width: 100%;
-            min-height: 500px;
+            min-height: 350px;
             -webkit-background-size: 100%;
             -moz-background-size: 100%;
             -o-background-size: 100%;
@@ -39,139 +39,176 @@
             width:80%;
             height:33px;
         }
-        .colorbadge{
-            background-color:#428bca;
+
+        .collection .collection-item.avatar:not(.circle-clipper) > .circle, .collection .collection-item.avatar :not(.circle-clipper) > .circle {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            overflow: hidden;
+            left: 35px;
+            display: inline-block;
+            vertical-align: middle;
         }
+
     </style>
 @endsection
 @section('main')
     <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class=" col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class=" col-sm-12 col-md-12 col-lg-12"></div>
-                        <div class="col-sm-12 col-md-8 col-lg-8">
-                            <div class="box box-widget widget-user-2">
-                                <div class="col-md-4">
-                                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Libro</a>
-                                </div>
-                                <div id="panel" class="img-rounded img-responsive av text-center"></div>
-                            </div>
-                        </div>
-                    </div><!-- /. col img book -->
+    <div class="row">
+
+        <div class="col s12 m12" >
+            @include('flash::message')
+            <div class="card-panel curva" style="padding-bottom: 110px;">
+<div class="row">
+                <div class="col s12 m8 offset-m1">
+                <h5  class="center">
+                    "{{ $book->title }}" ({{ $book->release_year }})
+                </h5>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="col-sm-12 col-md-8">
-                        <h3>Libro | "{{ $book->title }}" ({{ $book->release_year }})</h3>
-                    </div><!-- /. col titel book -->
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8">
-                            <hr>
-                            <h5> <b>Sinopsis:</b></h5>
-                            <p class="text-justify">{{ $book->sinopsis }}</p>
-                            <h5><b>Titulo original: </b><span>{{ $book->original_title }}</span></h5>
-
-
-                            <h5> <b>Géneros:</b>
-                                @foreach($book->tags_book as $t)
-                                    <span class="badge badge-light colorbadge"> {{ $t->tags_name }} </span>
-                                @endforeach
-                            </h5>
-                            <h5> <b>Categoria:</b> <span class="label label-success"> {{ $book->rating->r_name }} </span></h5>
-
-                            <div class="row">
-                                @if($book->saga!=null)
-
-                                    <div class="col-md-12">
-                                        <h5><b>Saga: </b><span>{{ $book->saga->sag_name }}</span></h5>
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-6">
-                                        <h5 class="pull-left"> <b>Antes:</b> <span> {{ $book->before }} </span> </h5>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <h5 class="pull-left"> <b>Después:</b> <span> {{ $book->after }} </span> </h5>
-                                        <br>
-                                    </div>
-                                @else
-                                    <div class="col-md-12">
-                                        <h5><b>Saga: </b><span>No tiene saga</span></h5>
-                                    </div>
-                                @endif
+                <div class="col s12 m2">
+                    <a class="waves-effect waves-light btn modal-trigger blue curvaBoton center" href="#modal1">Sinopsis</a>
+                </div>
+</div>
+                <div class="row">
+                    <div class="col s12 m3 offset-m1 ">
+                        <img style="border-radius: 10px" id="panel">
+                        <br><br>
+                        <div class="col s12 m12 ">
+                            <div class="col s12 m6 ">
+                        <a href="#" class="btn  curvaBoton" data-toggle="modal" data-target="#modal-default">Leer libros</a>
                             </div>
-                            <div class="widget-user-image">
-                                <img class="img-rounded img-responsive av"src="{{ asset('images/authorbook') }}/{{$book->author->photo }}" style="width:70px;height:70px;" alt="User Avatar">
-                            </div>
-                            <!-- /.widget-user-image -->
-                            <h5 class="widget-user-username"><b>Autor:</b> <a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></h5>
-
-                            <div class="row">
-                                <div  class="col-md-12" >
-                                    <hr>
+                                <div class="col s12 m6 ">
+                                <a href="{{url('MyReads')}}" class="btn curvaBoton red ">Atrás</a>
                                 </div>
-                                <div  class="col-md-6" >
-                                    <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer libro</a>
-                                </div>
-                                <div  class="col-md-6">
-                                    <a href="{{ url('MyReads') }}" class="btn btn-danger">Atrás</a>
-                                </div>
-                            </div>
-                        </div> <!-- /. col contenido book -->
-
+                        </div>
                     </div>
+                    <div class="col s12 m7  ">
+                        <ul class="collection z-depth-1" >
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                <p>
+                                <i class="material-icons circle left blue-text">create</i>
+                                    <b class="left">Titulo original: </b>
+                                </p>
+                                <p ALIGN="justify">&nbsp; {{ $book->original_title }}</p>
+                            </li>
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                        <p><i class="material-icons circle left blue-text">turned_in</i>
+                                        <b class="left">Géneros:&nbsp;</b></p>
+                                        <p ALIGN="justify">
+                                        @foreach($book->tags_book as $t)
+                                          {{ $t->tags_name }}
+                                        @if(count($book->tags_book)>1)
+                                            &nbsp;/
+                                        @endif
+                                        @endforeach
+                                        </p>
+                            </li>
+
+
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                <div class="row">
+                                <div class="col s6 m6 ">
+                                    <p><i class="material-icons circle  blue-text">star</i>
+                                    <b class="left">Categoria:&nbsp;&nbsp;</b>{{ $book->rating->r_name }}</p>
+                                </div>
+                                <div class="col s6 m6 ">
+                                    <p><i class="material-icons circle  blue-text">local_play</i>
+                                        <b class="left">Costo:&nbsp;&nbsp;</b>
+                                        {{ $book->cost }} Tickets
+                                    </p>
+                                </div>
+
+                            </div>
+                            </li>
+
+
+                            @if($book->saga!=null)
+                                <li class="collection-item"  style="padding: 5px 35px 5px 35px;">
+                                            <p><i class="material-icons circle left blue-text">folder</i>
+                                            <b class="left">Saga:&nbsp;</b></p>
+                                    <p ALIGN="justify">
+                                            {{ $book->saga->sag_name }}</p>
+                                </li>
+                            @else
+                                <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+
+                                            <p><i class="material-icons circle left blue-text">folder</i>
+                                            <b class="left">Saga:&nbsp;</b></p>
+                                    <p ALIGN="justify">
+                                            No pertenece a una saga</p>
+                                </li>
+                            @endif
+
+
+
+
+
+                            <li class="collection-item avatar">
+                                <img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">
+                                <span class="title"><b>Autor:</b></span>
+                                <p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
 
-     <!-- /.modal -->
-        <div class="modal fade in modal-warning" id="modal-default">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title text-center">{{ $book->title }}</h4>
-                    </div>
-                    <div class="modal-body text-center">
-                        <div class="pdf">
-
-                            <div class="transparencia"></div>
-                            <div class="bloqueo"></div>
-                            <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
+    <!--Modal-->
+    <!-- /.modal  de sagas  -->
+    <div id="modal-default" class="modal" style="width:100%;height:100%;">
+        <div class="modal-content modal-lg">
+            <div class=" blue"><br>
+                <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $book->title }}"</h4>
+                <br>
             </div>
-            <!-- /.modal-dialog -->
+            <br>
+            <div class="pdf">
+                <div class="transparencia"></div>
+                <div class="bloqueo"></div>
+                <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
+            </div>
         </div>
-        <!-- /.modal -->
-    </section>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+    </div>
+
+    <!--Sinopsis-->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content" style="padding: 15px;">
+            <h5><b>Sinopsis:</b></h5>
+            <p ALIGN="justify">{{ $book->sinopsis }}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
 @endsection
 @section('js')
 
-  <script>
-//---------------------------------------------------------------------------------------------------
-// Para evitar el click derecho sobre el modal del PDF        
+    <script>
+        //---------------------------------------------------------------------------------------------------
+        // Para evitar el click derecho sobre el modal del PDF
         document.getElementById('modal-default').oncontextmenu = function() {
             return false
         }
         function right(e) {
-        if (navigator.appName == 'Netscape' && e.which == 3) {
-            return false;
-        } else if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
-            return false;
-        }
+            if (navigator.appName == 'Netscape' && e.which == 3) {
+                return false;
+            } else if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
+                return false;
+            }
             return true;
         }
         document.getElementById('modal-default').onmousedown = right;
-// Para evitar el click derecho sobre el modal del PDF
-//---------------------------------------------------------------------------------------------------
-// Para visualizar el PDF
+        // Para evitar el click derecho sobre el modal del PDF
+        //---------------------------------------------------------------------------------------------------
+        // Para visualizar el PDF
 
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
@@ -240,7 +277,7 @@
         /**
          * Displays next page.
          */
-         function onNextPage() {
+        function onNextPage() {
             if (pageNum >= pdfDoc.numPages) {
                 return;
             }
@@ -258,8 +295,8 @@
             // Initial/first page rendering
             renderPage(pageNum);
         });
-// Para visualizar el PDF
-//---------------------------------------------------------------------------------------------------
-    </script>   
+        // Para visualizar el PDF
+        //---------------------------------------------------------------------------------------------------
+    </script>
 
 @endsection
