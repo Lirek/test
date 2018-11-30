@@ -90,8 +90,8 @@
                 @endforeach
                 </tbody>
             </table>
-
             <br>
+
             <ul class="pagination">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                 <li class="active blue"><a href="#!">1</a></li>
@@ -99,7 +99,6 @@
             </ul>
 
         </div>
-
     </div>
 
 
@@ -111,7 +110,6 @@
 <script>
 
     $(document).ready(function(){
-
         // grafica de disponibilidad
         $.ajax({
             url:"{{url('BalanceSellerGraph')}}",
@@ -154,14 +152,6 @@
 
         });
         // grafica de doughnut disponibilidad seller
-
-
-
     });
 </script>
-
-
-
-
-
 @endsection
