@@ -54,45 +54,46 @@
                             <tr>
                                 <th><i class="material-icons ">date_range</i> Fecha</th>
                                 <th><i class="material-icons"></i>Concepto</th>
-                                <th><i class="material-icons"></i>Metodo</th>
-                                <th><i class="material-icons"></i></i>Factura</th>
                                 <th><i class="material-icons">add_circle</i></th>
                                 <th><i class="material-icons">do_not_disturb_on</i></th>
+                                <th><i class="material-icons"></i>Metodo</th>
+                                <th><i class="material-icons"></i></i>Factura</th>
+
                             </tr>
                             </thead>
 
                             <tbody>
 
                             @foreach ($Balance as $balance)
-
                                 @if($balance != 0)
                                     <tr>
                                         <td>{{$balance['Date']}}</td>
                                         <td>{{$balance['Transaction']}}</td>
-                                        <td>{{$balance['Method']}}</td>
-                                        @if($balance['Method'] != 'Puntos')
-                                            <td>
+                                        @if($balance['Type']==1)
+                                            <td></td>
+                                            <td>{{$balance['Cant']}}</td>
+                                            <td>No aplica</td>
+                                            <td>No aplica</td>
+                                        @else
+                                            <td>{{$balance['Cant']}}</td>
+                                            <td></td>
+                                            <td>{{$balance['Method']}}</td>
+                                            @if($balance['Method'] != 'Puntos')
+                                                <td>
                                                     @if($balance['Factura']!=NULL)
                                                         <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">print</i></a>
                                                     @else
                                                         <a class="btn-floating btn-large waves-effect waves-light  green" onclick="generarFactura({!!$balance['id_payments']!!})"><i class="material-icons">print</i></a>
                                                     @endif
-                                            </td>
-                                        @else
-                                            <td>No Aplica</td>
-                                        @endif
-
-
-                                 @if($balance['Type']==1)
-                                            <td>{{$balance['Cant']}}</td>
-                                            <td></td>
-                                        @else
-                                            <td>{{$balance['Cant']}}</td>
-                                            <td></td>
+                                                </td>
+                                            @else
+                                                <td>No Aplica</td>
+                                            @endif
                                         @endif
                                     </tr>
                                 @endif
                             @endforeach
+
                             </tbody>
                         </table>
 
