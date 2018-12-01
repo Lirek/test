@@ -130,10 +130,9 @@ class UserController extends Controller
      */
     public function edit()
     {
-//        dd($user);
+        
         $user = User::find(Auth::user()->id);
-         
-         
+        //dd($user);
         return view('users.edit')->with('user', $user);
     }
 
@@ -201,7 +200,7 @@ class UserController extends Controller
          $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
      
-        //dd($user);
+        //dd($request->all());
         $user->save();
         Flash('Se han modificado sus datos con exito')->success();
         //return view('home');
