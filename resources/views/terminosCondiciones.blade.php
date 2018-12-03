@@ -69,7 +69,7 @@
 
 <!--Menu-->
 <nav class="default_color" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/home')}}" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
             <li><a class="blue-text" href="{{route('queEsLeipel')}}" target="_blank"><b>¿Qué es leipel?</b></a></li>
             @if(Auth::guard('web_seller')->user())
@@ -155,7 +155,7 @@
 <div class="container">
     <div  style="margin-left: 5%; margin-right: 5%" class="text-center ">
         <br>
-        <h3 class="center blue-text"><u> terminos y condiciones</u></h3>
+        <h3 class="center blue-text">Terminos y condiciones</h3>
         <br>
         <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%">
 Estos Términos de uso incluyen y pueden incluir otros temas, a los cuales se accede a través de hipervínculos, por lo cual deberá leer el contenido total de los presentes Términos y Condiciones de Uso antes de aceptarlos. SI NO ACEPTA ESTOS TÉRMINOS DE USO, NO UTILICE EL SERVICIO DE LEIPEL.

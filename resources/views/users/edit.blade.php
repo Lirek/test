@@ -2,34 +2,45 @@
 
 @section('main')
     <style>
-        #panel {
-            /*Para la Sombra*/
-            -webkit-box-shadow: 8px 8px 15px #999;
-            -moz-box-shadow: 8px 8px 15px #999;
-            filter: shadow(color=#999999, direction=135, strength=8);
-            /*Para la Sombra*/
-            background-image: url("{{asset('plugins/img/estatica.jpg')}}");
-            background-position: center center;
-            width: 100%;
-            min-height: 350px;
-            min-width: 100%;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 98%;
+  }
+}
+
+h5.breadcrumbs-header {
+  font-size: 1.64rem;
+  line-height: 1.804rem;
+  margin: 1.5rem 0 0 0;
+}
+
+#work-collections .collection-header {
+  font-size: 2.0rem;
+  font-weight: 500;
+}
+
+#profile-card .card-image {
+  height: 230px;
+}
+#profile-card .card-content p {
+  font-size: 1.2rem;
+  margin: 0px 0 0px 0;
+}
+
+#profile-card .btn-move-up {
+  position: relative;
+  top: -60px;
+  right: -18px;
+  margin-right: 10px !important;
+}
+
 
         #image-preview {
-            width: 300px;
-            height: 350px;
-            position: relative;
-            overflow: hidden;
-            padding-top: 10px;
-            padding-left: 55px;
+            width: 70px;
+            height: 70px;
+            padding-top: 0px;
+            padding-left: 0px;
         }
 
         #image-preview input {
@@ -41,7 +52,6 @@
         }
 
         #image-preview label {
-            position: absolute;
             z-index: 5;
             opacity: 0.8;
             cursor: pointer;
@@ -51,185 +61,213 @@
             font-size: 15px;
             line-height: 50px;
             text-transform: uppercase;
-            top: 70;
-            left: 0;
-            right: 0;
-            bottom: 0;
             margin: auto;
             text-align: center;
         }
+
         .intl-tel-input{
             width: 100%;
         }
 
     </style>
-
+            <!-- START CONTENT -->
     <div class="row">
-        <div class="form-group">
-            <div class="row-edit">
-                <h4><i class="fa fa-angle-right"></i> Modificar Perfil</h4>
-                <div class="col-md-12 col-sm-12 mb">
-                    <div class="form-group">
-                        {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
-                        {{ Form::token() }}
+
+      <div class="col s4">
+        <!-- Promo Content 1 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 2 goes here -->
+      </div>
+      <div class="col s4">
+        <!-- Promo Content 3 goes here -->
+      </div>
+
+    </div>
+        <!--inicio contenido-->
+    {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
+    {{ Form::token() }}
+    <div class="container">
+        <div id="work-collections">
+            <div class="row">
+                <div class="col s12">
+                    <div id="profile-card" class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%" alt="user background">
+                        </div>
+                        <div class="card-content">
+                            <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
+                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
+                                {!! Form::hidden('img_posterOld',$user->img_perf)!!}
+                                <div id="list">
+                                    @if ($user->img_perf)
+                                        <img width="70" height="70" name='perf' src="{{asset($user->img_perf)}}" id="img_perf">
+                                    @else
+                                        <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="col s4">
+                                        <h5><i class="material-icons prefix blue-text">face</i>
+                                        {{Auth::user()->name}}</h5>
+                                    </div>
+                                    <div class="col s4">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5>{{Auth::user()->credito}}</h5>
+                                        <label>todos mis tickets</label>
+                                    </div>
+                                    <div class="col s4">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5>{{Auth::user()->points}}</h5>
+                                        <label>todos mis puntos</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="work-collections">
+                        <div class="row">   
+                          <div class="col s12 m12 l8">
+                              <ul id="projects-collection" class="collection">
+                                    <div class="card-image waves-block" style="height: 65px; padding-top: 9px">
+                                        <span class="collection-header center">Datos a editar</span>
+                                    </div>
+                                    <!--nombre-->
+                                    <div class="input-field col s12 ">
+                                        <i class="material-icons prefix blue-text">face</i>
+                                        {!! Form::text('name',$user->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                        <div id="mensajeNombre"></div>
+                                        <label for="name">Nombre</label>
+                                    </div>
+
+                                    <!--apellido-->
+                                    <div class="input-field col s12 ">
+                                        <i class="material-icons prefix blue-text">face</i>
+                                        {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']) !!}
+                                        <div id="mensajeNombre"></div>
+                                        <label for="name">apellidos</label>
+                                    </div>
 
 
+                                    <!--email-->
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix blue-text">contact_mail</i>
+                                        {!! Form::text('email',$user->email,['class'=>'form-control','readonly']) !!}
+                                        <label  for="email">Correo</label>
+                                    </div>
 
+                                    <!--cedula-->
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix blue-text">assignment_ind</i>
+                                        @if($user->num_doc)
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
+                                        @else
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            <div id="mensajeRuc"></div>
+                                        @endif
+                                        <label  for="ruc">Cedula</label>
+                                    </div>
 
-                        {{--Imagen de perfil--}}
-                        <div class="row">
-                            <div class="group-input">
-                                <div class="box box-widget widget-user-1">
-                                    <div class="col-md-6">
-                                        <div id="image-preview" class="form-group btn pull-left col-md-1">
-                                            {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                            {!! Form::hidden('img_posterOld',$user->img_perf)!!}
-                                            <div id="list">
-                                                @if ($user->img_perf)
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='perf' src="{{asset($user->img_perf)}}" id="img_perf">
-                                                @else
-                                                    <img style="width:180px; height:180px; border-top:50%;" class="img-rounded" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                    <!-- imagen de cedula-->
+                                    <div class="form-group ">
+                                        <div class="col m4">
+                                            {!! Form::label('documento','Foto de su cedula de identidad',['class'=>'control-label']) !!}
+                                        </div>
+                                        <div  class="col m4">
+                                            @if ($user->img_doc)
+                                                <img id="preview_img_doc" class="materialboxed" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
+                                            @endif
+                                            <div class="col m4 control-label">
+                                                @if($user->verify == 0 || $user->verify == 2)
+                                                    <img id="preview_img_doc" src="" name='ci'/>
+                                                    <input type='file' name="adj_ruc" id="img_doc"  value="$user->img_doc" />
                                                 @endif
+                                                <div id="mensajeImgDoc"></div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div id="panel" class="img-rounded img-responsive"></div>
-                                    <br>
-                                    <label for="image-upload" style="padding-left: 70%; color: black;" id="image-label">
-                                        <div id="mensajeImgPerf"></div>
-                                        Haga click sobre la imagen de perfil para cambiarla
-                                    </label>
+                                    <!--sexo-->
+                                    <div class="col m12 s12">
+                                        <div class="input-field col s12">
+                                         <i class="material-icons prefix blue-text valign-wrapper">wc</i>
+                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']) !!}
+                                        <label for="exampleInputFile" class="control-label">sexo</label>
+                                        <br>
+                                        </div>
+                                    </div>
+
+                                    <!--alias-->
+                                    <div class="input-field col s12 ">
+                                        <i class="material-icons prefix blue-text">face</i>
+                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
+                                        <div id="mensajeNombre"></div>
+                                        <label for="name">Alias</label>
+                                    </div>
+
+                                    <!--fecha de nacimiento-->
+                                    <div class="input-field col s12 ">
+                                        <i class="material-icons prefix blue-text">today</i>
+                                        {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control']) !!}
+                                        <div id="mensajeNombre"></div>
+                                        <label for="name">Fecha de nacimiento</label>
+                                    </div>
+
+                                    <!--direccion-->
+                                    <div class="input-field col s12 ">
+                                        <i class="material-icons prefix blue-text">description</i>
+                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control']) !!}
+                                        <div id="mensajeNombre"></div>
+                                        <label for="name">dirección</label>
+                                    </div>
+
+                        
+                                    <!--numero de telefono-->
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix blue-text">contact_phone</i>
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            <div id="mensajeRuc"></div>
+                                        <label  for="ruc">numero de telefono</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                              {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']) !!}
+                                          </div>
+                                        </ul>
+                                    </div>
+
+                            <div class="col s12 m6 l4">
+                                <div id="profile-card" class="card">
+                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                        <span class="collection-header center" style="color: white ">contactame</span>
+                                      </li>
+                                    </div>
+                                    <div class="card-content">
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
+                                        {{$user->email}}
+                                        <br>
+                                        <br>
+                                        {{$user->phone}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        {{--Nombre--}}
-                        <div class="form-group ">
-                            <div class="col-md-4  control-label">
-                                {!! Form::label('name','Nombres',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6  control-label">
-                                <div id="mensajeMaximoNombre"></div>
-                                {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
-                            </div>
-                        </div>
-
-                        {{--Apellido--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('last_name','Apellidos',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                <div id="mensajeMaximoApellido"></div>
-                                {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
-                            </div>
-                        </div>
-
-                        {{--Correo--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('email','Correo',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                {!! Form::text('email',$user->email,['class'=>'form-control','readonly']) !!}
-                            </div>
-                        </div>
-
-                        {{--Cedula Nota no es un select--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('ci','Cédula',['class'=>'control-label']) !!}
-                            </div>
-
-                            <div class="col-md-6 control-label">
-                                @if($user->num_doc)
-                                    {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
-                                @else
-                                    {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
-                                @endif
-                            </div>
-                        </div>
-
-                        {{--Imagen Documento--}}
-
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('documento','Foto de la cédula',['class'=>'control-label']) !!}
-                            </div>
-                            <div  class="col-md-4">
-                                @if ($user->img_doc)
-                                    <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                                @endif
-                                <div class="col-md-10 control-label">
-                                    @if($user->verify == 0 || $user->verify == 2)
-                                        <img id="preview_img_doc" src="" name='ci'/>
-                                        <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc"/>
-                                    @endif
-                                    <div id="mensajeImgDoc"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{--Genero--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('num_doc','Sexo',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control','placeholder'=>'seleccione una opcion','control-label']) !!}
-                            </div>
-                        </div>
-
-                        {{--Alias--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('alias','Alias',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                <div id="mensajeMaximoAlias"></div>
-                                {!! Form::text('alias',$user->alias,['class'=>'form-control','id'=>'alias']) !!}
-                            </div>
-                        </div>
-
-                        {{--Fecha Nacimiento--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('fech_nac','Fecha de nacimiento',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control']) !!}
-                            </div>
-                        </div>
-
-                        {{--Direccion--}}
-                        <div class="form-group ">
-                            <div class="col-md-4 control-label">
-                                {!! Form::label('direccion','Dirección',['class'=>'control-label']) !!}
-                            </div>
-                            <div class="col-md-6 control-label">
-                                <div id="mensajeMaximoDireccion"></div>
-                                {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-4 control-label">
-                                <label  for="phone">Telefono de Contacto</label>
-                            </div>
-                            <div class="col-md-6 control-label">
-                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
-                                <input type="hidden" id="phone2" name="phone" value="{{$user->phone}}">
-
-                            </div>
-                        </div>
-
-                        {{--Boton--}}
-                        <div class="form-group text-center">
-                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
-                        </div>
+                    </div>
+        </div>
+    </div>
+    {!! Form::close() !!}
 
 
-                        {!! Form::close() !!}
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -240,7 +278,34 @@
 
 
 @section('js')
+<script type="text/javascript">
+    
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+</script>
     <script type="text/javascript">
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+       
         $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){

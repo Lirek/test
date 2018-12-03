@@ -113,11 +113,12 @@ h5.breadcrumbs-header {
                                         {{Auth::guard('web_seller')->user()->name}}</h5>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>{{$total_content}}<br>
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5>{{$total_content}}</h5>
                                         <label>contenido total</label>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>{{$total_aproved}}<br>
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i><h5>{{$total_aproved}}</h5>
                                         <label>contenido aprovado</label>
                                     </div>
                                 </div>
@@ -129,9 +130,9 @@ h5.breadcrumbs-header {
         <div class="row">   
           <div class="col s12 m12 l8">
               <ul id="projects-collection" class="collection">
-                  <li class="collection-item avatar center">
-                    <span class="collection-header center">datos a editar</span>
-                  </li>
+                    <div class="card-image waves-block" style="height: 65px; padding-top: 9px">
+                        <span class="collection-header center">Datos a editar</span>
+                    </div>
                             <!--nombre-->
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix blue-text">face</i>
@@ -187,13 +188,13 @@ h5.breadcrumbs-header {
                             <!--telefono-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">local_phone</i>
-                                <input class="form-control" type="tel" name="phone_s" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
+                                <input class="form-control" type="tel" name="phone" id="phone_s" required onkeypress="return controltagNum(event)"  maxlength="15" >
                                 <input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">
                                 <div id="mensajePhone"></div>
                                 <label  for="ruc">Telefono</label>
                             </div>
                                   <div class="input-field col s12">
-                                      {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                                      {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']) !!}
                                   </div>
                                 </ul>
                             </div>
