@@ -10,17 +10,20 @@
 		<div class="card">
 			<div class="card-content white-text">
 				<span class="grey-text"><h4><b><i class="material-icons small">radio</i> Radios</b></h4></span>
-                        <div class="row">
-                            <div class="input-field col s12 m6 offset-m3">
-                                <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
-                                    {{ csrf_field() }}
-                                    <i class="material-icons prefix blue-text">search</i>
-                                    <input type="text" id="seach" name="seach" class="validate">
-                                    <label for="seach">Buscar radio</label><br>
-                                    {{--<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Radio...</button>--}}
-                                </form>
-                            </div>
-                        </div>
+
+                <div class="row">
+                    <div class="input-field col s12 m6 offset-m3">
+                        <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
+                            {{ csrf_field() }}
+                            <i class="material-icons prefix blue-text">search</i>
+                            <input type="text" id="seach" name="seach" class="validate">
+                            <input type="hidden" name="type" id="type">
+
+                            <br>
+                            <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+                        </form>
+                    </div>
+                </div>
 
                         <div class="row">
                                 @foreach($Radio as $radios)
@@ -49,7 +52,10 @@
 @endsection
 
 @section('js')
-	<script type="text/javascript">
+
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    <script type="text/javascript">
 
         $(document).ready(function(){
             $('#seach').keyup(function(evento){
