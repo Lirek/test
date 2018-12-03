@@ -164,21 +164,19 @@ a:hover {
                     </div>
                 @endforeach
 
-                <div class="row">
-                    <form class="col s12 m4 offset-m8"  method="POST" action="{{url('SearchPlayTv')}}"  id="SaveSong" >{{ csrf_field() }}
-                        <div class="input-field col s4 offset-s3 m9 valign-wrapper ">
-                            <input method="POST"  id="SaveSong" class="validate"   type="text">
-                            <label for="first_name">Buscar</label>
-                            <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
-                            <div id="codigoMen"></div>
+                    <div class="row">
+                        <div class="input-field col s12 m6 offset-m3">
+                            <form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">
+                                {{ csrf_field() }}
+                                <i class="material-icons prefix blue-text">search</i>
+                                <input type="text" id="seach" name="seach" class="validate">
+                                <input type="hidden" name="type" id="type">
+
+                                <br>
+                                <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+                            </form>
                         </div>
-                        <div class=" col s3 m3 valign-wrapper">
-                            <button  id='ingresar' class="btn-floating btn-large pulse circle waves-effect waves-light left valign-wrapper" type="submit" name="action">
-                                <i class="material-icons ">search</i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
 
 
 
@@ -216,6 +214,8 @@ a:hover {
 
 const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
 </script>
+
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
 
