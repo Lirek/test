@@ -1,34 +1,29 @@
 @extends('layouts.app')
 
 @section('css')
-
 @endsection
 
 @section('main')
 
-	<div class="row">
-			<h4>Televisión</h4>
-    </div>
+
 
     <div class="row">
     <div class="card col s12 m12" style="padding: 10px 10px 10px 10px;">
 
-            <div class="row">
-				<form class="col s12 m4 offset-m8"  method="POST" action="{{url('SearchPlayTv')}}"  id="SaveSong" >{{ csrf_field() }}
-					<div class="input-field col s4 offset-s3 m9 valign-wrapper ">
-						<input method="POST"  id="SaveSong" class="validate"   type="text">
-						<label for="first_name">Buscar</label>
-						<div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
-						<div id="codigoMen"></div>
-					</div>
-					<div class=" col s3 m3 valign-wrapper">
-						<button  id='ingresar' class="btn-floating btn-large pulse circle waves-effect waves-light left valign-wrapper" type="submit" name="action">
-							<i class="material-icons ">search</i>
-						</button>
-					</div>
+		<span class="grey-text"><h4><b><i class="material-icons small">tv</i> Televisión</b></h4></span>
+		<div class="row">
+			<div class="input-field col s12 m6 offset-m3">
+				<form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">
+					{{ csrf_field() }}
+					<i class="material-icons prefix blue-text">search</i>
+					<input type="text" id="seach" name="seach" class="validate">
+					<input type="hidden" name="type" id="type">
+
+					<br>
+					<button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
 				</form>
 			</div>
-
+		</div>
 
             <div class="row">
             @foreach($Tv as $tv)
@@ -56,30 +51,33 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
+	<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-$(document).ready(function(){
+	<script type="text/javascript">
 
-	$('#seach').keyup(function(evento){
-		$('#buscar').attr('disabled',true);
-	});
-	$('#buscar').attr('disabled',true);
-      $('#seach').autocomplete({
-      	source: "SearchTv",
-      	minLength: 2,
-      	select: function(event, ui){		
-      		$('#seach').val(ui.item.value);
-      		var valor = ui.item.value;
-          console.log(valor);
-      		if (valor=='No se encuentra...'){
-      			$('#buscar').attr('disabled',true);
-      			swal('Tv no se encuentra regitrada','','error');
-      		}else{
-      			$('#buscar').attr('disabled',false);
-      		}
-      	}
+			$(document).ready(function(){
+				$('#seach').keyup(function(evento){
+					$('#buscar').attr('disabled',true);
+				});
+				$('#buscar').attr('disabled',true);
+				  $('#seach').autocomplete({
+					source: "SearchTv",
+					minLength: 2,
+					select: function(event, ui){
+						$('#seach').val(ui.item.value);
+						var valor = ui.item.value;
+					  	console.log(valor);
+						if (valor=='No se encuentra...'){
+							$('#buscar').attr('disabled',true);
+							swal('Tv no se encuentra regitrada','','error');
+						}else{
+							$('#buscar').attr('disabled',false);
+						}
+					}
 
-   });
-  });
+			   });
+			  });
+
+
 </script>
 @endsection

@@ -35,8 +35,8 @@
     <!--Modal
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />-->
 
-    <!--Buscador
-    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">-->
+    <!--Buscador-->
+    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 
     <!--NUMERO
     <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
@@ -54,8 +54,7 @@
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <![endif]-->
 
-    <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 </head>
 
 <body>
@@ -353,31 +352,43 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 -->
-<!--Libreria sweetalert-->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
+
 <!--telefono-->
 <!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
 <!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
 <!--SCRIPS JS-->
 
- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="{{asset('assets/js/jquery.js') }}"></script>
-
-
-<!-- <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>-->
-<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
-
-<!--PDF.JS-->
-<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-
 
 <!--Import jQuery before materialize.js-->
 <script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
 
+<!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+
+
+<!--common script for all pages-->
+<script src="{{asset('assets/js/common-scripts.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+
+<!--PDF.JS-->
+<!--<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>-->
+
+
+<!--Libreria sweetalert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> en conflicto con materilize tab-->
+
+@yield('js')
 
 <!--<script type="application/javascript">
     $(document).ready(function () {
@@ -459,7 +470,7 @@
     });
 </script>-->
 
-@yield('js')
+
 
 </html>
 
