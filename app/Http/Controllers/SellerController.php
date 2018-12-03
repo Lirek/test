@@ -216,7 +216,7 @@ class SellerController extends Controller
         $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
         $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
         $request->file('adj_ruc')->move($store_path,$name);
-        $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/';
+        $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
         //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
         $Seller = new Seller;
         $Seller->name = $request->name;

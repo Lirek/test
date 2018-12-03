@@ -81,8 +81,10 @@
 								@if(Auth::user()->name!=NULL && Auth::user()->last_name!=NULL && Auth::user()->email!=NULL && Auth::user()->num_doc!=NULL && Auth::user()->fech_nac!=NULL && Auth::user()->direccion!=NULL && Auth::user()->phone!=NULL)
 									@if(Auth::user()->verify==0)
 										<button class="waves-effect waves-light btn curvaBoton green" onclick="esperarAprobacion()">Comprar</button>
+									@elseif(Auth::user()->verify==2)
+										<button class="waves-effect waves-light btn curvaBoton green" onclick="rechazo()">Comprar</button>
 									@else
-										<a class="waves-effect waves-light btn curvaBoton green modal-trigger" href="#modalPago-{!!$ticket->id!!}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!})">Comprar</a>
+										<a class="waves-effect waves-light btn curvaBoton green modal-trigger" href="#modalPago-{!!$ticket->id!!}" onclick="total({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!},{!!$ticket->points_cost!!},{!!Auth::user()->points!!})">Comprar</a>
 									@endif
 								@else
 									<button class="waves-effect waves-light btn curvaBoton green" onclick="completar()">Comprar</button>
@@ -447,6 +449,26 @@
 			});
 		}
 
+		function rechazo() {
+			swal({
+				className: "justify",
+				title: "Verificación rechazada",
+				text: "Le informamos que su verificación fue rechazada, por favor revise su bandeja de correos (incluida la de spam) para ampliar la información del rechazo y modifique su perfil para posterior revisión.",
+				icon: "info",
+				buttons: {
+					accept: {
+						text: "OK",
+						value: true,
+						className: "btn-swal-center"
+					}
+				}
+			})
+			.then((completar) => {
+				var ruta = "{{url('EditProfile')}}";
+				$(location).attr('href',ruta);
+			});
+		}
+
 		function controltagNum(e) {
 			tecla = (document.all) ? e.keyCode : e.which;
 			if (tecla==8) return true; // para la tecla de retroseso
@@ -468,7 +490,7 @@
 			return patron.test(te);
 		}
 
-		function total(id,costo,cant,points){
+		function total(id,costo,cant,points,Mypoints){
 			$("#ingresarPayPhone-"+id).hide();
 			$("#ingresarPunto-"+id).hide();
 
@@ -476,7 +498,11 @@
 			var total = parseFloat(costo*documento);
 			var ticket = parseFloat(cant*documento);
 			var totalP = parseFloat(documento*points);
-			var Mypoints = {!!Auth::user()->points!!};
+			if ( Mypoints != null ){
+				var Mypoints = Mypoints;
+			} else {
+				var Mypoints = 0;
+			}
 
 			$("#Cantidad-"+id).change(function(){
 				documento = parseFloat($('#Cantidad').val());
@@ -657,6 +683,7 @@
 							});
 						} else {
 							var idUser={!!Auth::user()->id!!};
+							console.log(idUser);
 							$.ajax({
 								url     : "{{url('MyTickets')}}/"+idUser,
 								type    : 'GET',
