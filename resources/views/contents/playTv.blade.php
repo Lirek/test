@@ -179,6 +179,20 @@ a:hover {
                     </div>
 
 
+                    <div class="fixed-action-btn click-to-toggle direction-top">
+                        <a class="btn-floating btn-large waves-effect waves-light green">
+                            <i class="large material-icons">share</i>
+                        </a>
+                        <ul>
+                            <li><a href="{{$tv->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+                            <li><a  href="{{$tv->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+                            <li><a href="{{$tv->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+                            <li><a href="{{$tv->instagram}}" class="btn-floating deep-purple darken-2"><i class="mdi mdi-instagram"></i></a></li>
+                        </ul>
+                    </div>
+
+
+
 
             @foreach($Tvs as $tv)
 
@@ -250,6 +264,18 @@ $(document).ready(function(){
                 $('#rrss').css('margin-left','10%%')
             }
     })
+</script>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            direction: 'top'
+        });
+    });
+
+
+
 </script>
 
 @endsection

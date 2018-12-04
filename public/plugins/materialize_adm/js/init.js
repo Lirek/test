@@ -8,6 +8,7 @@ $(document).ready(function(){
         $('.dropdown-trigger').dropdown();
         $('.tabs').tabs();
         $('.tooltipped').tooltip();
+        $('.fixed-action-btn').floatingActionButton();
 });
 
 })(jQuery); // end of jQuery name space
