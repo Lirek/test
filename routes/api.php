@@ -38,6 +38,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::post('UpdateData', 'ApiController\UserController@UpdateData');
     Route::post('UploadDocument', 'ApiController\UserController@UploadDocument');
     Route::post('UploadAvatar', 'ApiController\UserController@UploadAvatar');
+    Route::get('MyContent','ApiController\UserController@MyContent');
 
     //-------------------------------------------------------------------------
 

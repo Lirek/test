@@ -43,8 +43,19 @@ use App\Payments;
 use App\Referals;
 use App\PointsAssings;
 use App\SistemBalance;
+use App\Transactions;
 
 use App\Transformers\UserTransformer;
+use App\Transformers\AlbumsTransformer;
+use App\Transformers\SongsTransformer;
+use App\Transformers\MusicAuthorTransformer;
+use App\Transformers\SellerTransformer;
+use App\Transformers\TagsTransformer;
+use App\Transformers\BooksTransformer;
+use App\Transformers\MegazinesTransformer;
+use App\Transformers\RadioTransformer;
+use App\Transformers\TvTransformer;
+
 use Auth;
 
 class UserController extends Controller
@@ -223,8 +234,6 @@ class UserController extends Controller
         {
             return Response::json(['status'=>'ERROR'], 402);
         }
-
-
     }
 
     public function BuyDepositPackage(Request $request)
@@ -337,4 +346,90 @@ class UserController extends Controller
         }
         return Response::json(['status'=>'OK'], 201);
     }
+
+    public function MyContent()
+    {
+        $Transaction=Transactions::where('user_id','='auth()->user()->id);
+
+        if($Transaction->isEmpty())
+        {
+            return Response::json(['status'=>'No posee Contenidos Comprados'], 200);       
+        }
+        else
+        {
+            $MyContent= collect();
+
+            foreach ($Transactions as $Transaction) 
+            {
+                if($Transaction->books_id != 0)
+                {
+                    $BookContent=Book::find($Transaction->books_id);
+
+                    $MyContent->add(['name'=>$BookContent->title,
+                                     'type'=>'Libro',
+                                     'img'=>$BookContent->cover,
+                                     'acces'=>'Books/'.$BookContent->id]);                
+                }
+                elseif($Transaction->album_id != 0)
+                {
+                    $AlbumContent=Albums::find($Transaction->album_id);                    
+                    
+
+                    $MyContent->add(['name'=>$AlbumContent->name_alb,
+                                     'type'=>'Album',
+                                     'img'=>$AlbumContent->cover,
+                                     'id'=>$BookContent->id]);
+                }
+                elseif($Transaction->song_id != 0)
+                {
+                    $SingleContent=Songs::find($Transaction->song_id);
+
+                    $MyContent->add(['name'=>$SingleContent->song_name,
+                                     'type'=>'Single',
+                                     'img'=>$SingleContent->autors->photo,
+                                     'id'=>$SingleContent->id]);
+                }
+                elseif($Transaction->series_id != 0)
+                {
+                    $SeriesContent=Serie::find($Transaction->series_id);
+
+                    $MyContent->add(['name'=>$SeriesContent->title,
+                                     'type'=>'Serie',
+                                     'img'=>$SeriesContent->img_poster,
+                                     'id'=>$SeriesContent->id]);
+                }
+                elseif($Transaction->episodes_id != 0)
+                {
+                    $EpisodeContent=Episode::find($Transaction->episodes_id);
+
+                    $MyContent->add(['name'=>$EpisodeContent->episode_name,
+                                     'type'=>'Episodio',
+                                     'img'=>$EpisodeContent->Serie->img_poster,
+                                     'id'=>$EpisodeContent->id]);                 
+                }
+                elseif($Transaction->movies_id != 0)
+                {
+                    $MovieContent=Movie::find($Transaction->movies_id);
+
+                    $MyContent->add(['name'=>$MovieContent->title,
+                                     'type'=>'Episodio',
+                                     'img'=>$MovieContent->img_poster,
+                                     'id'=>$MovieContent->id]);
+                    
+                }
+                elseif($Transaction->megazines_id != 0)
+                {
+                    $MegazineContent=Megazines::find($Transaction->megazines_id);
+                    
+                    $MyContent->add(['name'=>$MegazineContent->title,
+                                     'type'=>'Revista',
+                                     'img'=>$MegazineContent->img_poster,
+                                     'id'=>$MegazineContent->id]);                    
+                }
+            }
+
+            return Response::json($MyContent);       
+        }
+    }
+    
 }
