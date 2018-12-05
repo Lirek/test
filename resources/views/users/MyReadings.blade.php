@@ -51,20 +51,20 @@
                 @if($Books != 0)
                     @foreach($Books as $Book)
                         <!-- PROFILE 01 PANEL -->
-                        <div class="col s6 m3 l3 xl2 ">
+                        <div class="col s6 m3 ">
                             <div class="card">
 
                                     <a href="{{url('ShowMyReadBook/'.$Book->id)}}">
 
                                         @if($Book->cover)
                                             <div class="card-image">
-                                            <img src="images/bookcover/{{$Book->cover}}" width="140%" height="220" style="">
+                                            <img src="images/bookcover/{{$Book->cover}}" width="100%" height="300"style="">
                                                 <a href="{{url('ShowMyReadBook/'.$Book->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">book</i></a>
 
                                             </div>
                                         @else
                                             <div class="card-image grey lighten-2">
-                                                <img  width="140%" height="220" style="">
+                                                <img  width="100%" height="300" style="">
                                                 <a href="{{url('ShowMyReadBook/'.$Book->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">book</i></a>
                                             </div>
 

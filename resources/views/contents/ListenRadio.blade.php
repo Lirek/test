@@ -16,25 +16,7 @@
                                                <center><img src="{{asset($radios->logo)}}" class="img-responsive" width="17%" style="margin-top: 2%;"></center>
 
                                             </div>
-                                            <div class="col s12 m12" style="margin-top: 1%;">
-                                            <center>
-                                                <a class=" waves-effect waves-light btn-floating blue" href="{{$radios->facebook}}" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
-                                                    <i class="fa fa-facebook" ></i>
-                                                </a>
-                                                <a class="waves-effect waves-light btn-floating social twitter blue" href="{{$radios->twitter}}" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
-                                                    <i class="fa fa-twitter"></i>
-                                                </a>
 
-                                                <a class="waves-effect waves-light btn-floating social youtube red" href="{{$radios->google}}" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
-                                                    <i class="fa fa-youtube"></i>
-                                                </a>
-                                                <a class="waves-effect waves-light btn-floating social instagram pink" href="{{$radios->instagram}}" target="blank" style="margin-top: 2%;  font-size: 250%; margin-left: 5%">
-                                                    <i class="fa fa-instagram" style="padding: 0px, 15px"></i>
-                                                </a>
-
-                                            </center>
-                                            <br>
-                                            </div>
                                             <div class="col m3">
 
                                             </div>
@@ -85,6 +67,19 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="fixed-action-btn click-to-toggle direction-top">
+    <a class="btn-floating btn-large waves-effect waves-light green">
+        <i class="large material-icons">share</i>
+    </a>
+    <ul>
+        <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+        <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+        <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+        <li><a href="{{$radios->instagram}}" class="btn-floating deep-purple darken-2"><i class="mdi mdi-instagram"></i></a></li>
+    </ul>
 </div>
 
 @endsection
