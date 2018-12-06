@@ -139,15 +139,11 @@
                                 </li>
                             @endif
 
-
-
-
-
-                            <li class="collection-item avatar">
-                                <img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">
-                                <span class="title"><b>Autor:</b></span>
-                                <p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>
-                            </li>
+                            {{--<li class="collection-item avatar">--}}
+                                {{--<img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">--}}
+                                {{--<span class="title"><b>Autor:</b></span>--}}
+                                {{--<p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>--}}
+                            {{--</li>--}}
 
 
                         </ul>
