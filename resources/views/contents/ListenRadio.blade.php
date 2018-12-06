@@ -90,6 +90,16 @@
 @endsection
 
 @section('js')
+
+    <script type="text/javascript">
+
+        const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
+
+    </script>
+
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+
     <script type="text/javascript">
 
         $(document).ready(function(){

@@ -50,9 +50,9 @@
 /*font-size: 24px;*/
 /*line-height: 1.33;*/
 /*border-radius: 35px;*/
-/*}*/
+/*}
 
-
+/*
 ul {
     list-style-type: none;
 }
@@ -137,102 +137,90 @@ a:hover {
         display: block;
     }
 }
-
+*/
 </style>
 @endsection
 
-@section('main')  
+@section('main')
 
-<div class="row" style="">
-    <div class="form-group"> 
-        <div class="row-edit">
-            <div class="col-md-12 col-sm-12 mb">
-            	<div class="control-label">
-            		<div class="white-header">
-            			<div class="col-sm-12 col-xs-12 col-md-12">
-                            @foreach($Tv as $tv)
-                            <div class="col-sm-12 col-xs-12 col-md-12" style="margin-top: 1%">
-                                <div class="col-sm-12 col-xs-12 col-md-12">
-                                    <div class="col-sm-10 col-xs-12 col-md-8">
-                                        <h2><span class="card-title" style="color: #428bca"><center><i class="fa fa-tv"></i> {{$tv->name_r}}</center></span></h2><br>
-                                        <div class="plyr__video" id="player">
-                                            <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency allow="autoplay" height="405" width="100%" scrolling="no" border="0" style="border:0px;"></iframe>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-12 col-md-4">
-                                        <center><img src="{{asset($tv->logo)}}" class="img-responsive" width="50%" style="margin-top: 25%; margin-left: 15%"></center>
-                                    </div>
-                                    
-                                    <div class="col-sm-1 col-xs-12 col-md-4">
-                                        
-                                        <div class="col-md-4 col-xs-4" style="margin-left: 25%; margin-top: 10%" id="rrss">
-                                        
-                                            <a class="waves-effect waves-light btn red" href="{{$tv->google}}" target="blank" style="margin-top: 10%; margin-left: 5%; font-size: 250%"> 
-                                            <i class="fa fa-youtube"></i>
-                                            </a> 
-                                            <a class="waves-effect waves-light btn blue darken-3" href="{{$tv->facebook}}" target="blank" style="margin-top: 20%; margin-left: 5%; font-size: 250%">
-                                            <i class="fa fa-facebook" ></i>
-                                            </a>   
-                                            
 
-                                        </div>
-                                        <div class="col-md-4 col-xs-4" style="margin-top: 10%">
 
-                                            <a class="waves-effect waves-light btn pink" href="{{$tv->instagram}}" target="blank" style="margin-top: 10%; margin-left: 7%; font-size: 250%">
-                                            <i class="fa fa-instagram"></i>
-                                            </a> 
-                                            <a class="waves-effect waves-light btn blue" href="{{$tv->twitter}}" target="blank" style="margin-top: 20%; margin-left: 7%; font-size: 250%">
-                                            <i class="fa fa-twitter"></i></a>
 
-                                        </div>
-                                        
-                                    </div>
-                                </div>
+    <div class="row">
+
+        <div class="row">
+
+
+            <div class="card col s12 m12" style="padding: 2px 10px 10px 10px;">
+
+                @foreach($Tv as $tv)
+                    <div class="col s12 m12">
+                        <h5 class="blue-text"> {{$tv->name_r}}</h5>
+                        <div class="plyr__video" id="player">
+                            <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency
+                                    allow="autoplay" height="500" width="80%" scrolling="no" border="0" style="border:0px;">
+                            </iframe>
+                        </div>
+                    </div>
+                @endforeach
+
+                    <div class="row">
+                        <div class="input-field col s12 m6 offset-m3">
+                            <form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">
+                                {{ csrf_field() }}
+                                <i class="material-icons prefix blue-text">search</i>
+                                <input type="text" id="seach" name="seach" class="validate">
+                                <input type="hidden" name="type" id="type">
+
+                                <br>
+                                <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="fixed-action-btn click-to-toggle direction-top">
+                        <a class="btn-floating btn-large waves-effect waves-light green">
+                            <i class="large material-icons">share</i>
+                        </a>
+                        <ul>
+                            <li><a href="{{$tv->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+                            <li><a  href="{{$tv->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+                            <li><a href="{{$tv->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+                            <li><a href="{{$tv->instagram}}" class="btn-floating deep-purple darken-2"><i class="mdi mdi-instagram"></i></a></li>
+                        </ul>
+                    </div>
+
+
+
+
+            @foreach($Tvs as $tv)
+
+                    <div class="col s6 m3">
+                        <div class="card">
+                            <div class="card-image">
+                             <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="170px"></a>
+                             <a  href="{{url('PlayTv/'.$tv->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">live_tv</i></a>
                             </div>
-            				@endforeach
-                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2%"> 
-                                <h3><span class="card-title"><i class="fa fa-angle-right"> Television</i></span></h3>
-                                <div class="col-md-12  control-label">
-                                    <form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">{{ csrf_field() }}
-                                        <input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
-                                        <button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Tv...</button>    
-                                    </form>
-                                </div>
-                                        @foreach($Tvs as $tv)
-                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12"><br>
-                                        <div class="movie-card">
-                                            <a href="#">
-                                                <div class="movie-header">
-                                                    <p><a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="170px">
-
-                                                            <div class="header-icon-container">
-                                                                <a href="{{url('ListenRadio/'.$tv->id)}}">
-                                                                    {{--<button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>--}}
-                                                                </a>
-                                                            </div>
-                                                </div><!--movie-header-->
-                                            </a>
-                                            <div class="movie-content">
-                                                <div class="movie-content-header">
-                                                    <a href="{{url('PlayTv/'.$tv->id)}}">
-                                                        <h4 class="movie-title">{{$tv->name_r}}</h4>
-                                                    </a>
-                                                </div>
-                                            </div><!--movie-content-->
-                                        </div><!--movie-card-->
-                                    </div>
-                                    @endforeach
-                                    <div  class="col-sm-12 col-xs-12 col-md-12">
-                                    {{  $Tvs->links() }}
-                                    </div>
+                            <div class="card-content">
+                                <h6 class="truncate grey-text">{{$tv->name_r}}</h6>
                             </div>
-            			</div>
-            		</div>
-            	</div>
+                        </div>
+                    </div>
+
+                @endforeach
+
             </div>
+
+
         </div>
+
+
+
     </div>
-</div>
+
+
+
 @endsection
 @section('js')
 
@@ -240,6 +228,8 @@ a:hover {
 
 const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
 </script>
+
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
 
@@ -274,6 +264,18 @@ $(document).ready(function(){
                 $('#rrss').css('margin-left','10%%')
             }
     })
+</script>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            direction: 'top'
+        });
+    });
+
+
+
 </script>
 
 @endsection

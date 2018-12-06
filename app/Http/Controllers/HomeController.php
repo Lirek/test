@@ -236,10 +236,10 @@ class HomeController extends Controller
     }
 
     public function SaleTickets(){
-
+        $Balance = NULL;
         $package=TicketsPackage::all();
 
-        $Transaction=Transactions::where('user_id','=',Auth::user()->id)->get();
+        $Transaction=Transactions::where('user_id',Auth::user()->id)->get();
         if ($Transaction->count()!= 0) {
             foreach ($Transaction as $key)  {
                 if($key->books_id != 0){
@@ -281,10 +281,10 @@ class HomeController extends Controller
                         //'Factura' => $key->factura_id
                     );
             }
-        }else{
+        }/*else{
 
             $Balance[]=0;
-        }
+        }*/
         $Payment=Payments::where('user_id','=',Auth::user()->id)->where('status','=','Aprobado')->get();
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
@@ -299,9 +299,9 @@ class HomeController extends Controller
                     'Factura' => $key->factura_id
                 );
             }
-        }else{
+        }/*else{
             $Balance[]=0;
-        }
+        }*/
         
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
 
@@ -335,9 +335,11 @@ class HomeController extends Controller
         $Buy->status=2;
         $Buy->reference=$request->references;
         $Buy->save();
+        /*
         $emailAdmin = "bcastillo@leipel.com";
         $motivo = "Pago por depósito pendiente por aprobar";
         Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
+        */
         Flash('Pago registrado, en proceso de validación')->success();
         return redirect()->action('HomeController@index');
 

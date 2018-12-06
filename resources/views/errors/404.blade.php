@@ -16,6 +16,11 @@
 
     
     <body>
+
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        
         <img src="{{ asset('sistem_images/404.jpg') }}" style="height: 100%; max-width: 100%; display: block;
     margin-left: auto;
     margin-right: auto;">

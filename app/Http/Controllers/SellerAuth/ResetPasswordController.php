@@ -25,6 +25,7 @@ class ResetPasswordController extends Controller
     //Show form to seller where they can reset password
     public function showResetForm(Request $request, $token = null)
     {
+        
         return view('seller.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );

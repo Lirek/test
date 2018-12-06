@@ -4,44 +4,6 @@
 
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
 
-<style class="">
-    .gly-spin {
-        -webkit-animation: spin 0.8s infinite linear;
-        -moz-animation: spin 0.8s infinite linear;
-        -o-animation: spin 0.8s infinite linear;
-        animation: spin 0.8s infinite linear;
-    }
-
-    .justify {
-      text-align: justify;
-    }
-
-
-.swiper-container {
-        width: 90%;
-        height: 90%;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-      /*width:90%;*/ 
-    }
-
-</style>
 @endsection
 
 @section('main')     
@@ -52,366 +14,93 @@
       @include('flash::message')
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
       <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
-              
-                
-                  
-                    <div class="row mtbox" id="principal" style="margin-top: -8px">
-                      
-                    <!-- <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1" style="margin-left: 5%">
-                          <span class="li_video"></span>
-                          <h3>{{$TransactionsMovies}}</h3>
-                        </div>
-                        
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_music"></span>
-                          <h3>{{$TransactionsMusic}}</h3>
-                        </div>
-                       
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_vallet"></span>
-                          <h3>{{$TransacctionsLecture}}</h3>
-                        </div>
-                       
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_sound"></span>
-                          <h3>{{$TransactionsRadio}}</h3>
-                        </div>
-                       
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <span class="li_tv"></span>
-                          <h3>{{$TransactionsTv}}</h3>
-                        </div>
-                        
-                      </div>
-                      <div class="col-md-2 col-sm-2 box0">
-                        <div class="box1">
-                          <h3>Total</h3>
-                          <br>
-                          <h3>{{$TransactionsMovies + $TransactionsMusic + $TransacctionsLecture + $TransactionsRadio + $TransactionsTv}}</h3>
-                        </div>
-                      
-                      </div>
-                    </div> -->
-                    </div>  
-                    
-                    <div class="row mt">
+
+                    <div class="row">
                     @if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL)
                       <!-- COMPLETAR PERFIL PANELS -->
-                      <div class="col-md-11 col-sm-11 mb" style="margin-left: 2%">
-                        <div class="white-panel panRf pe donut-chart">
-                          <div class="white-header">
-                             <h5>Complete Su Registro</h5>
-                          </div>
-                          <div class="row">
-                             <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                                <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                                <div class="paragraph">
-                                  <p class="center ">Le recordamos que aun faltan documentos que adjuntar para disfrutar de todo lo que puede ofrecer nuestra plataforma, le invitamos completar su perfil.</p>
-                                    <p><a href="{{url('EditProfile')}}" class="buttonCenter">Completar Registro</a></p>
-
-                                    {{--
-                                    <!--MODAL-->
-                                    <div id="myModal" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                       <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Complete sus datos</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <form class="form-horizontal" method="POST" action="{{url('CompleteProfile')}}" enctype="multipart/form-data">{{ csrf_field() }}
-
-                                                <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                                                    <label for="lastname" class="col-md-4 control-label">Apellido</label>
-                                                    <div id="apellidoMen"></div>
-                                                    <div class="col-md-6">
-                                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required="required" onkeypress="return controltagLet(event)">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group{{ $errors->has('nDocument') ? ' has-error' : '' }}">
-                                                    <label for="nDocument" class="col-md-4 control-label">N° Documento</label>
-                                                    <div id="documentoMen"></div>
-                                                    <div class="col-md-6">
-                                                        <input id="nDocument" type="text" class="form-control" name="nDocument" value="{{ old('nDocument') }}" required="required" onkeypress="return controltagNum(event)">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group{{ $errors->has('img_doc') ? ' has-error' : '' }}">
-                                                    <label class="col-md-4 control-label">Imagen del documento</label>
-                                                    <div class="col-md-6">
-                                                        <input id="img_doc" type="file" accept=".jpg"class="form-control" name="img_doc" value="" required="required"/>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group{{ $errors->has('dateN') ? ' has-error' : '' }}">
-                                                    <label for="dateN" class="col-md-4 control-label">Fecha de nacimiento</label>
-                                                    <div id="dateMen"></div>
-                                                    <div class="col-md-6">
-                                                        <input id="dateN" type="date" max="{{@date('Y-m-d')}}" class="form-control" name="dateN" value="{{ old('dateN') }}" required="required">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group{{ $errors->has('img_perf') ? ' has-error' : '' }}">
-                                                    <label for="img_perf" class="col-md-4 control-label">Imagen de Perfil</label>
-                                                    <div class="col-md-6">
-                                                        <input id="img_perf" type="file" accept=".jpg"class="form-control" name="img_perf" value="{{ old('img_perf') }}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
-                                                    <label for="alias" class="col-md-4 control-label">Alias</label>
-                                                    <div id="aliasMen"></div>
-                                                    <div class="col-md-6">
-                                                        <input id="alias" type="text" class="form-control" name="alias" value="{{ old('alias') }}"required="required">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                  <div class="col-md-6 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-primary" id="registro">Registrar datos</button>
-                                                  </div>
-                                                </div>
-                                                </form>
-                                            <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!--FIN DEL MODAL-->
-                                    --}}
-
-                                </div><!--paragraph-->
-                             </div><!--golleft-->
-
-                          </div><!--row-->
-                        </div><!--/grey-panel -->
-                      </div><!-- /col-md-12-->
-
+                        <div class="col s12 m12">
+                            <div class="card">
+                                <div class="card-content grey-text">
+                                    <span class="card-title blue-text"><h5><b><i class="material-icons">create</i> Complete Su Registro</b></h5></span>
+                                    <p>Le recordamos que aun faltan documentos que adjuntar para disfrutar
+                                        de todo lo que puede ofrecer nuestra plataforma, le invitamos
+                                        completar su perfil.</p>
+                                </div>
+                                <div class="card-action ">
+                                    <a class="waves-effect waves-light btn curvaBoton green" href="{{url('EditProfile')}}"><i class="material-icons right">create</i>Completar Registro</a>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
-                    <!--REFERIR-->
-                    <!-- @if(Auth::user()->UserRefered()->count()==0) 
-                    <div class="col-md-11 col-sm-11 mb" id="referir" style="margin-left: 2%">
-                      <div class="white-panel panRf refe donut-chart">
-                        <div class="white-header">
-                            <h5>Agregar codigo de patrocinador</h5>
-                        </div>
-                          <div class="row">
-                            <div class="col-sm-10 col-xs-10 col-md-10 goleft">
-                              <p><i class="fa fa-user" style="color: #23b5e6;"></i></p>
-                              <div class="paragraph">
-                                <p class="center " id="mensaje"></p>
-                                 <p><a href="#" class="buttonCenter" data-toggle="modal" data-target="#myModalRefe">Agregar</a></p>
+                        <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
 
-                             
-                                  <div id="myModalRefe" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                      
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Ingrese el codigo</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form-horizontal" method="POST" action="{{url('Referals')}}" enctype="multipart/form-data" id="patrocinador">{{ csrf_field() }}
-
-                                              <div class="form-group{{ $errors->has('codigo') ? ' has-error' : '' }}">
-                                                      <label for="codigo" class="col-md-4 control-label">Codigo</label>
-                                                      <div class="col-md-6">
-                                                          <input id="codigo" type="text" class="form-control" name="codigo" value="{{ old('codigo') }}" required="required">
-                                                          <div id="codigoMen"></div>
-                                                      </div>
-
-                                              </div>
-                                               <div class="form-group">
-                                                  <div class="col-md-6 col-md-offset-4">
-                                                      <button type="submit" class="btn btn-primary" id='ingresar'>Ingresar</button>
-                                                  </div>
-                                                </div>
-                                            </form>
-                                            <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-
-                              </div> 
-                           </div>
-                          </div>
-                        </div>
+        <!--CONTENIDO RECIENTE BOOK-->
+          @if(count($Book)> 0)
+              <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
+              <span class="card-title grey-text"><h5><i class="material-icons">bookmark</i> Libro</h5></span>
+              <div class="row">
+                @foreach($Book as $b)
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px">
+                    </div>
+                  </div>
+                </div>
+              @endforeach
                       </div>
-                      @endif
- -->
+            @endif
 
-        <!--CONTENIDO RECIENTE ALBUM
-          @if($Albums)
-          <div class="swiper-container">
-            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                <div class="white">
-                    <h3><span class="card-title">
-                          <u>
-                            <em>Cartelera de radio</em>
-                          </u>
-                        </span>
-                    </h3>      
+        <!--CONTENIDO RECIENTE REVISTAS-->
+       @if(count($Megazines)> 0)
+              <span class="card-title grey-text"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
+              <div class="row">
+                @foreach($Megazines as $m)
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="{{ asset($m->cover)}}" height="300px">
+                    </div>
+                  </div>
                 </div>
-            </div>  
-              <div class="swiper-wrapper">
-                @foreach($Albums as $albums)
-                  <div class="swiper-slide">
-                    <img src="{{ asset($albums->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
-                  </div>
-                @endforeach
-              </div>
-              <!-- Add Pagination -->
-              <!--<div class="swiper-pagination"></div>
-          </div>
-          @endif-->
-
-        <!--CONTENIDO RECIENTE DE TV-->
-          @if($Tv)
-            <div class="swiper-container">
-              <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                  <div class="white">
-                      <h3><span class="card-title">
-                            <u>
-                              <em>Cartelera de televisión</em>
-                            </u>
-                          </span>
-                      </h3>      
-                  </div>
-                </div> 
-              <div class="swiper-container">
-                  <div class="swiper-wrapper">
-                    @foreach($Tv as $tv)
-                      <div class="swiper-slide">
-                        <img src="{{ asset($tv->logo) }}" style="max-height: 100%; height: 60%; width: 60% ">
+              @endforeach
                       </div>
-                    @endforeach
-                  </div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination"></div>
-              </div>
-            </div>
-          @endif
-
-        <!--CONTENIDO RECIENTE BOOK
-          @if($Book)
-          <div class="swiper-container">
-            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                <div class="white">
-                    <h3><span class="card-title">
-                          <u>
-                            <em>Cartelera de libros</em>
-                          </u>
-                        </span>
-                    </h3>      
-                </div>
-            </div>  
-              <div class="swiper-wrapper">
-                @foreach($Book as $book)
-                  <div class="swiper-slide">
-                    <img src="{{ asset($book->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
-                  </div>
-                @endforeach
-              </div>
-              <!-- Add Pagination -->
-              <!--<div class="swiper-pagination"></div>
-          </div>
-          @endif-->
-
-        <!--CONTENIDO RECIENTE REVISTAS
-        @if($Megazines)
-          <div class="swiper-container">
-            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                <div class="white">
-                    <h3><span class="card-title">
-                          <u>
-                            <em>Cartelera de revistas</em>
-                          </u>
-                        </span>
-                    </h3>      
-                </div>
-            </div>  
-              <div class="swiper-wrapper">
-                @foreach($Megazines as $megazines)
-                  <div class="swiper-slide">
-                    <img src="{{ asset($megazines->cover) }}" style="max-height: 100%; height: 60%; width: 60% " >
-                  </div>
-                @endforeach
-              </div>
-              <!-- Add Pagination -->
-              <!--<div class="swiper-pagination"></div>
-          </div>
-          @endif-->
+        @endif
 
         <!--CONTENIDO RECIENTE RADIO-->
-          @if($Radio)
-          <div class="swiper-container">
-            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                <div class="white">
-                    <h3><span class="card-title">
-                          <u>
-                            <em>Cartelera de radio</em>
-                          </u>
-                        </span>
-                    </h3>      
-                </div>
-            </div>  
-              <div class="swiper-wrapper">
-                @foreach($Radio as $radio)
-                  <div class="swiper-slide">
-                    <img src="{{ asset($radio->logo) }}" style="max-height: 100%; height: 60%; width: 60% " >
-                  </div>
-                @endforeach
-              </div>
-              <!-- Add Pagination -->
-              <div class="swiper-pagination"></div>
-          </div>
-          @endif
 
-        <!--CONTENIDO RECIENTE PELICULAS
-        @if($Movies)
-          <div class="swiper-container">
-            <div class="col-md-11 col-sm-11 mb" style="margin-left: 2% ">
-                <div class="white">
-                    <h3><span class="card-title">
-                          <u>
-                            <em>Cartelera de peliculas</em>
-                          </u>
-                        </span>
-                    </h3>      
-                </div>
-            </div>  
-              <div class="swiper-wrapper">
-                @foreach($Movies as $movies)
-                  <div class="swiper-slide">
-                    <img src="{{ asset($movies->img_poster) }}" style="max-height: 100%; height: 60%; width: 60% " >
+              @if(count($Radio)>0)
+                  <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
+                  <div class="row">
+                      @foreach($Radio as $r)
+                          <div class="col s12 m3">
+                              <div class="card">
+                                  <div class="card-image">
+                                      <img src="{{asset($r->logo)}}" height="200px">
+                                  </div>
+                              </div>
+                          </div>
+                      @endforeach
                   </div>
-                @endforeach
-              </div>
-              <!-- Add Pagination -->
-              <!--<div class="swiper-pagination"></div>
-          </div>
-          @endif-->
+              @endif
+
+          <!--CONTENIDO RECIENTE DE TV-->
+              @if(count($Tv)>0)
+                  <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
+                  <div class="row">
+                      @foreach($Tv as $tv)
+                          <div class="col s12 m3">
+                              <div class="card">
+                                  <div class="card-image">
+                                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="200px">
+                                  </div>
+                              </div>
+                          </div>
+                      @endforeach
+                  </div>
+              @endif
+
 
           <div id="modal-confirmation"></div> 
 

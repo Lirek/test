@@ -16,9 +16,17 @@
 
     
     <body>
+
+        @if ($error)
+        <center>
+            <div class="alert alert-danger">{{ $error }}</div>
+        </center>
+        @endif
+
         <img src="{{ asset('sistem_images/unautorized.jpg') }}" style="height: 100%; max-width: 100%; display: block;
     margin-left: auto;
     margin-right: auto;">
+
     </body>
 
 </html>

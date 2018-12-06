@@ -69,6 +69,9 @@ Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCal
 
 Route::resource('users', 'UserController');
 
+//agregada 27-11-2018
+Route::get('BalanceUserGraph','UserController@DonutGraph');
+
 Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
@@ -122,10 +125,10 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
 
     //Agregada 14/7/18
-    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
+    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
 
     //Agregada 15/7/18
-    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
+    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
 
     //Agregada 18/7/18
     Route::post('CompleteProfile','UserController@CompleteProfile');
@@ -133,7 +136,7 @@ Route::post('Invite','UserController@Invite');
 
     //Agregada 23/7/2018
     Route::get('MyMovies','UserController@MyMovies');
-    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie');
+    Route::get('ShowMyMovie/{id}','UserController@ShowMyMovie')->middleware('MyMovies');
 
     //Agregada 31/7/2018
     Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));

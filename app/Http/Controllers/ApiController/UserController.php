@@ -54,7 +54,6 @@ class UserController extends Controller
     public function UserData()
     {
         $user=auth()->user();
-
         $Json = Fractal::create()
             ->item($user)
             ->transformWith(new UserTransformer)
@@ -66,7 +65,6 @@ class UserController extends Controller
     public function WebsUser()
     {
         $user= User::find(auth()->user()->id);
-
         $x= $user->Referals()->get();
         $referals1 = [];
         $referals2= [];

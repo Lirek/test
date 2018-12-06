@@ -7,7 +7,9 @@
     <!--Import materialize.css-->
     <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    @yield('css')
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+
+@yield('css')
     <!--Let browser know website is optimized for mobile-->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -35,8 +37,8 @@
     <!--Modal
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />-->
 
-    <!--Buscador
-    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">-->
+    <!--Buscador-->
+    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 
     <!--NUMERO
     <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
@@ -54,8 +56,7 @@
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <![endif]-->
 
-    <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 </head>
 
 <body>
@@ -100,16 +101,22 @@
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
                             </div>
-                            <div class="container">
-                                @if(Auth::user()->alias == null)
-                                    <h5 class="name white-text">{{Auth::user()->name}}</h5>
-                                @else
-                                    <h5 class="name white-text">{{Auth::user()->alias}}</h5>
-                                @endif
-                                <a class="modal-trigger" href="#myModalTotal">
-                                    <span class="name white-text"> Mi balance</span>
-                                </a>
-                                <br>
+
+                            <div class="info-container">
+                                <div class="name ">
+                                    <a class="white-text" href="#">
+                                        @if(Auth::user()->alias == null)
+                                           {{Auth::user()->name}}
+                                        @else
+                                            {{Auth::user()->alias}}
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="name" data-toggle="dropdown" >
+                                    <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
+                                        <i class="material-icons ">local_activity</i>&nbsp;Mi balance
+                                    </a>
+                                </div>
                             </div>
                         </div>
                    </li><!--End seccion de usuario -->
@@ -244,6 +251,11 @@
 
         <main>
             <section id="main-content" class="section section-daily-stats center">
+
+                @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                
                 <div class="row">
                     @yield('main')
                 </div>
@@ -343,30 +355,42 @@
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 -->
 
-<!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>-->
-<!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 <!--telefono-->
 <!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
 <!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
 <!--SCRIPS JS-->
 
- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="{{asset('assets/js/jquery.js') }}"></script>
-
-
-<!-- <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>-->
-<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
-
-<!--PDF.JS-->
-<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-
 
 <!--Import jQuery before materialize.js-->
 <script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>
 
+<!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
+
+
+<!--common script for all pages-->
+<script src="{{asset('assets/js/common-scripts.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+
+<!--PDF.JS-->
+<!--<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>-->
+
+
+<!--Libreria sweetalert-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> en conflicto con materilize tab-->
+
+@yield('js')
 
 <!--<script type="application/javascript">
     $(document).ready(function () {
@@ -448,7 +472,7 @@
     });
 </script>-->
 
-@yield('js')
+
 
 </html>
 

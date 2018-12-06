@@ -117,8 +117,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user= User::where('codigo_ref','=',$id)->get();
-
+        try 
+        {
+          $user= User::where('codigo_ref','=',$id)->firstOrFail();  
+        } 
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
+        {
+           return view('errors.unauthorized')->with('error','El Codigo Coincide Con Nuestros Registros');
+        }
         return view('users.register')->with('user_code',$id);
     }
 
@@ -370,6 +376,30 @@ class UserController extends Controller
        
         return view('users.MyBalance')->with('Balance',$ordenBalance);
     }
+
+
+    //function para grafica balance user
+    public function DonutGraph() {
+
+       if(Auth::user()->points){
+          $points=Auth::user()->points;
+       }else{
+           $points=0;
+        }
+
+       if(Auth::user()->pending_points){
+           $pending_points=Auth::user()->pending_points;
+       }  else{
+           $pending_points=0;
+       }
+
+        $Content=array(
+            $points,
+            $pending_points
+        );
+        return Response()->json($Content);
+    }
+
     public function tickets($id){
         $cantidad=TicketsPackage::find($id);
         return $cantidad->amount;
@@ -758,9 +788,10 @@ class UserController extends Controller
 
             return view('users.showMovie')->with('Movies',$Movies);
     }
+    
     public function BuyMovie(Request $request,$id)
     {
-        $movie= Movie::find($id);
+        $movie= Movie::findOrfail($id);
         $user = User::find(Auth::user()->id);
 
         if ($movie->cost > $user->credito) 

@@ -10,7 +10,8 @@
   <h4>Mis referidos:</h4>
 
   <!--REFERIR-->
-  @if(Auth::user()->UserRefered()->count()==0)
+  <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
+  @if(Auth::user()->UserRefered()->count()  == 0)
       <div   class="col s12  m3 offset-m1 ">
           <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
@@ -187,121 +188,119 @@
   <!--FIN DEL MODAL-->
 
 
-
-
-
-
 @endsection
 
 @section('js')
-<script type="text/javascript">
-document.querySelector('#patrocinador').addEventListener('submit', function(e) {
-  var form = this;
-  $('#codigoMen').hide();
-  e.preventDefault(); // <--- prevent form from submitting
-  var cod=$('#codigo').val();
 
-  $.ajax({
-    url:'sponsor/'+cod,
-    type: 'get',
-    dataType: "json",
-    beforeSend: function() {
-      var gif = "{{ asset('/sistem_images/loading.gif') }}";
-      swal({
-          title: "¡Listo! Estamos validando su información...",
-          text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
-          icon: gif,
-          buttons: false,
-          closeOnEsc: false,
-          closeOnClickOutside: false
-      });
-    },
-    success: function (result) {
-      console.log(result);
-      if(result == 2) {
-        swal({
-          title: "Ingrese otro código por favor",
-          text: "El código que introdujo le pertecene a algún miembro de su propia red, por favor ingrese otro.",
-          icon: 'info',
-          buttons: {
-            accept: 'Aceptar'
-          }
+
+    <script type="text/javascript">
+        document.querySelector('#patrocinador').addEventListener('submit', function(e) {
+            var form = this;
+            $('#codigoMen').hide();
+            e.preventDefault(); // <--- prevent form from submitting
+            var cod=$('#codigo').val();
+
+            $.ajax({
+                url:'sponsor/'+cod,
+                type: 'get',
+                dataType: "json",
+                beforeSend: function() {
+                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    swal({
+                        title: "¡Listo! Estamos validando su información...",
+                        text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
+                        icon: gif,
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
+                },
+                success: function (result) {
+                    console.log(result);
+                    if(result == 2) {
+                        swal({
+                            title: "Ingrese otro código por favor",
+                            text: "El código que introdujo le pertecene a algún miembro de su propia red, por favor ingrese otro.",
+                            icon: 'info',
+                            buttons: {
+                                accept: 'Aceptar'
+                            }
+                        });
+                    } else {
+                        if(result == 1) {
+                            swal({
+                                title: "Ingrese otro código por favor",
+                                text: "Disculpe, no puede ingresar su propio código",
+                                icon: 'info',
+                                buttons: {
+                                    accept: 'Aceptar'
+                                },
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
+                            });
+                            $('#patrocinador')[0].reset();
+                        } else if (result.id != undefined) {
+                            if (result.last_name != undefined) {
+                                var nombre = result.name+" "+result.last_name;
+                            } else {
+                                var nombre = result.name;
+                            }
+                            swal({
+                                text: "¿Esta ingresando como patrocinador a "+nombre+"?",
+                                icon: 'info',
+                                buttons: {
+                                    accept: 'Aceptar',
+                                    cancel: 'Cancelar'
+                                },
+                                dangerMode: true,
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
+                            }).then(function(isConfirm) {
+                                if (isConfirm) {
+                                    form.submit();
+                                } else {
+                                    $('#patrocinador')[0].reset();
+                                }
+                            });
+                        }
+                        else if(result == 0) {
+                            swal.close();
+                            $('#codigoMen').show();
+                            $('#codigoMen').text('El código es incorrecto.');
+                            $('#codigoMen').css('color','red');
+                        }
+                    }
+                }
+            });
         });
-      } else {
-        if(result == 1) {
-          swal({
-            title: "Ingrese otro código por favor",
-            text: "Disculpe, no puede ingresar su propio código",
-            icon: 'info',
-            buttons: {
-              accept: 'Aceptar'
-            },
-            closeOnEsc: false,
-            closeOnClickOutside: false
-          });
-          $('#patrocinador')[0].reset();
-        } else if (result.id != undefined) {
-          if (result.last_name != undefined) {
-            var nombre = result.name+" "+result.last_name;
-          } else {
-            var nombre = result.name;
-          }
-          swal({
-            text: "¿Esta ingresando como patrocinador a "+nombre+"?",
-            icon: 'info',
-            buttons: {
-              accept: 'Aceptar',
-              cancel: 'Cancelar'
-            },
-            dangerMode: true,
-            closeOnEsc: false,
-            closeOnClickOutside: false
-          }).then(function(isConfirm) {
-            if (isConfirm) {
-              form.submit();
-            } else {
-              $('#patrocinador')[0].reset();
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var f1 = document.getElementById('id').value;
+            var f = new Date();
+            var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
+
+            var tiempo=restaFechas(f1,f2);
+            if (tiempo > 7){
+                document.getElementById('referir').style.display='none';
+            }else{
+                var total=6-tiempo;
+                console.log(tiempo);
+                document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
             }
-          });
+
+        });
+        restaFechas = function(f1,f2)
+        {
+            var aFecha1 = f1.split('-');
+            var dFecha= aFecha1[2].split(' ');
+            var aFecha2 = f2.split('/');
+            var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,dFecha[0]);
+            var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+            var dif = fFecha2 - fFecha1;
+            var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+            return dias;
         }
-        else if(result == 0) {
-          swal.close();
-          $('#codigoMen').show();
-          $('#codigoMen').text('El código es incorrecto.');
-          $('#codigoMen').css('color','red');
-        }
-      }
-    }
-  });
-});
-
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){
-  var f1 = document.getElementById('id').value;
-  var f = new Date();
-  var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
-
-  var tiempo=restaFechas(f1,f2);
-  if (tiempo > 7){
-    document.getElementById('referir').style.display='none';
-  }else{
-    var total=6-tiempo;
-    console.log(tiempo);
-    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
-  }
-
-});
-restaFechas = function(f1,f2)
- {
- var aFecha1 = f1.split('-');
- var dFecha= aFecha1[2].split(' ');
- var aFecha2 = f2.split('/');
- var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,dFecha[0]);
- var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
- var dif = fFecha2 - fFecha1;
- var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
- return dias;
- }
-</script>
+    </script>
 @endsection

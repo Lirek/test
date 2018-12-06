@@ -603,7 +603,7 @@
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
-                        <a class="blue-text" href="#">Olvide mi contraseña </a>
+                        <a class="blue-text" href="{{ url('/seller_password/reset') }}">Olvide mi contraseña </a>
                     </div>
                 </div>
             </form>

@@ -110,7 +110,7 @@
                 Modificar Cadena de Publicaciones
             </h3>
             <div class="row">
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update_cad',$pub_type->id) }}" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update',$pub_type->id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                 <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
                 <div class="input-fiel col m6 s12">
@@ -160,7 +160,7 @@
                           @if($pub_type->status != 'Aprobado')
                           {!! Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
                           @else
-                          {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']) !!}
+                          {!! Form::select('rating_id',$rating,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disable'=>'true']) !!}
                       </select>
                       @endif
                        <label for="tags">Generos</label>

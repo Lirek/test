@@ -1,68 +1,83 @@
 @extends('layouts.app')
 
 @section('css')
-
 @endsection
 
 @section('main')
 
-	<div class="row">
-	<h4 class="modal-title">Televisión</h4>
+
+
+    <div class="row">
+    <div class="card col s12 m12" style="padding: 10px 10px 10px 10px;">
+
+		<span class="grey-text"><h4><b><i class="material-icons small">tv</i> Televisión</b></h4></span>
+		<div class="row">
+			<div class="input-field col s12 m6 offset-m3">
+				<form method="POST"  id="SaveSong" action="{{url('SearchPlayTv')}}">
+					{{ csrf_field() }}
+					<i class="material-icons prefix blue-text">search</i>
+					<input type="text" id="seach" name="seach" class="validate">
+					<input type="hidden" name="type" id="type">
+
+					<br>
+					<button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+				</form>
+			</div>
+		</div>
+
+            <div class="row">
+            @foreach($Tv as $tv)
+                    <div class="col s6 m3">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="170px"></a>
+                                <a  href="{{url('PlayTv/'.$tv->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">live_tv</i></a>
+                            </div>
+                            <div class="card-content">
+                                <h6 class="truncate grey-text">{{$tv->name_r}}</h6>
+                            </div>
+                        </div>
+                    </div>
+            @endforeach
+            </div>
+		</div>
+    </div>
 
 
 
-			<form class="col m6 offset-m3"  method="POST" action="{{url('SearchPlayTv')}}"  id="SaveSong" >{{ csrf_field() }}
-				<div class="input-field col m3 ">
-
-					<input method="POST"  id="SaveSong" class="validate"   type="text">
-					<label for="first_name">Buscar</label>
-					<div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
-					<div id="codigoMen"></div>
-				</div>
-				<div class=" col m3 ">
-					<button  id='ingresar' class=" btn-floating btn-small  circle waves-effect waves-light " type="submit" name="action">
-						<i class="material-icons ">search</i>
-					</button>
-				</div>
-
-			</form>
-
-
-
-
-
-
-	</div>
 
 
 
 @endsection
 
 @section('js')
-<script type="text/javascript">
+	<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-$(document).ready(function(){
+	<script type="text/javascript">
 
-	$('#seach').keyup(function(evento){
-		$('#buscar').attr('disabled',true);
-	});
-	$('#buscar').attr('disabled',true);
-      $('#seach').autocomplete({
-      	source: "SearchTv",
-      	minLength: 2,
-      	select: function(event, ui){		
-      		$('#seach').val(ui.item.value);
-      		var valor = ui.item.value;
-          console.log(valor);
-      		if (valor=='No se encuentra...'){
-      			$('#buscar').attr('disabled',true);
-      			swal('Tv no se encuentra regitrada','','error');
-      		}else{
-      			$('#buscar').attr('disabled',false);
-      		}
-      	}
+			$(document).ready(function(){
+				$('#seach').keyup(function(evento){
+					$('#buscar').attr('disabled',true);
+				});
+				$('#buscar').attr('disabled',true);
+				  $('#seach').autocomplete({
+					source: "SearchTv",
+					minLength: 2,
+					select: function(event, ui){
+						$('#seach').val(ui.item.value);
+						var valor = ui.item.value;
+					  	console.log(valor);
+						if (valor=='No se encuentra...'){
+							$('#buscar').attr('disabled',true);
+							swal('Tv no se encuentra regitrada','','error');
+						}else{
+							$('#buscar').attr('disabled',false);
+						}
+					}
 
-   });
-  });
+			   });
+			  });
+
+
 </script>
 @endsection
