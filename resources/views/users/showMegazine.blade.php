@@ -1,26 +1,7 @@
 @extends('layouts.app')
 @section('css')
     <style>
-        #panel {
-            /*Para la Sombra*/
-            -webkit-box-shadow: 8px 8px 15px #999;
-            -moz-box-shadow: 8px 8px 15px #999;
-            filter: shadow(color=#999999, direction=135, strength=8);
-            /*Para la Sombra*/
-            background-image: url("{{ asset($megazines->cover)}}");
-            margin-top: 5%;
-            width: 100%;
-            max-height: 500px;
-            min-height: 500px;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+
         .pdf{
             position:relative;
         }
@@ -38,106 +19,139 @@
             background-color: black;
             width:80%;
             height:33px;
-        }  
-        .colorbadge{
-            background-color:#428bca;
-        }      
+        }
+
+        .aqua-gradient {
+                           background: -webkit-linear-gradient(50deg,#2096ff, #11ff71)!important;
+                           background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
+                           background: linear-gradient(40deg,#2096ff, #9dffac)!important;
+                       }
     </style>
 @endsection
 @section('main')
     <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class=" col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class=" col-sm-12 col-md-12 col-lg-12"></div>
-                        <div class="col-sm-12 col-md-8 col-lg-8">
-                            <div class="box box-widget widget-user-2">
-                                <div class="col-md-4">
-                                    <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer Revista</a>
-                                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                                </div>
-                                <div id="panel" style="" class="img-rounded img-responsive av text-center"></div>
-                            </div>
-                        </div>
+    <div class="row">
+
+        <div class="col s12 m12" >
+            @include('flash::message')
+            <div class="card-panel curva" style="padding-bottom: 110px;">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <h5  class="center">
+                            {{ $megazines->title }}
+                        </h5>
                     </div>
+
                 </div>
+                <div class="row">
+                    <div class="col s12 m4 ">
+                        <img src="{{ asset($megazines->cover)}}" style="border-radius: 10px" id="lecturaspanel">
+                    </div>
+                    <div class="col s12 m8  ">
+                        <ul class="collection z-depth-1" >
 
-                 <div class="col-sm-12 col-md-6">
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                <p>
+                                    <i class="material-icons circle left blue-text">star</i>
+                                    <b class="left">Categoria:&nbsp;</b>
+                                </p>
+                                <p ALIGN="justify">{{ $megazines->rating->r_name }}</p>
+                            </li>
 
-                            <div class="col-sm-12 col-md-8">
-                                <h3>Revista | {{ $megazines->title }}</h3>   
-                            </div><!-- /. col titel megazine -->
 
-                            <div class="row">
-                                    <div class="col-sm-12 col-md-8">
-                                    <hr>
-                                    <h5>Descripción:</h5>
-                                    <p class="text-justify">{{ $megazines->descripcion }}</p>
-                                    <h5> <b>Géneros:</b>
-                                        @foreach($megazines->tags_megazines as $t)
-                                            <span class="badge badge-light colorbadge "> {{ $t->tags_name }} </span>
-                                        @endforeach
-                                    </h5>
-                                    <h5> <b>Categoria:</b> <span class="label label-success"> {{ $megazines->rating->r_name }} </span></h5>
-
-                                        <div class="row">
-                                        <div  class="col-md-12" >
-                                            @if($megazines->sagas !=null)
-                                                <h5><b>Cadena de publicación:</b> {{ $megazines->sagas->sag_name }}</h5>
-                                            @else
-                                                <h5><b>Cadena de publicación:</b>Independiente</h5>
-                                            @endif
-                                        <hr>
-                                        </div>
-                                        <div  class="col-md-6" >
-                                            <a href="{{ url('MyMegazine')}}" class="btn btn-danger pull-left">Atrás</a>
-                                        </div>
-                                        <div  class="col-md-6">
-                                            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">Leer revista</a>                                        </div>
-                                        </div>
+                            @if($megazines->sagas !=null)
+                                <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
+                                    <p><i class="material-icons circle left blue-text">folder</i>
+                                        <b class="left">Cadena de publicación:&nbsp;</b></p>
+                                    <p ALIGN="justify">
+                                        {{ $megazines->sagas->sag_name }}</p>
+                                </li>
+                            @else
+                                <li class="collection-item" >
+                                    <p><i class="material-icons circle left blue-text">folder</i>
+                                        <b class="left">Cadena de publicación:&nbsp;</b></p>
+                                    <p ALIGN="justify">Independiente</p>
+                                </li>
+                            @endif
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
+                                <p><i class="material-icons circle left blue-text">turned_in</i>
+                                    <b class="left">Géneros:</b> </p>
+                                @foreach($megazines->tags_megazines as $t)
+                                    <div class="chip  aqua-gradient  white-text">
+                                        {{ $t->tags_name}}
                                     </div>
+
+                                @endforeach
+                            </li>
+
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
+                                <p>
+                                    <i class="material-icons circle left blue-text">local_play</i>
+                                    <b class="left">Costo:&nbsp;</b>
+                                </p>
+                                <p ALIGN="justify">{{ $megazines->cost }} Tickets</p>
+                            </li>
+
+                            <li class="collection-item" style=" padding: 0px;" >
+                                <br>
+                            <div class="row">
+                                <div class="col s4 m4 l4">
+                                    <a href="#" class="btn teal center curvaBoton" data-toggle="modal" data-target="#modal-default">Leer</a>
+                                </div>
+                                <div class="col s4 m4 l4">
+                                    <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Descripción</a>
+                                </div>
+                                <div class="col s4 m4 l4">
+                                    <a href="{{ url('MyMegazine')}}" class="btn center curvaBoton red ">Atrás</a>
+                                </div>
                             </div>
-                        </div> <!-- /. col contenido megazine -->
-                    </div> <!-- /. row contenido megazine -->
-
-        <!-- /.modal -->
-        <div class="modal fade in modal-warning" id="modal-default" role="dialog">
-            <div class="modal-body" role="dialog">
-                <div class="modal-content contenedor">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title text-center">{{ $megazines->title }}</h4>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="modal-body text-center">
-                        {{--<p>One fine body&hellip;</p>--}}
-                        {{--inicio del ejemplo--}}
 
-                        <div class="pdf">
-                            <div class="transparencia"></div>
-                            <div class="bloqueo"></div>
-                            <object data="{{ asset($megazines->megazine_file) }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object> 
-                        </div>
-                        <div class="bloqueo">
-                            
-                        </div>
-
-                        {{--<h1>PDF.js Previous/Next example</h1>--}}
-
-
-                        {{--fin del ejemplo--}}
-
-                    </div>
-                <!-- /.modal-content -->
+                </div>
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
-    </section>
+
+    <!--Modal-->
+    <!-- /.modal  de sagas  -->
+    <div id="modal-default" class="modal" style="width:100%;height:100%;">
+        <div class="modal-content modal-lg">
+            <div class=" blue"><br>
+                <h4 class="center white-text" ><i class="small material-icons">import_contacts</i>"{{ $megazines->title }}"</h4>
+                <br>
+            </div>
+            <br>
+            <div class="pdf">
+                <div class="transparencia"></div>
+                <div class="bloqueo"></div>
+                <object data="{{ asset($megazines->megazine_file) }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
+            </div>
+            <div class="bloqueo">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+    </div>
+
+    <!--Sinopsis-->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content" style="padding: 15px;">
+            <h5><b>Descripción:</b></h5>
+            <p ALIGN="justify">{{ $megazines->descripcion }}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
+
+
+
+
+
 @endsection
 @section('js')
 

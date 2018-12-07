@@ -1,26 +1,7 @@
 @extends('layouts.app')
 @section('css')
     <style>
-        #panel {
-            /*Para la Sombra*/
-            -webkit-box-shadow: 8px 8px 15px #999;
-            -moz-box-shadow: 8px 8px 15px #999;
-            filter: shadow(color=#999999, direction=135, strength=8);
-            /*Para la Sombra*/
-            background-image: url("{{ asset('images/bookcover/') }}/{{$book->cover}}");
-            margin-top: 2%;
-            background-position: center center;
-            width: 100%;
-            min-height: 350px;
-            -webkit-background-size: 100%;
-            -moz-background-size: 100%;
-            -o-background-size: 100%;
-            background-size: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+
         .pdf{
             position:relative;
         }
@@ -50,6 +31,12 @@
             vertical-align: middle;
         }
 
+        .aqua-gradient {
+            background: -webkit-linear-gradient(50deg,#2096ff, #11ff71)!important;
+            background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
+            background: linear-gradient(40deg,#2096ff, #9dffac)!important;
+        }
+
     </style>
 @endsection
 @section('main')
@@ -59,31 +46,20 @@
         <div class="col s12 m12" >
             @include('flash::message')
             <div class="card-panel curva" style="padding-bottom: 110px;">
-<div class="row">
-                <div class="col s12 m8 offset-m1">
-                <h5  class="center">
-                    "{{ $book->title }}" ({{ $book->release_year }})
-                </h5>
-                </div>
-                <div class="col s12 m2">
-                    <a class="waves-effect waves-light btn modal-trigger blue curvaBoton center" href="#modal1">Sinopsis</a>
-                </div>
-</div>
                 <div class="row">
-                    <div class="col s12 m3 offset-m1 ">
-                        <img style="border-radius: 10px" id="panel">
-                        <br><br>
-                        <div class="col s12 m12 ">
-                            <div class="col s12 m6 ">
-                        <a href="#" class="btn  curvaBoton" data-toggle="modal" data-target="#modal-default">Leer libros</a>
-                            </div>
-                                <div class="col s12 m6 ">
-                                <a href="{{url('MyReads')}}" class="btn curvaBoton red ">Atrás</a>
-                                </div>
-                        </div>
+                    <div class="col s12 m12 ">
+                    <h5  class="center">
+                        "{{ $book->title }}" ({{ $book->release_year }})
+                    </h5>
                     </div>
-                    <div class="col s12 m7  ">
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 ">
+                    <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" style="border-radius: 10px" id="lecturaspanel">
+                    </div>
+                    <div class="col s12 m8  ">
                         <ul class="collection z-depth-1" >
+
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;">
                                 <p>
                                 <i class="material-icons circle left blue-text">create</i>
@@ -91,64 +67,69 @@
                                 </p>
                                 <p ALIGN="justify">&nbsp; {{ $book->original_title }}</p>
                             </li>
+
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
+                                <p><i class="material-icons circle left blue-text">turned_in</i>
+                                <b class="left">Géneros:</b> </p>
+                            @foreach($book->tags_book as $t)
+                                <div class="chip  aqua-gradient  white-text">
+                                    {{ $t->tags_name}}
+                                </div>
+                            @endforeach
+                            </li>
+
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;">
-                                        <p><i class="material-icons circle left blue-text">turned_in</i>
-                                        <b class="left">Géneros:&nbsp;</b></p>
-                                        <p ALIGN="justify">
-                                        @foreach($book->tags_book as $t)
-                                          {{ $t->tags_name }}
-                                        @if(count($book->tags_book)>1)
-                                            &nbsp;/
-                                        @endif
-                                        @endforeach
-                                        </p>
+                                    <p><i class="material-icons circle left blue-text">star</i>
+                                    <b class="left">Categoria:&nbsp;&nbsp;</b></p>
+                                <p ALIGN="justify"> {{ $book->rating->r_name }}</p>
+
+                            </li>
+
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                        <p><i class="material-icons circle left blue-text">local_play</i>
+                                            <b class="left">Costo:&nbsp;&nbsp;</b></p>
+                                <p ALIGN="justify">  {{ $book->cost }} Tickets</p>
                             </li>
 
 
-                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
-                                <div class="row">
-                                <div class="col s6 m6 ">
-                                    <p><i class="material-icons circle  blue-text">star</i>
-                                    <b class="left">Categoria:&nbsp;&nbsp;</b>{{ $book->rating->r_name }}</p>
-                                </div>
-                                <div class="col s6 m6 ">
-                                    <p><i class="material-icons circle  blue-text">local_play</i>
-                                        <b class="left">Costo:&nbsp;&nbsp;</b>
-                                        {{ $book->cost }} Tickets
-                                    </p>
-                                </div>
-
-                            </div>
-                            </li>
-
-
-                            @if($book->saga!=null)
-                                <li class="collection-item"  style="padding: 5px 35px 5px 35px;">
-                                            <p><i class="material-icons circle left blue-text">folder</i>
-                                            <b class="left">Saga:&nbsp;</b></p>
-                                    <p ALIGN="justify">
-                                            {{ $book->saga->sag_name }}</p>
-                                </li>
+                        @if($book->saga!=null)
+                            <li class="collection-item"  style="padding: 5px 35px 5px 35px;">
+                                <p><i class="material-icons circle left blue-text">folder</i>
+                                <b class="left">Saga:&nbsp;</b></p>
+                                <p ALIGN="justify">
+                                {{ $book->saga->sag_name }}</p>
+                             </li>
                             @else
-                                <li class="collection-item" style="padding: 5px 35px 5px 35px;">
-
-                                            <p><i class="material-icons circle left blue-text">folder</i>
-                                            <b class="left">Saga:&nbsp;</b></p>
-                                    <p ALIGN="justify">
-                                            No pertenece a una saga</p>
-                                </li>
+                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                                <p><i class="material-icons circle left blue-text">folder</i>
+                                <b class="left">Saga:&nbsp;</b></p>
+                                <p ALIGN="justify">No pertenece a una saga</p>
+                            </li>
                             @endif
 
-                            {{--<li class="collection-item avatar">--}}
-                                {{--<img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">--}}
-                                {{--<span class="title"><b>Autor:</b></span>--}}
-                                {{--<p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>--}}
-                            {{--</li>--}}
+                        <!--<li class="collection-item avatar">
+                                <img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">
+                                <span class="title"><b>Autor:</b></span>
+                                <p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>
+                        </li>-->
 
+                            <li class="collection-item" style=" padding: 0px;" >
+                                <br>
+                                <div class="row">
+                                    <div class="col s4 m4 l4">
+                                        <a href="#" class="btn teal center curvaBoton" data-toggle="modal" data-target="#modal-default">Leer libro</a>
+                                    </div>
+                                    <div class="col s4 m4 l4">
+                                        <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
+                                    </div>
+                                    <div class="col s4 m4 l4">
+                                        <a href="{{url('MyReads')}}" class="btn center curvaBoton red ">Atrás</a>
+                                    </div>
+                                </div>
+                            </li>
 
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
