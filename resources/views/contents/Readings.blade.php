@@ -50,7 +50,7 @@
 		                            <p class="grey-text">{{ $Book->title }}</p>
 		                        </div>
 		                        <div class="">
-		                            <small class="grey-text"><b>Autor: </b>{{$Book->author->full_name}}</small>
+		                            {{--<small class="grey-text"><b>Autor: </b>{{$Book->author->full_name}}</small>--}}
 		                        </div>
 		                            <small class="grey-text"><b>Costo: </b> {{$Book->cost}} tickets</small> 
 		                    </div>

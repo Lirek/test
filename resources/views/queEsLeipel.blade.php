@@ -97,10 +97,6 @@ h1 {
 /* TIMELINE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.timeline ul {
-  padding: 50px 0;
-}
-
 .timeline ul li {
   list-style-type: none;
   position: relative;
@@ -317,7 +313,13 @@ time {
 <!--Fin Menu-->
 <div class="container">
 <section class="timeline">
-  <ul>
+  <ul> 
+    <div class="parallax-container" >
+      <div class="parallax"><img src="{{asset('plugins/img/multimedia.jpeg')}}"></div>
+    </div>
+    <!--<img src="{{asset('plugins/img/multimedia.jpg')}}" style=" height: 300px">
+    <i class="material-icons prefix hide-on-small-only" style="margin-left: 49%">camera_roll</i>
+    <i class="material-icons prefix hide-on-med-and-up" style="margin-left: 5%">camera_roll</i>-->
     <li>
       <div>
         <time>¿QUÉ ES LEIPEL?</time>
@@ -731,6 +733,20 @@ time {
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+<script type="text/javascript">
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.parallax');
+    var instances = M.Parallax.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+      
+</script>
 <script type="text/javascript">
     (function() {
 

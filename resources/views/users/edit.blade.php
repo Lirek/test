@@ -65,6 +65,28 @@ h5.breadcrumbs-header {
             text-align: center;
         }
 
+        #image-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #image-preview label {
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 70%;
+            height: 30px;
+            font-size: 15px;
+            line-height: 50px;
+            text-transform: uppercase;
+            margin: auto;
+            text-align: center;
+        }
+
         .intl-tel-input{
             width: 100%;
         }
@@ -172,19 +194,19 @@ h5.breadcrumbs-header {
                                         <label  for="ruc">Cedula</label>
                                     </div>
 
-                                    <!-- imagen de cedula-->
+                                    <!-- imagen de RUC-->
                                     <div class="form-group ">
                                         <div class="col m4">
                                             {!! Form::label('documento','Foto de su cedula de identidad',['class'=>'control-label']) !!}
                                         </div>
-                                        <div  class="col m4">
+                                        <div  class="col m4" >
                                             @if ($user->img_doc)
-                                                <img id="preview_img_doc" class="materialboxed" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
+                                                <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                             @endif
-                                            <div class="col m4 control-label">
+                                            <div class="col m4 control-label" id="image-preview_ci">
                                                 @if($user->verify == 0 || $user->verify == 2)
-                                                    <img id="preview_img_doc" src="" name='ci'/>
-                                                    <input type='file' name="adj_ruc" id="img_doc"  value="$user->img_doc" />
+                                                    <img width="180" height="180" id="preview_img_doc" src="" name='ci'/>
+                                                    <input type='file' name="adj_ruc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
                                                 @endif
                                                 <div id="mensajeImgDoc"></div>
                                             </div>

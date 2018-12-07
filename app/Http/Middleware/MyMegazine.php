@@ -20,7 +20,7 @@ class MyMegazine
     {
         $Megazine=$request->route()->parameter('id');
         
-        $user=Auth::guard()->id;
+        $user=Auth::guard()->user()->id;
 
         try 
         {
