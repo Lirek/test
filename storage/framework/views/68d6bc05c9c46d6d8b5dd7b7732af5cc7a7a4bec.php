@@ -67,7 +67,7 @@
 						            <h4 class="center white-text" ><i class="small material-icons">book</i> <?php echo e($megazines->title); ?></h4>
 						            <br>
 						     	</div>
-						      	<div class="col s12 m4">
+						      	<div class="col s12 m4 offset-m1">
 						      		<br>
 			                    	<img src="<?php echo e(asset($megazines->cover)); ?>" width="100%" height="300"  id="panel">
 			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.<?php echo e($megazines->id); ?>" onclick="fnOpenNormalDialog('<?php echo $megazines->cost; ?>','<?php echo $megazines->title; ?>','<?php echo $megazines->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
@@ -141,10 +141,13 @@
 		                        </li>
 		                    </ul>
 		                	</div>
-		                	<div class="col s12 m12" style="color: black">
-		                		<b class="left">Descripción:</b>
-		                		<p><?php echo e($megazines->descripcion); ?></p>
-		                	</div>
+		                	 <div class="col s12 m12" style="color: black">
+		                        <div class="card-panel">
+		                          <b class="left">Descripción:</b>
+		                          
+		                          <p><?php echo e($megazines->descripcion); ?></p>
+		                        </div>
+		                      </div>
 		                	<div class="col s12 m12">
 							    <div class="modal-footer">
 							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
@@ -193,7 +196,7 @@ $(document).ready(function(){
    });
   });
 </script>
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function fnOpenNormalDialog(cost,name,id) {
   
@@ -239,7 +242,7 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                        console.log(result);
                     }
                     else if (result==1) 

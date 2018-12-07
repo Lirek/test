@@ -105,6 +105,8 @@ Route::post('BuySong/{id}','UserController@BuySingle');
 Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
 Route::post('BuyBook/{id}','UserController@BuyBook');
 Route::post('BuyMagazines/{id}','UserController@BuyMagazines');
+Route::post('BuyMovie/{id}','UserController@BuyMovie');
+Route::post('BuySerie/{id}','UserController@BuySerie');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
@@ -185,6 +187,10 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::post('SearchPlayTv','ContentController@ShowPlayTv');
 //Agregada 6/11/2018
     Route::post('SearchProfileMegazine','ContentController@ShowProfileMegazine');
+//Agregadas 6/12/2018
+    Route::get('ShowSeries','ContentController@ShowSeries');
+    Route::get('/SearchSerie',array('as'=>'SearchSerie','uses'=>'ContentController@seachSerie'));
+    Route::post('SearchSerieList','ContentController@ShowSerieSeach');
 //---------------------------------------------------------------------------
 
 

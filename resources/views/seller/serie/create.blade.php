@@ -1,14 +1,16 @@
 @extends('seller.layouts')
 @section('css')
-    <style>
+   <style>
         #image-preview {
             width: 100%;
-            height: 480px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
             color: #2b81af;
+            border-radius: 10px;
         }
+
         #image-preview input {
             line-height: 200px;
             font-size: 200px;
@@ -16,7 +18,60 @@
             opacity: 0;
             z-index: 10;
         }
+
         #image-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 80%;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+
+        /*es es del modal de autor*/
+        #imageAM-preview {
+            width: 100%;
+            height: 305px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #2b81af;
+            border-radius: 10px;
+        }
+
+        #imageAM-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #imageAM-preview label {
             position: absolute;
             z-index: 5;
             opacity: 0.8;
@@ -34,19 +89,8 @@
             margin: auto;
             text-align: center;
         }
-        .example-modal .modal {
-            position: relative;
-            top: auto;
-            bottom: auto;
-            right: auto;
-            left: auto;
-            display: block;
-            z-index: 1;
-        }
-        .example-modal .modal {
-            background: transparent !important;
-        }
 
+        /*es es del modal de autor*/
         #imageSM-preview {
             width: 100%;
             height: 380px;
@@ -54,6 +98,7 @@
             overflow: hidden;
             background-color: #ffffff;
             color: #2b81af;
+            border-radius: 10px;
         }
 
         #imageSM-preview input {
@@ -70,7 +115,7 @@
             opacity: 0.8;
             cursor: pointer;
             background-color: #bdc3c7;
-            width: 200px;
+            width: 90%;
             height: 50px;
             font-size: 20px;
             line-height: 50px;
@@ -83,46 +128,74 @@
             text-align: center;
         }
     </style>
-     <style>
-        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
-        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
-        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    <style>
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    
     </style>
 @endsection
 @section('content')
-    
-    <section class="content">
 
-        @if (count($errors)>0)
-            <div class="col-md-6 col-md-offset-3">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li> {{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
+@if (count($errors)>0)
+    <div class="col s6 offset-s3">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col s12 m12">
                 @include('flash::message')
 
-                <div class="box box-primary ">
-                    <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Registrar serie</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
+                <div class="card-panel curva">
+                     <h3 class="center">
+                        Registrar serie
+                    </h3>
+                    <br>
+                    <div class="row">
                     {!! Form::open(['route'=>'series.store', 'method'=>'POST','files' => 'true', 'id' => 'registroSerie' ]) !!}
                     {{ Form::token() }}
                     {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                     <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
-                    <div class="box-body ">
+                    <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="input-field col s12 m6">
                             {{--Portada de la Serie--}}
                             <div id="mensajePortadaPelicula"></div>
                             <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
@@ -132,138 +205,168 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
-                            {{--titulo de la serie--}}
-                            <label for="exampleInputFile" class="control-label">Título</label>
-                            {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Título de la serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <div id="mensajeTitulo"></div>
-                            <br>
+                        
+                            <div class="input-field col s12 m6">
+                                {{--titulo de la serie--}}
+                                <i class="material-icons prefix blue-text valign-wrapper">create</i>
+                                <label for="exampleInputFile" class="control-label">Título</label>
+                                {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <div id="mensajeTitulo"></div>
+                                <br>
+                            </div>
+                            
+                            <div class="input-field col s12 m6">
+                                {{--Selecion tipo de publico de la serie--}}
+                                <i class="material-icons prefix blue-text valign-wrapper">label</i>   
+                                {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],null,['class'=>'form-control select-author', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una opción')",'oninput'=>"setCustomValidity('')", 'id'=>'exampleInputFile']) !!}
+                                <label for="exampleInputFile" class="control-label">Estado de la serie</label>
+                                <br>
+                            </div>
 
-                            {{--Selecion tipo de publico de la serie--}}
-                            <label for="exampleInputFile" class="control-label">Estado de la serie</label>
-                            {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],null,['class'=>'form-control select-author','placeholder'=>'Selecione una opción', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una opción')",'oninput'=>"setCustomValidity('')", 'id'=>'exampleInputFile']) !!}
-                            <br>
+                            <div class="input-field col s12 m6">
+                                {{--precio--}}
+                                <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
+                                <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
+                                <div id="mensajePrecio"></div>
+                                <br>
+                            </div>
 
-                            {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
-                            <div id="mensajePrecio"></div>
-                            <br>
-
-                            {{--Categoria--}}
-                            <label for="tags"> Géneros </label>
-                            <select name="tags[]" multiple="true"  class="form-control" id="genders" required="required">
-                                @foreach($tags as $genders)
-                                    @if($genders->type_tags=='Peliculas')
-                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                                 <label for="tags"> Géneros </label>
+                                <select name="tags[]" multiple="true"  class="form-control" id="genders" required="required">
+                                    @foreach($tags as $genders)
+                                        @if($genders->type_tags=='Peliculas')
+                                            <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                               <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero" >
                                 Agregar género
                             </button>
-                            <br>
-                            <br>
+                                <br>
+                            </div>
+                        <div class="col s12 m12">
+                            <div class="input-field col s12 m6">
+                                {{--historia de la serie --}}
+                                <i class="material-icons prefix blue-text valign-wrapper">movie</i> 
+                                <label for="exampleInputPassword1" class="control-label">Historia</label>
+                                <div id="cantidadHistoria"></div>                               
+                                {!! Form::textarea('story',null,['class'=>'materialize-textarea','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
+                                <div id="mensajeHistoria"></div>
+                                <br>
+                            </div>
 
-                            {{--historia de la serie --}}
-                            <label for="exampleInputPassword1" class="control-label">Historia</label>
-                            <div id="cantidadHistoria"></div>
-                            
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la Serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
-                            <div id="mensajeHistoria"></div>
-                            <br><br>
+
+                            <div class="input-field col s12 m6">
+                                {{--año de salida de la serie --}}
+                                <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
+                                <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                                {!! Form::number('release_year',@date('Y'),['class'=>'form-control', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                                <div id="mensajeFechaLanzamiento"></div>
+                                <br>
+                            </div>
                         </div>
-
-                        <div class="col-md-6">
-                            {{--año de salida de la serie --}}
-                            <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
-                            <div id="mensajeFechaLanzamiento"></div>
-                            <br>
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col s12 m12">
+                        <div class="input-field col s12 m6">
                             {{--link--}}
+                            <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
                             <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
-                            {!! Form::url('trailer',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                            {!! Form::url('trailer',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                             <div id="mensajeLink"></div>
                             <br>
                         </div>
-
-                        <div class="col-md-12">
-
-                            <label class="control-label"> ¿Pertenece a una saga? </label>
+                    </div>
+                        <div class="col s12 m12">
+                    <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
-                            <div class="radio-inline">
+                            <div class="">
                                 <label for="option-1">
-                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
                                     <span class="mdl-radio__label">Si</span>
                                 </label>
-                            </div>
-                            <div class="radio-inline">
                                 <label for="option-2">
-                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
                                     <span class="mdl-radio__label">No</span>
                                 </label>
                             </div>
                             <br>
-
-                            <div class="" style="display:none" id="if_si">
-
-                                <div class="col-md-4">
-                                    <label for="exampleInputPassword1" class="control-label">Nombre de la saga</label>
-                                    {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione la saga','id'=>'sagas', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
-                                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
-                                        <i class="fa fa-book"></i> 
-                                        Agregar saga
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
+                        <div class="" style="display:none" id="if_si">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione una saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
+                                <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="#modal-defaultMS">
+                                    <i class="fa fa-book"></i>
+                                    Agregar saga
+                                </a>
+                                <br>
+                                <br>
+                                <div class="col m6">
                                     <label for="exampleInputPassword1" class="control-label">Antes</label>
                                     {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
                                     <div id="mensajeAntes"></div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col m6">
                                     <label for="exampleInputPassword1" class="control-label">Después</label>
                                     {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
                                     <div id="mensajeDespues"></div>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div class="col-md-12" id="example-2">
+                        <div class="col m12" id="example-2">
 
-                            <a href="javascript:void(0);" class="btn btn-success add_button" id="btnAdd" style="margin-top: 2%; margin-bottom: 2%;">
+                            <a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green  add_button" id="btnAdd" style="margin-top: 2%; margin-bottom: 2%;">
                                 <i class="material-icons"></i>Agregar episodio
                             </a>
                             <div class="field_wrapper">
                                 <div class="row group">
-                                    <div class="col-md-6">
-                                        <label for="nombre del episodio" class="control-label">Nombre del episodio</label>
-                                        <input type="text" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
-                                        <br>
-
-                                        <label for="nombre del episodio" class="control-label">Cargar episodio</label>
-                                        <input type="file" name="episodio_file[]" accept=".mp4" id="episodio_file" class="form-control"required="required" oninvalid="this.setCustomValidity('Ingrese el episodio')" oninput="setCustomValidity('')">
-                                        <br>
-
-                                        {{--precio--}}
-                                        <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                        <input type="number" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba un Precio')" oninput="setCustomValidity('')" onkeypress="return controltagNum(event)" oninput="maxLengthCheck(this)" >
-                                        <br>
+                                    <div class="col m12 s12">
+                                        <div class="input-field col m6 s12">
+                                            <i class="material-icons prefix blue-text valign-wrapper">create</i>
+                                            <label for="episodio_name" class="control-label">Nombre del episodio</label>
+                                            <input type="text" name="episodio_name[]" id="episodio_name"  class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            {{--link--}}
+                                            <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
+                                            <label for="exampleInputPassword1" class="control-label">Trailer del episodio</label>
+                                            <input type="url" name="trailerEpisodio[]" id="trailerEpisodio" class="form-control"  required="required" oninvalid="this.setCustomValidity('Link del trailer')" oninput="setCustomValidity('')">
+                                            <br>
+                                        </div>
+                                        
                                     </div>
-                                    <div class="col-md-6">
-                                        {{--sinopsis del episodio --}}
-                                        <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                                        <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="2" class="form-control" placeholder="Sinopsis del episodio" required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')"></textarea>
-                                        <br>
+                                    <div class="col m12 s12">
+                                        <div class="input-field col m6 s12">
+                                            {{--precio--}}
+                                            <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
+                                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                            <input type="number" name="episodio_cost[]" id="precioEpisodio" class="form-control"  min="0" required="required" oninvalid="this.setCustomValidity('Escriba un Precio')" oninput="setCustomValidity('')" onkeypress="return controltagNum(event)" oninput="maxLengthCheck(this)" >
+                                            <br>
+                                        </div>
+                                    
+                                        <div class="input-field col m6 s12">
+                                            {{--sinopsis del episodio --}}
+                                            <i class="material-icons prefix blue-text valign-wrapper">movie</i> 
+                                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                            <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="2" class="materialize-textarea"  required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')"></textarea>
+                                            <br>
+                                        </div>
 
-                                        {{--link--}}
-                                        <label for="exampleInputPassword1" class="control-label">Trailer del episodio</label>
-                                        <input type="url" name="trailerEpisodio[]" id="trailerEpisodio" class="form-control" placeholder="Trailer del episodio" required="required" oninvalid="this.setCustomValidity('Link del trailer')" oninput="setCustomValidity('')">
-                                        <br>
+                                        
+                                        <div class="file-field input-field col m6 s12">
+                                            <label for="episodio_file" class="control-label">Cargar episodio</label>
+                                            <br><br>
+                                            <div class="btn blue">
+                                                <span><i class="material-icons">movie</i></span>
+                                                <input type="file" name="episodio_file[]" accept=".mp4" id="episodio_file" class="form-control"required="required" oninvalid="this.setCustomValidity('Ingrese el episodio')" oninput="setCustomValidity('')">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                            <br>
+                                        </div>
                                     </div>
                                     <br>
                                     <div class='col-md-12'>
@@ -288,113 +391,163 @@
             </div>
             </div>
             <div class="text-center">
-                {!! Form::submit('Registrar serie', ['class' => 'btn btn-primary','id'=>'registrarSerie']) !!}
+                <!-- {!! Form::submit('Registrar serie', ['class' => 'btn btn-primary','id'=>'registrarSerie']) !!} -->
+                <button type="submit" class="btn curvaBoton waves-effect waves-light green " id="registrarSerie">
+                    Registrar serie
+                </button>
             </div>
             {!! Form::close() !!}
         </div>
 
-        <!-- /.modal  de sagas  -->
-        <div class="modal fade in modal-primary" id="modal-defaultMS">
-            <div class="modal-dialog ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h1 class="modal-title text-center">Agregar saga</h1>
+  <!-- /.modal  de sagas  -->
+<div id="modal-defaultMS" class="modal">
+    <div class="modal-content center blue-text">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons">book</i> Agregar saga</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
+                {{ Form::token() }}
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        {{--Imagen--}}
+                        <div id="mensajeFotoSaga"></div>
+                        <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Imagen de la saga</label>
+                            {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                            <div id="fotoSaga"></div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
-                        {{ Form::token() }}
-                        <div class="box-body ">
 
-                            <div class="col-md-6">
-                                {{--Imagen--}}
-                                <div id="mensajePortadaSaga"></div>
-                                <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group">
-                                    <label for="image-upload" id="image-label"> Imagen de la saga</label>
-                                    {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
-                                    <div id="listModal"></div>
-                                </div>
-                            </div>
+                        <div class="input-field col s12 m6">
+                            {{--seleccion de rating--}}
+                            <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <label for="exampleInputFile" class="control-label">Categoría</label>
+                            
+                        </div>
 
-                            <div class="form-group col-md-6">
-                                {{--seleccion de rating--}}
-                                <label for="exampleInputFile" class="control-label">Categoría</label>
-                                {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categorpia','id'=>'exampleInputFile','required'=>'required']) !!}
-                                <br>
-
-                                {{--Nombre de la saga--}}
-                                <label for="exampleInputFile" class="control-label">Nombre</label>
-                                {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga']) !!}
-                                <br>
-
-                                {{--tipo de saga--}}
-                                <label for="exampleInputFile" class="control-label">Tipo de saga</label>
-                                {!! Form::select('type_saga',['3'=>'Series'],null,
-                                ['class'=>'form-control','id'=>'exampleInputFile','required'=>'required']) !!}
-                                <br>
-
-                                {{--Descripcion de  la saga--}}
-                                <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                                {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripcion de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
-                            </div>
+                        {{--Nombre de la saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text">create</i>
+                            <label for="exampleInputFile" class="control-label">Nombre</label>
+                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
                             <br>
                         </div>
-                        <!-- /.box-body -->
-                        <div align="center">
-                            {!! Form::submit('Agregar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
+
+                        {{--tipo de saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text  valign-wrapper">star</i>
+                            
+                            {!! Form::select('type_saga',['1'=>'Libros'],null,
+                            ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <label for="exampleInputFile" class="control-label">Tipo de saga</label>
+                            <br>
+                        </div>
+                        {{--Descripcion de  la saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text  valign-wrapper">create</i>
+                            <label for="exampleInputPassword1" class="control-label">Descripción</label>
+                            {!! Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']) !!}
+                        </div>
+                    <br>
+                    <div align="center">
+                            <button class="btn curvaBoton waves-effect waves-light green" id="guardarSaga">Agregar saga
+                            </button>
                             {!! Form::close() !!}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="box-body">
-                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+    </div>
+</div>
         
         <!-- /.modal  de generos  -->
-        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
-                    </div>
-                    <div class="modal-body">
-                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
-                        {{ Form::token() }}
-                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id,['id'=>'seller_id']) !!}
-                        {!! Form::hidden('type_tags','Series', ['id'=>'type_tags']) !!}
-                        {!! Form::hidden('ruta','Series') !!}
-                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
-                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
-                        <br>
+        <div id="modalgenero" class="modal">
+    <div class="modal-content">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons">book</i> Agregar nuevo género</h4>
+            <br>
+        </div>
+        <br>
+                    <div class="row">
+                        <div class="col s12">
+                            {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
+                            {{ Form::token() }}
+                            {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id,['id'=>'seller_id']) !!}
+                            {!! Form::hidden('type_tags','Series', ['id'=>'type_tags']) !!}
+                            {!! Form::hidden('ruta','Series') !!}
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                                <label for="exampleInputFile" class="control-label">Nuevo género</label>
+                                {!! Form::text('tags_name',null,['class'=>'form-control', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
+                                <br>
+                            </div>
+                        </div>
                         <div align="center">
-                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource', 'onclick'=>'callback()']) !!}
+                            <button class="btn curvaBoton waves-effect waves-light green"  id="save-resource" onclick="callback()">Guardar género</button>
                         </div>
                         {!! Form::close() !!}
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
-                    </div>
+                   
                 </div>
+                <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+    </div>
             </div>
-        </div>
         <!-- /.modal -->
 
 
-    </section>
+   
 
 @endsection
 
 @section('js')
+<script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+
+
+       
+    </script>
 <script type="text/javascript">
     
        function callback() {
@@ -934,26 +1087,41 @@ function maxLengthCheck(object) {
             var newHTML = 
             "<div class='row'>"+
                 "<hr>"+
-                "<div class='col-md-6'>"+
+                "<div class='input-field col m6 s12'>"+
+                    "<i class='material-icons prefix blue-text valign-wrapper'>create</i>"+
                     "<label for='nombre del episodio' class='control-label'>Nombre del Episodio</label>"+
-                    "<input type='text' name='episodio_name[]' id='episodio_name' placeholder='Nombre del episodio' class='episodio_name"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Nombre del Episodio')' oninput='setCustomValidity('')'>"+
-                    "<br>"+
-
-                    "<label for='nombre del episodio' class='control-label'>Cargar Epísodio</label>"+
-                    "<input type='file' name='episodio_file[]' accept='.mp4' id='episodio_file' class='episodio_file"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese el Episodio')' oninput='setCustomValidity('')'>"+
-                    "<br>"+
-
-                    "<label for='exampleInputPassword1' class='control-label'>Precio</label>"+
-                    "<input type='number' name='episodio_cost[]' id='precioEpisodio' class='precioEpisodio"+x+" form-control' placeholder='Ingrese el Precio del Episodio' min='0' required='required' oninvalid='this.setCustomValidity('Escriba un Precio')' oninput='setCustomValidity('')'>"+
+                    "<input type='text' name='episodio_name[]' id='episodio_name'  class='episodio_name"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Nombre del Episodio')' oninput='setCustomValidity('')'>"+
                     "<br>"+
                 "</div>"+
-                "<div class='col-md-6'>"+
-                    "<label for='exampleInputPassword1' class='control-label'>Sinopsis</label>"+
-                    "<textarea name='sinopsis[]' id='sinopsis' cols='3' rows='2' class='sinopsis"+x+" form-control' placeholder='Sinopsis del Episodio' required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'></textarea>"+
-                    "<br>"+
-
+                "<div class='input-field col m6 s12'>"+
+                    "<i class='material-icons prefix blue-text valign-wrapper'>subscriptions</i>"+
                     "<label for='exampleInputPassword1' class='control-label'>Trailer del Episodio</label>"+
-                    "<input type='url' name='trailerEpisodio[]' id='trailerEpisodio' class='trailerEpisodio"+x+" form-control' placeholder='Trailer del Episodio' required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'>"+
+                    "<input type='url' name='trailerEpisodio[]' id='trailerEpisodio' class='trailerEpisodio"+x+" form-control'  required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'>"+
+                    "<br>"+
+                "</div>"+
+                
+                "<div class='input-field col m6 s12'>"+
+                    "<i class='material-icons prefix blue-text valign-wrapper'>local_play</i>"+
+                    "<label for='exampleInputPassword1' class='control-label'>Precio</label>"+
+                    "<input type='number' name='episodio_cost[]' id='precioEpisodio' class='precioEpisodio"+x+" form-control'  min='0' required='required' oninvalid='this.setCustomValidity('Escriba un Precio')' oninput='setCustomValidity('')'>"+
+                    "<br>"+
+                "</div>"+
+                "<div class='input-field col m6 s12'>"+
+                    "<i class='material-icons prefix blue-text valign-wrapper'>movie</i>"+
+                    "<label for='exampleInputPassword1' class='control-label'>Sinopsis</label>"+
+                    "<textarea name='sinopsis[]' id='sinopsis' cols='3' rows='2' class='sinopsis"+x+" form-control materialize-textarea' required='required' oninvalid='this.setCustomValidity('Escriba una Sinopsis')' oninput='setCustomValidity('')'></textarea>"+
+                    "<br>"+
+                "</div>"+
+                "<div class='file-field input-field col m6 s12'>"+
+                    "<label for='nombre del episodio' class='control-label'>Cargar Epísodio</label>"+
+                    "<br><br>"+
+                    "<div class='btn blue'>"+
+                     "<span><i class='material-icons'>movie</i></span>"+
+                        "<input type='file' name='episodio_file[]' accept='.mp4' id='episodio_file' class='episodio_file"+x+" form-control' required='required' oninvalid='this.setCustomValidity('Ingrese el Episodio')' oninput='setCustomValidity('')'>"+
+                    "</div>"+
+                    "<div class='file-path-wrapper'>"+
+                        " <input class='file-path validate' type='text'>"
+                    "</div>"+
                     "<br>"+
                 "</div>"+
                 "<br>"+

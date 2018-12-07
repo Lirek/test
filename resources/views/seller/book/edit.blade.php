@@ -167,7 +167,7 @@
 @section('content')
     <!-- Main content -->
         @if (count($errors)>0)
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col m6 offset-m3">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <ul>

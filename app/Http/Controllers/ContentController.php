@@ -23,6 +23,7 @@ use App\Tv;
 use App\music_authors;
 use App\Transactions;
 use App\Movie;
+use App\Serie;
 
 
 class ContentController extends Controller
@@ -295,7 +296,7 @@ class ContentController extends Controller
 //--------------------------------------MOVIES--------------------------------------------
 
     public function ShowMovies(){
-        $Movie= Movie::where('status','=','Aprobado')->get();
+        $Movie= Movie::where('status','=','Aprobado')->paginate(8);
 
         if ($Movie->count()==0)
         {
@@ -325,7 +326,7 @@ class ContentController extends Controller
 
     }
     public function MovieList($id){
-        $Movie= Movie::where('id','=',$id)->get();
+        $Movie= Movie::where('id','=',$id)->paginate(10);
         return view('contents.ShowMovies')->with('Movie',$Movie);
     }
 
@@ -333,6 +334,48 @@ class ContentController extends Controller
         $Movie= Movie::where('title','=',$request->seach)->get();
         foreach ($Movie as $key) {
             $prueba=$this->MovieList($key->id);
+        }
+        return $prueba;
+    }
+//--------------------------------------SERIES--------------------------------------------
+    public function ShowSeries(){
+        $Serie= Serie::where('status','=','Aprobado')->paginate(8);
+
+        if ($Serie->count()==0)
+        {
+            $Serie=NULL;
+        }
+        return view('contents.Series')->with('Serie',$Serie);
+    }
+    public function seachSerie(){
+        $query=Input::get('term');
+        $Serie=Serie::where('title','LIKE','%'.$query.'%')->get();
+
+        $data=array();
+
+        foreach ($Serie as $key) {
+
+            $data[]=['id' => $key->id, 'value' => $key->title];
+        }
+
+        if(count($data))
+        {
+            return response()->json($data);
+        }else
+        {
+            return ['value'=>'No se encuentra...','id'=>''];
+        }
+
+    }
+    public function SerieList($id){
+        $Serie= Serie::where('id','=',$id)->paginate(10);
+        return view('contents.Series')->with('Serie',$Serie);
+    }
+
+    public function ShowSerieSeach(Request $request){
+        $Serie= Serie::where('title','=',$request->seach)->get();
+        foreach ($Serie as $key) {
+            $prueba=$this->SerieList($key->id);
         }
         return $prueba;
     }

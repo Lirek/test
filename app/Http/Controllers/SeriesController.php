@@ -11,18 +11,21 @@ use App\Episode;
 use App\Tags;
 use Laracasts\Flash\Flash;
 use File;
+use Auth;
 
 class SeriesController extends Controller
 {
     public function index() {
-
-        $serie = Serie::orderBy('id','DESC')->get();
-        $serie->each(function($serie){
-            $serie->episode;
-            $serie->seller;
-            $serie->saga;
-            $serie->tags_serie;
-        });
+         $serie = Serie::where('seller_id',Auth::guard('web_seller')->user()->id)
+                        ->orderBy('id', 'DESC')
+                        ->paginate(8);
+                        
+        // $serie->each(function($serie){
+        //     $serie->episode;
+        //     $serie->seller;
+        //     $serie->saga;
+        //     $serie->tags_serie;
+        // });
         return view('seller.serie.index')->with('serie',$serie);
     }
 

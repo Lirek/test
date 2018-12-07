@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="Arreglos en completar perfil de seller">
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="Compra de peliculas, series. Registro, Edicion y listados de peliclas y serie en Seller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/complete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/complete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/2c1429218e9bb8ef3817c47cd46f670aa423499c.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/2c1429218e9bb8ef3817c47cd46f670aa423499c.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SeriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SeriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateSeller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateSeller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Movies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Movies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/serie/showEpisode.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/serie/showEpisode.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/47697a2dabf5cacb4c9c15cd3479a5df6f60d7f3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -449,7 +474,8 @@
       <workItem from="1543510687810" duration="586000" />
       <workItem from="1543519185832" duration="147000" />
       <workItem from="1543520456108" duration="505000" />
-      <workItem from="1543601510903" duration="360000" />
+      <workItem from="1543601510903" duration="562000" />
+      <workItem from="1544189533908" duration="499000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -528,11 +554,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543520859621</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Arreglos en completar perfil de seller">
+      <created>1543601993886</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1543601993886</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="428728000" />
+    <option name="totallyTimeSpent" value="429429000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -553,7 +586,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27987897" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28441754" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -570,11 +603,11 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -582,14 +615,14 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -623,7 +656,8 @@
     <MESSAGE value="Solucion al error del modal de compra" />
     <MESSAGE value="Cambios en revistas" />
     <MESSAGE value="Arreglos en completar perfil de seller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglos en completar perfil de seller" />
+    <MESSAGE value="Compra de peliculas, series. Registro, Edicion y listados de peliclas y serie en Seller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compra de peliculas, series. Registro, Edicion y listados de peliclas y serie en Seller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/auth/login.blade.php">
