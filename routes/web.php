@@ -107,6 +107,7 @@ Route::post('BuyBook/{id}','UserController@BuyBook');
 Route::post('BuyMagazines/{id}','UserController@BuyMagazines');
 Route::post('BuyMovie/{id}','UserController@BuyMovie');
 Route::post('BuySerie/{id}','UserController@BuySerie');
+Route::post('BuyEpisode/{id}','UserController@BuyEpisode');
 Route::get('MyMusic','UserController@MyMusic');
 Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');

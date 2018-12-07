@@ -442,7 +442,7 @@
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">star</i>
                             
-                            {!! Form::select('type_saga',['1'=>'Libros'],null,
+                            {!! Form::select('type_saga',['3'=>'Series'],null,
                             ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
                             <label for="exampleInputFile" class="control-label">Tipo de saga</label>
                             <br>

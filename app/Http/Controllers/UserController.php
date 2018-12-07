@@ -879,6 +879,51 @@ class UserController extends Controller
 
     }
 
+    public function BuyEpisode(Request $request,$id)
+    {
+        $serie= Episode::find($id);
+        $user = User::find(Auth::user()->id);
+
+        if ($serie->cost > $user->credito) 
+        {
+            return response()->json(0);    
+        }
+
+        $check = Transactions::where('episodes_id','=',$serie->id)->where('user_id','=',$user->id)->get();
+        $check->isEmpty();
+
+        if(count($check)>=1)
+        {
+            return response()->json(1);   
+        }
+        else
+        {
+            $Transaction= new Transactions;
+            $Transaction->seller_id=$serie->seller_id; 
+            $Transaction->episodes_id=$serie->id;
+            $Transaction->user_id=$user->id;
+            $Transaction->tickets= $serie->cost*-1;
+            $Transaction->save();
+
+            $user->credito= $user->credito-$serie->cost;
+            $user->save(); 
+
+            $seller = Seller::find($serie->seller_id);
+            $seller->credito=$seller->credito+$serie->cost;
+            $seller->save();
+
+            $account=new AccountBalance;
+            $account->seller_id=$serie->seller_id;
+            $account->balance=$serie->cost;
+            $account->save();
+
+            // $this->SendMail($movie->title,$movie->cost);
+
+            return response()->json($Transaction);
+        }
+
+    }
+
 //----------------------------Invitar Personas------------------------------
 
     public function Invite(Request $request)

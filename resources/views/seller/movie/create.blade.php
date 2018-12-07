@@ -622,7 +622,7 @@
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">star</i>
                             
-                            {!! Form::select('type_saga',['1'=>'Libros'],null,
+                            {!! Form::select('type_saga',['2'=>'Peliculas'],null,
                             ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
                             <label for="exampleInputFile" class="control-label">Tipo de saga</label>
                             <br>
@@ -656,12 +656,12 @@
         </div>
         <br>
        
-                {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
+                {!! Form::open(['route'=>'tags.store', 'method'=>'POST','files' => 'true' ]) !!}
                 {{ Form::token() }}
                 <div class="row">
                     <div class="col s12">
                         <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id}}" id="seller_id">
-                        <input type="hidden" name="type_tags" value="Libros" id="type_tags">
+                        <input type="hidden" name="type_tags" value="Peliculas" id="type_tags">
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                             <label for="new_tag" class="control-label">Nuevo género</label>

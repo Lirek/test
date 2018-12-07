@@ -152,6 +152,22 @@
                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
+
+                                <li> <!--Cine-->
+                                    <ul class= "collapsible collapsible-accordion" >
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Cine<i class="material-icons right">expand_more</i></a>
+                                         <div class="collapsible-body">
+                                            <ul>
+                                                <li><a href="{{url('MyMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >theaters</i>Mis Peliculas</a></li>
+                                                <li><a href="#" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
+                                                <li><div class="divider"></div></li>
+                                            </ul>
+                                        </div>
+                                     </li>
+                                    </ul>
+                                </li> <!--End Lecturas-->    
+
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
 
