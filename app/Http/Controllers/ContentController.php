@@ -298,10 +298,10 @@ class ContentController extends Controller
     public function ShowMovies(){
         $Movie= Movie::where('status','=','Aprobado')->paginate(8);
 
-        if ($Movie->count()==0)
-        {
-            $Movie=NULL;
-        }
+        // if ($Movie->count()==0)
+        // {
+        //     $Movie=NULL;
+        // }
         return view('contents.Movies')->with('Movie',$Movie);
     }
 
@@ -341,10 +341,10 @@ class ContentController extends Controller
     public function ShowSeries(){
         $Serie= Serie::where('status','=','Aprobado')->paginate(8);
 
-        if ($Serie->count()==0)
-        {
-            $Serie=NULL;
-        }
+        // if ($Serie->count()==0)
+        // {
+        //     $Serie=NULL;
+        // }
         return view('contents.Series')->with('Serie',$Serie);
     }
     public function seachSerie(){
