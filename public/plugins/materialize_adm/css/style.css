@@ -188,6 +188,30 @@ nav ul a {
 /*End Tab */
 
 
+#lecturaspanel{
+    /*Para la Sombra*/
+    -webkit-box-shadow: 8px 8px 15px #999;
+    -moz-box-shadow: 8px 8px 15px #999;
+    filter: shadow(color=#999999, direction=135, strength=8);
+    /*Para la Sombra*/
+    margin-top: 2%;
+    width: 100%;
+    min-height: 180px;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+
+
 /*Pantallas mayores de 400px and menores 992px*/
 @media only screen and (max-width : 992px){
     header, main, footer {
@@ -209,6 +233,12 @@ nav ul a {
             padding-right: 5px;
             position: relative;
             height: 100%;
+    }
+
+    #lecturaspanel {
+        margin-top: 5%;
+        width: 100%;
+        min-height: 250px;
     }
 
 
@@ -233,10 +263,22 @@ nav ul a {
             width: 28px;
             height: auto;
         }
+
+
+
       }
 /*End pantallas menores de 400px*/
 
 
+
+/* Para 600px */
+@media only screen and (max-width: 1300px) and (min-width: 501px) {
+    #lecturaspanel {
+        margin-top: 5%;
+        width: 100%;
+        min-height: 210px;
+    }
+}
 
 
 
