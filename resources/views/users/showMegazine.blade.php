@@ -10,15 +10,15 @@
             display: inline-block;
             position:absolute;
             background-color: black;
-            width:79%;
+            width:97%;
             height:99%;
         }
         .bloqueo{
             display: inline-block;
             position:absolute;
             background-color: black;
-            width:80%;
-            height:33px;
+            width:97%;
+            height:63px;
         }
 
         .aqua-gradient {
@@ -96,7 +96,7 @@
                                 <br>
                             <div class="row">
                                 <div class="col s4 m4 l4">
-                                    <a href="#" class="btn teal center curvaBoton" data-toggle="modal" data-target="#modal-default">Leer</a>
+                                    <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer</a>
                                 </div>
                                 <div class="col s4 m4 l4">
                                     <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Descripción</a>
@@ -116,26 +116,25 @@
 
     <!--Modal-->
     <!-- /.modal  de sagas  -->
-    <div id="modal-default" class="modal" style="width:100%;height:100%;">
-        <div class="modal-content modal-lg">
+    <div id="modal-default" class="modal modal-lg" >
+        <div class="modal-content ">
             <div class=" blue"><br>
-                <h4 class="center white-text" ><i class="small material-icons">import_contacts</i>"{{ $megazines->title }}"</h4>
+                <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $megazines->title }}"</h4>
                 <br>
             </div>
             <br>
             <div class="pdf">
                 <div class="transparencia"></div>
                 <div class="bloqueo"></div>
-                <object data="{{ asset($megazines->megazine_file) }}" class="text-center" style="width:80%;height:800px;" type="application/pdf"></object>
+                <object data="{{ asset($megazines->megazine_file) }}" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
             </div>
-            <div class="bloqueo">
 
-            </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
         </div>
     </div>
+
 
     <!--Sinopsis-->
     <div id="modal1" class="modal bottom-sheet">

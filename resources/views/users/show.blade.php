@@ -10,15 +10,15 @@
             display: inline-block;
             position:absolute;
             background-color: black;
-            width:79%;
+            width:97%;
             height:99%;
         }
         .bloqueo{
             display: inline-block;
             position:absolute;
             background-color: black;
-            width:80%;
-            height:33px;
+            width:97%;
+            height:63px;
         }
 
         .collection .collection-item.avatar:not(.circle-clipper) > .circle, .collection .collection-item.avatar :not(.circle-clipper) > .circle {
@@ -108,16 +108,16 @@
                             @endif
 
                         <!--<li class="collection-item avatar">
-                                <img  src="{{ asset('images/authorbook') }}/{{$book->author->photo }}"  alt="User Avatar"class="circle img-responsive">
+                                <img  src="{{-- asset('images/authorbook')-- }}/{{--$book->author->photo --}}"  alt="User Avatar"class="circle img-responsive">
                                 <span class="title"><b>Autor:</b></span>
-                                <p><a href="{{url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name }}</a></p>
+                                <p><a href="--{{--url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name --}}</a></p>
                         </li>-->
 
                             <li class="collection-item" style=" padding: 0px;" >
                                 <br>
                                 <div class="row">
                                     <div class="col s4 m4 l4">
-                                        <a href="#" class="btn teal center curvaBoton" data-toggle="modal" data-target="#modal-default">Leer libro</a>
+                                        <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a>
                                     </div>
                                     <div class="col s4 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
@@ -137,7 +137,7 @@
 
     <!--Modal-->
     <!-- /.modal  de sagas  -->
-    <div id="modal-default" class="modal" style="width:100%;height:100%;">
+    <div id="modal-default" class="modal">
         <div class="modal-content modal-lg">
             <div class=" blue"><br>
                 <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $book->title }}"</h4>

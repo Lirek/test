@@ -70,7 +70,9 @@
                             </a>
                             <div class="card-content">
                               <span class="card-title title"> <b>{{$Megazine->title}}</b> </span>
-                               <span class="card-title blue-text title" style=" font-size: 16px;"> <b>{{$Megazine->Seller->name}}</b> </span>
+                                <!--
+                               <span class="card-title blue-text title" style=" font-size: 16px;"> <b>{{--$Megazine->Seller->name--}}</b> </span>-->
+                               <span class="card-title blue-text title" style=" font-size: 16px;"> <b>Autor</b> </span>
                             </div>
 
 
