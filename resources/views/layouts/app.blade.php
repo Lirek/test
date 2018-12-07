@@ -116,6 +116,7 @@
                                     <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
                                         <i class="material-icons ">local_activity</i>&nbsp;Mi balance
                                     </a>
+                                    <p id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333; padding: 0px;" ></p>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +428,7 @@
     }
 </script>-->
 
-<!--<script>
+<script>
     $(document).ready(function(){
         var id={!!Auth::user()->id!!};
         $.ajax({
@@ -442,7 +443,7 @@
             },
         });
     });
-</script>-->
+</script>
 <!--<script type="text/javascript">
     $(document).ready(function() {
         if ((screen.width <= 768)) {
