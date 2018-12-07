@@ -43,12 +43,90 @@
 	*/
 	.curvaBoton{border-radius: 20px;}
 	.modal { margin-top: -5%; max-height: 98%;}
+	.gradient-45deg-light-blue-cyan.gradient-shadow {
+            box-shadow: 0 6px 20px 0 rgba(38, 198, 218, 0.5);
+        }
+    .gradient-45deg-light-blue-cyan {
+        background: #0288d1;
+        background: -webkit-linear-gradient(45deg, #0288d1 0%, #26c6da 100%);
+        background: linear-gradient(45deg, #0288d1 0%, #26c6da 100%);
+    }
+    .min-height-100 {
+        min-height: 100px !important;
+    }
+    .background-round {
+        background-color: rgba(0, 0, 0, 0.18);
+        padding: 15px;
+        border-radius: 50%;
+    }
+    .gradient-45deg-green-teal.gradient-shadow {
+        box-shadow: 0 6px 20px 0 rgba(77, 182, 172, 0.5);
+    } 
+    .gradient-45deg-green-teal {
+        background: #43A047;
+        background: -webkit-linear-gradient(45deg, #43A047 0%, #1de9b6 100%);
+        background: linear-gradient(45deg, #43A047 0%, #1de9b6 100%);
+    }  
+    .gradient-45deg-red-pink.gradient-shadow {
+        box-shadow: 0 6px 20px 0 rgba(244, 143, 177, 0.5);
+    }
+    .gradient-45deg-red-pink {
+        background: #FF5252;
+        background: -webkit-linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
+        background: linear-gradient(45deg, #FF5252 0%, #f48fb1 100%);
+    }
 </style>
 	<!--DataTables-->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.2/datatables.css"/>
 @endsection
 @section('main')
+	<div class="card-panel curva">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
+                    <div class="padding-4" style="padding: 4%"> 
+                        <div class="col m4">
+                            <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
+                        </div>
+                        <div class="col m7">
+                            <h5 style="color: white"><b>Tickets disponible:</b> {{Auth::user()->credito}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
+                    <div class="padding-4" style="padding: 4%"> 
+                        <div class="col m4">
+                            <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">check</i>
+                        </div>
+                        <div class="col m7">
+                        	<h5 style="color: white"><b>Puntos disponibles:</b>
+                           		@if(Auth::user()->points!=NULL)
+                           			{{Auth::user()->points}}
+                       			@else
+                       				0
+                   				@endif
+                           	</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 150px">
+                    <div class="padding-4" style="padding: 4%"> 
+                        <div class="col m4">
+                            <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">priority_high</i>
+                        </div>
+                        <div class="col m6">
+                           <h5 style="color: white"><b>Puntos pendientes:</b> {{Auth::user()->pending_points}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="row">
 		<div class="col s12 m6 l4">
 			<div class="card hoverable">
@@ -298,12 +376,13 @@
 									@if($balance['Method'] != 'Puntos')
 										<td>
 											@if($balance['Factura']!=NULL)
-												<a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="waves-effect waves-light btn-small curvaBoton">
-													<i class="small material-icons">print</i>
+												<a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="waves-effect green waves-light btn-small curvaBoton">
+													{{--<i class="small material-icons">print</i>--}}
+													<i class="small material-icons right">remove_red_eye</i> Ver
 												</a>
 											@else
-												<a onclick="generarFactura({!!$balance['id_payments']!!})" class="waves-effect waves-light btn-small curvaBoton">
-													<i class="small material-icons right">add</i> Generar
+												<a onclick="generarFactura({!!$balance['id_payments']!!})" class="waves-effect waves-light btn-small green curvaBoton">
+													<i class="small material-icons right">add</i> Crear
 												</a>
 											@endif
 										</td>

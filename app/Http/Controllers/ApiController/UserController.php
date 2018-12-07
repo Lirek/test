@@ -51,19 +51,16 @@ use Illuminate\Support\Facades\Mail; //
 
 class UserController extends Controller
 {
-    public function UserData()
-    {
+    public function UserData() {
         $user=auth()->user();
         $Json = Fractal::create()
             ->item($user)
             ->transformWith(new UserTransformer)
             ->toArray();
-
         return Response::json($Json);
     }
 
-    public function WebsUser()
-    {
+    public function WebsUser() {
         $user= User::find(auth()->user()->id);
         $x= $user->Referals()->get();
         $referals1 = [];
@@ -71,67 +68,45 @@ class UserController extends Controller
         $referals3= [];
         $WholeReferals = collect(new User);
 
-        if ($user->Referals()->get()->isEmpty())
-        {
-            return Response::json(['status'=>'Esta Vacio'], 204);
-
+        if ($user->Referals()->get()->isEmpty()) {
+            return Response::json(['status'=>'1','message'=>'No tiene referidos','data'=>[]], 200);
         }
-        foreach ($user->Referals()->get() as $key)
-        {
+        foreach ($user->Referals()->get() as $key) {
             $referals1[]=$key->refered;
             $WholeReferals->prepend(User::find($key->refered));
         }
 
-        if (count($referals1)>0)
-        {
+        if (count($referals1)>0) {
 
-            foreach ($referals1 as $key2)
-            {
+            foreach ($referals1 as $key2) {
                 $joker = User::find($key2);
-
-                foreach($joker->Referals()->get() as $key2)
-                {
+                foreach($joker->Referals()->get() as $key2) {
                     $referals2[]=$key2->refered;
                     $WholeReferals->prepend(User::find($key2->refered));
                 }
             }
-        }
-        else
-        {
+        } else {
             $referals2=0;
         }
 
-
-
-        if (count($referals2)>0)
-        {
-            foreach ($referals2 as $key3)
-            {
+        if (count($referals2)>0) {
+            foreach ($referals2 as $key3) {
                 $joker = User::find($key3);
-
-                foreach($joker->Referals()->get() as $key3)
-                {
+                foreach($joker->Referals()->get() as $key3) {
                     $referals3[]=$key3->refered;
                     $WholeReferals->prepend(User::find($key3->refered));
                 }
             }
-        }
-
-        else
-        {
+        } else {
             $referals3=0;
         }
-
-
-
         $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
-
             if (in_array($item->id, $referals1)) { return $item->level=1;}
             if (in_array($item->id, $referals2)) { return $item->level=2;}
             if (in_array($item->id, $referals3)) { return $item->level=3;}
         });
-
-        return Datatables::of($WholeReferals)->toJson();
+        //return Datatables::of($WholeReferals)->toJson();
+        return Response::json(['status'=>'1','data'=>$WholeReferals], 200);
     }
 
     public function UpdateData(Request $request)

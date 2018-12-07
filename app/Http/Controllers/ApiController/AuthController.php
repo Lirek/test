@@ -122,60 +122,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function AuthSocialUser(Request $request)
-    {
-    /*
+    public function AuthSocialUser(Request $request) {
 
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-
-        for ($i = 0; $i < 6; $i++)
-        {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-
-
-        $code=$randomString;
-        $createUser = User::firstOrCreate(
-            ['email' => $request->email],
-            ['name' => $request->name,
-                'img_perf' => $request->avatar,
-                'codigo_ref'=>$code]
-        );
-
-        if($createUser->wasRecentlyCreated)
-        {
-            event(new WelcomeEmailEvent($createUser));
-        }
-
-        $token = JWTAuth::fromUser($createUser);
-
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
-    */
-    /*
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-
-        for ($i = 0; $i < 6; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        $code = $randomString;
-        $createUser = User::firstOrCreate([
-            'email' => $request->email
-        ], [
-            'name' => $request->name,
-            'codigo_ref'=> $code,
-            'img_perf' => $request->avatar
-        ]);
-        if($createUser->wasRecentlyCreated) {
-            event(new WelcomeEmailEvent($createUser));
-        }
-        auth()->login($createUser);
-        $token = JWTAuth::fromUser($createUser);
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
-    */
         $createUser = User::firstOrCreate([
             'email' => $request->email
         ], [
@@ -183,14 +131,13 @@ class AuthController extends Controller
         ]);
         auth()->login($createUser);
         if($createUser->wasRecentlyCreated) {
-            if ($request->tipo=="facebook") {
+            if ($request->type=="facebook") {
                 $url = "https://graph.facebook.com/".$request->idSocial."/picture?type=large";
                 $headers = get_headers($url, 1);
                 if( isset($headers['Location']) ){
                     $archivo = $headers['Location'];
                     $imgFile = file_get_contents($archivo);
                     $store_path = public_path().'/user/'.auth()->user()->id.'/profile/';
-                    //$nameFile = 'userpic'.$request->name.time().'.jpg';
                     $nameFile = 'userpic'.$request->name.'.jpg';
                     if (!file_exists($store_path)) {
                         mkdir($store_path, 0777, true);
@@ -199,12 +146,22 @@ class AuthController extends Controller
                     $fh = fopen($filex, 'w');
                     fputs($fh,$imgFile);
                     fclose($fh);
-                    $path = '/user/'.auth()->user()->id.'/profile/'.$nameFile;
                 } else {
-                    $path = "";
+                    $path = NULL;
                 }
             } else {
                 //logica para el enlace de google
+                $url = $request->avatar;
+                $img = file_get_contents($url);
+                $store_path = public_path().'/user/'.auth()->user()->id.'/profile/';
+                $nameFile = 'userpic'.$request->name.'.jpg';
+                if (!file_exists($store_path)) {
+                    mkdir($store_path, 0777, true);
+                }
+                $filex = $store_path.$nameFile;
+                $fh = fopen($filex, 'w');
+                fputs($fh,$img);
+                fclose($fh);
             }
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -215,13 +172,15 @@ class AuthController extends Controller
             }
             $code = $randomString;
             $user = User::find(auth()->user()->id);
-            $user->img_perf = $path;
+            $user->last_name = $request->last_name;
+            $user->alias = $request->alias;
+            $user->img_perf = '/user/'.auth()->user()->id.'/profile/'.$nameFile;
             $user->codigo_ref = $code;
             $user->save();
             event(new WelcomeEmailEvent($createUser));
         }
         $token = JWTAuth::fromUser($createUser);
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+        return response()->json(['status' => '1', 'data'=> [ 'token' => $token ]], 200);
     }
 
 }
