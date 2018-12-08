@@ -191,7 +191,18 @@ h5.breadcrumbs-header {
                                             @endif
                                             <div class="col m4 control-label" id="image-preview_ci">
                                                 @if($user->verify == 0 || $user->verify == 2)
-                                                    <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
+                                                    <div class="file-field input-field col s12">
+                                                        <label for="exampleInputFile" class="control-label">Cargar imagen de RUC</label>
+                                                        <br><br>
+                                                        <div id="mensajeDocumento"></div>
+                                                        <div class="btn blue">
+                                                             <span>seleccione<i class="material-icons right">assignment_ind</i></span>
+                                                            {!! Form::file('adj_ruc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
+                                                        </div>
+                                                        <div class="file-path-wrapper">
+                                                            <input class="file-path validate" type="text">
+                                                        </div>
+                                                    </div>  
                                                 @endif
                                                 <div id="mensajeImgDoc"></div>
                                             </div>
