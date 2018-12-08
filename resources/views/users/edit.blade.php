@@ -44,8 +44,8 @@ h5.breadcrumbs-header {
         }
 
         #image-preview input {
-            line-height: 200px;
-            font-size: 200px;
+            line-height: 100px;
+            font-size: 100px;
             position: absolute;
             opacity: 0;
             z-index: 10;
@@ -57,34 +57,20 @@ h5.breadcrumbs-header {
             cursor: pointer;
             background-color: #bdc3c7;
             width: 70%;
-            height: 30px;
-            font-size: 15px;
-            line-height: 50px;
+            height: 70px;
+            font-size: 70px;
+            line-height: 60px;
             text-transform: uppercase;
             margin: auto;
             text-align: center;
         }
 
-        #image-preview input {
+        #image-preview_ci input {
             line-height: 200px;
             font-size: 200px;
             position: absolute;
             opacity: 0;
             z-index: 10;
-        }
-
-        #image-preview label {
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 70%;
-            height: 30px;
-            font-size: 15px;
-            line-height: 50px;
-            text-transform: uppercase;
-            margin: auto;
-            text-align: center;
         }
 
         .intl-tel-input{
@@ -122,10 +108,10 @@ h5.breadcrumbs-header {
                                 {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
                                 <div id="list">
-                                    @if ($user->img_perf)
-                                        <img width="70" height="70" name='perf' src="{{asset($user->img_perf)}}" id="img_perf">
+                                    @if ($user->img_perfil == 'NULL')
+                                        <img width="70" height="70" name='perf' src="{{asset($user->img_perfil)}}" id="img_perf">
                                     @else
-                                        <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                        <img width="70" height="70" name='perf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
                                     @endif
                                 </div>
                             </div>
@@ -205,8 +191,7 @@ h5.breadcrumbs-header {
                                             @endif
                                             <div class="col m4 control-label" id="image-preview_ci">
                                                 @if($user->verify == 0 || $user->verify == 2)
-                                                    <img width="180" height="180" id="preview_img_doc" src="" name='ci'/>
-                                                    <input type='file' name="adj_ruc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
+                                                    <input type='file' name="img_doc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
                                                 @endif
                                                 <div id="mensajeImgDoc"></div>
                                             </div>

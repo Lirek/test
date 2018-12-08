@@ -100,7 +100,7 @@
                                 {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$seller->logo)!!}
                                 <div id="list">
-                                    @if ($seller->logo)
+                                    @if ($seller->logo != 'NULL')
                                         <img width="70" height="70" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
                                     @else
                                         <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
@@ -161,20 +161,24 @@
                             
                             <!-- imagen de RUC-->
                             <div class="form-group ">
-                                <div class="col m4">
-                                    {!! Form::label('documento','Foto del Registro único de contribuyente (RUC)',['class'=>'control-label']) !!}
+                            @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
+                            <div class="file-field input-field col s12">
+                                <label for="exampleInputFile" class="control-label">Cargar imagen de RUC</label>
+                                <br><br>
+                                <div id="mensajeDocumento"></div>
+                                <div class="btn blue">
+                                     <span>seleccione<i class="material-icons right">assignment_ind</i></span>
+                                    {!! Form::file('adj_ruc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                 </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>    
+                            @endif
                                 <div  class="col m4">
                                     @if ($seller->adj_ruc)
                                         <img id="preview_img_doc" src="{{asset($seller->adj_ruc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @endif
-                                    <div class="col m4 control-label">
-                                        @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
-                                            <img id="preview_img_doc" src="" name='ci'/>
-                                            <input type='file' name="adj_ruc" id="img_doc" accept=".jpeg" value="$user->img_doc" />
-                                        @endif
-                                        <div id="mensajeImgDoc"></div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -195,7 +199,7 @@
                                 <label  for="ruc">Telefono</label>
                             </div>
                                   <div class="input-field col s12">
-                                      {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active','id'=>'Editar']) !!}
+                                      {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active curvaBoton green','id'=>'Editar']) !!}
                                   </div>
                                 </ul>
                             </div>
