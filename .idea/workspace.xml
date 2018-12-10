@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,36 +71,36 @@
     <session id="-1645228001">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="3" />
+          <entry key="css" value="4" />
           <entry key="js" value="2" />
           <entry key="paso" value="1" />
-          <entry key="php" value="69" />
+          <entry key="php" value="74" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="60" />
-          <entry key="CSS" value="3" />
+          <entry key="Blade" value="64" />
+          <entry key="CSS" value="4" />
           <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="9" />
+          <entry key="PHP" value="10" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="355" />
+          <entry key="css" value="379" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="5468" />
+          <entry key="php" value="5546" />
           <entry key="txt" value="337" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="5428" />
-          <entry key="CSS" value="355" />
+          <entry key="Blade" value="5506" />
+          <entry key="CSS" value="379" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="40" />
           <entry key="PLAIN_TEXT" value="338" />
@@ -107,11 +108,12 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="60" />
+          <entry key="project.closed" value="69" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.1568" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
@@ -119,15 +121,15 @@
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.24" value="1" />
-          <entry key="project.open.time.26" value="2" />
+          <entry key="project.open.time.26" value="3" />
           <entry key="project.open.time.27" value="4" />
-          <entry key="project.open.time.28" value="3" />
+          <entry key="project.open.time.28" value="4" />
           <entry key="project.open.time.29" value="2" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.31" value="6" />
+          <entry key="project.open.time.30" value="2" />
+          <entry key="project.open.time.31" value="7" />
           <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.33" value="5" />
-          <entry key="project.open.time.34" value="3" />
+          <entry key="project.open.time.33" value="6" />
+          <entry key="project.open.time.34" value="4" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.37" value="4" />
@@ -138,7 +140,8 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.50" value="2" />
+          <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.66" value="1" />
           <entry key="project.open.time.68" value="1" />
@@ -148,7 +151,7 @@
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="69" />
+          <entry key="project.opened" value="78" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -162,14 +165,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="72" column="28" selection-start-line="55" selection-start-column="3" selection-end-line="81" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="100" column="37" lean-forward="true" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="117" column="14" lean-forward="true" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="14" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#li#0;n#ul#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="6528">
+              <caret line="384" selection-start-line="383" selection-start-column="84" selection-end-line="383" selection-end-column="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2346">
+              <caret line="138" column="10" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -178,10 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>contec</find>
-      <find>owl</find>
-      <find>featured</find>
-      <find>prueba</find>
       <find>ReadingsMegazines</find>
       <find>Revistas</find>
       <find>SearchTv</find>
@@ -208,6 +231,10 @@
       <find>sinop</find>
       <find>panel</find>
       <find>lecturaspanel</find>
+      <find>players</find>
+      <find>player</find>
+      <find>plyr</find>
+      <find>cdn.plyr.io</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
@@ -227,7 +254,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
@@ -262,7 +288,6 @@
         <option value="$PROJECT_DIR$/resources/views/users/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/paso" />
-        <option value="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" />
@@ -270,14 +295,16 @@
         <option value="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/MyMegazine.php" />
         <option value="$PROJECT_DIR$/resources/views/users/showMegazine.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/show.blade.php" />
         <option value="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts(Options)/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
       </list>
     </option>
   </component>
@@ -304,6 +331,7 @@
       <path value="$PROJECT_DIR$/public/plugins/LTE/thema/morris.js/package.json" />
       <path value="$PROJECT_DIR$/public/plugins/chosen/package.json" />
       <path value="$PROJECT_DIR$/public/plugins/duplicate/package.json" />
+      <path value="$PROJECT_DIR$/public/plugins/plyr-master/package.json" />
     </packageJsonPaths>
   </component>
   <component name="PhpServers">
@@ -407,9 +435,6 @@
     <option name="width" value="1376" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -441,6 +466,17 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -448,6 +484,13 @@
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="contents" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
@@ -572,6 +615,15 @@
       <workItem from="1544185132304" duration="1250000" />
       <workItem from="1544188880652" duration="1587000" />
       <workItem from="1544190792876" duration="1543000" />
+      <workItem from="1544445567670" duration="1058000" />
+      <workItem from="1544447550020" duration="1198000" />
+      <workItem from="1544449387974" duration="1709000" />
+      <workItem from="1544451369868" duration="1751000" />
+      <workItem from="1544453317745" duration="1903000" />
+      <workItem from="1544456014441" duration="1702000" />
+      <workItem from="1544457925666" duration="1766000" />
+      <workItem from="1544459911352" duration="1388000" />
+      <workItem from="1544463266828" duration="1014000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -664,11 +716,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544141115904</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="bmonterrey ajustes vistas libro y revista en usuario &quot;autor&quot;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1544215787222</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1544215787222</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507403000" />
+    <option name="totallyTimeSpent" value="520998000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -681,9 +740,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18986385" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31164902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -766,13 +824,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="340" lean-forward="true" selection-start-line="340" selection-end-line="340" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-200">
@@ -819,13 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -984,20 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/MyLecture.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285" />
@@ -1011,13 +1041,6 @@
     <entry file="file://$PROJECT_DIR$/app/Megazines.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/MyReadings.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="668">
@@ -1025,48 +1048,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/MyMegazine.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" lean-forward="true" selection-end-line="38" />
+        <state relative-caret-position="528">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/MyReadings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="77" column="82" selection-start-line="77" selection-start-column="82" selection-end-line="77" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="84" column="93" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="199" column="34" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="34" />
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/showMegazine.blade.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="98" column="136" selection-start-line="98" selection-start-column="136" selection-end-line="98" selection-end-column="136" />
+          <caret line="49" column="9" selection-start-line="47" selection-start-column="7" selection-end-line="64" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts(Options)/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="117" column="14" lean-forward="true" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#li#0;n#ul#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="6528">
+          <caret line="384" selection-start-line="383" selection-start-column="84" selection-end-line="383" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="138" column="10" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="72" column="28" selection-start-line="55" selection-start-column="3" selection-end-line="81" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="100" column="37" lean-forward="true" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
         </state>
       </provider>
     </entry>

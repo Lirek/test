@@ -122,16 +122,27 @@ nav ul a {
    of the button to still show through. */
     background-color: #bbdefb;
 }
-
+/* ----------------------------
+ * End
+ * ----------------------------
+ */
 
 .curvaBoton {
     border-radius: 20px;
 }
 
 /* ----------------------------
- * End
+ * Colores adicionales
  * ----------------------------
  */
+
+.purple-gradient {
+    background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: -o-linear-gradient(50deg,#ff6ec4,#7873f5)!important;
+    background: linear-gradient(40deg,#ff6ec4,#7873f5)!important;
+}
+
+
 
 /*Modal */
 .modal .modal-content {

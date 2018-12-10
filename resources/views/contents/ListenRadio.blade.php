@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
 @section('main')
@@ -10,7 +9,7 @@
         <div class="card">
             <div class="card-content white-text">
                         @foreach($Rad as $radios)
-                                            <h2><span class="card-title"><center><h3 style="color: #428bca"> {{$radios->name_r}}</h3></center></span></h2>
+                                            <h2><span class="card-title"><h3 style="color: #428bca"> {{$radios->name_r}}</h3></span></h2>
                                             <div class="col s12 m12">
 
                                                <center><img src="{{asset($radios->logo)}}" class="img-responsive" width="17%" style="margin-top: 2%;"></center>
@@ -31,21 +30,24 @@
                                         @endforeach
 
 
-                        <div class="row">
-                            <div class="input-field col s12 m6 offset-m3">
-                                <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
-                                    {{ csrf_field() }}
-                                    <i class="material-icons prefix blue-text">search</i>
-                                    <input type="text" id="seach" name="seach" class="validate">
-                                    <label for="seach">Buscar otra radio</label><br>
-                                    {{--<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Radio...</button>--}}
-                                </form>
+                            <div class="row">
+                                <div class="input-field col s12 m6 offset-m3">
+                                    <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
+                                        {{ csrf_field() }}
+                                        <i class="material-icons prefix blue-text">search</i>
+                                        <input type="text" id="seach" name="seach" class="validate">
+                                        <input type="hidden" name="type" id="type">
+
+                                        <br>
+                                        <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
 
 
-                        <div class="row">
+
+                            <div class="row">
                                 @foreach($Radio as $radios)
                                 <div class="col s12 m3">
                                     <div class="card">
@@ -78,7 +80,7 @@
         <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
         <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
         <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
-        <li><a href="{{$radios->instagram}}" class="btn-floating deep-purple darken-2"><i class="mdi mdi-instagram"></i></a></li>
+        <li><a href="{{$radios->instagram}}" class="btn-floating purple-gradient darken-2"><i class="mdi mdi-instagram"></i></a></li>
     </ul>
 </div>
 
@@ -93,7 +95,6 @@
     </script>
 
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-
 
     <script type="text/javascript">
 
@@ -120,4 +121,5 @@
             });
         });
     </script>
+
 @endsection
