@@ -42,8 +42,19 @@ use App\Payments;
 use App\Referals;
 use App\PointsAssings;
 use App\SistemBalance;
+use App\Transactions;
 
 use App\Transformers\UserTransformer;
+use App\Transformers\AlbumsTransformer;
+use App\Transformers\SongsTransformer;
+use App\Transformers\MusicAuthorTransformer;
+use App\Transformers\SellerTransformer;
+use App\Transformers\TagsTransformer;
+use App\Transformers\BooksTransformer;
+use App\Transformers\MegazinesTransformer;
+use App\Transformers\RadioTransformer;
+use App\Transformers\TvTransformer;
+
 use Auth;
 use Carbon\Carbon; //
 use App\Mail\TransactionApproved; //
@@ -53,6 +64,7 @@ class UserController extends Controller
 {
     public function UserData() {
         $user=auth()->user();
+
         $Json = Fractal::create()
             ->item($user)
             ->transformWith(new UserTransformer)
@@ -100,7 +112,11 @@ class UserController extends Controller
         } else {
             $referals3=0;
         }
+
+
+
         $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
+
             if (in_array($item->id, $referals1)) { return $item->level=1;}
             if (in_array($item->id, $referals2)) { return $item->level=2;}
             if (in_array($item->id, $referals3)) { return $item->level=3;}
@@ -198,8 +214,6 @@ class UserController extends Controller
         {
             return Response::json(['status'=>'ERROR'], 402);
         }
-
-
     }
 
     public function BuyDepositPackage(Request $request)
