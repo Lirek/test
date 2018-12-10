@@ -1,147 +1,97 @@
 @extends('seller.layouts')
 @section('css')
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
+ <style>
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    .card{
+        height:430px;
+    }
+    
+</style>
+
 @endsection
 @section('content')
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                @include('flash::message')
-                <!-- box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Películas registradas</h3>
+<div class="row">
+    <div class="col s12 m12">
+        @include('flash::message')
+        <div class="card-panel curva">
+            <h3 class="center">
+                Películas registradas 
+            </h3>
+            @if($movie->count() != 0 )
+            <div class="row">
+                @foreach($movie as $m)
+                @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
+                <div class="col s12 m3">
+                  <div class="card">
+                    <div class="card-image">
+                        <a href="{{ route('movies.show', $m->id) }}">
+                      <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="300px">
+                      </a>
+                      <!-- <span class="card-title">Card Title</span> -->
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ route('movies.edit',$m->id) }}"><i class="material-icons">create</i></a>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">Título</th>
-                                    <th class="text-center">Portada</th>
-                                    <th class="text-center">Categoría</th>
-                                    <th class="text-center" width="300">Generos</th>
-                                    <th class="text-center">Estatus</th>
-                                    <th class="text-center">Fecha de registro</th>
-                                    <th class="text-center">N° de compras</th>
-                                    <th class="text-center">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($movie as $m)
-                                    @if(Auth::guard('web_seller')->user()->id === $m->seller_id)
-                                        <tr>
-                                            <td class="text-center"> {{ $m->title }} </td>
-                                            <td class="text-center">
-                                                <a href="{{ route('movies.show', $m->id) }}">
-                                                    <img class="img-rounded img-responsive text-center" src="{{ asset('movie/poster') }}/{{$m->img_poster}}" style="width:70px;height:70px;margin-left:5%;" alt="Portada">
-                                                </a>
-                                            </td>
-                                            <td class="text-center"> {{ $m->rating->r_name }} </td>
-                                            <td class="text-center">
-                                                @php
-                                                    $tags = $m->tags_movie;
-                                                @endphp
-                                                @foreach($tags as $t)
-                                                    {{ $t->tags_name }}
-                                                @endforeach
-                                            </td>
-                                            <td class="text-center"> {{ $m->status }} </td>
-                                            <td class="text-center"> {{$m->transaction->count()}} </td>
-                                            <td class="text-center"> {{ $m->created_at }} </td>
-                                            <td class="text-center">
-                                                <a href="{{ route('movies.show', $m->id) }}" class="btn btn-info btn-xs">
-                                                    <span class="fa fa-play-circle" aria-hidden="true"></span>
-                                                </a>
-                                                <a href="{{ route('movies.edit',$m->id) }}" class="btn btn-warning btn-xs">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </a>
-                                                <!-- <a href="{{ route('movies.destroy',$m->id) }}" onclick="return confirm('¿Realmente desea eliminar la película {{ $m->title }}?')" class="btn btn-danger btn-xs">
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                                </a> -->
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th class="text-center">Título</th>
-                                    <th class="text-center">Portada</th>
-                                    <th class="text-center">Categoría</th>
-                                    <th class="text-center">Generos</th>
-                                    <th class="text-center">Estatus</th>
-                                    <th class="text-center">Fecha de registro</th>
-                                    <th class="text-center">N° de compras</th>
-                                    <th class="text-center">Acciones</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                    <div class="card-content">
+                        <div class="col m12">
+                            <p class=""> {{ $m->title }}</p>
+                        </div>
+                        <div class="col m12 ">
+                            <small><b>Estatus:</b> {{ $m->status }}</small>
+                        </div>
+                        
+                            <small><b>N° de compras</b> {{$m->transaction->count()}}</small> 
                     </div>
-                    <!-- /.box-body -->
+                  </div>
                 </div>
-                <!-- /.box -->
+                @endif
+                @endforeach
             </div>
-        </div>
-        <div class="col-md-offset-9">
-            <a href="{{ route('movies.create') }}" class="btn btn-info">
-                <b class="box-header with-border bg bg-black-gradient">
-                    <div class="box-title">
-                        <i class="fa fa-film"></i>
-                        <span>
-                            Agregar más películas
-                        </span>
-                    </div>
-                </b>
-            </a>
-        </div>
-    </section>
-@endsection
+            {{$movie->links()}}
+            @else
+            <div class="col m12">
+            <blockquote >
+                <i class="material-icons fixed-width large grey-text">Movie</i><br><h5>No Posee películas registradas</h5>
+            </blockquote>
+            <br>
+            </div>
+            @endif
 
+            <a href="{{ route('movies.create') }}" class="btn curvaBoton waves-effect waves-light green">   
+                <span>Agregar más películas</span>
+            </a>       
+        </div>
+    </div>
+</div>
+@endsection
 @section('js')
-    <!--DataTables-->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <script>
-        $(function () {
-            $('#example1').DataTable({
-                "language": {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
-                "order": [[ 5, "desc" ]],
-            });
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
-        })
-    </script>
 @endsection

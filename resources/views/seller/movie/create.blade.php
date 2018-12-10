@@ -3,11 +3,12 @@
     <style>
         #image-preview {
             width: 100%;
-            height: 450px;
+            height: 400px;
             position: relative;
             overflow: hidden;
             background-color: #ffffff;
             color: #2b81af;
+            border-radius: 10px;
         }
 
         #image-preview input {
@@ -24,7 +25,7 @@
             opacity: 0.8;
             cursor: pointer;
             background-color: #bdc3c7;
-            width: 50%;
+            width: 80%;
             height: 50px;
             font-size: 20px;
             line-height: 50px;
@@ -52,6 +53,44 @@
         }
 
         /*es es del modal de autor*/
+        #imageAM-preview {
+            width: 100%;
+            height: 305px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #2b81af;
+            border-radius: 10px;
+        }
+
+        #imageAM-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #imageAM-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
+        /*es es del modal de autor*/
         #imageSM-preview {
             width: 100%;
             height: 380px;
@@ -59,6 +98,7 @@
             overflow: hidden;
             background-color: #ffffff;
             color: #2b81af;
+            border-radius: 10px;
         }
 
         #imageSM-preview input {
@@ -89,397 +129,427 @@
         }
     </style>
     <style>
-        .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
-        .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
-        .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    
     </style>
 @endsection
-
 @section('content')
-
-    <!-- Main content -->
-    <section class="content">
-
-        @if (count($errors)>0)
-            <div class="col-md-6 col-md-offset-3">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li> {{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
-
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                @include('flash::message')
-
-                <div class="box box-primary">
-                    <div class="box-header with-border bg bg-black-gradient">
-                        <h3 class="box-title">Registrar película</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}
+@if (count($errors)>0)
+    <div class="col s6 col-md-offset-3">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
+<div class="row">
+    <div class="col s12 m12">
+        @include('flash::message')
+        <div class="card-panel curva">
+            <h3 class="center">
+                Registrar película 
+            </h3>
+            <br>
+            <div class="row">
+                 {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}
                     {{ Form::token() }}
                     {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
-                    <div class="box-body ">
-
-                        {{--Poster de la pelicula--}}
-                        <div class="col-md-6">
-                            <div id="mensajePortadaPelicula"></div>
-                            <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
-                                <label for="image-upload" id="image-label"> Portada </label>
-                                {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
-                                <div id="list"></div>
-                            </div>
+                <div class="col s12">
+                    {{--Poster de la pelicula--}}
+                    <div class="col s12 m6">
+                        <div id="mensajePortadaPelicula"></div>
+                        <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Portada </label>
+                            {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <div id="list"></div>
                         </div>
-
-                        {{--Selecion tipo de publico de la pelicula--}}
-                        <div class="form-group col-md-6">
-
-                            {{--titulo de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">Título</label>
-                            {!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Titulo de la película','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <div id="mensajeTitulo"></div>
-                            <br>
-
-                            {{--titulo original de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">Título original</label>
-                            {!! Form::text('original_title',null,['class'=>'form-control','placeholder'=>'Titulo original de la película','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
-                             <div id="mensajeTitulOriginal"></div>
-                            <br>
-
-                            {{--precio--}}
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                            {!! Form::number('cost',null,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
-                            <div id="mensajePrecio"></div>
-                            <br>
-
-                            <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <br>
-
-                            {{--Categoria--}}
-                            <label for="tags"> Géneros </label>
-                            <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
-                                @foreach($tags as $genders)
-                                    @if($genders->type_tags=='Peliculas')
-                                        <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalgenero">
-                                Agregar género
-                            </button>
-                            <br>
-                            <br>
-                        </div>
-
-                        <div class="form-group col-md-6">
-
-                            {{--archivo de la pelicula--}}
-                            <label for="exampleInputFile" class="control-label">Cargar película</label>
-                            <div id="mensajePelicula"></div>
+                    </div>
+                    {{--titulo de la pelicula--}}
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix blue-text valign-wrapper">create</i>
+                        <label for="exampleInputFile" class="">Título</label>
+                        {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <div id="mensajeTitulo"></div>
+                        
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{--titulo original de la pelicula--}}
+                        <i class="material-icons prefix blue-text valign-wrapper">create</i>
+                        <label for="exampleInputFile" class="control-label">Título original</label>
+                        {!! Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <div id="mensajeTitulOriginal"></div>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{--precio--}}
+                        <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
+                        <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                        {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
+                        <div id="mensajePrecio"></div>
+                        <br>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{--Categoria--}}
+                        <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                        <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
+                             @foreach($tags as $genders)
+                                @if($genders->type_tags=='Peliculas')
+                                    <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <label for="tags"> Géneros </label>
+                        <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero" >
+                            Agregar género
+                        </button>
+                        <br>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class=" file-field input-field col s12 m6">
+                        <label for="duration" class="control-label">Cargar película</label>
+                        <br><br>
+                        <div id="mensajePelicula"></div>
+                        <div class="btn blue">
+                            <span><i class="material-icons">movie</i></span>
                             {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','control-label','placeholder'=>'Cargar película','id'=>'pelicula','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione la película')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <br>
-
-                            {{--historia de la pelicula --}}
-                            {{--
-                            <label for="exampleInputPassword1" class="control-label">Historia</label>
-                            <div id="cantidadHistoria"></div>
-                            {!! Form::textarea('story',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Historia de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la película')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
-                            <div id="mensajeHistoria"></div>
-                            <br>
-
-                            {{--año de salida de la pelicula --}}
-                            <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
-                            {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'onkeypress' => 'return controltagNum(event)' ,'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
-                            <div id="mensajeFechaLanzamiento"></div>
-                            <br>
-
-                            {{--Basado en un libro o no --}}
-                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
-                            <div id="cantidadSinopsis"></div>
-                            {!! Form::textarea('based_on',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
-                            <div id="mensajeSinopsis"></div>
                         </div>
-
-                        <div class="form-group col-md-6">
-                            {{--selecionar pais--}}
-                            <label class="control-label">Pais</label>
-                            <select  name="country" id="paises" class="form-control" required="required">
-                                <option value="AF">Afganistán</option>
-                                <option value="AL">Albania</option>
-                                <option value="DE">Alemania</option>
-                                <option value="AD">Andorra</option>
-                                <option value="AO">Angola</option>
-                                <option value="AI">Anguilla</option>
-                                <option value="AQ">Antártida</option>
-                                <option value="AG">Antigua y Barbuda</option>
-                                <option value="AN">Antillas Holandesas</option>
-                                <option value="SA">Arabia Saudí</option>
-                                <option value="DZ">Argelia</option>
-                                <option value="AR">Argentina</option>
-                                <option value="AM">Armenia</option>
-                                <option value="AW">Aruba</option>
-                                <option value="AT">Austria</option>
-                                <option value="AZ">Azerbaiyán</option>
-                                <option value="AU">Australia</option>
-                                <option value="BS">Bahamas</option>
-                                <option value="BH">Bahrein</option>
-                                <option value="BD">Bangladesh</option>
-                                <option value="BB">Barbados</option>
-                                <option value="BE">Bélgica</option>
-                                <option value="BZ">Belice</option>
-                                <option value="BJ">Benin</option>
-                                <option value="BM">Bermudas</option>
-                                <option value="BY">Bielorrusia</option>
-                                <option value="MM">Birmania</option>
-                                <option value="BO">Bolivia</option>
-                                <option value="BA">Bosnia y Herzegovina</option>
-                                <option value="BW">Botswana</option>
-                                <option value="BR">Brasil</option>
-                                <option value="BN">Brunei</option>
-                                <option value="BG">Bulgaria</option>
-                                <option value="BF">Burkina Faso</option>
-                                <option value="BI">Burundi</option>
-                                <option value="BT">Bután</option>
-                                <option value="CV">Cabo Verde</option>
-                                <option value="KH">Camboya</option>
-                                <option value="CM">Camerún</option>
-                                <option value="CA">Canadá</option>
-                                <option value="TD">Chad</option>
-                                <option value="CL">Chile</option>
-                                <option value="CN">China</option>
-                                <option value="CY">Chipre</option>
-                                <option value="VA">Ciudad del Vaticano (Santa Sede)</option>
-                                <option value="CO">Colombia</option>
-                                <option value="KM">Comores</option>
-                                <option value="CG">Congo</option>
-                                <option value="CD">Congo, República Democrática del</option>
-                                <option value="KR">Corea</option>
-                                <option value="KP">Corea del Norte</option>
-                                <option value="CI">Costa de Marfíl</option>
-                                <option value="CR">Costa Rica</option>
-                                <option value="HR">Croacia (Hrvatska)</option>
-                                <option value="CU">Cuba</option>
-                                <option value="DK">Dinamarca</option>
-                                <option value="DJ">Djibouti</option>
-                                <option value="DM">Dominica</option>
-                                <option value="EC" selected>Ecuador</option>
-                                <option value="EG">Egipto</option>
-                                <option value="SV">El Salvador</option>
-                                <option value="AE">Emiratos Árabes Unidos</option>
-                                <option value="ER">Eritrea</option>
-                                <option value="SI">Eslovenia</option>
-                                <option value="ES">España</option>
-                                <option value="US">Estados Unidos</option>
-                                <option value="EE">Estonia</option>
-                                <option value="ET">Etiopía</option>
-                                <option value="FJ">Fiji</option>
-                                <option value="PH">Filipinas</option>
-                                <option value="FI">Finlandia</option>
-                                <option value="FR">Francia</option>
-                                <option value="GA">Gabón</option>
-                                <option value="GM">Gambia</option>
-                                <option value="GE">Georgia</option>
-                                <option value="GH">Ghana</option>
-                                <option value="GI">Gibraltar</option>
-                                <option value="GD">Granada</option>
-                                <option value="GR">Grecia</option>
-                                <option value="GL">Groenlandia</option>
-                                <option value="GP">Guadalupe</option>
-                                <option value="GU">Guam</option>
-                                <option value="GT">Guatemala</option>
-                                <option value="GY">Guayana</option>
-                                <option value="GF">Guayana Francesa</option>
-                                <option value="GN">Guinea</option>
-                                <option value="GQ">Guinea Ecuatorial</option>
-                                <option value="GW">Guinea-Bissau</option>
-                                <option value="HT">Haití</option>
-                                <option value="HN">Honduras</option>
-                                <option value="HU">Hungría</option>
-                                <option value="IN">India</option>
-                                <option value="ID">Indonesia</option>
-                                <option value="IQ">Irak</option>
-                                <option value="IR">Irán</option>
-                                <option value="IE">Irlanda</option>
-                                <option value="BV">Isla Bouvet</option>
-                                <option value="CX">Isla de Christmas</option>
-                                <option value="IS">Islandia</option>
-                                <option value="KY">Islas Caimán</option>
-                                <option value="CK">Islas Cook</option>
-                                <option value="CC">Islas de Cocos o Keeling</option>
-                                <option value="FO">Islas Faroe</option>
-                                <option value="HM">Islas Heard y McDonald</option>
-                                <option value="FK">Islas Malvinas</option>
-                                <option value="MP">Islas Marianas del Norte</option>
-                                <option value="MH">Islas Marshall</option>
-                                <option value="UM">Islas menores de Estados Unidos</option>
-                                <option value="PW">Islas Palau</option>
-                                <option value="SB">Islas Salomón</option>
-                                <option value="SJ">Islas Svalbard y Jan Mayen</option>
-                                <option value="TK">Islas Tokelau</option>
-                                <option value="TC">Islas Turks y Caicos</option>
-                                <option value="VI">Islas Vírgenes (EEUU)</option>
-                                <option value="VG">Islas Vírgenes (Reino Unido)</option>
-                                <option value="WF">Islas Wallis y Futuna</option>
-                                <option value="IL">Israel</option>
-                                <option value="IT">Italia</option>
-                                <option value="JM">Jamaica</option>
-                                <option value="JP">Japón</option>
-                                <option value="JO">Jordania</option>
-                                <option value="KZ">Kazajistán</option>
-                                <option value="KE">Kenia</option>
-                                <option value="KG">Kirguizistán</option>
-                                <option value="KI">Kiribati</option>
-                                <option value="KW">Kuwait</option>
-                                <option value="LA">Laos</option>
-                                <option value="LS">Lesotho</option>
-                                <option value="LV">Letonia</option>
-                                <option value="LB">Líbano</option>
-                                <option value="LR">Liberia</option>
-                                <option value="LY">Libia</option>
-                                <option value="LI">Liechtenstein</option>
-                                <option value="LT">Lituania</option>
-                                <option value="LU">Luxemburgo</option>
-                                <option value="MK">Macedonia, Ex-República Yugoslava de</option>
-                                <option value="MG">Madagascar</option>
-                                <option value="MY">Malasia</option>
-                                <option value="MW">Malawi</option>
-                                <option value="MV">Maldivas</option>
-                                <option value="ML">Malí</option>
-                                <option value="MT">Malta</option>
-                                <option value="MA">Marruecos</option>
-                                <option value="MQ">Martinica</option>
-                                <option value="MU">Mauricio</option>
-                                <option value="MR">Mauritania</option>
-                                <option value="YT">Mayotte</option>
-                                <option value="MX">México</option>
-                                <option value="FM">Micronesia</option>
-                                <option value="MD">Moldavia</option>
-                                <option value="MC">Mónaco</option>
-                                <option value="MN">Mongolia</option>
-                                <option value="MS">Montserrat</option>
-                                <option value="MZ">Mozambique</option>
-                                <option value="NA">Namibia</option>
-                                <option value="NR">Nauru</option>
-                                <option value="NP">Nepal</option>
-                                <option value="NI">Nicaragua</option>
-                                <option value="NE">Níger</option>
-                                <option value="NG">Nigeria</option>
-                                <option value="NU">Niue</option>
-                                <option value="NF">Norfolk</option>
-                                <option value="NO">Noruega</option>
-                                <option value="NC">Nueva Caledonia</option>
-                                <option value="NZ">Nueva Zelanda</option>
-                                <option value="OM">Omán</option>
-                                <option value="NL">Países Bajos</option>
-                                <option value="PA">Panamá</option>
-                                <option value="PG">Papúa Nueva Guinea</option>
-                                <option value="PK">Paquistán</option>
-                                <option value="PY">Paraguay</option>
-                                <option value="PE">Perú</option>
-                                <option value="PN">Pitcairn</option>
-                                <option value="PF">Polinesia Francesa</option>
-                                <option value="PL">Polonia</option>
-                                <option value="PT">Portugal</option>
-                                <option value="PR">Puerto Rico</option>
-                                <option value="QA">Qatar</option>
-                                <option value="UK">Reino Unido</option>
-                                <option value="CF">República Centroafricana</option>
-                                <option value="CZ">República Checa</option>
-                                <option value="ZA">República de Sudáfrica</option>
-                                <option value="DO">República Dominicana</option>
-                                <option value="SK">República Eslovaca</option>
-                                <option value="RE">Reunión</option>
-                                <option value="RW">Ruanda</option>
-                                <option value="RO">Rumania</option>
-                                <option value="RU">Rusia</option>
-                                <option value="EH">Sahara Occidental</option>
-                                <option value="KN">Saint Kitts y Nevis</option>
-                                <option value="WS">Samoa</option>
-                                <option value="AS">Samoa Americana</option>
-                                <option value="SM">San Marino</option>
-                                <option value="VC">San Vicente y Granadinas</option>
-                                <option value="SH">Santa Helena</option>
-                                <option value="LC">Santa Lucía</option>
-                                <option value="ST">Santo Tomé y Príncipe</option>
-                                <option value="SN">Senegal</option>
-                                <option value="SC">Seychelles</option>
-                                <option value="SL">Sierra Leona</option>
-                                <option value="SG">Singapur</option>
-                                <option value="SY">Siria</option>
-                                <option value="SO">Somalia</option>
-                                <option value="LK">Sri Lanka</option>
-                                <option value="PM">St Pierre y Miquelon</option>
-                                <option value="SZ">Suazilandia</option>
-                                <option value="SD">Sudán</option>
-                                <option value="SE">Suecia</option>
-                                <option value="CH">Suiza</option>
-                                <option value="SR">Surinam</option>
-                                <option value="TH">Tailandia</option>
-                                <option value="TW">Taiwán</option>
-                                <option value="TZ">Tanzania</option>
-                                <option value="TJ">Tayikistán</option>
-                                <option value="TF">Territorios franceses del Sur</option>
-                                <option value="TP">Timor Oriental</option>
-                                <option value="TG">Togo</option>
-                                <option value="TO">Tonga</option>
-                                <option value="TT">Trinidad y Tobago</option>
-                                <option value="TN">Túnez</option>
-                                <option value="TM">Turkmenistán</option>
-                                <option value="TR">Turquía</option>
-                                <option value="TV">Tuvalu</option>
-                                <option value="UA">Ucrania</option>
-                                <option value="UG">Uganda</option>
-                                <option value="UY">Uruguay</option>
-                                <option value="UZ">Uzbekistán</option>
-                                <option value="VU">Vanuatu</option>
-                                <option value="VE">Venezuela</option>
-                                <option value="VN">Vietnam</option>
-                                <option value="YE">Yemen</option>
-                                <option value="YU">Yugoslavia</option>
-                                <option value="ZM">Zambia</option>
-                                <option value="ZW">Zimbabue</option>
-                            </select>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                        <br>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix blue-text valign-wrapper">star</i>
+                        {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <label for="exampleInputFile" class="control-label">Categoría</label>
+                        <br>
+                    </div>
+                    
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
+                        <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                        {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'onkeypress' => 'return controltagNum(event)' ,'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
+                        <div id="mensajeFechaLanzamiento"></div>
+                        <br>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{--selecione el pais--}}
+                                        <i class="material-icons prefix blue-text valign-wrapper">room</i>
+                                        <select  name="country" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
+                                            <option value="AF">Afganistán</option>
+                                            <option value="AL">Albania</option>
+                                            <option value="DE">Alemania</option>
+                                            <option value="AD">Andorra</option>
+                                            <option value="AO">Angola</option>
+                                            <option value="AI">Anguilla</option>
+                                            <option value="AQ">Antártida</option>
+                                            <option value="AG">Antigua y Barbuda</option>
+                                            <option value="AN">Antillas Holandesas</option>
+                                            <option value="SA">Arabia Saudí</option>
+                                            <option value="DZ">Argelia</option>
+                                            <option value="AR">Argentina</option>
+                                            <option value="AM">Armenia</option>
+                                            <option value="AW">Aruba</option>
+                                            <option value="AT">Austria</option>
+                                            <option value="AZ">Azerbaiyán</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="BS">Bahamas</option>
+                                            <option value="BH">Bahrein</option>
+                                            <option value="BD">Bangladesh</option>
+                                            <option value="BB">Barbados</option>
+                                            <option value="BE">Bélgica</option>
+                                            <option value="BZ">Belice</option>
+                                            <option value="BJ">Benin</option>
+                                            <option value="BM">Bermudas</option>
+                                            <option value="BY">Bielorrusia</option>
+                                            <option value="MM">Birmania</option>
+                                            <option value="BO">Bolivia</option>
+                                            <option value="BA">Bosnia y Herzegovina</option>
+                                            <option value="BW">Botswana</option>
+                                            <option value="BR">Brasil</option>
+                                            <option value="BN">Brunei</option>
+                                            <option value="BG">Bulgaria</option>
+                                            <option value="BF">Burkina Faso</option>
+                                            <option value="BI">Burundi</option>
+                                            <option value="BT">Bután</option>
+                                            <option value="CV">Cabo Verde</option>
+                                            <option value="KH">Camboya</option>
+                                            <option value="CM">Camerún</option>
+                                            <option value="CA">Canadá</option>
+                                            <option value="TD">Chad</option>
+                                            <option value="CL">Chile</option>
+                                            <option value="CN">China</option>
+                                            <option value="CY">Chipre</option>
+                                            <option value="VA">Ciudad del Vaticano (Santa Sede)</option>
+                                            <option value="CO">Colombia</option>
+                                            <option value="KM">Comores</option>
+                                            <option value="CG">Congo</option>
+                                            <option value="CD">Congo, República Democrática del</option>
+                                            <option value="KR">Corea</option>
+                                            <option value="KP">Corea del Norte</option>
+                                            <option value="CI">Costa de Marfíl</option>
+                                            <option value="CR">Costa Rica</option>
+                                            <option value="HR">Croacia (Hrvatska)</option>
+                                            <option value="CU">Cuba</option>
+                                            <option value="DK">Dinamarca</option>
+                                            <option value="DJ">Djibouti</option>
+                                            <option value="DM">Dominica</option>
+                                            <option value="EC" selected>Ecuador</option>
+                                            <option value="EG">Egipto</option>
+                                            <option value="SV">El Salvador</option>
+                                            <option value="AE">Emiratos Árabes Unidos</option>
+                                            <option value="ER">Eritrea</option>
+                                            <option value="SI">Eslovenia</option>
+                                            <option value="ES">España</option>
+                                            <option value="US">Estados Unidos</option>
+                                            <option value="EE">Estonia</option>
+                                            <option value="ET">Etiopía</option>
+                                            <option value="FJ">Fiji</option>
+                                            <option value="PH">Filipinas</option>
+                                            <option value="FI">Finlandia</option>
+                                            <option value="FR">Francia</option>
+                                            <option value="GA">Gabón</option>
+                                            <option value="GM">Gambia</option>
+                                            <option value="GE">Georgia</option>
+                                            <option value="GH">Ghana</option>
+                                            <option value="GI">Gibraltar</option>
+                                            <option value="GD">Granada</option>
+                                            <option value="GR">Grecia</option>
+                                            <option value="GL">Groenlandia</option>
+                                            <option value="GP">Guadalupe</option>
+                                            <option value="GU">Guam</option>
+                                            <option value="GT">Guatemala</option>
+                                            <option value="GY">Guayana</option>
+                                            <option value="GF">Guayana Francesa</option>
+                                            <option value="GN">Guinea</option>
+                                            <option value="GQ">Guinea Ecuatorial</option>
+                                            <option value="GW">Guinea-Bissau</option>
+                                            <option value="HT">Haití</option>
+                                            <option value="HN">Honduras</option>
+                                            <option value="HU">Hungría</option>
+                                            <option value="IN">India</option>
+                                            <option value="ID">Indonesia</option>
+                                            <option value="IQ">Irak</option>
+                                            <option value="IR">Irán</option>
+                                            <option value="IE">Irlanda</option>
+                                            <option value="BV">Isla Bouvet</option>
+                                            <option value="CX">Isla de Christmas</option>
+                                            <option value="IS">Islandia</option>
+                                            <option value="KY">Islas Caimán</option>
+                                            <option value="CK">Islas Cook</option>
+                                            <option value="CC">Islas de Cocos o Keeling</option>
+                                            <option value="FO">Islas Faroe</option>
+                                            <option value="HM">Islas Heard y McDonald</option>
+                                            <option value="FK">Islas Malvinas</option>
+                                            <option value="MP">Islas Marianas del Norte</option>
+                                            <option value="MH">Islas Marshall</option>
+                                            <option value="UM">Islas menores de Estados Unidos</option>
+                                            <option value="PW">Islas Palau</option>
+                                            <option value="SB">Islas Salomón</option>
+                                            <option value="SJ">Islas Svalbard y Jan Mayen</option>
+                                            <option value="TK">Islas Tokelau</option>
+                                            <option value="TC">Islas Turks y Caicos</option>
+                                            <option value="VI">Islas Vírgenes (EEUU)</option>
+                                            <option value="VG">Islas Vírgenes (Reino Unido)</option>
+                                            <option value="WF">Islas Wallis y Futuna</option>
+                                            <option value="IL">Israel</option>
+                                            <option value="IT">Italia</option>
+                                            <option value="JM">Jamaica</option>
+                                            <option value="JP">Japón</option>
+                                            <option value="JO">Jordania</option>
+                                            <option value="KZ">Kazajistán</option>
+                                            <option value="KE">Kenia</option>
+                                            <option value="KG">Kirguizistán</option>
+                                            <option value="KI">Kiribati</option>
+                                            <option value="KW">Kuwait</option>
+                                            <option value="LA">Laos</option>
+                                            <option value="LS">Lesotho</option>
+                                            <option value="LV">Letonia</option>
+                                            <option value="LB">Líbano</option>
+                                            <option value="LR">Liberia</option>
+                                            <option value="LY">Libia</option>
+                                            <option value="LI">Liechtenstein</option>
+                                            <option value="LT">Lituania</option>
+                                            <option value="LU">Luxemburgo</option>
+                                            <option value="MK">Macedonia, Ex-República Yugoslava de</option>
+                                            <option value="MG">Madagascar</option>
+                                            <option value="MY">Malasia</option>
+                                            <option value="MW">Malawi</option>
+                                            <option value="MV">Maldivas</option>
+                                            <option value="ML">Malí</option>
+                                            <option value="MT">Malta</option>
+                                            <option value="MA">Marruecos</option>
+                                            <option value="MQ">Martinica</option>
+                                            <option value="MU">Mauricio</option>
+                                            <option value="MR">Mauritania</option>
+                                            <option value="YT">Mayotte</option>
+                                            <option value="MX">México</option>
+                                            <option value="FM">Micronesia</option>
+                                            <option value="MD">Moldavia</option>
+                                            <option value="MC">Mónaco</option>
+                                            <option value="MN">Mongolia</option>
+                                            <option value="MS">Montserrat</option>
+                                            <option value="MZ">Mozambique</option>
+                                            <option value="NA">Namibia</option>
+                                            <option value="NR">Nauru</option>
+                                            <option value="NP">Nepal</option>
+                                            <option value="NI">Nicaragua</option>
+                                            <option value="NE">Níger</option>
+                                            <option value="NG">Nigeria</option>
+                                            <option value="NU">Niue</option>
+                                            <option value="NF">Norfolk</option>
+                                            <option value="NO">Noruega</option>
+                                            <option value="NC">Nueva Caledonia</option>
+                                            <option value="NZ">Nueva Zelanda</option>
+                                            <option value="OM">Omán</option>
+                                            <option value="NL">Países Bajos</option>
+                                            <option value="PA">Panamá</option>
+                                            <option value="PG">Papúa Nueva Guinea</option>
+                                            <option value="PK">Paquistán</option>
+                                            <option value="PY">Paraguay</option>
+                                            <option value="PE">Perú</option>
+                                            <option value="PN">Pitcairn</option>
+                                            <option value="PF">Polinesia Francesa</option>
+                                            <option value="PL">Polonia</option>
+                                            <option value="PT">Portugal</option>
+                                            <option value="PR">Puerto Rico</option>
+                                            <option value="QA">Qatar</option>
+                                            <option value="UK">Reino Unido</option>
+                                            <option value="CF">República Centroafricana</option>
+                                            <option value="CZ">República Checa</option>
+                                            <option value="ZA">República de Sudáfrica</option>
+                                            <option value="DO">República Dominicana</option>
+                                            <option value="SK">República Eslovaca</option>
+                                            <option value="RE">Reunión</option>
+                                            <option value="RW">Ruanda</option>
+                                            <option value="RO">Rumania</option>
+                                            <option value="RU">Rusia</option>
+                                            <option value="EH">Sahara Occidental</option>
+                                            <option value="KN">Saint Kitts y Nevis</option>
+                                            <option value="WS">Samoa</option>
+                                            <option value="AS">Samoa Americana</option>
+                                            <option value="SM">San Marino</option>
+                                            <option value="VC">San Vicente y Granadinas</option>
+                                            <option value="SH">Santa Helena</option>
+                                            <option value="LC">Santa Lucía</option>
+                                            <option value="ST">Santo Tomé y Príncipe</option>
+                                            <option value="SN">Senegal</option>
+                                            <option value="SC">Seychelles</option>
+                                            <option value="SL">Sierra Leona</option>
+                                            <option value="SG">Singapur</option>
+                                            <option value="SY">Siria</option>
+                                            <option value="SO">Somalia</option>
+                                            <option value="LK">Sri Lanka</option>
+                                            <option value="PM">St Pierre y Miquelon</option>
+                                            <option value="SZ">Suazilandia</option>
+                                            <option value="SD">Sudán</option>
+                                            <option value="SE">Suecia</option>
+                                            <option value="CH">Suiza</option>
+                                            <option value="SR">Surinam</option>
+                                            <option value="TH">Tailandia</option>
+                                            <option value="TW">Taiwán</option>
+                                            <option value="TZ">Tanzania</option>
+                                            <option value="TJ">Tayikistán</option>
+                                            <option value="TF">Territorios franceses del Sur</option>
+                                            <option value="TP">Timor Oriental</option>
+                                            <option value="TG">Togo</option>
+                                            <option value="TO">Tonga</option>
+                                            <option value="TT">Trinidad y Tobago</option>
+                                            <option value="TN">Túnez</option>
+                                            <option value="TM">Turkmenistán</option>
+                                            <option value="TR">Turquía</option>
+                                            <option value="TV">Tuvalu</option>
+                                            <option value="UA">Ucrania</option>
+                                            <option value="UG">Uganda</option>
+                                            <option value="UY">Uruguay</option>
+                                            <option value="UZ">Uzbekistán</option>
+                                            <option value="VU">Vanuatu</option>
+                                            <option value="VE">Venezuela</option>
+                                            <option value="VN">Vietnam</option>
+                                            <option value="YE">Yemen</option>
+                                            <option value="YU">Yugoslavia</option>
+                                            <option value="ZM">Zambia</option>
+                                            <option value="ZW">Zimbabue</option>
+                                        </select>
+                                        <label class="paises"> País</label>
+                                        <br>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
+                        <label for="trailer_url" class="control-label">Link del trailer</label>
+                        {!! Form::url('trailer_url',null,['class'=>'form-control','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
+                        <div id="mensajeLink"></div>
+                        <br>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        {{--Basado en un libro o no --}}
+                        <i class="material-icons prefix blue-text valign-wrapper">movie</i>
+                        <label for="based_on" class="control-label">Sinopsis</label>
+                        <div id="cantidadSinopsis"></div>
+                        {!! Form::textarea('based_on',null,['class'=>'materialize-textarea','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
+                        <div id="mensajeSinopsis"></div>
+                    </div>
+                </div>
+                <div class="col s12 m12">
+                    <label class="control-label"> ¿Pertenece a una saga? </label>
                             <br>
-
-                            {{--link--}}
-                            <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
-                            {!! Form::url('trailer_url',null,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
-                            <div id="mensajeLink"></div>
-                            <br>
-                            
-                            <label class="control-label"> ¿Pertenece a una saga? </label>
-                            <br>
-                            <div class="radio-inline">
+                            <div class="">
                                 <label for="option-1">
-                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
                                     <span class="mdl-radio__label">Si</span>
                                 </label>
-                            </div>
-                            <div class="radio-inline">
                                 <label for="option-2">
-                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
                                     <span class="mdl-radio__label">No</span>
                                 </label>
                             </div>
                             <br>
-
-                            <div class="" style="display:none" id="if_si">
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione una saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
-                                <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-defaultMS">
-                                    <i class="fa fa-book"></i> 
-                                    Agregar saga
-                                </a>
-                                <br>
-                                <br>
-
+                    <div class="" style="display:none" id="if_si">
+                        <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                        {!! Form::select('saga_id',$saga,null,['class'=>'form-control select-saga','placeholder'=>'Selecione una saga','id'=>'sagas', 'oninvalid'=>"this.setCustomValidity('Ingrese el nombre de la saga')", 'oninput'=>"setCustomValidity('')"]) !!}
+                        <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="#modal-defaultMS">
+                            <i class="fa fa-book"></i>
+                            Agregar saga
+                        </a>
+                        <br>
+                        <br>
                                 {{--
                                 <div id="mensajeAntes"></div>
                                 <label for="exampleInputPassword1" class="control-label">Antes</label>
@@ -490,124 +560,171 @@
                                 <div id="mensajeDespues"></div>
                                 {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
                                 --}}
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="progress">
-                                <div class="bar"></div >
-                                <div class="percent">0%</div >
-                            </div>
-                            <div class="text-center">
-                                {!! Form::submit('Registrar película', ['class' => 'btn btn-primary','id'=>'registrarPelicula']) !!}
-                            </div>
-                        </div>
                     </div>
-                    <!-- /.box-body -->
+                    </div>
+                    <div class="">
+            <div class="progress">
+                <div class="bar"></div >
+                <div class="percent">0%</div >
+            </div>
+            <div class="text-center">
+                
+                <button class="btn curvaBoton waves-effect waves-light green" type="submit" id="registrarPelicula" >Registrar película</button>
+            </div>
+        </div>
+       
                 </div>
-            {!! Form::close() !!}
+            </div>
+             {!! Form::close() !!}
         </div>
     </div>
-    <!-- /.modal  de sagas  -->
-    <div class="modal fade in modal-primary" id="modal-defaultMS">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h1 class="modal-title text-center">Agregar saga</h1>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true', 'id' => 'registro' ]) !!}
-                    {{ Form::token() }}
-                    <div class="box-body">
-                        <div class="col-md-6">
-                            
-                            {{--Imagen--}}
-                            <div id="mensajePortadaSaga"></div>
-                            <div id="imageSM-preview" style="border:#646464 1px solid ;" class="form-group">
-                                <label for="imageSM-upload" id="image-label"> Imagen de la Saga</label>
-                                {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','style'=>'border:#000000','1px solid ;']) !!}
-                                <div id="listModal"></div>
-                            </div>
-
+</div>
+        <!-- /.modal  de sagas  -->
+<div id="modal-defaultMS" class="modal">
+    <div class="modal-content center blue-text">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons">book</i> Agregar saga</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                {!! Form::open(['route'=>'sagas.register', 'method'=>'POST','files' => 'true' ]) !!}
+                {{ Form::token() }}
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        {{--Imagen--}}
+                        <div id="mensajeFotoSaga"></div>
+                        <div id="imageSM-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Imagen de la saga</label>
+                            {!! Form::file('img_saga',['class'=>'form-control-file','control-label','id'=>'imageSM-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')",'style'=>'border:#000000','1px solid ;']) !!}
+                            <div id="fotoSaga"></div>
                         </div>
-                        <div class="form-group col-md-6">
+                    </div>
+
+                        <div class="input-field col s12 m6">
                             {{--seleccion de rating--}}
+                            <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
                             <label for="exampleInputFile" class="control-label">Categoría</label>
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control select-author','placeholder'=>'Selecione una categoría','id'=>'exampleInputFile','required'=>'required']) !!}
-                            <br>
+                            
+                        </div>
 
-                            {{--Nombre de la saga--}}
+                        {{--Nombre de la saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text">create</i>
                             <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','placeholder'=>'Nombre de la saga','required'=>'required']) !!}
+                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
                             <br>
+                        </div>
 
-                            {{--tipo de saga--}}
-                            <label for="exampleInputFile" class="control-label">Tipo de saga</label>
+                        {{--tipo de saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text  valign-wrapper">star</i>
+                            
                             {!! Form::select('type_saga',['2'=>'Peliculas'],null,
                             ['class'=>'form-control select-author','id'=>'exampleInputFile','required'=>'required']) !!}
+                            <label for="exampleInputFile" class="control-label">Tipo de saga</label>
                             <br>
-
-                            {{--Descripcion de  la saga--}}
+                        </div>
+                        {{--Descripcion de  la saga--}}
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix blue-text  valign-wrapper">create</i>
                             <label for="exampleInputPassword1" class="control-label">Descripción</label>
-                            {!! Form::textarea('sag_description',null,['class'=>'form-control','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la saga','id'=>'exampleInputFile','required'=>'required']) !!}
+                            {!! Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']) !!}
                         </div>
-                        <br>
-                    </div>
+                    <br>
                     <div align="center">
-                        {!! Form::submit('Guardar saga', ['class' => 'btn btn-primary','id'=>'registrarSaga']) !!}
-                        {!! Form::close() !!}
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <div class="modal-footer">
-                    <div class="box-body">
-                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                    </div>
+                            <button class="btn curvaBoton waves-effect waves-light green" id="guardarSaga">Agregar saga
+                            </button>
+                            {!! Form::close() !!}
+                    </div> 
                 </div>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-
-    <!-- /.modal  de generos  -->
-        <div class="modal modal-primary fade" role="dialog" id="modalgenero">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="padding:35px 50px;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h1 style="text-align: center; color: #fff;">Agregar género</h1>
-                    </div>
-                    <div class="modal-body">
-                        {!! Form::open(['route'=>'tags.store', 'method'=>'POST', 'id'=>'Form1']) !!}
-                        {{ Form::token() }}
-                        {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id,['id'=>'seller_id']) !!}
-                        {!! Form::hidden('type_tags','Peliculas', ['id'=>'type_tags']) !!}
-                        {!! Form::hidden('ruta','Peliculas') !!}
-                        <label for="exampleInputFile" class="control-label">Nuevo género</label>
-                        {!! Form::text('tags_name',null,['class'=>'form-control','placeholder'=>'Ingrese el nuevo género', 'id'=>'new_tag','required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese el nuevo género')",'oninput'=>"setCustomValidity('')"]) !!}
-                        <br>
-                        <div align="center">
-                            {!! Form::submit('Guardar género', ['class' => 'btn btn-primary','id'=>'save-resource', 'onclick'=>'callback()']) !!}
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+    </div>
+</div>
+        <!-- /.modal  de generos  -->
+<div id="modalgenero" class="modal">
+    <div class="modal-content">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons">book</i> Agregar nuevo género</h4>
+            <br>
+        </div>
+        <br>
+       
+                {!! Form::open(['route'=>'tags.store', 'method'=>'POST','files' => 'true' ]) !!}
+                {{ Form::token() }}
+                <div class="row">
+                    <div class="col s12">
+                        <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id}}" id="seller_id">
+                        <input type="hidden" name="type_tags" value="Peliculas" id="type_tags">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                            <label for="new_tag" class="control-label">Nuevo género</label>
+                            
+                            <input type="text" name="tags_name" class="form-control"  id="new_tag" required="required" >
+                            <div id="mensajegeneronuevo"></div>
                         </div>
-                        {!! Form::close() !!}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>  
+                        <br>
                     </div>
                 </div>
-            </div>
-        </div>
-    <!-- /.modal -->
-
-    </section>
+                <div align="center">
+                    <button class="btn curvaBoton waves-effect waves-light green"  id="save-resource" onclick="callback()">Guardar género</button>
+                </div>
+            
+        
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+    </div>
+</div>
 
 @endsection
-
 @section('js')
+
+<script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+
+
+       
+    </script>
 <script type="text/javascript">
     
        function callback() {
