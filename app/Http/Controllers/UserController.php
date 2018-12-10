@@ -161,7 +161,6 @@ class UserController extends Controller
         if ($user->verify==2) {
             $user->verify = 0;
         }
-
         
         if ($request->type != null){
             $user->type= $request->type;
@@ -192,7 +191,6 @@ class UserController extends Controller
         if ($request->hasFile('img_doc'))
         {
 
-
          $nombre = $this->sinAcento($request->name);
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
@@ -200,10 +198,8 @@ class UserController extends Controller
          $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
-
-         $real_path='/user/'.$user->id.'/profile/'.$name;
          
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;             
+         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;             
         }
      
         //dd($request->all());

@@ -17,7 +17,7 @@
           <br>
 
           {{--Peliculas--}}
-          @if($Movies!=null)
+          @if(count($Movies)>0)
             <span class="card-title grey-text"><h4><i class="material-icons">local_movies</i> Peliculas</h4></span>
             <div class="row">
               @foreach($Movies as $m)
@@ -33,7 +33,7 @@
           @endif
 
           {{--Musica--}}
-          @if(!$Albums)
+          @if(count($Albums)>0)
             <span class="card-title grey-text"><h4><i class="material-icons">music_note</i> Música</h4></span>
             <div class="row">
               @foreach($Albums as $a)
@@ -49,7 +49,7 @@
           @endif
 
           {{--libros--}}
-          @if($Book!=null)
+          @if(count($Book)> 0)
             <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
             <span class="card-title grey-text"><h5><i class="material-icons">bookmark</i> Libro</h5></span>
             <div class="row">
@@ -66,7 +66,7 @@
           @endif
 
           {{--Revista--}}
-          @if($Megazines!=null)
+          @if(count($Megazines)> 0)
             <span class="card-title grey-text"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
             <div class="row">
               @foreach($Megazines as $m)
@@ -82,7 +82,7 @@
           @endif
 
           {{--Radio--}}
-          @if(!$Radio!=null)
+          @if(count($Radio)>0)
             <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
             <div class="row">
               @foreach($Radio as $r)
@@ -98,7 +98,7 @@
           @endif
 
           {{--tv--}}
-          @if(!$Tv!=null)
+          @if(count($Tv)>0)
             <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
             <div class="row">
               @foreach($Tv as $tv)

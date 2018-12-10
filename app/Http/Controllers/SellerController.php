@@ -372,7 +372,7 @@ class SellerController extends Controller
         if ($request->adj_ruc <> null) {
             $file1 = $request->file('adj_ruc');
             $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
-            $path1 = public_path() . '/images/producer/ruc';
+            $path1 = public_path() . '/images/producer/ruc/';
             $file1->move($path1, $name1);
             $seller->adj_ruc = '/images/producer/ruc/'.$name1;
         }
@@ -389,7 +389,7 @@ class SellerController extends Controller
         $seller->email = $request->email;
         $seller->tlf = $request->phone;
         $seller->ruc_s = $request->ruc_s;
-        //$seller->address = $request->direccion;
+        $seller->address = $request->direccion;
         $seller->save();
 
         Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();

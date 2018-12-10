@@ -44,12 +44,12 @@
                   <div class="col s12 m3">
                     <div class="card">
                       <div class="card-image">
-                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px">
+                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px" onclick="masInfo('libro',{!!$b->id!!})">
                     </div>
                   </div>
                 </div>
               @endforeach
-                      </div>
+              </div>
             @endif
 
         <!--CONTENIDO RECIENTE REVISTAS-->
@@ -65,7 +65,7 @@
                   </div>
                 </div>
               @endforeach
-                      </div>
+              </div>
         @endif
 
         <!--CONTENIDO RECIENTE RADIO-->
@@ -77,7 +77,7 @@
                           <div class="col s12 m3">
                               <div class="card">
                                   <div class="card-image">
-                                      <img src="{{asset($r->logo)}}" height="200px">
+                                      <img src="{{asset($r->logo)}}" height="200px" onclick="masInfo('radio')">
                                   </div>
                               </div>
                           </div>
@@ -111,6 +111,166 @@
   
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
+<script type="text/javascript">
+  function masInfo(tipo) {
+        console.log(tipo);
+        var usuarioActivo = "{{Auth::guest()}}";
+        console.log(usuarioActivo);
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ShowRadio') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="tv") {
+            var ruta = "{{ url('/ShowTv') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="libro") {
+            var ruta = "{{ url('/tbook') }}/"+id;
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } 
+          }
+        } else if (tipo=="musica") {
+            var ruta = "{{ url('/MyMusic') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="cine") {
+            var ruta = "{{ url('/MyMovies') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        }
+    }
+</script>
 <script >
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
