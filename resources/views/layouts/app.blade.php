@@ -114,9 +114,9 @@
                         <div class="user-view blue">
                             <div class="container">
                                 @if(Auth::user()->img_perf)
-                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="{{url('EditProfile')}}"><img src="{{asset(Auth::user()->img_perf)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @else
-                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="{{url('EditProfile')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 @endif
                             </div>
 
