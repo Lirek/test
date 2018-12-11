@@ -8,6 +8,10 @@
     <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+    <!--https://plyr.io/#audio-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
+
+
 
 @yield('css')
     <!--Let browser know website is optimized for mobile-->
@@ -350,20 +354,21 @@
 </body>
 <!-- js placed at the end of the document so the pages load faster -->
 
-<!-- <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>-->
+<!-- <script src="{{--asset('assets/js/jquery-1.8.3.min.js')--}}"></script>-->
 
 <!--common script for all pages-->
-<!--<script src="{{asset('assets/js/common-scripts.js')}}"></script>-->
+<!--<script src="{{--asset('assets/js/common-scripts.js')---}}"></script>-->
 
-<!--<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>-->
-<!--<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>-->
+<!--<script type="text/javascript" src="{{--asset('assets/js/gritter/js/jquery.gritter.js')--}}"></script>-->
+<!--<script type="text/javascript" src="{{--asset('assets/js/gritter-conf.js')--}}"></script>-->
 
 <!--script for this page-->
-<!--<script src="{{asset('assets/js/sparkline-chart.js')}}"></script>-->
-<!--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script>-->
+<!--<script src="{{--asset('assets/js/sparkline-chart.js')--}}"></script>-->
+<!--<script src="{{--asset('assets/js/zabuto_calendar.js')--}}"></script>-->
 
 <!--Script Plyr-->
 <!--<script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>-->
+<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
 
 <!--Datatables-->
 <!--
@@ -374,9 +379,10 @@
 -->
 
 <!--telefono-->
-<!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
-<!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
+<!--<script src="{{-- asset('plugins/telefono/intlTelInput.js') --}}"></script>-->
+<!--<script src="{{-- asset('plugins/telefono/utils.js') --}}"></script>-->
 <!--SCRIPS JS-->
+
 
 <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="{{asset('assets/js/jquery.js') }}"></script>
