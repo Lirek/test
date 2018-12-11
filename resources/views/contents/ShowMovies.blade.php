@@ -1,135 +1,222 @@
 @extends('layouts.app')
 
 @section('css')
-<style type="text/css">
-	
-</style>
+<link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+<style>
+
+    .swal-button--confirm {
+      background-color: #4caf50;
+    }
+      .swal-button--confirm {
+      color: : white;
+    }
+
+  </style>
 @endsection
 
-@section('main')  
-
+@section('main')
 <div class="row">
-    <div class="form-group"> 
-        <div class="row-edit">
-            <div class="col-md-12 col-sm-12 mb">
-            	<div class="control-label">
-            		<div class="white-header">
-            			<div class="col-sm-12 col-xs-12 col-md-12" id="principal">
-            				<h3><span class="card-title"><i class="fa fa-angle-right"> Peliculas</i></span></h3>
-            				<div class="col-md-12  control-label">
-         						<form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">{{ csrf_field() }}
-                    				<input id="seach" name="seach" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
-                    				<button class="btn btn-primary active" type="submit" name="buscar" id="buscar">Buscar Pelicula...</button>		
-       							</form>
-       						</div>
-       						@if($Movie != NULL)
-       							@foreach($Movie as $Movies)
-       								<div class="col-lg-3 col-md-3 col-sm-3 mb" style="margin-top: 2%">
-                    					<div class="content-panel pn-music">
-                        					<div id="profile-01" style="">
-                            				@if($Movies->img_poster)
-                                				<img src="{{asset('movie/poster')}}/{{$Movies->img_poster}}" width="100%" height="220" style="">
-                            				@else
-                                				<img src="#" width="100%" height="220" style="">
-                            				@endif
-                        					</div>
-                        					<div class="profile-01 centered">
-                            					<p><a href="#" data-toggle="modal" data-target="#myModal-{{$Movies->id}}" style="color: #ffff">Ver mas</p></a>
-                        					</div>
-                    					</div><!--/content-panel -->
-                					</div><!--/col-md-4 -->
-                						<!--MODAL-->
-								 <div id="myModal-{{$Movies->id}}" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                      <!-- Modal content-->
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">{{$Movies->title}}</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                        	<div id="panel" class="img-rounded img-responsive av text-center col-lg-12 col-md-12 col-sm-12 mb" style="-webkit-box-shadow: 8px 8px 15px #999;
-            									-moz-box-shadow: 8px 8px 15px #999;
-            									filter: shadow(color=#999999, direction=135, strength=8);
-            									/*Para la Sombra*/
-            									background-image: url('{{asset('movie/poster')}}/{{$Movies->img_poster}}');
-            									margin-top: 5%;
-            									background-position: center center;
-            									width: 100%;
-            									min-height: 150px;
-            									-webkit-background-size: 100%;
-            									-moz-background-size: 100%;
-            									-o-background-size: 100%;
-            									background-size: 100%;
-            									-webkit-background-size: cover;
-            									-moz-background-size: cover;
-            									-o-background-size: cover;
-            									background-size: cover;">
-            									<button type="button" class="btn btn-primary" data-dismiss="modal"   id="modal-confir" style="margin-left: 87%" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')">Adquirir</button>
-                    						</div>
-                    						<div class="col-lg-12 col-md-12 col-sm-12 mb">
-                    							<p><h5><b>Titulo:</b></h5>
-                    							{{ $Movies->title }}</p>
-                    							<p class="sinopsis"><h5><b>Basado en:</b></h5>
-                    							{{ $Movies->based_on }}</p>
-                                
-                    							
-                    						</div>
+  <div class="col s12 m12">
+    <div class="card">
+      <div class="card-content white-text">
+        <span class="grey-text"><h4><b><i class="material-icons small">book</i> Peliculas</b></h4></span>
+                <div class="row">
+                  <div class="input-field col s12 m6 offset-m3">
+                    <form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
+                      {{ csrf_field() }}
+                      <i class="material-icons prefix blue-text">search</i>
+                            <input type="text" id="seach" name="seach" class="validate">
+                            <input type="hidden" name="type" id="type">
+                            <label for="seach">Buscar Pelicula</label><br>
+                            <br>
+                            <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="row">
+                  @if($Movie->count() != 0 )
+                    @foreach($Movie as $Movies)
+                    <div class="col s12 m3">
+                      <div class="card" style="height: 430px">
+                        <div class="card-image">
+                            <a href="#myModal-{{$Movies->id}}" class="modal-trigger">
+                          <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
+                          </a>
+                          <!-- <span class="card-title">Card Title</span> -->
+                          <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                        </div>
+                        <div class="card-content">
+                            <div class="col m12 s12">
+                                <p class="grey-text">{{ $Movies->title }}</p>
+                            </div>
+                            <div class="col m12 s12">
+                                <p class="grey-text"><b>Costo: </b> {{$Movies->cost}} tickets</p> 
+                            </div>
+                        </div>
+                      </div>
+                    </div>
 
-                    						<div class="box-footer no-padding">
-                    							<div class="col-md-8 col-sm-8 col-lg-12">
-                    							<h5><b>Costo:</b> {{$Movies->cost}}</h5>
-                        						<h5><b>Titulo original:</b> {{ $Movies->original_title }} </h5>
-                        						<h5><b> Categoría:</b> {{ $Movies->rating->r_name }} </h5>
-                        						@if($Movies->sagas!=null)
-                                        			<h5><b>Saga:</b> {{ $Book->sagas->sag_name }}</h5>
-                                   			 	@else
-                                        			<h5><b>Saga:</b> No tiene Saga</span></h5>
-                                    			@endif
-                                    				
-                            					<!-- /.widget-user-image -->
-                            					<h5><b>Trailer:</b></h5>
-                            					<div class="plyr__video-embed" id="player">
-    												<iframe src="{{$Movies->trailer_url}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
-												</div>
-                        						<hr>
-                    						</div>
-                    							</div>
-                    						<div class="">
-                                            	<div class="modal-footer">
-                                            	
-                                              		<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                            	</div>
-                                            </div>
-                                        </div>
-                                      </div>
+                    <!--MODAL DETALLE DE LIBRO-->
+                    <div id="myModal-{{$Movies->id}}" class="modal">
+                <div class="modal-content">
+                  <div class="blue"><br>
+                        <h4 class="center white-text" ><i class="small material-icons">movie</i> {{ $Movies->title }}</h4>
+                        <br>
+                  </div>
+                    <div class="col s12 m4 offset-m1">
+                      <br>
+                            <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300"  id="panel">
+                            <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Movies->id}}"onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                            <br><br>
+                        </div>
+                </div>
+                <div class="col m7 s12">
+                  <br>
+                        <ul class="collection z-depth-1" style="color: black">
+                            <li class="collection-item" style="padding: 10px ">
+                                <div class="row">
+                                    <div class="col s12 m5">
+                                        <i class="material-icons circle left">create</i>
+                                        <b class="left">Titulo original: </b>
                                     </div>
-                                  </div>
-                                <!--Fin modal-->
-       							@endforeach
-       						@endif
-            			</div>
-            		</div>
-            	</div>
+                                    <div class="col s12 m7">
+                                        {{ $Movies->original_title }}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="collection-item" style="padding: 10px ">
+                                <div class="row">
+                                    <div class="col s12 m5">
+                                        <i class="material-icons circle left">star</i>
+                                        <b class="left">Categoria: </b>
+                                    </div>
+                                    <div class="col s12 m7">
+                                        {{ $Movies->rating->r_name }}
+                                    </div>
+                                </div>
+                            </li>
+                           @if($Movies->sagas!=null)
+                            <li class="collection-item" style="padding: 10px ">
+                                <div class="row">
+                                    <div class="col s12 m5">
+                                        <i class="material-icons circle left">folder</i>
+                                        <b class="left">Saga: </b>
+                                    </div>
+                                    <div class="col s12 m7">
+                                        {{ $Movies->saga->sag_name }}
+                                    </div>
+                                </div>
+                            </li>
+                            @else
+                            <li class="collection-item" style="padding: 10px ">
+                                <div class="row">
+                                    <div class="col s12 m5">
+                                        <i class="material-icons circle left">folder</i>
+                                        <b class="left">Saga: </b>
+                                    </div>
+                                    <div class="col s12 m7">
+                                        No pertenece a una saga
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+                            <li class="collection-item" style="padding: 10px ">
+                                <div class="row">
+                                    <div class="col s12 m5">
+                                        <i class="material-icons circle left">local_play</i>
+                                        <b class="left">Costo: </b>
+                                    </div>
+                                    <div class="col s12 m7">
+                                        {{ $Movies->cost }} Tickets
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                      </div>
+                      <div class="col s12 m12" style="color: black">
+                        <div class="card-panel">
+                          <b class="left">Historia:</b>
+                          
+                          <p>{{ $Movies->based_on }}</p>
+                        </div>
+                      </div>
+                      <div class="col s12 m12">
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                  </div>
+              </div>
+            </div>
+
+                    @endforeach
+                    <div class="col m12">
+                    {{  $Movie->links() }}
+                    </div>
+                  @else
+                  <div class="col m12">
+                <blockquote >
+                    <i class="material-icons fixed-width large grey-text">movie</i><br><h5 class="grey-text">No hay peliculas disponibles</h5>
+                </blockquote>
+                <br>
+                </div>
+                  @endif
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div id="modal-confirmation"></div>
 @endsection
 @section('js')
+<script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
 
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+
+
+       
+    </script>
 <script type="text/javascript">
 
 const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
 </script>
 
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function fnOpenNormalDialog(cost,name,id) {
-
-
-    swal({
-            title: "Estas seguro?",
+  
+   swal({
+            title: "¿Estas seguro?",
             text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
@@ -145,7 +232,6 @@ function fnOpenNormalDialog(cost,name,id) {
         });
     };
 
-
 function callback(value,id) {
     if (value) {
       swal({
@@ -158,8 +244,8 @@ function callback(value,id) {
                 }
             })
          $.ajax({
-            
-            url:"{{ URL('BuyMovie') }}"+'/'+id,        
+                    
+            url:'BuyMovie/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
@@ -171,19 +257,18 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                        console.log(result);
                     }
                     else if (result==1) 
                     {
-                      swal('La canción ya forma parte de su colección','','error');
-                 
+                      swal('La pelicula ya forma parte de su colección','','error');
                     }
                     else
-                    {	
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
-                      
+                
                       url     : 'MyTickets/'+idUser,
                       type    : 'GET',
                       dataType: "json",
@@ -193,10 +278,9 @@ function callback(value,id) {
                   
                       },
                     });
-                      
-                    swal('Cancion comprada con exito','','success');
-
-                  	}	 
+                      swal('Pelicula comprada con exito','','success');
+                       console.log(result);
+                    }  
                 },
               error: function (result) 
                 {
@@ -209,28 +293,29 @@ function callback(value,id) {
     }
 }
 </script>
-
+<script src="{{asset('assets/js/jquery.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
-	$('#seach').keyup(function(evento){
-		$('#buscar').attr('disabled',true);
-	});
-	$('#buscar').attr('disabled',true);
+  $('#seach').keyup(function(evento){
+    $('#buscar').attr('disabled',true);
+  });
+  $('#buscar').attr('disabled',true);
       $('#seach').autocomplete({
-      	source: "SearchMovie",
-      	minLength: 2,
-      	select: function(event, ui){		
-      		$('#seach').val(ui.item.value);
-      		var valor = ui.item.value;
+        source: "SearchMovie",
+        minLength: 2,
+        select: function(event, ui){    
+          $('#seach').val(ui.item.value);
+          var valor = ui.item.value;
           console.log(valor);
-      		if (valor=='No se encuentra...'){
-      			$('#buscar').attr('disabled',true);
-      			swal('Pelicula no se encuentra regitrada','','error');
-      		}else{
-      			$('#buscar').attr('disabled',false);
-      		}
-      	}
+          if (valor=='No se encuentra...'){
+            $('#buscar').attr('disabled',true);
+            swal('Pelicula no se encuentra regitrada','','error');
+          }else{
+            $('#buscar').attr('disabled',false);
+          }
+        }
 
    });
   });

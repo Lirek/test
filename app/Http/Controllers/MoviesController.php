@@ -10,17 +10,21 @@ use App\Rating;
 use App\Tags;
 use Laracasts\Flash\Flash;
 use File;
+use Auth;
 
 class MoviesController extends Controller
 {
     public function index()
     {
-        $movies = Movie::orderBy('id', 'DESC')->get();
-        $movies->each(function ($movies) {
-            $movies->saga;
-            $movies->rating;
-            $movies->tags_movie;
-        });
+        // $movies = Movie::orderBy('id', 'DESC')->get();
+        // $movies->each(function ($movies) {
+        //     $movies->saga;
+        //     $movies->rating;
+        //     $movies->tags_movie;
+        // });
+        $movies = Movie::where('seller_id',Auth::guard('web_seller')->user()->id)
+                        ->orderBy('id', 'DESC')
+                        ->paginate(8);
 
        //dd($movies);
 
@@ -29,7 +33,7 @@ class MoviesController extends Controller
 
     public function create()
     {
-        $rating = Rating::orderBy('id', 'ASC')->pluck('r_name', 'id');
+        $rating = Rating::orderBy('id', 'DESC')->pluck('r_name', 'id');
         $sagas = Sagas::where('type_saga','Peliculas')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
         $tags = Tags::where('status','Aprobado')->where('type_tags','Peliculas')->get();
 
@@ -41,7 +45,6 @@ class MoviesController extends Controller
 
     public function store(Request $request) {
 
-        //dd($request->all());
         $file = $request->file('img_poster');
         $name = 'poster_'.time().'.'.$file->getClientOriginalExtension();
         $path1 = public_path().'/movie/poster/';
@@ -56,8 +59,10 @@ class MoviesController extends Controller
 
         $movie->img_poster = $name;
         $movie->duration = $names;
+
         $movie->status = 2;
 
+        
         $movie->save();
 
         $movie->tags_movie()->attach($request->tags);

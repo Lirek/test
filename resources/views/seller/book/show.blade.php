@@ -85,64 +85,11 @@
             <br>
             <div class="row">
                 <div class="col s12 m4">
-                    <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" width="100%" height="300" style="bor<der-radius: 10px" id="panel">
+                    <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" width="100%" height="300" style="bor<der-radius: 10px" id="panel" class='materialboxed'>
                     <br><br>
                     <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
                         <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                 </div>
-               <!--  <div class="col s12 m8">
-                    <br>
-                    <div class="right">
-                        <i class="material-icons prefix blue-text valign-wrapper">person</i>
-                        <span><b>N° de compras</b> {{$book->transaction->count()}}</span>
-                    </div>
-                    <div class="left">
-                        <br>
-                        <b>Titulo original: </b><span>"{{ $book->original_title }}"</span>
-                    </div>
-                </div>
-                <div class="col s12 m8">
-                    <div class="left">
-                        <b>Géneros:</b>
-                            @foreach($book->tags_book as $t)
-                                <span class=""> {{ $t->tags_name }} </span>
-                            @endforeach                       
-                    </div>
-                </div>
-                <div class="col s12 m8">
-                    <div class="left">
-                        <b>Categoria:</b> <span class=""> {{ $book->rating->r_name }} </span>
-                    </div>
-                </div>
-                @if($book->saga!=null)
-
-                <div class="col m12">
-                    <b>Saga: </b><span>{{ $book->saga->sag_name }}</span>
-                </div>
-                <div class="col s12 m8">
-                    <b>Antes:</b> <span> {{ $book->before }} </span>
-                </div>
-                <div class="col s12 m8">
-                    <b>Después:</b> <span> {{ $book->after }} </span>
-                </div>
-                @else
-                <div class="col m8">
-                    <div class="left">
-                        <b>Saga: </b><span>No pertenece a una saga</span>
-                    </div>
-                </div>
-                @endif
-                <div class="col m8 s12">
-                    <div class="col m12 s12">
-                        <br><br><br>
-                        <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
-                        <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
-                    </div>
-                </div>
-                <div class="col m12"> 
-                    <h5> <b>Sinopsis:</b></h5>
-                        <p class="text-justify">{{ $book->sinopsis }}</p>
-                </div> -->
                 <div class="col m6 s12">
                     <ul class="collection z-depth-1" >
                         <li class="collection-item" style="padding: 10px ">
@@ -281,4 +228,9 @@
 
 @endsection
 @section('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+</script>
 @endsection

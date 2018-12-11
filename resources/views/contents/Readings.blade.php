@@ -64,7 +64,7 @@
 						            <h4 class="center white-text" ><i class="small material-icons">book</i> {{$Book->title}}</h4>
 						            <br>
 						     	</div>
-						      	<div class="col s12 m4">
+						      	<div class="col s12 m4 offset-m1">
 						      		<br>
 			                    	<img src="{{ asset('images/bookcover/') }}/{{$Book->cover}}" width="100%" height="300"  id="panel">
 			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Book->id}}" onclick="fnOpenNormalDialog('{!!$Book->cost!!}','{!!$Book->title!!}','{!!$Book->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
@@ -147,10 +147,13 @@
 		                        </li>
 		                    </ul>
 		                	</div>
-		                	<div class="col s12 m12" style="color: black">
-		                		<b class="left">Sinopsis:</b>
-		                		<p>{{ $Book->sinopsis }}</p>
-		                	</div>
+                      <div class="col s12 m12" style="color: black">
+                            <div class="card-panel">
+                              <b class="left">Sinopsis:</b>
+                              
+                              <p>{{ $Book->sinopsis }}</p>
+                            </div>
+                      </div>
 		                	<div class="col s12 m12">
 							    <div class="modal-footer">
 							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>

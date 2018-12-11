@@ -142,7 +142,8 @@
                                     <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
                                         <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
                                         <li><a href="{{url('ReadingsMegazines')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
-                                    <!-- <li><a href="{{url('ShowMovies')}}">Peliculas</a></li> -->
+                                        <li><a href="{{url('ShowMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
+                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Series</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>
                                 </div>
@@ -157,6 +158,22 @@
                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
+
+                                <li> <!--Cine-->
+                                    <ul class= "collapsible collapsible-accordion" >
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Cine<i class="material-icons right">expand_more</i></a>
+                                         <div class="collapsible-body">
+                                            <ul>
+                                                <li><a href="{{url('MyMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >theaters</i>Mis Peliculas</a></li>
+                                                <li><a href="#" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
+                                                <li><div class="divider"></div></li>
+                                            </ul>
+                                        </div>
+                                     </li>
+                                    </ul>
+                                </li> <!--End Lecturas-->    
+
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
 

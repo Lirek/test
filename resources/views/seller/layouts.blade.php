@@ -142,7 +142,7 @@
                 <li><!--Seccion de usuario -->
                   <div class="user-view">
                     <div class="container">
-                                @if(Auth::guard('web_seller')->user()->logo)
+                                @if(Auth::guard('web_seller')->user()->logo != 'NULL')
                                     <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil" height="500" width="500"></a><!-- logo user -->
                                 @else
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
