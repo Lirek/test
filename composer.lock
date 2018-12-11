@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "48687a52504f8c9d5b1873ad9c1bc0fb",
+    "content-hash": "198615a5d1f1b9376d82e491f0432462",
     "packages": [
         {
             "name": "acekyd/laravelmp3",
