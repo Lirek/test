@@ -7,6 +7,7 @@
     <!--Import materialize.css-->
     <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--https://materialdesignicons.com/-->
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
     <!--https://plyr.io/#audio-->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
@@ -81,12 +82,25 @@
                             <!-- End logo principal -->
                             <!-- Img Contenido superior -->
                                 <ul class="right" >
-                                    <li>
-                                    <a href="{{ url('ShowRadio')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('ShowTv')}}" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/tv.svg')}}"> </b></a>
-                                    </li>
+                                        <li>
+                                            <a href="{{ url('ShowMovies') }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/cine.svg')}}"> </b></a>
+                                        </li>
+
+                                <!--    <li>
+                                            <a href="{{-- url('')--}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
+                                        </li> -->
+
+                                        <li>
+                                            <a href="{{ url('/ReadingsBooks')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/lectura.svg')}}"> </b></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ url('ShowRadio')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('ShowTv')}}" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/tv.svg')}}"> </b></a>
+                                        </li>
+
                                 </ul>
                         <!-- End Img Contenido superior -->
                         </div><!-- End nav-wrapper -->
@@ -140,10 +154,10 @@
                                 <div class="collapsible-body">
                                     <ul>
                                     <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
-                                        <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
+                                        <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-book-multiple-plus"></i>Libros</a></li>
                                         <li><a href="{{url('ReadingsMegazines')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
                                         <li><a href="{{url('ShowMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
-                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Series</a></li>
+                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-movie-roll"></i>Series</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>
                                 </div>
@@ -172,7 +186,7 @@
                                         </div>
                                      </li>
                                     </ul>
-                                </li> <!--End Lecturas-->    
+                                </li> <!--End cine-->
 
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
