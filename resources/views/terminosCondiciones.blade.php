@@ -425,11 +425,11 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
             <div class="col l3 s12">
                 <h5 class="white-text">Descubrir</h5>
                 <ul>
-                    <li><a class="white-text modal-trigger" href="#modal1">Cine</a></li>
-                    <li><a class="white-text modal-trigger" href="#modal1">Música</a></li>
-                    <li><a class="white-text modal-trigger" href="#modal1">Lectura</a></li>
-                    <li><a class="white-text modal-trigger" href="#modal1">Radio</a></li>
-                    <li><a class="white-text modal-trigger" href="#modal1">TV</a></li>
+                    <li><a class="white-text modal-trigger" onclick="masInfo('cine')">Cine</a></li>
+                    <li><a class="white-text modal-trigger" onclick="masInfo('musica')">Música</a></li>
+                    <li><a class="white-text modal-trigger" onclick="masInfo('lectura')">Lectura</a></li>
+                    <li><a class="white-text modal-trigger" onclick="masInfo('radio')">Radio</a></li>
+                    <li><a class="white-text modal-trigger" onclick="masInfo('tv')">TV</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">
@@ -753,6 +753,195 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
+
+
+function masInfo(tipo) {
+        console.log(tipo);
+        var usuarioActivo = "{{Auth::guest()}}";
+        console.log(usuarioActivo);
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ShowRadio') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="tv") {
+            var ruta = "{{ url('/ShowTv') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="lectura") {
+            var ruta = "{{ url('/MyReads') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="musica") {
+            var ruta = "{{ url('/MyMusic') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        } else if (tipo=="cine") {
+            var ruta = "{{ url('/MyMovies') }}";
+            console.log(ruta);
+            if (usuarioActivo!=1) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+            swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "info",
+                    buttons: {
+                        cancelar: "Cancelar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                .then((confirmacion) => {
+                    console.log(confirmacion);
+                    if(confirmacion=="registrar") {
+                        $('#modal2').modal();
+                        $('#modal2').modal('open');
+                    }else if(confirmacion=="iniciar") {
+                        $('#modal1').modal();
+                        $('#modal1').modal('open');}
+                });
+            }
+        }
+    }
+
 
     // Tabs
     var elem = $('.tabs')

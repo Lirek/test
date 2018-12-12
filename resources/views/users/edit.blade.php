@@ -108,11 +108,11 @@ h5.breadcrumbs-header {
                                 {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
                                 <div id="list">
-                                    @if ($user->img_perfil == 'NULL')
-                                        <img width="70" height="70" name='perf' src="{{asset($user->img_perfil)}}" id="img_perf">
-                                    @else
-                                        <img width="70" height="70" name='perf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
-                                    @endif
+                                    @if(Auth::user()->img_perf)
+                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
+                                @else
+                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
+                                @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -181,33 +181,30 @@ h5.breadcrumbs-header {
                                     </div>
 
                                     <!-- imagen de RUC-->
-                                    <div class="form-group ">
-                                        <div class="col m4">
-                                            {!! Form::label('documento','Foto de su cedula de identidad',['class'=>'control-label']) !!}
-                                        </div>
-                                        <div  class="col m4" >
-                                            @if ($user->img_doc)
-                                                <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                                            @endif
-                                            <div class="col m4 control-label" id="image-preview_ci">
-                                                @if($user->verify == 0 || $user->verify == 2)
-                                                    <div class="file-field input-field col s12">
-                                                        <label for="exampleInputFile" class="control-label">Cargar imagen de RUC</label>
-                                                        <br><br>
-                                                        <div id="mensajeDocumento"></div>
-                                                        <div class="btn blue">
-                                                             <span>seleccione<i class="material-icons right">assignment_ind</i></span>
-                                                            {!! Form::file('adj_ruc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
-                                                        </div>
-                                                        <div class="file-path-wrapper">
-                                                            <input class="file-path validate" type="text">
-                                                        </div>
-                                                    </div>  
-                                                @endif
-                                                <div id="mensajeImgDoc"></div>
-                                            </div>
-                                        </div>
+                            <div class="form-group ">
+                                @if($user->verify == 0 || $user->verify == 2)
+                                <div class="file-field input-field col s12">
+                                    <label for="exampleInputFile" class="control-label">Cargar imagen de cedula</label>
+                                    <br><br>
+                                    <div id="mensajeDocumento"></div>
+                                    <div class="btn blue">
+                                         <span>seleccione<i class="material-icons right">assignment_ind</i></span>
+                                        {!! Form::file('img_doc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                     </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>    
+                                @endif
+                                <div  class="col m4">
+                                    @if ($user->img_doc)
+                                        <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
+                                    @else
+                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>
+                                @endif
+                                </div>
+                            </div>
+
 
                                     <!--sexo-->
                                     <div class="col m12 s12">
@@ -228,11 +225,12 @@ h5.breadcrumbs-header {
                                     </div>
 
                                     <!--fecha de nacimiento-->
+                                    
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">today</i>
-                                        {!! Form::date('fech_nac',$user->fech_nac,['class'=>'form-control']) !!}
+                                        <input type="text" name="fech_nac" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}" class="datepicker" id="fecha">
+                                        <label for="pickdate">Fecha de nacimiento</label>
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">Fecha de nacimiento</label>
                                     </div>
 
                                     <!--direccion-->
@@ -278,14 +276,6 @@ h5.breadcrumbs-header {
         </div>
     </div>
     {!! Form::close() !!}
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -296,6 +286,21 @@ h5.breadcrumbs-header {
 
 
 @section('js')
+<script>
+    $(function() {
+    $('#fecha').datepicker({
+        format: 'dd-mm-yyyy',
+        firstDay: 1,
+        i18n: {
+            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+            weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+        }
+    });
+});
+</script>
 <script type="text/javascript">
     
   document.addEventListener('DOMContentLoaded', function() {
