@@ -83,7 +83,7 @@
                                                     @if($balance['Factura']!=NULL)
                                                         <a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">print</i></a>
                                                     @else
-                                                        <a class="btn-floating btn-large waves-effect waves-light  green" onclick="generarFactura({!!$balance['id_payments']!!})"><i class="material-icons">print</i></a>
+                                                        <a class="btn-floating btn-small waves-effect waves-light  green" onclick="generarFactura({!!$balance['id_payments']!!})"><i class="material-icons">print</i></a>
                                                     @endif
                                                 </td>
                                             @else

@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('css')
+    <style>
+        ul.collection {
+            max-height: 450px;
+            overflow: scroll;
+            list-style-type: none; /* not sure if you need this. Hides bullet list dots */
+        }
 
+        li.collection-item:first-child {
+            background-color: white; /* should be the same as the background color behind the list */
+            position: fixed;
+        }
+    </style>
 @endsection
 @section('main')
   <!-- **********************************************************************************************************************************************************

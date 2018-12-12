@@ -88,31 +88,35 @@
      <!--MODAL PARA ENVIAR REFERIDOS-->
      <div id="myModal" class="modal fade" role="dialog">
          <div class="modal-content">
-             <h5 class="modal-title">Introduzca el Correo que desea invitar</h5>
+
+             <div class=" blue"><br>
+                 <h4 class="center white-text" >Introduzca el Correo que desea invitar</h4>
+                 <br>
+             </div>
              <form class="form-horizontal" method="POST" action="{{url('Invite')}}">{{ csrf_field() }}
 
                  <div class="form-group">
                      <div class="col s12">
-                             Correo del la persona que desea invitar:
-                             <div class="input-field inline">
-                                 <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
-                                 <label for="email_inline">Correo</label>
-                             </div>
-                             <div id="emailMen"></div>
+                         Correo de la persona que desea invitar:
+                         <div class="input-field inline">
+                             <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
+                             <label for="email_inline">Correo</label>
+                         </div>
+                         <div id="emailMen"></div>
                      </div>
 
-                 <div class="form-group">
-                     <div class="col-md-6 col-md-offset-5">
+                     <div class="form-group">
+                         <div class="col-md-6 col-md-offset-5">
 
-                         <button class="btn curvaBoton waves-effect green waves-light" type="submit" id="enviar" name="enviar">Enviar
-                             <i class="material-icons right">send</i>
-                         </button>
+                             <button class="btn curvaBoton waves-effect green waves-light" type="submit" id="enviar" name="enviar">Enviar
+                                 <i class="material-icons right">send</i>
+                             </button>
+                         </div>
                      </div>
-                 </div>
              </form>
          </div>
          <div class="modal-footer">
-             <a href="#!" class="modal-close waves-effect curvaBoton red waves-green btn-flat"><b class="white-text">Salir <i class="material-icons right">close</i></b></a>
+             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
          </div>
 
      </div>
