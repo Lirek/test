@@ -17,6 +17,8 @@ Route::post('register', 'ApiController\AuthController@register');
 
 Route::post('login', 'ApiController\AuthController@login');
 
+Route::post('ExternalPayment', 'ApiController\ExternalOperationsController@PointsPayment');
+
 Route::post('recover', 'ApiController\AuthController@recover');
 
 Route::get('login/{provider}', 'ApiController\AuthController@redirectToProvider');

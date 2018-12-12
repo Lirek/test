@@ -244,6 +244,16 @@ class UserController extends Controller
         $Buy->cost=$request->cost;
         $Buy->value=$request->Cantidad;
         $Buy->method='Deposito';
+        $Buy->status=2;
+        $Buy->reference=$request->references;
+        $Buy->save();
+
+        return Response::json(['status'=>'OK'], 201);
+    }
+
+    public function UploadVoucher($id,Request $request)
+    {
+        $Buy = Payments::find($id);
 
         if ($request->hasFile('voucher'))
         {
@@ -259,12 +269,12 @@ class UserController extends Controller
 
             $Buy->voucher = $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
 
-        }
-        $Buy->status=2;
-        $Buy->reference=$request->references;
-        $Buy->save();
+            $Buy->save();
 
-        return Response::json(['status'=>'OK'], 201);
+            return Response::json(['status'=>'OK'], 201);
+        }
+
+        return Response::json(['status'=>'Error de Archivo'], 204);
     }
 
     public function BuyPayphonePackage(Request $request)
