@@ -18,7 +18,9 @@
 
           {{--Peliculas--}}
           @if(count($Movies)>0)
-            <span class="card-title grey-text"><h4><i class="material-icons">local_movies</i> Peliculas</h4></span>
+            <div class="card">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">local_movies</i> Peliculas</h4></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Movies as $m)
                 <div class="col s12 m3">
@@ -30,11 +32,16 @@
                 </div>
               @endforeach
             </div>
+            {{$Movies->links()}}
+            <br>
+            </div>
           @endif
 
           {{--Musica--}}
           @if(count($Albums)>0)
-            <span class="card-title grey-text"><h4><i class="material-icons">music_note</i> Música</h4></span>
+            <div class="card">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">music_note</i> Música</h4></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Albums as $a)
                 <div class="col s12 m3">
@@ -46,12 +53,17 @@
                 </div>
               @endforeach
             </div>
+            {{$Albums->links()}}
+            <br>
+            </div>
           @endif
 
           {{--libros--}}
           @if(count($Book)> 0)
+            <div class="card">
             <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
-            <span class="card-title grey-text"><h5><i class="material-icons">bookmark</i> Libro</h5></span>
+            <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark</i> Libro</h5></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Book as $b)
                 <div class="col s12 m3">
@@ -63,11 +75,16 @@
                 </div>
               @endforeach
             </div>
+            {{$Book->links()}}
+            <br>
+            </div>
           @endif
 
           {{--Revista--}}
           @if(count($Megazines)> 0)
-            <span class="card-title grey-text"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
+            <div class="card">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Megazines as $m)
                 <div class="col s12 m3">
@@ -79,11 +96,16 @@
                 </div>
               @endforeach
             </div>
+            {{$Megazines->links()}}
+            <br>
+            </div>
           @endif
 
           {{--Radio--}}
           @if(count($Radio)>0)
-            <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
+            <div class="card">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">radio</i> Radio</h4></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Radio as $r)
                 <div class="col s12 m3">
@@ -95,11 +117,16 @@
                 </div>
               @endforeach
             </div>
+            {{$Radio->links()}}
+            <br>
+            </div>
           @endif
 
           {{--tv--}}
           @if(count($Tv)>0)
-            <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
+            <div class="card">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">tv</i> Tv</h4></span>
+            <br><br><br><br>
             <div class="row">
               @foreach($Tv as $tv)
                 <div class="col s12 m3">
@@ -110,6 +137,9 @@
                   </div>
                 </div>
               @endforeach
+            </div>
+            {{$Tv->links()}}
+            <br>
             </div>
           @endif
         </div>

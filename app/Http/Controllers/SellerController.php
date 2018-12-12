@@ -120,14 +120,14 @@ class SellerController extends Controller
             };
 
         };
-        $Tv=$seller->Tv()->orderBy('created_at','desc')->get();
-        $Radio=$seller->Radio()->orderBy('created_at','desc')->get();
-        $Megazines=$seller->Megazines()->orderBy('created_at','desc')->get();
-        $Series=$seller->series()->orderBy('created_at','desc')->get();
-        $Book=$seller->Books()->orderBy('created_at','desc')->get();
-        $Movies=$seller->movies()->orderBy('created_at','desc')->get();
-        $Songs=$seller->songs()->where('album',0)->orderBy('created_at','desc')->get();
-        $Albums= $seller->albums()->orderBy('created_at','desc')->get();
+        $Tv=$seller->Tv()->orderBy('created_at','desc')->paginate(8);
+        $Radio=$seller->Radio()->orderBy('created_at','desc')->paginate(8);
+        $Megazines=$seller->Megazines()->orderBy('created_at','desc')->paginate(8);
+        $Series=$seller->series()->orderBy('created_at','desc')->paginate(8);
+        $Book=$seller->Books()->orderBy('created_at','desc')->paginate(8);
+        $Movies=$seller->movies()->orderBy('created_at','desc')->paginate(8);
+        $Songs=$seller->songs()->where('album',0)->orderBy('created_at','desc')->paginate(8);
+        $Albums= $seller->albums()->orderBy('created_at','desc')->paginate(8);
 
         if ($Movies==NULL) { $Movies=False; }
         if ($Tv==NULL) { $Tv=False; }

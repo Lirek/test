@@ -185,9 +185,8 @@ class UserController extends Controller
          $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
         }
         
-        $user->fech_nac = $request->fech_nac;
+        $user->fech_nac = date("Y-m-d", strtotime($request->fech_nac));
 
-       
         if ($request->hasFile('img_doc'))
         {
 
