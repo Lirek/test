@@ -142,7 +142,7 @@ h5.breadcrumbs-header {
                           <div class="col s12 m12 l8">
                               <ul id="projects-collection" class="collection">
                                     <div class="card-image waves-block" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center">Datos a editar</span>
+                                        <h4 class="titelgeneral">Datos a editar</h4>
                                     </div>
                                     <!--nombre-->
                                     <div class="input-field col s12 ">

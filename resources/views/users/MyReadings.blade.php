@@ -44,7 +44,7 @@
 
 <div class="row">
 
-    <h5>Mis Libros</h5>
+    <h4 class="titelgeneral"><i class="material-icons small">book</i> Mis Libros</h4>
     <br>
 
         <div class="row">

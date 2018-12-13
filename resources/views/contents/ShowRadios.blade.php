@@ -9,7 +9,7 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-				<span class="grey-text"><h4><b><i class="material-icons small">radio</i> Radios</b></h4></span>
+                <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
 
                 <div class="row">
                     <div class="input-field col s12 m6 offset-m3">

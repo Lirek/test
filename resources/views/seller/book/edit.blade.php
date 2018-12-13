@@ -184,9 +184,7 @@
                 @if(\Auth::guard('web_seller')->user()->id === $book->seller_id)
 
                     <div class="card-panel curva ">
-                            <h3 class="center">
-                                Editar libro
-                            </h3>
+                        <h4 class="titelgeneral"><i class="material-icons small">book</i> Editar libro</h4>
                         <br>
                         <div class="row">
                         <!-- /.box-header -->

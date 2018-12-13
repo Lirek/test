@@ -45,10 +45,8 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h3 class="center">
-                Libros registrados 
-            </h3>
-            @if($book->count() != 0 )
+            <h4 class="titelgeneral"><i class="material-icons small">book</i> Libros registrados </h4>
+        @if($book->count() != 0 )
             <div class="row">
                 @foreach($book as $b)
                 @if(Auth::guard('web_seller')->user()->id === $b->seller_id)

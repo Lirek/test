@@ -131,8 +131,8 @@
 		<div class="col s12 m6 l4">
 			<div class="card hoverable">
 				<div class="card-content">
-					<span class="card-title"><h3>Compra de tickets</h3></span>
-					@foreach($package as $ticket)
+					<h4 class="titelgeneral">Compra de tickets</h4>
+				@foreach($package as $ticket)
 						<div class="card hoverable">
 							<div class="card-panel card-title light-blue lighten-1">
 								<div class="white-text">
@@ -325,24 +325,7 @@
 		</div>
 		<div class="col s12 m6 l8">
 			<div class="col s12">
-				<span class="card-title"><h3>Mi Balance</h3></span>
-			</div>
-			<div class="col s12 m4">
-				<h5><b>Total de tickets:</b> {{Auth::user()->credito}}</h5>
-			</div>
-			<div class="col s12 m4">
-				@if(Auth::user()->points)
-					<h5><b>Total de puntos:</b> {{Auth::user()->points}}</h5>
-				@else
-					<h5><b>Total de puntos:</b> 0 </h5>
-				@endif
-			</div>
-			<div class="col s12 m4">
-				@if(Auth::user()->pending_points)
-					<h5><b>Total de puntos pendientes:</b> {{Auth::user()->pending_points}}</h5>
-				@else
-					<h5><b>Total de puntos pendientes:</b> 0 </h5>
-				@endif
+				<h4 class="titelgeneral"><i class="material-icons small">show_chart</i> Mi Balance:</h4>
 			</div>
 			<div class="col s12">
 				<div class="divider"></div>

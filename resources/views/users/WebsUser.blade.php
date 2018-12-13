@@ -18,7 +18,7 @@
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
   <!--main content start-->
-  <h4>Mis referidos:</h4>
+  <h4 class="titelgeneral"><i class="material-icons small">group</i> Mis referidos:</h4>
 
   <!--REFERIR-->
   <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">

@@ -63,9 +63,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h4 class="center">
-                "{{$movie->title}}" ({{$movie->release_year}})
-            </h4>
+            <h4 class="titelgeneral"><i class="mdi mdi-filmstrip"></i>"{{$movie->title}}" ({{$movie->release_year}}) </h4>
             <br>
             <div class="row">
                 <div class="col s12 m4">

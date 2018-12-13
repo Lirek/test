@@ -8,7 +8,7 @@
             <div class="col-md-12 col-sm-12 mb">
                 <div class="control-label">
                 <div class="white-header">
-                     <h3><span class="card-title"><i class="fa fa-angle-right"> Mis Peliculas</i></span></h3>           
+                    <h4 class="titelgeneral"><i class="material-icons small">movie</i> Mis Peliculas</h4>
                 </div>
                 <div class="col-md-12  control-label">
                     <input id="myInput" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
