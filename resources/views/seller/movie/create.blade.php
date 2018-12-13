@@ -181,9 +181,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h3 class="center">
-                Registrar película 
-            </h3>
+            <h4 class="titelgeneral"><i class="mdi mdi-filmstrip"></i> Registrar película</h4>
             <br>
             <div class="row">
                  {!! Form::open(['route'=>'movies.store', 'method'=>'POST','files' => 'true', 'id'=>'registroPelicula' ]) !!}

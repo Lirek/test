@@ -45,9 +45,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h3 class="center">
-                Películas registradas 
-            </h3>
+            <h4 class="titelgeneral"><i class="mdi mdi-filmstrip"></i> Películas registradas </h4>
             @if($movie->count() != 0 )
             <div class="row">
                 @foreach($movie as $m)

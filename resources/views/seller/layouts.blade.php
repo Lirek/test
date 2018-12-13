@@ -6,6 +6,9 @@
         <!--Import materialize.css-->
         <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <!--https://materialdesignicons.com/-->
+        <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+
         <style type="text/css">
              div.error {
       color: red;

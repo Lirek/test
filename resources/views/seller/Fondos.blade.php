@@ -152,7 +152,7 @@
                     <br>
                     <div class="card" style="height: 320px">
                         <br>
-                         <h3><center>Solicitar retiro de fondos</center></h3>
+                        <h4 class="titelgeneral"> Solicitar retiro de fondos</h4>
                          <br> 
                          <div class="input-field col s12 m8 offset-m2">
                             <i class="material-icons prefix blue-text valign-wrapper">local_activity</i>
@@ -169,7 +169,7 @@
                     <br>
                     <div class="">
                         <br>
-                        <h5><center><i class="fa fa-check"></i>Mis solicitudes</center></h5><br>
+                        <h5 class="grey-text"><i class="fa fa-check"></i>Mis solicitudes</h5><br>
                         <div class="col s12 m12">
                             <div class="dataTables_wrapper">
                             <table class="table-responsive" id="myTable" >
