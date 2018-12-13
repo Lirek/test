@@ -291,17 +291,24 @@
                                 <br>
 
                                 {{--precio--}}
-                                <div class="input-field col s12">
+                                <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                                     <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                                     
                                     @if($book->status != 'Aprobado')
-                                        {!! Form::number('cost',$book->cost,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0']) !!}
+                                        {!! Form::number('cost',$book->cost,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999']) !!}
                                         <div id="mensajePrecio"></div>
                                     @else
                                         {!! Form::number('cost',$book->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','readonly']) !!}
                                         <div id="mensajePrecio"></div>
                                     @endif
+                                </div>
+
+                                {{--costo dolar--}}
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix blue-text valign-wrapper">attach_money</i>
+                                    <label  class="control-label">Costo en Dolares</label>
+                                    {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
                                 </div>
                                 
                             </div> 
@@ -958,5 +965,19 @@
     });
 // Para validar los capitulos de las sagas
 //---------------------------------------------------------------------------------------------------
+
+
+
+document.getElementById("conversion").disabled = true;
+var conversionInc=iniciar(document.getElementById("precio").value);
+document.getElementById("conversion").value= conversionInc.toFixed(2);
+
+
+//function keyup para actualizar el campo costo en dolares
+$( "#precio" ).on( 'keyup click', function() {
+    var conversion=ticket_dolar(document.getElementById("precio").value);
+    document.getElementById("conversion").value=conversion.toFixed(2);
+});
+
     </script>
 @endsection
