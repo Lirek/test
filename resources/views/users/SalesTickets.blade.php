@@ -131,8 +131,8 @@
 		<div class="col s12 m6 l4">
 			<div class="card hoverable">
 				<div class="card-content">
-					<span class="card-title"><h3>Compra de tickets</h3></span>
-					@foreach($package as $ticket)
+					<h4 class="titelgeneral">Compra de tickets</h4>
+				@foreach($package as $ticket)
 						<div class="card hoverable">
 							<div class="card-panel card-title light-blue lighten-1">
 								<div class="white-text">
