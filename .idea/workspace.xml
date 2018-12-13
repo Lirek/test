@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Series.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Series.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMovies.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/showMegazine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/showMegazine.blade.php" afterDir="false" />
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,13 +74,13 @@
           <entry key="css" value="4" />
           <entry key="js" value="2" />
           <entry key="paso" value="1" />
-          <entry key="php" value="74" />
+          <entry key="php" value="76" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="64" />
+          <entry key="Blade" value="66" />
           <entry key="CSS" value="4" />
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="10" />
@@ -118,13 +93,13 @@
           <entry key="css" value="379" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="5546" />
+          <entry key="php" value="5601" />
           <entry key="txt" value="337" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="5506" />
+          <entry key="Blade" value="5561" />
           <entry key="CSS" value="379" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="40" />
@@ -170,13 +145,14 @@
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.66" value="1" />
           <entry key="project.open.time.68" value="1" />
+          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.81" value="1" />
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="78" />
+          <entry key="project.opened" value="79" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -189,7 +165,29 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/users/Referals.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+              <folding>
+                <element signature="e#1863#1893#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -242,7 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/seller/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Seller.php" />
@@ -276,7 +273,6 @@
         <option value="$PROJECT_DIR$/resources/views/users/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/paso" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" />
@@ -293,6 +289,8 @@
         <option value="$PROJECT_DIR$/resources/views/layouts(Options)/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/Referals.blade.php" />
       </list>
     </option>
   </component>
@@ -427,6 +425,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -445,16 +454,12 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
             <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -581,6 +586,7 @@
       <workItem from="1544457925666" duration="1766000" />
       <workItem from="1544459911352" duration="1388000" />
       <workItem from="1544463266828" duration="1014000" />
+      <workItem from="1544716935290" duration="2446000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -684,7 +690,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="521640000" />
+    <option name="totallyTimeSpent" value="524086000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -697,8 +703,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23373677" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -781,13 +788,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="1107" column="23" selection-start-line="1107" selection-start-column="17" selection-end-line="1107" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -908,13 +908,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/paso" />
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1079,6 +1072,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
           <caret line="100" column="37" lean-forward="true" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/Referals.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+          <folding>
+            <element signature="e#1863#1893#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

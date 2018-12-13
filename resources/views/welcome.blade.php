@@ -96,8 +96,8 @@
 
     /*evitar que el texto salga*/
     .break-word {
-        word-break: break-all;
-    }
+          word-break: break-all;
+      }
 
     element.style {
         height: 600px; !important;

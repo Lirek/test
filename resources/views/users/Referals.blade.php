@@ -9,47 +9,47 @@
                              <ul class="collection">
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s4"><br>
+                                         <div class="col s12 m4"><br>
                                              <i class="material-icons blue circle prefix">code</i>
                                              <h6 class="left"><b>Mi Código:</b></h6>
                                          </div>
-                                         <div class="col s8 left">
-                                            <h4 class="grey-text">{{Auth::user()->codigo_ref}}</h4>
+                                         <div class="col s12 m8 left">
+                                            <h3 class="grey-text">{{Auth::user()->codigo_ref}}</h3>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s4"><br>
+                                         <div class="col s12 m4"><br>
                                              <i class="material-icons blue circle prefix">reply</i>
                                              <h6 class="left"><b>Mi Enlace:</b></h6>
                                          </div>
-                                         <div class="col s8 left">
+                                         <div class="col s12 m8 left">
                                              <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
                                              <p>
-                                             <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                                             <h6 style="word-break: break-all;"><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
                                              </p>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s4"><br>
+                                         <div class="col s12 m4"><br>
                                              <i class="material-icons blue circle prefix">email</i>
                                              <h6 class="left"><b>Invitar por correo:</b></h6>
                                          </div>
-                                         <div class="col s8 left"><br>
+                                         <div class="col s12 m8 left"><br>
                                              <a href="#myModal"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Enviar</a>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s4"><br><br>
+                                         <div class="col s12 m4"><br><br>
                                              <i class="material-icons blue circle prefix">people</i>
                                              <h6 class="left"><b>Total referidos:</b></h6>
                                          </div>
-                                         <div class="col s8 left">
+                                         <div class="col s12 m8 left">
                                              <p>
                                              <h4 ><a href="#" class="blue-text">
                                                      <center>{{$referals1+$referals2+$referals3}}</center>
@@ -69,7 +69,7 @@
                                      <div class="row">
                                      <div class="col s12 m12">
                                      <h5>Mi código QR:</h5>
-                                         {!! QrCode::size(250)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                                         {!! QrCode::size(150)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
                                          <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr" class="waves-effect green curvaBoton waves-light btn-small"><i class="material-icons right">cloud_download</i>Descargar</a>
 
                                      </div>
