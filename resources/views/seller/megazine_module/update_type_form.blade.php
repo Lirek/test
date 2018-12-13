@@ -106,9 +106,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h3 class="center">
-                Modificar Cadena de Publicaciones
-            </h3>
+            <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Modificar Cadena de Publicaciones} </h4>
             <div class="row">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/type_update',$pub_type->id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}

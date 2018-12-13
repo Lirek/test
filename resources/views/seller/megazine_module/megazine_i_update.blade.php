@@ -184,9 +184,8 @@
                 @if(\Auth::guard('web_seller')->user()->id === $i_megazine->seller_id)
 
                     <div class="card-panel curva ">
-                            <h3 class="center">
-                                Editar revista
-                            </h3>
+                        <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Editar revista  </h4>
+
                         <br>
                         <div class="row">
                         <!-- /.box-header -->

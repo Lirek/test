@@ -73,9 +73,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h4 class="center">
-                "{{ $megazine->title }}"
-            </h4>
+            <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  "{{ $megazine->title }}"</h4>
             <br>
             <div class="row">
                 <div class="col s12 m4">

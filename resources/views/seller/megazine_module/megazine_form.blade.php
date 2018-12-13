@@ -111,10 +111,8 @@
 <div class="col s12 m12">
                 @include('flash::message')
     <div class="card-panel curva">
-                    <h3 class="center">
-                        Registrar revista 
-                    </h3>
-                    <br>
+        <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Registrar revista  </h4>
+        <br>
                     <!-- form start -->
         <form class="form-horizontal" role="form" method="POST" action="{{ url('megazine_save') }}" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
