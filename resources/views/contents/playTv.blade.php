@@ -155,7 +155,7 @@ a:hover {
 
                 @foreach($Tv as $tv)
                     <div class="col s12 m12">
-                        <h5 class="blue-text"> {{$tv->name_r}}</h5>
+                        <h4 class="titelgeneral"><i class="material-icons small">tv</i> {{$tv->name_r}}</h4>
                         <div class="plyr__video" id="player">
                             <iframe align="middle" src="{{asset($tv->streaming)}}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency
                                     allow="autoplay" height="500" width="80%" scrolling="no" border="0" style="border:0px;">

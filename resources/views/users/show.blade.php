@@ -48,9 +48,7 @@
             <div class="card-panel curva" style="padding-bottom: 110px;">
                 <div class="row">
                     <div class="col s12 m12 ">
-                    <h5  class="center">
-                        "{{ $book->title }}" ({{ $book->release_year }})
-                    </h5>
+                        <h4 class="titelgeneral"><i class="material-icons small">book</i> "{{ $book->title }}" ({{ $book->release_year }})</h4>
                     </div>
                 </div>
                 <div class="row">

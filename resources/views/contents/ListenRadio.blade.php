@@ -46,7 +46,7 @@
 
                     <div class="row">
                         <div class="input-field col s12 m3 offset-m4">
-                    <span class="grey-text"><h4><b><i class="material-icons small">radio</i> Radios</b></h4></span>
+                            <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
                         </div>
 
                         <div class="input-field col s12 m4 ">

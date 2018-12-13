@@ -42,8 +42,7 @@
 @section('main')
 
     <div class="row">
-
-        <h5>Mis Revistas</h5>
+        <h4 class="titelgeneral"><i class="mdi mdi-book-open-variant"></i> Mis Revistas</h4>
         <br>
 
         <div class="row">
