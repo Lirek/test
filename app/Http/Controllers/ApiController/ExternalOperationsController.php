@@ -62,5 +62,21 @@ class ExternalOperationsController extends Controller
 	    	}
     	}
     }
+
+    public function test()
+    {
+    	
+    	$client = new Client();
+
+    	return $client->post('https://wwww.sistema1.skytec-sa.com/api/payment_test',
+	    			[
+		    			'form_params' => [
+		        							'status' => 'Error',
+		        							'message' => 'No Posee suficientes Puntos para la transaccion',
+		        							'token'=> $ExternalClient->client_token,
+		        						 ]
+
+	        		]);
+    }
     
 }

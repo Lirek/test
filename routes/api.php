@@ -19,6 +19,8 @@ Route::post('login', 'ApiController\AuthController@login');
 
 Route::post('ExternalPayment', 'ApiController\ExternalOperationsController@PointsPayment');
 
+Route::get('ExternalPaymentTest', 'ApiController\ExternalOperationsController@test');
+
 Route::post('recover', 'ApiController\AuthController@recover');
 
 Route::get('login/{provider}', 'ApiController\AuthController@redirectToProvider');
@@ -87,6 +89,3 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     //-------------------------------------------------------------------------------
 
 });
-
-
-
