@@ -194,7 +194,7 @@
                             Si no selecciona una portada, se mantendrá la actual
                          </label>
                         <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="">
-                            <label for="image-upload" id="image-label"> Portada de la revista </label>
+                            <label for="image-upload" id="image-label"> Portada de la pelicula </label>
                                 @if($movie->status != 'Aprobado')
                                     {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 @endif
@@ -228,19 +228,25 @@
                         @endif
                         <br>
                     </div>
-                    <div class="input-field col s12 m6">
+                    <div class="input-field col s12 m3">
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                         <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                         @if($movie->status != 'Aprobado')
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ,'oninput'=>"maxLengthCheck(this)"]) !!}
+                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ,'max'=>'999' ,'oninput'=>"maxLengthCheck(this)"]) !!}
                         @else
                             {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
                         @endif
                         <div class="" id="mensajePrecio"></div>
                         <!-- <label for="exampleInputPassword1" class="control-label">Costo en dolares</label>
                         {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!} -->
+                    </div>
 
+                    {{--costo dolar--}}
+                    <div class="input-field col s12 m3">
+                        <i class="material-icons prefix blue-text valign-wrapper">attach_money</i>
+                        <label  class="control-label">Costo en Dolares</label>
+                        {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
                     </div>
                     <div class="input-field col s12 m6">
                         {{--Categoria--}}
@@ -1017,6 +1023,9 @@ function maxLengthCheck(object) {
         });
 
 //---------------------------------------------------------------------------------------------------
+
+
+
     </script>
 
 @endsection
