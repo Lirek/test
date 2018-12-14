@@ -9,16 +9,14 @@
 <!-- Si se quiere central lo iconos agregar al DIV style="justify-content: center; display: flex;"-->
   <div class="row">
     <div class="col s12 m12">
-      <div class="card">
         <div class="card-content white-text">
           <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
-
           <br>
-
           
           <?php if(count($Movies)>0): ?>
-            <div class="card">
-            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">local_movies</i> Peliculas</h4></span>
+            <div class="card" style="padding: 0px 20px">
+            <span class="card-title grey-text"><h4><i class="mdi mdi-movie-roll"></i> Cine</h4></span>
+            <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">movie</i> Pelicula</h5></span>
             <br><br><br><br>
             <div class="row">
               <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -37,10 +35,31 @@
             </div>
           <?php endif; ?>
 
+          <?php if(count($Series)>0): ?>
+            <div class="card" style="padding: 0px 20px">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">movie</i> Serie</h5></span>
+            <br><br><br><br>
+            <div class="row">
+              <?php $__currentLoopData = $Series; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col s12 m3">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="<?php echo e(asset($s->img_poster)); ?>" height="300px">
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+            <?php echo e($Series->links()); ?>
+
+            <br>
+            </div>
+          <?php endif; ?>
+
           
           <?php if(count($Albums)>0): ?>
-            <div class="card">
-            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">music_note</i> Música</h4></span>
+            <div class="card" style="padding: 0px 20px">
+            <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">music_note</i> Música</h5></span>
             <br><br><br><br>
             <div class="row">
               <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -61,7 +80,7 @@
 
           
           <?php if(count($Book)> 0): ?>
-            <div class="card">
+            <div class="card" style="padding: 0px 20px">
             <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
             <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark</i> Libro</h5></span>
             <br><br><br><br>
@@ -84,7 +103,7 @@
 
           
           <?php if(count($Megazines)> 0): ?>
-            <div class="card">
+            <div class="card" style="padding: 0px 20px">
             <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
             <br><br><br><br>
             <div class="row">
@@ -106,9 +125,8 @@
 
           
           <?php if(count($Radio)>0): ?>
-            <div class="card">
-            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">radio</i> Radio</h4></span>
-            <br><br><br><br>
+            <div class="card" style="padding: 0px 20px">
+            <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
             <div class="row">
               <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col s12 m3">
@@ -128,9 +146,8 @@
 
           
           <?php if(count($Tv)>0): ?>
-            <div class="card">
-            <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">tv</i> Tv</h4></span>
-            <br><br><br><br>
+            <div class="card" style="padding: 0px 20px">
+            <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
             <div class="row">
               <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col s12 m3">
@@ -147,18 +164,11 @@
             <br>
             </div>
           <?php endif; ?>
-        </div>
       </div>
     </div>
 
-
-
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-<script type="text/javascript">
-
-</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

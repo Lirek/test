@@ -80,12 +80,56 @@
               </div>
         <?php endif; ?>
         
+        <!--contenido de peliculas-->
+        <?php if(count($Movies)> 0): ?>
+            <div class="card">
+              <span class="card-title grey-text"><h4><i class="mdi mdi-movie-roll"></i> Cine</h4></span>
+              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="small material-icons" >movie</i>Pelicula</h5></span>
+              <br><br><br><br>
+              <div class="row">
+                <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" height="300px">
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </div>
+              <?php echo e($Movies->links()); ?>
+
+              <br>
+              </div>
+            <?php endif; ?>
+
+        <!--contenido de series-->
+       <?php if(count($Series)> 0): ?>
+        <div class="card">
+              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="mdi mdi-movie-roll"></i>Serie</h5></span>
+              <br><br><br><br>
+              <div class="row">
+                <?php $__currentLoopData = $Series; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="<?php echo e(asset($s->img_poster)); ?>" height="300px">
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </div>
+              <?php echo e($Series->links()); ?>
+
+              <br>
+              </div>
+        <?php endif; ?>
+        
         <!--CONTENIDO RECIENTE RADIO-->
 
               <?php if(count($Radio)>0): ?>
                 <div class="card">
-                  <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">radio</i> Radio</h4></span>
-                  <br><br><br><br>
+                  <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
                   <div class="row">
                       <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                           <div class="col s12 m3">
@@ -106,8 +150,7 @@
           <!--CONTENIDO RECIENTE DE TV-->
               <?php if(count($Tv)>0): ?>
                 <div class="card">
-                  <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">tv</i> Tv</h4></span>
-                  <br><br><br><br>
+                  <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
                   <div class="row">
                       <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                           <div class="col s12 m3">
@@ -135,166 +178,6 @@
   
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
-<script type="text/javascript">
-  function masInfo(tipo) {
-        console.log(tipo);
-        var usuarioActivo = "<?php echo e(Auth::guest()); ?>";
-        console.log(usuarioActivo);
-        if (tipo=="radio") {
-            var ruta = "<?php echo e(url('/ShowRadio')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-                swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="tv") {
-            var ruta = "<?php echo e(url('/ShowTv')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="libro") {
-            var ruta = "<?php echo e(url('/tbook')); ?>/"+id;
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } 
-          }
-        } else if (tipo=="musica") {
-            var ruta = "<?php echo e(url('/MyMusic')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="cine") {
-            var ruta = "<?php echo e(url('/MyMovies')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        }
-    }
-</script>
 <script >
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -345,21 +228,21 @@ $(document).ready(function(){
 });
 // Validacion cuando el usuario esta rechazado
 //---------------------------------------------------------------------------------------------------
-  $(document).ready(function(){
-  var f1 = document.getElementById('id').value;
-  var f = new Date();
-  var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
+//   $(document).ready(function(){
+//   var f1 = document.getElementById('id').value;
+//   var f = new Date();
+//   var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
 
-  var tiempo=restaFechas(f1,f2);
-  if (tiempo > 15){
-    document.getElementById('referir').style.display='none';  
-  }else{
-    var total=14-tiempo;
-    console.log(tiempo);
-    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
-  }
+//   var tiempo=restaFechas(f1,f2);
+//   if (tiempo > 15){
+//     document.getElementById('referir').style.display='none';  
+//   }else{
+//     var total=14-tiempo;
+//     console.log(tiempo);
+//     document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
+//   }
 
-});
+// });
 restaFechas = function(f1,f2)
  {
  var aFecha1 = f1.split('-');

@@ -49,7 +49,7 @@
 		                            <p class="grey-text"><?php echo e($Book->title); ?></p>
 		                        </div>
 		                        <div class="">
-		                            <small class="grey-text"><b>Autor: </b><?php echo e($Book->author->full_name); ?></small>
+		                            
 		                        </div>
 		                            <small class="grey-text"><b>Costo: </b> <?php echo e($Book->cost); ?> tickets</small> 
 		                    </div>
@@ -63,7 +63,7 @@
 						            <h4 class="center white-text" ><i class="small material-icons">book</i> <?php echo e($Book->title); ?></h4>
 						            <br>
 						     	</div>
-						      	<div class="col s12 m4">
+						      	<div class="col s12 m4 offset-m1">
 						      		<br>
 			                    	<img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($Book->cover); ?>" width="100%" height="300"  id="panel">
 			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.<?php echo e($Book->id); ?>" onclick="fnOpenNormalDialog('<?php echo $Book->cost; ?>','<?php echo $Book->title; ?>','<?php echo $Book->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
@@ -149,10 +149,13 @@
 		                        </li>
 		                    </ul>
 		                	</div>
-		                	<div class="col s12 m12" style="color: black">
-		                		<b class="left">Sinopsis:</b>
-		                		<p><?php echo e($Book->sinopsis); ?></p>
-		                	</div>
+                      <div class="col s12 m12" style="color: black">
+                            <div class="card-panel">
+                              <b class="left">Sinopsis:</b>
+                              
+                              <p><?php echo e($Book->sinopsis); ?></p>
+                            </div>
+                      </div>
 		                	<div class="col s12 m12">
 							    <div class="modal-footer">
 							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>

@@ -7,7 +7,12 @@
     <!--Import materialize.css-->
     <link href="<?php echo e(asset('plugins/materialize_adm/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo e(asset('plugins/materialize_adm/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--https://materialdesignicons.com/-->
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+    <!--https://plyr.io/#audio-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
+
+
 
 <?php echo $__env->yieldContent('css'); ?>
     <!--Let browser know website is optimized for mobile-->
@@ -77,12 +82,25 @@
                             <!-- End logo principal -->
                             <!-- Img Contenido superior -->
                                 <ul class="right" >
-                                    <li>
-                                    <a href="<?php echo e(url('ShowRadio')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/radio.svg')); ?>"> </b></a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo e(url('ShowTv')); ?>" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/tv.svg')); ?>"> </b></a>
-                                    </li>
+                                        <li>
+                                            <a href="<?php echo e(url('ShowMovies')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/cine.svg')); ?>"> </b></a>
+                                        </li>
+
+                                <!--    <li>
+                                            <a href=""  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/musica.svg')); ?>"> </b></a>
+                                        </li> -->
+
+                                        <li>
+                                            <a href="<?php echo e(url('/ReadingsBooks')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/lectura.svg')); ?>"> </b></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="<?php echo e(url('ShowRadio')); ?>"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/radio.svg')); ?>"> </b></a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo e(url('ShowTv')); ?>" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="<?php echo e(asset('sistem_images/type_contents/tv.svg')); ?>"> </b></a>
+                                        </li>
+
                                 </ul>
                         <!-- End Img Contenido superior -->
                         </div><!-- End nav-wrapper -->
@@ -96,9 +114,9 @@
                         <div class="user-view blue">
                             <div class="container">
                                 <?php if(Auth::user()->img_perf): ?>
-                                    <a href="#"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="<?php echo e(url('EditProfile')); ?>"><img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 <?php else: ?>
-                                    <a href="#"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
+                                    <a href="<?php echo e(url('EditProfile')); ?>"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a><!-- logo user -->
                                 <?php endif; ?>
                             </div>
 
@@ -118,6 +136,7 @@
                                     <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
                                         <i class="material-icons ">local_activity</i>&nbsp;Mi balance
                                     </a>
+                                    <p id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333; padding: 0px;" ></p>
                                 </div>
                             </div>
                         </div>
@@ -137,9 +156,10 @@
                                 <div class="collapsible-body">
                                     <ul>
                                     <!-- <li><a href="<?php echo e(url('MusicContent')); ?>">Música</a></li> -->
-                                        <li><a href="<?php echo e(url('ReadingsBooks')); ?>" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
+                                        <li><a href="<?php echo e(url('ReadingsBooks')); ?>" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-book-multiple-plus"></i>Libros</a></li>
                                         <li><a href="<?php echo e(url('ReadingsMegazines')); ?>" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
-                                    <!-- <li><a href="<?php echo e(url('ShowMovies')); ?>">Peliculas</a></li> -->
+                                        <li><a href="<?php echo e(url('ShowMovies')); ?>" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
+                                        <li><a href="<?php echo e(url('ShowSeries')); ?>" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-movie-roll"></i>Series</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>
                                 </div>
@@ -154,6 +174,22 @@
                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
+
+                                <li> <!--Cine-->
+                                    <ul class= "collapsible collapsible-accordion" >
+                                    <li>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Cine<i class="material-icons right">expand_more</i></a>
+                                         <div class="collapsible-body">
+                                            <ul>
+                                                <li><a href="<?php echo e(url('MyMovies')); ?>" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >theaters</i>Mis Peliculas</a></li>
+                                                <li><a href="#" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
+                                                <li><div class="divider"></div></li>
+                                            </ul>
+                                        </div>
+                                     </li>
+                                    </ul>
+                                </li> <!--End cine-->
+
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
 
@@ -336,20 +372,21 @@
 </body>
 <!-- js placed at the end of the document so the pages load faster -->
 
-<!-- <script src="<?php echo e(asset('assets/js/jquery-1.8.3.min.js')); ?>"></script>-->
+<!-- <script src=""></script>-->
 
 <!--common script for all pages-->
-<!--<script src="<?php echo e(asset('assets/js/common-scripts.js')); ?>"></script>-->
+<!--<script src=""></script>-->
 
-<!--<script type="text/javascript" src="<?php echo e(asset('assets/js/gritter/js/jquery.gritter.js')); ?>"></script>-->
-<!--<script type="text/javascript" src="<?php echo e(asset('assets/js/gritter-conf.js')); ?>"></script>-->
+<!--<script type="text/javascript" src=""></script>-->
+<!--<script type="text/javascript" src=""></script>-->
 
 <!--script for this page-->
-<!--<script src="<?php echo e(asset('assets/js/sparkline-chart.js')); ?>"></script>-->
-<!--<script src="<?php echo e(asset('assets/js/zabuto_calendar.js')); ?>"></script>-->
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
 
 <!--Script Plyr-->
 <!--<script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>-->
+<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
 
 <!--Datatables-->
 <!--
@@ -360,9 +397,10 @@
 -->
 
 <!--telefono-->
-<!--<script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>-->
-<!--<script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>-->
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
 <!--SCRIPS JS-->
+
 
 <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="<?php echo e(asset('assets/js/jquery.js')); ?>"></script>
@@ -431,7 +469,7 @@
     }
 </script>-->
 
-<!--<script>
+<script>
     $(document).ready(function(){
         var id=<?php echo Auth::user()->id; ?>;
         $.ajax({
@@ -446,7 +484,7 @@
             },
         });
     });
-</script>-->
+</script>
 <!--<script type="text/javascript">
     $(document).ready(function() {
         if ((screen.width <= 768)) {

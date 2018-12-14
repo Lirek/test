@@ -61,7 +61,8 @@ class HomeController extends Controller
         $TransacctionsAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->count();
         $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
         $TransacctionsMegazine= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->count(); 
-        $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();   
+        $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();
+        $TransacctionsSeries= Transactions::where('user_id','=',Auth::user()->id)->where('Series_id','<>',0)->count();   
         $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
         $TransactionsTv=Tv::where('status','=','Aprobado')->count();
 
@@ -76,11 +77,12 @@ class HomeController extends Controller
         $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         
         $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        
         $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         
         $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
 
-        $Series=0;
+        $Series=Serie::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         
         if ($Movies==NULL) { $Movies=False; }
         if ($Tv==NULL) { $Tv=False; }
@@ -88,7 +90,8 @@ class HomeController extends Controller
         if ($Megazines==NULL) { $Megazines=False; }
         if ($Albums==NULL) { $Albums=False; }
         if ($Songs==NULL) { $Songs=False; }  
-        if($Book==NULL){ $Book=False; }         
+        if($Book==NULL){ $Book=False; }
+        if($Series==NULL){ $Series=False; }         
 
         if($user['status']=='admin')
         {
@@ -110,6 +113,7 @@ class HomeController extends Controller
                              ->with('Megazines',$Megazines)
                              ->with('Book',$Book)
                              ->with('Radio',$Radio)
+                             ->with('Series',$Series)
                              ->with('Tv',$Tv);
 
     }

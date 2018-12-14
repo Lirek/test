@@ -816,8 +816,12 @@ function masInfo(tipo) {
         console.log(usuarioActivo);
         if (tipo=="radio") {
             var ruta = "<?php echo e(url('/ShowRadio')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -852,8 +856,11 @@ function masInfo(tipo) {
             }
         } else if (tipo=="tv") {
             var ruta = "<?php echo e(url('/ShowTv')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -888,8 +895,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="lectura") {
             var ruta = "<?php echo e(url('/MyReads')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -924,8 +935,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="musica") {
             var ruta = "<?php echo e(url('/MyMusic')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -960,8 +975,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="cine") {
             var ruta = "<?php echo e(url('/MyMovies')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
