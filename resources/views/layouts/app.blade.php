@@ -162,7 +162,7 @@
                                          <div class="collapsible-body">
                                             <ul>
                                                 <li><a href="{{url('MyMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >theaters</i>Mis Peliculas</a></li>
-                                                <li><a href="#" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
+                                                <li><a href="{{url('MySeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
                                                 <li><div class="divider"></div></li>
                                             </ul>
                                         </div>

@@ -34,6 +34,11 @@ use App\Serie;
 use App\Episode;
 use App\TicketsPackage;
 
+use App\Events\BookTraceEvent; //Agrega el Evento 
+use App\Events\MegazineTraceEvent; //Agrega el Evento 
+use App\Events\MovieTraceEvent; //Agrega el Evento 
+use App\Events\SongTraceEvent; //Agrega el Evento 
+
 
 class UserController extends Controller
 {
@@ -742,14 +747,14 @@ class UserController extends Controller
       public function ShowMyReadBook($id)
     {
         $Book=Book::find($id);
-
+        event(new BookTraceEvent(Auth::user()->id,$id));
             return view('users.show')->with('book',$Book);
     }
 
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
-
+        event(new MegazineTraceEvent(Auth::user()->id,$id));
         return view('users.showMegazine')->with('megazines',$Megazine);
     }
 //----------------------------Peliculas-------------------------------------
@@ -781,6 +786,7 @@ class UserController extends Controller
    public function ShowMyMovie($id)
     {
         $Movies=Movie::find($id);
+        event(new MovieTraceEvent(Auth::user()->id,$id));
 
             return view('users.showMovie')->with('Movies',$Movies);
     }
@@ -892,6 +898,15 @@ class UserController extends Controller
         {
             return response()->json(1);   
         }
+
+        $checkS = Transactions::where('series_id','=',$serie->Serie->id)->where('user_id','=',$user->id)->get();
+        $checkS->isEmpty();
+
+        if(count($checkS)>=1)
+        {
+            return response()->json(2);   
+        }
+
         else
         {
             $Transaction= new Transactions;
@@ -918,6 +933,53 @@ class UserController extends Controller
             return response()->json($Transaction);
         }
 
+    }
+    public function MySeries()
+    {
+        $TransactionSeries= Transactions::where('user_id','=',Auth::user()->id)
+                            ->where('series_id','<>',0)->get();
+        $TransactionEpisodes= Transactions::where('user_id','=',Auth::user()->id)
+                            ->where('episodes_id','<>',0)->get();
+
+
+        if($TransactionSeries->count() > 0)
+            {
+            
+                foreach ($TransactionSeries as $key) 
+                    {
+                        $Series[] = $key->Series;    
+                    }
+            }
+        if($TransactionEpisodes->count() > 0)
+        {
+           foreach ($TransactionEpisodes as $key) 
+                    {
+                        $Series[] = $key->Episodes;    
+                    } 
+        }    
+        elseif ($TransactionSeries->count()== 0 && $TransactionEpisodes ==0)
+        {
+            $Series = 0;
+                
+        }
+
+
+        
+       return view('users.MySeries')->with('Series',$Series);
+        
+    }
+
+    public function ShowMySerie($id,$type)
+    {
+        if($type=='Serie'){
+            $Series=Serie::find($id);
+        }else
+        {
+            $Series=Episode::find($id);
+        }
+        // event(new MovieTraceEvent(Auth::user()->id,$id));
+
+            return view('users.showSerie')->with('Series',$Series)->with('Type',$type);
     }
 
 //----------------------------Invitar Personas------------------------------

@@ -75,7 +75,7 @@
                                     <span class="card-title title"><b>{{$Book->title}}</b></span>
                                     <!--
                                     <span> <a id='autor' href="ProfileBookAuthor/{{--$Book->id--}}">{{--$Book->author->full_name--}}</a></span>-->
-                                    <span> <a id='autor' href="#">Autor</a></span>
+                                    <!-- <span> <a id='autor' href="#">Autor</a></span> -->
                                 </div>
                             </div>
                         </div>

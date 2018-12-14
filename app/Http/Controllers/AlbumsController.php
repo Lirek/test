@@ -120,6 +120,7 @@ class AlbumsController extends Controller
             if ($song_id!=null) {
                 $song->find($song_id[$i]);
                 $song->song_name = $request->song_o[$i];
+                $song->cost=$request->costpisodio[$i];
                 $song->save();
                 
                 list($hr,$min,$seg)=explode(':',$song->duration);
@@ -136,10 +137,10 @@ class AlbumsController extends Controller
             foreach ($request->audio as $song) {
                 
                 $name=$request->song_n[$i];
-                
+                $cost=$request->costpisodio[$i];
                 $duration_song = $this->DurationSong($song);
 
-                $save[] = $this->SaveSong($song,$duration_song,$album->autors_id,$album->seller_id,$store_path,$name,NULL);
+                $save[] = $this->SaveSong($song,$duration_song,$album->autors_id,$album->seller_id,$store_path,$name,$cost);
 
                 list($hr,$min,$seg)=explode(':',$duration_song);
                 $segT[]=$seg;
@@ -229,10 +230,11 @@ class AlbumsController extends Controller
         $path = $real_path .'/'.$name;
         $request->file('image')->move($store_path, $name);
         $i=0;
-        $cost=NULL;
+        
         
         foreach ($request->audio as $song) {
             $name=$request->song_n[$i];
+            $cost=$request->costpisodio[$i];
             $duration_song = $this->DurationSong($song);
 
             $save[] = $this->SaveSong($song,$duration_song,$artist,$seller_id,$store_path,$name,$cost);
@@ -348,10 +350,11 @@ class AlbumsController extends Controller
         $albumSongs->cost = $cost;
         $albumSongs->duration = $duration_song;
         $albumSongs->status =2;
-        // Pendiente con esta, por si da algun problema al crear un album como tal
+
+        // Pendiente con estas, por si da algun problema al crear un album como tal
         // la linea fue agregada para el registro de una cancion
-        $albumSongs->album = 0;
-        $albumSongs->save();
+        // $albumSongs->album = 0;
+        // $albumSongs->save();
 
         return($albumSongs);
     }
@@ -359,17 +362,36 @@ class AlbumsController extends Controller
   public function SongConfig(SingleRequest $request)
   {
 
+
     $store_path = public_path().'/Music/'.$request->artist.'/singles/'.$ldate = date('Y-m-d');
     $song = $request->file('audio');
 
+    $real_path='/Music/'.$request->artist.'/singles/'.$ldate = date('Y-m-d');
     $duration_song = $this->DurationSong($song);
     $artist = $request->artist;
     $seller_id = $request->seller_id;
     $cost = $request->cost;
     $name = $request->song_n;
 
-    $save = $this->SaveSong($song,$duration_song,$artist,$seller_id,$store_path,$name,$cost);
-    $save->tags()->attach($request->tags);
+    // $save = $this->SaveSong($song,$duration_song,$artist,$seller_id,$store_path,$name,$cost);
+    $name1 = 'song_'.$name. time() . '.'. $song->getClientOriginalExtension();
+
+        list($e,$real_path)=explode(public_path(),$store_path);
+        $path = $real_path .'/'.$name1;
+        $file = $song->move($store_path, $name1);
+
+    $song=new Songs;
+        $song->autors_id = $artist;
+        $song->seller_id = $seller_id;
+        $song->song_file = $path;
+        $song->song_name = $name;
+        $song->cost = $cost;
+        $song->duration = $duration_song;
+        $song->status =2;
+        $song->album =NULL;
+    $song->save();
+
+    $song->tags()->attach($request->tags);
 
     Flash::success('Se ha registrado '.$name.' con una duración total de '.$duration_song.' y con un costo de '.$cost.' Tickets.')->important();
     return redirect()->action(
@@ -468,7 +490,7 @@ class AlbumsController extends Controller
             $tags = Tags::where('type_tags','=','Musica')->where('status','=','Aprobado')->get();
             $artist = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
             
-            return view('seller.music_module.single_modify')->with('tags', $tags)->with('artist', $artist)->with('s_tags',$selected)->with('song',$song)->with('id',$id);
+            return view('seller.music_module.single_modify')->with('tags', $tags)->with('autors', $artist)->with('s_tags',$selected)->with('song',$song)->with('id',$id);
         }
         
         

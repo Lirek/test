@@ -155,6 +155,10 @@ Route::post('Invite','UserController@Invite');
     //Agregada 8/8/2018
     Route::get('MyBalance','UserController@balance');
 
+    //Agregada 10/12/2019
+     Route::get('MySeries','UserController@MySeries');
+      Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
@@ -577,6 +581,9 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::get('SellerRequest','SellerController@Fondos');
     
     Route::post('SellerFunds','SellerController@applicationFunds');
+
+    //Agregada 11/12/2018
+    Route::get('ApplicationValidate','SellerController@validateAplication');
 
 
 

@@ -1,107 +1,171 @@
 @extends('seller.layouts')
-<style type="text/css">
-    #image-preview {
-        width: 100%;
-        height: 50%;
-        position: relative;
-        overflow: hidden;
-        background-color: #ffffff;
-        color: #2b81af;
+@section('css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        #image-preview {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #2b81af;
+            border-radius: 10px;
+        }
+
+        #image-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #image-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 80%;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+
+
+    </style>
+    <style>
+        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
     }
-    #image-preview input {
-        line-height: 200px;
-        font-size: 200px;
-        position: absolute;
-        opacity: 0;
-        z-index: 10;
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
     }
-    #image-preview label {
-        position: absolute;
-        z-index: 5;
-        opacity: 0.8;
-        cursor: pointer;
-        background-color: #bdc3c7;
-        width: 200px;
-        height: 50px;
-        font-size: 20px;
-        line-height: 50px;
-        text-transform: uppercase;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-    text-align: center;
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
     }
-</style>
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    
+    </style>
+@endsection
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
+@if (count($errors)>0)
+    <div class="col s6 ">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                @foreach($errors->all() as $error)
+                    <li> {{ $error }}</li>
                 @endforeach
             </ul>
         </div>
-    @endif
-    @foreach($author as $a)
-        <form  method="POST" action="{{ url('/save_modify_artist') }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
-            <input type="hidden" name="id_author" value="{{ $a->id }}">
-            <div class="col-lg-12" style="margin-left: 30px; margin-right: 30px;">
-                <div class="box box-primary">
-                    @include('flash::message')
-                    <div class="box-header with-border"> 
-                        <h3 class="box-title">Modificar {{ $a->type_authors }}</h3>
+    </div>
+@endif
+<div class="row">
+    <div class="col s12 m12">
+        @include('flash::message')
+        @foreach($author as $a)
+        <div class="card-panel curva">
+            <h3 class="center">
+                Modificar {{ $a->type_authors }}
+            </h3>
+            <br>
+            <div class="row">
+                <form  method="POST" action="{{ url('/save_modify_artist') }}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
+                <input type="hidden" name="id_author" value="{{ $a->id }}">
+                <div class="input-field col s12 m6">
+                    <label id="portadaActual" style="color: green;"> 
+                        Si no selecciona una foto o logo, se mantendrá el actual 
+                    </label>
+                    <div id="mensajeFotoAlbun"></div>
+                    <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col-md-1">
+                        <label for="image-upload" id="image-label">Foto o Logo</label>
+                        <input type="file" name="photo" accept="image/*" id="image-upload"/>
+                        <div id="list">
+                            <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($a->photo) }}"/>
+                        </div>
                     </div>
-                        <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label id="portadaActual" style="color: green;"> 
-                                    Si no selecciona una foto o logo, se mantendrá el actual 
-                                </label>
-                                <div id="mensajeFotoAlbun"></div>
-                                <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col-md-1">
-                                    <label for="image-upload" id="image-label">Foto o Logo</label>
-                                    <input type="file" name="photo" accept="image/*" id="image-upload"/>
-                                    <div id="list">
-                                        <img style= "width:100%; height:100%; border-top:50%;" src="{{ asset($a->photo) }}"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <label for="art_name" class="control-label">Nombre del artista o agrupación</label>
-                                    <div id="mensajeAA"></div>
-                                    <input id="art_name" type="text" value="{{ $a->name }}" class="form-control" name="art_name" placeholder="Nombre del artista o agrupación" required="required" rows="3" cols="2" oninvalid="this.setCustomValidity('Inserte un nombre de artista o agrupacion valido')" oninput="setCustomValidity('')">   
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="desc" class="control-label">Descripción</label>
-                                    <div id="mensajeDescripcion"></div>
-                                    <textarea class="form-control" name="dsc" placeholder="Descripción" id="descripcion" oninvalid="this.setCustomValidity('Inserte una descripción valida')" oninput="setCustomValidity('')"required="required">{{ $a->descripcion }}</textarea>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="type_authors" class="control-label">Tipo</label>
-                                    <select class="form-control" name="type_authors" required="required">
-                                        <option value="{{ $a->type_authors }}">{{ $a->type_authors }}</option>
-                                        @if($a->type_authors=='Solista')
-                                            <option value="Agrupacion musical">Agrupación musical</option>
-                                        @else
-                                            <option value="Solista">Solista</option>
-                                        @endif
-                                    </select>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="country" class="control-label">País De origen</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">face</i>
+                    <label for="art_name" class="control-label">Nombre del artista o agrupación</label>
+                    <div id="mensajeAA"></div>
+                    <input id="art_name" type="text" value="{{ $a->name }}" class="form-control" name="art_name" required="required" rows="3" cols="2" oninvalid="this.setCustomValidity('Inserte un nombre de artista o agrupacion valido')" oninput="setCustomValidity('')">   
+                    <br>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">create</i>
+                    <label for="desc" class="control-label">Descripción</label>
+                    <div id="mensajeDescripcion"></div>
+                    <textarea class="materialize-textarea" name="dsc" placeholder="Descripción" id="descripcion" oninvalid="this.setCustomValidity('Inserte una descripción valida')" oninput="setCustomValidity('')"required="required">{{ $a->descripcion }}</textarea>
+                    <br>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
+                    <select class="form-control" name="type_authors" required="required">
+                        <option value="{{ $a->type_authors }}">{{ $a->type_authors }}</option>
+                        @if($a->type_authors=='Solista')
+                            <option value="Agrupacion musical">Agrupación musical</option>
+                        @else
+                            <option value="Solista">Solista</option>
+                        @endif
+                    </select>
+                    <label for="type_authors" class="control-label">Tipo</label>
+                    <br>
+                </div>
+                <div class="input-field col s12 m6">
+                                     <i class="material-icons prefix blue-text valign-wrapper">room</i>
                                     <label id="portadaActual" style="color: green;"> 
                                         Si no selecciona un pais, se mantendrá el actual 
                                     </label>
                                     <select  name="x12" class="form-control">
-                                        <option value="" selected>Seleccione una opción</option>
+                                        <option value="" selected></option>
                                         <option value="AF">Afganistán</option>
                                         <option value="AL">Albania</option>
                                         <option value="DE">Alemania</option>
@@ -337,44 +401,79 @@
                                         <option value="ZM">Zambia</option>
                                         <option value="ZW">Zimbabue</option>
                                     </select>
+                                    <label for="country" class="control-label">País De origen</label>
                                     <br>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="rrhh" class="control-label">Redes sociales</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-youtube-square"></i></span>
-                                        <input value="{{ $a->google }}" type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="http(s)?://(.*\.)?youtube\.com\/[A-z 0-9 /_]+\/?" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
-                                        <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?" value="{{ $a->instagram }}" type="text" name="instagram" class="form-control" placeholder="Instagram" oninvalid="this.setCustomValidity('Ingrese una cuenta de Instagram valido')" oninput="setCustomValidity('')">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                                        <input value="{{ $a->facebook }}" type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" oninvalid="this.setCustomValidity('Ingrese una cuenta de Facebook valida')" oninput="setCustomValidity('')" >
-                                    </div>
-                                    {{--
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-twitter-square"></i></span>
-                                        <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" value="{{ $a->twitter }}" type="text" name="twitter" class="form-control" placeholder="Twitter" oninvalid="this.setCustomValidity('Ingrese una cuenta de Twitter valida')" oninput="setCustomValidity('')">
-                                    </div>
-                                    --}}
-                                </div>
+                        <div class="col s12 m12">
+                            <div class="input-field col s12 m6">  
+                                 <i class="prefix blue-text valign-wrapper fa fa-youtube"></i>
+                                 <label>Canal de youtube</label>
+                                <input value="{{ $a->google }}" type="text" class="form-control" id="google" name="google" placeholder="YouTube" pattern="http(s)?://(.*\.)?youtube\.com\/[A-z 0-9 /_]+\/?" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')">
                             </div>
+                            <div class="input-field col s12 m6">
+                                <i class="prefix blue-text valign-wrapper fa fa-instagram"></i>
+                                <label>Instagram</label>
+                                <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_]+\/?" value="{{ $a->instagram }}" type="text" name="instagram" class="form-control" placeholder="Instagram" oninvalid="this.setCustomValidity('Ingrese una cuenta de Instagram valido')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="prefix blue-text valign-wrapper fa fa-facebook-square"></i>
+                                <label>Facebook</label>
+                                <input value="{{ $a->facebook }}" type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" pattern="http(s)?:\/\/(www\.)?(facebook|fb)\.com\" oninvalid="this.setCustomValidity('Ingrese una cuenta de Facebook valida')" oninput="setCustomValidity('')" >
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                <br>
-                <div align="center">
-                    <button type="submit" class="btn btn-primary" id="registroAA">
-                        Registrar artista o agrupación
-                    </button>   
-                </div>
+                        <div class="col s12">
+                            <button type="submit" class="btn curvaBoton waves-effect waves-light green" id="registroAA">
+                                Editar artista o agrupación
+                            </button> 
+                        </div>
+                </form>
             </div>
-        </form>
-    @endforeach
+        </div>
+        @endforeach
+    </div>
+</div>
 @endsection
 @section('js')
+   <script type="text/javascript">
+           // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: false
+        });
+    });
+
+
+       
+    </script>
     <script>
 //---------------------------------------------------------------------------------------------------
     // Para que se vea la imagen en el formulario
