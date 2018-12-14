@@ -141,12 +141,19 @@
                             </div>
 
                             {{--precio--}}
-                            <div class="input-field col s12">
+                            <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text">local_play</i>
                                 <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                                {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0','oninput'=>"maxLengthCheck(this)"]) !!}
+                                {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999','oninput'=>"maxLengthCheck(this)"]) !!}
                                 <div id="mensajePrecio"></div>
                                 <br>
+                            </div>
+
+                            {{--costo dolar--}}
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix blue-text valign-wrapper">attach_money</i>
+                                <label  class="control-label">Costo en Dolares</label>
+                                {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
                             </div>
                         <br>
                         <div class="input-field col s12">
@@ -984,5 +991,18 @@ function maxLengthCheck(object) {
             te = String.fromCharCode(tecla);
             return patron.test(te);
         }
+
+
+
+
+
+    //costo en dolares
+    document.getElementById("conversion").disabled = true;
+    //function keyup para actualizar el campo costo en dolares
+    $( "#precio" ).on( 'keyup click', function() {
+        var conversion=ticket_dolar(document.getElementById("precio").value);
+        document.getElementById("conversion").value=conversion.toFixed(2);
+    });
+
 </script>
 @endsection
