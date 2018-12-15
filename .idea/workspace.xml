@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+    <list default="true" id="4307c085-73cc-4f12-b51b-b153aa384e66" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/plugins/img/DefaultMusic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/index.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/show.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/seller/music_module/artist.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/MySeries.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/showMovie.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/showSerie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transactions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transactions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Movies.blade(old).php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Series.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Series.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/Fondos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/authorbook/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/authorbook/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album_modify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album_modify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album_registration.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/artist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/artist.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/artist_modify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/artist_modify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/artist_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/artist_registration.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/music_panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/music_panel.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/single_modify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/single_modify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMovies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/showMovie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/showMovie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -165,15 +194,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/users/Referals.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="173">
               <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-              <folding>
-                <element signature="e#1863#1893#0#HTML" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -181,8 +207,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
+            <state relative-caret-position="2450">
+              <caret line="98" column="32" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -425,17 +451,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -460,6 +475,17 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -690,7 +716,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="524086000" />
+    <option name="totallyTimeSpent" value="524401000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -703,9 +729,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2397882" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -718,7 +743,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51966715" side_tool="true" weight="0.3295082" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.51966715" side_tool="true" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48033282" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -1077,8 +1102,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
+        <state relative-caret-position="2450">
+          <caret line="98" column="32" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1086,9 +1111,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-          <folding>
-            <element signature="e#1863#1893#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

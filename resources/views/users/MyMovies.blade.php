@@ -1,4 +1,44 @@
 @extends('layouts.app')
+@section('css')
+    <style type="text/css">
+
+
+        .card .card-content {
+         padding: 24px 8px 12px 8px;
+        }
+       .card .card-content .card-title {
+           color: #000000;
+           display: block;
+           line-height: 14px;
+           max-height: 14px;
+           min-height: 12px;
+           overflow: hidden;
+           text-decoration: none;
+           position: relative;
+           white-space: nowrap;
+           text-overflow: ellipsis;
+           text-align: left;
+       }
+       .card .card-title {
+        line-height: 1.2;
+           font-size: 16px;
+       }
+
+      #autor{
+           color: #1e88e5 ;
+           display: block;
+           overflow: hidden;
+           text-decoration: none;
+           position: relative;
+           white-space: nowrap;
+           text-overflow: ellipsis;
+           text-align: left;
+           font-size: 14px
+       }
+
+    </style>
+
+@endsection
 
 @section('main')  
 
@@ -23,70 +63,42 @@
                             @if($Movie->img_poster)
                                 <img src="{{asset($Movie->img_poster)}}" width="100%" height="220" style="">
 
-                            @else
-                                <img src="#" width="100%" height="220" style="">
-                            @endif
-                        </div>
-                        <div class="profile-01 centered">
-                            <p><a href="{{url('ShowMyMovie/'.$Movie->id)}}">Ver mas</p></a>
-                        </div>
-                        <div class="centered">
-                            <h3>{{$Movie->title}}</h3>
-                            <p class="sinopsis"><b>Sinopsis:</b>{{$Movie->story}}
-                            </p>
+                                            </div>
+                                        @else
+                                            <div class="card-image grey lighten-2">
+                                                <img  width="100%" height="300" style="">
+                                                <a href="{{url('ShowMyMovie/'.$Movie->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">book</i></a>
+                                            </div>
 
+                                        @endif
+                                    </a>
+
+                                <div class="card-content">
+                                    <span class="card-title title"><b>{{$Movie->title}}</b></span>
+                                    <!--
+                                    <span> <a id='autor' href="ProfileBookAuthor/{{--$Book->id--}}">{{--$Book->author->full_name--}}</a></span>-->
+                                    <!--   -->
+                                </div>
+                            </div>
                         </div>
-                    </div><!--/content-panel -->
-                </div><!--/col-md-4 -->
-                @endforeach
+
+                    @endforeach
                 @else
-                    <h1>No Posee Peliculas</h1>
+                 <div class="col s6 offset-s3">
+                     <br><br>
+                    <blockquote >
+                    <i class="material-icons fixed-width large grey-text">movie</i><br><h5 blue-text text-darken-2>No Posee Peliculas adquiridas</h5>
+                    </blockquote>
+                </div>
+                </div><!--End div row -->
                 @endif
-            </div>
-        </div> 
-    </div> 
-</div> 
+</div>
+
+
 
 @endsection
 
 
 @section('js')
-<script src="jquery-1.10.2.js"></script>
-<script>
-   $(document).ready(function() {
-      var showChar = 300;
-      var ellipsestext = "...";
-      var moretext = "Seguir leyendo >";
-      var lesstext = "Mostrar menos";       
-      var content = $('.sinopsis').html();
-      
-      if(content.length > showChar) {
-         var c = content.substr(0, showChar);
-         var html = '<div class="abstract">' + c + ellipsestext + '</div>' + '<div class="morecontent">' + content + '</div>' + '<p><span class="morelink">' + moretext + '</span></p>';
-          $('.sinopsis').html(html);
-       }
-         
-       $('.morelink').click(function() {
-          if($(this).hasClass('less')) {
-             $(this).removeClass('less');
-             $(this).html(moretext);
-             $('.abstract').removeClass('hidden');
-           } else {
-             $(this).addClass('less');
-                 $(this).html(lesstext);
-                 $('.abstract').addClass('hidden');
-           }
-           $(this).parent().prev().slideToggle('fast');
-           $(this).prev().slideToggle('fast');
-                return false;
-        });
-    });
-</script>
-<style>
-   .morecontent { display: none; }
-   .morelink { display: block; cursor: pointer; color:#2196f3; }
-   .morelink:hover { text-decoration:underline; }
-   .hidden { display:none; }
-</style>
 
 @endsection

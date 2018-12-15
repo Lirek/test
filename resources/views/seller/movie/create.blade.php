@@ -166,7 +166,7 @@
 @endsection
 @section('content')
 @if (count($errors)>0)
-    <div class="col s6 col-md-offset-3">
+    <div class="col s6 offset m3">
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <ul>
@@ -216,7 +216,7 @@
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                         <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                        {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
+                        {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninput'=>"maxLengthCheck(this)"'oninvalid'=>"this.setCustomValidity('Costo en tickets')",  'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)' ]) !!}
                         <div id="mensajePrecio"></div>
                         <br>
                     </div>

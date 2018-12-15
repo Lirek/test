@@ -112,7 +112,7 @@
         @include('flash::message')
         <div class="card-panel curva">
             <div class="row">
-                <div class="col s12 m4">
+                <div class="col s12 m3">
                     <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
                         <div class="padding-4" style="padding: 4%"> 
                             <div class="col m4">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m3">
                     <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
                         <div class="padding-4" style="padding: 4%"> 
                             <div class="col m4">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m4">
+                <div class="col s12 m3">
                     <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 150px">
                         <div class="padding-4" style="padding: 4%"> 
                             <div class="col m4">
@@ -144,6 +144,18 @@
                             </div>
                             <div class="col m6">
                                <h5 style="color: white"><b>Tickets Diferidos:</b> {{ $diferido}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m3">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
+                        <div class="padding-4" style="padding: 4%"> 
+                            <div class="col m4">
+                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
+                            </div>
+                            <div class="col m7">
+                                <h5 style="color: white"><b>Tickets Retirados:</b> {{ $pagado}}</h5>
                             </div>
                         </div>
                     </div>
@@ -157,7 +169,7 @@
                          <div class="input-field col s12 m8 offset-m2">
                             <i class="material-icons prefix blue-text valign-wrapper">local_activity</i>
                             <label for="monto">Cantidad de tickets a retirar:</label>
-                            <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="form-control input-xs" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
+                            <input type="number" min="1" max="{{Auth::guard('web_seller')->user()->credito}}" value="" class="" name="Cantidad" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
                             <div id="mensajeMonto"></div>
 
                            
@@ -304,7 +316,7 @@
                                     <b class="left">Precio unitario: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    $0,18 Ctvs
+                                    $0.1785 Ctvs
                                 </div>
                             </div>
                         </li>
@@ -334,7 +346,7 @@
                             <div class="row">
                                 <div class="col s12 m5">
                                     <i class="material-icons circle left">monetization_on</i>
-                                    <b class="left">Total:: </b>
+                                    <b class="left">Total: </b>
                                 </div>
                                 <div class="col s12 m7" id="dolar">
                                    
@@ -463,13 +475,14 @@
 <script type="text/javascript">
     $("#solicitar").click(function(){
         var tickets = $("#monto").val();
-        var dolar = tickets*0.20;
-        var iva = dolar*0.12;
-        var subtotal=dolar-iva;
+         
+        var subtotal=tickets*0.1785;
+        var iva = subtotal*0.12;
+        var dolar = subtotal+iva;
         $('#cant').val(tickets);
         $('#tickets').html(tickets);
-        $('#subtotal').html(subtotal.toFixed(2)+'$');
-        $('#iva').html(iva.toFixed(2)+'$');
+        $('#subtotal').html(subtotal.toFixed(4)+'$');
+        $('#iva').html(iva.toFixed(4)+'$');
         $('#dolar').html(dolar.toFixed(2)+'$');
 
 });
@@ -532,5 +545,26 @@
             });
 
 </script>
-
+<script type="text/javascript">
+  $("#monto").on('click change',function(){
+       
+        $.ajax({
+            url: 'ApplicationValidate',
+            type: 'GET',
+            
+            success: function(result){
+                 if (result != 1) 
+                 {
+                   swal('Posee una solicitud activa actualmente y se encuentra en estatus: '+result,'','warning');  
+                  console.log(result);
+                 }
+                 else
+                 {
+                   console.log(result);
+                   return true;
+                 }
+            }
+        });
+    });
+</script>
 @endsection

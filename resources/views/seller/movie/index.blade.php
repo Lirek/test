@@ -78,7 +78,7 @@
             @else
             <div class="col m12">
             <blockquote >
-                <i class="material-icons fixed-width large grey-text">Movie</i><br><h5>No Posee películas registradas</h5>
+                <i class="material-icons fixed-width large grey-text">movie</i><br><h5>No Posee películas registradas</h5>
             </blockquote>
             <br>
             </div>

@@ -39,12 +39,12 @@ class Transactions extends Model
 
     public function Series()
     {
-    return $this->belongsTo('App\Series', 'series_id');
+    return $this->belongsTo('App\Serie', 'series_id');
     }
 
     public function Episodes()
     {
-    return $this->belongsTo('App\Episodes', 'episodes_id');
+    return $this->belongsTo('App\Episode', 'episodes_id');
     }
 
     public function Movies()

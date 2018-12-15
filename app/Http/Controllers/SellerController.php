@@ -495,7 +495,8 @@ class SellerController extends Controller
      public function Fondos(){
         $payment = PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
         $diferido=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Diferido')->sum('tickets');
-        return view('seller.Fondos')->with('payment',$payment)->with('diferido',$diferido);
+        $pagado=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Pagado')->sum('tickets');
+        return view('seller.Fondos')->with('payment',$payment)->with('diferido',$diferido)->with('pagado',$pagado);
      }
 
      public function applicationFunds(Request $request)
@@ -526,6 +527,21 @@ class SellerController extends Controller
 
         //return view('seller.edit')->with('seller',$seller);
         return redirect()->action('SellerController@Fondos');
+
+    }
+
+    public function validateAplication()
+    {
+        $payment=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','<>','Pagado')->where('status','<>','Rechazado')->get();
+        if (count($payment)>=1) {
+            foreach ($payment as $key ) {
+                return response()->json($key->status);
+            }
+        }
+        else{
+            return response()->json(1);
+            
+        }
 
     }
 

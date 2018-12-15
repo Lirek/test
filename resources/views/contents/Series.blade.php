@@ -27,7 +27,7 @@
                 			<i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
-                            <label for="seach">Buscar Pelicula</label><br>
+                            <label for="seach">Buscar Serie</label><br>
                             <br>
                             <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
                 		</form>
@@ -389,6 +389,10 @@ function callback(value,id) {
                     else if (result==1) 
                     {
                       swal('El episodio ya forma parte de su colección','','error');
+                    }
+                    else if (result==2) 
+                    {
+                      swal('La serie completa ya forma parte de colección','','error');
                     }
                     else
                     { 

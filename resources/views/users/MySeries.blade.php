@@ -43,39 +43,43 @@
 @section('main')  
 
 <div class="row">
-
-    <h4 class="titelgeneral"><i class="material-icons small">book</i> Mis Libros</h4>
+    <span class="grey-text"><h4><b><i class="material-icons small">movie</i> Mis Series</b></h4></span>
+    <!-- <h5>Mis Peliculas</h5> -->
     <br>
 
         <div class="row">
-                @if($Books != 0)
-                    @foreach($Books as $Book)
+                @if($Series != 0)
+                    @foreach($Series as $Series)
                         <!-- PROFILE 01 PANEL -->
                         <div class="col s6 m3 ">
                             <div class="card">
 
-                                    <a href="{{url('ShowMyReadBook/'.$Book->id)}}">
-
-                                        @if($Book->cover)
+                                        @if($Series->img_poster)
+                                         <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Serie')}}">
                                             <div class="card-image">
-                                            <img src="images/bookcover/{{$Book->cover}}" width="100%" height="300"style="">
-                                                <a href="{{url('ShowMyReadBook/'.$Book->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">book</i></a>
+                                            <img src="{{ asset($Series->img_poster) }}" width="100%" height="300"style="">
+                                                <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Serie')}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
 
                                             </div>
                                         @else
+                                           <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Cap')}}">
                                             <div class="card-image grey lighten-2">
-                                                <img  width="100%" height="300" style="">
-                                                <a href="{{url('ShowMyReadBook/'.$Book->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">book</i></a>
+                                                <img  src="{{ asset($Series->Serie->img_poster) }}" width="100%" height="300" style="">
+                                                <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Cap')}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
                                             </div>
 
                                         @endif
                                     </a>
 
                                 <div class="card-content">
-                                    <span class="card-title title"><b>{{$Book->title}}</b></span>
+                                  @if($Series->title)
+                                    <span class="card-title title"><b>{{$Series->title}}</b></span>
+                                  @else
+                                    <span class="card-title title"><b>{{$Series->Serie->title}}</b></span>
+                                  @endif
                                     <!--
                                     <span> <a id='autor' href="ProfileBookAuthor/{{--$Book->id--}}">{{--$Book->author->full_name--}}</a></span>-->
-                                    <!-- <span> <a id='autor' href="#">Autor</a></span> -->
+                                    <!--   -->
                                 </div>
                             </div>
                         </div>
@@ -85,7 +89,7 @@
                  <div class="col s6 offset-s3">
                      <br><br>
                     <blockquote >
-                    <i class="material-icons fixed-width large grey-text">book</i><br><h5 blue-text text-darken-2>No Posee Libros adquiridos</h5>
+                    <i class="material-icons fixed-width large grey-text">movie</i><br><h5 blue-text text-darken-2>No Posee series adquiridas</h5>
                     </blockquote>
                 </div>
                 </div><!--End div row -->
