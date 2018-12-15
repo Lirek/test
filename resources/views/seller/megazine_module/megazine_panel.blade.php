@@ -46,10 +46,10 @@
         @include('flash::message')
 
         <div class="card-panel curva">
-            <h3 class="center">
-                revistas registradas 
-            </h3>
-            @if($collection->count() != 0 )
+
+            <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Revistas Registradas   </h4>
+
+        @if($collection->count() != 0 )
             <div class="row">
                 @foreach($collection as $b)
                 @if(Auth::guard('web_seller')->user()->id === $b->seller_id)
@@ -93,10 +93,9 @@
         </div>
 
         <div class="card-panel curva">
-            <h3 class="center">
-                revistas independientes registradas 
-            </h3>
-            @if($single->count() != 0 )
+            <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Revistas Independientes</h4>
+
+        @if($single->count() != 0 )
             <div class="row">
                 @foreach($single as $b)
                 @if(Auth::guard('web_seller')->user()->id === $b->seller_id)

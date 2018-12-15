@@ -587,6 +587,19 @@
             </script>
             <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+            <script type="text/javascript">
+            //conversion Ticket dolar
+            function ticket_dolar(cantidad){
+            var conversion=cantidad*parseFloat("0.20");
+            return conversion;
+            }
+
+            function iniciar(cantidad){
+            var conversioninc=cantidad*parseFloat("0.20");
+            return conversioninc;
+            }
+            </script>
             @yield('js')
 
 

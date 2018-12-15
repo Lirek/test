@@ -46,10 +46,9 @@
         @include('flash::message')
 
         <div class="card-panel curva">
-            <h3 class="center">
-                {{ $type->sag_name}} 
-            </h3>
-            @if($type->count() != 0 )
+            <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  {{ $type->sag_name}} </h4>
+
+        @if($type->count() != 0 )
             <div class="row">
                 @foreach($type->megazines()->get() as $b)
                 <div class="col s12 m3">

@@ -212,13 +212,18 @@
                         {!! Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                         <div id="mensajeTitulOriginal"></div>
                     </div>
-                    <div class="input-field col s12 m6">
+                    <div class="input-field col s12 m3">
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                         <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
                         {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)', 'oninput'=>"maxLengthCheck(this)"]) !!}
                         <div id="mensajePrecio"></div>
                         <br>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <i class="material-icons prefix blue-text valign-wrapper">attach_money</i>
+                        <label  class="control-label">Costo en Dolares</label>
+                        {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
                     </div>
                     <div class="input-field col s12 m6">
                         {{--Categoria--}}
@@ -1215,5 +1220,15 @@ function maxLengthCheck(object) {
             te = String.fromCharCode(tecla);
             return patron.test(te);
         }
+
+
+
+    //costo en dolares
+    document.getElementById("conversion").disabled = true;
+    //function keyup para actualizar el campo costo en dolares
+    $( "#precio" ).on( 'keyup click', function() {
+        var conversion=ticket_dolar(document.getElementById("precio").value);
+        document.getElementById("conversion").value=conversion.toFixed(2);
+    });
 </script>
 @endsection

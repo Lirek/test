@@ -61,7 +61,7 @@
             <div class="box box-primary">
             
                  <div class="box-header with-border">
-                     <h3 class="box-title">Revista Independiente</h3>
+                     <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Revista Independiente </h4>
                  </div>
 
                      <div class="box-body">
