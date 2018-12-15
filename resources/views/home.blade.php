@@ -79,12 +79,54 @@
               </div>
         @endif
         
+        <!--contenido de peliculas-->
+        @if(count($Movies)> 0)
+            <div class="card">
+              <span class="card-title grey-text"><h4><i class="mdi mdi-movie-roll"></i> Cine</h4></span>
+              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="small material-icons" >movie</i>Pelicula</h5></span>
+              <br><br><br><br>
+              <div class="row">
+                @foreach($Movies as $m)
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px">
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+              </div>
+              {{$Movies->links()}}
+              <br>
+              </div>
+            @endif
+
+        <!--contenido de series-->
+       @if(count($Series)> 0)
+        <div class="card">
+              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="mdi mdi-movie-roll"></i>Serie</h5></span>
+              <br><br><br><br>
+              <div class="row">
+                @foreach($Series as $s)
+                  <div class="col s12 m3">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="{{ asset($s->img_poster)}}" height="300px">
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+              </div>
+              {{$Series->links()}}
+              <br>
+              </div>
+        @endif
+        
         <!--CONTENIDO RECIENTE RADIO-->
 
               @if(count($Radio)>0)
                 <div class="card">
-                  <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">radio</i> Radio</h4></span>
-                  <br><br><br><br>
+                  <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
                   <div class="row">
                       @foreach($Radio as $r)
                           <div class="col s12 m3">
@@ -104,8 +146,7 @@
           <!--CONTENIDO RECIENTE DE TV-->
               @if(count($Tv)>0)
                 <div class="card">
-                  <span class="card-title grey-text left" style="padding-left: 5%"><h4><i class="material-icons">tv</i> Tv</h4></span>
-                  <br><br><br><br>
+                  <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
                   <div class="row">
                       @foreach($Tv as $tv)
                           <div class="col s12 m3">
@@ -132,166 +173,6 @@
   
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
-<script type="text/javascript">
-  function masInfo(tipo) {
-        console.log(tipo);
-        var usuarioActivo = "{{Auth::guest()}}";
-        console.log(usuarioActivo);
-        if (tipo=="radio") {
-            var ruta = "{{ url('/ShowRadio') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-                swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="tv") {
-            var ruta = "{{ url('/ShowTv') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="libro") {
-            var ruta = "{{ url('/tbook') }}/"+id;
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } 
-          }
-        } else if (tipo=="musica") {
-            var ruta = "{{ url('/MyMusic') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="cine") {
-            var ruta = "{{ url('/MyMovies') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cancelar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        }
-    }
-</script>
 <script >
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -342,21 +223,21 @@ $(document).ready(function(){
 });
 // Validacion cuando el usuario esta rechazado
 //---------------------------------------------------------------------------------------------------
-  $(document).ready(function(){
-  var f1 = document.getElementById('id').value;
-  var f = new Date();
-  var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
+//   $(document).ready(function(){
+//   var f1 = document.getElementById('id').value;
+//   var f = new Date();
+//   var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
 
-  var tiempo=restaFechas(f1,f2);
-  if (tiempo > 15){
-    document.getElementById('referir').style.display='none';  
-  }else{
-    var total=14-tiempo;
-    console.log(tiempo);
-    document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
-  }
+//   var tiempo=restaFechas(f1,f2);
+//   if (tiempo > 15){
+//     document.getElementById('referir').style.display='none';  
+//   }else{
+//     var total=14-tiempo;
+//     console.log(tiempo);
+//     document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
+//   }
 
-});
+// });
 restaFechas = function(f1,f2)
  {
  var aFecha1 = f1.split('-');
