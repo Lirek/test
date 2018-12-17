@@ -216,6 +216,8 @@ class UserController extends Controller
         }
     }
 
+    /*
+    // estas funciones estan en PaymentController
     public function BuyDepositPackage(Request $request)
     {
         $Buy = new Payments;
@@ -246,8 +248,6 @@ class UserController extends Controller
 
         return Response::json(['status'=>'OK'], 201);
     }
-
-    /*
     public function BuyPointsPackage(Request $request)
     {
 
@@ -300,8 +300,6 @@ class UserController extends Controller
         }
         return Response::json(['status'=>'OK'], 201);
     }
-
-
     public function BuyPayphonePackage(Request $request)
     {
         $user = User::find(auth()->user()->id);

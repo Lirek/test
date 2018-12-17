@@ -46,7 +46,8 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('Packages','ApiController\PackageController@ShowPackages');
 
     //---------------------------COMPRAS DE PAQUETES--------------------------------------
-    Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
+    Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
+    Route::post('BuyDepositPackageDocument/{idPayment}','ApiController\PaymentController@BuyDepositPackageDocument');
     Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
     //Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
     Route::get('BuyPayphone/{id}/{cost}/{value}','ApiController\PaymentController@BuyPayphone');

@@ -1,27 +1,8 @@
-@foreach (session('flash_notification', collect())->toArray() as $message)
-    @if ($message['overlay'])
-        @include('flash::modal', [
-            'modalClass' => 'flash-modal',
-            'title'      => $message['title'],
-            'body'       => $message['message']
-        ])
-    @else
-        <div class="alert
-                    alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-important' : '' }}"
-                    role="alert"
-        >
-            @if ($message['important'])
-                <button type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-hidden="true"
-                >&times;</button>
-            @endif
-
-            {!! $message['message'] !!}
-        </div>
-    @endif
-@endforeach
-
-{{ session()->forget('flash_notification') }}
+    @foreach (session('flash_notification', collect())->toArray() as $message)
+        <script src="{{asset('assets/js/jquery.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.js"></script>
+        <script type="text/javascript">
+            Materialize.toast("{!! $message['message'] !!}",5000);
+        </script>
+    @endforeach
+    {{ session()->forget('flash_notification') }}

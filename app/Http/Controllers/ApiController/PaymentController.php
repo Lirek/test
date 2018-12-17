@@ -29,8 +29,48 @@ use Carbon\Carbon; //
 use App\Mail\TransactionApproved; //
 use Illuminate\Support\Facades\Mail; //
 
-class PaymentController extends Controller
-{
+class PaymentController extends Controller {
+
+    public function BuyDepositPackage(Request $request) {
+        $Buy = new Payments;
+        $Buy->user_id = auth()->user()->id;
+        $Buy->package_id = $request->ticket_id;
+        $Buy->cost = $request->cost;
+        $Buy->value = $request->cantidad;
+        $Buy->method = 'Depósito';
+        $Buy->status = 2;
+        $Buy->reference = $request->references;
+        $Buy->save();
+        $Buy = Payments::all();
+        $idPayment = $Buy->last()->id;
+
+        return Response::json([
+            'status'=>'1',
+            'data' => [
+                "idPayment"=>$idPayment
+            ],
+            'message'=>'Información registrada exitosamente'
+        ],200);
+    }
+
+    public function BuyDepositPackageDocument(Request $request, $idPayment) {
+        if ($request->hasFile('voucher')) {
+            $store_path = public_path().'/user/'.auth()->user()->id.'/ticketsDeposit/';
+            $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
+            $request->file('voucher')->move($store_path,$name);
+            $real_path ='/user/'.auth()->user()->id.'/ticketsDeposit/'.$name;
+        }
+        $Buy = Payments::find($idPayment);
+        $Buy->voucher = $real_path;
+        $Buy->save();
+        return Response::json([
+            'status'=>'1',
+            'data' => [
+                "idPayment"=>$idPayment
+            ],
+            'message'=>'Pago registrado exitosamente'
+        ],200);
+    }
     
     public function BuyPointsPackage(Request $request) {
         $user = User::find(auth()->user()->id);
