@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
             <ul class="tabs">
-                <li class="tab col s4"><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
+                <li class="tab col s4 "><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
                 <li  class="tab col s4"><a href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
             </ul>
         </div>
@@ -92,11 +92,13 @@
             </table>
             <br>
 
-            <ul class="pagination">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active blue"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
+<div class="row center">
+<div class="col s12 m12">
+        <!--  Paginacion material -->
+        <?php /*Nuevo*/ $Balance->setPath('') ?>
+        {!!$Balance->appends(Input::except('page'))->render() !!}
+</div>
+</div>
 
         </div>
     </div>
@@ -121,7 +123,6 @@
                     datasets: [{
                         data: info,
                         backgroundColor: [
-
                             '#64B5F6',
                             '#ff8a65',
                             '#ffd54f'
@@ -153,5 +154,21 @@
         });
         // grafica de doughnut disponibilidad seller
     });
+
+
+
+   $(document).ready(function()
+   {
+       $(document).on('click', '.pagination a',function(event)
+       {
+
+           $('ul.tabs').tabs();
+           $('ul.tabs').tabs('select_tab', 'test2');
+
+
+       });
+   });
+
+
 </script>
 @endsection
