@@ -7,35 +7,60 @@ use App\Http\Controllers\Controller;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 
 use App\ExternalClients;
+use App\User;
 
 class ExternalOperationsController extends Controller
 {
     public function PointsPayment(Request $request)
     {
-    	$ExternalClient=ExternalClients::where('client_secret_id','=',$request->secret_id)->firstOrfail();
+    	try 
+    	{	
+    		$ExternalClient=ExternalClients::where('client_secret_id','=',$request->secret_id)->firstOrfail();
 
+    	} 
+    	catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
+    	{
+    		
+    		return response()->json('No existe el Cliente',204);
+    	}
+
+	
+		try {
+			$User= User::where('email','=',$request->user)->firstOrfail();
+			dd($User);
+			} 
+		catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
+			{
+				return response()->json('No existe el Usuario',204);
+			}
+    	
     	$client = new Client();
 
-    	$User= User::where('email','=',$request->user)->firstOrfail();
+    	
+    	
 
     	if ($ExternalClient->petition_url != $request->url()) 
     	{
-    		return Mail::raw('Se Ha registrado una transsaccion de su sitio desde un url no valido: '.$request->url(), function ($message) {
     		
-    		    $message->to($ExternalClient->admin_email, $ExternalClient->client_name);    		
-    		    $message->replyTo('leipel@leipel.com', 'Webmaster');
-    		    $message->subject('Transsacion Sospechosa');
-    		});
+    		Log::debug('Se Ha registrado una transsaccion de su sitio desde un url no valido:'.$request->url().'para el cliente:'.$ExternalClient->client_name);
+
+    		// Mail::raw('Se Ha registrado una transsaccion de su sitio desde un url no valido: '.$request->url(), function ($message) {
+    		
+    		//     $message->to($ExternalClient->admin_email, $ExternalClient->client_name);    		
+    		//     $message->replyTo('leipel@leipel.com', 'Webmaster');
+    		//     $message->subject('Transsacion Sospechosa');
+    		// });
+   
+			return redirect()->back();
     	}
     	else
     	{
 	    	if ($User->credito < $request->points) 
 	    	{
 
-	    		return $client->post($ExternalClient->callback_url,
+	    			$client->post($ExternalClient->callback_url,
 	    			[
 		    			'form_params' => [
 		        							'status' => 'Error',
@@ -44,6 +69,9 @@ class ExternalOperationsController extends Controller
 		        						 ]
 
 	        		]);
+	        		dd($User);
+	        return redirect()->back();
+
 	    	}
 	    	else
 	    	{
