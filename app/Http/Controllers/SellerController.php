@@ -480,7 +480,7 @@ class SellerController extends Controller
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $col = new Collection($ordenBalance);
-        $perPage = 10;
+        $perPage = 5;
         $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
 
