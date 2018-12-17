@@ -37,7 +37,9 @@ use App\TicketsPackage;
 use App\Events\BookTraceEvent; //Agrega el Evento 
 use App\Events\MegazineTraceEvent; //Agrega el Evento 
 use App\Events\MovieTraceEvent; //Agrega el Evento 
-use App\Events\SongTraceEvent; //Agrega el Evento 
+use App\Events\SongTraceEvent; //Agrega el Evento
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 
 class UserController extends Controller
@@ -373,8 +375,15 @@ class UserController extends Controller
         }
         
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
-       
-        return view('users.MyBalance')->with('Balance',$ordenBalance);
+
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($ordenBalance);
+        $perPage = 5;
+        $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+
+               return view('users.MyBalance')->with('Balance',$entries);
     }
 
 
