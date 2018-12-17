@@ -97,12 +97,13 @@
                             </tbody>
                         </table>
 
-                        <br>
-                        <ul class="pagination">
-                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                            <li class="active blue"><a href="#!">1</a></li>
-                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                        </ul>
+                        <div class="row center">
+                            <div class="col s12 m12">
+                                <!--  Paginacion material -->
+                                <?php /*Nuevo*/ $Balance->setPath('') ?>
+                                {!!$Balance->appends(Input::except('page'))->render() !!}
+                            </div>
+                        </div>
 
                     </div>
 
