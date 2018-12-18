@@ -29,7 +29,7 @@ class ExternalOperationsController extends Controller
 	
 		try {
 			$User= User::where('email','=',$request->user)->firstOrfail();
-			dd($User);
+
 			} 
 		catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
 			{
@@ -69,7 +69,6 @@ class ExternalOperationsController extends Controller
 		        						 ]
 
 	        		]);
-	        		dd($User);
 	        return redirect()->back();
 
 	    	}
