@@ -423,5 +423,41 @@ function maxLengthCheck(object) {
      
     })();
 </script>
+<script type="text/javascript">
+    
+       function callback() {
+            $('#save-resource').attr('disabled',true);
+            var tags_name= $("#new_tag").val();
+            var type_tags= $('#type_tags').val();
+            var seller_id = $('#seller_id').val();
+  
+                                $.ajax({
+                                url: "{{ url('/AddTags') }}",
+                                type: 'POST',
+                                data: {
+                                        _token: $('input[name=_token]').val(),
+                                        tags_name: tags_name,
+                                        type_tags: type_tags,
+                                        seller_id: seller_id,
+                                      
+                                      }, 
 
+                                success: function (result) {
+                                    
+                                    if(result==0){
+                                    swal("Genero "+tags_name +" agregado con exito y en espera de verificación","","success");
+                                    $('#modalgenero').toggle();
+                                    $('.modal-backdrop').remove();
+                                    }
+                                },
+
+                                error: function (result) {
+                                    swal('Existe un Error en su Solicitud','','error');
+                                
+                                },
+                                });  
+ }
+
+
+</script>
 @endsection
