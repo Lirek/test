@@ -121,8 +121,9 @@ Route::post('Invite','UserController@Invite');
     Route::get('PlayList/{id}','UserController@AddElementPlaylist');
 
     //Agregada12/7/18
-    Route::get('MyAlbums','UserController@MyAlbums');
-    Route::get('SongsAlbums/{id}','UserController@SongAlbum');
+    Route::get('MyAlbums/{id}','UserController@MyAlbums');
+    Route::get('MySongsAlbums/{id}','UserController@SongAlbum');
+    Route::get('SongsSingles','UserController@SongSingles');
 
     //Agregada 13/7/18
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');

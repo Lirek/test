@@ -27,7 +27,7 @@
                 			<i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
-                            <label for="seach">Buscar libro</label><br>
+                            <label for="seach">Buscar revista</label><br>
                             <br>
                             <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
                 		</form>

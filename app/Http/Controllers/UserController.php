@@ -433,9 +433,20 @@ class UserController extends Controller
         {
             return response()->json(1);   
         }
+
+        if($Single->album != NULL){
+          $checkS = Transactions::where('album_id','=',$Single->Album->id)->where('user_id','=',$user->id)->get();
+          $checkS->isEmpty();
+
+          if(count($checkS)>=1)
+          {
+              return response()->json(2);   
+          }
+        }
         else
         {
             $Transaction= new Transactions;
+            $Transaction->seller_id=$Single->seller_id; 
             $Transaction->song_id=$Single->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $Single->cost*-1;
@@ -444,12 +455,16 @@ class UserController extends Controller
             $user->credito= $user->credito-$Single->cost;
             $user->save(); 
 
+             $seller = Seller::find($Single->seller_id);
+            $seller->credito=$seller->credito+$Single->cost;
+            $seller->save();
+
             $account=new AccountBalance;
             $account->seller_id=$Single->seller_id;
             $account->balance=$Single->cost;
             $account->save();
 
-            $this->SendMail($Single->song_name,$Single->cost);
+            // $this->SendMail($Single->song_name,$Single->cost);
 
             return response()->json($Transaction);
         }
@@ -475,10 +490,25 @@ class UserController extends Controller
                 $Single = 0;
                 
              }
+        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
+
+        if($TransactionAlbum->count() > 0)
+            {
+            
+                foreach ($TransactionAlbum as $key) 
+                    {
+                        $Albums[] = $key->Albums; 
+                        $id=$key->Albums->id;
+                    }
+            }
+            else
+             {
+                $Albums = 0;
+             }
 
 
         
-        return view('users.MyMusic')->with('Singles',$Single);
+        return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
         
     }
 
@@ -503,6 +533,7 @@ class UserController extends Controller
         else
         {
             $TransactionAlbum= new Transactions;
+            $TransactionAlbum->seller_id=$Albums->seller_id; 
             $TransactionAlbum->Album_id=$Albums->id;
             $TransactionAlbum->user_id=$user->id;
             $TransactionAlbum->tickets= $Albums->cost*-1;
@@ -511,38 +542,28 @@ class UserController extends Controller
             $user->credito= $user->credito-$Albums->cost;
             $user->save();
 
+            $seller = Seller::find($Albums->seller_id);
+            $seller->credito=$seller->credito+$Albums->cost;
+            $seller->save();
+
             $account=new AccountBalance;
             $account->seller_id=$Albums->seller_id;
             $account->balance=$Albums->cost;
             $account->save();
 
-            $this->SendMail($Albums->name_alb,$Albums->cost);
+            // $this->SendMail($Albums->name_alb,$Albums->cost);
 
             return response()->json($TransactionAlbum);
         }
     
     }
 
-    public function MyAlbums()
+    public function MyAlbums($id)
     {
         
-        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
+        
+        $Albums= Albums::find($id);
 
-        if($TransactionAlbum->count() > 0)
-            {
-            
-                foreach ($TransactionAlbum as $key) 
-                    {
-                        $Albums[] = $key->Albums; 
-                        $id=$key->Albums->id;
-                    }
-            }
-            else
-             {
-                $Albums = 0;
-             }
-
-             
 
         return view('users.MyAlbums')->with('Albums',$Albums);
         
@@ -554,6 +575,20 @@ class UserController extends Controller
 
         $Song= Songs::where('album','=',$id)->get(); 
     
+            
+        return response()->json($Song);
+        
+    }
+
+    public function SongSingles()
+    {
+        $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
+        if($TransactionSingle->count()>0){
+          foreach ($TransactionSingle as $key) {
+            $Song[]= Songs::where('id','=',$key->song_id)->first(); 
+          }
+            
+        }
              
         return response()->json($Song);
         

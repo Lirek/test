@@ -135,7 +135,7 @@
                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Adquirir Contenido<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                    <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
+                                        <li><a href="{{url('MusicContent')}}"><i class="small material-icons left" >music_note</i>Música</a></li>
                                         <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
                                         <li><a href="{{url('ReadingsMegazines')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
                                         <li><a href="{{url('ShowMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
@@ -173,21 +173,19 @@
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
 
-                                 <!-- <li>-->  <!--End Musica--><!--
+                                  <li>  <!--End Musica-->
                                     <ul class= "collapsible collapsible-accordion" >
                                     <li>
                                     <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Música<i class="material-icons right">expand_more</i></a>
                                             <div class="collapsible-body">
                                                 <ul>
-                                                <li><a href="href="{{url('MyMusic')}}" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
-                                                <li><a href="href="{{url('MyAlbums')}}" class="collapsible-header waves-effect waves-blue">Albums</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue">Albums</a></li>
+                                                <li><a href="{{url('MyMusic')}}" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
+                                                <li><a href="{{url('MyAlbums')}}" class="collapsible-header waves-effect waves-blue">Albums</a></li>
                                                  </ul>
-                                            </div> <!--collapsible-body--><!--
+                                            </div> <!--collapsible-body-->
                                         </li>
-                                    </ul><!--End collapsible Musica-->
-                                <!-- </li>--> <!--End Musica-->
+                                    </ul>
+                                 </li><!--End Musica-->
 
                                 <li> <!--Lecturas-->
                                     <ul class= "collapsible collapsible-accordion" >
@@ -207,8 +205,8 @@
                                 <li><a  href="{{url('ShowRadio')}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
                                 <li><a  href="{{url('ShowTv')}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
                                 <li><div class="divider"></div></li>
-
-                                    <li> <!--Streams-->
+                                    <!--Streams-->
+                                    <!-- <li> 
                                       <ul class= "collapsible collapsible-accordion" >
                                             <li>
                                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Lecturas<i class="material-icons right">expand_more</i></a>
@@ -220,7 +218,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li> <!--End Streams-->
+                                    </li> --> <!--End Streams-->
                                     </ul>
                                 </div><!--End div Entretenimiento-->
                             </li>

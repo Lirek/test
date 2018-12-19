@@ -278,6 +278,17 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -811,6 +822,8 @@
       <workItem from="1544188880652" duration="1587000" />
       <workItem from="1544190792876" duration="1543000" />
       <workItem from="1544800660167" duration="633000" />
+      <workItem from="1545062888353" duration="477000" />
+      <workItem from="1545183891636" duration="442000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -910,11 +923,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544801126815</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Solucion fallas de generos">
+      <created>1545063321012</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1545063321012</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="508085000" />
+    <option name="totallyTimeSpent" value="509004000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -935,7 +955,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19288956" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19894099" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -946,10 +966,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1009,7 +1029,8 @@
     <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets" />
+    <MESSAGE value="Solucion fallas de generos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucion fallas de generos" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php">

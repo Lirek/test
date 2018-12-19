@@ -218,7 +218,7 @@
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                         <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
-                        {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninput'=>"maxLengthCheck(this)"'oninvalid'=>"this.setCustomValidity('Costo en tickets')",  'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)' ]) !!}
+                        {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninput'=>"maxLengthCheck(this)",'oninvalid'=>"this.setCustomValidity('Costo en tickets')",  'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)' ]) !!}
                         <div id="mensajePrecio"></div>
                         <br>
                     </div>
