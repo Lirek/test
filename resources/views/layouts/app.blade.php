@@ -226,7 +226,7 @@
                                 <li><a  href="{{--url('ShowTv')--}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
                                 <li><div class="divider"></div></li>-->
 
-                                    <li> <!--Streams-->
+                                    <!--   <li> Streams-->
                                     <!--<ul class= "collapsible collapsible-accordion" >
                                             <li>
                                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Lecturas<i class="material-icons right">expand_more</i></a>
