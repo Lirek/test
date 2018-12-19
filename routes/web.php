@@ -462,7 +462,18 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
+         Route::get('ExternalClients','ExternalClientsController@ViewExternalClients');
+         
+         Route::get('ExternalClientsDataTable','ExternalClientsController@ExternalClientsDataTable');
 
+         Route::get('GetExternalClient/{id}','ExternalClientsController@GetExternalClient');
+
+         Route::post('SaveExternalClients','ExternalClientsController@SaveExternalClients');
+
+         Route::post('UpdateExternalClient/{id}','ExternalClientsController@UpdateExternalClient');
+
+         Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
+         
 
     });
 });

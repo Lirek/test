@@ -81,7 +81,22 @@
                           <span>Errores</span>
                       </a>
                   </li> 
-                  
+
+                  <li class="mt">
+                      <a href="{{url('ExternalClients')}}">
+                          <i class="fa fa-user"></i>
+                          <span>Clientes Externos</span>
+                      </a>
+                  </li> 
+
+
+                  <li class="mt">
+                      <a href="{{url('ExternalClients')}}">
+                          <i class="fa fa-user"></i>
+                          <span>Clientes Externos</span>
+                      </a>
+                  </li> 
+
                   @endif
 
               </ul>
