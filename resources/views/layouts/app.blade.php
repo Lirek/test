@@ -147,10 +147,10 @@
                     <a href="{{ url('/home')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >view_carousel</i>Cartelera</a>
                     </li>
 
-                    <li> <!--Adquirir-->
+                    <li> <!--Entretenimiento-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Adquirir Contenido<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                     <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
@@ -163,13 +163,13 @@
                                 </div>
                             </li>
                         </ul>
-                    </li> <!--End Adquirir-->
+                    </li> <!--End Entretenimiento-->
 
 
-                    <li><!--Entretenimiento-->
+                    <li><!--Historiales-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Historiales<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
 
@@ -222,9 +222,9 @@
                                     </ul>
                                 </li> <!--End Lecturas-->
 
-                                <li><a  href="{{url('ShowRadio')}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
-                                <li><a  href="{{url('ShowTv')}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
-                                <li><div class="divider"></div></li>
+                                <!-- <li><a  href="{{--url('ShowRadio')--}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
+                                <li><a  href="{{--url('ShowTv')--}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
+                                <li><div class="divider"></div></li>-->
 
                                     <li> <!--Streams-->
                                     <!--<ul class= "collapsible collapsible-accordion" >
@@ -240,10 +240,10 @@
                                         </ul>
                                     </li> End Streams-->
                                     </ul>
-                                </div><!--End div Entretenimiento-->
+                                </div><!--End div Historiales-->
                             </li>
-                        </ul><!--End ul Entretenimiento-->
-                    </li> <!--End Entretenimiento-->
+                        </ul><!--End ul Historiales-->
+                    </li> <!--End Historiales-->
 
 
                     <li><!-- Invitar-->
