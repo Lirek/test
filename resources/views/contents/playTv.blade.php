@@ -187,7 +187,7 @@ a:hover {
                             <li><a href="{{$tv->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
                             <li><a  href="{{$tv->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
                             <li><a href="{{$tv->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
-                            <li><a href="{{$tv->instagram}}" class="btn-floating deep-purple darken-2"><i class="mdi mdi-instagram"></i></a></li>
+                            <li><a href="{{$tv->instagram}}" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
                         </ul>
                     </div>
 
