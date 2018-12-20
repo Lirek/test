@@ -12,8 +12,6 @@
     <!--https://plyr.io/#audio-->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
 
-
-
 @yield('css')
     <!--Let browser know website is optimized for mobile-->
     <meta charset="utf-8" />
@@ -24,14 +22,14 @@
     <title>{{ config('app.name', 'Leipel') }}</title>
 
     <!--external css
-    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">-->
+    <link href="{{--asset('assets/font-awesome/css/font-awesome.css')--}}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{--asset ('assets/css/zabuto_calendar.css')--}}">
+    <link rel="stylesheet" type="text/css" href="{{--asset('assets/js/gritter/css/jquery.gritter.css')--}}" />
+    <link rel="stylesheet" type="text/css" href="{{--asset('assets/lineicons/style.css')--}}">-->
     <!-- Custom styles for this template -->
-    <!--  <link href="<link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet"> -->
-    <!--  <  <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">-->
-    <!--  <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>-->
+    <!--  <link href="<link href="{{--asset('assets/css/style.css')--}}" rel="stylesheet"> -->
+    <!--  <  <link href="{{--asset('assets/css/style-responsive.css')--}}" rel="stylesheet">-->
+    <!--  <script src="{{--asset ('assets/js/chart-master/Chart.js')--}}"></script>-->
 
     <!--estilo plyr
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">-->
@@ -46,12 +44,12 @@
     <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 
     <!--NUMERO
-    <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+    <link rel="stylesheet" href="{{--asset('plugins/telefono/intlTelInput.css')--}}">
     <style type="text/css">
-        .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+        .iti-flag {background-image: url("{{--asset('plugins/telefono/flags.png')--}}");}
 
         @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-            .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+            .iti-flag {background-image: url("{{--asset('plugins/telefono/flags2x.png')--}}");}
 
         }
     </style>-->
@@ -59,7 +57,7 @@
     <!--[if lt IE 9]>
     <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-    <![endif]-->
+    <!--[endif]-->
 
 
 </head>
