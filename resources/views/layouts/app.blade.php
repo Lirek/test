@@ -8,6 +8,8 @@
     <link href="{{ asset('plugins/materialize_adm/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+    <!--https://plyr.io/#audio-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
 
 @yield('css')
     <!--Let browser know website is optimized for mobile-->
@@ -19,14 +21,14 @@
     <title>{{ config('app.name', 'Leipel') }}</title>
 
     <!--external css
-    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">-->
+    <link href="{{--asset('assets/font-awesome/css/font-awesome.css')--}}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{--asset ('assets/css/zabuto_calendar.css')--}}">
+    <link rel="stylesheet" type="text/css" href="{{--asset('assets/js/gritter/css/jquery.gritter.css')--}}" />
+    <link rel="stylesheet" type="text/css" href="{{--asset('assets/lineicons/style.css')--}}">-->
     <!-- Custom styles for this template -->
-    <!--  <link href="<link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet"> -->
-    <!--  <  <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">-->
-    <!--  <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>-->
+    <!--  <link href="<link href="{{--asset('assets/css/style.css')--}}" rel="stylesheet"> -->
+    <!--  <  <link href="{{--asset('assets/css/style-responsive.css')--}}" rel="stylesheet">-->
+    <!--  <script src="{{--asset ('assets/js/chart-master/Chart.js')--}}"></script>-->
 
     <!--estilo plyr
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">-->
@@ -41,12 +43,12 @@
     <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
 
     <!--NUMERO
-    <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
+    <link rel="stylesheet" href="{{--asset('plugins/telefono/intlTelInput.css')--}}">
     <style type="text/css">
-        .iti-flag {background-image: url("{{asset('plugins/telefono/flags.png')}}");}
+        .iti-flag {background-image: url("{{--asset('plugins/telefono/flags.png')--}}");}
 
         @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-            .iti-flag {background-image: url("{{asset('plugins/telefono/flags2x.png')}}");}
+            .iti-flag {background-image: url("{{--asset('plugins/telefono/flags2x.png')--}}");}
 
         }
     </style>-->
@@ -54,7 +56,7 @@
     <!--[if lt IE 9]>
     <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-    <![endif]-->
+    <!--[endif]-->
 
 
 </head>
@@ -77,12 +79,25 @@
                             <!-- End logo principal -->
                             <!-- Img Contenido superior -->
                                 <ul class="right" >
-                                    <li>
-                                    <a href="{{ url('ShowRadio')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('ShowTv')}}" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/tv.svg')}}"> </b></a>
-                                    </li>
+                                        <li>
+                                            <a href="{{ url('ShowMovies') }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/cine.svg')}}"> </b></a>
+                                        </li>
+
+                                <!--    <li>
+                                            <a href="{{-- url('')--}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
+                                        </li> -->
+
+                                        <li>
+                                            <a href="{{ url('/ReadingsBooks')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/lectura.svg')}}"> </b></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ url('ShowRadio')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('ShowTv')}}" class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/tv.svg')}}"> </b></a>
+                                        </li>
+
                                 </ul>
                         <!-- End Img Contenido superior -->
                         </div><!-- End nav-wrapper -->
@@ -129,29 +144,29 @@
                     <a href="{{ url('/home')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >view_carousel</i>Cartelera</a>
                     </li>
 
-                    <li> <!--Adquirir-->
+                    <li> <!--Entretenimiento-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Adquirir Contenido<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li><a href="{{url('MusicContent')}}"><i class="small material-icons left" >music_note</i>Música</a></li>
-                                        <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
+                                    <!-- <li><a href="{{url('MusicContent')}}">Música</a></li> -->
+                                        <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-book-multiple-plus"></i>Libros</a></li>
                                         <li><a href="{{url('ReadingsMegazines')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
                                         <li><a href="{{url('ShowMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
-                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Series</a></li>
+                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-movie-roll"></i>Series</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
-                    </li> <!--End Adquirir-->
+                    </li> <!--End Entretenimiento-->
 
 
-                    <li><!--Entretenimiento-->
+                    <li><!--Historiales-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Historiales<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
 
@@ -162,30 +177,32 @@
                                          <div class="collapsible-body">
                                             <ul>
                                                 <li><a href="{{url('MyMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >theaters</i>Mis Peliculas</a></li>
-                                                <li><a href="{{url('MySeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >videocam</i>Mis Series</a></li>
+                                                <li><a href="{{url('MySeries')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-movie-roll"></i>Mis Series</a></li>
                                                 <li><div class="divider"></div></li>
                                             </ul>
                                         </div>
                                      </li>
                                     </ul>
-                                </li> <!--End Lecturas-->    
+                                </li> <!--End cine-->
 
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
 
-                                  <li>  <!--End Musica-->
+                                 <!-- <li>-->  <!--End Musica--><!--
                                     <ul class= "collapsible collapsible-accordion" >
                                     <li>
                                     <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Música<i class="material-icons right">expand_more</i></a>
                                             <div class="collapsible-body">
                                                 <ul>
-                                                <li><a href="{{url('MyMusic')}}" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
-                                                <li><a href="{{url('MyAlbums')}}" class="collapsible-header waves-effect waves-blue">Albums</a></li>
+                                                <li><a href="href="{{url('MyMusic')}}" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
+                                                <li><a href="href="{{url('MyAlbums')}}" class="collapsible-header waves-effect waves-blue">Albums</a></li>
+                                                <li><a href="#" data-toggle="modal" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue">Sencillos</a></li>
+                                                <li><a href="#" data-toggle="modal" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue">Albums</a></li>
                                                  </ul>
-                                            </div> <!--collapsible-body-->
+                                            </div> <!--collapsible-body--><!--
                                         </li>
-                                    </ul>
-                                 </li><!--End Musica-->
+                                    </ul><!--End collapsible Musica-->
+                                <!-- </li>--> <!--End Musica-->
 
                                 <li> <!--Lecturas-->
                                     <ul class= "collapsible collapsible-accordion" >
@@ -202,28 +219,28 @@
                                     </ul>
                                 </li> <!--End Lecturas-->
 
-                                <li><a  href="{{url('ShowRadio')}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
-                                <li><a  href="{{url('ShowTv')}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
-                                <li><div class="divider"></div></li>
-                                    <!--Streams-->
-                                    <!-- <li> 
-                                      <ul class= "collapsible collapsible-accordion" >
+                                <!-- <li><a  href="{{--url('ShowRadio')--}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
+                                <li><a  href="{{--url('ShowTv')--}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
+                                <li><div class="divider"></div></li>-->
+
+                                    <!--   <li> Streams-->
+                                    <!--<ul class= "collapsible collapsible-accordion" >
                                             <li>
                                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Lecturas<i class="material-icons right">expand_more</i></a>
                                                 <div class="collapsible-body">
                                                     <ul>
-                                                        <li><a href="{{url('ShowTv')}}" class="collapsible-header waves-effect waves-blue">Tv</a></li>
-                                                        <li><a href="{{url('ShowRadio')}}" class="collapsible-header waves-effect waves-blue">Radio</a></li>
+                                                        <li><a href="{{--url('ShowTv')--}}" class="collapsible-header waves-effect waves-blue">Tv</a></li>
+                                                        <li><a href="{{--url('ShowRadio')--}}" class="collapsible-header waves-effect waves-blue">Radio</a></li>
                                                     </ul>
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li> --> <!--End Streams-->
+                                    </li> End Streams-->
                                     </ul>
-                                </div><!--End div Entretenimiento-->
+                                </div><!--End div Historiales-->
                             </li>
-                        </ul><!--End ul Entretenimiento-->
-                    </li> <!--End Entretenimiento-->
+                        </ul><!--End ul Historiales-->
+                    </li> <!--End Historiales-->
 
 
                     <li><!-- Invitar-->
@@ -348,20 +365,21 @@
 </body>
 <!-- js placed at the end of the document so the pages load faster -->
 
-<!-- <script src="{{asset('assets/js/jquery-1.8.3.min.js') }}"></script>-->
+<!-- <script src="{{--asset('assets/js/jquery-1.8.3.min.js')--}}"></script>-->
 
 <!--common script for all pages-->
-<!--<script src="{{asset('assets/js/common-scripts.js')}}"></script>-->
+<!--<script src="{{--asset('assets/js/common-scripts.js')---}}"></script>-->
 
-<!--<script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>-->
-<!--<script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>-->
+<!--<script type="text/javascript" src="{{--asset('assets/js/gritter/js/jquery.gritter.js')--}}"></script>-->
+<!--<script type="text/javascript" src="{{--asset('assets/js/gritter-conf.js')--}}"></script>-->
 
 <!--script for this page-->
-<!--<script src="{{asset('assets/js/sparkline-chart.js')}}"></script>-->
-<!--<script src="{{asset('assets/js/zabuto_calendar.js')}}"></script>-->
+<!--<script src="{{--asset('assets/js/sparkline-chart.js')--}}"></script>-->
+<!--<script src="{{--asset('assets/js/zabuto_calendar.js')--}}"></script>-->
 
 <!--Script Plyr-->
 <!--<script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>-->
+<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
 
 <!--Datatables-->
 <!--
@@ -372,9 +390,10 @@
 -->
 
 <!--telefono-->
-<!--<script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>-->
-<!--<script src="{{ asset('plugins/telefono/utils.js') }}"></script>-->
+<!--<script src="{{-- asset('plugins/telefono/intlTelInput.js') --}}"></script>-->
+<!--<script src="{{-- asset('plugins/telefono/utils.js') --}}"></script>-->
 <!--SCRIPS JS-->
+
 
 <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
 <script src="{{asset('assets/js/jquery.js') }}"></script>

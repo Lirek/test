@@ -2,48 +2,36 @@
 
 @section('css')
     <style type="text/css">
-        .wrapper {
-            margin: 100px auto;
-            width: 30px;
-        }
-        .plyr--audio .plyr__controls{
-            background-color: #dddcdc;
-            padding: 20px;
-            border-radius: 50px;
-            height: 60px;
-        }
 
-        .plyr--audio .plyr__progress{
-            margin: 24px;
-            left: 0;
+        .plyr {
+            margin: 0 auto;
+            border-radius: 6px;
         }
-
-        .plyr--full-ui input[type=range]::-webkit-slider-thumb{
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.2s ease;
-            height: 16px;
-            width: 16px;
+        .plyr--audio .plyr__controls {
+            background: #ffffff;
+            border-radius: inherit;
+            color: #4f5b5f;
+            padding: 10px;
         }
-
-        .plyr--full-ui input[type=range]::-webkit-slider-runnable-track {
-            height: 5px;
+        .plyr--audio {
+            max-width: 120px;
+            min-width: 180px;
         }
-
-        .plyr--audio .plyr__progress__buffer {
-            color: rgba(94, 186, 246, 0.4);
+        .plyr button {
+            background: #9e9e9e ;
+            font: inherit;
+            line-height: inherit;
+            width: auto;
+            color: #fff;
         }
-
+        button:focus {
+            color: #fff;
+            background: #2196f3;
+        }
     </style>
 @endsection
 
 @section('main')
-
-    <div class="row">
-        <div class="col s12 m12">
-            <div class="card">
-                <div class="card-content white-text">
-
                     <div class="row">
                         <div class="input-field col s12 m3 offset-m4">
                             <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
@@ -62,23 +50,29 @@
 
                     <div class="row">
                         @foreach($Rad as $radios)
-                            <div class="col s12 m4">
+                            <div class="col s12 m6 l4">
                                 <div class="card">
                                     <div class="card-image" style="height: 300px; margin: 0px; padding: 0px;">
                                             <img src="{{asset($radios->logo)}}" height="300px">
                                             <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
                                     </div>
-                                    <div class="card-content" style="padding: 20px;">
-                                        <div class="progress">
-                                            <div id="playRad" class="indeterminate blue"></div>
-                                        </div>
-                                            <div>
-                                                <br>
+                                    <div class="card-content" style="padding: 13px;">
                                                 <div class="row">
-                                            <div class="col s12 m8  offset-m1">
-                                            <audio  id="player" controls></audio>
-                                            </div></div>
-                                        </div>
+                                                    <div class="col s12 ">
+
+                                                    <div  id="play_ico">
+                                                        <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
+                                                    </div>
+                                                    <div id="off_ico" style="display: none;" >
+                                                        <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
+                                                    </div>
+
+                                                        <div  class="wrapper">
+                                                    <audio id="player"></audio>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -99,25 +93,19 @@
                                 </div>
                             @endforeach
                     </div>
-
-
-                      </div>
-                   </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <div class="fixed-action-btn click-to-toggle direction-top">
-    <a class="btn-floating btn-large waves-effect waves-light green">
-        <i class="large material-icons">share</i>
-    </a>
-    <ul>
-        <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
-        <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
-        <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
-        <li><a href="{{$radios->instagram}}" class="btn-floating purple-gradient darken-2"><i class="mdi mdi-instagram"></i></a></li>
-    </ul>
+            <div class="fixed-action-btn click-to-toggle direction-top">
+            <a class="btn-floating btn-large waves-effect waves-light green">
+                <i class="large material-icons">share</i>
+            </a>
+            <ul>
+                <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+                <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+                <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+                <li><a href="{{$radios->instagram}}" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
+            </ul>
 </div>
 
 @endsection
@@ -143,8 +131,18 @@
 
             ],
         };
+
+        $('#off_ico').hide();
         players.play(); //inicia radio al abrir pagina
         players.volume = 0.5; // Sets volume at 50%
+        players.on('playing', event => {
+            $('#off_ico').hide();
+            $('#play_ico').show();
+        });
+       players.on('pause', event => {
+           $('#play_ico').hide();
+           $('#off_ico').show();
+        });
     </script>
 
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
