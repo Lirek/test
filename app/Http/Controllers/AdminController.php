@@ -57,6 +57,8 @@ use App\Rating;
 use App\Rejection;
 use App\PaymentSeller;
 
+use App\PointsLoser;
+
 //--------------------------------------------------------
 
 class AdminController extends Controller
@@ -1937,57 +1939,36 @@ class AdminController extends Controller
                       ->toJson();
       }
 
-      public function DepositStatus($id,Request $request)
-      {
-        
+      public function DepositStatus($id,Request $request) {
         $deposit = Payments::find($id);
-        
-        
-        if($request->status_p == 'Aprobado')
-        {
-
+        $firstPay = Payments::where('user_id',$deposit->user_id)->where('status','Aprobado')->get();
+        if ($request->status_p == 'Aprobado') {
           $user = User::find($deposit->user_id);
-         
-          $tickets =  $deposit->value*$deposit->Tickets->amount;
-
-          $user->credito =$user->credito + $tickets;
-         
+          $tickets = $deposit->value*$deposit->Tickets->amount;
+          $user->credito = $user->credito + $tickets;
           $user->save();
-         
           $deposit->status = 'Aprobado';
-         
           $deposit->save();
-        
+          $this->valPuntos($firstPay,$deposit->user_id);
           $Condition=Carbon::now()->firstOfMonth()->toDateString();
-
           $revenueMonth = Payments::where('user_id','=',$deposit->user_id)
             ->where('created_at', '>=',$Condition)
             ->where('status', '=','Aprobado')
             ->get();
-          
           $balance=  SistemBalance::find(1);
-
           $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
-
           $balance->save();
-
-          if ($revenueMonth->count()<=1) 
-          {
-           event(new AssingPointsEvents($user->id,$deposit->package_id));
+          if ($revenueMonth->count()<=1) {
+            event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
-
           event(new PayementAprovalEvent($user->email));
-          
           return response()->json($user);
-        }
-        else
-        {
-           $user = User::find($deposit->user_id);
-           $deposit->status = 'Denegado';
-           $deposit->save();
-           event(new PaymentDenialEvent($user->email,$request->message));
-           return response()->json($deposit);
-
+        } else {
+          $user = User::find($deposit->user_id);
+          $deposit->status = 'Denegado';
+          $deposit->save();
+          event(new PaymentDenialEvent($user->email,$request->message));
+          return response()->json($deposit);
         }
       }
 
@@ -2076,6 +2057,60 @@ class AdminController extends Controller
         curl_close ($ch);
         $respuesta = json_decode($response);
         return Response()->json($respuesta);
+      }
+
+      public function valPuntos($firstPay,$user_id) {
+        $user = User::find($user_id);
+        if ($firstPay->count()==0) { // nunca a hecho pagos (apartando el que acaba de hacer)
+          if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+            if ($user->points + $user->pending_points > $user->limit_points) {
+              $todosPuntos = $user->points + $user->pending_points;
+              $restoPuntos = $todosPuntos - $user->limit_points;
+              $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+              $pointsLoser = new PointsLoser;
+              $pointsLoser->user_id = $user_id;
+              $pointsLoser->points = $restoPuntos;
+              $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+              $pointsLoser->save();
+            } else {
+              $user->points = $user->points + $user->pending_points;
+            }
+            $user->pending_points = 0;
+          }
+        } else { // ya ha hecho pagos
+          $firstDay = Carbon::now()->firstOfMonth()->subMonth(1)->toDateString();
+          $lastDay = Carbon::now()->lastOfMonth()->subMonth(1)->toDateString();
+          // pago el mes pasado?
+          $paymentsMonthPass = Payments::where('user_id',$user_id)
+            ->whereBetween('created_at',[$firstDay,$lastDay])
+            ->where('status','Aprobado')
+            ->get();
+          if ($paymentsMonthPass->count()==0) { // no pagó
+            $pointsLoser = new PointsLoser;
+            $pointsLoser->user_id = $user_id;
+            $pointsLoser->points = $user->pending_points;
+            $pointsLoser->reason = "No recargó el mes pasado";
+            $pointsLoser->save();
+            $user->pending_points = 0;
+          } else { // si pagó el mes pasado
+            if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+              if ($user->points + $user->pending_points > $user->limit_points) {
+                $todosPuntos = $user->points + $user->pending_points;
+                $restoPuntos = $todosPuntos - $user->limit_points;
+                $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+                $pointsLoser = new PointsLoser;
+                $pointsLoser->user_id = $user_id;
+                $pointsLoser->points = $restoPuntos;
+                $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                $pointsLoser->save();
+              } else {
+                $user->points = $user->points + $user->pending_points;
+              }
+              $user->pending_points = 0;
+            }
+          }
+        }
+        $user->save();
       }
 
       public function setFactura($idTicketSales,$idFactura) {
@@ -2183,6 +2218,18 @@ class AdminController extends Controller
     $seller = Seller::find($idSeller);
     return response()->json($seller);
   }
+
+  public function ShowPaymentsClients() {
+    return view('promoter.AdminModules.PaymentsClients');
+  }
+  public function paymentsClients($status) {
+    $pagos = Payments::where('status',$status)->get();
+    $pagos->each(function($pagos){
+      $pagos->ticketsUser;
+      $pagos->tickets;
+    });
+    return response()->json($pagos);
+  }
 /* 
   ---------------------------------------------------------------
   --------------- FUNCIONES DE CANJE DE TICKETS -----------------
@@ -2194,6 +2241,13 @@ class AdminController extends Controller
 
 //--------------------------Funcion de Pruueba----------------
     public function test() {
+      $points = 800;
+      $pending_points = 300;
+      $limit_points =  1000;
+      $todosPuntos = $points + $pending_points;
+      $restoPuntos = $todosPuntos - $limit_points;
+      $points = $points + ( $pending_points - $restoPuntos );
+      dd($todosPuntos,$restoPuntos,$points);
     }
 //-------------------------------------------------------------
 

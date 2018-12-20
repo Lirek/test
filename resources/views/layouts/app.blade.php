@@ -258,7 +258,7 @@
                         </ul><!--End ul Invitar-->
                     </li> <!--End Invitar-->
 
-                    <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Recargar</a></li>
+                    <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Recargas y balances</a></li>
 
                                         <!--<li>
                                         <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -122,6 +122,11 @@
                         <div class="col m6">
                            <h5 style="color: white"><b>Puntos pendientes:</b> {{Auth::user()->pending_points}}</h5>
                         </div>
+                        @if(Auth::user()->pending_points!=0)
+	                        <div class="col m12">
+	                        	<small style="color: white">Si no recarga este mes podría perder estos puntos</small>
+	                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -132,11 +137,11 @@
 			<div class="card hoverable">
 				<div class="card-content">
 					<h4 class="titelgeneral">Compra de tickets</h4>
-				@foreach($package as $ticket)
+					@foreach($package as $ticket)
 						<div class="card hoverable">
 							<div class="card-panel card-title light-blue lighten-1">
 								<div class="white-text">
-									{{$ticket->name}}
+									Paquete
 									<br><br>
 									<i class="large material-icons center">local_offer</i>
 									<h4 class="white-text">
@@ -150,9 +155,6 @@
 								<br>
 								<span class="green-text"><i class="material-icons waves-effect waves-blue">check</i></span>
 								<b>Cantidad de tickets:</b> {{$ticket->amount}}
-								<br>
-								<span class="green-text"><i class="material-icons waves-effect waves-blue">check</i></span>
-								<b>Cantidad de puntos:</b> {{$ticket->points}}
 								<br>
 							</div>
 							<div class="card-action center-align">
@@ -331,52 +333,120 @@
 				<div class="divider"></div>
 				<div class="divider"></div>
 				<br>
-				<table class="highlight centered responsive-table nowrap" id="myTables" style="width:100%">
-					<thead>
-						<tr>
-							<th><i class="material-icons right">date_range</i> Fecha</th>
-							<th><i class="material-icons right">create</i> Concepto</th>
-							<th><i class="material-icons">add</i></th>
-							<th><i class="material-icons">remove</i></th>
-							<th><i class="material-icons right">create</i> Método</th>
-							<th><i class="material-icons right">picture_as_pdf</i> Factura</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach ($Balance as $balance)
-							<tr class="letters">
-								<td>{{$balance['Date']}}</td>
-								<td>{{$balance['Transaction']}}</td>
-								@if($balance['Type']==1)
-									<td></td>
-									<td>{{$balance['Cant']}}</td>
-									<td></td>
-									<td></td>
-								@else
-									<td>{{$balance['Cant']}}</td>
-									<td></td>
-									<td>{{$balance['Method']}}</td>
-									@if($balance['Method'] != 'Puntos')
-										<td>
-											@if($balance['Factura']!=NULL)
-												<a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="waves-effect green waves-light btn-small curvaBoton">
-													{{--<i class="small material-icons">print</i>--}}
-													<i class="small material-icons right">remove_red_eye</i> Ver
-												</a>
+				<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+					<li class="tab" id="denegado"><a class="active" href="#test1">Pagos por tickets</a></li>
+					<li class="tab" id="revision"><a href="#test2">Pagos por puntos</a></li>
+					<li class="tab" id="revision"><a href="#test3">Puntos perdidos</a></li>
+				</ul>
+				<div id="test1" class="col s12">
+					@if(count($Balance)!=0)
+						<table class="highlight centered responsive-table" id="tablaFactura" style="width:100%">
+							<thead>
+								<tr>
+									<th><i class="material-icons right">date_range</i> Fecha</th>
+									<th><i class="material-icons right">create</i> Concepto</th>
+									<th><i class="material-icons">add</i></th>
+									<th><i class="material-icons">remove</i></th>
+									<th><i class="material-icons right">create</i> Método</th>
+									<th><i class="material-icons right">picture_as_pdf</i> Factura</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($Balance as $balance)
+									<tr class="letters">
+										<td>{{$balance['Date']}}</td>
+										<td>{{$balance['Transaction']}}</td>
+										@if($balance['Type']==1)
+											<td></td>
+											<td>{{$balance['Cant']}}</td>
+											<td></td>
+											<td></td>
+										@else
+											<td>{{$balance['Cant']}}</td>
+											<td></td>
+											<td>{{$balance['Method']}}</td>
+											@if($balance['Method'] != 'Puntos')
+												<td>
+													@if($balance['Factura']!=NULL)
+														<a href="https://app.datil.co/ver/{{$balance['Factura']}}/ride" target="_blank" class="waves-effect green waves-light btn-small curvaBoton">
+															{{--<i class="small material-icons">print</i>--}}
+															<i class="small material-icons right">remove_red_eye</i> Ver
+														</a>
+													@else
+														<a onclick="generarFactura({!!$balance['id_payments']!!})" class="waves-effect waves-light btn-small green curvaBoton">
+															<i class="small material-icons right">add</i> Crear
+														</a>
+													@endif
+												</td>
 											@else
-												<a onclick="generarFactura({!!$balance['id_payments']!!})" class="waves-effect waves-light btn-small green curvaBoton">
-													<i class="small material-icons right">add</i> Crear
-												</a>
+												<td>No Aplica</td>
 											@endif
-										</td>
-									@else
-										<td>No Aplica</td>
-									@endif
-								@endif
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
+										@endif
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@else
+						<h4 class="titelgeneral">No tiene pagos</h4>
+					@endif
+				</div>
+				<div id="test2" class="col s12">
+					@if(count($BalancePuntos)!=0)
+						<table class="highlight centered responsive-table" id="tablePuntos" style="width:100%">
+							<thead>
+								<tr>
+									<th><i class="material-icons right">date_range</i> Fecha</th>
+									<th><i class="material-icons right">create</i> Concepto</th>
+									<th><i class="material-icons">add</i></th>
+									<th><i class="material-icons">remove</i></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($BalancePuntos as $balance)
+									<tr class="letters">
+										<td>{{$balance['Date']}}</td>
+										<td>{{$balance['Transaction']}}</td>
+										@if($balance['Type']==1)
+											<td></td>
+											<td>{{$balance['Cant']}}</td>
+											<td></td>
+											<td></td>
+										@else
+											<td>{{$balance['Cant']}}</td>
+											<td></td>
+										@endif
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@else
+						<h4 class="titelgeneral">No tiene pagos</h4>
+					@endif
+				</div>
+				<div id="test3" class="col s12">
+					@if($pointsLoser->count()!=0)
+						<table class="highlight centered responsive-table" id="tablePuntos" style="width:100%">
+							<thead>
+								<tr>
+									<th><i class="material-icons right">date_range</i> Fecha</th>
+									<th><i class="material-icons right">create</i> Motivo</th>
+									<th><i class="material-icons right">add</i> Puntos</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($pointsLoser as $puntos)
+									<tr class="letters">
+										<td>{{$puntos->created_at->format('d/m/Y')}}</td>
+										<td>{{$puntos->reason}}</td>
+										<td>{{$puntos->points}}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@else
+						<h4 class="titelgeneral">¡Felicidades! No tiene puntos perdidos</h4>
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
@@ -436,6 +506,7 @@
 @endsection
 @section('js')
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	{{--
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
@@ -471,8 +542,7 @@
 			"order": [[ 0, "desc" ]],
 		});
 	</script>
-	<script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
-	<script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
+	--}}
 	<!--Import jQuery before materialize.js-->
 	<script src="{{asset('plugins/materialize_adm/js/materialize.js') }}"></script>
 	<script src="{{asset('plugins/materialize_adm/js/init.js') }}"></script>

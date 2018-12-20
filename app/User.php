@@ -94,4 +94,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\PointsAssings', 'from');   
     }
+
+    public function ticketsUser() {
+        return $this->hasMany('App\Payments', 'user_id');
+    }
+    public function pointLoser() {
+        return $this->hasMany('App\PointsLoser', 'user_id');
+    }
 }

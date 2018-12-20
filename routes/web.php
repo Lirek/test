@@ -246,6 +246,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('/PaymentsDataTable/{status}','AdminController@PaymentsDataTable');
             Route::post('admin_payments/{id}','AdminController@admin_payments');
             Route::get('/infoSeller/{idSeller}','AdminController@infoSeller');
+            // Agregada el 18-12-2018
+            Route::get('/admin_clients_payments','AdminController@ShowPaymentsClients');
+            Route::get('/paymentsClients/{status}','AdminController@paymentsClients');
             /*
             Rutas para canje de tickets a dinero
             Agregada 26-10-2018
