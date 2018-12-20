@@ -140,7 +140,7 @@ $(document).ready(function(){
         var id = $('#id').val();
         $.ajax({ 
                 
-                url     : '../SongsAlbums/'+id,
+                url     : '../SongsAlbums/'+id+'/',
                 type    : 'GET',
                 dataType: "json",
                 
@@ -185,10 +185,11 @@ $(document).ready(function(){
 
                     }   
                              
+                },
+                error: function(data){
+                console.log('aqui hay un error');
                 }
-    
-
-                });
+        });
 
   });
 </script>

@@ -1,12 +1,297 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4307c085-73cc-4f12-b51b-b153aa384e66" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" afterDir="false" />
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715089.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715169.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715221.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715226.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715642.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715736.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715846.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715870.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544715926.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/1/singles/2018-12-13/song_Let it be1544739821.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/7/profileArtist/Caramelos de cianuro.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/7/profileArtist/Musua.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/8/albumcover_81544564739.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/8/albumcover_81544568549.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/8/song_81544564739.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/8/song_81544568549.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/albumcover_Let it be1539016398.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Musua/albums/Let it be/song_Madre tierra1539016398.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/8/albumcover_81544569218.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/8/albumcover_81544571648.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/8/song_81544569218.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/8/song_81544571648.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544557359.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544557784.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544557852.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544557939.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544557994.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544558014.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544558049.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544558062.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544558220.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544558865.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559161.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559169.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559591.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559648.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559666.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/albumcover_Let it be1544559697.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544557359.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544557939.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544557994.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544558014.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544558049.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544558062.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544558220.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544558865.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544559161.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544559169.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544559591.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/The Beatles/albums/Let it be/song_Let it be1544559697.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/House of cards/episode_Capítulo 11543978801.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/House of cards/seriecover_House of cards1543978801.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539708625.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539711521.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714306.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714437.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539714474.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715092.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539715626.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/episode_Cap 11539808985.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539708625.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539711521.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714306.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714437.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539714474.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715092.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539715626.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/Serie prueba/seriecover_Serie prueba1539808985.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/book/3dflipbook.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/book/html2canvas.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/book/pdf.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/book/three.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Harry Potter y la piedra filosofal_1542661720.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Harry Potter y las Reliquias de la Muerte_1543519800.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017694.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539017819.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1539102702.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540497078.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540855923.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540858908.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1540859021.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Prueba_1541519599.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Pruebá_1541518903.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Saga_1540525045.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_Saga_1540564193.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/book/book_prueba de materilize_1542221725.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/authorbook/author_1540497004.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/authorbook/author_1540858991.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/authorbook/author_1542404940.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/authorbook/author_1542405356.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539017694.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539017819.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1539102702.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540497078.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540525045.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540564193.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540855923.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540858908.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1540859021.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1541518903.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1541519599.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1542221725.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1542661720.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1543519800.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/max.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540950725.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540950820.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540950968.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540951838.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540996325.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1540996957.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1541012552.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1541039787.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1542750192.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1542812281.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1544540386.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539286856.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539286904.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287058.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287281.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287316.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287386.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287433.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287440.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1539287538.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/ruc/ruc_1539287548.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/ruc/ruc_1539287609.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/descarga.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/radio/radiologo_1534450759.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/rctv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539698866.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539699197.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1539708260.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sagas/saga_1544203906.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_Prueba1540575968.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_Ultima1543518487.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572404.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572581.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/cover_pruen ind1540572920.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_Prueba1540575968.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_Ultima1543518487.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572404.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572581.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/independientes/megazine_pruen ind1540572920.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/Prueba/saga_Prueba1540526723.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540568626.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540568892.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540569708.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540569741.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_Prueba1540570049.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570111.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570133.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/cover_prueba 21540570169.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540568626.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540568892.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540569708.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540569741.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_Prueba1540570049.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570111.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570133.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/megazine_prueba 21540570169.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/cadena 1/saga_cadena 11540568176.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527177.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527308.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/hol/saga_hol1540527350.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/materialize/saga_materialize1542409223.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/materialize/saga_materialize1542409233.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/materialize12/saga_materialize121543517338.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/7/sagas/materialize12/saga_materialize121543517357.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527820.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527863.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540527941.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528135.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528203.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528224.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_Prueba1540528282.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/cover_hola1540527390.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527820.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527863.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540527941.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528135.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528203.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528224.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_Prueba1540528282.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/sagas/hol/megazine_hola1540527390.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Me pido la ventana_1540417198.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba materialize_1543863000.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba materialize_1543863173.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba mkv_1540415327.mkv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba2_1539796405.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Prueba_1539793992.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Rápido y furioso_1543874869.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/Rápido y furioso_1543874950.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/loading_1539730849.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/materialize12_1543868371.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/materialize12_1543868421.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/materialize12_1543868794.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/film/materialize12_1543872818.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539730849.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539793992.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1539796405.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540415327.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1540417198.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543863000.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543863173.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543868371.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543868421.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543868794.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543872818.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543874869.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1543874950.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543599774.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543600227.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543600281.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543600302.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543600749.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543601210.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici123/documents/Maurici1543601216.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sellers/Maurici12345/documents/Maurici1543502575.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/02e690eb34f0841559eb9c15cbe74b5e22a74968.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/09578e7e482bd1c96822ce323d68a68946934d72.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0b6fdb9e48bb2d9c6e4eb807059be8c5e6b3370f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0dfcf5426696023e7f1e00121862cec2a07bcdea.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/146d79dee6095c3e73fbfe5244935efda7539ad5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1b154de17adb2a4c2f79835278235b0531185526.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/23bfd6da81877a5dcb1de8c4d639ce95ddae360d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/290f007d31c707e9b8196db42edb149d530e9252.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3854600f2d5ecd3e81ec2a483e3597ca9c4c8f45.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3a6b16190892332018bf912dfab74b93d3f63a99.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3cf096d7b6b32b4ab89c91e20ed755dc85167b16.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/40d91ec1f31533a2c397f445a54b3a2c14c8271b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/455ae0941a2af317345996cb8963e4e64e708d05.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5a2aa726a9092c0387246249ac9a38721189ce19.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5abc5375d7d74b4956fc4c3b83c9e1eac9a57cb9.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/625dc3344691f8c209d26a659e988260b25d188d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6650b7696a3b17468846a1bb8318ccf73f3b6fd8.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/66a91437a53faf810ad13211eab19ac3628e25d4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/75c97e6a2c6ef45db1ed99ef3de601d00c922ec7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/94c2e4a418d4c536ece06eb8827557733ac5432f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a2e478a26384ea80162ee67bf93f23c2c5503fbe.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a6f41a51418cd97d7a65a8467d2a65340d7fd567.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b49f79517130fca1aa1705fb31552553c1c8125d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b6bc5537e10cfd4bf7ace3547ed4b850b66f156a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bf7455aa05298b0189dd1caa9cfea5a1448a741e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c2da9c734badf082141f5dbcdd682a904ab76d91.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c433eebecd0c8259a5a135b5feaaa890ae1a5e15.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c5e36334348276d1081aecd0bdf2fd980d349f77.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c78d8051ec8d813b7f0ec1ffae23fb4c79e86839.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cd6d2c108dcf00695cdb796954eba5172a3fa0ef.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2d93e3faa43bb577145f339eeb08f7eff834799.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d3337bebbe40ba751e144c659345a5b8abbdd7a0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d46c532c4ffc99d458400167034b1610048f4ad7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d79d7887af0273f6c20e08a316008c15a99a101a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/dcc5b6c97f5a89925bc83c3d80b81ed38144b292.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e7a88b60edb039413373e20ec6c38b97223b31f1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec1cd019a0174dc744a90d84de70cc325d5c4da6.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec77b0e6fc909e39b2437b0b7b33ababeffdb56d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,36 +355,36 @@
     <session id="-1645228001">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="4" />
+          <entry key="css" value="3" />
           <entry key="js" value="2" />
           <entry key="paso" value="1" />
-          <entry key="php" value="76" />
+          <entry key="php" value="69" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="66" />
-          <entry key="CSS" value="4" />
+          <entry key="Blade" value="60" />
+          <entry key="CSS" value="3" />
           <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="10" />
+          <entry key="PHP" value="9" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="379" />
+          <entry key="css" value="355" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="5601" />
+          <entry key="php" value="5468" />
           <entry key="txt" value="337" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="5561" />
-          <entry key="CSS" value="379" />
+          <entry key="Blade" value="5428" />
+          <entry key="CSS" value="355" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="40" />
           <entry key="PLAIN_TEXT" value="338" />
@@ -107,12 +392,11 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="69" />
+          <entry key="project.closed" value="60" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
-          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.1568" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
@@ -120,15 +404,15 @@
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.24" value="1" />
-          <entry key="project.open.time.26" value="3" />
+          <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.27" value="4" />
-          <entry key="project.open.time.28" value="4" />
+          <entry key="project.open.time.28" value="3" />
           <entry key="project.open.time.29" value="2" />
-          <entry key="project.open.time.30" value="2" />
-          <entry key="project.open.time.31" value="7" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.31" value="6" />
           <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.33" value="6" />
-          <entry key="project.open.time.34" value="4" />
+          <entry key="project.open.time.33" value="5" />
+          <entry key="project.open.time.34" value="3" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.37" value="4" />
@@ -139,19 +423,17 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.50" value="2" />
-          <entry key="project.open.time.52" value="1" />
+          <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.66" value="1" />
           <entry key="project.open.time.68" value="1" />
-          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.81" value="1" />
           <entry key="project.open.time.84" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="79" />
+          <entry key="project.opened" value="69" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -164,29 +446,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/Referals.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2450">
-              <caret line="98" column="32" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>contec</find>
+      <find>owl</find>
+      <find>featured</find>
+      <find>prueba</find>
       <find>ReadingsMegazines</find>
       <find>Revistas</find>
       <find>SearchTv</find>
@@ -213,10 +480,6 @@
       <find>sinop</find>
       <find>panel</find>
       <find>lecturaspanel</find>
-      <find>players</find>
-      <find>player</find>
-      <find>plyr</find>
-      <find>cdn.plyr.io</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
@@ -229,13 +492,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="breiddy" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/resources/views/seller/movie/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/seller/partials/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Seller.php" />
@@ -269,24 +534,22 @@
         <option value="$PROJECT_DIR$/resources/views/users/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/paso" />
+        <option value="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/playTv.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/MyReadings.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/MyMegazine.php" />
         <option value="$PROJECT_DIR$/resources/views/users/showMegazine.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/show.blade.php" />
         <option value="$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css" />
-        <option value="$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts(Options)/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/Referals.blade.php" />
       </list>
     </option>
   </component>
@@ -416,46 +679,31 @@
     <option name="width" value="1376" />
     <option name="height" value="744" />
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Default">
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -573,16 +821,9 @@
       <workItem from="1544185132304" duration="1250000" />
       <workItem from="1544188880652" duration="1587000" />
       <workItem from="1544190792876" duration="1543000" />
-      <workItem from="1544445567670" duration="1058000" />
-      <workItem from="1544447550020" duration="1198000" />
-      <workItem from="1544449387974" duration="1709000" />
-      <workItem from="1544451369868" duration="1751000" />
-      <workItem from="1544453317745" duration="1903000" />
-      <workItem from="1544456014441" duration="1702000" />
-      <workItem from="1544457925666" duration="1766000" />
-      <workItem from="1544459911352" duration="1388000" />
-      <workItem from="1544463266828" duration="1014000" />
-      <workItem from="1544716935290" duration="2446000" />
+      <workItem from="1544800660167" duration="633000" />
+      <workItem from="1545062888353" duration="477000" />
+      <workItem from="1545183891636" duration="442000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -675,18 +916,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544141115904</updated>
     </task>
-    <task id="LOCAL-00015" summary="bmonterrey ajustes vistas libro y revista en usuario &quot;autor&quot;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1544215787222</created>
+    <task id="LOCAL-00015" summary="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets">
+      <created>1544801126815</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1544215787222</updated>
+      <updated>1544801126815</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Solucion fallas de generos">
+      <created>1545063321012</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1545063321012</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="525453000" />
+    <option name="totallyTimeSpent" value="509004000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -700,52 +948,52 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2473525" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51966715" side_tool="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48033282" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48033282" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19894099" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -780,9 +1028,25 @@
     <MESSAGE value="bmonterrey: Ajuste error balance &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets" />
+    <MESSAGE value="Solucion fallas de generos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucion fallas de generos" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="340" lean-forward="true" selection-start-line="340" selection-end-line="340" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="1107" column="23" selection-start-line="1107" selection-start-column="17" selection-end-line="1107" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -822,6 +1086,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -903,6 +1174,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/paso" />
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="183" lean-forward="true" selection-start-line="183" selection-end-line="183" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -973,6 +1251,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/MyLecture.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285" />
@@ -986,6 +1278,13 @@
     <entry file="file://$PROJECT_DIR$/app/Megazines.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/MyReadings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/seller/book/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="668">
@@ -993,94 +1292,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/MyMegazine.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/MyReadings.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="77" column="82" selection-start-line="77" selection-start-column="82" selection-end-line="77" selection-end-column="82" />
+        <state relative-caret-position="340">
+          <caret line="23" lean-forward="true" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="201">
+          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/showMegazine.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/MyMagazine.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="49" column="9" selection-start-line="47" selection-start-column="7" selection-end-line="64" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts(Options)/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6528">
-          <caret line="384" selection-start-line="383" selection-start-column="84" selection-end-line="383" selection-end-column="85" />
+          <caret line="84" column="93" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="93" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/plugins/materialize_adm/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="138" column="10" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="16" />
+        <state relative-caret-position="528">
+          <caret line="199" column="34" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/showMegazine.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="72" column="28" selection-start-line="55" selection-start-column="3" selection-end-line="81" selection-end-column="13" />
+        <state relative-caret-position="528">
+          <caret line="98" column="136" selection-start-line="98" selection-start-column="136" selection-end-line="98" selection-end-column="136" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="100" column="37" lean-forward="true" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2450">
-          <caret line="98" column="32" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/Referals.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+        <state relative-caret-position="155">
+          <caret line="117" column="14" lean-forward="true" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="14" />
         </state>
       </provider>
     </entry>
