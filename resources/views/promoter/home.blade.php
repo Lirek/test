@@ -1,10 +1,107 @@
 @extends('promoter.layouts.app')
-  @section('main')     
+  @section('main')
 
-    <div class="row mt">
-      <h2><i class="fa fa-angle-right"></i>Contenido Por Aprobar</h2>
+    <span class="card-title grey-text"><h3>Contenido por aprobar</h3></span>
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Contenido por aprobar</span>
+            <i class="large material-icons">view_carousel</i>
+            <h4>
+              <p>{{$content_total}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('AdminContent')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Proveedores por validar</span>
+            <i class="large material-icons">group</i>
+            <h4>
+              <p>{{$sellers}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('admin_sellers')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Solicitudes de proveedores</span>
+            <i class="large material-icons">group_add</i>
+            <h4>
+              <p>{{$aplyss}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('admin_applys')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
     </div>
-
+    @if(Auth::guard('Promoter')->user()->priority == 1)
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <div class="card light-blue darken-3 hoverable">
+            <div class="card-content white-text">
+              <span class="card-title">Errores</span>
+              <i class="large material-icons">error</i>
+            </div>
+            <div class="card-action">
+              <a href="{{ route('log-viewer::dashboard') }}" target="_blank" class="btn btn-primary">Ver errores</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="card-title grey-text"><h3>Paquetes de tickets</h3></span>
+      <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Nuevo paquete de tickets" href="#NewPack">
+        <i class="material-icons">add</i>
+      </a>
+      <div class="row">
+        @foreach($TicketsPackage as $Package)
+          <div class="col s12 m6 l4">
+            <div class="card hoverable">
+              <div class="card-panel card-title light-blue lighten-1">
+                <div class="white-text">
+                  {{$Package->name}}
+                  <br><br>
+                  <i class="large material-icons center">local_offer</i>
+                  <h4 class="white-text">
+                    {{$Package->amount}} Tiquets
+                  </h4>
+                </div>
+              </div>
+              <div class="card-content">
+                <span class="green-text"><i class="material-icons waves-effect waves-blue">check</i></span>
+                <b>Costo:</b> ${{$Package->cost}} <small>(incluye IVA)</small>
+                <br>
+                <span class="green-text"><i class="material-icons waves-effect waves-blue">check</i></span>
+                <b>Cantidad de tickets:</b> {{$Package->amount}}
+                <br>
+                <span class="green-text"><i class="material-icons waves-effect waves-blue">check</i></span>
+                <b>Cantidad de puntos:</b> {{$Package->points}}
+                <br>
+              </div>
+              <div class="card-action">
+                <button type="button" class="btn orange" id="edit" value="{{$Package->id}}">Editar</button>
+                <button type="button" class="btn red" id="delete" value="{{$Package->id}}">Borrar</button>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    @endif
+    
+    {{--
     <div class="row mt">
       <div class="col-lg-3 col-md-3 col-sm-3 mb">
         <div class="twitter-panel pn">
@@ -51,8 +148,8 @@
         </div><!-- /col-md-3 -->
       </div>
 
-      <div class="row mt">
-        <h2><i class="fa fa-angle-right"></i>Paquetes de Tiquets</h2>
+      <div class="row">
+        <h2>Paquetes de Tiquets</h2>
       </div>
       
       @foreach($TicketsPackage as $Package)
@@ -89,7 +186,6 @@
         </div>
       </button>
 
-      {{--
       <div class="row mt">
         <div class="col-md-10">
           <div class="content-panel">
@@ -120,14 +216,18 @@
             </div>
           </div>
         </div>
-      --}}
       @else
         </div>
       @endif
+      --}}
 @include('promoter.modals.HomeViewModal')           
 @endsection
 @section('js')
   <script>
+    $(document).ready(function(){
+      $('.tooltipped').tooltip();
+      $('.modal').modal();
+    });
 
     $(document).on('click', '#edit', function() {
       var x = $(this).val();
@@ -148,7 +248,7 @@
         success: function(data) {
           swal.close();
           console.log(data);
-          $('#updatePack').modal('show');
+          $('#updatePack').modal('open');
           $("#nameM").val(data.name);
           $("#costM").val(data.cost);
           $("#ammountM").val(data.amount);
@@ -235,11 +335,8 @@
           points:points
         },
         success: function (result) {
-          //alert('Paquete Mddificado con exito');
           console.log(result);
-          $('#updatePack').modal('hide');
-          $('body').removeClass('modal-open');
-          $('.modal-backdrop').remove();
+          $('#updatePack').modal('close');
           swal('Paquete modificado con éxito','','success')
           .then((recarga) => {
             location.reload();
@@ -286,13 +383,7 @@
         }, 
         success: function (result) {
           console.log(result);
-          /*
-          alert('Paquete Registrado con exito');
-          location.reload();
-          $('#NewPack').modal('hide');
-          */
-          $('body').removeClass('modal-open');
-          $('.modal-backdrop').remove();
+          $('#NewPack').modal('close');
           swal('Paquete registrado con éxito','','success')
           .then((recarga) => {
             location.reload();

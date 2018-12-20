@@ -28,7 +28,8 @@ use App\AccountBalance;
 use App\Serie;
 use App\Episode;
 
-use App\PointsAssings; //
+use App\PointsAssings;
+use App\PointsLoser;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionApproved;
@@ -233,6 +234,7 @@ class HomeController extends Controller
 
     public function SaleTickets(){
         $Balance = NULL;
+        $BalancePuntos = NULL;
         $package=TicketsPackage::all();
 
         $Transaction=Transactions::where('user_id',Auth::user()->id)->get();
@@ -281,7 +283,7 @@ class HomeController extends Controller
 
             $Balance[]=0;
         }*/
-        $Payment=Payments::where('user_id','=',Auth::user()->id)->where('status','=','Aprobado')->get();
+        $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->where('method','<>','Puntos')->get();
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
@@ -298,10 +300,29 @@ class HomeController extends Controller
         }/*else{
             $Balance[]=0;
         }*/
-        
+        $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->where('method','Puntos')->get();
+        //dd($Payment->count() != 0);
+        if ($Payment->count() != 0) {
+            foreach ($Payment as $key) {
+                $BalancePuntos[]=array(
+                    'id_payments' => $key->id,
+                    'Id' => $key->user_id,
+                    'Date' => $key->created_at->format('d/m/Y'),
+                    'Cant' => $this->tickets($key->package_id)*$key->value,
+                    'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
+                    'Type' => 2,
+                    'Method'=>$key->method,
+                    'Factura' => $key->factura_id
+                );
+            }
+        }/*else{
+            $Balance[]=0;
+        }*/
+        $pointsLoser = PointsLoser::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
-
-        return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance);
+        $ordenBalancePuntos=collect($BalancePuntos)->sortBy('Date')->reverse()->toArray();
+        
+        return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance)->with('BalancePuntos',$ordenBalancePuntos)->with('pointsLoser',$pointsLoser);
     }
 
     public function BuyPlan(Request $request){
@@ -343,11 +364,12 @@ class HomeController extends Controller
     
     public function BuyPoints(Request $request) {
         
-        $user = User::find(Auth::user()->id);
+        //$user = User::find(Auth::user()->id);
 
-        if ($request->cost > $user->points) {
-             return response()->json(1);  
+        if ($request->cost > Auth::user()->points) {
+            return response()->json(1);
         } else {
+            $firstPay = Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->get();
             $Buy = new Payments;
             $Buy->user_id       = Auth::user()->id;
             $Buy->package_id    =$request->ticket_id;
@@ -361,11 +383,7 @@ class HomeController extends Controller
             $cost=$request->Cantidad*$request->points;
             $this->creditos($ticket);
             $this->points($cost);
-            if ($user->pending_points != 0 && $user->points < $user->limit_points) {
-                $user->points = $user->points + $user->pending_points;
-                $user->pending_points = 0;
-            }
-            $user->save();
+            $this->valPuntos($firstPay);
             $Condition = Carbon::now()->firstOfMonth()->toDateString();
             $revenueMonth = Payments::where('user_id',Auth::user()->id)
                 ->where('created_at','>=',$Condition)
@@ -375,7 +393,7 @@ class HomeController extends Controller
             $TicketsPackage = TicketsPackage::find($request->ticket_id);
             $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
             $balance->save();
-            if ($revenueMonth->count()<=1) {
+            if ($revenueMonth->count()<=1) { // si es el 1er pago del mes
                 event(new AssingPointsEvents(Auth::user()->id,$request->ticket_id));
             }
             $this->correo();
@@ -392,7 +410,7 @@ class HomeController extends Controller
         $Buy->status        = 2;
         $Buy->method        ='Payphone';
         $Buy->save();
-        $Buy = Payments::all();
+        $Buy = Payments::all()->orderBy('id','desc');
         $clientTransactionId = $Buy->last()->id."|".date("Y-m-d H:i:s");
         return Response()->json($clientTransactionId);
     }
@@ -407,19 +425,14 @@ class HomeController extends Controller
     }
 
     public function TransactionApproved($id,$reference,$tickets,$idFactura) {
-        
+        $firstPay = Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->get();
         $Buy = Payments::find($id);
         $Buy->status    = 1;
         $Buy->reference = $reference;
         $Buy->factura_id = $idFactura;
         $Buy->save();
         $this->creditos($tickets);
-        $user = User::find(Auth::user()->id);
-        if ($user->pending_points != 0 && $user->points < $user->limit_points) {
-            $user->points = $user->points + $user->pending_points;
-            $user->pending_points = 0;
-            $user->save();
-        }
+        $this->valPuntos($firstPay);
         $Condition = Carbon::now()->firstOfMonth()->toDateString();
         $revenueMonth = Payments::where('user_id',Auth::user()->id)
             ->where('created_at','>=',$Condition)
@@ -446,6 +459,60 @@ class HomeController extends Controller
     public function points($points) {
         $user = User::find(Auth::user()->id);
         $user->points = $user->points - $points;
+        $user->save();
+    }
+
+    public function valPuntos($firstPay) {
+        $user = User::find(Auth::user()->id);
+        if ($firstPay->count()==0) { // nunca a hecho pagos (apartando el que acaba de hacer)
+            if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+                if ($user->points + $user->pending_points > $user->limit_points) {
+                    $todosPuntos = $user->points + $user->pending_points;
+                    $restoPuntos = $todosPuntos - $user->limit_points;
+                    $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+                    $pointsLoser = new PointsLoser;
+                    $pointsLoser->user_id = Auth::user()->id;
+                    $pointsLoser->points = $restoPuntos;
+                    $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                    $pointsLoser->save();
+                } else {
+                    $user->points = $user->points + $user->pending_points;
+                }
+                $user->pending_points = 0;
+            }
+        } else { // ya ha hecho pagos
+            $firstDay = Carbon::now()->firstOfMonth()->subMonth(1)->toDateString();
+            $lastDay = Carbon::now()->lastOfMonth()->subMonth(1)->toDateString();
+            // pago el mes pasado?
+            $paymentsMonthPass = Payments::where('user_id',Auth::user()->id)
+                ->whereBetween('created_at',[$firstDay,$lastDay])
+                ->where('status','Aprobado')
+                ->get();
+            if ($paymentsMonthPass->count()==0) { // no pagó
+                $pointsLoser = new PointsLoser;
+                $pointsLoser->user_id = Auth::user()->id;
+                $pointsLoser->points = $user->pending_points;
+                $pointsLoser->reason = "No recargó el mes pasado";
+                $pointsLoser->save();
+                $user->pending_points = 0;
+            } else { // si pagó el mes pasado
+                if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+                    if ($user->points + $user->pending_points > $user->limit_points) {
+                        $todosPuntos = $user->points + $user->pending_points;
+                        $restoPuntos = $todosPuntos - $user->limit_points;
+                        $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+                        $pointsLoser = new PointsLoser;
+                        $pointsLoser->user_id = Auth::user()->id;
+                        $pointsLoser->points = $restoPuntos;
+                        $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                        $pointsLoser->save();
+                    } else {
+                        $user->points = $user->points + $user->pending_points;
+                    }
+                    $user->pending_points = 0;
+                }
+            }
+        }
         $user->save();
     }
     /*
@@ -486,7 +553,7 @@ class HomeController extends Controller
         $data = [
         "ambiente" => 1, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
-        "secuencial" => $secuencial, // Id de tickets_sales
+        "secuencial" => $secuencial, 
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
         "emisor" => [
             "ruc" => "0992897171001",
