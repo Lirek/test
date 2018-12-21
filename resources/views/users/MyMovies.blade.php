@@ -44,7 +44,7 @@
 
 <div class="row">
     <span class="grey-text"><h4><b><i class="material-icons small">movie</i> Mis Peliculas</b></h4></span>
-    <!-- <h5>Mis Peliculas</h5> -->
+    
     <br>
 
         <div class="row">

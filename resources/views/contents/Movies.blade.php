@@ -56,7 +56,7 @@
 		                  </div>
 		                </div>
 
-		                <!--MODAL DETALLE DE LIBRO-->
+		                <!--MODAL DETALLES DE LIBRO-->
 		                <div id="myModal-{{$Movies->id}}" class="modal">
 						    <div class="modal-content">
 						     	<div class="blue"><br>
