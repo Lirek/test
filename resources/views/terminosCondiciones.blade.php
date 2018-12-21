@@ -761,8 +761,12 @@ function masInfo(tipo) {
         console.log(usuarioActivo);
         if (tipo=="radio") {
             var ruta = "{{ url('/ShowRadio') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "{{ url('/seller_home') }}";
+            
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -797,8 +801,11 @@ function masInfo(tipo) {
             }
         } else if (tipo=="tv") {
             var ruta = "{{ url('/ShowTv') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "{{ url('/seller_home') }}";
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -833,8 +840,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="lectura") {
             var ruta = "{{ url('/MyReads') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "{{ url('/seller_home') }}";
+            
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -869,8 +880,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="musica") {
             var ruta = "{{ url('/MyMusic') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "{{ url('/seller_home') }}";
+            
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -905,8 +920,12 @@ function masInfo(tipo) {
             }
         } else if (tipo=="cine") {
             var ruta = "{{ url('/MyMovies') }}";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "{{ url('/seller_home') }}";
+            
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -941,6 +960,7 @@ function masInfo(tipo) {
             }
         }
     }
+
 
 
     // Tabs

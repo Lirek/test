@@ -22,7 +22,7 @@
                             <div class="card">
                                 <div class="card-content grey-text">
                                     <span class="card-title blue-text"><h5><b><i class="material-icons">create</i> Complete Su Registro</b></h5></span>
-                                    <p>Le recordamos que aun faltan documentos que adjuntar para disfrutar
+                                    <p>Le recordamos que aún faltan documentos que adjuntar para disfrutar
                                         de todo lo que puede ofrecer nuestra plataforma, le invitamos
                                         completar su perfil.</p>
                                 </div>
@@ -68,7 +68,7 @@
                   <div class="col s12 m3">
                     <div class="card">
                       <div class="card-image">
-                        <img src="{{ asset($m->cover)}}" height="300px">
+                        <img src="{{ asset($m->cover)}}" height="300px" onclick="masInfo('revista',{!!$m->id!!})">
                     </div>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
                   <div class="col s12 m3">
                     <div class="card">
                       <div class="card-image">
-                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px">
+                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px" onclick="masInfo('pelicula',{!!$m->id!!})">
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@
                   <div class="col s12 m3">
                     <div class="card">
                       <div class="card-image">
-                        <img src="{{ asset($s->img_poster)}}" height="300px">
+                        <img src="{{ asset($s->img_poster)}}" height="300px" onclick="masInfo('serie',{!!$s->id!!})">
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                           <div class="col s12 m3">
                               <div class="card">
                                   <div class="card-image">
-                                      <img src="{{asset($r->logo)}}" height="200px" onclick="masInfo('radio')">
+                                      <img src="{{asset($r->logo)}}" height="200px" onclick="masInfo('radio',{!!$r->id!!})">
                                   </div>
                               </div>
                           </div>
@@ -152,7 +152,7 @@
                           <div class="col s12 m3">
                               <div class="card">
                                   <div class="card-image">
-                                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="200px">
+                                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="200px" onclick="masInfo('tv',{!!$tv->id!!})">
                                   </div>
                               </div>
                           </div>
@@ -173,6 +173,32 @@
   
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
+<script type="text/javascript">
+  
+      function masInfo(tipo,id) {
+        console.log(tipo,id);
+
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ListenRadio/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="tv") {
+            var ruta = "{{ url('/PlayTv/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="serie") {
+            var ruta = "{{ url('/series/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="pelicula") {
+            var ruta = "{{ url('/movies/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="revista") {
+            var ruta = "{{ url('/show_megazine/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="libro") {
+            var ruta = "{{ url('/ShowMyReadBook/') }}/"+id;
+            location.href = ruta;
+            }
+        }
+</script>
 <script >
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',

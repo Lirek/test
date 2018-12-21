@@ -24,7 +24,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px">
+                      <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px" onclick="masInfo('pelicula',{!!$m->id!!})">
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset($s->img_poster) }}" height="300px">
+                      <img src="{{ asset($s->img_poster) }}" height="300px" onclick="masInfo('serie',{!!$s->id!!})">
                     </div>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset($a->cover) }}" height="300px">
+                      <img src="{{ asset($a->cover) }}" height="300px" >
                     </div>
                   </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px">
+                      <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px" onclick="masInfo('libro',{!!$b->id!!})">
                     </div>
                   </div>
                 </div>
@@ -108,7 +108,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset($m->cover)}}" height="300px">
+                      <img src="{{ asset($m->cover)}}" height="300px" onclick="masInfo('revista',{!!$m->id!!})">
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{asset($r->logo)}}" height="100px">
+                      <img src="{{asset($r->logo)}}" height="100px" onclick="masInfo('radio',{!!$r->id!!})">
                     </div>
                   </div>
                 </div>
@@ -148,7 +148,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="100px">
+                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="100px" onclick="masInfo('tv',{!!$tv->id!!})">
                     </div>
                   </div>
                 </div>
@@ -162,4 +162,30 @@
     </div>
 @endsection
 @section('js')
+<script type="text/javascript">
+  
+      function masInfo(tipo,id) {
+        console.log(tipo,id);
+
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ListenRadio/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="tv") {
+            var ruta = "{{ url('/PlayTv/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="serie") {
+            var ruta = "{{ url('/series/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="pelicula") {
+            var ruta = "{{ url('/movies/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="revista") {
+            var ruta = "{{ url('/show_megazine/') }}/"+id;
+            location.href = ruta;
+          } else if (tipo=="libro") {
+            var ruta = "{{ url('/tbook/') }}/"+id;
+            location.href = ruta;
+            }
+        }
+</script>
 @endsection

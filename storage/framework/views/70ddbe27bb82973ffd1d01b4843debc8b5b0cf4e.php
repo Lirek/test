@@ -8,7 +8,7 @@
     <div class="row">
     <div class="card col s12 m12" style="padding: 10px 10px 10px 10px;">
 
-		<span class="grey-text"><h4><b><i class="material-icons small">tv</i> Televisión</b></h4></span>
+		<h4 class="titelgeneral"><i class="material-icons small">tv</i> Televisión</h4>
 		<div class="row">
 			<div class="input-field col s12 m6 offset-m3">
 				<form method="POST"  id="SaveSong" action="<?php echo e(url('SearchPlayTv')); ?>">

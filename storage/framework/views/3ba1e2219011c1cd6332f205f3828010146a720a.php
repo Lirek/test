@@ -6,6 +6,9 @@
         <!--Import materialize.css-->
         <link href="<?php echo e(asset('plugins/materialize_adm/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo e(asset('plugins/materialize_adm/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <!--https://materialdesignicons.com/-->
+        <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+
         <style type="text/css">
              div.error {
       color: red;
@@ -588,6 +591,19 @@
             </script>
             <!--Import Chart js https://www.chartjs.org/docs/latest/charts/doughnut.html-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+            <script type="text/javascript">
+            //conversion Ticket dolar
+            function ticket_dolar(cantidad){
+            var conversion=cantidad*parseFloat("0.20");
+            return conversion;
+            }
+
+            function iniciar(cantidad){
+            var conversioninc=cantidad*parseFloat("0.20");
+            return conversioninc;
+            }
+            </script>
             <?php echo $__env->yieldContent('js'); ?>
 
 
