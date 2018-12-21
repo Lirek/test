@@ -59,6 +59,10 @@
     <!-- <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <!--[endif]-->
 
+    <!--Carousel Owl Galeria-->
+    <link rel="stylesheet" href="{{ asset('plugins/owlcarousel/dist/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/owlcarousel/dist/assets/owl.theme.default.min.css')}}">
+
 
 </head>
 
@@ -417,6 +421,11 @@
 
 <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
+
+
+<!--Carousel Owl Galeria-->
+
+<script src="{{ asset('plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
 
 <!--PDF.JS-->
 <!--<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>-->
