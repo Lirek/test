@@ -204,6 +204,11 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
     Route::get('WebsUser','ReferalsController@ShowWebs');
     Route::get('Referals','ReferalsController@ShowReferals');
+
+//-----------------------Funciones de Pago Externo a la plataforma ------------------------
+    Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+    Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+//-----------------------------------------------------------------------------------------
  });
 
 /* ------------------------------------------------------------------

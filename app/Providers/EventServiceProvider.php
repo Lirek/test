@@ -97,6 +97,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendNoticeEmail',
         ],
 
+            'App\Events\TransactionsId' => [
+            'App\Listeners\SendTransactionsId',
+        ],
+
 
     ];
 
