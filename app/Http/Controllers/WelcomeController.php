@@ -65,10 +65,16 @@ class WelcomeController extends Controller
 
         $iRadios = 0;
         $iTvs = 0;
+        $iCines = 0;
+        $iMusicas = 0;
+        $iLecturas = 0;
 
         return view('welcome')
             ->with('iRadios',$iRadios)
             ->with('iTvs',$iTvs)
+            ->with('iCines',$iCines)
+            ->with('iMusicas',$iMusicas)
+            ->with('iLecturas',$iLecturas)
             ->with('seller', $sellers)
             ->with('book',$books)
             ->with('movie',$movies)

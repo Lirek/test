@@ -138,7 +138,7 @@
                             <!--nombre-->
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix blue-text">face</i>
-                                {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required', 'id'=>'nombre', 'required'=>'required']) !!}
                                 <div id="mensajeNombre"></div>
                                 <label for="name">Nombre</label>
                             </div>

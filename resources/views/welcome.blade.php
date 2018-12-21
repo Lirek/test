@@ -243,93 +243,57 @@
 </div>
 <!-- Fin franja  -->
 
-<!-- Contenido  -->
-{{--<div id="peliculas">--}}
-    {{--<div class="row">--}}
-        {{--<!--Primero-->--}}
-        {{--<div class="col s12 m4 l3 xl3  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--Segundo-->--}}
-        {{--<div class="col s12 m4 l6 xl6  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--tercero-->--}}
-        {{--<div class="col s12 m4 l3 xl3  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
-    {{--<div class="row">--}}
-        {{--<!--Primero-->--}}
-        {{--<div class="col s12 m4 l4 xl4  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--Segundo-->--}}
-        {{--<div class="col s12 m2 l2 xl2  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--tercero-->--}}
-        {{--<div class="col s12 m4 l4 xl4  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--cuarto-->--}}
-        {{--<div class="col s12 m2 l2 xl2  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-{{--libros--}}
-{{--<div class="row" id="libros">--}}
-{{--<div class="col s12 m6 l4 xl4  center">--}}
-{{--<div class="card">--}}
-{{--<div class="card-image">--}}
-{{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-{{--</div>--}}
-{{--<div class="card-content">--}}
-{{--Nombre Libro--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
+{{--pelicula--}}
+<div class="row" id="cines">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($movie as $m)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
 
+{{--musica--}}
+<div class="row" id="musicas">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($music as $m)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{asset($m->cover)}}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
+
+{{--libro--}}
+<div class="row" id="libros">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($book as $b)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
 
 {{--radios--}}
 <div class="row" id="radios">
@@ -350,7 +314,6 @@
         </div>
     </div>
 </div>
-
 
 {{--tv--}}
 <div class="row" id="Tvs">
@@ -1129,12 +1092,56 @@ function masInfo(tipo) {
         });
 
         //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
+        $('#cine').css("background-color","#42a5f5");
+        $('#radios').hide();
         $('#Tvs').hide();
-        $('#peliculas').hide();
         $('#libros').hide();
+        $('#musicas').hide();
+
+        $('#cine').click(function(){
+            console.log("pase por cine");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#42a5f5");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#musicas').hide();
+           $('#cines').show();
+       });
+
+        $('#musica').click(function(){
+            console.log("pase por musica");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#42a5f5");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#cines').hide();
+           $('#musicas').show();
+       });
+
+       $('#libro').click(function(){
+        console.log("pase por libro");
+           $('#libro').css("background-color","#42a5f5");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#musicas').hide();
+           $('#cines').hide();
+           $('#libros').show();
+       });
 
         $('#radio').click(function(){
+            console.log("pase por radio");
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1142,10 +1149,13 @@ function masInfo(tipo) {
             $('#tv').css("background-color","#2196F3");
             $('#Tvs').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#radios').show();
         });
 
         $('#tv').click(function(){
+            console.log("pase por tv");
             $('#tv').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1153,20 +1163,10 @@ function masInfo(tipo) {
             $('#radio').css("background-color","#2196F3");
             $('#radios').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#Tvs').show();
         });
-
-//        $('#libro').click(function(){
-//            $('#libro').css("background-color","#42a5f5");
-//            $('#cine').css("background-color","#2196F3");
-//            $('#musica').css("background-color","#2196F3");
-//            $('#tv').css("background-color","#2196F3");
-//            $('#radio').css("background-color","#2196F3");
-//            $('#radios').hide();
-//            $('#Tvs').hide();
-//            $('#libros').show();
-//        });
-
 
         $("#formRP").on('submit',function(e){
             var url = "{{ url('ApplysSubmit') }}";

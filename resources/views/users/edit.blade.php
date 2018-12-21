@@ -219,7 +219,7 @@ h5.breadcrumbs-header {
                                     <!--alias-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
+                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="name">Alias</label>
                                     </div>

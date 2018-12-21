@@ -3,29 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4307c085-73cc-4f12-b51b-b153aa384e66" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/094cdb03324cc3df1ee96cc0bfdb697d96923859.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/094cdb03324cc3df1ee96cc0bfdb697d96923859.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0df0fdc3e2e389709b194182fca5409680ad9016.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0df0fdc3e2e389709b194182fca5409680ad9016.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/1f474d407d205ccb74dcba637d5c1ef7d518086d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1f474d407d205ccb74dcba637d5c1ef7d518086d.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/2427ce445d1033c59797f4e9042008e8519045a6.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/2427ce445d1033c59797f4e9042008e8519045a6.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/50406eae9f29c5bde1d1639d88f96116e25fc1b5.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/50406eae9f29c5bde1d1639d88f96116e25fc1b5.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/562644a843045d9b8a18e42bdce67c5c9f5cc975.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/562644a843045d9b8a18e42bdce67c5c9f5cc975.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5fcf530fcfa8bc4625c4da4b90f857a506ef6593.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5fcf530fcfa8bc4625c4da4b90f857a506ef6593.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/6363dea7e6a4398b6815c6564a9f59431915e13a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6363dea7e6a4398b6815c6564a9f59431915e13a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/70ddbe27bb82973ffd1d01b4843debc8b5b0cf4e.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/70ddbe27bb82973ffd1d01b4843debc8b5b0cf4e.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/7569be02c26ea507333bd15df85d4b0f736f15ec.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7569be02c26ea507333bd15df85d4b0f736f15ec.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/8e0b4cee250ef502342458f5b4c392b2c22a7f77.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/8e0b4cee250ef502342458f5b4c392b2c22a7f77.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9754f6e18365e07b0c881841646148e13dc8e086.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9754f6e18365e07b0c881841646148e13dc8e086.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c95d24d352308f95a527099a2e268d6e43b8306d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c95d24d352308f95a527099a2e268d6e43b8306d.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/fd6e61b8c8682e06ca5b8a12eb669c925bd7de15.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/fd6e61b8c8682e06ca5b8a12eb669c925bd7de15.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,12 +42,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="txt" value="48" />
+          <entry key="txt" value="583" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="48" />
+          <entry key="PLAIN_TEXT" value="583" />
         </counts>
       </usages-collector>
     </session>
@@ -584,7 +563,7 @@
       <workItem from="1544459911352" duration="1388000" />
       <workItem from="1544463266828" duration="1014000" />
       <workItem from="1544716935290" duration="2446000" />
-      <workItem from="1545399069802" duration="552000" />
+      <workItem from="1545399069802" duration="2110000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -684,11 +663,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544215787222</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="-colocar tabs del index en que es leipel&#10;-correccion de validacion de correo en inicio de sesion de usuario&#10;-colocar que en el alias del usuario en edit se permitan todos los caracteres&#10;-colocar que en el nombre comercial de registro de proveedor se permitan todos los caracteres&#10;-colocar que en el nombre de edit del proveedor se permitan todos los caracteres&#10;-acento en &quot;aún&quot; en el home de usuario cuando faltan datos&#10;-validacion de redireccionamiento de cartelera a contenido (solo funciona bien para proveedor)">
+      <created>1545400966331</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1545400966332</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="526552000" />
+    <option name="totallyTimeSpent" value="528110000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -782,7 +768,8 @@
     <MESSAGE value="bmonterrey: Ajuste error balance &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="-colocar tabs del index en que es leipel&#10;-correccion de validacion de correo en inicio de sesion de usuario&#10;-colocar que en el alias del usuario en edit se permitan todos los caracteres&#10;-colocar que en el nombre comercial de registro de proveedor se permitan todos los caracteres&#10;-colocar que en el nombre de edit del proveedor se permitan todos los caracteres&#10;-acento en &quot;aún&quot; en el home de usuario cuando faltan datos&#10;-validacion de redireccionamiento de cartelera a contenido (solo funciona bien para proveedor)" />
+    <option name="LAST_COMMIT_MESSAGE" value="-colocar tabs del index en que es leipel&#10;-correccion de validacion de correo en inicio de sesion de usuario&#10;-colocar que en el alias del usuario en edit se permitan todos los caracteres&#10;-colocar que en el nombre comercial de registro de proveedor se permitan todos los caracteres&#10;-colocar que en el nombre de edit del proveedor se permitan todos los caracteres&#10;-acento en &quot;aún&quot; en el home de usuario cuando faltan datos&#10;-validacion de redireccionamiento de cartelera a contenido (solo funciona bien para proveedor)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.env">
