@@ -9,6 +9,10 @@
         <!--https://materialdesignicons.com/-->
         <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
 
+        <!--Carousel Owl Galeria-->
+        <link rel="stylesheet" href="{{ asset('plugins/owlcarousel/dist/assets/owl.carousel.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('plugins/owlcarousel/dist/assets/owl.theme.default.min.css')}}">
+
         <style type="text/css">
              div.error {
       color: red;
@@ -553,6 +557,9 @@
             <!--telefono-->
             <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
             <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
+
+            <!--Carousel Owl Galeria-->
+            <script src="{{ asset('plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
 
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

@@ -68,7 +68,7 @@
 
 
                         <!--CONTENIDO RECIENTE cine-->
-                        @if(count($Movies)> 0 || count($Series))
+                        @if(count($Movies)> 0 || count($Series)> 0)
                             <div class="card">
                                 <!--CONTENIDO RECIENTE pelicula-->
                                 @if(count($Movies) > 0)
@@ -152,11 +152,6 @@
                            <img src="{{ asset($m->cover)}}" height="250px" width="100px">
                           </div>
                       @endforeach
-                      @foreach($Megazines as $m)
-                              <div>
-                              <img src="{{ asset($m->cover)}}" height="250px" width="100px">
-                              </div>
-                        @endforeach
                   </div>
                 </div>
             </div>
