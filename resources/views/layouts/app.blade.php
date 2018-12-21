@@ -133,10 +133,10 @@
                     <a href="{{ url('/home')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >view_carousel</i>Cartelera</a>
                     </li>
 
-                    <li> <!--Adquirir-->
+                    <li> <!--Entretenimiento-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Adquirir Contenido<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                         <li><a href="{{url('MusicContent')}}"><i class="small material-icons left" >music_note</i>Música</a></li>
@@ -149,13 +149,13 @@
                                 </div>
                             </li>
                         </ul>
-                    </li> <!--End Adquirir-->
+                    </li> <!--End Entretenimiento-->
 
 
-                    <li><!--Entretenimiento-->
+                    <li><!--Historial-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Historiales<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
 
@@ -172,7 +172,7 @@
                                         </div>
                                      </li>
                                     </ul>
-                                </li> <!--End Lecturas-->    
+                                </li> <!--End Historial-->
 
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->

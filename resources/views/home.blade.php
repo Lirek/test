@@ -16,10 +16,6 @@
       <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
 
 
-
-
-
-
                     <div class="row">
                     @if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL)
                       <!-- COMPLETAR PERFIL PANELS -->
@@ -38,8 +34,7 @@
                         </div>
                     @endif
 
-
-                        <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
+                        <h4 class="titelgeneral"><i class="material-icons small">apps</i> Cartelera</h4>
                         <br>
 
 
