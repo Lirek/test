@@ -60,6 +60,7 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <br><br>
                                 </div>
                             </div>
                         @endif
@@ -78,6 +79,7 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <br><br>
                                 </div>
                             </div>
                         @endif
@@ -101,6 +103,7 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <br><br>
                             </div>
                         </div>
             @endif
@@ -122,6 +125,7 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <br><br>
                             </div>
                         </div>
                     @endif
@@ -145,6 +149,7 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <br><br>
                             </div>
                         </div>
                     @endif
@@ -172,6 +177,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                        <br><br>
                                     </div>
                                 </div>
 
@@ -195,10 +201,11 @@
                                             @foreach($Tv as $tv)
                                                 <div>
                                                     <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
-                                                        <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" onclick="masInfo('tv',{!!$tv->id!!})" ></a>
+                                                        <img src="{{ asset('/images/Tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" onclick="masInfo('tv',{!!$tv->id!!})" ></a>
                                                 </div>
                                             @endforeach
                                         </div>
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
