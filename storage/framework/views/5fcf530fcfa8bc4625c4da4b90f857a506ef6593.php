@@ -144,7 +144,7 @@ h5.breadcrumbs-header {
                           <div class="col s12 m12 l8">
                               <ul id="projects-collection" class="collection">
                                     <div class="card-image waves-block" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center">Datos a editar</span>
+                                        <h4 class="titelgeneral">Datos a editar</h4>
                                     </div>
                                     <!--nombre-->
                                     <div class="input-field col s12 ">
@@ -228,7 +228,7 @@ h5.breadcrumbs-header {
                                     <!--alias-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        <?php echo Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']); ?>
+                                        <?php echo Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']); ?>
 
                                         <div id="mensajeNombre"></div>
                                         <label for="name">Alias</label>
@@ -306,7 +306,6 @@ h5.breadcrumbs-header {
     $(function() {
     $('#fecha').datepicker({
         format: 'dd-mm-yyyy',
-        maxDate: '+0d',
         firstDay: 1,
         i18n: {
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],

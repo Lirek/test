@@ -224,6 +224,23 @@ time {
     border-color: transparent #d4d4d4 transparent transparent;
   }
 }
+
+
+    /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
 </style>
 
 <!--Menu-->
@@ -311,15 +328,68 @@ time {
     </div>
 </nav>
 <!--Fin Menu-->
+<br>
+<!-- tabs  -->
+<div class="row" >
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
+            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
+            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
+            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+        </ul>
+    </div>
+    <div id="test1" class="col s12 center">
+        <div class="col s12 m6 l6 xl6 center">
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <br>
+        </div>
+        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
+            <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="20%" height="20%" title="youtube"><br>
+            <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
+        </div>
+    </div>
+    <div id="test2" class="col s12 center">
+        <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
+            <img src="<?php echo e(asset('plugins/materialize_index/img/viajes.svg')); ?>" width="20%" height="20%" title="youtube"><br>
+            <h5> Viaja gratis con leipel.</h5>
+
+        </div>
+        <div class="col s12 m6 l6 xl6 center" >
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div><br>
+        </div>
+    </div>
+    <div id="test3" class="col s12 center">
+        <div class="col s12 m6 l6 xl6 center">
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <br>
+        </div>
+        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
+            <img src="<?php echo e(asset('plugins/materialize_index/img/nota.svg')); ?>" width="20%" height="20%" title="youtube"><br>
+            <h5> Registro gratuito.</h5>
+        </div>
+    </div>
+    <div id="test4" class="col s12 center">
+        <div class="col s12 m6 l12 xl12 center"><br><br>
+            <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="5%" height="5%" title="youtube"><br>
+            <h5> Marcas relacionadas.</h5>
+
+        </div>
+    </div>
+</div>
+<!-- Fin tabs  -->
 <div class="container">
 <section class="timeline">
   <ul> 
-    <div class="parallax-container" >
-      <div class="parallax"><img src="<?php echo e(asset('plugins/img/multimedia.jpeg')); ?>"></div>
-    </div>
-    <!--<img src="<?php echo e(asset('plugins/img/multimedia.jpg')); ?>" style=" height: 300px">
-    <i class="material-icons prefix hide-on-small-only" style="margin-left: 49%">camera_roll</i>
-    <i class="material-icons prefix hide-on-med-and-up" style="margin-left: 5%">camera_roll</i>-->
     <li>
       <div>
         <time>¿QUÉ ES LEIPEL?</time>
@@ -740,14 +810,18 @@ time {
 
 <script type="text/javascript">
 
-  function masInfo(tipo) {
+function masInfo(tipo) {
         console.log(tipo);
         var usuarioActivo = "<?php echo e(Auth::guest()); ?>";
         console.log(usuarioActivo);
         if (tipo=="radio") {
             var ruta = "<?php echo e(url('/ShowRadio')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -782,8 +856,11 @@ time {
             }
         } else if (tipo=="tv") {
             var ruta = "<?php echo e(url('/ShowTv')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -818,8 +895,12 @@ time {
             }
         } else if (tipo=="lectura") {
             var ruta = "<?php echo e(url('/MyReads')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -854,8 +935,12 @@ time {
             }
         } else if (tipo=="musica") {
             var ruta = "<?php echo e(url('/MyMusic')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -890,8 +975,12 @@ time {
             }
         } else if (tipo=="cine") {
             var ruta = "<?php echo e(url('/MyMovies')); ?>";
-            console.log(ruta);
-            if (usuarioActivo!=1) {
+            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            
+            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {

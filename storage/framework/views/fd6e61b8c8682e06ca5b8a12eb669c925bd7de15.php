@@ -44,10 +44,8 @@
     <div class="col s12 m12">
         <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
-            <h3 class="center">
-                Libros registrados 
-            </h3>
-            <?php if($book->count() != 0 ): ?>
+            <h4 class="titelgeneral"><i class="material-icons small">book</i> Libros registrados </h4>
+        <?php if($book->count() != 0 ): ?>
             <div class="row">
                 <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if(Auth::guard('web_seller')->user()->id === $b->seller_id): ?>

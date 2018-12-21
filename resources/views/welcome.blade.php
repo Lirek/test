@@ -630,7 +630,7 @@
                     <input type="hidden" id="enlace" name="enlace">
                     <div class="input-field col s12 {{ $errors->has('name') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">face</i>
-                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required">
+                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="name">Nombre</label>
                         <div id="nameMen" style="margin-top: 1%"></div>
                         @if ($errors->has('name'))
@@ -704,7 +704,7 @@
                 <div class="row">
                     <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">store</i>
-                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" >
                         <label for="com_name">Nombre comercial</label>
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                         @if ($errors->has('tlf'))
@@ -1565,6 +1565,8 @@ function masInfo(tipo) {
 
             }else{
 
+                $('#emailMen').hide();
+                $('#iniciar').attr('disabled',false);
                 return true;
             }
         });
