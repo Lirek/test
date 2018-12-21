@@ -1,93 +1,150 @@
 @extends('seller.layouts')
+@section('css')
+ <style>
+    .default_color{background-color: #FFFFFF !important;}
+    .img{margin-top: 7px;}
+    .curva{border-radius: 10px;}
+    .curvaBoton{border-radius: 20px;}
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+    .wrapper {
+        margin: 100px auto;
+        width: 30px;
+    }
+    .plyr--audio .plyr__controls{
+        background-color: #dddcdc;
+        padding: 20px;
+        border-radius: 50px;
+        height: 60px;
+    }
 
+    .plyr--audio .plyr__progress{
+        margin: 24px;
+        left: 0;
+    }
+
+    .plyr--full-ui input[type=range]::-webkit-slider-thumb{
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.2s ease;
+        height: 16px;
+        width: 16px;
+    }
+
+    .plyr--full-ui input[type=range]::-webkit-slider-runnable-track {
+        height: 5px;
+    }
+
+    .plyr--audio .plyr__progress__buffer {
+        color: rgba(94, 186, 246, 0.4);
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
+@endsection
 @section('content')
-
-    <section class="content-header">
-        <h1>
-            Radio live
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-        </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-
-                <div class="box box-widget widget-user ">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-black">
-                        <div class="widget-user-image">
-                            {{--<img class="img-circle img-responsive" src="http://lorempixel.com/128/128/sports" alt="User Avatar">--}}
-                            <img class="img-circle img-responsive av" src="/images/radio/{{ $radio->logo }}"
-                                 style="width:90px;height:90px;  " alt="User Avatar">
-                        </div>
-                        <!-- /.widget-user-image -->
-                        <h3 class="widget-user-username">{{ $radio->name_r }}</h3>
-                        <h5 class="widget-user-desc">{{ $radio->email_c }}</h5>
+    <div class="row">
+        <div class="col s12">
+            @include('flash::message')
+            <div class="card-panel curva">
+                <h4 class="titelgeneral"><i class="material-icons small">radio</i> {{ $radio->name_r }} </h4>
+                <div class="row">
+                    <div class="col s12 m4">
+                        <img src="{{ asset($radio->logo) }}" width="100%" height="300" style="bor<der-radius: 10px" id="panel" class='materialboxed'>
+                        <br>
+                        <a href="{{ url('/radios') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                        <a href="{{ route('radios.edit', $radio->id) }}" class="btn curvaBoton waves-effect waves-light green">Modificar</a>
                     </div>
-
-                    <div class="box-footer padding bg-gray">
-                        <br/>
-                        <ul class="nav ">
-                            <li class="text-center">
-                                {{--<a href="#">--}}
-                                {{ $radio->name_r }}
-                                {{--</a>--}}
-                            </li>
-                            <br/>
-                            <li class="text-center">
-                                {{--<a href="#">--}}
-                                {{ $radio->email_c }}
-                                {{--</a>--}}
-                            </li>
-                            <br/>
-                            <br/>
-                            <li class="text-center">
-                                <audio controls="" src="{{ $radio->streaming }}">
-                                    {{--<source src="{{ $radio->streaming }}" type="video/quicktime"> <!-- Picked by Safari -->--}}
-                                    I'm sorry; your browser doesn't support HTML 5 video.
-                                </audio>
-                            </li>
-                            <br/>
-                            <br/>
-                            <li class=" btn-group-justified btn-group-xs">
-                                @if($radio->facebook <> null )
-                                    <a href="{{ $radio->facebook }}" class="btn btn-app btn-facebook active">
-                                        &nbsp;<span class="fa fa-facebook" aria-hidden="true"></span>&nbsp;
-                                    </a>
-                                @endif
-                                @if($radio->instagram <> null )
-                                    <a href="{{ $radio->instagram }}" class="btn btn-app btn-instagram active">
-                                        &nbsp;<span class="fa fa-instagram" aria-hidden="true"></span>&nbsp;
-                                        {{--<span class="glyphicon glyphicon-wrench"></span>--}}
-                                    </a>
-                                @endif
-                                @if($radio->google <> null )
-                                    <a href="{{ $radio->google }}" class="btn btn-app btn-google">
-                                        &nbsp;<span class="fa fa-google-plus"></span>&nbsp;
-                                    </a>
-                                @endif
-                                @if($radio->twitter <> null )
-                                    <a href="{{ $radio->twitter }}" class="btn btn-app btn-twitter">
-                                        &nbsp;<span class="fa fa-twitter"></span>&nbsp;
-                                    </a>
-                                @endif
-                            </li>
-                            <br/>
-                            <br/>
-                        </ul>
+                    <div class="col s12 m8">
+                        <div class="collection-item" style="padding: 15%">
+                            <div class="card-content" style="padding: 5%;">
+                                <div class="progress">
+                                    <div id="playRad" class="indeterminate blue"></div>
+                                </div>
+                                <div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col s12 m8 offset-m2">
+                                            <audio id="player" controls></audio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($radio->facebook!=null)
+                                <a href="{{$radio->facebook}}" target="_blank" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a>
+                            @endif
+                            @if($radio->google!=null)
+                                <a href="{{$radio->google}}" target="_blank" class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a>
+                            @endif
+                            @if($radio->twitter!=null)
+                                <a href="{{$radio->twitter}}" target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a>
+                            @endif
+                            @if($radio->instagram!=null)
+                                <a href="{{$radio->instagram}}" target="_blank" class="btn-floating purple-gradient darken-2"><i class="mdi mdi-instagram"></i></a>
+                            @endif
+                        </div>
+                        <div class="col s12">
+                            <div class="card blue accent-2">
+                                <div class="card-content white-text center-align">
+                                    <p class="card-title">
+                                        <i class="material-icons">volume_up</i>
+                                        Se ha reproducido {{$reproducciones->count()}}
+                                        @if($reproducciones->count()==1)
+                                            vez
+                                        @else
+                                            veces
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
+@endsection
+@section('js')
+    <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
+    <script type="text/javascript">
+        //const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
+        const players = new Plyr('#player', {
+            controls: [
+                'mute',
+                'current-time',
+                'play',
+                'volume',
+            ]
+        });
 
+        players.source = {
+            type: 'audio',
+            sources: [
+                {
+                    src: '{{asset($radio->streaming)}}',
+                    type: 'audio/mp3',
+                },
 
-    </section>
-
+            ],
+        };
+        players.play(); //inicia radio al abrir pagina
+        players.volume = 0.5; // Sets volume at 50%
+    </script>
 @endsection
