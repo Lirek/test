@@ -43,25 +43,23 @@
 @section('main')  
 
 <div class="row">
-    <div class="form-group"> 
-        <div class="row-edit">
-            <div class="col-md-12 col-sm-12 mb">
-                <div class="control-label">
-                <div class="white-header">
-                    <h4 class="titelgeneral"><i class="material-icons small">movie</i> Mis Peliculas</h4>
-                </div>
-                <div class="col-md-12  control-label">
-                    <input id="myInput" type="text" placeholder="Buscar" class="form-control" style="margin-bottom: 2%;">
-                </div>
-                </div>
-                 @if($Movies != 0)
-                <!-- PROFILE 01 PANEL -->
-                @foreach($Movies as $Movie)
-                <div class="col-lg-5 col-md-5 col-sm-5 mb">
-                    <div class="content-panel pn-music">
-                        <div id="profile-01" style="">
-                            @if($Movie->img_poster)
-                                <img src="{{asset($Movie->img_poster)}}" width="100%" height="220" style="">
+    <span class="grey-text"><h4><b><i class="material-icons small">movie</i> Mis Peliculas</b></h4></span>
+    
+    <br>
+
+        <div class="row">
+                @if($Movies != 0)
+                    @foreach($Movies as $Movie)
+                        <!-- PROFILE 01 PANEL -->
+                        <div class="col s6 m3 ">
+                            <div class="card">
+
+                                    <a href="{{url('ShowMyMovie/'.$Movie->id)}}">
+
+                                        @if($Movie->img_poster)
+                                            <div class="card-image">
+                                            <img src="movie/poster/{{$Movie->img_poster}}" width="100%" height="300"style="">
+                                                <a href="{{url('ShowMyMovie/'.$Movie->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
 
                                             </div>
                                         @else
