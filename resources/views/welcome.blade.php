@@ -199,19 +199,20 @@
         <li>
             <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2 ><b>Red social <br>de entretenimiento</b></h2>
+                <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
+                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
         </li>
         <li>
             <img src="{{ asset('plugins/materialize_index/img/gana_viajes.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption right-align break-word">
-                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+                <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
             </div>
         </li>
         <li>
             <img src="{{  asset('plugins/materialize_index/img/amigos_con_cola.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+                <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
             </div>
         </li>
     </ul>
@@ -1044,7 +1045,7 @@ function masInfo(tipo) {
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: false
+            indicators: true
         });
 
 
