@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="Default Changelist">
-      <change beforePath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/queEsLeipel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/terminosCondiciones.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/094cdb03324cc3df1ee96cc0bfdb697d96923859.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/094cdb03324cc3df1ee96cc0bfdb697d96923859.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0df0fdc3e2e389709b194182fca5409680ad9016.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0df0fdc3e2e389709b194182fca5409680ad9016.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/1f474d407d205ccb74dcba637d5c1ef7d518086d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/1f474d407d205ccb74dcba637d5c1ef7d518086d.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/2427ce445d1033c59797f4e9042008e8519045a6.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/2427ce445d1033c59797f4e9042008e8519045a6.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/50406eae9f29c5bde1d1639d88f96116e25fc1b5.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/50406eae9f29c5bde1d1639d88f96116e25fc1b5.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/562644a843045d9b8a18e42bdce67c5c9f5cc975.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/562644a843045d9b8a18e42bdce67c5c9f5cc975.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/5fcf530fcfa8bc4625c4da4b90f857a506ef6593.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/5fcf530fcfa8bc4625c4da4b90f857a506ef6593.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/6363dea7e6a4398b6815c6564a9f59431915e13a.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/6363dea7e6a4398b6815c6564a9f59431915e13a.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/70ddbe27bb82973ffd1d01b4843debc8b5b0cf4e.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/70ddbe27bb82973ffd1d01b4843debc8b5b0cf4e.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/7569be02c26ea507333bd15df85d4b0f736f15ec.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7569be02c26ea507333bd15df85d4b0f736f15ec.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/8e0b4cee250ef502342458f5b4c392b2c22a7f77.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/8e0b4cee250ef502342458f5b4c392b2c22a7f77.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/9754f6e18365e07b0c881841646148e13dc8e086.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/9754f6e18365e07b0c881841646148e13dc8e086.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c95d24d352308f95a527099a2e268d6e43b8306d.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c95d24d352308f95a527099a2e268d6e43b8306d.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/fd6e61b8c8682e06ca5b8a12eb669c925bd7de15.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/fd6e61b8c8682e06ca5b8a12eb669c925bd7de15.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BooksController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
+            <state relative-caret-position="152">
+              <caret line="160" column="33" lean-forward="true" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#7855#7861#0#HTML" expanded="true" />
@@ -721,7 +703,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="511478000" />
+    <option name="totallyTimeSpent" value="511484000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1119,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="158" column="34" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="34" />
+        <state relative-caret-position="152">
+          <caret line="160" column="33" lean-forward="true" selection-start-line="160" selection-start-column="33" selection-end-line="160" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#7855#7861#0#HTML" expanded="true" />

@@ -1,4 +1,4 @@
-@extends('seller.layouts')
+    @extends('seller.layouts')
 @section('css')
     <style>
         #image-preview {
@@ -215,7 +215,7 @@
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
                                             {!! Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]) !!}
                                             <label for="exampleInputFile" class="control-label">Nombre de autor</label>
-                                            <a href="{{ route('authors_books.create') }}" class="btn btn-success">
+                                            <a href="{{ route('authors_books.create') }}" class="btn curvaBoton waves-effect waves-light green">
                                                 Agregar autor
                                             </a>
                                         
@@ -227,7 +227,7 @@
                                             </label>
                                             <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                                <a href="{{ route('authors_books.create') }}" class="btn btn-success">
+                                                <a href="{{ route('authors_books.create') }}" class="btn curvaBoton waves-effect waves-light green">
                                                     Agregar autor
                                                 </a>
                                                 <br>
@@ -248,7 +248,7 @@
                                             </label>
                                             <div class=" input-field col s12">
                                                 <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                                <a href="{{ route('authors_books.create') }}" class="btn btn-success">
+                                                <a href="{{ route('authors_books.create') }}" class="btn curvaBoton waves-effect waves-light green">
                                                     Agregar autor
                                                 </a>
                                                 <br>
