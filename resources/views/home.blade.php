@@ -34,7 +34,10 @@
 </style>
 @endsection
 
-@section('main')     
+@section('main')
+
+
+
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -60,6 +63,7 @@
                                 </div>
                             </div>
                         </div>
+                          <br> <br>
                     @endif
 
                         <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
@@ -87,6 +91,7 @@
                                                     </div>
                                                 @endforeach
                                             </div>
+                                            <br><br>
                                         </div>
                                     </div>
                                 @endif
@@ -108,6 +113,7 @@
                                                     </div>
                                                 @endforeach
                                             </div>
+                                            <br><br>
                                         </div>
                                     </div>
                                 @endif
@@ -133,6 +139,7 @@
                             </div>
                         @endforeach
                     </div>
+                    <br><br>
                 </div>
             </div>
             @endif
@@ -143,7 +150,6 @@
                 <a href="{{url('ReadingsMegazines')}}">
              <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
                 <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-
             </div>
                 <div class="col s12 ">
                     <div  class="owl-carousel owl-theme">
@@ -153,6 +159,7 @@
                           </div>
                       @endforeach
                   </div>
+                    <br><br>
                 </div>
             </div>
             @endif
@@ -184,6 +191,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                        <br><br>
                                     </div>
                                 </div>
 
@@ -207,10 +215,11 @@
                                             @foreach($Tv as $tv)
                                                 <div>
                                                     <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
-                                                    <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" ></a>
+                                                    <img src="{{ asset('/images/Tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" ></a>
                                                 </div>
                                             @endforeach
                                         </div>
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>

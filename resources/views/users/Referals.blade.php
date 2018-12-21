@@ -112,7 +112,10 @@
      <!--Se edito-->
      <div id="myModal" class="modal fade" role="dialog">
          <div class="modal-content">
-             <h5 class="modal-title">Introduzca el Correo que desea invitar</h5>
+             <div class=" blue"><br>
+                 <h4 class="center white-text" > Introduzca el Correo que desea invitar</h4>
+                 <br>
+             </div>
              <form class="form-horizontal" method="POST" action="{{url('Invite')}}">{{ csrf_field() }}
 
                  <div class="form-group">
@@ -136,7 +139,7 @@
              </form>
          </div>
          <div class="modal-footer">
-             <a href="#!" class="modal-close waves-effect curvaBoton red waves-green btn-flat"><b class="white-text">Salir <i class="material-icons right">close</i></b></a>
+             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
          </div>
 
      </div>

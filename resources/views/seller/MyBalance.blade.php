@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-
+    <!--
     <div class="row">
         <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
             <ul class="tabs">
@@ -12,15 +12,26 @@
                 <li  class="tab col s4"><a href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
             </ul>
         </div>
+  -->
+
+    <h4 class="titelgeneral"><i class="material-icons small">timeline</i> Mi Balance</h4>
 
         <div id="test1" class="col s12 m12 l12">
             <br>
             <div class="row">
-
+                @if(Auth::guard('web_seller')->user()->credito || $diferido || Auth::guard('web_seller')->user()->credito_pendiente)
                 <div class="col s12 m6 l6">
                     <br><br>
                     <canvas id="myChart" height="300" width="400"></canvas>
                 </div>
+                @else
+                    <div class="col s12 m6 l6">
+                        <br><br>
+                        <blockquote >
+                            <i class="material-icons fixed-width large grey-text">sentiment_very_dissatisfied</i><br><h5 blue-text text-darken-2>No posee Puntos</h5>
+                        </blockquote>
+                    </div>
+                @endif
 
                 <div class="col col s12 m6 l6">
                     <br>
@@ -50,6 +61,9 @@
             </div>
         </div>
 
+
+    <br><br> <br><br>
+    <h5 class="left grey-text" ><i class="material-icons small">add_circle_outline</i> Detalles</h5>
         <div id="test2" class="col s12">
             <br>
             <table class="responsive-table">

@@ -218,9 +218,10 @@
                                     </ul>
                                 </li> <!--End Lecturas-->
 
-                                <li><a  href="{{url('ShowRadio')}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
-                                <li><a  href="{{url('ShowTv')}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
-                                <li><div class="divider"></div></li>
+                                <!-- <li><a  href="{{--url('ShowRadio')--}}" class="waves-effect waves-blue"><i class="small material-icons">radio</i>Radio</a></li>
+                                <li><a  href="{{--
+                                url('ShowTv')--}}" class="waves-effect waves-blue"><i class="small material-icons">live_tv</i>Tv</a></li>
+                                <li><div class="divider"></div></li>-->
                                     <!--Streams-->
                                     <!-- <li> 
                                       <ul class= "collapsible collapsible-accordion" >
