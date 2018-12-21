@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@endsection
 @section('main')     
      <div class="row">
          <div class="col s12 m12">
@@ -9,47 +13,66 @@
                              <ul class="collection">
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s12 m4"><br>
+                                         <div class="col s4"><br>
                                              <i class="material-icons blue circle prefix">code</i>
                                              <h6 class="left"><b>Mi Código:</b></h6>
                                          </div>
-                                         <div class="col s12 m8 left">
-                                            <h3 class="grey-text">{{Auth::user()->codigo_ref}}</h3>
+                                         <div class="col s8 left">
+                                            <h4 class="grey-text">{{Auth::user()->codigo_ref}}</h4>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s12 m4"><br>
+                                         <div class="col s4"><br>
                                              <i class="material-icons blue circle prefix">reply</i>
                                              <h6 class="left"><b>Mi Enlace:</b></h6>
                                          </div>
-                                         <div class="col s12 m8 left">
+                                         <div class="col s8 left">
                                              <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
                                              <p>
-                                             <h6 style="word-break: break-all;"><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                                             <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
                                              </p>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s12 m4"><br>
+                                         <div class="col s5"><br>
+                                             <!-- <i class="material-icons blue circle prefix">email</i> -->
+                                             <i class="prefix fa fa-facebook blue circle prefix"></i>
+                                             <h6 class="left"><b>Invitar por facebook:</b></h6>
+                                         </div>
+                                         <div class="col s7 left"><br>
+                                             <!-- <a href="#"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Compartir</a> -->
+                                             <div id="fb-root"></div>
+                                             <!-- Your share button code -->
+                                          <div class="fb-share-button" 
+                                            data-href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" 
+                                            data-layout="button" data-size="large" data-mobile-iframe="true">
+                                          </div>
+
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s4"><br>
                                              <i class="material-icons blue circle prefix">email</i>
                                              <h6 class="left"><b>Invitar por correo:</b></h6>
                                          </div>
-                                         <div class="col s12 m8 left"><br>
+                                         <div class="col s8 left"><br>
                                              <a href="#myModal"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Enviar</a>
                                          </div>
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s12 m4"><br><br>
+                                         <div class="col s4"><br><br>
                                              <i class="material-icons blue circle prefix">people</i>
                                              <h6 class="left"><b>Total referidos:</b></h6>
                                          </div>
-                                         <div class="col s12 m8 left">
+                                         <div class="col s8 left">
                                              <p>
                                              <h4 ><a href="#" class="blue-text">
                                                      <center>{{$referals1+$referals2+$referals3}}</center>
@@ -69,7 +92,7 @@
                                      <div class="row">
                                      <div class="col s12 m12">
                                      <h5>Mi código QR:</h5>
-                                         {!! QrCode::size(150)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
+                                         {!! QrCode::size(250)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
                                          <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr" class="waves-effect green curvaBoton waves-light btn-small"><i class="material-icons right">cloud_download</i>Descargar</a>
 
                                      </div>
@@ -88,41 +111,45 @@
      <!--MODAL PARA ENVIAR REFERIDOS-->
      <div id="myModal" class="modal fade" role="dialog">
          <div class="modal-content">
-
-             <div class=" blue"><br>
-                 <h4 class="center white-text" >Introduzca el Correo que desea invitar</h4>
-                 <br>
-             </div>
+             <h5 class="modal-title">Introduzca el Correo que desea invitar</h5>
              <form class="form-horizontal" method="POST" action="{{url('Invite')}}">{{ csrf_field() }}
 
                  <div class="form-group">
                      <div class="col s12">
-                         Correo de la persona que desea invitar:
-                         <div class="input-field inline">
-                             <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
-                             <label for="email_inline">Correo</label>
-                         </div>
-                         <div id="emailMen"></div>
+                             Correo del la persona que desea invitar:
+                             <div class="input-field inline">
+                                 <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
+                                 <label for="email_inline">Correo</label>
+                             </div>
+                             <div id="emailMen"></div>
                      </div>
 
-                     <div class="form-group">
-                         <div class="col-md-6 col-md-offset-5">
+                 <div class="form-group">
+                     <div class="col-md-6 col-md-offset-5">
 
-                             <button class="btn curvaBoton waves-effect green waves-light" type="submit" id="enviar" name="enviar">Enviar
-                                 <i class="material-icons right">send</i>
-                             </button>
-                         </div>
+                         <button class="btn curvaBoton waves-effect green waves-light" type="submit" id="enviar" name="enviar">Enviar
+                             <i class="material-icons right">send</i>
+                         </button>
                      </div>
+                 </div>
              </form>
          </div>
          <div class="modal-footer">
-             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+             <a href="#!" class="modal-close waves-effect curvaBoton red waves-green btn-flat"><b class="white-text">Salir <i class="material-icons right">close</i></b></a>
          </div>
 
      </div>
 @endsection
 
 @section('js')
+ <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
 <script type="text/javascript">
   $("#email").on('keyup change',function(){
         var email_data = $("#email").val();
