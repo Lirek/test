@@ -125,12 +125,20 @@
                                             @endif
                                             @if($mod->name == 'Radios')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-5.png')  }}">
+                                                    <a href="{{ url('/radios') }}" class="contentype-adjust">
+                                                        <b>
+                                                            <img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}">
+                                                        </b>
+                                                    </a>
                                                 </li>
                                             @endif
                                             @if($mod->name == 'TV')
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="{{asset('sistem_images/logo-icon-3.png') }}">
+                                                    <a href="{{ url('/tvs') }}" class="contentype-adjust">
+                                                        <b>
+                                                            <img class="responsive-img img-contentype" src="{{asset('sistem_images/type_contents/tv.svg')}}">
+                                                        </b>
+                                                    </a>
                                                 </li>
                                             @endif
                                         @endforeach
@@ -361,7 +369,7 @@
 
                                                                         <div class="collapsible-body">
                                                                             <ul class="sub">
-                                                                                <li><a href="{{ url('/radios') }}">Registro de radios</a></li>
+                                                                                <li><a href="{{ url('/radios') }}">Radios registradas</a></li>
                                                                                 <li><a href="{{ url('/radios/create') }}">Registrar radio</a></li>
                                                                                 <li><div class="divider"></div></li>
 
@@ -382,7 +390,7 @@
 
                                                                  <div class="collapsible-body">
                                                                 <ul>
-                                                                    <li><a href="{{ url('/tvs') }}">Registro de TV's</a></li>
+                                                                    <li><a href="{{ url('/tvs') }}">TV's registradas</a></li>
                                                                     <li><a href="{{ url('/tvs/create') }}">Registrar TV's</a></li>
                                                                     <li><div class="divider"></div></li>
                                                                 </ul>
