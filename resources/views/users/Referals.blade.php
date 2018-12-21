@@ -109,6 +109,7 @@
 
 
      <!--MODAL PARA ENVIAR REFERIDOS-->
+     <!--Se edito-->
      <div id="myModal" class="modal fade" role="dialog">
          <div class="modal-content">
              <h5 class="modal-title">Introduzca el Correo que desea invitar</h5>

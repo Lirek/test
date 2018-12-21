@@ -15,6 +15,11 @@
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
       <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
 
+
+
+
+
+
                     <div class="row">
                     @if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL)
                       <!-- COMPLETAR PERFIL PANELS -->
@@ -33,136 +38,147 @@
                         </div>
                     @endif
 
+
                         <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
                         <br>
 
-        <!--CONTENIDO RECIENTE BOOK-->
-          @if(count($Book)> 0)
-            <div class="card">
-              <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark</i>Libro</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Book as $b)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px" onclick="masInfo('libro',{!!$b->id!!})">
-                    </div>
-                  </div>
+
+
+                        <!--CONTENIDO RECIENTE cine-->
+                        @if(count($Movies)> 0 || count($Series)> 0)
+                            <div class="card">
+                                <!--CONTENIDO RECIENTE pelicula-->
+                                @if(count($Movies)> 0)
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5>
+                                        </div>
+                                        <div class="col s12 ">
+                                            <div class="owl-carousel">
+                                                @foreach($Movies as $m)
+                                                    <div>
+                                                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="250px" width="100px" >
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            <!--CONTENIDO RECIENTE serie-->
+                                @if(count($Series) > 0)
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5>
+                                        </div>
+                                        <div class="col s12 ">
+                                            <div class="owl-carousel">
+                                                @foreach($Series as $s)
+                                                    <div>
+                                                        <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                    <!--End  RECIENTE cine-->
+
+
+        <!--CONTENIDO RECIENTE Lecturas-->
+        @if(count($Book)> 0 || count($Megazines)> 0)
+        <div class="card">
+            @if(count($Book)> 0)
+            <div class="row">
+                <div class="col s12 ">
+                    <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5>
                 </div>
-              @endforeach
-              </div>
-              {{$Book->links()}}
-              <br>
-              </div>
+                <div class="col s12 ">
+                    <div class="owl-carousel">
+                        @foreach($Book as $b)
+                            <div>
+                                <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             @endif
 
-        <!--CONTENIDO RECIENTE REVISTAS-->
-       @if(count($Megazines)> 0)
-        <div class="card">
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Megazines as $m)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset($m->cover)}}" height="300px">
-                    </div>
+            @if(count($Megazines)> 0)
+            <div class="row">
+            <div class="col s12 ">
+             <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5>
+            </div>
+                <div class="col s12 ">
+                  <div class="owl-carousel">
+                      @foreach($Megazines as $m)
+                          <div>
+                           <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                          </div>
+                      @endforeach
+                      @foreach($Megazines as $m)
+                              <div>
+                              <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                              </div>
+                        @endforeach
                   </div>
                 </div>
-              @endforeach
-              </div>
-              {{$Megazines->links()}}
-              <br>
-              </div>
-        @endif
-        
-        <!--contenido de peliculas-->
-        @if(count($Movies)> 0)
-            <div class="card">
-              <span class="card-title grey-text"><h4><i class="mdi mdi-movie-roll"></i> Cine</h4></span>
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="small material-icons" >movie</i>Pelicula</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Movies as $m)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px">
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-              </div>
-              {{$Movies->links()}}
-              <br>
-              </div>
+            </div>
             @endif
-
-        <!--contenido de series-->
-       @if(count($Series)> 0)
-        <div class="card">
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="mdi mdi-movie-roll"></i>Serie</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Series as $s)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset($s->img_poster)}}" height="300px">
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-              </div>
-              {{$Series->links()}}
-              <br>
-              </div>
+        </div>
         @endif
-        
-        <!--CONTENIDO RECIENTE RADIO-->
+     <!--End  RECIENTE Lecturas-->
 
-              @if(count($Radio)>0)
-                <div class="card">
-                  <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
-                  <div class="row">
-                      @foreach($Radio as $r)
-                          <div class="col s12 m3">
-                              <div class="card">
-                                  <div class="card-image">
-                                      <img src="{{asset($r->logo)}}" height="200px" onclick="masInfo('radio')">
-                                  </div>
-                              </div>
-                          </div>
-                      @endforeach
-                  </div>
-                  {{$Radio->links()}}
-                  <br>
-                </div>
-              @endif
 
-          <!--CONTENIDO RECIENTE DE TV-->
-              @if(count($Tv)>0)
-                <div class="card">
-                  <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
-                  <div class="row">
-                      @foreach($Tv as $tv)
-                          <div class="col s12 m3">
-                              <div class="card">
-                                  <div class="card-image">
-                                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="200px">
-                                  </div>
-                              </div>
-                          </div>
-                      @endforeach
-                  </div>
-                  {{$Tv->links()}}
-                  <br>
-                </div>
-              @endif
 
+
+
+                        <!--CONTENIDO RECIENTE Radio-->
+                        @if(count($Radio)>0)
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col s12 ">
+                                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <div class="owl-carousel">
+                                            @foreach($Radio as $r)
+                                                <div>
+                                                    <img src="{{asset($r->logo)}}" height="150px" width="150px"  onclick="masInfo('radio')">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endif
+                    <!--End  RECIENTE radio-->
+
+
+                        <!--CONTENIDO RECIENTE Tv-->
+                        @if(count($Tv)>0)
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col s12 ">
+                                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <div class="owl-carousel">
+                                            @foreach($Tv as $tv)
+                                                <div>
+                                                    <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" >
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    <!--End  RECIENTE tv-->
 
           <div id="modal-confirmation"></div> 
 
@@ -170,28 +186,50 @@
 
 @section('js')
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'>
-  
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
 <script >
-  var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-  spaceBetween: 0,
-        //loop: true,
-autoplay: 2500,
-        autoplayDisableOnInteraction: false,
-        slidesPerView: 4,
-        coverflow: {
-            rotate: 30,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true
+
+    $(document).ready(function(){
+
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        //mergeFit:false,
+        //merge:false,
+        //pullDrag:false,
+        //touchDrag:false,
+        loop:true,
+        nav:true,
+        margin:10,
+        responsiveClass:true,
+        //autoplay:true,
+        //autoplayTimeout:3000,
+        //autoplayHoverPause:true,
+        //stagePadding: 50, centra los contenidos
+        //lazyLoad:true, varia los tamaños de las imagenes
+        responsive:{
+            0:{
+                items:2,
+                nav:true
+            },
+            500:{
+                items:3,
+                nav:true
+            },
+            600:{
+                items:4,
+                nav:false
+            },
+
+            1000:{
+                items:5,
+                nav:true,
+                loop:false
+            },
         }
     });
+    });
+
 
 //# sourceURL=pen.js
 </script>
