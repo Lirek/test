@@ -37,7 +37,40 @@
                             <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
                         </div>
 
-                        <div class="input-field col s12 m4 ">
+                    <div class="row">
+                        @foreach($Rad as $radios)
+                            <div class="col s12 m3 l3  offset-m3 offset-l3 ">
+                                <div class="card">
+                                    <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">
+                                            <img src="{{asset($radios->logo)}}" height="235px">
+                                            <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m3 l3">
+                                <div class="card">
+
+                                    <div class="card-content" style="padding: 13px;" height="310px">
+                                        <div class="row">
+                                            <div class="col s12 ">
+                                                <div  id="play_ico">
+                                                    <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
+                                                </div>
+                                                <div id="off_ico" style="display: none;" >
+                                                    <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
+                                                </div>
+                                                <div  class="wrapper">
+                                                    <audio id="player"></audio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                        <div class="input-field col s12 m4 offset-m4 ">
                             <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
                                 {{ csrf_field() }}
                                 <i class="material-icons prefix blue-text">search</i>
@@ -47,48 +80,15 @@
                             </form>
                         </div>
                     </div>
-
-                    <div class="row">
-                        @foreach($Rad as $radios)
-                            <div class="col s12 m6 l4">
-                                <div class="card">
-                                    <div class="card-image" style="height: 300px; margin: 0px; padding: 0px;">
-                                            <img src="{{asset($radios->logo)}}" height="300px">
-                                            <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
-                                    </div>
-                                    <div class="card-content" style="padding: 13px;">
-                                                <div class="row">
-                                                    <div class="col s12 ">
-
-                                                    <div  id="play_ico">
-                                                        <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
-                                                    </div>
-                                                    <div id="off_ico" style="display: none;" >
-                                                        <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
-                                                    </div>
-
-                                                        <div  class="wrapper">
-                                                    <audio id="player"></audio>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
+                            <div class="row">
                           @foreach($Radio as $radios)
-                                <div class="col s6 m2 ">
+                                <div class="col s4 m2 ">
                                     <div class="card">
-                                        <div class="card-image" style="height: 146px;">
-                                            <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}" height="145px"></a>
-                                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ListenRadio/'.$radios->id)}}"><i class="material-icons">radio</i></a>
+                                        <div class="card-image" style="height: 140px;">
+                                            <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}" height="145px"></a>
+
                                         </div>
-                                        <div class="card-action ">
-                                            <br>
-                                            <b class="grey-text truncate">{{$radios->name_r}}</b>
-                                        </div>
+
                                     </div>
                                 </div>
                             @endforeach
