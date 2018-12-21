@@ -387,9 +387,9 @@
     <div class="col s12">
         <ul class="tabs">
             <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Viajes gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Registro 100% gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Marcas relacionadas</b></a></li>
         </ul>
     </div>
     <div id="test1" class="col s12 center">
@@ -405,7 +405,7 @@
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
-    <div id="test2" class="col s12 center">
+    <div id="test2" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
             <img src="{{asset('plugins/materialize_index/img/viajes.svg') }}" width="20%" height="20%" title="youtube"><br>
             <h5> Viaja gratis con leipel.</h5>
@@ -418,7 +418,7 @@
             </div><br>
         </div>
     </div>
-    <div id="test3" class="col s12 center">
+    <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center">
             <br><br>
             <div class="embed-container">
@@ -431,7 +431,7 @@
             <h5> Registro gratuito.</h5>
         </div>
     </div>
-    <div id="test4" class="col s12 center">
+    <div id="test4" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l12 xl12 center"><br><br>
             <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="5%" height="5%" title="youtube"><br>
             <h5> Marcas relacionadas.</h5>
