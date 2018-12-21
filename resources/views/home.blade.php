@@ -3,7 +3,35 @@
 
 
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
+<style>
 
+
+    .owl-theme .owl-nav [class*='owl-'] {
+        transition: all .3s ease;
+    }
+    .owl-theme .owl-nav [class*='owl-'].disabled:hover {
+        background-color: #D6D6D6;
+    }
+
+    owl-theme {
+        position: relative;
+    }
+
+.owl-theme .owl-next, .owl-theme .owl-prev {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-125%)
+    }
+ .owl-theme .owl-prev {
+        left: 10px;
+    }
+   .owl-theme .owl-next {
+        right: 10px;
+    }
+
+</style>
 @endsection
 
 @section('main')     
@@ -14,10 +42,6 @@
       @include('flash::message')
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
       <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
-
-
-
-
 
 
                     <div class="row">
@@ -38,23 +62,25 @@
                         </div>
                     @endif
 
-
-                        <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
+                        <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
                         <br>
 
 
 
                         <!--CONTENIDO RECIENTE cine-->
-                        @if(count($Movies)> 0 || count($Series)> 0)
+                        @if(count($Movies)> 0 || count($Series))
                             <div class="card">
                                 <!--CONTENIDO RECIENTE pelicula-->
-                                @if(count($Movies)> 0)
+                                @if(count($Movies) > 0)
                                     <div class="row">
                                         <div class="col s12 ">
-                                            <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5>
+                                            <a href="{{url('ShowMovies')}}" >
+                                            <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5></a>
+                                            <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+
                                         </div>
                                         <div class="col s12 ">
-                                            <div class="owl-carousel">
+                                            <div  class="owl-carousel owl-theme">
                                                 @foreach($Movies as $m)
                                                     <div>
                                                         <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="250px" width="100px" >
@@ -69,10 +95,13 @@
                                 @if(count($Series) > 0)
                                     <div class="row">
                                         <div class="col s12 ">
-                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5>
+                                            <a href="{{url('ShowSeries')}}" >
+                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
+                                            <a href="{{url('ShowSeries')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+
                                         </div>
                                         <div class="col s12 ">
-                                            <div class="owl-carousel">
+                                            <div  class="owl-carousel owl-theme">
                                                 @foreach($Series as $s)
                                                     <div>
                                                         <img src="{{ asset($m->cover)}}" height="250px" width="100px">
@@ -93,10 +122,11 @@
             @if(count($Book)> 0)
             <div class="row">
                 <div class="col s12 ">
-                    <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5>
+                    <a href="{{url('ReadingsBooks')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
+                    <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                 </div>
                 <div class="col s12 ">
-                    <div class="owl-carousel">
+                    <div  class="owl-carousel owl-theme">
                         @foreach($Book as $b)
                             <div>
                                 <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
@@ -110,10 +140,13 @@
             @if(count($Megazines)> 0)
             <div class="row">
             <div class="col s12 ">
-             <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5>
+                <a href="{{url('ReadingsMegazines')}}">
+             <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
+                <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+
             </div>
                 <div class="col s12 ">
-                  <div class="owl-carousel">
+                    <div  class="owl-carousel owl-theme">
                       @foreach($Megazines as $m)
                           <div>
                            <img src="{{ asset($m->cover)}}" height="250px" width="100px">
@@ -141,13 +174,18 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
-                                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5>
+                                        <a href="{{ url('ShowRadio')}}">
+                                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
+                                        <a href="{{ url('ShowRadio')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
+
                                     </div>
                                     <div class="col s12 ">
-                                        <div class="owl-carousel">
+                                        <div  class="owl-carousel owl-theme">
                                             @foreach($Radio as $r)
                                                 <div>
+                                                    <a href="{{url('ListenRadio/'.$r->id)}}" class="waves-effect waves-light">
                                                     <img src="{{asset($r->logo)}}" height="150px" width="150px"  onclick="masInfo('radio')">
+                                                    </a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -164,13 +202,17 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
-                                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5>
+                                        <a href="{{ url('ShowTv')}}">
+                                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5></a>
+                                        <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
+
                                     </div>
                                     <div class="col s12 ">
-                                        <div class="owl-carousel">
+                                        <div  class="owl-carousel owl-theme">
                                             @foreach($Tv as $tv)
                                                 <div>
-                                                    <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" >
+                                                    <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
+                                                    <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" ></a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -198,10 +240,11 @@
         //merge:false,
         //pullDrag:false,
         //touchDrag:false,
+        nav: false,
         loop:true,
-        nav:true,
         margin:10,
         responsiveClass:true,
+        dots: true,
         //autoplay:true,
         //autoplayTimeout:3000,
         //autoplayHoverPause:true,
@@ -210,15 +253,15 @@
         responsive:{
             0:{
                 items:2,
-                nav:true
+                nav:false
             },
             500:{
                 items:3,
-                nav:true
+                nav:false
             },
             600:{
                 items:4,
-                nav:false
+                nav:true
             },
 
             1000:{
@@ -226,7 +269,8 @@
                 nav:true,
                 loop:false
             },
-        }
+        },
+        navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>','<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
     });
     });
 

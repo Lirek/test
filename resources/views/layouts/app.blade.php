@@ -28,8 +28,8 @@
     <!--  <  <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">-->
     <!--  <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>-->
 
-    <!--estilo plyr
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">-->
+    <!--estilo plyr-->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
 
     <!--DataTables
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">-->
@@ -82,6 +82,17 @@
                             <!-- Img Contenido superior -->
                                 <ul class="right" >
                                     <li>
+                                        <a href="{{url('ShowMovies') }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/cine.svg')}}"> </b></a>
+                                    </li>
+                                    <!--
+                                    <li>
+                                        <a href="{{--url('MusicContent'--}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
+                                    </li>
+                                    -->
+                                    <li>
+                                        <a href="{{ url('ReadingsBooks')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/lectura.svg')}}"> </b></a>
+                                    </li>
+                                    <li>
                                     <a href="{{ url('ShowRadio')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/radio.svg')}}"> </b></a>
                                     </li>
                                     <li>
@@ -133,29 +144,29 @@
                     <a href="{{ url('/home')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >view_carousel</i>Cartelera</a>
                     </li>
 
-                    <li> <!--Adquirir-->
+                    <li> <!--Entretenimiento-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Adquirir Contenido<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >storeui</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                         <li><a href="{{url('MusicContent')}}"><i class="small material-icons left" >music_note</i>Música</a></li>
                                         <li><a href="{{url('ReadingsBooks')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros</a></li>
                                         <li><a href="{{url('ReadingsMegazines')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas</a></li>
                                         <li><a href="{{url('ShowMovies')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Peliculas</a></li>
-                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Series</a></li>
+                                        <li><a href="{{url('ShowSeries')}}" class="collapsible-header waves-effect waves-blue"><i class="mdi mdi-movie-roll"></i>Series</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
-                    </li> <!--End Adquirir-->
+                    </li> <!--End Entretenimiento-->
 
 
-                    <li><!--Entretenimiento-->
+                    <li><!--Historial-->
                         <ul class= "collapsible collapsible-accordion" >
                             <li>
-                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Entretenimiento<i class="material-icons right">expand_more</i></a>
+                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >subscriptions</i>Historiales<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                 <ul>
 
@@ -172,7 +183,7 @@
                                         </div>
                                      </li>
                                     </ul>
-                                </li> <!--End Lecturas-->    
+                                </li> <!--End Historial-->
 
                                  <!--  <li><a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
                                  <!--  <li><a href="#" data-target="#myModalContenido" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Cine<i class="material-icons right">expand_more</i></a></li> -->
@@ -403,9 +414,11 @@
 <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
 
+<!--Plyr https://plyr.io/ -->
+<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
+
 
 <!--Carousel Owl Galeria-->
-
 <script src="{{ asset('plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
 
 <!--PDF.JS-->
