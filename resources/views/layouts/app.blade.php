@@ -179,6 +179,7 @@
                                     <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Música<i class="material-icons right">expand_more</i></a>
                                             <div class="collapsible-body">
                                                 <ul>
+                                                    <!--Compra musica-->
                                                 <li><a href="{{url('MyMusic')}}" class="collapsible-header waves-effect waves-blue">Música</a></li>
                                                <!--  <li><a href="{{url('MyAlbums')}}" class="collapsible-header waves-effect waves-blue">Albums</a></li> -->
                                                  </ul>
