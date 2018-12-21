@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@endsection
 @section('main')     
      <div class="row">
          <div class="col s12 m12">
@@ -29,6 +33,25 @@
                                              <p>
                                              <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
                                              </p>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s5"><br>
+                                             <!-- <i class="material-icons blue circle prefix">email</i> -->
+                                             <i class="prefix fa fa-facebook blue circle prefix"></i>
+                                             <h6 class="left"><b>Invitar por facebook:</b></h6>
+                                         </div>
+                                         <div class="col s7 left"><br>
+                                             <!-- <a href="#"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Compartir</a> -->
+                                             <div id="fb-root"></div>
+                                             <!-- Your share button code -->
+                                          <div class="fb-share-button" 
+                                            data-href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" 
+                                            data-layout="button" data-size="large" data-mobile-iframe="true">
+                                          </div>
+
                                          </div>
                                      </div>
                                  </li>
@@ -119,6 +142,14 @@
 @endsection
 
 @section('js')
+ <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
 <script type="text/javascript">
   $("#email").on('keyup change',function(){
         var email_data = $("#email").val();

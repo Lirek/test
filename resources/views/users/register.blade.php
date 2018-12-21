@@ -4,6 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Leipel" />
+  <meta property="og:description"   content=" Hola a todos, los invito a unirse también a Leipel, una nueva red social de cine, música, lectura, radio y tv. Usa mi link para poder registrarte GRATIS" />
+  <meta property="og:image"         content="https://sistema1.skytec-sa.com/plugins/img/Leipel.png" />
     <title>{{ config('app.name', 'Leipel') }}</title>
 
     <!-- CSS  -->

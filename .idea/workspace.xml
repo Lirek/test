@@ -224,9 +224,13 @@
       <change afterPath="$PROJECT_DIR$/public/user/6/profile/documentMauricio Jose1537976671.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/6/ticketsDeposit/deposit1538706949.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/user/9/profile/documentGabriela1537990681.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/contents/music.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade(old).php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade(old).php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/02e690eb34f0841559eb9c15cbe74b5e22a74968.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/09578e7e482bd1c96822ce323d68a68946934d72.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/0b6fdb9e48bb2d9c6e4eb807059be8c5e6b3370f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0bea1c1ca451d70beb81bf634cfeef3690a1a219.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/0dfcf5426696023e7f1e00121862cec2a07bcdea.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/146d79dee6095c3e73fbfe5244935efda7539ad5.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
@@ -235,6 +239,7 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/23bfd6da81877a5dcb1de8c4d639ce95ddae360d.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/290f007d31c707e9b8196db42edb149d530e9252.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/33fc4766e75943df5db2eb2c893f7de84ac36e2c.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/3854600f2d5ecd3e81ec2a483e3597ca9c4c8f45.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/3a6b16190892332018bf912dfab74b93d3f63a99.php" afterDir="false" />
@@ -249,13 +254,16 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/6650b7696a3b17468846a1bb8318ccf73f3b6fd8.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/66a91437a53faf810ad13211eab19ac3628e25d4.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/68d6bc05c9c46d6d8b5dd7b7732af5cc7a7a4bec.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6a8c85fce3f49577ae06f18d16e432c69976e891.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/75c97e6a2c6ef45db1ed99ef3de601d00c922ec7.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/94c2e4a418d4c536ece06eb8827557733ac5432f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/a2e478a26384ea80162ee67bf93f23c2c5503fbe.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/a6f41a51418cd97d7a65a8467d2a65340d7fd567.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/a88ac38766735dc12fb1332779472d2a93614678.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a8903778185abcf2a7eb6d82f272ed87afa91348.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ae9383a45a1535d85f048b14678d3080f22c4865.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/b49f79517130fca1aa1705fb31552553c1c8125d.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/b6bc5537e10cfd4bf7ace3547ed4b850b66f156a.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
@@ -265,6 +273,7 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/c5e36334348276d1081aecd0bdf2fd980d349f77.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/c78d8051ec8d813b7f0ec1ffae23fb4c79e86839.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/cd6d2c108dcf00695cdb796954eba5172a3fa0ef.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2a1dcdec34fd67f3b59ef594b863e182c9cc531.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/d2d93e3faa43bb577145f339eeb08f7eff834799.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/d3337bebbe40ba751e144c659345a5b8abbdd7a0.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/d46c532c4ffc99d458400167034b1610048f4ad7.php" afterDir="false" />
@@ -278,17 +287,8 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Megazines.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Referals.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/register.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -687,23 +687,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Default">
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -823,7 +823,8 @@
       <workItem from="1544190792876" duration="1543000" />
       <workItem from="1544800660167" duration="633000" />
       <workItem from="1545062888353" duration="477000" />
-      <workItem from="1545183891636" duration="442000" />
+      <workItem from="1545183891636" duration="1072000" />
+      <workItem from="1545355594839" duration="621000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -930,11 +931,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545063321012</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Compra de musica y pantallas de mi musica adquirida">
+      <created>1545184554674</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1545184554674</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="509004000" />
+    <option name="totallyTimeSpent" value="510255000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -955,7 +963,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19894099" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -972,11 +980,11 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -984,14 +992,14 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5181543" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.48184568" weight="0.3295082" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296355" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -1030,7 +1038,8 @@
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets" />
     <MESSAGE value="Solucion fallas de generos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucion fallas de generos" />
+    <MESSAGE value="Compra de musica y pantallas de mi musica adquirida" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compra de musica y pantallas de mi musica adquirida" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php">
