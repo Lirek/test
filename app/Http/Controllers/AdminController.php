@@ -1225,6 +1225,11 @@ class AdminController extends Controller
   }
   public function SellerDataTable() {
     $seller = Seller::all();
+    $seller->each(function($seller){
+      $seller->roles;
+    });
+    return response()->json($seller);
+    /*
     return Datatables::of($seller)
       ->addColumn('nombre',function($seller){
         return $seller->name;
@@ -1277,6 +1282,7 @@ class AdminController extends Controller
       })
       ->rawColumns(['logo','modulos','opciones'])
       ->toJson();
+    */
     }
 
     public function DeleteModule($id_seller,$id_module) {
@@ -1343,7 +1349,7 @@ class AdminController extends Controller
       }
 
       public function AproveOrDenialSeller(Request $request,$id) {
-        $seller= Seller::find($id);
+        $seller = Seller::find($id);
         if ($request->status=='Rechazado') {
           //$data=$seller->delete();
           $seller->estatus = 3; // rechazado
