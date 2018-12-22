@@ -284,45 +284,45 @@
         }
       }
 
-      $(document).ready(function () {
-        $('.tooltipped').tooltip();
-        var url = "{{ url('/contenidoPendiente/') }}";
-        $.ajax({
-          url: url,
-          type: 'get',
-          dataType: "json",
-          success: function (result) {
-            console.log(result);
-            if (result.contenido!=0) {
-              $('#badgeContenido').show();
-              $('#badgeContenido').text(result.contenido);
-            }
-            if (result.proveedores!=0) {
-              $('#badgeProveedores').show();
-              $('#badgeProveedores').text(result.proveedores);
-            }
-            if (result.pagosP!=0) {
-              $('#badgePagos').show();
-              $('#badgePagos').text(result.pagosP);
-            }
-            if (result.solicitudesP!=0) {
-              $('#badgeSolicitudProveedor').show();
-              $('#badgeSolicitudProveedor').text(result.solicitudesP);
-            }
-            if (result.solicitudesU+result.pagosU!=0) {
-              $('#badgeSolicitudUsuario').show();
-              $('#badgeSolicitudUsuario').text(result.solicitudesU+result.pagosU);
-            }
-          },
-          error: function (result) {
-            swal('Existe un error al cargar los contenidos pendientes','','error')
-            .then((recarga) => {
-              location.reload();
-            });
-            console.log(result);
-          }
-        });
-      });
+      // $(document).ready(function () {
+      //   $('.tooltipped').tooltip();
+      //   var url = "{{ url('/contenidoPendiente/') }}";
+      //   $.ajax({
+      //     url: url,
+      //     type: 'get',
+      //     dataType: "json",
+      //     success: function (result) {
+      //       console.log(result);
+      //       if (result.contenido!=0) {
+      //         $('#badgeContenido').show();
+      //         $('#badgeContenido').text(result.contenido);
+      //       }
+      //       if (result.proveedores!=0) {
+      //         $('#badgeProveedores').show();
+      //         $('#badgeProveedores').text(result.proveedores);
+      //       }
+      //       if (result.pagosP!=0) {
+      //         $('#badgePagos').show();
+      //         $('#badgePagos').text(result.pagosP);
+      //       }
+      //       if (result.solicitudesP!=0) {
+      //         $('#badgeSolicitudProveedor').show();
+      //         $('#badgeSolicitudProveedor').text(result.solicitudesP);
+      //       }
+      //       if (result.solicitudesU+result.pagosU!=0) {
+      //         $('#badgeSolicitudUsuario').show();
+      //         $('#badgeSolicitudUsuario').text(result.solicitudesU+result.pagosU);
+      //       }
+      //     },
+      //     error: function (result) {
+      //       swal('Existe un error al cargar los contenidos pendientes','','error')
+      //       .then((recarga) => {
+      //         location.reload();
+      //       });
+      //       console.log(result);
+      //     }
+      //   });
+      // });
 
     </script>
     @yield('js')
