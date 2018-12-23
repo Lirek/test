@@ -248,24 +248,42 @@
 {{--pelicula--}}
 <div class="row" id="cines">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        @if(count($movie)>0)
+        <div id="featured5" class="owl-carousel featured">
         @foreach($movie as $m)
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="150px">
+                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="100px">
                         </div>
                     </div>
                 </div>
         @endforeach
         </div>
+            @endif
+            @if(count($movie)==0)
+                <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            @endif
+
     </div>
 </div>
 
 {{--musica--}}
 <div class="row" id="musicas">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        @if(count($music)>0)
+        <div id="featured4" class="owl-carousel featured">
         @foreach($music as $m)
                 <div class="col s12 m12">
                     <div class="card">
@@ -276,13 +294,29 @@
                 </div>
         @endforeach
         </div>
+        @endif
+            @if(count($music)==0)
+                <div class="col s12 m2">
+                </div>
+                    <div class="col s12 m8">
+                        <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
+                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                            <br><br>
+                        </div>
+                    </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            @endif
     </div>
 </div>
 
 {{--libro--}}
 <div class="row" id="libros">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        @if(count($book)>0)
+        <div id="featured3" class="owl-carousel featured">
         @foreach($book as $b)
                 <div class="col s12 m12">
                     <div class="card">
@@ -293,6 +327,21 @@
                 </div>
         @endforeach
         </div>
+        @endif
+            @if(count($book)==0)
+                <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            @endif
     </div>
 </div>
 
@@ -1092,6 +1141,67 @@ function masInfo(tipo) {
             }
         });
 
+        $('#featured3').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured4').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        $('#featured5').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
         //Mostarar contenidos seleccionados
         $('#cine').css("background-color","#42a5f5");
         $('#radios').hide();
@@ -1142,7 +1252,7 @@ function masInfo(tipo) {
        });
 
         $('#radio').click(function(){
-            console.log("pase por radio");
+
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1152,6 +1262,7 @@ function masInfo(tipo) {
             $('#libros').hide();
             $('#musicas').hide();
             $('#cines').hide();
+            console.log( $('#radios').show());
             $('#radios').show();
         });
 
