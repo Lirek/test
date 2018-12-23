@@ -116,6 +116,11 @@ nav ul a {
     height: auto;
 }
 
+.img-play{
+    height:120px;
+    width:130px;
+}
+
 /*color efecto menu navbar*/
 .waves-effect.waves-blue .waves-ripple {
    /* The alpha value allows the text and background color
@@ -261,6 +266,10 @@ nav ul a {
         min-height: 250px;
     }
 
+    .img-play{
+        height:130px;
+        width:145px;
+    }
 
 }
 
@@ -284,8 +293,6 @@ nav ul a {
             height: auto;
         }
 
-
-
       }
 /*End pantallas menores de 400px*/
 
@@ -298,6 +305,8 @@ nav ul a {
         width: 100%;
         min-height: 210px;
     }
+
+
 }
 
 

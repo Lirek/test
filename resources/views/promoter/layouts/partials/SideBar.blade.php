@@ -160,7 +160,7 @@
               <i class="fa fa-wrench"></i>
               <span>Usuarios Backend</span>
             </a>
-          </li> 
+          </li>
         @endif
         @if(Auth::guard('Promoter')->user()->priority == 1)
           <li class="mt">
@@ -168,7 +168,7 @@
               <i class="fa fa-university"></i>
               <span>Negocios y Otros</span>
             </a>
-          </li> 
+          </li>
           <li class="mt">
             <a href="{{ route('log-viewer::dashboard') }}">
               <i class="fa fa-warning" style="color:red"></i>

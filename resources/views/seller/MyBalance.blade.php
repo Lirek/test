@@ -4,23 +4,34 @@
 @endsection
 @section('content')
 
-
+    <!--
     <div class="row">
         <div class="col  s12 offset-s0 m10 offset-m1 l8 offset-l3">
             <ul class="tabs">
-                <li class="tab col s4"><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
+                <li class="tab col s4 "><a  href="#test1"><i class="material-icons" style="vertical-align: middle;">timeline</i>&nbsp;<b>Mi Balance</b></a></li>
                 <li  class="tab col s4"><a href="#test2"><i class="material-icons" style="vertical-align: middle;">add_circle_outline</i>&nbsp;<b>Detalles</b></a></li>
             </ul>
         </div>
+  -->
+
+    <h4 class="titelgeneral"><i class="material-icons small">timeline</i> Mi Balance</h4>
 
         <div id="test1" class="col s12 m12 l12">
             <br>
             <div class="row">
-
+                @if(Auth::guard('web_seller')->user()->credito || $diferido || Auth::guard('web_seller')->user()->credito_pendiente)
                 <div class="col s12 m6 l6">
                     <br><br>
                     <canvas id="myChart" height="300" width="400"></canvas>
                 </div>
+                @else
+                    <div class="col s12 m6 l6">
+                        <br><br>
+                        <blockquote >
+                            <i class="material-icons fixed-width large grey-text">sentiment_very_dissatisfied</i><br><h5 blue-text text-darken-2>No posee Puntos</h5>
+                        </blockquote>
+                    </div>
+                @endif
 
                 <div class="col col s12 m6 l6">
                     <br>
@@ -50,6 +61,9 @@
             </div>
         </div>
 
+
+    <br><br> <br><br>
+    <h5 class="left grey-text" ><i class="material-icons small">add_circle_outline</i> Detalles</h5>
         <div id="test2" class="col s12">
             <br>
             <table class="responsive-table">
@@ -92,11 +106,13 @@
             </table>
             <br>
 
-            <ul class="pagination">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active blue"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
+<div class="row center">
+<div class="col s12 m12">
+        <!--  Paginacion material -->
+        <?php /*Nuevo*/ $Balance->setPath('') ?>
+        {!!$Balance->appends(Input::except('page'))->render() !!}
+</div>
+</div>
 
         </div>
     </div>
@@ -121,7 +137,6 @@
                     datasets: [{
                         data: info,
                         backgroundColor: [
-
                             '#64B5F6',
                             '#ff8a65',
                             '#ffd54f'
@@ -153,5 +168,21 @@
         });
         // grafica de doughnut disponibilidad seller
     });
+
+
+
+   $(document).ready(function()
+   {
+       $(document).on('click', '.pagination a',function(event)
+       {
+
+           $('ul.tabs').tabs();
+           $('ul.tabs').tabs('select_tab', 'test2');
+
+
+       });
+   });
+
+
 </script>
 @endsection

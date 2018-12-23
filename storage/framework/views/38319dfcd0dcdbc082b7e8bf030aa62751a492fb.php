@@ -23,7 +23,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" height="300px">
+                      <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" height="300px" onclick="masInfo('pelicula',<?php echo $m->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset($s->img_poster)); ?>" height="300px">
+                      <img src="<?php echo e(asset($s->img_poster)); ?>" height="300px" onclick="masInfo('serie',<?php echo $s->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset($a->cover)); ?>" height="300px">
+                      <img src="<?php echo e(asset($a->cover)); ?>" height="300px" >
                     </div>
                   </div>
                 </div>
@@ -89,7 +89,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" height="300px">
+                      <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" height="300px" onclick="masInfo('libro',<?php echo $b->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset($m->cover)); ?>" height="300px">
+                      <img src="<?php echo e(asset($m->cover)); ?>" height="300px" onclick="masInfo('revista',<?php echo $m->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset($r->logo)); ?>" height="100px">
+                      <img src="<?php echo e(asset($r->logo)); ?>" height="100px" onclick="masInfo('radio',<?php echo $r->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -153,7 +153,7 @@
                 <div class="col s12 m3">
                   <div class="card">
                     <div class="card-image">
-                      <img src="<?php echo e(asset('/images/tv/')); ?>/<?php echo e($tv->logo); ?>"  height="100px">
+                      <img src="<?php echo e(asset('/images/tv/')); ?>/<?php echo e($tv->logo); ?>"  height="100px" onclick="masInfo('tv',<?php echo $tv->id; ?>)">
                     </div>
                   </div>
                 </div>
@@ -166,9 +166,34 @@
           <?php endif; ?>
       </div>
     </div>
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+  
+      function masInfo(tipo,id) {
+        console.log(tipo,id);
+
+        if (tipo=="radio") {
+            var ruta = "<?php echo e(url('/ListenRadio/')); ?>/"+id;
+            location.href = ruta;
+          } else if (tipo=="tv") {
+            var ruta = "<?php echo e(url('/PlayTv/')); ?>/"+id;
+            location.href = ruta;
+          } else if (tipo=="serie") {
+            var ruta = "<?php echo e(url('/series/')); ?>/"+id;
+            location.href = ruta;
+          } else if (tipo=="pelicula") {
+            var ruta = "<?php echo e(url('/movies/')); ?>/"+id;
+            location.href = ruta;
+          } else if (tipo=="revista") {
+            var ruta = "<?php echo e(url('/show_megazine/')); ?>/"+id;
+            location.href = ruta;
+          } else if (tipo=="libro") {
+            var ruta = "<?php echo e(url('/tbook/')); ?>/"+id;
+            location.href = ruta;
+            }
+        }
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

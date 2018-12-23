@@ -17,7 +17,7 @@ class TagController extends Controller
     	$tag->type_tags 	= $request->type_tags;
     	$tag->seller_id 	= $request->seller_id;
     	$tag->save();
-
+        
     	Flash::success('Se ha registrado '.$tag->tags_name.' de manera exitosa, debe esperar su activación para poder utilizarlo')->important();
 
         switch ($request->ruta) {

@@ -199,19 +199,20 @@
         <li>
             <img src="{{ asset('plugins/materialize_index/img/piñas.jpg') }}" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2 ><b>Red social <br>de entretenimiento</b></h2>
+                <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
+                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
         </li>
         <li>
             <img src="{{ asset('plugins/materialize_index/img/gana_viajes.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption right-align break-word">
-                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+                <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
             </div>
         </li>
         <li>
             <img src="{{  asset('plugins/materialize_index/img/amigos_con_cola.jpg') }}" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+                <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
             </div>
         </li>
     </ul>
@@ -243,93 +244,57 @@
 </div>
 <!-- Fin franja  -->
 
-<!-- Contenido  -->
-{{--<div id="peliculas">--}}
-    {{--<div class="row">--}}
-        {{--<!--Primero-->--}}
-        {{--<div class="col s12 m4 l3 xl3  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--Segundo-->--}}
-        {{--<div class="col s12 m4 l6 xl6  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--tercero-->--}}
-        {{--<div class="col s12 m4 l3 xl3  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
-    {{--<div class="row">--}}
-        {{--<!--Primero-->--}}
-        {{--<div class="col s12 m4 l4 xl4  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--Segundo-->--}}
-        {{--<div class="col s12 m2 l2 xl2  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--tercero-->--}}
-        {{--<div class="col s12 m4 l4 xl4  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<!--cuarto-->--}}
-        {{--<div class="col s12 m2 l2 xl2  center">--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%" src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-            {{--<div class="col s12 m12 l12 xl12  center">--}}
-                {{--<br>--}}
-                {{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-{{--libros--}}
-{{--<div class="row" id="libros">--}}
-{{--<div class="col s12 m6 l4 xl4  center">--}}
-{{--<div class="card">--}}
-{{--<div class="card-image">--}}
-{{--<img class="materialboxed" data-caption="Titulo contenido" width="100%" height="100%"  src="{{asset('plugins/materialize_index/img/slaider3.jpeg') }}">--}}
-{{--</div>--}}
-{{--<div class="card-content">--}}
-{{--Nombre Libro--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
+{{--pelicula--}}
+<div class="row" id="cines">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($movie as $m)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
 
+{{--musica--}}
+<div class="row" id="musicas">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($music as $m)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{asset($m->cover)}}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
+
+{{--libro--}}
+<div class="row" id="libros">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        @foreach($book as $b)
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        @endforeach
+        </div>
+    </div>
+</div>
 
 {{--radios--}}
 <div class="row" id="radios">
@@ -350,7 +315,6 @@
         </div>
     </div>
 </div>
-
 
 {{--tv--}}
 <div class="row" id="Tvs">
@@ -386,9 +350,9 @@
     <div class="col s12">
         <ul class="tabs">
             <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Viajes gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Registro 100% gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Marcas relacionadas</b></a></li>
         </ul>
     </div>
     <div id="test1" class="col s12 center">
@@ -404,7 +368,7 @@
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
-    <div id="test2" class="col s12 center">
+    <div id="test2" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
             <img src="{{asset('plugins/materialize_index/img/viajes.svg') }}" width="20%" height="20%" title="youtube"><br>
             <h5> Viaja gratis con leipel.</h5>
@@ -417,7 +381,7 @@
             </div><br>
         </div>
     </div>
-    <div id="test3" class="col s12 center">
+    <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center">
             <br><br>
             <div class="embed-container">
@@ -430,7 +394,7 @@
             <h5> Registro gratuito.</h5>
         </div>
     </div>
-    <div id="test4" class="col s12 center">
+    <div id="test4" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l12 xl12 center"><br><br>
             <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="5%" height="5%" title="youtube"><br>
             <h5> Marcas relacionadas.</h5>
@@ -630,7 +594,7 @@
                     <input type="hidden" id="enlace" name="enlace">
                     <div class="input-field col s12 {{ $errors->has('name') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">face</i>
-                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required">
+                        <input type="text" class="autocomplete" name="name" id="name" value="{{ old('name') }}" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="name">Nombre</label>
                         <div id="nameMen" style="margin-top: 1%"></div>
                         @if ($errors->has('name'))
@@ -704,7 +668,7 @@
                 <div class="row">
                     <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">store</i>
-                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" >
                         <label for="com_name">Nombre comercial</label>
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                         @if ($errors->has('tlf'))
@@ -1044,7 +1008,7 @@ function masInfo(tipo) {
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: false
+            indicators: true
         });
 
 
@@ -1129,12 +1093,56 @@ function masInfo(tipo) {
         });
 
         //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
+        $('#cine').css("background-color","#42a5f5");
+        $('#radios').hide();
         $('#Tvs').hide();
-        $('#peliculas').hide();
         $('#libros').hide();
+        $('#musicas').hide();
+
+        $('#cine').click(function(){
+            console.log("pase por cine");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#42a5f5");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#musicas').hide();
+           $('#cines').show();
+       });
+
+        $('#musica').click(function(){
+            console.log("pase por musica");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#42a5f5");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#cines').hide();
+           $('#musicas').show();
+       });
+
+       $('#libro').click(function(){
+        console.log("pase por libro");
+           $('#libro').css("background-color","#42a5f5");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#musicas').hide();
+           $('#cines').hide();
+           $('#libros').show();
+       });
 
         $('#radio').click(function(){
+            console.log("pase por radio");
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1142,10 +1150,13 @@ function masInfo(tipo) {
             $('#tv').css("background-color","#2196F3");
             $('#Tvs').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#radios').show();
         });
 
         $('#tv').click(function(){
+            console.log("pase por tv");
             $('#tv').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1153,20 +1164,10 @@ function masInfo(tipo) {
             $('#radio').css("background-color","#2196F3");
             $('#radios').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#Tvs').show();
         });
-
-//        $('#libro').click(function(){
-//            $('#libro').css("background-color","#42a5f5");
-//            $('#cine').css("background-color","#2196F3");
-//            $('#musica').css("background-color","#2196F3");
-//            $('#tv').css("background-color","#2196F3");
-//            $('#radio').css("background-color","#2196F3");
-//            $('#radios').hide();
-//            $('#Tvs').hide();
-//            $('#libros').show();
-//        });
-
 
         $("#formRP").on('submit',function(e){
             var url = "{{ url('ApplysSubmit') }}";
@@ -1565,6 +1566,8 @@ function masInfo(tipo) {
 
             }else{
 
+                $('#emailMen').hide();
+                $('#iniciar').attr('disabled',false);
                 return true;
             }
         });

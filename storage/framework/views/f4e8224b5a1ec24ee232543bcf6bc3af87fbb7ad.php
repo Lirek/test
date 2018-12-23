@@ -96,8 +96,8 @@
 
     /*evitar que el texto salga*/
     .break-word {
-        word-break: break-all;
-    }
+          word-break: break-all;
+      }
 
     element.style {
         height: 600px; !important;
@@ -243,93 +243,57 @@
 </div>
 <!-- Fin franja  -->
 
-<!-- Contenido  -->
-
-    
-        
-        
-            
-                
-                
-            
-            
-                
-                
-            
-        
-        
-        
-            
-                
-                
-            
-        
-        
-        
-            
-                
-                
-            
-            
-                
-                
-            
-        
-    
-
-    
-        
-        
-            
-                
-                
-            
-        
-        
-        
-            
-                
-                
-            
-            
-                
-                
-            
-        
-        
-        
-            
-                
-                
-            
-        
-        
-        
-            
-                
-                
-            
-            
-                
-                
-            
-        
-    
 
 
+<div class="row" id="cines">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        <?php $__currentLoopData = $movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</div>
 
 
+<div class="row" id="musicas">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        <?php $__currentLoopData = $music; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="<?php echo e(asset($m->cover)); ?>" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</div>
 
 
-
-
-
-
-
-
-
-
-
+<div class="row" id="libros">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+        <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</div>
 
 
 <div class="row" id="radios">
@@ -350,7 +314,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="row" id="Tvs">
@@ -633,7 +596,7 @@
                     <input type="hidden" id="enlace" name="enlace">
                     <div class="input-field col s12 <?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">face</i>
-                        <input type="text" class="autocomplete" name="name" id="name" value="<?php echo e(old('name')); ?>" required="required">
+                        <input type="text" class="autocomplete" name="name" id="name" value="<?php echo e(old('name')); ?>" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="name">Nombre</label>
                         <div id="nameMen" style="margin-top: 1%"></div>
                         <?php if($errors->has('name')): ?>
@@ -708,7 +671,7 @@
                 <div class="row">
                     <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">store</i>
-                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" >
                         <label for="com_name">Nombre comercial</label>
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
                         <?php if($errors->has('tlf')): ?>
@@ -1133,12 +1096,56 @@ function masInfo(tipo) {
         });
 
         //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
+        $('#cine').css("background-color","#42a5f5");
+        $('#radios').hide();
         $('#Tvs').hide();
-        $('#peliculas').hide();
         $('#libros').hide();
+        $('#musicas').hide();
+
+        $('#cine').click(function(){
+            console.log("pase por cine");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#42a5f5");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#musicas').hide();
+           $('#cines').show();
+       });
+
+        $('#musica').click(function(){
+            console.log("pase por musica");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#42a5f5");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#cines').hide();
+           $('#musicas').show();
+       });
+
+       $('#libro').click(function(){
+        console.log("pase por libro");
+           $('#libro').css("background-color","#42a5f5");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#musicas').hide();
+           $('#cines').hide();
+           $('#libros').show();
+       });
 
         $('#radio').click(function(){
+            console.log("pase por radio");
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1146,10 +1153,13 @@ function masInfo(tipo) {
             $('#tv').css("background-color","#2196F3");
             $('#Tvs').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#radios').show();
         });
 
         $('#tv').click(function(){
+            console.log("pase por tv");
             $('#tv').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1157,20 +1167,10 @@ function masInfo(tipo) {
             $('#radio').css("background-color","#2196F3");
             $('#radios').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#Tvs').show();
         });
-
-//        $('#libro').click(function(){
-//            $('#libro').css("background-color","#42a5f5");
-//            $('#cine').css("background-color","#2196F3");
-//            $('#musica').css("background-color","#2196F3");
-//            $('#tv').css("background-color","#2196F3");
-//            $('#radio').css("background-color","#2196F3");
-//            $('#radios').hide();
-//            $('#Tvs').hide();
-//            $('#libros').show();
-//        });
-
 
         $("#formRP").on('submit',function(e){
             var url = "<?php echo e(url('ApplysSubmit')); ?>";
@@ -1569,6 +1569,8 @@ function masInfo(tipo) {
 
             }else{
 
+                $('#emailMen').hide();
+                $('#iniciar').attr('disabled',false);
                 return true;
             }
         });

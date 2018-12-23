@@ -102,6 +102,7 @@ class BooksController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $book = Book::find($id);
         $book->seller_id = \Auth::guard('web_seller')->user()->id;
         $book->author_id = $request->author_id;
@@ -127,7 +128,9 @@ class BooksController extends Controller
         $book->before = $request->before;
         $book->saga_id = $request->saga_id;
         $book->release_year = $request->release_year;
-        $book->rating_id = $request->rating_id;
+        if($request->rating_id){
+            $book->rating_id = $request->rating_id;
+        }
         $book->cost = $request->cost;
 
         if ($request->tags!=null) {

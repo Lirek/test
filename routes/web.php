@@ -121,8 +121,9 @@ Route::post('Invite','UserController@Invite');
     Route::get('PlayList/{id}','UserController@AddElementPlaylist');
 
     //Agregada12/7/18
-    Route::get('MyAlbums','UserController@MyAlbums');
-    Route::get('SongsAlbums/{id}','UserController@SongAlbum');
+    Route::get('MyAlbums/{id}','UserController@MyAlbums');
+    Route::get('MySongsAlbums/{id}','UserController@SongAlbum');
+    Route::get('SongsSingles','UserController@SongSingles');
 
     //Agregada 13/7/18
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
@@ -203,6 +204,11 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 
     Route::get('WebsUser','ReferalsController@ShowWebs');
     Route::get('Referals','ReferalsController@ShowReferals');
+
+//-----------------------Funciones de Pago Externo a la plataforma ------------------------
+    Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+    Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+//-----------------------------------------------------------------------------------------
  });
 
 /* ------------------------------------------------------------------
@@ -465,7 +471,18 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
+         Route::get('ExternalClients','ExternalClientsController@ViewExternalClients');
+         
+         Route::get('ExternalClientsDataTable','ExternalClientsController@ExternalClientsDataTable');
 
+         Route::get('GetExternalClient/{id}','ExternalClientsController@GetExternalClient');
+
+         Route::post('SaveExternalClients','ExternalClientsController@SaveExternalClients');
+
+         Route::post('UpdateExternalClient/{id}','ExternalClientsController@UpdateExternalClient');
+
+         Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
+         
 
     });
 });

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Auth;
 
 //Validator facade used in validator method
@@ -473,9 +476,15 @@ class SellerController extends Controller
         $rechazado=PaymentSeller::where('seller_id','=',Auth::guard('web_seller')->user()->id)->where('status','=','Rechazado')->sum('tickets');
 
 
-        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
+        $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray(); //se retorna para la tabla
 
-        return view('seller.MyBalance')->with('Balance',$ordenBalance)->with('diferido',$diferido)->with('pagado',$pagado)->with('rechazado',$rechazado);
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($ordenBalance);
+        $perPage = 5;
+        $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+
+        return view('seller.MyBalance')->with('Balance',$entries)->with('diferido',$diferido)->with('pagado',$pagado)->with('rechazado',$rechazado)->with('entries',$entries);
     }
 
     //function para grafica balance seller

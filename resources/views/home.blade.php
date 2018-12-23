@@ -3,10 +3,41 @@
 
 
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
+<style>
 
+
+    .owl-theme .owl-nav [class*='owl-'] {
+        transition: all .3s ease;
+    }
+    .owl-theme .owl-nav [class*='owl-'].disabled:hover {
+        background-color: #D6D6D6;
+    }
+
+    owl-theme {
+        position: relative;
+    }
+
+.owl-theme .owl-next, .owl-theme .owl-prev {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-125%)
+    }
+ .owl-theme .owl-prev {
+        left: 10px;
+    }
+   .owl-theme .owl-next {
+        right: 10px;
+    }
+
+</style>
 @endsection
 
-@section('main')     
+@section('main')
+
+
+
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -14,6 +45,7 @@
       @include('flash::message')
       <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
       <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
+
 
                     <div class="row">
                     @if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL)
@@ -31,138 +63,168 @@
                                 </div>
                             </div>
                         </div>
+                          <br> <br>
                     @endif
 
-                        <span class="card-title grey-text"><h3><i class="material-icons">apps</i> Cartelera</h3></span>
+                        <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
                         <br>
 
-        <!--CONTENIDO RECIENTE BOOK-->
-          @if(count($Book)> 0)
-            <div class="card">
-              <span class="card-title grey-text"><h4><i class="material-icons">book</i> Lectura</h4></span>
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark</i>Libro</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Book as $b)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="300px" onclick="masInfo('libro',{!!$b->id!!})">
-                    </div>
-                  </div>
+
+
+                        <!--CONTENIDO RECIENTE cine-->
+                        @if(count($Movies)> 0 || count($Series)> 0)
+                            <div class="card">
+                                <!--CONTENIDO RECIENTE pelicula-->
+                                @if(count($Movies) > 0)
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <a href="{{url('ShowMovies')}}" >
+                                            <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5></a>
+                                            <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+
+                                        </div>
+                                        <div class="col s12 ">
+                                            <div  class="owl-carousel owl-theme">
+                                                @foreach($Movies as $m)
+                                                    <div>
+                                                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="250px" width="100px" >
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            <!--CONTENIDO RECIENTE serie-->
+                                @if(count($Series) > 0)
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <a href="{{url('ShowSeries')}}" >
+                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
+                                            <a href="{{url('ShowSeries')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+
+                                        </div>
+                                        <div class="col s12 ">
+                                            <div  class="owl-carousel owl-theme">
+                                                @foreach($Series as $s)
+                                                    <div>
+                                                        <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                    <!--End  RECIENTE cine-->
+
+
+        <!--CONTENIDO RECIENTE Lecturas-->
+        @if(count($Book)> 0 || count($Megazines)> 0)
+        <div class="card">
+            @if(count($Book)> 0)
+            <div class="row">
+                <div class="col s12 ">
+                    <a href="{{url('ReadingsBooks')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
+                    <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                 </div>
-              @endforeach
-              </div>
-              {{$Book->links()}}
-              <br>
-              </div>
+                <div class="col s12 ">
+                    <div  class="owl-carousel owl-theme">
+                        @foreach($Book as $b)
+                            <div>
+                                <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
+                            </div>
+                        @endforeach
+                    </div>
+                    <br><br>
+                </div>
+            </div>
             @endif
 
-        <!--CONTENIDO RECIENTE REVISTAS-->
-       @if(count($Megazines)> 0)
-        <div class="card">
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="material-icons">bookmark_border</i> Revista</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Megazines as $m)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset($m->cover)}}" height="300px">
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-              </div>
-              {{$Megazines->links()}}
-              <br>
-              </div>
-        @endif
-        
-        <!--contenido de peliculas-->
-        @if(count($Movies)> 0)
-            <div class="card">
-              <span class="card-title grey-text"><h4><i class="mdi mdi-movie-roll"></i> Cine</h4></span>
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="small material-icons" >movie</i>Pelicula</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Movies as $m)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="300px">
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-              </div>
-              {{$Movies->links()}}
-              <br>
-              </div>
-            @endif
-
-        <!--contenido de series-->
-       @if(count($Series)> 0)
-        <div class="card">
-              <span class="card-title grey-text left" style="padding-left: 5%"><h5><i class="mdi mdi-movie-roll"></i>Serie</h5></span>
-              <br><br><br><br>
-              <div class="row">
-                @foreach($Series as $s)
-                  <div class="col s12 m3">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="{{ asset($s->img_poster)}}" height="300px">
-                    </div>
-                  </div>
-                </div>
-              @endforeach
-              </div>
-              {{$Series->links()}}
-              <br>
-              </div>
-        @endif
-        
-        <!--CONTENIDO RECIENTE RADIO-->
-
-              @if(count($Radio)>0)
-                <div class="card">
-                  <span class="card-title grey-text"><h4><i class="material-icons">radio</i> Radio</h4></span>
-                  <div class="row">
-                      @foreach($Radio as $r)
-                          <div class="col s12 m3">
-                              <div class="card">
-                                  <div class="card-image">
-                                      <img src="{{asset($r->logo)}}" height="200px" onclick="masInfo('radio')">
-                                  </div>
-                              </div>
+            @if(count($Megazines)> 0)
+            <div class="row">
+            <div class="col s12 ">
+                <a href="{{url('ReadingsMegazines')}}">
+             <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
+                <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+            </div>
+                <div class="col s12 ">
+                    <div  class="owl-carousel owl-theme">
+                      @foreach($Megazines as $m)
+                          <div>
+                           <img src="{{ asset($m->cover)}}" height="250px" width="100px">
                           </div>
                       @endforeach
                   </div>
-                  {{$Radio->links()}}
-                  <br>
+                    <br><br>
                 </div>
-              @endif
+            </div>
+            @endif
+        </div>
+        @endif
+     <!--End  RECIENTE Lecturas-->
 
-          <!--CONTENIDO RECIENTE DE TV-->
-              @if(count($Tv)>0)
-                <div class="card">
-                  <span class="card-title grey-text"><h4><i class="material-icons">tv</i> Tv</h4></span>
-                  <div class="row">
-                      @foreach($Tv as $tv)
-                          <div class="col s12 m3">
-                              <div class="card">
-                                  <div class="card-image">
-                                      <img src="{{ asset('/images/tv/') }}/{{ $tv->logo }}"  height="200px">
-                                  </div>
-                              </div>
-                          </div>
-                      @endforeach
-                  </div>
-                  {{$Tv->links()}}
-                  <br>
-                </div>
-              @endif
 
+
+
+
+                        <!--CONTENIDO RECIENTE Radio-->
+                        @if(count($Radio)>0)
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col s12 ">
+                                        <a href="{{ url('ShowRadio')}}">
+                                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
+                                        <a href="{{ url('ShowRadio')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
+
+                                    </div>
+                                    <div class="col s12 ">
+                                        <div  class="owl-carousel owl-theme">
+                                            @foreach($Radio as $r)
+                                                <div>
+                                                    <a href="{{url('ListenRadio/'.$r->id)}}" class="waves-effect waves-light">
+                                                    <img src="{{asset($r->logo)}}" height="150px" width="150px"  onclick="masInfo('radio')">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <br><br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endif
+                    <!--End  RECIENTE radio-->
+
+
+                        <!--CONTENIDO RECIENTE Tv-->
+                        @if(count($Tv)>0)
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col s12 ">
+                                        <a href="{{ url('ShowTv')}}">
+                                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5></a>
+                                        <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
+
+                                    </div>
+                                    <div class="col s12 ">
+                                        <div  class="owl-carousel owl-theme">
+                                            @foreach($Tv as $tv)
+                                                <div>
+                                                    <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
+                                                    <img src="{{ asset('/images/Tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" ></a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    <!--End  RECIENTE tv-->
 
           <div id="modal-confirmation"></div> 
 
@@ -170,28 +232,52 @@
 
 @section('js')
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'>
-  
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
 <script >
-  var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-  spaceBetween: 0,
-        //loop: true,
-autoplay: 2500,
-        autoplayDisableOnInteraction: false,
-        slidesPerView: 4,
-        coverflow: {
-            rotate: 30,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows : true
-        }
+
+    $(document).ready(function(){
+
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        //mergeFit:false,
+        //merge:false,
+        //pullDrag:false,
+        //touchDrag:false,
+        nav: false,
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        dots: true,
+        //autoplay:true,
+        //autoplayTimeout:3000,
+        //autoplayHoverPause:true,
+        //stagePadding: 50, centra los contenidos
+        //lazyLoad:true, varia los tamaños de las imagenes
+        responsive:{
+            0:{
+                items:2,
+                nav:false
+            },
+            500:{
+                items:3,
+                nav:false
+            },
+            600:{
+                items:4,
+                nav:true
+            },
+
+            1000:{
+                items:5,
+                nav:true,
+                loop:false
+            },
+        },
+        navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>','<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
     });
+    });
+
 
 //# sourceURL=pen.js
 </script>
