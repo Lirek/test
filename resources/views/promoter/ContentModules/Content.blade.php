@@ -2,7 +2,7 @@
 	@section('main')
 
 		<div class="row mt">
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Contenido total</h4>
 					<div class="panel-body text-center">
@@ -11,7 +11,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Contenido por aprobar</h4>
 					<div class="panel-body text-center">
@@ -21,163 +21,199 @@
 			</div>
 		</div>
 
+<div class="row">
 		<div class="row mt">
 			<h2><i class="fa fa-angle-right"></i>Contenido principal</h2>
 		</div>
 
-		<div class="row mt">
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-compact-disc fa-6x"></i>
-					<h3><p>Álbumes</p></h3>
-					<p>Pendientes por aprobar: {{$albums}}</p>
-					<p class="user">
-						<a href="{{url('/admin_albums')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
+		<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Álbumes</span>
+	            <i class="material-icons small">music_note</i> 
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$albums}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_albums')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-music fa-6x"></i>
-					<h3><p>Canciones</p></h3>
-					<p>Pendientes por aprobar: {{$singles}}</p>
-					<p class="user">
-						<a href="{{url('/admin_single')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-book-open fa-6x"></i>
-					<h3><p>Revistas</p></h3>
-					<p>Pendientes por aprobar: {{$megazines}}</p>
-					<p>Publicaciones periodicas pendientes por aprobar: {{$publicationChain}}</p>
-					<p class="user">
-						<a href="{{url('/admin_megazine')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Canciones</span>
+	            <i class="material-icons small">music_note</i> 
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$singles}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_single')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>						
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-book fa-6x"></i>
-					<h3><p>Libros</p></h3>
-					<p>Pendientes por aprobar: {{$books}}</p>
-					<p>Sagas de libros pendientes por aprobar: {{$sagaBooks}}</p>
-					<p class="user">
-						<a href="{{url('/admin_books')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
-		</div>
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Tvs</span>
+	            <i class="small material-icons" >live_tv</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$tv}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_tv')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
+			
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Radios</span>
+	            <i class="small material-icons" >radio</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$radios}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_radio')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
+		
+		<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Series</span>
+	            <i class=" material-icons" >local_movies</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$series}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_series')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
 
-		<div class="row mt">
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-tv fa-6x"></i>
-					<h3><p>Tvs</p></h3>
-					<p>Pendientes por aprobar: {{$tv}}</p>
-					<p class="user">
-						<a href="{{url('/admin_tv')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Peliculas</span>
+	            <i class="material-icons" >live_tv</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$movies}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_movies')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-broadcast-tower fa-6x"></i>
-					<h3><p>Radios</p></h3>
-					<p>Pendientes por aprobar: {{$radios}}</p>
-					<p class="user">
-						<a href="{{url('/admin_radio')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
+		<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Autores literarios</span>
+	            <i class=" material-icons">group</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$BookAuthor}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('admin_autors')}}" class="btn btn-primary">Revisar autores</a>
+	          </div>
+	        </div>
+      	</div>			
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-video fa-6x"></i>
-					<h3><p>Series</p></h3>
-					<p>Pendientes por aprobar: {{$series}}</p>
-					<p class="user">
-						<a href="{{url('/admin_series')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
+		<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Artistas musicales</span>
+	            <i class=" material-icons">group</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$musicAuthors}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('admin_musician')}}" class="btn btn-primary">Revisar musicos</a>
+	          </div>
+	        </div>
+      	</div>
 
-			<div class="col-md-3">
-				<div class="twitter-panel pn">
-					<i class="fas fa-film fa-6x"></i>
-					<h3><p>Peliculas</p></h3>
-					<p>Pendientes por aprobar: {{$movies}}</p>
-					<p class="user">
-						<a href="{{url('/admin_movies')}}">
-							<button type="button" class="btn btn-primary">Revisar</button>
-						</a>
-					</p>
-				</div>
-			</div>
-		</div>
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Libros</span>
+	            <i class="small material-icons" >book</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$books}}</p>
+	            </h4>
+	            <h6>Sagas de libros pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$sagaBooks}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_books')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>		
 
-		<div class="row mt">
-			<div class="col-md-6">
-				<div class="twitter-panel pn">
-					<i class="fas fa-book fa-6x"></i>
-					<h3><p>Autores literarios</p></h3>
-					<p>Pendientes por aprobar: {{$BookAuthor}}</p>
-					<a href="{{url('admin_autors')}}">
-						<button type="button" class="btn btn-primary">Revisar autores</button>
-					</a>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="twitter-panel pn">
-					<i class="fas fa-music fa-6x"></i>
-					<h3><p>Artistas musicales</p></h3>
-					<p>Pendientes por aprobar: {{$musicAuthors}}</p>
-					<a href="{{url('admin_musician')}}">
-						<button type="button" class="btn btn-primary">Revisar musicos</button>
-					</a>
-				</div>
-			</div>
-		</div>
-
+      	<div class="col s12 m6 l3">
+	        <div class="card light-blue darken-3 hoverable">
+	          <div class="card-content white-text">
+	            <span class="card-title">Revistas</span>
+	            <i class="small material-icons" >import_contacts</i>
+	            <h6>Pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$megazines}}</p>
+	            </h4>
+	            <h6>Publicaciones periodicas pendientes por aprobar:</h6>
+	            <h4>
+	              <p>{{$publicationChain}}</p>
+	            </h4>
+	          </div>
+	          <div class="card-action">
+	            <a href="{{url('/admin_megazine')}}" class="btn btn-primary">Revisar</a>
+	          </div>
+	        </div>
+      	</div>
+</div>
 		<div class="row mt">
 			<h2><i class="fa fa-angle-right"></i>Artistas musicales</h2>	
 		</div>
 
 		<div class="row mt">
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Artistas o Agrupaciones (Total)</h4>
 					<div class="panel-body text-center">
-						<canvas id="MusicianBar" height="300" width="400"></canvas>
+						<canvas id="MusicianBar" height="100" width="200"></canvas>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Autores Musicales (Total)</h4>
 					<div class="panel-body text-center">
-						<canvas id="MusicianPie" height="300" width="400"></canvas>
+						<canvas id="MusicianPie" height="100" width="200"></canvas>
 					</div>
 				</div>
 			</div>
@@ -196,7 +232,7 @@
 		</div>
 
 		<div class="row mt">
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Etiquetas totales</h4>
 					<div class="panel-body text-center">
@@ -205,7 +241,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col s6">
 				<div class="content-panel">
 					<h4><i class="fa fa-angle-right"></i>Etiquetas por aprobar</h4>
 					<div class="panel-body text-center">

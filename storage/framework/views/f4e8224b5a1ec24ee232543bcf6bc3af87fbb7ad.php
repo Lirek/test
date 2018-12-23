@@ -199,19 +199,20 @@
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/piñas.jpg')); ?>" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2 ><b>Red social <br>de entretenimiento</b></h2>
+                <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
+                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
         </li>
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/gana_viajes.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption right-align break-word">
-                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+                <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
             </div>
         </li>
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/amigos_con_cola.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+                <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
             </div>
         </li>
     </ul>
@@ -349,9 +350,9 @@
     <div class="col s12">
         <ul class="tabs">
             <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Viajes gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Registro 100% gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Marcas relacionadas</b></a></li>
         </ul>
     </div>
     <div id="test1" class="col s12 center">
@@ -367,7 +368,7 @@
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
-    <div id="test2" class="col s12 center">
+    <div id="test2" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
             <img src="<?php echo e(asset('plugins/materialize_index/img/viajes.svg')); ?>" width="20%" height="20%" title="youtube"><br>
             <h5> Viaja gratis con leipel.</h5>
@@ -380,7 +381,7 @@
             </div><br>
         </div>
     </div>
-    <div id="test3" class="col s12 center">
+    <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center">
             <br><br>
             <div class="embed-container">
@@ -393,7 +394,7 @@
             <h5> Registro gratuito.</h5>
         </div>
     </div>
-    <div id="test4" class="col s12 center">
+    <div id="test4" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l12 xl12 center"><br><br>
             <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="5%" height="5%" title="youtube"><br>
             <h5> Marcas relacionadas.</h5>
@@ -1011,7 +1012,7 @@ function masInfo(tipo) {
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: false
+            indicators: true
         });
 
 
