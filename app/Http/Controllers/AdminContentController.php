@@ -176,7 +176,12 @@ class AdminContentController extends Controller
 
     $solicitudesProveedores = ApplysSellers::where('status','En Proceso')->count();
 
-    $solicitudesUsuarios = User::where('verify','0')->count();
+    $solicitudesUsuarios = User::where('verify','0')
+      ->where('img_doc','<>','NULL')
+      ->where('num_doc','<>','NULL')
+      ->where('type','<>','Indefinido')
+      ->where('fech_nac','<>','NULL')
+      ->count();
 
     $pagosUsuarios = Payments::where('status','En Revision')->count();
 

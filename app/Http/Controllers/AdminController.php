@@ -1657,201 +1657,156 @@ class AdminController extends Controller
 
 //-----------------------Users Acctions-------------------------
 
-      public function ShowPendingClients()
-      {
+      public function ShowPendingClients(){
         return view('promoter.AdminModules.Clients');
       }
 
-      public function ClientsData()
-      {
-          $user=User::where('verify','=','0')
-                                             ->where('img_doc','<>','NULL')
-                                             ->where('num_doc','<>','NULL')
-                                             ->where('type','<>','Indefinido')
-                                             ->where('fech_nac','<>','NULL')
-                                             ->get();
-             return Datatables::of($user)
-                    ->addColumn('Estatus',function($user){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
-                    })
-
-                    ->addColumn('webs',function($user){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
-                    })                                        
-                    
-                    ->editColumn('img_doc',function($user){
-                      /* solucion para produccion
-                      $ruta = "https://leipel.com/";
-                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'">
-                                 </button>';
-                      })
-                      */
-                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" style="width:70px;height:70px;" src="'.asset($user->img_doc).'"
-                                  alt="User Avatar" id="photo'.$user->id.'"> 
-                                 </button>';
-                    })
-                    ->editColumn('name',function($user){
-                       return $user->name.' '.$user->last_name; 
-                    })
-                    ->rawColumns(['Estatus','img_doc','webs'])
-                    ->toJson();                                           
+      public function ClientsData() {
+        $user = User::where('verify','0')
+           ->where('img_doc','<>','NULL')
+           ->where('num_doc','<>','NULL')
+           ->where('type','<>','Indefinido')
+           ->where('fech_nac','<>','NULL')
+           ->get();
+       /*
+        return Datatables::of($user)
+          ->addColumn('Estatus',function($user){
+            return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
+          })
+          ->addColumn('webs',function($user){
+            return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+          })
+          ->editColumn('img_doc',function($user){
+            /* solucion para produccion
+            $ruta = "https://leipel.com/";
+            return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+            <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
+                       style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'">
+                       </button>';
+            })
+            */
+            /*
+            return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                      <img class="img-rounded img-responsive av" style="width:70px;height:70px;" src="'.asset($user->img_doc).'" alt="User Avatar" id="photo'.$user->id.'"></button>';
+          })
+          ->editColumn('name',function($user){
+            return $user->name.' '.$user->last_name; 
+          })
+          ->rawColumns(['Estatus','img_doc','webs'])
+          ->toJson();                                           
+        */
+        return response()->json($user);
       }
 
-      public function AllClientsData()
-      {
-          $user=User::where('verify','=','1')
-                                             ->get(); 
-             return Datatables::of($user)
-                    ->addColumn('Estatus',function($user){
-                      
-                      return '<button type="button" class="btn btn-theme" disabled >Aprobado</button';
-                    })
-
-                    ->addColumn('webs',function($user){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
-                    })                                        
-                    
-                    ->editColumn('img_doc',function($user){
-
-                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
-                                 </button>';
-                    })
-                    ->editColumn('name',function($user){
-                       return $user->name.' '.$user->last_name;
-                    })
-                    ->rawColumns(['Estatus','img_doc','webs'])
-                    ->toJson();
+      public function AllClientsData() {
+        $user = User::where('verify','1')->get(); 
+        /*
+        return Datatables::of($user)
+          ->addColumn('Estatus',function($user){
+            return '<button type="button" class="btn btn-theme" disabled >Aprobado</button';
+          })
+          ->addColumn('webs',function($user){
+            return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+          })
+          ->editColumn('img_doc',function($user){
+            return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b"> <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'" style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> </button>';
+          })
+          ->editColumn('name',function($user){
+            return $user->name.' '.$user->last_name;
+          })
+          ->rawColumns(['Estatus','img_doc','webs'])
+          ->toJson();
+        */
+        return response()->json($user);
       }
 
-     public function RejectedClientsData()
-      {
-          $user=User::where('verify','=','2')
-                                             ->get();
-             return Datatables::of($user)
-                    ->addColumn('Estatus',function($user){
-
-                      return '<button type="button" class="btn btn-theme" disabled >Rechazado</button';
-                    })
-
-                    ->addColumn('webs',function($user){
-
-                      return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
-                    })
-
-                    ->editColumn('img_doc',function($user){
-
-                      return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="https://leipel.com/'.$user->img_doc.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> 
-                                 </button>';
-                    })
-                    ->editColumn('name',function($user){
-                       return $user->name.' '.$user->last_name; 
-                    })
-                    ->rawColumns(['Estatus','img_doc','webs'])
-                    ->toJson();                                           
+      public function RejectedClientsData() {
+        $user=User::where('verify','2')->get();
+        /*
+        return Datatables::of($user)
+          ->addColumn('Estatus',function($user){
+            return '<button type="button" class="btn btn-theme" disabled >Rechazado</button';
+          })
+          ->addColumn('webs',function($user){
+            return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
+          })
+          ->editColumn('img_doc',function($user){
+            return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b"> <img class="img-rounded im style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'"> </button>';
+          })
+          ->editColumn('name',function($user){
+            return $user->name.' '.$user->last_name; 
+          })
+          ->rawColumns(['Estatus','img_doc','webs'])
+          ->toJson();                                           
+        */
+        return response()->json($user);
       }
 
+      public function infoUsuario($id) {
+        $user= User::find($id);
+        return response()->json($user);
+      }
 
-      public function ValidateUser(Request $request,$id)
-      {
+      public function ValidateUser(Request $request,$id) {
         $User= User::find($id);
-        
-        if ($request->status == 'Aprobado')
-          {
-            $User->verify=1;
-            
-            event(new UserValidateEvent($User->email,1,0));
-          }
-           else
-          {
-            $User->verify=2;
-
-            event(new UserValidateEvent($User->email,2,$request->message));
-          }
-
+        if ($request->status == 'Aprobado') {
+          $User->verify = 1;
+          event(new UserValidateEvent($User->email,1,0));
+        } else {
+          $User->verify = 2;
+          event(new UserValidateEvent($User->email,2,$request->message));
+        }
         $User->save();
-
         return response()->json($User);
       }
 
-      public function WebsDataTable($id)
-      {
-          $user= User::find($id);
-          $x=$user->Referals()->get();
-          $referals1 = [];
-          $referals2= [];
-          $referals3= [];
-          $WholeReferals = new Collection; 
-          
-          if ($user->Referals()->get()->isEmpty()) 
-          {
-            return Datatables::of($WholeReferals)->toJson();
+      public function WebsDataTable($id) {
+        $user= User::find($id);
+        $x=$user->Referals()->get();
+        $referals1 = [];
+        $referals2= [];
+        $referals3= [];
+        $WholeReferals = new Collection; 
+
+        if ($user->Referals()->get()->isEmpty()) {
+          return response()->json($WholeReferals);
+          //return Datatables::of($WholeReferals)->toJson();
+        }
+        foreach ($user->Referals()->get() as $key) {
+          $referals1[]=$key->refered;
+          $WholeReferals->prepend(User::find($key->refered));
+        }
+
+        if (count($referals1)>0) { 
+          foreach ($referals1 as $key2) {  
+            $joker = User::find($key2);
+            foreach($joker->Referals()->get() as $key2) {
+              $referals2[]=$key2->refered;
+              $WholeReferals->prepend(User::find($key2->refered));
+            }
           }
-          foreach ($user->Referals()->get() as $key) 
-          {
-              $referals1[]=$key->refered;
-              $WholeReferals->prepend(User::find($key->refered));
+        } else {
+          $referals2=0;
+        }
+        if (count($referals2)>0) {
+          foreach ($referals2 as $key3) {
+            $joker = User::find($key3);
+            foreach($joker->Referals()->get() as $key3) {
+              $referals3[]=$key3->refered;
+              $WholeReferals->prepend(User::find($key3->refered));
+            }
           }
+        } else {
+          $referals3=0;
+        }
+        $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
+          if (in_array($item->id, $referals1)) { return $item->level=1;}
+          if (in_array($item->id, $referals2)) { return $item->level=2;}
+          if (in_array($item->id, $referals3)) { return $item->level=3;}
+        });
+        //return Datatables::of($WholeReferals)->toJson();              
+        return response()->json($WholeReferals);
 
-          if (count($referals1)>0) 
-              { 
-                
-                foreach ($referals1 as $key2) 
-                 {  
-                    $joker = User::find($key2);
-                    
-                    foreach($joker->Referals()->get() as $key2)
-                     {
-                       $referals2[]=$key2->refered;
-                       $WholeReferals->prepend(User::find($key2->refered));
-                     }                  
-                 }
-              }
-          else
-              {
-                $referals2=0;
-              }   
-
-
-                               
-          if (count($referals2)>0) 
-              {
-                foreach ($referals2 as $key3) 
-                {
-                  $joker = User::find($key3);
-                    
-                    foreach($joker->Referals()->get() as $key3)
-                     {
-                       $referals3[]=$key3->refered;
-                       $WholeReferals->prepend(User::find($key3->refered));                       
-                     }         
-                }
-              }
-
-          else
-              {
-                $referals3=0;
-              }   
-
-                        
-                          
-            $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
-                        
-              if (in_array($item->id, $referals1)) { return $item->level=1;}
-              if (in_array($item->id, $referals2)) { return $item->level=2;}
-              if (in_array($item->id, $referals3)) { return $item->level=3;}
-                      });         
-              
-        return Datatables::of($WholeReferals)->toJson();              
       }
 
 //------------------------------------------------------------------
@@ -1900,49 +1855,40 @@ class AdminController extends Controller
 //--------------------------------
 
 //-----------------Validacion de Pagos----------------------
-      public function DepsitDataTable()
-      {
+      public function DepsitDataTable() {
+        $deposit = Payments::where('status','En Revision')->get();
+        $deposit->each(function($deposit){
+          $deposit->ticketsUser;
+          $deposit->tickets;
+        });
+        return response()->json($deposit);
         $deposit = Payments::where('status','=','En Revision')->with('TicketsUser')->with('Tickets');
         /* solucion para produccion
-                      $ruta = "http://leipel.com";
-                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
-                                 </button> ';
-                      })
-                      */
-
+          $ruta = "http://leipel.com";
+          return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b"> <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'" style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> </button> ';
+          })
+        */
         return Datatables::of($deposit)
-                                    ->editColumn('voucher',function($deposit){
-                                      /*
-                                      $ruta = "http://leipel";
-                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
-                                 </button> ';
-                    })
-                    return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
-<img class="img-rounded img-responsive av" src="'.asset($deposit->vouch).'"
-                                      */
-                    return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'"                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
-                                 </button> ';
-                    })
-                    ->editColumn('user_id',function($deposit){
-
-                      return $deposit->TicketsUser->name;
-                    })
-                    ->addColumn('Estatus',function($deposit){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
-                      </button';
-                    })
-                     ->addColumn('total',function($deposit){
-                      
-                      return $deposit->value*$deposit->Tickets->cost.'$';
-                    })
-                      ->rawColumns(['Estatus','voucher'])
-                      ->toJson();
+          ->editColumn('voucher',function($deposit){
+            /*
+            $ruta = "http://leipel";
+            return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b"> <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'" style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> </button> ';
+            })
+            return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'" <img class="img-rounded img-responsive av" src="'.asset($deposit->vouch).'"
+            */
+            return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b"> <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'"                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> </button> ';
+          })
+          ->editColumn('user_id',function($deposit){
+            return $deposit->TicketsUser->name;
+          })
+          ->addColumn('Estatus',function($deposit){
+            return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso</button';
+          })
+          ->addColumn('total',function($deposit){
+            return $deposit->value*$deposit->Tickets->cost.'$';
+          })
+          ->rawColumns(['Estatus','voucher'])
+          ->toJson();
       }
 
       public function DepositStatus($id,Request $request) {

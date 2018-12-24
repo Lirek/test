@@ -440,6 +440,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('RejectedClientsDataTable','AdminController@RejectedClientsData');
                 Route::get('ReferalsDataTable/{id}','AdminController@WebsDataTable');
                 Route::post('ValidateUser/{id}','AdminController@ValidateUser');
+                Route::get('infoUser/{id}','AdminController@infoUsuario');
 
            //-----------------Pagos-----------------------------------------
 
