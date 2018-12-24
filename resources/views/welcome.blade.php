@@ -254,7 +254,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="100px">
+                            <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="200px">
                         </div>
                     </div>
                 </div>
@@ -321,7 +321,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" width="100%" height="150px">
+                            <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" width="100%" height="200px">
                         </div>
                     </div>
                 </div>
