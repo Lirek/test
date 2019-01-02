@@ -284,7 +284,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container center">
-            Copyright © 2018 Todos lo derechos reservados
+            Copyright © 2019 Todos lo derechos reservados
         </div>
     </div>
 </footer>

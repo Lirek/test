@@ -197,7 +197,7 @@
     <footer class="page-footer blue">
       <div class="footer-copyright">
         <div class="container center">
-          Leipel &copy 2018. Todos los derechos reservados.
+          Leipel &copy 2019. Todos los derechos reservados.
         </div>
       </div>
     </footer>

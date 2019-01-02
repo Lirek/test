@@ -447,7 +447,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
     </div>
     <div class="footer-copyright">
         <div class="container center">
-            Copyright © 2018 Todos lo derechos reservados
+            Copyright © 2019 Todos lo derechos reservados
         </div>
     </div>
 </footer>
