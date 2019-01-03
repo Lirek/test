@@ -80,8 +80,6 @@
                                         <div class="col s12 ">
                                             <a href="{{url('ShowMovies')}}" >
                                             <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5></a>
-                                            <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-
                                         </div>
                                         <div class="col s12 ">
                                             <div  class="owl-carousel owl-theme">
@@ -91,7 +89,9 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            <br><br>
+                                        </div>
+                                        <div class="col s12 ">
+                                            <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
                                 @endif
@@ -102,7 +102,6 @@
                                         <div class="col s12 ">
                                             <a href="{{url('ShowSeries')}}" >
                                             <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
-                                            <a href="{{url('ShowSeries')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
 
                                         </div>
                                         <div class="col s12 ">
@@ -113,7 +112,10 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            <br><br>
+
+                                        </div>
+                                        <div class="col s12 ">
+                                            <a href="{{url('ShowSeries')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
                                 @endif
@@ -129,7 +131,6 @@
             <div class="row">
                 <div class="col s12 ">
                     <a href="{{url('ReadingsBooks')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
-                    <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                 </div>
                 <div class="col s12 ">
                     <div  class="owl-carousel owl-theme">
@@ -139,7 +140,9 @@
                             </div>
                         @endforeach
                     </div>
-                    <br><br>
+                </div>
+                <div class="col s12 ">
+                    <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                 </div>
             </div>
             @endif
@@ -149,7 +152,6 @@
             <div class="col s12 ">
                 <a href="{{url('ReadingsMegazines')}}">
              <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
-                <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
             </div>
                 <div class="col s12 ">
                     <div  class="owl-carousel owl-theme">
@@ -159,7 +161,11 @@
                           </div>
                       @endforeach
                   </div>
-                    <br><br>
+
+                </div>
+
+                <div class="col s12 ">
+                    <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                 </div>
             </div>
             @endif
@@ -176,10 +182,7 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
-                                        <a href="{{ url('ShowRadio')}}">
-                                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
-                                        <a href="{{ url('ShowRadio')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
-
+                                        <a href="{{ url('ShowRadio')}}"><h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
                                     </div>
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
@@ -191,7 +194,9 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <br><br>
+                                        <div class="col s12 ">
+                                            <a href="{{ url('ShowRadio')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -207,7 +212,6 @@
                                     <div class="col s12 ">
                                         <a href="{{ url('ShowTv')}}">
                                         <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5></a>
-                                        <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
 
                                     </div>
                                     <div class="col s12 ">
@@ -219,7 +223,9 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <br><br>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
                             </div>
