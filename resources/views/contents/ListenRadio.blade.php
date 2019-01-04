@@ -99,7 +99,7 @@
     </div>
     <div class="fixed-action-btn click-to-toggle direction-top">
         <a class="btn-floating btn-large waves-effect waves-light green">
-            <i class="large material-icons">share</i>
+            <i class="mdi mdi-forum-outline"></i>
         </a>
         <ul>
             <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
