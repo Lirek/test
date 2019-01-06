@@ -54,10 +54,10 @@
                         <div class="card-content" style="padding: 13px;" height="310px">
                             <div class="row">
                                 <div class="col s12 ">
-                                    <div  id="play_ico">
+                                    <div  id="play_ico" style="display: none;">
                                         <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
                                     </div>
-                                    <div id="off_ico" style="display: none;" >
+                                    <div id="off_ico"  >
                                         <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
                                     </div>
                                     <?php $r=$radios->streaming ?>
@@ -133,18 +133,27 @@
             ],
         };
 
-        $('#off_ico').hide();
-        players.play(); //inicia radio al abrir pagina
+        players.play(
+            event => {
+                    $('#off_ico').hide();
+                    $('#play_ico').show();
+                }
+        ); //inicia radio al abrir pagina
         players.volume = 0.5; // Sets volume at 50%
+
         players.on('playing', event => {
-            $('#off_ico').hide();
-            $('#play_ico').show();
+            if(players.playing){
+                $('#off_ico').hide();
+                $('#play_ico').show();
+            }
         });
-        players.on('pause', event => {
-            $('#play_ico').hide();
-            $('#off_ico').show();
-        });
+         players.on('pause', event => {
+           $('#play_ico').hide();
+           $('#off_ico').show();
+         });
     </script>
+
+
 
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script type="text/javascript">
