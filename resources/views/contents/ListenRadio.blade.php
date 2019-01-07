@@ -35,10 +35,15 @@
 @endsection
 
 @section('main')
-    <div class="row">
 
-        <div class="input-field col s12 m3 offset-m4">
-            <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-content white-text">
+
+
+        <div class=" col s12 ">
+            <h4 class="titelgeneral center"><i class="material-icons small">radio</i> Radios</h4>
         </div>
 
         <div class="row">
@@ -74,6 +79,7 @@
             @endforeach
         </div>
 
+       <div class="row">
         <div class="input-field col s12 m4 offset-m4 ">
             <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
                 {{ csrf_field() }}
@@ -83,8 +89,8 @@
                 <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
             </form>
         </div>
+       </div>
 
-    </div>
 
     <div class="row">
         @foreach($Radio as $radios)
@@ -92,9 +98,7 @@
                 <div class="card">
                     <div class="card-image" style="height: 140px;">
                         <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}" height="145px"></a>
-
                     </div>
-
                 </div>
             </div>
         @endforeach
@@ -102,6 +106,9 @@
 
     </div>
     </div>
+    </div>
+
+
 
     <div class="fixed-action-btn click-to-toggle direction-top">
         <a class="btn-floating btn-large waves-effect waves-light green">
