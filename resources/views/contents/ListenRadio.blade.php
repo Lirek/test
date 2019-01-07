@@ -2,7 +2,8 @@
 
 @section('css')
 
-    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+
     <style type="text/css">
 
         .plyr {

@@ -37,8 +37,9 @@
     <!--Modal
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />-->
 
-    <!--Buscador-->
-    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">
+    <!--Buscador
+    <link  rel="stylesheet" href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 
     <!--NUMERO
     <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
