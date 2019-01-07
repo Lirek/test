@@ -62,6 +62,10 @@
 				$('#buscar').attr('disabled',true);
 				  $('#seach').autocomplete({
 					source: "SearchTv",
+					messages: {
+                          noResults: '',
+                          results: function() {}
+                          },
 					minLength: 2,
 					select: function(event, ui){
 						$('#seach').val(ui.item.value);
