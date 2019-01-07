@@ -47,7 +47,6 @@
                     <div class="card">
                         <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">
                             <img src="{{asset($radios->logo)}}" height="235px">
-                            <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
                         </div>
                     </div>
                 </div>
@@ -161,6 +160,7 @@
          });
     </script>
 
+    <script src="{{asset('assets/js/jquery.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
