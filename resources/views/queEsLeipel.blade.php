@@ -333,58 +333,39 @@ time {
 <div class="row" >
     <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s4"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
+            <li class="tab col s4"><a href="#test2"><b>Viajes gratis y beneficios</b></a></li>
+            <li class="tab col s4"><a href="#test3"><b>Marcas relacionadas</b></a></li>
         </ul>
     </div>
     <div id="test1" class="col s12 center">
-        <div class="col s12 m6 l6 xl6 center">
             <br><br>
-            <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                <iframe width="700" height="450" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+               <h5><p><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Descubre la magia de Leipel en este y otros vídeos en nuestro Canal de youtube</a></p></h5>
+ 
+           <br>
+    </div>
+
+    <div id="test2" class="col s12 center">   
+            <br><br><br>          
+                <iframe width="700" height="450" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      
+            <br>
+    
+    </div>
+
+    <div id="test3" class="col s12 center"> 
+
+        <div class="col s12 center"> 
+            <br><br>
+            <div class="container s12 center">
+                 <h4><p style="text-align:;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h4>               
             </div>
             <br>
         </div>
-        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="20%" height="20%" title="youtube"><br>
-            <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
-        </div>
-    </div>
-    <div id="test2" class="col s12 center">
-        <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
-            <img src="{{asset('plugins/materialize_index/img/viajes.svg') }}" width="20%" height="20%" title="youtube"><br>
-            <h5> Viaja gratis con leipel.</h5>
 
-        </div>
-        <div class="col s12 m6 l6 xl6 center" >
-            <br><br>
-            <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div><br>
-        </div>
     </div>
-    <div id="test3" class="col s12 center">
-        <div class="col s12 m6 l6 xl6 center">
-            <br><br>
-            <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <br>
-        </div>
-        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="{{asset('plugins/materialize_index/img/nota.svg') }}" width="20%" height="20%" title="youtube"><br>
-            <h5> Registro gratuito.</h5>
-        </div>
-    </div>
-    <div id="test4" class="col s12 center">
-        <div class="col s12 m6 l12 xl12 center"><br><br>
-            <img src="{{asset('plugins/materialize_index/img/youtube.png') }}" width="5%" height="5%" title="youtube"><br>
-            <h5> Marcas relacionadas.</h5>
-
-        </div>
-    </div>
+    
 </div>
 <!-- Fin tabs  -->
 <div class="container">
