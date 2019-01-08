@@ -109,8 +109,8 @@
         @foreach($Radio as $radios)
             <div class="col s4 m2 ">
                 <div class="card">
-                    <div class="card-image" style="height: 140px;">
-                        <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}" height="145px"></a>
+                    <div class="card-image"  id="img_rad">
+                        <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}"  id="img_rad"></a>
                     </div>
                 </div>
             </div>
