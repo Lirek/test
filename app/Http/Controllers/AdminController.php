@@ -1376,7 +1376,12 @@ class AdminController extends Controller
    		}
 
       public function SellerApplyDataTable($status) {
-        $ApplysSellers = ApplysSellers::where('status',$status);
+        $ApplysSellers = ApplysSellers::where('status',$status)->get();
+        $ApplysSellers->each(function($ApplysSellers){
+          $ApplysSellers->Salesman;
+        });
+        return response()->json($ApplysSellers);
+        /*
         return Datatables::of($ApplysSellers)
           ->addColumn('nombreComercial',function($ApplysSellers){
             return $ApplysSellers->name_c;
@@ -1443,6 +1448,7 @@ class AdminController extends Controller
           })
           ->rawColumns(['solicitud','vendedor'])
           ->toJson();
+        */
       }
 
       public function AddSalesMan($idApplySeller, $idSalesman) {
@@ -1456,6 +1462,7 @@ class AdminController extends Controller
         $rejection = Rejection::where('id_module',$idModulo)
                               ->where('module',$modulo)
                               ->get();
+        /*
         return Datatables::of($rejection)
           ->addColumn('razon',function($rejection){
             return $rejection->reason;
@@ -1464,7 +1471,8 @@ class AdminController extends Controller
             return $rejection->created_at;
           })
           ->toJson();
-          //return response()->json($rejection);
+        */
+        return response()->json($rejection);
       }
 //-------------------------------------------------------------------------------
 
