@@ -117,7 +117,7 @@ nav ul a {
 }
 
 .img-play{
-    height:120px;
+    height:132px;
     width:130px;
 }
 
@@ -232,7 +232,9 @@ nav ul a {
     background-size: cover;
 }
 
-
+#img_rad{
+    height: 140px;
+}
 
 
 
@@ -266,10 +268,16 @@ nav ul a {
         min-height: 250px;
     }
 
+    #img_rad{
+        height: 100px;
+    }
+
     .img-play{
-        height:130px;
+        height:132px;
         width:145px;
     }
+
+
 
 }
 
@@ -293,6 +301,10 @@ nav ul a {
             height: auto;
         }
 
+        #img_rad{
+            height: 100px;
+        }
+
       }
 /*End pantallas menores de 400px*/
 
@@ -304,6 +316,10 @@ nav ul a {
         margin-top: 5%;
         width: 100%;
         min-height: 210px;
+    }
+
+    #img_rad{
+        height: 85px;
     }
 
 
