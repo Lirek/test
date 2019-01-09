@@ -424,7 +424,7 @@
                                                 productora está en proceso de
                                                 analisis por parte de
                                                 nuestros analistas, pronto nos
-                                                comunicaremos con ustedes..</blockquote>
+                                                comunicaremos con ustedes.</blockquote>
                                         </div>
                                     </li>
                                 </ul>
