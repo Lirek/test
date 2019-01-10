@@ -326,40 +326,58 @@
     <div class="parallax"><img src="https://leipel.com/plugins/materialize_index/img/parallax.jpg"></div>
 </div>
 <!--Fin parallax-->
-<br>
+
 <!-- tabs  -->
-
-
-<div class="row col">
+<div class="row col" style="margin-bottom:-5px;">
     
-       
     <div id="test1" class="col l6 m12 s12 center">
-         <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 650px;">
+         <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 650px; margin-left: -25px;">
     </div>
 
-    <div id="test2" class="col l6 m12 s12 center">
-        <div class="col s12">
+  <div id="test2" class="col l6 m12 s12 center">
+     <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s4"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s4 "><a href="#"><b>Viajes gratis</b></a></li>
-            <li class="tab col s4 "><a href="#"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
+            <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
+            <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
         </ul>
-    </div>
 
-        <div class="col s12 m6 l6 xl6 center" ><br><br><br>	
+        <div id="test01" class="col s12 center"> 
+            <div class="col s12 m6 l6 xl6 center" ><br><br><br> 
             <h5>
-            	<p style="text-align: justify;">Somos una red social de entretenimiento que abarca cine, música, lectura, radio y Tv.</p>
+                <p style="text-align: justify;">Somos una red social de entretenimiento que abarca cine, música, lectura, radio y Tv.</p>
             </h5>   
-        </div>
-        <div class="col s12 m6 l6 xl6 center">
+            </div>
+
+            <div class="col s12 m6 l6 xl6 center">
             <br><br><br><br>
             <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <br>
-        </div>   
-    </div>
+           </div>   
+        </div>
 
+        <div id="test02" class="col s12 center"> 
+        <br>
+        <div style="text-align: center;">
+                <iframe width="350" height="200" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+         </div>
+                <h6><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h6>
+         </div>
+
+     <div id="test03" class="col s12 center"> 
+        <div class="col s12 center"> 
+            <br><br>
+            <div class="container s12 center"><br>
+                 <h5><p style="text-align:justify;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h5>               
+            </div>
+            <br><br><br><br>
+        </div>
+     </div>
+     </div>
+    </div>
+     
     <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
             <img src="https://leipel.com/plugins/materialize_index/img/viajes.svg" width="20%" height="20%" title="youtube"><br>
