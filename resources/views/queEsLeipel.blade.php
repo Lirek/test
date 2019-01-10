@@ -65,7 +65,7 @@
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
 
-    
+
 *,
 *::before,
 *::after {
@@ -363,36 +363,36 @@ time {
                 </div>
 
                <h5><p><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Descubre la magia de Leipel en este y otros vídeos en nuestro Canal de youtube</a></p></h5>
- 
+
            <br>
     </div>
 
-    <div id="test2" class="col s12 center">   
-            <br><br><br>   
-                <div class="video-container">       
-                <iframe width="700" height="450" class="" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-                </div>   
+    <div id="test2" class="col s12 center">
+            <br><br><br>
+                <div class="video-container">
+                <iframe width="700" height="450" class="" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             <br>
-    
+
     </div>
 
-    <div id="test3" class="col s12 center"> 
+    <div id="test3" class="col s12 center">
 
-        <div class="col s12 center"> 
+        <div class="col s12 center">
             <br><br>
             <div class="container s12 center">
-                 <h4><p style="text-align:;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h4>               
+                 <h4><p style="text-align:;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h4>
             </div>
             <br>
         </div>
 
     </div>
-    
+
 </div>
 <!-- Fin tabs  -->
 <div class="container">
 <section class="timeline">
-  <ul> 
+  <ul>
     <li>
       <div>
         <time>¿QUÉ ES LEIPEL?</time>
@@ -420,13 +420,13 @@ time {
     <li>
       <div>
         <time>¿CÓMO GANO PUNTOS?</time>
-        Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
+        Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente.
         <br>
         <br>
         *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
         <br>
-        <br> 
-        *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
+        <br>
+        *Se ganan tickets desde el primer hasta el tercer nivel de referidos.
         <br>
         <br>
         *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.
@@ -816,7 +816,7 @@ function masInfo(tipo) {
         if (tipo=="radio") {
             var ruta = "{{ url('/ShowRadio') }}";
             var ruta_seller = "{{ url('/seller_home') }}";
-            
+
             if ("{{Auth::guard('web_seller')->user()}}" != ""){
                 location.href = ruta_seller;
             }
@@ -895,7 +895,7 @@ function masInfo(tipo) {
         } else if (tipo=="lectura") {
             var ruta = "{{ url('/MyReads') }}";
             var ruta_seller = "{{ url('/seller_home') }}";
-            
+
             if ("{{Auth::guard('web_seller')->user()}}" != ""){
                 location.href = ruta_seller;
             }
@@ -935,7 +935,7 @@ function masInfo(tipo) {
         } else if (tipo=="musica") {
             var ruta = "{{ url('/MyMusic') }}";
             var ruta_seller = "{{ url('/seller_home') }}";
-            
+
             if ("{{Auth::guard('web_seller')->user()}}" != ""){
                 location.href = ruta_seller;
             }
@@ -975,7 +975,7 @@ function masInfo(tipo) {
         } else if (tipo=="cine") {
             var ruta = "{{ url('/MyMovies') }}";
             var ruta_seller = "{{ url('/seller_home') }}";
-            
+
             if ("{{Auth::guard('web_seller')->user()}}" != ""){
                 location.href = ruta_seller;
             }
@@ -1016,7 +1016,7 @@ function masInfo(tipo) {
     }
 
 
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.parallax');
     var instances = M.Parallax.init(elems, options);
@@ -1027,7 +1027,7 @@ function masInfo(tipo) {
   $(document).ready(function(){
     $('.parallax').parallax();
   });
-      
+
 </script>
 <script type="text/javascript">
     (function() {
@@ -1090,9 +1090,9 @@ function masInfo(tipo) {
     });
 
     // Or with jQuery
-   
 
-        
+
+
 
         $("#formRP").on('submit',function(e){
             var url = "{{ url('ApplysSubmit') }}";
