@@ -355,9 +355,9 @@ time {
 
     <div id="test1" class="col s12 center">
             <br><br>
-
+              
               <div style="text-align: center;">
-              <iframe width="385" height="250" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe width="350" height="230" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
               <h5><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h5>
     </div>
@@ -365,7 +365,7 @@ time {
     <div id="test2" class="col s12 center">   
             <br><br><br> 
                 <div style="text-align: center;">
-                <iframe width="385" height="250" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+                <iframe width="350" height="230" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
                 </div>
                 <h5><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h5>
             <br>

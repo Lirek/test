@@ -331,7 +331,8 @@
 <div class="row col" style="margin-bottom:-5px;">
     
     <div id="test1" class="col l6 m12 s12 center">
-         <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 650px; margin-left: -25px;">
+
+         <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 370px; margin-left: -25px; height: 370px;" >
     </div>
 
   <div id="test2" class="col l6 m12 s12 center">
@@ -359,11 +360,10 @@
         </div>
 
         <div id="test02" class="col s12 center"> 
-        <br>
-        <div style="text-align: center;">
-                <iframe width="350" height="200" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-         </div>
-                <h6><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h6>
+        <br>    
+                <div class="embed-container">                 
+                    <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>                   
+                </div>           <br>
          </div>
 
      <div id="test03" class="col s12 center"> 
