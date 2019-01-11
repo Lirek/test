@@ -1,118 +1,92 @@
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Modificar Estatus</h4>
-        </div>
-        <div class="modal-body text-center">
-          <h5>Modifique el estatus de la solicitud</h5>
-          <form method="POST" id="formStatus">
-            {{ csrf_field() }}
-            <div class="radio-inline">
-              <label for="option-1">
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus de la solicitud</h4>
+      </div>
+      <br>
+      <div style="margin-top: 15%; margin-bottom: 15%">
+        <form method="POST" id="formStatus">
+          {{ csrf_field() }}
+          <div class="col s6">
+            <p>
+              <label>
                 <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
                 <span>Pre-aprobar</span>
               </label>
-            </div>
-
-            <div class="radio-inline">
-              <label for="option-2">
+            </p>
+          </div>
+          <div class="col s6">
+            <p>
+              <label>
                 <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
                 <span>Negar</span>
               </label>
-            </div>
-
-            <div style="display:none" id="if_no">
-              <label for="razon">Explique la razón</label>
-              <textarea name="message" class="form-control" type="text" id="razon"></textarea>
-            </div>
-            <br>
-
-            <button class="btn btn-primary" type="submit">Enviar
+            </p>
+          </div>
+          <div class="input-field col s8 offset-s2" style="display:none" id="if_no">
+            <textarea name="message" class="materialize-textarea" type="text" id="razon"></textarea>
+            <label for="razon">Explique la razón</label>
+            <div id="mensajeMaximoRazon"></div>
+          </div>
+          <br>
+          <div class="col s12">
+            <button class="btn btn-primary curvaBoton" type="submit">
+              Enviar
             </button>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+            <br><br><br>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="AssingPromoter" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Asignar vendedor</h4>
-        </div>
-        <div class="modal-body">
-          <h5 class="text-center">Asigne un vendedor a la solicitud</h5>
-          <form method="POST" id="AssingPromoterForm" class="form-horizontal">
-            {{ csrf_field() }}
-            <div class="form-group">
-              <label for="sel1" class="col-md-3 control-label">Vendedores:</label>
-              <div class="col-md-9">
-                <select class="form-control" id="sel1" name="promoter_n">
-                  @foreach($salesmans as $salesman) 
-                    <option value="{{$salesman->id}}">{{$salesman->name}}</option>  
-                  @endforeach
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-5">
-                <button class="btn btn-primary" type="submit">
-                  Enviar
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+  <div class="modal fade" id="AssingPromoter">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Asignar un vendedor</h4>
       </div>
-      
+      <br>
+      <div style="margin-top: 15%; margin-bottom: 15%">
+        <form method="POST" id="AssingPromoterForm">
+          {{ csrf_field() }}
+          <div class="input-field col s12">
+            <select id="sel1" name="promoter_n">
+              <option value="" disabled selected>Seleccione una opción</option>
+              @foreach($salesmans as $salesman) 
+                <option value="{{$salesman->id}}">{{$salesman->name}}</option>  
+              @endforeach
+            </select>
+            <label>Vendedores:</label>
+          </div>
+          <div class="col s12">
+            <button class="btn btn-primary curvaBoton" type="submit">
+              Enviar
+            </button>
+          </div>
+          <br><br>
+        </form>
+      </div>
     </div>
   </div>
 
-  <div class="modal fade" id="negado" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Historial de negaciones</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <h5 class="text-center" id="totalNegaciones"></h5>
-          </div>
-          <div class="tab-content text-center">
-            <div class="col-lg-12">
-              <div class="table-responsive">
-                <table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="historialRechazo">
-                  <thead>
-                    <tr>
-                      <th class="non-numeric">Razón del rechazo</th>
-                      <th class="non-numeric">Fecha del rechazo</th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
+  <div class="modal" id="negado">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
+      </div>
+      <br>
+      <div class="col s12">
+        <table class="responsive-table" id="historialRechazo">
+          <h5 id="total"></h5>
+          <thead>
+            <tr>
+              <th><i class="material-icons"></i>Razón del rechazo</th>
+              <th><i class="material-icons"></i>Fecha del rechazo</th>
+            </tr>
+          </thead>
+          <tbody id="historial">
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

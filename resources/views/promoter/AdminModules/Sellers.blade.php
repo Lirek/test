@@ -3,11 +3,6 @@
   <style>
     .curvaBoton{border-radius: 20px;}
   </style>
-  {{--
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
-  --}}
 @endsection
 @section('main')
   <span class="card-title grey-text"><h3>Proveedores Registrados</h3></span>
@@ -18,7 +13,6 @@
         <th><i class="material-icons"></i>Nombre del contacto</th>
         <th><i class="material-icons"></i>Logo de la empresa</th>
         <th><i class="material-icons"></i>Correo</th>
-        {{--<th><i class="material-icons"></i>RUC</th>--}}
         <th><i class="material-icons"></i>Módulos</th>
         <th><i class="material-icons"></i>Estatus</th>
         <th><i class="material-icons"></i>Fecha de registro</th>
@@ -45,40 +39,8 @@
 
   @include('promoter.modals.SellersViewsModals')
   
-  {{--
-  <div class="container">
-    <div class="tab-content text-center">
-      <div id="pendientes" class="tab-pane fade in active">
-        <div class="col-lg-12">
-          <div class="table-responsive">
-            <table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="proveedores">
-              <thead>
-                <tr>
-                  <th class="non-numeric">Nombre del contacto</th>
-                  <th class="non-numeric">Logo de la empresa</th>
-                  <th class="non-numeric">Correo</th>
-                  <th class="non-numeric">RUC</th>
-                  <th class="non-numeric">Módulos</th>
-                  <th class="non-numeric">Opciones</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  --}}
 @endsection
-
 @section('js')
-{{--
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
---}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
@@ -160,15 +122,9 @@ $(document).ready(function (e){
         }
         // para colocar el logo 
         // para colocar los modulos
+        var agregar = "";
         if (info.roles.length!=0) {
           var modulos = "";
-          var agregar = "";
-          if (info.estatus=='Aprobado') {
-            agregar = 
-            "<a class='btn-floating green modal-trigger' href='#ModalModules' value='"+info.id+"' id='add_module'>"+
-              "<i class='material-icons right' style='cursor:pointer'>add</i>"+
-            "</a>";
-          }
           $.each(info.roles,function(i,infoRoles) {
             modulos = modulos+
             "<span class='new badge grey darken-1' data-badge-caption='"+infoRoles.name+"' style='padding:0px 0px'>"+
@@ -176,9 +132,8 @@ $(document).ready(function (e){
               "</i>"+
             "</span> ";
           });
-          modulos = modulos + agregar;
         } else {
-          var modulos = "El usuario no tiene módulos asignados";
+          var modulos = "El usuario no tiene módulos asignados ";
         }
         // para colocar los modulos
         if (info.estatus!='Aprobado') {
@@ -187,8 +142,13 @@ $(document).ready(function (e){
         } else {
           var opciones = 
             "<a class='btn red curvaBoton modal-trigger' value="+info.id+" href='#myModal' id='ModifySellers'>Rechazarlo</a>";
+          agregar = 
+            "<a class='btn-floating green modal-trigger' href='#ModalModules' value='"+info.id+"' id='add_module'>"+
+              "<i class='material-icons right' style='cursor:pointer'>add</i>"+
+            "</a>";
         }
-        opciones = opciones + "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalSeller' id='seller'>Más información</a>"
+        opciones = opciones + "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalSeller' id='seller'>Más información</a>";
+        modulos = modulos + agregar;
         var fecha = moment(info.created_at).format('DD/MM/YYYY');
         // llenar la tabla
         var filas = "<tr><td>"+

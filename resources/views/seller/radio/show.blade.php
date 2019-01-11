@@ -26,7 +26,7 @@
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
     .wrapper {
-        margin: 100px auto;
+        margin: 0px 25%;
         width: 30px;
     }
     .plyr--audio .plyr__controls{
@@ -75,14 +75,17 @@
                     <div class="col s12 m8">
                         <div class="collection-item" style="padding: 15%">
                             <div class="card-content" style="padding: 5%;">
-                                <div class="progress">
-                                    <div id="playRad" class="indeterminate blue"></div>
-                                </div>
-                                <div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col s12 m8 offset-m2">
-                                            <audio id="player" controls></audio>
+                                <br>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div  id="play_ico">
+                                            <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
+                                        </div>
+                                        <div id="off_ico" style="display: none;" >
+                                            <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
+                                        </div>
+                                        <div  class="wrapper">
+                                            <audio id="player"></audio>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +147,16 @@
 
             ],
         };
+        $('#off_ico').hide();
         players.play(); //inicia radio al abrir pagina
         players.volume = 0.5; // Sets volume at 50%
+        players.on('playing', event => {
+            $('#off_ico').hide();
+            $('#play_ico').show();
+        });
+        players.on('pause', event => {
+           $('#play_ico').hide();
+           $('#off_ico').show();
+        });
     </script>
 @endsection
