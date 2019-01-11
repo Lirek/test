@@ -17,7 +17,20 @@
             background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
             background: linear-gradient(40deg,#2096ff, #9dffac)!important;
         }
-
+        /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     </style>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
 @endsection
@@ -91,6 +104,28 @@
                             </li>
 
                         </ul>
+                    </div>
+                    <div class="col m8 s12 offset-m2">
+                        <br>
+                        <div class="col m6 s6 offset-m3 offset-s3">
+                            <li class="valid-wrapper" style="list-style: none;">
+                                <i class="material-icons blue-text">share</i>
+                                <b class="">Trailer:</b>
+                            </li>
+                        </div>
+                        <?php
+                            $url = $Series->trailer;
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $id = $matches[1];
+                            $width = '800px';
+                            $height = '450px';
+                        ?>
+                        <br><br>
+                        <div class="embed-container">
+                          <iframe  type="text/html" width="680" height="415"
+                              src="https://www.youtube.com/embed/{{ $id }}"
+                              frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe> 
+                        </div>
                     </div>
                     <div class="col s12 m8 offset-m2" style="color: black">
                         <ul class="collapsible">
@@ -212,6 +247,28 @@
 
                         </ul>
                     </div>
+                    <div class="col m8 s12 offset-m2">
+                        <br>
+                        <div class="col m6 s6 offset-m3 offset-s3">
+                            <li class="valid-wrapper" style="list-style: none;">
+                                <i class="material-icons blue-text">share</i>
+                                <b class="">Trailer:</b>
+                            </li>
+                        </div>
+                        <?php
+                            $url = $Series->Serie->trailer;
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $id = $matches[1];
+                           
+                        ?>
+                        <br><br>
+                        <div class="embed-container">
+                          <iframe  type="text/html" width="680" height="415"
+                              src="https://www.youtube.com/embed/{{ $id }}"
+                              frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe> 
+                        </div>
+                    </div>
+
                     <div class="col s12 m8 offset-m2" style="color: black">
                         <ul class="collapsible">
                           <li>

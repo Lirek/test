@@ -100,7 +100,7 @@
                                 {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$seller->logo)!!}
                                 <div id="list">
-                                    @if ($seller->logo != 'NULL')
+                                    @if ($seller->logo != NULL)
                                         <img width="70" height="70" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
                                     @else
                                         <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">

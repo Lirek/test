@@ -17,7 +17,20 @@
             background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
             background: linear-gradient(40deg,#2096ff, #9dffac)!important;
         }
-
+        /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     </style>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
 @endsection
@@ -98,19 +111,41 @@
                             <li class="collection-item" style=" padding: 0px;" >
                                 <br>
                                 <div class="row">
-                                    <div class="col s4 m4 l4">
+                                    <div class="col s12 m4 l4">
                                         <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger green">Ver película</a>
                                     </div>
-                                    <div class="col s4 m4 l4">
+                                    <div class="col s12 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
                                     </div>
-                                    <div class="col s4 m4 l4">
+                                    <div class="col s12 m4 l4">
                                         <a href="{{ url('MyMovies') }}" class="btn center curvaBoton red ">Atrás</a>
                                     </div>
                                 </div>
                             </li>
 
                         </ul>
+                    </div>
+                    <div class="col m8 s12 offset-m2">
+                        <br>
+                        <div class="col m6 s6 offset-m3 offset-s3">
+                            <li class="valid-wrapper" style="list-style: none;">
+                                <i class="material-icons blue-text">share</i>
+                                <b class="">Trailer:</b>
+                            </li>
+                        </div>
+                        <?php
+                            $url = $Movies->trailer_url;
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $id = $matches[1];
+                            $width = '800px';
+                            $height = '450px';
+                        ?>
+                        <br><br>
+                        <div class="embed-container">
+                            <iframe  type="text/html" width="680" height="415"
+                          src="https://www.youtube.com/embed/{{ $id }}"
+                          frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                        </div> 
                     </div>
                 </div>
             </div>

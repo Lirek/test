@@ -327,16 +327,16 @@
 		</div>
 		<div class="col s12 m6 l8">
 			<div class="col s12">
-				<h4 class="titelgeneral"><i class="material-icons small">show_chart</i> Mi Balance:</h4>
+				<h4 class="titelgeneral"><i class="material-icons small">show_chart</i> Mis Balances:</h4>
 			</div>
 			<div class="col s12">
 				<div class="divider"></div>
 				<div class="divider"></div>
 				<br>
 				<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-					<li class="tab" id="denegado"><a class="active" href="#test1">Pagos por tickets</a></li>
-					<li class="tab" id="revision"><a href="#test2">Pagos por puntos</a></li>
-					<li class="tab" id="revision"><a href="#test3">Puntos perdidos</a></li>
+					<li class="tab" id="denegado"><a class="active" href="#test1">Compra de tickets (En efectivo)</a></li>
+					<li class="tab" id="revision"><a href="#test2">Compra de tickets (Con puntos)</a></li>
+					<li class="tab" id="revision"><a href="#test3">Puntos ganados/perdidos</a></li>
 				</ul>
 				<div id="test1" class="col s12">
 					@if(count($Balance)!=0)

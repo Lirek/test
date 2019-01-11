@@ -10,7 +10,20 @@
       .swal-button--confirm {
       color: white;
     }
-
+    /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
   </style>
 @endsection
 
@@ -56,7 +69,7 @@
 		                  </div>
 		                </div>
 
-		                <!--MODAL DETALLE DE LIBRO-->
+		                <!--MODAL DETALLE DE Serie-->
 		                <div id="myModal-{{$Series->id}}" class="modal">
 						    <div class="modal-content">
 						     	<div class="blue"><br>
@@ -132,7 +145,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="collection-item" style="padding: 10px ">
+                        <!-- <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">
                                     <i class="material-icons circle left">subscriptions</i>
@@ -142,8 +155,22 @@
                                     <a class="waves-effect waves-light btn modal-trigger blue curvaBoton" href="{{ $Series->trailer }}" target="_blank">Reproducir</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
+                </div>
+                <div class="col s12 m10 offset-m1">
+                  <?php
+                            $url = $Series->trailer;
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $id = $matches[1];
+                            $width = '800px';
+                            $height = '450px';
+                        ?>
+                      <div class="embed-container">
+                        <iframe  type="text/html" width="560" height="315"
+                            src="https://www.youtube.com/embed/{{ $id }}"
+                            frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                      </div>
                 </div>
                       <div class="col s12 m12" style="color: black">
                         <div class="card-panel">
@@ -350,15 +377,15 @@ function fnOpenNormalDialog2(cost,name,id) {
         })
         .then((willDelete) => {
           if (willDelete) {
-            callback(true,id);
+            callback2(true,id);
            
           } else {
-            callback(false,id);
+            callback2(false,id);
           }
         });
     };
 
-function callback(value,id) {
+function callback2(value,id) {
     if (value) {
       swal({
                 title: 'Procesando..!',
