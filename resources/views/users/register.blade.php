@@ -116,8 +116,8 @@
 <nav class="default_color" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/') }}" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
-            @if(Auth::guard('web_seller')->user())
+<!--             <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
+ -->            @if(Auth::guard('web_seller')->user())
                 @if (Auth::guard('web_seller')->user()->logo)
                     <li>
                         <a href="{{ url('/seller_home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
@@ -310,8 +310,8 @@
                     <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
                     <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
-                    <li><a class="white-text" href="#!">Contactos</a></li>
+                    <!-- <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
+                    <li><a class="white-text" href="#!">Contactos</a></li> -->
                 </ul>
             </div>
             <div class="col l3 s12">

@@ -1,247 +1,129 @@
 @extends('promoter.layouts.app')
-@section('css')
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
-@endsection
 @section('main')
-	<div class="row mt">
-		<h2><i class="fa fa-angle-right"></i>Pagos de Proveedores</h2>
-	</div>
-	<div class="container">
-
-		<ul class="nav nav-tabs nav-justified">
-			<li class="active"><a data-toggle="tab" href="#pendientes" id="opcion1"><h4>Por cobrar</h4></a></li>
-			<li><a data-toggle="tab" href="#aprobadas" id="opcion2"><h4>Diferidos</h4></a></li>
-			<li><a data-toggle="tab" href="#rechazadas" id="opcion3"><h4>Pagados</h4></a></li>
-		</ul>
-
-		<div class="tab-content text-center">
-			<div id="pendientes" class="tab-pane fade in active">
-				<div class="col-lg-12">
-					<div class="table-responsive">
-						<table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="pagos">
-							<thead>
-								<tr>
-						        	<th class="non-numeric">Información del proveedor</th>
-						        	<th class="non-numeric">Imagen de factura</th>
-									<th class="non-numeric">Fecha para el retiro</th>
-									<th class="non-numeric">Tickets solicitados / Tickets disponibles</th>
-									<th class="non-numeric">Opciones</th>
-						        </tr>
-					    	</thead>
-					    </table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-@endsection
-
-@section('js')
+<div class="row">
+	<span class="card-title grey-text"><h3>Pagos de Proveedores</h3></span>
+	<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+		<li class="tab" id="porCobrar"><a class="active" href="#test1">Pagos por cobrar</a></li>
+		<li class="tab" id="diferido"><a href="#test2">Pagos diferidos</a></li>
+		<li class="tab" id="pagado"><a href="#test3">Pagos pagados</a></li>
+	</ul>
+	<table class="responsive-table">
+		<thead>
+			<tr>
+				<th><i class="material-icons"></i>Información del proveedor</th>
+				<th><i class="material-icons"></i>Imagen de factura</th>
+				<th><i class="material-icons"></i>Fecha para el retiro</th>
+				<th><i class="material-icons"></i>Tickets solicitados / Tickets disponibles</th>
+				<th><i class="material-icons"></i>Opciones</th>
+			</tr>
+		</thead>
+		<tbody id="table">
+		</tbody>
+	</table>
+</div>
 @include('promoter.modals.PaymentsSellerViewModal')
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-<script src="{{ asset('js/jquery.mlens-1.7.min.js') }}"></script>
-<script>
+@endsection
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script>
 
-	$(document).ready(function(){
+	  $(document).ready(function(){
+	    $('.modal').modal();
+	  });
 
-		// listar los pagos por cobrar
-		var pagos = $('#pagos').DataTable({
-	        processing: true,
-	        serverSide: true,
-            responsive: true,
-            bDestroy: true,
-
-	        ajax: '{!! url('PaymentsDataTable/Por cobrar') !!}',
-	        columns: [
-	        	{data: 'proveedor', name: 'proveedor'},
-	            {data: 'img_factura', name: 'img_factura'},
-	            {data: 'cita', name: 'cita'},
-	            {data: 'tickets', name: 'tickets'},
-	            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
-	        ],
-	        language: {
-	        	"processing": "Procesando...",
-	            "lengthMenu" : "Mostrar _MENU_ registros",
-	            "zeroRecords" : "No se encontraron resultados",
-	            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-	        },
-            "order": [[ 2, "desc" ]]
-		});
-		// listar los pagos por cobrar
-
-		// listar los pagos por cobrar
-		$(document).on('click','#opcion1', function() {
-			var pagosPorCobrar = $('#pagos').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('PaymentsDataTable/Por cobrar') !!}',
-		        columns: [
-		        	{data: 'proveedor', name: 'proveedor'},
-		            {data: 'img_factura', name: 'img_factura'},
-		            {data: 'cita', name: 'cita'},
-		            {data: 'tickets', name: 'tickets'},
-		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        },
-            	"order": [[ 2, "desc" ]]
+		function listado(status) {
+			$("#table").empty();
+			var parametros = status;
+			var ruta = "{{url('PaymentsDataTable')}}"+"/"+parametros;
+			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+			swal({
+				title: "Procesando la información",
+				text: "Espere mientras se procesa la información.",
+				icon: gif,
+				buttons: false,
+				closeOnEsc: false,
+				closeOnClickOutside: false
 			});
-		});
-		// listar los pagos pendientes
-
-		// listar los pagos diferidos
-		$(document).on('click','#opcion2', function() {
-			var pagosDiferidos = $('#pagos').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('PaymentsDataTable/Diferido') !!}',
-		        columns: [
-		        	{data: 'proveedor', name: 'proveedor'},
-		            {data: 'img_factura', name: 'img_factura'},
-		            {data: 'cita', name: 'cita'},
-		            {data: 'tickets', name: 'tickets'},
-		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        },
-            	"order": [[ 2, "desc" ]]
+			$.ajax({
+				url: ruta,
+				type:'GET',
+				dataType: "json",
+				success: function (data) {
+					swal.close();
+					$.each(data,function(i,info) {
+						if (info.seller.name) {
+							var inProveedor = 
+							"<button href='#ModalSeller' class='modal-trigger' value='"+info.seller.id+"' id='seller' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>"+info.seller.name+
+							"</button>"
+						}
+						if (info.factura_id!=0 ) {
+							var factura = 
+							"<img class='materialboxed' width='150' height='120' src='{!!asset('"+info.factura+"')!!}'";
+						} else {
+							var factura = "No aplica ";
+						}
+						if (info.fecha_cita!=null) {
+				        	var cita = moment(info.fecha_cita).format('DD/MM/YYYY');
+				        } else {
+				        	var cita = "cita no asignada ";
+				        }
+				        if (info.tickets!=null) {
+				        	var ticket = info.tickets+" / "+info.credito;
+				        } else {
+				        	var ticket = "sin tickets disponibles ";
+				        }
+				        if (info.status=="Por cobrar") {
+				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='Por cobrar' href='#myModal' id='status'>Pagar o revertir</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='Por cobrar' href='#negado' id='denegado'>ver negaciones</button>"
+				        }
+				        if (info.status=="Diferido") {
+				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='Diferido' href='#myModal' id='status'>Pagar o revertir</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='Por cobrar' href='#negado' id='denegado'>ver negaciones</button>"
+				        }
+				        if (info.status=="Pagado") {
+				        	var opcion = "<button class='btn curvaBoton green' value='"+info.id+"' value2=''  id='pagado'>Pagado</button>"
+				        }
+						var filas = "<tr><td>"+
+						inProveedor+"</td><td>"+
+						factura+"</td><td>"+
+						cita+"</td><td>"+
+						info.tickets+" / "+info.seller.credito+"</td><td>"+
+						opcion+"</td></tr>";
+						$("#table").append(filas);
+					})
+					$('.materialboxed').materialbox();
+					$('.tooltipped').tooltip();
+				},
+				error:function(data) {
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
 			});
+		}
+		$(document).ready(function(){
+			listado("Por cobrar");
 		});
-		// listar los pagos diferidos
-
-		// listar los pagos realizados
-		$(document).on('click','#opcion3', function() {
-			var pagosDiferidos = $('#pagos').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('PaymentsDataTable/Pagado') !!}',
-		        columns: [
-		        	{data: 'proveedor', name: 'proveedor'},
-		            {data: 'img_factura', name: 'img_factura'},
-		            {data: 'cita', name: 'cita'},
-		            {data: 'tickets', name: 'tickets'},
-		            {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        },
-            	"order": [[ 2, "desc" ]]
-			});
+		$(document).on('click','#porCobrar', function() {
+			listado("Por cobrar");
 		});
-		// listar los pagos realizados
+		$(document).on('click','#diferido', function() {
+			listado("Diferido");
+		});
+		$(document).on('click','#pagado', function() {
+			listado("Pagado");
+		});
 
-		// modificar el estaus del pago
+		// modificar el estatus del pago
 		$(document).on('click','#status', function() {
-			var idPago = $(this).val();
-			console.log(idPago);
+			var idPago = $(this).attr("value");
 			var s = $(this).attr('value2');
-			console.log(s);
-			$("#formStatus").on('submit', function(e) {
+			$("#FormStatus").on('submit', function(e) {
 				var status = $("input[type='radio'][name=status]:checked").val();
 				if (status=="Rechazado") {
 					s = status;
 				}
 	            var url = "{{ url('/admin_payments/') }}/"+idPago;
 	            var message = $('#razon').val();
-	            console.log(status,url,message);
 	            e.preventDefault();
 	            var gif = "{{ asset('/sistem_images/loading.gif') }}";
 		        swal({
@@ -262,8 +144,6 @@
 					}, 
 					success: function (result) {
 						console.log(result);
-						$('#myModal').toggle();
-						$('.modal-backdrop').remove();
 						swal("Se ha "+status+" con éxito","","success")
 						.then((recarga) => {
 							location.reload();
@@ -279,37 +159,45 @@
 				}); 
 			});
 		});
-		// modificar el estaus del pago
 
-		// Modal de la imagen de la factura
-		$(document).on('click', '#factura', function() {
-			var x = $(this).val();
-			var file = $("#factura"+x).attr("src");
-			console.log(file);
-			$("#photo_factura").attr("src", file);
-			$("#photo_factura").attr("data-big", file);
-			$("#photo_factura").mlens({
-				imgSrc: $("#photo_factura").attr("data-big"),    // path of the hi-res version of the image
-				imgSrc2x: $("#photo_factura").attr("data-big2x"),  // path of the hi-res @2x version of the image
-                                                  //for retina displays (optional)
-                lensShape: "square",                // shape of the lens (circle/square)
-                lensSize: ["50%","50%"],            // lens dimensions (in px or in % with respect to image dimensions)
-                                        // can be different for X and Y dimension
-                borderSize: 5,                  // size of the lens border (in px)
-                borderColor: "#666",            // color of the lens border (#hex)
-                borderRadius: 10,                // border radius (optional, only if the shape is square)
-                imgOverlay: $("#photo_factura").attr("data-overlay"), // path of the overlay image (optional)
-                overlayAdapt: true,    // true if the overlay image has to adapt to the lens size (boolean)
-                zoomLevel: 5,          // zoom level multiplicator (number)
-                responsive: true       // true if mlens has to be responsive (boolean)
-            });
+		// Listar las negaciones
+		$(document).on('click', '#denegado', function(e) {
+			var id = $(this).attr("value");
+			var modulo = "Payments Seller";
+			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
+			console.log(url);
+			$("#negaciones").empty();
+				e.preventDefault();
+				$.ajax({
+					url: url, 
+					type:'get', 
+					dataType:'json',
+					success: function(datos){
+						console.log(datos);
+						$('#totalNegaciones').show();
+						$('#totalNegaciones').text('tiene un total de rechazos de: '+datos.length);
+						$.each(datos, function(i,info){
+							var fila = '<tr><td>'+
+							info.reason+'</td><td>'+
+							moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+							'</td></tr>';
+							$('#negaciones').append(fila);
+						});
+					},
+					error: function (datos) {
+					console.log(datos);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
+			});
 		});
-		// Modal de la imagen de la factura
-		
+		// Listar las negaciones
+
 		// mostrar informacion del proveedor
 		$(document).on('click', '#seller', function() {
 			var idSeller = $(this).val();
-			console.log(idSeller);
 			var url = "{{ url('/infoSeller/') }}/"+idSeller;
 			$.ajax({
 				url: url,
@@ -328,7 +216,7 @@
 					$("#telefonoProveedor").text(result.tlf);
 					$("#rucProveedor").text(result.ruc_s);
 					if (result.adj_ruc!=null) {	
-						var imgRucProveedor = "{{ asset('/') }}"+result.adj_ruc;
+						var imgRucProveedor = "{{ asset('/') }}/"+result.adj_ruc;
 						$("#imgRucProveedor").attr('src',imgRucProveedor);
 					} else {
 						$("#imgRucProveedor").hide();
@@ -346,54 +234,6 @@
 		});
 		// mostrar informacion del proveedor
 
-		// Listar las negaciones
-		$(document).on('click', '#denegado', function() {
-			var id = $(this).val(); // id de la pelicula
-			console.log(id);
-			var modulo = "Payments Seller";
-			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
-			var historialRechazo = $('#historialRechazo').DataTable({
-				processing: true,
-				serverSide: true,
-				responsive: true,
-				destroy: true,
 
-				ajax: url,
-				columns: [
-					{data: 'razon', name: 'razon'},
-					{data: 'created_at', name: 'created_at'}
-				],
-				language: {
-					"processing": "Procesando...",
-					"lengthMenu" : "Mostrar _MENU_ registros",
-					"zeroRecords" : "No se encontraron resultados",
-					"sEmptyTable":     "Ningún dato disponible en esta tabla",
-					"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-					"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-					"sInfoPostFix":    "",
-					"sSearch":         "Buscar:",
-					"sUrl":            "",
-					"sInfoThousands":  ",",
-					"sLoadingRecords": "Cargando...",
-					"oPaginate": {
-						"sFirst":    "Primero",
-						"sLast":     "Último",
-						"sNext":     "Siguiente",
-						"sPrevious": "Anterior"
-					},
-					"oAria": {
-						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					}
-				},
-				order: [ 1, "desc" ],
-				footerCallback: function(row, data, start, end, display){
-					$("#totalNegaciones").text("Total de negaciones: "+end);
-				}
-			});
-		});
-		// Listar las negaciones
-	});
-</script>
+	</script>
 @endsection

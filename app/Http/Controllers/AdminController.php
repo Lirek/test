@@ -1450,15 +1450,7 @@ class AdminController extends Controller
         $rejection = Rejection::where('id_module',$idModulo)
                               ->where('module',$modulo)
                               ->get();
-        return Datatables::of($rejection)
-          ->addColumn('razon',function($rejection){
-            return $rejection->reason;
-          })
-          ->addColumn('created_at',function($rejection){
-            return $rejection->created_at;
-          })
-          ->toJson();
-          //return response()->json($rejection);
+        return response ()->json($rejection);                      
       }
 //-------------------------------------------------------------------------------
 
@@ -2129,56 +2121,12 @@ class AdminController extends Controller
   }
 
   public function PaymentsDataTable($status) {
-    $payments = PaymentSeller::where('status',$status);
-      return Datatables::of($payments)
-        ->addColumn('proveedor',function($payments){
-          $seller = "<button href='' value='".$payments->seller->id."' data-toggle='modal' data-target='#ModalSeller' id='seller' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$payments->seller->name."</button>";
-          return $seller;
-        })
-        ->addColumn('img_factura',function($payments){
-          return "<button href='' data-toggle='modal' data-target='#facturaModal' value=".$payments->id."><img class='img-rounded img-responsive av' id='factura' src=".asset($payments->factura)." style='width:70px;height:70px;' alt='Factura'></button>";
-        })
-        ->addColumn('cita',function($payments){
-          if ($payments->fecha_cita==NULL) {
-            return "Cita no asiganda";
-          } else {
-            $cita = date('d-m-Y',strtotime($payments->fecha_cita));
-            return $cita;
-          }
-        })
-        ->addColumn('tickets',function($payments){
-          $seller = Seller::find($payments->seller_id);
-          return $payments->tickets." / ".$seller->credito;
-        })
-        ->addColumn('opciones',function($payments){
-          if ($payments->status=="Por cobrar") { 
-            $colorBoton = "btn-warning";
-            $id = "status";
-            $modal = "#myModal";
-            $texto = "Pagar o revertir";
-            $value2 = "Por cobrar";
-            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
-          }
-          else if ($payments->status=="Diferido") { 
-            $colorBoton = "btn-warning";
-            $id = "status";
-            $modal = "#myModal";
-            $texto = "Pagar o revertir";
-            $value2 = "Diferido";
-            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
-          }
-          else if ($payments->status=="Pagado") { 
-            $colorBoton = "btn-success";
-            $id = "pagado";
-            $modal = "";
-            $texto = $payments->status;
-            $value2 = "";
-            $rechazo = "";
-          }
-          return "<button type='button' class='btn ".$colorBoton."' value=".$payments->id." data-toggle='modal' data-target='".$modal."' id='".$id."' value2='".$value2."'>".$texto."</button>".$rechazo;
-        })
-        ->rawColumns(['proveedor','img_factura','opciones'])
-        ->toJson();
+    $pagos = PaymentSeller::where('status',$status)->get();
+    $pagos->each(function($pagos){
+      $pagos->TicketsSeller;
+      $pagos->Seller;
+    });
+    return response()->json($pagos);
   }
 
   public function admin_payments(Request $request,$id) {
