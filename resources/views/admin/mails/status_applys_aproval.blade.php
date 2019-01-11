@@ -33,10 +33,11 @@
 	</td>
  </tr>
 		
-
+{{--
   <tr align="left">
  	<img src="{{$message->embed(public_path().'/sistem_images/signature.png')}}">
   </tr>
+--}}
   
   <tr>
 	<td>

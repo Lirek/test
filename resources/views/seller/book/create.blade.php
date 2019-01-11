@@ -311,7 +311,7 @@
                                     
                                         <select name="tags[]" multiple="true" class="form-control" id="genders" required="required">
                                             @foreach($tags as $genders)
-                                                @if($genders->type_tags=='Peliculas')
+                                                @if($genders->type_tags=='Libros')
                                                     <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
                                                 @endif
                                             @endforeach

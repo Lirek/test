@@ -141,7 +141,7 @@
 					<i class="fas fa-book fa-6x"></i>
 					<h3><p>Autores literarios</p></h3>
 					<p>Pendientes por aprobar: {{$BookAuthor}}</p>
-					<a href="{{url('admin_autors')}}">
+					<a href="{{url('admin_authors_b')}}">
 						<button type="button" class="btn btn-primary">Revisar autores</button>
 					</a>
 				</div>

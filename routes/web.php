@@ -270,14 +270,15 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::post('AproveOrDenialSeller/{id_seller}','AdminController@AproveOrDenialSeller');
 
-            Route::get('BackendUsers','AdminController@ShowBackendUsers');
-
             Route::get('FindSalesman/{id}','AdminController@FindSalesman');
             Route::post('UpadateSalesman/{id}','AdminController@UpadateSalesman');
+            Route::post('AddSalesman','AdminController@RegisterSalesman');
+            Route::get('salesman_delete/{id}','AdminController@DeleteSalesman');
 
             Route::post('/promoter_c','AdminController@CreatePromoter');
-
             Route::get('/promoter_delete/{id}','AdminController@DeletePromoter');
+            Route::get('/promoterUpdate/{id}','AdminController@promoterUpdate');
+            Route::post('/UpdatePromoter/{id}','AdminController@UpdatePromoter');
 
 
             Route::post('Save_Package', 'AdminController@SavePackage');
@@ -290,8 +291,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
         //_________________FIN de RUtas de Proveedores____________________________
 
         //___________________RUTAS DE DE USUARIOS_______________________
-
-            Route::get('BackendUsers','AdminController@ShowBackendUsers');
 
             Route::get('BackendUsers','AdminController@ShowBackendUsers');
         //----------------------------------------------------------------
@@ -392,6 +391,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('/statusSaga/{id}','AdminController@statusSaga');
            //------------------------------------------------------------------------
            //--------------------AUTORES LITERARIOS----------------------------------
+                // hay que hacer estos metodos
                 Route::get('admin_authors_b','AdminController@ShowBooksAuthor');
                 Route::get('BooksAuthorsData','AdminController@BooksAuthorData');
                 Route::post('authors_books/{id}','AdminController@BooksAuthorStatus');

@@ -1,197 +1,167 @@
-<div class="modal fade" id="NewUser" role="dialog">
-  <div class="modal-dialog">
-  
-    <!-- Modal content-->
+  <div class="modal" id="NewUser">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Crear Usuario de Backend</h4>
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Crear nuevo usuario de Backend</h4>
       </div>
-      <div class="modal-body">
-       <p>Datos de Usuario</p>
-      
-
-           <form method="POST" id="PromotersForm">
-                            {{ csrf_field() }}
-
-            <div class="form-group">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                 <input class="mdl-textfield__input" type="text" name="name_c" id="name_c" required>
-                 <label class="mdl-textfield__label" for="name_c">Nombre Completo</label>
-                </div>
+      <div class="text-center row">
+        <form method="POST" id="PromotersForm">
+          {{ csrf_field() }}
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="text" name="name_c" id="name_c" required="required">
+              <label for="name_c">Nombre Completo</label>
             </div>
-
-            <div class="form-group">
-                 <label  for="phone_s">Telefono de Contacto</label>
-                  <input class="form-control" type="tel" name="phone_s" id="phone_s" required>
-            </div> 
-
-            <div class="form-group">
-                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                 <input class="mdl-textfield__input" type="email" name="email_c" id="email_c" required>
-                 <label class="mdl-textfield__label" for="email_c">Correo Electronico</label>
-                </div>
-            </div> 
-
-            <div class="form-group">
-                <select name="priority" id="priority">
+            <div class="input-field col s6">
+              <input class="validate" type="tel" name="phone_s" id="phone_s" required="required">
+              <label for="phone_s">Teléfono de contacto</label>
+            </div>
+          </div>
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="email" name="email_c" id="email_c" required="required">
+              <label for="email_c">Correo electrónico</label>
+            </div>
+            <div class="input-field col s6">
+              <select name="priority" id="priority" required="required">
                 @foreach($priority as $p)
-
                   @if($p->priority > Auth::guard('Promoter')->user()->priority)
                     <option value="{{$p->id}}">{{$p->name}}</option>
                   @endif
-
                 @endforeach
-                </select>
+              </select>
               <label class="mdl-textfield__label" for="priority">Tipo de Usuario</label>
-                </div>
             </div>
-             
-            <div class="form-group">
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-              </button>
           </div>
-
-      </form>
-
-      
-      
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <div class="col s12">
+            <button class="btn" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    
   </div>
-</div>
 
-<div class="modal fade" id="NewSalesman" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
+  <div class="modal" id="updateUser">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registrar Vendedor</h4>
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Actualizar usuario de Backend</h4>
       </div>
-      <div class="modal-body">
-       <p>Datos del Vendedor</p>
-      
-
-           <form method="POST" id="SalesmanForm">
-                            {{ csrf_field() }}
-
-            <div class="form-group">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                 <input class="mdl-textfield__input" type="text" name="name" id="name" required>
-                 <label class="mdl-textfield__label" for="name">Nombre Completo</label>
-                </div>
+      <div class="text-center row">
+        <form method="POST" id="UpdatePromoter">
+          {{ csrf_field() }}
+          <input type="hidden" id="idUpdate">
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input placeholder="" class="validate" type="text" name="name_c" id="nameUpdate" required="required">
+              <label for="name_c">Nombre Completo</label>
             </div>
-
-            <div class="form-group">
-                 <label  for="phone_s">Telefono de Contacto</label>
-                  <input class="form-control" type="tel" name="phone" id="phone" required>
-            </div> 
-
-            <div class="form-group">
-                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                 <input class="mdl-textfield__input" type="email" name="email" id="email" required>
-                 <label class="mdl-textfield__label" for="email">Correo Electronico</label>
-                </div>
-            </div> 
-
-            <div class="form-group">
-                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <textarea name="adress" id="adress">
-                    
-                  </textarea>
-                 <label class="mdl-textfield__label" for="adress">Direccion</label>
+            <div class="input-field col s6">
+              <input placeholder="" class="validate" type="tel" name="phone_s" id="phoneUpdate" required="required">
+              <label for="phone_s">Teléfono de contacto</label>
             </div>
-            
-            </div> 
-            
-             
-            <div class="form-group">
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-              </button>
           </div>
-
-      </form>
-
-      
-      
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input placeholder="" class="validate" type="email" name="email_c" id="emailUpdate" required="required">
+              <label for="email_c">Correo electrónico</label>
+            </div>
+            <div class="input-field col s6">
+              <select name="priority" id="priorityUpdate">
+                <option value="" selected>Seleccione una opción</option>
+                @foreach($priority as $p)
+                  @if($p->priority > Auth::guard('Promoter')->user()->priority)
+                    <option value="{{$p->id}}">{{$p->name}}</option>
+                  @endif
+                @endforeach
+              </select>
+              <label class="mdl-textfield__label" for="priority">Tipo de Usuario</label>
+              <span class="helper-text" data-error="wrong" data-success="right">Este campo no es obligatorio</span>
+            </div>
+          </div>
+          <div class="col s12">
+            <button class="btn" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    
   </div>
-</div>
 
-<div class="modal fade" id="USalesman" role="dialog">
-  <div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" id="close_2" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Modificar Vendedor</h4>
-  </div>
-  <div class="modal-body">
-   <p>Datos del Vendedor</p>
-
-
-       <form method="POST" id="SalesmanUForm">
-                        {{ csrf_field() }}
-
-        <input type="text" name="salesman_id" hidden>
-        <div class="form-group">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-             <input class="mdl-textfield__input" type="text" name="name_u" id="name_u" required>
-             <label class="mdl-textfield__label" for="name_u">Nombre Completo</label>
-            </div>
-        </div>
-
-        <div class="form-group">
-             <label  for="phone_s_u">Telefono de Contacto</label>
-              <input class="form-control" type="tel" name="phone_u" id="phone_u" required>
-        </div> 
-
-        <div class="form-group">
-             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-             <input class="mdl-textfield__input" type="email" name="email_u" id="email_u" required>
-             <label class="mdl-textfield__label" for="email_u">Correo Electronico</label>
-            </div>
-        </div> 
-
-        <div class="form-group">
-             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <textarea name="adress_u" id="adress_u">
-                
-              </textarea>
-             <label class="mdl-textfield__label" for="adress_u">Direccion</label>
-        </div>
-        
-        </div> 
-        
-         
-        <div class="form-group">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-          </button>
+  <div class="modal" id="NewSalesman">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Registrar vendedor</h4>
       </div>
-
-  </form>
-
-
-
+      <div class="text-center row">
+        <form method="POST" id="SalesmanForm">
+          {{ csrf_field() }}
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="text" name="name" id="name" required="required">
+              <label for="name">Nombre completo</label>
+            </div>
+            <div class="input-field col s6">
+              <input class="validate" type="text" name="phone" id="phone" required="required">
+              <label  for="phone_s">Teléfono de contacto</label>
+            </div>
+          </div>
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="email" name="email" id="email" required="required">
+              <label for="email">Correo electrónico</label>
+            </div>
+            <div class="input-field col s6">
+              <textarea class="materialize-textarea" name="adress" id="adress" required="required"></textarea>
+                <label for="adress">Dirección</label>
+            </div>
+          </div>
+          <div class="col s12">
+            <button class="btn" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" id="close_1" data-dismiss="modal">Cerrar</button>
+  <div class="modal" id="USalesman">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Modificar vendedor</h4>
+      </div>
+      <div class="text-center row">
+        <form method="POST" id="SalesmanUForm">
+          {{ csrf_field() }}
+          <input type="hidden" name="salesman_id" id="salesman_id">
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="text" name="name_u" id="name_u" placeholder="">
+              <label for="name">Nombre completo</label>
+            </div>
+            <div class="input-field col s6">
+              <input class="validate" type="text" name="phone_u" id="phone_u" placeholder="">
+              <label  for="phone_s">Teléfono de contacto</label>
+            </div>
+          </div>
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input class="validate" type="email" name="email_u" id="email_u" placeholder="">
+              <label for="email">Correo electrónico</label>
+            </div>
+            <div class="input-field col s6">
+              <textarea class="materialize-textarea" name="adress_u" id="adress_u" placeholder=""></textarea>
+              <label for="adress">Dirección</label>
+            </div>
+          </div>
+          <div class="col s12">
+            <button class="btn" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  </div>
-
-  </div>
-</div>

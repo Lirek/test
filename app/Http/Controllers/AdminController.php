@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Auth;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
@@ -1478,53 +1478,40 @@ class AdminController extends Controller
 
 //-----------------------CRUD PROMOTORES------------------------------------
 
-   		public function CreatePromoter(Request $request)
-   		{
+   		public function CreatePromoter(Request $request) {
    			$promoter = new Promoters;
-   			
         $promoter->name_c =$request->name_c;
-   			
         $promoter->phone_s =$request->phone_s;
-   			
         $promoter->email= $request->email_c;
-
         $promoter->priority = $request->priority;
-          
-          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-          
-          $charactersLength = strlen($characters);
-          
-          $randomString = '';
-        
-              for ($i = 0; $i < 6; $i++) 
-                  {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
-                  }
-
-
-   			$promoter->password=bcrypt($randomString);
-
-        event( new PasswordPromoter($promoter->email,$randomString));
-
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 6; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $promoter->password=bcrypt($randomString);
+        event(new PasswordPromoter($promoter->email,$randomString));
         $promoter->save();
-
-        $promoter->Roles()->attach($request->priority);   
-
+        $promoter->Roles()->attach($request->priority);
         return response()->json($promoter);
    		}
 
-   		public function UpdatePromoter(Request $request, $id)
-   		{
+      public function promoterUpdate($idPromoter) {
+        $promoter = Promoters::find($idPromoter);
+        return response()->json($promoter);
+      }
+
+   		public function UpdatePromoter(Request $request, $id) {
    			$promoter = Promoters::find($id);
-   			$promoter->name_c =$request->name_c;
-   			$promoter->phone_s =$request->phone_s;
-   			$promoter->email= $request->email_c;
+   			$promoter->name_c = $request->name_c;
+   			$promoter->phone_s = $request->phone_s;
+   			$promoter->email = $request->email_c;
    			$promoter->save();
    			return response()->json($promoter);
    		}
 
-   		public function DeletePromoter($id)
-   		{
+   		public function DeletePromoter($id) {
    			$promoter = Promoters::destroy($id);
    			return response()->json($promoter);
    		}
@@ -1602,62 +1589,45 @@ class AdminController extends Controller
         return response()->json($Applys);
       }
 
-      public function ShowBackendUsers()
-      {
-        
-
-        $promoters= Promoters::paginate()->where('priority','>',Auth::guard('Promoter')->user()->priority);
-
-
-        $priority= PromotersRoles::all();
-
+      public function ShowBackendUsers() {
+        $promoters = Promoters::where('priority','>',Auth::guard('Promoter')->user()->priority)->get();
+        $priority = PromotersRoles::all();
         $Salesmans = Salesman::all();
-        
-
         return view('promoter.AdminModules.BackendUsers')
-                                            ->with('promoters',$promoters)
-                                            ->with('salesmans',$Salesmans)
-                                            ->with('priority',$priority);
+          ->with('promoters',$promoters)
+          ->with('salesmans',$Salesmans)
+          ->with('priority',$priority);
       }
 //------------------SALESMAN CRUD--------------------------------------------
       
-      public function RegisterSalesman(Request $request)
-      {
+      public function RegisterSalesman(Request $request) {
         $salesman = new Salesman;
         $salesman->name = $request->name;
         $salesman->adress = $request->adress;
         $salesman->phone = $request->phone;
         $salesman->email = $request->email;
-        $salesman->promoter_id =Auth::guard('Promoter')->user()->id;
+        $salesman->promoter_id = Auth::guard('Promoter')->user()->id;
         $salesman->save();
-        
         return response()->json($salesman->with('CreatedBy')->findOrFail(1));
       }
 
-      public function DeleteSalesman($id)
-      {
-        $salesman= Salesman::destroy($id);        
-
+      public function DeleteSalesman($id) {
+        $salesman= Salesman::destroy($id);
         return response()->json($salesman); 
       }
 
-      public function FindSalesman($id)
-      {
+      public function FindSalesman($id) {
         $salesman= Salesman::find($id);
-
         return response()->json($salesman);
-
       }
 
-      public function UpadateSalesman(Request $request, $id)
-      {
+      public function UpadateSalesman(Request $request, $id) {
         $salesman= Salesman::find($id);
         $salesman->name = $request->name;
         $salesman->adress = $request->adress;
         $salesman->phone = $request->phone;
         $salesman->email = $request->email;
         $salesman->save();
-
         return response()->json($salesman);
       }
 
@@ -2089,6 +2059,13 @@ class AdminController extends Controller
   }
 
   public function PaymentsDataTable($status) {
+    $pagos = PaymentSeller::where('status',$status)->get();
+    $pagos->each(function($pagos){
+      $pagos->TicketsSeller;
+      $pagos->Seller;
+    });
+    return response()->json($pagos);
+    /*
     $payments = PaymentSeller::where('status',$status);
       return Datatables::of($payments)
         ->addColumn('proveedor',function($payments){
@@ -2139,6 +2116,7 @@ class AdminController extends Controller
         })
         ->rawColumns(['proveedor','img_factura','opciones'])
         ->toJson();
+    */
   }
 
   public function admin_payments(Request $request,$id) {
