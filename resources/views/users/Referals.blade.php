@@ -94,11 +94,15 @@
                                      <h5>Mi código QR:</h5>
                                          {!! QrCode::size(250)->generate( url('/').'/register/'.Auth::user()->codigo_ref); !!}
                                          <a href="data:image/png;base64,{!!base64_encode (QrCode::format('png')->size(300)->generate( url('/').'/register/'.Auth::user()->codigo_ref)) !!}" download="MiQr" class="waves-effect green curvaBoton waves-light btn-small"><i class="material-icons right">cloud_download</i>Descargar</a>
-
                                      </div>
                                  </div>
                                  </div>
                              </div>
+                             <br>
+                            <div class="col s12 m12">
+                                 <iframe width="250" height="170" src="https://www.youtube.com/embed/l0kYlGgFu94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                 <h6><b> INVITAR AMIGOS A LEIPEL</b></h6>
+                            </div>
                          </div>
                      </div>
                  </div>

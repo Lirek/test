@@ -110,8 +110,8 @@
 <nav class="default_color" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
-            <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>" target="_blank"><b>¿Qué es leipel?</b></a></li>
-            <?php if(Auth::guard('web_seller')->user()): ?>
+<!--             <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>" target="_blank"><b>¿Qué es leipel?</b></a></li>
+ -->            <?php if(Auth::guard('web_seller')->user()): ?>
                 <?php if(Auth::guard('web_seller')->user()->logo): ?>
                     <li>
                         <a href="<?php echo e(url('/seller_home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
@@ -149,8 +149,8 @@
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-            <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
-            <?php if(Auth::guard('web_seller')->user()): ?>
+<!--             <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+ -->            <?php if(Auth::guard('web_seller')->user()): ?>
                 <?php if(Auth::guard('web_seller')->user()->logo): ?>
                     <li>
                         <a href="<?php echo e(url('/seller_home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
@@ -433,8 +433,8 @@
                     <li><a class="white-text" href="<?php echo e(route('queEsLeipel')); ?>">¿Qué es Leipel?</a></li>
                     <li><a class="white-text" href="<?php echo e(route('terminosCondiciones')); ?>">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
-                    <li><a class="white-text" href="#!">Contactos</a></li>
+                    <!-- <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
+                    <li><a class="white-text" href="#!">Contactos</a></li> -->
                 </ul>
             </div>
             <div class="col l3 s12">
