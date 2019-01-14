@@ -21,15 +21,15 @@
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
-    {{--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>--}}
-    {{--<script>--}}
-        {{--window.dataLayer = window.dataLayer || [];--}}
-        {{--function gtag(){dataLayer.push(arguments);}--}}
-        {{--gtag('js', new Date());--}}
-        {{----}}
-        {{--gtag('config', 'UA-126665289-1');--}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-126665289-1');
 
-    {{--</script>--}}
+    </script>
 </head>
 
 <style type="text/css">
@@ -340,7 +340,7 @@
   <div id="test2" class="col l6 m12 s12 center">
      <div class="col s12">
         <ul class="tabs">
-            {{--<li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>--}}
+            <li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
             <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
             <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
         </ul>
@@ -445,8 +445,8 @@
                     <li><a class="white-text" href="https://leipel.com/queEsLeipel">¿Qué es Leipel?</a></li>
                     <li><a class="white-text" href="https://leipel.com/terminosCondiciones">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    {{--<li><a class="white-text" href="#!">Beneficios adicionales</a></li>--}}
-                    {{--<li><a class="white-text" href="#!">Contactos</a></li>--}}
+                    <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
+                    <li><a class="white-text" href="#!">Contactos</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">
