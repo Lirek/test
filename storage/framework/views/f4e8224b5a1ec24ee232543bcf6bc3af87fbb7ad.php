@@ -199,19 +199,20 @@
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/piñas.jpg')); ?>" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2 ><b>Red social <br>de entretenimiento</b></h2>
+                <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
+                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
         </li>
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/gana_viajes.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption right-align break-word">
-                <h2><b>Gana viajes gratis<br>invitando amigos a LEIPEL</b></h2>
+                <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
             </div>
         </li>
         <li>
             <img src="<?php echo e(asset('plugins/materialize_index/img/amigos_con_cola.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption left-align break-word">
-                <h2><b>Gracias por ayudar <br>a una buena causa</b></h2>
+                <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
             </div>
         </li>
     </ul>
@@ -247,24 +248,42 @@
 
 <div class="row" id="cines">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        <?php if(count($movie)>0): ?>
+        <div id="featured5" class="owl-carousel featured">
         <?php $__currentLoopData = $movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" width="100%" height="150px">
+                            <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" width="100%" height="200px">
                         </div>
                     </div>
                 </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+            <?php endif; ?>
+            <?php if(count($movie)==0): ?>
+                <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            <?php endif; ?>
+
     </div>
 </div>
 
 
 <div class="row" id="musicas">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        <?php if(count($music)>0): ?>
+        <div id="featured4" class="owl-carousel featured">
         <?php $__currentLoopData = $music; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col s12 m12">
                     <div class="card">
@@ -275,23 +294,54 @@
                 </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+        <?php endif; ?>
+            <?php if(count($music)==0): ?>
+                <div class="col s12 m2">
+                </div>
+                    <div class="col s12 m8">
+                        <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
+                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                            <br><br>
+                        </div>
+                    </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            <?php endif; ?>
     </div>
 </div>
 
 
 <div class="row" id="libros">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
+        <?php if(count($book)>0): ?>
+        <div id="featured3" class="owl-carousel featured">
         <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" width="100%" height="150px">
+                            <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" width="100%" height="200px">
                         </div>
                     </div>
                 </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+        <?php endif; ?>
+            <?php if(count($book)==0): ?>
+                <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            <?php endif; ?>
     </div>
 </div>
 
@@ -349,9 +399,9 @@
     <div class="col s12">
         <ul class="tabs">
             <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3"><a href="#test2"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#test3"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3"><a href="#test4"><b>Marcas relacionadas</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Viajes gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Registro 100% gratis</b></a></li>
+            <li class="tab col s3 "><a href="#"><b>Marcas relacionadas</b></a></li>
         </ul>
     </div>
     <div id="test1" class="col s12 center">
@@ -367,7 +417,7 @@
             <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
         </div>
     </div>
-    <div id="test2" class="col s12 center">
+    <div id="test2" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
             <img src="<?php echo e(asset('plugins/materialize_index/img/viajes.svg')); ?>" width="20%" height="20%" title="youtube"><br>
             <h5> Viaja gratis con leipel.</h5>
@@ -380,7 +430,7 @@
             </div><br>
         </div>
     </div>
-    <div id="test3" class="col s12 center">
+    <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center">
             <br><br>
             <div class="embed-container">
@@ -393,7 +443,7 @@
             <h5> Registro gratuito.</h5>
         </div>
     </div>
-    <div id="test4" class="col s12 center">
+    <div id="test4" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l12 xl12 center"><br><br>
             <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="5%" height="5%" title="youtube"><br>
             <h5> Marcas relacionadas.</h5>
@@ -461,7 +511,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container center">
-            Copyright © 2018 Todos lo derechos reservados
+            Copyright © 2019 Todos lo derechos reservados
         </div>
     </div>
 </footer>
@@ -1011,7 +1061,7 @@ function masInfo(tipo) {
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: false
+            indicators: true
         });
 
 
@@ -1095,6 +1145,67 @@ function masInfo(tipo) {
             }
         });
 
+        $('#featured3').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured4').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        $('#featured5').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
         //Mostarar contenidos seleccionados
         $('#cine').css("background-color","#42a5f5");
         $('#radios').hide();
@@ -1145,7 +1256,7 @@ function masInfo(tipo) {
        });
 
         $('#radio').click(function(){
-            console.log("pase por radio");
+
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1155,6 +1266,7 @@ function masInfo(tipo) {
             $('#libros').hide();
             $('#musicas').hide();
             $('#cines').hide();
+            console.log( $('#radios').show());
             $('#radios').show();
         });
 

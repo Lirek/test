@@ -9,6 +9,10 @@
         <!--https://materialdesignicons.com/-->
         <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
 
+        <!--Carousel Owl Galeria-->
+        <link rel="stylesheet" href="<?php echo e(asset('plugins/owlcarousel/dist/assets/owl.carousel.min.css')); ?>">
+        <link rel="stylesheet" href="<?php echo e(asset('plugins/owlcarousel/dist/assets/owl.theme.default.min.css')); ?>">
+
         <style type="text/css">
              div.error {
       color: red;
@@ -121,12 +125,20 @@
                                             <?php endif; ?>
                                             <?php if($mod->name == 'Radios'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-5.png')); ?>">
+                                                    <a href="<?php echo e(url('/radios')); ?>" class="contentype-adjust">
+                                                        <b>
+                                                            <img class="responsive-img img-contentype" src="<?php echo e(asset('sistem_images/type_contents/radio.svg')); ?>">
+                                                        </b>
+                                                    </a>
                                                 </li>
                                             <?php endif; ?>
                                             <?php if($mod->name == 'TV'): ?>
                                                 <li>
-                                                    <img class="responsive-img   img-contenidos" src="<?php echo e(asset('sistem_images/logo-icon-3.png')); ?>">
+                                                    <a href="<?php echo e(url('/tvs')); ?>" class="contentype-adjust">
+                                                        <b>
+                                                            <img class="responsive-img img-contentype" src="<?php echo e(asset('sistem_images/type_contents/tv.svg')); ?>">
+                                                        </b>
+                                                    </a>
                                                 </li>
                                             <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -359,7 +371,7 @@
 
                                                                         <div class="collapsible-body">
                                                                             <ul class="sub">
-                                                                                <li><a href="<?php echo e(url('/radios')); ?>">Registro de radios</a></li>
+                                                                                <li><a href="<?php echo e(url('/radios')); ?>">Radios registradas</a></li>
                                                                                 <li><a href="<?php echo e(url('/radios/create')); ?>">Registrar radio</a></li>
                                                                                 <li><div class="divider"></div></li>
 
@@ -380,7 +392,7 @@
 
                                                                  <div class="collapsible-body">
                                                                 <ul>
-                                                                    <li><a href="<?php echo e(url('/tvs')); ?>">Registro de TV's</a></li>
+                                                                    <li><a href="<?php echo e(url('/tvs')); ?>">TV's registradas</a></li>
                                                                     <li><a href="<?php echo e(url('/tvs/create')); ?>">Registrar TV's</a></li>
                                                                     <li><div class="divider"></div></li>
                                                                 </ul>
@@ -499,7 +511,7 @@
             <footer class="page-footer blue ">
                 <div class="footer-copyright">
                     <div class="container center">
-                        Leipel &copy 2018. Todos los Derechos Reservados.
+                        Leipel &copy 2019. Todos los Derechos Reservados.
                     </div>
                 </div>
             </footer>
@@ -557,6 +569,9 @@
             <!--telefono-->
             <script src="<?php echo e(asset('plugins/telefono/intlTelInput.js')); ?>"></script>
             <script src="<?php echo e(asset('plugins/telefono/utils.js')); ?>"></script>
+
+            <!--Carousel Owl Galeria-->
+            <script src="<?php echo e(asset('plugins/owlcarousel/dist/owl.carousel.min.js')); ?>"></script>
 
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 

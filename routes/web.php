@@ -398,21 +398,23 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             //------------------------------------------------------------------------
             //-----------------------RADIOS-------------------------------------------
                 Route::get('/admin_radio','AdminController@ShowRadios');
-                Route::get('RadioData','AdminController@RadioDataTable');
+                Route::get('RadioData/{status}','AdminController@RadioDataTable');
                 Route::get('BackendRadios','AdminController@BackendRadioData');
+                Route::post('statusRadio/{id}','AdminController@RadioStatus');
                 Route::post('NewBackendRadios','AdminController@NewBackendRadios');
                 Route::get('BackendRadio/{id}','AdminController@GetBackendRadio');
-                Route::post('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
-                Route::post('UpdateBackendRadio/{id}','AdminController@UpdateBackendRadio');
+                Route::get('DeleteBackendRadio/{id}','AdminController@DeleteBackendRadio');
+                Route::post('UpdateBackendRadio','AdminController@UpdateBackendRadio');
             //-----------------------------------------------------------------------
             //---------------------------TV------------------------------------------
                 Route::get('/admin_tv','AdminController@ShowTV');
-                Route::get('DataTableTv','AdminController@DataTableTv');
-                Route::get('BackendTV','AdminController@BackendTvData');
+                Route::get('DataTableTv/{status}','AdminController@DataTableTv');
+                Route::get('BackendTV/{status}','AdminController@BackendTvData');
+                Route::post('TvStatus/{id}','AdminController@TvStatus');
                 Route::post('NewBackendTv','AdminController@NewBackendTv');
                 Route::get('BackendTv/{id}','AdminController@GetBackendTv');
-                Route::post('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
-                Route::post('UpdateBackendTv/{id}','AdminController@UpdateBackendTv');
+                Route::post('UpdateBackendTv','AdminController@UpdateBackendTv');
+                Route::get('DeleteBackendTv/{id}','AdminController@DeleteBackendTv');
             //-----------------------------------------------------------------------
             //----------------------------PELICULAS----------------------------------
                 Route::get('/admin_movies','AdminController@ShowMovies');

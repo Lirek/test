@@ -507,7 +507,7 @@
             <footer class="page-footer blue ">
                 <div class="footer-copyright">
                     <div class="container center">
-                        Leipel &copy 2018. Todos los Derechos Reservados.
+                        Leipel &copy 2019. Todos los Derechos Reservados.
                     </div>
                 </div>
             </footer>

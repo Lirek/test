@@ -32,81 +32,82 @@
 @endsection
 
 @section('main')
-                    <div class="row">
-                        <div class="input-field col s12 m3 offset-m4">
-                            <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
-                        </div>
+    <div class="row">
+        <div class="input-field col s12 m3 offset-m4">
+            <h4 class="titelgeneral"><i class="material-icons small">radio</i> Radios</h4>
+        </div>
 
-                    <div class="row">
-                        @foreach($Rad as $radios)
-                            <div class="col s12 m3 l3  offset-m3 offset-l3 ">
-                                <div class="card">
-                                    <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">
-                                            <img src="{{asset($radios->logo)}}" height="235px">
-                                            <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 m3 l3">
-                                <div class="card">
 
-                                    <div class="card-content" style="padding: 13px;" height="310px">
-                                        <div class="row">
-                                            <div class="col s12 ">
-                                                <div  id="play_ico">
-                                                    <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
-                                                </div>
-                                                <div id="off_ico" style="display: none;" >
-                                                    <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
-                                                </div>
-                                                <div  class="wrapper">
-                                                    <audio id="player"></audio>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                        <div class="input-field col s12 m4 offset-m4 ">
-                            <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
-                                {{ csrf_field() }}
-                                <i class="material-icons prefix blue-text">search</i>
-                                <input type="text" id="seach" name="seach" class="validate">
-
-                                <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
-                            </form>
+        <div class="row">
+            @foreach($Rad as $radios)
+                <div class="col s12 m3 l3  offset-m3 offset-l3 ">
+                    <div class="card">
+                        <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">
+                            <img src="{{asset($radios->logo)}}" height="235px">
+                            <span class="card-title truncate"><b>{{$radios->name_r}}</b></span>
                         </div>
                     </div>
+                </div>
+                <div class="col s12 m3 l3">
+                    <div class="card">
+
+                        <div class="card-content" style="padding: 13px;" height="310px">
                             <div class="row">
-                          @foreach($Radio as $radios)
-                                <div class="col s4 m2 ">
-                                    <div class="card">
-                                        <div class="card-image" style="height: 140px;">
-                                            <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}" height="145px"></a>
-
-                                        </div>
-
+                                <div class="col s12 ">
+                                    <div  id="play_ico">
+                                        <img class="img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" alt="Reproducto de radio leipel" >
+                                    </div>
+                                    <div id="off_ico" style="display: none;" >
+                                        <img class=" img-play" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" alt="Reproducto de radio leipel">
+                                    </div>
+                                    <?php $r=$radios->streaming ?>
+                                    <div  class="wrapper">
+                                        <audio id="player"></audio>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        </div>
                     </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="input-field col s12 m4 offset-m4 ">
+            <form method="POST"  id="SaveSong" action="{{url('SearchListenRadio')}}">
+                {{ csrf_field() }}
+                <i class="material-icons prefix blue-text">search</i>
+                <input type="text" id="seach" name="seach" class="validate">
+
+                <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
+            </form>
         </div>
     </div>
+    <div class="row">
+        @foreach($Radio as $radios)
+            <div class="col s4 m2 ">
+                <div class="card">
+                    <div class="card-image" style="height: 140px;">
+                        <a href="{{url('ListenRadio/'.$radios->id)}}" class="waves-effect"><img src="{{asset($radios->logo)}}" height="145px"></a>
 
-            <div class="fixed-action-btn click-to-toggle direction-top">
-            <a class="btn-floating btn-large waves-effect waves-light green">
-                <i class="large material-icons">share</i>
-            </a>
-            <ul>
-                <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
-                <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
-                <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
-                <li><a href="{{$radios->instagram}}" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
-            </ul>
-</div>
+                    </div>
+
+                </div>
+            </div>
+        @endforeach
+    </div>
+    </div>
+    </div>
+    <div class="fixed-action-btn click-to-toggle direction-top">
+        <a class="btn-floating btn-large waves-effect waves-light green">
+            <i class="large material-icons">share</i>
+        </a>
+        <ul>
+            <li><a href="{{$radios->facebook}}" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+            <li><a  href="{{$radios->google}}"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+            <li><a href="{{$radios->twitter}}"class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+            <li><a href="{{$radios->instagram}}" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
+        </ul>
+    </div>
 
 @endsection
 
@@ -125,7 +126,7 @@
             type: 'audio',
             sources: [
                 {
-                    src: '{{asset($radios->streaming)}}',
+                    src: '{{asset($r)}}',
                     type: 'audio/mp3',
                 },
 
@@ -139,9 +140,9 @@
             $('#off_ico').hide();
             $('#play_ico').show();
         });
-       players.on('pause', event => {
-           $('#play_ico').hide();
-           $('#off_ico').show();
+        players.on('pause', event => {
+            $('#play_ico').hide();
+            $('#off_ico').show();
         });
     </script>
 

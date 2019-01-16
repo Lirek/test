@@ -262,7 +262,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-        <span>Leipel 2018</span>
+        <span>Leipel 2019</span>
       </div>
     </div>
   </footer>
