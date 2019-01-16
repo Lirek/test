@@ -127,7 +127,7 @@
 
   @if ($refered != null)
   <div class=" s12 col m5 offset-m1  ">
-      <h6 class="left-align grey-text">Lista de referidos:</h6>
+      <h6 class="left-align grey-text">Mis referidos directos:<span class="blue-text"> ({{$referals1}})</span></h6>
               <ul class="collection">
                   @foreach($refered as $refereds)
                   <li class="collection-item avatar">
@@ -149,7 +149,7 @@
   </div>
   @else
       <div class="col s12 m5  offset-m1  ">
-          <h6 class="left-align grey-text">Lista de referidos:</h6>
+          <h6 class="left-align grey-text">Mis referidos directos:</h6>
             <blockquote class="center grey lighten-4 grey-text ">
               <br> <i class="material-icons">sentiment_very_dissatisfied</i>
               <br>Aún no tienes Referidos <br>
