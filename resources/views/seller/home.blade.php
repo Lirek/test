@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col s12 m12">
             <div class="card-content">
-                <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
+                <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> MIS CONTENIDOS</h4>
                 <br>
 
                 {{--Peliculas--}}

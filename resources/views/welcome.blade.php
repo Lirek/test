@@ -176,10 +176,6 @@
 </div>
 <!-- Fin franja  -->
 
-
-
-
-
 <div class="row" id="cines">
     <div class="col s12 m12">
                                     <div class="col s12 m2">

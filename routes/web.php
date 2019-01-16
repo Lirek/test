@@ -97,6 +97,8 @@ Route::group(['middleware' => 'auth'], function() {
     // agregada 30-09-2018
     Route::get('generarFactura/{idFactura}/{id_payments}','HomeController@generarFactura');
     Route::get('sponsor/{cod}','HomeController@sponsor');
+    // agregada Alexis 15/01/2019
+    Route::get('/Beneficios','HomeController@Beneficios');
 
 
 //-------------------Funciones del Usuarios----------------------------------
