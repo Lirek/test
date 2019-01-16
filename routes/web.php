@@ -240,7 +240,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
    Route::group(['middleware' => ['Admin']], function (){
 
-            Route::get('/admin_sellers','AdminController@ShowSellers');
+            Route::get('/AproveOrDenialSeller','AdminController@ShowSellers');
             Route::get('/SellerDataTable','AdminController@SellerDataTable');
 
             /*
@@ -345,7 +345,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('/admin_albums','AdminController@ShowAlbums');
                 Route::get('/AllAdminAlbum','AdminController@ShowAllAlbums');
-                Route::get('AlbumDataTable','AdminController@AlbumsDataTable');
+                Route::get('AlbumDataTable/{status}','AdminController@AlbumsDataTable');
                 Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 

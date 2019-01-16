@@ -53,57 +53,6 @@
             <div id="" class="col s12 center">
                 <div class="row">
                   <div class="col s6 center">
-                        <img class='img-responsive av' src='' id="logoProveedor" width="120" height="120" alt='Logo proveedor'>
-                        <br>
-                        <label for="exampleInputFile" class="control-label">Logo de la empresa: </label>
-                  </div>
-                  <div class="col s6">
-                        <img class='img-responsive av' src='' id="imgRucProveedor" width="700" height="700" alt='RUC proveedor'>
-                        <br>
-                        <label for="exampleInputFile" class="control-label">Imagen del RUC: </label>
-                  </div>
-                </div>
-            </div>
-            <div id="" class="col s12 center">
-                <div class="row">
-                  <div class="col s6 center">
-                    {{--RUC del proveedor--}}
-                    <label for="exampleInputFile" class="control-label">RUC: </label>
-                    <div id="rucProveedor"></div>
-                    <br>
-                    {{--Nombre del proveedor--}}
-                    <label for="exampleInputFile" class="control-label">Nombre: </label>
-                    <div id="nombreProveedor"></div>
-                  </div>
-                  <div class="col s6">
-                    {{--Correo del proveedor--}}
-                    <label for="exampleInputFile" class="control-label">Correo: </label>
-                    <div id="correoProveedor"></div>
-                    <br>
-                    {{--Telefono del proveedor--}}
-                    <label for="exampleInputPassword1" class="control-label">Teléfono: </label>
-                    <div id="telefonoProveedor"></div>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
-        </div>
-    </div>
-</div>
-
-<div id="ModalSeller" class="modal">
-    <div class="modal-content center blue-text">
-        <div class=" blue"><br>
-            <h4 class="center white-text" ><i class="small material-icons"></i>Detalles del proveedor</h4>
-            <br>
-        </div>
-        <br>
-        <div class="col s12">
-            <div id="" class="col s12 center">
-                <div class="row">
-                  <div class="col s6 center">
                         <img class='materialboxed' src='' id="logoProveedor" width="120" height="120" alt='Logo proveedor'>
                         <br>
                         <label for="exampleInputFile" class="control-label">Logo de la empresa: </label>
@@ -168,36 +117,3 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="modal fade" id="" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-center">Historial de negaciones</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <h5 class="text-center" id="totalNegaciones"></h5>
-        </div>
-        <div class="tab-content text-center">
-          <div class="col-lg-12">
-            <div class="table-responsive">
-              <table class="display responsive no-wrap table table-bordered table-striped" width="100%" >
-                <thead>
-                  <tr>
-                    <th class="non-numeric">Razón del rechazo</th>
-                    <th class="non-numeric">Fecha del rechazo</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

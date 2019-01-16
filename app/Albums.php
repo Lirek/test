@@ -53,3 +53,4 @@ class Albums extends Model
       return $this->hasMany('App\Transactions','album_id'); 
     }
 }
+

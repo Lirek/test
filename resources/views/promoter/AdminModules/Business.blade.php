@@ -1,149 +1,117 @@
 @extends('promoter.layouts.app')
-
-
 @section('main')
 
- <h3><i class="fa fa-angle-right"></i>Balance de la Plataforma</h3>
-
-<div class="row mt">
-  	<div class="col-md-4 col-sm-4 mb">
-  		<div class="grey-panel pn donut-chart">
-  			<div class="grey-header">
-	  			<h5>Tickets Vendidos</h5>
-  			</div>
-			
-			<div class="row">
-				<div class="col-sm-6 col-xs-6 goleft">
-					<p>Total<br/></p>
-				</div>
-				 
-				<div class="col-sm-6 col-xs-6 gocenter">								 	
-					<h2>{{$Balance->tickets_solds}} <i class="fa fa-ticket" style="font-size: 50px"></i></h2>
-				</div>			 	
-				 
-				 <div class="col-sm-6 col-xs-6 gocenter">
-				 	<a href="{{url('TicketsDetail')}}"><button type="button" class="btn btn-theme">Ver Mas</button></a>
-				 </div>
-				 
-      		</div>
-      	</div>
-  	</div>
-  	
-
-  	<div class="col-md-4 col-sm-4 mb">
-  		<div class="darkblue-panel pn">
-  			<div class="darkblue-header">
-	  			<h5>Puntos Asignados</h5>
-  			</div>
-			<p>Total</p>
-			
-			<div class="center">
-				<img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="110px">
-			</div>
-			
-			<div class="center">
-					<h2>{{$Balance->points_solds}}</h2>
-			</div>
-			
-			<div class="center">
-			
-			<a href="{{url('PointsDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
-  			</button></a>
-  			
-  			</div>
-  			
-  			</div>
-  	</div>
-
-  	<div class="col-md-4 col-sm-4 mb">
-  		<div class="green-panel pn">
-  			<div class="green-header">
-	  			<h5><img src="{{asset('sistem_images/Leipel Logo1-01.png')}}" width="110px"></h5>
-  			</div>
-  			<div class="center">
-  				<h3>Puntos de Leipel</h3>
-  			</div>
-  			  <div class="center">
-  			  	<h3>{{$Balance->my_points}}</h3>
-  			  </div>
-  		</div>
-  	</div>
-
-</div>	
-
-
-<h3><i class="fa fa-angle-right"></i>Usuarios</h3>
-
-
-<div class="row-mt">
-
-	 	<div class="col-md-10 col-sm-10 mb">
-  		<div class="green-panel pn">
-  			<div class="green-header">
-	  			<h5>Usuarios</h5>
-  			</div>
-			<p></p>
-			
-			<div class="center">
-				<img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="110px">
-			</div>
-			
-			<div class="col-md-10">
-        <h6>Usuarios Destacados</h6>
-					 <table class="table table-bordered table-striped table-condensed cf" style="background-color: #fff">            
-                        <thead class="cf">
-                                <tr>
-                                  <th class="non-numeric">Nombre</th>
-                                  <th class="non-numeric">Email</th>
-                                  <th class="non-numeric">Puntos</th>
-                                  <th class="non-numeric">Puntos Pendientes</th>
-                                  <th class="non-numeric">Limite de Puntos</th>
-                                  <th class="non-numeric">Ultima Recarga</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                  @foreach($Users as $User)
-                                   <td class="non-numeric">{{$User->name}}</td>
-                                   <td class="non-numeric">{{$User->email}}</td>
-                                   <td class="non-numeric">{{$User->points}}</td>
-                                   <td class="non-numeric">{{$User->pending_points}}</td>
-                                   <td class="non-numeric">{{$User->limit_points}}</td>
-                                   <td class="non-numeric">{{$User->Payments()->first()->created_at}}</td>
-                                  @endforeach 
-                               </tbody>
-                       </table>
-			</div>
-
-      <div class="col-md-10">
-          <h6>Usuarios Libres</h6>
-           <table class="table table-bordered table-striped table-condensed cf" style="background-color: #fff">            
-                        <thead class="cf">
-                                <tr>
-                                  <th class="non-numeric">Nombre</th>
-                                  <th class="non-numeric">Email</th>
-                                  <th class="non-numeric">Puntos</th>
-                                  <th class="non-numeric">Fecha de Registro</th>
-                                  <th class="non-numeric">Estatus</th>                                  
-                                </tr>
-                            </thead>
-                                <tbody>
-                                  @foreach($UnRefereds as $UnRefered)
-                                   <td class="non-numeric">{{$UnRefered->name}}</td>
-                                   <td class="non-numeric">{{$UnRefered->email}}</td>
-                                   <td class="non-numeric">{{$UnRefered->points}}</td>
-                                   <td class="non-numeric">{{$UnRefered->created_at}}</td>
-                                   @if($UnRefered->verify==0)
-                                   <td class="non-numeric">No Verificado</td>
-                                   @else
-                                   <td class="non-numeric">Verificado</td>
-                                   @endif
-                                  @endforeach 
-                               </tbody>
-                       </table>
+    <span class="card-title grey-text"><h3>Balance de la Plataforma</h3></span>
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Tickets Vendidos</span>
+            <i class="large material-icons">confirmation_number</i>
+            <h4>
+              <p>{{$Balance->tickets_solds}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('TicketsDetail')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
       </div>
 
-              
-			
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Puntos Asignados</span>
+            <i class="large material-icons">cached</i>
+            <h4>
+              <p>{{$Balance->points_solds}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('PointsDetails')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Puntos de Leipel</span>
+            <img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="128px">
+            <h4>
+              <p>{{$Balance->my_points}}</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="" class="btn-flat disabled "></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+  <span class="card-title grey-text"><h3>Usuarios</h3></span>
+  <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+    <li class="tab" id="Destacados"><a class="active" href="#test1">Usuarios Destacados</a></li>
+    <li class="tab" id="Libres"><a href="#test2">Usuarios Libres</a></li>
+  </ul>
+  <div id="test1" class="col s12">
+    <table class="responsive-table">
+    <thead>
+      <tr>
+        <th><i class="material-icons"></i>Nombre</th>
+        <th><i class="material-icons"></i>Email</th>
+        <th><i class="material-icons"></i>Puntos</th>
+        <th><i class="material-icons"></i>Puntos Pendientes</th>
+        <th><i class="material-icons"></i>Limite de Puntos</th>
+        <th><i class="material-icons"></i>Ultima Recarga</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($Users as $User)
+      <tr>
+       <td class="non-numeric">{{$User->name}}</td>
+       <td class="non-numeric">{{$User->email}}</td>
+       <td class="non-numeric">{{$User->points}}</td>
+       <td class="non-numeric">{{$User->pending_points}}</td>
+       <td class="non-numeric">{{$User->limit_points}}</td>
+       @foreach($Payments as $pay)
+       <td class="non-numeric">{{Pay()->first()->created_at}}</td>
+       @endforeach
+      </tr>
+      @endforeach 
+    </tbody>
+  </table>
+  </div>
+  <div id="test2" class="col s12">
+    <table class="responsive-table">
+    <thead>
+        <tr>
+          <th><i class="material-icons"></i>Nombre</th>
+          <th><i class="material-icons"></i>Email</th>
+          <th><i class="material-icons"></i>Puntos</th>
+          <th><i class="material-icons"></i>Fecha de Registro</th>
+          <th><i class="material-icons"></i>Estatus</th>
+        </tr>
+    </thead>
+      <tbody>
+        @foreach($UnRefereds as $UnRefered)
+        <tr>
+         <td class="non-numeric">{{$UnRefered->name}}</td>
+         <td class="non-numeric">{{$UnRefered->email}}</td>
+         <td class="non-numeric">{{$UnRefered->points}}</td>
+         <td class="non-numeric">{{$UnRefered->created_at}}</td>
+         @if($UnRefered->verify==0)
+         <td class="non-numeric">No Verificado</td>
+         @else
+         <td class="non-numeric">Verificado</td>
+         @endif
+         </tr>
+        @endforeach    
+     </tbody>
+    </table>
+  </div>
+  </div>
 			<div class="center">
 				<a href="{{url('UserDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
   			</button></a>
@@ -151,13 +119,6 @@
   		</div>
   	</div>
 </div>
-
-
-
-
-
 @endsection
-
 @section('js')
-
 @endsection

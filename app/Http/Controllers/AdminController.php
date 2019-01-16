@@ -89,40 +89,28 @@ class AdminController extends Controller
     		  return view('promoter.ContentModules.MainContent.Albums');
    		}
 
-      public function AlbumsDataTable()
-      {
-          
-        $albums= Albums::where('status','=','En Revision');
+      public function AlbumsDataTable($status)
+      { 
+      $albums= Albums::where('status',$status)->get();
+      $albums->each(function($albums){
+      $albums->Seller;
+      $albums->Autors;
+      $albums->songs;
+      });
+        return response()->json($albums);
+      }
 
-          return Datatables::of($albums)
-                    ->addColumn('Estatus',function($albums){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button>';
-                    })
-
-                    ->addColumn('Autors_name',function($albums){
-                      
-                      return $albums->Seller()->first()->name;
-                    })
-
-                    ->addColumn('songs',function($albums){
-                      
-                      return '<button type="button" class="btn btn-theme" value="'.$albums->id.'" id="songs" >'.$albums->songs()->count().'</button';
-                    })                    
-
-                    ->editColumn('autors_id',function($albums){
-
-                      return $albums->Autors()->first()->name;
-                    })
-
-                    ->editColumn('cover',function($albums){
-                      
-
-                      return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';
-                    })
-                    ->rawColumns(['Estatus','cover','songs'])
-                    ->toJson();        
+      public function AproveOrDenialAlbum(Request $request,$id) {
+        $albums= Albums::find($id);
+        if ($request->status=='Denegado') {
+          //$data=$seller->delete();
+          $seller->estatus = 3; // rechazado
+        } else {
+          $seller->estatus = 1; // aprobado
+        }
+        $albums->save();
+        // Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
+        return response()->json($request->all());
       }
 
       public function ShowAllAlbums()
@@ -149,11 +137,24 @@ class AdminController extends Controller
             $track->save();
           }
 
-       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
+       // $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->message);
 			  
         $albums->save();
    			return response()->json($albums);
    		}
+
+      public function AproveOrDenialSeller(Request $request,$id) {
+        $seller= Albums::find($id);
+        if ($request->status=='Rechazado') {
+          //$data=$seller->delete();
+          $seller->estatus = 3; // rechazado
+        } else {
+          $seller->estatus = 2; // aprobado
+        }
+        $seller->save();
+        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
+        return response()->json($request->all());
+      }
 /*------------------------------------------------------------------------------------ ---------------------FUNCIONES DE SINGLE------------------------------
 -----------------------------------------------------------------------
 */
@@ -1342,18 +1343,6 @@ class AdminController extends Controller
         return response()->json($data); 
       }
 
-      public function AproveOrDenialSeller(Request $request,$id) {
-        $seller= Seller::find($id);
-        if ($request->status=='Rechazado') {
-          //$data=$seller->delete();
-          $seller->estatus = 3; // rechazado
-        } else {
-          $seller->estatus = 2; // aprobado
-        }
-        $seller->save();
-        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
-        return response()->json($request->all());
-      }
 /*
   ---------------------------------------------------------------
   --------------------FUNCIONES DE PROVEEDORES-------------------

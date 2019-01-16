@@ -1,36 +1,35 @@
+
 <!DOCTYPE html>
-<html lang="<?php echo e(app()->getLocale()); ?>">
+<html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
+    <link rel="shortcut icon" href="https://leipel.com/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title><?php echo e(config('app.name', 'Leipel')); ?></title>
+    <title>Leipel</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="<?php echo e(asset('plugins/materialize_index/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="<?php echo e(asset('plugins/materialize_index/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="<?php echo e(asset('css/owl.carousel.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="<?php echo e(asset('css/owl.theme.default.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://leipel.com/plugins/materialize_index/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://leipel.com/plugins/materialize_index/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://leipel.com/css/owl.carousel.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://leipel.com/css/owl.theme.default.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>;
+        window.Laravel = {"csrfToken":"FEfXw3vsSFtTkHV4w3S4bMa1Q4SDOUcpAgm52j8k"};
     </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics Breiddy Monterrey-->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126665289-1"></script>
-    <script>
-        // window.dataLayer = window.dataLayer || [];
-        // function gtag(){dataLayer.push(arguments);}
-        // gtag('js', new Date());
-        //
-        // gtag('config', 'UA-126665289-1');
+    
+    
+        
+        
+        
+        
+        
 
-    </script>
+    
 </head>
 
 <style type="text/css">
@@ -110,83 +109,16 @@
 <nav class="default_color" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
-<!--             <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>" target="_blank"><b>¿Qué es leipel?</b></a></li>
- -->            <?php if(Auth::guard('web_seller')->user()): ?>
-                <?php if(Auth::guard('web_seller')->user()->logo): ?>
-                    <li>
-                        <a href="<?php echo e(url('/seller_home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>"  class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php endif; ?>
-
-            <?php elseif(Auth::user()): ?>
-
-                <?php if(Auth::user()->img_perf): ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>"  data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php endif; ?>
-
-            <?php elseif(Auth::guest()): ?>
-                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+            <li><a class="blue-text" href="https://leipel.com/queEsLeipel" target="_blank"><b>¿Qué es leipel?</b></a></li>
+                            <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
                 <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
-            <?php endif; ?>
-        </ul>
+                    </ul>
 
         <ul id="nav-mobile" class="sidenav">
-<!--             <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
- -->            <?php if(Auth::guard('web_seller')->user()): ?>
-                <?php if(Auth::guard('web_seller')->user()->logo): ?>
-                    <li>
-                        <a href="<?php echo e(url('/seller_home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset(Auth::guard('web_seller')->user()->logo)); ?>" class="img circle" width="40" height="40">
-                            <b> Ingresar</b>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php endif; ?>
-
-            <?php elseif(Auth::user()): ?>
-
-                <?php if(Auth::user()->img_perf): ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img  src="<?php echo e(asset(Auth::user()->img_perf)); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?php echo e(url('/home')); ?>"  data-position="right"  class="tooltipped" data-tooltip="Ingresar" >
-                            <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" class="img circle" width="40" height="40">
-                        </a>
-                    </li>
-                <?php endif; ?>
-
-            <?php elseif(Auth::guest()): ?>
-                <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
+            <li><a class="blue-text" href="https://leipel.com/queEsLeipel"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+                            <li><a class="blue-text modal-trigger" href="#modal1"><b>Iniciar Sesión</b></a></li>
                 <li><a class="blue-text modal-trigger" href="#modal2"><b>Registrate</b></a></li>
-            <?php endif; ?>
-        </ul>
+                    </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="blue-text material-icons">menu</i></a>
     </div>
 </nav>
@@ -197,20 +129,20 @@
 <div class="slider">
     <ul class="slides">
         <li>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/piñas.jpg')); ?>" width="100%;" height="100%"> <!-- random image -->
+            <img src="https://leipel.com/plugins/materialize_index/img/piñas.jpg" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
                 <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
                 <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
         </li>
         <li>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/gana_viajes.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
+            <img src="https://leipel.com/plugins/materialize_index/img/gana_viajes.jpg" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption right-align break-word">
                 <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
             </div>
         </li>
         <li>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/amigos_con_cola.jpg')); ?>" width="100%;" height="100%;"> <!-- random image -->
+            <img src="https://leipel.com/plugins/materialize_index/img/amigos_con_cola.jpg" width="100%;" height="100%;"> <!-- random image -->
             <div class="caption left-align break-word">
                 <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
             </div>
@@ -226,19 +158,19 @@
             <h5>Red social de entretenimiento</h5>
         </div>
         <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine">
-            <img src="<?php echo e(asset('plugins/materialize_index/img/cine.png')); ?>" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/cine.png" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
         </div>
         <div class="col s4 m4 l4 xl2 center curva" id="musica">
-            <img src="<?php echo e(asset('plugins/materialize_index/img/musica.png')); ?>" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/musica.png" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
         </div>
         <div class="col s4 m4 l4 xl2 center curva" id="libro">
-            <img src="<?php echo e(asset('plugins/materialize_index/img/libro.png')); ?>" width="50%" height="70%" title="Lectura"><br><b>Lectura</b><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/libro.png" width="50%" height="70%" title="Lectura"><br><b>Lectura</b><br><br>
         </div>
         <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center curva" id="radio"  >
-            <img src="<?php echo e(asset('plugins/materialize_index/img/radio.png')); ?>" width="50%" height="70%" title="Radio"><br><b>Radio</b><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/radio.png" width="50%" height="70%" title="Radio"><br><b>Radio</b><br><br>
         </div>
         <div class="col s4 m4 l4 xl2 center curva" id="tv"  >
-            <img src="<?php echo e(asset('plugins/materialize_index/img/tv.png')); ?>" width="50%" height="70%" title="Tv"><br><b>Tv</b><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/tv.png" width="50%" height="70%" title="Tv"><br><b>Tv</b><br><br>
         </div>
     </div>
 </div>
@@ -248,71 +180,126 @@
 
 <div class="row" id="cines">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
-        <?php $__currentLoopData = $movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" width="100%" height="150px">
-                        </div>
+                                    <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
                     </div>
                 </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            
     </div>
 </div>
 
 
 <div class="row" id="musicas">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
-        <?php $__currentLoopData = $music; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="<?php echo e(asset($m->cover)); ?>" width="100%" height="150px">
+                                    <div class="col s12 m2">
+                </div>
+                    <div class="col s12 m8">
+                        <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
+                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                            <br><br>
                         </div>
                     </div>
+                <div class="col s12 m2">
                 </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </div>
+                <br>
+                </div>
 </div>
 
 
 <div class="row" id="libros">
     <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
-        <?php $__currentLoopData = $book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" width="100%" height="150px">
-                        </div>
+                                    <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
                     </div>
                 </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+                </div>
 </div>
 
 
 <div class="row" id="radios">
     <div class="col s12 m12">
         <div id="featured" class="owl-carousel featured">
-        <?php $__currentLoopData = $radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col s12 m12">
+                        <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="<?php echo e(asset($r->logo)); ?>" width="100%" height="150px">
+                            <img src="https://leipel.com/images/radio/radiorevolucion-el telegrafo.jpg" width="100%" height="150px">
                         </div>
                     </div>
                 </div>
-            <?php 
-                $iRadios++
-             ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiowq.png" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiopuntorojo.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiomorena.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537802029.jpeg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801936.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1538674288.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801554.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537799660.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                            </div>
     </div>
 </div>
 
@@ -320,20 +307,15 @@
 <div class="row" id="Tvs">
     <div class="col s12">
         <div id="featured1" class="owl-carousel featured">
-        <?php $__currentLoopData = $tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tvs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            
+                    
                 <div class="col s12">
                     <div class="card">
-                        <div class="card-image ">
-                            <img src="<?php echo e(asset($tvs->logo)); ?>"  width="100%" height="150px">
+                        <div class="card-image">
+                            <img src="https://leipel.com/images/Tv/radiologo_1538174512.png"  width="100%" height="150px">
                         </div>
                     </div>
                 </div>
-            <?php 
-                $iTvs++
-             ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+                            </div>
     </div>
 </div>
 
@@ -341,36 +323,64 @@
 <br>
 <!-- Parallax  -->
 <div class="parallax-container" style="width: 100%; ">
-    <div class="parallax"><img src="<?php echo e(asset('plugins/materialize_index/img/parallax.jpg')); ?>"></div>
+    <div class="parallax"><img src="https://leipel.com/plugins/materialize_index/img/parallax.jpg"></div>
 </div>
 <!--Fin parallax-->
-<br>
+
 <!-- tabs  -->
-<div class="row">
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s3 "><a href="#"><b>Viajes gratis</b></a></li>
-            <li class="tab col s3 "><a href="#"><b>Registro 100% gratis</b></a></li>
-            <li class="tab col s3 "><a href="#"><b>Marcas relacionadas</b></a></li>
-        </ul>
+<div class="row col" style="margin-bottom:-5px;">
+    
+    <div id="test1" class="col l6 m12 s12 center">
+
+         <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 370px; margin-left: -25px; height: 370px;" >
     </div>
-    <div id="test1" class="col s12 center">
-        <div class="col s12 m6 l6 xl6 center">
-            <br><br>
+
+  <div id="test2" class="col l6 m12 s12 center">
+     <div class="col s12">
+        <ul class="tabs">
+            
+            <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
+            <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
+        </ul>
+
+        <div id="test01" class="col s12 center"> 
+            <div class="col s12 m6 l6 xl6 center" ><br><br><br> 
+            <h5>
+                <p style="text-align: justify;">Somos una red social de entretenimiento que abarca cine, música, lectura, radio y Tv.</p>
+            </h5>   
+            </div>
+
+            <div class="col s12 m6 l6 xl6 center">
+            <br><br><br><br>
             <div class="embed-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <br>
+           </div>   
         </div>
-        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="20%" height="20%" title="youtube"><br>
-            <h5> Descubre la magia de Leipel en este y otros videos en nuestro canal de Youtube.</h5>
+
+        <div id="test02" class="col s12 center"> 
+        <br>    
+                <div class="embed-container">                 
+                    <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>                   
+                </div>           <br>
+         </div>
+
+     <div id="test03" class="col s12 center"> 
+        <div class="col s12 center"> 
+            <br><br>
+            <div class="container s12 center"><br>
+                 <h5><p style="text-align:justify;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h5>               
+            </div>
+            <br><br><br><br>
         </div>
+     </div>
+     </div>
     </div>
-    <div id="test2" class="col s12 center" style="display:none;">
+     
+    <div id="test3" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/viajes.svg')); ?>" width="20%" height="20%" title="youtube"><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/viajes.svg" width="20%" height="20%" title="youtube"><br>
             <h5> Viaja gratis con leipel.</h5>
 
         </div>
@@ -381,7 +391,7 @@
             </div><br>
         </div>
     </div>
-    <div id="test3" class="col s12 center" style="display:none;">
+    <div id="test4" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l6 xl6 center">
             <br><br>
             <div class="embed-container">
@@ -390,13 +400,13 @@
             <br>
         </div>
         <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/nota.svg')); ?>" width="20%" height="20%" title="youtube"><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/nota.svg" width="20%" height="20%" title="youtube"><br>
             <h5> Registro gratuito.</h5>
         </div>
     </div>
-    <div id="test4" class="col s12 center" style="display:none;">
+    <div id="test5" class="col s12 center" style="display:none;">
         <div class="col s12 m6 l12 xl12 center"><br><br>
-            <img src="<?php echo e(asset('plugins/materialize_index/img/youtube.png')); ?>" width="5%" height="5%" title="youtube"><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/youtube.png" width="5%" height="5%" title="youtube"><br>
             <h5> Marcas relacionadas.</h5>
 
         </div>
@@ -430,11 +440,11 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Sobre</h5>
                 <ul>
-                    <li><a class="white-text" href="<?php echo e(route('queEsLeipel')); ?>">¿Qué es Leipel?</a></li>
-                    <li><a class="white-text" href="<?php echo e(route('terminosCondiciones')); ?>">Términos y Condiciones</a></li>
+                    <li><a class="white-text" href="https://leipel.com/queEsLeipel">¿Qué es Leipel?</a></li>
+                    <li><a class="white-text" href="https://leipel.com/terminosCondiciones">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    <!-- <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
-                    <li><a class="white-text" href="#!">Contactos</a></li> -->
+                    
+                    
                 </ul>
             </div>
             <div class="col l3 s12">
@@ -462,7 +472,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container center">
-            Copyright © 2018 Todos lo derechos reservados
+            Copyright © 2019 Todos lo derechos reservados
         </div>
     </div>
 </footer>
@@ -489,38 +499,27 @@
 
         
         <div id="usuario" class="col s12 center">
-            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/login')); ?>">
-                <?php echo e(csrf_field()); ?>
-
+            <form class="form-horizontal" role="form" method="POST" action="https://leipel.com/login">
+                <input type="hidden" name="_token" value="FEfXw3vsSFtTkHV4w3S4bMa1Q4SDOUcpAgm52j8k">
                 <div class="row">
-                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">email</i>
-                        <input type="text" id="email" name="email" class="autocomplete" value="<?php echo e(old('email')); ?>" required autofocus>
+                        <input type="text" id="email" name="email" class="autocomplete" value="" required autofocus>
                         <label  for="email">Correo</label>
                         <div id="emailMen" style="margin-top: 1%"></div>
-                        <?php if($errors->has('email')): ?>
-                            <span class="help-block">
-                                            <strong class="red-text"><?php echo e($errors->first('email')); ?></strong>
-                                        </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">vpn_key</i>
-                        <input id="password" type="password" name="password" class="autocomplete" value="<?php echo e(old('password')); ?>" required autofocus>
+                        <input id="password" type="password" name="password" class="autocomplete" value="" required autofocus>
                         <label for="password">Contraseña</label>
                         <div id="passwordMen" ></div>
-                        <?php if($errors->has('password')): ?>
-                            <span class="help-block">
-                                    <strong class="red-text"><?php echo e($errors->first('password')); ?></strong>
-                                </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="input-field col s12">
 
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
-                        <a class="blue-text" href="<?php echo e(url('/password/reset')); ?>">
+                        <a class="blue-text" href="https://leipel.com/password/reset">
                             Olvide mi contraseña
                         </a>
                     </div>
@@ -539,37 +538,26 @@
         </div>
         
         <div id="proveedor" class="col s12 center">
-            <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/seller_login')); ?>">
-                <?php echo e(csrf_field()); ?>
-
+            <form class="form-horizontal" role="form" method="POST" action="https://leipel.com/seller_login">
+                <input type="hidden" name="_token" value="FEfXw3vsSFtTkHV4w3S4bMa1Q4SDOUcpAgm52j8k">
                 <div class="row">
-                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">email</i>
-                        <input type="text" id="emailP" name="email" class="autocomplete" value="<?php echo e(old('email')); ?>" required autofocus>
+                        <input type="text" id="emailP" name="email" class="autocomplete" value="" required autofocus>
                         <label for="emailP">Correo</label>
                         <div id="emailMenP" style="margin-top: 1%"></div>
-                        <?php if($errors->has('email')): ?>
-                            <span class="help-block red-text" >
-                                            <strong ><?php echo e($errors->first('email')); ?></strong>
-                                        </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" id="passwordP" class="autocomplete" name="password" required>
                         <label for="passwordP">Contraseña</label>
                         <div id="passwordMenP" style="margin-top: 1%" ></div>
-                        <?php if($errors->has('password')): ?>
-                            <span class="help-block">
-                                            <strong class="text-red"><?php echo e($errors->first('password')); ?></strong>
-                                        </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="input-field col s12">
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
-                        <a class="blue-text" href="<?php echo e(url('/seller_password/reset')); ?>">Olvide mi contraseña </a>
+                        <a class="blue-text" href="https://leipel.com/seller_password/reset">Olvide mi contraseña </a>
                     </div>
                 </div>
             </form>
@@ -591,58 +579,37 @@
         
         <div id="usuario1" class="col s12 center">
             <div class="row">
-                <form class="form-horizontal" method="POST" action="<?php echo e(route('register')); ?>" id="formR">
-                    <?php echo e(csrf_field()); ?>
-
+                <form class="form-horizontal" method="POST" action="https://leipel.com/register" id="formR">
+                    <input type="hidden" name="_token" value="FEfXw3vsSFtTkHV4w3S4bMa1Q4SDOUcpAgm52j8k">
                     <input type="hidden" id="enlace" name="enlace">
-                    <div class="input-field col s12 <?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">face</i>
-                        <input type="text" class="autocomplete" name="name" id="name" value="<?php echo e(old('name')); ?>" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <input type="text" class="autocomplete" name="name" id="name" value="" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="name">Nombre</label>
                         <div id="nameMen" style="margin-top: 1%"></div>
-                        <?php if($errors->has('name')): ?>
-                            <span class="help-block">
-                                        <strong><?php echo e($errors->first('name')); ?></strong>
-                                    </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRU" name="email" class="autocomplete" required="required">
                         <label for="emailRU">Correo</label>
                         <div id="emailMenRU" style="margin-top: 1%"></div>
-                        <?php if($errors->has('email')): ?>
-                            <span class="help-block">
-                                        <strong><?php echo e($errors->first('email')); ?></strong>
-                                    </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" name="password" id="passwordRU" class="autocomplete" required="required">
                         <label for="passwordRU">Contraseña</label>
                         <div id="passwordMenRU" style="margin-top: 1%"></div>
-                        <?php if($errors->has('password')): ?>
-                            <span class="help-block">
-                                        <strong><?php echo e($errors->first('password')); ?></strong>
-                                    </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" name="password_confirm" id="password_confirm" class="autocomplete" required="required">
                         <label for="password_confirm">Repetir Contraseña</label>
                         <div id="passwordCMenRU" style="margin-top: 1%"></div>
-                        <?php if($errors->has('password_confirm')): ?>
-                            <span class="help-block">
-                                        <strong><?php echo e($errors->first('password_confirm')); ?></strong>
-                                    </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div>
                         <label>
                             <input type="checkbox" name="terminosCondiciones" checked="checked" required="required" id="terminosCondiciones">
-                            <span>He leído y acepto los </span> <a href="<?php echo e(route('terminosCondiciones')); ?>" target="_blank">Términos y Condiciones</a>.
+                            <span>He leído y acepto los </span> <a href="https://leipel.com/terminosCondiciones" target="_blank">Términos y Condiciones</a>.
                         </label>
                     </div>
 
@@ -666,65 +633,38 @@
         
         <div id="proveedor1" class="col s12 center">
             <form class="form-horizontal" id="formRP">
-                <?php echo e(csrf_field()); ?>
-
-                <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                <div class="row">
-                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                <input type="hidden" name="_token" value="FEfXw3vsSFtTkHV4w3S4bMa1Q4SDOUcpAgm52j8k">
+                                <div class="row">
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">store</i>
                         <input name="com_name" id="com_name"type="text" id="autocomplete-input10" class="autocomplete" required="required" >
                         <label for="com_name">Nombre comercial</label>
                         <div id="mensajeNombreComercial" style="margin-top: 1%"></div>
-                        <?php if($errors->has('tlf')): ?>
-                            <span class="help-block">
-                                <strong><?php echo e($errors->first('com_name')); ?></strong>
-                            </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">person</i>
                         <input type="text" id="contact_name" class="autocomplete" name="contact_name"
                                required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
                         <label for="contact_name">Nombre de contacto</label>
                         <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
-                        <?php if($errors->has('tlf')): ?>
-                            <span class="help-block">
-                                <strong><?php echo e($errors->first('contact_name')); ?></strong>
-                           </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">phone</i>
-                        <input type="text"  id="tlf" name="tlf"  value="<?php echo e(old('tlf')); ?>" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+">
+                        <input type="text"  id="tlf" name="tlf"  value="" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+">
                         <label for="tlf">Teléfono</label>
                         <div id="mensajeTelefono" style="margin-top: 1%"></div>
-                        <?php if($errors->has('tlf')): ?>
-                            <span class="help-block">
-                                            <strong><?php echo e($errors->first('tlf')); ?></strong>
-                                        </span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="input-field col s12 <?php echo e($errors->has('description') ? ' has-error' : ''); ?>">
+                                            </div>
+                    <div class="input-field col s12 ">
                         <i class="material-icons prefix blue-text">assignment</i>
                         <input type="text" id="description" name="description" required="required" class="autocomplete">
                         <label for="description-input14">Descripción</label>
-                        <?php if($errors->has('description')): ?>
-                            <span class="help-block">
-                                            <strong><?php echo e($errors->first('description')); ?></strong>
-                                        </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         <label for="autocomplete-input9">Correo</label>
                         <div id="mensajeCorreo" style="margin-top: 1%"></div>
-                        <?php if($errors->has('email')): ?>
-                            <span class="help-block">
-                                <strong><?php echo e($errors->first('email')); ?></strong>
-                            </span>
-                        <?php endif; ?>
-                    </div>
+                                            </div>
                     <div class="col s11 right">
                         <select name="content_type" id="content_type" required="required">
                             <option value="" disabled selected>Tipo de contenido</option>
@@ -766,9 +706,9 @@
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
-<script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>
-<script src="<?php echo e(asset('js/owl.carousel.min.js')); ?>"></script>
+<script src="https://leipel.com/plugins/materialize_index/js/materialize.js"></script>
+<script src="https://leipel.com/plugins/materialize_index/js/init.js"></script>
+<script src="https://leipel.com/js/owl.carousel.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
@@ -776,16 +716,16 @@
 
 function masInfo(tipo) {
         console.log(tipo);
-        var usuarioActivo = "<?php echo e(Auth::guest()); ?>";
+        var usuarioActivo = "1";
         console.log(usuarioActivo);
         if (tipo=="radio") {
-            var ruta = "<?php echo e(url('/ShowRadio')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            var ruta = "https://leipel.com/ShowRadio";
+            var ruta_seller = "https://leipel.com/seller_home";
             
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+            if ("" != ""){
                 location.href = ruta_seller;
             }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
+            else if ((usuarioActivo!=1) && ("" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -819,12 +759,12 @@ function masInfo(tipo) {
                 });
             }
         } else if (tipo=="tv") {
-            var ruta = "<?php echo e(url('/ShowTv')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+            var ruta = "https://leipel.com/ShowTv";
+            var ruta_seller = "https://leipel.com/seller_home";
+            if ("" != ""){
                 location.href = ruta_seller;
             }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
+            else if ((usuarioActivo!=1) && ("" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -858,13 +798,13 @@ function masInfo(tipo) {
                 });
             }
         } else if (tipo=="lectura") {
-            var ruta = "<?php echo e(url('/MyReads')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            var ruta = "https://leipel.com/MyReads";
+            var ruta_seller = "https://leipel.com/seller_home";
             
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+            if ("" != ""){
                 location.href = ruta_seller;
             }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
+            else if ((usuarioActivo!=1) && ("" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -898,13 +838,13 @@ function masInfo(tipo) {
                 });
             }
         } else if (tipo=="musica") {
-            var ruta = "<?php echo e(url('/MyMusic')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            var ruta = "https://leipel.com/MyMusic";
+            var ruta_seller = "https://leipel.com/seller_home";
             
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+            if ("" != ""){
                 location.href = ruta_seller;
             }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
+            else if ((usuarioActivo!=1) && ("" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -938,13 +878,13 @@ function masInfo(tipo) {
                 });
             }
         } else if (tipo=="cine") {
-            var ruta = "<?php echo e(url('/MyMovies')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
+            var ruta = "https://leipel.com/MyMovies";
+            var ruta_seller = "https://leipel.com/seller_home";
             
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
+            if ("" != ""){
                 location.href = ruta_seller;
             }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
+            else if ((usuarioActivo!=1) && ("" == "")) {
                 console.log("usuario logueado");
                 location.href = ruta;
             } else {
@@ -1096,6 +1036,67 @@ function masInfo(tipo) {
             }
         });
 
+        $('#featured3').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured4').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        $('#featured5').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
         //Mostarar contenidos seleccionados
         $('#cine').css("background-color","#42a5f5");
         $('#radios').hide();
@@ -1146,7 +1147,7 @@ function masInfo(tipo) {
        });
 
         $('#radio').click(function(){
-            console.log("pase por radio");
+
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -1156,6 +1157,7 @@ function masInfo(tipo) {
             $('#libros').hide();
             $('#musicas').hide();
             $('#cines').hide();
+            console.log( $('#radios').show());
             $('#radios').show();
         });
 
@@ -1174,9 +1176,9 @@ function masInfo(tipo) {
         });
 
         $("#formRP").on('submit',function(e){
-            var url = "<?php echo e(url('ApplysSubmit')); ?>";
+            var url = "https://leipel.com/ApplysSubmit";
             e.preventDefault();
-            var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
+            var gif = "https://leipel.com/sistem_images/loading.gif";
             swal({
                 title: "Procesando la información",
                 text: "Espere mientras se procesa la información.",
@@ -1678,16 +1680,6 @@ function masInfo(tipo) {
     });
 </script>
 
-<?php if(count($errors) > 0): ?>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
-    <script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>
-    <script>
-        $(document).ready(function(){
-            $('#modal1').modal('open');
-        });
-    </script>
-    <?php endif; ?>
 
     </body>
 </html>
