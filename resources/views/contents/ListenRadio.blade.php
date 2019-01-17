@@ -83,10 +83,21 @@
                         <i class="mdi mdi-forum-outline"></i>
                     </a>
                     <ul>
+                        @if($radios->facebook!=null)
                         <li><a href="{{$radios->facebook}}"  target="_blank" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+                        @endif
+                        @if($radios->google!=null)
                         <li><a href="{{$radios->google}}"    target="_blank"  class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
-                        <li><a href="{{$radios->twitter}}"   target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
-                        <li><a href="{{$radios->instagram}}" target="_blank" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
+                        @endif
+                        @if($radios->twitter!=null)
+                                <li><a href="{{$radios->twitter}}"   target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+                        @endif
+                        @if($radios->instagram!=null)
+                                <li><a href="{{$radios->instagram}}" target="_blank" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
+                        @endif
+                        @if($radios->web!=null)
+                                <li><a href="{{$radios->web}}" target="_blank" class="btn-floating grey"><i class="mdi mdi-earth"></i></a></li>
+                        @endif
                     </ul>
                 </div>
             @endforeach

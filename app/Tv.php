@@ -14,7 +14,7 @@ class Tv extends Model
     protected $fillable = [
         'id',
         'seller_id', 'name_r', 'streaming',
-        'logo', 'email_c', 'google',
+        'logo', 'email_c', 'web', 'google',
         'instagram', 'facebook', 'twitter'
     ];
 

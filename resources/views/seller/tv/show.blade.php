@@ -73,6 +73,9 @@
                                     </iframe>
                                 </div>
                             </div>
+                            @if($tv->web!=null)
+                                <a href="{{$tv->web}}" target="_blank" class="btn-floating grey"><i class="mdi mdi-earth"></i></a>
+                            @endif
                             @if($tv->facebook!=null)
                                 <a href="{{$tv->facebook}}" target="_blank" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a>
                             @endif
