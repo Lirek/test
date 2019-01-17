@@ -232,6 +232,11 @@ class HomeController extends Controller
         }
     }
 
+    public function Beneficios(){
+        return view('users.Beneficios');
+
+    }
+
     public function SaleTickets(){
         $Balance = NULL;
         $BalancePuntos = NULL;

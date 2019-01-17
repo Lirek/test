@@ -201,18 +201,18 @@
 
 
 <!-- Contenido  -->
-<br><br>
+
 
 <div class="row">
-    <div class="col s12 m8 offset-m2">
+    
         <div class="card curva">
-            <div class="card-content">
-                <div class="row">
-                    <div class="col s12 m8 center">
+            
+                
+                    <div class="col l5 s12 m8 center" style="height: 470px;">
                         <form class="form-horizontal" method="POST" action="{{ route('users.store') }}" id="formR1">
                             {{ csrf_field() }}
                             <h5 class="center">
-                                <b class="blue-text">Registro</b>
+                                <b class="blue-text">Registro GRATIS</b>
                             </h5><br>
                             <div class="input-field col s12  {{ $errors->has('name') ? ' has-error' : '' }}">
                                 <input type="text" name="user_code" value="{{$user_code}}" hidden>
@@ -263,16 +263,211 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col s12 m4 left"><br><br>
-                        <img src="{{asset('plugins/materialize_index/img/registro_leipel.png')}}" width="100%">
-                    </div>
-                </div>
+
+                   
+                    <div class="col l7 s12 m4 left">
+
+<div class="slider col l12 m12 s12" style="height: 450px;">
+
+    <ul class="slides">
+        <li>
+            <img src="https://leipel.com/plugins/materialize_index/img/piñas.jpg" width="100%;" height="100%"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
+                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
             </div>
+        </li>
+        <li>
+            <img src="https://leipel.com/plugins/materialize_index/img/gana_viajes.jpg" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption right-align break-word">
+                <h3><b>Invitando amigos puedes<br>ganar puntos para canjearlos<br>por viajes y premios</b></h3>
+            </div>
+        </li>
+        <li>
+            <img src="https://leipel.com/plugins/materialize_index/img/amigos_con_cola.jpg" width="100%;" height="100%;"> <!-- random image -->
+            <div class="caption left-align break-word">
+                <h3><b>Donde con <br>tus consumos ayudas a <br>una buena causa</b></h3>
+            </div>
+        </li>    
+    </ul>
+    
+  <ul class="indicators">
+        <li class="indicator-item"></li>
+        <li class="indicator-item active"></li>
+        <li class="indicator-item"></li>
+    </ul>
+    
+  </div>
+                    </div>
+               
+        
         </div>
-    </div>
+    
 </div>
 
 <!-- Fin Contenido  -->
+
+<!-- Franja azul -->
+<div class="carousel-item blue white-text" href="#four!">
+    <div class="row">
+        <div class="col s12 m12 l12 xl12  center">
+            <h5>Red social de entretenimiento</h5>
+        </div>
+        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine">
+            <img src="https://leipel.com/plugins/materialize_index/img/cine.png" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
+        </div>
+        <div class="col s4 m4 l4 xl2 center curva" id="musica">
+            <img src="https://leipel.com/plugins/materialize_index/img/musica.png" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
+        </div>
+        <div class="col s4 m4 l4 xl2 center curva" id="libro">
+            <img src="https://leipel.com/plugins/materialize_index/img/libro.png" width="50%" height="70%" title="Lectura"><br><b>Lectura</b><br><br>
+        </div>
+        <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center curva" id="radio"  >
+            <img src="https://leipel.com/plugins/materialize_index/img/radio.png" width="50%" height="70%" title="Radio"><br><b>Radio</b><br><br>
+        </div>
+        <div class="col s4 m4 l4 xl2 center curva" id="tv"  >
+            <img src="https://leipel.com/plugins/materialize_index/img/tv.png" width="50%" height="70%" title="Tv"><br><b>Tv</b><br><br>
+        </div>
+    </div>
+</div>
+<!-- Fin franja  -->
+
+<div class="row" id="cines">
+    <div class="col s12 m12">
+                                    <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+            
+    </div>
+</div>
+
+<div class="row" id="musicas">
+    <div class="col s12 m12">
+                                    <div class="col s12 m2">
+                </div>
+                    <div class="col s12 m8">
+                        <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
+                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                            <br><br>
+                        </div>
+                    </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+                </div>
+</div>
+
+<div class="row" id="libros">
+    <div class="col s12 m12">
+                                    <div class="col s12 m2">
+                </div>
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col s12 m2">
+                </div>
+                <br>
+                </div>
+</div>
+
+<div class="row" id="radios">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+                        <div class="col l12 s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiorevolucion-el telegrafo.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiowq.png" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiopuntorojo.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiomorena.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537802029.jpeg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801936.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1538674288.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801554.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537799660.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                            </div>
+    </div>
+</div>
+
+<div class="row" id="Tvs">
+    <div class="col m12 s12">
+        <div id="featured1" class="owl-carousel featured">
+                    
+                <div class="col l12 s12">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://leipel.com/images/Tv/radiologo_1538174512.png"  width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                            </div>
+    </div>
+</div>
 
 <!-- Parallax  -->
 {{--<div class="parallax-container" style="width: 100%; ">--}}
@@ -647,7 +842,7 @@
 <script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
 <script type="text/javascript">
 
-    // Tabs
+     // Tabs
     var elem = $('.tabs')
     var options = {}
     var instance = M.Tabs.init(elem, options);
@@ -678,7 +873,7 @@
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: false
+            indicators: true
         });
 
 
@@ -762,13 +957,118 @@
             }
         });
 
+        $('#featured3').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured4').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        $('#featured5').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
         //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
+        $('#cine').css("background-color","#42a5f5");
+        $('#radios').hide();
         $('#Tvs').hide();
-        $('#peliculas').hide();
         $('#libros').hide();
+        $('#musicas').hide();
+
+        $('#cine').click(function(){
+            console.log("pase por cine");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#42a5f5");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#musicas').hide();
+           $('#cines').show();
+       });
+
+        $('#musica').click(function(){
+            console.log("pase por musica");
+           $('#libro').css("background-color","#2196F3");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#42a5f5");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#libros').hide();
+           $('#cines').hide();
+           $('#musicas').show();
+       });
+
+       $('#libro').click(function(){
+        console.log("pase por libro");
+           $('#libro').css("background-color","#42a5f5");
+           $('#cine').css("background-color","#2196F3");
+           $('#musica').css("background-color","#2196F3");
+           $('#tv').css("background-color","#2196F3");
+           $('#radio').css("background-color","#2196F3");
+           $('#radios').hide();
+           $('#Tvs').hide();
+           $('#musicas').hide();
+           $('#cines').hide();
+           $('#libros').show();
+       });
 
         $('#radio').click(function(){
+
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -776,10 +1076,14 @@
             $('#tv').css("background-color","#2196F3");
             $('#Tvs').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
+            console.log( $('#radios').show());
             $('#radios').show();
         });
 
         $('#tv').click(function(){
+            console.log("pase por tv");
             $('#tv').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -787,123 +1091,45 @@
             $('#radio').css("background-color","#2196F3");
             $('#radios').hide();
             $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
             $('#Tvs').show();
         });
 
-//        $('#libro').click(function(){
-//            $('#libro').css("background-color","#42a5f5");
-//            $('#cine').css("background-color","#2196F3");
-//            $('#musica').css("background-color","#2196F3");
-//            $('#tv').css("background-color","#2196F3");
-//            $('#radio').css("background-color","#2196F3");
-//            $('#radios').hide();
-//            $('#Tvs').hide();
-//            $('#libros').show();
-//        });
-
-
-        jQuery.validator.addMethod("lettersonly", function(value, element, param) {
-            return value.match(new RegExp("." + param + "$"));
-        });
-
-        $.mockjax({
-            url: "emails.action",
-            response: function (settings) {
-                var email = settings.data.email, //original del archivo no cambiar
-                    emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
-                // emails = mys;
-                this.responseText = "true";
-                if ($.inArray(email, emails) !== -1) {
-                    this.responseText = "false";
+        $("#formRP").on('submit',function(e){
+            var url = "https://leipel.com/ApplysSubmit";
+            e.preventDefault();
+            var gif = "https://leipel.com/sistem_images/loading.gif";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $("#formRP").serialize(),
+                success: function (result) {
+                    console.log(result);
+                    swal("Su solicitud está siendo procesada","","success")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                },
+                error: function (result) {
+                    console.log(result);
+                    swal('Existe un Error en su Solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
                 }
-            },
-            responseTime: 500
+            });
         });
-
-        var email = $('#email-valid').val();
-        var password = $('#password-valid').val();
-        $("#formR1").validate({
-
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2,
-                    lettersonly: "[a-zA-Z]+"
-                },
-                email: {
-                    required: true,
-                    email: true,
-                    remote: {
-                        url: "{{url ('RegisterEmail')}}",
-                        type:"POST",
-                        data:{
-                            _token: $('input[name=_token]').val(),
-                            'email': function(){ return $('#email-valid').val();}
-                        }
-
-                    }
-                },
-                password: {
-                    required: true,
-                    minlength: 6
-                },
-                password_confirm: {
-                    required: true,
-                    minlength: 6,
-                    equalTo: "#password-valid"
-                },
-            },
-
-            messages: {
-                name: {
-                    required: " Ingresar su nombre",
-                    minlength: "Su nombre debe tener minimo 2 caracteres",
-                    lettersonly:'Solo debe ingresar letras'
-                },
-                password: {
-                    required: "Ingresar clave",
-                    minlength: "Debe tener minimo 6 caracteres"
-                },
-                password_confirm: {
-                    required: "Ingresar contraseña",
-                    minlength: "Debe tener minimo 6 caracteres",
-                    equalTo: "Las contraseña deben coincidir"
-                },
-                email: {
-                    required: "Ingresar un correo valido",
-                    email: "Formato de correo invalido",
-                    remote: ("Email ya se encuentra registrado")
-                }
-            },
-
-            errorElement : 'div',
-        errorPlacement: function(error, element) {
-            console.log(error)
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-            $('#registro').attr('disabled', true);
-          }
-        },
-        success: function(element) {
-            $('#registro').attr('disabled', false);
-        }
-
-        })
 
     });
-
-    function controltagNum(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8) return true; // para la tecla de retroseso
-        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
-        else if (tecla==13) return true;
-        patron =/[0-9]/;// -> solo numeros
-        te = String.fromCharCode(tecla);
-        return patron.test(te);
-    }
 
     //---------------------Validacion registros----------------------------------
     $("#emailRP").on('keyup change',function(){

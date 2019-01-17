@@ -45,7 +45,8 @@
 @section('main')  
 
 <div class="row">
-    <span class="grey-text"><h4 class="titelgeneral"><b><i class="material-icons small">audiotrack</i> Mi Música</b></h4></span>
+    <h4 class="titelgeneral"><i class="material-icons small">audiotrack</i> Mi Música</h4>
+
     <!-- <h5>Mis Peliculas</h5> -->
     <br>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Auth;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
@@ -89,28 +89,40 @@ class AdminController extends Controller
     		  return view('promoter.ContentModules.MainContent.Albums');
    		}
 
-      public function AlbumsDataTable($status)
-      { 
-      $albums= Albums::where('status',$status)->get();
-      $albums->each(function($albums){
-      $albums->Seller;
-      $albums->Autors;
-      $albums->songs;
-      });
-        return response()->json($albums);
-      }
+      public function AlbumsDataTable()
+      {
+          
+        $albums= Albums::where('status','=','En Revision');
 
-      public function AproveOrDenialAlbum(Request $request,$id) {
-        $albums= Albums::find($id);
-        if ($request->status=='Denegado') {
-          //$data=$seller->delete();
-          $seller->estatus = 3; // rechazado
-        } else {
-          $seller->estatus = 1; // aprobado
-        }
-        $albums->save();
-        // Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
-        return response()->json($request->all());
+          return Datatables::of($albums)
+                    ->addColumn('Estatus',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button>';
+                    })
+
+                    ->addColumn('Autors_name',function($albums){
+                      
+                      return $albums->Seller()->first()->name;
+                    })
+
+                    ->addColumn('songs',function($albums){
+                      
+                      return '<button type="button" class="btn btn-theme" value="'.$albums->id.'" id="songs" >'.$albums->songs()->count().'</button';
+                    })                    
+
+                    ->editColumn('autors_id',function($albums){
+
+                      return $albums->Autors()->first()->name;
+                    })
+
+                    ->editColumn('cover',function($albums){
+                      
+
+                      return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
+                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';
+                    })
+                    ->rawColumns(['Estatus','cover','songs'])
+                    ->toJson();        
       }
 
       public function ShowAllAlbums()
@@ -137,24 +149,11 @@ class AdminController extends Controller
             $track->save();
           }
 
-       // $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->message);
+       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
 			  
         $albums->save();
    			return response()->json($albums);
    		}
-
-      public function AproveOrDenialSeller(Request $request,$id) {
-        $seller= Albums::find($id);
-        if ($request->status=='Rechazado') {
-          //$data=$seller->delete();
-          $seller->estatus = 3; // rechazado
-        } else {
-          $seller->estatus = 2; // aprobado
-        }
-        $seller->save();
-        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
-        return response()->json($request->all());
-      }
 /*------------------------------------------------------------------------------------ ---------------------FUNCIONES DE SINGLE------------------------------
 -----------------------------------------------------------------------
 */
@@ -319,52 +318,44 @@ class AdminController extends Controller
 -----------------------------------------------------------------------
 */   		
   
-   		public function ShowRadios()
-    	{
+   		public function ShowRadios() {
         return view('promoter.ContentModules.MainContent.Radio');
    		}
 
-      public function RadioDataTable()
-      {
-        $radios= Radio::where('status','=','En Proceso')->with('Seller')->get();
-
-         return Datatables::of($radios)
-
-                          ->addColumn('Estatus',function($radios){
-
-                            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
-                          })
-                          ->editColumn('logo',function($radios){
-
-                          return '<img class="img-rounded img-responsive av" src="'.asset($radios->logo).'"
-                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                          })
-                          ->editColumn('streaming',function($radios){
-                      
-
-                          return '<audio controls="" src="'.$radios->streaming.'">
-                                    <source src="'.$radios->streaming.'" type="audio/mpeg">
-                                    </audio>';
-                         })
-                          ->addColumn('SocialMedia',function($radios){
-                      
-                            return 
-                            '
-                             <a target="_blank" href="http://'.$radios->facebook.'>
-                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
-                             </a>
-                             <a target="_blank" href="http://'.$radios->google.'">
-                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$radios->instagram.'">
-                               <i class="fa fa-instagram" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$radios->twitter.'">
-                              <i class="fa fa-twitter" style="font-size:36px"></i>
-                             </a>';
-                    })
-                          ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
-                          ->toJson();
+      public function RadioDataTable($status) {
+        $radios = Radio::where('status',$status)->with('Seller')->get();
+        return response()->json($radios);
+        /*
+        return Datatables::of($radios)
+          ->addColumn('Estatus',function($radios){
+            return '<button type="button" class="btn btn-theme" value='.$radios->id.' data-toggle="modal" data-target="#myModal" id="status">'.$radios->status.'</button';
+          })
+          ->editColumn('logo',function($radios){
+            return '<img class="img-rounded img-responsive av" src="'.asset($radios->logo).'"style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+          })
+          ->editColumn('streaming',function($radios){
+            return '<audio controls="" src="'.$radios->streaming.'"> <source src="'.$radios->streaming.'" type="audio/mpeg"> </audio>';
+          })
+          ->addColumn('SocialMedia',function($radios){
+            return
+            '<a target="_blank" href="http://'.$radios->facebook.'>
+              <i class="fa fa-facebook-official" style="font-size:24px">
+                <i class="fa fa-facebook" style="font-size:24px"></i>
+              </i>
+            </a>
+            <a target="_blank" href="http://'.$radios->google.'">
+              <i class="fa fa-youtube-play" style="font-size:36px"></i>
+            </a>
+            <a target="_blank" href="http://'.$radios->instagram.'">
+              <i class="fa fa-instagram" style="font-size:36px"></i>
+            </a>
+            <a target="_blank" href="http://'.$radios->twitter.'">
+              <i class="fa fa-twitter" style="font-size:36px"></i>
+            </a>';
+          })
+          ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
+          ->toJson();
+        */
       }
 
       public function BackendRadioData()
@@ -412,86 +403,58 @@ class AdminController extends Controller
 
       }
 
-      public function NewBackendRadios(Request $request)
-      {
+      public function NewBackendRadios(Request $request) {
         $Radio = new Radio;
-        
-            $file = $request->file('logo');
-            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
-            $path = public_path(). '/images/radio/';
-            $file->move($path, $name);
-            $logos = '/images/radio/'.$name;
-
+        $file = $request->file('logo');
+        $name = 'radiologo_'.time().'.'.$file->getClientOriginalExtension();
+        $path = public_path(). '/images/radio/';
+        $file->move($path, $name);
+        $logo = '/images/radio/'.$name;
         $Radio->seller_id = 0;
-
         $Radio->name_r = $request->name_r;
-        
         $Radio->streaming = $request->streaming;
-        
         $Radio->email_c = $request->email_c;
-        
         $Radio->google = $request->youtube;
-        
         $Radio->instagram = $request->instagram;
-        
         $Radio->facebook = $request->facebook;
-        
         $Radio->twitter = $request->twitter;
-        
-        $Radio->logo = $logos;
-
-        $Radio->status ='Aprobado';
-        
+        $Radio->logo = $logo;
+        $Radio->status = 'Aprobado';
         $Radio->save();
-
         return redirect()->action('AdminController@ShowRadios');
-
       }
 
-      public function DeleteBackendRadio($id)
-      {
+      public function DeleteBackendRadio($id) {
+        $radios = Radio::find($id);
+        File::delete(public_path().$radios->logo);
         $radios = Radio::destroy($id);
         return response()->json($radios);
       }
 
-      public function GetBackendRadio($id)
-      {
+      public function GetBackendRadio($id) {
         $radios = Radio::find($id);
         $radios->logo = asset($radios->logo);
         return response()->json($radios);
       }
 
-      public function UpdateBackendRadio(Request $request,$id)
-      {
-        $Radio= Radio::find($id);
-        //dd($request->all());
-        if($request->logo_u != null)
-        {
-            
-            $file = $request->file('logo_u');
-            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
-            $path = public_path(). '/images/radio/';
-            $file->move($path, $name);
-          
-            $Radio->logo = '/images/radio/'.$name;
-         }         
-
+      public function UpdateBackendRadio(Request $request) {
+        $Radio= Radio::find($request->idUpdate);
+        if($request->logo_u != null) {
+          File::delete(public_path().$Radio->logo);
+          $file = $request->file('logo_u');
+          $name = 'radiologo_'.time().'.'.$file->getClientOriginalExtension();
+          $path = public_path(). '/images/radio/';
+          $file->move($path, $name);
+          $Radio->logo = '/images/radio/'.$name;
+        }
         $Radio->name_r = $request->name_r_u;
-        
         $Radio->streaming = $request->streaming_u;
-        
         $Radio->email_c = $request->email_c_u;
-        
         $Radio->google = $request->youtube_u;
-        
         $Radio->instagram = $request->instagram_u;
-        
         $Radio->facebook = $request->facebook_u;
-        
         $Radio->twitter = $request->twitter_u;
-        
         $Radio->save();
-
         return redirect()->action('AdminController@ShowRadios');
       }
 
@@ -501,14 +464,13 @@ class AdminController extends Controller
         return view('admin.Radio')->with('radios',$radios);
       }
 
-   		public function RadioStatus(Request $request,$id)
-   		{
-   			$radios =Radio::find($id);
-   			$radios->status = $request->status; 
-          
-          $this->SendEmails($request->status,$radios->name,$radios->Seller->email);
-
-			  $radios->save();
+   		public function RadioStatus(Request $request,$id) {
+   			$radios = Radio::find($id);
+        if ($radios->seller!=null) {
+          $this->SendEmails($request->status,$radios->name,$radios->Seller->email,$request->reason);
+        }
+   			$radios->status = $request->status;
+        $radios->save();
    			return response()->json($radios);
    		}
 
@@ -645,175 +607,65 @@ class AdminController extends Controller
 ------------------------------------------------------------------------
 */ 		
    		
-	   	public function ShowTV()
-    	{
+	   	public function ShowTV() {
     		return view('promoter.ContentModules.MainContent.Tv');
    		}
 
-      public function DataTableTv()
-      {
-        $tv= Tv::where('status','=','En Proceso')->get();
-
-        return Datatables::of($tv)
-
-                          ->addColumn('Estatus',function($tv){
-
-                            return '<button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#myModal" id="status">'.$tv->status.'</button';
-                          })
-                          ->editColumn('logo',function($tv){
-                            /* solucion en produccion
-                            $ruta  = "leipel.com".$tv->logo;
-                            dd($ruta);
-
-                          return '<img class="img-rounded img-responsive av" src='.$ruta.'
-                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                          })
-                          */
-                          return '<img class="img-rounded img-responsive av" src='.asset($tv->logo).'
-                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                          })
-                          ->editColumn('streaming',function($tv){
-                      
-
-                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
-                         })
-                          ->addColumn('SocialMedia',function($tv){
-                      
-                            return 
-                            '<a target="_blank" href="http://'.$tv->facebook.'>
-                             <i class="fa fa-facebook-official" style="font-size:24px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->google.'">
-                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->instagram.'">
-                               <i class="fa fa-instagram" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->twitter.'">
-                              <i class="fa fa-twitter" style="font-size:36px"></i>
-                             </a>';
-                    })
-                          ->rawColumns(['Estatus','logo','streaming','SocialMedia'])
-                          ->toJson();
+      public function DataTableTv($status) {
+        $tv = Tv::where('status',$status)->where('seller_id','<>',0)->with('Seller')->get();
+        return response()->json($tv);
       }
 
-      public function BackendTvData()
-      {
-        $tv= Tv::where('seller_id','=',0)->get();
+      public function BackendTvData($status) {
+        $tv= Tv::where('seller_id',0)->where('status',$status)->get();
+        return response()->json($tv);
+        }
 
-         return Datatables::of($tv)
-
-                          ->addColumn('Actions',function($tv){
-
-                            return '<button type="button" class="btn-danger" value='.$tv->id.' data-toggle="modal" data-target="#DeleteRadio" id="delete">Eliminar</button>
-
-                            <button type="button" class="btn btn-theme" value='.$tv->id.' data-toggle="modal" data-target="#UpadeRadio" id="edit">Modificar</button';
-                          })
-                          ->editColumn('logo',function($tv){
-                            /*
-                            produccion
-                            $ruta  = "https://leipel.com/".$tv->logo;
-                            return '<img class="img-rounded img-responsive av" src='.$ruta.'
-                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                            })
-                            */
-
-                          return '<img class="img-rounded img-responsive av" src="'.asset($tv->logo).'"
-                                     style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                          })
-                          ->editColumn('streaming',function($tv){
-                      
-
-                          return '<button type="button" class="btn btn-theme" value='.$tv->streaming.' data-toggle="modal" data-target="#ShowStreaming" id="view">Ver</button';
-                          
-                         })
-                          ->addColumn('SocialMedia',function($tv){
-                      
-                            return 
-                            '<a target="_blank" href="http://'.$tv->facebook.'>
-                              <i class="fa fa-facebook-official" style="font-size:24px"><i class="fa fa-facebook" style="font-size:24px"></i></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->google.'">
-                              <i class="fa fa-youtube-play" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->instagram.'">
-                               <i class="fa fa-instagram" style="font-size:36px"></i>
-                             </a>
-                             <a target="_blank" href="http://'.$tv->twitter.'">
-                              <i class="fa fa-twitter" style="font-size:36px"></i>
-                             </a>';
-                    })
-                          ->rawColumns(['Actions','logo','streaming','SocialMedia'])
-                          ->toJson();
-
-      }
-
-       public function NewBackendTv(Request $request)
-      {
+      public function NewBackendTv(Request $request) {
         $Tv = new Tv;
-        
-            $file = $request->file('logo');
-            $name = 'Tvlogo_' . time() . '.'. $file->getClientOriginalExtension();
-            $path = public_path(). '/images/Tv/';
-            $file->move($path, $name);
-            $logos = '/images/Tv/'.$name;
-
+        $file = $request->file('logo');
+        $name = 'tvlogo_'.time().'.'.$file->getClientOriginalExtension();
+        $path = public_path().'/images/Tv/';
+        $file->move($path, $name);
+        $logos = '/images/Tv/'.$name;
         $Tv->seller_id = 0;
-
         $Tv->name_r = $request->name_r;
-        
         $Tv->streaming = $request->streaming;
-        
         $Tv->email_c = $request->email_c;
-        
         $Tv->google = $request->youtube;
-        
         $Tv->instagram = $request->instagram;
-        
         $Tv->facebook = $request->facebook;
-        
         $Tv->twitter = $request->twitter;
-        
         $Tv->logo = $logos;
-
-        $Tv->status ='Aprobado';
-        
+        $Tv->status = 'Aprobado';
         $Tv->save();
-
         return redirect()->action('AdminController@ShowTV');
-
       }
 
-      public function DeleteBackendTv($id)
-      {
+      public function DeleteBackendTv($id) {
+        $Tv = Tv::find($id);
+        File::delete(public_path().$Tv->logo);
         $Tv = Tv::destroy($id);
         return response()->json($Tv);
       }
 
-      public function GetBackendTv($id)
-      {
+      public function GetBackendTv($id) {
         $Tv = Tv::find($id);
         $Tv->logo = asset($Tv->logo);
         return response()->json($Tv);
       }
 
-      public function UpdateBackendTv(Request $request,$id)
-      {
-        $Tv= Tv::find($id);
-        //dd($request->all());
-        if($request->logo_u != null)
-        {
-            
-            $file = $request->file('logo_u');
-            $name = 'radiologo_' . time() . '.'. $file->getClientOriginalExtension();
-            $path = public_path(). '/images/Tv/';
-            $file->move($path, $name);
-          
-            $Tv->logo = '/images/Tv/'.$name;
-         }         
-
+      public function UpdateBackendTv(Request $request) {
+        $Tv = Tv::find($request->idUpdate);
+        if($request->logo_u != null) {
+          File::delete(public_path().$Tv->logo);
+          $file = $request->file('logo_u');
+          $name = 'tvlogo_'.time().'.'.$file->getClientOriginalExtension();
+          $path = public_path().'/images/Tv/';
+          $file->move($path, $name);
+          $Tv->logo = '/images/Tv/'.$name;
+        }
         $Tv->name_r = $request->name_r_u;
-        
         $Tv->streaming = $request->streaming_u;
         
         $Tv->email_c = $request->email_c_u;
@@ -1226,6 +1078,11 @@ class AdminController extends Controller
   }
   public function SellerDataTable() {
     $seller = Seller::all();
+    $seller->each(function($seller){
+      $seller->roles;
+    });
+    return response()->json($seller);
+    /*
     return Datatables::of($seller)
       ->addColumn('nombre',function($seller){
         return $seller->name;
@@ -1278,6 +1135,7 @@ class AdminController extends Controller
       })
       ->rawColumns(['logo','modulos','opciones'])
       ->toJson();
+    */
     }
 
     public function DeleteModule($id_seller,$id_module) {
@@ -1343,6 +1201,18 @@ class AdminController extends Controller
         return response()->json($data); 
       }
 
+      public function AproveOrDenialSeller(Request $request,$id) {
+        $seller = Seller::find($id);
+        if ($request->status=='Rechazado') {
+          //$data=$seller->delete();
+          $seller->estatus = 3; // rechazado
+        } else {
+          $seller->estatus = 2; // aprobado
+        }
+        $seller->save();
+        Mail::to($seller->email)->send(new StatusSeller($request->status,$request->message));
+        return response()->json($request->all());
+      }
 /*
   ---------------------------------------------------------------
   --------------------FUNCIONES DE PROVEEDORES-------------------
@@ -1439,59 +1309,46 @@ class AdminController extends Controller
         $rejection = Rejection::where('id_module',$idModulo)
                               ->where('module',$modulo)
                               ->get();
-        return response ()->json($rejection);                      
+        return response ()->json($rejection);
       }
 //-------------------------------------------------------------------------------
 
 //-----------------------CRUD PROMOTORES------------------------------------
 
-   		public function CreatePromoter(Request $request)
-   		{
+   		public function CreatePromoter(Request $request) {
    			$promoter = new Promoters;
-   			
         $promoter->name_c =$request->name_c;
-   			
         $promoter->phone_s =$request->phone_s;
-   			
         $promoter->email= $request->email_c;
-
         $promoter->priority = $request->priority;
-          
-          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-          
-          $charactersLength = strlen($characters);
-          
-          $randomString = '';
-        
-              for ($i = 0; $i < 6; $i++) 
-                  {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
-                  }
-
-
-   			$promoter->password=bcrypt($randomString);
-
-        event( new PasswordPromoter($promoter->email,$randomString));
-
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 6; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $promoter->password=bcrypt($randomString);
+        event(new PasswordPromoter($promoter->email,$randomString));
         $promoter->save();
-
-        $promoter->Roles()->attach($request->priority);   
-
+        $promoter->Roles()->attach($request->priority);
         return response()->json($promoter);
    		}
 
-   		public function UpdatePromoter(Request $request, $id)
-   		{
+      public function promoterUpdate($idPromoter) {
+        $promoter = Promoters::find($idPromoter);
+        return response()->json($promoter);
+      }
+
+   		public function UpdatePromoter(Request $request, $id) {
    			$promoter = Promoters::find($id);
-   			$promoter->name_c =$request->name_c;
-   			$promoter->phone_s =$request->phone_s;
-   			$promoter->email= $request->email_c;
+   			$promoter->name_c = $request->name_c;
+   			$promoter->phone_s = $request->phone_s;
+   			$promoter->email = $request->email_c;
    			$promoter->save();
    			return response()->json($promoter);
    		}
 
-   		public function DeletePromoter($id)
-   		{
+   		public function DeletePromoter($id) {
    			$promoter = Promoters::destroy($id);
    			return response()->json($promoter);
    		}
@@ -1569,62 +1426,45 @@ class AdminController extends Controller
         return response()->json($Applys);
       }
 
-      public function ShowBackendUsers()
-      {
-        
-
-        $promoters= Promoters::paginate()->where('priority','>',Auth::guard('Promoter')->user()->priority);
-
-
-        $priority= PromotersRoles::all();
-
+      public function ShowBackendUsers() {
+        $promoters = Promoters::where('priority','>',Auth::guard('Promoter')->user()->priority)->get();
+        $priority = PromotersRoles::all();
         $Salesmans = Salesman::all();
-        
-
         return view('promoter.AdminModules.BackendUsers')
-                                            ->with('promoters',$promoters)
-                                            ->with('salesmans',$Salesmans)
-                                            ->with('priority',$priority);
+          ->with('promoters',$promoters)
+          ->with('salesmans',$Salesmans)
+          ->with('priority',$priority);
       }
 //------------------SALESMAN CRUD--------------------------------------------
       
-      public function RegisterSalesman(Request $request)
-      {
+      public function RegisterSalesman(Request $request) {
         $salesman = new Salesman;
         $salesman->name = $request->name;
         $salesman->adress = $request->adress;
         $salesman->phone = $request->phone;
         $salesman->email = $request->email;
-        $salesman->promoter_id =Auth::guard('Promoter')->user()->id;
+        $salesman->promoter_id = Auth::guard('Promoter')->user()->id;
         $salesman->save();
-        
         return response()->json($salesman->with('CreatedBy')->findOrFail(1));
       }
 
-      public function DeleteSalesman($id)
-      {
-        $salesman= Salesman::destroy($id);        
-
+      public function DeleteSalesman($id) {
+        $salesman= Salesman::destroy($id);
         return response()->json($salesman); 
       }
 
-      public function FindSalesman($id)
-      {
+      public function FindSalesman($id) {
         $salesman= Salesman::find($id);
-
         return response()->json($salesman);
-
       }
 
-      public function UpadateSalesman(Request $request, $id)
-      {
+      public function UpadateSalesman(Request $request, $id) {
         $salesman= Salesman::find($id);
         $salesman->name = $request->name;
         $salesman->adress = $request->adress;
         $salesman->phone = $request->phone;
         $salesman->email = $request->email;
         $salesman->save();
-
         return response()->json($salesman);
       }
 
@@ -1647,15 +1487,15 @@ class AdminController extends Controller
                                              ->get();
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
-                      
+
                       return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#myModal" id="Status">En Proceso</button';
                     })
 
                     ->addColumn('webs',function($user){
-                      
+
                       return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
-                    })                                        
-                    
+                    })
+
                     ->editColumn('img_doc',function($user){
                       /* solucion para produccion
                       $ruta = "https://leipel.com/";
@@ -1671,27 +1511,27 @@ class AdminController extends Controller
                                  </button>';
                     })
                     ->editColumn('name',function($user){
-                       return $user->name.' '.$user->last_name; 
+                       return $user->name.' '.$user->last_name;
                     })
                     ->rawColumns(['Estatus','img_doc','webs'])
-                    ->toJson();                                           
+                    ->toJson();
       }
 
       public function AllClientsData()
       {
           $user=User::where('verify','=','1')
-                                             ->get(); 
+                                             ->get();
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
-                      
+
                       return '<button type="button" class="btn btn-theme" disabled >Aprobado</button';
                     })
 
                     ->addColumn('webs',function($user){
-                      
+
                       return '<button type="button" class="btn btn-theme" value='.$user->id.' data-toggle="modal" data-target="#webModal" id="webs">Ver Redes</button';
-                    })                                        
-                    
+                    })
+
                     ->editColumn('img_doc',function($user){
 
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
@@ -1729,21 +1569,21 @@ class AdminController extends Controller
                                  </button>';
                     })
                     ->editColumn('name',function($user){
-                       return $user->name.' '.$user->last_name; 
+                       return $user->name.' '.$user->last_name;
                     })
                     ->rawColumns(['Estatus','img_doc','webs'])
-                    ->toJson();                                           
+                    ->toJson();
       }
 
 
       public function ValidateUser(Request $request,$id)
       {
         $User= User::find($id);
-        
+
         if ($request->status == 'Aprobado')
           {
             $User->verify=1;
-            
+
             event(new UserValidateEvent($User->email,1,0));
           }
            else
@@ -1765,68 +1605,68 @@ class AdminController extends Controller
           $referals1 = [];
           $referals2= [];
           $referals3= [];
-          $WholeReferals = new Collection; 
-          
-          if ($user->Referals()->get()->isEmpty()) 
+          $WholeReferals = new Collection;
+
+          if ($user->Referals()->get()->isEmpty())
           {
             return Datatables::of($WholeReferals)->toJson();
           }
-          foreach ($user->Referals()->get() as $key) 
+          foreach ($user->Referals()->get() as $key)
           {
               $referals1[]=$key->refered;
               $WholeReferals->prepend(User::find($key->refered));
           }
 
-          if (count($referals1)>0) 
-              { 
-                
-                foreach ($referals1 as $key2) 
-                 {  
+          if (count($referals1)>0)
+              {
+
+                foreach ($referals1 as $key2)
+                 {
                     $joker = User::find($key2);
-                    
+
                     foreach($joker->Referals()->get() as $key2)
                      {
                        $referals2[]=$key2->refered;
                        $WholeReferals->prepend(User::find($key2->refered));
-                     }                  
+                     }
                  }
               }
           else
               {
                 $referals2=0;
-              }   
+              }
 
 
-                               
-          if (count($referals2)>0) 
+
+          if (count($referals2)>0)
               {
-                foreach ($referals2 as $key3) 
+                foreach ($referals2 as $key3)
                 {
                   $joker = User::find($key3);
-                    
+
                     foreach($joker->Referals()->get() as $key3)
                      {
                        $referals3[]=$key3->refered;
-                       $WholeReferals->prepend(User::find($key3->refered));                       
-                     }         
+                       $WholeReferals->prepend(User::find($key3->refered));
+                     }
                 }
               }
 
           else
               {
                 $referals3=0;
-              }   
+              }
 
-                        
-                          
+
+
             $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
-                        
+
               if (in_array($item->id, $referals1)) { return $item->level=1;}
               if (in_array($item->id, $referals2)) { return $item->level=2;}
               if (in_array($item->id, $referals3)) { return $item->level=3;}
-                      });         
-              
-        return Datatables::of($WholeReferals)->toJson();              
+                      });
+
+        return Datatables::of($WholeReferals)->toJson();
       }
 
 //------------------------------------------------------------------
@@ -1893,7 +1733,7 @@ class AdminController extends Controller
                                       $ruta = "http://leipel";
                       return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
                       <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
                                  </button> ';
                     })
                     return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
@@ -1908,12 +1748,12 @@ class AdminController extends Controller
                       return $deposit->TicketsUser->name;
                     })
                     ->addColumn('Estatus',function($deposit){
-                      
+
                       return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
                       </button';
                     })
                      ->addColumn('total',function($deposit){
-                      
+
                       return $deposit->value*$deposit->Tickets->cost.'$';
                     })
                       ->rawColumns(['Estatus','voucher'])
@@ -2116,6 +1956,58 @@ class AdminController extends Controller
       $pagos->Seller;
     });
     return response()->json($pagos);
+    /*
+    $payments = PaymentSeller::where('status',$status);
+      return Datatables::of($payments)
+        ->addColumn('proveedor',function($payments){
+          $seller = "<button href='' value='".$payments->seller->id."' data-toggle='modal' data-target='#ModalSeller' id='seller' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$payments->seller->name."</button>";
+          return $seller;
+        })
+        ->addColumn('img_factura',function($payments){
+          return "<button href='' data-toggle='modal' data-target='#facturaModal' value=".$payments->id."><img class='img-rounded img-responsive av' id='factura' src=".asset($payments->factura)." style='width:70px;height:70px;' alt='Factura'></button>";
+        })
+        ->addColumn('cita',function($payments){
+          if ($payments->fecha_cita==NULL) {
+            return "Cita no asiganda";
+          } else {
+            $cita = date('d-m-Y',strtotime($payments->fecha_cita));
+            return $cita;
+          }
+        })
+        ->addColumn('tickets',function($payments){
+          $seller = Seller::find($payments->seller_id);
+          return $payments->tickets." / ".$seller->credito;
+        })
+        ->addColumn('opciones',function($payments){
+          if ($payments->status=="Por cobrar") {
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = "Pagar o revertir";
+            $value2 = "Por cobrar";
+            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
+          }
+          else if ($payments->status=="Diferido") {
+            $colorBoton = "btn-warning";
+            $id = "status";
+            $modal = "#myModal";
+            $texto = "Pagar o revertir";
+            $value2 = "Diferido";
+            $rechazo = "<button type='button' class='btn btn-danger' value=".$payments->id." data-toggle='modal' data-target='#negado' id='denegado'>Ver negaciones</button>";
+          }
+          else if ($payments->status=="Pagado") {
+            $colorBoton = "btn-success";
+            $id = "pagado";
+            $modal = "";
+            $texto = $payments->status;
+            $value2 = "";
+            $rechazo = "";
+          }
+          return "<button type='button' class='btn ".$colorBoton."' value=".$payments->id." data-toggle='modal' data-target='".$modal."' id='".$id."' value2='".$value2."'>".$texto."</button>".$rechazo;
+        })
+        ->rawColumns(['proveedor','img_factura','opciones'])
+        ->toJson();
+    */
   }
 
   public function admin_payments(Request $request,$id) {

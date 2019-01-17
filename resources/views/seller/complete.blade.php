@@ -274,19 +274,21 @@
                                     </span>
                                 @endif
                             </div>
-
+                                <img id="preview_adj_ruc" src="" name='ci'/>
+                                <object id="pdfruc"  class="text-center"  type="application/pdf" align="center" width="380" height="180" style="display: none;"></object>
                             <div class="file-field input-field col m6 offset-m3">
                                 <label for="adj_ruc" class="">Imagen del RUC</label>
                                 <br><br>
-                                <img id="preview_adj_ruc" src="" name='ci'/>
+
                                 <div class="btn blue">
                                     <span><i class="material-icons">photo_camera</i></span>
-                                    <input type="file" class="form-control" name="adj_ruc" id="adj_ruc" accept="image/*" required="required">
+                                    <input type="file" class="form-control" name="adj_ruc" id="adj_ruc" accept="image/*,.pdf" required="required">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text">
                                 </div>
                                 <div id="mensajeImgDoc" style="display: none;"></div>
+
                             </div>
                             
                             <div class="input-field col m6  {{ $errors->has('password') ? ' has-error' : '' }}">
@@ -973,9 +975,20 @@
             var reader = new FileReader();
             reader.onload = function (e) {
                 imgId= '#preview_'+$(input).attr('id');
+                
+                if(input.files[0].type != 'application/pdf')
+                {
+                $('#pdfruc').hide();
                 $(imgId).attr('src', e.target.result);
-                $(imgId).width('350');
-                $(imgId).height('300');
+                $(imgId).width('250');
+                $(imgId).height('200');
+                }
+                else{
+                    $(imgId).width('0');
+                    $(imgId).height('0');
+                    $('#pdfruc').show();
+                    $('#pdfruc').attr('data', e.target.result);
+                }
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -989,14 +1002,14 @@
         var valConfirContraseña = '#passwordConfirmMenRU';
         var valDireccion = '#mensajeDireccion';
         var extension = adj_ruc.substring(adj_ruc.lastIndexOf("."));
-        if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+        if (extension==".png" || extension==".jpg" || extension==".jpeg" || extension==".pdf") {
             $('#completar').attr('disabled',false);
             $('#mensajeImgDoc').hide();
             $('#preview_adj_ruc').show();
         } else {
             $('#completar').attr('disabled',true);
             $('#mensajeImgDoc').show();
-            $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg o png');
+            $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg, png o pdf');
             $('#mensajeImgDoc').css('color','red');
             $('#preview_adj_ruc').hide();
         }

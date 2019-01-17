@@ -43,8 +43,7 @@
 @section('main')  
 
 <div class="row">
-    <span class="grey-text"><h4><b><i class="material-icons small">movie</i> Mis Peliculas</b></h4></span>
-    
+    <h4 class="titelgeneral"><i class="material-icons small">movie</i> Mis Peliculas</h4>
     <br>
 
         <div class="row">

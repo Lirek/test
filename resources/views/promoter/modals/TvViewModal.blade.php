@@ -1,337 +1,206 @@
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Estatus</h4>
-        </div>
-        <div class="modal-body">
-         <p>Modifique el estatus de la Televisora</p>
-        
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus de la televisora</h4>
+      </div>
+      <br>
+      <div style="margin-top: 15%; margin-bottom: 15%">
+        <form method="POST" id="formStatus">
+          {{ csrf_field() }}
+          <div class="col s6">
+            <p>
+              <label>
+                <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" required="required">
+                <span>Aprobar</span>
+              </label>
+            </p>
+          </div>
+          <div class="col s6">
+            <p>
+              <label>
+                <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" required="required">
+                <span>Negar</span>
+              </label>
+            </p>
+          </div>
+          <div class="input-field col s8 offset-s2" style="display:none" id="if_no">
+            <textarea name="message" class="materialize-textarea" type="text" id="razon"></textarea>
+            <label for="razon">Explique la razón</label>
+            <div id="mensajeMaximoRazon"></div>
+          </div>
+          <br>
+          <div class="col s12">
+            <button class="btn curvaBoton" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-             <form method="POST" id="formStatus">
-                              {{ csrf_field() }}
-
-                           <div class="radio-inline">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button"  onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                <span class="mdl-radio__label">Aprobar</span>
-                </label>
-             </div>
-
-             <div class="radio-inline">
-             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
-                <span class="mdl-radio__label">Negar</span>
-             </label>
-
-             </div>
-
-             <div class="radio-inline" style="display:none" id="if_no">
-              <div class="mdl-textfield mdl-js-textfield">
-               <textarea name="message" class="mdl-textfield__input" type="text" rows= "6" id="razon" ></textarea>
-               <label class="mdl-textfield__label" for="razon">Explique La Razon</label>
+  <div class="modal" id="NewTv">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Agregue una televisora</h4>
+      </div>
+      <div style="margin-top: -15px">
+        <form method="POST" id="NewRadioForm" action="{{url('NewBackendTv')}}" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="name_r" name="name_r" required="required" autofocus="autofocus">
+              <label for="name_r">Nombre de la Tv</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="email" class="validate" id="email_c" name="email_c" required="required">
+              <label for="email_c">Correo</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="text" class="validate" id="streaming" name="streaming" required="required">
+              <label for="streaming">Streaming de la Tv</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="google" name="youtube" pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')">
+              <label for="email_c">YouTube</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="instagram" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram" class="validate" oninvalid="this.setCustomValidity('Ingrese un instagram valido')" oninput="setCustomValidity('')">
+              <label for="email_c">Instagram</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="facebook" name="facebook" pattern="http://www\.facebook\.com\/(.+)|https://www\.facebook\.com\/(.+)" oninvalid="this.setCustomValidity('Ingrese un facebook valido')" oninput="setCustomValidity('')">
+              <label for="email_c">Facebook</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter" class="validate" oninvalid="this.setCustomValidity('Ingrese un twitter valido')" oninput="setCustomValidity('')">
+              <label for="email_c">Twitter</label>
+            </div>
+            <div class="input-field col s12">
+              <div id="image-preview" style="border:#bdc3c7 1px solid;">
+                <label for="image-upload" id="image-label">Logo de la tv</label>
+                <input type="file" name="logo" accept="image/*" id="image-upload" oninvalid="this.setCustomValidity('Ingrese un logo')" oninput="setCustomValidity('')" required="required">
               </div>
-             </div>
-
-             <div class="radio-inline">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Enviar
-                </button>
             </div>
+          </div>
+          <div class="col s12">
+            <button class="btn curvaBoton" type="submit">
+              Enviar
+            </button>
+          </div>
         </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
       </div>
-      
     </div>
   </div>
 
- <div class="modal fade" id="NewRadio" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Nueva Televisora</h4>
-        </div>
-        <div class="modal-body">
-     
-        
-
-             <form method="POST" id="NewRadioForm" action="{{url('NewBackendTv')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-                              {{ csrf_field() }}
-
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nombre de La Televisora</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="name_r" placeholder="Nombre de La Radio" name="name_r" required>
-                              </div>
-                          </div>
-                          
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Direccion del Streaming</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="streaming" placeholder="Direccion del Streaming" name="streaming" required>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Correo de Contacto</label>
-                              <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="email_c" name="email_c" placeholder="Email" required>
-                              </div>
-                          </div>
-
-                        <div class="form-group">
-
-                            {{--link d google+--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-google active"><i class="fa fa-youtube"></i></span>
-                                <input type="text" class="form-control" id="google" autofocus="autofocus" name="youtube"
-                                       placeholder="Youtube"
-                                       pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)"
-                                       required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
-                                       oninput="setCustomValidity('')">
-
-                            </div>
-                            {{--lin de instagram--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-instagram active"><i class="fa fa-instagram"></i></span>
-                                <input id="instagram"
-                                       pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
-                                       type="text" name="instagram" class="form-control" placeholder="Instagram"
-                                       required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-                            {{--link de facebook--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook"></i></span>
-                                <input type="text" class="form-control" id="facebook" name="facebook"
-                                       placeholder="Facebook"
-                                       pattern="http://www\.facebook\.com\/(.+)|https://www\.facebook\.com\/(.+)" required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-
-                            {{--lind de twitter--}}
-                            <div class="input-group">
-                                <span class="input-group-addon btn-twitter active"><i class="fa fa-twitter"></i></span>
-                                <input id="twitter" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?"
-                                       type="text"
-                                       name="twitter"
-                                       class="form-control" placeholder="Twitter" required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-
-                        </div>
-
-                          <div class="form-group">
-                            <div id="image-preview" style="border:#000000 1px solid; margin-left: 20px" class="col-md-1">
-                                   <label for="image-upload" id="image-label">Logo</label>
-                                    <input type="file" name="logo" accept=".jpg" id="image-upload" oninvalid="this.setCustomValidity('Ingrese Un Logo')"
-                                     oninput="setCustomValidity('')" required/>
-                            </div>
-                          </div>
-
-                
-                <button class="btn-success" type="submit">                    
-                  Enviar
-                </button>
-            </div>
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+  <div class="modal" id="myModalBackend">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus de la televisora</h4>
       </div>
-      
+      <br>
+      <div style="margin-top: 15%; margin-bottom: 15%">
+        <form method="POST" id="formStatusBackend">
+          {{ csrf_field() }}
+          <div class="col s6">
+            <p>
+              <label>
+                <input type="radio" id="option1" onclick="javascript:yesNoCheck();" name="statusB" value="Aprobado" required="required">
+                <span>Aprobar</span>
+              </label>
+            </p>
+          </div>
+          <div class="col s6">
+            <p>
+              <label>
+                <input type="radio" id="option2" onclick="javascript:yesNoCheck();" name="statusB" value="Denegado" required="required">
+                <span>Negar</span>
+              </label>
+            </p>
+          </div>
+          <div class="input-field col s8 offset-s2" style="display:none" id="ifNo">
+            <textarea name="message" class="materialize-textarea" type="text" id="razonR"></textarea>
+            <label for="razon">Explique la razón</label>
+            <div id="mensajeMaximoRazon"></div>
+          </div>
+          <br>
+          <div class="col s12">
+            <button class="btn curvaBoton" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
- <div class="modal fade" id="UpadeRadio" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modificar Televisora</h4>
-        </div>
-        <div class="modal-body">
-     
-        
-
-             <form method="POST" id="UpdateRadioForm"  enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-                              {{ csrf_field() }}
-
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nombre de La Televisora</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="name_r_u" placeholder="Nombre de La Radio" name="name_r_u" required>
-                              </div>
-                          </div>
-                          
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Direccion del Streaming</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="streaming_u" placeholder="Direccion del Streaming" name="streaming_u" required>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Correo de Contacto</label>
-                              <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="email_c_u" name="email_c_u" placeholder="Email" required>
-                              </div>
-                          </div>
-
-                        <div class="form-group">
-
-                            {{--link d google+--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-google active"><i class="fa fa-youtube"></i></span>
-                                <input type="text" class="form-control" id="youtube_u" autofocus="autofocus" name="youtube_u"
-                                       placeholder="Youtube"
-                                       pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)"
-                                       required oninvalid="this.setCustomValidity('Ingrese Un Canal Valido')"
-                                       oninput="setCustomValidity('')">
-
-                            </div>
-                            {{--lin de instagram--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-instagram active"><i class="fa fa-instagram"></i></span>
-                                <input id="instagram_u"
-                                       pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)"
-                                       type="text" name="instagram_u" class="form-control" placeholder="Instagram"
-                                       required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Instagram Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-                            {{--link de facebook--}}
-                            <div class="input-group ">
-                                <span class="input-group-addon btn-facebook active"><i class="fa fa-facebook"></i></span>
-                                <input type="text" class="form-control" id="facebook_u" name="facebook_u"
-                                       placeholder="Facebook"
-                                       pattern="http://www\.facebook\.com\/(.+)|https://www\.facebook\.com\/(.+)" required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Facebook Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-
-                            {{--lind de twitter--}}
-                            <div class="input-group">
-                                <span class="input-group-addon btn-twitter active"><i class="fa fa-twitter"></i></span>
-                                <input id="twitter_u" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?"
-                                       type="text"
-                                       name="twitter_u"
-                                       class="form-control" placeholder="Twitter" required
-                                       oninvalid="this.setCustomValidity('Ingrese Un Twitter Valido')"
-                                       oninput="setCustomValidity('')">
-                            </div>
-
-                        
-
-                          <div class="form-group">
-                            <div id="image-preview_u" style="border:#000000 1px solid; margin-left: 20px" class="col-md-1">
-                                   <label for="image-upload" id="image-label_u">Logo</label>
-                                    <input type="file" name="logo_u" accept=".jpg" id="image-upload_u" oninvalid="this.setCustomValidity('Ingrese Un Logo')"
-                                     oninput="setCustomValidity('')" required/>
-                            </div>
-                          </div>
-
-                
-                <button class="btn-success" type="submit">                    
-                  Enviar
-                </button>
-            </div>
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+  <div class="modal" id="updateTv">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Modifique una televisora</h4>
       </div>
-      
+      <div style="margin-top: -15px">
+        <form method="POST" id="UpdateTvForm" action="{{url('UpdateBackendTv')}}" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <input type="hidden" id="idUpdate" name="idUpdate">
+          <div class="col l12 m6">
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="name_r_u" name="name_r_u" required="required" autofocus="autofocus" placeholder="">
+              <label for="name_r">Nombre de la Tv</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="email" class="validate" id="email_c_u" name="email_c_u" required="required" placeholder="">
+              <label for="email_c">Correo</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="text" class="validate" id="streaming_u" name="streaming_u" required="required" placeholder="">
+              <label for="streaming">Streaming de la Tv</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="youtube_u" name="youtube_u" pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)" oninvalid="this.setCustomValidity('Ingrese un canal valido')" oninput="setCustomValidity('')" placeholder="">
+              <label for="email_c">YouTube</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="instagram_u" pattern="https?:\/\/(www\.)?instagram\.com\/([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)" type="text" name="instagram_u" class="validate" oninvalid="this.setCustomValidity('Ingrese un instagram valido')" oninput="setCustomValidity('')" placeholder="">
+              <label for="email_c">Instagram</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="text" class="validate" id="facebook_u" name="facebook_u" pattern="http://www\.facebook\.com\/(.+)|https://www\.facebook\.com\/(.+)" oninvalid="this.setCustomValidity('Ingrese un facebook valido')" oninput="setCustomValidity('')" placeholder="">
+              <label for="email_c">Facebook</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="twitter_u" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter_u" class="validate" oninvalid="this.setCustomValidity('Ingrese un twitter valido')" oninput="setCustomValidity('')" placeholder="">
+              <label for="email_c">Twitter</label>
+            </div>
+            <div class="col s6">
+              <label for="">Imagen actual:</label>
+              <img src="" id="img_u" class="materialboxed">
+            </div>
+            <div class="input-field col s6">
+              <div id="image-preview_u" style="border:#bdc3c7 1px solid;">
+                <label for="image-upload_u" id="image-label_u">Logo de la tv</label>
+                <input type="file" name="logo_u" accept="image/*" id="image-upload_u" oninvalid="this.setCustomValidity('Ingrese un logo')" oninput="setCustomValidity('')" required="required">
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <button class="btn curvaBoton" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
-<div class="modal fade" id="DeleteRadio" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Borrar Televisora</h4>
-        </div>
-        <div class="modal-body">
-         <p>¿Esta Seguro de que desea borrar la Tv?</p>
-        
-
-             <form method="POST" id="formDelete">
-                              {{ csrf_field() }}
-
-             <div class="radio-inline">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">                    Borrar
-                </button>
-            </div>
-        </form>
-
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+  <div class="modal" id="verTv">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Ver la televisora</h4>
       </div>
-      
-    </div>
-  </div>
-
-<div class="modal fade" id="ShowStreaming" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tv</h4>
-        </div>
-        <div class="modal-body">
-         
-        
-          <iframe id="video" width="560" height="315" src="" frameborder="0" allowfullscreen>
-            
-          </iframe>
-
-
-             
-        
-        
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+      <div class="plyr__video" id="player">
+        <iframe id="video" align="middle" src="" allowfullscreen allowtransparency allow="autoplay" height="500" width="100%" scrolling="no" style="border:10px;">
+        </iframe>
       </div>
-      
     </div>
   </div>
