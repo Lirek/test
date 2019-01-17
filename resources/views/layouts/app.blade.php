@@ -259,6 +259,8 @@
                         </ul><!--End ul Invitar-->
                     </li> <!--End Invitar-->
 
+                    <li><a href="{{url('Beneficios')}}" class="waves-effect waves-blue"><i class="small material-icons">flight_takeoff</i>Beneficios</a></li>
+
                     <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Recargar</a></li>
 
                                         <!--<li>

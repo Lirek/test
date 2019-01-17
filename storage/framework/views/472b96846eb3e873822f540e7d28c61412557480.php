@@ -1,7 +1,6 @@
-@extends('seller.layouts')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!--main content start-->
-    @include('flash::message')
+    <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
     <style type="text/css">
@@ -41,10 +40,10 @@
                 <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> MIS CONTENIDOS</h4>
                 <br>
 
-                {{--Peliculas--}}
-                @if(count($Movies)> 0 || count($Series) > 0)
+                
+                <?php if(count($Movies)> 0 || count($Series) > 0): ?>
                     <div class="card">
-                        @if(count($Movies)>0)
+                        <?php if(count($Movies)>0): ?>
                             <div class="row">
                                 <div class="col s12 ">
                                     <a href="#" >
@@ -54,17 +53,17 @@
                                 </div>
                                 <div class="col s12 ">
                                     <div  class="owl-carousel owl-theme">
-                                        @foreach($Movies as $m)
+                                        <?php $__currentLoopData = $Movies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div>
-                                                <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="250px" width="100px" onclick="masInfo('pelicula',{!!$m->id!!})">
+                                                <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e($m->img_poster); ?>" height="250px" width="100px" onclick="masInfo('pelicula',<?php echo $m->id; ?>)">
                                             </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                     <br><br>
                                 </div>
                             </div>
-                        @endif
-                        @if(count($Series)>0)
+                        <?php endif; ?>
+                        <?php if(count($Series)>0): ?>
                             <div class="row">
                                 <div class="col s12 ">
                                     <a href="#" >
@@ -73,21 +72,21 @@
                                 </div>
                                 <div class="col s12 ">
                                     <div  class="owl-carousel owl-theme">
-                                        @foreach($Series as $s)
+                                        <?php $__currentLoopData = $Series; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div>
-                                                <img src="{{ asset($s->img_poster)}}" height="250px" width="100px" onclick="masInfo('serie',{!!$s->id!!})">
+                                                <img src="<?php echo e(asset($s->img_poster)); ?>" height="250px" width="100px" onclick="masInfo('serie',<?php echo $s->id; ?>)">
                                             </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                     <br><br>
                                 </div>
                             </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
-                @endif
+                <?php endif; ?>
 
-                {{--Musica--}}
-                @if(count($Albums)>0)
+                
+                <?php if(count($Albums)>0): ?>
                     <div class="card">
                         <div class="row">
                             <div class="col s12 ">
@@ -97,21 +96,21 @@
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
-                                    @foreach($Albums as $a)
+                                    <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div>
-                                            <img src="{{ asset($a->cover) }}" height="250px" width="100px">
+                                            <img src="<?php echo e(asset($a->cover)); ?>" height="250px" width="100px">
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <br><br>
                             </div>
                         </div>
-            @endif
+            <?php endif; ?>
 
-            {{--libros--}}
-            @if(count($Book)> 0 || count($Megazines)> 0)
+            
+            <?php if(count($Book)> 0 || count($Megazines)> 0): ?>
                 <div class="card">
-                    @if(count($Book)> 0)
+                    <?php if(count($Book)> 0): ?>
                         <div class="row">
                             <div class="col s12 ">
                                 <a href="#"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
@@ -119,19 +118,19 @@
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
-                                    @foreach($Book as $b)
+                                    <?php $__currentLoopData = $Book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div>
-                                            <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
+                                            <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($b->cover); ?>" height="250px" width="100px" onclick="masInfo('libro',<?php echo $b->id; ?>)">
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <br><br>
                             </div>
                         </div>
-                    @endif
+                    <?php endif; ?>
 
-                    {{--Revista--}}
-                    @if(count($Megazines)> 0)
+                    
+                    <?php if(count($Megazines)> 0): ?>
 
 
                         <div class="row">
@@ -143,22 +142,22 @@
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
-                                    @foreach($Megazines as $m)
+                                    <?php $__currentLoopData = $Megazines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div>
-                                            <img src="{{ asset($m->cover)}}" height="250px" width="100px" onclick="masInfo('revista',{!!$m->id!!})">
+                                            <img src="<?php echo e(asset($m->cover)); ?>" height="250px" width="100px" onclick="masInfo('revista',<?php echo $m->id; ?>)">
                                         </div>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <br><br>
                             </div>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
-            @endif
+            <?php endif; ?>
 
 
                     <!--CONTENIDO RECIENTE Radio-->
-                        @if(count($Radio)>0)
+                        <?php if(count($Radio)>0): ?>
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
@@ -169,25 +168,25 @@
                                     </div>
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
-                                            @foreach($Radio as $r)
+                                            <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div>
-                                                    <a href="{{url('ListenRadio/'.$r->id)}}" class="waves-effect waves-light">
-                                                        <img src="{{asset($r->logo)}}" height="150px" width="150px"  onclick="masInfo('radio')">
+                                                    <a href="<?php echo e(url('ListenRadio/'.$r->id)); ?>" class="waves-effect waves-light">
+                                                        <img src="<?php echo e(asset($r->logo)); ?>" height="150px" width="150px"  onclick="masInfo('radio')">
                                                     </a>
                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                         <br><br>
                                     </div>
                                 </div>
 
                             </div>
-                        @endif
+                        <?php endif; ?>
                     <!--End  RECIENTE radio-->
 
 
                         <!--CONTENIDO RECIENTE Tv-->
-                        @if(count($Tv)>0)
+                        <?php if(count($Tv)>0): ?>
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
@@ -198,48 +197,48 @@
                                     </div>
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
-                                            @foreach($Tv as $tv)
+                                            <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <div>
-                                                    <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
-                                                        <img src="{{ asset('/images/Tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" onclick="masInfo('tv',{!!$tv->id!!})" ></a>
+                                                    <a  href="<?php echo e(url('PlayTv/'.$tv->id)); ?>" class="waves-effect waves-light">
+                                                        <img src="<?php echo e(asset('/images/Tv/')); ?>/<?php echo e($tv->logo); ?>"  height="150px" width="150px" onclick="masInfo('tv',<?php echo $tv->id; ?>)" ></a>
                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                         <br><br>
                                     </div>
                                 </div>
                             </div>
-                    @endif
+                    <?php endif; ?>
                     <!--End  RECIENTE tv-->
 
 
 
         </div>
     </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <script type="text/javascript">
 
         function masInfo(tipo,id) {
             console.log(tipo,id);
 
             if (tipo=="radio") {
-                var ruta = "{{ url('/ListenRadio/') }}/"+id;
+                var ruta = "<?php echo e(url('/ListenRadio/')); ?>/"+id;
                 location.href = ruta;
             } else if (tipo=="tv") {
-                var ruta = "{{ url('/PlayTv/') }}/"+id;
+                var ruta = "<?php echo e(url('/PlayTv/')); ?>/"+id;
                 location.href = ruta;
             } else if (tipo=="serie") {
-                var ruta = "{{ url('/series/') }}/"+id;
+                var ruta = "<?php echo e(url('/series/')); ?>/"+id;
                 location.href = ruta;
             } else if (tipo=="pelicula") {
-                var ruta = "{{ url('/movies/') }}/"+id;
+                var ruta = "<?php echo e(url('/movies/')); ?>/"+id;
                 location.href = ruta;
             } else if (tipo=="revista") {
-                var ruta = "{{ url('/show_megazine/') }}/"+id;
+                var ruta = "<?php echo e(url('/show_megazine/')); ?>/"+id;
                 location.href = ruta;
             } else if (tipo=="libro") {
-                var ruta = "{{ url('/tbook/') }}/"+id;
+                var ruta = "<?php echo e(url('/tbook/')); ?>/"+id;
                 location.href = ruta;
             }
         }
@@ -293,4 +292,6 @@
 
         //# sourceURL=pen.js
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
