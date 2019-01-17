@@ -31,7 +31,7 @@ class BooksController extends Controller
                     ->pluck('full_name', 'id');
         $sagas = Sagas::where('type_saga','Libros')->orderBy('id', 'ASC')->pluck('sag_name', 'id');
         $rating = Rating::orderBy('id', 'DESC')->pluck('r_name','id');
-        $tags = Tags::where('status','Aprobado')->where('type_tags','Peliculas')->get();
+        $tags = Tags::where('status','Aprobado')->where('type_tags','Libros')->get();
 
         return view('seller.book.create')
             ->with('author', $author)
@@ -80,7 +80,7 @@ class BooksController extends Controller
                     ->pluck('full_name', 'id');
             $sagas = Sagas::where('type_saga','Libros')->orderBy('id', 'ASC')->pluck('sag_name', 'id')->filter();
             $ratings = Rating::orderBy('id','ASC')->pluck('r_name','id');
-            $tags = Tags::where('type_tags','Peliculas')->where('status','Aprobado')->get();
+            $tags = Tags::where('type_tags','Libros')->where('status','Aprobado')->get();
             $selected = $books->tags_book()->get();
 
             return view('seller.book.edit')

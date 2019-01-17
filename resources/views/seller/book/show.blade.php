@@ -86,12 +86,13 @@
                 <div class="col s12 m4">
                     <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" width="100%" height="300" style="bor<der-radius: 10px" id="panel" class='materialboxed'>
                     <br><br>
-                    <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
+                    <!-- <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a> -->
+                    <a  href="{{ asset('book')}}/{{ $book->books_file }}" class="btn curvaBoton waves-effect waves-light green" target="_blank">Leer libro</a>
                         <a href="{{ url('/tbook') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                 </div>
                 <div class="col m6 s12">
                     <ul class="collection z-depth-1" >
-                        <li class="collection-item" style="padding: 10px ">
+                        <!-- <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">
                                     <i class="material-icons circle left">create</i>
@@ -101,7 +102,7 @@
                                     {{ $book->original_title }}
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                 <div class="col s12 m5">

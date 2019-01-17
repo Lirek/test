@@ -169,16 +169,25 @@
                                 <div id="mensajeDocumento"></div>
                                 <div class="btn blue">
                                      <span>seleccione<i class="material-icons right">assignment_ind</i></span>
-                                    {!! Form::file('adj_ruc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
+                                    {!! Form::file('adj_ruc',['class'=>'form-control','accept'=>'.img*, .pdf','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text">
                                 </div>
+                                 <div id="mensajeImgDoc" style="display: none;"></div>
                             </div>    
                             @endif
-                                <div  class="col m4">
-                                    @if ($seller->adj_ruc)
+                                <div  class="col m12">
+                                    @if ($seller->adj_ruc && pathinfo($seller->adj_ruc, PATHINFO_EXTENSION) != 'pdf')
                                         <img id="preview_img_doc" src="{{asset($seller->adj_ruc)}}" name='ci' alt="your image" width="180" height="180" />
+                                        <object id="pdfruc"  class="text-center"  type="application/pdf" align="center" width="380" height="180"></object>
+                                    @elseif (pathinfo($seller->adj_ruc, PATHINFO_EXTENSION) == 'pdf')
+                                        <object id="pdfruc" data="{{asset($seller->adj_ruc)}}" class="text-center"  type="application/pdf" align="center" width="380" height="180"></object>
+                                        <br>
+                                        <img id="preview_img_doc"  name='ci'  />
+                                    @else
+                                        <img id="preview_img_doc"  name='ci'  />
+                                        <object id="pdfruc"  class="text-center"  type="application/pdf" align="center" width="380" height="180"></object>
                                     @endif
                                 </div>
                             </div>
@@ -403,7 +412,19 @@
 
                 reader.onload = function (e) {
                     imgId= '#preview_'+$(input).attr('id');
+                    if(input.files[0].type != 'application/pdf'){
+                    $('#pdfruc').hide();
                     $(imgId).attr('src', e.target.result);
+                    $(imgId).width('350');
+                    $(imgId).height('300');
+                    }
+                    else
+                    {
+                    $(imgId).width('0');
+                    $(imgId).height('0');
+                    $('#pdfruc').show();
+                    $('#pdfruc').attr('data', e.target.result);
+                    }
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -561,14 +582,14 @@
             $('#img_doc').change(function(){
                 var img_doc = $('#img_doc').val();
                 var extension = img_doc.substring(img_doc.lastIndexOf("."));
-                if (extension==".png" || extension==".jpg" || extension==".jpeg") {
+                if (extension==".png" || extension==".jpg" || extension==".jpeg" || extension=='.pdf') {
                     $('#Editar').attr('disabled',false);
                     $('#mensajeImgDoc').hide();
                     $('#preview_img_doc').show();
                 } else {
                     $('#Editar').attr('disabled',true);
                     $('#mensajeImgDoc').show();
-                    $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg o png');
+                    $('#mensajeImgDoc').text('La imagen debe estar en formato jpeg, jpg, png o pdf');
                     $('#mensajeImgDoc').css('color','red');
                     $('#preview_img_doc').hide();
                 }

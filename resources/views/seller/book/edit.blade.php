@@ -258,6 +258,50 @@
                                     @endif
                                 @endforeach
 
+                                 <input type="hidden" id="saga" value="{{$book->saga_id}}">
+                            <div class="">
+                                {{--tiene saga--}}
+                                <label> ¿Pertenece a una saga? </label>
+                                <br>
+                                <div class="radio-inline">
+                                    <label class="" for="option-1">
+                                        <input type="radio" id="option-1" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                        <span class="mdl-radio__label">Si</span>
+                                    </label>
+                                
+                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                        <input type="radio" id="option-2" class="mdl-radio__button with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                        <span class="mdl-radio__label">No</span>
+                                    </label>
+
+                                </div>
+                                <br>
+                            </div>
+                                <div class="" style="display:none" id="if_si">
+                                    <div class="col m12 s12">
+                                        <div class="input-field col s12">
+                                        {{--saga del libro--}}
+                                         <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                                        {!! Form::select('saga_id',$saga,$book->saga_id,['class'=>'form-control select-saga','placeholder'=>'Selecione saga del libro','id'=>'exampleInputFile']) !!}
+                                        <label for="exampleInputFile" class="control-label">Saga del libro</label>
+                                        <br>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="input-field col s6">
+                                        {{--capitulo que se le antepone--}}
+                                        <i class="material-icons prefix blue-text valign-wrapper">remove</i>
+                                        <label for="exampleInputPassword1" class="control-label">Antes</label>
+                                        {!! Form::number('before',$book->before,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                        <br>
+                                    </div>
+                                    <div class="input-field col s6">
+                                    {{--capitulo que le sigue--}}
+                                        <i class="material-icons prefix blue-text valign-wrapper">add</i>
+                                        <label for="exampleInputPassword1" class="control-label">Después</label>
+                                        {!! Form::number('after',$book->after,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
+                                    </div> -->
+                                </div>
+
                                 {{--titulo del libro--}}
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text">create</i>
@@ -274,7 +318,7 @@
                                 </div>
                                 <br>
 
-                                {{--titulo original del libro--}}
+                                <!-- {{--titulo original del libro--}}
                                 <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>
                                     <label for="exampleInputFile" class="control-label">Titulo original</label>
@@ -288,7 +332,7 @@
                                         <br>
                                     @endif
                                 </div>
-                                <br>
+                                <br> -->
 
                                 {{--precio--}}
                                 <div class="input-field col s12 m6">
@@ -676,49 +720,8 @@
                                 </div>
                             </div>
                             
-                            <input type="hidden" id="saga" value="{{$book->saga_id}}">
-                            <div class="">
-                                {{--tiene saga--}}
-                                <label> ¿Pertenece a una saga? </label>
-                                <br>
-                                <div class="radio-inline">
-                                    <label class="" for="option-1">
-                                        <input type="radio" id="option-1" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                                        <span class="mdl-radio__label">Si</span>
-                                    </label>
+                           
                                 
-                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                                        <input type="radio" id="option-2" class="mdl-radio__button with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
-                                        <span class="mdl-radio__label">No</span>
-                                    </label>
-
-                                </div>
-                                <br>
-                            </div>
-                                <div class="" style="display:none" id="if_si">
-                                    <div class="col m12 s12">
-                                        <div class="input-field col s12">
-                                        {{--saga del libro--}}
-                                         <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                                        {!! Form::select('saga_id',$saga,$book->saga_id,['class'=>'form-control select-saga','placeholder'=>'Selecione saga del libro','id'=>'exampleInputFile']) !!}
-                                        <label for="exampleInputFile" class="control-label">Saga del libro</label>
-                                        <br>
-                                        </div>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        {{--capitulo que se le antepone--}}
-                                        <i class="material-icons prefix blue-text valign-wrapper">remove</i>
-                                        <label for="exampleInputPassword1" class="control-label">Antes</label>
-                                        {!! Form::number('before',$book->before,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
-                                        <br>
-                                    </div>
-                                    <div class="input-field col s6">
-                                    {{--capitulo que le sigue--}}
-                                        <i class="material-icons prefix blue-text valign-wrapper">add</i>
-                                        <label for="exampleInputPassword1" class="control-label">Después</label>
-                                        {!! Form::number('after',$book->after,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
-                                    </div>
-                                </div>
                            
                         </div>
                         

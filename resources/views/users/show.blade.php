@@ -58,13 +58,13 @@
                     <div class="col s12 m8  ">
                         <ul class="collection z-depth-1" >
 
-                            <li class="collection-item" style="padding: 5px 35px 5px 35px;">
+                            <!-- <li class="collection-item" style="padding: 5px 35px 5px 35px;">
                                 <p>
                                 <i class="material-icons circle left blue-text">create</i>
                                     <b class="left">Titulo original: </b>
                                 </p>
                                 <p ALIGN="justify">&nbsp; {{ $book->original_title }}</p>
-                            </li>
+                            </li> -->
 
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
                                 <p><i class="material-icons circle left blue-text">turned_in</i>
@@ -115,7 +115,8 @@
                                 <br>
                                 <div class="row">
                                     <div class="col s4 m4 l4">
-                                        <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a>
+                                        <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
+                                         <a  href="{{ asset('book')}}/{{ $book->books_file }}" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
                                     </div>
                                     <div class="col s4 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
