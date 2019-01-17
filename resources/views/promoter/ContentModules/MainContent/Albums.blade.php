@@ -1,150 +1,204 @@
 @extends('promoter.layouts.app')
-
 @section('main')
- <div class="row mt">
-	<h2><i class="fa fa-angle-right"></i>Albums</h2>
-  </div>
-  
-  <div class="row mt">
-    <div class="col-lg-12">
-		<div class="content-panel">
-			<table class="display responsive no-wrap" width="100%" id="Album">            
-				<thead>
-		        <tr>
-		          <th class="non-numeric">Nombre Del Album</th>
-		          <th class="non-numeric">Autor</th>
-		          <th class="non-numeric">Duracion</th>
-				  <th class="non-numeric">Proveedor</th>
-				  <th class="non-numeric">Portada</th>
-		          <th class="non-numeric">Costo en Tickets</th>
-		          <th class="non-numeric">Numero de Canciones</th>
-		          <th class="non-numeric">Estatus</th>
-		        </tr>
-		    	</thead>
-			
-			</table>
-		</div>
-	</div>
-  </div>
-
-  <div class="row mt">
-  	<div class="col-md-10">
-		<div class="content-panel">
-                <table id="song_table" class="table table-bordered table-striped table-condensed">            
-                        <thead>
-                                <tr>
-                                  
-                                  <th>Nombre</th>
-                                  <th>Duracion</th>
-                                  <th>Archivo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="body_s">
-                                
-                            </tbody>
-                </table>
-		</div>
-	</div>
-  </div>
-
-@endsection
-
-@section('js')
+	<span class="card-title grey-text"><h3>Albums</h3></span>
+	<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+		<li class="tab" id="Revision"><a class="active" href="#test1">En revision</a></li>
+		<li class="tab" id="Aprobado"><a href="#test2">Aprobados</a></li>
+		<li class="tab" id="Negado"><a href="#test3">Negados</a></li>
+	</ul>
+	<table class="responsive-table">
+		<thead>
+			<tr>
+				<th><i class="material-icons"></i>Nombre Del Album</th>
+				<th><i class="material-icons"></i>Autor</th>
+				<th><i class="material-icons"></i>Duracion</th>
+				<th><i class="material-icons"></i>Proveedor</th>
+				<th><i class="material-icons"></i>Portada</th>
+				<th><i class="material-icons"></i>Costo en Tickets</th>
+				<th><i class="material-icons"></i>Numero de Canciones</th>
+				<th><i class="material-icons"></i>Estatus</th>
+			</tr>
+		</thead>
+		<tbody id="table">
+		</tbody>
+	</table>
 @include('promoter.modals.AlbumsViewModal')
-<script>
-	$(document).ready(function(){
+@endsection
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script>
 
-		var Albums = $('#Album').DataTable({
-	        processing: true,
-	        serverSide: true,
-            responsive: true,
+	  $(document).ready(function(){
+	    $('.modal').modal();
+	  });
 
-	        ajax: '{!! url('AlbumDataTable') !!}',
-	        columns: [
-	            {data: 'name_alb', name: 'name_alb'},
-	            {data: 'autors_id', name: 'autors_id'},
-	            {data: 'duration', name: 'duration'},
-	            {data: 'Autors_name', name: 'Autors_name'},
-	            {data: 'cover', name: 'cover'},
-	            {data: 'cost', name: 'cost'},
-	            {data: 'songs', name: 'songs'},
-	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-	        ]
-	    });
+	function listado(status) {
+			$("#table").empty();
+			var parametros = status;
+			var ruta = "{{url('AlbumDataTable')}}"+"/"+parametros;
+			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+			swal({
+				title: "Procesando la información",
+				text: "Espere mientras se procesa la información.",
+				icon: gif,
+				buttons: false,
+				closeOnEsc: false,
+				closeOnClickOutside: false
+			});
+			$.ajax({
+				url: ruta,
+				type:'GET',
+				dataType: "json",
+				success: function (data) {
+					swal.close();
+					console.log(data);
+					$.each(data,function(i,info) {
+						
+						if (info.cover!=0 ) {
+							var portada = 
+							"<img class='materialboxed' width='150' height='120' src='{!!asset('"+info.cover+"')!!}'";
+						} else {
+							var portada = "No aplica ";
+						}
+						if (info.status=="En Revision") {
+				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='status'>"+info.status+"</button>"
+				        }
+						if (info.status=="Aprobado") {
+				        	var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'
+				        }
+				        if (info.status=="Denegado") {
+				        	var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button>'
+				        }
+				        if (info.songs) {
+				        	var Canciones = '<button class="btn modal-trigger curvaBoton" value='+info.id+' href="#misCanciones" id="Canciones">'+info.songs.length+'</button>'
+				        }
 
-	 $(document).on('click', '#Status', function() {   
-        
-        var x = $(this).val();
+						var filas = "<tr><td>"+
+						info.name_alb+"</td><td>"+
+						info.autors.name+"</td><td>"+
+						info.duration+"</td><td>"+
+						info.seller.name+"</td><td>"+
+						portada+"</td><td>"+
+						info.cost+"</td><td>"+
+						Canciones+"</td><td>"+
+						opcion+"</td></tr>";
+						$("#table").append(filas);
+					})
+					$('.materialboxed').materialbox();
+					$('.tooltipped').tooltip();
+				},
+				error:function(data) {
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+					console.log(data);
+				}
+			});
+		}
+		$(document).ready(function(){
+			listado("En Revision");
+		});
+		$(document).on('click','#Revision', function() {
+			listado("En Revision");
+		});
+		$(document).on('click','#Aprobado', function() {
+			listado("Aprobado");
+		});
+		$(document).on('click','#Negado', function() {
+			listado("Denegado");
+		});
 
 
-       $( "#formStatus" ).on( 'submit', function(e)
-            {
-	            var s=$("input[type='radio'][name=status]:checked").val();
-	            var url = 'admin_album/'+x;
-	            console.log(s);
-	            e.preventDefault();
-	            $.ajax({
-	                    url: url,
-	                    type: 'post',
-	                    data: {
-	                            _token: $('input[name=_token]').val(),
-	                            status: s,
-	                          }, 
-	                    success: function (result) {
+  // Modificar el estatus de un album
+  $(document).on('click','#status', function() {
+    var x = $(this).attr("value");
+    $("#FormStatus").on('submit', function(e){
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      swal({
+        title: "Procesando la información",
+        text: "Espere mientras se procesa la información.",
+        icon: gif,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
+      });
+      var s = $("input[type='radio'][name=status]:checked").val();
+      var message = $('#razon').val();
+      var url = "{{url('/admin_album')}}/"+x;
+      console.log(url);
+      e.preventDefault(); 
+      console.log(s);
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          _token: $('input[name=_token]').val(),
+          status: s,
+          message: message
+        }, 
+        success: function (result) {
+          console.log(result);
+          $('#myModal').toggle();
+          $('.modal-backdrop').remove();
+          swal("Se ha "+s+" con éxito","","success")
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+        error: function (result) {
+          console.log(result);
+          swal('Existe un error en su solicitud','','error')
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+      });
+    });
+  });
+  // Modificar el estatus de un album
 
-	                                                $('#myModal').toggle();
-	                                                $('.modal-backdrop').remove();
-	                                                alert("Se ha "+s+" con exito");
-	                                                $('#album'+x).fadeOut();
-	                                                },
+  // Listar las canciones
+		$(document).on('click', '#Canciones', function(e) {
+			var id = $(this).attr("value");
+			var url = "{{url('/admin_songs')}}/"+id;
+			console.log(url);
+			$("#cancion").empty();
+				e.preventDefault();
+				$.ajax({
+					url: url, 
+					type:'get', 
+					dataType:'json',
+					success: function(datos){
+						console.log(datos);
+						$('#totalCanciones').show();
+						$('#totalCanciones').text('este album tiene: '+datos.length+' canciones.');
 
-	                    error: function (result) {
-	                    alert('Existe un Error en su Solicitud');
-	                    console.log(result);
-	                    }
-	                    });  
-                                    });
+						if (datos.song_file != 0) {
+							var archivo = "<audio controls='' src='"+datos.song_file+"'>"+
+							"<source src='"+datos.song_file+"' type='audio/mpeg'>"+
+                        "</audio>";
+						}
+						
+						$.each(datos, function(i,info){
+							var fila = "<tr><td>"+
+							info.song_name+"</td><td>"+
+							info.duration+"</td><td>"+
+							archivo+
+							"</td></tr>";
+							$('#cancion').append(fila);
+						});
+					},
+					error: function (datos) {
+					console.log(datos);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
+			});
+		});
+		// Listar las negaciones
 
-       });
-		
-
-	 $(document).on('click', '#songs', function() {    
-        var x = $(this).val();
-        
-            $.ajax({ 
-                type    : "get",
-                url     : "admin_songs/"+x,
-                dataType: "json",
-                
-                success: function (data) 
-                {
-                    
-                    var table = document.getElementById("song_table");
-                    
-                    $("#song_table").find("tr:gt(0)").remove();
-
-                    
-                    $.each(data, function( index, value ) 
-                    {
-
-                        var row = table.insertRow();
-                        var name = row.insertCell();
-                        var dur = row.insertCell();
-                        var ar = row.insertCell();
-                        name.innerHTML = value['song_name'];
-                        dur.innerHTML = value['duration'];
-                        ar.innerHTML = '<audio controls="" src="'+value['song_file']+'"><source src="'+value['song_file']+'" type="audio/mpeg"></audio>';
-
-                    });
-
-                    
-                    
-                      //console.log(data);          
-                } 
-                });
-
-            });
-
-	});
-</script>
+	</script>
 @endsection

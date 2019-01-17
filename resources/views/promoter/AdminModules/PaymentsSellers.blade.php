@@ -50,6 +50,7 @@
 				dataType: "json",
 				success: function (data) {
 					swal.close();
+					console.log(data);
 					$.each(data,function(i,info) {
 						if (info.seller.name) {
 							var inProveedor = 
