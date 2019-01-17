@@ -19,8 +19,9 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-        <span class="grey-text"><h4 class="titelgenera"><b><i class="material-icons small">music_note</i> Música</b></h4></span>
-        <div class="row">
+                <h4 class="titelgeneral"><i class="material-icons small">music_note</i> Música</h4>
+
+                <div class="row">
           <div class="input-field col s12 m6 offset-m3">
               <form method="POST"  id="SaveSong" action="{{url('SearchProfileArtist')}}">
                 {{ csrf_field() }}

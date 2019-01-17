@@ -32,8 +32,9 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-				<span class="grey-text"><h4><b><i class="material-icons small">book</i> Peliculas</b></h4></span>
-                <div class="row">
+				<h4 class="titelgeneral"><i class="material-icons small">movie</i> Peliculas</h4>
+
+				<div class="row">
                 	<div class="input-field col s12 m6 offset-m3">
                 		<form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
                 			{{ csrf_field() }}
