@@ -25,7 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title'             =>          'required|min:2|max:50',
-            'original_title'    =>          'required|min:2|max:50',
+            // 'original_title'    =>          'required|min:2|max:50',
             'cover'             =>          'required',
             // 'sinopsis'          =>          'min:3|max:150',
 //            'books_files'       =>          'required|mimes:pdf'

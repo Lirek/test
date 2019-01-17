@@ -236,7 +236,7 @@
                                         
                                         {!! Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!} 
                                         <label for="exampleInputFile" class="">Nombre de autor</label>  
-                                        <br>
+                                        
                                     </div>
                                     @else
                                         
@@ -256,6 +256,56 @@
                                 @endif
                             @endforeach
 
+                            <div class="col s12 ">
+
+                            {{--tiene saga--}}
+                            <label> ¿Pertenece a una saga? </label>
+                            
+                            <div class="">
+                                <label class="" for="option-1">
+                                    <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                                    <span class="mdl-radio__label">Si</span>
+                                </label>
+                            
+                                <label class="" for="option-2">
+                                    <input type="radio" id="option-2" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                                    <span class="mdl-radio__label">No</span>
+                                </label>
+
+                            </div>
+                            <br/>
+
+                            <div style="display:none" id="if_si" class="">
+                                <div class="input-field col s12">
+                                {{--saga del libro--}}
+                                <i class="material-icons prefix blue-text valign-wrapper">book</i>
+                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control','placeholder'=>'Selecione saga del libro','id'=>'sagas']) !!}
+                                <label for="sagas" class="control-label">Saga del libro</label>
+                                <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="#modal-defaultMS">
+                                    <i class="fa fa-book"></i>
+                                    Agregar saga
+                                </a>
+                                <br><br>
+                            </div>
+                                <!-- <div class="input-field col s6">
+                                    {{--capitulo que se le antepone--}}
+                                    <i class="material-icons prefix blue-text valign-wrapper">remove</i>
+                                    <label for="antes" class="control-label">Antes</label>
+                                    {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
+                                    <br>
+                                </div>
+                                <div class="input-field col s6">
+                                    {{--capitulo que le sigue--}}
+                                    
+                                    <i class="material-icons prefix blue-text valign-wrapper">add</i>
+                                    <label for="despues" class="control-label">Despúes</label>
+                                    {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
+                                    <br>
+                                </div> -->
+                            <br>
+                        </div>
+                    </div>
+
                             {{--titulo del libro--}}
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
@@ -266,13 +316,13 @@
                             </div>
 
                             {{--titulo original del libro--}}
-                            <div class="input-field col s12">
+                           <!--  <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i> 
                                 <label for="exampleInputFile" class="control-label">Título original</label>
                                 {!! Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                                  <div id="mensajeTitulOriginal"></div>
                                 <br>
-                            </div>
+                            </div> -->
 
                             {{--precio--}}
                             <div class="input-field col s12 m6">
@@ -298,7 +348,7 @@
                                     <i class="material-icons prefix blue-text valign-wrapper">star</i>
                                     {{--seleccion de rating--}}
                                     
-                                    {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::select('rating_id',$ratin,1,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
                                     <label for="exampleInputFile" class="control-label">Categoría</label>
                                 </div>
                             </div>
@@ -620,55 +670,7 @@
 
                         </div>
 
-                         <div class="col s12 m12">
-
-                            {{--tiene saga--}}
-                            <label> ¿Pertenece a una saga? </label>
-                            <br>
-                            <div class="">
-                                <label class="" for="option-1">
-                                    <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                                    <span class="mdl-radio__label">Si</span>
-                                </label>
-                            
-                                <label class="" for="option-2">
-                                    <input type="radio" id="option-2" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
-                                    <span class="mdl-radio__label">No</span>
-                                </label>
-
-                            </div>
-                            <br/>
-
-                            <div style="display:none" id="if_si" class="">
-                                <div class="input-field col s12">
-                                {{--saga del libro--}}
-                                <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                                {!! Form::select('saga_id',$saga,null,['class'=>'form-control','placeholder'=>'Selecione saga del libro','id'=>'sagas']) !!}
-                                <label for="sagas" class="control-label">Saga del libro</label>
-                                <a class="btn curvaBoton waves-effect waves-light green  modal-trigger"  href="#modal-defaultMS">
-                                    <i class="fa fa-book"></i>
-                                    Agregar saga
-                                </a>
-                                <br><br>
-                            </div>
-                                <div class="input-field col s6">
-                                    {{--capitulo que se le antepone--}}
-                                    <i class="material-icons prefix blue-text valign-wrapper">remove</i>
-                                    <label for="antes" class="control-label">Antes</label>
-                                    {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
-                                    <br>
-                                </div>
-                                <div class="input-field col s6">
-                                    {{--capitulo que le sigue--}}
-                                    
-                                    <i class="material-icons prefix blue-text valign-wrapper">add</i>
-                                    <label for="despues" class="control-label">Despúes</label>
-                                    {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
-                                    <br>
-                                </div>
-                            <br>
-                        </div>
-                    </div>
+                         
         <div class="">
             <div class="progress">
                 <div class="bar"></div >

@@ -74,7 +74,7 @@
 						    <div class="col m7 s12">
 						    	<br>
 		                    <ul class="collection z-depth-1" style="color: black">
-		                        <li class="collection-item" style="padding: 10px ">
+		                        <!-- <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
 		                                    <i class="material-icons circle left">create</i>
@@ -84,7 +84,7 @@
 		                                    {{$Book->original_title}}
 		                                </div>
 		                            </div>
-		                        </li>
+		                        </li> -->
 		                        <li class="collection-item" style="padding: 10px ">
 		                            <div class="row">
 		                                <div class="col s12 m5">
