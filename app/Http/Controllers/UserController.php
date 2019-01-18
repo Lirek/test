@@ -210,7 +210,7 @@ class UserController extends Controller
      
         //dd($request->all());
         $user->save();
-        Flash('Se han modificado sus datos con exito')->success();
+        Flash('Se han modificado sus datos con exito!')->success();
         //return view('home');
        return redirect()->action('HomeController@index');
     }

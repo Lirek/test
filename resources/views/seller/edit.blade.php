@@ -1,6 +1,9 @@
 @extends('seller.layouts')
 @section('css')
-    <style type="text/css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
+<style type="text/css">
 
         @media only screen and (min-width: 993px) {
             .container {
@@ -97,13 +100,13 @@
                         </div>
                         <div class="card-content">
                             <div id="image-preview" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
-                                {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
+                                {!! Form::file('logo',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput', 'accept'=>'image/*']) !!}
                                 {!! Form::hidden('img_posterOld',$seller->logo)!!}
                                 <div id="list">
                                     @if ($seller->logo != NULL)
-                                        <img width="70" height="70" name='perf' src="{{asset($seller->logo)}}" id="img_perf">
+                                        <img width="70" height="70" name='perf' src="{{asset($seller->logo)}}" id="avatarImage">
                                     @else
-                                        <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="img_perf">
+                                        <img width="70" height="70" name='sinPerf' src="{{asset('plugins/img/sinPerfil.png')}}" id="avatarImage">
                                     @endif
                                 </div>
                             </div>

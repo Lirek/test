@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('main')
-    <style>
 
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
+
+
+    <style>
 @media only screen and (min-width: 993px) {
   .container {
     width: 98%;
@@ -105,16 +109,21 @@ h5.breadcrumbs-header {
                         </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
-                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                {!! Form::hidden('img_posterOld',$user->img_perf)!!}
-                                <div id="list">
+
+                    
+                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput', 'accept'=>'image/*']) !!}
+                                
+                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
+                                
+                                  <div id="list">
                                     @if(Auth::user()->img_perf)
-                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
+                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" id="avatarImage" alt="Avatar" height="70" width="70"></a><!-- logo user -->
                                 @else
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
                                 @endif
-                                </div>
+                                
                             </div>
+                        </div>
                             <div class="row">
                                 <div class="col s12">
                                     <div class="col s4">
