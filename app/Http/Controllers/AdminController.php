@@ -89,40 +89,15 @@ class AdminController extends Controller
     		  return view('promoter.ContentModules.MainContent.Albums');
    		}
 
-      public function AlbumsDataTable()
-      {
-          
-        $albums= Albums::where('status','=','En Revision');
-
-          return Datatables::of($albums)
-                    ->addColumn('Estatus',function($albums){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$albums->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$albums->status.'</button>';
-                    })
-
-                    ->addColumn('Autors_name',function($albums){
-                      
-                      return $albums->Seller()->first()->name;
-                    })
-
-                    ->addColumn('songs',function($albums){
-                      
-                      return '<button type="button" class="btn btn-theme" value="'.$albums->id.'" id="songs" >'.$albums->songs()->count().'</button';
-                    })                    
-
-                    ->editColumn('autors_id',function($albums){
-
-                      return $albums->Autors()->first()->name;
-                    })
-
-                    ->editColumn('cover',function($albums){
-                      
-
-                      return '<img class="img-rounded img-responsive av" src="'.$albums->cover.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="cover">';
-                    })
-                    ->rawColumns(['Estatus','cover','songs'])
-                    ->toJson();        
+      public function AlbumsDataTable($status)
+      {    
+        $albums= Albums::where('status',$status)->get();
+        $albums->each(function($albums){
+        $albums->Autors;
+        $albums->Seller;
+        $albums->songs;
+      });
+    return response()->json($albums);
       }
 
       public function ShowAllAlbums()
@@ -162,35 +137,14 @@ class AdminController extends Controller
         return view('promoter.ContentModules.MainContent.Single');
    		}
 
-      public function SinglesDataTable()
+      public function SinglesDataTable($status)
       {
-         $Single= Songs::whereNull('album')->where('status','=','En Revision')->get();
-
-                 return Datatables::of($Single)
-                    ->addColumn('Estatus',function($Single){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$Single->id.' data-toggle="modal" data-target="#myModal" id="Status">'.$Single->status.'</button';
-                    })
-
-                    ->addColumn('Autors_name',function($Single){
-                      
-                      return $Single->Seller()->first()->name;
-                    })                    
-
-                    ->editColumn('autors_id',function($Single){
-
-                      return $Single->autors()->first()->name;
-                    })
-
-                    ->editColumn('song_file',function($Single){
-                      
-
-                      return '<audio controls="" src="'.$Single->song_file.'">
-                                <source src="'.$Single->song_file.'" type="audio/mpeg">
-                                </audio>';
-                    })
-                    ->rawColumns(['Estatus','photo','song_file'])
-                    ->toJson();
+        $Single= Songs::where('album','=','0')->where('status',$status)->get();
+        $Single->each(function($Single){
+        $Single->autors;
+        $Single->Seller;
+      });
+    return response()->json($Single);
       }
 
       public function ShowAllSingles()
@@ -204,7 +158,7 @@ class AdminController extends Controller
    			$Single =Songs::find($id);
    			$Single->status = $request->status;
 
-        $this->SendEmails($request->status,$Single->song_name,$Single->Seller->email,$request->reason);
+        $this->SendEmails($request->status,$Single->song_name,$Single->Seller->email,$request->reazon);
 
 			  $Single->save();
    			return response()->json($Single);

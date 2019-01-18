@@ -1,48 +1,78 @@
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modificar Estatus</h4>
-      </div>
-      <div class="modal-body">
-        <p>Modifique el estatus del album</p>
-        <form method="POST" id="formStatus">
-          <?php echo e(csrf_field()); ?>
+<div id="myModal" class="modal">
+    <div class="modal-content center blue-text">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Modifique el estatus del album</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                <form method="POST" id="FormStatus">
+                <?php echo e(csrf_field()); ?>
 
-          <div class="radio-inline">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-              <input type="radio" id="option-1" class="mdl-radio__button"  onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-              <span class="mdl-radio__label">Aprobar</span>
-            </label>
-          </div>
+                <div class="row">
+                  <div class="col s6">
+                    <label class="" for="option-1">
+                        <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
+                        <span class="mdl-radio__label">Aprobar</span>
+                    </label>
+                  </div>
+                  <div class="col s6">
+                    <label class="" for="option-2">
+                        <input type="radio" id="option-2" class="flat-red with-gap" onclick="javascript:yesnoCheck();" name="status" value="Denegado">
+                        <span class="mdl-radio__label">Negar</span>
+                    </label>
+                  </div>
+                  <div class="col s10 center" style="margin-left: 40px">
+                    <div style="display:none" id="if_no">
+                      <label for="razon">Explique la razón</label>
+                      <?php echo Form::textarea('message',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Motivo del rechazo del pago','id'=>'razon','required'=>'required']); ?>
 
-          <div class="radio-inline">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-              <input type="radio" id="option-2" class="mdl-radio__button" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
-              <span class="mdl-radio__label">Negar</span>
-            </label>
-          </div>
-
-          <div class="radio-inline" style="display:none" id="if_no">
-            <div class="mdl-textfield mdl-js-textfield">
-              <textarea name="message" class="mdl-textfield__input" type="text" rows= "6" id="razon" ></textarea>
-              <label class="mdl-textfield__label" for="razon">Explique La Razon</label>
+                      <div id="mensajeMaximoRazon"></div>
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
-
-          <div class="radio-inline">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-              Enviar
-            </button>
-          </div>
+        </div>
+        <button class="btn curvaBoton waves-effect waves-light green" type="submit">
+            aceptar
+        </button>
         </form>
-      </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
+        </div>
+</div>
+</div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
+<div id="misCanciones" class="modal">
+    <div class="modal-content center">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Canciones del album</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                <div class="row">
+                  <div class="form-group">
+                    <h5 class="text-center" id="totalCanciones"></h5>
+                  </div>
+                  <table class="responsive-table" id="todasLasCanciones">
+                    <thead>
+                      <tr>
+                        <th><i class="material-icons"></i>Nombre</th>
+                        <th><i class="material-icons"></i>Duracion</th>
+                        <th><i class="material-icons"></i>Archivo</th>
+                      </tr>
+                    </thead>
+                    <tbody id="cancion">
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
+        </div>
     </div>
-  </div>
 </div>
