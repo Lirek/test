@@ -1230,6 +1230,8 @@ class AdminController extends Controller
 
       public function SellerApplyDataTable($status) {
         $ApplysSellers = ApplysSellers::where('status',$status);
+        return response()->json($ApplysSellers);
+        /*
         return Datatables::of($ApplysSellers)
           ->addColumn('nombreComercial',function($ApplysSellers){
             return $ApplysSellers->name_c;
@@ -1296,6 +1298,7 @@ class AdminController extends Controller
           })
           ->rawColumns(['solicitud','vendedor'])
           ->toJson();
+        */
       }
 
       public function AddSalesMan($idApplySeller, $idSalesman) {
@@ -1477,14 +1480,14 @@ class AdminController extends Controller
         return view('promoter.AdminModules.Clients');
       }
 
-      public function ClientsData()
-      {
-          $user=User::where('verify','=','0')
-                                             ->where('img_doc','<>','NULL')
-                                             ->where('num_doc','<>','NULL')
-                                             ->where('type','<>','Indefinido')
-                                             ->where('fech_nac','<>','NULL')
-                                             ->get();
+      public function ClientsData() {
+        $user = User::where('verify','=','0')
+          ->where('img_doc','<>','NULL')
+          ->where('num_doc','<>','NULL')
+          ->where('type','<>','Indefinido')
+          ->where('fech_nac','<>','NULL')
+          ->get();
+        return response()->json($user);
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
 

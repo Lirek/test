@@ -242,7 +242,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
    Route::group(['middleware' => ['Admin']], function (){
 
-            Route::get('/AproveOrDenialSeller','AdminController@ShowSellers');
+            Route::get('/admin_sellers','AdminController@ShowSellers');
+            //Route::get('/AproveOrDenialSeller','AdminController@ShowSellers');
             Route::get('/SellerDataTable','AdminController@SellerDataTable');
 
             /*
