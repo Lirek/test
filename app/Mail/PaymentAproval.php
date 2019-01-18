@@ -28,6 +28,6 @@ class PaymentAproval extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mails.PaymentAproval')->subject('Pago Aprobado');
+        return $this->view('admin.mails.PaymentAproval')->subject('Pago aprobado');
     }
 }

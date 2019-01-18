@@ -12,13 +12,13 @@
 
  <tr>
  	<td align="center">
-		<h1>Su Pago ha sido Aprobado.</h1>
+		<h1>Su Pago ha sido aprobado.</h1>
 	</td>
  </tr>
  
  <tr>
 	<td>
-	<p style="font-size: 14px">Muchas Gracias Por Ser Parte de Nuestra plataforma</p>
+	<p style="font-size: 14px">Muchas gracias por ser parte de nuestra plataforma.</p>
 	</td>
  </tr>
 		

@@ -44,8 +44,9 @@ class SellerResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
       return (new MailMessage)
-        ->line('Un Cordial Saludo queremos informarle que para reestablecer su contraseña debe hacer click en el siguiente enlace')
-        ->action('Reestablecer Contraseña', url('seller_password/reset/', $this->token, false))
+        ->subject('Restablecer contraseña')
+        ->line('Un Cordial saludo queremos informarle que para reestablecer su contraseña debe hacer click en el siguiente enlace')
+        ->action('Reestablecer Contraseña', url('seller_password/reset', $this->token))
         ->line('Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando.');
     }
 
