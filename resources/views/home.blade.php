@@ -5,14 +5,12 @@
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
 <style>
 
-
     .owl-theme .owl-nav [class*='owl-'] {
         transition: all .3s ease;
     }
     .owl-theme .owl-nav [class*='owl-'].disabled:hover {
         background-color: #D6D6D6;
     }
-
     owl-theme {
         position: relative;
     }
@@ -35,9 +33,6 @@
 @endsection
 
 @section('main')
-
-
-
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
@@ -69,11 +64,8 @@
                         <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
                         <br>
 
-
-
                         <!--CONTENIDO RECIENTE cine-->
                         @if(count($Movies)> 0 || count($Series)> 0)
-                            <div class="card">
                                 <!--CONTENIDO RECIENTE pelicula-->
                                 @if(count($Movies) > 0)
                                     <div class="row">
@@ -94,7 +86,7 @@
                                             <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
-                                @endif
+                                   @endif
 
                             <!--CONTENIDO RECIENTE serie-->
                                 @if(count($Series) > 0)
@@ -119,67 +111,56 @@
                                         </div>
                                     </div>
                                 @endif
-                            </div>
                         @endif
                     <!--End  RECIENTE cine-->
 
+                            <!--CONTENIDO RECIENTE Lecturas-->
+                            @if(count($Book)> 0 || count($Megazines)> 0)
+                                @if(count($Book)> 0)
+                                <div class="row">
+                                    <div class="col s12 ">
+                                        <a href="{{url('ReadingsBooks')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <div  class="owl-carousel owl-theme">
+                                            @foreach($Book as $b)
+                                                <div>
+                                                    <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+                                    </div>
+                                </div>
+                                @endif
 
-        <!--CONTENIDO RECIENTE Lecturas-->
-        @if(count($Book)> 0 || count($Megazines)> 0)
-        <div class="card">
-            @if(count($Book)> 0)
-            <div class="row">
-                <div class="col s12 ">
-                    <a href="{{url('ReadingsBooks')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
-                </div>
-                <div class="col s12 ">
-                    <div  class="owl-carousel owl-theme">
-                        @foreach($Book as $b)
-                            <div>
-                                <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col s12 ">
-                    <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-                </div>
-            </div>
-            @endif
-
-            @if(count($Megazines)> 0)
-            <div class="row">
-            <div class="col s12 ">
-                <a href="{{url('ReadingsMegazines')}}">
-             <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
-            </div>
-                <div class="col s12 ">
-                    <div  class="owl-carousel owl-theme">
-                      @foreach($Megazines as $m)
-                          <div>
-                           <img src="{{ asset($m->cover)}}" height="250px" width="100px">
-                          </div>
-                      @endforeach
-                  </div>
-
-                </div>
-
-                <div class="col s12 ">
-                    <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-                </div>
-            </div>
-            @endif
-        </div>
-        @endif
-     <!--End  RECIENTE Lecturas-->
-
-
-
-
+                                @if(count($Megazines)> 0)
+                                <div class="row">
+                                <div class="col s12 ">
+                                    <a href="{{url('ReadingsMegazines')}}">
+                                 <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
+                                </div>
+                                    <div class="col s12 ">
+                                        <div  class="owl-carousel owl-theme">
+                                          @foreach($Megazines as $m)
+                                              <div>
+                                               <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                                              </div>
+                                          @endforeach
+                                      </div>
+                                    </div>
+                                    <div class="col s12 ">
+                                        <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+                                    </div>
+                                </div>
+                                @endif
+                            @endif
+                         <!--End  RECIENTE Lecturas-->
 
                         <!--CONTENIDO RECIENTE Radio-->
                         @if(count($Radio)>0)
-                            <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
                                         <a href="{{ url('ShowRadio')}}"><h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
@@ -199,15 +180,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
                         @endif
                     <!--End  RECIENTE radio-->
 
 
                         <!--CONTENIDO RECIENTE Tv-->
                         @if(count($Tv)>0)
-                            <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
                                         <a href="{{ url('ShowTv')}}">
@@ -219,7 +197,7 @@
                                             @foreach($Tv as $tv)
                                                 <div>
                                                     <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
-                                                    <img src="{{ asset('/images/Tv/') }}/{{ $tv->logo }}"  height="150px" width="150px" ></a>
+                                                        <img src="{{ asset($tv->logo) }} "  height="150px" width="150px" ></a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -228,7 +206,6 @@
                                         <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
-                            </div>
                         @endif
                     <!--End  RECIENTE tv-->
 
