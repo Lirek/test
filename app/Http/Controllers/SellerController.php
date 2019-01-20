@@ -213,14 +213,13 @@ class SellerController extends Controller
 
     public function CompleteRegistration(Request $request)
     {
-        //dd($request->all());
-        //$store_path='documents/sellers/';
         $nombre = $this->sinAcento($request->name);
         $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
-        $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+        $name = $request->ruc.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
         $request->file('adj_ruc')->move($store_path,$name);
-        $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
-        //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
+        $real_path = '/sellers/'.$request->ruc.'/documents/'.$request->ruc;
+
+        
         $Seller = new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;

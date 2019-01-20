@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Events\TransactionToken;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -25,15 +26,28 @@ class ExternalOperationsController extends Controller
 			$ExternalClient=ExternalClients::where('client_secret_id','=',$request->secret_id)->firstOrfail();    		
     		
     		$points = round($request->payment);
-    		
+            
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $token = '';
+
+           for ($i = 0; $i < 6; $i++) 
+              {
+                $token .= $characters[rand(0, $charactersLength - 1)];
+
+              }
+
     		$Transaction = new ExternalPayments;
     		$Transaction->client_id = $ExternalClient->id; 
             $Transaction->points = $points;
             $Transaction->payment = $request->payment;
             $Transaction->user_id = Auth::user()->id;
             $Transaction->transaction_id = $request->transaction_id;
+            $Transaction->token_s = $token;
     		$Transaction->save();
     		
+            Event(new TransactionToken(Auth::user()->email,$token,$points));
+
             return view('users.ExternalPayment')->with('payment',$request->payment)
                                                 ->with('points',$points)
                                                 ->with('external',$ExternalClient)
@@ -58,7 +72,7 @@ class ExternalOperationsController extends Controller
 
     	$user=User::find($Transaction->user_id);
 
-    	if ($user->points >= $Transaction->points) 
+    	if ($user->points > $Transaction->points) 
     	{
     	    $Transaction->status='Aprobado';
     		

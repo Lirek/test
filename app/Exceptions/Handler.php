@@ -59,6 +59,11 @@ class Handler extends ExceptionHandler
             return response()->view('errors.unauthorized', [], 401);
         }
 
+        if($exception instanceof TokenMismatchException)
+        {
+            return response()->view('errors.tokenerror', [], 404);
+        }
+
         return parent::render($request, $exception);
     }
 
