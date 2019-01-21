@@ -212,7 +212,7 @@ class UserController extends Controller
         $user->save();
         Flash('Se han modificado sus datos con exito!')->success();
         //return view('home');
-       return redirect()->action('HomeController@index');
+       return redirect()->action('UserController@edit');
     }
 
     public function sinAcento($cadena) {

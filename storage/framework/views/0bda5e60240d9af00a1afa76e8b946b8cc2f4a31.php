@@ -28,7 +28,7 @@
               <img  src="<?php echo e(asset('promociones/TarjetaMAXIBONO.jpg')); ?>" >
           </div>
           <div class="card-action">
-              <a  href="<?php echo e(asset('#')); ?>" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
+              <a  href="<?php echo e(asset('promociones/PremiosLeipelTarjetaMaxibono.pdf')); ?>" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
               <a  href="<?php echo e(asset('#')); ?>" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
               <br>
           </div>

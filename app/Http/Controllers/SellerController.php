@@ -395,10 +395,13 @@ class SellerController extends Controller
         $seller->address = $request->direccion;
         $seller->save();
 
-        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();
-
+        header("Refresh:0; url=/seller_edit");
         //return view('seller.edit')->with('seller',$seller);
-        return redirect()->action('SellerController@homeSeller');
+
+        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa!')->important();
+
+        
+        //return redirect()->action('SellerController');
 
     }
     public function balance(){
