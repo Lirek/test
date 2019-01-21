@@ -210,9 +210,10 @@ class UserController extends Controller
      
         //dd($request->all());
         $user->save();
+        //return view('seller_edit');
+        return redirect()->action('UserController@edit');
+
         Flash('Se han modificado sus datos con exito!')->success();
-        //return view('home');
-       return redirect()->action('UserController@edit');
     }
 
     public function sinAcento($cadena) {

@@ -116,16 +116,21 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <div class="col s4">
+                                    <div class="col s3">
                                         <h5><i class="material-icons prefix blue-text">face</i>
                                         <?php echo e(Auth::guard('web_seller')->user()->name); ?></h5>
                                     </div>
-                                    <div class="col s4">
+                                     <div class="col s3">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5><?php echo e($content_for_aprove); ?></h5>
+                                        <label>contenido en revisión</label>
+                                    </div>
+                                    <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5><?php echo e($total_content); ?></h5>
                                         <label>contenido total</label>
                                     </div>
-                                    <div class="col s4">
+                                    <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i><h5><?php echo e($total_aproved); ?></h5>
                                         <label>contenido aprovado</label>
                                     </div>
