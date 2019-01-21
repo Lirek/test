@@ -84,12 +84,11 @@
                                 <ul class="right" >
                                     <li>
                                         <a href="{{url('ShowMovies') }}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/cine.svg')}}"> </b></a>
-                                    </li>
-                                    <!--
+
                                     <li>
-                                        <a href="{{--url('MusicContent'--}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
+                                        <a href="{{url('MusicContent')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/musica.svg')}}"> </b></a>
                                     </li>
-                                    -->
+
                                     <li>
                                         <a href="{{ url('ReadingsBooks')}}"  class="contentype-adjust"><b><img class="responsive-img   img-contentype" src="{{asset('sistem_images/type_contents/lectura.svg')}}"> </b></a>
                                     </li>
@@ -258,6 +257,8 @@
                             </li><!--End li interno-->
                         </ul><!--End ul Invitar-->
                     </li> <!--End Invitar-->
+
+                    <li><a href="{{url('Beneficios')}}" class="waves-effect waves-blue"><i class="small material-icons">flight_takeoff</i>Beneficios</a></li>
 
                     <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Recargar</a></li>
 

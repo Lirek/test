@@ -42,13 +42,13 @@
             <div class="card">
                 <div class="card-content white-text">
 
-
-        <div class=" col s12 ">
-            <h4 class="titelgeneral center"><i class="material-icons small">radio</i> Radios</h4>
-        </div>
-
         <div class="row">
             @foreach($Rad as $radios)
+
+                <div class=" col s12 ">
+                    <h4 class="titelgeneral center"><i class="material-icons small">radio</i> {{$radios->name_r}}</h4>
+                </div>
+
                 <div class="col s12 m5 l3  offset-m1 offset-l3 ">
                     <div class="card">
                         <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">

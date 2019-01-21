@@ -127,7 +127,7 @@
 
   @if ($refered != null)
   <div class=" s12 col m5 offset-m1  ">
-      <h6 class="left-align grey-text">Lista de referidos:</h6>
+      <h6 class="left-align grey-text">Mis referidos directos:<span class="blue-text"> ({{$referals1}})</span></h6>
               <ul class="collection">
                   @foreach($refered as $refereds)
                   <li class="collection-item avatar">
@@ -149,7 +149,7 @@
   </div>
   @else
       <div class="col s12 m5  offset-m1  ">
-          <h6 class="left-align grey-text">Lista de referidos:</h6>
+          <h6 class="left-align grey-text">Mis referidos directos:</h6>
             <blockquote class="center grey lighten-4 grey-text ">
               <br> <i class="material-icons">sentiment_very_dissatisfied</i>
               <br>Aún no tienes Referidos <br>
@@ -163,7 +163,7 @@
               <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" >
           </div>
           <div class="card-action">
-              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
+              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
               <br>
           </div>
       </div>

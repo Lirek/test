@@ -5,7 +5,6 @@
 
 
     <style type="text/css">
-
         .owl-theme .owl-nav [class*='owl-'] {
             transition: all .3s ease;
         }
@@ -38,7 +37,7 @@
     <div class="row">
         <div class="col s12 m12">
             <div class="card-content">
-                <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> Cartelera</h4>
+                <h4 class="titelgeneral"><i class="material-icons small">view_carousel</i> MIS CONTENIDOS</h4>
                 <br>
 
                 {{--Peliculas--}}
@@ -47,10 +46,8 @@
                         @if(count($Movies)>0)
                             <div class="row">
                                 <div class="col s12 ">
-                                    <a href="#" >
+                                    <a href="{{url('movies')}}" >
                                         <h5 class="grey-text left"><i class="small material-icons" >movie</i> Pelicula</h5></a>
-                                    <a href="#" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-
                                 </div>
                                 <div class="col s12 ">
                                     <div  class="owl-carousel owl-theme">
@@ -60,16 +57,18 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <br><br>
+
+                                </div>
+                                <div class="col s12 ">
+                                    <a href="{{url('movies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                 </div>
                             </div>
                         @endif
                         @if(count($Series)>0)
                             <div class="row">
                                 <div class="col s12 ">
-                                    <a href="#" >
+                                    <a href="{{url('series')}}" >
                                         <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
-                                    <a href="#" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                 </div>
                                 <div class="col s12 ">
                                     <div  class="owl-carousel owl-theme">
@@ -79,7 +78,10 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <br><br>
+
+                                </div>
+                                <div class="col s12 ">
+                                    <a href="{{url('series')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                 </div>
                             </div>
                         @endif
@@ -91,9 +93,8 @@
                     <div class="card">
                         <div class="row">
                             <div class="col s12 ">
-                                <a href="#" >
+                                <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}"  >
                                     <h5 class="grey-text left"><i class="material-icons">music_note</i> Música</h5></a>
-                                <a href="#" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
@@ -103,7 +104,10 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <br><br>
+
+                            </div>
+                            <div class="col s12 ">
+                                <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                             </div>
                         </div>
             @endif
@@ -114,8 +118,7 @@
                     @if(count($Book)> 0)
                         <div class="row">
                             <div class="col s12 ">
-                                <a href="#"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
-                                <a href="#" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+                                <a href="{{url('tbook')}}"> <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Libros</h5></a>
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
@@ -125,7 +128,9 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <br><br>
+                            </div>
+                            <div class="col s12 ">
+                                <a href="{{url('tbook')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                             </div>
                         </div>
                     @endif
@@ -136,10 +141,8 @@
 
                         <div class="row">
                             <div class="col s12 ">
-                                <a href="#">
+                                <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">
                                     <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Revista</h5></a>
-                                <a href="#" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
-
                             </div>
                             <div class="col s12 ">
                                 <div  class="owl-carousel owl-theme">
@@ -149,7 +152,9 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <br><br>
+                            </div>
+                            <div class="col s12 ">
+                                <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                             </div>
                         </div>
                     @endif
@@ -162,9 +167,8 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
-                                        <a href="#">
+                                        <a href="{{url('radios')}}" >
                                             <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5></a>
-                                        <a href="#" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
 
                                     </div>
                                     <div class="col s12 ">
@@ -177,8 +181,12 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <br><br>
+
                                     </div>
+                                    <div class="col s12 ">
+                                        <a href="{{url('radios')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -191,9 +199,8 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col s12 ">
-                                        <a href="#">
+                                        <a href="{{url('tvs')}}" >
                                             <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5></a>
-                                        <a href="#" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
 
                                     </div>
                                     <div class="col s12 ">
@@ -205,7 +212,10 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <br><br>
+
+                                    </div>
+                                    <div class="col s12 ">
+                                        <a href="{{url('tvs')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +300,5 @@
             });
         });
 
-
-        //# sourceURL=pen.js
     </script>
 @endsection
