@@ -415,7 +415,7 @@ class HomeController extends Controller
         $Buy->status        = 2;
         $Buy->method        ='Payphone';
         $Buy->save();
-        $Buy = Payments::all()->orderBy('id','desc');
+        $Buy = Payments::orderBy('id','desc')->get();
         $clientTransactionId = $Buy->last()->id."|".date("Y-m-d H:i:s");
         return Response()->json($clientTransactionId);
     }
