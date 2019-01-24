@@ -4,6 +4,14 @@
 
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
 <style>
+    .owl-carousel.owl-drag .owl-item {
+        padding-left: 2px ;
+        padding-right: 2px;
+    }
+
+    .owl-nav {
+        padding: 0px;
+    }
 
     .owl-theme .owl-nav [class*='owl-'] {
         transition: all .3s ease;
@@ -14,18 +22,17 @@
     owl-theme {
         position: relative;
     }
-
-.owl-theme .owl-next, .owl-theme .owl-prev {
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-125%)
-    }
- .owl-theme .owl-prev {
-        left: 10px;
-    }
-   .owl-theme .owl-next {
+    .owl-theme .owl-next, .owl-theme .owl-prev {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-125%)
+        }
+    .owl-theme .owl-prev {
+            left: 10px;
+        }
+    .owl-theme .owl-next {
         right: 10px;
     }
 
@@ -76,14 +83,21 @@
                                         <div class="col s12 ">
                                             <div  class="owl-carousel owl-theme">
                                                 @foreach($Movies as $m)
-                                                    <div>
-                                                        <img src="{{asset('movie/poster')}}/{{$m->img_poster}}" height="250px" width="100px" >
+                                                    {{--<div>--}}
+                                                        {{--<img src="{{asset('movie/poster')}}/{{$m->img_poster}}"  id="img_cartelera_largo" >--}}
+                                                    {{--</div>--}}
+                                                    <div class="card">
+                                                        <div class="card-image">
+                                                            <img img src="{{asset('movie/poster')}}/{{$m->img_poster}}"  id="img_cartelera_largo">
+                                                            <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" a href="{{url('ShowMovies/'.$m->id)}}"><i class="small material-icons" >movie</i></a>
+                                                        </div>
+                                                        <div class="card-action ">
+                                                            <b class="grey-text truncate">{{$m->title}}</b>
+                                                        </div>
                                                     </div>
+
                                                 @endforeach
                                             </div>
-                                        </div>
-                                        <div class="col s12 ">
-                                            <a href="{{url('ShowMovies')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
                                    @endif
@@ -99,15 +113,22 @@
                                         <div class="col s12 ">
                                             <div  class="owl-carousel owl-theme">
                                                 @foreach($Series as $s)
-                                                    <div>
-                                                        <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                                                    {{--<div>--}}
+                                                        {{--<img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">--}}
+                                                    {{--</div>--}}
+                                                    <div class="card">
+                                                        <div class="card-image">
+                                                            <img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">
+                                                            <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"><i class="mdi mdi-movie-roll"></i></a>
+                                                        </div>
+                                                        <div class="card-action ">
+                                                            <b class="grey-text truncate">{{$b->title}}</b>
+                                                        </div>
                                                     </div>
+
                                                 @endforeach
                                             </div>
 
-                                        </div>
-                                        <div class="col s12 ">
-                                            <a href="{{url('ShowSeries')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
                                 @endif
@@ -124,14 +145,22 @@
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
                                             @foreach($Book as $b)
-                                                <div>
-                                                    <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" height="250px" width="100px" onclick="masInfo('libro',{!!$b->id!!})">
+                                                {{--<div>--}}
+                                                    {{--<img src="{{ asset('images/bookcover/') }}/{{$b->cover }}"  id="img_cartelera_largo" onclick="masInfo('libro',{!!$b->id!!})">--}}
+                                                {{--</div>--}}
+                                                <div class="card">
+                                                    <div class="card-image">
+                                                        <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}"  id="img_cartelera_largo">
+                                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$b->cost!!}','{!!$b->title!!}','{!!$b->id!!}')"><i class="mdi mdi-book-open-variant"></i></a>
+                                                    </div>
+                                                    <div class="card-action ">
+                                                        <b class="grey-text truncate">{{$b->title}}</b>
+                                                    </div>
                                                 </div>
+
+
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <div class="col s12 ">
-                                        <a href="{{url('ReadingsBooks')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
                                 @endif
@@ -145,14 +174,21 @@
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
                                           @foreach($Megazines as $m)
-                                              <div>
-                                               <img src="{{ asset($m->cover)}}" height="250px" width="100px">
+                                              {{--<div>--}}
+                                               {{--<img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">--}}
+                                              {{--</div>--}}
+                                              <div class="card">
+                                                    <div class="card-image">
+                                                        <img src="{{ asset($m->cover)}}" id="img_cartelera_largo">
+                                                        {{--<a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"><i class="mdi mdi-book-open-variant"></i></a>--}}
+                                                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m->id}}" onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')"><i class="mdi mdi-book-open-variant"></i></a>
+                                                    </div>
+                                                    <div class="card-action ">
+                                                        <b class="grey-text truncate">{{$m->title}}</b>
+                                                    </div>
                                               </div>
                                           @endforeach
                                       </div>
-                                    </div>
-                                    <div class="col s12 ">
-                                        <a href="{{url('ReadingsMegazines')}}" class="btn btn-small waves-effect waves-light right teal" style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
                                 @endif
@@ -168,15 +204,16 @@
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
                                             @foreach($Radio as $r)
-                                                <div>
-                                                    <a href="{{url('ListenRadio/'.$r->id)}}" class="waves-effect waves-light">
-                                                    <img src="{{asset($r->logo)}}" height="150px" width="150px"  onclick="masInfo('radio')">
-                                                    </a>
+                                                <div class="card">
+                                                <div class="card-image">
+                                                    <a href="{{url('ListenRadio/'.$r->id)}}"><img src="{{asset($r->logo)}}" id="img_cartelera_cuadro" onclick="masInfo('radio')"></a>
+                                                    <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{url('ListenRadio/'.$r->id)}}"><i class="material-icons">radio</i></a>
+                                                </div>
+                                                <div class="card-action ">
+                                                    <b class="grey-text truncate">{{$r->name_r}}</b>
+                                                </div>
                                                 </div>
                                             @endforeach
-                                        </div>
-                                        <div class="col s12 ">
-                                            <a href="{{ url('ShowRadio')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
                                         </div>
                                     </div>
                                 </div>
@@ -189,21 +226,27 @@
                                 <div class="row">
                                     <div class="col s12 ">
                                         <a href="{{ url('ShowTv')}}">
-                                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5></a>
-
+                                        <h5 class="grey-text left"><i class="mdi mdi-television-classic"></i> Televisión</h5></a>
                                     </div>
                                     <div class="col s12 ">
                                         <div  class="owl-carousel owl-theme">
                                             @foreach($Tv as $tv)
-                                                <div>
-                                                    <a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">
-                                                        <img src="{{ asset($tv->logo) }} "  height="150px" width="150px" ></a>
+                                                {{--<div>--}}
+                                                    {{--<a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">--}}
+                                                        {{--<img src="{{ asset($tv->logo) }} "  id="img_cartelera_cuadro" ></a>--}}
+                                                {{--</div>--}}
+                                                <div class="card">
+                                                    <div class="card-image">
+                                                        <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" id="img_cartelera_cuadro" onclick="masInfo('radio')"></a>
+                                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{url('PlayTv/'.$tv->id)}}"><i class="mdi mdi-television-classic"></i></a>
+                                                    </div>
+                                                    <div class="card-action ">
+                                                        <b class="grey-text truncate ">{{$tv->name_r}}</b>
+                                                    </div>
                                                 </div>
+
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <div class="col s12 ">
-                                        <a href="{{ url('ShowTv')}}" class="btn btn-small waves-effect waves-light right teal " style="margin: 10px;">Más</a>
                                     </div>
                                 </div>
                         @endif
@@ -250,12 +293,35 @@
                 items:4,
                 nav:true
             },
-
-            1000:{
+            800:{
+                items:4,
+                nav:true,
+                loop:false
+            },
+            950:{
                 items:5,
                 nav:true,
                 loop:false
             },
+            1150:{
+                items:6,
+                nav:true,
+                loop:false
+            },
+
+            1350:{
+                items:7,
+                nav:true,
+                loop:false
+            },
+
+            1400:{
+                items:8,
+                nav:true,
+                loop:false
+            },
+
+
         },
         navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>','<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
     });
@@ -642,6 +708,87 @@ function callback3(value,id) {
                 }
 
             });
+    } else {
+        return false;
+    }
+}
+ //Compra re4vistas
+
+function fnOpenNormalDialog(cost,name,id) {
+
+    swal({
+        title: "Estas seguro?",
+        text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?',
+        icon: "warning",
+        buttons:  ["Cancelar", "Adquirir"],
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                callback(true,id);
+
+            } else {
+                callback(false,id);
+            }
+        });
+};
+
+function callback(value,id) {
+    if (value) {
+        swal({
+            title: 'Procesando..!',
+            text: 'Por favor espere..',
+            buttons: false,
+            closeOnEsc: false,
+            onOpen: () => {
+                swal.showLoading()
+            }
+        })
+        $.ajax({
+
+            url:'BuyMagazines/'+id,
+            type: 'POST',
+            data: {
+                _token: $('input[name=_token]').val()
+            },
+
+            success: function (result)
+            {
+
+
+                if (result==0)
+                {
+                    swal('No posee suficientes tickets, por favor recargue','','error');
+                    console.log(result);
+                }
+                else if (result==1)
+                {
+                    swal('La revista ya forma parte de su colección','','error');
+                }
+                else
+                {
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({
+
+                        url     : 'MyTickets/'+idUser,
+                        type    : 'GET',
+                        dataType: "json",
+                        success: function (respuesta){
+                            console.log(respuesta);
+                            $('#Tickets').html(respuesta);
+
+                        },
+                    });
+                    swal('Revista comprada con exito','','success');
+                    console.log(result);
+                }
+            },
+            error: function (result)
+            {
+
+            }
+
+        });
     } else {
         return false;
     }

@@ -236,7 +236,13 @@ nav ul a {
     height: 140px;
 }
 
+#img_cartelera_cuadro{
+    height: 130px;
+}
 
+#img_cartelera_largo{
+    height: 200px;
+}
 
 
 /*Pantallas mayores de 400px and menores 992px*/
@@ -277,6 +283,13 @@ nav ul a {
         width:145px;
     }
 
+    #img_cartelera_cuadro{
+        height: 180px;
+    }
+
+    #img_cartelera_largo{
+        height: 260px;
+    }
 
 
 }
@@ -305,6 +318,15 @@ nav ul a {
             height: 100px;
         }
 
+        #img_cartelera_cuadro{
+          height: 160px;
+        }
+
+         #img_cartelera_largo{
+            height: 210px;
+         }
+
+
       }
 /*End pantallas menores de 400px*/
 
@@ -320,6 +342,14 @@ nav ul a {
 
     #img_rad{
         height: 85px;
+    }
+
+    #img_cartelera_cuadro{
+        height: 140px;
+    }
+
+    #img_cartelera_largo{
+        height: 240px;
     }
 
 
