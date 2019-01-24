@@ -79,7 +79,8 @@
                 <div class="col s12 m4">
                     <img src="{{asset($megazine->cover)}}" width="100%" height="300" style="bor<der-radius: 10px" id="panel">
                     <br><br>
-                    <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a>
+                   <!--  <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Leer libro</a> -->
+                   <a  href="{{ asset($megazine->megazine_file) }}" class="btn curvaBoton waves-effect waves-light green" target="_blank">Leer revista</a>
                         <a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                 </div>
                 <div class="col m6 s12">

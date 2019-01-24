@@ -315,34 +315,31 @@
 {{--libro--}}
 <div class="row" id="libros">
     <div class="col s12 m12">
-        @if(count($book)>0)
-            <div id="featured3" class="owl-carousel featured">
-                @foreach($book as $b)
-                    <div class="col s12 m12">
-                        <div class="card">
-                            <div class="card-image ">
-                                <img src="{{ asset('images/bookcover/') }}/{{$b->cover }}" width="100%" height="200px">
-                            </div>
-                        </div>
+              @if($books->isEmpty())
+                <div class="col s12 m8">
+                    <div class="card center"><br>
+                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <br><br>
                     </div>
-                @endforeach
-            </div>
-        @endif
-        @if(count($book)==0)
-            <div class="col s12 m2">
-            </div>
-            <div class="col s12 m8">
-                <div class="card center"><br>
-                    <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
-                    <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
-                    <br><br>
                 </div>
-            </div>
-            <div class="col s12 m2">
-            </div>
-            <br>
-        @endif
-    </div>
+              @else
+                
+                    <div id="featured3" class="owl-carousel featured">
+                        @foreach($books as $book)
+                         <div class="col s12 m12">
+                            <div class="card">
+                                <div class="card-image ">
+                                    <img src="{{asset('images/bookcover/'.$book->cover)}}" width="100%" height="200px">
+                                </div>
+                            </div>
+                          </div>
+                        @endforeach
+                    </div>
+                
+            @endif
+                <br>
+                </div>
 </div>
 
 {{--radios--}}
