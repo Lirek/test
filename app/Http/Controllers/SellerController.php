@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Auth;
-
+use Illuminate\Support\Facades\Redirect;
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 //Seller Model
 use App\Seller;
@@ -408,6 +409,24 @@ class SellerController extends Controller
         //return redirect()->action('SellerController');
 
     }
+
+    public function closed(Request $request, $id)
+    {
+        $seller = Seller::find($id);
+        $seller->account_status = "closed";
+        $seller->save();
+          
+        Auth::logout();
+
+        $add = DB::select('INSERT INTO sellers_closed SELECT * FROM sellers WHERE account_status="closed"');
+        $del = DB::delete('DELETE FROM sellers WHERE account_status="closed"'); 
+    
+        Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
+
+        return redirect()->action('WelcomeController@welcome');
+
+    }
+
     public function balance(){
         $Transaction=Transactions::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
         if ($Transaction->count()!= 0) {
