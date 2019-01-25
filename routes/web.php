@@ -560,7 +560,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
      //Agregada 24/01/2019
-    Route::get('DeleteAccountSeller/{id}','SellerController@closed');
+    
 
 
 
@@ -620,6 +620,9 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     //Agregada 11/12/2018
     Route::get('ApplicationValidate','SellerController@validateAplication');
+
+    //Agregada 25/01/2019
+    Route::get('DeleteAccountSeller/{id}','SellerController@closed');
 
 
 
