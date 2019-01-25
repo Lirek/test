@@ -488,6 +488,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('UpdateExternalClient/{id}','ExternalClientsController@UpdateExternalClient');
 
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
+
+         Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
          
 
     });

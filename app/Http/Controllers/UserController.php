@@ -74,6 +74,11 @@ class UserController extends Controller
     {
         $user = new User;
         
+        if (User::where('email','=',$request->email)->count()==1) 
+        {
+          view('errors.unauthorized')->with('error','Ya se Encuentra Registrado');
+        }
+
         $user->email = $request->email;
         
         $user->name = $request->name;

@@ -119,6 +119,23 @@
   		</div>
   	</div>
 </div>
+
+<div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Rutina De Puntos Pendientes</span>
+            <i class="large material-icons">confirmation_number</i>
+            <h4>
+              <p>La siguiente accion debe ser ejecutada una vez al mes para pasar los puntos pendientes de los usuarios que no recargaron a leipel</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('PendingPointsRoutine')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 @section('js')
 @endsection

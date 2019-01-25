@@ -18,7 +18,8 @@ class Payments extends Model
         'status',
         'references',
         'factura_id',
-        'method'
+        'method',
+        'created_at'
         ];
 
         public function Tickets()
