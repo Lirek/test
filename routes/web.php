@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\View;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,6 +117,7 @@ Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
 Route::post('Invite','UserController@Invite');
 
+
     //Agregadas 4/7/18
     Route::get('EditProfile','UserController@edit');
 
@@ -161,6 +163,11 @@ Route::post('Invite','UserController@Invite');
     //Agregada 10/12/2019
      Route::get('MySeries','UserController@MySeries');
       Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
+
+    //Agregada 23/01/2019  
+    Route::get('DeleteAccount/{id}','UserController@closed');
+
+   
 
 //---------------------------------------------------------------------------
 
@@ -551,6 +558,10 @@ Route::group(['middleware' => 'seller_guest'], function () {
     Route::post('seller_login', 'SellerAuth\LoginController@login');
     //agregada 10-10-2018
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
+
+     //Agregada 24/01/2019
+    Route::get('DeleteAccountSeller/{id}','SellerController@closed');
+
 
 
 //------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
