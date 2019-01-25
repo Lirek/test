@@ -237,6 +237,42 @@ class SuperAdminController extends Controller
     }
    //---------------------------------------------------------------
 
+   //------------------------Puntos Pendientes----------------------
+
+    public function PendingPointsToLeipel()
+    {
+      $Users= User::all();
+      $CurrentMonth=Carbon::now();
+
+      foreach ($Users as $User) 
+      {
+        if ($User->pending_points != 0) 
+        {
+
+          foreach ($User->Payments as $Payment) 
+          {
+            $LastPayment= Carbon::parse($Payment->created_at);
+
+            if ($LastPayment->isSameMonth($CurrentMonth)==False) 
+            {
+              $Assing = new PointsAssings;
+              $Assing->amount = $User->pending_points;
+              $Assing->from =  $User->id;
+              $Assing->to =  0;
+              $Assing->save();
+
+              $balance= SistemBalance::find(1);
+              $balance->my_points= $balance->my_points + $User->pending_points;
+            }
+          
+          }
+          
+
+          
+        }
+      }
+    }
+   //---------------------------------------------------------------
 
 
 }
