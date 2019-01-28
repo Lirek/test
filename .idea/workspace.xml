@@ -1,10 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
+    <list default="true" id="09577294-1b06-4809-a275-6358ad393134" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/04ce5a8ef2b466a50e88cb1d7651a0353c90e29f.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/069a622f816074b8358838235265b0c3edee2f36.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/089552c6dd7a4f8c208bd971dd7178fbdd76c2b7.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/09b161c366e0a2fdb035fb6201c1b67778769895.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0af75b420886b52bf01b398fc6057c0502a2c59d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0bda5e60240d9af00a1afa76e8b946b8cc2f4a31.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0f0e068529cf789eeb59ee692ec2b6c44ab9514a.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/1153b94aefcb063727f74c9ed662e9345e2e4e7d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/13e6d2b20649297277f4caf0815678cf2e1bbcbe.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/18f92af4cc8a892717158fcf988d8d199031c8e6.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/1bdbb0d4c9ad53ecfd888cd6df6f75e855f7d215.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/2173a3b3d6fb9b241e4ddfcbd8486370bbc513a6.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/285fe3b8b48ee94a4b55cc60f6107bb37d3bc50b.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/292c2d63f0374ecd6ea475622e206c36e09d45d6.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/34113360ea06828c3467115c77361d167af1d3c2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3773c2a88d2f2f1fcca47502bb7a63fd30ccd880.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/381dd17f2e49d16aecccfbdb4393485b60baed3e.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3a37f344926c5ab384ca8ba4e411a8faf5729a4c.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3bf321006684d179bea863d37dda2b4b4be7767b.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/3dc87e798e904740becb7c951ab28d46bc998065.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/43e6f206e2bcb6e757cbd11538aca314d3efe0c5.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/45a64f5b8d923c9591718871a246e5f3eea59a30.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/472b96846eb3e873822f540e7d28c61412557480.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/47cc4188a8b48090cafc40ba7b7e3a0bdace0bc5.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/48a921236957fb5951ea109e56757bfc98063ae0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/499cf4b0a514417dbfd4dcd357a42e0283cc1bd5.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4acbb8b31d07c93752ab3b7d4f3a502722be1fe0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4b102e453810ccf003c80eac7900627ad5da221a.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/4b5c714266f0662aff4b68b3c3de8de05470159d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/515e5026b9b07530c0ee7df7aa43acdb7b3d3f81.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/521bce53f10e74e34e4595eae177ffa06e53a1c6.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5604afe66424dd2b8a492b1603a436cd80ff1aa3.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/57b3d0b1d28d58c585b3bcf9e5fa3aa38a5d4b8e.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/58db4af35acd6e9bbd957a209f457e059ba0ecbe.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5a20ea671413947b2fd23e34ba982ee0bc442d80.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5e22fcc269c921c6053f1cb4baf960311bbc1e87.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5ec37fef5fd8f77d260db2572477bfe5e7429684.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/5f9ad6425d9876b1c432c76eaf613c70f735b096.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/60280ebbf1bedf24a2f405a0cf515637bf55d4de.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/6262013f055788a5d44132ac1331568a9e0b1f6e.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/692f8cee7ce2de811074048acfb00a8df5c571ff.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/6e611d90ddd7d7001ee83b2bf2d4e5814c33f888.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/6ea76ec0e848133c53d7ba5289f749e2dc951936.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/710529b9c1c21b648364b29f5e80d54103d0aa46.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/71e7bb38865f66df5e19f23f07ad4279ef16cd77.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7666ec7d72e88f46093d1f8e61748856e94b59bf.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7808dc98d8b1ad422bdfeafb9b1e604eb3645a7d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/796c8e6828bb89ced382edf6938412bfccd622c0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7bc4842e7ad850e7d6cd9d30246d8baa5deb9466.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7c62b2ea7e7c57d2a983a07cd7ce9f2b22ce4ffd.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7dbdba63fe215e6c966a38a9e388e8b1e12cd309.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7f87c846a65183ea99825320936e773a0c24c993.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8035e2637de4084e9e572c112b4431ca2d3d718d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/80bce3100d5f62cd53280f286a36b1090fd2961e.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/83a4d6e31904a0dfbebb90f4e319a543fcfb1a56.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/86e4309d32fcc4bd36799e75aa6bf8c8f06e8ca0.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/89e6d2975a69f420fb16a3c1eb90e3d57341e695.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8ca32752cb10c00ff5fad9b952d53459348637ab.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8f0928c6f9374f27dc6096105df5e301210790be.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8f223e9bd2e2ee1cc3594960f08e5a2b1da2a77a.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/8fb8c3192a4868bd9f0ae2de3582778122133d08.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/926d557eadff5fa265b10434430c2590208bee31.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/9357f6361e75a6d049606fb73dac088e79495e84.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/9653efd5aea6551dac8ab3d3211c7bdd63a417fe.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/99aebaf9f52114bbde1fc84cb22eb3b0e2ea97d8.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/9cba6a2294d309c0e3cb5f65d36b286e6e745d50.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a16ed117656ecb881cd8b69a234083a9e7ae7810.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a357efe0304b1ea8a8f52718ab2a93cff88cb574.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a8b3b630d6f25e6bfec0609ca56a649132a733e6.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/a972a6cc1c00bfcc35afb75a20746bc85945e6e5.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ab4a5c1baa489cfacdee4b235824855c764d4666.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ad9f918f64b127f3e6a75fda5ec97ef19e6a3574.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/af7d1468629b47f5c965ca38fdd4ede19d887adb.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b1f23fe884c721b050564421b34164f616442f07.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b2868f3b489e1f8fd0a226b8332733b6856d3e51.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/b9fec77e9c761aa27460a441f34c3d433f2f8927.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bc066bad5f4b89455177be23fa70859c807243bd.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bd3dbbdf1faceeb7599a38ffbdefc8052785ba34.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/be62512c0aa47d7c23e8f83ebdb2c1136385638d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bec1072df5815c944b5fbb300bf09d4848c22bc9.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/bf0a6e8da94e0f2bd33c30f2bb685b2c2067a23f.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c023fee002d8ab64a6301203da1b7b646e268171.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c0ec69cac06bf81c9875ceac27805c4440e3c023.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c421393605e2fb8679decce2638cd71173c32ecb.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c42a83c89044516d9e703f423ee096dc9af3505d.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/c86727ed6330e00ef5e8173f6fb48d36ebd226bd.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/cb04e1fa58ced0387ac734b03aaf1dfca3e4a7aa.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d091cc95d6568e2f578cab0566b3e722f49a5e56.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d1d33bbf4fb2bee80ba3f1b1830a2a1abb666eac.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d5d38489697dbd1eed09784a33989ebdb28ce2a5.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d67ab10251b8de6807a93a222a32b5d0590ac57f.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d828304a37d66d3d1d56bc2ac2790cf115c95a93.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/d8ea5aa6b9cce2ed4eb6d431b5efbb7089d3eeff.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/dc1fd9920cf0928a5d9b0d90dc510b5de6913679.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/dc85208ea46f27efccc09ebd39cb91657948f815.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/dd1106e1e690b2f78e3ef5a2578e3d4a13287d55.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/df45bbeb06b2083baff9664cd5024b207115a040.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e019f689b5656db629b552b0d7384be35796520c.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/e66a06878f269f0fc7cc727e2a94a2476e4b82f9.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/ea1d43d1630f237d467ddb6e9490e004ab160137.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/f41271f42a84aecaa2a85f9e2e16b6be6a659a36.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/f712589a2d8a045d48371be08818aefcf99adde2.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/fea053c3c67d7359d10daf61bea962e67acfce43.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -175,17 +276,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/Beneficios.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -435,11 +526,6 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -451,9 +537,13 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -806,11 +896,25 @@
       <option name="project" value="LOCAL" />
       <updated>1547651709733</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
+      <created>1548700558840</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1548700558840</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log">
+      <created>1548701101369</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1548701101369</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="558230000" />
+    <option name="totallyTimeSpent" value="559002000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -822,10 +926,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27932099" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30661157" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -839,7 +942,7 @@
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5231481" side_tool="true" weight="0.32332155" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.47685185" weight="0.32332155" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.47685185" visible="true" weight="0.32332155" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32838285" />
@@ -890,8 +993,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1- MEJORA INDEX" />
-    <MESSAGE value="1- COMENTE UN JQUERY QUE ESTABA GENERANDO PROBLEMAS CON LOS JS DE MATERIALIZE Y DEJE MONTADO EL TABS PARA CONTINUAR" />
     <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)" />
     <MESSAGE value="Solucion al error del modal de compra" />
@@ -915,7 +1016,9 @@
     <MESSAGE value="bmonterrey: ajuste cartelera en proveedor" />
     <MESSAGE value="bmonterrey: ajuste boton viajes" />
     <MESSAGE value="bmonterrey: ajuste lista referidos" />
-    <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: ajuste lista referidos" />
+    <MESSAGE value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php">
