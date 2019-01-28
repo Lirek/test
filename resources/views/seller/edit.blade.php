@@ -113,16 +113,21 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <div class="col s4">
+                                    <div class="col s3">
                                         <h5><i class="material-icons prefix blue-text">face</i>
                                         {{Auth::guard('web_seller')->user()->name}}</h5>
                                     </div>
-                                    <div class="col s4">
+                                     <div class="col s3">
+                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5>{{$content_for_aprove}}</h5>
+                                        <label>contenido en revisión</label>
+                                    </div>
+                                    <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{$total_content}}</h5>
                                         <label>contenido total</label>
                                     </div>
-                                    <div class="col s4">
+                                    <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i><h5>{{$total_aproved}}</h5>
                                         <label>contenido aprovado</label>
                                     </div>
@@ -212,6 +217,14 @@
                                 <div id="mensajePhone"></div>
                                 <label  for="ruc">Telefono</label>
                             </div>
+                            <!--Estado de la cuenta-->
+                            <div class="input-field col s12" style="display: none;">
+                                <i class="material-icons prefix blue-text">security</i>
+                                  {!! Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']) !!}
+                                  <div id="mensajeRuc"></div>
+                                 <label  for="ruc">Estado de cuenta</label>
+                            </div>
+
                                   <div class="input-field col s12">
                                       {!! Form::submit('Actualizar', ['class' => 'btn btn-primary active curvaBoton green','id'=>'Editar']) !!}
                                   </div>
@@ -227,9 +240,30 @@
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i>{{$seller->descs_s}}</p>
                                     </div>
                                 </div>
+                                <!-- CLOSE ACCOUNT -->
+                                 <div id="profile-card" class="card">
+                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                        <span class="collection-header center" style="color: white ">Opciones de cuenta</span>
+                                    </div>
+                                     <div class="card-content">
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
+                                        <div style="text-align: left;"> 
+                                        <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
+                                        <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                                        <div id="modal2" class="modal">
+                                                <div class="modal-content">
+                                                  <div class="card-content"> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.<br><br>
+                                                    <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curva Boton active modal-close">Si, Estoy Seguro</a>
+                                                    <a href="#" class="btn btn-primary green curva Boton active modal-close">Volver</a>
+                                                  </div>      
+                                                </div>
+                                        </div>
+                                        </ul>
+                                        </div>    
+                                    </div>
+                                </div>
+                            <!-- CLOSE ACCOUNT -->
                             </div>
-  
-
                         </div>
                     </div>
 

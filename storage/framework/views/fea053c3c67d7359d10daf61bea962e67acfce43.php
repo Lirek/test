@@ -1,7 +1,7 @@
 <?php $__env->startSection('main'); ?>
 
-   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="<?php echo e(asset('js/image-profile.js')); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo e(asset('js/image-profile.js')); ?>"></script>
 
 
     <style>
@@ -271,6 +271,15 @@ h5.breadcrumbs-header {
                                         <label  for="ruc">numero de telefono</label>
                                     </div>
 
+                                    <!--Estado de la cuenta-->
+                                    <div class="input-field col s12" style="display: none;">
+                                        <i class="material-icons prefix blue-text">contact_phone</i>
+                                           <?php echo Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']); ?>
+
+                                            <div id="mensajeRuc"></div>
+                                        <label  for="ruc">Estado de cuenta</label>
+                                    </div>
+
                                     <div class="input-field col s12">
                                               <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']); ?>
 
@@ -281,7 +290,7 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">contactame</span>
+                                        <span class="collection-header center" style="color: white ">Contactame</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -294,18 +303,39 @@ h5.breadcrumbs-header {
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-        </div>
-    </div>
-    <?php echo Form::close(); ?>
 
+                            <!-- CLOSE ACCOUNT -->
+                            <div id="profile-card" class="card">
+                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                        <span class="collection-header center" style="color: white ">Opciones de cuenta</span>
+                                    </div>
+                                     <div class="card-content">
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
+                                        <div style="text-align: left;"> 
+                                            <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
+                                            <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                                            <div id="modal2" class="modal">
+                                                <div class="modal-content">
+                                                  <div class="card-content"> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.<br><br>
+                                                    <a href="<?php echo e(url('DeleteAccount', $user->id)); ?>" class="btn btn-primary green curva Boton active modal-close">Si, Estoy Seguro</a>
+                                                    <a href="#" class="btn btn-primary green curva Boton active modal-close">Volver</a>
+                                                  </div>      
+                                                </div>
+                                            </div></ul>
+                                        </div>    
+                                    </div>
+                            </div>
+                            <!-- CLOSE ACCOUNT -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <?php echo Form::close(); ?>                                                  
+                    </div> 
+               </div>
+         </div>
     </div>
+</div>
 
 <?php $__env->stopSection(); ?>
 

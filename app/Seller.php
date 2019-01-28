@@ -30,6 +30,7 @@ class Seller extends Authenticatable
       'descs_s',
       'adj_ruc',
       'tlf',
+      'account_status',
       'logo',
       'address',
       'created_at',

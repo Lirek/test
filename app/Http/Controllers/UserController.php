@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
 use App\Events\NewContentNotice;
+use DB;
 
 use File;
 use QrCode;
@@ -170,6 +171,7 @@ class UserController extends Controller
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
+        $user->account_status = $request->account_status;
         if ($user->verify==2) {
             $user->verify = 0;
         }
@@ -215,10 +217,31 @@ class UserController extends Controller
      
         //dd($request->all());
         $user->save();
+
+        //return view('seller_edit');
+        return redirect()->action('UserController@edit');
         Flash('Se han modificado sus datos con exito!')->success();
-        //return view('home');
-       return redirect()->action('HomeController@index');
+        
     }
+
+
+    public function closed(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->account_status = "closed";
+        $user->save();
+          
+        Auth::logout();
+
+        $add = DB::select('INSERT INTO users_closed SELECT * FROM users WHERE account_status="closed"');
+        $del = DB::delete('DELETE FROM users WHERE account_status="closed"'); 
+    
+        Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
+
+        return redirect()->action('WelcomeController@welcome');
+
+    }
+
 
     public function sinAcento($cadena) {
         $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';

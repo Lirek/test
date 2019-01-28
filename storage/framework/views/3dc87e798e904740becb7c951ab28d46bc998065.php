@@ -128,7 +128,7 @@
 
   <?php if($refered != null): ?>
   <div class=" s12 col m5 offset-m1  ">
-      <h6 class="left-align grey-text">Lista de referidos:</h6>
+      <h6 class="left-align grey-text">Mis referidos directos:<span class="blue-text"> (<?php echo e($referals1); ?>)</span></h6>
               <ul class="collection">
                   <?php $__currentLoopData = $refered; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refereds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <li class="collection-item avatar">
@@ -149,8 +149,8 @@
               </ul>
   </div>
   <?php else: ?>
-      <div class="col s12 m10 offset-m1  ">
-          <h6 class="left-align grey-text">Lista de referidos:</h6>
+      <div class="col s12 m5  offset-m1  ">
+          <h6 class="left-align grey-text">Mis referidos directos:</h6>
             <blockquote class="center grey lighten-4 grey-text ">
               <br> <i class="material-icons">sentiment_very_dissatisfied</i>
               <br>Aún no tienes Referidos <br>
@@ -158,7 +158,17 @@
       </div>
   <?php endif; ?>
 
- 
+  <div  class="col m5 s12 ">
+      <div class="card">
+          <div class="card-image">
+              <img  src="<?php echo e(asset('promociones/PromocionGalapagosImg.jpg')); ?>" >
+          </div>
+          <div class="card-action">
+              <a  href="<?php echo e(asset('promociones/PromocionGalapagosInfo.pdf')); ?>" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
+              <br>
+          </div>
+      </div>
+  </div>
 
   <!--MODAL ToTal-->
   <div id="myModalRefe" class="modal modal-s" >

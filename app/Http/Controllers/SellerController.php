@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Auth;
-
+use Illuminate\Support\Facades\Redirect;
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 //Seller Model
 use App\Seller;
@@ -143,6 +144,7 @@ class SellerController extends Controller
     
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+        $content_for_aprove = $total_content-$total_aproved;
       
         $followers=count($seller->followers()->get());
         
@@ -150,6 +152,7 @@ class SellerController extends Controller
         return view('seller.home')
                 ->with('total_content',$total_content)
                 ->with('total_aproved',$total_aproved)
+                ->with('content_for_approve', $content_for_aprove)
                 ->with('followers', $followers)
                 ->with('tv_content',$tv_content)
                 ->with('radio_content',$radio_content)
@@ -353,10 +356,12 @@ class SellerController extends Controller
     
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+        $content_for_aprove = $total_content-$total_aproved;
       
         return view('seller.edit')  ->with('seller',$seller)
                                     ->with('total_content',$total_content)
-                                    ->with('total_aproved',$total_aproved);
+                                    ->with('total_aproved',$total_aproved)
+                                    ->with('content_for_aprove',$content_for_aprove);
     }
 
     public function update(Request $request)
@@ -394,12 +399,33 @@ class SellerController extends Controller
         $seller->address = $request->direccion;
         $seller->save();
 
-        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();
-
+        header("Refresh:0; url=/seller_edit");
         //return view('seller.edit')->with('seller',$seller);
-        return redirect()->action('SellerController@homeSeller');
+
+        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa!')->important();
+
+        
+        //return redirect()->action('SellerController');
 
     }
+
+    public function closed(Request $request, $id)
+    {
+        $seller = Seller::find($id);
+        $seller->account_status = "closed";
+        $seller->save();
+          
+        Auth::logout();
+
+        $add = DB::select('INSERT INTO sellers_closed SELECT * FROM sellers WHERE account_status="closed"');
+        $del = DB::delete('DELETE FROM sellers WHERE account_status="closed"'); 
+    
+        Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
+
+        return redirect()->action('WelcomeController@welcome');
+
+    }
+
     public function balance(){
         $Transaction=Transactions::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
         if ($Transaction->count()!= 0) {
