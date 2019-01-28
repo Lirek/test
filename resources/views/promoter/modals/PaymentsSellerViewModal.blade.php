@@ -52,7 +52,7 @@
         <div class="col s12">
             <div id="" class="col s12 center">
                 <div class="row">
-                  <div class="col s6 center">
+                  <div class="col s6">
                         <img class='materialboxed' src='' id="logoProveedor" width="120" height="120" alt='Logo proveedor'>
                         <br>
                         <label for="exampleInputFile" class="control-label">Logo de la empresa: </label>
@@ -66,14 +66,13 @@
             </div>
             <div id="" class="col s12 center">
                 <div class="row">
-                  <div class="col s6 center">      
+                  <div class="col s6 ">
+                  {{--Correo del proveedor--}}
+                    <label for="exampleInputFile" class="control-label">Correo: </label>
+                    <div id="correoProveedor"></div>      
                   </div>
                   <div class="col s6">
-                    {{--Correo del proveedor--}}
-                    <label for="exampleInputFile" class="control-label">Correo: </label>
-                    <div id="correoProveedor"></div>
-                    <br>
-                    {{--Telefono del proveedor--}}
+                  {{--Telefono del proveedor--}}
                     <label for="exampleInputPassword1" class="control-label">Teléfono: </label>
                     <div id="telefonoProveedor"></div>
                   </div>

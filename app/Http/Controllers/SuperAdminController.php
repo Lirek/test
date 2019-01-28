@@ -58,7 +58,7 @@ class SuperAdminController extends Controller
                 }
               }
 
-	         $Payments = Payments::take(5)->get();
+	         $Payments = Payments::take(1)->get();
 
 	         return view('promoter.AdminModules.Business')
 	        					->with('Balance', $Balance)

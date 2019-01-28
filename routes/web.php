@@ -359,8 +359,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
                 Route::get('/admin_single','AdminController@ShowSingles');
-                Route::get('SingleData','AdminController@SinglesDataTable');
-                Route::post('/admin_single/{id}','AdminController@SingleStatus');
+                Route::get('SingleData/{status}','AdminController@SinglesDataTable');
+                Route::post('/admin_singles/{id}','AdminController@SingleStatus');
 
            //---------------------------------------------------------------------
 
