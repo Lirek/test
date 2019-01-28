@@ -197,7 +197,7 @@
 				}
 			});
 		});
-		// Listar las negaciones
+		// Listar las canciones
 
 	</script>
 <?php $__env->stopSection(); ?>

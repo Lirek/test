@@ -198,7 +198,7 @@
 				}
 			});
 		});
-		// Listar las negaciones
+		// Listar las canciones
 
 	</script>
 @endsection

@@ -440,34 +440,13 @@ class AdminController extends Controller
 
   public function MegazineDataTable($status) {
     $megazines= Megazines::where('status',$status)->get();
+    $megazines->each(function($megazines){
+      $megazines->Rating;
+      $megazines->Seller;
+      $megazines->sagas;
 
-    return Datatables::of($megazines)
-      ->addColumn('cover',function($megazines){
-        return '<img class="img-rounded img-responsive av" src="'.asset($megazines->cover).'"style="width:70px;height:70px;" alt="Portada de Revista" id="photo">';
-      })
-      ->addColumn('rating',function($megazines){
-        return $megazines->Rating()->first()->r_descr;
-      })
-      ->addColumn('seller',function($megazines){
-        return $megazines->Seller()->first()->name;
-      })
-      ->addColumn('saga',function($megazines){
-        if($megazines->saga_id == 0 or $megazines->saga_id == 'NULL') {
-          return 'No';
-        } else {
-          return $megazines->sagas()->first()->sag_name;
-        }
-      })
-      ->addColumn('opciones',function($megazines){
-        $verArchivo = "<button type='button' class='btn btn-success' value='".asset($megazines->megazine_file)."' data-toggle='modal' data-target='#file' id='file_b'>Ver Revista</button";
-        $estatus = "<button type='button' class='btn btn-warning' value='".$megazines->id."' data-toggle='modal' data-target='#myModal' id='status'>".$megazines->status."</button";
-        if ($megazines->status=="Denegado") {
-          $estatus = "<button type='button' class='btn btn-danger' value='".$megazines->id."' data-toggle='modal' data-target='#negacionesR' id='denegadoR'>Ver negaciones</button";
-        }
-        return $verArchivo."<br>".$estatus;
-      })
-      ->rawColumns(['opciones','megazine_file','cover'])
-      ->toJson();
+    });
+    return response()->json($megazines);
   }
 
       public function ShowAllMegazine()
@@ -477,27 +456,14 @@ class AdminController extends Controller
       }      
 
   public function ShowPublicationChain($status) {
-    $saga = Sagas::where('status',$status)->where('type_saga','Revistas')->get();
-    return Datatables::of($saga)
-      ->editColumn('img_saga',function($saga){
-        return '<img class="img-rounded img-responsive av" src="'.asset($saga->img_saga).'" style="width:70px;height:70px;" alt="Imagen de Publicacion" id="photo">';
-      })
-      ->editColumn('rating_id',function($saga){
-        return $saga->Rating()->first()->r_descr;
-      })
-      ->editColumn('seller_id',function($saga){
-        return $saga->Seller()->first()->name;
-      })
-      ->addColumn('Estatus',function($saga){
-        $estatus = "<button type='button' class='btn btn-success' value='".$saga->id."' data-toggle='modal' data-target='#PubModal' id='Status'>".$saga->status."</button";
-        if ($saga->status=="Denegado") {
-          $estatus = "<button type='button' class='btn btn-danger' value='".$saga->id."' data-toggle='modal' data-target='#negacionesP' id='denegadoP'>Ver negaciones</button";
-        }
-        return $estatus;
-      })
-      ->rawColumns(['Estatus','img_saga'])
-      ->toJson();
-  }
+    $publicacion= Sagas::where('status',$status)->where('type_saga','=','Revistas')->get();
+    $publicacion->each(function($publicacion){
+      $publicacion->Rating;
+      $publicacion->Seller;
+    });
+    return response()->json($publicacion);
+    }
+
 
       public function ShowAllPublicationChain()
       {
@@ -664,57 +630,13 @@ class AdminController extends Controller
     return view('promoter.ContentModules.MainContent.Books');
   }
 
-  public function BooksDataTable($status) {
+public function BooksDataTable($status) {
     $Books= Book::where('status',$status)->get();
-    return Datatables::of($Books)
-      ->addColumn('cover',function($Books){
-        return "<img class='img-rounded img-responsive av' src='".asset('images/bookcover/').'/'.$Books->cover."' style='width:70px;height:70px;'' alt='Portada' id='photo'>";
-      })
-      ->addColumn('rating_id',function($Books){
-        return $Books->rating->r_name;
-      })
-      ->addColumn('seller_id',function($Books){
-        return $Books->seller->name;
-      })
-      ->addColumn('saga_id',function($Books){
-        if($Books->saga_id == 0 or $Books->saga_id == 'NULL') {
-          return 'No tiene saga';
-        } else {
-          return $Books->saga->sag_name;
-        }
-      })
-      ->addColumn('opciones',function($Books){
-        if ($Books->status=="Aprobado") {
-          $colorBoton = "btn-success";
-          $id = "status";
-          $modal = "myModalL";
-          $texto = $Books->status;
-        }
-        else if ($Books->status=="En Revision") { 
-          $colorBoton = "btn-warning";
-          $id = "status";
-          $modal = "#myModalL";
-          $texto = $Books->status;
-        }
-        else if ($Books->status=="Denegado") { 
-          $colorBoton = "btn-danger";
-          $id = "denegado";
-          $modal = "#negadoL";
-          $texto = "Ver negaciones";
-        }
-        $verArchivo = "<button type='button' class='btn btn-success' value='".asset('book/').'/'.$Books->books_file."' data-toggle='modal' data-target='#file' id='file_b'>Ver libro</button";
-        $estatus = "<button type='button' class='btn ".$colorBoton."' value=".$Books->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button";
-        return $verArchivo."<br>".$estatus;
-      })
-      ->addColumn('author_id',function($Books){
-        if ($Books->author_id!=NULL) {
-          return $Books->author()->first()->full_name;
-        } else {
-          return "No tiene autor";
-        }
-      })
-      ->rawColumns(['opciones','books_file','cover'])
-      ->toJson();
+    $Books->each(function($Books){
+      $Books->Seller;
+      $Books->rating;
+    });
+    return response()->json($Books);
   }
 
   public function EstatusBooks(Request $request,$id) {
@@ -743,40 +665,13 @@ class AdminController extends Controller
   }
 
   public function BooksSagasDataTable($status) {
-    $saga = Sagas::where('status',$status)->where('type_saga','Libros')->get();
-    return Datatables::of($saga)
-      ->addColumn('img_saga',function($saga){
-        return '<img class="img-rounded img-responsive av" src="'.asset("images/sagas/".$saga->img_saga).'"style="width:70px;height:70px;" alt="Foto de Saga" id="photo">';
-      })
-      ->addColumn('rating_id',function($saga){
-        return $saga->Rating()->first()->r_descr;
-      })
-      ->addColumn('seller_id',function($saga){
-        return $saga->Seller()->first()->name;
-      })
-      ->addColumn('Estatus',function($saga){
-        if ($saga->status=="Aprobado") {
-          $colorBoton = "btn-success";
-          $id = "status";
-          $modal = "myModalS";
-          $texto = $saga->status;
-        }
-        else if ($saga->status=="En Proceso") { 
-          $colorBoton = "btn-warning";
-          $id = "Status";
-          $modal = "#myModalS";
-          $texto = $saga->status;
-        }
-        else if ($saga->status=="Denegado") { 
-          $colorBoton = "btn-danger";
-          $id = "denegado";
-          $modal = "#negadoS";
-          $texto = "Ver negaciones";
-        }
-        return "<button type='button' class='btn ".$colorBoton."' value='".$saga->id."' data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button";
-      })
-      ->rawColumns(['Estatus','img_saga'])
-      ->toJson();
+    $saga = Sagas::where('status',$status)->where('type_saga','=','Libros')->get();
+    $saga->each(function($saga){
+      $saga->Seller;
+      $saga->Rating;
+    });
+    return response()->json($saga);
+   
   }
 
   public function statusSaga(Request $request,$id) {
@@ -917,81 +812,22 @@ class AdminController extends Controller
 
   public function SeriesDataTable($status) {
 
-      $serie = Serie::where('status',$status);
-      return Datatables::of($serie)
-        ->addColumn('img_poster',function($serie){
-          return "<img class='img-rounded img-responsive av' src='".asset($serie->img_poster)."' style='width:70px;height:70px;' alt='Portada' id='img_poster'>";
-        })
-        ->addColumn('autor',function($serie){
-          return $serie->Seller()->first()->name;
-        })
-        ->addColumn('title',function($serie){
-          return $serie->title;
-        })
-        ->addColumn('historia',function($serie){
-          return $serie->story;
-        })
-        ->addColumn('release_year',function($serie){
-          return $serie->release_year;
-        })
-        ->addColumn('trailer',function($serie){
-          return "<a href=$serie->trailer target='_blank'>".$serie->trailer."</a>";
-        })
-        ->addColumn('cost',function($serie){
-          return $serie->cost;
-        })
-        ->addColumn('saga',function($serie){
-          if ($serie->saga!=null) {
-            $saga = "<button href='' value='".$serie->id."' data-toggle='modal' data-target='#ModalSaga' id='saga' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'>".$serie->saga->sag_name."</button>";
-            //$saga = $serie->saga->sag_name;
-          } else {
-            $saga = "No tiene saga";
-          }
-          return $saga;
-        })
-        ->addColumn('estatusSerie',function($serie){
-          return $serie->status_series;
-        })
-        ->addColumn('Estatus',function($serie){
-          if ($serie->status=="Aprobado") { 
-            $colorBoton = "btn-success";
-            $id = "status";
-            $modal = "";
-            $texto = $serie->status;
-            $modal = "";
-          }
-          else if ($serie->status=="En Proceso") { 
-            $colorBoton = "btn-warning";
-            $id = "status";
-            $modal = "";
-            $texto = $serie->status;
-            $modal = "#myModal";
-          }
-          else if ($serie->status=="Denegado") { 
-            $colorBoton = "btn-danger";
-            $id = "denegado";
-            $modal = "#negado";
-            $texto = "Ver negaciones";
-          }
-          return "<button type='button' class='btn ".$colorBoton."' value=".$serie->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
-        })
-        ->rawColumns(['Estatus','img_poster','trailer','saga'])
-        ->toJson();
+      $serie = Serie::where('status',$status)->get();
+      $serie->each(function($serie){
+      $serie->Seller;
+      $serie->Saga;
+    });
+      
+    return response()->json($serie);
+      
   }
 
   public function sagaSerie($idSerie) {
-    $serie = Serie::find($idSerie);
-    $saga = $serie->saga;
-    $rating = $saga->rating;
-    for ($i=0; $i < count($saga); $i++) { 
-      $result[$i++] = $saga->img_saga;
-      $result[$i++] = $saga->sag_name;
-      $result[$i++] = $rating->r_descr;
-      $result[$i++] = $saga->status;
-      $result[$i++] = $saga->type_saga;
-      $result[$i++] = $saga->sag_description;
-    }
-    return response()->json($result);
+    $serie = Sagas::find($idSerie);
+    $serie->each(function($serie){
+      $serie->Rating;
+    });
+    return response()->json($serie);
   }
 
   public function SerieStatus(Request $request, $id) {
