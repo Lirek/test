@@ -4,8 +4,9 @@
 	
 </style>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.2/datatables.css"/>
+<!-- El cdn de datatable bloquea el sroll de la pagina -->
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.2/datatables.css"/> -->
 
 <?php $__env->startSection('main'); ?>
 

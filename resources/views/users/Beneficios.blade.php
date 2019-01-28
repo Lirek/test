@@ -5,9 +5,6 @@
 	
 </style>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/r-2.2.2/datatables.css"/>
-
 @section('main')
 
  <div  class="col m5 s12 ">
