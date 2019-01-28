@@ -10,7 +10,7 @@
 
 @section('main')
 
- <div  class="col m5 s12 ">
+ <div  class="col m6 s12 ">
       <div class="card">
           <div class="card-image"> 
               <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}"  >
@@ -23,7 +23,7 @@
       </div>
   </div>
 
-  <div  class="col m5 s12 ">
+  <div  class="col m6 s12 ">
       <div class="card">
           <div class="card-image"> 
               <img  src="{{asset('promociones/TarjetaMAXIBONO.jpg')}}" >
