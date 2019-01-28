@@ -23,7 +23,7 @@
   <!--REFERIR-->
   <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
   @if(Auth::user()->UserRefered()->count()  == 0)
-      <div   class="col s12  m3 offset-m1 ">
+      <div   class="col s12  m3 offset-m1 " id="cantidad">
           <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
               </div>
@@ -43,16 +43,16 @@
 
 
 
-      <div class="col m4 s12">
+      <div class="col m4 s12" id="referir">
           <div class="card-panel  center">
               <i class="material-icons blue-text medium">person_add</i>
               <h6 class="blue-text">Agregar código de patrocinador</h6>
               <br>
               <a   href="#myModalRefe" class="modal-trigger waves-effect waves-light btn curvaBoton">Agregar<i class="material-icons left">add</i></a>
-      </div>
+          </div>
 
       </div>
-      <div class="col s12 m3">
+      <div class="col s12 m3" id="puntos">
           <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
               </div>
@@ -295,6 +295,10 @@
             var tiempo=restaFechas(f1,f2);
             if (tiempo > 7){
                 document.getElementById('referir').style.display='none';
+                document.getElementById('cantidad').classList.remove('m3');
+                document.getElementById('cantidad').classList.add('m5');
+                document.getElementById('puntos').classList.remove('m3');
+                document.getElementById('puntos').classList.add('m5');
             }else{
                 var total=6-tiempo;
                 console.log(tiempo);

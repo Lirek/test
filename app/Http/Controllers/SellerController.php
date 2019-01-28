@@ -377,11 +377,18 @@ class SellerController extends Controller
         }
 
         if ($request->adj_ruc <> null) {
-            $file1 = $request->file('adj_ruc');
-            $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
-            $path1 = public_path() . '/images/producer/ruc/';
-            $file1->move($path1, $name1);
-            $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+            // $file1 = $request->file('adj_ruc');
+            // $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
+            // $path1 = public_path() . '/images/producer/ruc/';
+            // $file1->move($path1, $name1);
+            // $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+
+            $nombre = $this->sinAcento($request->name);
+            $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+            $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+            $request->file('adj_ruc')->move($store_path,$name);
+            $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
+            $seller->adj_ruc = $real_path;
         }
 
         // if ($request->adj_ci <> null) {

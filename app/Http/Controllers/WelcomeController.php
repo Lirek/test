@@ -76,7 +76,7 @@ class WelcomeController extends Controller
             ->with('iMusicas',$iMusicas)
             ->with('iLecturas',$iLecturas)
             ->with('seller', $sellers)
-            ->with('book',$books)
+            ->with('books',$books)
             ->with('movie',$movies)
             ->with('tv',$tvs)
             ->with('radio',$radios)
