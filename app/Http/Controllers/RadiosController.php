@@ -60,6 +60,7 @@ class RadiosController extends Controller
         $radio->name_r = $request->name_r;
         $radio->streaming = $request->streaming;
         $radio->email_c = $request->email_c;
+        $radio->web = $request->web;
         $radio->google = $request->google;
         $radio->instagram = $request->instagram;
         $radio->facebook = $request->facebook;

@@ -47,11 +47,23 @@
                                 <i class="mdi mdi-forum-outline"></i>
                             </a>
                             <ul>
+                                @if($tv->facebook!=null)
                                 <li><a href="{{$tv->facebook}}" target="_blank" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a></li>
+                                @endif
+                                @if($tv->google!=null)
                                 <li><a href="{{$tv->google}}" target="_blank" class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a></li>
+                                @endif
+                                @if($tv->twitter!=null)
                                 <li><a href="{{$tv->twitter}}" target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a></li>
+                                @endif
+                                @if($tv->instagram!=null)
                                 <li><a href="{{$tv->instagram}}" target="_blank" class="btn-floating purple-gradient"><i class="mdi mdi-instagram"></i></a></li>
+                                @endif
+                                @if($tv->web!=null)
+                                <li><a href="{{$tv->web}}" target="_blank" class="btn-floating grey"><i class="mdi mdi-earth"></i></a></li>
+                                @endif
                             </ul>
+
                         </div>
 
 

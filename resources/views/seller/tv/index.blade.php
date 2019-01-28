@@ -26,7 +26,7 @@
             box-shadow: 0 1px 0 0 #29B6F6 !important
         }
         .card{
-            height:430px;
+            height:480px;
         }
     </style>
 @endsection
@@ -54,10 +54,21 @@
                                             <div class="col m12">
                                                 <h6>{{ $tv->name_r }}</h6>
                                             </div>
+                                            @if($tv->web!=null)
+                                                <a href="{{$tv->web}}" target="_blank" class="btn-floating grey"><i class="mdi mdi-earth"></i></a>
+                                            @endif
+                                            @if($tv->facebook!=null)
                                             <a href="{{$tv->facebook}}" target="_blank" class="btn-floating blue darken-4"><i class="mdi mdi-facebook"></i></a>
+                                            @endif
+                                            @if($tv->google!=null)
                                             <a  href="{{$tv->google}}" target="_blank" class="btn-floating red accent-4"><i class="mdi mdi-youtube"></i></a>
-                                            <a href="{{$tv->twitter}}" target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a>
-                                            <a href="{{$tv->instagram}}" target="_blank" class="btn-floating purple-gradient darken-2"><i class="mdi mdi-instagram"></i></a>
+                                            @endif
+                                            @if($tv->twitter!=null)
+                                                <a href="{{$tv->twitter}}" target="_blank" class="btn-floating blue lighten-2"><i class="mdi mdi-twitter"></i></a>
+                                            @endif
+                                            @if($tv->instagram!=null)
+                                                <a href="{{$tv->instagram}}" target="_blank" class="btn-floating purple-gradient darken-2"><i class="mdi mdi-instagram"></i></a>
+                                            @endif
                                             <div class="col m12">
                                                 <small><b>Estatus:</b> {{ $tv->status }}</small>
                                             </div>
