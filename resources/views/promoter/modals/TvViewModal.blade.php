@@ -204,3 +204,25 @@
       </div>
     </div>
   </div>
+
+  <div id="reject" class="modal">
+    <div class="modal-content">
+      <div class="col s12 light-blue lighten-1 text-center">
+        <h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
+      </div>
+      <br>
+      <div class="col s12 center">
+        <h5 class="text-center" id="totalNegaciones"></h5>
+        <table class="responsive-table" id="historialRechazo">
+          <thead>
+            <tr>
+              <th><i class="material-icons"></i>Razón del rechazo</th>
+              <th><i class="material-icons"></i>Fecha del rechazo</th>
+            </tr>
+          </thead>
+          <tbody id="negaciones">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

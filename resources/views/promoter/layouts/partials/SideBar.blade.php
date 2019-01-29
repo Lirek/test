@@ -59,7 +59,7 @@
                 <a href="{{url('admin_clients_payments')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group</i>
                   De clientes
-                  <span class="new badge orange darken-1" data-badge-caption="" id="badgePagos" style="display: none; background-color: #d9534f;"></span>
+                  <span class="new badge orange darken-1" data-badge-caption="" id="badgePagosU" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
             </ul>

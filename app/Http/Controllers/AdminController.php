@@ -215,50 +215,39 @@ class AdminController extends Controller
 ---------------------------------------------------------------------------
 */
 
-   		public function ShowMusicianView()
-    	{
+   		public function ShowMusicianView() {
     		return view('promoter.ContentModules.ExtraContent.Musician');
    		}
 
-      public function MusicianDataTable()
-      {
-      
-        $Musician = music_authors::where('status','=','En Proceso')
-                              ->with('Seller')
-                              ->get();
-
-
-
+      public function MusicianDataTable($status) {
+        $Musician = music_authors::where('status',$status)->with('Seller')->get();
+        return response()->json($Musician);
+        /*
         return Datatables::of($Musician)
-                    ->addColumn('Estatus',function($Musician){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
-                    })
-                    
-                    ->addColumn('SocialMedia',function($Musician){
-                      
-                      return 
-                      '<a target="_blank" href="http://'.$Musician->facebook.'>
-                       <i class="fa fa-facebook-official" style="font-size:24px"></i>
-                       </a>
-                       <a target="_blank" href="http://'.$Musician->google.'">
-                        <i class="fa fa-youtube-play" style="font-size:36px"></i>
-                       </a>
-                       <a target="_blank" href="http://'.$Musician->instagram.'">
-                         <i class="fa fa-instagram" style="font-size:36px"></i>
-                       </a>
-                       <a target="_blank" href="http://'.$Musician->twitter.'">
-                        <i class="fa fa-twitter" style="font-size:36px"></i>
-                       </a>';
-                    })
-                    
-                    ->editColumn('photo',function($Musician){
-
-                      return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo">';
-                    })
-                    ->rawColumns(['Estatus','photo','SocialMedia'])
-                    ->toJson();
+          ->addColumn('Estatus',function($Musician){
+            return '<button type="button" class="btn btn-theme" value='.$Musician->id.' data-toggle="modal" data-target="#MusicianModal" id="Status">'.$Musician->status.'</button';
+          })
+          ->addColumn('SocialMedia',function($Musician){
+            return 
+              '<a target="_blank" href="http://'.$Musician->facebook.'>
+                <i class="fa fa-facebook-official" style="font-size:24px"></i>
+              </a>
+              <a target="_blank" href="http://'.$Musician->google.'">
+                <i class="fa fa-youtube-play" style="font-size:36px"></i>
+              </a>
+              <a target="_blank" href="http://'.$Musician->instagram.'">
+                <i class="fa fa-instagram" style="font-size:36px"></i>
+              </a>
+              <a target="_blank" href="http://'.$Musician->twitter.'">
+                <i class="fa fa-twitter" style="font-size:36px"></i>
+              </a>';
+            })
+          ->editColumn('photo',function($Musician){
+            return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"style="width:70px;height:70px;" alt="User Avatar" id="photo">';
+          })
+          ->rawColumns(['Estatus','photo','SocialMedia'])
+          ->toJson();
+        */
       }
 
       public function ShowAllMusician()
@@ -302,14 +291,20 @@ class AdminController extends Controller
                     ->toJson();
       }
 
-   		public function MusicianStatus(Request $request,$id)
-   		{
-   			$musician =music_authors::find($id);
-   			$musician->status = $request->status; 
-
-        $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reaon);
-
-			  $musician->save();
+   		public function MusicianStatus(Request $request,$id) {
+   			$musician = music_authors::find($id);
+   			$musician->status = $request->status;
+        if ($musician->seller_id!=0) {
+          $this->SendEmails($request->status,$musician->name,$musician->Seller->email,$request->reason);
+        }
+        if ($request->status=="Denegado") {
+          $rejection = new Rejection;
+          $rejection->module = "Author Music";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->reason;
+          $rejection->save();
+        }
+        $musician->save();
    			return response()->json($musician);
    		}
 
@@ -466,10 +461,17 @@ class AdminController extends Controller
 
    		public function RadioStatus(Request $request,$id) {
    			$radios = Radio::find($id);
-        if ($radios->seller!=null) {
+   			$radios->status = $request->status;
+        if ($request->status=="Denegado") {
+          $rejection = new Rejection;
+          $rejection->module = "Radio";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->reason;
+          $rejection->save();
+        }
+        if ($radios->seller_id!=0) {
           $this->SendEmails($request->status,$radios->name,$radios->Seller->email,$request->reason);
         }
-   			$radios->status = $request->status;
         $radios->save();
    			return response()->json($radios);
    		}
@@ -690,14 +692,20 @@ class AdminController extends Controller
         return view('admin.TV')->with('TVS',$tv);
       }
 
-   		public function TvStatus(Request $request,$id)
-   		{
-   			$tv =TV::find($id);
-   			$tv->status = $request->status;
-
-        $this->SendEmails($request->status,$tv->name_r,$tv->Seller->email);
-
-			  $tv->save();
+   		public function TvStatus(Request $request,$id) {
+   			$tv = TV::find($id);
+        $tv->status = $request->status;
+        if ($request->status=="Denegado") {
+          $rejection = new Rejection;
+          $rejection->module = "Tvs";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->reason;
+          $rejection->save();
+        }
+        $tv->save();
+        if ($tv->seller_id!=0) {
+          $this->SendEmails($request->status,$tv->name_r,$tv->Seller->email,$request->reason);
+        }
    			return response()->json($tv);
    		}
 
@@ -1206,6 +1214,11 @@ class AdminController extends Controller
         if ($request->status=='Rechazado') {
           //$data=$seller->delete();
           $seller->estatus = 3; // rechazado
+          $rejection = new Rejection;
+          $rejection->module = "Seller";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->message;
+          $rejection->save();
         } else {
           $seller->estatus = 2; // aprobado
         }
@@ -1229,7 +1242,10 @@ class AdminController extends Controller
    		}
 
       public function SellerApplyDataTable($status) {
-        $ApplysSellers = ApplysSellers::where('status',$status);
+        $ApplysSellers = ApplysSellers::where('status',$status)->get();
+        $ApplysSellers->each(function($ApplysSellers){
+          $ApplysSellers->Salesman;
+        });
         return response()->json($ApplysSellers);
         /*
         return Datatables::of($ApplysSellers)
@@ -1311,6 +1327,7 @@ class AdminController extends Controller
       public function viewRejection($idModulo,$modulo) {
         $rejection = Rejection::where('id_module',$idModulo)
                               ->where('module',$modulo)
+                              ->orderBy('created_at','desc')
                               ->get();
         return response ()->json($rejection);
       }
@@ -1481,13 +1498,14 @@ class AdminController extends Controller
       }
 
       public function ClientsData() {
-        $user = User::where('verify','=','0')
+        $user = User::where('verify','0')
           ->where('img_doc','<>','NULL')
           ->where('num_doc','<>','NULL')
           ->where('type','<>','Indefinido')
           ->where('fech_nac','<>','NULL')
           ->get();
         return response()->json($user);
+          /*
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
 
@@ -1500,14 +1518,13 @@ class AdminController extends Controller
                     })
 
                     ->editColumn('img_doc',function($user){
-                      /* solucion para produccion
+                      // solucion para produccion
                       $ruta = "https://leipel.com/";
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
                       <img class="img-rounded img-responsive av" src="'.$ruta.$user->img_doc.'"
                                  style="width:70px;height:70px;" alt="User Avatar" id="photo'.$user->id.'">
                                  </button>';
                       })
-                      */
                       return '<button value='.$user->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
                       <img class="img-rounded img-responsive av" style="width:70px;height:70px;" src="'.asset($user->img_doc).'"
                                   alt="User Avatar" id="photo'.$user->id.'"> 
@@ -1518,12 +1535,13 @@ class AdminController extends Controller
                     })
                     ->rawColumns(['Estatus','img_doc','webs'])
                     ->toJson();
+          */
       }
 
-      public function AllClientsData()
-      {
-          $user=User::where('verify','=','1')
-                                             ->get();
+      public function AllClientsData() {
+        $user = User::where('verify','1')->get();
+        return response()->json($user);
+          /*
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
 
@@ -1547,12 +1565,13 @@ class AdminController extends Controller
                     })
                     ->rawColumns(['Estatus','img_doc','webs'])
                     ->toJson();
+          */
       }
 
-     public function RejectedClientsData()
-      {
-          $user=User::where('verify','=','2')
-                                             ->get();
+     public function RejectedClientsData() {
+      $user = User::where('verify','2')->get();
+      return response()->json($user);
+        /*
              return Datatables::of($user)
                     ->addColumn('Estatus',function($user){
 
@@ -1576,100 +1595,71 @@ class AdminController extends Controller
                     })
                     ->rawColumns(['Estatus','img_doc','webs'])
                     ->toJson();
+        */
       }
 
 
-      public function ValidateUser(Request $request,$id)
-      {
-        $User= User::find($id);
-
-        if ($request->status == 'Aprobado')
-          {
-            $User->verify=1;
-
-            event(new UserValidateEvent($User->email,1,0));
-          }
-           else
-          {
-            $User->verify=2;
-
-            event(new UserValidateEvent($User->email,2,$request->message));
-          }
-
+      public function ValidateUser(Request $request,$id) {
+        $User = User::find($id);
+        if ($request->status == 'Aprobado') {
+          $User->verify = 1;
+          event(new UserValidateEvent($User->email,1,0));
+        } else {
+          $User->verify = 2;
+          $rejection = new Rejection;
+          $rejection->module = "User";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->message;
+          $rejection->save();
+          event(new UserValidateEvent($User->email,2,$request->message));
+        }
         $User->save();
-
         return response()->json($User);
       }
 
-      public function WebsDataTable($id)
-      {
-          $user= User::find($id);
-          $x=$user->Referals()->get();
-          $referals1 = [];
-          $referals2= [];
-          $referals3= [];
-          $WholeReferals = new Collection;
-
-          if ($user->Referals()->get()->isEmpty())
-          {
-            return Datatables::of($WholeReferals)->toJson();
+      public function WebsDataTable($id) {
+        $user= User::find($id);
+        $x=$user->Referals()->get();
+        $referals1 = [];
+        $referals2= [];
+        $referals3= [];
+        $WholeReferals = new Collection;
+        if ($user->Referals()->get()->isEmpty()) {
+          return Datatables::of($WholeReferals)->toJson();
+        }
+        foreach ($user->Referals()->get() as $key) {
+          $referals1[]=$key->refered;
+          $WholeReferals->prepend(User::find($key->refered));
+        }
+        if (count($referals1)>0) {
+          foreach ($referals1 as $key2) {
+            $joker = User::find($key2);
+            foreach($joker->Referals()->get() as $key2) {
+              $referals2[]=$key2->refered;
+              $WholeReferals->prepend(User::find($key2->refered));
+            }
           }
-          foreach ($user->Referals()->get() as $key)
-          {
-              $referals1[]=$key->refered;
-              $WholeReferals->prepend(User::find($key->refered));
+        } else {
+          $referals2=0;
+        }
+        if (count($referals2)>0) {
+          foreach ($referals2 as $key3) {
+            $joker = User::find($key3);
+            foreach($joker->Referals()->get() as $key3) {
+              $referals3[]=$key3->refered;
+              $WholeReferals->prepend(User::find($key3->refered));
+            }
           }
-
-          if (count($referals1)>0)
-              {
-
-                foreach ($referals1 as $key2)
-                 {
-                    $joker = User::find($key2);
-
-                    foreach($joker->Referals()->get() as $key2)
-                     {
-                       $referals2[]=$key2->refered;
-                       $WholeReferals->prepend(User::find($key2->refered));
-                     }
-                 }
-              }
-          else
-              {
-                $referals2=0;
-              }
-
-
-
-          if (count($referals2)>0)
-              {
-                foreach ($referals2 as $key3)
-                {
-                  $joker = User::find($key3);
-
-                    foreach($joker->Referals()->get() as $key3)
-                     {
-                       $referals3[]=$key3->refered;
-                       $WholeReferals->prepend(User::find($key3->refered));
-                     }
-                }
-              }
-
-          else
-              {
-                $referals3=0;
-              }
-
-
-
-            $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
-
-              if (in_array($item->id, $referals1)) { return $item->level=1;}
-              if (in_array($item->id, $referals2)) { return $item->level=2;}
-              if (in_array($item->id, $referals3)) { return $item->level=3;}
-                      });
-
-        return Datatables::of($WholeReferals)->toJson();
+        } else {
+          $referals3=0;
+        }
+        $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
+          if (in_array($item->id, $referals1)) { return $item->level=1;}
+          if (in_array($item->id, $referals2)) { return $item->level=2;}
+          if (in_array($item->id, $referals3)) { return $item->level=3;}
+        });
+        //return Datatables::of($WholeReferals)->toJson();
+        return response()->json($WholeReferals);
       }
 
 //------------------------------------------------------------------
@@ -1718,49 +1708,49 @@ class AdminController extends Controller
 //--------------------------------
 
 //-----------------Validacion de Pagos----------------------
-      public function DepsitDataTable()
-      {
-        $deposit = Payments::where('status','=','En Revision')->with('TicketsUser')->with('Tickets');
-        /* solucion para produccion
-                      $ruta = "http://leipel.com";
-                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
-                                 </button> ';
-                      })
-                      */
-
-        return Datatables::of($deposit)
-                                    ->editColumn('voucher',function($deposit){
-                                      /*
-                                      $ruta = "http://leipel";
-                      return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'"
-                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
-                                 </button> ';
-                    })
-                    return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
-<img class="img-rounded img-responsive av" src="'.asset($deposit->vouch).'"
-                                      */
-                    return ' <button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
-                      <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'"                                 style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
-                                 </button> ';
-                    })
-                    ->editColumn('user_id',function($deposit){
-
-                      return $deposit->TicketsUser->name;
-                    })
-                    ->addColumn('Estatus',function($deposit){
-
-                      return '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
-                      </button';
-                    })
-                     ->addColumn('total',function($deposit){
-
-                      return $deposit->value*$deposit->Tickets->cost.'$';
-                    })
-                      ->rawColumns(['Estatus','voucher'])
-                      ->toJson();
+      public function DepsitDataTable() {
+        $deposit = Payments::where('status','En Revision')->with('TicketsUser')->with('Tickets')->get();
+        /*
+          // solucion para produccion
+            $ruta = "http://leipel.com";
+            return 
+              '<button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+              <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'" style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
+              </button> ';
+            })
+          //
+            return Datatables::of($deposit)
+            ->editColumn('voucher',function($deposit){
+              //
+                $ruta = "http://leipel";
+                return 
+                '<button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                  <img class="img-rounded img-responsive av" src="'.$ruta.$deposit->voucher.'" style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'">
+                </button> ';
+              })
+              return '<img class="img-rounded img-responsive av" src="'.asset($Musician->photo).'"
+                <img class="img-rounded img-responsive av" src="'.asset($deposit->vouch).'"
+              //
+                return 
+                  '<button value='.$deposit->id.' data-toggle="modal" data-target="#ciModal" id="file_b">
+                    <img class="img-rounded img-responsive av" src="'.asset($deposit->voucher).'"style="width:70px;height:70px;" alt="User Avatar" id="photo'.$deposit->id.'"> 
+                  </button> ';
+                })
+            ->editColumn('user_id',function($deposit){
+              return $deposit->TicketsUser->name;
+            })
+            ->addColumn('Estatus',function($deposit){
+              return 
+              '<button type="button" class="btn btn-theme" value='.$deposit->id.' data-toggle="modal" data-target="#PayModal" id="payval">En Proceso
+              </button';
+            })
+            ->addColumn('total',function($deposit){
+              return $deposit->value*$deposit->Tickets->cost.'$';
+            })
+            ->rawColumns(['Estatus','voucher'])
+            ->toJson();
+          */
+        return response()->json($deposit);
       }
 
       public function DepositStatus($id,Request $request) {
@@ -1791,6 +1781,11 @@ class AdminController extends Controller
           $user = User::find($deposit->user_id);
           $deposit->status = 'Denegado';
           $deposit->save();
+          $rejection = new Rejection;
+          $rejection->module = "Payments User";
+          $rejection->id_module = $id;
+          $rejection->reason = $request->message;
+          $rejection->save();
           event(new PaymentDenialEvent($user->email,$request->message));
           return response()->json($deposit);
         }
@@ -1943,6 +1938,11 @@ class AdminController extends Controller
         $ticketSale->save();
         return Response()->json($ticketSale);
       }
+
+      public function infoUsuario($idUser) {
+        $user = User::find($idUser);
+        return response()->json($user);
+      }
 /* 
   ---------------------------------------------------------------
   --------------- FUNCIONES DE CANJE DE TICKETS -----------------
@@ -2061,6 +2061,34 @@ class AdminController extends Controller
       $pagos->tickets;
     });
     return response()->json($pagos);
+  }
+
+  public function ShowAuthorBooks() {
+    return view('promoter.ContentModules.ExtraContent.BooksAuthor');
+  }
+
+  public function AuthorBooks($status) {
+    $autoresLiterarios = BookAuthor::where('status',$status)->get();
+    $autoresLiterarios->each(function($autoresLiterarios){
+      $autoresLiterarios->seller;
+    });
+    return response()->json($autoresLiterarios);
+  }
+  
+  public function statusBookAuthor(Request $request,$id) {
+    $bookAuthor = BookAuthor::find($id);
+    $bookAuthor->status = $request->status;
+    if ($request->status=="Denegado") {
+      $rejection = new Rejection;
+      $rejection->module = "Author Book";
+      $rejection->id_module = $id;
+      $rejection->reason = $request->reason;
+      $rejection->save();
+    }
+    $bookAuthor->save();
+    if ($bookAuthor->seller_id!=null) {
+      $this->SendEmails($request->status,$bookAuthor->full_name,$bookAuthor->Seller->email,$request->reason);
+    }
   }
 /* 
   ---------------------------------------------------------------

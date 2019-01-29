@@ -359,13 +359,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
            //---------------------------ETIQUETAS-----------------------------------
                 Route::get('TagsReview','TagController@ShowPendingTags');
-                Route::get('TagsData','TagController@DataTableRender');
+                Route::get('TagsData/{status}','TagController@DataTableRender');
                 Route::post('AprobalDenialTag/{id}','TagController@AprovalDenial');
+                Route::post('newTag','TagController@store');
+                Route::get('editTag/{id}','TagController@edit');
+                Route::post('updateTag','TagController@update');
+                Route::get('deleteTags/{id}','TagController@delete');
            //-----------------------------------------------------------------------
 
            //------------------------MUSICOS Y ARTISTAS----------------------------
                 Route::get('/admin_musician','AdminController@ShowMusicianView');
-                Route::get('MusicianData','AdminController@MusicianDataTable');
+                Route::get('MusicianData/{status}','AdminController@MusicianDataTable');
                 Route::post('/admin_musician/{id}','AdminController@MusicianStatus');
            //----------------------------------------------------------------------
 
@@ -458,6 +462,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           //-------------------------
         //______________________Fin de las rutas de Clientes________________________
 
+        //------------------------Rutas de autores literarios--------------------
+        Route::get('/admin_autors','AdminController@ShowAuthorBooks');
+        Route::get('/autoresLiterariosData/{status}','AdminController@AuthorBooks');
+        Route::post('statusBookAuthor/{id}','AdminController@statusBookAuthor');
+        //------------------------Rutas de autores literarios--------------------
+
     });
 
     Route::group(['middleware' => ['SuperAdmin']], function (){
@@ -465,8 +475,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::get('Business','SuperAdminController@ShowBusiness');
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
-         Route::get('PointsSalesDataTable','SuperAdminController@PointsSalesDataTable');
-         Route::post('PointsRollBack/{id}','SuperAdminController@PointsRollBack');
+         Route::get('PointsSalesDataTable/{status}','SuperAdminController@PointsSalesDataTable');
+         Route::get('PointsRollBack/{id}','SuperAdminController@PointsRollBack');
 
 
          Route::get('TicketsDetail','SuperAdminController@ShowTicketsDetail');

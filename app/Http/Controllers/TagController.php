@@ -4,68 +4,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tags;
+use App\Rejection;
+use App\SellersRoles;
 use Laracasts\Flash\Flash;
 use Yajra\Datatables\Datatables;
-class TagController extends Controller
-{
-    public function store(Request $request) {
+class TagController extends Controller {
 
-        //dd($request->all());
-    	
+    public function store(Request $request) {
     	$tag = new Tags;
     	$tag->tags_name 	= ucwords($request->tags_name);
     	$tag->type_tags 	= $request->type_tags;
-    	$tag->seller_id 	= $request->seller_id;
-    	$tag->save();
-        
-    	Flash::success('Se ha registrado '.$tag->tags_name.' de manera exitosa, debe esperar su activación para poder utilizarlo')->important();
-
-        switch ($request->ruta) {
-            case 'Musica':
-                $ruta = 'AlbumsController@ShowAlbumstForms';
-                break;
-            case 'Series':
-                $ruta = 'SeriesController@create';
-                break;
-            case 'Peliculas':
-                $ruta = 'MoviesController@create';
-                break;
-            case 'Libros':
-                $ruta = 'BooksController@create';
-                break;
+        if (array_key_exists('seller_id', $request->all())) {
+            $tag->seller_id     = $request->seller_id;
+        } else {
+            $tag->status = "Aprobado";
         }
-
-    	//return redirect()->action( $ruta );
+    	$tag->save();
         return Response()->json(0);
     }
 
-    
-    public function ShowPendingTags()
-    {
-        return view('promoter.ContentModules.ExtraContent.Tags');
+    public function ShowPendingTags() {
+        $modulos = SellersRoles::whereNotIn('name',['Productora','Artista','Editorial','Escritor'])->get();
+        return view('promoter.ContentModules.ExtraContent.Tags')->with('modulos',$modulos);
     }
 
-    public function DataTableRender()
-    {
-            
-        $Tags = Tags::where('status','=','En Proceso')->with('Seller')->get();
-        
-        return Datatables::of($Tags)
-                                    ->addColumn('Estatus',function($Tags){
-                                        
-                                        return '<button type="button" class="btn btn-theme" value='.$Tags->id.' data-toggle="modal" data-target="#StatusTags" id="Status">'.$Tags->status.'</button';
-                                    })
-                                    ->rawColumns(['Estatus'])
-                                    ->toJson(); 
+    public function DataTableRender($status) {
+        $Tags = Tags::where('status',$status)->with('Seller')->get();
+        return response()->json($Tags);
     }
 
-    public function AprovalDenial($id,Request $request)
-    {
-        $Tags=Tags::find($id);
-        $Tags->status=$request->status;
+    public function AprovalDenial(Request $request,$id) {
+        $Tags = Tags::find($id);
+        $Tags->status = $request->status;
+        if ($request->status=="Denegado") {
+            $rejection = new Rejection;
+            $rejection->module = "Tags";
+            $rejection->id_module = $id;
+            $rejection->reason = $request->reason;
+            $rejection->save();
+        }
         $Tags->save();
-
         return Response()->json($Tags);
+    }
+
+    public function edit($id) {
+        $Tags = Tags::find($id);
+        return Response()->json($Tags);
+    }
+
+    public function update(Request $request) {
+        $Tags = Tags::find($request->idTag);
+        $Tags->tags_name = ucwords($request->tags_name);
+        $Tags->type_tags = $request->type_tags;
+        $Tags->save();
+        return Response()->json($Tags);
+    }
+
+    public function delete($id) {
+        $Tag = Tags::destroy($id);
+        return Response()->json($Tag);
     }
 
 }

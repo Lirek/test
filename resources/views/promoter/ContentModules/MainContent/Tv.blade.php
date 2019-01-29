@@ -131,6 +131,7 @@
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
         // funcion para listas las televisoras registradas por los proveedores
         function tvs(status) {
@@ -203,6 +204,10 @@
                         }
                         var status = 
                         "<a class='waves-effect waves-light btn modal-trigger curvaBoton' value='"+info.id+"' href='#myModal' id='status'>Cambiar</a>";
+                        if (info.status=="Denegado") {
+                            status = status+"<br>"+
+                            "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectPayments'>Ver negaciones</a>";
+                        }
                         var filas = "<tr><td>"+
                         info.name_r+"</td><td>"+
                         logo+"</td><td>"+
@@ -299,6 +304,10 @@
                         "<a class='btn-small waves-effect waves-light btn red curvaBoton' id='deleteTv' value='"+info.id+"'>"+
                             "<i class='material-icons'>delete</i>"+
                         "</a>";
+                        if (info.status=="Denegado") {
+                            status = status+
+                            "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectPayments'>Ver negaciones</a><br>";
+                        }
                         var filas = "<tr><td>"+
                         info.name_r+"</td><td>"+
                         logo+"</td><td>"+
@@ -555,7 +564,42 @@
             $("#control").attr('src',streaming);
         });
         // funcion para ver todas las televisoras registradas
-   
+
+        // funcion para ver todas las negaciones de una televisora
+        $(document).on('click', '#rejectPayments', function(e) {
+            var idTv = $(this).attr("value");
+            console.log(idTv);
+            var modulo = "Tvs";
+            var url = "{!! url('viewRejection/"+idTv+"/"+modulo+"') !!}";
+            console.log(url);
+            $("#negaciones").empty();
+            e.preventDefault();
+            $.ajax({
+                url: url, 
+                type:'get', 
+                dataType:'json',
+                success: function(datos){
+                    console.log(datos);
+                    $('#totalNegaciones').show();
+                    $('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
+                    $.each(datos, function(i,info){
+                        var fila = '<tr><td>'+
+                        info.reason+'</td><td>'+
+                        moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+'</td></tr>';
+                        $('#negaciones').append(fila);
+                    });
+                },
+                error: function (datos) {
+                    console.log(datos);
+                    swal('Existe un error en su solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+        // funcion para ver todas las negaciones de una televisora
+
         // para que se vean las imagenes en los formularios
         $.uploadPreview({
             input_field: "#image-upload",
