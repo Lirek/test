@@ -40,7 +40,7 @@
                       <div class="card" style="height: 430px">
                         <div class="card-image">
                             <a href="#myModal-{{$Movies->id}}" class="modal-trigger">
-                          <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
+                          <img src="{{asset('movie/poster')}}/{{$Movies->img_poster}}" width="100%" height="300px">
                           </a>
                           <!-- <span class="card-title">Card Title</span> -->
                           <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
@@ -245,7 +245,7 @@ function callback(value,id) {
             })
          $.ajax({
                     
-            url:'BuyMovie/'+id,
+            url:'../BuyMovie/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
