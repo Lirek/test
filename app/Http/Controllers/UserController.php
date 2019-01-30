@@ -10,6 +10,8 @@ use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
 use App\Events\NewContentNotice;
 use DB;
+use Illuminate\Support\Facades\Crypt;
+use Hash;
 
 use File;
 use QrCode;
@@ -163,6 +165,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
+        $user->password = $request->password;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
@@ -219,7 +222,39 @@ class UserController extends Controller
         
     }
 
+   public function changepassword(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $newpassword = bcrypt($request->newpassword);
+        $confirmnewpass = bcrypt($request->confirmnewpass);
+        //$encrypted = Crypt::encryptString($user->password);
+        //$user->password = $encrypted;
+        //$decrypted = Crypt::decrypt($request->password);
+        //$user->password = $decrypted;
+        //$user->password = bcrypt($request->password);
+        //$user->password = $user->password;
+        //$user->password = Hash::make($request->password);
+        //$pass_encrypt = md5($request->password); 
+        //$pass_encrypt = password_hash($user->password, PASSWORD_BCRYPT);
+        //$user->password = $pass_encrypt;  
+        //password_verify($user->password, $pass_encrypt);
+        //if (Hash::check($request->password, $user->password))
+       //{
 
+            $user->save();
+        
+              return redirect()->action('UserController@edit');
+
+             Flash('Se ha modificado sus contraseña con exito!')->success();
+        
+                 
+       //} 
+          
+    
+    }
+
+  
     public function closed(Request $request, $id)
     {
         $user = User::find($id);

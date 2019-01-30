@@ -167,6 +167,10 @@ Route::post('Invite','UserController@Invite');
     //Agregada 23/01/2019  
     Route::get('DeleteAccount/{id}','UserController@closed');
 
+    //Agregada 28/01/2019
+   Route::get('ChangePassword/{id}','UserController@changepassword');
+
+
    
 
 //---------------------------------------------------------------------------

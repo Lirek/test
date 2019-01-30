@@ -673,6 +673,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\TvTrace' => __DIR__ . '/../..' . '/app/TvTrace.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\music_authors' => __DIR__ . '/../..' . '/app/music_authors.php',
+        'App\\seller_closed' => __DIR__ . '/../..' . '/app/seller_closed.php',
+        'App\\user_closed' => __DIR__ . '/../..' . '/app/user_closed.php',
         'Arcanedev\\LogViewer\\Commands\\CheckCommand' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/CheckCommand.php',
         'Arcanedev\\LogViewer\\Commands\\Command' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/Command.php',
         'Arcanedev\\LogViewer\\Commands\\PublishCommand' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/PublishCommand.php',

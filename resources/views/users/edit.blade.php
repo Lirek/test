@@ -296,13 +296,30 @@ h5.breadcrumbs-header {
                                      <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                                         <div style="text-align: left;"> 
-                                            <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
-                                            <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                                            <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                                            <div id="modal1" class="modal">
+                                                <div class="modal-content">
+                                                  <div class="card-content"> Desea cambiar su contraseña?<br><br> 
+                                                     <div class="input-field col s12">
+                                                       <i class="material-icons prefix blue-text">edit</i>
+                                                       <label>Contraseña Antigua</label>
+                                                       {!! Form::open(['url'=>['ChangePassword',$user],'method'=>'POST', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
+                                                         {!! Form::text('password',$user->password,['class'=>'form-control']) !!}   
+                                                     </div>
+                                                     
+                                                     <a href="{{ url('ChangePassword', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close">Actualizar</a>
+                                                      <a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>
+                                                      {!! Form::close() !!} 
+                                                  </div>      
+                                                </div>
+                                            </div>
+                                            </ul>
+                                            <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
                                             <div id="modal2" class="modal">
                                                 <div class="modal-content">
                                                   <div class="card-content"> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.<br><br>
-                                                    <a href="{{ url('DeleteAccount', $user->id) }}" class="btn btn-primary green curva Boton active modal-close">Si, Estoy Seguro</a>
-                                                    <a href="#" class="btn btn-primary green curva Boton active modal-close">Volver</a>
+                                                    <a href="{{ url('DeleteAccount', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
+                                                    <a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>
                                                   </div>      
                                                 </div>
                                             </div></ul>

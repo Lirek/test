@@ -229,6 +229,8 @@ return array(
     'App\\TvTrace' => $baseDir . '/app/TvTrace.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\music_authors' => $baseDir . '/app/music_authors.php',
+    'App\\seller_closed' => $baseDir . '/app/seller_closed.php',
+    'App\\user_closed' => $baseDir . '/app/user_closed.php',
     'Arcanedev\\LogViewer\\Commands\\CheckCommand' => $vendorDir . '/arcanedev/log-viewer/src/Commands/CheckCommand.php',
     'Arcanedev\\LogViewer\\Commands\\Command' => $vendorDir . '/arcanedev/log-viewer/src/Commands/Command.php',
     'Arcanedev\\LogViewer\\Commands\\PublishCommand' => $vendorDir . '/arcanedev/log-viewer/src/Commands/PublishCommand.php',

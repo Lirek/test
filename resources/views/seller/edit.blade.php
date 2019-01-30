@@ -248,8 +248,8 @@
                                      <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                                         <div style="text-align: left;"> 
-                                        <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
-                                        <ul><a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                                        <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
+                                        <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
                                         <div id="modal2" class="modal">
                                                 <div class="modal-content">
                                                   <div class="card-content"> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.<br><br>
