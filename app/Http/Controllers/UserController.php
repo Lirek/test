@@ -249,8 +249,8 @@ class UserController extends Controller
               alert("Su contraseña ha sido cambiado con exito!");
               window.location.href="/EditProfile"</script>';
               
-              //return redirect()->action('UserController@edit'); 
-             // Flash('Se ha modificado sus contraseña con exito!')->success();         
+            //return redirect()->action('UserController@edit'); 
+            // Flash('Se ha modificado sus contraseña con exito!')->success();         
         } 
         else 
 

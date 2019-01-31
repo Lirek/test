@@ -334,7 +334,8 @@ h5.breadcrumbs-header {
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span>
+                            </div>
                             </div>
                             <div class="card-content" style="text-align: center;"> <label><h6>AVISO <br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
                             <div style="text-align: center">
