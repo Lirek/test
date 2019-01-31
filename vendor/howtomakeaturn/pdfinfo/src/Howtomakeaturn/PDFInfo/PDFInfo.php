@@ -10,7 +10,7 @@ class PDFInfo
 {
     protected $file;
     public $output;
-    
+
     public $title;
     public $author;
     public $creator;
@@ -31,13 +31,13 @@ class PDFInfo
     public function __construct($file)
     {
         $this->file = $file;
-        
+
         $this->loadOutput();
-        
-        $this->parseOutput();        
+
+        $this->parseOutput();
     }
-    
-    public function getBinary() 
+
+    public function getBinary()
     {
         if (empty(static::$bin)) {
             static::$bin = trim(trim(getenv('PDFINFO_BIN'), '\\/" \'')) ?: 'pdfinfo';
@@ -54,17 +54,19 @@ class PDFInfo
         // Parse entire output
         // Surround with double quotes if file name has spaces
         exec("$cmd $file", $output, $returnVar);
-        
+
         if ( $returnVar === 1 ){
             throw new Exceptions\OpenPDFException();
         } else if ( $returnVar === 2 ){
             throw new Exceptions\OpenOutputException();
         } else if ( $returnVar === 3 ){
-            throw new Exceptions\PDFPermissionException();            
+            throw new Exceptions\PDFPermissionException();
         } else if ( $returnVar === 99 ){
-            throw new Exceptions\OtherException();                        
+            throw new Exceptions\OtherException();
+        } else if ( $returnVar === 127 ){
+            throw new Exceptions\CommandNotFoundException();
         }
-        
+
         $this->output = $output;
     }
 
@@ -84,8 +86,9 @@ class PDFInfo
         $this->fileSize = $this->parse('File size');
         $this->optimized = $this->parse('Optimized');
         $this->PDFVersion = $this->parse('PDF version');
+        $this->pageRot = $this->parse('Page rot');
     }
-        
+
     private function parse($attribute)
     {
         // Iterate through lines
@@ -100,7 +103,7 @@ class PDFInfo
             }
         }
 
-        return $result;    
+        return $result;
     }
-    
+
 }

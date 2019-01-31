@@ -200,6 +200,8 @@ return [
 
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        //Mensajes de Alerta
+        Styde\Html\HtmlServiceProvider::class,
 
     ],
 

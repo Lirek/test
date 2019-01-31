@@ -165,7 +165,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
-        $user->password = $request->password;
+        //$user->password = $request->password;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
@@ -217,43 +217,50 @@ class UserController extends Controller
         $user->save();
 
         //return view('seller_edit');
-        return redirect()->action('UserController@edit');
         Flash('Se han modificado sus datos con exito!')->success();
+        return redirect()->action('UserController@edit');
+     
         
     }
 
    public function changepassword(Request $request, $id)
     {
         $user = User::find($id);
-        $user->password = bcrypt($request->password);
-        $newpassword = bcrypt($request->newpassword);
-        $confirmnewpass = bcrypt($request->confirmnewpass);
-        //$encrypted = Crypt::encryptString($user->password);
-        //$user->password = $encrypted;
-        //$decrypted = Crypt::decrypt($request->password);
-        //$user->password = $decrypted;
+        
         //$user->password = bcrypt($request->password);
-        //$user->password = $user->password;
-        //$user->password = Hash::make($request->password);
-        //$pass_encrypt = md5($request->password); 
+        //$user->password = Hash::make($request->password);; 
         //$pass_encrypt = password_hash($user->password, PASSWORD_BCRYPT);
-        //$user->password = $pass_encrypt;  
-        //password_verify($user->password, $pass_encrypt);
-        //if (Hash::check($request->password, $user->password))
-       //{
+        //$pass_encrypt = $user->password;
+        //$user->password = $pass_encrypt;
+        //$user->password = bcrypt($pass_encrypt);  
 
-            $user->save();
+        $newpass = $request->newpass;
+        $confnewpass = $request->confnewpass;
+        $pass_encrypt = ($request->password);
         
-              return redirect()->action('UserController@edit');
 
-             Flash('Se ha modificado sus contraseña con exito!')->success();
-        
-                 
-       //} 
-          
-    
+        if ($newpass == $confnewpass) {
+
+              $user->password = bcrypt($newpass);
+
+              $user->save();
+
+              echo'<script type="text/javascript">
+              alert("Su contraseña ha sido cambiado con exito!");
+              window.location.href="/EditProfile"</script>';
+              
+              //return redirect()->action('UserController@edit'); 
+             // Flash('Se ha modificado sus contraseña con exito!')->success();         
+        } 
+        else 
+
+          echo'<script type="text/javascript">
+              alert("Las contraseñas ingresadas no coinciden, Por favor intentelo de nuevo.");
+              window.location.href="/EditProfile";</script>';
+
+        //return redirect()->back();
     }
-
+    
   
     public function closed(Request $request, $id)
     {
