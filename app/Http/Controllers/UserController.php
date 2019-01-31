@@ -260,8 +260,7 @@ class UserController extends Controller
 
         //return redirect()->back();
     }
-    
-  
+
     public function closed(Request $request, $id)
     {
         $user = User::find($id);
@@ -278,7 +277,6 @@ class UserController extends Controller
         return redirect()->action('WelcomeController@welcome');
 
     }
-
 
     public function sinAcento($cadena) {
         $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';

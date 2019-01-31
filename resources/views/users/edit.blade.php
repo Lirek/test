@@ -287,7 +287,7 @@ h5.breadcrumbs-header {
                                     </div>
             {!! Form::close() !!} 
                                 </div>
-                                <!-- CLOSE ACCOUNT -->
+            <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
@@ -354,10 +354,7 @@ h5.breadcrumbs-header {
                     </div>
                 </div>
             </div>
-              
-            
         </div>      
-
                     </div> 
                </div>
          </div>
