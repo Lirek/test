@@ -200,6 +200,7 @@ return [
 
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+       
 
     ],
 

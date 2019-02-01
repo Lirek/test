@@ -167,6 +167,10 @@ Route::post('Invite','UserController@Invite');
     //Agregada 23/01/2019  
     Route::get('DeleteAccount/{id}','UserController@closed');
 
+    //Agregada 28/01/2019
+    Route::post('ChangePassword/{id}','UserController@changepassword');
+
+
    
 
 //---------------------------------------------------------------------------
@@ -636,6 +640,9 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     //Agregada 25/01/2019
     Route::get('DeleteAccountSeller/{id}','SellerController@closed');
+
+    //Agregada 28/01/2019
+    Route::post('ChangePasswordSeller/{id}','SellerController@changepassword');
 
 
 

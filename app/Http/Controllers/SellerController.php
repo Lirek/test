@@ -416,6 +416,47 @@ class SellerController extends Controller
 
     }
 
+     public function changepassword(Request $request, $id)
+    {
+        $seller = Seller::find($id);
+        
+        $seller->password = $request->password;
+        $oldpass = $request->oldpass;
+        $newpass = $request->newpass;
+        $confnewpass = $request->confnewpass;
+        $pass_encrypt = ($request->password);
+
+        if (password_verify($oldpass, $seller->password))
+          { 
+        
+        if ($newpass == $confnewpass) {
+
+              $seller->password = bcrypt($newpass);
+
+              $seller->save();
+
+              echo'<script type="text/javascript">
+              alert("Su contraseña ha sido cambiado con exito!");
+              window.location.href="/seller_edit"</script>';
+              
+            //return redirect()->action('UserController@edit'); 
+            //Flash('Se ha modificado sus contraseña con exito!')->success();         
+        } 
+        else 
+
+          echo'<script type="text/javascript">
+              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
+              window.location.href="/seller_edit";</script>';
+
+          }
+
+          else 
+             echo'<script type="text/javascript">
+              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
+              window.location.href="/seller_edit";</script>';
+
+    }
+
     public function closed(Request $request, $id)
     {
         $seller = Seller::find($id);
