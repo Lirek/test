@@ -32,7 +32,6 @@ return array(
     'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
     'Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'Styde\\Html\\' => array($vendorDir . '/styde/html/src'),
     'Spatie\\Fractalistic\\' => array($vendorDir . '/spatie/fractalistic/src'),
     'Spatie\\Fractal\\' => array($vendorDir . '/spatie/laravel-fractal/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),

@@ -19,7 +19,6 @@
         "optimus/heimdal": "~1.0",
         "simplesoftwareio/simple-qrcode": "~2",
         "spatie/laravel-fractal": "4.0",
-        "styde/html": "~1.0",
         "tymon/jwt-auth": "^1.0.0-beta.3@dev",
         "wapmorgan/mp3info": "^0.0.2",
         "yajra/laravel-datatables-oracle": "~8.0"
