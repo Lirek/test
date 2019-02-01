@@ -1,108 +1,171 @@
 @extends('promoter.layouts.app')
 @section('css')
-    <!--DataTables-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js">
-
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
 @endsection
 @section('main')
-	<div class="row mt">
-		<h2><i class="fa fa-angle-right"></i>Películas</h2>
-	</div>
-	<div class="container">
-
-		<ul class="nav nav-tabs nav-justified">
-			<li class="active"><a data-toggle="tab" href="#pendientes" id="opcion1"><h4>Películas pendientes</h4></a></li>
-			<li><a data-toggle="tab" href="#aprobadas" id="opcion2"><h4>Películas aprobadas</h4></a></li>
-			<li><a data-toggle="tab" href="#rechazadas" id="opcion3"><h4>Películas rechazadas</h4></a></li>
-		</ul>
-
-		<div class="tab-content text-center">
-			<div id="pendientes" class="tab-pane fade in active">
-				<div class="col-lg-12">
-					<div class="table-responsive">
-						<table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="peliculas">
-							<thead>
-								<tr>
-						        	<th class="non-numeric">Autor</th>
-						        	<th class="non-numeric">Portada</th>
-									<th class="non-numeric">Nombre</th>
-									<th class="non-numeric">Sinopsis</th>
-									<th class="non-numeric">Categoría</th>
-									<th class="non-numeric">Géneros</th>
-									<th class="non-numeric">Fecha de registro</th>
-									<th class="non-numeric">Costo en Tickets</th>
-									<th class="non-numeric" id="estatus">Estatus</th>
-						        </tr>
-					    	</thead>
-					    </table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-@endsection
-
-@section('js')
+	<span class="card-title grey-text"><h3>Películas</h3></span>
+	<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+		<li class="tab" id="Revision"><a class="active" href="#test1">Películas pendientes</a></li>
+		<li class="tab" id="Aprobado"><a href="#test2">Películas aprobadas</a></li>
+		<li class="tab" id="Negado"><a href="#test3">Películas rechazadas</a></li>
+	</ul>
+	<table class="responsive-table">
+		<thead>
+			<tr>
+				<th><i class="material-icons"></i>Autor</th>
+				<th><i class="material-icons"></i>Portada</th>
+				<th><i class="material-icons"></i>Nombre</th>
+				<th><i class="material-icons"></i>Sinopsis</th>
+				<th><i class="material-icons"></i>Categoría</th>
+				<th><i class="material-icons"></i>Géneros</th>
+				<th><i class="material-icons"></i>Fecha de registro</th>
+				<th><i class="material-icons"></i>Costo en Tickets</th>
+				<th><i class="material-icons"></i>Estatus</th>
+			</tr>
+		</thead>
+		<tbody id="table">
+		</tbody>
+	</table>
 @include('promoter.modals.MoviesViewModal')
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+@endsection
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
-<script>
-	$(document).ready(function(){
 
-		// modificar el estaus de la pelicula
-		$(document).on('click','#status', function() {
-			var idMovie = $(this).val();
-			console.log(idMovie);
-			$("#formStatus").on('submit', function(e) {
-				var status = $("input[type='radio'][name=status]:checked").val();
-	            var url = "{{ url('/admin_movie/') }}/"+idMovie;
-	            var message = $('#razon').val();
-	            console.log(status,url,message);
-	            e.preventDefault();
-	            var gif = "{{ asset('/sistem_images/loading.gif') }}";
-		        swal({
-		            title: "Procesando la información",
-		            text: "Espere mientras se procesa la información.",
-		            icon: gif,
-		            buttons: false,
-		            closeOnEsc: false,
-		            closeOnClickOutside: false
-		        });
-		        $.ajax({
-					url: url,
-					type: 'post',
-					data: {
-						_token: $('input[name=_token]').val(),
-						status: status,
-						message: message
-					}, 
-					success: function (result) {
-						console.log(result);
-						$('#myModal').toggle();
-						$('.modal-backdrop').remove();
-						swal("Se ha "+status+" con éxito","","success")
-						.then((recarga) => {
-							location.reload();
-						});
-					},
-					error: function (result) {
-						swal('Existe un error en su solicitud','','error')
-						.then((recarga) => {
-							location.reload();
-						});
-						console.log(result);
-					}
-				}); 
+	<script>
+
+	  $(document).ready(function(){
+	    $('.modal').modal();
+	  });
+
+	function listado(status) {
+			$("#table").empty();
+			var parametros = status;
+			var ruta = "{{url('MoviesDataTable')}}"+"/"+parametros;
+			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+			swal({
+				title: "Procesando la información",
+				text: "Espere mientras se procesa la información.",
+				icon: gif,
+				buttons: false,
+				closeOnEsc: false,
+				closeOnClickOutside: false
 			});
+			$.ajax({
+				url: ruta,
+				type:'GET',
+				dataType: "json",
+				success: function (data) {
+					swal.close();
+					console.log(data);
+					$.each(data,function(i,info) {
+						var etiqueta = "";
+						$.each(info.tags_movie,function(i,infoTags){
+							etiqueta = etiqueta+"<span class='new badge grey darken-1' data-badge-caption='"+infoTags.tags_name+"' style='padding:0px 0px'></span>"; 
+						});
+						if (info.img_poster!=0 ) {
+							var portada = 
+							"<img class='materialboxed' width='150' height='120' src='{!! asset('movie/poster/"+info.img_poster+"') !!}'"
+							var infor = "<button href='#movieView' class='modal-trigger' value='"+info.id+"' id='viewMovie' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'> ver mas información </button>";
+						} else {
+							var portada = "No aplica ";
+						}
+						if (info.status=="En Proceso") {
+				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Proceso' href='#myModal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
+				        }
+						if (info.status=="Aprobado") {
+				        	var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'
+				        }
+				        if (info.status=="Denegado") {
+				        	var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
+				        }
+				        
+						var filas = "<tr><td>"+
+						info.seller.name+"</td><td>"+
+						portada+"<br>"+infor+"</td><td>"+
+						info.title+"</td><td>"+
+						info.based_on+"</td><td>"+
+						info.rating.r_name+"</td><td>"+
+						etiqueta+"</td><td>"+
+						moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+						info.cost+"</td><td>"+
+						opcion+"</td></tr>";
+						$("#table").append(filas);
+					})
+					$('.materialboxed').materialbox();
+					$('.tooltipped').tooltip();
+				},
+				error:function(data) {
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+					console.log(data);
+				}
+			});
+		}
+		$(document).ready(function(){
+			listado("En Proceso");
 		});
-		// modificar el estaus de la pelicula
+		$(document).on('click','#Revision', function() {
+			listado("En Proceso");
+		});
+		$(document).on('click','#Aprobado', function() {
+			listado("Aprobado");
+		});
+		$(document).on('click','#Negado', function() {
+			listado("Denegado");
+		});
 
-		// ver mas detalles de la pelicula
+// Modificar el estatus de la pelicula
+  $(document).on('click','#status', function() {
+    var x = $(this).attr("value");
+    $("#FormStatus").on('submit', function(e){
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      swal({
+        title: "Procesando la información",
+        text: "Espere mientras se procesa la información.",
+        icon: gif,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
+      });
+      var s = $("input[type='radio'][name=status]:checked").val();
+      var message = $('#razon').val();
+      var url = "{{url('/admin_movie')}}/"+x;
+      console.log(url);
+      e.preventDefault(); 
+      console.log(s);
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          _token: $('input[name=_token]').val(),
+          status: s,
+          message: message
+        }, 
+        success: function (result) {
+          console.log(result);
+          $('#myModal').toggle();
+          $('.modal-backdrop').remove();
+          swal("Se ha "+s+" con éxito","","success")
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+        error: function (result) {
+          console.log(result);
+          swal('Existe un error en su solicitud','','error')
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+      });
+    });
+  });
+  // Modificar el estatus de la pelicula
+
+  // ver mas detalles de la pelicula
 		$(document).on('click','#viewMovie', function() {
 			const player = new Plyr('#player');
 			var idMovie = $(this).val();
@@ -120,7 +183,6 @@
 					$("video").attr('src',rutaPelicula);
 					$("#nombrePelicula").text(result.title);
 					$("#nombreOriginalPelicula").text(result.original_title);
-					$("#sinopsisPelicula").text(result.based_on);
 					$("#añoPublicacion").text(result.release_year);
 					$("#trailer").attr('href',result.trailer_url);
 					$("#trailer").text(result.trailer_url);
@@ -136,262 +198,40 @@
 		});
 		// ver mas detalles de la pelicula
 
-		var Movies = $('#peliculas').DataTable({
-	        processing: true,
-	        serverSide: true,
-            responsive: true,
-            bDestroy: true,
-
-	        ajax: '{!! url('MoviesDataTable/En Proceso') !!}',
-	        columns: [
-	        	{data: 'autor', name: 'autor'},
-	            {data: 'img_poster', name: 'img_poster'},
-	            {data: 'title', name: 'title'},
-	            {data: 'sinopsis', name: 'sinopsis'},
-	            {data: 'categoria', name: 'categoria'},
-	            {data: 'genero', name: 'genero'},
-	            {data: 'created_at', name: 'created_at'},
-	            {data: 'cost', name: 'cost'},
-	            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-	        ],
-	        language: {
-	        	"processing": "Procesando...",
-	            "lengthMenu" : "Mostrar _MENU_ registros",
-	            "zeroRecords" : "No se encontraron resultados",
-	            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                }
-	        }
-		});
-		// listar las peliculas pendientes
-
-		$(document).on('click','#opcion1', function() {
-			$("#estatus").text("Estatus");
-			var peliculasPendientes = $('#peliculas').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('MoviesDataTable/En Proceso') !!}',
-		        columns: [
-		        	{data: 'autor', name: 'autor'},
-		            {data: 'img_poster', name: 'img_poster'},
-		            {data: 'title', name: 'title'},
-		            {data: 'sinopsis', name: 'sinopsis'},
-		            {data: 'categoria', name: 'categoria'},
-		            {data: 'genero', name: 'genero'},
-		            {data: 'created_at', name: 'created_at'},
-		            {data: 'cost', name: 'cost'},
-		            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        }
-			});
-		});
-		// listar las peliculas pendientes
-
-		// listar las peliculas aprobadas
-		$(document).on('click','#opcion2', function() {
-			$("#estatus").text("Estatus");
-			var peliculasAprobadas = $('#peliculas').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('MoviesDataTable/Aprobado') !!}',
-		        columns: [
-		        	{data: 'autor', name: 'autor'},
-		            {data: 'img_poster', name: 'img_poster'},
-		            {data: 'title', name: 'title'},
-		            {data: 'sinopsis', name: 'sinopsis'},
-		            {data: 'categoria', name: 'categoria'},
-		            {data: 'genero', name: 'genero'},
-		            {data: 'created_at', name: 'created_at'},
-		            {data: 'cost', name: 'cost'},
-		            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        }
-			});
-		});
-		// listar las peliculas aprobadas
-
-		// listar las peliculas denegadas
-		$(document).on('click','#opcion3', function() {
-			$("#estatus").text("Negaciones");
-			var peliculasRechazadas = $('#peliculas').DataTable({
-		        processing: true,
-		        serverSide: true,
-	            responsive: true,
-	            destroy: true,
-
-		        ajax: '{!! url('MoviesDataTable/Denegado') !!}',
-		        columns: [
-		        	{data: 'autor', name: 'autor'},
-		            {data: 'img_poster', name: 'img_poster'},
-		            {data: 'title', name: 'title'},
-		            {data: 'sinopsis', name: 'sinopsis'},
-		            {data: 'categoria', name: 'categoria'},
-		            {data: 'genero', name: 'genero'},
-		            {data: 'created_at', name: 'created_at'},
-		            {data: 'cost', name: 'cost'},
-		            {data: 'Estatus', name: 'Estatus', orderable: false, searchable: false}
-		        ],
-		        language: {
-		        	"processing": "Procesando...",
-		            "lengthMenu" : "Mostrar _MENU_ registros",
-		            "zeroRecords" : "No se encontraron resultados",
-		            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-	                    "sFirst":    "Primero",
-	                    "sLast":     "Último",
-	                    "sNext":     "Siguiente",
-	                    "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-	                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-	                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                }
-		        }
-			});
-		});
-		// listar las peliculas denegadas
-
 		// Listar las negaciones
-		$(document).on('click', '#denegado', function() {
-			var id = $(this).val(); // id de la pelicula
-			console.log(id);
+		$(document).on('click', '#denegado', function(e) {
+			var id = $(this).attr("value");
 			var modulo = "Movies";
 			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
-			var historialRechazo = $('#historialRechazo').DataTable({
-				processing: true,
-				serverSide: true,
-				responsive: true,
-				destroy: true,
-
-				ajax: url,
-				columns: [
-					{data: 'razon', name: 'razon'},
-					{data: 'created_at', name: 'created_at'}
-				],
-				language: {
-					"processing": "Procesando...",
-					"lengthMenu" : "Mostrar _MENU_ registros",
-					"zeroRecords" : "No se encontraron resultados",
-					"sEmptyTable":     "Ningún dato disponible en esta tabla",
-					"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-					"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-					"sInfoPostFix":    "",
-					"sSearch":         "Buscar:",
-					"sUrl":            "",
-					"sInfoThousands":  ",",
-					"sLoadingRecords": "Cargando...",
-					"oPaginate": {
-						"sFirst":    "Primero",
-						"sLast":     "Último",
-						"sNext":     "Siguiente",
-						"sPrevious": "Anterior"
+			console.log(url);
+			$("#negaciones").empty();
+				e.preventDefault();
+				$.ajax({
+					url: url, 
+					type:'get', 
+					dataType:'json',
+					success: function(datos){
+						console.log(datos);
+						$('#totalNegaciones').show();
+						$('#totalNegaciones').text('tiene un total de rechazos de: '+datos.length);
+						$.each(datos, function(i,info){
+							var fila = '<tr><td>'+
+							info.reason+'</td><td>'+
+							moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+							'</td></tr>';
+							$('#negaciones').append(fila);
+						});
 					},
-					"oAria": {
-						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					}
-				},
-				order: [ 1, "desc" ],
-				footerCallback: function(row, data, start, end, display){
-					$("#totalNegaciones").text("Total de negaciones: "+end);
+					error: function (datos) {
+					console.log(datos);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
 				}
 			});
 		});
 		// Listar las negaciones
-    	
-    	// Validacion de maximo de caracteres para la razon
-        var cantidadMaxima = 191;
-        $('#razon').keyup(function(evento){
-            var razon = $('#razon').val();
-            numeroPalabras = razon.length;
-            if (numeroPalabras>cantidadMaxima) {
-                $('#mensajeMaximoRazon').show();
-                $('#mensajeMaximoRazon').text('Ha excedido la cantidad máxima de caracteres');
-                $('#mensajeMaximoRazon').css('color','red');
-                $('#rechazo').attr('disabled',true);
-            } else {
-                $('#mensajeMaximoRazon').hide();
-                $('#rechazo').attr('disabled',false);
-            }
-        });
-    	// Validacion de maximo de caracteres para la razon
-	});
-</script>
+
+	</script>
 @endsection

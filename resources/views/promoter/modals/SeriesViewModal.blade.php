@@ -42,36 +42,34 @@
 </div>
 </div>
 
-  <div class="modal fade" id="negado" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">Historial de negaciones</h4>
+<div id="negado" class="modal">
+    <div class="modal-content center">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Historial de negaciones</h4>
+            <br>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <h5 class="text-center" id="totalNegaciones"></h5>
-          </div>
-          <div class="tab-content text-center">
-            <div class="col-lg-12">
-              <div class="table-responsive">
-                <table class="display responsive no-wrap table table-bordered table-striped" width="100%" id="historialRechazo">
-                  <thead>
-                    <tr>
-                      <th class="non-numeric">Razón del rechazo</th>
-                      <th class="non-numeric">Fecha del rechazo</th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                <div class="row">
+                  <div class="form-group">
+                    <h5 class="text-center" id="totalNegaciones"></h5>
+                  </div>
+                  <table class="responsive-table" id="historialRechazo">
+                    <thead>
+                      <tr>
+                        <th><i class="material-icons"></i>Razón del rechazo</th>
+                        <th><i class="material-icons"></i>Fecha del rechazo</th>
+                      </tr>
+                    </thead>
+                    <tbody id="negaciones">
+                    </tbody>
+                  </table>
+                </div>
             </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          </div>
         </div>
-      </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
+        </div>
     </div>
-  </div>
+</div>

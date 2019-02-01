@@ -61,13 +61,13 @@
 							var portada = "No aplica ";
 						}
 						if (info.status=="En Revision") {
-				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='status'>"+info.status+"</button>"
+				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
 				        }
 						if (info.status=="Aprobado") {
 				        	var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'
 				        }
 				        if (info.status=="Denegado") {
-				        	var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button>'
+				        	var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
 				        }
 				        if (info.songs) {
 				        	var Canciones = '<button class="btn modal-trigger curvaBoton" value='+info.id+' href="#misCanciones" id="Canciones">'+info.songs.length+'</button>'
@@ -109,8 +109,7 @@
 			listado("Denegado");
 		});
 
-
-  // Modificar el estatus de un album
+// Modificar el estatus
   $(document).on('click','#status', function() {
     var x = $(this).attr("value");
     $("#FormStatus").on('submit', function(e){
@@ -156,8 +155,8 @@
       });
     });
   });
-  // Modificar el estatus de un album
-
+  // Modificar el estatus 
+  
   // Listar las canciones
 		$(document).on('click', '#Canciones', function(e) {
 			var id = $(this).attr("value");
@@ -199,6 +198,42 @@
 			});
 		});
 		// Listar las canciones
+
+		// Listar las negaciones
+		$(document).on('click', '#denegado', function(e) {
+			var id = $(this).attr("value");
+			var modulo = "Album";
+			var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
+			console.log(url);
+			$("#negaciones").empty();
+				e.preventDefault();
+				$.ajax({
+					url: url, 
+					type:'get', 
+					dataType:'json',
+					success: function(datos){
+						console.log(datos);
+						$('#totalNegaciones').show();
+						$('#totalNegaciones').text('tiene un total de rechazos de: '+datos.length);
+						$.each(datos, function(i,info){
+							var fila = '<tr><td>'+
+							info.reason+'</td><td>'+
+							moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+							'</td></tr>';
+							$('#negaciones').append(fila);
+						});
+					},
+					error: function (datos) {
+					console.log(datos);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
+			});
+		});
+		// Listar las negaciones
+
 
 	</script>
 @endsection

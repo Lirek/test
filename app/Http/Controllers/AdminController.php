@@ -113,19 +113,29 @@ class AdminController extends Controller
    			return response()->json($data);
    		}
 
+
    		public function AlbumStatus(Request $request,$id)
    		{
    			$albums = Albums::find($id);
-        $albums->status = $request->status;
+        $message = $request->message;
         
+        if ($request->status == 'Aprobado') {
           foreach ($albums->songs as $track) 
           {
             $track->status = 'Aprobado';
             $track->save();
           }
-
-       $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$request->reazon);
-			  
+            $albums->status = 1;
+        } else {
+            $rejection = new Rejection;
+            $rejection->module = "Album";
+            $rejection->id_module = $id;
+            $rejection->reason = $message;
+            $rejection->save();
+            $albums->status = 3;
+        }
+         
+        $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$message);
         $albums->save();
    			return response()->json($albums);
    		}
@@ -156,12 +166,19 @@ class AdminController extends Controller
    		public function SingleStatus(Request $request,$id)
    		{
    			$Single =Songs::find($id);
-   			$Single->status = $request->status;
-
-        $this->SendEmails($request->status,$Single->song_name,$Single->Seller->email,$request->reazon);
-
-			  $Single->save();
-   			return response()->json($Single);
+        $message = $request->message;
+        if ($request->status == 'Aprobado') {
+          $Single->status = 1;
+        } else {
+          $rejection = new Rejection;
+          $rejection->module = "Single";
+          $rejection->id_module = $id;
+          $rejection->reason = $message;
+          $rejection->save();
+          $Single->status = 3;
+        }
+        $Single->save();
+        $this->SendEmails($request->status,$Single->song_name,$Single->Seller->email,$message);
    		}
 
 /*-------------------------------------------------------------------------
@@ -710,65 +727,13 @@ public function BooksDataTable($status) {
 
     public function MoviesDataTable($status) {
 
-      $movies = Movie::where('status',$status);
-      //$movies = Movie::all();
-      return Datatables::of($movies)
-        ->addColumn('img_poster',function($movies){
-          return "<button href='' data-toggle='modal' data-target='#movieView' value=".$movies->id." id='viewMovie'><img class='img-rounded img-responsive av' src=".asset('movie/poster/').'/'.$movies->img_poster." style='width:70px;height:70px;' alt='Portada'></button>";
-        })
-        ->addColumn('autor',function($movies){
-          return $movies->Seller()->first()->name;
-        })
-        ->addColumn('title',function($movies){
-          return $movies->title;
-        })
-        ->addColumn('original_title',function($movies){
-          return $movies->original_title;
-        })
-        ->addColumn('sinopsis',function($movies){
-          return $movies->based_on;
-        })
-        ->addColumn('categoria',function($movies){
-          return $movies->rating->r_descr;
-        })
-        ->addColumn('genero',function($movies){
-          foreach ($movies->tags_movie as $key) {
-            $tags[] = $key->tags_name;
-          }
-          return $tags;
-        })
-        ->addColumn('release_year',function($movies){
-          return $movies->release_year;
-        })
-        ->addColumn('created_at',function($movies){
-          return $movies->created_at;
-        })
-        ->addColumn('cost',function($movies){
-          return $movies->cost;
-        })
-        ->addColumn('Estatus',function($movies){
-          if ($movies->status=="Aprobado") { 
-            $colorBoton = "btn-success";
-            $id = "status";
-            $modal = "";
-            $texto = $movies->status;
-          }
-          else if ($movies->status=="En Proceso") { 
-            $colorBoton = "btn-warning";
-            $id = "status";
-            $modal = "#myModal";
-            $texto = $movies->status;
-          }
-          else if ($movies->status=="Denegado") { 
-            $colorBoton = "btn-danger";
-            $id = "denegado";
-            $modal = "#negado";
-            $texto = "Ver negaciones";
-          }
-          return "<button type='button' class='btn ".$colorBoton."' value=".$movies->id." data-toggle='modal' data-target='".$modal."' id='".$id."'>".$texto."</button>";
-        })
-        ->rawColumns(['Estatus','img_poster'])
-        ->toJson();
+      $movies = Movie::where('status',$status)->get();
+      $movies->each(function($movies){
+        $movies->Seller;
+        $movies->tags_movie;
+        $movies->rating;
+      });
+      return response()->json($movies);
     }
 
     public function MovieStatus(Request $request,$id) {

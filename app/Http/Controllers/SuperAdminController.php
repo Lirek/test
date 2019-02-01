@@ -78,42 +78,14 @@ class SuperAdminController extends Controller
 
 	  public function TicketsSalesDataTable()
 	  {
-	  	 $TicketsSales = Payments::where('status','=','Aprobado')->get();
-
-         return Datatables::of($TicketsSales)
-                    ->editColumn('user_id',function($TicketsSales){
-
-                      return $TicketsSales->TicketsUser()->first()->name;
-                    })
-                    ->editColumn('package_id',function($TicketsSales){
-
-                      return $TicketsSales->Tickets()->first()->name;
-                    })
-                    ->editColumn('voucher',function($TicketsSales){
-                    	
-                    	if ($TicketsSales->voucher != NULL) 
-                    	{
-                    		return 'Deposito';
-                    	}
-                      	return 'PayPhone';		
-                      	
-                      
-                    })
-                   ->editColumn('cost',function($TicketsSales){
-
-                      return $TicketsSales->cost.'$';
-                    })
-                   ->editColumn('value',function($TicketsSales){
-
-                      return $TicketsSales->value * $TicketsSales->Tickets()->first()->amount;
-                    })
-                    ->addColumn('Deshacer',function($TicketsSales){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$Points->id.' data-toggle="modal" data-target="#myModal" id="Status">Deshacer</button';
-                    })                  
-                    ->toJson();
-
+	  	$TicketsSales = Payments::where('status','=','Aprobado')->get();
+        $TicketsSales->each(function($TicketsSales){
+        $TicketsSales->Tickets;
+        $TicketsSales->ticketsUser;
+      });
+        return response()->json($TicketsSales);
 	  }
+
     public function TicketsRollBack($id)
     {
       $Payments = Payments::find($id);

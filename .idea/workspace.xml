@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09577294-1b06-4809-a275-6358ad393134" name="Default Changelist" comment="">
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Business.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Business.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsSellers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsSellers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/TicketsDetail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/TicketsDetail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Megazine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Megazine.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Series.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Series.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/AlbumsViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/AlbumsViewModal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/BookViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/BookViewModal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/MegazineViewModals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/MegazineViewModals.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/PaymentsSellerViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/PaymentsSellerViewModal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/SagasViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/SagasViewModal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/MoviesViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/MoviesViewModal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/SeriesViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/SeriesViewModal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/SinglesViewModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/SinglesViewModal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/c421393605e2fb8679decce2638cd71173c32ecb.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/c421393605e2fb8679decce2638cd71173c32ecb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/d091cc95d6568e2f578cab0566b3e722f49a5e56.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/d091cc95d6568e2f578cab0566b3e722f49a5e56.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/d1d33bbf4fb2bee80ba3f1b1830a2a1abb666eac.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/d1d33bbf4fb2bee80ba3f1b1830a2a1abb666eac.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +48,11 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.100" value="1" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -188,9 +190,6 @@
       <usages-collector id="statistics.php.new.test" />
       <usages-collector id="statistics.php.composer.actions" />
     </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -420,16 +419,27 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -440,24 +450,20 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
             <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -595,6 +601,7 @@
       <workItem from="1548124435207" duration="1300000" />
       <workItem from="1548447625861" duration="1588000" />
       <workItem from="1548507119907" duration="695000" />
+      <workItem from="1548998814595" duration="209000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -817,7 +824,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="559007000" />
+    <option name="totallyTimeSpent" value="559867000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -829,9 +836,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30661157" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21633889" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -843,9 +850,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5231481" side_tool="true" weight="0.32332155" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.52420574" side_tool="true" weight="0.3229508" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.47685185" visible="true" weight="0.32332155" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.47579426" visible="true" weight="0.3229508" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32838285" />

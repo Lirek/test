@@ -56,6 +56,7 @@
 @endsection
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
 
 // funcion para listas las sagas
@@ -88,13 +89,13 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Proceso") {
-                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button>"
+                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="StatusPU">'+info.status+'</button>'
                         }
                         if (info.status=="Denegado") {
-                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="StatusPU">'+info.status+'</button>'
+                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="StatusPU">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
                         }
 
                         var filas = "<tr><td>"+
@@ -102,6 +103,7 @@
                         portada+"</td><td>"+
                         info.rating.r_name+"</td><td>"+
                         info.seller.name+"</td><td>"+
+                        info.sag_description+"</td><td>"+
                         opcion+"</td></tr>";
                         $("#publicaciones").append(filas);
                     })
@@ -130,6 +132,41 @@
             listadoPu("Denegado");
         });
         // funcion para listas las publicaciones
+
+// Listar las negaciones
+        $(document).on('click', '#denegado', function(e) {
+            var id = $(this).attr("value");
+            var modulo = "Saga Book";
+            var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
+            console.log(url);
+            $("#negaciones").empty();
+                e.preventDefault();
+                $.ajax({
+                    url: url, 
+                    type:'get', 
+                    dataType:'json',
+                    success: function(datos){
+                        console.log(datos);
+                        $('#totalNegaciones').show();
+                        $('#totalNegaciones').text('tiene un total de rechazos de: '+datos.length);
+                        $.each(datos, function(i,info){
+                            var fila = '<tr><td>'+
+                            info.reason+'</td><td>'+
+                            moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+                            '</td></tr>';
+                            $('#negaciones').append(fila);
+                        });
+                    },
+                    error: function (datos) {
+                    console.log(datos);
+                    swal('Existe un error en su solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+        // Listar las negaciones
 
         // Modificar el estatus de las sagas
           $(document).on('click','#statusPU', function() {
@@ -216,15 +253,13 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Revision") {
-                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('images/bookcover/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='status'>"+info.status+"</button>"
-
-                            // <a class='btn curvaBoton' id='#megazine_filess' href='' value='"+info.megazine_file+"' target='_blank'>ver revista</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='status'>"+info.status+"</button>
+                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('images/bookcover/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegadoRE'>ver negaciones</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'
                         }
                         if (info.status=="Denegado") {
-                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button>'
+                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegadoRE">ver negaciones</button>'
                         }
 
                         var filas = "<tr><td>"+
@@ -311,6 +346,42 @@
             });
           });
           // Modificar el estatus de los libros
+
+          
+    // Listar las negaciones
+        $(document).on('click', '#denegadoRE', function(e) {
+            var id = $(this).attr("value");
+            var modulo = "Books";
+            var url = "{!! url('viewRejection/"+id+"/"+modulo+"') !!}";
+            console.log(url);
+            $("#negaciones").empty();
+                e.preventDefault();
+                $.ajax({
+                    url: url, 
+                    type:'get', 
+                    dataType:'json',
+                    success: function(datos){
+                        console.log(datos);
+                        $('#totalNegaciones').show();
+                        $('#totalNegaciones').text('tiene un total de rechazos de: '+datos.length);
+                        $.each(datos, function(i,info){
+                            var fila = '<tr><td>'+
+                            info.reason+'</td><td>'+
+                            moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+                            '</td></tr>';
+                            $('#negaciones').append(fila);
+                        });
+                    },
+                    error: function (datos) {
+                    console.log(datos);
+                    swal('Existe un error en su solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+        // Listar las negaciones
 
     </script>
 @endsection
