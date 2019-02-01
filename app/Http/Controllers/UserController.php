@@ -238,7 +238,6 @@ class UserController extends Controller
         $confnewpass = $request->confnewpass;
         $pass_encrypt = ($request->password);
         
-
         if ($newpass == $confnewpass) {
 
               $user->password = bcrypt($newpass);

@@ -415,12 +415,12 @@ class SellerController extends Controller
          $seller = Seller::find(Auth::guard('web_seller')->user()->id);
         //$seller = Seller::find($id);
         
-        //$user->password = bcrypt($request->password);
-        //$user->password = Hash::make($request->password);; 
-        //$pass_encrypt = password_hash($user->password, PASSWORD_BCRYPT);
-        //$pass_encrypt = $user->password;
-        //$user->password = $pass_encrypt;
-        //$user->password = bcrypt($pass_encrypt);  
+        //$seller->password = bcrypt($request->password);
+        //$seller->password = Hash::make($request->password);; 
+        //$pass_encrypt = password_hash($seller->password, PASSWORD_BCRYPT);
+        //$pass_encrypt = $seller->password;
+        //$seller->password = $pass_encrypt;
+        //$seller->password = bcrypt($pass_encrypt);  
 
         $newpass = $request->newpass;
         $confnewpass = $request->confnewpass;

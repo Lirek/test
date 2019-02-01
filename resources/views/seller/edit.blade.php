@@ -239,7 +239,7 @@
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i>{{$seller->descs_s}}</p>
                                     </div>
-                {!! Form::close() !!}
+    {!! Form::close() !!}
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
@@ -266,16 +266,16 @@
                             <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su nueva contraseña</label>
-                               {!! Form::password('newpass',$seller->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']) !!}
+                            {!! Form::password('newpass',$seller->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']) !!}
                             </div>
                             <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Confirme su nueva contraseña</label>
-                              {!! Form::password('confnewpass',$seller->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']) !!}  
+                            {!! Form::password('confnewpass',$seller->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']) !!}  
                             </div>
                             <div style="text-align: center">
-                              {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']) !!}
-                              {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!} 
+                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']) !!}
+                            {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!} 
                             </div>
                             <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
                             </div>
@@ -307,7 +307,6 @@
                             </div>
                         </div>
                     </div>
-
         </div>
     </div>
    
