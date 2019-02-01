@@ -326,7 +326,14 @@ h5.breadcrumbs-header {
                             <?php echo e(Form::token()); ?>
 
 
-                       <!-- <?php echo Form::text('password',$user->password,['class'=>'form-control','method'=>'POST']); ?>-->
+                            <?php echo Form::hidden('password',$user->password,['class'=>'form-control','method'=>'POST']); ?>
+
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Introduzca su antigua contraseña</label>
+                            <?php echo Form::password('oldpass',$user->oldpass,['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST']); ?>
+
+                            </div>
                             <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su nueva contraseña</label>

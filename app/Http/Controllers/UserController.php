@@ -227,16 +227,14 @@ class UserController extends Controller
     {
         $user = User::find($id);
         
-        //$user->password = bcrypt($request->password);
-        //$user->password = Hash::make($request->password);; 
-        //$pass_encrypt = password_hash($user->password, PASSWORD_BCRYPT);
-        //$pass_encrypt = $user->password;
-        //$user->password = $pass_encrypt;
-        //$user->password = bcrypt($pass_encrypt);  
-
+        $user->password = $request->password;
+        $oldpass = $request->oldpass;
         $newpass = $request->newpass;
         $confnewpass = $request->confnewpass;
         $pass_encrypt = ($request->password);
+
+        if (password_verify($oldpass, $user->password))
+          { 
         
         if ($newpass == $confnewpass) {
 
@@ -251,13 +249,22 @@ class UserController extends Controller
             //return redirect()->action('UserController@edit'); 
             // Flash('Se ha modificado sus contraseña con exito!')->success();         
         } 
+        
         else 
 
           echo'<script type="text/javascript">
-              alert("Las contraseñas ingresadas no coinciden, Por favor intentelo de nuevo.");
+              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
               window.location.href="/EditProfile";</script>';
 
         //return redirect()->back();
+
+          }
+
+          else 
+             echo'<script type="text/javascript">
+              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
+              window.location.href="/EditProfile";</script>';
+
     }
 
     public function closed(Request $request, $id)

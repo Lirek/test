@@ -262,7 +262,12 @@
                             {!! Form::open(['url'=>['ChangePasswordSeller',$seller],'method'=>'POST','files'=>true,'class'=>'form-horizontal','id'=>'changepassword']) !!}
                             {{ Form::token() }}
 
-                            {!! Form::text('password',$seller->password,['class'=>'form-control','method'=>'POST']) !!}
+                            {!! Form::hidden('password',$seller->password,['class'=>'form-control','method'=>'POST']) !!}
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Introduzca su antigua contraseña</label>
+                            {!! Form::password('oldpass',$seller->oldpass,['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST']) !!}
+                            </div>
                             <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su nueva contraseña</label>

@@ -412,21 +412,17 @@ class SellerController extends Controller
 
      public function changepassword(Request $request, $id)
     {
-         $seller = Seller::find(Auth::guard('web_seller')->user()->id);
-        //$seller = Seller::find($id);
+        $seller = Seller::find($id);
         
-        //$seller->password = bcrypt($request->password);
-        //$seller->password = Hash::make($request->password);; 
-        //$pass_encrypt = password_hash($seller->password, PASSWORD_BCRYPT);
-        //$pass_encrypt = $seller->password;
-        //$seller->password = $pass_encrypt;
-        //$seller->password = bcrypt($pass_encrypt);  
-
+        $seller->password = $request->password;
+        $oldpass = $request->oldpass;
         $newpass = $request->newpass;
         $confnewpass = $request->confnewpass;
         $pass_encrypt = ($request->password);
-        
 
+        if (password_verify($oldpass, $seller->password))
+          { 
+        
         if ($newpass == $confnewpass) {
 
               $seller->password = bcrypt($newpass);
@@ -438,15 +434,21 @@ class SellerController extends Controller
               window.location.href="/seller_edit"</script>';
               
             //return redirect()->action('UserController@edit'); 
-            // Flash('Se ha modificado sus contraseña con exito!')->success();         
+            //Flash('Se ha modificado sus contraseña con exito!')->success();         
         } 
         else 
 
           echo'<script type="text/javascript">
-              alert("Las contraseñas ingresadas no coinciden, Por favor intentelo de nuevo.");
+              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
               window.location.href="/seller_edit";</script>';
 
-        //return redirect()->back();
+          }
+
+          else 
+             echo'<script type="text/javascript">
+              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
+              window.location.href="/seller_edit";</script>';
+
     }
 
     public function closed(Request $request, $id)
