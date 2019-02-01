@@ -5,11 +5,7 @@
   </style>
 @endsection
 @section('main')
-  <span class="card-title grey-text"><h3>Clientes y sus depósitos</h3></span>
-  <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-    <li class="tab" id="usuarios"><a class="active" href="#test1">Clientes</a></li>
-    <li class="tab" id="depositos"><a href="#test2">Depósitos</a></li>
-  </ul>
+  <span class="card-title grey-text"><h3>Clientes</h3></span>
   <div id="test1" class="col s12">
     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
       <li class="tab" id="pendientes"><a class="active" href="#clientesPendientes">Clientes pendientes</a></li>
@@ -35,136 +31,8 @@
       </table>
     </div>
   </div>
-  <div id="test2" class="col s12">
-    <table class="responsive-table">
-      <thead>
-        <tr>
-          <th><i class="material-icons"></i>Usuario</th>
-          <th><i class="material-icons"></i>Cantidad</th>
-          <th><i class="material-icons"></i>Paquete</th>
-          <th><i class="material-icons"></i>Total de la recarga</th>
-          <th><i class="material-icons"></i>N° de referencia</th>
-          <th><i class="material-icons"></i>Comprobante</th>
-          <th><i class="material-icons"></i>Fecha de la solicitud</th>
-          <th><i class="material-icons"></i>Estado</th>
-        </tr>
-      </thead>
-      <tbody id="pagos">
-      </tbody>
-    </table>
-  </div>
-{{--
-  <div class="row mt">
-    <h3>
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home" id="users">Usuarios Pendientes</a></li>
-        <li><a data-toggle="tab" href="#menu1" id="users_payments">Depositos de Usuarios</a></li>
-        <li><a data-toggle="tab" href="#menu2" id="users_d">Usuarios Negados</a></li>
-        <li><a data-toggle="tab" href="#menu3" id="users_a">Usuarios Aprobados</a></li>
-      </ul>
-    </h3>
-  </div>
-  <div class="row mt">
-    <div class="tab-content">
 
-      <div id="home" class="tab-pane fade in active">
-        <div class="col-lg-12">
-          <div class="content-panel">
-
-            <table class="table table-bordered table-striped table-condensed" id="Clients">            
-              <thead>
-                  <tr>
-                    <th class="non-numeric">Nombre</th>
-                    <th class="non-numeric">Numero Doc</th>
-                    <th class="non-numeric">Imagen del Documento</th>
-                    <th class="non-numeric">Fecha de Nacimiento</th>
-                    <th class="non-numeric">Genero</th>
-                    <th class="non-numeric">Fecha de Registro</th>
-                    <th class="non-numeric">Redes</th>
-                    <th class="non-numeric">Estatus</th>
-                </tr>
-                </thead>
-            </table>
-
-          </div>
-        </div>
-
-      </div>
-
-     <div id="menu1" class="tab-pane fade">
-        <div class="col-lg-12">
-           <div class="content-panel">
-
-              <table class="table table-bordered table-striped table-condensed" id="Payments">            
-              <thead>
-                  <tr>
-                    <th class="non-numeric">Usuario</th>
-                    <th class="non-numeric">Cantidad</th>
-                    <th class="non-numeric">Paquete</th>
-                    <th class="non-numeric">Total de la Recarga</th>
-                    <th class="non-numeric">Comprobante</th>
-                    <th class="non-numeric">Fecha de la Solicitud</th>
-                    <th class="non-numeric">Estado</th>
-
-                </tr>
-                </thead>
-               </table>
-
-
-          </div>
-       </div>
-     </div>
-
-      <div id="menu2" class="tab-pane fade">
-        <div class="col-lg-12">
-          <div class="content-panel">
-
-            <table class="table table-bordered table-striped table-condensed" id="ClientsDenials">
-              <thead>
-                  <tr>
-                    <th class="non-numeric">Nombre</th>
-                    <th class="non-numeric">Numero Doc</th>
-                    <th class="non-numeric">Imagen del Documento</th>
-                    <th class="non-numeric">Fecha de Nacimiento</th>
-                    <th class="non-numeric">Genero</th>
-                    <th class="non-numeric">Fecha de registro</th>
-                    <th class="non-numeric">Redes</th>
-                    <th class="non-numeric">Estatus</th>
-                </tr>
-                </thead>
-            </table>
-
-          </div>
-        </div>
-      </div>
-      
-         <div id="menu3" class="tab-pane fade">
-        <div class="col-lg-12">
-          <div class="content-panel">
-
-            <table class="table table-bordered table-striped table-condensed" id="ClientsAproved">            
-              <thead>
-                  <tr>
-                    <th class="non-numeric">Nombre</th>
-                    <th class="non-numeric">Numero Doc</th>
-                    <th class="non-numeric">Imagen del Documento</th>
-                    <th class="non-numeric">Fecha de Nacimiento</th>
-                    <th class="non-numeric">Genero</th>
-                    <th class="non-numeric">Fecha de registro</th>
-                    <th class="non-numeric">Redes</th>
-                    <th class="non-numeric">Estatus</th>
-                </tr>
-                </thead>
-            </table>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
---}}
-
-@include('promoter.modals.ClientViewModal')
+  @include('promoter.modals.ClientViewModal')
 @endsection
 
 @section('js')
@@ -264,6 +132,10 @@
           var estatus = "<a class='btn light-blue lighten-1 curvaBoton modal-trigger' value="+info.id+" href='#myModal' id='Status'>Cambiar estatus</a>";
           var masInfo = "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalUser' id='user'>Más información</a>"
           var opciones = estatus+"<br>"+masInfo;
+          if (info.verify==2) {
+            opciones = opciones + "<br>"+
+            "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectPayments'>Ver negaciones</a>";
+          }
           var filas = "<tr><td>"+
           nombreCompleto+"</td><td>"+
           info.num_doc+"</td><td>"+
@@ -345,7 +217,7 @@
         error:function(data) {
           swal('Existe un error en su solicitud','','error')
           .then((recarga) => {
-            location.reload();
+            location.reload()
           });
           console.log(data);
         }
@@ -408,7 +280,7 @@
       $( "#formStatus" ).on( 'submit', function(e) {
         var s=$("input[type='radio'][name=status]:checked").val();
         var message=$('#razon').val();
-        var url = 'ValidateUser/'+x;
+        var url = "{{url('ValidateUser/')}}/"+x;
         console.log(message);
         console.log(s);
         e.preventDefault();
@@ -578,6 +450,38 @@
             console.log(result);
           }
         });
+      });
+    });
+    $(document).on('click', '#rejectPayments', function(e) {
+      var idUser = $(this).attr("value");
+      console.log(idUser);
+      var modulo = "User";
+      var url = "{!! url('viewRejection/"+idUser+"/"+modulo+"') !!}";
+      console.log(url);
+      $("#negaciones").empty();
+      e.preventDefault();
+      $.ajax({
+        url: url, 
+        type:'get', 
+        dataType:'json',
+        success: function(datos){
+          console.log(datos);
+          $('#totalNegaciones').show();
+          $('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
+          $.each(datos, function(i,info){
+            var fila = '<tr><td>'+
+            info.reason+'</td><td>'+
+            moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+'</td></tr>';
+            $('#negaciones').append(fila);
+          });
+        },
+        error: function (datos) {
+          console.log(datos);
+          swal('Existe un error en su solicitud','','error')
+          .then((recarga) => {
+            location.reload();
+          });
+        }
       });
     });
 

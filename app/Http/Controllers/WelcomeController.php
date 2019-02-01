@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Seller;
 use App\Book;
+use App\Megazines;
 use App\Radio;
 use App\Tv;
 use App\Movie;
+use App\Serie;
 use App\Albums;
+use App\Songs;
+use App\Sagas;
 
 use App\User;
 
@@ -27,41 +31,117 @@ class WelcomeController extends Controller
         return view('queEsLeipel');
     }
 
-    public function welcome()
-    {
-//        $sellers = Seller::orderBy('id', 'DESC')->paginate('10');
+    public function welcome() {
+        //$sellers = Seller::orderBy('id', 'DESC')->paginate('10');
         $sellers = Seller::all();
-        $books = Book::all();
-        $books->each(function ($books) {
-            $books->author;
-            $books->seller;
-            $books->saga;
-            $books->rating;
-        });
-//        $radios = Radio::all();
-        //$radios = Radio::orderBy('id','DESC')->paginate(5);
-        $radios = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
-        $radios->each(function ($radios){
-            $radios->seller;
-        });
-
+        // LECTURA
+        $lectura = [];
+        $books = Book::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($books as $b) {
+            $lectura[] = array(
+                'type' => 'Libro',
+                'cover' => "/images/bookcover/".$b->cover,
+                'name' => $b->title
+            );
+        }
+        $megazines = Megazines::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($megazines as $m) {
+            $lectura[] = array(
+                'type' => 'Revista',
+                'cover' => $m->cover,
+                'name' => $m->title
+            );
+        }
+        $sagasR = Sagas::where('status','Aprobado')->where('type_saga','Revistas')->orderBy('id','DESC')->take(5)->get();
+        foreach ($sagasR as $s) {
+            $lectura[] = array(
+                'type' => 'Revista independiente',
+                'cover' => $s->img_saga,
+                'name' => $s->saga_name
+            );
+        }
+        $sagasL = Sagas::where('status','Aprobado')->where('type_saga','Libros')->orderBy('id','DESC')->take(5)->get();
+        foreach ($sagasL as $s) {
+            $lectura[] = array(
+                'type' => 'Libro independiente',
+                'cover' => $s->img_saga,
+                'name' => $s->saga_name
+            );
+        }
+        // RADIO
+        //$radios = Radio::all();
+        $radios = [];
+        $radio = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
+        foreach ($radio as $r) {
+            $radios[] = array(
+                'type' => 'Radio',
+                'logo' => $r->logo,
+                'name' => $r->name_r
+            );
+        }
+        // TV
         //$tvs = Tv::all();
-        $tvs = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
-        $tvs->each(function ($tvs){
-            $tvs->seller;
-        });
-        $movies = Movie::all();
-        $movies->each(function ($movies) {
-            $movies->seller;
-            $movies->saga;
-            $movies->rating;
-        });
-
-        $musica = Albums::all();
-        $musica->each(function ($musica){
-            $musica->Seller;
-            $musica->Autors;
-        });
+        $tvs = [];
+        $tv = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
+        foreach ($tv as $t) {
+            $tvs[] = array(
+                'type' => 'TV',
+                'logo' => $t->logo,
+                'name' => $t->name_r
+            );
+        }
+        // CINE
+        $cine = [];
+        $movies = Movie::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($movies as $m) {
+            $cine[] = array(
+                'type' => 'Pelicula',
+                'img_poster' => "/movie/poster/".$m->img_poster,
+                'name' => $m->title
+            );
+        }
+        $series = Serie::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($series as $s) {
+            $cine[] = array(
+                'type' => 'Serie',
+                'img_poster' => $s->img_poster,
+                'name' => $s->title
+            );
+        }
+        $sagasP = Sagas::where('status','Aprobado')->where('type_saga','Peliculas')->orderBy('id','DESC')->take(5)->get();
+        foreach ($sagasP as $s) {
+            $lectura[] = array(
+                'type' => 'Película independiente',
+                'cover' => $s->img_saga,
+                'name' => $s->saga_name
+            );
+        }
+        $sagasS = Sagas::where('status','Aprobado')->where('type_saga','Series')->orderBy('id','DESC')->take(5)->get();
+        foreach ($sagasS as $s) {
+            $lectura[] = array(
+                'type' => 'Serie independiente',
+                'cover' => $s->img_saga,
+                'name' => $s->saga_name
+            );
+        }
+        // MUSICA
+        $musica = [];
+        $album = Albums::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($album as $a) {
+            $musica[] = array(
+                'type' => 'Álbum',
+                'cover' => $a->cover,
+                'name' => $a->name_alb
+            );
+        }
+        $single = Songs::where('album',0)->where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        foreach ($single as $s) {
+            $musica[] = array(
+                'type' => 'Canción',
+                'cover' => "/plugins/img/DefaultMusic.png",
+                'name' => $s->song_name
+            );
+        }
 
         $iRadios = 0;
         $iTvs = 0;
@@ -76,10 +156,10 @@ class WelcomeController extends Controller
             ->with('iMusicas',$iMusicas)
             ->with('iLecturas',$iLecturas)
             ->with('seller', $sellers)
-            ->with('books',$books)
-            ->with('movie',$movies)
+            ->with('book',$lectura)
             ->with('tv',$tvs)
             ->with('radio',$radios)
+            ->with('movie',$cine)
             ->with('music',$musica);
     }
 

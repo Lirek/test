@@ -13,6 +13,7 @@ class PointsAssings extends Model
         'id', 
         'from',
         'to',
+        'status',
         'created_at',
         'updated_at',
         ];

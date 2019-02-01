@@ -105,6 +105,7 @@
     @include('promoter.modals.RadioViewModal')
 @endsection
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
         // funcion para listar todas las radios
         function radios(status) {
@@ -187,6 +188,10 @@
                         "<a class='btn-small waves-effect waves-light btn red curvaBoton' id='deleteRadio' value='"+info.id+"'>"+
                             "<i class='material-icons'>delete</i>"+
                         "</a>";
+                        if (info.status=="Denegado") {
+                            status = status+
+                            "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectRadio'>Ver negaciones</a><br>";
+                        }
                         var filas = "<tr><td>"+
                         info.name_r+"</td><td>"+
                         logo+"</td><td>"+
@@ -353,7 +358,42 @@
             });
         });
         // funcion para editar las radios
-        
+
+        // funcion para ver todas las negaciones de una radio
+        $(document).on('click', '#rejectRadio', function(e) {
+            var idRadio = $(this).attr("value");
+            console.log(idRadio);
+            var modulo = "Radio";
+            var url = "{!! url('viewRejection/"+idRadio+"/"+modulo+"') !!}";
+            console.log(url);
+            $("#negaciones").empty();
+            e.preventDefault();
+            $.ajax({
+                url: url, 
+                type:'get', 
+                dataType:'json',
+                success: function(datos){
+                    console.log(datos);
+                    $('#totalNegaciones').show();
+                    $('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
+                    $.each(datos, function(i,info){
+                        var fila = '<tr><td>'+
+                        info.reason+'</td><td>'+
+                        moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+'</td></tr>';
+                        $('#negaciones').append(fila);
+                    });
+                },
+                error: function (datos) {
+                    console.log(datos);
+                    swal('Existe un error en su solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+        // funcion para ver todas las negaciones de una radio
+
         // para que se vean las imagenes en los formularios
         $.uploadPreview({
             input_field: "#image-upload",

@@ -90,6 +90,10 @@
 							var opcion = 
 							"<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" value2="+info.tickets_user.id+" value3="+info.method+" href='#status' id='statusPayments'>Aceptar</a>"
 						}
+						if (info.status=="Denegado") {
+							var opcion = 
+							"<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectPayments'>Ver negaciones</a>";
+						}
 						var filas = "<tr><td>"+
 						nombre+"</td><td>"+
 						info.tickets.name+"</td><td>"+
@@ -99,7 +103,7 @@
 						reference+"</td><td>"+
 						factura+"</td><td>"+
 						info.method+"</td><td>";
-						if (info.status=="En Revision") {
+						if (info.status=="En Revision" || info.status=="Denegado") {
 							filas = filas+
 							fecha+"</td><td>"+
 							opcion+"</td></tr>";
@@ -129,7 +133,7 @@
 			listado("En Revision");
 		});
 		$(document).on('click','#denegado', function() {
-			$("#opc").hide();
+			$("#opc").show();
 			listado("Denegado");
 		});
 		$(document).on('click','#aprobado', function() {
@@ -183,6 +187,38 @@
 						console.log(result);
 					}
 				});
+			});
+		});
+		$(document).on('click', '#rejectPayments', function(e) {
+			var idPayments = $(this).attr("value");
+			console.log(idPayments);
+			var modulo = "Payments User";
+			var url = "{!! url('viewRejection/"+idPayments+"/"+modulo+"') !!}";
+			console.log(url);
+			$("#negaciones").empty();
+			e.preventDefault();
+			$.ajax({
+				url: url, 
+				type:'get', 
+				dataType:'json',
+				success: function(datos){
+					console.log(datos);
+					$('#totalNegaciones').show();
+					$('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
+					$.each(datos, function(i,info){
+						var fila = '<tr><td>'+
+						info.reason+'</td><td>'+
+						moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+'</td></tr>';
+						$('#negaciones').append(fila);
+					});
+				},
+				error: function (datos) {
+					console.log(datos);
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+				}
 			});
 		});
 		$(document).on('click', '#generarFactura', function() {

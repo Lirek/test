@@ -1,7 +1,7 @@
-  <div class="modal" id="MusicianModal">
+  <div class="modal" id="myModal">
     <div class="modal-content">
       <div class="col s12 light-blue lighten-1 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus del musico o agrupación musical</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus del autor literario</h4>
       </div>
       <br>
       <div style="margin-top: 15%; margin-bottom: 15%">

@@ -18,6 +18,7 @@ class CreateTablePointsAssing extends Migration
             $table->integer('amount')->unsigned()->default('1');
             $table->integer('from')->unsigned()->default('0');
             $table->integer('to')->unsigned()->default('0');
+            $table->enum('status',['Activo','Negado']);
             $table->timestamps();
             $table->foreign('from')->references('id')->on('users');
             //$table->foreign('to')->references('id')->on('users');

@@ -113,72 +113,43 @@ class SuperAdminController extends Controller
 
    //----------------------Puntos----------------------------------
 	 
-	  public function ShowPointsDetails()
-	  {
+	  public function ShowPointsDetails() {
 	  	return view('promoter.AdminModules.PointsDetails');	
 	  }
 
-	  public function PointsSalesDataTable()
-	  {
-		 $Points = PointsAssings::all();
-
-         return Datatables::of($Points)
-                    ->editColumn('from',function($Points){
-                    	if ($Points->from == 0) 
-                    		{
-                    			return 'Leipel';	
-                    		}	
-                      	else
-                      		{
-                      		return $Points->TracePointsFrom()->first()->name;
-                      		    
-                      		}
-                    })
-                    ->editColumn('to',function($Points){
-
-                      if ($Points->to == 0) 
-                      {
-                      	return 'Leipel';	
-                      }
-                      else
-                      {
-                       return $Points->TracePointsTo()->first()->name;
-                      }
-                    })
-                     ->addColumn('Deshacer',function($Points){
-                      
-                      return '<button type="button" class="btn btn-theme" value='.$Points->id.' data-toggle="modal" data-target="#myModal" id="Status">Deshacer</button';
-                    })                  
-                    ->toJson();	  	
+	  public function PointsSalesDataTable($status) {
+      $Points = PointsAssings::where('status',$status)->get();
+      $Points->each(function($Points){
+        $Points->TracePointsFrom;
+        $Points->TracePointsTo;
+      });
+      return response()->json($Points);
 	  }
 
-    public function PointsRollBack($id)
-    {
+    public function PointsRollBack($id) {
       $Assing = PointsAssings::find($id);
       
-      $RollBack= new RollBacksTransacctions;
+      $RollBack = new RollBacksTransacctions;
       $RollBack->id_points_assing = $Assing->id;
       $RollBack->ammount_points = $Assing->amount;
       $RollBack->save();
       
       $Balance = SistemBalance::find(1);
 
-      if ($Assing->to!=0) 
-      {
-        $User=User::find($Assing->to);
-        $User->points = $User->points - $Assing->amount;
+      if ($Assing->to!=0) {
+        $User = User::find($Assing->to);
+        $User->points = $User->points-$Assing->amount;
         $User->save();  
-      }
-      else
-      {
-        $Balance->my_points=$Balance->my_points-$Assing->amount;
+      } else {
+        $Balance->my_points = $Balance->my_points-$Assing->amount;
       }
 
-      $Balance->points_rolled=$Balance->points_rolled+$Assing->amount;
+      $Balance->points_rolled = $Balance->points_rolled+$Assing->amount;
       $Balance->save();
-      
-      
-     return response()->json($User);      
+
+      $Assing->status = "Negado";
+      $Assing->save();
+      return response()->json($Assing);
     }
    //-------------------------------------------------------------
 

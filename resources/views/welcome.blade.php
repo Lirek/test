@@ -225,19 +225,19 @@
         <div class="col s12 m12 l12 xl12  center">
             <h5>Red social de entretenimiento</h5>
         </div>
-        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine">
+        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/cine.png') }}" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
         </div>
-        <div class="col s4 m4 l4 xl2 center curva" id="musica">
+        <div class="col s4 m4 l4 xl2 center curva" id="musica" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/musica.png') }}" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
         </div>
-        <div class="col s4 m4 l4 xl2 center curva" id="libro">
+        <div class="col s4 m4 l4 xl2 center curva" id="libro" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/libro.png') }}" width="50%" height="70%" title="Lectura"><br><b>Lectura</b><br><br>
         </div>
-        <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center curva" id="radio"  >
+        <div class="col s4 m4 l4 xl2 offset-m2  offset-s2 offset-l2 center curva" id="radio" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/radio.png') }}" width="50%" height="70%" title="Radio"><br><b>Radio</b><br><br>
         </div>
-        <div class="col s4 m4 l4 xl2 center curva" id="tv"  >
+        <div class="col s4 m4 l4 xl2 center curva" id="tv" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/tv.png') }}" width="50%" height="70%" title="Tv"><br><b>Tv</b><br><br>
         </div>
     </div>
@@ -254,7 +254,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset('movie/poster') }}/{{$m->img_poster}}" width="100%" height="200px">
+                                <img src="{{ asset($m['img_poster']) }}" width="100%" height="150px">
                             </div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@
             </div>
             <div class="col s12 m8">
                 <div class="card center"><br>
-                    <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
+                    <h4 class="blue-text">Se el primero en subir tus películas o series a Leipel</h4>
                     <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
                     <br><br>
                 </div>
@@ -288,7 +288,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{asset($m->cover)}}" width="100%" height="150px">
+                                <img src="{{ asset($m['cover']) }}" width="100%" height="150px">
                             </div>
                         </div>
                     </div>
@@ -315,31 +315,34 @@
 {{--libro--}}
 <div class="row" id="libros">
     <div class="col s12 m12">
-              @if($books->isEmpty())
-                <div class="col s12 m8">
-                    <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
-                        <br><br>
-                    </div>
-                </div>
-              @else
-                
-                    <div id="featured3" class="owl-carousel featured">
-                        @foreach($books as $book)
-                         <div class="col s12 m12">
-                            <div class="card">
-                                <div class="card-image ">
-                                    <img src="{{asset('images/bookcover/'.$book->cover)}}" width="100%" height="200px">
-                                </div>
+        @if(count($book)>0)
+            <div id="featured3" class="owl-carousel featured">
+                @foreach($book as $b)
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image ">
+                                <img src="{{ asset($b['cover']) }}" width="100%" height="150px">
                             </div>
-                          </div>
-                        @endforeach
+                        </div>
                     </div>
-                
-            @endif
-                <br>
+                @endforeach
+            </div>
+        @endif
+        @if(count($book)==0)
+            <div class="col s12 m2">
+            </div>
+            <div class="col s12 m8">
+                <div class="card center"><br>
+                    <h4 class="blue-text">Se el primero en subir tus libros o revistas a Leipel</h4>
+                    <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                    <br><br>
                 </div>
+            </div>
+            <div class="col s12 m2">
+            </div>
+            <br>
+        @endif
+    </div>
 </div>
 
 {{--radios--}}
@@ -350,7 +353,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{asset($r->logo)}}" width="100%" height="150px">
+                            <img src="{{ asset($r['logo']) }}" width="100%" height="150px">
                         </div>
                     </div>
                 </div>
@@ -371,7 +374,7 @@
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{asset($tvs->logo)}}"  width="100%" height="150px">
+                            <img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px">
                         </div>
                     </div>
                 </div>
