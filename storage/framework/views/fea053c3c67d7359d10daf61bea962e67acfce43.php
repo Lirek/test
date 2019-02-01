@@ -303,7 +303,7 @@ h5.breadcrumbs-header {
                                     </div>
             <?php echo Form::close(); ?> 
                                 </div>
-                                <!-- CLOSE ACCOUNT -->
+            <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
@@ -330,7 +330,7 @@ h5.breadcrumbs-header {
                             <div class="input-field col s12 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su nueva contraseña</label>
-                               <?php echo Form::password('newpass',$user->newpasswd,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']); ?>
+                               <?php echo Form::password('newpass',$user->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']); ?>
 
                             </div>
                             <div class="input-field col s12 ">
@@ -375,10 +375,7 @@ h5.breadcrumbs-header {
                     </div>
                 </div>
             </div>
-              
-            
         </div>      
-
                     </div> 
                </div>
          </div>

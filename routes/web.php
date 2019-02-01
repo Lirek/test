@@ -628,6 +628,9 @@ Route::group(['middleware' => 'seller_auth'], function () {
     //Agregada 25/01/2019
     Route::get('DeleteAccountSeller/{id}','SellerController@closed');
 
+    //Agregada 28/01/2019
+    Route::post('ChangePasswordSeller/{id}','SellerController@changepassword');
+
 
 
     /*----------------------------------------------------------------------------

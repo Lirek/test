@@ -239,37 +239,78 @@
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i>{{$seller->descs_s}}</p>
                                     </div>
+                {!! Form::close() !!}
                                 </div>
-                                <!-- CLOSE ACCOUNT -->
-                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Opciones de cuenta</span>
-                                    </div>
-                                     <div class="card-content">
-                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-                                        <div style="text-align: left;"> 
-                                        <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a></ul>
-                                        <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
-                                        <div id="modal2" class="modal">
-                                                <div class="modal-content">
-                                                  <div class="card-content"> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.<br><br>
-                                                    <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curva Boton active modal-close">Si, Estoy Seguro</a>
-                                                    <a href="#" class="btn btn-primary green curva Boton active modal-close">Volver</a>
-                                                  </div>      
-                                                </div>
-                                        </div>
-                                        </ul>
-                                        </div>    
-                                    </div>
-                                </div>
-                            <!-- CLOSE ACCOUNT -->
+            <!-- CLOSE ACCOUNT -->
+            <div id="profile-card" class="card">
+                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                            <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
+                    </div>
+                <div class="card-content">
+                    <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
+                    <div style="text-align: left;"> 
+                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                            <div style="text-align: center;">
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            </div>
+                            <div class="card-content">
+
+                            <div class="input-field col s12">
+
+                            {!! Form::open(['url'=>['ChangePasswordSeller',$seller],'method'=>'POST','files'=>true,'class'=>'form-horizontal','id'=>'changepassword']) !!}
+                            {{ Form::token() }}
+
+                            {!! Form::text('password',$seller->password,['class'=>'form-control','method'=>'POST']) !!}
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Introduzca su nueva contraseña</label>
+                               {!! Form::password('newpass',$seller->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']) !!}
+                            </div>
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Confirme su nueva contraseña</label>
+                              {!! Form::password('confnewpass',$seller->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']) !!}  
+                            </div>
+                            <div style="text-align: center">
+                              {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']) !!}
+                              {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!} 
+                            </div>
+                            <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
+                            </div>
+                            <!-- <a href="{{ url('ChangePassword', $seller->id) }}" class="btn btn-primary green curvaBoton active modal-close" id="changepassword">Actualizar</a>
+                            <a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->           </div>      
+                            </div>
+                        </div>
+                    </ul>
+                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                            <div id="modal2" class="modal">
+                            <div class="modal-content">
+                            <div style="text-align: center;">
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            </div>
+                            <div class="card-content" style="text-align: center;"> <label><h6>AVISO <br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div style="text-align: center">
+                            <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
+                            {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
+                            <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
+                            </div>
+                            </div>      
+                            </div>
+                            </div>
+                    </ul>
+                    </div>    
+                </div>
+            </div>
+            <!-- CLOSE ACCOUNT --> 
                             </div>
                         </div>
                     </div>
 
         </div>
     </div>
-    {!! Form::close() !!}
+   
 @endsection
 @section('js')
 {{--
