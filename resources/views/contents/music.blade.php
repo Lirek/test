@@ -53,7 +53,7 @@
                         <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                       @else
                         
-                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->title!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                       @endif
                     </div>
                     <div class="card-content">
@@ -103,7 +103,7 @@
                                    {{$song->song_name}}
                                   </div> 
                                   <div class="col s4">
-                                    <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->title!!}','{!!$song->id!!}')" ><i class="material-icons">add_shopping_cart</i></a>
+                                    <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')" ><i class="material-icons">add_shopping_cart</i></a>
                                   </div>
                                 </div>
                             </li>
@@ -220,7 +220,7 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                        console.log(result);
                     }
                     else if (result==1) 
@@ -253,7 +253,7 @@ function callback(value,id) {
                 },
               error: function (result) 
                 {
-                      
+                      console.log(result);
                 }
 
             });
@@ -281,7 +281,7 @@ $(document).ready(function(){
           console.log(valor);
           if (valor=='No se encuentra...'){
             $('#buscar').attr('disabled',true);
-            swal('Canción o Album no se encuentra regitrado','','error');
+            swal('Canción o Artista no se encuentra regitrado','','error');
           }else{
             $('#buscar').attr('disabled',false);
           }
@@ -338,7 +338,7 @@ function callback2(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                     }
                     else if (result==1) 
                     {

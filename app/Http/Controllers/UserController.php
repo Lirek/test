@@ -423,7 +423,7 @@ class UserController extends Controller
     
 
     //Funcion que recive el single a comprar y lo registra en la tabla Transacciones
-    public function BuySingle($id,Request $request)
+    public function BuySingle($id)
     {
         $Single= Songs::find($id);
         
@@ -442,15 +442,15 @@ class UserController extends Controller
             return response()->json(1);   
         }
 
-        if($Single->album != NULL){
-          $checkS = Transactions::where('album_id','=',$Single->Album->id)->where('user_id','=',$user->id)->get();
+        
+          $checkS = Transactions::where('album_id','=',$Single->album)->where('user_id','=',$user->id)->get();
           $checkS->isEmpty();
 
           if(count($checkS)>=1)
           {
               return response()->json(2);   
           }
-        }
+      
         else
         {
             $Transaction= new Transactions;
