@@ -11,6 +11,8 @@ use Auth;
 
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+
 
 //Seller Model
 use App\Seller;
@@ -173,9 +175,9 @@ class SellerController extends Controller
     //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
     public function CompleteRegistrationForm($id,$code) {
         $ApplysSellers = ApplysSellers::find($id);
-        $seller = Seller::where('email',$ApplysSellers->email)->get();
+        $seller = Seller::where('email',$ApplysSellers->email)->first();
         //dd(isset($seller[0]));
-        if (isset($seller[0])) {
+        if (isset($seller)) {
             $validacion = 1; // ya el usuario ya completó el registro
         } else {
             $validacion = 0; // el usuario aun no ha completado el registro
@@ -194,7 +196,7 @@ class SellerController extends Controller
         }
         */
     }
-	//Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
+    //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
 
     // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
     public function getDataSeller($id,$token) {
@@ -211,15 +213,16 @@ class SellerController extends Controller
     }
     // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
 
-    public function CompleteRegistration(Request $request)
+ public function CompleteRegistration(Request $request)
     {
+        //dd($request->all());
+        //$store_path='documents/sellers/';
         $nombre = $this->sinAcento($request->name);
-        $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+        $store_path = public_path().'/sellers/'.$request->ruc.'/documents/';
         $name = $request->ruc.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
         $request->file('adj_ruc')->move($store_path,$name);
-        $real_path = '/sellers/'.$request->ruc.'/documents/'.$request->ruc;
-
-        
+        $real_path = '/sellers/'.$request->ruc.'/documents/'.$name;
+        //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
         $Seller = new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;
@@ -232,25 +235,25 @@ class SellerController extends Controller
         $Seller->address = $request->address;
         $Seller->save();
         Auth::guard('web_seller')->login($Seller);
-        $seller_roles = SellersRoles::where('name',$request->modulo)->get();
+        $seller_roles = SellersRoles::where('name',$request->modulo)->first();
         $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-        $data = $seller->roles()->attach($seller_roles[0]->id);
+        $data = $seller->roles()->attach($seller_roles);
         if ($request->modulo=="Peliculas") {
             $seller_roles = SellersRoles::where('name','Series')->get();
             $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-            $data = $seller->roles()->attach($seller_roles[0]->id);
+            $data = $seller->roles()->attach($seller_roles);
         }
         if ($request->modulo=="Libros") {
             $seller_roles = SellersRoles::where('name','Revistas')->get();
             $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-            $data = $seller->roles()->attach($seller_roles[0]->id);
+            $data = $seller->roles()->attach($seller_roles);
         }
         if ($request->submodulo!=null) {
             $seller_sub_roles = SellersRoles::where('name',$request->submodulo)->get();
-            $data = $seller->roles()->attach($seller_sub_roles[0]->id);
+            $data = $seller->roles()->attach($seller_sub_roles);
         }
 
-    	//return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
+        //return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
         return redirect()->action(
             'SellerController@homeSeller'
         );
@@ -371,12 +374,19 @@ class SellerController extends Controller
             $seller->logo ='/images/producer/logo/'.$name;
         }
 
-        if ($request->adj_ruc <> null) {
-            $file1 = $request->file('adj_ruc');
-            $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
-            $path1 = public_path() . '/images/producer/ruc/';
-            $file1->move($path1, $name1);
-            $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+       if ($request->adj_ruc <> null) {
+            // $file1 = $request->file('adj_ruc');
+            // $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
+            // $path1 = public_path() . '/images/producer/ruc/';
+            // $file1->move($path1, $name1);
+            // $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+
+            $nombre = $this->sinAcento($request->name);
+            $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+            $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+            $request->file('adj_ruc')->move($store_path,$name);
+            $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
+            $seller->adj_ruc = $real_path;
         }
 
         // if ($request->adj_ci <> null) {
@@ -554,4 +564,4 @@ class SellerController extends Controller
     }
 
 }
-	
+    
