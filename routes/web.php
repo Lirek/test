@@ -498,7 +498,10 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('UpdateExternalClient/{id}','ExternalClientsController@UpdateExternalClient');
 
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
-         
+        // Agregadas 30-01-2019
+        Route::get('valPatrocinador/{codigo}/{idUser}','SuperAdminController@valPatrocinador');
+        Route::post('assingRefered','SuperAdminController@assingRefered');
+        // Agregadas 30-01-2019
 
     });
 });

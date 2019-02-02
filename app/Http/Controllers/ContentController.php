@@ -32,15 +32,26 @@ class ContentController extends Controller
 //------------------------------------------MUSICA------------------------------------------------------//
     public function ShowMusic()
     {
-        $MusicAuthors = music_authors::where('status','=','Aprobado')->get();
-        $Singles = Songs::where('album','=',NULL)->where('status','=','Aprobado')->get();
-        $Albums = Albums::where('status','=','Aprobado')->take(6)->get();
-
-       $Albums=$Albums->merge($Singles);
-       
+        $MusicAuthors = music_authors::where('status','Aprobado')->get();
+        $Singles = Songs::where('album',null)->where('status','Aprobado')->get();
+        $Album = Albums::where('status','Aprobado')->take(6)->get();
         
+        $Albums = collect();
+        foreach ($Singles as $single) {
+            $Albums->push($single);
+            $Albums->each(function($Albums){
+                $Albums->transaction;
+            });
+        }
+        foreach ($Album as $album){ 
+            $Albums->push($album);
+            $Albums->each(function($Albums){
+                $Albums->Transactions;
+            });
+        }
+        //dd($Albums);
 
-        return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums);
+        return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums->sortByDesc('created_at'));
     }
 
     public function ShowArtist($id)

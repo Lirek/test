@@ -254,7 +254,11 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset($m['img_poster']) }}" width="100%" height="150px">
+                                @if($m['type']=='Pelicula')
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="150px">
+                                @else
+                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="150px">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1232,8 +1236,9 @@
             }
         });
         //Mostarar contenidos seleccionados
-        $('#cine').css("background-color","#42a5f5");
-        $('#radios').hide();
+        $('#radio').css("background-color","#42a5f5");
+        $('#radios').show();
+        $('#cines').hide();
         $('#Tvs').hide();
         $('#libros').hide();
         $('#musicas').hide();
@@ -1291,7 +1296,7 @@
             $('#libros').hide();
             $('#musicas').hide();
             $('#cines').hide();
-            console.log( $('#radios').show());
+            console.log("paso por radio");
             $('#radios').show();
         });
 

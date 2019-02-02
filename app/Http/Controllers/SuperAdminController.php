@@ -182,14 +182,16 @@ class SuperAdminController extends Controller
    //-------------------------------------------------------------
 
    //----------------------Usuarios---------------------------------
-	  public function ShowUserDetails()
-	  {
+	  public function ShowUserDetails() {
 	  	return view('promoter.AdminModules.UserDetails');	
 	  }
 
-    public function UnReferedUserDataTable()
-    {
-        $Data = User::all();
+    public function UnReferedUserDataTable() {
+        $user = User::all();
+        $user->each(function($user){
+          $user->UserRefered;
+        });
+        return response()->json($user);
 
 
         return Datatables::of($Data)
@@ -205,6 +207,77 @@ class SuperAdminController extends Controller
                     })
                     ->rawColumns(['Transactions'])
                       ->toJson();
+    }
+
+    public function valPatrocinador($codigo,$idUser) {
+      $validarPatrocinador = $this->validarPatrocinador($codigo,$idUser);
+      $user = User::find($idUser);
+      $miCod = $user->codigo_ref;
+      if ($miCod==$codigo) {
+        return response()->json(1);
+      } else {
+        if ($validarPatrocinador==2) {
+          return response()->json($validarPatrocinador);
+        } else {
+          $sponsor = User::where('codigo_ref',$codigo)->first();
+          if ($sponsor) {
+            return response()->json($sponsor);
+          } else {
+            return response()->json(0);
+          }
+        }
+      }
+    }
+
+    public function validarPatrocinador($codigo,$idUser) {
+      $ids = NULL;
+      $cods = NULL;
+      $user = User::find($idUser);
+      $datos1 = $user->referals()->get();
+      if ($datos1->count()>0) {
+          foreach ($datos1 as $info) {
+              $ids[] = $info->refered;
+          }
+      }
+      if ($ids!=NULL) {
+        for ($i=0; $i < count($ids); $i++) { 
+          $user = User::find($ids[$i]);
+          $datos = $user->referals()->get();
+          if ($datos->count()>0) {
+            foreach ($datos as $info) {
+              $ids[] = $info->refered;
+            }
+          }
+        }
+        $info = User::select('codigo_ref')->whereIn("id",$ids)->get();
+        foreach ($info as $key) {
+          $cods[] = $key->codigo_ref;
+        }
+      }
+
+      if ($cods===NULL) { // si es NULL se agrega sin problema porque esa persona no tiene red
+          $agregar = 3;
+      } else { // si tiene red hay que revisar que el codigo no pertenezca a alguien de dicha red
+        $busqueda = in_array($codigo, $cods);
+        if ($busqueda===true) { // el codigo ya lo tiene alguien de su red
+          $agregar = 2;
+        } else { // puede agregar ese codigo sin problema
+          $agregar = 3;
+        }
+      }
+      return $agregar;
+    }
+
+    public function assingRefered(Request $request) {
+      $user = User::where('codigo_ref',$request->codigo)->where('id','<>',$request->idUser)->first();
+      if ($user) {
+        $referals = new Referals;
+        $referals->user_id = $user->id;
+        $referals->refered = $request->idUser;
+        $referals->my_code = $request->codigo;
+        $referals->save();
+        return redirect()->action('SuperAdminController@ShowUserDetails');
+      }
     }
    //---------------------------------------------------------------
 
