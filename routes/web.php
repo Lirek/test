@@ -604,7 +604,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
     
     Route::get('seller_edit', 'SellerController@edit');
 
-
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
 
     Route::get('messages','SellerController@ShowMessages');
@@ -1073,7 +1072,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 
     Route::get('/seller_home','SellerController@homeSeller');
-
+    
 
 });
 

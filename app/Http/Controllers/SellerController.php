@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Illuminate\Support\Facades\Session;
 
 //Seller Model
 use App\Seller;
@@ -429,25 +430,20 @@ class SellerController extends Controller
 
               $seller->save();
 
-              echo'<script type="text/javascript">
-              alert("Su contraseña ha sido cambiado con exito!");
-              window.location.href="/seller_edit"</script>';
-              
-            //return redirect()->action('UserController@edit'); 
-            //Flash('Se ha modificado sus contraseña con exito!')->success();         
+            Flash('Se ha modificado su contraseña con exito!')->success();  
+            //header("Refresh:0; url=/seller_edit");
+            return redirect()->action('SellerController@homeSeller');
+
         } 
         else 
-
-          echo'<script type="text/javascript">
-              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
-              window.location.href="/seller_edit";</script>';
+            Flash::warning('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->important();
+            return redirect()->action('SellerController@homeSeller');;
 
           }
 
-          else 
-             echo'<script type="text/javascript">
-              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
-              window.location.href="/seller_edit";</script>';
+        else 
+            Flash::warning('Ha ingresado incorrectamente su contraseña antigua, por favor intentelo de nuevo.')->important();
+            return redirect()->action('SellerController@homeSeller');;
 
     }
 

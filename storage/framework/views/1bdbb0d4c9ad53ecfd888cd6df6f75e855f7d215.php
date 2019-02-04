@@ -1,4 +1,5 @@
 <?php $__env->startSection('css'); ?>
+<?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/image-profile.js')); ?>"></script>
@@ -278,28 +279,44 @@
 
                             <?php echo Form::hidden('password',$seller->password,['class'=>'form-control','method'=>'POST']); ?>
 
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11 m12">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su antigua contraseña</label>
-                            <?php echo Form::password('oldpass',$seller->oldpass,['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST']); ?>
-
+                            <?php echo Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']); ?><i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="oldpasscp" style="margin-top: 1%"></div>
+                            <?php if($errors->has('oldpass')): ?>
+                            <span class="help-block">
+                                        <strong><?php echo e($errors->first('oldpass')); ?></strong>
+                                    </span>
+                            <?php endif; ?>
                             </div>
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Introduzca su nueva contraseña</label>
-                            <?php echo Form::password('newpass',$seller->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']); ?>
-
+                            <?php echo Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']); ?><i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="newpasscp" style="margin-top: 1%"></div>
+                             <?php if($errors->has('newpass')): ?>
+                            <span class="help-block">
+                                        <strong><?php echo e($errors->first('newpass')); ?></strong>
+                                    </span>
+                            <?php endif; ?>
                             </div>
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11 ">
                             <i class="material-icons prefix blue-text">edit</i>
                             <label>Confirme su nueva contraseña</label>
-                            <?php echo Form::password('confnewpass',$seller->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']); ?>  
+                            <?php echo Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']); ?><i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="confnewpasscp" style="margin-top: 1%"></div>
+                             <?php if($errors->has('confnewpass')): ?>
+                            <span class="help-block">
+                                        <strong><?php echo e($errors->first('confnewpass')); ?></strong>
+                                    </span>
+                            <?php endif; ?>
                             </div>
                             <div style="text-align: center">
-                            <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']); ?>
+                            <?php echo Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'ChangePassword']); ?>
 
-                            <?php echo Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']); ?> 
-                            </div>
+                            <?php echo Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']); ?>        
+                            </div>     
                             <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
                             </div>
                             <!-- <a href="<?php echo e(url('ChangePassword', $seller->id)); ?>" class="btn btn-primary green curvaBoton active modal-close" id="changepassword">Actualizar</a>
@@ -313,7 +330,7 @@
                             <div style="text-align: center;">
                             <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"> <label><h6>AVISO <br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div class="card-content" style="text-align: center;"><i class="material-icons prefix blue-text" style="margin-left: 30px;">report_problem</i><label><h6>AVISO IMPORTANTE!<br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br>
                             <div style="text-align: center">
                             <a href="<?php echo e(url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id)); ?>" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             <?php echo Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']); ?>
@@ -338,6 +355,184 @@
 <?php $__env->startSection('js'); ?>
 
 
+<!-- Confirmación cambio de contraseñas-->
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#oldpass').keyup(function(evento){
+            var password = $('#oldpass').val().trim();
+
+            if (password.length==0) {
+                $('#oldpasscp').show();
+                $('#oldpasscp').text('El campo no debe estar vacio');
+                $('#oldpasscp').css('color','red');
+                $('#oldpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#oldpasscp').show();
+                $('#oldpasscp').text('Su contaseña antigua debe tener al menos 5 caracteres');
+                $('#oldpasscp').css('color','red');
+                $('#oldpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#oldpasscp').hide();
+                var password1 = $('#oldpass').val().trim();
+                console.log(password1.length !=0);
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#newpass').keyup(function(evento){
+            var password = $('#newpass').val().trim();
+
+            if (password.length==0) {
+                $('#newpasscp').show();
+                $('#newpasscp').text('El campo no debe estar vacio');
+                $('#newpasscp').css('color','red');
+                $('#newpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#newpasscp').show();
+                $('#newpasscp').text('Su nueva contaseña debe tener 5 caracteres');
+                $('#newpasscp').css('color','red');
+                $('#newpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#newpasscp').hide();
+                var password1 = $('#confnewpass').val().trim();
+                console.log(password1.length !=0 );
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#confnewpass').keyup(function(evento){
+            var password = $('#confnewpass').val().trim();
+
+            if (password.length==0) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('El campo no debe estar vacio');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('Su nueva contaseña debe tener 5 caracteres');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#confnewpasscp').hide();
+                var password1 = $('#confnewpass').val().trim();
+                console.log(password1.length != 0);
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+
+        $('#confnewpass').keyup(function(evento){
+            var password1 = $('#newpass').val();
+            var password = $('#confnewpass').val();
+
+            if (password != password1) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#ChangePassword').attr('disabled',true);
+            } else {
+                $('#confnewpasscp').hide();
+                if (password1.length !=0){
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+
+        $('#newpass').keyup(function(evento){
+            var password1 = $('#newpass').val();
+            var password = $('#confnewpass').val();
+
+            if (password != password1) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#ChangePassword').attr('disabled',true);
+            } else {
+                $('#confnewpasscp').hide();
+                if (password1.length !=0){
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+</script>
+<!-- Mostrar Contraseñas -->
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("oldpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
+
+<script>
+  function mostrarContrasena2(){
+      var tipo = document.getElementById("newpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
+
+<script>
+  function mostrarContrasena3(){
+      var tipo = document.getElementById("confnewpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
 
 <script type="text/javascript">
     $("#nombre").change(function(){
