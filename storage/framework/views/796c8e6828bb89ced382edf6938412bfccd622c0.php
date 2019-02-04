@@ -193,6 +193,10 @@
               $('#badgePagos').show();
               $('#badgePagos').text(result.pagosP);
             }
+            if (result.pagosU!=0) {
+              $('#badgePagosU').show();
+              $('#badgePagosU').text(result.pagosU);
+            }
             if (result.solicitudesP!=0) {
               $('#badgeSolicitudProveedor').show();
               $('#badgeSolicitudProveedor').text(result.solicitudesP);

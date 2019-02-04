@@ -13,7 +13,7 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('TicketsDetail')}}" class="btn btn-primary">Revisar</a>
+            <a href="{{url('TicketsDetail')}}" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('PointsDetails')}}" class="btn btn-primary">Revisar</a>
+            <a href="{{url('PointsDetails')}}" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
@@ -75,11 +75,12 @@
        <td class="non-numeric">{{$User->points}}</td>
        <td class="non-numeric">{{$User->pending_points}}</td>
        <td class="non-numeric">{{$User->limit_points}}</td>
+       @endforeach
        @foreach($Payments as $pay)
-       <td class="non-numeric">{{Pay()->first()->created_at}}</td>
+       <td class="non-numeric">{{$pay->first()->created_at->format('d/m/Y')}}</td>
        @endforeach
       </tr>
-      @endforeach 
+
     </tbody>
   </table>
   </div>
@@ -112,6 +113,20 @@
     </table>
   </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			<div class="center">
 				<a href="{{url('UserDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
   			</button></a>
@@ -119,6 +134,28 @@
   		</div>
   	</div>
 </div>
+
+
+
+
+
+
+<div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card light-blue darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">Rutina De Puntos Pendientes</span>
+            <i class="large material-icons">confirmation_number</i>
+            <h4>
+              <p>La siguiente accion debe ser ejecutada una vez al mes para pasar los puntos pendientes de los usuarios que no recargaron a leipel</p>
+            </h4>
+          </div>
+          <div class="card-action">
+            <a href="{{url('PendingPointsRoutine')}}" class="btn btn-primary">Revisar</a>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 @section('js')
 @endsection

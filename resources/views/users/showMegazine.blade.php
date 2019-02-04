@@ -94,7 +94,8 @@
                                 <br>
                             <div class="row">
                                 <div class="col s4 m4 l4">
-                                    <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer</a>
+                                    <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer</a> -->
+                                    <a  href="{{ asset($megazines->megazine_file) }}" class="btn curvaBoton waves-effect waves-light green" target="_blank">Leer revista</a>
                                 </div>
                                 <div class="col s4 m4 l4">
                                     <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Descripción</a>

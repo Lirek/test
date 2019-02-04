@@ -4,7 +4,14 @@
 
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
 <style>
+    .owl-carousel.owl-drag .owl-item {
+        padding-left: 2px ;
+        padding-right: 2px;
+    }
 
+    .owl-nav {
+        padding: 0px;
+    }
 
     .owl-theme .owl-nav [class*='owl-'] {
         transition: all .3s ease;
@@ -12,22 +19,20 @@
     .owl-theme .owl-nav [class*='owl-'].disabled:hover {
         background-color: #D6D6D6;
     }
-
     owl-theme {
         position: relative;
     }
-
-.owl-theme .owl-next, .owl-theme .owl-prev {
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-125%)
-    }
- .owl-theme .owl-prev {
-        left: 10px;
-    }
-   .owl-theme .owl-next {
+    .owl-theme .owl-next, .owl-theme .owl-prev {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-125%)
+        }
+    .owl-theme .owl-prev {
+            left: 10px;
+        }
+    .owl-theme .owl-next {
         right: 10px;
     }
 
@@ -35,19 +40,16 @@
 @endsection
 
 @section('main')
-
-
-
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      @include('flash::message')
-      <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
-      <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
-      <div class="row">
+    <!-- ******************************************************************************************************************
+    MAIN CONTENT
+    ********************************************************************************************************************-->
+    <!--main content start-->
+    @include('flash::message')
+    <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
+    <input type="hidden" name="verificacion" id="verificacion" value="{{Auth::user()->verify}}">
+    <div class="row">
         @if(Auth::user()->name==NULL || Auth::user()->last_name==NULL || Auth::user()->email==NULL || Auth::user()->num_doc==NULL || Auth::user()->fech_nac==NULL || Auth::user()->alias==NULL || Auth::user()->direccion==NULL)
-            <!-- COMPLETAR PERFIL PANELS -->
+        <!-- COMPLETAR PERFIL PANELS -->
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content grey-text">
@@ -65,19 +67,36 @@
         <br>
         <!--CONTENIDO RECIENTE cine-->
         @if(count($cine)> 0)
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
+            <div class="row">
+                <div class="col s12">
+                    <a href="{{url('ShowMovies')}}">
                         <h5 class="grey-text left"><i class="small material-icons">movie</i> Cine</h5>
-                    </div>
-                    <div class="col s12" style="margin: 10px;">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($cine as $c)
-                                <div>
-                                    <img src="{{ asset($c['img_poster']) }}" height="250px" width="100px">
+                    </a>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($cine as $ci)
+                            {{--<div>--}}
+                                {{--<img src="{{asset('movie/poster')}}/{{$ci->img_poster}}" id="img_cartelera_largo">--}}
+                            {{--</div>--}}
+                            <div class="card">
+                                <div class="card-image">
+                                    <img img src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                    @if($ci['type']=='Pelicula')
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMovies/'.$ci['id']) }}">
+                                            <i class="small material-icons">movie</i>
+                                        </a>
+                                    @else
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('SerieList/'.$ci['id']) }}">
+                                            <i class="mdi mdi-movie-roll"></i>
+                                        </a>
+                                    @endif
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$ci['title']}}</b>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -86,40 +105,74 @@
 
         <!--CONTENIDO RECIENTE musica-->
         @if(count($musica)> 0)
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="grey-text left"><i class="small material-icons">music_note</i> Música</h5>
-                    </div>
-                    <div class="col s12" style="margin: 10px;">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($musica as $m)
-                                <div>
-                                    <img src="{{ asset($m['cover']) }}" height="250px" width="100px">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="grey-text left">
+                        <i class="small material-icons">music_note</i> Música
+                    </h5>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($musica as $m)
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                    @if($m['type']=='Album')
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                            <i class="small material-icons">library_music</i>
+                                        </a>
+                                    @else
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                            <i class="small material-icons">music_note</i>
+                                        </a>
+                                    @endif
                                 </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$m['title']}}</b>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         @endif
-        <!--End  RECIENTE musica-->
+        <!--End RECIENTE musica-->
 
         <!--CONTENIDO RECIENTE Lecturas-->
         @if(count($lectura)> 0)
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="grey-text left"><i class="material-icons">bookmark_border</i> Lectura</h5>
-                    </div>
-                    <div class="col s12" style="margin: 10px;">
-                        <div  class="owl-carousel owl-theme">
-                            @foreach($lectura as $l)
-                                <div>
-                                    <img src="{{ asset($l['cover']) }}" height="250px" width="100px">
+            <div class="row">
+                <div class="col s12">
+                    <a href="{{url('ReadingsBooks')}}">
+                        <h5 class="grey-text left">
+                            <i class="material-icons">bookmark_border</i>Libros
+                        </h5>
+                    </a>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($lectura as $le)
+                            {{--<div>--}}
+                                {{--<img src="{{ asset('images/bookcover/') }}/{{$b->cover }}"  id="img_cartelera_largo" onclick="masInfo('libro',{!!$b->id!!})">--}}
+                            {{--</div>--}}
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                    @if($le['type']=='Libro')
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                            <i class="small material-icons">book</i>
+                                        </a>
+                                    @else
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                            <i class="mdi mdi-book-open-variant"></i>
+                                        </a>
+                                    @endif
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$le['title']}}</b>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -128,21 +181,31 @@
 
         <!--CONTENIDO RECIENTE Radio-->
         @if(count($radio)>0)
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="grey-text left"><i class="material-icons">radio</i> Radio</h5>
-                    </div>
-                    <div class="col s12" style="margin: 10px;">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($radio as $r)
-                                <div>
-                                    <a href="{{url('ListenRadio/'.$r['id'])}}" class="waves-effect waves-light">
-                                        <img src="{{ asset($r['logo']) }}" height="250px" width="100px">
+            <div class="row">
+                <div class="col s12">
+                    <a href="{{ url('ShowRadio')}}">
+                        <h5 class="grey-text left">
+                            <i class="material-icons">radio</i> Radio
+                        </h5>
+                    </a>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($radio as $r)
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="{{ url('ListenRadio/'.$r['id']) }}">
+                                        <img src="{{ asset($r['logo']) }}" id="img_cartelera_cuadro" onclick="masInfo('radio')">
+                                    </a>
+                                    <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ListenRadio/'.$r['id']) }}">
+                                        <i class="material-icons">radio</i>
                                     </a>
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$r['name']}}</b>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -151,29 +214,44 @@
 
         <!--CONTENIDO RECIENTE Tv-->
         @if(count($tv)>0)
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
-                        <h5 class="grey-text left"><i class="material-icons">tv</i> Tv</h5>
-                    </div>
-                    <div class="col s12" style="margin: 10px;">
-                        <div  class="owl-carousel owl-theme">
-                            @foreach($tv as $t)
-                                <div>
-                                    <a href="{{url('PlayTv/'.$t['id'])}}" class="waves-effect waves-light">
-                                        <img src="{{ asset($t['logo']) }}" height="250px" width="100px">
+            <div class="row">
+                <div class="col s12">
+                    <a href="{{ url('ShowTv')}}">
+                        <h5 class="grey-text left">
+                            <i class="mdi mdi-television-classic"></i> Televisión
+                        </h5>
+                    </a>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($tv as $tv)
+                            {{--<div>--}}
+                                {{--<a  href="{{url('PlayTv/'.$tv->id)}}" class="waves-effect waves-light">--}}
+                                    {{--<img src="{{ asset($tv->logo) }} "  id="img_cartelera_cuadro" ></a>--}}
+                            {{--</div>--}}
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="{{url('PlayTv/'.$tv['id'])}}">
+                                        <img src="{{ asset($tv['logo']) }}" id="img_cartelera_cuadro" onclick="masInfo('radio')">
+                                    </a>
+                                    <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('PlayTv/'.$tv['id']) }}">
+                                        <i class="mdi mdi-television-classic"></i>
                                     </a>
                                 </div>
-                            @endforeach
-                        </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$tv['name']}}</b>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         @endif
         <!--End  RECIENTE tv-->
 
-        <div id="modal-confirmation"></div> 
-    @endsection
+        <div id="modal-confirmation"></div>
+    </div>
+@endsection
 
 @section('js')
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'>
@@ -212,12 +290,35 @@
                 items:4,
                 nav:true
             },
-
-            1000:{
+            800:{
+                items:4,
+                nav:true,
+                loop:false
+            },
+            950:{
                 items:5,
                 nav:true,
                 loop:false
             },
+            1150:{
+                items:6,
+                nav:true,
+                loop:false
+            },
+
+            1350:{
+                items:7,
+                nav:true,
+                loop:false
+            },
+
+            1400:{
+                items:8,
+                nav:true,
+                loop:false
+            },
+
+
         },
         navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>','<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
     });
@@ -423,190 +524,207 @@ restaFechas = function(f1,f2)
         return patron.test(te); 
     }
 </script>
-  
 <script>
-  //-------------COMPRA DE SINGLES---------
-function fnOpenNormalDialog(cost,name,id) {
-
-
-     swal({
-            title: "Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+    //-------------COMPRA DE ALBUMS-----------------
+    function fnOpenNormalDialog1(cost,name,id) {
+        swal({
+            title: "¿Está seguro?",
+            text: '¿Desea comprar el álbum '+name+' con un valor de '+cost+' tickets?', 
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
         })
         .then((willDelete) => {
-          if (willDelete) {
-            callback(true,id);
-           
-          } else {
-            callback(false,id);
-          }
+            if (willDelete) {
+                callback1(true,id);
+            } else {
+                callback1(false,id);
+            }
         });
     };
 
-
-function callback(value,id) {
-    if (value) {
-         $.ajax({
-                    
-            url:'BuySong/'+id,
-            type: 'POST',
-            data: {
-            _token: $('input[name=_token]').val()
-             },
-                    
-             success: function (result) 
-                {
-
-
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
-                       console.log(result);
-                    }
-                    else if (result==1) 
-                    {
-                      swal('La canción ya forma parte de su colección','','error');
-                    }
-                    else
-                    { 
-                      swal('Cancion comprada con exito','','success');
-                       console.log(result);
+    function callback1(value,id) {
+        if (value) {
+            $.ajax({
+                url:"{{url('BuyAlbum/')}}/"+id,
+                type: 'POST',
+                data: {
+                    _token: $('input[name=_token]').val()
+                },
+                success: function (result) {
+                    if (result==0) { 
+                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    } else if (result==1) {
+                        swal('El album ya forma parte de su colección','','error');
+                    } else { 
+                        swal('Album comprado con exito','','success');
+                        console.log(result);
                     }  
                 },
-              error: function (result) 
-                {
-                      
+                error: function (result) {
+                    console.log(result);
                 }
-
             });
-    } else {
-        return false;
+        } else {
+            return false;
+        }
     }
-}
+    //-------------COMPRA DE ALBUMS-----------------
 </script>
 <script>
-  //-----COMPRA DE ALBUMS-----------------
-function fnOpenNormalDialog2(cost,name,id) {
-
-     swal({
-            title: "Estas seguro?",
+    //----------------COMPRA DE SINGLES---------------
+    function fnOpenNormalDialog2(cost,name,id) {
+        swal({
+            title: "¿Está seguro?",
             text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
         })
         .then((willDelete) => {
-          if (willDelete) {
-            callback2(true,id);
-           
-          } else {
-            callback2(false,id);
-          }
+            if (willDelete) {
+                callback2(true,id);
+            } else {
+                callback2(false,id);
+            }
         });
     };
-
-
-function callback2(value,id) {
-    if (value) {
-         $.ajax({
-                    
-            url:'BuyAlbum/'+id,
-            type: 'POST',
-            data: {
-            _token: $('input[name=_token]').val()
-             },
-                    
-             success: function (result) 
-                {
-
-
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
-                    }
-                    else if (result==1) 
-                    {
-                      swal('El album ya forma parte de su colección','','error');
-                    }
-                    else
-                    { 
-                      swal('Album comprado con exito','','success');
-                       console.log(result);
+    function callback2(value,id) {
+        if (value) {
+            $.ajax({
+                url:"{{url('BuySong/')}}/"+id,
+                type: 'POST',
+                data: {
+                    _token: $('input[name=_token]').val()
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result==0) { 
+                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    } else if (result==1) {
+                        swal('La canción ya forma parte de su colección','','error');
+                    } else { 
+                        swal('Cancion comprada con exito','','success');
                     }  
                 },
-              error: function (result) 
-                {
-                      
+                error: function (result) {
+                    console.log(result);
                 }
-
             });
-    } else {
-        return false;
+        } else {
+            return false;
+        }
     }
-}
+    //----------------COMPRA DE SINGLES---------------
 </script>
+
 <script>
-function fnOpenNormalDialog3(cost,name,id) {
-
-
-     swal({
-            title: "Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+    //----------------COMPRA DE LIBROS---------------
+    function fnOpenNormalDialog3(cost,name,id) {
+        swal({
+            title: "¿Está seguro?",
+            text: '¿Desea comprar el libro '+name+' con un valor de '+cost+' tickets?', 
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
         })
         .then((willDelete) => {
-          if (willDelete) {
-            callback3(true,id);
-           
-          } else {
-            callback3(false,id);
-          }
+            if (willDelete) {
+                callback3(true,id);
+            } else {
+                callback3(false,id);
+            }
         });
     };
-
-function callback3(value,id) {
-    if (value) {
-         $.ajax({
-                    
-            url:'BuyBook/'+id,
-            type: 'POST',
-            data: {
-            _token: $('input[name=_token]').val()
-             },
-                    
-             success: function (result) 
-                {
-
-
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
-                       console.log(result);
-                    }
-                    else if (result==1) 
-                    {
-                      swal('El libro ya forma parte de su colección','','error');
-                    }
-                    else
-                    { 
-                      swal('Libro comprada con exito','','success');
-                       console.log(result);
+    function callback3(value,id) {
+        if (value) {
+            $.ajax({
+                url:"{{url('BuyBook/')}}/"+id,
+                type: 'POST',
+                data: {
+                    _token: $('input[name=_token]').val()
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result==0) { 
+                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    } else if (result==1) {
+                        swal('El libro ya forma parte de su colección','','error');
+                    } else { 
+                        swal('Libro comprada con exito','','success');
                     }  
                 },
-              error: function (result) 
-                {
-                      
+                error: function (result) {
+                    console.log(result);
                 }
-
             });
-    } else {
-        return false;
+        } else {
+            return false;
+        }
     }
-}
+    //----------------COMPRA DE LIBROS---------------
+
+    //----------------COMPRA DE REVISTAS---------------
+    function fnOpenNormalDialog4(cost,name,id) {
+        swal({
+            title: "¿Está seguro?",
+            text: '¿Desea comprar la revista '+name+' con un valor de '+cost+' tickets?',
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                callback4(true,id);
+            } else {
+                callback4(false,id);
+            }
+        });
+    };
+    function callback4(value,id) {
+        if (value) {
+            swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+            $.ajax({
+                url:"{{url('BuyMagazines/')}}/"+id,
+                type: 'POST',
+                data: {
+                    _token: $('input[name=_token]').val()
+                },
+                success: function (result) {
+                console.log(result);
+                    if (result==0) {
+                        swal('No posee suficientes tickets, por favor recargue','','error');
+                    } else if (result==1) {
+                        swal('La revista ya forma parte de su colección','','error');
+                    } else {
+                        var idUser={!!Auth::user()->id!!};
+                        $.ajax({
+                            url     : 'MyTickets/'+idUser,
+                            type    : 'GET',
+                            dataType: "json",
+                            success: function (respuesta){
+                                console.log(respuesta);
+                                $('#Tickets').html(respuesta);
+                            },
+                        });
+                        swal('Revista comprada con exito','','success');
+                    }
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+        } else {
+            return false;
+        }
+    }
 </script>
 @endsection

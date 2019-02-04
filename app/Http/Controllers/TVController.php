@@ -59,6 +59,7 @@ class TVController extends Controller
         $tv->name_r = $request->name_r;
         $tv->streaming = $request->streaming;
         $tv->email_c = $request->email_c;
+        $tv->web = $request->web;
         $tv->google = $request->google;
         $tv->instagram = $request->instagram;
         $tv->facebook = $request->facebook;

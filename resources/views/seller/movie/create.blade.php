@@ -222,7 +222,7 @@
                     </div>
                     <div class="input-field col s12 m3">
                         <i class="material-icons prefix blue-text valign-wrapper">attach_money</i>
-                        <label  class="control-label">Costo en Dolares</label>
+                        <label  class="control-label">Ganancia en Dolares</label>
                         {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!}
                     </div>
                     <div class="input-field col s12 m6">

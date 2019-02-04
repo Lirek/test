@@ -73,13 +73,21 @@ class HomeController extends Controller
         $Songs = Songs::where('album',0)->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Songs as $s) {
             $musica[] = array(
-                'cover' => '/plugins/img/DefaultMusic.png'
+                'id' => $s->id,
+                'type' => 'Single',
+                'cover' => '/plugins/img/DefaultMusic.png',
+                'cost' => $s->cost,
+                'title' => $s->song_name
             );
         }
         $Albums = Albums::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Albums as $a) {
             $musica[] = array(
-                'cover' => $a->cover
+                'id' => $a->id,
+                'type' => 'Album',
+                'cover' => $a->cover,
+                'cost' => $a->cost,
+                'title' => $a->name_alb
             );
         }
 
@@ -87,13 +95,21 @@ class HomeController extends Controller
         $Movies = Movie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Movies as $m) {
             $cine[] = array(
-                'img_poster' => 'movie/poster/'.$m->img_poster
+                'id' => $m->id,
+                'type' => 'Pelicula',
+                'img_poster' => 'movie/poster/'.$m->img_poster,
+                'title' => $m->title,
+                'cost' => $m->cost
             );
         }
         $Series = Serie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Series as $s) {
             $cine[] = array(
-                'img_poster' => $s->img_poster
+                'id' => $s->id,
+                'type' => 'Serie',
+                'img_poster' => $s->img_poster,
+                'title' => $s->title,
+                'cost' => $s->cost
             );
         }
 
@@ -101,12 +117,20 @@ class HomeController extends Controller
         $Megazines = Megazines::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Megazines as $m) {
             $lectura[] = array(
-                'cover' => "/images/bookcover/".$m->cover
+                'id' => $m->id,
+                'type' => 'Revista',
+                'title' => $m->title,
+                'cost' => $m->cost,
+                'cover' => $m->cover
             );
         }
         $Book = Book::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Book as $b) {
             $lectura[] = array(
+                'id' => $b->id,
+                'type' => 'Libro',
+                'title' => $b->title,
+                'cost' => $b->cost,
                 'cover' => "/images/bookcover/".$b->cover
             );
         }
@@ -116,7 +140,8 @@ class HomeController extends Controller
         foreach ($Radio as $r) {
             $radios[] = array(
                 'id' => $r->id,
-                'logo' => $r->logo
+                'logo' => $r->logo,
+                'name' => $r->name_r
             );
         }
         
@@ -125,7 +150,8 @@ class HomeController extends Controller
         foreach ($Tv as $t) {
             $tvs[] = array(
                 'id' => $t->id,
-                'logo' => $t->logo
+                'logo' => $t->logo,
+                'name' => $t->name_r
             );
         }
 

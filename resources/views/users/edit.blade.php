@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('main')
-    <style>
 
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
+
+
+    <style>
 @media only screen and (min-width: 993px) {
   .container {
     width: 98%;
@@ -105,16 +109,21 @@ h5.breadcrumbs-header {
                         </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
-                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                {!! Form::hidden('img_posterOld',$user->img_perf)!!}
-                                <div id="list">
+
+                    
+                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput', 'accept'=>'image/*']) !!}
+                                
+                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
+                                
+                                  <div id="list">
                                     @if(Auth::user()->img_perf)
-                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
+                                    <a href="#"><img src="{{asset(Auth::user()->img_perf)}}" id="avatarImage" alt="Avatar" height="70" width="70"></a><!-- logo user -->
                                 @else
                                     <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" height="70" width="70"></a><!-- logo user -->
                                 @endif
-                                </div>
+                                
                             </div>
+                        </div>
                             <div class="row">
                                 <div class="col s12">
                                     <div class="col s4">
@@ -159,7 +168,6 @@ h5.breadcrumbs-header {
                                         <div id="mensajeNombre"></div>
                                         <label for="name">apellidos</label>
                                     </div>
-
 
                                     <!--email-->
                                     <div class="input-field col s12">
@@ -250,6 +258,14 @@ h5.breadcrumbs-header {
                                         <label  for="ruc">numero de telefono</label>
                                     </div>
 
+                                    <!--Estado de la cuenta-->
+                                    <div class="input-field col s12" style="display: none;">
+                                        <i class="material-icons prefix blue-text">contact_phone</i>
+                                           {!! Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']) !!}
+                                            <div id="mensajeRuc"></div>
+                                        <label  for="ruc">Estado de cuenta</label>
+                                    </div>
+
                                     <div class="input-field col s12">
                                               {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']) !!}
                                           </div>
@@ -259,7 +275,7 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">contactame</span>
+                                        <span class="collection-header center" style="color: white ">Contactame</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -269,18 +285,86 @@ h5.breadcrumbs-header {
                                         <br>
                                         {{$user->phone}}
                                     </div>
+            {!! Form::close() !!} 
                                 </div>
+            <!-- CLOSE ACCOUNT -->
+            <div id="profile-card" class="card">
+                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                            <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
+                    </div>
+                <div class="card-content">
+                    <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
+                    <div style="text-align: left;"> 
+                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                            <div style="text-align: center;">
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            </div>
+                            <div class="card-content">
+
+                            <div class="input-field col s12">
+
+                            {!! Form::open(['url'=>['ChangePassword',$user],'method'=>'POST','files'=>true,'class'=>'form-horizontal','id'=>'changepassword']) !!}
+                            {{ Form::token() }}
+
+                            {!! Form::hidden('password',$user->password,['class'=>'form-control','method'=>'POST']) !!}
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Introduzca su antigua contraseña</label>
+                            {!! Form::password('oldpass',$user->oldpass,['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST']) !!}
+                            </div>
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Introduzca su nueva contraseña</label>
+                               {!! Form::password('newpass',$user->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']) !!}
+                            </div>
+                            <div class="input-field col s12 ">
+                            <i class="material-icons prefix blue-text">edit</i>
+                            <label>Confirme su nueva contraseña</label>
+                              {!! Form::password('confnewpass',$user->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']) !!}  
+                            </div>
+                            <div style="text-align: center">
+                              {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']) !!}
+                              {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!} 
+                            </div>
+                            <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
+                            </div>
+                            <!-- <a href="{{ url('ChangePassword', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close" id="changepassword">Actualizar</a>
+                            <a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->           </div>      
                             </div>
                         </div>
-                    </div>
-        </div>
-    </div>
-    {!! Form::close() !!}
+                    </ul>
+                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                            <div id="modal2" class="modal">
+                            <div class="modal-content">
+                            <div style="text-align: center;">
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            </div>
+                            <div class="card-content" style="text-align: center;"> <label><h6>AVISO <br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div style="text-align: center">
+                            <a href="{{ url('DeleteAccount', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
+                            {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
+                            <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
+                            </div>
+                            </div>      
+                            </div>
+                            </div>
+                    </ul>
+                    </div>    
+                </div>
+            </div>
+            <!-- CLOSE ACCOUNT -->   
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>      
+                    </div> 
+               </div>
+         </div>
     </div>
+     
 
 @endsection
 

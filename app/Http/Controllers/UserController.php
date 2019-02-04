@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
 use App\Events\NewContentNotice;
+use DB;
+use Illuminate\Support\Facades\Crypt;
+use Hash;
 
 use File;
 use QrCode;
@@ -74,6 +77,11 @@ class UserController extends Controller
     {
         $user = new User;
         
+        if (User::where('email','=',$request->email)->count()==1) 
+        {
+          view('errors.unauthorized')->with('error','Ya se Encuentra Registrado');
+        }
+
         $user->email = $request->email;
         
         $user->name = $request->name;
@@ -162,9 +170,11 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
+        //$user->password = $request->password;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
+        $user->account_status = $request->account_status;
         if ($user->verify==2) {
             $user->verify = 0;
         }
@@ -210,9 +220,73 @@ class UserController extends Controller
      
         //dd($request->all());
         $user->save();
-        Flash('Se han modificado sus datos con exito')->success();
-        //return view('home');
-       return redirect()->action('HomeController@index');
+
+        //return view('seller_edit');
+        Flash('Se han modificado sus datos con exito!')->success();
+        return redirect()->action('UserController@edit');
+     
+        
+    }
+
+   public function changepassword(Request $request, $id)
+    {
+        $user = User::find($id);
+        
+        $user->password = $request->password;
+        $oldpass = $request->oldpass;
+        $newpass = $request->newpass;
+        $confnewpass = $request->confnewpass;
+        $pass_encrypt = ($request->password);
+
+        if (password_verify($oldpass, $user->password))
+          { 
+        
+        if ($newpass == $confnewpass) {
+
+              $user->password = bcrypt($newpass);
+
+              $user->save();
+
+              echo'<script type="text/javascript">
+              alert("Su contraseña ha sido cambiado con exito!");
+              window.location.href="/EditProfile"</script>';
+              
+            //return redirect()->action('UserController@edit'); 
+            // Flash('Se ha modificado sus contraseña con exito!')->success();         
+        } 
+        
+        else 
+
+          echo'<script type="text/javascript">
+              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
+              window.location.href="/EditProfile";</script>';
+
+        //return redirect()->back();
+
+          }
+
+          else 
+             echo'<script type="text/javascript">
+              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
+              window.location.href="/EditProfile";</script>';
+
+    }
+
+    public function closed(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->account_status = "closed";
+        $user->save();
+          
+        Auth::logout();
+
+        $add = DB::select('INSERT INTO users_closed SELECT * FROM users WHERE account_status="closed"');
+        $del = DB::delete('DELETE FROM users WHERE account_status="closed"'); 
+    
+        Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
+
+        return redirect()->action('WelcomeController@welcome');
+
     }
 
     public function sinAcento($cadena) {

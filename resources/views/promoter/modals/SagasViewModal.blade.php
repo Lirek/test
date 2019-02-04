@@ -1,53 +1,64 @@
-<div class="modal fade" id="ModalSaga">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h1 class="modal-title text-center">Detalles de la saga:</h1>
-            </div>
-            <div class="modal-body" style="margin: 0px; padding: 0px;">
-
-                <div class="col-md-6">
-                    {{--Imagen--}}
-                    <img class='img-responsive av' src='' id="portadaSaga" width="700" height="700" alt='Portada Saga'>
+<div id="ModalSaga" class="modal">
+    <div class="modal-content center blue-text">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Detalles de la saga</h4>
+            <br>
+        </div>
+        <br>
+            <div class="col s12">
+                <div class="row center">
+                  <div class="col s4"></div>
+                  <div class="col s4">
+                        <center>
+                        <img class='materialboxed' src='' id="logoSaga" width="120" height="120" alt='Logo saga'>
+                        </center>
+                        <br>
+                        <label class="center">imagen de la saga: </label>
+                  </div>
+                  <div class="col s4"></div>
                 </div>
-
-                <div class="col-md-6">
-
-                    {{--Nombre de la saga--}}
+            </div>
+            <div class="col s12 center">
+                <div class="row">
+                  <div class="col s6 ">
+                  {{--Nombre de la saga--}}
                     <label for="exampleInputFile" class="control-label">Nombre: </label>
-                    <div id="nombreSaga"></div>
-                    <br>
-
-                    {{--seleccion de rating--}}
-                    <label for="exampleInputFile" class="control-label">Categoría: </label>
+                    <div id="nombreSaga"></div>      
+                  </div>
+                  <div class="col s6">
+                  {{--seleccion de rating--}}
+                    <label for="exampleInputPassword1" class="control-label">Categoria: </label>
                     <div id="categoriaSaga"></div>
-                    <br>
+                  </div>
+                </div>
+            </div>
 
-                    {{--Estatus de  la saga--}}
-                    <label for="exampleInputPassword1" class="control-label">Estatus de la saga: </label>
-                    <div id="statusSaga"></div>
-                    <br>
-
-                    {{--tipo de saga--}}
-                    <label for="exampleInputFile" class="control-label">Tipo de saga: </label>
+            <div class="col s12 center">
+                <div class="row">
+                  <div class="col s6 ">
+                  {{--Estatus de  la saga--}}
+                    <label for="exampleInputFile" class="control-label">Estatus de la saga: </label>
+                    <div id="statusSaga"></div>      
+                  </div>
+                  <div class="col s6">
+                  {{--tipo de saga--}}
+                    <label for="exampleInputPassword1" class="control-label">Tipo de saga: </label>
                     <div id="tipoSaga"></div>
-                    <br>
+                  </div>
+                </div>
+            </div>
 
-                    {{--Descripcion de  la saga--}}
+            <div class="col s12 center">
+                <div class="row">
+                  <div class="col s6">
+                  {{--Descripcion de  la saga--}}
                     <label for="exampleInputPassword1" class="control-label">Descripción: </label>
                     <div id="descripcionSaga"></div>
-                    <br>
-
+                  </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>

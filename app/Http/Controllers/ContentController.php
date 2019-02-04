@@ -397,7 +397,7 @@ class ContentController extends Controller
 
     }
     public function SerieList($id){
-        $Serie= Serie::where('id','=',$id)->paginate(10);
+        $Serie= Serie::where('id',$id)->paginate(1);
         return view('contents.Series')->with('Serie',$Serie);
     }
 

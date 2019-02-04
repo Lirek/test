@@ -1,58 +1,79 @@
 @extends('promoter.layouts.app')
-
-
 @section('main')
-
- <div class="row mt">
-	<h2><i class="fa fa-angle-right"></i>Tickets Vendidos</h2>
- </div>
-
-<div class="row mt">
-	    <div class="col-lg-12">
-		<div class="content-panel">
-			<table class="display responsive no-wrap" width="100%" id="Tickets">            
-				<thead>
-		        <tr>
-		          <th class="non-numeric">Id</th>
-		          <th class="non-numeric">Usuario</th>
-		          <th class="non-numeric">Monto</th>
-		          <th class="non-numeric">Cantidad</th>
-				  <th class="non-numeric">Metodo</th>
-		          <th class="non-numeric">Paquete</th>
-		          <th class="non-numeric">Fecha</th>
-		        </tr>
-		    	</thead>
-			
-			</table>
-		</div>
-	</div>
-</div>
-
+	<span class="card-title grey-text"><h3>Tickets Vendidos</h3></span>
+	<table class="responsive-table">
+		<thead>
+			<tr>
+				<th><i class="material-icons"></i>Id</th>
+				<th><i class="material-icons"></i>Usuario</th>
+				<th><i class="material-icons"></i>Monto</th>
+				<th><i class="material-icons"></i>Cantidad</th>
+				<th><i class="material-icons"></i>Metodo</th>
+				<th><i class="material-icons"></i>Paquete</th>
+				<th><i class="material-icons"></i>Fecha</th>
+			</tr>
+		</thead>
+		<tbody id="table">
+		</tbody>
+	</table>
 @endsection
-
 @section('js')
-<script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script>
 
-	$(document).ready(function(){
+	  $(document).ready(function(){
+	    $('.modal').modal();
+	  });
 
-		var Tickets = $('#Tickets').DataTable({
-	        processing: true,
-	        serverSide: true,
-            responsive: true,
+	function listado(status) {
+			$("#table").empty();
+			var ruta = "{{url('TicketsSalesDataTable')}}"
+			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+			swal({
+				title: "Procesando la información",
+				text: "Espere mientras se procesa la información.",
+				icon: gif,
+				buttons: false,
+				closeOnEsc: false,
+				closeOnClickOutside: false
+			});
+			$.ajax({
+				url: ruta,
+				type:'GET',
+				dataType: "json",
+				success: function (data) {
+					swal.close();
+					console.log(data);
+					$.each(data,function(i,info) {
+						
+						var filas = "<tr><td>"+
+						info.id+"</td><td>"+
+						info.tickets_user.name+"</td><td>"+
+						info.cost+' $'+"</td><td>"+
+						info.value*info.tickets.amount+"</td><td>"+
+						info.method+"</td><td>"+
+						info.tickets.name+"</td><td>"+
+						info.created_at+"</td></tr>";
+						$("#table").append(filas);
+					})
+					$('.materialboxed').materialbox();
+					$('.tooltipped').tooltip();
+				},
+				error:function(data) {
+					swal('Existe un error en su solicitud','','error')
+					.then((recarga) => {
+						location.reload();
+					});
+					console.log(data);
+				}
+			});
+		}
+		$(document).ready(function(){
+			listado("Aprobado");
+		});
 
-	        ajax: '{!! url('TicketsSalesDataTable') !!}',
-	        columns: [
-	            {data: 'id', name: 'id'},
-	            {data: 'user_id', name: 'user_id'},
-	            {data: 'cost', name: 'cost'},
-	            {data: 'value', name: 'value'},
-	            {data: 'voucher', name: 'voucher'},
-	            {data: 'package_id', name: 'package_id'},
-	            {data: 'created_at', name: 'created_at'},
-	        ]
-	    });
 
-	});
 
-</script>
+
+	</script>
 @endsection

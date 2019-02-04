@@ -46,8 +46,8 @@ class AuthController extends Controller
 
         $password = $request->password;
 
-        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
-
+        //$user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
         event(new CreateCodeSocialUserEvent($user->id));
         event(new WelcomeEmailEvent($user));
         return response()->json(['success'=> true, 'message'=> 'Muchas Gracias por ser parte de Nuestra Plataforma le Recordamos finalizar su registro para disfrutar de nuestra plataforma en su totalidad']);

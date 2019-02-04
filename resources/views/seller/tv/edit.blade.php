@@ -106,6 +106,12 @@
                     <div class="col s8 offset-s2">
                         <h6 class="titelgeneral"><i class="material-icons small">share</i> Redes sociales</h6>
                         <div class="input-field">
+                            <i class="material-icons prefix mdi mdi-earth"></i>
+                            <label for="autocomplete-input">Página Web</label>
+                            {!!Form::text('web',$tv->web,['class'=>'form-control','id'=>'web'])!!}
+                            <div id="mensajeMaximoWeb"></div>
+                        </div>
+                        <div class="input-field">
                             <i class="material-icons prefix red-text mdi mdi-youtube"></i>
                             <label for="autocomplete-input">YouTube</label>
                             {!!Form::text('google',$tv->google,['class'=>'form-control','id'=>'youtube'])!!}
@@ -191,11 +197,12 @@
         // Validacion de maximo de caracteres para los campos
         $(document).ready(function(){
             var cantidadMaxima = 191;
-            $('#nombre,#url,#email,#youtube,#instagram,#facebook,#twitter').keyup(function(evento){
+            $('#nombre,#url,#email,#youtube,#instagram,#facebook,#twitter,#web').keyup(function(evento){
                 var nombre = $('#nombre').val();
                 var url = $('#url').val();
                 var email = $('#email').val();
                 var youtube = $('#youtube').val();
+                var web = $('#web').val();
                 var instagram = $('#instagram').val();
                 var facebook = $('#facebook').val();
                 var twitter = $('#twitter').val();
@@ -235,6 +242,15 @@
                 } else {
                     $('#mensajeMaximoYoutube').hide();
                     $('#guardarTv').attr('disabled',false);
+                }
+                if (web.length>cantidadMaxima) {
+                    $('#mensajeMaximoWeb').show();
+                    $('#mensajeMaximoWeb').text('Ha excedido la cantidad máxima de caracteres');
+                    $('#mensajeMaximoWeb').css('color','red');
+                    $('#guardarRadio').attr('disabled',true);
+                } else {
+                    $('#mensajeMaximoWeb').hide();
+                    $('#guardarRadio').attr('disabled',false);
                 }
                 if (instagram.length>cantidadMaxima) {
                     $('#mensajeMaximoInstagram').show();

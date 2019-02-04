@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\View;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,6 +117,7 @@ Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
 Route::post('Invite','UserController@Invite');
 
+
     //Agregadas 4/7/18
     Route::get('EditProfile','UserController@edit');
 
@@ -162,6 +164,15 @@ Route::post('Invite','UserController@Invite');
      Route::get('MySeries','UserController@MySeries');
       Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
 
+    //Agregada 23/01/2019  
+    Route::get('DeleteAccount/{id}','UserController@closed');
+
+    //Agregada 28/01/2019
+    Route::post('ChangePassword/{id}','UserController@changepassword');
+
+
+   
+
 //---------------------------------------------------------------------------
 
 //______________________Funiciones de Contenido______________________________
@@ -199,6 +210,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ShowSeries','ContentController@ShowSeries');
     Route::get('/SearchSerie',array('as'=>'SearchSerie','uses'=>'ContentController@seachSerie'));
     Route::post('SearchSerieList','ContentController@ShowSerieSeach');
+// Agregada 04-02-2019
+    Route::get('SerieList/{id}','ContentController@SerieList');
 //---------------------------------------------------------------------------
 
 
@@ -352,8 +365,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
                 Route::get('/admin_single','AdminController@ShowSingles');
-                Route::get('SingleData','AdminController@SinglesDataTable');
-                Route::post('/admin_single/{id}','AdminController@SingleStatus');
+                Route::get('SingleData/{status}','AdminController@SinglesDataTable');
+                Route::post('/admin_singles/{id}','AdminController@SingleStatus');
 
            //---------------------------------------------------------------------
 
@@ -498,10 +511,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('UpdateExternalClient/{id}','ExternalClientsController@UpdateExternalClient');
 
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
-        // Agregadas 30-01-2019
-        Route::get('valPatrocinador/{codigo}/{idUser}','SuperAdminController@valPatrocinador');
-        Route::post('assingRefered','SuperAdminController@assingRefered');
-        // Agregadas 30-01-2019
+
+         Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
+         
 
     });
 });
@@ -566,6 +578,10 @@ Route::group(['middleware' => 'seller_guest'], function () {
     //agregada 10-10-2018
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
+     //Agregada 24/01/2019
+    
+
+
 
 //------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
 
@@ -623,6 +639,12 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     //Agregada 11/12/2018
     Route::get('ApplicationValidate','SellerController@validateAplication');
+
+    //Agregada 25/01/2019
+    Route::get('DeleteAccountSeller/{id}','SellerController@closed');
+
+    //Agregada 28/01/2019
+    Route::post('ChangePasswordSeller/{id}','SellerController@changepassword');
 
 
 

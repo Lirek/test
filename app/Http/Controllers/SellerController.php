@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Auth;
-
+use Illuminate\Support\Facades\Redirect;
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 //Seller Model
 use App\Seller;
@@ -155,7 +156,7 @@ class SellerController extends Controller
             );
         }
         $musica = [];
-        $Songs = $seller->songs()->where('album',0)->orderBy('created_at','desc')->paginate(8);
+        $Songs = $seller->songs()->where('album',null)->orderBy('created_at','desc')->paginate(8);
         foreach ($Songs as $s) {
             $musica[] = array(
                 'id' => $id,
@@ -171,6 +172,8 @@ class SellerController extends Controller
                 'type' => 'album'
             );
         }
+        //dd($Songs,$Albums,$musica);
+        /*
         if ($Movies==NULL) { $Movies=False; }
         if ($Tv==NULL) { $Tv=False; }
         if ($Radio==NULL) { $Radio=False; }
@@ -179,9 +182,11 @@ class SellerController extends Controller
         if ($Songs==NULL) { $Songs=False; }  
         if($Book==NULL){ $Book=False; } 
         if($Series==NULL){ $Series=False;}
+        */
     
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+        $content_for_aprove = $total_content-$total_aproved;
       
         $followers=count($seller->followers()->get());
         
@@ -189,6 +194,7 @@ class SellerController extends Controller
         return view('seller.home')
                 ->with('total_content',$total_content)
                 ->with('total_aproved',$total_aproved)
+                ->with('content_for_approve', $content_for_aprove)
                 ->with('followers', $followers)
                 ->with('tv_content',$tv_content)
                 ->with('radio_content',$radio_content)
@@ -249,14 +255,13 @@ class SellerController extends Controller
 
     public function CompleteRegistration(Request $request)
     {
-        //dd($request->all());
-        //$store_path='documents/sellers/';
         $nombre = $this->sinAcento($request->name);
         $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
-        $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+        $name = $request->ruc.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
         $request->file('adj_ruc')->move($store_path,$name);
-        $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
-        //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
+        $real_path = '/sellers/'.$request->ruc.'/documents/'.$request->ruc;
+
+        
         $Seller = new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;
@@ -390,10 +395,12 @@ class SellerController extends Controller
     
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
+        $content_for_aprove = $total_content-$total_aproved;
       
         return view('seller.edit')  ->with('seller',$seller)
                                     ->with('total_content',$total_content)
-                                    ->with('total_aproved',$total_aproved);
+                                    ->with('total_aproved',$total_aproved)
+                                    ->with('content_for_aprove',$content_for_aprove);
     }
 
     public function update(Request $request)
@@ -409,11 +416,18 @@ class SellerController extends Controller
         }
 
         if ($request->adj_ruc <> null) {
-            $file1 = $request->file('adj_ruc');
-            $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
-            $path1 = public_path() . '/images/producer/ruc/';
-            $file1->move($path1, $name1);
-            $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+            // $file1 = $request->file('adj_ruc');
+            // $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
+            // $path1 = public_path() . '/images/producer/ruc/';
+            // $file1->move($path1, $name1);
+            // $seller->adj_ruc = '/images/producer/ruc/'.$name1;
+
+            $nombre = $this->sinAcento($request->name);
+            $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+            $name = $nombre.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
+            $request->file('adj_ruc')->move($store_path,$name);
+            $real_path = '/sellers/'.$nombre.$request->ruc.'/documents/'.$name;
+            $seller->adj_ruc = $real_path;
         }
 
         // if ($request->adj_ci <> null) {
@@ -431,12 +445,74 @@ class SellerController extends Controller
         $seller->address = $request->direccion;
         $seller->save();
 
-        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa')->important();
-
+        header("Refresh:0; url=/seller_edit");
         //return view('seller.edit')->with('seller',$seller);
-        return redirect()->action('SellerController@homeSeller');
+
+        Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa!')->important();
+
+        
+        //return redirect()->action('SellerController');
 
     }
+
+     public function changepassword(Request $request, $id)
+    {
+        $seller = Seller::find($id);
+        
+        $seller->password = $request->password;
+        $oldpass = $request->oldpass;
+        $newpass = $request->newpass;
+        $confnewpass = $request->confnewpass;
+        $pass_encrypt = ($request->password);
+
+        if (password_verify($oldpass, $seller->password))
+          { 
+        
+        if ($newpass == $confnewpass) {
+
+              $seller->password = bcrypt($newpass);
+
+              $seller->save();
+
+              echo'<script type="text/javascript">
+              alert("Su contraseña ha sido cambiado con exito!");
+              window.location.href="/seller_edit"</script>';
+              
+            //return redirect()->action('UserController@edit'); 
+            //Flash('Se ha modificado sus contraseña con exito!')->success();         
+        } 
+        else 
+
+          echo'<script type="text/javascript">
+              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
+              window.location.href="/seller_edit";</script>';
+
+          }
+
+          else 
+             echo'<script type="text/javascript">
+              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
+              window.location.href="/seller_edit";</script>';
+
+    }
+
+    public function closed(Request $request, $id)
+    {
+        $seller = Seller::find($id);
+        $seller->account_status = "closed";
+        $seller->save();
+          
+        Auth::logout();
+
+        $add = DB::select('INSERT INTO sellers_closed SELECT * FROM sellers WHERE account_status="closed"');
+        $del = DB::delete('DELETE FROM sellers WHERE account_status="closed"'); 
+    
+        Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
+
+        return redirect()->action('WelcomeController@welcome');
+
+    }
+
     public function balance(){
         $Transaction=Transactions::where('seller_id','=',Auth::guard('web_seller')->user()->id)->get();
         if ($Transaction->count()!= 0) {

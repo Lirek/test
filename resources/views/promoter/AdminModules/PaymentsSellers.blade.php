@@ -4,7 +4,7 @@
 	<span class="card-title grey-text"><h3>Pagos de Proveedores</h3></span>
 	<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
 		<li class="tab" id="porCobrar"><a class="active" href="#test1">Pagos por cobrar</a></li>
-		<li class="tab" id="diferido"><a href="#test2">Pagos diferidos</a></li>
+		<li class="tab" id="Rechazado"><a href="#test2">Pagos rechazados</a></li>
 		<li class="tab" id="pagado"><a href="#test3">Pagos pagados</a></li>
 	</ul>
 	<table class="responsive-table">
@@ -76,7 +76,7 @@
 				        if (info.status=="Por cobrar") {
 				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='Por cobrar' href='#myModal' id='status'>Pagar o revertir</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='Por cobrar' href='#negado' id='denegado'>ver negaciones</button>"
 				        }
-				        if (info.status=="Diferido") {
+				        if (info.status=="Rechazado") {
 				        	var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='Diferido' href='#myModal' id='status'>Pagar o revertir</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='Por cobrar' href='#negado' id='denegado'>ver negaciones</button>"
 				        }
 				        if (info.status=="Pagado") {
@@ -107,8 +107,8 @@
 		$(document).on('click','#porCobrar', function() {
 			listado("Por cobrar");
 		});
-		$(document).on('click','#diferido', function() {
-			listado("Diferido");
+		$(document).on('click','#Rechazado', function() {
+			listado("Rechazado");
 		});
 		$(document).on('click','#pagado', function() {
 			listado("Pagado");
