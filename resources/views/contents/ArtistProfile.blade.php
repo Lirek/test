@@ -191,7 +191,7 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                        console.log(result);
                     }
                     else if (result==1) 
@@ -277,7 +277,7 @@ function callback2(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes creditos, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
                     }
                     else if (result==1) 
                     {

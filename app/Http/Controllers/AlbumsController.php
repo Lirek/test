@@ -374,7 +374,7 @@ class AlbumsController extends Controller
     $name = $request->song_n;
 
     // $save = $this->SaveSong($song,$duration_song,$artist,$seller_id,$store_path,$name,$cost);
-    $name1 = 'song_'.$name. time() . '.'. $song->getClientOriginalExtension();
+   $this->sinAcento($name1 = 'song_'.$name. time() . '.'. $song->getClientOriginalExtension());
 
         list($e,$real_path)=explode(public_path(),$store_path);
         $path = $real_path .'/'.$name1;
@@ -460,7 +460,7 @@ class AlbumsController extends Controller
             $song = $request->file('audio');
             $duration_song = $this->DurationSong($song);
             $store_path = public_path().'/Music/'.$request->artist.'/singles/'.$ldate = date('Y-m-d');
-            $name1 = 'song_'.$request->song_n. time() . '.'. $song->getClientOriginalExtension();
+            $name1 = $this->sinAcento('song_'.$request->song_n. time() . '.'. $song->getClientOriginalExtension());
             list($e,$real_path)=explode(public_path(),$store_path);
             $path = $real_path .'/'.$name1;
             $file = $song->move($store_path, $name1);
@@ -512,4 +512,24 @@ class AlbumsController extends Controller
             return response()->json($data);
   }
 
+  public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        $cadena = trim($cadena);
+        $cadena = str_replace(
+        array("\\", "¨", "º", "-", "~",
+             "#", "@", "|", "!", "\"",
+             "·", "$", "%", "&", "/",
+             "(", ")", "?", "'", "¡",
+             "¿", "[", "^", "<code>", "]",
+             "+", "}", "{", "¨", "´",
+             ">", "< ", ";", ",", ":",
+            " "),
+        ' ',
+        $cadena
+    );
+        return $cadena;
+    }
  }

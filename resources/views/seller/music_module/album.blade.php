@@ -140,7 +140,8 @@ $(document).ready(function(){
         var id = $('#id').val();
         $.ajax({ 
                 
-                url     : '../SongsAlbums/'+id+'/',
+                
+                url     : '{!! url('SongsAlbums') !!}'+ '/'+id,
                 type    : 'GET',
                 dataType: "json",
                 

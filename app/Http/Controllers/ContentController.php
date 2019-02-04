@@ -34,13 +34,18 @@ class ContentController extends Controller
     {
         $MusicAuthors = music_authors::where('status','=','Aprobado')->get();
         $Singles = Songs::where('album','=',NULL)->where('status','=','Aprobado')->get();
-        $Albums = Albums::where('status','=','Aprobado')->take(6)->get();
+        $Album = Albums::where('status','=','Aprobado')->take(6)->get();
 
-       $Albums=$Albums->merge($Singles);
-       
-        
-
-        return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums);
+    //   $Albums=$Albums->merge($Singles);
+       $Albums = collect();
+        foreach ($Singles as $single) {
+            $Albums->push($single);
+        }
+        foreach ($Album as $album){ 
+            $Albums->push($album);
+        }
+        // dd($Albums);
+        return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums->sortByDesc('created_at'));
     }
 
     public function ShowArtist($id)
@@ -66,27 +71,43 @@ class ContentController extends Controller
 
     public function ShowProfileArtist(Request $request)
     {
-        //$Artist=music_authors::where('name','=',$request->seach)->get();
+        $Art=music_authors::where('name','=',$request->seach)->first();
         
-        $Albums=Albums::where('name_alb','=',$request->seach)->get();
+        //$Artist=$Albums->merge($Song);
+        if($Art)
+        {
+           $Albums=Albums::where('seller_id','=',$Art->seller_id)->get();
+           $Song=Songs::where('seller_id','=',$Art->seller_id)->where('album','=',NULL)->get();
+           $Artist = collect();
+            foreach ($Song as $single) {
+                $Artist->push($single);
+            }
+            foreach ($Albums as $album){ 
+                $Artist->push($album);
+            }
+            return view('contents.music')->with('Albums',$Artist);
+        }
+        else
+        {
+            $Albums=Albums::where('name_alb','=',$request->seach)->get();
         
-        $Song=Songs::where('song_name','=',$request->seach)->get();
-        
-        $Artist=$Albums->merge($Song);
-        // foreach ($Artist as $key) {
-
-        //     $prueba=$this->ShowArtist($key->id);
-        // }
-
-        // return $prueba;
-         return view('contents.music')->with('Albums',$Artist);
+            $Song=Songs::where('song_name','=',$request->seach)->get();
+            $Artist = collect();
+            foreach ($Song as $single) {
+                $Artist->push($single);
+            }
+            foreach ($Albums as $album){ 
+                $Artist->push($album);
+            }
+            
+             return view('contents.music')->with('Albums',$Artist);
+        }
     }
-
     public function seachArtist(){
         $query=Input::get('term');
-        // $Artist=music_authors::where('name','LIKE','%'.$query.'%')->get();
-        $Album=Albums::where('name_alb','LIKE','%'.$query.'%')->get();
-        $Songs=Songs::where('song_name','LIKE','%'.$query.'%')->get();
+        $Artist=music_authors::where('name','LIKE','%'.$query.'%')->get();
+        $Album=Albums::where('name_alb','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
+        $Songs=Songs::where('song_name','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
 
         $data=array();
 
@@ -99,6 +120,11 @@ class ContentController extends Controller
         if (count($Songs)>0) {
             foreach ($Songs as $key) {
              $data[]=['id' => $key->id, 'value' => $key->song_name, 'type'=>'Single'];
+            }
+        }
+        if (count($Artist)>0) {
+            foreach ($Artist as $key) {
+             $data[]=['id' => $key->id, 'value' => $key->name, 'type'=>'Artist'];
             }
         }
         if(count($data))
