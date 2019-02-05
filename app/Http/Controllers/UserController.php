@@ -247,29 +247,22 @@ class UserController extends Controller
 
               $user->save();
 
-              echo'<script type="text/javascript">
-              alert("Su contraseña ha sido cambiado con exito!");
-              window.location.href="/EditProfile"</script>';
-              
-            //return redirect()->action('UserController@edit'); 
-            // Flash('Se ha modificado sus contraseña con exito!')->success();         
+            Flash('Se ha modificado su contraseña con exito!')->success();
+            return redirect()->action('UserController@edit'); 
+                     
         } 
         
         else 
-
-          echo'<script type="text/javascript">
-              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
-              window.location.href="/EditProfile";</script>';
-
-        //return redirect()->back();
+    
+          Flash('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->success();
+            return redirect()->action('UserController@edit');
 
           }
 
-          else 
-             echo'<script type="text/javascript">
-              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
-              window.location.href="/EditProfile";</script>';
+        else 
 
+          Flash('Ha ingresado su contraseña antigua incorrectamente, por favor intentelo de nuevo.')->success();
+          return redirect()->action('UserController@edit');
     }
 
     public function closed(Request $request, $id)

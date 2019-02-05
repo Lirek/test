@@ -709,7 +709,7 @@
                                         <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
                         <?php endif; ?>
-                    </div>
+                        </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">vpn_key</i>
                         <input type="password" name="password_confirm" id="password_confirm" class="autocomplete" required="required">
