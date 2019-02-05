@@ -210,6 +210,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ShowSeries','ContentController@ShowSeries');
     Route::get('/SearchSerie',array('as'=>'SearchSerie','uses'=>'ContentController@seachSerie'));
     Route::post('SearchSerieList','ContentController@ShowSerieSeach');
+// Agregada 04-02-2019
+    Route::get('SerieList/{id}','ContentController@SerieList');
 //---------------------------------------------------------------------------
 
 

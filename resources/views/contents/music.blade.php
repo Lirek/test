@@ -19,9 +19,8 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-                <h4 class="titelgeneral"><i class="material-icons small">music_note</i> Música</h4>
-
-                <div class="row">
+        <h4 class="titelgeneral"><i class="material-icons small">music_note</i> Música</h4>
+        <div class="row">
           <div class="input-field col s12 m6 offset-m3">
               <form method="POST"  id="SaveSong" action="{{url('SearchProfileArtist')}}">
                 {{ csrf_field() }}
@@ -38,94 +37,129 @@
           @if($Albums->count() != 0)
             @foreach($Albums as $Album)
               <div class="col s12 m3">
-                <div class="card" style="height: 430px">
-                    <div class="card-image">
-                      
-                        @if($Album->cover)
-                        <a href="#myModal-{{$Album->id}}" class="modal-trigger">
-                          <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
-                        </a>
-                        @else
-                        <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px">
-                        @endif
-                      <!-- <span class="card-title">Card Title</span> -->
-                      @if($Album->name_alb)
-                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                <div class="card">
+                  <div class="card-image">
+                    @if($Album->cover)
+                      <a href="#myModal-{{$Album->id}}" class="modal-trigger">
+                        <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
+                      </a>
+                    @else
+                      <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px">
+                    @endif
+                    <!-- <span class="card-title">Card Title</span> -->
+                    @if($Album->name_alb) <!-- Para los albumes -->
+                      @if($Album->Transactions->count()!=0)
+                        @foreach($Album->Transactions as $t)
+                          @if($t->user_id!=Auth::user()->id)
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                          @endif
+                        @endforeach
                       @else
-                        
-                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                      @endif
+                    @else <!-- Para los singles -->
+                      @if($Album->transaction->count()!=0)
+                        @foreach($Album->transaction as $t)
+                          @if($t->user_id!=Auth::user()->id)
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
+                              <i class="material-icons">add_shopping_cart</i>
+                            </a>
+                          @endif
+                        @endforeach
+                      @else
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
+                          <i class="material-icons">add_shopping_cart</i>
+                        </a>
+                      @endif
+                    @endif
+                  </div>
+                  <div class="card-content grey-text" style="padding: 24px 0px">
+                    <div class="col m12">
+                      @if($Album->name_alb)
+                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->name_alb}}</p>
+                      @else
+                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->song_name}}</p>
                       @endif
                     </div>
-                    <div class="card-content">
-                      <div class="col m12">
-                        @if($Album->name_alb)
-                          <p class="grey-text">{{$Album->name_alb}}</p>
-                        @else
-                          <p class="grey-text">{{$Album->song_name}}</p>
-                        @endif
-                      </div>
-                      <div class="">
-                        <small class="grey-text"><b>Artistas: </b>
-                          {{$Album->autors->name}}  
-                        </small>
-                      </div>
-                      <div class="">
-                        <small class="grey-text"><b>Costo: </b> {{$Album->cost}} tickets</small>
-                      </div>
-                        @if($Album->name_alb)
-                          <small class="grey-text">Album</small>
-                        @else
-                          <small class="grey-text">Sencillo</small>
-                        @endif 
-                    </div>
-                </div>
-            </div>
-
-            <!-- /.modal  de sagas  -->
-            <div id="myModal-{{$Album->id}}" class="modal" >
-                <div class="modal-content">
-                    <div class=" blue"><br>
-                        <h4 class="center white-text" ><i class="small material-icons">audiotrack</i>"{{ $Album->name_alb }}"</h4>
-                        <br>
-                    </div>
+                    <small><b>Artistas: </b>
+                      {{$Album->autors->name}}
+                    </small>
                     <br>
-                    <div class="col s12 m6">
-                        <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
-                    </div>
-                    <div class="col s12 m6">
-                        <small>Canciones:</small>
-                        <ul class="collection z-depth-1" id="Playlist" style="color: black">
-                          @if($Album->Songs)
-                            @foreach($Album->Songs as $song)
-                            <li class="collection-item" style="padding: 10px ">
-                                <div class="row">
-                                  <div class="col s8">
-                                   {{$song->song_name}}
-                                  </div> 
-                                  <div class="col s4">
-                                    <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')" ><i class="material-icons">add_shopping_cart</i></a>
-                                  </div>
+                    <small><b>Costo: </b> {{$Album->cost}} tickets</small>
+                    <br>
+                    @if($Album->name_alb)
+                      <small>Álbum</small>
+                    @else
+                      <small>Sencillo</small>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <!-- /.modal  de sagas  -->
+              <div id="myModal-{{$Album->id}}" class="modal" >
+                <div class="modal-content">
+                  <div class=" blue"><br>
+                    <h4 class="center white-text" >
+                      <i class="small material-icons">audiotrack</i>
+                      "{{ $Album->name_alb }}"
+                    </h4>
+                    <br>
+                  </div>
+                  <br>
+                  <div class="col s12 m6">
+                    <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
+                  </div>
+                  <div class="col s12 m6">
+                    <small>Canciones:</small>
+                    <ul class="collection z-depth-1" id="Playlist" style="color: black">
+                      @if($Album->Songs)
+                        @foreach($Album->Songs as $song)
+                          <li class="collection-item" style="padding: 10px">
+                            <div class="row">
+                              <div class="col s8">
+                                {{$song->song_name}}
+                                <br>
+                                Costo: {{$song->cost}} tickets
+                              </div>
+                              @if($song->transaction->count()!=0)
+                                @foreach($song->transaction as $t)
+                                  @if($t->user_id!=Auth::user()->id)
+                                    <div class="col s4">
+                                      <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
+                                        <i class="material-icons">add_shopping_cart</i>
+                                      </a>
+                                    </div>
+                                  @endif
+                                @endforeach
+                              @else
+                                {{nadie ha comprado la cancion}}
+                                <div class="col s4">
+                                  <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
+                                    <i class="material-icons">add_shopping_cart</i>
+                                  </a>
                                 </div>
-                            </li>
-                            @endforeach
-                          @endif
-                        </ul>
-                    </div>
+                              @endif
+                            </div>
+                          </li>
+                        @endforeach
+                      @endif
+                    </ul>
+                  </div>
                 </div>
-
                 <div class="modal-footer col s12">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
                 </div>
-            </div>
-
+              </div>
             @endforeach
           @else
-          <div class="col m12">
-                <blockquote >
-                    <i class="material-icons fixed-width large grey-text">audiotrack</i><br><h5 class="grey-text">No hay música disponible</h5>
-                </blockquote>
+            <div class="col m12">
+              <blockquote >
+                <i class="material-icons fixed-width large grey-text">audiotrack</i>
                 <br>
-                </div>
+                <h5 class="grey-text">No hay música disponible</h5>
+              </blockquote>
+              <br>
+            </div>
           @endif
         </div>
       </div>
@@ -220,7 +254,7 @@ function callback(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');
                        console.log(result);
                     }
                     else if (result==1) 
@@ -338,7 +372,7 @@ function callback2(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');
                     }
                     else if (result==1) 
                     {

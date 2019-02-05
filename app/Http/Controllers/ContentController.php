@@ -32,19 +32,25 @@ class ContentController extends Controller
 //------------------------------------------MUSICA------------------------------------------------------//
     public function ShowMusic()
     {
-        $MusicAuthors = music_authors::where('status','=','Aprobado')->get();
-        $Singles = Songs::where('album','=',NULL)->where('status','=','Aprobado')->get();
-        $Album = Albums::where('status','=','Aprobado')->take(6)->get();
+        $MusicAuthors = music_authors::where('status','Aprobado')->get();
+        $Singles = Songs::where('album',null)->where('status','Aprobado')->get();
+        $Album = Albums::where('status','Aprobado')->take(6)->get();
 
-    //   $Albums=$Albums->merge($Singles);
-       $Albums = collect();
+        $Albums = collect();
         foreach ($Singles as $single) {
             $Albums->push($single);
+            $Albums->each(function($Albums){
+                $Albums->transaction;
+            });
         }
-        foreach ($Album as $album){ 
+        foreach ($Album as $album){
             $Albums->push($album);
+            $Albums->each(function($Albums){
+                $Albums->Transactions;
+            });
         }
-        // dd($Albums);
+        //dd($Albums);
+
         return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums->sortByDesc('created_at'));
     }
 
@@ -82,7 +88,7 @@ class ContentController extends Controller
             foreach ($Song as $single) {
                 $Artist->push($single);
             }
-            foreach ($Albums as $album){ 
+            foreach ($Albums as $album){
                 $Artist->push($album);
             }
             return view('contents.music')->with('Albums',$Artist);
@@ -96,10 +102,10 @@ class ContentController extends Controller
             foreach ($Song as $single) {
                 $Artist->push($single);
             }
-            foreach ($Albums as $album){ 
+            foreach ($Albums as $album){
                 $Artist->push($album);
             }
-            
+
              return view('contents.music')->with('Albums',$Artist);
         }
     }
@@ -412,7 +418,7 @@ class ContentController extends Controller
 
     }
     public function SerieList($id){
-        $Serie= Serie::where('id','=',$id)->paginate(10);
+        $Serie= Serie::where('id',$id)->paginate(1);
         return view('contents.Series')->with('Serie',$Serie);
     }
 

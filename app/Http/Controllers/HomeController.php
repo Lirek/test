@@ -44,8 +44,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -54,10 +53,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $user= User::find(Auth::user()->id);
-        
+        /*
         $TransacctionsSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->count(); 
         $TransacctionsAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->count();
         $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
@@ -67,55 +65,114 @@ class HomeController extends Controller
         $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
         $TransactionsTv=Tv::where('status','=','Aprobado')->count();
 
-        $Songs=Songs::where('album','=',0)->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Albums= Albums::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Megazines=Megazines::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Book=Book::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Radio=Radio::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Tv=Tv::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
-        
-        $Movies=Movie::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $TransacctionsMusic=$TransacctionsSingle+$TransacctionsAlbum;
+        $TransactionsLecture=$TransacctionsMegazine+$TransacctionsBook;
+        */
 
-        $Series=Serie::where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $musica = [];
+        $Songs = Songs::where('album',0)->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Songs as $s) {
+            $musica[] = array(
+                'id' => $s->id,
+                'type' => 'Single',
+                'cover' => '/plugins/img/DefaultMusic.png',
+                'cost' => $s->cost,
+                'title' => $s->song_name
+            );
+        }
+        $Albums = Albums::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Albums as $a) {
+            $musica[] = array(
+                'id' => $a->id,
+                'type' => 'Album',
+                'cover' => $a->cover,
+                'cost' => $a->cost,
+                'title' => $a->name_alb
+            );
+        }
+
+        $cine = [];
+        $Movies = Movie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Movies as $m) {
+            $cine[] = array(
+                'id' => $m->id,
+                'type' => 'Pelicula',
+                'img_poster' => 'movie/poster/'.$m->img_poster,
+                'title' => $m->title,
+                'cost' => $m->cost
+            );
+        }
+        $Series = Serie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Series as $s) {
+            $cine[] = array(
+                'id' => $s->id,
+                'type' => 'Serie',
+                'img_poster' => $s->img_poster,
+                'title' => $s->title,
+                'cost' => $s->cost
+            );
+        }
+
+        $lectura = [];
+        $Megazines = Megazines::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Megazines as $m) {
+            $lectura[] = array(
+                'id' => $m->id,
+                'type' => 'Revista',
+                'title' => $m->title,
+                'cost' => $m->cost,
+                'cover' => $m->cover
+            );
+        }
+        $Book = Book::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Book as $b) {
+            $lectura[] = array(
+                'id' => $b->id,
+                'type' => 'Libro',
+                'title' => $b->title,
+                'cost' => $b->cost,
+                'cover' => "/images/bookcover/".$b->cover
+            );
+        }
         
-        if ($Movies==NULL) { $Movies=False; }
-        if ($Tv==NULL) { $Tv=False; }
-        if ($Radio==NULL) { $Radio=False; }
-        if ($Megazines==NULL) { $Megazines=False; }
-        if ($Albums==NULL) { $Albums=False; }
-        if ($Songs==NULL) { $Songs=False; }  
-        if($Book==NULL){ $Book=False; }
-        if($Series==NULL){ $Series=False; }         
+        $radios = [];
+        $Radio = Radio::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Radio as $r) {
+            $radios[] = array(
+                'id' => $r->id,
+                'logo' => $r->logo,
+                'name' => $r->name_r
+            );
+        }
+        
+        $tvs = [];
+        $Tv = Tv::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        foreach ($Tv as $t) {
+            $tvs[] = array(
+                'id' => $t->id,
+                'logo' => $t->logo,
+                'name' => $t->name_r
+            );
+        }
 
         if($user['status']=='admin')
         {
             return redirect('/admin');
         }
 
-        $TransacctionsMusic=$TransacctionsSingle+$TransacctionsAlbum;
-        $TransactionsLecture=$TransacctionsMegazine+$TransacctionsBook;
-
         return view('home')
-                             ->with('TransactionsMusic',$TransacctionsMusic)
-                             ->with('TransacctionsLecture',$TransactionsLecture)
-                             ->with('TransactionsMovies',$TransacctionsMovies)
-                             ->with('TransactionsRadio',$TransactionsRadio)
-                             ->with('TransactionsTv',$TransactionsTv)
-                             ->with('Songs',$Songs)
-                             ->with('Albums',$Albums)
-                             ->with('Movies',$Movies)
-                             ->with('Megazines',$Megazines)
-                             ->with('Book',$Book)
-                             ->with('Radio',$Radio)
-                             ->with('Series',$Series)
-                             ->with('Tv',$Tv);
+            /*
+            ->with('TransactionsMusic',$TransacctionsMusic)
+            ->with('TransacctionsLecture',$TransactionsLecture)
+            ->with('TransactionsMovies',$TransacctionsMovies)
+            ->with('TransactionsRadio',$TransactionsRadio)
+            ->with('TransactionsTv',$TransactionsTv)
+            */
+            ->with('cine',$cine)
+            ->with('musica',$musica)
+            ->with('lectura',$lectura)
+            ->with('radio',$radios)
+            ->with('tv',$tvs);
 
     }
 

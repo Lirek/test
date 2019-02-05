@@ -66,13 +66,9 @@ class SellerController extends Controller
         }
         */
 
-        foreach ($seller->roles as $role) 
-        {
+        foreach ($seller->roles as $role) {
             $seller_modules[] = $role;
-
-            switch ($role->name) 
-            {
-                
+            switch ($role->name) {
                 case 'Musica':
                     $content_album = count($seller->albums()->get());
                     $aproved_album = count($seller->albums()->where('status','Aprobado')->get());
@@ -80,59 +76,104 @@ class SellerController extends Controller
                     $aproved_song = count($seller->songs()->where('album',0)->where('status','Aprobado')->get());
                     $musical_content = $content_album+$content_song;
                     $musical_aproved = $aproved_album+$aproved_song;
-                    
-                    break;
-
+                break;
                 case 'Peliculas':
                     $movie_content = count($seller->movies()->get());
                     $movie_aproved = count($seller->movies()->where('status','Aprobado')->get());
-                   
-                    break;
-                
+                break;
                 case 'Libros':
                     $book_content = count($seller->Books()->get());
                     $book_aproved = count($seller->Books()->where('status','Aprobado')->get());
-                    
-                    break;
-                
+                break;
                 case 'Series':
                     $serie_content = count($seller->series()->get());
                     $serie_aproved = count($seller->series()->where('status','Aprobado')->get());
-                    
-                    break;
-
+                break;
                 case 'Revistas':
                     $megazine_content = count($seller->Megazines()->get());
                     $megazine_aproved = count($seller->Megazines()->where('status','Aprobado')->get());
-                     
-                    break;
-
+                break;
                 case 'Radios':
                     $radio_content = count($seller->Radio()->get());
                     $radio_aproved = count($seller->Radio()->where('status','Aprobado')->get());
-                    
-                    break;
-
+                break;
                 case 'TV':
                     $tv_content = count($seller->Tv()->get());
                     $tv_aproved = count($seller->Tv()->where('status','Aprobado')->get());
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            };
-
-        };
-        $Tv=$seller->Tv()->orderBy('created_at','desc')->paginate(8);
-        $Radio=$seller->Radio()->orderBy('created_at','desc')->paginate(8);
-        $Megazines=$seller->Megazines()->orderBy('created_at','desc')->paginate(8);
-        $Series=$seller->series()->orderBy('created_at','desc')->paginate(8);
-        $Book=$seller->Books()->orderBy('created_at','desc')->paginate(8);
-        $Movies=$seller->movies()->orderBy('created_at','desc')->paginate(8);
-        $Songs=$seller->songs()->where('album',0)->orderBy('created_at','desc')->paginate(8);
-        $Albums= $seller->albums()->orderBy('created_at','desc')->paginate(8);
-
+                break;
+            }
+        }
+        $tvs = [];
+        $Tv = $seller->Tv()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Tv as $t) {
+            $tvs[] = array(
+                'id' => $t->id,
+                'logo' => $t->logo,
+                'type' => 'tv'
+            );
+        }
+        $radios = [];
+        $Radio = $seller->Radio()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Radio as $r) {
+            $radios[] = array(
+                'id' => $r->id,
+                'logo' => $r->logo,
+                'type' => 'radio'
+            );
+        }
+        $lectura = [];
+        $Megazines = $seller->Megazines()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Megazines as $m) {
+            $lectura[] = array(
+                'id' => $m->id,
+                'cover' => $m->cover,
+                'type' => 'revista'
+            );
+        }
+        $Book = $seller->Books()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Book as $b) {
+            $lectura[] = array(
+                'id' => $b->id,
+                'cover' => "/images/bookcover/".$b->cover,
+                'type' => 'libro'
+            );
+        }
+        $cine = [];
+        $Series = $seller->series()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Series as $s) {
+            $cine[] = array(
+                'id' => $s->id,
+                'img_poster' => $s->img_poster,
+                'type' => 'serie'
+            );
+        }
+        $Movies = $seller->movies()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Movies as $m) {
+            $cine[] = array(
+                'id' => $m->id,
+                'img_poster' => 'movie/poster/'.$m->img_poster,
+                'type' => 'pelicula'
+            );
+        }
+        $musica = [];
+        $Songs = $seller->songs()->where('album',null)->orderBy('created_at','desc')->paginate(8);
+        foreach ($Songs as $s) {
+            $musica[] = array(
+                'id' => $id,
+                'cover' => '/plugins/img/DefaultMusic.png',
+                'type' => 'cancion'
+            );
+        }
+        $Albums = $seller->albums()->orderBy('created_at','desc')->paginate(8);
+        foreach ($Albums as $a) {
+            $musica[] = array(
+                'id' => $a->id,
+                'cover' => $a->cover,
+                'type' => 'album'
+            );
+        }
+        //dd($Songs,$Albums,$musica);
+        /*
         if ($Movies==NULL) { $Movies=False; }
         if ($Tv==NULL) { $Tv=False; }
         if ($Radio==NULL) { $Radio=False; }
@@ -141,6 +182,7 @@ class SellerController extends Controller
         if ($Songs==NULL) { $Songs=False; }  
         if($Book==NULL){ $Book=False; } 
         if($Series==NULL){ $Series=False;}
+        */
     
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
@@ -161,14 +203,11 @@ class SellerController extends Controller
                 ->with('book_content',$book_content) 
                 ->with('movie_content',$movie_content)
                 ->with('musical_content',$musical_content)
-                ->with('Songs',$Songs)
-                ->with('Albums',$Albums)
-                ->with('Movies',$Movies)
-                ->with('Megazines',$Megazines)
-                ->with('Book',$Book)
-                ->with('Radio',$Radio)
-                ->with('Tv',$Tv)
-                ->with('Series',$Series)
+                ->with('musica',$musica)
+                ->with('cine',$cine)
+                ->with('lectura',$lectura)
+                ->with('radios',$radios)
+                ->with('tvs',$tvs)
                 //->with('artist',$autor)
                 ->with('modulos',$seller_modules);
     }
