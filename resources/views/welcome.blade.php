@@ -397,7 +397,7 @@
     <div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>
 </div>
 <!--Fin parallax-->
-<br>
+
 <!-- tabs  -->
 <div class="row col" style="margin-bottom:-5px;">
 
@@ -409,9 +409,10 @@
     <div id="test2" class="col l6 m12 s12 center">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
-                <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
-                <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
+                <li class="tab col s3"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
+                <li class="tab col s3 "><a href="#test02"><b>Viajes gratis</b></a></li>
+                <li class="tab col s3 "><a href="#test03"><b>Marcas relacionadas</b></a>
+                <li class="tab col s3 "><a href="#test04"><b>Proveedores</b></a></li>
             </ul>
 
             <div id="test01" class="col s12 center">
@@ -447,6 +448,24 @@
                 </div>
             </div>
         </div>
+
+        <div id="test04" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Buscamos proveedores de cine, música, lectura, radio y Tv. Nosotros los ayudaremos a llegar a más personas. </p>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br><br>
+                    <div class="embed-container">
+                       <iframe width="729" height="410" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
     </div>
 
     <div id="test3" class="col s12 center" style="display:none;">
