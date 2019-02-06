@@ -533,27 +533,6 @@ h5.breadcrumbs-header {
             }
         });
     });
-
-    $(document).ready(function(){
-
-        $('#newpass').keyup(function(evento){
-            var password1 = $('#newpass').val();
-            var password = $('#confnewpass').val();
-
-            if (password != password1) {
-                $('#confnewpasscp').show();
-                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
-                $('#confnewpasscp').css('color','red');
-                $('#confnewpasscp').css('font-size','60%');
-                $('#ChangePassword').attr('disabled',true);
-            } else {
-                $('#confnewpasscp').hide();
-                if (password1.length !=0){
-                    $('#ChangePassword').attr('disabled',false);
-                }
-            }
-        });
-    });
 </script>
 <!-- Mostrar Contraseñas -->
 <script>
