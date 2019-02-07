@@ -1,9 +1,4 @@
 @extends('layouts.app')
-@section('css')
-
-<style>
-	
-</style>
 
 @section('main')
 

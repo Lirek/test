@@ -66,9 +66,9 @@ class ExternalOperationsController extends Controller
     	
     	$client = new Client();
     	
-    	$token = $Transaction->Client()->client_token;
+    	$token = $Transaction->Client->client_token;
     	
-    	$callback = $Transaction->Client()->callback_url;
+    	$callback = $Transaction->Client->callback_url;
 
     	$user=User::find($Transaction->user_id);
 

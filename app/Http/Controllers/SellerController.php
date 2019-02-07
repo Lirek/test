@@ -8,10 +8,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Auth;
-use Illuminate\Support\Facades\Redirect;
+
 //Validator facade used in validator method
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Illuminate\Support\Facades\Log;
+
 
 //Seller Model
 use App\Seller;
@@ -183,11 +185,11 @@ class SellerController extends Controller
         if($Book==NULL){ $Book=False; } 
         if($Series==NULL){ $Series=False;}
         */
-    
+
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
         $content_for_aprove = $total_content-$total_aproved;
-      
+
         $followers=count($seller->followers()->get());
         
         
@@ -215,9 +217,9 @@ class SellerController extends Controller
     //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
     public function CompleteRegistrationForm($id,$code) {
         $ApplysSellers = ApplysSellers::find($id);
-        $seller = Seller::where('email',$ApplysSellers->email)->get();
+        $seller = Seller::where('email',$ApplysSellers->email)->first();
         //dd(isset($seller[0]));
-        if (isset($seller[0])) {
+        if (isset($seller)) {
             $validacion = 1; // ya el usuario ya completó el registro
         } else {
             $validacion = 0; // el usuario aun no ha completado el registro
@@ -236,7 +238,7 @@ class SellerController extends Controller
         }
         */
     }
-	//Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
+    //Funcion encargada de cargar los datos del formulario a la BD para el Registro completo
 
     // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
     public function getDataSeller($id,$token) {
@@ -253,15 +255,16 @@ class SellerController extends Controller
     }
     // Funcion que busca la informacion del proveedor para colocarlar en el formulario de completado
 
-    public function CompleteRegistration(Request $request)
+ public function CompleteRegistration(Request $request)
     {
+        //dd($request->all());
+        //$store_path='documents/sellers/';
         $nombre = $this->sinAcento($request->name);
-        $store_path = public_path().'/sellers/'.$nombre.$request->ruc.'/documents/';
+        $store_path = public_path().'/sellers/'.$request->ruc.'/documents/';
         $name = $request->ruc.time().'.'.$request->file('adj_ruc')->getClientOriginalExtension();
         $request->file('adj_ruc')->move($store_path,$name);
-        $real_path = '/sellers/'.$request->ruc.'/documents/'.$request->ruc;
-
-        
+        $real_path = '/sellers/'.$request->ruc.'/documents/'.$name;
+        //$path = $request->file('adj_ruc')->storeAs($store_path,$nombre.'.'.$request->file('adj_ruc')->getClientOriginalExtension());
         $Seller = new Seller;
         $Seller->name = $request->name;
         $Seller->email = $request->email;
@@ -274,25 +277,25 @@ class SellerController extends Controller
         $Seller->address = $request->address;
         $Seller->save();
         Auth::guard('web_seller')->login($Seller);
-        $seller_roles = SellersRoles::where('name',$request->modulo)->get();
+        $seller_roles = SellersRoles::where('name',$request->modulo)->first();
         $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-        $data = $seller->roles()->attach($seller_roles[0]->id);
+        $data = $seller->roles()->attach($seller_roles);
         if ($request->modulo=="Peliculas") {
             $seller_roles = SellersRoles::where('name','Series')->get();
             $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-            $data = $seller->roles()->attach($seller_roles[0]->id);
+            $data = $seller->roles()->attach($seller_roles);
         }
         if ($request->modulo=="Libros") {
             $seller_roles = SellersRoles::where('name','Revistas')->get();
             $seller= Seller::find(Auth::guard('web_seller')->user()->id);
-            $data = $seller->roles()->attach($seller_roles[0]->id);
+            $data = $seller->roles()->attach($seller_roles);
         }
         if ($request->submodulo!=null) {
             $seller_sub_roles = SellersRoles::where('name',$request->submodulo)->get();
-            $data = $seller->roles()->attach($seller_sub_roles[0]->id);
+            $data = $seller->roles()->attach($seller_sub_roles);
         }
 
-    	//return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
+        //return view('seller.home')->with('total_content', 0)->with('aproved_content', 0)->with('followers', 0);
         return redirect()->action(
             'SellerController@homeSeller'
         );
@@ -396,7 +399,7 @@ class SellerController extends Controller
         $total_content = $tv_content+$radio_content+$megazine_content+$serie_content+$book_content+$movie_content+$musical_content;
         $total_aproved = $tv_aproved+$radio_aproved+$megazine_aproved+$serie_aproved+$book_aproved+$movie_aproved+$musical_aproved;
         $content_for_aprove = $total_content-$total_aproved;
-      
+
         return view('seller.edit')  ->with('seller',$seller)
                                     ->with('total_content',$total_content)
                                     ->with('total_aproved',$total_aproved)
@@ -415,7 +418,7 @@ class SellerController extends Controller
             $seller->logo ='/images/producer/logo/'.$name;
         }
 
-        if ($request->adj_ruc <> null) {
+       if ($request->adj_ruc <> null) {
             // $file1 = $request->file('adj_ruc');
             // $name1 = 'ruc_' . time() . '.' . $file1->getClientOriginalExtension();
             // $path1 = public_path() . '/images/producer/ruc/';
@@ -450,7 +453,7 @@ class SellerController extends Controller
 
         Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa!')->important();
 
-        
+
         //return redirect()->action('SellerController');
 
     }
@@ -458,7 +461,7 @@ class SellerController extends Controller
      public function changepassword(Request $request, $id)
     {
         $seller = Seller::find($id);
-        
+
         $seller->password = $request->password;
         $oldpass = $request->oldpass;
         $newpass = $request->newpass;
@@ -466,33 +469,28 @@ class SellerController extends Controller
         $pass_encrypt = ($request->password);
 
         if (password_verify($oldpass, $seller->password))
-          { 
-        
+          {
+
         if ($newpass == $confnewpass) {
 
               $seller->password = bcrypt($newpass);
 
               $seller->save();
 
-              echo'<script type="text/javascript">
-              alert("Su contraseña ha sido cambiado con exito!");
-              window.location.href="/seller_edit"</script>';
-              
-            //return redirect()->action('UserController@edit'); 
-            //Flash('Se ha modificado sus contraseña con exito!')->success();         
-        } 
-        else 
+            Flash('Se ha modificado su contraseña con exito!')->success();
+            //header("Refresh:0; url=/seller_edit");
+            return redirect()->action('SellerController@homeSeller');
 
-          echo'<script type="text/javascript">
-              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
-              window.location.href="/seller_edit";</script>';
+        }
+        else
+            Flash::warning('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->important();
+            return redirect()->action('SellerController@homeSeller');;
 
           }
 
-          else 
-             echo'<script type="text/javascript">
-              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
-              window.location.href="/seller_edit";</script>';
+        else
+            Flash::warning('Ha ingresado incorrectamente su contraseña antigua, por favor intentelo de nuevo.')->important();
+            return redirect()->action('SellerController@homeSeller');;
 
     }
 
@@ -501,12 +499,12 @@ class SellerController extends Controller
         $seller = Seller::find($id);
         $seller->account_status = "closed";
         $seller->save();
-          
+
         Auth::logout();
 
         $add = DB::select('INSERT INTO sellers_closed SELECT * FROM sellers WHERE account_status="closed"');
-        $del = DB::delete('DELETE FROM sellers WHERE account_status="closed"'); 
-    
+        $del = DB::delete('DELETE FROM sellers WHERE account_status="closed"');
+
         Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
 
         return redirect()->action('WelcomeController@welcome');
@@ -667,4 +665,3 @@ class SellerController extends Controller
     }
 
 }
-	
