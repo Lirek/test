@@ -1,116 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Music/Alex/albums/Nombre 2/albumcover_Nombre 21549315047.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Music/Alex/albums/Nombre del album Nombre del album/albumcover_Nombre del album Nombre del album1549314907.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Music/albums/Nombre 2/albumcover_Nombre 21549314920.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Music/albums/Nombre 2/albumcover_Nombre 21549314954.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Music/albums/Nombre 2/albumcover_Nombre 21549315047.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Serie/Lucifer/episode_Piloto1549305021.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Serie/Lucifer/seriecover_Lucifer1549305021.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/megazine/9/independientes/cover_Java1549305280.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/megazine/9/independientes/megazine_Java1549305280.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/movie/film/Harry Potter y las reliquias de la muerte parte 1_1549304842.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/movie/poster/poster_1549304842.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/promoter/modals/AssingRefered.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/025450d6e82b0b27e4b1dced81cbe5748ceea71b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/028bb7ca5b1116791905671e867e62bc495175aa.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0d27ba09ed2a6c03f433961743abce80a202c226.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0feb15703f1f887acb93bc5d10f6e25fa7d0870c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/175eefa30046e5d1e688b50776dacd45f9212b40.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1799593de2105fc14e147e4d1f346ff51295b84f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/19c33771080f420c0af58e986d9361720998d558.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ac13d49386626ea8e24cb0276cc59bebc552b00.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ae7b8c295e1a374d4719c62e2a9bf06ba10ac47.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ce1cd9d368a356287e59f9e8fa000d5e8daf4f5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1e019b87b25bc1b59240d1cf66090d68ebaa213f.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1e9b4260692e5cc6ba825e6147e1bbdf58e5ccb9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/1f474d407d205ccb74dcba637d5c1ef7d518086d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2173a3b3d6fb9b241e4ddfcbd8486370bbc513a6.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/226ee8fa565868c41a1f8dc0a7573b454065f3d4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2427ce445d1033c59797f4e9042008e8519045a6.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/27665b0a020b0bdefbeab060bdc0ea48b6f7ef1a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/28ae42cd48e96e2eb6854eb676cb74df25c1797b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/2bd134afdac96c30e35551c5714a3e87a7c54895.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/30f7b693c1307ed9ff33765a06f089fced983e46.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/33ee3b68865f59da8c0621e7d392c5c1774f22a8.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/365db0b3f6d423f06c1b193c17d0a7f29cc4c278.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/38319dfcd0dcdbc082b7e8bf030aa62751a492fb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3ba1e2219011c1cd6332f205f3828010146a720a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/3f50c6827c0f4fa6b9eff677afa797ea19c9cbe6.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/45a64f5b8d923c9591718871a246e5f3eea59a30.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/49d4b5afb8a77f5ebd2ac48703cc5e21d1fea5a7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/50406eae9f29c5bde1d1639d88f96116e25fc1b5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/50a0b7ce09e61f72a41799faa2e4768500282619.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/562644a843045d9b8a18e42bdce67c5c9f5cc975.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/58b2d86453914eac194deb499c6a5d92b327c575.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5f9ad6425d9876b1c432c76eaf613c70f735b096.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/5fd8d87a0de7928923567503752ed13aa90a7f20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6363dea7e6a4398b6815c6564a9f59431915e13a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/66d10a27ec549f1e6a6a99ed0036a60bb4480bbf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6e611d90ddd7d7001ee83b2bf2d4e5814c33f888.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6f4dc4838eb3393f8c1639ba69a9a24f31d35f40.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/70ecb70fe18e6cf694834a0c5c9407d660c74da2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/73a155638b721886e6fcf4858f5011b528bcec28.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/7481f6acbb00d6a7c34f339d228e4fb66aeffa42.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/796c8e6828bb89ced382edf6938412bfccd622c0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/80aac37189bc4d3d1190f7b14b0c865e017a689d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/89ec4c8350e7a03bca4ec728d2de6f8eecf99f77.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8e0b4cee250ef502342458f5b4c392b2c22a7f77.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8e35a7677a2ce5f159bf8da78531a5dfc3c0839a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8f0928c6f9374f27dc6096105df5e301210790be.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/8fb8c3192a4868bd9f0ae2de3582778122133d08.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/91ccd941bea2331dec75eb39c380cc282e6bb8be.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/9754f6e18365e07b0c881841646148e13dc8e086.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/98920dd9c0791ff68dcfc291d2d920edc49fa06e.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/9bb0ccb2e02ac82ab32c02e880c41127c85bd465.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a17b6966723b173fd49fba7efe8d6189bf6b5155.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a357efe0304b1ea8a8f52718ab2a93cff88cb574.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a5fcf058e586e3cdeb57b269a3cf9a9e94842cbc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a7e4e5df9766b5187152ce6ce67b8779c178e3ea.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/a83e8f12bb5250dc65f57d346a8d054fb0d7b34c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ae1c2b628b9e7a50ffc04bcd30081a364b4c62e2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/ae88fb6e64bd10a1480468c44663ab193e235032.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/aff2e5367d3c37f936ae6e126c202de1c046e29b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b1f23fe884c721b050564421b34164f616442f07.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/b46b42a782e3bba3dd8d4e3812ad663392fb8740.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/bec1072df5815c944b5fbb300bf09d4848c22bc9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c065609e0fd05c3f41a7759053a98ebd6ec401df.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c191d7c3ad7ace9ffccad078b2d9c9dcd189108c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c35623e000970a886570841650407dbd20a5dcb5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c709f19384b2f2f4475c43900f5a8ebf69523aa3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/cb56fd2a99e060979dfc1f95a200fb8dadb637d0.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d08dc382f0d3188adf1f2368f3da75cd3a8399cd.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d091cc95d6568e2f578cab0566b3e722f49a5e56.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d16ae1bbb56d93c3ac1e088d715d50f2cd660a3a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d585af44ebaab0eb7dd9a6a751c7eeeb7e938a0c.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d9351ca3f898e430b3cfa929ce620c3f8a471aa9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/d978b90cdc963453e8982f4f107c3d064eb7e5aa.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/dc1fd9920cf0928a5d9b0d90dc510b5de6913679.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/df45bbeb06b2083baff9664cd5024b207115a040.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/df5cb6b9ae4197dceb2c92bef10ab1515edf0871.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e00a59a63fca0a4a11f3ce4d284ada11dac9947b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e054a015a6d6c043295707ea26270fa17b0a68c9.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/f4e8224b5a1ec24ee232543bcf6bc3af87fbb7ad.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/fc13df2dedc75bbcc2a3f4789137a6bf5362bf5d.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/fe140211307e9f38f1c766a53f987a521a9af61a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/fe880b11260d3609bf639114f3f7d955f24ecaba.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SellerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/UserDetails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/UserDetails.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-    </list>
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -511,44 +404,36 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="919" />
-    <option name="y" value="-16" />
-    <option name="width" value="2666" />
-    <option name="height" value="1044" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Default">
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -909,7 +794,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="560095000" />
+    <option name="totallyTimeSpent" value="560280000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -921,54 +806,67 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52391976" side_tool="true" weight="0.32508835" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47608024" weight="0.3250825" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30181542" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24876033" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.52420574" side_tool="true" weight="0.3229508" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.47579426" visible="true" weight="0.3229508" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TODO" order="13" weight="0.32838285" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="13" weight="0.32838285" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.47579426" visible="true" weight="0.3229508" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.52420574" side_tool="true" weight="0.3229508" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47608024" visible="true" weight="0.32508835" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27469134" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3295082" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52391976" side_tool="true" visible="true" weight="0.32508835" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47608024" visible="true" weight="0.32508835" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52391976" side_tool="true" visible="true" weight="0.32508835" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
