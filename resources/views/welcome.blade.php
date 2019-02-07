@@ -222,12 +222,12 @@
 <!-- Franja azul -->
 <div class="carousel-item blue white-text" href="#four!">
     <div class="row">
-        <div class="col s12 m12 l12 xl12  center">
+        <div class="col s12 m12 l12 xl12  center"> 
             <h5>Red social de entretenimiento</h5>
         </div>
-        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer;">
+        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer; ">
             <img src="{{asset('plugins/materialize_index/img/cine.png') }}" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
-        </div>
+        </div></a>
         <div class="col s4 m4 l4 xl2 center curva" id="musica" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/musica.png') }}" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
         </div>
@@ -246,7 +246,7 @@
 
 
 {{--pelicula--}}
-<div class="row" id="cines">
+<div class="row" id="cines"> 
     <div class="col s12 m12">
         @if(count($movie)>0)
             <div id="featured5" class="owl-carousel featured">
@@ -255,9 +255,13 @@
                         <div class="card">
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
+                                    <a onclick="masInfo('cine')">
                                     <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="150px">
+                                    </a>
                                 @else
+                                   <a onclick="masInfo('cine')">
                                     <img src="{{asset($m['img_poster']) }}" width="100%" height="150px">
+                                   </a>
                                 @endif
                             </div>
                         </div>
@@ -292,7 +296,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset($m['cover']) }}" width="100%" height="150px">
+                                <a onclick="masInfo('musica')"><img src="{{ asset($m['cover']) }}" width="100%" height="150px"></a>
                             </div>
                         </div>
                     </div>
@@ -325,7 +329,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset($b['cover']) }}" width="100%" height="150px">
+                                <a onclick="masInfo('lectura')"><img src="{{ asset($b['cover']) }}" width="100%" height="150px"></a>
                             </div>
                         </div>
                     </div>
@@ -357,7 +361,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset($r['logo']) }}" width="100%" height="150px">
+                            <a onclick="masInfo('radio')"><img src="{{ asset($r['logo']) }}" width="100%" height="150px"></a>
                         </div>
                     </div>
                 </div>
@@ -378,7 +382,7 @@
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px">
+                            <a onclick="masInfo('tv')"><img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px"></a>
                         </div>
                     </div>
                 </div>
