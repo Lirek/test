@@ -112,7 +112,7 @@
             </h3>
             <br>
             <div class="row">
-                {!! Form::open(['url'=>'single_registration','method'=>'POST','files' => 'true','class'=>'form-horizontal','role'=>'form']) !!}
+                {!! Form::open(['url'=>'single_registration','method'=>'POST','files' => 'true','class'=>'form-horizontal','role'=>'form', 'id'=>'single']) !!}
                 {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                 {{ csrf_field() }}
                 <div class="col s12">
@@ -393,7 +393,7 @@ function maxLengthCheck(object) {
     var percent = $('.percent');
     var status = $('#status');
  
-    $('#registroPelicula').ajaxForm({
+    $('#single').ajaxForm({
         
         beforeSend: function() {
             status.empty();

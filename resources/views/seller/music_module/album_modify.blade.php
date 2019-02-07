@@ -113,7 +113,7 @@
             </h3>
             <br>
             <div class="row">
-                <form method="POST" action="{{ url('/modify_album') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/modify_album') }}" enctype="multipart/form-data" id="formulario">
                 {{ csrf_field() }}
                 <input type="hidden" name="seller_id" value="{{Auth::guard('web_seller')->user()->id }}">
                 <input type="hidden" name="id" value="{{$id}}">
