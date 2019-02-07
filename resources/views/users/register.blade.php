@@ -338,8 +338,7 @@
                 </div>
                 <div class="col s12 m8">
                     <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo cineasta que puede vender sus contenidos aquí en Leipel</h4>
                         <br><br>
                     </div>
                 </div>
@@ -356,8 +355,7 @@
                 </div>
                     <div class="col s12 m8">
                         <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
-                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo cantante o músico que puede vender sus contenidos aquí en Leipel</h4>
                             <br><br>
                         </div>
                     </div>
@@ -373,8 +371,7 @@
                 </div>
                 <div class="col s12 m8">
                     <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo escritor que puede vender su contenido aquí en Leipel</h4>
                         <br><br>
                     </div>
                 </div>
