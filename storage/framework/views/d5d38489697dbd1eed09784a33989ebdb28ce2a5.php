@@ -930,7 +930,7 @@
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
                     icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar",
@@ -970,7 +970,7 @@
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
                     icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1010,7 +1010,7 @@
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
                     icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1050,7 +1050,7 @@
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
                     icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1090,7 +1090,7 @@
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
                     icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
