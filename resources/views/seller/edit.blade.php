@@ -308,13 +308,13 @@
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                     <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
                             <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: left;"><label><h6><span class="card-title">Aviso.</span><span class="card-title">Desea cerrar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea cerrar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}

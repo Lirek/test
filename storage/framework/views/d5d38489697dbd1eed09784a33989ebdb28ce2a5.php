@@ -79,7 +79,6 @@
         height: 100%;
     }
 
-
     /*slider tv*/
     .card-image.img
     {
@@ -102,6 +101,22 @@
     element.style {
         height: 600px; !important;
     }
+
+.swal-button {
+    background: #2196F3 !important;
+}
+
+.swal-button--cancelar {
+    background: red !important;
+}
+
+.swal-button--registrar {
+    background: green !important; 
+}
+
+
+
+
 
 </style>
 
@@ -436,19 +451,34 @@
             </div>
 
             <div id="test02" class="col s12 center">
-                <br>
-                <div class="embed-container">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Los viajes, y tarjetas de consumo en supermercados, son uno de los tantos beneficios que podrás canjear gratuitamente con tus puntos Leipel.</p>
+                        <p></p>
+                    </h5>
+                </div>
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br>
+                    <div class="embed-container" style="margin-top: 10px;">
                     <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>
-                </div>           <br>
+                </div>
+                    <br>
+                </div>
             </div>
 
             <div id="test03" class="col s12 center">
-                <div class="col s12 center">
-                    <br><br>
-                    <div class="container s12 center"><br>
-                        <h5><p style="text-align:justify;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h5>
-                    </div>
-                    <br><br><br><br>
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Ayudamos a las fundaciones a recaudar fondos a travéz de la venta de sus contenidos. <br>Ayúdanos a ayudar.</p>
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br>
+                        <div class="img-container" style="">
+                       <img src="sistem_images\fundaciones.jpg" width="320" height="250" style="margin-left: -15px;">
+                        </div>
+                    <br>
                 </div>
             </div>
         </div>
@@ -898,16 +928,17 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
-                            value: "iniciar"
+                            value: "iniciar",
                         },
                         registrar: {
                             text: "Registrate",
-                            value: "registrar"
+                            value: "registrar",
+
                         }
                     },
                     closeOnEsc: false,
@@ -937,9 +968,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -977,9 +1008,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1017,9 +1048,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1057,9 +1088,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
