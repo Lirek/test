@@ -102,4 +102,31 @@ class User extends Authenticatable implements JWTSubject
     public function pointLoser() {
         return $this->hasMany('App\PointsLoser', 'user_id');
     }
+
+
+    public static function songs_add($user){
+
+        $TranSingle= Transactions::select('song_id')->where('user_id','=',$user->id)->where('song_id','<>',0)->get();
+        $songs_add=array();
+        foreach ($TranSingle as $Ts) {
+           $songs_add[]=$Ts->song_id;
+        }
+        return $songs_add;
+
+    }
+
+    //retorna un array con los contenidos adquiridos por usuario.
+     public static function contenidos_add($user, $id_contenido){
+
+        $Transactions= Transactions::select($id_contenido)->where('user_id','=',$user->id)->where($id_contenido,'<>',0)->get();
+        $contenidos_add=array();
+        foreach ($Transactions as $Ts) {
+           $contenidos_add[]=$Ts->$id_contenido;
+        }
+        return $contenidos_add;
+
+    }
+
+
+
 }

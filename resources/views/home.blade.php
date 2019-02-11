@@ -81,15 +81,27 @@
                             {{--</div>--}}
                             <div class="card">
                                 <div class="card-image">
-                                    <img img src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                    <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                     @if($ci['type']=='Pelicula')
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMovies/'.$ci['id']) }}">
+                                       @if($ci['adquirido'])
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
+                                        @else
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMovies/'.$ci['id']) }}">
+                                            <i class="small material-icons">movie</i>
+                                        </a>
+                                        @endif
                                     @else
+                                        @if($ci['adquirido'])
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('SerieList/'.$ci['id']) }}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
+                                         @else
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('SerieList/'.$ci['id']) }}">
+                                            <i class="mdi mdi-movie-roll"></i>
+                                        </a>
+                                        @endif
                                     @endif
                                 </div>
                                 <div class="card-action">
@@ -118,13 +130,26 @@
                                 <div class="card-image">
                                     <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
                                     @if($m['type']=='Album')
+                                        @if($m['adquirido'])
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyAlbums/'.$m['id']) }}">
+
+                                            <i class="small material-icons">library_music</i>
+                                        </a>
+                                        @else
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">library_music</i>
                                         </a>
+                                        @endif
                                     @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                        @if($m['adquirido'])
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
                                             <i class="small material-icons">music_note</i>
                                         </a>
+                                        @else
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                            <i class="small material-icons">music_note</i>
+                                        </a>
+                                        @endif
                                     @endif
                                 </div>
                                 <div class="card-action">
@@ -145,7 +170,7 @@
                 <div class="col s12">
                     <a href="{{url('ReadingsBooks')}}">
                         <h5 class="grey-text left">
-                            <i class="material-icons">bookmark_border</i>Libros
+                            <i class="material-icons">bookmark_border</i>Lectura
                         </h5>
                     </a>
                 </div>
@@ -159,13 +184,25 @@
                                 <div class="card-image">
                                     <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
                                     @if($le['type']=='Libro')
+                                        @if($le['adquirido'])
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                            <i class="small material-icons">book</i>
+                                        </a>
+                                        @else
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
+                                        @endif
                                     @else
+                                         @if($le['adquirido'])
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                            <i class="mdi mdi-book-open-variant"></i>
+                                        </a>
+                                        @else
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
+                                        @endif
                                     @endif
                                 </div>
                                 <div class="card-action">
@@ -268,7 +305,7 @@
         //pullDrag:false,
         //touchDrag:false,
         nav: false,
-        loop:true,
+        loop:false,
         margin:10,
         responsiveClass:true,
         dots: true,
@@ -296,28 +333,36 @@
                 loop:false
             },
             950:{
-                items:5,
+                items:4,
                 nav:true,
                 loop:false
             },
             1150:{
+                items:5,
+                nav:true,
+                loop:false
+            },
+            1300:{
                 items:6,
                 nav:true,
                 loop:false
             },
-
-            1350:{
-                items:7,
-                nav:true,
-                loop:false
-            },
-
-            1400:{
+            1470:{
                 items:8,
                 nav:true,
                 loop:false
-            },
+           },
+            1600:{
+                items:9,
+                nav:true,
+                loop:false
+           },
 
+           2000:{
+                items:11,
+                nav:true,
+                loop:false
+           },
 
         },
         navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>','<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
