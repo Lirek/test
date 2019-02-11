@@ -19,7 +19,6 @@
             <th><i class="material-icons"></i>Nombre</th>
             <th><i class="material-icons"></i>RUC</th>
             <th><i class="material-icons"></i>Imagen del Documento</th>
-            {{--<th><i class="material-icons"></i>Fecha de nacimiento</th>--}}
             <th><i class="material-icons"></i>Género</th>
             <th><i class="material-icons"></i>Fecha de registro</th>
             <th><i class="material-icons"></i>Redes</th>
@@ -249,7 +248,7 @@
           }
           $("#rucUsuario").text(info.num_doc);
           if (info.img_doc!=null) { 
-            var imgRucUsuario = "{{ asset('"+info.img_doc+"') }}";
+            var imgRucUsuario = "{{ asset('/') }}/"+info.img_doc;
             $("#imgRucUsuario").show();
             $("#mensajeimgRucUsuario").hide();
             $("#imgRucUsuario").attr('src',imgRucUsuario);

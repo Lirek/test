@@ -108,6 +108,7 @@ class AlbumsController extends Controller
 
         if ($request->artist!=null) {
             $artist = $request->artist;
+            $album->autors_id = $artist;
         }
 
         $i=0;

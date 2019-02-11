@@ -70,7 +70,7 @@ class HomeController extends Controller
         */
 
         $musica = [];
-        $Songs = Songs::where('album',0)->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Songs as $s) {
             $musica[] = array(
                 'id' => $s->id,
@@ -326,7 +326,7 @@ class HomeController extends Controller
                 }
                 elseif($key->movies_id != 0){
                     $accionM=Movie::find($key->movies_id);
-                    $accion=$accionM->title;
+                    $accion=$accionM->original_title;
                 }
                 elseif($key->megazines_id != 0){
                     $accionM=Megazines::find($key->megazines_id);
@@ -605,6 +605,7 @@ class HomeController extends Controller
         $secuencial = rand(0,100000000);
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
+        $ambiente = env('AMB_DATIL');
         $nombrePaquete = $paquete->name;
         $iva = 0.12;
         $costoPaquete = $Buy->cost;
@@ -613,7 +614,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 1, // 1: prueba; 2: produccion
+        "ambiente" => $ambiente, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, 
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
