@@ -158,4 +158,46 @@
     </div>
 @endsection
 @section('js')
+<script type="text/javascript">
+   $(document).on('click', '#x', function() {
+    var apply = $(this).attr('value1');
+    var promoter = $(this).attr('value2');
+    var url = 'PendingPointsRoutine';
+    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+    swal({
+      title: "Procesando la información",
+      text: "Espere mientras se procesa la información.",
+      icon: gif,
+      buttons: false,
+      closeOnEsc: false,
+      closeOnClickOutside: false
+    });
+    swal({
+      title: "¿Desea realmente ejecutar la rutina?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: ["Cancelar", "Si"]
+    }).then((confir) => {
+      if (confir) {
+        $.ajax({
+          url: url,
+          type:'get',
+          dataType:"json",
+          success: function(data) {
+            swal("Se han retirado un total de"+data['puntos']+" de "+data['usuarios']+,"","success")
+            .then((recarga) => {
+              location.reload();
+            });
+          },
+          error: function(data) {
+            swal("NO permitido por favor recargue la pagina","","error")
+            .then((recarga) => {
+              location.reload();
+            });
+          },
+        });
+      }
+    });
+  });
+</script>
 @endsection
