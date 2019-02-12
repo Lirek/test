@@ -119,9 +119,11 @@
         @if(count($musica)> 0)
             <div class="row">
                 <div class="col s12">
-                    <h5 class="grey-text left">
-                        <i class="small material-icons">music_note</i> Música
-                    </h5>
+                    <a href="{{url('MusicContent')}}">
+                        <h5 class="grey-text left">
+                            <i class="small material-icons">music_note</i> Música
+                        </h5>
+                    </a>
                 </div>
                 <div class="col s12">
                     <div class="owl-carousel owl-theme">
