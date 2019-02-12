@@ -380,6 +380,8 @@ class AlbumsController extends Controller
         $path = $real_path .'/'.$name1;
         $file = $song->move($store_path, $name1);
 
+    
+
     $song=new Songs;
         $song->autors_id = $artist;
         $song->seller_id = $seller_id;
@@ -389,6 +391,16 @@ class AlbumsController extends Controller
         $song->duration = $duration_song;
         $song->status =2;
         $song->album =NULL;
+        if ($request->status ==='Aprobado') {
+            $store_path = public_path().'/Music/'.$request->artist.'/singles/'.$name;
+            
+            $name = 'singlecover_'.$request->seller_id.time().'.'.$request->file('img_poster')->getClientOriginalExtension();
+            
+            list($e,$real_path)=explode(public_path(),$store_path);
+            $path = $real_path .'/'.$name;
+            $request->file('img_poster')->move($store_path, $name); 
+            $song->cover=$path;
+        }
     $song->save();
 
     $song->tags()->attach($request->tags);
@@ -472,6 +484,19 @@ class AlbumsController extends Controller
         if ($request->artist!=null) {
             $single->autors_id = $request->artist;
         }
+        if ($request->hasFile('img_poster')) {
+            $store_path = public_path().'/Music/'.$request->artist.'/singles/'. $request->song_n;
+            
+            $name = 'singlecover_'.$request->seller_id.time().'.'.$request->file('img_poster')->getClientOriginalExtension();
+            
+            list($e,$real_path)=explode(public_path(),$store_path);
+            $path = $real_path .'/'.$name;
+            $request->file('img_poster')->move($store_path, $name); 
+            $single->cover=$path;
+        }
+        if($request->status == 'Denegado'){
+            $single->cover=NULL;
+        }
     
         $single->save();  
 
@@ -489,9 +514,18 @@ class AlbumsController extends Controller
             $selected = $song->tags()->get();
             $tags = Tags::where('type_tags','=','Musica')->where('status','=','Aprobado')->get();
             $artist = music_authors::where('seller_id',Auth::guard('web_seller')->user()->id)->get();
-            
             return view('seller.music_module.single_modify')->with('tags', $tags)->with('autors', $artist)->with('s_tags',$selected)->with('song',$song)->with('id',$id);
         }
+
+    public function ShowSong($id)
+    {
+      $singles =Songs::find($id);
+      // $singles = $album->songs()->get();
+      // $cover = $album->cover;
+      $x=0;
+      return view('seller.music_module.songs')->with('song', $singles);
+      
+    }
         
         
 

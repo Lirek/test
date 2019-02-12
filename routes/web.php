@@ -717,6 +717,10 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/modify_single', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
 
+    /*------------------------Detalle de single---------------------*/
+
+    Route::get('/show_song/{id}', 'AlbumsController@ShowSong');
+
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
     /*--------------------------------------------------------------*/
