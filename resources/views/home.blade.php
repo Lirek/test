@@ -84,7 +84,7 @@
                                     <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                     @if($ci['type']=='Pelicula')
                                        @if($ci['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @else
@@ -98,7 +98,7 @@
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
-                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('SerieList/'.$ci['id']) }}">
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('SerieList/'.$ci['id']) }}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                         @endif
@@ -131,22 +131,22 @@
                                     <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
                                     @if($m['type']=='Album')
                                         @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyAlbums/'.$m['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light  blue" href="{{ url('MyAlbums/'.$m['id']) }}">
 
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('MyMusic')}}">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @else
-                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @endif
@@ -185,21 +185,21 @@
                                     <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
                                     @if($le['type']=='Libro')
                                         @if($le['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @endif
                                     @else
                                          @if($le['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @endif
