@@ -329,18 +329,21 @@
 							datasets: [{
 								data: info,
 								backgroundColor: [
-									'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(76, 155, 80)',
+									'rgba(33, 150, 243)',
+									'rgba(244, 67, 54)'
 								],
 								borderColor: [
-									'rgba(217, 83, 79,1)',
-									'rgba(66, 139, 202, 1)'
+									'rgba(76, 155, 80, 1)',
+									'rgba(33, 150, 243, 1)',
+									'rgba(244, 67, 54, 1)'
 								],
 								borderWidth: 1
 							}],
 							labels: [
+								'Aprobado',
 								'Por Aprobar',
-								'Aprobado'
+								'Denegados'
 							]
 						};
 						var myPieChart = new Chart(ctx,{
@@ -418,12 +421,12 @@
 	    					datasets: [{
 	    						data: x,
 	    						backgroundColor: [
-		    						'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(33, 150, 243)',
+		    						'rgba(76, 155, 80)'
 	    						],
 	    						borderColor: [
-	    							'rgba(217, 83, 79,1)',
-	    							'rgba(66, 139, 202, 1)'
+									'rgba(33, 150, 243, 1)',
+	    							'rgba(76, 155, 80, 1)'
 	    						],
 	    						borderWidth: 1
 	    					}],
@@ -454,12 +457,12 @@
 	    					datasets: [{
 	    						data: x,
 	    						backgroundColor: [
-	    							'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(33, 150, 243)',
+	    							'rgba(76, 155, 80)'
 	    						],
 	    						borderColor: [
-	    							'rgba(217, 83, 79, 1)',
-									'rgba(66, 139, 202, 1)'
+									'rgba(33, 150, 243, 1)',
+	    							'rgba(76, 155, 80, 1)'
 	    						],
 	    						borderWidth: 1
 	    					}],

@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+    <list default="true" id="8ec9090f-cfc8-4219-8b3f-f1b1461749d7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/mails/statusSellerAproval.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/mails/statusSellerAproval.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/mails/status_applys_aproval.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/mails/status_applys_aproval.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Clients.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Clients.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsClients.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsClients.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Sellers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Sellers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/SellersViewsModals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/SellersViewsModals.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -823,11 +839,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548701101369</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
+      <created>1549940884262</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1549940884262</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="560887000" />
+    <option name="totallyTimeSpent" value="561105000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -921,7 +944,6 @@
     <MESSAGE value="app change" />
     <MESSAGE value="Cambio en index titulos del slider" />
     <MESSAGE value="Oculte los div de los tabs por falta de contenido" />
-    <MESSAGE value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/Http/Controllers/AdminController.php&#10;#&#9;resources/views/welcome.blade.php&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/queEsLeipel.blade.php" />
     <MESSAGE value="bmonterrey ajuste img app layou user" />
@@ -931,7 +953,8 @@
     <MESSAGE value="bmonterrey: ajuste lista referidos" />
     <MESSAGE value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php">

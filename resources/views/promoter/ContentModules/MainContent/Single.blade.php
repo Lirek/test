@@ -64,8 +64,8 @@
 				        	var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
 				        }
 				        if (info.song_file != 0) {
-							var archivo = "<audio controls='' src='"+info.song_file+"'>"+
-							"<source src='"+info.song_file+"' type='audio/mpeg'>"+
+							var archivo = "<audio controls='' src='{!!asset('"+info.song_file+"')!!}'>"+
+							"<source src='{!!asset('"+info.song_file+"')!!}' type='audio/mpeg'>"+
                         	"</audio>";
 						}
 
