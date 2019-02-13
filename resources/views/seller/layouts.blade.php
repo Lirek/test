@@ -176,7 +176,7 @@
                         </div>
                         <div class="name" data-toggle="dropdown" >
                             <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
-                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}
+                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Ganados: {{Auth::guard('web_seller')->user()->credito}}
                             </a>
                         </div>
                     </div>
@@ -526,8 +526,8 @@
                 </div>
                     <br>
                     <blockquote class="center">
-                    <h5 class="grey-text"><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
-                    <h5 class="grey-text"><b>Total de tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets ganados:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                     <h5><a href="{{url('SellerBalance')}}" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
 
                     </blockquote>

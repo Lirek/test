@@ -69,17 +69,21 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-             <input type="hidden" name="id" id="id" value="{{$album->id}}">
+             <input type="hidden" name="id" id="id" value="{{$song->id}}">
             <h4 class="titelgeneral"><i class="material-icons small">music_note</i> 
-                "{{ $album->name_alb}}"
+                "{{ $song->song_name}}"
             </h4>
             <br>
             <div class="row">
                 <div class="col s12 m4">
-                    <img src="{{asset($album->cover)}}" width="100%" height="300" style="border-radius: 10px" id="panel" class="materialboxed">
+                    @if($song->cover == NULL)  
+                        <img src="{{asset($song->autors->photo)}}" width="100%" height="300px" style="border-radius: 10px" id="panel" class="materialboxed">
+                    @else
+                        <img src="{{asset($song->cover)}}" width="100%" height="300px" style="border-radius: 10px" id="panel" class="materialboxed">
+                    @endif 
                     <br><br>
                     <audio id="player" class="player">
-                        <source src="" type="audio/mp3" id="play"> 
+                         <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play">  
                     </audio>
                     <!-- <a href="#modal-default" class="btn curvaBoton waves-effect waves-light green  modal-trigger" >Ver película</a> -->
                         <a href="{{ url('/my_music_panel/'.Auth::guard('web_seller')->user()->id) }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
@@ -93,7 +97,7 @@
                                     <b class="left">Costo: </b>
                                 </div>
                                 <div class="col s12 m7">
-                                    {{ $album->cost }} Tickets
+                                    {{ $song->cost }} Tickets
                                 </div>
                             </div>
                         </li>
@@ -103,13 +107,21 @@
                 <div class="col m6 s12">
                     <small>Canciones:</small>
                     <ul class="collection z-depth-1" id="Playlist">
-                         <!-- @foreach($songs as $song)
-                        <li class="collection-item" style="padding: 10px ">
+                         
+                        <!-- <li class="collection-item" style="padding: 10px ">
                             <div class="row">
                                {{$song->song_name}} 
                             </div>
+                        </li> -->
+                        <li class="collection-item" id="{{$song->id}}">
+                            <div>
+                                <a href="#!">{{$song->song_name}}</a> 
+                                <a href="#!" class="secondary-content" >
+                                    <img class="img-play animated-gif play" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" id="song_{{$song->id}}">
+                                </a>
+                            </div>
                         </li>
-                        @endforeach -->
+                       
                     </ul>
                 </div>
                 <div class="col m2 s12">
@@ -117,7 +129,7 @@
                         <div class="card-content white-text center-align">
                             <p class="card-title">
                                 <i class="material-icons">group add</i>
-                                {{$album->Transactions->count()}}
+                                {{$song->transaction->count()}}
                             </p>
                             <p>
                                 N° de compras
@@ -159,7 +171,7 @@ $(document).ready(function(){
   });
 </script>
 <!-- LECTURA DE JSON Y REPRODUCTOR DE LISTAS PARA EL PLAYER -->
-<script>
+<!-- <script>
     $(document).ready(function(){
         var id = $('#id').val();
         $.ajax({ 
@@ -227,5 +239,5 @@ $(document).ready(function(){
         });
 
   });
-</script>
+</script> -->
 @endsection

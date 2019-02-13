@@ -39,12 +39,17 @@
               <div class="col s12 m3">
                 <div class="card">
                   <div class="card-image">
-                    @if($Album->cover)
+                    @if($Album->name_alb)
                       <a href="#myModal-{{$Album->id}}" class="modal-trigger">
                         <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
                       </a>
                     @else
-                      <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px">
+                      <!-- <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px"> -->
+                      @if($Album->cover == NULL)
+                        <img src="{{asset($Album->autors->photo)}}" width="100%" height="300px">
+                      @else
+                        <img src="{{asset($Album->cover)}}" width="100%" height="300px">
+                      @endif
                     @endif
                     <!-- <span class="card-title">Card Title</span> -->
                     @if($Album->name_alb) <!-- Para los albumes -->
