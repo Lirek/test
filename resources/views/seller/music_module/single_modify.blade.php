@@ -109,7 +109,7 @@
         @include('flash::message')
         <div class="card-panel curva">
             <h3 class="center">
-                Registrar canción
+                Modificar canción
             </h3>
             <br>
             <div class="row">
@@ -118,12 +118,42 @@
                   {!! Form::hidden('id',$id) !!}
                   {{ csrf_field() }}
                 <div class="col s12">
+                    <input type="hidden" name="portada" id="portada" value="{{$song->cover}}">
+                     <label class="control-label" for="option-1"> ¿La canción posee portada? </label>
+                    <br>
+                    <div class="">
+                        <label for="option-1">
+                            <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
+                            <span class="mdl-radio__label">Si</span>
+                        </label>
+                        <label for="option-2">
+                            <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
+                            <span class="mdl-radio__label">No</span>
+                        </label>
+                    </div>
+                    <br>
+                    {{--Poster del single--}}
+                    <div class="col s12 m6" style="display:none" id="poster"> 
+                        <div id="mensajePortadaPelicula"></div>
+                        <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Portada </label>
+                            {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                            @if($song->cover)
+                            <div id="list">
+                                <img style="width:100%; height:100%; border-top:50%;" src="{{asset($song->cover)}}">
+                            </div>
+                            @else
+                            <div id="list">
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                      <div class="input-field col s12 m6">
                               @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
                                 @if($mod->name == 'Productora')
                                     @if(count($autors)!=0 )
                                     <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                    <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                                    <select name="artist" id="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
                                       @foreach($autors as $artist)
                                         <option value="{{$artist->id}}">{{$artist->name}}</option>
                                       @endforeach
@@ -145,7 +175,7 @@
                                 @elseif($mod->name == 'Artista')
                                   @if(count($autors)!=0 )
                                     <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                    <select name="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
+                                    <select name="artist" id="artist" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un artista')" oninput="setCustomValidity('')">
                                       @foreach($autors as $artist)
                                         <option value="{{$artist->id}}">{{$artist->name}}</option>
                                       @endforeach
@@ -166,7 +196,7 @@
                         </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="Nombre de la Cancion">Nombre de la canción</label>
+                        <label for="song_n">Nombre de la canción</label>
                         @if($song->status!='Aprobado')
                        {!! Form::text('song_n',$song->song_name,['class'=>'form-control','placeholder'=>'Nombre de la canción','required'=>'required','id'=>'song_n','oninvalid'=>"this.setCustomValidity('Ingrese un nombre valido')",'oninput'=>"setCustomValidity('')"]) !!}
                        @else
@@ -175,11 +205,9 @@
                         <div id="mensajeNombreCancion"></div>
                         <br>
                     </div>
-                </div>
-                <div class="col s12">
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                        <label for="Costo en Tickets">Costo en tickets</label>
+                        <label for="Cost">Costo en tickets</label>
                         @if($song->status!='Aprobado')
                             {!! Form::number('cost',$song->cost,['class'=>'form-control','placeholder'=>'Costo en tickets','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un costo en tickets No Mayor a 999')", 'oninput'=>"maxLengthCheck(this)"]) !!}
                         @else
@@ -191,7 +219,7 @@
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                         @if($song->status!='Aprobado')
-                        <select name="tags[]" multiple="true" class="form-control" required>
+                        <select name="tags[]" multiple="true" class="form-control" id="tags" required>
                             @foreach($tags as $genders)
                               <option value="{{$genders->id}}"
                                 @foreach($s_tags as $s) 
@@ -205,7 +233,7 @@
                             @endforeach
                           </select>
                         @else
-                        <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                        <select name="tags[]" multiple="true" class="form-control" id="tags" disabled="true">
                             @foreach($tags as $genders)
                               <option value="{{$genders->id}}"
                                 @foreach($s_tags as $s) 
@@ -230,7 +258,7 @@
           </label>
                 <div class="col s12">
                     <div class="file-field input-field col s12 m6">
-                        <label for="Seleccione Música">Seleccione canción</label>
+                        <label for="cancion">Seleccione canción</label>
                         <br><br>
                         <div class="btn blue">
                             <span><i class="material-icons">music_note</i></span>
@@ -330,21 +358,21 @@
 // Para validar la longtud del nombre de la cancion
 //---------------------------------------------------------------------------------------------------
 // Para validar el tamaño de la cancion
-    $(document).ready(function(){
-      $('#cancion').change(function(){
-          var tamaño = this.files[0].size;
-          var tamañoKb = parseInt(tamaño/1024);
-          if (tamañoKb>2048) {
-              $('#mensajeCancion').show();
-              $('#mensajeCancion').text('La canción es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
-              $('#mensajeCancion').css('color','red');
-              $('#editarCancion').attr('disabled',true);
-          } else {
-              $('#mensajeCancion').hide();
-              $('#editarCancion').attr('disabled',false);
-          }
-      });
-    });
+    // $(document).ready(function(){
+    //   $('#cancion').change(function(){
+    //       var tamaño = this.files[0].size;
+    //       var tamañoKb = parseInt(tamaño/1024);
+    //       if (tamañoKb>2048) {
+    //           $('#mensajeCancion').show();
+    //           $('#mensajeCancion').text('La canción es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+    //           $('#mensajeCancion').css('color','red');
+    //           $('#editarCancion').attr('disabled',true);
+    //       } else {
+    //           $('#mensajeCancion').hide();
+    //           $('#editarCancion').attr('disabled',false);
+    //       }
+    //   });
+    // });
 // Para validar el tamaño de la cancion
 //---------------------------------------------------------------------------------------------------
 // Para validar la cantidad de Tickets
@@ -459,5 +487,44 @@ function maxLengthCheck(object) {
      
     })();
 </script>
+<script type="text/javascript">
+    function archivo(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('image-upload').addEventListener('change', archivo, false);
+    // Para validar los radio boton
+    $(document).ready(function(){
+        if($('#portada').val() != ''){
+            $('#option-1').prop('checked','checked');
+             $('#poster').show();
+             $('#image-upload').removeAttr('required');
+        }else{
+            $('#option-2').prop('checked','checked');
+            $('#image-upload').removeAttr('required');
+        }
+      
+    });
 
+    function yesnoCheck() {
+        if (document.getElementById('option-1').checked) {
+            $('#poster').show();
+            $('#image-upload').attr('required','required');
+        } else {
+            $('#poster').hide();
+            $('#image-upload').removeAttr('required');
+        }
+    }
+</script>
 @endsection

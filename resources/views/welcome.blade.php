@@ -79,7 +79,6 @@
         height: 100%;
     }
 
-
     /*slider tv*/
     .card-image.img
     {
@@ -102,6 +101,22 @@
     element.style {
         height: 600px; !important;
     }
+
+.swal-button {
+    background: #2196F3 !important;
+}
+
+.swal-button--cancelar {
+    background: red !important;
+}
+
+.swal-button--registrar {
+    background: green !important; 
+}
+
+
+
+
 
 </style>
 
@@ -222,12 +237,12 @@
 <!-- Franja azul -->
 <div class="carousel-item blue white-text" href="#four!">
     <div class="row">
-        <div class="col s12 m12 l12 xl12  center">
+        <div class="col s12 m12 l12 xl12  center"> 
             <h5>Red social de entretenimiento</h5>
         </div>
-        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer;">
+        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer; ">
             <img src="{{asset('plugins/materialize_index/img/cine.png') }}" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
-        </div>
+        </div></a>
         <div class="col s4 m4 l4 xl2 center curva" id="musica" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/musica.png') }}" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
         </div>
@@ -246,7 +261,7 @@
 
 
 {{--pelicula--}}
-<div class="row" id="cines">
+<div class="row" id="cines"> 
     <div class="col s12 m12">
         @if(count($movie)>0)
             <div id="featured5" class="owl-carousel featured">
@@ -255,9 +270,13 @@
                         <div class="card">
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
+                                    <a onclick="masInfo('cine')">
                                     <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="150px">
+                                    </a>
                                 @else
+                                   <a onclick="masInfo('cine')">
                                     <img src="{{asset($m['img_poster']) }}" width="100%" height="150px">
+                                   </a>
                                 @endif
                             </div>
                         </div>
@@ -292,7 +311,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset($m['cover']) }}" width="100%" height="150px">
+                                <a onclick="masInfo('musica')"><img src="{{ asset($m['cover']) }}" width="100%" height="150px"></a>
                             </div>
                         </div>
                     </div>
@@ -325,7 +344,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <img src="{{ asset($b['cover']) }}" width="100%" height="150px">
+                                <a onclick="masInfo('lectura')"><img src="{{ asset($b['cover']) }}" width="100%" height="150px"></a>
                             </div>
                         </div>
                     </div>
@@ -357,7 +376,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset($r['logo']) }}" width="100%" height="150px">
+                            <a onclick="masInfo('radio')"><img src="{{ asset($r['logo']) }}" width="100%" height="150px"></a>
                         </div>
                     </div>
                 </div>
@@ -378,7 +397,7 @@
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image ">
-                            <img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px">
+                            <a onclick="masInfo('tv')"><img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px"></a>
                         </div>
                     </div>
                 </div>
@@ -397,7 +416,7 @@
     <div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>
 </div>
 <!--Fin parallax-->
-<br>
+
 <!-- tabs  -->
 <div class="row col" style="margin-bottom:-5px;">
 
@@ -409,9 +428,10 @@
     <div id="test2" class="col l6 m12 s12 center">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
-                <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
-                <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
+                <li class="tab col s3"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
+                <li class="tab col s3 "><a href="#test02"><b>Viajes gratis</b></a></li>
+                <li class="tab col s3 "><a href="#test03"><b>Marcas relacionadas</b></a>
+                <li class="tab col s3 "><a href="#test04"><b>Proveedores</b></a></li>
             </ul>
 
             <div id="test01" class="col s12 center">
@@ -431,22 +451,55 @@
             </div>
 
             <div id="test02" class="col s12 center">
-                <br>
-                <div class="embed-container">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Los viajes, y tarjetas de consumo en supermercados, son uno de los tantos beneficios que podrás canjear gratuitamente con tus puntos Leipel.</p>
+                        <p></p>
+                    </h5>
+                </div>
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br>
+                    <div class="embed-container" style="margin-top: 10px;">
                     <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>
-                </div>           <br>
+                </div>
+                    <br>
+                </div>
             </div>
 
             <div id="test03" class="col s12 center">
-                <div class="col s12 center">
-                    <br><br>
-                    <div class="container s12 center"><br>
-                        <h5><p style="text-align:justify;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h5>
-                    </div>
-                    <br><br><br><br>
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Ayudamos a las fundaciones a recaudar fondos a travéz de la venta de sus contenidos. <br>Ayúdanos a ayudar.</p>
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br>
+                        <div class="img-container" style="">
+                       <img src="sistem_images\fundaciones.jpg" width="320" height="250" style="margin-left: -15px;">
+                        </div>
+                    <br>
                 </div>
             </div>
         </div>
+
+        <div id="test04" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Buscamos proveedores de cine, música, lectura, radio y Tv. Nosotros los ayudaremos a llegar a más personas. </p>
+                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br><br>
+                    <div class="embed-container">
+                       <iframe width="729" height="410" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
     </div>
 
     <div id="test3" class="col s12 center" style="display:none;">
@@ -871,16 +924,17 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
-                            value: "iniciar"
+                            value: "iniciar",
                         },
                         registrar: {
                             text: "Registrate",
-                            value: "registrar"
+                            value: "registrar",
+
                         }
                     },
                     closeOnEsc: false,
@@ -910,9 +964,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -950,9 +1004,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -990,9 +1044,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1030,9 +1084,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"

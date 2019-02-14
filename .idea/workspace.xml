@@ -2,8 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="bmonterrey: unir vista libro revista como lectura">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sistem_images/fundaciones.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/seller/music_module/songs.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0bda5e60240d9af00a1afa76e8b946b8cc2f4a31.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1153b94aefcb063727f74c9ed662e9345e2e4e7d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1bdbb0d4c9ad53ecfd888cd6df6f75e855f7d215.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2b3a304963561ddf877e199cd004fd43011696ed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3019a3f497dfc93ee1c5fac6771cfd22310f965b.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/31a4f7327b1779de893957321232ccaa7b35dd2d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3707dab81dafaba2f49b242e80080cfe23494ba2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/472b96846eb3e873822f540e7d28c61412557480.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/47cc4188a8b48090cafc40ba7b7e3a0bdace0bc5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/48a921236957fb5951ea109e56757bfc98063ae0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/492e7000aee589edbc33959f8cf497f7f4919656.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/4b102e453810ccf003c80eac7900627ad5da221a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/60280ebbf1bedf24a2f405a0cf515637bf55d4de.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/910f49f942195ec807b22f9e068b144a4d2aba8d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a16ed117656ecb881cd8b69a234083a9e7ae7810.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a8b3b630d6f25e6bfec0609ca56a649132a733e6.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/aa8f28d8f67f8f9be6a6759598b8e85b75b69831.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ad9f918f64b127f3e6a75fda5ec97ef19e6a3574.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bd3dbbdf1faceeb7599a38ffbdefc8052785ba34.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c42a83c89044516d9e703f423ee096dc9af3505d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d5d38489697dbd1eed09784a33989ebdb28ce2a5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d828304a37d66d3d1d56bc2ac2790cf115c95a93.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/eec75f7575228a4c60b8056acd4c6fba2c22f17c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/fea053c3c67d7359d10daf61bea962e67acfce43.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlbumsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Songs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2017_11_07_214846_create_songs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2017_11_07_214846_create_songs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/mails/statusSellerAproval.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/mails/statusSellerAproval.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/mails/status_applys_aproval.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/mails/status_applys_aproval.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Clients.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Clients.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsClients.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/PaymentsClients.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Sellers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Sellers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Albums.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Books.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Movies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/MainContent/Single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promoter/modals/SellersViewsModals.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/modals/SellersViewsModals.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album_modify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album_modify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album_registration.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/music_panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/music_panel.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/single_modify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/single_modify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/single_registration.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +259,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="122">
               <caret line="100" column="115" selection-start-line="100" selection-start-column="115" selection-end-line="100" selection-end-column="115" />
               <folding>
                 <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
@@ -210,7 +272,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/contents/Readings.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="7956">
               <caret line="468" column="52" selection-start-line="468" selection-start-column="52" selection-end-line="468" selection-end-column="52" />
             </state>
           </provider>
@@ -974,9 +1036,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-6" y="-776" width="1376" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13464448" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13677812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1378,14 +1440,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/Readings.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="7956">
           <caret line="468" column="52" selection-start-line="468" selection-start-column="52" selection-end-line="468" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
+        <state relative-caret-position="122">
           <caret line="100" column="115" selection-start-line="100" selection-start-column="115" selection-end-line="100" selection-end-column="115" />
           <folding>
             <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />

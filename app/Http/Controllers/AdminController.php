@@ -149,7 +149,7 @@ class AdminController extends Controller
 
       public function SinglesDataTable($status)
       {
-        $Single= Songs::where('album','=','0')->where('status',$status)->get();
+        $Single= Songs::whereNull('album')->where('status',$status)->get();
         $Single->each(function($Single){
         $Single->autors;
         $Single->Seller;
@@ -1380,7 +1380,8 @@ public function BooksDataTable($status) {
         $referals3= [];
         $WholeReferals = new Collection;
         if ($user->Referals()->get()->isEmpty()) {
-          return Datatables::of($WholeReferals)->toJson();
+          //return Datatables::of($WholeReferals)->toJson();
+          return response()->json($WholeReferals);
         }
         foreach ($user->Referals()->get() as $key) {
           $referals1[]=$key->refered;
@@ -1551,6 +1552,7 @@ public function BooksDataTable($status) {
         $secuencial = rand(0,100000000);
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
+        $ambiente = env('AMB_DATIL');
         $user = User::find($idUser);
         $nombrePaquete = $paquete->name;
         $iva = 0.12;
@@ -1560,7 +1562,7 @@ public function BooksDataTable($status) {
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 1, // 1: prueba; 2: produccion
+        "ambiente" => $ambiente, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, // Id de tickets_sales
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z

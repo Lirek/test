@@ -308,13 +308,13 @@
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                     <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
                             <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"><i class="material-icons prefix blue-text" style="margin-left: 30px;">report_problem</i><label><h6>AVISO IMPORTANTE!<br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea cerrar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
@@ -483,26 +483,6 @@
         });
     });
 
-    $(document).ready(function(){
-
-        $('#newpass').keyup(function(evento){
-            var password1 = $('#newpass').val();
-            var password = $('#confnewpass').val();
-
-            if (password != password1) {
-                $('#confnewpasscp').show();
-                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
-                $('#confnewpasscp').css('color','red');
-                $('#confnewpasscp').css('font-size','60%');
-                $('#ChangePassword').attr('disabled',true);
-            } else {
-                $('#confnewpasscp').hide();
-                if (password1.length !=0){
-                    $('#ChangePassword').attr('disabled',false);
-                }
-            }
-        });
-    });
 </script>
 <!-- Mostrar Contraseñas -->
 <script>

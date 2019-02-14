@@ -61,10 +61,10 @@ class HomeController extends Controller
         $BookAdd=user::contenidos_add($user, 'books_id');
         $MegazineAdd=user::contenidos_add($user, 'megazines_id');
         $MovieAdd=user::contenidos_add($user, 'movies_id');
-        $SeriesAdd=user::contenidos_add($user, 'Series_id'); 
+        $SeriesAdd=user::contenidos_add($user, 'Series_id');
 
         $musica = [];
-        $Songs = Songs::latest()->whereNull('album')->take(8)->get();
+        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
         foreach ($Songs as $s) {
             $adquirido=(in_array($s->id, $songsAdd)) ? true : false;
             $musica[] = array(
@@ -105,7 +105,7 @@ class HomeController extends Controller
         }
 
         $Series = Serie::latest()->where('status','Aprobado')->take(8)->get();
-        foreach ($Series as $s) {    
+        foreach ($Series as $s) {
             $adquirido=(in_array($s->id, $SeriesAdd)) ? true : false;
             $cine[] = array(
                 'id' => $s->id,
@@ -130,7 +130,7 @@ class HomeController extends Controller
                 'adquirido' =>  $adquirido
             );
         }
-    
+
        $Book = Book::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Book as $b) {
             $adquirido=(in_array($b->id, $BookAdd)) ? true : false;
@@ -335,7 +335,7 @@ class HomeController extends Controller
                 }
                 elseif($key->movies_id != 0){
                     $accionM=Movie::find($key->movies_id);
-                    $accion=$accionM->title;
+                    $accion=$accionM->original_title;
                 }
                 elseif($key->megazines_id != 0){
                     $accionM=Megazines::find($key->megazines_id);
@@ -622,7 +622,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 1, // 1: prueba; 2: produccion
+        "ambiente" => $ambiente, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, 
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z

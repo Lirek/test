@@ -156,7 +156,7 @@ h5.breadcrumbs-header {
                                     <!--nombre-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('name',$user->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                        {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="name">Nombre</label>
                                     </div>
@@ -164,7 +164,7 @@ h5.breadcrumbs-header {
                                     <!--apellido-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']) !!}
+                                        {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="name">apellidos</label>
                                     </div>
@@ -182,7 +182,7 @@ h5.breadcrumbs-header {
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
                                         @else
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
                                         <label  for="ruc">Cedula</label>
@@ -208,7 +208,7 @@ h5.breadcrumbs-header {
                                     @if ($user->img_doc)
                                         <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @else
-                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>
+                                    <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
                                 @endif
                                 </div>
                             </div>
@@ -227,7 +227,7 @@ h5.breadcrumbs-header {
                                     <!--alias-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
+                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'id'=>'alias']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="name">Alias</label>
                                     </div>
@@ -253,7 +253,7 @@ h5.breadcrumbs-header {
                                     <!--numero de telefono-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_phone</i>
-                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         <label  for="ruc">numero de telefono</label>
                                     </div>
@@ -275,15 +275,29 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Contactame</span>
+                                        <span class="collection-header center" style="color: white ">Patrocinador</span>
                                       </li>
                                     </div>
+
+
+
+                                      <!--   @if ($user->img_doc)
+                                        <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
+                                    @else
+                                    <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
+                                @endif -->
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-                                        {{$user->email}}
-                                        <br>
-                                        <br>
-                                        {{$user->phone}}
+                                        @if ($mipatro != '0')
+                                            {{$mipatro->name}}
+                                            <br>
+                                            {{$mipatro->email}}
+                                            <br>
+                                            {{$mipatro->phone}}
+                                        @else
+                                            <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
+                                        @endif
+                                        
                                     </div>
             {!! Form::close() !!} 
                                 </div>
@@ -359,7 +373,7 @@ h5.breadcrumbs-header {
                             <div style="text-align: center;">
                             <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"><i class="material-icons prefix blue-text" style="margin-left: 30px;">report_problem</i><label><h6>AVISO IMPORTANTE!<br><br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea cerrar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccount', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
@@ -494,27 +508,6 @@ h5.breadcrumbs-header {
     $(document).ready(function(){
 
         $('#confnewpass').keyup(function(evento){
-            var password1 = $('#newpass').val();
-            var password = $('#confnewpass').val();
-
-            if (password != password1) {
-                $('#confnewpasscp').show();
-                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
-                $('#confnewpasscp').css('color','red');
-                $('#confnewpasscp').css('font-size','60%');
-                $('#ChangePassword').attr('disabled',true);
-            } else {
-                $('#confnewpasscp').hide();
-                if (password1.length !=0){
-                    $('#ChangePassword').attr('disabled',false);
-                }
-            }
-        });
-    });
-
-    $(document).ready(function(){
-
-        $('#newpass').keyup(function(evento){
             var password1 = $('#newpass').val();
             var password = $('#confnewpass').val();
 

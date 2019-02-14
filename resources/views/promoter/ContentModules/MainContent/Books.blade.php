@@ -84,7 +84,7 @@
                         
                         if (info.img_saga!=0 ) {
                             var portada = 
-                            "<img class='materialboxed' width='150' height='120' src='{!!asset('"+info.img_saga+"')!!}'";
+                            "<img class='materialboxed' width='150' height='120' src='{!!asset('/images/sagas/"+info.img_saga+"')!!}'";
                         } else {
                             var portada = "No aplica ";
                         }
@@ -248,12 +248,12 @@
 
                         if (info.cover!=0 ) {
                             var portada = 
-                            "<img class='materialboxed' width='150' height='120' src='{!!asset('"+info.cover+"')!!}'";
+                            "<img class='materialboxed' width='150' height='120' src='{!!asset('images/bookcover/"+info.cover+"')!!}'";
                         } else {
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Revision") {
-                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('images/bookcover/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegadoRE'>ver negaciones</button>"
+                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('book/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegadoRE'>ver negaciones</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'

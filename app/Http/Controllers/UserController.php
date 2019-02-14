@@ -153,8 +153,16 @@ class UserController extends Controller
     {
         
         $user = User::find(Auth::user()->id);
-        //dd($user);
-        return view('users.edit')->with('user', $user);
+        $patro = Referals::where('refered',Auth::user()->id)->get();
+        //dd(count($patro)>0 );
+        //dd($patro != NULL );
+        if (count($patro)<=0){
+          $mipatro = 0;
+        } else {
+          $mipatro = User::find($patro[0]->user_id);
+        }
+        //dd($mipatro);
+        return view('users.edit')->with('user', $user)->with('mipatro', $mipatro);
     }
 
     /**
@@ -660,7 +668,13 @@ class UserController extends Controller
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
         if($TransactionSingle->count()>0){
           foreach ($TransactionSingle as $key) {
-            $Song[]= Songs::where('id','=',$key->song_id)->first(); 
+             $song=Songs::where('id','=',$key->song_id)->first();
+              $Song[] = array(
+                'cover'=>$song->cover,
+                'photo'=>$song->autors->photo,
+                'song_file'=>$song->song_file,
+                'song_name'=>$song->song_name
+            );  
           }
             
         }
@@ -1066,8 +1080,9 @@ class UserController extends Controller
                     {
                         $Series[] = $key->Episodes;    
                     } 
-        }    
-        elseif ($TransactionSeries->count()== 0 && $TransactionEpisodes ==0)
+        }   
+
+        elseif ($TransactionSeries->count() == 0 && $TransactionEpisodes->count() == 0)
         {
             $Series = 0;
                 

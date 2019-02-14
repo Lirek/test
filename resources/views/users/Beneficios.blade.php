@@ -5,7 +5,7 @@
  <div  class="col m6 s12 ">
       <div class="card">
           <div class="card-image"> 
-              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}"  >
+              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}"  height="500px">
           </div>
           <div class="card-action">
               <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
@@ -18,7 +18,7 @@
   <div  class="col m6 s12 ">
       <div class="card">
           <div class="card-image"> 
-              <img  src="{{asset('promociones/TarjetaMAXIBONO.jpg')}}" >
+              <img  src="{{asset('promociones/TarjetaMAXIBONO.jpg')}}" height="500px">
           </div>
           <div class="card-action">
               <a  href="{{asset('promociones/PremiosLeipelTarjetaMaxibono.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>

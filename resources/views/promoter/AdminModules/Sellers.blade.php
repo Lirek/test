@@ -45,53 +45,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
 
-  // listar los proveedores
-  /*
-  function listarProveedores() {
-    var proveedores = $('#proveedores').DataTable({
-      processing: true,
-      serverSide: true,
-      responsive: true,
-      destroy: true,
-
-      ajax: '{!! url('SellerDataTable') !!}',
-      columns: [
-        {data: 'nombre', name: 'nombre'},
-        {data: 'logo', name: 'logo'},
-        {data: 'correo', name: 'correo'},
-        {data: 'ruc', name: 'ruc'},
-        {data: 'modulos', name: 'modulos'},
-        {data: 'opciones', name: 'opciones', orderable: false, searchable: false}
-      ],
-      language: {
-        "processing": "Procesando...",
-        "lengthMenu" : "Mostrar _MENU_ registros",
-        "zeroRecords" : "No se encontraron resultados",
-        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix":    "",
-        "sSearch":         "Buscar:",
-        "sUrl":            "",
-        "sInfoThousands":  ",",
-        "sLoadingRecords": "Cargando...",
-          "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":     "Último",
-            "sNext":     "Siguiente",
-            "sPrevious": "Anterior"
-          },
-        "oAria": {
-          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        }
-      }
-    });
-  }
-  */
-  // listar los proveedores
-
 
 $(document).ready(function (e){
   $('.modal').modal();
@@ -335,7 +288,7 @@ $(document).ready(function (e){
       dataType: 'json', 
       success: function (result) {
         console.log(result);
-        if (result.logo!=null) {  
+        if (result.logo!=null) {
           var logoProveedor = "{{ asset('/') }}/"+result.logo;
           $("#logoProveedor").attr('src',logoProveedor);
         } else {
@@ -345,11 +298,22 @@ $(document).ready(function (e){
         $("#correoProveedor").text(result.email);
         $("#telefonoProveedor").text(result.tlf);
         $("#rucProveedor").text(result.ruc_s);
-        if (result.adj_ruc!=null) { 
+        if (result.adj_ruc!=null) {
+          var ext = result.adj_ruc.split('.').pop();
           var imgRucProveedor = "{{ asset('/') }}"+result.adj_ruc;
-          $("#imgRucProveedor").show();
-          $("#mensajeImgRucProveedor").hide();
-          $("#imgRucProveedor").attr('src',imgRucProveedor);
+          if (ext.toLowerCase()=='pdf') {
+            $("#imgRucProveedor").hide();
+            $("#mensajeImgRucProveedor").hide();
+            $("#labelImg").hide();
+            $("#pdfruc").show();
+            $("#pdfruc").attr('href',imgRucProveedor);
+          } else {
+            $("#labelImg").show();
+            $("#imgRucProveedor").show();
+            $("#pdfruc").hide();
+            $("#mensajeImgRucProveedor").hide();
+            $("#imgRucProveedor").attr('src',imgRucProveedor);
+          }
         } else {
           $("#imgRucProveedor").hide();
           $("#mensajeImgRucProveedor").show();

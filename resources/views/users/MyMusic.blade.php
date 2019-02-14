@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('css')
     <style type="text/css">
+    img.animated-gif{
+  width: 35px;
+  height: auto;
+}
+    .play{
+          }
 
     .card{
         height:380px;
@@ -62,12 +68,13 @@
                  @if($Singles != 0)
                     <div class="col s12 m4 offset-m1">
                       <br>
-                      <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300"style="">
+                     <!--  <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300"style=""> -->
+                      <img src="" width="100%" height="300"style="" id="image">
                       <audio id="player" class="player">
                         <source src="" type="audio/mp3" id="play"> 
                     </audio>
                     </div>
-                    <div class="col m6 s12">
+                    <div class="col m7 s12">
                     <small>Canciones:</small>
                     <ul class="collection z-depth-1" id="Playlist">
                        
@@ -164,8 +171,26 @@
 </script>
 <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
 <script type="text/javascript">
+   const players = new Plyr('#player', {
+            
+        });
 
-const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
+        players.play(
+            event => {
+                   $('.play').attr('src','{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}');
+                }
+        ); //inicia radio al abrir pagina
+        players.volume = 0.5; // Sets volume at 50%
+
+        players.on('playing', event => {
+            if(players.playing){
+                $('.play').attr('src','{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}');
+            }
+        });
+         players.on('pause', event => {
+           $('.play').attr('src','{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}');
+         });
+
 $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
@@ -189,7 +214,8 @@ $(document).ready(function(){
                     var pista=0;
                     
                      $.each(data, function(i,song) {
-                        $('#Playlist').append('<li class="collection-item" id="'+i+'" style="padding: 10px "><a href="#">'+song.song_name+'</a></li>');
+                        
+                        $('#Playlist').append(' <li class="collection-item" id="'+i+'"><div><a href="#!">'+song.song_name+'</a> <a href="#!" class="secondary-content" ><img class="img-play animated-gif" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" id="song_'+i+'" style="display: none" ></a></div></li>');
                         console.log(song);
                         playSong(0);
                         audio.pause();
@@ -199,7 +225,13 @@ $(document).ready(function(){
                     $('#Playlist li').click(function(){
                         var selectedsong = $(this).attr('id');
                         if(selectedsong){
+                              //Remover clase que indica cual se reproduce
+                              var s = document.getElementsByClassName('play')[0];
+                              console.log(s);
+                              s.classList.remove("play");
+                              s.style.display='none';
                         playSong(selectedsong);
+                          
                         }
                     }); 
 
@@ -210,9 +242,20 @@ $(document).ready(function(){
                         }
                         else{
                             
-                        $('#player').attr('src','{{asset('')}}'+data[id].song_file);
+                          $('#player').attr('src','{{asset('')}}'+data[id].song_file);
+                        if(data[id].cover != null){
+                          $('#image').attr('src','{{asset('')}}'+data[id].cover)
+                        }else{
+                          $('#image').attr('src','{{asset('')}}'+data[id].photo)
+                        }
+                              //agregar clase que indica cual se reproduce
+                              var d = document.getElementById('song_'+id);
+                              d.className += " play";
+                              d.style.display='inline';
+
                         audio.play();
                         scheduleSong(id);
+                          
                         }
                     }
                  
