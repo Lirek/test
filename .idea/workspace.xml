@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="bmonterrey: Cambio color botones cartelera adquiridos">
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="bmonterrey: unir vista libro revista como lectura">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,28 +93,29 @@
           <entry key="css" value="419" />
           <entry key="js" value="16" />
           <entry key="paso" value="1" />
-          <entry key="php" value="6630" />
-          <entry key="txt" value="639" />
+          <entry key="php" value="6654" />
+          <entry key="txt" value="680" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="6256" />
+          <entry key="Blade" value="6280" />
           <entry key="CSS" value="419" />
           <entry key="JavaScript" value="16" />
           <entry key="PHP" value="374" />
-          <entry key="PLAIN_TEXT" value="640" />
+          <entry key="PLAIN_TEXT" value="681" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="106" />
+          <entry key="project.closed" value="107" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.1568" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="2" />
           <entry key="project.open.time.199" value="1" />
@@ -129,7 +128,7 @@
           <entry key="project.open.time.27" value="4" />
           <entry key="project.open.time.28" value="4" />
           <entry key="project.open.time.29" value="2" />
-          <entry key="project.open.time.30" value="5" />
+          <entry key="project.open.time.30" value="6" />
           <entry key="project.open.time.31" value="9" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.33" value="7" />
@@ -166,7 +165,7 @@
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.92" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="115" />
+          <entry key="project.opened" value="117" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -195,11 +194,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
+            <state relative-caret-position="441">
+              <caret line="100" column="115" selection-start-line="100" selection-start-column="115" selection-end-line="100" selection-end-column="115" />
               <folding>
                 <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
@@ -208,11 +207,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/contents/Readings.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="482" lean-forward="true" selection-start-line="482" selection-end-line="482" />
+            <state relative-caret-position="154">
+              <caret line="468" column="52" selection-start-line="468" selection-start-column="52" selection-end-line="468" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -328,8 +327,8 @@
         <option value="$PROJECT_DIR$/resources/views/seller/layouts.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
       </list>
     </option>
   </component>
@@ -466,6 +465,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -495,17 +505,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="contents" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -676,6 +675,8 @@
       <workItem from="1549979447729" duration="592000" />
       <workItem from="1550068916878" duration="25000" />
       <workItem from="1550151637902" duration="732000" />
+      <workItem from="1550153033856" duration="1430000" />
+      <workItem from="1550167836347" duration="1015000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -950,11 +951,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549978091969</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="bmonterrey: unir vista libro revista como lectura">
+      <created>1550153201767</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1550153201767</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="600061000" />
+    <option name="totallyTimeSpent" value="602506000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -968,7 +976,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13161875" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13464448" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1033,7 +1041,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en Proveerdor para el registro de canciones, albums y artistas. Validacion para la solicitud de retiro de tickets" />
     <MESSAGE value="Solucion fallas de generos" />
@@ -1058,7 +1065,8 @@
     <MESSAGE value="bmonterrey: Cambio de color seller" />
     <MESSAGE value="bmonterrey: Cambio cartelera adquiridos" />
     <MESSAGE value="bmonterrey: Cambio color botones cartelera adquiridos" />
-    <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: Cambio color botones cartelera adquiridos" />
+    <MESSAGE value="bmonterrey: unir vista libro revista como lectura" />
+    <option name="LAST_COMMIT_MESSAGE" value="bmonterrey: unir vista libro revista como lectura" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/seller/layouts.bladenew.php" />
@@ -1361,17 +1369,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1381,8 +1378,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/Readings.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="482" lean-forward="true" selection-start-line="482" selection-end-line="482" />
+        <state relative-caret-position="154">
+          <caret line="468" column="52" selection-start-line="468" selection-start-column="52" selection-end-line="468" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="100" column="115" selection-start-line="100" selection-start-column="115" selection-end-line="100" selection-end-column="115" />
+          <folding>
+            <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#path#0;n#svg#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

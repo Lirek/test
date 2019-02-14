@@ -84,22 +84,22 @@
                                     <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                     @if($ci['type']=='Pelicula')
                                        @if($ci['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMovies/'.$ci['id']) }}">
+                                       <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog5('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($ci['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('SerieList/'.$ci['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
-                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('SerieList/'.$ci['id']) }}">
-                                            <i class="mdi mdi-movie-roll"></i>
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog6('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
+                                            <i class="small material-icons">movie</i>
                                         </a>
                                         @endif
                                     @endif
@@ -133,22 +133,22 @@
                                     <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
                                     @if($m['type']=='Album')
                                         @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light  blue" href="{{ url('MyAlbums/'.$m['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green " href="{{ url('MyAlbums/'.$m['id']) }}">
 
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('MyMusic')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @else
-                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @endif
@@ -187,21 +187,21 @@
                                     <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
                                     @if($le['type']=='Libro')
                                         @if($le['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @endif
                                     @else
                                          @if($le['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @endif
@@ -774,4 +774,175 @@ restaFechas = function(f1,f2)
         }
     }
 </script>
+
+//----------------COMPRA DE PELICULAS---------------
+
+<script>
+function fnOpenNormalDialog5(cost,name,id) {
+  
+   swal({
+            title: "¿Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback5(true,id);
+           
+          } else {
+            callback5(false,id);
+          }
+        });
+    };
+
+function callback5(value,id) {
+    if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+         $.ajax({
+                    
+            url:'BuyMovie/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('La pelicula ya forma parte de su colección','','error');
+                    }
+                    else
+                    {    
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : 'MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });
+                        swal('Pelicula comprada con exito','','success');
+                           console.log(result);
+                      }     
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
+
+//----------------COMPRA DE PELICULAS---------------
+
+<script>
+function fnOpenNormalDialog6(cost,name,id) {
+  
+   swal({
+            title: "¿Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback6(true,id);
+           
+          } else {
+            callback6(false,id);
+          }
+        });
+    };
+
+function callback6(value,id) {
+    if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+         $.ajax({
+                    
+            url:'BuySerie/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('La serie ya forma parte de su colección','','error');
+                    }
+                    else
+                    {    
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : 'MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });
+                        swal('Serie comprada con exito','','success');
+                           console.log(result);
+                      }     
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
+
+
+
 @endsection
