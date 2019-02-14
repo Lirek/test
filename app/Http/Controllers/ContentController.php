@@ -25,6 +25,9 @@ use App\Transactions;
 use App\Movie;
 use App\Serie;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+
 
 class ContentController extends Controller
 {
@@ -161,10 +164,30 @@ class ContentController extends Controller
 //----------------------------------------LECTURA------------------------------------------------------
     public function ShowReadingsBooks()
     {
-        $Books= Book::where('status','=','Aprobado')->orderBy('id', 'DESC')->paginate(8);
+    $Books= Book::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+    $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
 
+        $Lecturas = collect();
+        foreach ($Books as $books) {
+            $Lecturas->push($books);
+            $Lecturas->each(function($Lecturas){
+                $Lecturas->transaction;
+            });
+        }
+        foreach ($Megazines as $megazines){
+            $Lecturas->push($megazines);
+            $Lecturas->each(function($Lecturas){
+                $Lecturas->Transactions;
+            });
+        }
 
-        return view('contents.Readings')->with('Books',$Books);
+        //dd($Lecturas);
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($Lecturas);
+        $perPage = 12;
+        $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $Lecturas = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+        return view('contents.Readings')->with('Books',$Books)->with('Megazines',$megazines)->with('Lecturas',$Lecturas);
     }
 
     public function ShowReadingsMegazines()
@@ -201,10 +224,14 @@ class ContentController extends Controller
         $query=Input::get('term');
         $Author=BookAuthor::where('full_name','LIKE','%'.$query.'%')->get();
         $book=Book::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
+        $megazines=Megazines::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
 
         $data=array();
 
-        foreach ($Author as $key) {
+        foreach ($megazines as $key) {
+            $data[]=['id' => $key->id, 'value' => $key->title, 'type' => 'megazines'];
+        }
+         foreach ($Author as $key) {
 
             $data[]=['id' => $key->id, 'value' => $key->full_name, 'type' => 'author'];
         }
@@ -237,9 +264,8 @@ class ContentController extends Controller
     public function ShowProfileAuthor(Request $request)
     {
         if ($request->type=='book'){
-            $Books = Book::where('status','=','Aprobado')->where('title','=',$request->seach)->paginate(1);
-            return view('contents.Readings')->with('Books',$Books);
-            
+        $Books = Book::where('status','=','Aprobado')->where('title','=',$request->seach)->paginate(1);
+        return view('contents.Readings')->with('Lecturas',$Books);
         }
         elseif ($request->type=='author'){
             $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
@@ -247,19 +273,15 @@ class ContentController extends Controller
             $Books = Book::where('status','=','Aprobado')->where('author_id','=',$key->id)->paginate(8);
             return view('contents.Readings')->with('Books',$Books);
         }
-
+        }elseif ($request->type=='megazines'){
+        $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(1);
+        return view('contents.Readings')->with('Lecturas',$Megazines);
         }
-        
     }
 
     public function ShowProfileMegazine(Request $request)
     {
         $Megazines=Megazines::where('title','=',$request->seach)->where('status','=','Aprobado')->paginate(9);
-
-        // foreach ($Artist as $key) {
-
-        //     $prueba=$this->ShowAuthor($key->id);
-        // }
 
         return view('contents.Megazines')->with('Megazines',$Megazines);
     }
