@@ -64,13 +64,20 @@ class HomeController extends Controller
         $SeriesAdd=user::contenidos_add($user, 'Series_id');
 
         $musica = [];
-        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
         foreach ($Songs as $s) {
+
+            if($s->cover == Null){
+              $scover=$s->autors->photo;
+                }else{
+                $scover=$s->cover;
+                }
+
             $adquirido=(in_array($s->id, $songsAdd)) ? true : false;
             $musica[] = array(
                 'id' => $s->id,
                 'type' => 'Single',
-                'cover' => '/plugins/img/DefaultMusic.png',
+                'cover' => $scover ,
                 'cost' => $s->cost,
                 'title' => $s->song_name,
                 'adquirido' =>  $adquirido
