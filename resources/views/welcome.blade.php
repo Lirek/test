@@ -344,7 +344,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <a onclick="masInfo('lectura')"><img src="{{ asset($b['cover']) }}" width="100%" height="150px"></a>
+                                <a onclick="masInfo('lectura')"><img src="{{ asset($b['cover']) }}" width="100%" height="220px"></a>
                             </div>
                         </div>
                     </div>
