@@ -649,7 +649,6 @@
                         <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
-
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
@@ -657,17 +656,18 @@
                             Olvide mi contraseña
                         </a>
                     </div>
-                    <div class="input-field col s6">
+                   <!--<div class="input-field col s6">
                         <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                    </div>-->
+                    <div class="input-field col s12 l12">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
                 </div>
+
             </form>
         </div>
         
@@ -784,12 +784,12 @@
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
-                    <div class="input-field col s6">
+                    <!--<div class="input-field col s6">
                         <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
+                    </div>-->
+                    <div class="input-field col l12 s12 m12">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
