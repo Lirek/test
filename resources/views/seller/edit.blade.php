@@ -150,21 +150,21 @@
                                 <i class="material-icons prefix blue-text">face</i>
                                 {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required', 'id'=>'nombre', 'required'=>'required']) !!}
                                 <div id="mensajeNombre"></div>
-                                <label for="name">Nombre</label>
+                                <label for="nombre">Nombre</label>
                             </div>
                             <!--email-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">email</i>
-                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly']) !!}
+                                {!! Form::text('email',$seller->email,['class'=>'form-control','id'=>'email','readonly']) !!}
                                 <label  for="email">Correo</label>
                             </div>
                             <!--RUC-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">assignment_ind</i>
                                 @if($seller->estatus == 'Aprobado')
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','readonly']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','id'=>'ruc','readonly']) !!}
                                 @else
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'id'=>'ruc','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                     <div id="mensajeRuc"></div>
                                 @endif
                                 <label  for="ruc">(RUC) Registro único de contribuyente</label>
@@ -174,7 +174,7 @@
                             <div class="form-group ">
                             @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
                             <div class="file-field input-field col s12">
-                                <label for="exampleInputFile" class="control-label">Cargar imagen de RUC</label>
+                                <label for="img_doc" class="control-label">Cargar imagen de RUC</label>
                                 <br><br>
                                 <div id="mensajeDocumento"></div>
                                 <div class="btn blue">
@@ -208,7 +208,7 @@
                                 <i class="material-icons prefix blue-text">navigation</i>
                                 {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion', 'required'=>'required']) !!}
                                 <div id="mensajeMaximoDireccion"></div>
-                                <label  for="ruc">Dirección</label>
+                                <label  for="direccion">Dirección</label>
                             </div>
                             <!--telefono-->
                             <div class="input-field col s12">
@@ -216,14 +216,14 @@
                                 <input class="form-control" type="tel" name="phone" id="phone_s" required="required" onkeypress="return controltagNum(event)" maxlength="15" value="{{$seller->tlf}}">
                                 {{--<input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">--}}
                                 <div id="mensajePhone"></div>
-                                <label  for="ruc">Telefono</label>
+                                <label  for="phone2">Telefono</label>
                             </div>
                             <!--Estado de la cuenta-->
                             <div class="input-field col s12" style="display: none;">
                                 <i class="material-icons prefix blue-text">security</i>
                                   {!! Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']) !!}
                                   <div id="mensajeRuc"></div>
-                                 <label  for="ruc">Estado de cuenta</label>
+                                 <label  for="account_status">Estado de cuenta</label>
                             </div>
 
                                   <div class="input-field col s12">

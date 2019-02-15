@@ -208,8 +208,8 @@
                                     @if(count($author)!=0)
                                     <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                        {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
-                                        <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                        {!! Form::select('author_id',$author,null,['class'=>'form-control','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        <label for="autor" class="control-label">Nombre de autor</label>
                                         <a class="btn curvaBoton waves-effect waves-light green" href="{{url('authors_books/create')}}">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
@@ -234,8 +234,8 @@
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text valign-wrapper" >face</i>
                                         
-                                        {!! Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!} 
-                                        <label for="exampleInputFile" class="">Nombre de autor</label>  
+                                        {!! Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]) !!} 
+                                        <label for="autor" class="">Nombre de autor</label>  
                                         
                                     </div>
                                     @else
@@ -309,7 +309,7 @@
                             {{--titulo del libro--}}
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
-                                <label for="autocomplete-input" class="">Título</label>
+                                <label for="titulo" class="">Título</label>
                                 {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <div id="mensajeTitulo"></div>
                                 <br>
@@ -327,7 +327,7 @@
                             {{--precio--}}
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text">local_play</i>
-                                <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                <label for="precio" class="control-label">Costo en tickets</label>
                                 {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999','oninput'=>"maxLengthCheck(this)"]) !!}
                                 <div id="mensajePrecio"></div>
                                 <br>
@@ -348,8 +348,8 @@
                                     <i class="material-icons prefix blue-text valign-wrapper">star</i>
                                     {{--seleccion de rating--}}
                                     
-                                    {!! Form::select('rating_id',$ratin,1,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                                    <label for="exampleInputFile" class="control-label">Categoría</label>
+                                    {!! Form::select('rating_id',$ratin,1,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    <label for="rating" class="control-label">Categoría</label>
                                 </div>
                             </div>
                             
@@ -366,7 +366,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                        <label for="tags">Géneros</label>
+                                        <label for="genders">Géneros</label>
                                     <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero">
                                         Agregar género
                                     </button>
@@ -381,7 +381,7 @@
 
                                 <div class="file-field input-field">
                                     {{--archivo del libro--}}
-                                    <label for="exampleInputFile" class="control-label">Cargar el Libro</label>
+                                    <label for="libro" class="control-label">Cargar el Libro</label>
                                     <br><br>
                                         <div id="mensajeDocumento"></div>
                                         <div class="btn blue">
@@ -401,7 +401,7 @@
                                 <div class="input-field col s12">
                                     {{--selecione el pais--}}
                                     <i class="material-icons prefix blue-text valign-wrapper">room</i>
-                                    <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
+                                    <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')" id="paises">
                                         <option value="AF">Afganistán</option>
                                         <option value="AL">Albania</option>
                                         <option value="DE">Alemania</option>
@@ -647,7 +647,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
                                     {{--sinopsis del libro--}}
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     {!! Form::textarea('sinopsis',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
@@ -659,9 +659,9 @@
                                  <div class="input-field col s12">
                                     {{--año de lanzamiento--}}
                                     <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                                    <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                                    <label for="año" class="control-label">Año de lanzamiento</label>
                                     <div id="mensajeFechaLanzamiento"></div>
-                                    {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]) !!}
+                                    {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')",'id'=>'año']) !!}
                                     <div id="mensajeFechaLanzamiento"></div>
                                 </div>
                             </div>
