@@ -97,6 +97,12 @@
         </a>
       </li>
       <li>
+        <a href="{{url('Products')}}">
+          <i class="small material-icons">store</i>
+          Productos
+        </a>
+      </li>
+      <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">
           <i class="small material-icons">error</i>
           Errores

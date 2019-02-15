@@ -30,6 +30,9 @@ use App\Transactions;
 use App\Referals;
 use App\RollBacksTransacctions;
 
+use App\Products;
+use App\Rejection;
+
 class SuperAdminController extends Controller
 {
    //------------------------Panel de finanzas--------------------
@@ -289,6 +292,53 @@ class SuperAdminController extends Controller
       }
     }
    //---------------------------------------------------------------
+  //------------------------------- Productos-------------------------------
+  public function Products() {
+    return view("promoter.AdminModules.Products");
+  }
 
+  public function storeProducts(Request $request) {
+    Products::store($request);
+    return redirect()->action("SuperAdminController@Products");
+  }
 
+  public function dataProducts($estatus) {
+    $productos = Products::whereStatus($estatus);
+    return response()->json($productos);
+  }
+
+  public function infoProduct($id) {
+    $producto = Products::findProducto($id);
+    $producto->imagen_prod = asset($producto->imagen_prod);
+    $producto->pdf_prod = asset($producto->pdf_prod);
+    return response()->json($producto);
+  }
+
+  public function updateProduct(Request $request) {
+    Products::toUpdateProducts($request);
+    return redirect()->action("SuperAdminController@Products");
+  }
+
+  public function deleteProduct($id){
+    $producto = Products::deleteProducto($id);
+    return response()->json($producto);
+  }
+
+  public function statusProduct(Request $request, $id) {
+    $producto = Products::statusProduct($id,$request->status);
+    if ($request->status=="Denegado") {
+      $rejection = new Rejection;
+      $rejection->module = "Products";
+      $rejection->id_module = $id;
+      $rejection->reason = $request->reason;
+      $rejection->save();
+    }
+    /*
+    if ($producto->bidder_id!=0) {
+      $this->SendEmails($request->status,$producto->name,$producto->Bidder->email,$request->reason);
+    }
+    */
+    return response()->json($producto);
+  }
+  //------------------------------- Productos-------------------------------
 }

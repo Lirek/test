@@ -513,7 +513,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
 
          Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
-         
+        
+        //------------------------------- Rutas para los productos-------------------------------
+            Route::get('Products','SuperAdminController@Products');
+            Route::post('storeProducts','SuperAdminController@storeProducts');
+            Route::get('dataProducts/{status}','SuperAdminController@dataProducts');
+            Route::get('infoProduct/{id}','SuperAdminController@infoProduct');
+            Route::post('updateProduct','SuperAdminController@updateProduct');
+            Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
+            Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
+            
+        //------------------------------- Rutas para los productos-------------------------------
 
     });
 });
