@@ -85,8 +85,8 @@ class ContentController extends Controller
         //$Artist=$Albums->merge($Song);
         if($Art)
         {
-           $Albums=Albums::where('seller_id','=',$Art->seller_id)->get();
-           $Song=Songs::where('seller_id','=',$Art->seller_id)->where('album','=',NULL)->get();
+           $Albums=Albums::where('seller_id','=',$Art->seller_id)->where('status','=','Aprobado')->get();
+           $Song=Songs::where('seller_id','=',$Art->seller_id)->where('album','=',NULL)->where('status','=','Aprobado')->get();
            $Artist = collect();
             foreach ($Song as $single) {
                 $Artist->push($single);

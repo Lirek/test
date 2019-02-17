@@ -158,7 +158,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">Nombre</label>
+                                        <label for="nombre">Nombre</label>
                                     </div>
 
                                     <!--apellido-->
@@ -166,13 +166,13 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">apellidos</label>
+                                        <label for="apellido">apellidos</label>
                                     </div>
 
                                     <!--email-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_mail</i>
-                                        {!! Form::text('email',$user->email,['class'=>'form-control','readonly']) !!}
+                                        {!! Form::text('email',$user->email,['class'=>'form-control','readonly','id'=>'email']) !!}
                                         <label  for="email">Correo</label>
                                     </div>
 
@@ -180,19 +180,19 @@ h5.breadcrumbs-header {
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">assignment_ind</i>
                                         @if($user->num_doc)
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly','id'=>'ci']) !!}
                                         @else
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required','id'=>'ci' ,'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
-                                        <label  for="ruc">Cedula</label>
+                                        <label  for="ci">Cedula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
                             <div class="form-group ">
                                 @if($user->verify == 0 || $user->verify == 2)
                                 <div class="file-field input-field col s12">
-                                    <label for="exampleInputFile" class="control-label">Cargar imagen de cedula</label>
+                                    <label for="img_doc" class="control-label">Cargar imagen de cedula</label>
                                     <br><br>
                                     <div id="mensajeDocumento"></div>
                                     <div class="btn blue">
@@ -208,7 +208,7 @@ h5.breadcrumbs-header {
                                     @if ($user->img_doc)
                                         <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @else
-                                    <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
+                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>
                                 @endif
                                 </div>
                             </div>
@@ -218,8 +218,8 @@ h5.breadcrumbs-header {
                                     <div class="col m12 s12">
                                         <div class="input-field col s12">
                                          <i class="material-icons prefix blue-text valign-wrapper">wc</i>
-                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']) !!}
-                                        <label for="exampleInputFile" class="control-label">sexo</label>
+                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'sexo']) !!}
+                                        <label for="sexo" class="control-label">sexo</label>
                                         <br>
                                         </div>
                                     </div>
@@ -227,9 +227,9 @@ h5.breadcrumbs-header {
                                     <!--alias-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'id'=>'alias']) !!}
+                                        {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">Alias</label>
+                                        <label for="alias">Alias</label>
                                     </div>
 
                                     <!--fecha de nacimiento-->
@@ -237,25 +237,25 @@ h5.breadcrumbs-header {
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">today</i>
                                         <input type="text" name="fech_nac" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}" class="datepicker" id="fecha">
-                                        <label for="pickdate">Fecha de nacimiento</label>
+                                        <label for="fecha">Fecha de nacimiento</label>
                                         <div id="mensajeNombre"></div>
                                     </div>
 
                                     <!--direccion-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">description</i>
-                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control']) !!}
+                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">dirección</label>
+                                        <label for="direccion">dirección</label>
                                     </div>
 
                         
                                     <!--numero de telefono-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_phone</i>
-                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'tlf' ,'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="ruc">numero de telefono</label>
+                                        <label  for="tlf">numero de telefono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
@@ -263,7 +263,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">contact_phone</i>
                                            {!! Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="ruc">Estado de cuenta</label>
+                                        <label  for="account_status">Estado de cuenta</label>
                                     </div>
 
                                     <div class="input-field col s12">
@@ -297,7 +297,7 @@ h5.breadcrumbs-header {
                                         @else
                                             <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
                                         @endif
-                                        
+
                                     </div>
             {!! Form::close() !!} 
                                 </div>

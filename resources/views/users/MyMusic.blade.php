@@ -70,7 +70,7 @@
                       <br>
                      <!--  <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300"style=""> -->
                       <img src="" width="100%" height="300"style="" id="image">
-                      <audio id="player" class="player">
+                      <audio id="player" class="player" autoplay="true">
                         <source src="" type="audio/mp3" id="play"> 
                     </audio>
                     </div>
@@ -215,8 +215,8 @@ $(document).ready(function(){
                     
                      $.each(data, function(i,song) {
                         
-                        $('#Playlist').append(' <li class="collection-item" id="'+i+'"><div><a href="#!">'+song.song_name+'</a> <a href="#!" class="secondary-content" ><img class="img-play animated-gif" src="{{asset('plugins/materialize_adm/img/radio/ecualizador1.gif')}}" id="song_'+i+'" style="display: none" ></a></div></li>');
-                        console.log(song);
+                        $('#Playlist').append(' <li class="collection-item" id="'+i+'"><div><a href="#!">'+song.song_name+'</a> <a href="#!" class="secondary-content" ><img class="img-play animated-gif" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" id="song_'+i+'" ></a></div></li>');
+                        // console.log(song);
                         playSong(0);
                         audio.pause();
                         
@@ -226,10 +226,12 @@ $(document).ready(function(){
                         var selectedsong = $(this).attr('id');
                         if(selectedsong){
                               //Remover clase que indica cual se reproduce
+                              $('.play').attr('src','{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}');
                               var s = document.getElementsByClassName('play')[0];
                               console.log(s);
                               s.classList.remove("play");
-                              s.style.display='none';
+                              // s.style.display='none';
+                              
                         playSong(selectedsong);
                           
                         }
@@ -251,9 +253,10 @@ $(document).ready(function(){
                               //agregar clase que indica cual se reproduce
                               var d = document.getElementById('song_'+id);
                               d.className += " play";
-                              d.style.display='inline';
+                              // d.style.display='inline';
 
                         audio.play();
+                        
                         scheduleSong(id);
                           
                         }
