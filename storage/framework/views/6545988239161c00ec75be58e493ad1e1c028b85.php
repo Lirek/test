@@ -1,5 +1,4 @@
-@extends('promoter.layouts.app')
-@section('main')
+<?php $__env->startSection('main'); ?>
 
     <span class="card-title grey-text"><h3>Balance de la Plataforma</h3></span>
     <div class="row">
@@ -9,11 +8,11 @@
             <span class="card-title">Tickets Vendidos</span>
             <i class="large material-icons">confirmation_number</i>
             <h4>
-              <p>{{$Balance->tickets_solds}}</p>
+              <p><?php echo e($Balance->tickets_solds); ?></p>
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('TicketsDetail')}}" class="btn btn-primary">Ver más</a>
+            <a href="<?php echo e(url('TicketsDetail')); ?>" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
@@ -24,11 +23,11 @@
             <span class="card-title">Puntos Asignados</span>
             <i class="large material-icons">cached</i>
             <h4>
-              <p>{{$Balance->points_solds}}</p>
+              <p><?php echo e($Balance->points_solds); ?></p>
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('PointsDetails')}}" class="btn btn-primary">Ver más</a>
+            <a href="<?php echo e(url('PointsDetails')); ?>" class="btn btn-primary">Ver más</a>
           </div>
         </div>
       </div>
@@ -37,9 +36,9 @@
         <div class="card light-blue darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Puntos de Leipel</span>
-            <img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="128px">
+            <img src="<?php echo e(asset('sistem_images/Leipel Logo-02.png')); ?>" width="128px">
             <h4>
-              <p>{{$Balance->my_points}}</p>
+              <p><?php echo e($Balance->my_points); ?></p>
             </h4>
           </div>
           <div class="card-action">
@@ -68,17 +67,17 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($Users as $User)
+      <?php $__currentLoopData = $Users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $User): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <tr>
-       <td class="non-numeric">{{$User->name}}</td>
-       <td class="non-numeric">{{$User->email}}</td>
-       <td class="non-numeric">{{$User->points}}</td>
-       <td class="non-numeric">{{$User->pending_points}}</td>
-       <td class="non-numeric">{{$User->limit_points}}</td>
-       @endforeach
-       @foreach($Payments as $pay)
-       <td class="non-numeric">{{$pay->first()->created_at->format('d/m/Y')}}</td>
-       @endforeach
+       <td class="non-numeric"><?php echo e($User->name); ?></td>
+       <td class="non-numeric"><?php echo e($User->email); ?></td>
+       <td class="non-numeric"><?php echo e($User->points); ?></td>
+       <td class="non-numeric"><?php echo e($User->pending_points); ?></td>
+       <td class="non-numeric"><?php echo e($User->limit_points); ?></td>
+       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+       <?php $__currentLoopData = $Payments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pay): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+       <td class="non-numeric"><?php echo e($pay->first()->created_at->format('d/m/Y')); ?></td>
+       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </tr>
 
     </tbody>
@@ -96,19 +95,19 @@
         </tr>
     </thead>
       <tbody>
-        @foreach($UnRefereds as $UnRefered)
+        <?php $__currentLoopData = $UnRefereds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $UnRefered): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-         <td class="non-numeric">{{$UnRefered->name}}</td>
-         <td class="non-numeric">{{$UnRefered->email}}</td>
-         <td class="non-numeric">{{$UnRefered->points}}</td>
-         <td class="non-numeric">{{$UnRefered->created_at}}</td>
-         @if($UnRefered->verify==0)
+         <td class="non-numeric"><?php echo e($UnRefered->name); ?></td>
+         <td class="non-numeric"><?php echo e($UnRefered->email); ?></td>
+         <td class="non-numeric"><?php echo e($UnRefered->points); ?></td>
+         <td class="non-numeric"><?php echo e($UnRefered->created_at); ?></td>
+         <?php if($UnRefered->verify==0): ?>
          <td class="non-numeric">No Verificado</td>
-         @else
+         <?php else: ?>
          <td class="non-numeric">Verificado</td>
-         @endif
+         <?php endif; ?>
          </tr>
-        @endforeach    
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
      </tbody>
     </table>
   </div>
@@ -128,7 +127,7 @@
 
 
 			<div class="center">
-				<a href="{{url('UserDetails')}}"><button type="button" class="btn btn-theme">Ver Mas
+				<a href="<?php echo e(url('UserDetails')); ?>"><button type="button" class="btn btn-theme">Ver Mas
   			</button></a>
 			</div>
   		</div>
@@ -151,19 +150,19 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('PendingPointsRoutine')}}" class="btn btn-primary">Revisar</a>
+            <a id="x" class="btn btn-primary">Revisar</a>
           </div>
         </div>
       </div>
     </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script type="text/javascript">
    $(document).on('click', '#x', function() {
     var apply = $(this).attr('value1');
     var promoter = $(this).attr('value2');
     var url = 'PendingPointsRoutine';
-    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+    var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
     swal({
       title: "Procesando la información",
       text: "Espere mientras se procesa la información.",
@@ -200,4 +199,5 @@
     });
   });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('promoter.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

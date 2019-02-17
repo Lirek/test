@@ -262,7 +262,8 @@ class SuperAdminController extends Controller
     {
       $Users= User::all();
       $CurrentMonth=Carbon::now();
-
+      $TotalP=0;
+      $i=0;
       foreach ($Users as $User) 
       {
         if ($User->pending_points != 0) 
@@ -272,7 +273,7 @@ class SuperAdminController extends Controller
           {
             $LastPayment= Carbon::parse($Payment->created_at);
 
-            if ($LastPayment->isSameMonth($CurrentMonth)==False) 
+            if (!$LastPayment->isSameMonth($CurrentMonth)) 
             {
               $Assing = new PointsAssings;
               $Assing->amount = $User->pending_points;
@@ -282,14 +283,21 @@ class SuperAdminController extends Controller
 
               $balance= SistemBalance::find(1);
               $balance->my_points= $balance->my_points + $User->pending_points;
+
+              $TotalP += $User->pending_points;
+              $i++;
+
+              $User->pending_points=0;
+              $User->save();
+
+              break;
             }
           
           }
-          
-
-          
         }
       }
+        $json=['puntos'=>$TotalP,'usuarios'=>$i];
+      return response()->json($json);
     }
    //---------------------------------------------------------------
   //------------------------------- Productos-------------------------------
