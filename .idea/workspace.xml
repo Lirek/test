@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ec9090f-cfc8-4219-8b3f-f1b1461749d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/0da4543920d266aabb8c989306a45cf7cc2e9706.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/6545988239161c00ec75be58e493ad1e1c028b85.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/c6ab9ad78dccbab673388ffd50fd6b2b38c077e7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/db6a2e02701e33197bf78f5e055bb0a2ed2cf715.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/de81ee26835a5275138edae97b294d5768ce9ea4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/e75da1e65eaf0ff48a370c3eef2b78b585a61126.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/edbe8b75a05222508099a4c430707fd4d7820232.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/f7686ed8642cca46ec515967774d7cff308b99ed.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/fb475b6f41885d789901481563ae80f5df806832.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Business.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/AdminModules/Business.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,16 +75,16 @@
           <entry key="css" value="4" />
           <entry key="js" value="2" />
           <entry key="paso" value="1" />
-          <entry key="php" value="102" />
+          <entry key="php" value="105" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="88" />
+          <entry key="Blade" value="89" />
           <entry key="CSS" value="4" />
           <entry key="JavaScript" value="2" />
-          <entry key="PHP" value="14" />
+          <entry key="PHP" value="16" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
         </counts>
@@ -102,7 +94,7 @@
           <entry key="css" value="355" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
-          <entry key="php" value="6064" />
+          <entry key="php" value="6065" />
           <entry key="txt" value="532" />
         </counts>
       </usages-collector>
@@ -111,7 +103,7 @@
           <entry key="Blade" value="6022" />
           <entry key="CSS" value="355" />
           <entry key="JavaScript" value="12" />
-          <entry key="PHP" value="42" />
+          <entry key="PHP" value="43" />
           <entry key="PLAIN_TEXT" value="533" />
         </counts>
       </usages-collector>
@@ -185,11 +177,29 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="292" column="27" lean-forward="true" selection-start-line="292" selection-start-column="27" selection-end-line="292" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="162" column="9" lean-forward="true" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>autocomplete</find>
       <find>Mis Revistas</find>
       <find>&lt;center&gt;</find>
       <find>rev</find>
@@ -219,6 +229,7 @@
       <find>ShowMovies</find>
       <find>mi mu</find>
       <find>mis re</find>
+      <find>$mipatro</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
@@ -238,9 +249,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/users/edit.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ApiController/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApiController/AuthController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/public/assets/css/style.css" />
@@ -289,6 +297,9 @@
         <option value="$PROJECT_DIR$/resources/views/contents/ListenRadio.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" />
+        <option value="$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
       </list>
     </option>
   </component>
@@ -436,6 +447,19 @@
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
@@ -835,11 +859,25 @@
       <option name="project" value="LOCAL" />
       <updated>1550418276194</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log">
+      <created>1550418544132</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1550418544132</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log">
+      <created>1550419070669</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1550419070669</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="561897000" />
+    <option name="totallyTimeSpent" value="563736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -852,8 +890,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2978395" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2970679" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -867,7 +906,7 @@
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.52469134" side_tool="true" weight="0.32332155" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.47530866" weight="0.32332155" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.47530866" visible="true" weight="0.2385159" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32838285" />
@@ -876,30 +915,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27469134" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52391976" side_tool="true" visible="true" weight="0.32508835" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.47608024" visible="true" weight="0.32508835" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -918,7 +933,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;resources/views/auth/passwords/reset.blade.php&#10;#&#9;resources/views/seller/layouts.blade.php&#10;#&#9;storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php&#10;#&#9;storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php&#10;#&#9;storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php&#10;#&#9;storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php&#10;#&#9;storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php&#10;#&#9;storage/framework/views/e365d528a8cd0996ccdf3565bb076e2cf075be41.php&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)" />
     <MESSAGE value="Solucion al error del modal de compra" />
     <MESSAGE value="Cambios en revistas" />
@@ -941,18 +955,12 @@
     <MESSAGE value="bmonterrey: ajuste boton viajes" />
     <MESSAGE value="bmonterrey: ajuste lista referidos" />
     <MESSAGE value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
-    <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Kathy' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/seller/passwords/reset.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="7" lean-forward="true" selection-end-line="139" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/paso.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1136,13 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="482" column="27" selection-start-line="482" selection-start-column="20" selection-end-line="482" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -1182,13 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="151" column="66" selection-start-line="151" selection-start-column="66" selection-end-line="151" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="258" column="31" lean-forward="true" selection-start-line="258" selection-start-column="31" selection-end-line="258" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1252,6 +1246,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="313" lean-forward="true" selection-start-line="313" selection-end-line="313" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="292" column="27" lean-forward="true" selection-start-line="292" selection-start-column="27" selection-end-line="292" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="162" column="9" lean-forward="true" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
         </state>
       </provider>
     </entry>

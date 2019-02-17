@@ -288,7 +288,7 @@ h5.breadcrumbs-header {
                                 @endif -->
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-                                        @if ($mipatro != '0')
+                                        @if ($mipatro != 0)
                                             {{$mipatro->name}}
                                             <br>
                                             {{$mipatro->email}}
