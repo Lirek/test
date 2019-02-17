@@ -2,6 +2,7 @@
 @section('main')
 @include('flash::message')
 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
 
@@ -233,7 +234,6 @@ h5.breadcrumbs-header {
                                     </div>
 
                                     <!--fecha de nacimiento-->
-                                    
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">today</i>
                                         <input type="text" name="fech_nac" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}" class="datepicker" id="fecha">
@@ -309,7 +309,10 @@ h5.breadcrumbs-header {
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
-                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                    <ul>
+                    <blockquote>
+                    <a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>    
+                    </blockquote>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -367,7 +370,10 @@ h5.breadcrumbs-header {
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                    <ul>
+                            <blockquote>
+                            <a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                            </blockquote>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -560,7 +566,8 @@ h5.breadcrumbs-header {
   }
 </script>
 
-<script>
+ <script>
+
     $(function() {
     $('#fecha').datepicker({
         format: 'dd-mm-yyyy',
@@ -571,9 +578,13 @@ h5.breadcrumbs-header {
             weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
             weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
             weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+            yearRange: "2002:2012",
         }
     });
 });
+
+
+
 </script>
 <script type="text/javascript">
     
@@ -587,7 +598,8 @@ h5.breadcrumbs-header {
   $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
-</script>
+</script> 
+
     <script type="text/javascript">
 
     // Or with jQuery
