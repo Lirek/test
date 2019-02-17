@@ -557,7 +557,6 @@ h5.breadcrumbs-header {
     $(function() {
     $('#fecha').datepicker({
         format: 'dd-mm-yyyy',
-        yearRange: "-20:+0",
         firstDay: 1,
         i18n: {
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
