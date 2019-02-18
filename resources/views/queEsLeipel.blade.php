@@ -560,13 +560,13 @@ time {
                             Olvide mi contraseña
                         </a>
                     </div>
-                    <div class="input-field col s6">
+                    <!--<div class="input-field col s6">
                         <a class="waves-effect waves-light btn curvaBoton social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
-                        </a>
+                        </a>-->
                     </div>
-                    <div class="input-field col s6">
-                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
+                    <div class="input-field col s12 l12 m12">
+                       <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -685,12 +685,12 @@ time {
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
-                    <div class="input-field col s6">
+                    <!--<div class="input-field col s6">
                         <a class="waves-effect waves-light curvaBoton btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
+                    </div>-->
+                    <div class="input-field col s12 l12 m12">
+                      <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>

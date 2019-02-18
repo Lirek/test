@@ -177,11 +177,11 @@
             }
         });
         //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
-        $('#radios').show();
+        $('#libro').css("background-color","#42a5f5");
+        $('#radios').hide();
         $('#cines').hide();
         $('#Tvs').hide();
-        $('#libros').hide();
+        $('#libros').show();
         $('#musicas').hide();
 
         $('#cine').click(function(){
