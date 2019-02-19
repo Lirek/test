@@ -24,7 +24,7 @@
     /* label underline focus color */
     .row .input-field input:focus {
         border-bottom: 1px solid #29B6F6 !important;
-        box-shadow: 0 1px 0 0 #29B6F6 !important
+        box-shadow: 0 1px 0 0 #29B6F6 !important;
     }
 
       .swal-button {
@@ -39,7 +39,3 @@
     background: green !important; 
 }
 
-text-area p {
-  font-family: "Latin Modern Roman 10";
-  font-style: oblique;
-}
