@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
     <style>
@@ -566,10 +570,13 @@ h5.breadcrumbs-header {
   }
 </script>
 
- <script>
+  <script>
 
     $(function() {
     $('#fecha').datepicker({
+        yearRange: 50,
+        changeMonth: true,
+        changeYear: true,
         format: 'dd-mm-yyyy',
         firstDay: 1,
         i18n: {
@@ -578,14 +585,12 @@ h5.breadcrumbs-header {
             weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
             weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
             weekdaysAbbrev: ['D','L','M','M','J','V','S'],
-            yearRange: "2002:2012",
+            
         }
     });
 });
+</script> 
 
-
-
-</script>
 <script type="text/javascript">
     
   document.addEventListener('DOMContentLoaded', function() {
