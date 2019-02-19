@@ -7,14 +7,13 @@
     <title><?php echo e(config('app.name', 'Leipel')); ?></title>
 
     <!-- CSS  -->
-    <link href="<?php echo e(asset('css/queEsLeipel.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="<?php echo e(asset('plugins/materialize_index/css/materialize.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo e(asset('plugins/materialize_index/css/style.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo e(asset('css/owl.carousel.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="<?php echo e(asset('css/owl.theme.default.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="<?php echo e(asset('css/email.css')); ?>" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 
     <!-- Scripts -->
     <script>
@@ -35,9 +34,16 @@
     </script>
 </head>
 
+<style type="text/css">
+
+    
+    }
+</style>
+
+
 <!--Menu-->
 <nav class="default_color" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="<?php echo e(url('/home')); ?>" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="<?php echo e(url('/')); ?>" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
 <!--             <li><a class="blue-text" href="<?php echo e(route('queEsLeipel')); ?>"><b>¿Qué es leipel?</b></a></li>
  -->            <?php if(Auth::guard('web_seller')->user()): ?>
@@ -78,8 +84,8 @@
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-            <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
-            <?php if(Auth::guard('web_seller')->user()): ?>
+<!--             <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
+ -->            <?php if(Auth::guard('web_seller')->user()): ?>
                 <?php if(Auth::guard('web_seller')->user()->logo): ?>
                     <li>
                         <a href="<?php echo e(url('/seller_home')); ?>" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
@@ -120,103 +126,55 @@
     </div>
 </nav>
 <!--Fin Menu-->
-<br>
-<!-- tabs  -->
-<div class="row" >
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s4"><a class="active" href="#test1"><b>¿Qué es Leipel?</b></a></li>
-            <li class="tab col s4"><a href="#test2"><b>Viajes gratis y beneficios</b></a></li>
-            <li class="tab col s4"><a href="#test3"><b>Marcas relacionadas</b></a></li>
-        </ul>
-    </div>
 
-    <div id="test1" class="col s12 center">
-            <br><br>
 
-              <div style="text-align: center;">
-              <iframe width="350" height="230" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-              
-              <h5><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h5>
-    </div>
 
-    <div id="test2" class="col s12 center">   
-            <br><br><br>
-                <div style="text-align: center;">
-                <iframe width="350" height="230" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- Contenido  -->
+<br><br>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel curva">
+            <?php if(session('status')): ?>
+                <div class="alert alert-success">
+                    <?php echo e(session('status')); ?>
+
                 </div>
-                <h5><p>Descubre la magia de Leipel en este y otros vídeos en nuestro <br><a href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q" target="_blank">Canal de YouTube</a></p></h5>
-            <br>
+            <?php endif; ?>
+        <h5 class="center">
+            <b class="blue-text">Restablecer contraseña de usuario</b>
+        </h5><br>
+        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/password/email')); ?>">
+            <?php echo e(csrf_field()); ?>
 
-    </div>
-
-    <div id="test3" class="col s12 center">
-
-        <div class="col s12 center">
-            <br><br>
-            <div class="container s12 center"><br><br><br><br>
-                 <h4><p style="text-align:;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h4>               
+            <div class="row">
+                <div class="input-field col s12  <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                    <i class="material-icons prefix blue-text">email</i>
+                    <input type="email" id="email" name="email" class="autocomplete" value="<?php echo e(old('email')); ?>" required>
+                    <label for="autocomplete-input">Correo</label>
+                    <?php if($errors->has('email')): ?>
+                        <span class="help-block">
+                            <strong><?php echo e($errors->first('email')); ?></strong>
+                        </span>
+                    <?php endif; ?>
+                </div>
+                <div class="input-field col s12 center">
+                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" >Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
-            <br><br><br><br>
+        </form>
         </div>
-
     </div>
+</div>
 
-</div>
-<!-- Fin tabs  -->
-<div class="container">
-<section class="timeline">
-  <ul>
-    <li>
-      <div>
-        <time>¿QUÉ ES LEIPEL?</time>
-        Leipel es una red social de entretenimiento que abarca: Cine, mùsica, lectura, radio y Tv.
-      </div>
-    </li>
-    <li>
-      <div>
-        <time>¿QUÉ SON LO TICKETS Y PARA QUE SIRVEN?</time>
-        Los ticket son la moneda interna de Leipel, con ellos pordrás adquirir los contenidos que no sean gratis dentro de Leipel. Si se te acaban, siempre puedes comprar más.
-      </div>
-    </li>
-    <li>
-      <div>
-        <time>¿QUÈ SON LOS PUNTOS Y PARA QUÉ SIRVEN?</time>
-        En Leipel tenemos una manera de agradecerte por ayudarnos a llegar a más personas, a cambio de esto te regalamos puntos leipel, los cuales vas a poder canjear por viajes, más tickets y otros beneficios.
-      </div>
-    </li>
-    <li>
-      <div>
-        <time>¿POR QUÉ POR EL PAGO NO TENGO TODO GRATIS?</time>
-        Es fácil, nosotros colaboramos para que los autores ganen más dinero entre más se vende su obra. Actualmente en muchas páginas esto no pasa, simplemente les dan un valor pequeño se venda o no, con Leipel el autor depende de su gran talento para que su contenido se haga viral y así poder ganar como siempre han querido. Y como a fin de cuenta, los que compramos ya estamos mal acostumbrados a que nos regalen todo por internet, es por esto que Leipel da puntos para que te puedas llevar viajes y otros beneficios GRATIS.
-      </div>
-    </li>
-    <li>
-      <div>
-        <time>¿CÓMO GANO PUNTOS?</time>
-        Fácil, invita a todo los que puedas y diles que hagan lo mismo, ganarás un punto por cada cliente activo dentro del mes presente. 
-        <br>
-        <br>
-        *Cliente activo es aquel usuario que compró mínimo un paquete de tickets.
-        <br>
-        <br> 
-        *Se ganan tickets desde el primer hasta el tercer nivel de referidos. 
-        <br>
-        <br>
-        *Se pueden ganar máximo 1000 puntos en el mes, y si, puedes acumularlos.
-      </div>
-    </li>
-    <li>
-      <div>
-        <time>¿CON QUÉ CANJEO LOS PUNTOS?</time>
-        Por lo general con viajes, sin embargo habràn màs sorpresas. Una vez hayas acumulado los puntos necesarios para lo que deseas, deberàs enviarnos un mail con título CANJE DE PUNTOS a info@leipel.com y en el mail nos escribes tu nombre de usuario y número de cédula, recueda indicarnos en qué vas a canjear los puntos.
-      </div>
-    </li>
-  </ul>
-</section>
-</div>
-<br>
+<!-- Fin Contenido  -->
+
+<!-- Parallax  -->
+
+    
+
+<!--Fin parallax-->
 
 
 <footer class="page-footer blue">
@@ -255,19 +213,19 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Descubrir</h5>
                 <ul>
-                    <li><a class="white-text modal-trigger" onclick="masInfo('cine')">Cine</a></li>
-                    <li><a class="white-text modal-trigger" onclick="masInfo('musica')">Música</a></li>
-                    <li><a class="white-text modal-trigger" onclick="masInfo('lectura')">Lectura</a></li>
-                    <li><a class="white-text modal-trigger" onclick="masInfo('radio')">Radio</a></li>
-                    <li><a class="white-text modal-trigger" onclick="masInfo('tv')">TV</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Cine</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Música</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Lectura</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">Radio</a></li>
+                    <li><a class="white-text modal-trigger" href="#modal1">TV</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">
                 <h5 class="white-text">Social</h5>
                 <ul>
-                    <li><a class="waves-effect waves-light btn curvaBoton red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
+                    <li><a class="curvaBoton waves-effect waves-light btn red left" target="_blank" href="https://www.youtube.com/channel/UCYrCIhTIGITrGLaKW0f1A2Q">
                             <i class="fa fa-youtube"></i> &nbsp;YouTube&nbsp;&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
-                    <li><a class="waves-effect waves-light btn curvaBoton  blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
+                    <li><a class="curvaBoton waves-effect waves-light btn   blue darken-4 left" target="_blank" href="https://www.facebook.com/LEIPELoficial/">
                             <i class="fa fa-facebook"></i> &nbsp;Facebook&nbsp;&nbsp;&nbsp;</a><br>&nbsp;</li>
                     
                     
@@ -332,20 +290,20 @@
                     </div>
                     <div class="input-field col s12">
 
-                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
+                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="<?php echo e(url('/password/reset')); ?>">
                             Olvide mi contraseña
                         </a>
                     </div>
-                    <!--<div class="input-field col s6">
-                        <a class="waves-effect waves-light btn curvaBoton social google red right" href="login/google">
+                   <!--<div class="input-field col s6">
+                        <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>-->
                     </div>
                     <div class="input-field col s12 l12 m12">
-                       <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook center" href="login/facebook">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -381,7 +339,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect curvaBoton waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
+                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="#">Olvide mi contraseña </a>
@@ -462,16 +420,16 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <button class="btn waves-effect curvaBoton waves-light green" id="registroRU" type="submit" name="action">Registrarse
+                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRU" type="submit" name="action">Registrarse
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
                     <!--<div class="input-field col s6">
-                        <a class="waves-effect waves-light curvaBoton btn social google red right" href="login/google">
+                        <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                     </div>-->
-                    <div class="input-field col s12 l12 m12">
-                      <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook center" href="login/facebook">
+                    <div class="input-field col l12 s12 m12">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -565,7 +523,7 @@
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn waves-effect curvaBoton waves-light green" id="registroRP" type="submit" >Enviar
+                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRP" type="submit" >Enviar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -584,215 +542,11 @@
 <script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
 <script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>
 <script src="<?php echo e(asset('js/owl.carousel.min.js')); ?>"></script>
-<script src="<?php echo e(asset('js/queEsLeipel.js')); ?>"></script>
+<script src="<?php echo e(asset('js/email.js')); ?>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-  function masInfo(tipo) {
-        console.log(tipo);
-        var usuarioActivo = "<?php echo e(Auth::guest()); ?>";
-        console.log(usuarioActivo);
-        if (tipo=="radio") {
-            var ruta = "<?php echo e(url('/ShowRadio')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
-                location.href = ruta_seller;
-            }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-                swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
-                    buttons: {
-                        cancelar: "Cerrar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="tv") {
-            var ruta = "<?php echo e(url('/ShowTv')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
-                location.href = ruta_seller;
-            }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
-                    buttons: {
-                        cancelar: "Cerrar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="lectura") {
-            var ruta = "<?php echo e(url('/MyReads')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
-                location.href = ruta_seller;
-            }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
-                    buttons: {
-                        cancelar: "Cerrar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="musica") {
-            var ruta = "<?php echo e(url('/MyMusic')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
-                location.href = ruta_seller;
-            }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
-                    buttons: {
-                        cancelar: "Cerrar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        } else if (tipo=="cine") {
-            var ruta = "<?php echo e(url('/MyMovies')); ?>";
-            var ruta_seller = "<?php echo e(url('/seller_home')); ?>";
-            
-            if ("<?php echo e(Auth::guard('web_seller')->user()); ?>" != ""){
-                location.href = ruta_seller;
-            }
-            else if ((usuarioActivo!=1) && ("<?php echo e(Auth::guard('web_seller')->user()); ?>" == "")) {
-                console.log("usuario logueado");
-                location.href = ruta;
-            } else {
-                console.log("usuario invitado");
-            swal({
-                    title: "Ingrese al sistema",
-                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
-                    buttons: {
-                        cancelar: "Cerrar",
-                        iniciarSesion: {
-                            text: "Iniciar sesión",
-                            value: "iniciar"
-                        },
-                        registrar: {
-                            text: "Registrate",
-                            value: "registrar"
-                        }
-                    },
-                    closeOnEsc: false,
-                    closeOnClickOutside: false
-                })
-                .then((confirmacion) => {
-                    console.log(confirmacion);
-                    if(confirmacion=="registrar") {
-                        $('#modal2').modal();
-                        $('#modal2').modal('open');
-                    }else if(confirmacion=="iniciar") {
-                        $('#modal1').modal();
-                        $('#modal1').modal('open');}
-                });
-            }
-        }
-    }
+
 </script>
 
 <?php if(count($errors) > 0): ?>

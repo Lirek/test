@@ -12,6 +12,7 @@
     <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/welcome.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -32,94 +33,6 @@
 
     </script>
 </head>
-
-<style type="text/css">
-
-    .default_color{background-color: #FFFFFF !important;}
-
-    .img{margin-top: 7px;}
-
-    .curva{border-radius: 10px;}
-
-    .curvaBoton{border-radius: 20px;}
-
-    /*Color letras tabs*/
-    .tabs .tab a{
-        color:#00ACC1;
-    }
-    /*Indicador del tabs*/
-    .tabs .indicator {
-        display: none;
-    }
-    .tabs .tab a.active {
-        border-bottom: 2px solid #29B6F6;
-    }
-    /* label focus color */
-    .input-field input:focus + label {
-        color: #29B6F6 !important;
-    }
-    /* label underline focus color */
-    .row .input-field input:focus {
-        border-bottom: 1px solid #29B6F6 !important;
-        box-shadow: 0 1px 0 0 #29B6F6 !important
-    }
-
-    /*videos de youtube*/
-    .embed-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-    }
-    .embed-container iframe {
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    /*slider tv*/
-    .card-image.img
-    {
-        height:150px; !important
-    }
-
-    .material-icons.md1::before{
-        content:"search";
-    }
-
-    .material-icons.md1:hover::before{
-        content:"navigate_next";
-    }
-
-    /*evitar que el texto salga*/
-    .break-word {
-        word-break: break-all;
-    }
-
-    element.style {
-        height: 600px; !important;
-    }
-
-.swal-button {
-    background: #2196F3 !important;
-}
-
-.swal-button--cancelar {
-    background: red !important;
-}
-
-.swal-button--registrar {
-    background: green !important; 
-}
-
-
-
-
-
-</style>
-
 
 <!--Menu-->
 <nav class="default_color" role="navigation">
