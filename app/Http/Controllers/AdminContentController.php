@@ -57,6 +57,11 @@ class AdminContentController extends Controller
       ->with('series', $series);
     }
 
+    public function Reporte()
+    {
+      return view('promoter.AdminModules.Report');
+    }
+
   public function ContentAdminGraph() {
     $AllAlbums = Albums::all()->count();
     $AllBook = Book::all()->count();

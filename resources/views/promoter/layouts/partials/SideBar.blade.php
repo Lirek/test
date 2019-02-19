@@ -63,12 +63,6 @@
       </ul>
     </li>
 
-
-
-
-
-
-
     <li>
       <ul class= "collapsible collapsible-accordion">
         <li>
@@ -104,6 +98,13 @@
           </div>
         </li>
       </ul>
+    </li>
+    <li>
+      <a href="{{url('AdminReport')}}" class="waves-effect waves-blue">
+        <i class="small material-icons">equalizer</i>
+        Reportes
+        <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
+      </a>
     </li>
     @if(Auth::guard('Promoter')->user()->priority == 1 OR Auth::guard('Promoter')->user()->priority == 2)
       <li>

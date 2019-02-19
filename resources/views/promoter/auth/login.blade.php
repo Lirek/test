@@ -1,122 +1,97 @@
+<style>
+
+.logueo {/* PARALLAX */
+    height: 100%!important;
+    width: 100%!important;
+}
+
+.login {
+    border: 1px solid #FFF;
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,.7);
+    padding: 20px;
+}
+
+
+.curvaBoton {
+    border-radius: 20px;
+}
+</style>
+<link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="Dashboard">
-        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-
-        <title>LEIPEL</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-        <!--external css-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{asset('plugins/telefono/intlTelInput.css')}}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/zabuto_calendar.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/gritter/css/jquery.gritter.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/lineicons/style.css') }}">    
-        
-        <!-- Custom styles for this template -->
-        <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset ('assets/css/style-responsive.css') }}" rel="stylesheet">
-
-        <script src="{{ asset ('assets/js/chart-master/Chart.js')}}"></script>
-        
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>LEIPEL</title>
   </head>
-
   <body>
-      
-      <div id="login-page">
-        <div class="container">
-        
-              <form class="form-login"method="POST" action="{{ url('/promoter_login') }}">
+  <div class="had-container">
+       <div class="parallax-container logueo">
+        <div class="parallax"><img src="{{asset('sistem_images/promoter_assing.png')}}"></div>
+        <div class="row"><br>
+          <div class="col m8 s8 offset-m2 offset-s2 center">              
+            <div class="row login">
+              <img src="{{asset('sistem_images/Leipel.png')}}" width="200px" alt="" class="circle responsive-img">
+              <h4>Inicia sesión.</h4>
+              <form class="form-login" method="POST" action="{{ url('/promoter_login') }}">
                 {{ csrf_field() }}
-                <h2 class="form-login-heading">Ingresar</h2>
-                <div class="login-wrap">
-                    
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        
-                        <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
-
-                        @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                        @endif
-                    
-                    </div>
-                    <br>
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-
-                        <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                    </div>
-                    <label class="checkbox">
-                        <span class="pull-right">
-                            <a data-toggle="modal" href="login.html#myModal">Olvido Su Contraseña</a>
-        
+                <div class="row">
+                   <div class="input-field col m12 s12">
+                    <i class="material-icons prefix">account_box</i>
+                    <input id="icon_prefix" type="text" class="validate" name="email" value="{{ old('email') }}" required autofocus>
+                      @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
                         </span>
-                    </label>
-                    <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> Ingresar</button>
-                    <hr>
-                    
-
-        
+                      @endif
+                    <label for="icon_prefix">Email</label>
+                  </div>
                 </div>
-        
-
-              </form>       
-        
+                <div class="row">
+                  <div class="input-field col m12 s12">
+                    <i class="material-icons prefix">enhanced_encryption</i>
+                    <input id="password" type="password" class="validate" name="password" required>
+                      @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                      @endif
+                    <label for="password">Contraseña</label>
+                  </div>
+                </div>
+                <div class="row">
+                    <button class="btn curvaBoton waves-effect waves-light green" href="index.html" style="border-radius: 20px;" type="submit"><i class="fa fa-lock"></i> Ingresar</button>
+                </div>
+              </form>
+            </div>
+            </h4>
+          </div>
         </div>
       </div>
-
-
-
-
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous"></script>
-    <script src="{{ asset('plugins/telefono/intlTelInput.js') }}"></script>
-    <script src="{{ asset('plugins/telefono/utils.js') }}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
-
-
-    <!--common script for all pages-->
-    <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+    </div>
     
-    <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
 
-    <!--script for this page-->
-    <script src="{{asset('assets/js/sparkline-chart.js')}}"></script>    
-    <script src="{{asset('assets/js/zabuto_calendar.js')}}"></script> 
-    <script src="{{asset('assets/js/jquery.backstretch.min.js')}}"></script> 
-    <script>
-        $.backstretch("sistem_images/promoter_assing.png", {speed: 500});
-    </script>
+    </div> <!-- fin del .container -->
+
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   </body>
-
 </html>
+<script type="text/javascript">
+  $(document).ready(function(){
+          $('.parallax').parallax();
+      });
+</script>
