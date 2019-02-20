@@ -38,6 +38,34 @@
 										<input class="file-path validate" type="text">
 									</div>
 								</div>
+								<label class="control-label"> ¿Tiene un sub-producto? </label>
+								<br>
+								<label>
+									<input type="radio" id="opt-1" onclick="check();" name="sub-producto" value="Aprobado" class="with-gap">
+									<span>Si</span>
+								</label>
+								<label>
+									<input type="radio" id="opt-2" onclick="check();" name="sub-producto" value="Denegado" class="with-gap" checked>
+									<span>No</span>
+								</label>
+								<br>
+								<div id="otro" style="display: none;">
+									<div class="col 12">
+										<div class="col s6">
+											<div class="input-field">
+												<input type="number" class="validate otroCost" id="otroCost" name="otroCost[]" min="0">
+												<label for="otroCost">Costo</label>
+											</div>
+										</div>
+										<div class="col s6">
+											<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd" style="margin-top: 25%;">
+				                                <i class="material-icons"></i>Agregar otro
+				                            </a>
+										</div>
+									</div>
+									<div class="agregar">
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col s12">
@@ -141,6 +169,13 @@
 									<div class="file-path-wrapper">
 										<input class="file-path validate" type="text">
 									</div>
+								</div>
+								<div class="col s12">
+									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd">
+		                                <i class="material-icons"></i>Agregar otro
+		                            </a>
+								</div>
+								<div class="agregar_u">
 								</div>
 							</div>
 						</div>

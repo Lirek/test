@@ -312,13 +312,19 @@ class SuperAdminController extends Controller
 
   public function dataProducts($estatus) {
     $productos = Products::whereStatus($estatus);
+    $productos->each(function($productos){
+      $productos->SubProducto;
+    });
     return response()->json($productos);
   }
 
   public function infoProduct($id) {
     $producto = Products::findProducto($id);
-    $producto->imagen_prod = asset($producto->imagen_prod);
-    $producto->pdf_prod = asset($producto->pdf_prod);
+    $producto->each(function($producto){
+      $producto->imagen_prod = asset($producto->imagen_prod);
+      $producto->pdf_prod = asset($producto->pdf_prod);
+      $producto->SubProducto;
+    });
     return response()->json($producto);
   }
 

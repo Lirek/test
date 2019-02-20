@@ -96,7 +96,7 @@
                     <th>Ofertante</th>
                     <th>Costo</th>
                     <th>Descripción</th>
-                    <th>Estatus</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody id="productos">
@@ -143,7 +143,7 @@
                     		var pdf_prod = "No tiene PDF";
                     	}
                 		var status = 
-                		"<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value='"+info.id+"' href='#cambiarEstatus' id='status'>Cambiar</a><br>";
+                		"<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value='"+info.id+"' href='#cambiarEstatus' id='status'>Cambiar estatus</a><br>";
                     	if (info.bidder_id==0) {
                     		var bidder_id = "Administrador";
                     		var edit = 
@@ -185,6 +185,16 @@
 		$(document).ready(function(){
 			$('input.count').characterCounter();
 			productos("En Revision");
+            var agregar = $('.add_button');
+            var wrapper = $('.agregar');
+            agregar.click(function(){ 
+                wrapper.append(agregarHTML());
+            });
+            $(document).on('click','.eliminar', function(){
+                var uno = $(this).parent('div');
+                var dos = $(uno).parent('div');
+                dos.remove();
+            });
 		});
 		
 		$(document).on('click', '#EnRevision', function() {
@@ -216,13 +226,22 @@
                 dataType: "json",
                 success: function(data) {
                     swal.close();
-                    console.log(data);
-                    $("#idUpdate").val(producto);
-                    $("#name_u").val(data.name);
-                    $("#description_u").val(data.description);
-                    $("#cost_u").val(data.cost);
-                    $("#img_u").attr('src',data.imagen_prod);
-                    $("#pdf_prod_u").attr('href',data.pdf_prod);
+                    $.each(data,function(i,info) {
+                        console.log(data);
+                        $("#idUpdate").val(producto);
+                        $("#name_u").val(info.name);
+                        $("#description_u").val(info.description);
+                        $("#cost_u").val(info.cost);
+                        $("#img_u").attr('src',info.imagen_prod);
+                        $("#pdf_prod_u").attr('href',info.pdf_prod);
+                        var wrapper = $('.agregar_u');
+                        wrapper.empty();
+                        if (info.sub_producto.length!=0) {
+                            $.each(info.sub_producto,function(i,info) {
+                                wrapper.append(otrosHTML(info.id,info.cost));
+                            });
+                        }
+                    });
                 },
                 error: function(data) {
                     swal('Existe un error en su solicitud','','error')
@@ -367,6 +386,55 @@
 				$("#enviar").attr("disabled",false);
 			}
 		});
+
+        function check() {
+            if ($("#opt-1").is(':checked')) {
+                console.log("si");
+                $("#otro").show();
+                $(".otroCost").attr("required","required");
+            } else {
+                console.log("no");
+                $("#otro").hide();
+                $(".otroCost").removeAttr("required");
+            }
+        }
+
+        function agregarHTML() {
+            var nuevoHTML = 
+            "<div class='col s12'>"+
+                "<div class='col s6'>"+
+                    "<div class='input-field'>"+
+                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0'>"+
+                        "<label for='otroCost'>Costo</label>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='col s6'>"+
+                    "<a class='btn waves-effect waves-light red curvaBoton eliminar' style='margin-top: 25%;'>"+
+                        "<i class='material-icons'></i> Quitar"+
+                    "</a>"+
+                "</div>"+
+            "</div>";
+            return nuevoHTML;
+        }
+
+        function otrosHTML(id,cost) {
+            var nuevoHTML = 
+            "<div class='col s12'>"+
+                "<div class='col s6'>"+
+                    "<div class='input-field'>"+
+                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
+                        "<label for='otroCost'>Costo</label>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='col s6'>"+
+                    "<a class='btn waves-effect waves-light red curvaBoton eliminar' value='"+id+"' style='margin-top: 25%;'>"+
+                        "<i class='material-icons'></i> Quitar"+
+                    "</a>"+
+                "</div>"+
+            "</div>";
+            return nuevoHTML;
+        }
+        
 
 		// para que se vean las imagenes en los formularios
         $.uploadPreview({
