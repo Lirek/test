@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use File;
+use App\SubProducto;
 
 class Products extends Model
 {
@@ -19,28 +20,40 @@ class Products extends Model
 		'status'
     ];
 
+    public function SubProducto() {
+      return $this->hasMany('App\SubProducto','product_id');
+    }
+
     public static function store($request) {
-    	$product = new Products;
-    	$imagen = $request->file('imagen');
-    	$nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
-    	$pathImagen = public_path()."/promociones/";
-    	$imagen->move($pathImagen,$nameImagen);
-    	$imagen_prod = "/promociones/".$nameImagen;
+        $product = new Products;
+        $imagen = $request->file('imagen');
+        $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
+        $pathImagen = public_path()."/promociones/";
+        $imagen->move($pathImagen,$nameImagen);
+        $imagen_prod = "/promociones/".$nameImagen;
 
-    	$pdf = $request->file('pdf_prod');
-    	$namePDF = "promocionPdf_".time().".".$pdf->getClientOriginalExtension();
-    	$pathPdf = public_path()."/promociones/";
-    	$pdf->move($pathPdf,$namePDF);
-    	$pdf_prod = "/promociones/".$namePDF;
+        $pdf = $request->file('pdf_prod');
+        $namePDF = "promocionPdf_".time().".".$pdf->getClientOriginalExtension();
+        $pathPdf = public_path()."/promociones/";
+        $pdf->move($pathPdf,$namePDF);
+        $pdf_prod = "/promociones/".$namePDF;
 
-    	$product->bidder_id = 0;
-    	$product->imagen_prod = $imagen_prod;
-    	$product->pdf_prod = $pdf_prod;
-    	$product->name = $request->name;
-    	$product->description = $request->description;
-    	$product->cost = $request->cost;
-    	$product->status = "Aprobado";
-    	$product->save();
+        $product->bidder_id = 0;
+        $product->imagen_prod = $imagen_prod;
+        $product->pdf_prod = $pdf_prod;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->cost = $request->cost;
+        $product->status = "Aprobado";
+        $product->save();
+        if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
+            foreach ($request->otroCost as $cost) {
+                $costs[] = self::saveCosts($cost);
+            }
+            foreach ($costs as $cost) {
+                $product->SubProducto()->save($cost);
+            }
+        } 
     }
 
     public static function whereStatus($estatus) {
@@ -48,7 +61,7 @@ class Products extends Model
     }
 
     public static function findProducto($id) {
-    	return self::find($id);
+    	return self::where('id',$id)->get();
     }
 
     public static function toUpdateProducts($request) {
@@ -75,6 +88,15 @@ class Products extends Model
     	$product->description = $request->description;
     	$product->cost = $request->cost;
     	$product->save();
+        if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
+            SubProducto::where('product_id',$request->idUpdate)->delete();
+            foreach ($request->otroCost as $cost) {
+                $costs[] = self::saveCosts($cost);
+            }
+            foreach ($costs as $cost) {
+                $product->SubProducto()->save($cost);
+            }
+        }
     }
 
     public static function deleteProducto($id) {
@@ -90,5 +112,11 @@ class Products extends Model
     	$product->status = $status;
     	$product->save();
     	return $product;
+    }
+
+    public static function saveCosts($cost) {
+        $SubProducto = new SubProducto;
+        $SubProducto->cost = $cost;
+        return $SubProducto;
     }
 }
