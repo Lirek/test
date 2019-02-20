@@ -1,26 +1,6 @@
 @extends('promoter.layouts.app')
 	@section('main')
 
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Contenido total</h4>
-					<div class="panel-body text-center">
-						<canvas id="barra" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Contenido por aprobar</h4>
-					<div class="panel-body text-center">
-						<canvas id="Torta" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
 <div class="row">
 		<div class="row mt">
 			<h2><i class="fa fa-angle-right"></i>Contenido principal</h2>
@@ -195,72 +175,8 @@
 	        </div>
       	</div>
 </div>
-		<div class="row mt">
-			<h2><i class="fa fa-angle-right"></i>Artistas musicales</h2>	
-		</div>
-
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Artistas o Agrupaciones (Total)</h4>
-					<div class="panel-body text-center">
-						<canvas id="MusicianBar" height="100" width="200"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Autores Musicales (Total)</h4>
-					<div class="panel-body text-center">
-						<canvas id="MusicianPie" height="100" width="200"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt">
-			<center>
-				<a href="{{url('admin_musician')}}">
-					<button type="button" class="btn btn-primary">Revisar musicos</button>
-				</a>
-			</center>
-		</div>
-
-		<div class="row mt">
-			<h2><i class="fa fa-angle-right"></i>Etiquetas</h2>	
-		</div>
-
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Etiquetas totales</h4>
-					<div class="panel-body text-center">
-						<canvas id="TagsBarr" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Etiquetas por aprobar</h4>
-					<div class="panel-body text-center">
-						<canvas id="TagsPie" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt">
-			<center>
-				<a href="{{url('TagsReview')}}">
-					<button type="button" class="btn btn-primary">Revisar etiquetas</button>
-				</a>
-			</center>
-		</div>
 
 	@endsection
-
 	@section('js')
 		<script>
 			$(document).ready(function(){

@@ -3,8 +3,8 @@
 
     <span class="card-title grey-text"><h3>Contenido por aprobar</h3></span>
     <div class="row">
-      <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+      <div class="col s12 m6 l3">
+        <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Contenido por aprobar</span>
             <i class="large material-icons">view_carousel</i>
@@ -13,13 +13,13 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('AdminContent')}}" class="btn btn-primary">Revisar</a>
+            <a href="{{url('AdminContent')}}" class="btn btn-primary indigo">Revisar</a>
           </div>
         </div>
       </div>
 
-      <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+      <div class="col s12 m6 l3">
+        <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Proveedores por validar</span>
             <i class="large material-icons">group</i>
@@ -28,13 +28,13 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('admin_sellers')}}" class="btn btn-primary">Revisar</a>
+            <a href="{{url('admin_sellers')}}" class="btn btn-primary indigo">Revisar</a>
           </div>
         </div>
       </div>
 
-      <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+      <div class="col s12 m6 l3">
+        <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Solicitudes de proveedores</span>
             <i class="large material-icons">group_add</i>
@@ -43,25 +43,28 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('admin_applys')}}" class="btn btn-primary">Revisar</a>
+            <a href="{{url('admin_applys')}}" class="btn btn-primary indigo">Revisar</a>
           </div>
         </div>
       </div>
-    </div>
     @if(Auth::guard('Promoter')->user()->priority == 1)
       <div class="row">
-        <div class="col s12 m6 l4">
-          <div class="card light-blue darken-3 hoverable">
+        <div class="col s12 m6 l3">
+          <div class="card pink darken-3 darken-3 hoverable">
             <div class="card-content white-text">
               <span class="card-title">Errores</span>
               <i class="large material-icons">error</i>
             </div>
+            <br>
+            <br>
+            <br>
             <div class="card-action">
-              <a href="{{ route('log-viewer::dashboard') }}" target="_blank" class="btn btn-primary">Ver errores</a>
+              <a href="{{ route('log-viewer::dashboard') }}" target="_blank" class="btn btn-primary indigo">Ver errores</a>
             </div>
           </div>
         </div>
       </div>
+    </div>
       <span class="card-title grey-text"><h3>Paquetes de tickets</h3></span>
       <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Nuevo paquete de tickets" href="#NewPack">
         <i class="material-icons">add</i>
@@ -70,7 +73,7 @@
         @foreach($TicketsPackage as $Package)
           <div class="col s12 m6 l4">
             <div class="card hoverable">
-              <div class="card-panel card-title light-blue lighten-1">
+              <div class="card-panel card-title pink darken-3 darken-3">
                 <div class="white-text">
                   {{$Package->name}}
                   <br><br>
