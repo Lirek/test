@@ -274,7 +274,7 @@ class ContentController extends Controller
             return view('contents.Readings')->with('Books',$Books);
         }
         }elseif ($request->type=='megazines'){
-        $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(1);
+        $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(8);
         return view('contents.Readings')->with('Lecturas',$Megazines);
         }
     }
@@ -368,24 +368,51 @@ class ContentController extends Controller
 //--------------------------------------MOVIES--------------------------------------------
 
     public function ShowMovies(){
-        $Movie= Movie::where('status','=','Aprobado')->paginate(8);
+        $Movies= Movie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+        $Series= Serie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
 
-        // if ($Movie->count()==0)
-        // {
-        //     $Movie=NULL;
-        // }
-        return view('contents.Movies')->with('Movie',$Movie);
+
+        $Cine = collect();
+        foreach ($Movies as $movie) {
+            $movie->type='movie';
+            $Cine->push($movie);
+            $Cine->each(function($Cine){
+                $Cine->transaction;
+            });
+        }
+        foreach ($Series as $serie){
+            $serie->type='serie';
+            $Cine->push($serie);
+        }
+
+      // dd($Cine);
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $col = new Collection($Cine);
+        $perPage = 12;
+        $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $Cine = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+   
+
+        //dd($Cine);
+        return view('contents.Movies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
     }
 
     public function seachMovie(){
         $query=Input::get('term');
-        $Movie=Movie::where('title','LIKE','%'.$query.'%')->get();
+
+        $Movie=Movie::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
+        $Series=Serie::where('title','LIKE','%'.$query.'%')->where('status','=','Aprobado')->get();
 
         $data=array();
 
         foreach ($Movie as $key) {
 
-            $data[]=['id' => $key->id, 'value' => $key->title];
+            $data[]=['id' => $key->id, 'value' => $key->title , 'type' => 'movie'];
+        }
+
+         foreach ($Series as $key) {
+
+            $data[]=['id' => $key->id, 'value' => $key->title, 'type' => 'serie'];
         }
 
         if(count($data))
@@ -403,11 +430,38 @@ class ContentController extends Controller
     }
 
     public function ShowMovieSeach(Request $request){
-        $Movie= Movie::where('title','=',$request->seach)->get();
-        foreach ($Movie as $key) {
-            $prueba=$this->MovieList($key->id);
+      
+        if ($request->type=='serie'){
+                $Series = Serie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
+              
+                $Cine = collect();
+                foreach ($Series as $series) {
+                     $series->type='serie';
+                     $Cine->push($series);
+                    
+                }
+
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $col = new Collection($Cine);
+                $perPage = 12;
+                $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+                $Cine = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+                return view('contents.Movies')->with('Cine',$Cine);
         }
-        return $prueba;
+        elseif ($request->type=='movie'){
+                $Movies= Movie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
+                $Cine = collect();
+                foreach ($Movies as $movies) {
+                     $movies->type='movie';
+                     $Cine->push($movies);
+                }
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $col = new Collection($Cine);
+                $perPage = 12;
+                $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+                $Cine = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+                return view('contents.Movies')->with('Cine',$Cine);
+        }
     }
 //--------------------------------------SERIES--------------------------------------------
     public function ShowSeries(){
