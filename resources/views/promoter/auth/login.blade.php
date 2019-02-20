@@ -7,7 +7,7 @@
 
 .login {
     border: 1px solid #FFF;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     background-color: rgba(255,255,255,.7);
     padding: 20px;
