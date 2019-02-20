@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminContentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/ContentModules/Content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/promoter/layouts/partials/SideBar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promoter/layouts/partials/SideBar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +33,7 @@
     <session id="-819946842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.100" value="1" />
           <entry key="project.open.time.105" value="2" />
           <entry key="project.open.time.11" value="1" />
@@ -606,7 +601,7 @@
       <workItem from="1549897183447" duration="2048000" />
       <workItem from="1549930520253" duration="310000" />
       <workItem from="1549985957222" duration="2412000" />
-      <workItem from="1550544601320" duration="198000" />
+      <workItem from="1550544601320" duration="831000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -839,11 +834,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549991375146</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="-estructura y nombre del menu de backend&#10;-cambio de color back&#10;-inicio de sesion de back&#10;-vista de reporte en back&#10;-mejoras de home de back">
+      <created>1550544979688</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1550544979688</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="566699000" />
+    <option name="totallyTimeSpent" value="567332000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

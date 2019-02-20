@@ -37,6 +37,8 @@ use App\Mail\ApprovalNotification;
 
 use App\Events\AssingPointsEvents;
 
+use App\Products;
+
 class HomeController extends Controller
 {
     /**
@@ -232,8 +234,9 @@ class HomeController extends Controller
         }
     }
 
-    public function Beneficios(){
-        return view('users.Beneficios');
+    public function Beneficios($estatus){
+        $beneficio = Products::whereStatus($estatus);
+        return view('users.Beneficios')->with('beneficio',$beneficio);
 
     }
 

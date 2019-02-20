@@ -7,30 +7,22 @@
 
 @section('main')
 
- <div  class="col m6 s12 ">
+
+@foreach($beneficio as $bene)
+<center>
+ <div  class="col m4 s6 ">
       <div class="card">
           <div class="card-image"> 
-              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}"  >
+              <img  src="{{asset($bene->imagen_prod)}}"  >
           </div>
           <div class="card-action">
-              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
+              <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
               <a  href="{{asset('#')}}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
               <br>
           </div>
       </div>
   </div>
+  </center>
 
-  <div  class="col m6 s12 ">
-      <div class="card">
-          <div class="card-image"> 
-              <img  src="{{asset('promociones/TarjetaMAXIBONO.jpg')}}" >
-          </div>
-          <div class="card-action">
-              <a  href="{{asset('promociones/PremiosLeipelTarjetaMaxibono.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
-              <a  href="{{asset('#')}}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
-              <br>
-          </div>
-      </div>
-  </div>
-
+  @endforeach
 @endsection

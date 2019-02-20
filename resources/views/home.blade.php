@@ -122,7 +122,7 @@
                                                             <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"><i class="mdi mdi-movie-roll"></i></a>
                                                         </div>
                                                         <div class="card-action ">
-                                                            <b class="grey-text truncate">{{$b->title}}</b>
+                                                            <b class="grey-text truncate">{{$s->title}}</b>
                                                         </div>
                                                     </div>
 

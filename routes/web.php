@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('generarFactura/{idFactura}/{id_payments}','HomeController@generarFactura');
     Route::get('sponsor/{cod}','HomeController@sponsor');
     // agregada Alexis 15/01/2019
-    Route::get('/Beneficios','HomeController@Beneficios');
+    Route::get('/Beneficios/{status}','HomeController@Beneficios');
 
 
 //-------------------Funciones del Usuarios----------------------------------
@@ -336,6 +336,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           //___________________Graficas y datos del Home de Contenido-______________
 
                 Route::get('AdminContent','AdminContentController@Home');
+
+                Route::get('AdminReport','AdminContentController@Reporte');
 
                 Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
 
