@@ -753,7 +753,7 @@
                     <div class="input-field col s12 <?php echo e($errors->has('description') ? ' has-error' : ''); ?>">
                         <i class="material-icons prefix blue-text">assignment</i>
                         <input type="text" id="description" name="description" required="required" class="autocomplete">
-                        <label for="description-input14">Descripción</label>
+                        <label for="description">Descripción</label>
                         <?php if($errors->has('description')): ?>
                             <span class="help-block">
                                             <strong><?php echo e($errors->first('description')); ?></strong>
@@ -763,7 +763,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                        <label for="autocomplete-input9">Correo</label>
+                        <label for="emailRP">Correo</label>
                         <div id="mensajeCorreo" style="margin-top: 1%"></div>
                         <?php if($errors->has('email')): ?>
                             <span class="help-block">
