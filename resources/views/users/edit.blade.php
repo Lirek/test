@@ -171,7 +171,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">apellidos</label>
+                                        <label for="apellido">apellidos</label>
                                     </div>
 
                                     <!--email-->
@@ -187,10 +187,10 @@ h5.breadcrumbs-header {
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
                                         @else
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'id'=>'cedula','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
-                                        <label  for="ruc">Cedula</label>
+                                        <label  for="cedula">Cedula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
@@ -234,7 +234,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">Alias</label>
+                                        <label for="alias">Alias</label>
                                     </div>
 
                                     <!--fecha de nacimiento-->
@@ -248,18 +248,18 @@ h5.breadcrumbs-header {
                                     <!--direccion-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">description</i>
-                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control']) !!}
+                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">dirección</label>
+                                        <label for="direccion">dirección</label>
                                     </div>
 
                         
                                     <!--numero de telefono-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_phone</i>
-                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="ruc">numero de telefono</label>
+                                        <label  for="telefono">numero de telefono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
