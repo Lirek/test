@@ -110,7 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%" alt="user background">
+                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%; width: 850px; margin-left: -8px;" alt="user background">
                         </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
@@ -136,12 +136,12 @@ h5.breadcrumbs-header {
                                         {{Auth::user()->name}}</h5>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->credito}}</h5>
                                         <label>todos mis tickets</label>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->points}}</h5>
                                         <label>todos mis puntos</label>
                                     </div>
@@ -278,8 +278,8 @@ h5.breadcrumbs-header {
 
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Contactame</span>
+                                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
+                                        <span class="collection-header center" style="color: white">Contactame</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -293,7 +293,7 @@ h5.breadcrumbs-header {
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
                     </div>
                 <div class="card-content">
@@ -307,7 +307,7 @@ h5.breadcrumbs-header {
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
                             </div>
                             <div class="card-content">
 
@@ -369,7 +369,7 @@ h5.breadcrumbs-header {
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar cuenta</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar cuenta</span></div>
                             </div>
                             <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">

@@ -291,7 +291,7 @@
                                                                         <ul>
                                                                             <li><a href="{{ url('/megazine_form') }}">Registrar revista</a></li>
                                                                             <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
-                                                                            <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                                            <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}"> Revistas registradas</a></li>
                                                                             <li><div class="divider"></div></li>
                                                                         </ul>
                                                                 </div>
