@@ -1,6 +1,4 @@
-    
-
-    // Tabs
+  // Tabs
     var elem = $('.tabs')
     var options = {}
     var instance = M.Tabs.init(elem, options);
@@ -31,7 +29,7 @@
         $('.parallax').parallax();
         $('.materialboxed').materialbox();
         $('.slider').slider({
-            indicators: true
+            indicators: false
         });
 
 
@@ -115,119 +113,13 @@
             }
         });
 
-        $('#featured3').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        $('#featured4').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-        $('#featured5').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
         //Mostarar contenidos seleccionados
-        $('#libro').css("background-color","#42a5f5");
-        $('#radios').hide();
-        $('#cines').hide();
+        $('#radio').css("background-color","#42a5f5");
         $('#Tvs').hide();
-        $('#libros').show();
-        $('#musicas').hide();
-
-        $('#cine').click(function(){
-            console.log("pase por cine");
-            $('#libro').css("background-color","#2196F3");
-            $('#cine').css("background-color","#42a5f5");
-            $('#musica').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').show();
-        });
-
-        $('#musica').click(function(){
-            console.log("pase por musica");
-            $('#libro').css("background-color","#2196F3");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#42a5f5");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#cines').hide();
-            $('#musicas').show();
-        });
-
-        $('#libro').click(function(){
-            console.log("pase por libro");
-            $('#libro').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
-            $('#libros').show();
-        });
+        $('#peliculas').hide();
+        $('#libros').hide();
 
         $('#radio').click(function(){
-
             $('#radio').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -235,14 +127,10 @@
             $('#tv').css("background-color","#2196F3");
             $('#Tvs').hide();
             $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
-            console.log("paso por radio");
             $('#radios').show();
         });
 
         $('#tv').click(function(){
-            console.log("pase por tv");
             $('#tv').css("background-color","#42a5f5");
             $('#cine').css("background-color","#2196F3");
             $('#musica').css("background-color","#2196F3");
@@ -250,10 +138,20 @@
             $('#radio').css("background-color","#2196F3");
             $('#radios').hide();
             $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
             $('#Tvs').show();
         });
+
+//        $('#libro').click(function(){
+//            $('#libro').css("background-color","#42a5f5");
+//            $('#cine').css("background-color","#2196F3");
+//            $('#musica').css("background-color","#2196F3");
+//            $('#tv').css("background-color","#2196F3");
+//            $('#radio').css("background-color","#2196F3");
+//            $('#radios').hide();
+//            $('#Tvs').hide();
+//            $('#libros').show();
+//        });
+
 
         $("#formRP").on('submit',function(e){
             var url = "{{ url('ApplysSubmit') }}";
@@ -652,8 +550,6 @@
 
             }else{
 
-                $('#emailMen').hide();
-                $('#iniciar').attr('disabled',false);
                 return true;
             }
         });

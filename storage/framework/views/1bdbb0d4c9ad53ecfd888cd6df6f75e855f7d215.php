@@ -264,7 +264,8 @@
                     <div style="text-align: left;"> 
                     <ul>
                     <blockquote>
-                    <a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a></blockquote>
+                    <i class="material-icons prefix blue-text">edit</i>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a></blockquote>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -327,14 +328,15 @@
                         </div>
                     </ul>
                      <ul><blockquote>
-                         <a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                         <i class="material-icons prefix blue-text">delete_forever</i>
+                         <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
                          </blockquote>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar Cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea cerrar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="<?php echo e(url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id)); ?>" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             <?php echo Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']); ?>

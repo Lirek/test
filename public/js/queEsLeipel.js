@@ -1,6 +1,54 @@
-    
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.parallax');
+    var instances = M.Parallax.init(elems, options);
+  });
 
-    // Tabs
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+
+
+    /* 2°SECTION JS*/
+
+  (function() {
+
+  'use strict';
+
+  // define variables
+  var items = document.querySelectorAll(".timeline li");
+
+  // check if an element is in viewport
+  // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  function callbackFunc() {
+    for (var i = 0; i < items.length; i++) {
+      if (isElementInViewport(items[i])) {
+        items[i].classList.add("in-view");
+      }
+    }
+  }
+
+  // listen for events
+  window.addEventListener("load", callbackFunc);
+  window.addEventListener("resize", callbackFunc);
+  window.addEventListener("scroll", callbackFunc);
+
+})();
+
+/* 3°SECTION JS*/
+
+ // Tabs
     var elem = $('.tabs')
     var options = {}
     var instance = M.Tabs.init(elem, options);
@@ -23,237 +71,9 @@
     });
 
     // Or with jQuery
-    // Slider
-    $(document).ready(function(){
-        $('.tooltipped').tooltip();
-        $('.modal').modal();
-        $('select').formSelect();
-        $('.parallax').parallax();
-        $('.materialboxed').materialbox();
-        $('.slider').slider({
-            indicators: true
-        });
+   
 
-
-        /*==========  Featured Cars  ==========*/
-        $('#featured-cars').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 4
-                },
-                1200: {
-                    items: 5
-                }
-            }
-        });
-        $('#featured').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        $('#featured-cars-three').owlCarousel({
-            loop: true,
-            nav: true,
-            dots: false,
-            autoplay: true,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                1200: {
-                    items: 3
-                }
-            }
-        });
-
-        $('#featured1').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        $('#featured3').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        $('#featured4').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-        $('#featured5').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-        //Mostarar contenidos seleccionados
-        $('#libro').css("background-color","#42a5f5");
-        $('#radios').hide();
-        $('#cines').hide();
-        $('#Tvs').hide();
-        $('#libros').show();
-        $('#musicas').hide();
-
-        $('#cine').click(function(){
-            console.log("pase por cine");
-            $('#libro').css("background-color","#2196F3");
-            $('#cine').css("background-color","#42a5f5");
-            $('#musica').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').show();
-        });
-
-        $('#musica').click(function(){
-            console.log("pase por musica");
-            $('#libro').css("background-color","#2196F3");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#42a5f5");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#cines').hide();
-            $('#musicas').show();
-        });
-
-        $('#libro').click(function(){
-            console.log("pase por libro");
-            $('#libro').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#Tvs').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
-            $('#libros').show();
-        });
-
-        $('#radio').click(function(){
-
-            $('#radio').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#libro').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
-            console.log("paso por radio");
-            $('#radios').show();
-        });
-
-        $('#tv').click(function(){
-            console.log("pase por tv");
-            $('#tv').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#libro').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#libros').hide();
-            $('#musicas').hide();
-            $('#cines').hide();
-            $('#Tvs').show();
-        });
+        
 
         $("#formRP").on('submit',function(e){
             var url = "{{ url('ApplysSubmit') }}";
@@ -288,7 +108,6 @@
             });
         });
 
-    });
 
     function controltagNum(e) {
         tecla = (document.all) ? e.keyCode : e.which;
@@ -392,26 +211,6 @@
         });
     });
 
-    // funcion para mostrar el submenu de los modulos de libro y de musica
-    $(document).ready(function () {
-        $('#subMenuMusica').hide();
-        $('#subMenuLibro').hide();
-        $('#content_type').on('change', function () {
-            if (this.value == 'Musica') {
-                $('#subMenuLibro').hide();
-                $('#subMenuMusica').show();
-                $('#subMenuMusica').attr('required','required');
-            } else if (this.value == 'Libros') {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').show();
-                $('#subMenuLibro').attr('required','required');
-            } else {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').hide();
-            }
-        });
-    })
-    // funcion para mostrar el submenu de los modulos de libro y de musica
     //---------------------------------------------------------------------------------------------------
     // Función que nos va a contar el número de caracteres
     $(document).ready(function () {
@@ -652,8 +451,6 @@
 
             }else{
 
-                $('#emailMen').hide();
-                $('#iniciar').attr('disabled',false);
                 return true;
             }
         });
@@ -757,4 +554,4 @@
                 $('#iniciarP').attr('disabled',false);
             }
         });
-    });
+    }); 
