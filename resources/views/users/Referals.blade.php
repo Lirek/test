@@ -128,7 +128,7 @@
                              Correo del la persona que desea invitar:
                              <div class="input-field inline">
                                  <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
-                                 <label for="email_inline">Correo</label>
+                                 <label for="email">Correo</label>
                              </div>
                              <div id="emailMen"></div>
                      </div>
