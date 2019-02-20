@@ -150,12 +150,12 @@
                                 <i class="material-icons prefix blue-text">face</i>
                                 {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required', 'id'=>'nombre', 'required'=>'required']) !!}
                                 <div id="mensajeNombre"></div>
-                                <label for="name">Nombre</label>
+                                <label for="nombre">Nombre</label>
                             </div>
                             <!--email-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">email</i>
-                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly']) !!}
+                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly','id'=>'email']) !!}
                                 <label  for="email">Correo</label>
                             </div>
                             <!--RUC-->
@@ -164,7 +164,7 @@
                                 @if($seller->estatus == 'Aprobado')
                                     {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','readonly']) !!}
                                 @else
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required','id'=>'ruc','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                     <div id="mensajeRuc"></div>
                                 @endif
                                 <label  for="ruc">(RUC) Registro único de contribuyente</label>
@@ -208,7 +208,7 @@
                                 <i class="material-icons prefix blue-text">navigation</i>
                                 {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion', 'required'=>'required']) !!}
                                 <div id="mensajeMaximoDireccion"></div>
-                                <label  for="ruc">Dirección</label>
+                                <label  for="direccion">Dirección</label>
                             </div>
                             <!--telefono-->
                             <div class="input-field col s12">
@@ -216,7 +216,7 @@
                                 <input class="form-control" type="tel" name="phone" id="phone_s" required="required" onkeypress="return controltagNum(event)" maxlength="15" value="{{$seller->tlf}}">
                                 {{--<input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">--}}
                                 <div id="mensajePhone"></div>
-                                <label  for="ruc">Telefono</label>
+                                <label  for="phone_s">Telefono</label>
                             </div>
                             <!--Estado de la cuenta-->
                             <div class="input-field col s12" style="display: none;">
