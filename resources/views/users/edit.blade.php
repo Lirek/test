@@ -319,7 +319,7 @@ h5.breadcrumbs-header {
                             {!! Form::hidden('password',$user->password,['class'=>'form-control','method'=>'POST']) !!}
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su antigua contraseña</label>
+                            <label for="oldpass">Introduzca su antigua contraseña</label>
                             {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="oldpasscp" style="margin-top: 1%"></div>
                             @if ($errors->has('oldpass'))
@@ -330,7 +330,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su nueva contraseña</label>
+                            <label for="newpass">Introduzca su nueva contraseña</label>
                             {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="newpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('newpass'))
@@ -341,7 +341,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Confirme su nueva contraseña</label>
+                            <label for="confnewpass">Confirme su nueva contraseña</label>
                             {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="confnewpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('confnewpass'))
