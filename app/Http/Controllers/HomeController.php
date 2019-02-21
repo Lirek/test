@@ -236,6 +236,11 @@ class HomeController extends Controller
 
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
+        if ($beneficio->count() == 0) 
+        {
+            $beneficio= 0;
+        }
+
         return view('users.Beneficios')->with('beneficio',$beneficio);
 
     }
