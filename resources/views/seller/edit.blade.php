@@ -155,7 +155,7 @@
                             <!--email-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">email</i>
-                                {!! Form::text('email',$seller->email,['class'=>'form-control','id'=>'email','readonly']) !!}
+                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly','id'=>'email']) !!}
                                 <label  for="email">Correo</label>
                             </div>
                             <!--RUC-->
@@ -164,7 +164,7 @@
                                 @if($seller->estatus == 'Aprobado')
                                     {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','id'=>'ruc','readonly']) !!}
                                 @else
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'id'=>'ruc','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required','id'=>'ruc','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                     <div id="mensajeRuc"></div>
                                 @endif
                                 <label  for="ruc">(RUC) Registro único de contribuyente</label>
@@ -216,7 +216,7 @@
                                 <input class="form-control" type="tel" name="phone" id="phone_s" required="required" onkeypress="return controltagNum(event)" maxlength="15" value="{{$seller->tlf}}">
                                 {{--<input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">--}}
                                 <div id="mensajePhone"></div>
-                                <label  for="phone2">Telefono</label>
+                                <label  for="phone_s">Telefono</label>
                             </div>
                             <!--Estado de la cuenta-->
                             <div class="input-field col s12" style="display: none;">
@@ -233,7 +233,7 @@
                             </div>
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                                         <span class="collection-header center" style="color: white ">Sobre mi</span>
                                       </li>
                                     </div>
@@ -244,17 +244,20 @@
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
                     </div>
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
-                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                    <ul>
+                    <blockquote>
+                    <i class="material-icons prefix blue-text">edit</i>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a></blockquote>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
                             </div>
                             <div class="card-content">
 
@@ -266,7 +269,7 @@
                             {!! Form::hidden('password',$seller->password,['class'=>'form-control','method'=>'POST']) !!}
                             <div class="input-field col s12 l11 m12">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su antigua contraseña</label>
+                            <label for="oldpass">Introduzca su antigua contraseña</label>
                             {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="oldpasscp" style="margin-top: 1%"></div>
                             @if ($errors->has('oldpass'))
@@ -277,7 +280,7 @@
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su nueva contraseña</label>
+                            <label for="newpass">Introduzca su nueva contraseña</label>
                             {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="newpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('newpass'))
@@ -288,7 +291,7 @@
                             </div>
                             <div class="input-field col s12 l11 ">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Confirme su nueva contraseña</label>
+                            <label for="confnewpass">Confirme su nueva contraseña</label>
                             {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="confnewpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('confnewpass'))
@@ -308,13 +311,16 @@
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                     <ul><blockquote>
+                         <i class="material-icons prefix blue-text">delete_forever</i>
+                         <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
+                         </blockquote>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar Cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"><i class="material-icons prefix blue-text" style="margin-left: 30px;">report_problem</i><label><h6>AVISO IMPORTANTE!<br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
@@ -483,26 +489,6 @@
         });
     });
 
-    $(document).ready(function(){
-
-        $('#newpass').keyup(function(evento){
-            var password1 = $('#newpass').val();
-            var password = $('#confnewpass').val();
-
-            if (password != password1) {
-                $('#confnewpasscp').show();
-                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
-                $('#confnewpasscp').css('color','red');
-                $('#confnewpasscp').css('font-size','60%');
-                $('#ChangePassword').attr('disabled',true);
-            } else {
-                $('#confnewpasscp').hide();
-                if (password1.length !=0){
-                    $('#ChangePassword').attr('disabled',false);
-                }
-            }
-        });
-    });
 </script>
 <!-- Mostrar Contraseñas -->
 <script>

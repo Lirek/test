@@ -30,6 +30,9 @@ use App\Transactions;
 use App\Referals;
 use App\RollBacksTransacctions;
 
+use App\Products;
+use App\Rejection;
+
 class SuperAdminController extends Controller
 {
    //------------------------Panel de finanzas--------------------
@@ -259,7 +262,8 @@ class SuperAdminController extends Controller
     {
       $Users= User::all();
       $CurrentMonth=Carbon::now();
-
+      $TotalP=0;
+      $i=0;
       foreach ($Users as $User) 
       {
         if ($User->pending_points != 0) 
@@ -269,7 +273,7 @@ class SuperAdminController extends Controller
           {
             $LastPayment= Carbon::parse($Payment->created_at);
 
-            if ($LastPayment->isSameMonth($CurrentMonth)==False) 
+            if (!$LastPayment->isSameMonth($CurrentMonth)) 
             {
               $Assing = new PointsAssings;
               $Assing->amount = $User->pending_points;
@@ -279,16 +283,76 @@ class SuperAdminController extends Controller
 
               $balance= SistemBalance::find(1);
               $balance->my_points= $balance->my_points + $User->pending_points;
+
+              $TotalP += $User->pending_points;
+              $i++;
+
+              $User->pending_points=0;
+              $User->save();
+
+              break;
             }
           
           }
-          
-
-          
         }
       }
+        $json=['puntos'=>$TotalP,'usuarios'=>$i];
+      return response()->json($json);
     }
    //---------------------------------------------------------------
+  //------------------------------- Productos-------------------------------
+  public function Products() {
+    return view("promoter.AdminModules.Products");
+  }
 
+  public function storeProducts(Request $request) {
+    Products::store($request);
+    return redirect()->action("SuperAdminController@Products");
+  }
 
+  public function dataProducts($estatus) {
+    $productos = Products::whereStatus($estatus);
+    $productos->each(function($productos){
+      $productos->SubProducto;
+    });
+    return response()->json($productos);
+  }
+
+  public function infoProduct($id) {
+    $producto = Products::findProducto($id);
+    $producto->each(function($producto){
+      $producto->imagen_prod = asset($producto->imagen_prod);
+      $producto->pdf_prod = asset($producto->pdf_prod);
+      $producto->SubProducto;
+    });
+    return response()->json($producto);
+  }
+
+  public function updateProduct(Request $request) {
+    Products::toUpdateProducts($request);
+    return redirect()->action("SuperAdminController@Products");
+  }
+
+  public function deleteProduct($id){
+    $producto = Products::deleteProducto($id);
+    return response()->json($producto);
+  }
+
+  public function statusProduct(Request $request, $id) {
+    $producto = Products::statusProduct($id,$request->status);
+    if ($request->status=="Denegado") {
+      $rejection = new Rejection;
+      $rejection->module = "Products";
+      $rejection->id_module = $id;
+      $rejection->reason = $request->reason;
+      $rejection->save();
+    }
+    /*
+    if ($producto->bidder_id!=0) {
+      $this->SendEmails($request->status,$producto->name,$producto->Bidder->email,$request->reason);
+    }
+    */
+    return response()->json($producto);
+  }
+  //------------------------------- Productos-------------------------------
 }

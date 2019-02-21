@@ -99,7 +99,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('generarFactura/{idFactura}/{id_payments}','HomeController@generarFactura');
     Route::get('sponsor/{cod}','HomeController@sponsor');
     // agregada Alexis 15/01/2019
-    Route::get('/Beneficios','HomeController@Beneficios');
+    Route::get('/Beneficios/{status}','HomeController@Beneficios');
 
 
 //-------------------Funciones del Usuarios----------------------------------
@@ -339,6 +339,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
                 Route::get('AdminContent','AdminContentController@Home');
 
+                Route::get('AdminReport','AdminContentController@Reporte');
+
                 Route::get('ContentAdminGraph','AdminContentController@ContentAdminGraph');
 
                 Route::get('ContentStatusAdminGraph','AdminContentController@DonutGraph');
@@ -513,7 +515,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
 
          Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
-         
+        
+        //------------------------------- Rutas para los productos-------------------------------
+            Route::get('Products','SuperAdminController@Products');
+            Route::post('storeProducts','SuperAdminController@storeProducts');
+            Route::get('dataProducts/{status}','SuperAdminController@dataProducts');
+            Route::get('infoProduct/{id}','SuperAdminController@infoProduct');
+            Route::post('updateProduct','SuperAdminController@updateProduct');
+            Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
+            Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
+            
+        //------------------------------- Rutas para los productos-------------------------------
 
     });
 });

@@ -145,7 +145,7 @@
 									<br><br>
 									<i class="large material-icons center">local_offer</i>
 									<h4 class="white-text">
-										{{$ticket->amount}} Tiquets
+										{{$ticket->amount}} Tickets
 									</h4>
 								</div>
 							</div>

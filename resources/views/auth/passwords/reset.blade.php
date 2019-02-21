@@ -197,7 +197,7 @@
                 </div>
             @endif
         <h5 class="center">
-            <b class="blue-text">Restaurar contraseña </b>
+            <b class="blue-text">Restaurar contraseñax </b>
         </h5><br>
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}" id="change">
             {{ csrf_field() }}

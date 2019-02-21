@@ -2,8 +2,13 @@
 @section('main')
 @include('flash::message')
 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
     <style>
@@ -105,7 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%" alt="user background">
+                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%; width: 850px; margin-left: -8px;" alt="user background">
                         </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
@@ -131,12 +136,12 @@ h5.breadcrumbs-header {
                                         {{Auth::user()->name}}</h5>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->credito}}</h5>
                                         <label>todos mis tickets</label>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->points}}</h5>
                                         <label>todos mis puntos</label>
                                     </div>
@@ -156,7 +161,7 @@ h5.breadcrumbs-header {
                                     <!--nombre-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('name',$user->name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre','required'=>'required']) !!}
+                                        {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="nombre">Nombre</label>
                                     </div>
@@ -164,7 +169,7 @@ h5.breadcrumbs-header {
                                     <!--apellido-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">face</i>
-                                        {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']) !!}
+                                        {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
                                         <div id="mensajeNombre"></div>
                                         <label for="apellido">apellidos</label>
                                     </div>
@@ -182,10 +187,10 @@ h5.breadcrumbs-header {
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly','id'=>'ci']) !!}
                                         @else
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required','id'=>'ci' ,'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'id'=>'cedula','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
-                                        <label  for="ci">Cedula</label>
+                                        <label  for="cedula">Cedula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
@@ -233,11 +238,10 @@ h5.breadcrumbs-header {
                                     </div>
 
                                     <!--fecha de nacimiento-->
-                                    
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">today</i>
                                         <input type="text" name="fech_nac" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}" class="datepicker" id="fecha">
-                                        <label for="fecha">Fecha de nacimiento</label>
+                                        <label for="pickdate">Fecha de nacimiento</label>
                                         <div id="mensajeNombre"></div>
                                     </div>
 
@@ -253,9 +257,9 @@ h5.breadcrumbs-header {
                                     <!--numero de telefono-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_phone</i>
-                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'tlf' ,'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="tlf">numero de telefono</label>
+                                        <label  for="telefono">numero de telefono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
@@ -274,32 +278,50 @@ h5.breadcrumbs-header {
 
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Contactame</span>
+                                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
+                                        <span class="collection-header center" style="color: white">Contactame</span>
                                       </li>
                                     </div>
+
+
+
+                                      <!--   @if ($user->img_doc)
+                                        <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
+                                    @else
+                                    <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
+                                @endif -->
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-                                        {{$user->email}}
-                                        <br>
-                                        <br>
-                                        {{$user->phone}}
+                                        @if ($mipatro != 0)
+                                            {{$mipatro->name}}
+                                            <br>
+                                            {{$mipatro->email}}
+                                            <br>
+                                            {{$mipatro->phone}}
+                                        @else
+                                            <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
+                                        @endif
+
                                     </div>
             {!! Form::close() !!} 
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
                     </div>
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
-                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                    <ul>
+                    <blockquote>
+                    <i class="material-icons prefix blue-text">edit</i>    
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>    
+                    </blockquote>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
                             </div>
                             <div class="card-content">
 
@@ -311,7 +333,7 @@ h5.breadcrumbs-header {
                             {!! Form::hidden('password',$user->password,['class'=>'form-control','method'=>'POST']) !!}
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su antigua contraseña</label>
+                            <label for="oldpass">Introduzca su antigua contraseña</label>
                             {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="oldpasscp" style="margin-top: 1%"></div>
                             @if ($errors->has('oldpass'))
@@ -322,7 +344,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su nueva contraseña</label>
+                            <label for="newpass">Introduzca su nueva contraseña</label>
                             {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="newpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('newpass'))
@@ -333,7 +355,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Confirme su nueva contraseña</label>
+                            <label for="confnewpass">Confirme su nueva contraseña</label>
                             {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="confnewpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('confnewpass'))
@@ -353,13 +375,17 @@ h5.breadcrumbs-header {
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                    <ul>
+                            <blockquote>
+                            <i class="material-icons prefix blue-text">delete_forever</i>
+                            <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
+                            </blockquote>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"><i class="material-icons prefix blue-text" style="margin-left: 30px;">report_problem</i><label><h6>AVISO IMPORTANTE!<br><br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccount', $user->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
@@ -511,27 +537,6 @@ h5.breadcrumbs-header {
             }
         });
     });
-
-    $(document).ready(function(){
-
-        $('#newpass').keyup(function(evento){
-            var password1 = $('#newpass').val();
-            var password = $('#confnewpass').val();
-
-            if (password != password1) {
-                $('#confnewpasscp').show();
-                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
-                $('#confnewpasscp').css('color','red');
-                $('#confnewpasscp').css('font-size','60%');
-                $('#ChangePassword').attr('disabled',true);
-            } else {
-                $('#confnewpasscp').hide();
-                if (password1.length !=0){
-                    $('#ChangePassword').attr('disabled',false);
-                }
-            }
-        });
-    });
 </script>
 <!-- Mostrar Contraseñas -->
 <script>
@@ -567,10 +572,13 @@ h5.breadcrumbs-header {
   }
 </script>
 
-<script>
+  <script>
     $(function() {
     $('#fecha').datepicker({
         format: 'dd-mm-yyyy',
+        yearRange: 50,
+        changeMonth: true,
+        changeYear: true,
         firstDay: 1,
         i18n: {
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -578,10 +586,12 @@ h5.breadcrumbs-header {
             weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
             weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
             weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+            
         }
     });
 });
-</script>
+</script> 
+
 <script type="text/javascript">
     
   document.addEventListener('DOMContentLoaded', function() {
@@ -594,7 +604,8 @@ h5.breadcrumbs-header {
   $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
-</script>
+</script> 
+
     <script type="text/javascript">
 
     // Or with jQuery

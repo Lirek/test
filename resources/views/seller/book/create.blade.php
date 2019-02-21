@@ -806,8 +806,8 @@
                         {{--Nombre de la saga--}}
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text">create</i>
-                            <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
+                            <label for="nombre_saga" class="control-label">Nombre</label>
+                            {!! Form::text('sag_name',null,['class'=>'form-control','id'=>'nombre_saga','required'=>'required']) !!}
                             <br>
                         </div>
 
@@ -823,7 +823,7 @@
                         {{--Descripcion de  la saga--}}
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">create</i>
-                            <label for="exampleInputPassword1" class="control-label">Descripción</label>
+                            <label for="exampleInputFile" class="control-label">Descripción</label>
                             {!! Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']) !!}
                         </div>
                     <br>

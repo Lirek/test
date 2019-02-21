@@ -218,7 +218,7 @@
                                 <input type="text" name="user_code" value="{{$user_code}}" hidden>
                                 <i class="material-icons prefix blue-text">face</i>
                                 <input type="text" id="name" value="{{ old('name') }}"  name="name" class="autocomplete"  required>
-                                <label for="autocomplete-input">Nombre</label>
+                                <label for="name">Nombre</label>
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -228,7 +228,7 @@
                             <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <i class="material-icons prefix blue-text">email</i>
                                 <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
-                                <label for="autocomplete-input">Dirección de Correo</label>
+                                <label for="email-valid">Dirección de Correo</label>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -239,7 +239,7 @@
                             <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
                                 <i class="material-icons prefix blue-text">vpn_key</i>
                                 <input type="password" id="password-valid" value="{{ old('password') }}"  name="password" class="autocomplete"  required autocomplete="off">
-                                <label for="autocomplete-input">Contraseña</label>
+                                <label for="password-valid">Contraseña</label>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -249,7 +249,7 @@
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix blue-text">vpn_key</i>
                                 <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
-                                <label for="autocomplete-input">Repetir</label>
+                                <label for="password_confirm">Repetir</label>
                                 @if ($errors->has('password_confirm'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
@@ -338,8 +338,7 @@
                 </div>
                 <div class="col s12 m8">
                     <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tus peliculas o series a Leipel</h4>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo cineasta que puede vender sus contenidos aquí en Leipel</h4>
                         <br><br>
                     </div>
                 </div>
@@ -356,8 +355,7 @@
                 </div>
                     <div class="col s12 m8">
                         <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tu contenido musical a Leipel</h4>
-                            <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo cantante o músico que puede vender sus contenidos aquí en Leipel</h4>
                             <br><br>
                         </div>
                     </div>
@@ -373,8 +371,7 @@
                 </div>
                 <div class="col s12 m8">
                     <div class="card center"><br>
-                        <h4 class="blue-text">Se el primero en subir tu libros o revistas a Leipel</h4>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                        <h4 class="blue-text">Cuéntale a un amigo escritor que puede vender su contenido aquí en Leipel</h4>
                         <br><br>
                     </div>
                 </div>

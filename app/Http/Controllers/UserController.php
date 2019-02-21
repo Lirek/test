@@ -153,8 +153,16 @@ class UserController extends Controller
     {
         
         $user = User::find(Auth::user()->id);
-        //dd($user);
-        return view('users.edit')->with('user', $user);
+        $patro = Referals::where('refered',Auth::user()->id)->get();
+        //dd(count($patro)>0 );
+        //dd($patro != NULL );
+        if (count($patro)<=0){
+          $mipatro = 0;
+        } else {
+          $mipatro = User::find($patro[0]->user_id);
+        }
+        //dd($mipatro);
+        return view('users.edit')->with('user', $user)->with('mipatro', $mipatro);
     }
 
     /**

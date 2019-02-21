@@ -1,33 +1,13 @@
 @extends('promoter.layouts.app')
 	@section('main')
 
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Contenido total</h4>
-					<div class="panel-body text-center">
-						<canvas id="barra" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Contenido por aprobar</h4>
-					<div class="panel-body text-center">
-						<canvas id="Torta" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
 <div class="row">
 		<div class="row mt">
 			<h2><i class="fa fa-angle-right"></i>Contenido principal</h2>
 		</div>
 
 		<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Álbumes</span>
 	            <i class="material-icons small">music_note</i> 
@@ -37,14 +17,14 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_albums')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_albums')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 
 
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Canciones</span>
 	            <i class="material-icons small">music_note</i> 
@@ -54,13 +34,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_single')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_single')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>						
 
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Tvs</span>
 	            <i class="small material-icons" >live_tv</i>
@@ -70,13 +50,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_tv')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_tv')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 			
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Radios</span>
 	            <i class="small material-icons" >radio</i>
@@ -86,13 +66,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_radio')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_radio')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 		
 		<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Series</span>
 	            <i class=" material-icons" >local_movies</i>
@@ -102,13 +82,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_series')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_series')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Peliculas</span>
 	            <i class="material-icons" >live_tv</i>
@@ -118,13 +98,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_movies')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_movies')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 
 		<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Autores literarios</span>
 	            <i class=" material-icons">group</i>
@@ -134,13 +114,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('admin_autors')}}" class="btn btn-primary">Revisar autores</a>
+	            <a href="{{url('admin_autors')}}" class="btn btn-primary indigo">Revisar autores</a>
 	          </div>
 	        </div>
       	</div>			
 
 		<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Artistas musicales</span>
 	            <i class=" material-icons">group</i>
@@ -150,13 +130,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('admin_musician')}}" class="btn btn-primary">Revisar musicos</a>
+	            <a href="{{url('admin_musician')}}" class="btn btn-primary indigo">Revisar musicos</a>
 	          </div>
 	        </div>
       	</div>
 
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Libros</span>
 	            <i class="small material-icons" >book</i>
@@ -170,13 +150,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_books')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_books')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>		
 
       	<div class="col s12 m6 l3">
-	        <div class="card light-blue darken-3 hoverable">
+	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
 	            <span class="card-title">Revistas</span>
 	            <i class="small material-icons" >import_contacts</i>
@@ -190,77 +170,13 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('/admin_megazine')}}" class="btn btn-primary">Revisar</a>
+	            <a href="{{url('/admin_megazine')}}" class="btn btn-primary indigo">Revisar</a>
 	          </div>
 	        </div>
       	</div>
 </div>
-		<div class="row mt">
-			<h2><i class="fa fa-angle-right"></i>Artistas musicales</h2>	
-		</div>
-
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Artistas o Agrupaciones (Total)</h4>
-					<div class="panel-body text-center">
-						<canvas id="MusicianBar" height="100" width="200"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Autores Musicales (Total)</h4>
-					<div class="panel-body text-center">
-						<canvas id="MusicianPie" height="100" width="200"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt">
-			<center>
-				<a href="{{url('admin_musician')}}">
-					<button type="button" class="btn btn-primary">Revisar musicos</button>
-				</a>
-			</center>
-		</div>
-
-		<div class="row mt">
-			<h2><i class="fa fa-angle-right"></i>Etiquetas</h2>	
-		</div>
-
-		<div class="row mt">
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Etiquetas totales</h4>
-					<div class="panel-body text-center">
-						<canvas id="TagsBarr" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-
-			<div class="col s6">
-				<div class="content-panel">
-					<h4><i class="fa fa-angle-right"></i>Etiquetas por aprobar</h4>
-					<div class="panel-body text-center">
-						<canvas id="TagsPie" height="300" width="400"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt">
-			<center>
-				<a href="{{url('TagsReview')}}">
-					<button type="button" class="btn btn-primary">Revisar etiquetas</button>
-				</a>
-			</center>
-		</div>
 
 	@endsection
-
 	@section('js')
 		<script>
 			$(document).ready(function(){
@@ -329,18 +245,21 @@
 							datasets: [{
 								data: info,
 								backgroundColor: [
-									'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(76, 155, 80)',
+									'rgba(33, 150, 243)',
+									'rgba(244, 67, 54)'
 								],
 								borderColor: [
-									'rgba(217, 83, 79,1)',
-									'rgba(66, 139, 202, 1)'
+									'rgba(76, 155, 80, 1)',
+									'rgba(33, 150, 243, 1)',
+									'rgba(244, 67, 54, 1)'
 								],
 								borderWidth: 1
 							}],
 							labels: [
+								'Aprobado',
 								'Por Aprobar',
-								'Aprobado'
+								'Denegados'
 							]
 						};
 						var myPieChart = new Chart(ctx,{
@@ -418,12 +337,12 @@
 	    					datasets: [{
 	    						data: x,
 	    						backgroundColor: [
-		    						'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(33, 150, 243)',
+		    						'rgba(76, 155, 80)'
 	    						],
 	    						borderColor: [
-	    							'rgba(217, 83, 79,1)',
-	    							'rgba(66, 139, 202, 1)'
+									'rgba(33, 150, 243, 1)',
+	    							'rgba(76, 155, 80, 1)'
 	    						],
 	    						borderWidth: 1
 	    					}],
@@ -454,12 +373,12 @@
 	    					datasets: [{
 	    						data: x,
 	    						backgroundColor: [
-	    							'rgba(217, 83, 79)',
-									'rgba(66, 139, 202)'
+									'rgba(33, 150, 243)',
+	    							'rgba(76, 155, 80)'
 	    						],
 	    						borderColor: [
-	    							'rgba(217, 83, 79, 1)',
-									'rgba(66, 139, 202, 1)'
+									'rgba(33, 150, 243, 1)',
+	    							'rgba(76, 155, 80, 1)'
 	    						],
 	    						borderWidth: 1
 	    					}],

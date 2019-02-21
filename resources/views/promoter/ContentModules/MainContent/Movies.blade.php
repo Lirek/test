@@ -66,7 +66,7 @@
 						if (info.img_poster!=0 ) {
 							var portada = 
 							"<img class='materialboxed' width='150' height='120' src='{!! asset('movie/poster/"+info.img_poster+"') !!}'"
-							var infor = "<button href='#movieView' class='modal-trigger' value='"+info.id+"' id='viewMovie' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'> ver mas información </button>";
+							var infor = "<button href='#movieView' class='modal-trigger' value='"+info.id+"' id='viewMovie' style='display:inline; text-decoration:underline; background:none; background:none;border:0; padding:0; margin:0;'> Ver más información </button>";
 						} else {
 							var portada = "No aplica ";
 						}
@@ -87,7 +87,7 @@
 						info.based_on+"</td><td>"+
 						info.rating.r_name+"</td><td>"+
 						etiqueta+"</td><td>"+
-						moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+
+						moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+"</td><td>"+
 						info.cost+"</td><td>"+
 						opcion+"</td></tr>";
 						$("#table").append(filas);

@@ -37,6 +37,8 @@ use App\Mail\ApprovalNotification;
 
 use App\Events\AssingPointsEvents;
 
+use App\Products;
+
 class HomeController extends Controller
 {
     /**
@@ -54,89 +56,105 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $user= User::find(Auth::user()->id);
-        /*
-        $TransacctionsSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->count(); 
-        $TransacctionsAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->count();
-        $TransacctionsBook= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->count();
-        $TransacctionsMegazine= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->count(); 
-        $TransacctionsMovies= Transactions::where('user_id','=',Auth::user()->id)->where('movies_id','<>',0)->count();
-        $TransacctionsSeries= Transactions::where('user_id','=',Auth::user()->id)->where('Series_id','<>',0)->count();   
-        $TransactionsRadio=Radio::where('status','=','Aprobado')->count();
-        $TransactionsTv=Tv::where('status','=','Aprobado')->count();
 
-        $TransacctionsMusic=$TransacctionsSingle+$TransacctionsAlbum;
-        $TransactionsLecture=$TransacctionsMegazine+$TransacctionsBook;
-        */
+        $user= User::find(Auth::user()->id);
+        $songsAdd=user::contenidos_add($user, 'song_id');
+        $AlbumAdd=user::contenidos_add($user, 'album_id');
+        $BookAdd=user::contenidos_add($user, 'books_id');
+        $MegazineAdd=user::contenidos_add($user, 'megazines_id');
+        $MovieAdd=user::contenidos_add($user, 'movies_id');
+        $SeriesAdd=user::contenidos_add($user, 'Series_id');
 
         $musica = [];
-        $Songs = Songs::where('album',0)->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
         foreach ($Songs as $s) {
+
+            if($s->cover == Null){
+              $scover=$s->autors->photo;
+                }else{
+                $scover=$s->cover;
+                }
+
+            $adquirido=(in_array($s->id, $songsAdd)) ? true : false;
             $musica[] = array(
                 'id' => $s->id,
                 'type' => 'Single',
-                'cover' => '/plugins/img/DefaultMusic.png',
+                'cover' => $scover ,
                 'cost' => $s->cost,
-                'title' => $s->song_name
+                'title' => $s->song_name,
+                'adquirido' =>  $adquirido
             );
         }
-        $Albums = Albums::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+
+        $Albums = Albums::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Albums as $a) {
+            $adquirido=(in_array($a->id, $AlbumAdd)) ? true : false;
             $musica[] = array(
                 'id' => $a->id,
                 'type' => 'Album',
                 'cover' => $a->cover,
                 'cost' => $a->cost,
-                'title' => $a->name_alb
+                'title' => $a->name_alb,
+                'adquirido' =>  $adquirido
             );
         }
 
         $cine = [];
-        $Movies = Movie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Movies = Movie::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Movies as $m) {
+            $adquirido=(in_array($m->id, $MovieAdd)) ? true : false;
             $cine[] = array(
                 'id' => $m->id,
                 'type' => 'Pelicula',
                 'img_poster' => 'movie/poster/'.$m->img_poster,
                 'title' => $m->title,
-                'cost' => $m->cost
+                'cost' => $m->cost,
+                'adquirido' =>  $adquirido
             );
         }
-        $Series = Serie::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+
+        $Series = Serie::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Series as $s) {
+            $adquirido=(in_array($s->id, $SeriesAdd)) ? true : false;
             $cine[] = array(
                 'id' => $s->id,
                 'type' => 'Serie',
                 'img_poster' => $s->img_poster,
                 'title' => $s->title,
-                'cost' => $s->cost
+                'cost' => $s->cost,
+                'adquirido' =>  $adquirido
             );
         }
 
         $lectura = [];
-        $Megazines = Megazines::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Megazines = Megazines::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Megazines as $m) {
+            $adquirido=(in_array($m->id, $MegazineAdd)) ? true : false;
             $lectura[] = array(
                 'id' => $m->id,
                 'type' => 'Revista',
                 'title' => $m->title,
                 'cost' => $m->cost,
-                'cover' => $m->cover
+                'cover' => $m->cover,
+                'adquirido' =>  $adquirido
             );
         }
-        $Book = Book::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+
+       $Book = Book::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Book as $b) {
+            $adquirido=(in_array($b->id, $BookAdd)) ? true : false;
             $lectura[] = array(
                 'id' => $b->id,
                 'type' => 'Libro',
                 'title' => $b->title,
                 'cost' => $b->cost,
-                'cover' => "/images/bookcover/".$b->cover
+                'cover' => "/images/bookcover/".$b->cover,
+                'adquirido' =>  $adquirido
             );
         }
         
         $radios = [];
-        $Radio = Radio::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Radio = Radio::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Radio as $r) {
             $radios[] = array(
                 'id' => $r->id,
@@ -146,7 +164,7 @@ class HomeController extends Controller
         }
         
         $tvs = [];
-        $Tv = Tv::where('status','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->paginate(8);
+        $Tv = Tv::latest()->where('status','Aprobado')->take(8)->get();
         foreach ($Tv as $t) {
             $tvs[] = array(
                 'id' => $t->id,
@@ -289,8 +307,9 @@ class HomeController extends Controller
         }
     }
 
-    public function Beneficios(){
-        return view('users.Beneficios');
+    public function Beneficios($estatus){
+        $beneficio = Products::whereStatus($estatus);
+        return view('users.Beneficios')->with('beneficio',$beneficio);
 
     }
 
@@ -326,7 +345,7 @@ class HomeController extends Controller
                 }
                 elseif($key->movies_id != 0){
                     $accionM=Movie::find($key->movies_id);
-                    $accion=$accionM->title;
+                    $accion=$accionM->original_title;
                 }
                 elseif($key->megazines_id != 0){
                     $accionM=Megazines::find($key->megazines_id);
@@ -613,7 +632,7 @@ class HomeController extends Controller
         $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
         $total = $costoPaquete*$cantidadPaquetes;
         $data = [
-        "ambiente" => 1, // 1: prueba; 2: produccion
+        "ambiente" => $ambiente, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
         "secuencial" => $secuencial, 
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
