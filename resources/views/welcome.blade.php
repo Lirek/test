@@ -628,8 +628,8 @@
     <div class="modal-content center blue-text">
         <div class="row">
             <ul class="tabs">
-                <li class="tab col s4"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
-                <li class="tab col s4"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
+                <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
+                <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
                 {{--
                 <li class="tab col s4"><a href="#ofertante1"><i class="material-icons prefix">store</i><b> Ofertante</b></a></li>
                 --}}
