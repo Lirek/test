@@ -115,56 +115,38 @@
         @endif
         <!--End  RECIENTE cine-->
 
-        <!--CONTENIDO RECIENTE musica-->
-        @if(count($musica)> 0)
-            <div class="row">
-                <div class="col s12">
-                    <a href="{{url('MusicContent')}}">
-                        <h5 class="grey-text left">
-                            <i class="small material-icons">music_note</i> Música
-                        </h5>
-                    </a>
-                </div>
-                <div class="col s12">
-                    <div class="owl-carousel owl-theme">
-                        @foreach($musica as $m)
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
-                                    @if($m['type']=='Album')
-                                        @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green " href="{{ url('MyAlbums/'.$m['id']) }}">
+                            <!--CONTENIDO RECIENTE serie-->
+                                @if(count($Series) > 0)
+                                    <div class="row">
+                                        <div class="col s12 ">
+                                            <a href="{{url('ShowSeries')}}" >
+                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
 
-                                            <i class="small material-icons">library_music</i>
-                                        </a>
-                                        @else
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
-                                            <i class="small material-icons">library_music</i>
-                                        </a>
-                                        @endif
-                                    @else
-                                        @if($m['adquirido'])
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
-                                            <i class="small material-icons">music_note</i>
-                                        </a>
-                                        @else
-                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
-                                            <i class="small material-icons">music_note</i>
-                                        </a>
-                                        @endif
-                                    @endif
-                                </div>
-                                <div class="card-action">
-                                    <b class="grey-text truncate">{{$m['title']}}</b>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-        <!--End RECIENTE musica-->
+                                        </div>
+                                        <div class="col s12 ">
+                                            <div  class="owl-carousel owl-theme">
+                                                @foreach($Series as $s)
+                                                    {{--<div>--}}
+                                                        {{--<img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">--}}
+                                                    {{--</div>--}}
+                                                    <div class="card">
+                                                        <div class="card-image">
+                                                            <img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">
+                                                            <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"><i class="mdi mdi-movie-roll"></i></a>
+                                                        </div>
+                                                        <div class="card-action ">
+                                                            <b class="grey-text truncate">{{$s->title}}</b>
+                                                        </div>
+                                                    </div>
+
+                                                @endforeach
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @endif
+                        @endif
+                    <!--End  RECIENTE cine-->
 
         <!--CONTENIDO RECIENTE Lecturas-->
         @if(count($lectura)> 0)
@@ -576,7 +558,7 @@ restaFechas = function(f1,f2)
     function fnOpenNormalDialog1(cost,name,id) {
         swal({
             title: "¿Está seguro?",
-            text: '¿Desea comprar el álbum '+name+' con un valor de '+cost+' tickets?', 
+            text: '¿Desea comprar el álbum '+name+' con un valor de '+cost+' tickets?',
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
@@ -599,14 +581,14 @@ restaFechas = function(f1,f2)
                     _token: $('input[name=_token]').val()
                 },
                 success: function (result) {
-                    if (result==0) { 
-                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    if (result==0) {
+                        swal('No posee suficientes creditos, por favor recargue','','error');
                     } else if (result==1) {
                         swal('El album ya forma parte de su colección','','error');
-                    } else { 
+                    } else {
                         swal('Album comprado con exito','','success');
                         console.log(result);
-                    }  
+                    }
                 },
                 error: function (result) {
                     console.log(result);
@@ -646,13 +628,13 @@ restaFechas = function(f1,f2)
                 },
                 success: function (result) {
                     console.log(result);
-                    if (result==0) { 
-                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    if (result==0) {
+                        swal('No posee suficientes creditos, por favor recargue','','error');
                     } else if (result==1) {
                         swal('La canción ya forma parte de su colección','','error');
-                    } else { 
+                    } else {
                         swal('Cancion comprada con exito','','success');
-                    }  
+                    }
                 },
                 error: function (result) {
                     console.log(result);
@@ -670,7 +652,7 @@ restaFechas = function(f1,f2)
     function fnOpenNormalDialog3(cost,name,id) {
         swal({
             title: "¿Está seguro?",
-            text: '¿Desea comprar el libro '+name+' con un valor de '+cost+' tickets?', 
+            text: '¿Desea comprar el libro '+name+' con un valor de '+cost+' tickets?',
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
@@ -693,13 +675,13 @@ restaFechas = function(f1,f2)
                 },
                 success: function (result) {
                     console.log(result);
-                    if (result==0) { 
-                        swal('No posee suficientes creditos, por favor recargue','','error');  
+                    if (result==0) {
+                        swal('No posee suficientes creditos, por favor recargue','','error');
                     } else if (result==1) {
                         swal('El libro ya forma parte de su colección','','error');
-                    } else { 
+                    } else {
                         swal('Libro comprada con exito','','success');
-                    }  
+                    }
                 },
                 error: function (result) {
                     console.log(result);
@@ -779,10 +761,10 @@ restaFechas = function(f1,f2)
 
 <script>
 function fnOpenNormalDialog5(cost,name,id) {
-  
+
    swal({
             title: "¿Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?',
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
@@ -790,7 +772,7 @@ function fnOpenNormalDialog5(cost,name,id) {
         .then((willDelete) => {
           if (willDelete) {
             callback5(true,id);
-           
+
           } else {
             callback5(false,id);
           }
@@ -822,7 +804,7 @@ function callback5(value,id) {
 
                    if (result==0) 
                     { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       swal('No posee suficientes tickets, por favor recargue','','error');
                        console.log(result);
                     }
                     else if (result==1) 
@@ -830,22 +812,22 @@ function callback5(value,id) {
                       swal('La pelicula ya forma parte de su colección','','error');
                     }
                     else
-                    {    
+                    {
                     var idUser={!!Auth::user()->id!!};
-                    $.ajax({ 
-                
+                    $.ajax({
+
                       url     : 'MyTickets/'+idUser,
                       type    : 'GET',
                       dataType: "json",
                       success: function (respuesta){
                       console.log(respuesta);
                         $('#Tickets').html(respuesta);
-                  
+
                       },
                     });
                         swal('Pelicula comprada con exito','','success');
                            console.log(result);
-                      }     
+                      }
                 },
               error: function (result) 
                 {
@@ -863,10 +845,10 @@ function callback5(value,id) {
 
 <script>
 function fnOpenNormalDialog6(cost,name,id) {
-  
+
    swal({
             title: "¿Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?',
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,
@@ -874,7 +856,7 @@ function fnOpenNormalDialog6(cost,name,id) {
         .then((willDelete) => {
           if (willDelete) {
             callback6(true,id);
-           
+
           } else {
             callback6(false,id);
           }
@@ -893,47 +875,47 @@ function callback6(value,id) {
                 }
             })
          $.ajax({
-                    
+
             url:'BuySerie/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
              },
-                    
-             success: function (result) 
+
+             success: function (result)
                 {
 
 
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                   if (result==0)
+                    {
+                       swal('No posee suficientes tickets, por favor recargue','','error');
                        console.log(result);
                     }
-                    else if (result==1) 
+                    else if (result==1)
                     {
                       swal('La serie ya forma parte de su colección','','error');
                     }
                     else
-                    {    
+                    {
                     var idUser={!!Auth::user()->id!!};
-                    $.ajax({ 
-                
+                    $.ajax({
+
                       url     : 'MyTickets/'+idUser,
                       type    : 'GET',
                       dataType: "json",
                       success: function (respuesta){
                       console.log(respuesta);
                         $('#Tickets').html(respuesta);
-                  
+
                       },
                     });
                         swal('Serie comprada con exito','','success');
                            console.log(result);
-                      }     
+                      }
                 },
-              error: function (result) 
+              error: function (result)
                 {
-                      
+
                 }
 
             });
