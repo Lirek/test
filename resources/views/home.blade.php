@@ -81,23 +81,31 @@
                             {{--</div>--}}
                             <div class="card">
                                 <div class="card-image">
-                                    <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                     @if($ci['type']=='Pelicula')
                                        @if($ci['adquirido'])
+                                       <a class="waves-effect waves-light " href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                       <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                       </a>
+
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @else
+                                        <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog5('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($ci['adquirido'])
+                                        <a class=" waves-effect waves-light " href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
+                                         <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                         </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
+                                         <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog6('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>
@@ -114,6 +122,63 @@
             </div>
         @endif
         <!--End  RECIENTE cine-->
+
+        <!--CONTENIDO RECIENTE musica-->
+        @if(count($musica)> 0)
+            <div class="row">
+                <div class="col s12">
+                    <a href="{{url('MusicContent')}}">
+                        <h5 class="grey-text left">
+                            <i class="small material-icons">music_note</i> Música
+                        </h5>
+                    </a>
+                </div>
+                <div class="col s12">
+                    <div class="owl-carousel owl-theme">
+                        @foreach($musica as $m)
+                            <div class="card">
+                                <div class="card-image">
+                                    @if($m['type']=='Album')
+                                        @if($m['adquirido'])
+                                        <a class="waves-effect waves-light  " href="{{ url('MyAlbums/'.$m['id']) }}">
+                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green " href="{{ url('MyAlbums/'.$m['id']) }}">
+                                            <i class="small material-icons">library_music</i>
+                                        </a>
+                                        @else
+                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                            <i class="small material-icons">library_music</i>
+                                        </a>
+                                        @endif
+                                    @else
+                                        @if($m['adquirido'])
+                                        <a class="waves-effect waves-light " href="{{ url('MyMusic')}}">
+                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
+                                            <i class="small material-icons">music_note</i>
+                                        </a>
+                                        @else
+                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
+                                            <i class="small material-icons">music_note</i>
+                                        </a>
+                                        @endif
+                                    @endif
+                                </div>
+                                <div class="card-action">
+                                    <b class="grey-text truncate">{{$m['title']}}</b>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <!--End RECIENTE musica-->
 
         <!--CONTENIDO RECIENTE Lecturas-->
         @if(count($lectura)> 0)
@@ -133,23 +198,31 @@
                             {{--</div>--}}
                             <div class="card">
                                 <div class="card-image">
-                                    <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+
                                     @if($le['type']=='Libro')
                                         @if($le['adquirido'])
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @else
+                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @endif
                                     @else
                                          @if($le['adquirido'])
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @else
+                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
@@ -182,7 +255,7 @@
                         @foreach($radio as $r)
                             <div class="card">
                                 <div class="card-image">
-                                    <a href="{{ url('ListenRadio/'.$r['id']) }}">
+                                    <a class="waves-effect waves-light " href="{{ url('ListenRadio/'.$r['id']) }}">
                                         <img src="{{ asset($r['logo']) }}" id="img_cartelera_cuadro" onclick="masInfo('radio')">
                                     </a>
                                     <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('ListenRadio/'.$r['id']) }}">
@@ -219,7 +292,7 @@
                             {{--</div>--}}
                             <div class="card">
                                 <div class="card-image">
-                                    <a href="{{url('PlayTv/'.$tv['id'])}}">
+                                    <a class="waves-effect waves-light" href="{{url('PlayTv/'.$tv['id'])}}">
                                         <img src="{{ asset($tv['logo']) }}" id="img_cartelera_cuadro" onclick="masInfo('radio')">
                                     </a>
                                     <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="{{ url('PlayTv/'.$tv['id']) }}">
@@ -724,7 +797,7 @@ restaFechas = function(f1,f2)
     }
 </script>
 
-//----------------COMPRA DE PELICULAS---------------
+<!------------------COMPRA DE PELICULAS----------------->
 
 <script>
 function fnOpenNormalDialog5(cost,name,id) {
@@ -808,7 +881,7 @@ function callback5(value,id) {
 }
 </script>
 
-//----------------COMPRA DE PELICULAS---------------
+<!-- ----------------COMPRA DE PELICULAS----------------->
 
 <script>
 function fnOpenNormalDialog6(cost,name,id) {
