@@ -1,5 +1,4 @@
-@extends('seller.layouts')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         #image-preview {
             width: 100%;
@@ -60,35 +59,37 @@
             box-shadow: 0 1px 0 0 #29B6F6 !important
         }
     </style>
-@endsection
-@section('content')
-    @if (count($errors)>0)
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php if(count($errors)>0): ?>
         <div class="col-md-6 col-md-offset-3">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <ul>
-                    @foreach($errors->all() as $error)
-                        <li> {{ $error }}</li>
-                    @endforeach
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li> <?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>
         </div>
-    @endif
+    <?php endif; ?>
 
     <!-- Content Header (Page header) -->
     <div class="row">
         <div class="col s12">
-            @include('flash::message')
+            <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <div class="card-panel curva">
                 <h4 class="titelgeneral"><i class="material-icons small">book</i> Registrar Tv</h4>
                 <br>
-                {!! Form::open(['route'=>'tvs.store', 'method'=>'POST','files'=>'true']) !!}
+                <?php echo Form::open(['route'=>'tvs.store', 'method'=>'POST','files'=>'true']); ?>
+
                 <div class="row">
                     <div class="col s12 m6">
                         <div id="mensajeFotoTv"></div>
                         <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="col m1">
                             <label for="image-upload" id="image-label"> Logo o foto de la TV </label>
-                            {!! Form::file('logo',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <?php echo Form::file('logo',['class'=>'form-control control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <div id="list"></div>
                         </div>
                     </div>
@@ -97,19 +98,22 @@
                         <div class="input-field">
                             <i class="material-icons prefix blue-text">create</i>
                             <label for="nombre">Nombre de la TV</label>
-                            {!!Form::text('name_r',null,['class'=>'form-control count','required'=>'required','id'=>'nombre','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"])!!}
+                            <?php echo Form::text('name_r',null,['class'=>'form-control count','required'=>'required','id'=>'nombre','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <div id="mensajeMaximoNombre"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix blue-text">volume_up</i>
                             <label for="url">URL de la TV</label>
-                            {!!Form::text('streaming',null,['class'=>'form-control count','required'=>'required','id'=>'url','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un Url')",'oninput'=>"setCustomValidity('')"])!!}
+                            <?php echo Form::text('streaming',null,['class'=>'form-control count','required'=>'required','id'=>'url','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un Url')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <div id="mensajeMaximoUrl"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix blue-text">mail</i>
                             <label for="email">Correo electrónico</label>
-                            {!!Form::email('email_c',null,['class'=>'form-control count','required'=>'required','id'=>'email','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un correo')",'oninput'=>"setCustomValidity('')"])!!}
+                            <?php echo Form::email('email_c',null,['class'=>'form-control count','required'=>'required','id'=>'email','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un correo')",'oninput'=>"setCustomValidity('')"]); ?>
+
                             <div id="mensajeMaximoEmail"></div>
                         </div>
                     </div>
@@ -118,47 +122,53 @@
                         <div class="input-field">
                             <i class="material-icons prefix mdi mdi-earth"></i>
                             <label for="web">Página Web</label>
-                            {!!Form::text('web',null,['class'=>'form-control','id'=>'web'])!!}
+                            <?php echo Form::text('web',null,['class'=>'form-control','id'=>'web']); ?>
+
                             <div id="mensajeMaximoWeb"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix red-text mdi mdi-youtube"></i>
                             <label for="youtube">YouTube</label>
-                            {!!Form::text('google',null,['class'=>'form-control','id'=>'youtube'])!!}
+                            <?php echo Form::text('google',null,['class'=>'form-control','id'=>'youtube']); ?>
+
                             <div id="mensajeMaximoYoutube"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix black-text mdi mdi-instagram"></i>
                             <label for="instagram">Instagram</label>
-                            {!!Form::text('instagram',null,['class'=>'form-control','id'=>'instagram'])!!}
+                            <?php echo Form::text('instagram',null,['class'=>'form-control','id'=>'instagram']); ?>
+
                             <div id="mensajeMaximoInstagram"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix blue-text text-darken-4 mdi mdi-facebook"></i>
                             <label for="facebook">Facebook</label>
-                            {!!Form::text('facebook',null,['class'=>'form-control','id'=>'facebook'])!!}
+                            <?php echo Form::text('facebook',null,['class'=>'form-control','id'=>'facebook']); ?>
+
                             <div id="mensajeMaximoFacebook"></div>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix blue-text text-darken-1 mdi mdi-twitter"></i>
                             <label for="twitter">Twitter</label>
-                            {!!Form::text('twitter',null,['class'=>'form-control','id'=>'twitter'])!!}
+                            <?php echo Form::text('twitter',null,['class'=>'form-control','id'=>'twitter']); ?>
+
                             <div id="mensajeMaximoTwitter"></div>
                         </div>
                     </div>
                     <div class="col s12">
-                        <a href="{{ url('/tvs') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                        <a href="<?php echo e(url('/tvs')); ?>" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                         <button class="btn curvaBoton waves-effect waves-light green white-text" type="submit" id="guardarTv">
                             Registrar TV
                         </button>
                     </div>
                 </div>
-                {!! Form::close() !!}
+                <?php echo Form::close(); ?>
+
             </div>
         </div>
     </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <script>
          $(document).ready(function() {
             $('input.count').characterCounter();
@@ -295,4 +305,5 @@
         // Validacion de maximo de caracteres para los campos
         //---------------------------------------------------------------------------------------------------
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

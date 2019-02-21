@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
         ul.collection {
             max-height: 450px;
@@ -12,8 +11,8 @@
             position: fixed;
         }
     </style>
-@endsection
-@section('main')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main'); ?>
   <!-- **********************************************************************************************************************************************************
   MAIN CONTENT
   *********************************************************************************************************************************************************** -->
@@ -21,8 +20,8 @@
   <h4 class="titelgeneral"><i class="material-icons small">group</i> Mis referidos:</h4>
 
   <!--REFERIR-->
-  <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
-  @if(Auth::user()->UserRefered()->count()  == 0)
+  <input type="hidden" name="id" id="id" value="<?php echo e(Auth::user()->created_at); ?>">
+  <?php if(Auth::user()->UserRefered()->count()  == 0): ?>
       <div   class="col s12  m3 offset-m1 " id="cantidad">
           <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
@@ -31,7 +30,7 @@
               <div class="card-content">
                   <i class="material-icons medium blue-text">assignment_ind</i>
                   <h6 class=" blue-text">Total de referidos:</h6>
-                  <h4 class=" blue-text"><b>{{$referals1+$referals2+$referals3}}</b></h4>
+                  <h4 class=" blue-text"><b><?php echo e($referals1+$referals2+$referals3); ?></b></h4>
               </div>
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
@@ -61,11 +60,12 @@
                   <i class="material-icons medium blue-text">group_work</i>
                   <h6 class=" blue-text">Total de puntos:</h6>
                   <h4 class=" blue-text"><b>
-                          @if(Auth::user()->points!=NULL)
-                              {{Auth::user()->points}}
-                          @else
+                          <?php if(Auth::user()->points!=NULL): ?>
+                              <?php echo e(Auth::user()->points); ?>
+
+                          <?php else: ?>
                               0
-                          @endif
+                          <?php endif; ?>
                       </b></h4>
               </div>
               <div class="card-reveal">
@@ -75,10 +75,10 @@
               </div>
           </div>
       </div>
-  @endif
+  <?php endif; ?>
 
 
-  @if(Auth::user()->UserRefered()->count() <> 0)
+  <?php if(Auth::user()->UserRefered()->count() <> 0): ?>
       <div class="col s12 m5 offset-m1">
           <div class="card">
               <div class="card-image waves-effect waves-block waves-light">
@@ -87,7 +87,7 @@
               <div class="card-content">
               <i class="material-icons medium blue-text">assignment_ind</i>
               <h6 class=" blue-text">Total de referidos:</h6>
-              <h4 class=" blue-text"><b>{{$referals1+$referals2+$referals3}}</b></h4>
+              <h4 class=" blue-text"><b><?php echo e($referals1+$referals2+$referals3); ?></b></h4>
               </div>
               <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4"><i class="material-icons blue-text right">arrow_downward</i></span>
@@ -106,11 +106,12 @@
                   <i class="material-icons medium blue-text">group_work</i>
                   <h6 class=" blue-text">Total de puntos:</h6>
                   <h4 class=" blue-text"><b>
-                          @if(Auth::user()->points!=NULL)
-                             {{Auth::user()->points}}
-                          @else
+                          <?php if(Auth::user()->points!=NULL): ?>
+                             <?php echo e(Auth::user()->points); ?>
+
+                          <?php else: ?>
                               0
-                          @endif
+                          <?php endif; ?>
                       </b></h4>
               </div>
               <div class="card-reveal">
@@ -121,33 +122,33 @@
           </div>
       </div>
 
-  @endif
+  <?php endif; ?>
 
 
 
-  @if ($refered != null)
+  <?php if($refered != null): ?>
   <div class=" s12 col m5 offset-m1  ">
-      <h6 class="left-align grey-text">Mis referidos directos:<span class="blue-text"> ({{$referals1}})</span></h6>
+      <h6 class="left-align grey-text">Mis referidos directos:<span class="blue-text"> (<?php echo e($referals1); ?>)</span></h6>
               <ul class="collection">
-                  @foreach($refered as $refereds)
+                  <?php $__currentLoopData = $refered; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refereds): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <li class="collection-item avatar">
-                      @if($refereds->img_perf)
-                          <img src="{{asset($refereds->img_perf)}}" alt="avatar" class="z-depth-3 responsive-img circle" width="60" height="60">
-                      @else
-                          <img src="{{asset('sistem_images/DefaultUser.png')}}" alt="avatar" class=" z-depth-3 responsive-img circle" width="60" height="60">
-                      @endif
-                      <span class="title blue-text"><b>{{$refereds->name}} {{$refereds->last_name}}</b></span><br>
-                      <span><b>Email: </b> {{$refereds->email}}</span><br>
-                          @if($refereds->phone)
-                              <span><b>Teléfono:</b>{{$refereds->phone}}</span>
-                          @else
+                      <?php if($refereds->img_perf): ?>
+                          <img src="<?php echo e(asset($refereds->img_perf)); ?>" alt="avatar" class="z-depth-3 responsive-img circle" width="60" height="60">
+                      <?php else: ?>
+                          <img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" alt="avatar" class=" z-depth-3 responsive-img circle" width="60" height="60">
+                      <?php endif; ?>
+                      <span class="title blue-text"><b><?php echo e($refereds->name); ?> <?php echo e($refereds->last_name); ?></b></span><br>
+                      <span><b>Email: </b> <?php echo e($refereds->email); ?></span><br>
+                          <?php if($refereds->phone): ?>
+                              <span><b>Teléfono:</b><?php echo e($refereds->phone); ?></span>
+                          <?php else: ?>
                               <span><b>Teléfono:</b>No posee teléfono registrado</span>
-                          @endif
+                          <?php endif; ?>
                   </li>
-                  @endforeach
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </ul>
   </div>
-  @else
+  <?php else: ?>
       <div class="col s12 m5  offset-m1  ">
           <h6 class="left-align grey-text">Mis referidos directos:</h6>
             <blockquote class="center grey lighten-4 grey-text ">
@@ -155,15 +156,15 @@
               <br>Aún no tienes Referidos <br>
             </blockquote>
       </div>
-  @endif
+  <?php endif; ?>
 
   <div  class="col m5 s12 ">
       <div class="card">
           <div class="card-image">
-              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" >
+              <img  src="<?php echo e(asset('promociones/PromocionGalapagosImg.jpg')); ?>" >
           </div>
           <div class="card-action">
-              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
+              <a  href="<?php echo e(asset('promociones/PromocionGalapagosInfo.pdf')); ?>" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
               <br>
           </div>
       </div>
@@ -178,12 +179,13 @@
           </div>
           <br>
           <div class="row">
-              <form class="col m6 offset-m3"  method="POST" action="{{url('Referals')}}" id="patrocinador" >{{ csrf_field() }}
+              <form class="col m6 offset-m3"  method="POST" action="<?php echo e(url('Referals')); ?>" id="patrocinador" ><?php echo e(csrf_field()); ?>
+
                       <div class="input-field col m12 ">
                           <i class="material-icons prefix">vpn_key</i>
-                          <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
+                          <input id="codigo" type="text" class="validate" name="codigo" value="<?php echo e(old('codigo')); ?>" required="required" type="text">
                           <label for="codigo">Código</label>
-                          <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
+                          <div> <?php echo e($errors->has('codigo') ? ' has-error' : ''); ?> </div>
                           <div id="codigoMen"></div>
                       </div>
                       <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Enviar
@@ -199,9 +201,9 @@
   <!--FIN DEL MODAL-->
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
 
     <script type="text/javascript">
@@ -216,7 +218,7 @@
                 type: 'get',
                 dataType: "json",
                 beforeSend: function() {
-                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
                     swal({
                         title: "¡Listo! Estamos validando su información...",
                         text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
@@ -318,4 +320,5 @@
             return dias;
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
