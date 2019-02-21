@@ -315,7 +315,7 @@
                             
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
-                                <label for="autocomplete-input" class="">Título</label>
+                                <label for="titulo" class="">Título</label>
                                 <?php echo Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                 <div id="mensajeTitulo"></div>
@@ -659,7 +659,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
                                     
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     <?php echo Form::textarea('sinopsis',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
@@ -830,8 +830,8 @@
                         
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text">create</i>
-                            <label for="exampleInputFile" class="control-label">Nombre</label>
-                            <?php echo Form::text('sag_name',null,['class'=>'form-control','required'=>'required']); ?>
+                            <label for="nombre_saga" class="control-label">Nombre</label>
+                            <?php echo Form::text('sag_name',null,['class'=>'form-control','id'=>'nombre_saga','required'=>'required']); ?>
 
                             <br>
                         </div>
@@ -849,7 +849,7 @@
                         
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text  valign-wrapper">create</i>
-                            <label for="exampleInputPassword1" class="control-label">Descripción</label>
+                            <label for="exampleInputFile" class="control-label">Descripción</label>
                             <?php echo Form::textarea('sag_description',null,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Descripción de la Saga','id'=>'exampleInputFile','required'=>'required']); ?>
 
                         </div>
