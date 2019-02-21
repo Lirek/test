@@ -282,17 +282,15 @@ h5.breadcrumbs-header {
                                         <span class="collection-header center" style="color: white">Contactame</span>
                                       </li>
                                     </div>
-
-
-
-                                      <!--   @if ($user->img_doc)
+                                    @if ($user->img_doc)
                                         <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @else
-                                    <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
-                                @endif -->
+                                        <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
+                                    @endif
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-                                        @if ($mipatro != 0)
+
+                                        @if ($mipatro != null)
                                             {{$mipatro->name}}
                                             <br>
                                             {{$mipatro->email}}
@@ -303,7 +301,7 @@ h5.breadcrumbs-header {
                                         @endif
 
                                     </div>
-            {!! Form::close() !!} 
+            {!! Form::close() !!}
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
