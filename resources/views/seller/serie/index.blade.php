@@ -46,7 +46,7 @@
         @include('flash::message')
         <div class="card-panel curva">
             <h3 class="center">
-                Películas registradas 
+                Series registradas 
             </h3>
             @if($serie->count() != 0 )
             <div class="row">
@@ -80,7 +80,7 @@
             @else
             <div class="col m12">
             <blockquote >
-                <i class="material-icons fixed-width large grey-text">Movie</i><br><h5>No Posee series registradas</h5>
+                <i class="material-icons fixed-width large grey-text">movie</i><br><h5>No Posee series registradas</h5>
             </blockquote>
             <br>
             </div>

@@ -235,7 +235,7 @@
                                 @endif
                             @endforeach
                         </select>
-                        <label for="tags"> Géneros </label>
+                        <label for="genders"> Géneros </label>
                         <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero" >
                             Agregar género
                         </button>
@@ -244,7 +244,7 @@
                 </div>
                 <div class="col s12">
                     <div class=" file-field input-field col s12 m6">
-                        <label for="duration" class="control-label">Cargar película</label>
+                        <label for="pelicula" class="control-label">Cargar película</label>
                         <br><br>
                         <div id="mensajePelicula"></div>
                         <div class="btn blue">
@@ -259,14 +259,14 @@
                     <br><br>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                        {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                        <label for="exampleInputFile" class="control-label">Categoría</label>
+                        {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                        <label for="rating" class="control-label">Categoría</label>
                         <br>
                     </div>
                     
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                        <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                        <label for="fechaLanzamiento" class="control-label">Año de lanzamiento</label>
                         {!! Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'onkeypress' => 'return controltagNum(event)' ,'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                         <div id="mensajeFechaLanzamiento"></div>
                         <br>
@@ -523,7 +523,7 @@
                     <div class="input-field col s12 m6">
                         {{--Basado en un libro o no --}}
                         <i class="material-icons prefix blue-text valign-wrapper">movie</i>
-                        <label for="sipnosis" class="control-label">Sinopsis</label>
+                        <label for="sinopsis" class="control-label">Sinopsis</label>
                         <div id="cantidadSinopsis"></div>
                         {!! Form::textarea('based_on',null,['class'=>'materialize-textarea','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
                         <div id="mensajeSinopsis"></div>
@@ -555,12 +555,12 @@
                         <br>
                                 {{--
                                 <div id="mensajeAntes"></div>
-                                <label for="exampleInputPassword1" class="control-label">Antes</label>
+                                <label for="antes" class="control-label">Antes</label>
                                 {!! Form::number('before',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0','required'=>'required']) !!}
                                 <br>
 
                                 <label for="exampleInputPassword1" class="control-label">Después</label>
-                                <div id="mensajeDespues"></div>
+                                <div id="despues"></div>
                                 {!! Form::number('after',null,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0','required'=>'required']) !!}
                                 --}}
                     </div>
@@ -1230,5 +1230,28 @@ function maxLengthCheck(object) {
         var conversion=ticket_dolar(document.getElementById("precio").value);
         document.getElementById("conversion").value=conversion.toFixed(2);
     });
+
+    function ytVidId(url) {
+    var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+    return (url.match(p)) ? RegExp.$1 : false;
+}
+
+$('#link').bind("change keyup input", function() {
+    var url = $(this).val();
+    if (ytVidId(url) !== false) {
+        // console.log('Si es youtube');
+          $('#mensajeLink').hide();
+            $('#registrarPelicula').attr('disabled',false);
+        // $('#ytlInfo').addClass('fieldok');
+    } else {
+        // console.log('No es youtube');
+        $('#mensajeLink').show();
+            $('#mensajeLink').text('Ups, solo se aceptan enlaces provenientes del YouTube');
+            $('#mensajeLink').css('color','red');
+            $('#registrarPelicula').attr('disabled',true);
+        // $('#ytlInfo').removeClass('fieldok');
+    }
+});
+
 </script>
 @endsection

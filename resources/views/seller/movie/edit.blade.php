@@ -208,11 +208,11 @@
                     <div class="input-field col s12 m6">
                         {{--titulo de la pelicula--}}
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="exampleInputFile" class="control-label">Título</label>
+                        <label for="titulo" class="control-label">Título</label>
                         @if($movie->status != 'Aprobado')
                             {!! Form::text('title',$movie->title,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                         @else
-                            {!! Form::text('title',$movie->title,['class'=>'form-control', 'readonly']) !!}
+                            {!! Form::text('title',$movie->title,['class'=>'form-control', 'id'=>'titulo','readonly']) !!}
                         @endif
                         <div id="mensajeTitulo"></div>
                         <br>
@@ -220,18 +220,18 @@
                     <div class="input-field col s12 m6">
                         {{--titulo original de la pelicula--}}
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="exampleInputFile" class="control-label">Título original </label>
+                        <label for="titulOriginal" class="control-label">Título original </label>
                         @if($movie->status != 'Aprobado')
                             {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','id'=>'titulOriginal','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                         @else
-                            {!! Form::text('original_title',$movie->original_title,['class'=>'form-control', 'readonly']) !!}
+                            {!! Form::text('original_title',$movie->original_title,['class'=>'form-control', 'id'=>'titulOriginal','readonly']) !!}
                         @endif
                         <br>
                     </div>
                     <div class="input-field col s12 m3">
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                        <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                        <label for="precio" class="control-label">Costo en tickets</label>
                         @if($movie->status != 'Aprobado')
                             {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ,'max'=>'999' ,'oninput'=>"maxLengthCheck(this)"]) !!}
                         @else
@@ -252,7 +252,7 @@
                         {{--Categoria--}}
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                             @if($movie->status != 'Aprobado')
-                            <select name="tags[]" multiple="true" class="form-control" required>
+                            <select name="tags[]" multiple="true" class="form-control" required id="tags">
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
                                         @foreach($s_tags as $s) 
@@ -297,7 +297,7 @@
                                 <div id='mensajeCargaPelicula'></div>
                                 
                                 <br><br>
-                                <label for="exampleInputFile" class="control-label">Cargar película</label>
+                                <label for="pelicula" class="control-label">Cargar película</label>
                                 <div class="btn blue">
                                     <span><i class="material-icons">movie</i></span>
                                     {!! Form::file('duration',['class'=>'form-control','accept'=>'.mp4','id'=>'pelicula']) !!}
@@ -320,14 +320,14 @@
                         @else
                             {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','disabled'=>true ]) !!}
                         @endif
-                        <label for="exampleInputFile" class="control-label">Categoría</label>
+                        <label for="categoria" class="control-label">Categoría</label>
                             <br>
                     </div>
 
                     <div class="input-field col s12 m6">
                         {{--año de salida de la pelicula --}}
                          <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                        <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                        <label for="fechaLanzamiento" class="control-label">Año de lanzamiento</label>
                         @if($movie->status != 'Aprobado')
                             {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                         @else
@@ -578,7 +578,7 @@
                                         <option value="ZM">Zambia</option>
                                         <option value="ZW">Zimbabue</option>
                                     </select>
-                                    <label class="control-label">País</label><br>
+                                    <label for="paises" class="control-label">País</label><br>
                                     </div>
                                 <br>
                                 </div>
@@ -586,7 +586,7 @@
                     <div class="input-field col s12 m6">
                         {{--link--}}
                         <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
-                        <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
+                        <label for="link" class="control-label">Link del trailer</label>
                         @if($movie->status != 'Aprobado')
                             {!! Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                         @else
@@ -598,7 +598,7 @@
                     <div class="input-field col s12 m6">
                         {{--Basado en un libro o no --}}
                         <i class="material-icons prefix blue-text valign-wrapper">movie</i>
-                        <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                        <label for="sinopsis" class="control-label">Sinopsis</label>
                         {!! Form::textarea('based_on',$movie->based_on,['class'=>'materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la película','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'sinopsis']) !!}
                         <div id="mensajeSinopsis"></div>
                     </div>
@@ -1023,9 +1023,30 @@ function maxLengthCheck(object) {
         });
 
 //---------------------------------------------------------------------------------------------------
+    function ytVidId(url) {
+    var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+    return (url.match(p)) ? RegExp.$1 : false;
+}
+
+$('#link').bind("change keyup input", function() {
+    var url = $(this).val();
+    if (ytVidId(url) !== false) {
+        // console.log('Si es youtube');
+          $('#mensajeLink').hide();
+            $('#guardarCambios').attr('disabled',false);
+        // $('#ytlInfo').addClass('fieldok');
+    } else {
+        // console.log('No es youtube');
+        $('#mensajeLink').show();
+            $('#mensajeLink').text('Ups, solo se aceptan enlaces provenientes del YouTube');
+            $('#mensajeLink').css('color','red');
+            $('#guardarCambios').attr('disabled',true);
+        // $('#ytlInfo').removeClass('fieldok');
+    }
+});
+        
+</script>
 
 
-
-    </script>
 
 @endsection
