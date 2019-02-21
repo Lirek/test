@@ -43,17 +43,6 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/book/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/complete.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/complete.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_i_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/megazine_module/megazine_i_update.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/seller/music_module/album.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyAlbums.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MyMusic.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -655,7 +644,7 @@
       <workItem from="1548998814595" duration="209000" />
       <workItem from="1549991733751" duration="582000" />
       <workItem from="1550162285496" duration="763000" />
-      <workItem from="1550244564783" duration="317000" />
+      <workItem from="1550244564783" duration="991000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -881,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549992030507</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Cambios solicitados en reproductor de musica, arreglos en input">
+      <created>1550245105467</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1550245105467</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="562207000" />
+    <option name="totallyTimeSpent" value="562881000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -902,7 +898,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5249622" side_tool="true" weight="0.32178217" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4750378" visible="true" weight="0.32178217" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4750378" weight="0.32178217" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="10" />
@@ -940,7 +936,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arreglos en editar libro, migracion compra de contenido (Libros y Revistas)" />
     <MESSAGE value="Solucion al error del modal de compra" />
     <MESSAGE value="Cambios en revistas" />
     <MESSAGE value="Cambios pacheco" />
@@ -965,7 +960,8 @@
     <MESSAGE value="Merge branch 'beyker' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Cambios en single para agregar la imagen y modificacion en el reproductor de musica para mostrar las bareas en la cancion que se reproduzca. Se corrigio tambien el error de series" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios en single para agregar la imagen y modificacion en el reproductor de musica para mostrar las bareas en la cancion que se reproduzca. Se corrigio tambien el error de series" />
+    <MESSAGE value="Cambios solicitados en reproductor de musica, arreglos en input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios solicitados en reproductor de musica, arreglos en input" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php">
