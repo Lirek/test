@@ -326,7 +326,7 @@
 <br>
 <!-- Parallax  -->
 <div class="parallax-container" style="width: 100%; ">
-    <div class="parallax"><img src="{{asset('https://leipel.com/plugins/materialize_index/img/parallax.jpg') }}"></div>
+    <div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>
 </div>
 <!--Fin parallax-->
 
