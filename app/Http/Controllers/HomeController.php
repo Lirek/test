@@ -621,6 +621,7 @@ class HomeController extends Controller
         $secuencial = rand(0,100000000);
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
+        $ambiente = env('AMB_DATIL');
         $nombrePaquete = $paquete->name;
         $iva = 0.12;
         $costoPaquete = $Buy->cost;

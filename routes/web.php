@@ -77,6 +77,11 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
+//----------------------- Rutas para el usuario OFERTANTE -----------------------
+    Route::post('BidderSubmit','BidderController@store');
+    Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
+//----------------------- Rutas para el usuario OFERTANTE -----------------------
+
 
 Route::group(['middleware' => 'auth'], function() {
 
