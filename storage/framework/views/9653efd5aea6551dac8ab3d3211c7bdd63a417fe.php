@@ -135,7 +135,7 @@
                             
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
-                                <label for="autocomplete-input" class="">Título</label>
+                                <label for="titulo" class="">Título</label>
                                 <?php echo Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                 <div id="mensajeTitulo"></div>
@@ -145,7 +145,7 @@
                             
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text">local_play</i>
-                                <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                <label for="precio" class="control-label">Costo en tickets</label>
                                 <?php echo Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999','oninput'=>"maxLengthCheck(this)"]); ?>
 
                                 <div id="mensajePrecio"></div>
@@ -456,7 +456,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
                                     
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     <?php echo Form::textarea('descripcion',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
