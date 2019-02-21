@@ -335,7 +335,7 @@
                             
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text">local_play</i>
-                                <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                <label for="precio" class="control-label">Costo en tickets</label>
                                 <?php echo Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999','oninput'=>"maxLengthCheck(this)"]); ?>
 
                                 <div id="mensajePrecio"></div>
