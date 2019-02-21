@@ -200,7 +200,7 @@
                     {{--titulo de la pelicula--}}
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="exampleInputFile" class="">Título</label>
+                        <label for="titulo" class="">Título</label>
                         {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                         <div id="mensajeTitulo"></div>
                         
@@ -208,14 +208,14 @@
                     <div class="input-field col s12 m6">
                         {{--titulo original de la pelicula--}}
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="exampleInputFile" class="control-label">Título original</label>
+                        <label for="titulOriginal" class="control-label">Título original</label>
                         {!! Form::text('original_title',null,['class'=>'form-control','required'=>'required','id'=>'titulOriginal','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
                         <div id="mensajeTitulOriginal"></div>
                     </div>
                     <div class="input-field col s12 m3">
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                        <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                        <label for="precio" class="control-label">Costo en tickets</label>
                         {!! Form::number('cost',null,['class'=>'form-control','required'=>'required', 'oninput'=>"maxLengthCheck(this)",'oninvalid'=>"this.setCustomValidity('Costo en tickets')",  'id'=>'precio', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)' ]) !!}
                         <div id="mensajePrecio"></div>
                         <br>
@@ -515,7 +515,7 @@
                     </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
-                        <label for="trailer_url" class="control-label">Link del trailer</label>
+                        <label for="link" class="control-label">Link del trailer</label>
                         {!! Form::url('trailer_url',null,['class'=>'form-control','required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                         <div id="mensajeLink"></div>
                         <br>
@@ -523,7 +523,7 @@
                     <div class="input-field col s12 m6">
                         {{--Basado en un libro o no --}}
                         <i class="material-icons prefix blue-text valign-wrapper">movie</i>
-                        <label for="based_on" class="control-label">Sinopsis</label>
+                        <label for="sipnosis" class="control-label">Sinopsis</label>
                         <div id="cantidadSinopsis"></div>
                         {!! Form::textarea('based_on',null,['class'=>'materialize-textarea','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la película')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
                         <div id="mensajeSinopsis"></div>
@@ -616,8 +616,8 @@
                         {{--Nombre de la saga--}}
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text">create</i>
-                            <label for="exampleInputFile" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
+                            <label for="sag_name" class="control-label">Nombre</label>
+                            {!! Form::text('sag_name',null,['class'=>'form-control','id'=>'sag_name','required'=>'required']) !!}
                             <br>
                         </div>
 
