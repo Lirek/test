@@ -115,39 +115,6 @@
         @endif
         <!--End  RECIENTE cine-->
 
-                            <!--CONTENIDO RECIENTE serie-->
-                                @if(count($Series) > 0)
-                                    <div class="row">
-                                        <div class="col s12 ">
-                                            <a href="{{url('ShowSeries')}}" >
-                                            <h5 class="grey-text left"><i class="mdi mdi-movie-roll"></i>Serie</h5></a>
-
-                                        </div>
-                                        <div class="col s12 ">
-                                            <div  class="owl-carousel owl-theme">
-                                                @foreach($Series as $s)
-                                                    {{--<div>--}}
-                                                        {{--<img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">--}}
-                                                    {{--</div>--}}
-                                                    <div class="card">
-                                                        <div class="card-image">
-                                                            <img src="{{ asset($m->cover)}}"  id="img_cartelera_largo">
-                                                            <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"><i class="mdi mdi-movie-roll"></i></a>
-                                                        </div>
-                                                        <div class="card-action ">
-                                                            <b class="grey-text truncate">{{$s->title}}</b>
-                                                        </div>
-                                                    </div>
-
-                                                @endforeach
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                @endif
-                        @endif
-                    <!--End  RECIENTE cine-->
-
         <!--CONTENIDO RECIENTE Lecturas-->
         @if(count($lectura)> 0)
             <div class="row">
