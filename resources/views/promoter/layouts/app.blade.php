@@ -197,7 +197,7 @@
     <!--Old main-->
     --}}
     <!--footer start-->
-    <footer class="page-footer blue">
+    <footer class="page-footer pink darken-4">
       <div class="footer-copyright">
         <div class="container center">
           Leipel &copy 2019. Todos los derechos reservados.
