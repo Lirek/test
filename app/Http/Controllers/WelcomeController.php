@@ -36,7 +36,7 @@ class WelcomeController extends Controller
         $sellers = Seller::all();
         // LECTURA
         $lectura = [];
-        $books = Book::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $books = Book::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($books as $b) {
             $lectura[] = array(
                 'type' => 'Libro',
@@ -44,7 +44,7 @@ class WelcomeController extends Controller
                 'name' => $b->title
             );
         }
-        $megazines = Megazines::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $megazines = Megazines::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($megazines as $m) {
             $lectura[] = array(
                 'type' => 'Revista',
@@ -52,26 +52,10 @@ class WelcomeController extends Controller
                 'name' => $m->title
             );
         }
-        $sagasR = Sagas::where('status','Aprobado')->where('type_saga','Revistas')->orderBy('id','DESC')->take(5)->get();
-        foreach ($sagasR as $s) {
-            $lectura[] = array(
-                'type' => 'Revista independiente',
-                'cover' => $s->img_saga,
-                'name' => $s->saga_name
-            );
-        }
-        $sagasL = Sagas::where('status','Aprobado')->where('type_saga','Libros')->orderBy('id','DESC')->take(5)->get();
-        foreach ($sagasL as $s) {
-            $lectura[] = array(
-                'type' => 'Libro independiente',
-                'cover' => $s->img_saga,
-                'name' => $s->saga_name
-            );
-        }
         // RADIO
         //$radios = Radio::all();
         $radios = [];
-        $radio = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
+        $radio = Radio::where('status','Aprobado')->orderBy('id','DESC')->take(20)->get();
         foreach ($radio as $r) {
             $radios[] = array(
                 'type' => 'Radio',
@@ -82,7 +66,7 @@ class WelcomeController extends Controller
         // TV
         //$tvs = Tv::all();
         $tvs = [];
-        $tv = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
+        $tv = Tv::where('status','Aprobado')->orderBy('id','DESC')->take(20)->get();
         foreach ($tv as $t) {
             $tvs[] = array(
                 'type' => 'TV',
@@ -92,15 +76,15 @@ class WelcomeController extends Controller
         }
         // CINE
         $cine = [];
-        $movies = Movie::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $movies = Movie::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($movies as $m) {
             $cine[] = array(
                 'type' => 'Pelicula',
-                'img_poster' => "/movie/poster/".$m->img_poster,
+                'img_poster' => $m->img_poster,
                 'name' => $m->title
             );
         }
-        $series = Serie::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $series = Serie::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($series as $s) {
             $cine[] = array(
                 'type' => 'Serie',
@@ -108,25 +92,9 @@ class WelcomeController extends Controller
                 'name' => $s->title
             );
         }
-        $sagasP = Sagas::where('status','Aprobado')->where('type_saga','Peliculas')->orderBy('id','DESC')->take(5)->get();
-        foreach ($sagasP as $s) {
-            $lectura[] = array(
-                'type' => 'Película independiente',
-                'cover' => $s->img_saga,
-                'name' => $s->saga_name
-            );
-        }
-        $sagasS = Sagas::where('status','Aprobado')->where('type_saga','Series')->orderBy('id','DESC')->take(5)->get();
-        foreach ($sagasS as $s) {
-            $lectura[] = array(
-                'type' => 'Serie independiente',
-                'cover' => $s->img_saga,
-                'name' => $s->saga_name
-            );
-        }
         // MUSICA
         $musica = [];
-        $album = Albums::where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $album = Albums::where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($album as $a) {
             $musica[] = array(
                 'type' => 'Álbum',
@@ -134,11 +102,11 @@ class WelcomeController extends Controller
                 'name' => $a->name_alb
             );
         }
-        $single = Songs::where('album',0)->where('status','Aprobado')->orderBy('id','DESC')->take(5)->get();
+        $single = Songs::where('album',0)->where('status','Aprobado')->orderBy('id','DESC')->take(10)->get();
         foreach ($single as $s) {
             $musica[] = array(
                 'type' => 'Canción',
-                'cover' => "/plugins/img/DefaultMusic.png",
+                'cover' => '/plugins/img/DefaultMusic.png',
                 'name' => $s->song_name
             );
         }

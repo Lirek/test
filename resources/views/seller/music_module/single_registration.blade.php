@@ -112,10 +112,32 @@
             </h3>
             <br>
             <div class="row">
-                {!! Form::open(['url'=>'single_registration','method'=>'POST','files' => 'true','class'=>'form-horizontal','role'=>'form']) !!}
+                {!! Form::open(['url'=>'single_registration','method'=>'POST','files' => 'true','class'=>'form-horizontal','role'=>'form', 'id'=>'single']) !!}
                 {!! Form::hidden('seller_id',Auth::guard('web_seller')->user()->id) !!}
                 {{ csrf_field() }}
                 <div class="col s12">
+                    <label class="control-label" for="option-1"> ¿La canción posee portada? </label>
+                    <br>
+                    <div class="">
+                        <label for="option-1">
+                            <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
+                            <span class="mdl-radio__label">Si</span>
+                        </label>
+                        <label for="option-2">
+                            <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
+                            <span class="mdl-radio__label">No</span>
+                        </label>
+                    </div>
+                    <br>
+                     {{--Poster del single--}}
+                    <div class="col s12 m6" style="display:none" id="poster"> 
+                        <div id="mensajePortadaPelicula"></div>
+                        <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="form-group col-md-1">
+                            <label for="image-upload" id="image-label"> Portada </label>
+                            {!! Form::file('img_poster',['class'=>'form-control-file','control-label','id'=>'image-upload','accept'=>'image/*','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una imagen de portada')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <div id="list"></div>
+                        </div>
+                    </div>
                      <div class="input-field col s12 m6">
                               @foreach(App\Seller::find(\Auth::guard('web_seller')->user()->id)->roles as $mod)
                                 @if($mod->name == 'Productora')
@@ -164,23 +186,22 @@
                         </div>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                        <label for="Nombre de la Cancion">Nombre de la canción</label>
+                        <label for="song_n">Nombre de la canción</label>
                         {!! Form::text('song_n',null,['class'=>'form-control','required'=>'required','id'=>'song_n' ,'oninvalid'=>"this.setCustomValidity('Ingrese un nombre valido')",'oninput'=>"setCustomValidity('')"]) !!}
                         <div id="mensajeNombreCancion"></div>
                         <br>
                     </div>
-                </div>
-                <div class="col s12">
+                
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                        <label for="Costo en Tickets">Costo en tickets</label>
+                        <label for="cost">Costo en tickets</label>
                         {!! Form::number('cost',null,['class'=>'form-control','min'=>'0','pattern'=>'{3}','id'=>'cost', 'required'=>'required','oninvalid'=>"this.setCustomValidity('Ingrese un costo en tickets no mayor a 999')", 'oninput'=>"maxLengthCheck(this)"]) !!}
                         <div id="mensajeTickets"></div> 
                         <br>
                     </div>  
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
-                        <select name="tags[]" multiple="true" class="form-control" required>
+                        <select name="tags[]" multiple="true" id="tags" class="form-control" required>
                           @foreach($tags as $genders)
                             @if($genders->type_tags=='Musica')
                               <option value="{{$genders->id}}">{{$genders->tags_name}}</option>
@@ -196,7 +217,7 @@
                 </div>
                 <div class="col s12">
                     <div class="file-field input-field col s12 m6">
-                        <label for="Seleccione Música">Seleccione canción</label>
+                        <label for="cancion">Seleccione canción</label>
                         <br><br>
                         <div class="btn blue">
                             <span><i class="material-icons">music_note</i></span>
@@ -383,7 +404,7 @@ function maxLengthCheck(object) {
   </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
  
-<script type="text/javascript">
+<!-- <script type="text/javascript">
  
     
  
@@ -393,7 +414,7 @@ function maxLengthCheck(object) {
     var percent = $('.percent');
     var status = $('#status');
  
-    $('#registroPelicula').ajaxForm({
+    $('#single').ajaxForm({
         
         beforeSend: function() {
             status.empty();
@@ -422,7 +443,7 @@ function maxLengthCheck(object) {
     });
      
     })();
-</script>
+</script> -->
 <script type="text/javascript">
     
        function callback() {
@@ -459,5 +480,39 @@ function maxLengthCheck(object) {
  }
 
 
+</script>
+<script type="text/javascript">
+    function archivo(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                document.getElementById("list").innerHTML = ['<img style= width:100%; height:100%; border-top:50%; src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('image-upload').addEventListener('change', archivo, false);
+    // Para validar los radio boton
+    $(document).ready(function(){
+        $('#option-2').prop('checked','checked');
+        $('#image-upload').removeAttr('required');
+      
+    });
+
+    function yesnoCheck() {
+        if (document.getElementById('option-1').checked) {
+            $('#poster').show();
+            $('#image-upload').attr('required','required');
+        } else {
+            $('#poster').hide();
+            $('#image-upload').removeAttr('required');
+        }
+    }
 </script>
 @endsection

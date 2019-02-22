@@ -1,5 +1,6 @@
 @extends('seller.layouts')
 @section('css')
+@include('flash::message')
 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
@@ -149,21 +150,21 @@
                                 <i class="material-icons prefix blue-text">face</i>
                                 {!! Form::text('name',$seller->name,['class'=>'form-control', 'required'=>'required', 'id'=>'nombre', 'required'=>'required']) !!}
                                 <div id="mensajeNombre"></div>
-                                <label for="name">Nombre</label>
+                                <label for="nombre">Nombre</label>
                             </div>
                             <!--email-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">email</i>
-                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly']) !!}
+                                {!! Form::text('email',$seller->email,['class'=>'form-control','readonly','id'=>'email']) !!}
                                 <label  for="email">Correo</label>
                             </div>
                             <!--RUC-->
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">assignment_ind</i>
                                 @if($seller->estatus == 'Aprobado')
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','readonly']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control','id'=>'ruc','readonly']) !!}
                                 @else
-                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                    {!! Form::text('ruc_s',$seller->ruc_s,['class'=>'form-control', 'required'=>'required','id'=>'ruc','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                     <div id="mensajeRuc"></div>
                                 @endif
                                 <label  for="ruc">(RUC) Registro único de contribuyente</label>
@@ -173,7 +174,7 @@
                             <div class="form-group ">
                             @if($seller->estatus == 'Pre-Aprobado' || $seller->estatus == 'Rechazado')
                             <div class="file-field input-field col s12">
-                                <label for="exampleInputFile" class="control-label">Cargar imagen de RUC</label>
+                                <label for="img_doc" class="control-label">Cargar imagen de RUC</label>
                                 <br><br>
                                 <div id="mensajeDocumento"></div>
                                 <div class="btn blue">
@@ -207,7 +208,7 @@
                                 <i class="material-icons prefix blue-text">navigation</i>
                                 {!! Form::text('direccion',$seller->address,['class'=>'form-control','id'=>'direccion', 'required'=>'required']) !!}
                                 <div id="mensajeMaximoDireccion"></div>
-                                <label  for="ruc">Dirección</label>
+                                <label  for="direccion">Dirección</label>
                             </div>
                             <!--telefono-->
                             <div class="input-field col s12">
@@ -215,14 +216,14 @@
                                 <input class="form-control" type="tel" name="phone" id="phone_s" required="required" onkeypress="return controltagNum(event)" maxlength="15" value="{{$seller->tlf}}">
                                 {{--<input type="hidden" id="phone2" name="phone" value="{{$seller->tlf}}" required="required">--}}
                                 <div id="mensajePhone"></div>
-                                <label  for="ruc">Telefono</label>
+                                <label  for="phone_s">Telefono</label>
                             </div>
                             <!--Estado de la cuenta-->
                             <div class="input-field col s12" style="display: none;">
                                 <i class="material-icons prefix blue-text">security</i>
                                   {!! Form::text('account_status','open',['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'account_status','required'=>'required']) !!}
                                   <div id="mensajeRuc"></div>
-                                 <label  for="ruc">Estado de cuenta</label>
+                                 <label  for="account_status">Estado de cuenta</label>
                             </div>
 
                                   <div class="input-field col s12">
@@ -232,7 +233,7 @@
                             </div>
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                                         <span class="collection-header center" style="color: white ">Sobre mi</span>
                                       </li>
                                     </div>
@@ -243,17 +244,20 @@
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
                     </div>
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
-                    <ul><a class="btn btn-primary green curvaBoton btn modal-trigger" href="#modal1">Cambiar Contraseña</a>
+                    <ul>
+                    <blockquote>
+                    <i class="material-icons prefix blue-text">edit</i>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a></blockquote>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
                             </div>
                             <div class="card-content">
 
@@ -263,25 +267,43 @@
                             {{ Form::token() }}
 
                             {!! Form::hidden('password',$seller->password,['class'=>'form-control','method'=>'POST']) !!}
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11 m12">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su antigua contraseña</label>
-                            {!! Form::password('oldpass',$seller->oldpass,['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST']) !!}
+                            <label for="oldpass">Introduzca su antigua contraseña</label>
+                            {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="oldpasscp" style="margin-top: 1%"></div>
+                            @if ($errors->has('oldpass'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('oldpass') }}</strong>
+                                    </span>
+                            @endif
                             </div>
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su nueva contraseña</label>
-                            {!! Form::password('newpass',$seller->newpass,['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST']) !!}
+                            <label for="newpass">Introduzca su nueva contraseña</label>
+                            {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="newpasscp" style="margin-top: 1%"></div>
+                             @if ($errors->has('newpass'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('newpass') }}</strong>
+                                    </span>
+                            @endif
                             </div>
-                            <div class="input-field col s12 ">
+                            <div class="input-field col s12 l11 ">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Confirme su nueva contraseña</label>
-                            {!! Form::password('confnewpass',$seller->confnewpass,['class'=>'form-control','required'=>'required','name'=>'confnewpass','method'=>'POST']) !!}  
+                            <label for="confnewpass">Confirme su nueva contraseña</label>
+                            {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
+                            <div id="confnewpasscp" style="margin-top: 1%"></div>
+                             @if ($errors->has('confnewpass'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('confnewpass') }}</strong>
+                                    </span>
+                            @endif
                             </div>
                             <div style="text-align: center">
-                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Cambiar']) !!}
-                            {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!} 
-                            </div>
+                            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'ChangePassword']) !!}
+                            {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}        
+                            </div>     
                             <!--<a href="#" class="btn btn-primary green curvaBoton active modal-close">Volver</a>-->
                             </div>
                             <!-- <a href="{{ url('ChangePassword', $seller->id) }}" class="btn btn-primary green curvaBoton active modal-close" id="changepassword">Actualizar</a>
@@ -289,13 +311,16 @@
                             </div>
                         </div>
                     </ul>
-                    <ul><a class="btn btn-primary red curvaBoton btn modal-trigger" href="#modal2">Cerrar cuenta</a>
+                     <ul><blockquote>
+                         <i class="material-icons prefix blue-text">delete_forever</i>
+                         <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
+                         </blockquote>
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cerrar cuenta</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar Cuenta</span></div>
                             </div>
-                            <div class="card-content" style="text-align: center;"> <label><h6>AVISO <br> Desea cerrar su cuenta permanentemente? <br>Esta acción inhabilitará su cuenta y no podra ingresar de nuevo con ella.</h6></label><br><br>
+                            <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
                             <a href="{{ url('DeleteAccountSeller', Auth::guard('web_seller')->user()->id) }}" class="btn btn-primary green curvaBoton active modal-close">Si, Estoy Seguro</a>
                             {!! Form::button('Regresar', ['class' => 'btn btn-primary green curvaBoton active modal-close','id'=>'Regresar']) !!}
@@ -340,6 +365,164 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
 --}}
 
+<!-- Confirmación cambio de contraseñas-->
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#oldpass').keyup(function(evento){
+            var password = $('#oldpass').val().trim();
+
+            if (password.length==0) {
+                $('#oldpasscp').show();
+                $('#oldpasscp').text('El campo no debe estar vacio');
+                $('#oldpasscp').css('color','red');
+                $('#oldpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#oldpasscp').show();
+                $('#oldpasscp').text('Su contaseña antigua debe tener al menos 5 caracteres');
+                $('#oldpasscp').css('color','red');
+                $('#oldpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#oldpasscp').hide();
+                var password1 = $('#oldpass').val().trim();
+                console.log(password1.length !=0);
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#newpass').keyup(function(evento){
+            var password = $('#newpass').val().trim();
+
+            if (password.length==0) {
+                $('#newpasscp').show();
+                $('#newpasscp').text('El campo no debe estar vacio');
+                $('#newpasscp').css('color','red');
+                $('#newpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#newpasscp').show();
+                $('#newpasscp').text('Su nueva contaseña debe tener 5 caracteres');
+                $('#newpasscp').css('color','red');
+                $('#newpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#newpasscp').hide();
+                var password1 = $('#confnewpass').val().trim();
+                console.log(password1.length !=0 );
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#confnewpass').keyup(function(evento){
+            var password = $('#confnewpass').val().trim();
+
+            if (password.length==0) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('El campo no debe estar vacio');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('Su nueva contaseña debe tener 5 caracteres');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#modal1').attr('disabled',true);
+                $('#ChangePassword').attr('disabled',true);
+            }
+            else {
+                $('#confnewpasscp').hide();
+                var password1 = $('#confnewpass').val().trim();
+                console.log(password1.length != 0);
+                if (password1.length !=0){
+                    $('#modal1').attr('disabled',false);
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+
+        $('#confnewpass').keyup(function(evento){
+            var password1 = $('#newpass').val();
+            var password = $('#confnewpass').val();
+
+            if (password != password1) {
+                $('#confnewpasscp').show();
+                $('#confnewpasscp').text('Ambas contraseña deben coincidir');
+                $('#confnewpasscp').css('color','red');
+                $('#confnewpasscp').css('font-size','60%');
+                $('#ChangePassword').attr('disabled',true);
+            } else {
+                $('#confnewpasscp').hide();
+                if (password1.length !=0){
+                    $('#ChangePassword').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+</script>
+<!-- Mostrar Contraseñas -->
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("oldpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
+
+<script>
+  function mostrarContrasena2(){
+      var tipo = document.getElementById("newpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
+
+<script>
+  function mostrarContrasena3(){
+      var tipo = document.getElementById("confnewpass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
 
 <script type="text/javascript">
     $("#nombre").change(function(){

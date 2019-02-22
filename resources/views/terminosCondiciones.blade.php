@@ -12,6 +12,7 @@
     <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/terminosCondiciones.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -32,40 +33,6 @@
 
     </script>
 </head>
-
-<style type="text/css">
-
-    .default_color{background-color: #FFFFFF !important;}
-
-    .img{margin-top: 7px;}
-
-    .curva{border-radius: 10px;}
-
-    .curvaBoton{border-radius: 20px;}
-
-    /*Color letras tabs*/
-    .tabs .tab a{
-        color:#00ACC1;
-    }
-    /*Indicador del tabs*/
-    .tabs .indicator {
-        display: none;
-    }
-    .tabs .tab a.active {
-        border-bottom: 2px solid #29B6F6;
-    }
-    /* label focus color */
-    .input-field input:focus + label {
-        color: #29B6F6 !important;
-    }
-    /* label underline focus color */
-    .row .input-field input:focus {
-        border-bottom: 1px solid #29B6F6 !important;
-        box-shadow: 0 1px 0 0 #29B6F6 !important
-    }
-
-</style>
-
 
 <!--Menu-->
 <nav class="default_color" role="navigation">
@@ -157,8 +124,9 @@
         <br>
         <h3 class="center blue-text">Terminos y condiciones</h3>
         <br>
-        <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%">
-Estos Términos de uso incluyen y pueden incluir otros temas, a los cuales se accede a través de hipervínculos, por lo cual deberá leer el contenido total de los presentes Términos y Condiciones de Uso antes de aceptarlos. SI NO ACEPTA ESTOS TÉRMINOS DE USO, NO UTILICE EL SERVICIO DE LEIPEL.
+
+        <textarea disabled="true" class="text-justify" style="resize: none; height: 500px; width: 100%; text-align: justify;font-family: Latin Modern Roman 10; font-style: oblique;">Estos Términos de uso incluyen y pueden incluir otros temas, a los cuales se accede a través de hipervínculos, por lo cual deberá leer el contenido total de los presentes Términos y Condiciones de Uso antes de aceptarlos. SI NO ACEPTA ESTOS TÉRMINOS DE USO, NO UTILICE EL SERVICIO DE LEIPEL.
+
 Los presentes Términos y condiciones de uso rigen estrictamente la utilización que haga de nuestro servicio.  LEIPEL es el nombre comercial bajo la razón social INFORMERET S.A. y según se utilice en estos términos y condiciones de uso, en todo momento que se mencione a LEIPEL en el presente documento, es equivalente a mencionar al servicio que ofrecemos desde www.leipel.com y sus páginas derivadascomo por ejemplo www.leipel.com/perfil , también en todo momento que se mencione a UN USUARIO, AL USUARIO, DEL USUARIO, EL USUARIO, LOS USUARIOS o  USUARIO en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a poder adquirir de manera gratuita o bajo costos los diferentes contenidos existentes dentro de LEIPEL, de la misma manera, en todo momento que se mencione a UN PROVEEDOR, EL PROVEEDOR, LOS PROVEEDOR o PROVEEDOR en el presente documento, se refieren a todos aquellas cuentas dentro de Leipel destinadas a proveer de contenidos a LEIPEL de manera gratuita, libre y voluntaria. Todas las cuentas dentro de Leipel pertenecen a personas naturales o jurídicas las cuales afirman haber leído y aceptado en la plenitud de sus facultades físicas y mentales, los presentes términos y condiciones de uso. 
 
 Según se utilice en estos términos y condiciones de uso, “el servicio de LEIPEL”, “nuestro servicio” o “el servicio” se refieren al servicio brindado por LEIPEL para descubrir y ver nuestros contenidos, incluidas todas las características y funcionalidades, sitio web e interfaces de usuario, además de todo el contenido y software asociado a nuestro servicio. 
@@ -179,8 +147,8 @@ El servicio de LEIPEL y los contenidos a los que se accede a través de nuestro 
 Entre la variedad de los contenidos tenemos: periódicos, revistas, libros, catálogos, películas, series radio, televisión, material visual y audiovisual, entre otros. Estos contenidos serán gratuitos o con costo, dependiendo de la decisión que tome el dueño del contenido que usted desea visualizar.
 Los contenidos dentro de LEIEPL son  ofrecidos por terceros, NO SOMOS RESPONSABLES POR DICHOS CONTENIDOS Y OPINIONES SOBRE LOS MISMOS, así como de los productos, servicios, promociones  provistos por dichos terceros. La responsabilidad total sobre los contenidos radica sobre quienes crearon o publicaron los mismos, así como de  los productos, servicios, promociones emitidos por ellos. La responsabilidad de todo comentario emitido es de quien emite dicho comentario.
 La lectura de contenidos fuera Ecuador podría generar costos adicionales a su cuenta, los cuales usted acepta en el momento que realiza alguna compra dentro de LEIPEL y estos valores pueden ser cargados a su cuenta inmediatamente o en un futuro. El contenido que puede estar disponible para ver puede variar según la ubicación geográfica o de la voluntad de quien publica el contenido, puesto que se procurará cumplir con las regulaciones de cada territorio y de la voluntad y disponibilidad de los terceros. LEIPEL podrá utilizar tecnologías para verificar su ubicación geográfica. LA CANTIDAD DE DISPOSITIVOS EN LOS QUE PUEDE USAR SU CUENTA LEIPEL SIMULTÁNEAMENTE ESTÁ LIMITADA. El número de dispositivos disponibles para uso y las transmisiones simultáneas podría variar de vez en cuando y está a nuestra total discreción, sin embargo procuraremos el acceso de una cuenta por dispositivo. 
-2.  COMPROMISOS POR PARTE DEL USUARIO o PROVEEDOR
 
+2.  COMPROMISOS POR PARTE DEL USUARIO o PROVEEDOR
 EL USUARIO o PROVEEDOR es una persona natural legalmente mayor de edad o persona jurídica domiciliada legalmente que desea suscribirse a LEIPEL para poder utilizar sus servicios y beneficios.
 
 El USUARIO o PROVEEDOR entienden que para poder contar con los servicios de LEIPEL, debe tener 18 años, o la mayoría de edad en su provincia, territorio o país. Los menores de edad pueden utilizar el servicio únicamente con la supervisión de sus padres o representantes legales. La totalidad de los servicios de LEIPEL y sus beneficios son únicamente para mayores de edad legalmente, así como para personas jurídicas públicas o privadas. 
@@ -204,7 +172,6 @@ El PROVEEDOR acepta y reconoce que tiene que tener legalmente tanto la propiedad
 SI SU NACIONALIDAD NO ES ECUATORIANA, ACEPTA Y ENTIENDE QUE ESTOS TÉRMINOS DE USO SE REGIRÁN E INTERPRETARÁN DE CONFORMIDAD CON LAS LEYES ECUATORIANAS, YA QUE ESTÁ USANDO UN SERVICIO DE NACIONALIDAD ECUATORIANA A TRAVEZ DE UNA CONECCIÓN DE INTERNET. CUALQUIER IMPUESTO, TASA, O VALOR ECONOMICO GENERADO POR SER USUARIO EXTRANJERO SERÁ ASUMIDO POR EL USUARIO. SI NO ESTÁ DE ACUERDO CON ESTE PUNTO, EN CASO DE SER EXTRANJERO, NO USE EL SERVICIO DE LEIPEL.
 
 3.  TIPOS DE CUENTAS
-
 LEIPEL entrega únicamente una  cuenta por cliente, la cual es de uso personal e intransferible, a menos que LEIPEL indique lo contrario por escrito. 
 Crearse una cuenta en LEIPEL es totalmente GRATIS, sin embargo hay accesos y beneficios diferentes acorde a la cuenta que posea el usuario. Las cuentas en LEIPEL son: CLIENTE Y PROVEEDOR además de cualquier otro tipo de cuenta para uso interno de LEIPEL no necesariamente visible para los demás USUARIOS.  
 
@@ -281,7 +248,6 @@ LEIPEL podrá permitir la acumulación de las retribuciones generadas del USUARI
 Este beneficio que otorga LEIPEL al USUARIO no tiene el carácter de exclusiva, por lo que LEIPEL se reserva el derecho de realizar encargos similares a otras personas naturales o jurídicas. 
 
 4.  CRÉDITOS, PAQUETES Y COSTOS.
-
 Los créditos son la manera en que LEIPEL simplifica el comercio de sus contenidos. Un crédito es una moneda virtual que solo sirve dentro de LEIPEL, la misma tiene un valor promedio del costo de un paquete de créditos menos el IVA, dividido para el número de créditos que se entregan en dicho paquete. Un paquete es simplemente la agrupación de créditos.
 
 Los paquetes podrían estar anclados a beneficios adicionales de LEIPEL.
@@ -304,6 +270,8 @@ Para adquirir los créditos debe tener acceso a Internet y una forma de pago adm
 En el caso de suscribirse a un paquete de créditos, se le realizará el cobro de la suscripción y la acreditación de CREDITOS cada mes, siempre y cuando no se presenten percances o inconvenientes al momento de cobrar su suscripción. El cobro de la misma continuará hasta que cancele su suscripción a un paquete o lo hagamos nosotros. Deberá estar atento a que se haga efectivo el pago de su suscripción para no perder los beneficios adicionales que podría recibir por la adquisición del mismo.
 Nos reservamos el derecho a cambiar los precios de nuestro servicio o cualquier componente de la manera y en el momento que determinemos oportuno bajo nuestra única y total discreción. Salvo que se establezca lo contrario en estos Términos de Uso, cualquier cambio en el precio de nuestro servicio será efectivo una vez que se le notifique a través de nuestras páginas web y al usted continuar con la visualización del contenido acepta el cambio. Deberá estar atento a la página web y a las facturas recibidas en caso de que modifiquemos los precios. Los valores de los paquetes o de las suscripciones pueden ajustarse mensual o anualmente y de forma automática, o más frecuentemente según permita la ley.
 Los créditos se consumen en orden de adquisición de los mismos y no caducan, sin embargo, en caso de tener créditos acumulados, LEIPEL podría tomar una cierta cantidad de los mismos para que al eliminarlos se nivele el costo de los mismos al precio actual de dichos créditos, acción que el USUARIO acepta y por la cual será notificado dentro de su cuenta de usuario LEIPEL.
+
+
 5.  FORMAS DE PAGO
 Al crearse una cuenta el LEIPEL y proporcionar o designar una forma de pago, nos autoriza a cobrarle una cuota de suscripción mensual a la tarifa vigente en ese momento, y cualquier otro cargo en el que incurra en relación con el uso que haga del servicio de LEIPEL a través de la Forma de pago que eligió. Usted reconoce que el monto facturado por mes puede variar de mes a mes por motivos que pueden incluir distintos montos debido a ofertas promocionales, códigos promocionales, compras adicionales, nuevas tasas o impuestos de ley y/o al cambio o adición de un plan; y nos autoriza a cobrar esos montos fijos o variables a través de su forma de pago, que podrían ser facturados mensualmente en uno o más cargos.
 Si estuviera suscripto a un paquete de créditos de manera mensual y  desea cancelar su suscripción, usted debe cancelarla antes de la renovación mensual para evitar que se facture la cuota de membresía del mes siguiente a través de su Forma de pago, lo cual ocurre el 1er día de cada mes. También podremos cobrar automáticamente acorde a su Forma de pago en el mes corriente y nos reservamos el derecho de cambiar los tiempos de facturación. El proceso de cobro según su Forma de pago se puede ejecutar cualquier día del mes corriente. 
@@ -320,8 +288,8 @@ PAGO POR TARJETA; en nuestro portal web se indicará los métodos con los cuales
 Debe ser muy cauteloso con las comunicaciones en las que se le solicite su tarjeta de crédito u otra información de su cuenta. Acceda siempre a su información confidencial de cuenta directamente a través del sitio web de LEIPEL y nunca a través de un hipervínculo en un email ni ningún otro tipo de comunicación, aunque parezca oficial. LEIPEL se reserva el derecho de suspender una cuenta en cualquier momento, con o sin aviso al miembro, con el fin de protegerse y proteger a sus socios ante lo que considera que puede constituir una actividad fraudulenta. LEIPEL no está obligada a otorgar créditos ni descuentos, ni compensaciones por  suspensiones de cuentas o cuentas realizadas por alguna personas que no fuera en efecto a quien pertenecen los datos de la cuenta. 
 En caso de haber nuevas maneras de pago lo indicaremos únicamente a través de nuestra página web.
 
-6.  SOFTWARE
 
+6.  SOFTWARE
 La calidad de la imagen del contenido transmitido por Internet puede variar de computadora a computadora, de dispositivo a dispositivo y puede verse afectada por diversos factores, tales como su ubicación, el ancho de banda disponible o la velocidad de su conexión a Internet. La disponibilidad del contenido en alta definición (HD/UHD) depende de su proveedor de servicios de Internet y del dispositivo en uso. Todos los cargos de acceso a Internet correrán por su cuenta. Solicite a su proveedor de Internet información acerca de los posibles cargos de consumo de datos por uso de Internet. LEIPEL no presta ninguna declaración ni garantía con respecto a la calidad de su experiencia de ver en su pantalla. El tiempo que lleva comenzar a ver el contenido variará según diversos factores, incluido el lugar donde se encuentra, el ancho de banda disponible en ese momento, el contenido que seleccione y la configuración de su dispositivo listo para LEIPEL.
 
 Actualizamos el servicio de LEIPEL continuamente, incluido su catálogo de contenido. Además, probamos regularmente varios aspectos de nuestro servicio, incluidos el sitio web, las interfaces de usuario, los niveles de servicio, los planes, las funciones promocionales, la disponibilidad de películas y series, la entrega y los precios. Al usar nuestro servicio usted acepta que nosotros podemos, incluirlo o excluirlo de esas pruebas sin aviso. Nos reservamos el derecho de, a nuestra única y total discreción, modificar la forma en que ofrecemos el servicio y su funcionamiento de vez en cuando y sin aviso.
@@ -335,16 +303,16 @@ Aplicaciones. Usted puede encontrar aplicaciones de terceros (incluidas, a modo 
 
 
 7.  COMUNICACIÓN
-
 Al utilizar el servicio de LEIPEL, acepta recibir algunas comunicaciones electrónicas enviadas por LEIPEL acerca de su cuenta y otros asuntos. Estas comunicaciones pueden incluir el envío de mensajes a la dirección de email que indicó durante el registro, o dentro de cualquier sección dentro de www.leipel.com que incluirán avisos acerca de su cuenta (ejm., autorizaciones de pago, cambio de contraseña o de forma de pago, emails de confirmación y otra información relativa a las transacciones, promociones, publicidad) que forman parte de su relación con LEIPEL. Debe guardar copias de las comunicaciones electrónicas guardando una copia electrónica. También acepta recibir algunas comunicaciones de nuestra parte, como avisos acerca de las nuevas características de LEIPEL, ofertas especiales, anuncios promocionales y encuestas de clientes por email o por otra vía. 
 Uso de la información entregada;
 LEIPEL tiene derecho a utilizar cualquier comentario, información, ideas, conceptos, reseñas o técnicas o cualquier otro material contenido en cualquier comunicación que nos envíe ("Devolución"), incluidas las respuestas a los cuestionarios o publicaciones a través del servicio de LEIPEL, incluido el servicio de LEIPEL y las interfaces de usuario, sin contraprestación, reconocimiento o pago de ningún tipo, con cualquier fin, tales como el desarrollo, la fabricación y comercialización de productos y la creación, modificación o mejora del servicio de LEIPEL. Además, acepta no aplicar ninguna "norma moral" en y a la Devolución en la medida que lo permita la ley vigente. Tenga en cuenta que LEIPEL no acepta materiales ni ideas no solicitados para sus contenidos, y no es responsable por la similitud entre los contenidos o programación de cualquier medio con los materiales o ideas transmitidos por LEIPEL. Si decide enviar cualquier material o idea no solicitado, lo hace bajo el entendido de que no recibirá ninguna contraprestación de ningún tipo y renuncia a cualquier acción contra LEIPEL o sus empresas vinculadas respecto del uso de esos materiales e ideas, incluso si el material o idea utilizado es significativamente similar al material o a la idea que usted presentó.
 
+
 8.  CAMBIOS EN LOS TÉRMINOS Y CONDICIONES DE USO DE LEIPEL
 Los Términos y condiciones de uso de LEIPEL pueden cambiar de vez en cuando, de la misma manera todo lo que incluye (previa notificación y aceptación expresa o tácita utilizando los servicios de LEIPEL - por parte del usuario). Dichos cambios podrían hacerse efectivos inmediatamente; sin embargo, para los miembros actuales, dichas revisiones serán, salvo que se indique lo contrario, efectivas a partir del primer día del mes del mes posterior de su publicación. Intentaremos guarda las versiones anteriores de los Términos condiciones de uso, sin embargo es su responsabilidad guardar una copia cada vez que notifiquemos una modificación en los mismos.
 
-9.  LEGAL, JURISDICCION Y COMPETENCIA
 
+9.  LEGAL, JURISDICCION Y COMPETENCIA
 Este contrato se rige por la legislación ecuatoriana. Para el caso de controversias en relación a su aplicación o interpretación los comparecientes renuncian fuero y/o domicilio y se sujetan a la ley de arbitraje y mediación y en particular al pronunciamiento de los Señores árbitros del centro de arbitraje y mediación de la Cámara de Comercio de Guayaquil. 
 
 El USUARIO por ningún motivo podrá presentarse como empleado, o atribuirse facultades de representación de LEIPEL, por lo que no será posible considerar al suscriptor, como apoderado, comisionista, dependiente o en relación de dependencia de LEIPEL. En consecuencia, ninguna de las partes tendrá obligación alguna por cuenta y nombre de la otra, ni como representante o agente de la otra.
@@ -360,14 +328,15 @@ Asimismo, salvo que usted y LEIPEL acuerden lo contrario, el árbitro no podrá 
 Marca: La marca LEIPEL y el servicio de LEIPEL, están registrados como propiedad de INFORMERET S.A.
 Reclamos por violación de derechos de autor: Si considera que su obra se ha reproducido o distribuido de forma tal que constituye una falta de observancia de los derechos de autor o sabe que existe material que no respeta los derechos de autor disponible a través del servicio de LEIPEL, vía correo electrónico a info@leipel.com
 
+
 10. EXCLUSIÓN DE GARANTÍAS Y LIMITACIONES A LA RESPONSABILIDAD
 EL SERVICIO DE LEIPEL Y TODOS LOS CONTENIDOS Y EL SOFTWARE ASOCIADO O CUALQUIER OTRA CARACTERÍSTICA O FUNCIONALIDAD DEL SERVICIO DE LEIPEL SE OFRECEN "EN EL ESTADO EN QUE SE ENCUENTRAN", CON TODAS SUS FALLAS Y SIN GARANTÍAS DE NINGÚN TIPO. LEIPEL NO MANIFIESTA, DECLARA NI GARANTIZA QUE PODRÁ UTILIZAR EL SERVICIO DE LEIPEL SIN INTERRUPCIONES O SIN ERRORES. LEIPEL MANIFIESTA EXPRESAMENTE QUE NO ASUME RESPONSABILIDAD ALGUNA POR EL USO DE LAS APLICACIONES, LOS DISPOSITIVOS LISTOS PARA LEIPEL Y EL SOFTWARE DE LEIPEL (ENTRE OTRAS COSAS, RESPECTO DE LA COMPATIBILIDAD CON NUESTRO SERVICIO).
 EN LA MEDIDA QUE SEA PERMITIDO POR LAS LEYES APLICABLES, EN NINGÚN CASO LEIPEL, SUS SUBSIDIARIAS Y SUS ACCIONISTAS, DIRECTORES, EJECUTIVOS, EMPLEADOS O LICENCIANTES SERÁN RESPONSABLES (EN FORMA INDIVIDUAL O EN SU CONJUNTO) ANTE EL USUARIO POR LOS DAÑOS PERSONALES O POR CUALQUIER DAÑO ESPECIAL, INCIDENTAL, INDIRECTO O REMOTOS, O CUALQUIER DAÑO QUE SURGIERA.
 ALGUNAS JURISDICCIONES NO PERMITEN LA EXCLUSIÓN DE CIERTAS GARANTÍAS O LA LIMITACIÓN O EXCLUSIÓN DE LA RESPONSABILIDAD DE CIERTOS TIPOS DE DAÑOS. POR LO TANTO ALGUNAS DE LAS LIMITACIONES MENCIONADAS EN ESTA SECCIÓN PODRÍAN NO AFECTARLE A USTED.
 NADA EN ESTOS TÉRMINOS AFECTARÁ DERECHOS ESTATUTARIOS E IRRENUNCIABLES QUE LE CORRESPONDAN. Si alguna de las disposiciones de estos Términos de uso es declarada nula, ilegal o inaplicable, la validez, legalidad y aplicación de las restantes disposiciones continuarán en plena vigencia.
 
-11. CANCELACIÓN DE LA CUENTA
 
+11. CANCELACIÓN DE LA CUENTA
 El cliente podrá suspender su cuenta en cualquier momento, sin embargo al hacerlo perderá automáticamente cualquier beneficio ganado o acumulado o por percibir por parte de LEIPEL. Además, luego de anular su cuenta, el cliente podría suscribirse nuevamente pero únicamente como un usuario totalmente nuevo.
 El presente contrato también podrá terminar anticipadamente en los siguientes casos:
 a) Por disolución de la empresa LEIPEL. 
@@ -380,9 +349,8 @@ En caso de anulación del contrato, se suspenderán inmediatamente los servicios
 HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGAN A TU CUENTA, POR LO TANTO HARIAMOS UN CONVENIO ENTRE TU Y  YO ACA EN QUITO,  POR OTRO LADO YO SOY PARTE DE UNA SOCIEDAD DE GESTIÓN, EGEDA (PUEDES VER EN GOOGLE) A MI SE ME OCURRE CREAR UNA PLATAFORMA  MAS GRANDE DE TODAS LAS PRODUCCIONES NACIONALES, TENGO CONTACTOS QUE SABEN MANEJAR EL ASUNTO EMPRESARIAL (ESTA PERSONA ERA DE EGEDA Y SE SABE EL TEJE Y MANEJE DE ESTA VUELTA, POR OTRO LADO YO TENGO CONTACTO CON TODO EL SECTOR AUDIOVISUAL DEL PAIS Y OTROS PAISES DE LATINOAMERICA, TODO ESTE MATERIAL PODRIA IR A LEIPEL, ELPUNTO ES QUE TODO MUNDO BUSCA DINERO, SI A MI ME DA REDITOS ECONOMICOS AUTOMATICAMENTE MUCHOS SE ACERCARIAN A MI AL MOMENTO QUE YO LES EXPONGO EL PLAN, PARA ESO HARIAMOS CONVOCATORIAS EN QUITO, GUAYAS, MANABI, CUENCA, CENTRO DELA SIERRA Y TENDRIAMOS FULLLLL MATERIAL AUDIVISUAL, CUANDO NOS VEAMOS TE CONTARÉ COMO FUNCIONA EGEDA EN CUANTO A PAGOS ANUALES A LOS PRODUCTORES, HAZME ACUERDO DE ESO. EN ESTE CASO POR SER VIRTUAL SE AHOORARIAN MUCHOS GASTOS Y CON POCOS PODRIAMOS MANEJAR ESTO, EGEDA EN SU CASO SE MANEJA ENTRE VIRTUAL Y FISICO, PERO LO FISICO LE DEMANDA FUL GASTOS, OFICINAS, EMPLEADOS Y BLA BLA, RECOJE 600.000 AL AÑO Y GASTA 400.000, LE SOBRA 200.000 Y ESO LO DISTRIBUYE ENTRE LOS PRODUCTORES NACIONALES E INTERANCIONALES, EN FIN, ACA SE PORIA HACER UNA COSA DEMENCIAL SIN TANTOS GASTOS Y CON POCOS SOLDADOS QUE LA TENGAN CLARA Y APORTEN DE VERDAD. YO CUENTO CON TRES COSAS MUY IMPORTANTES... MANEJO ELSECTOR Y CONTACTOS , EN LA PARTE LEGAL ESTOY METIDO HASTA EL ALMA, Y EN LA PARTE CONTABLE EXISTE ALGUIEN QUE SABE COMO SE MANEJAN LAS SOCIEDADES DE GESTIÓN, CLARO QUE EN ESTE PUNTO SERIA FULLLL VIRTUAL.)
 
 
-
-
 Última actualización al 18 de julio del 2017
+
         </textarea>
     </div>
 </div>
@@ -508,13 +476,13 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                             Olvide mi contraseña
                         </a>
                     </div>
-                    <div class="input-field col s6">
+                    <!--<div class="input-field col s6">
                         <a class="waves-effect waves-light btn curvaBoton social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook left" href="login/facebook">
+                    </div>-->
+                    <div class="input-field col s12 l12 m12">
+                        <a class="waves-effect waves-light curvaBoton btn blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -633,12 +601,12 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
-                    <div class="input-field col s6">
+                    <!--<div class="input-field col s6">
                         <a class="waves-effect waves-light curvaBoton btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="waves-effect waves-light btn curvaBoton blue darken-4 social facebook left" href="login/facebook">
+                    </div>-->
+                    <div class="input-field col s12 m12 l12">
+                        <a class="waves-effect waves-light btn curvaBoton blue darken-4 social facebook center" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -750,10 +718,10 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
 <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{asset('js/terminosCondiciones.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-
 
 function masInfo(tipo) {
         console.log(tipo);
@@ -774,9 +742,9 @@ function masInfo(tipo) {
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -813,9 +781,9 @@ function masInfo(tipo) {
             swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -853,9 +821,9 @@ function masInfo(tipo) {
             swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -893,9 +861,9 @@ function masInfo(tipo) {
             swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -933,9 +901,9 @@ function masInfo(tipo) {
             swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "info",
+                    icon: "warning",
                     buttons: {
-                        cancelar: "Cancelar",
+                        cancelar: "Cerrar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -960,665 +928,6 @@ function masInfo(tipo) {
             }
         }
     }
-
-
-
-    // Tabs
-    var elem = $('.tabs')
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    //or Without Jquery
-
-
-    //var elem = document.querySelector('.tabs');
-    var options = {}
-    var instance = M.Tabs.init(elem, options);
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.parallax');
-        var instances = M.Parallax.init(elems, options);
-    })
-    //Modal
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems, options);
-    });
-
-    // Or with jQuery
-    // Slider
-    $(document).ready(function(){
-        $('.tooltipped').tooltip();
-        $('.modal').modal();
-        $('select').formSelect();
-        $('.parallax').parallax();
-        $('.materialboxed').materialbox();
-        $('.slider').slider({
-            indicators: false
-        });
-
-
-        /*==========  Featured Cars  ==========*/
-        $('#featured-cars').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 4
-                },
-                1200: {
-                    items: 5
-                }
-            }
-        });
-        $('#featured').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        $('#featured-cars-three').owlCarousel({
-            loop: true,
-            nav: true,
-            dots: false,
-            autoplay: true,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                1200: {
-                    items: 3
-                }
-            }
-        });
-
-        $('#featured1').owlCarousel({
-            loop: true,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            rtl:false,
-            margin:10,
-            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
-                }
-            }
-        });
-
-        //Mostarar contenidos seleccionados
-        $('#radio').css("background-color","#42a5f5");
-        $('#Tvs').hide();
-        $('#peliculas').hide();
-        $('#libros').hide();
-
-        $('#radio').click(function(){
-            $('#radio').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#libro').css("background-color","#2196F3");
-            $('#tv').css("background-color","#2196F3");
-            $('#Tvs').hide();
-            $('#libros').hide();
-            $('#radios').show();
-        });
-
-        $('#tv').click(function(){
-            $('#tv').css("background-color","#42a5f5");
-            $('#cine').css("background-color","#2196F3");
-            $('#musica').css("background-color","#2196F3");
-            $('#libro').css("background-color","#2196F3");
-            $('#radio').css("background-color","#2196F3");
-            $('#radios').hide();
-            $('#libros').hide();
-            $('#Tvs').show();
-        });
-
-//        $('#libro').click(function(){
-//            $('#libro').css("background-color","#42a5f5");
-//            $('#cine').css("background-color","#2196F3");
-//            $('#musica').css("background-color","#2196F3");
-//            $('#tv').css("background-color","#2196F3");
-//            $('#radio').css("background-color","#2196F3");
-//            $('#radios').hide();
-//            $('#Tvs').hide();
-//            $('#libros').show();
-//        });
-
-
-        $("#formRP").on('submit',function(e){
-            var url = "{{ url('ApplysSubmit') }}";
-            e.preventDefault();
-            var gif = "{{ asset('/sistem_images/loading.gif') }}";
-            swal({
-                title: "Procesando la información",
-                text: "Espere mientras se procesa la información.",
-                icon: gif,
-                buttons: false,
-                closeOnEsc: false,
-                closeOnClickOutside: false
-            });
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: $("#formRP").serialize(),
-                success: function (result) {
-                    console.log(result);
-                    swal("Su solicitud está siendo procesada","","success")
-                        .then((recarga) => {
-                            location.reload();
-                        });
-                },
-                error: function (result) {
-                    console.log(result);
-                    swal('Existe un Error en su Solicitud','','error')
-                        .then((recarga) => {
-                            location.reload();
-                        });
-                }
-            });
-        });
-
-    });
-
-    function controltagNum(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8) return true; // para la tecla de retroseso
-        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
-        else if (tecla==13) return true;
-        patron =/[0-9]/;// -> solo numeros
-        te = String.fromCharCode(tecla);
-        return patron.test(te);
-    }
-
-    //---------------------Validacion registros----------------------------------
-    $("#emailRP").on('keyup change',function(){
-        var email_data = $("#emailRP").val();
-        $.ajax({
-            url: 'RegisterEmailSeller',
-            type: 'POST',
-            data:{
-                _token: $('input[name=_token]').val(),
-                'email':email_data
-            },
-            success: function(result){
-                if (result == 1)
-                {
-                    $('#mensajeCorreo').hide();
-                    $('#registroRP').attr('disabled',false);
-                    return true;
-                }
-                else
-                {
-                    $('#mensajeCorreo').show();
-                    $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
-                    $('#mensajeCorreo').css('font-size','60%');
-                    $('#mensajeCorreo').css('color','red');
-                    $('#registroRP').attr('disabled',true);
-                    console.log(result);
-                }
-            }
-        });
-    });
-
-    $(document).ready(function () {
-        var cantidadMaxima = 191;
-        $('#tlf').keyup(function (evento) {
-            var telefono = $('#tlf').val();
-            numeroPalabras = telefono.length;
-            if (numeroPalabras > cantidadMaxima) {
-                $('#mensajeTelefono').show();
-                $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                $('#mensajeTelefono').css('color', 'red');
-                $('#mensajeTelefono').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-            }
-            if (numeroPalabras < 9) {
-                $('#mensajeTelefono').show();
-                $('#mensajeTelefono').text('Minimo 9 numeros');
-                $('#mensajeTelefono').css('color', 'red');
-                $('#mensajeTelefono').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-            }
-            else {
-                $('#mensajeTelefono').hide();
-                var nameC = $('#com_name').val().trim();
-                var email = $('#emailRP').val().trim();
-                var name = $('#contact_name').val().trim();
-                if (email.length!=0 || nameC.length !=0 || name.length!=0){
-                    $('#registroRP').attr('disabled', false);
-                }
-            }
-        });
-    });
-
-    $(document).ready(function () {
-        var cantidadMaxima = 191;
-        $('#contact_name').keyup(function (evento) {
-            var nombreCotacto = $('#contact_name').val();
-            numeroPalabras = nombreCotacto.length;
-            if (numeroPalabras > cantidadMaxima) {
-                $('#mensajeNombreContacto').show();
-                $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                $('#mensajeNombreContacto').css('color', 'red');
-                $('#mensajeNombreContacto').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-            }
-            if (numeroPalabras < 3) {
-                $('#mensajeNombreContacto').show();
-                $('#mensajeNombreContacto').text('Minimo 3 caracteres');
-                $('#mensajeNombreContacto').css('color', 'red');
-                $('#mensajeNombreContacto').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-
-            } else {
-                $('#mensajeNombreContacto').hide();
-                var nameC = $('#com_name').val().trim();
-                var email = $('#emailRP').val().trim();
-                var tlf = $('#tlf').val();
-                if (email.length!=0 && nameC.length !=0 && tlf.length!=0){
-                    $('#registroRP').attr('disabled', false);
-                }
-            }
-        });
-    });
-
-    // funcion para mostrar el submenu de los modulos de libro y de musica
-    $(document).ready(function () {
-        $('#subMenuMusica').hide();
-        $('#subMenuLibro').hide();
-        $('#content_type').on('change', function () {
-            if (this.value == 'Musica') {
-                $('#subMenuLibro').hide();
-                $('#subMenuMusica').show();
-                $('#subMenuMusica').attr('required','required');
-            } else if (this.value == 'Libros') {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').show();
-                $('#subMenuLibro').attr('required','required');
-            } else {
-                $('#subMenuMusica').hide();
-                $('#subMenuLibro').hide();
-            }
-        });
-    })
-    // funcion para mostrar el submenu de los modulos de libro y de musica
-    //---------------------------------------------------------------------------------------------------
-    // Función que nos va a contar el número de caracteres
-    $(document).ready(function () {
-        var cantidadMaxima = 191;
-        $('#com_name').keyup(function (evento) {
-            var nombreComercial = $('#com_name').val();
-            numeroPalabras = nombreComercial.length;
-            if (numeroPalabras > cantidadMaxima) {
-                $('#mensajeNombreComercial').show();
-                $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
-                $('#mensajeNombreComercial').css('color', 'red');
-                $('#mensajeNombreComercial').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-            } if (numeroPalabras < 3){
-                $('#mensajeNombreComercial').show();
-                $('#mensajeNombreComercial').text('Minimo 3 caracteres');
-                $('#mensajeNombreComercial').css('color', 'red');
-                $('#mensajeNombreComercial').css('font-size','60%');
-                $('#registroRP').attr('disabled', true);
-            }
-            else {
-                $('#mensajeNombreComercial').hide();
-                var email = $('#emailRP').val().trim();
-                var name = $('#contact_name').val().trim();
-                var tlf = $('#tlf').val();
-                if (email.length !=0 || name.length !=0 || tlf.length !=0){
-                    $('#registroRP').attr('disabled', false);
-                }
-            }
-        });
-    });
-    $(document).ready(function(){
-        var nameC = $('#com_name').val().trim();
-        var email = $('#emailRP').val().trim();
-        var name = $('#contact_name').val().trim();
-        var tlf = $('#tlf').val();
-
-        if (email.length==0 || name.length ==0 || nameC.length == 0 || tlf.length==0){
-            $('#registroRP').attr('disabled',true);
-        }
-    });
-    $(document).ready(function(){
-        var nameC = $('#com_name').val().trim();
-        var email = $('#emailRP').val().trim();
-        var name = $('#contact_name').val().trim();
-        var tlf = $('#tlf').val();
-
-        if (email.length !=0 && name.length  != 0 && nameC.length !=0 && tlf.length !=0){
-            $('#registroRP').attr('disabled',false);
-        }
-    });
-    $("#emailRU").on('keyup change',function(){
-        var email_data = $("#emailRU").val();
-        $.ajax({
-            url: 'EmailValidate',
-            type: 'POST',
-            data:{
-                _token: $('input[name=_token]').val(),
-                'email':email_data
-            },
-            success: function(result){
-                if (result == 1)
-                {
-                    $('#emailMenRU').hide();
-                    $('#registroRU').attr('disabled',false);
-                    return true;
-                }
-                else
-                {
-                    $('#emailMenRU').show();
-                    $('#emailMenRU').text('Este email ya se encuentra regitrado');
-                    $('#emailMenRU').css('font-size','60%');
-                    $('#emailMenRU').css('color','red');
-                    $('#registroRU').attr('disabled',true);
-                    console.log(result);
-                }
-            }
-        });
-    });
-
-    $(document).ready(function(){
-
-        $('#passwordRU').keyup(function(evento){
-            var password = $('#passwordRU').val().trim();
-
-            if (password.length==0) {
-                $('#passwordMenRU').show();
-                $('#passwordMenRU').text('El campo no debe estar vacio');
-                $('#passwordMenRU').css('color','red');
-                $('#passwordMenRU').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            }
-            if (password.length < 5) {
-                $('#passwordMenRU').show();
-                $('#passwordMenRU').text('La contaseña debe tener 5 caracteres');
-                $('#passwordMenRU').css('color','red');
-                $('#passwordMenRU').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            }
-            else {
-                $('#passwordMenRU').hide();
-                var name = $('#name').val().trim();
-                var email = $('#email').val().trim();
-                var password1 = $('#password_confirm').val().trim();
-                var valCorreo = $('#emailMenRU').is(':hidden');
-                console.log(email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo);
-                if ( email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo ){
-                    $('#registroRU').attr('disabled',false);
-                }
-            }
-        });
-    });
-    $(document).ready(function(){
-
-        $('#password_confirm').keyup(function(evento){
-            var password = $('#password_confirm').val().trim();
-
-            if (password.length==0) {
-                $('#passwordCMenRU').show();
-                $('#passwordCMenRU').text('El campo no debe estar vacio');
-                $('#passwordCMenRU').css('color','red');
-                $('#passwordCMenRU').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            } else {
-                $('#passwordMenRU').hide();
-                var name = $('#name').val().trim();
-                var email = $('#emailRU').val().trim();
-                var password1 = $('#passwordRU').val().trim();
-                var valCorreo = $('#emailMenRU').is(':hidden');
-                if (email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo){
-                    $('#registroRU').attr('disabled',false);
-                }
-            }
-        });
-    });
-    $(document).ready(function(){
-
-        $('#password_confirm').keyup(function(evento){
-            var password1 = $('#passwordRU').val();
-            var password = $('#password_confirm').val();
-
-            if (password != password1) {
-                $('#passwordCMenRU').show();
-                $('#passwordCMenRU').text('Ambas contraseña deben coincidir');
-                $('#passwordCMenRU').css('color','red');
-                $('#passwordCMenRU').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            } else {
-                $('#passwordCMenRU').hide();
-                var name = $('#name').val().trim();
-                var email = $('#emailRU').val().trim();
-                var valCorreo = $('#emailMenRU').is(':hidden');
-                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0 && valCorreo){
-                    $('#registroRU').attr('disabled',false);
-                }
-            }
-        });
-    });
-    //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
-    function controltagLet(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8) return true; // para la tecla de retroseso
-        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
-        else if (tecla==13) return true;
-        patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
-        te = String.fromCharCode(tecla);
-        return patron.test(te);
-    }
-    //---------BLOQUEAR BOTON 1----------------------
-    $(document).ready(function(){
-        var name = $('#name').val().trim();
-        var email = $('#email').val().trim();
-        var password = $('#password').val().trim();
-        var password1 = $('#password_confirm').val().trim();
-
-        if (email.length==0 || name.length ==0 || password.length == 0 || password1.length==0){
-            $('#registroRU').attr('disabled',true);
-        }
-    });
-    $(document).ready(function(){
-        var name = $('#name').val().trim();
-        var email = $('#email').val().trim();
-        var password = $('#password').val().trim();
-        var password1 = $('#password_confirm').val().trim();
-
-        if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0){
-            $('#registroRU').attr('disabled',false);
-        }
-    });
-    $(document).ready(function(){
-        $('#name').keyup(function(evento){
-            var name = $('#name').val().trim();
-            console.log(name.length);
-            if (name.length==0) {
-                $('#nameMen').show();
-                $('#nameMen').text('Campo obligatorio');
-                $('#nameMen').css('color','red');
-                $('#nameMen').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            }
-            if (name.length < 3) {
-                $('#nameMen').show();
-                $('#nameMen').text('Minimo 3 caracteres');
-                $('#nameMen').css('color','red');
-                $('#nameMen').css('font-size','60%');
-                $('#registroRU').attr('disabled',true);
-            }else {
-                $('#nameMen').hide();
-                var email = $('#email').val().trim();
-                var password = $('#password').val().trim();
-                var password1 = $('#password_confirm').val().trim();
-                var valCorreo = $('#emailMenRU').is(':hidden');
-                if (email.length !=0 && password.length  != 0 && password1.length !=0 && valCorreo) {
-                    $('#registroRU').attr('disabled',false);
-                }
-            }
-        });
-    });
-
-
-    //---------------------------------------------------------------------------------------------------
-
-
-    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
-    $(document).ready(function(){
-        $('#email').keyup(function(evento){
-            var email = $('#email').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-            if (caract.test(email) == false){
-
-                $('#emailMen').show();
-                $('#emailMen').text('Formato email incorrecto');
-                $('#emailMen').css('color','red');
-                $('#emailMen').css('font-size','60%');
-                $('#iniciar').attr('disabled',true);
-                $('#iniciar').css('background-color','')
-
-            }else{
-
-                return true;
-            }
-        });
-    });
-    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#password').keyup(function(evento){
-            var password = $('#password').val().trim();
-
-            if (password.length==0) {
-                $('#passwordMen').show();
-                $('#passwordMen').text('El campo no debe estar vacio');
-                $('#passwordMen').css('color','red');
-                $('#passwordMen').css('font-size','60%');
-                $('#iniciar').attr('disabled',true);
-            } else {
-                $('#passwordMen').hide();
-                $('#iniciar').attr('disabled',false);
-            }
-            var email = $('#email').val().trim();
-            if (email.length !=0 && password.length !=0){
-                $('#iniciar').attr('disabled',false);
-            }
-        });
-    });
-    //------------------------------------------------------------------------------------------------------
-    //-------------------------------------VALICACIONES LOGIN PROMOTOR--------------------------------------
-    //---------BLOQUEAR BOTON 2----------------------
-    $(document).ready(function(){
-        var email = $('#emailP').val().trim();
-        var password = $('#passwordP').val().trim();
-
-        if (email.length==0 || password.length ==0){
-            $('#iniciarP').attr('disabled',true);
-        }
-    });
-
-    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#emailP').keyup(function(evento){
-            var email = $('#emailP').val().trim();
-
-            if (email.length==0) {
-                $('#emailMenP').show();
-                $('#emailMenP').text('El campo no debe estar vacio');
-                $('#emailMenP').css('color','red');
-                $('#emailMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-                $('#iniciarP').css('background-color','')
-            }else {
-                $('#emailMenP').hide();
-            }
-            var password = $('#passwordP').val().trim();
-
-            if (email.length !=0 && password.length !=0){
-                $('#iniciarP').attr('disabled',false);
-            }
-        });
-    });
-    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
-    $(document).ready(function(){
-        $('#emailP').keyup(function(evento){
-            var email = $('#emailP').val();
-            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-            if (caract.test(email) == false){
-
-                $('#emailMenP').show();
-                $('#emailMenP').text('Formato email incorrecto');
-                $('#emailMenP').css('color','red');
-                $('#emailMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-                $('#iniciarP').css('background-color','')
-
-            }else{
-
-                return true;
-            }
-        });
-    });
-    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
-    $(document).ready(function(){
-
-        $('#passwordP').keyup(function(evento){
-            var password = $('#passwordP').val().trim();
-
-            if (password.length==0) {
-                $('#passwordMenP').show();
-                $('#passwordMenP').text('El campo no debe estar vacio');
-                $('#passwordMenP').css('color','red');
-                $('#passwordMenP').css('font-size','60%');
-                $('#iniciarP').attr('disabled',true);
-            } else {
-                $('#emailMenP').hide();
-                $('#iniciarP').attr('disabled',false);
-            }
-            var email = $('#emailP').val().trim();
-            if (email.length !=0 && password.length !=0){
-                $('#iniciarP').attr('disabled',false);
-            }
-        });
-    });
 </script>
 
 @if (count($errors) > 0)

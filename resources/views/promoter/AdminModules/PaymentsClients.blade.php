@@ -61,8 +61,12 @@
 								"<i class='small material-icons right'>remove_red_eye</i>"+
 							"</a>"
 						} else if (info.factura_id==null && info.method!="Puntos"){
+							var desactivar = "";
+							if (info.status=="En Revision" || info.status=="Denegado") {
+								desactivar = "disabled";
+							}
 							var factura = 
-							"<a class='btn btn-floating btn-small waves-effect waves-light green tooltipped' id=generarFactura value1="+info.id+" value2="+info.tickets_user.id+" value3="+info.method+" data-position='right' data-tooltip='Generar factura'>"+
+							"<a class='btn btn-floating btn-small waves-effect waves-light green tooltipped "+desactivar+"' id=generarFactura value1="+info.id+" value2="+info.tickets_user.id+" value3="+info.method+" data-position='right' data-tooltip='Generar factura'>"+
 								"<i class='material-icons'>add</i>"+
 								"Crear"+
 							"</a>";

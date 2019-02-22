@@ -210,6 +210,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ShowSeries','ContentController@ShowSeries');
     Route::get('/SearchSerie',array('as'=>'SearchSerie','uses'=>'ContentController@seachSerie'));
     Route::post('SearchSerieList','ContentController@ShowSerieSeach');
+// Agregada 04-02-2019
+    Route::get('SerieList/{id}','ContentController@SerieList');
 //---------------------------------------------------------------------------
 
 
@@ -513,7 +515,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
 
          Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
-         
+        
+        //------------------------------- Rutas para los productos-------------------------------
+            Route::get('Products','SuperAdminController@Products');
+            Route::post('storeProducts','SuperAdminController@storeProducts');
+            Route::get('dataProducts/{status}','SuperAdminController@dataProducts');
+            Route::get('infoProduct/{id}','SuperAdminController@infoProduct');
+            Route::post('updateProduct','SuperAdminController@updateProduct');
+            Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
+            Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
+            
+        //------------------------------- Rutas para los productos-------------------------------
 
     });
 });
@@ -619,7 +631,6 @@ Route::group(['middleware' => 'seller_auth'], function () {
     
     Route::get('seller_edit', 'SellerController@edit');
 
-
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
 
     Route::get('messages','SellerController@ShowMessages');
@@ -717,6 +728,10 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::get('/modify_single/{id}', 'AlbumsController@ModifySong');
     Route::post('/modify_single', 'AlbumsController@UpdateSong');
     /*--------------------------------------------------------------*/
+
+    /*------------------------Detalle de single---------------------*/
+
+    Route::get('/show_song/{id}', 'AlbumsController@ShowSong');
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
@@ -1088,7 +1103,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 
     Route::get('/seller_home','SellerController@homeSeller');
-
+    
 
 });
 

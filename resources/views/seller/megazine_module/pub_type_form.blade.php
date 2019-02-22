@@ -196,7 +196,7 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix blue-text">create</i> 
-                    <label for="art_name" class="col-md-4 control-label">Titulo De La Cadena de Publicación</label>
+                    <label for="titulo" class="col-md-4 control-label">Titulo De La Cadena de Publicación</label>
                     <input id="titulo" type="text" class="" name="title" required autofocus>
                     <div id="mensajeTitulo"></div>
                 </div>
@@ -213,7 +213,7 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                    <label for="desc" class="col-md-4 control-label">Descripción</label>
+                    <label for="sinopsis" class="col-md-4 control-label">Descripción</label>
                     <textarea name="dsc" required id="sinopsis" class="materialize-textarea" rows="3" cols="2"></textarea>
                     <div id="mensajeSinopsis"></div>
                 </div>

@@ -156,12 +156,13 @@ class UserController extends Controller
         $patro = Referals::where('refered',Auth::user()->id)->get();
         //dd(count($patro)>0 );
         //dd($patro != NULL );
+        $mipatro = null;
         if (count($patro)<=0){
           $mipatro = 0;
         } else {
           $mipatro = User::find($patro[0]->user_id);
         }
-        //dd($mipatro);
+
         return view('users.edit')->with('user', $user)->with('mipatro', $mipatro);
     }
 
@@ -255,29 +256,22 @@ class UserController extends Controller
 
               $user->save();
 
-              echo'<script type="text/javascript">
-              alert("Su contraseña ha sido cambiado con exito!");
-              window.location.href="/EditProfile"</script>';
-              
-            //return redirect()->action('UserController@edit'); 
-            // Flash('Se ha modificado sus contraseña con exito!')->success();         
+            Flash('Se ha modificado su contraseña con exito!')->success();
+            return redirect()->action('UserController@edit'); 
+                     
         } 
         
         else 
-
-          echo'<script type="text/javascript">
-              alert("Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.");
-              window.location.href="/EditProfile";</script>';
-
-        //return redirect()->back();
+    
+          Flash('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->success();
+            return redirect()->action('UserController@edit');
 
           }
 
-          else 
-             echo'<script type="text/javascript">
-              alert("Su contraseña antigua no coincide, por favor intentelo de nuevo.");
-              window.location.href="/EditProfile";</script>';
+        else 
 
+          Flash('Ha ingresado su contraseña antigua incorrectamente, por favor intentelo de nuevo.')->success();
+          return redirect()->action('UserController@edit');
     }
 
     public function closed(Request $request, $id)
@@ -505,7 +499,7 @@ class UserController extends Controller
     
 
     //Funcion que recive el single a comprar y lo registra en la tabla Transacciones
-    public function BuySingle($id,Request $request)
+    public function BuySingle($id)
     {
         $Single= Songs::find($id);
         
@@ -524,15 +518,15 @@ class UserController extends Controller
             return response()->json(1);   
         }
 
-        if($Single->album != NULL){
-          $checkS = Transactions::where('album_id','=',$Single->Album->id)->where('user_id','=',$user->id)->get();
+        
+          $checkS = Transactions::where('album_id','=',$Single->album)->where('user_id','=',$user->id)->get();
           $checkS->isEmpty();
 
           if(count($checkS)>=1)
           {
               return response()->json(2);   
           }
-        }
+      
         else
         {
             $Transaction= new Transactions;
@@ -675,7 +669,13 @@ class UserController extends Controller
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
         if($TransactionSingle->count()>0){
           foreach ($TransactionSingle as $key) {
-            $Song[]= Songs::where('id','=',$key->song_id)->first(); 
+             $song=Songs::where('id','=',$key->song_id)->first();
+              $Song[] = array(
+                'cover'=>$song->cover,
+                'photo'=>$song->autors->photo,
+                'song_file'=>$song->song_file,
+                'song_name'=>$song->song_name
+            );  
           }
             
         }
@@ -1081,8 +1081,9 @@ class UserController extends Controller
                     {
                         $Series[] = $key->Episodes;    
                     } 
-        }    
-        elseif ($TransactionSeries->count()== 0 && $TransactionEpisodes ==0)
+        }   
+
+        elseif ($TransactionSeries->count() == 0 && $TransactionEpisodes->count() == 0)
         {
             $Series = 0;
                 

@@ -316,9 +316,9 @@
               $('#badgeSolicitudProveedor').show();
               $('#badgeSolicitudProveedor').text(result.solicitudesP);
             }
-            if (result.solicitudesU+result.pagosU!=0) {
+            if (result.solicitudesU!=0) {
               $('#badgeSolicitudUsuario').show();
-              $('#badgeSolicitudUsuario').text(result.solicitudesU+result.pagosU);
+              $('#badgeSolicitudUsuario').text(result.solicitudesU);
             }
           },
           error: function (result) {
