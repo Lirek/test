@@ -184,7 +184,7 @@
                             <div class="card-image ">
                                 <?php if($m['type']=='Pelicula'): ?>
                                     <a onclick="masInfo('cine')">
-                                    <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e(($m['img_poster'])); ?>" width="100%" height="150px">
+                                    <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e(($m['img_poster'])); ?>" width="100%" height="220px">
                                     </a>
                                 <?php else: ?>
                                    <a onclick="masInfo('cine')">
