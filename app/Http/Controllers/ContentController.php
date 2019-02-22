@@ -271,7 +271,7 @@ class ContentController extends Controller
             $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
         foreach ($Artist as $key) {
             $Books = Book::where('status','=','Aprobado')->where('author_id','=',$key->id)->paginate(8);
-            return view('contents.Readings')->with('Books',$Books);
+            return view('contents.Readings')->with('Lecturas',$Books);
         }
         }elseif ($request->type=='megazines'){
         $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(8);
