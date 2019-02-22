@@ -348,6 +348,7 @@ class SuperAdminController extends Controller
       $rejection->save();
     }
     /*
+    // cuando termine de hacer el registro, hago el envio de correo
     if ($producto->bidder_id!=0) {
       $this->SendEmails($request->status,$producto->name,$producto->Bidder->email,$request->reason);
     }

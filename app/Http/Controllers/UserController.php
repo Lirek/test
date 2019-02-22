@@ -154,8 +154,6 @@ class UserController extends Controller
         
         $user = User::find(Auth::user()->id);
         $patro = Referals::where('refered',Auth::user()->id)->get();
-        //dd(count($patro)>0 );
-        //dd($patro != NULL );
         $mipatro = null;
         if (count($patro)<=0){
           $mipatro = 0;

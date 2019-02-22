@@ -630,6 +630,9 @@
             <ul class="tabs">
                 <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
                 <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
+                {{--
+                <li class="tab col s4"><a href="#ofertante1"><i class="material-icons prefix">store</i><b> Ofertante</b></a></li>
+                --}}
             </ul>
         </div>
         {{--registro usuario--}}
@@ -799,6 +802,59 @@
                 </div>
             </form>
         </div>
+        {{--registro ofertante--}}
+        {{--
+        <div id="ofertante1" class="col s12 center">
+            <form class="form-horizontal" id="formRO">
+                {{ csrf_field() }}
+                @include('flash::message')
+                <div class="row">
+                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">person</i>
+                        <input type="text" id="nombreOfertante" class="autocomplete" name="nombreOfertante"
+                               required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <label for="nombreOfertante">Nombre</label>
+                        <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
+                        @if ($errors->has('nombreOfertante'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('nombreOfertante') }}</strong>
+                           </span>
+                        @endif
+                    </div>
+
+                    <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
+                        <i class="material-icons prefix blue-text">assignment</i>
+                        <input type="text" id="rucOfertante" name="rucOfertante" required="required" class="autocomplete" onkeypress="return controltagNum(event)">
+                        <label for="rucOfertante">RUC</label>
+                        @if ($errors->has('rucOfertante'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('rucOfertante') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="email" id="emailRO" name="emailRO" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        <label for="emailRO">Correo</label>
+                        <div id="mensajeCorreoOfertante" style="margin-top: 1%"></div>
+                        @if ($errors->has('emailRO'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('emailRO') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="input-field col s12">
+                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRO" type="submit" >
+                            Enviar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        --}}
     </div>
 
 </div>
@@ -813,6 +869,7 @@
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{asset('js/welcome.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('users.js')
 
 <script type="text/javascript">
     function masInfo(tipo) {
