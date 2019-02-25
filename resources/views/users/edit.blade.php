@@ -186,7 +186,7 @@ h5.breadcrumbs-header {
 
                                     <!--cedula-->
                                     <div class="input-field col s12">
-                                        <i class="material-icons prefix blue-text">assignment_ind</i>
+                                        <i class="material-icons prefix blue-text">chrome_reader_mode</i>
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
                                         @else
