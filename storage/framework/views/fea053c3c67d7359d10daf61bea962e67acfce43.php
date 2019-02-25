@@ -179,7 +179,7 @@ h5.breadcrumbs-header {
                                         <?php echo Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']); ?>
 
                                         <div id="mensajeNombre"></div>
-                                        <label for="apellido">apellidos</label>
+                                        <label for="apellido">Apellidos</label>
                                     </div>
 
                                     <!--email-->
@@ -237,7 +237,7 @@ h5.breadcrumbs-header {
                                          <i class="material-icons prefix blue-text valign-wrapper">wc</i>
                                         <?php echo Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']); ?>
 
-                                        <label for="exampleInputFile" class="control-label">sexo</label>
+                                        <label for="exampleInputFile" class="control-label">Sexo</label>
                                         <br>
                                         </div>
                                     </div>
@@ -265,7 +265,7 @@ h5.breadcrumbs-header {
                                         <?php echo Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']); ?>
 
                                         <div id="mensajeNombre"></div>
-                                        <label for="direccion">dirección</label>
+                                        <label for="direccion">Dirección</label>
                                     </div>
 
                         
@@ -275,7 +275,7 @@ h5.breadcrumbs-header {
                                             <?php echo Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']); ?>
 
                                             <div id="mensajeRuc"></div>
-                                        <label  for="telefono">numero de telefono</label>
+                                        <label  for="telefono">Numero de teléfono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
