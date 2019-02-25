@@ -145,7 +145,10 @@ h5.breadcrumbs-header {
                                     </div>
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
-                                        <h5><?php echo e(Auth::user()->points); ?></h5>
+                                        <h5> <?php if (Auth::user()->points == NULL)
+                                        Auth::user()->points = 0;
+                                        echo Auth::user()->points;
+                                        ?></h5>
                                         <label>todos mis puntos</label>
                                     </div>
                                 </div>
