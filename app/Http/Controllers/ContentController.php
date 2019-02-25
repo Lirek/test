@@ -24,7 +24,7 @@ use App\music_authors;
 use App\Transactions;
 use App\Movie;
 use App\Serie;
-
+use App\Episode;
 
 class ContentController extends Controller
 {
@@ -387,6 +387,15 @@ class ContentController extends Controller
         }
         return $prueba;
     }
+    
+    
+    public function PlayMovie($id){
+      $movie= Movie::where('id','=',$id)->get();
+
+      $movie= Movie::where('status','=','Aprobado')->paginate(8);
+      return view('contents.PlayMovie')->with('movie',$movie);
+    }
+    
 //--------------------------------------SERIES--------------------------------------------
     public function ShowSeries(){
         $Serie= Serie::where('status','=','Aprobado')->paginate(8);
@@ -428,5 +437,22 @@ class ContentController extends Controller
             $prueba=$this->SerieList($key->id);
         }
         return $prueba;
+    }
+    
+    
+    public function PlaySerie($id){
+      $serie= Serie::where('id','=',$id)->get();
+
+      $serie= Serie::where('status','=','Aprobado')->paginate(8);
+      
+      return view('contents.PlaySerie')->with('Series',$serie);
+    }
+    
+    public function PlayEpisode($id){
+      $episode= Episode::where('id','=',$id)->get();
+
+      $episode= Episode::where('status','=','Aprobado')->paginate(8);
+      
+      return view('contents.PlayEpisode')->with('Episode',$episode);
     }
 }
