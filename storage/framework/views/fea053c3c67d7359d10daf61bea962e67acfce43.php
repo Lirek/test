@@ -192,7 +192,7 @@ h5.breadcrumbs-header {
 
                                     <!--cedula-->
                                     <div class="input-field col s12">
-                                        <i class="material-icons prefix blue-text">assignment_ind</i>
+                                        <i class="material-icons prefix blue-text">chrome_reader_mode</i>
                                         <?php if($user->num_doc): ?>
                                             <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']); ?>
 
@@ -301,7 +301,6 @@ h5.breadcrumbs-header {
                                       </li>
                                     </div>
                                     <div class="card-content">
-                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                                         <?php echo e($user->email); ?>
 
                                         <br>

@@ -286,7 +286,6 @@ h5.breadcrumbs-header {
                                       </li>
                                     </div>
                                     <div class="card-content">
-                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                                         {{$user->email}}
                                         <br>
                                         <br>
