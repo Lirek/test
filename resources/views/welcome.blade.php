@@ -184,7 +184,7 @@
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
                                     <a onclick="masInfo('cine')">
-                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="150px">
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="220px">
                                     </a>
                                 @else
                                    <a onclick="masInfo('cine')">
