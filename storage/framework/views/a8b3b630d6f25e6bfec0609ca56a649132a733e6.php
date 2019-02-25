@@ -293,7 +293,7 @@
                                                                         <ul>
                                                                             <li><a href="<?php echo e(url('/megazine_form')); ?>">Registrar revista</a></li>
                                                                             <li><a href="<?php echo e(url('/type')); ?>">Cadena de publicaciones</a></li>
-                                                                            <li><a href="<?php echo e(url('/my_megazine',Auth::guard('web_seller')->user()->id)); ?>">Mis revistas</a></li>
+                                                                            <li><a href="<?php echo e(url('/my_megazine',Auth::guard('web_seller')->user()->id)); ?>"> Revistas registradas</a></li>
                                                                             <li><div class="divider"></div></li>
                                                                         </ul>
                                                                 </div>

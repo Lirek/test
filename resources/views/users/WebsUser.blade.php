@@ -182,7 +182,7 @@
                       <div class="input-field col m12 ">
                           <i class="material-icons prefix">vpn_key</i>
                           <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
-                          <label for="first_name">Código</label>
+                          <label for="codigo">Código</label>
                           <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
                           <div id="codigoMen"></div>
                       </div>

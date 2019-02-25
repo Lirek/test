@@ -136,13 +136,16 @@ h5.breadcrumbs-header {
                                         {{Auth::user()->name}}</h5>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->credito}}</h5>
                                         <label>todos mis tickets</label>
                                     </div>
                                     <div class="col s4">
-                                        <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
-                                        <h5>{{Auth::user()->points}}</h5>
+                                        <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
+                                        <h5> <?php if (Auth::user()->points == NULL)
+                                        Auth::user()->points = 0;
+                                        echo Auth::user()->points;
+                                        ?></h5>
                                         <label>todos mis puntos</label>
                                     </div>
                                 </div>
@@ -171,7 +174,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'required'=>'required','onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">apellidos</label>
+                                        <label for="apellido">apellidos</label>
                                     </div>
 
                                     <!--email-->
@@ -187,10 +190,10 @@ h5.breadcrumbs-header {
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly']) !!}
                                         @else
-                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'id'=>'cedula','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
-                                        <label  for="ruc">Cedula</label>
+                                        <label  for="cedula">Cedula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
@@ -234,7 +237,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('alias',$user->alias,['class'=>'form-control', 'required'=>'required', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'alias','required'=>'required']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">Alias</label>
+                                        <label for="alias">Alias</label>
                                     </div>
 
                                     <!--fecha de nacimiento-->
@@ -248,18 +251,18 @@ h5.breadcrumbs-header {
                                     <!--direccion-->
                                     <div class="input-field col s12 ">
                                         <i class="material-icons prefix blue-text">description</i>
-                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control']) !!}
+                                        {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="name">dirección</label>
+                                        <label for="direccion">dirección</label>
                                     </div>
 
                         
                                     <!--numero de telefono-->
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text">contact_phone</i>
-                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
+                                            {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="ruc">numero de telefono</label>
+                                        <label  for="telefono">numero de telefono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
@@ -278,8 +281,8 @@ h5.breadcrumbs-header {
 
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
-                                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Contactame</span>
+                                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
+                                        <span class="collection-header center" style="color: white">Contactame</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -293,7 +296,7 @@ h5.breadcrumbs-header {
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px">
+                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
                             <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
                     </div>
                 <div class="card-content">
@@ -307,7 +310,7 @@ h5.breadcrumbs-header {
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Cambiar Contraseña</span></div>
                             </div>
                             <div class="card-content">
 
@@ -319,7 +322,7 @@ h5.breadcrumbs-header {
                             {!! Form::hidden('password',$user->password,['class'=>'form-control','method'=>'POST']) !!}
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su antigua contraseña</label>
+                            <label for="oldpass">Introduzca su antigua contraseña</label>
                             {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="oldpasscp" style="margin-top: 1%"></div>
                             @if ($errors->has('oldpass'))
@@ -330,7 +333,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Introduzca su nueva contraseña</label>
+                            <label for="newpass">Introduzca su nueva contraseña</label>
                             {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="newpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('newpass'))
@@ -341,7 +344,7 @@ h5.breadcrumbs-header {
                             </div>
                             <div class="input-field col s12 l11">
                             <i class="material-icons prefix blue-text">edit</i>
-                            <label>Confirme su nueva contraseña</label>
+                            <label for="confnewpass">Confirme su nueva contraseña</label>
                             {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
                             <div id="confnewpasscp" style="margin-top: 1%"></div>
                              @if ($errors->has('confnewpass'))
@@ -369,7 +372,7 @@ h5.breadcrumbs-header {
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
-                            <div class="card-image waves-block cyan" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar cuenta</span></div>
+                            <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px"><span class="collection-header center" style="color:white;">Eliminar cuenta</span></div>
                             </div>
                             <div class="card-content" style="text-align: center;"><label><h6><span class="card-title"></span><span class="card-title">¿Desea Eliminar su cuenta en Leipel? <br><br> Esta acción inhabilitará su cuenta permanentemente y no podra ingresar de nuevo con ella.</span></h6></label><br>
                             <div style="text-align: center">
@@ -559,13 +562,12 @@ h5.breadcrumbs-header {
 </script>
 
   <script>
-
     $(function() {
     $('#fecha').datepicker({
+        format: 'dd-mm-yyyy',
         yearRange: 50,
         changeMonth: true,
         changeYear: true,
-        format: 'dd-mm-yyyy',
         firstDay: 1,
         i18n: {
             months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],

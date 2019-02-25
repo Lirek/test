@@ -184,7 +184,7 @@
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
                                     <a onclick="masInfo('cine')">
-                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="150px">
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="220px">
                                     </a>
                                 @else
                                    <a onclick="masInfo('cine')">
@@ -749,7 +749,7 @@
                     <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">assignment</i>
                         <input type="text" id="description" name="description" required="required" class="autocomplete">
-                        <label for="description-input14">Descripción</label>
+                        <label for="description">Descripción</label>
                         @if ($errors->has('description'))
                             <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -759,7 +759,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                        <label for="autocomplete-input9">Correo</label>
+                        <label for="emailRP">Correo</label>
                         <div id="mensajeCorreo" style="margin-top: 1%"></div>
                         @if ($errors->has('email'))
                             <span class="help-block">

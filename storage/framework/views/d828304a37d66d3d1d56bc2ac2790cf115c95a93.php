@@ -197,7 +197,7 @@
                                             <div class="collapsible-body">
                                                 <ul>
                                                     <!--Compra musica-->
-                                                <li><a href="<?php echo e(url('MyMusic')); ?>" class="collapsible-header waves-effect waves-blue">Música</a></li>
+                                                <li><a href="<?php echo e(url('MyMusic')); ?>" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Mi Música</a></li>
                                                <!--  <li><a href="<?php echo e(url('MyAlbums')); ?>" class="collapsible-header waves-effect waves-blue">Albums</a></li> -->
                                                  </ul>
                                             </div> <!--collapsible-body-->
