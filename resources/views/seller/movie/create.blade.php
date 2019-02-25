@@ -616,8 +616,8 @@
                         {{--Nombre de la saga--}}
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix blue-text">create</i>
-                            <label for="sag_name" class="control-label">Nombre</label>
-                            {!! Form::text('sag_name',null,['class'=>'form-control','id'=>'sag_name','required'=>'required']) !!}
+                            <label for="exampleInputFile" class="control-label">Nombre</label>
+                            {!! Form::text('sag_name',null,['class'=>'form-control','required'=>'required']) !!}
                             <br>
                         </div>
 
