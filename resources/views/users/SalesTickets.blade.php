@@ -1190,7 +1190,7 @@
 			});
 			setTimeout(function() {
 				callback(msn);
-			},2000);
+			},5000);
 		}
 
 		function comprar(id,cost,cantidadTickets) {
@@ -1370,8 +1370,10 @@
 																closeOnClickOutside: false
 															});
 															console.log("intento "+intento+": "+status);
-															console.log(transaction.transactionId);
-															transactionCanceled(transaction.transactionId,idTicketSales,function(cancelar) {
+															var idTicket = idTicketSales.split("|")[0];
+															console.log(transaction.transactionId,idTicket);
+															transactionCanceled(transaction.transactionId,idTicket,function(cancelar) {
+																console.log(cancelar);
 																swal({
 																	title: "¡Pago cancelado!",
 																	text: "Su pago fue cancelado.",
@@ -1401,7 +1403,10 @@
 													console.log("intento "+intento+" expiró el tiempo");
 													console.log(transaction.transactionId);
 													postReverse(transaction.transactionId).then(function(response) {
-														transactionCanceled(transaction.transactionId,idTicketSales,function(pendiente) {
+														var idTicket = idTicketSales.split("|")[0];
+														console.log(response,transaction.transactionId,idTicket);
+														transactionCanceled(transaction.transactionId,idTicket,function(pendiente) {
+															console.log(pendiente);
 															swal({
 																title: "¡Ha expirado el tiempo de espera!",
 																text: "No se pudo procesar el pago por exceder el límite del tiempo permitido.",
