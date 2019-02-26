@@ -39,7 +39,7 @@
                     <div class="col s12 m3">
                       <div class="card" style="height: 430px">
                         <div class="card-image">
-                            <a href="#myModal-{{$Movies->id}}" class="modal-trigger">
+                            <a href="{{url('PlayMovie/'.$Movies->id)}}" >
                           <img src="{{asset('movie/poster')}}/{{$Movies->img_poster}}" width="100%" height="300px">
                           </a>
                           <!-- <span class="card-title">Card Title</span> -->
@@ -145,8 +145,8 @@
                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                   </div>
               </div>
-            </div>
-
+            </div> 
+            
                     @endforeach
                     <div class="col m12">
                     {{  $Movie->links() }}
