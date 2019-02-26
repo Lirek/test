@@ -229,6 +229,7 @@
                                 <i class="material-icons prefix blue-text">email</i>
                                 <input type="email" id="email-valid" value="{{ old('email') }}"  name="email" class="autocomplete"  required>
                                 <label for="email-valid">Dirección de Correo</label>
+                                 <div id="emailMenValid" style="margin-top: 1%"></div>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -248,8 +249,9 @@
                             </div>
                             <div class="input-field col s12 ">
                                 <i class="material-icons prefix blue-text">vpn_key</i>
-                                <input type="password" id="password_confirm"   name="password_confirm" class="autocomplete"  required autocomplete="off">
-                                <label for="password_confirm">Repetir</label>
+                                <input type="password" id="password_confirmR"   name="password_confirm" class="autocomplete"  required autocomplete="off">
+                                <label for="password_confirmR">Repetir</label>
+                                <div id="passwordCMenValid" style="margin-top: 1%"></div>
                                 @if ($errors->has('password_confirm'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirm') }}</strong>
@@ -1581,6 +1583,60 @@
             var email = $('#emailP').val().trim();
             if (email.length !=0 && password.length !=0){
                 $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $("#email-valid").on('keyup change',function(){
+        var email_data = $("#email-valid").val();
+        $.ajax({
+            url: '../EmailValidate',
+            type: 'POST',
+            data:{
+                _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                if (result == 1)
+                {
+                    $('#emailMenValid').hide();
+                    if($('#passwordCMenValid').is(':visible')==false){
+                        $('#registro').attr('disabled',false);
+                    }
+                    return true;
+                }
+                else
+                {
+                    $('#emailMenValid').show();
+                    $('#emailMenValid').text('Este email ya se encuentra regitrado');
+                    $('#emailMenValid').css('font-size','60%');
+                    $('#emailMenValid').css('color','red');
+                    $('#registro').attr('disabled',true);
+                    // console.log(result);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirmR').keyup(function(evento){
+            var password1 = $('#password-valid').val();
+            var password = $('#password_confirmR').val();
+
+            if (password != password1) {
+                $('#passwordCMenValid').show();
+                $('#passwordCMenValid').text('Ambas contraseña deben coincidir');
+                $('#passwordCMenValid').css('color','red');
+                $('#passwordCMenValid').css('font-size','60%');
+                $('#registro').attr('disabled',true);
+            } else {
+                $('#passwordCMenValid').hide();
+                    //console.log($('#emailMenValid').is(':visible'))
+                    if($('#emailMenValid').is(':visible')==false){
+                        $('#registro').attr('disabled',false);
+                    }
+                
             }
         });
     });
