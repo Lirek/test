@@ -2,6 +2,14 @@
 
 @section('css')
 
+<style >
+.header {
+    color: white;
+    font-weight: 150;
+}
+</style>
+
+
 @endsection
 
 @section('main')
@@ -11,7 +19,7 @@
          
          
             @foreach($Episode as $s)
-            
+                        
             <div class="row">
               <div class="col s9">
                 
@@ -115,13 +123,12 @@
                                    <li class="collection-item" style="padding: 10px ">
                                         <div class="row">
                                             <div class="col s3 ">
-                                              <a class="btn btn-primary green curvaBoton  " href="#modal1">TRAILER</a>
+                                              <a class="btn btn-primary green curvaBoton  " href="#modal0">TRAILER</a>
     
                                             </div>
                                             <div class="col s3 ">
-                                              <div class="btn blue curvaBoton">
-                                                <i>SINOPSIS</i>
-                                              </div>
+                                                  <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+                                          
                                             </div>
                                           
                                               
@@ -159,7 +166,18 @@
                 
               </div>
             </div>
-            
+          
+          
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4 class="header blue" >SINOPSIS</h4>
+                <h6>  {{ $s->sinopsis }}</h6>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
+              </div>
+            </div>
             
             
             
