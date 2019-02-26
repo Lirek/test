@@ -110,7 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%; width: 110%; margin-left: -10px;" alt="user background">
+                            <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" style="height: 100%; height: 100%;" alt="user background">
                         </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
@@ -175,7 +175,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="apellido">apellidos</label>
+                                        <label for="apellido">Apellidos</label>
                                     </div>
 
                                     <!--email-->
@@ -187,7 +187,7 @@ h5.breadcrumbs-header {
 
                                     <!--cedula-->
                                     <div class="input-field col s12">
-                                        <i class="material-icons prefix blue-text">assignment_ind</i>
+                                        <i class="material-icons prefix blue-text">chrome_reader_mode</i>
                                         @if($user->num_doc)
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control','readonly','id'=>'ci']) !!}
                                         @else
@@ -227,8 +227,8 @@ h5.breadcrumbs-header {
                                     <div class="col m12 s12">
                                         <div class="input-field col s12">
                                          <i class="material-icons prefix blue-text valign-wrapper">wc</i>
-                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'sexo']) !!}
-                                        <label for="sexo" class="control-label">sexo</label>
+                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']) !!}
+                                        <label for="exampleInputFile" class="control-label">Sexo</label>
                                         <br>
                                         </div>
                                     </div>
@@ -254,7 +254,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">description</i>
                                         {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="direccion">dirección</label>
+                                        <label for="direccion">Dirección</label>
                                     </div>
 
                         
@@ -263,7 +263,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">contact_phone</i>
                                             {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="telefono">numero de telefono</label>
+                                        <label  for="telefono">Numero de teléfono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
@@ -286,11 +286,6 @@ h5.breadcrumbs-header {
                                         <span class="collection-header center" style="color: white">Contactame</span>
                                       </li>
                                     </div>
-                                    @if ($user->img_doc)
-                                        <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                                    @else
-                                        <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
-                                    @endif
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                                         @if ($mipatro != null)
@@ -303,6 +298,10 @@ h5.breadcrumbs-header {
                                             <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
                                         @endif
 
+                                        {{$user->email}}
+                                        <br>
+                                        <br>
+                                        {{$user->phone}}
                                     </div>
             {!! Form::close() !!}
                                 </div>
