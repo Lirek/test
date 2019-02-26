@@ -28,6 +28,7 @@ use App\Serie;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+use App\Episode;
 
 class ContentController extends Controller
 {
@@ -391,7 +392,7 @@ class ContentController extends Controller
         $perPage = 12;
         $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $Cine = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
-   
+
 
         //dd($Cine);
         return view('contents.Movies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
@@ -430,15 +431,15 @@ class ContentController extends Controller
     }
 
     public function ShowMovieSeach(Request $request){
-      
+
         if ($request->type=='serie'){
                 $Series = Serie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
-              
+
                 $Cine = collect();
                 foreach ($Series as $series) {
                      $series->type='serie';
                      $Cine->push($series);
-                    
+
                 }
 
                 $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -463,6 +464,15 @@ class ContentController extends Controller
                 return view('contents.Movies')->with('Cine',$Cine);
         }
     }
+
+
+    public function PlayMovie($id){
+      $movie= Movie::where('id','=',$id)->get();
+
+      $movie= Movie::where('status','=','Aprobado')->paginate(8);
+      return view('contents.PlayMovie')->with('movie',$movie);
+    }
+
 //--------------------------------------SERIES--------------------------------------------
     public function ShowSeries(){
         $Serie= Serie::where('status','=','Aprobado')->paginate(8);
@@ -504,5 +514,22 @@ class ContentController extends Controller
             $prueba=$this->SerieList($key->id);
         }
         return $prueba;
+    }
+
+
+    public function PlaySerie($id){
+      $serie= Serie::where('id','=',$id)->get();
+
+      $serie= Serie::where('status','=','Aprobado')->paginate(8);
+
+      return view('contents.PlaySerie')->with('Series',$serie);
+    }
+
+    public function PlayEpisode($id){
+      $episode= Episode::where('id','=',$id)->get();
+
+      $episode= Episode::where('status','=','Aprobado')->paginate(8);
+
+      return view('contents.PlayEpisode')->with('Episode',$episode);
     }
 }

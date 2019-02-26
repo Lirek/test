@@ -132,7 +132,8 @@ h5.breadcrumbs-header {
                             <div class="row">
                                 <div class="col s12">
                                     <div class="col s4">
-                                        <h5><i class="material-icons prefix blue-text">face</i>
+                              <h5 style="overflow:hidden;white-space:nowrap;text-overflow: ellipsis;">
+                                <i class="material-icons prefix blue-text">face</i>
                                         {{Auth::user()->name}}</h5>
                                     </div>
                                     <div class="col s4">

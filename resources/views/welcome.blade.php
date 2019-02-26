@@ -12,7 +12,6 @@
     <link href="{{ asset('plugins/materialize_index/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('css/welcome.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -33,6 +32,79 @@
 
     </script>
 </head>
+
+<style type="text/css">
+
+    .default_color{background-color: #FFFFFF !important;}
+
+    .img{margin-top: 7px;}
+
+    .curva{border-radius: 10px;}
+
+    .curvaBoton{border-radius: 20px;}
+
+    /*Color letras tabs*/
+    .tabs .tab a{
+        color:#00ACC1;
+    }
+    /*Indicador del tabs*/
+    .tabs .indicator {
+        display: none;
+    }
+    .tabs .tab a.active {
+        border-bottom: 2px solid #29B6F6;
+    }
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #29B6F6 !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #29B6F6 !important;
+        box-shadow: 0 1px 0 0 #29B6F6 !important
+    }
+
+    /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /*slider tv*/
+    .card-image.img
+    {
+        height:150px; !important
+    }
+
+    .material-icons.md1::before{
+        content:"search";
+    }
+
+    .material-icons.md1:hover::before{
+        content:"navigate_next";
+    }
+
+    /*evitar que el texto salga*/
+    .break-word {
+        word-break: break-all;
+    }
+
+    element.style {
+        height: 600px; !important;
+    }
+
+</style>
+
 
 <!--Menu-->
 <nav class="default_color" role="navigation">
@@ -150,12 +222,12 @@
 <!-- Franja azul -->
 <div class="carousel-item blue white-text" href="#four!">
     <div class="row">
-        <div class="col s12 m12 l12 xl12  center"> 
+        <div class="col s12 m12 l12 xl12  center">
             <h5>Red social de entretenimiento</h5>
         </div>
-        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer; ">
+        <div class="col s4 m4 l4 xl2 offset-xl1 center curva" id="cine" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/cine.png') }}" width="50%" height="70%" title="Cine"><br><b>Cine</b><br><br>
-        </div></a>
+        </div>
         <div class="col s4 m4 l4 xl2 center curva" id="musica" style="cursor: pointer;">
             <img src="{{asset('plugins/materialize_index/img/musica.png') }}" width="50%" height="70%" title="Música"><br><b>Música</b><br><br>
         </div>
@@ -174,7 +246,7 @@
 
 
 {{--pelicula--}}
-<div class="row" id="cines"> 
+<div class="row" id="cines">
     <div class="col s12 m12">
         @if(count($movie)>0)
             <div id="featured5" class="owl-carousel featured">
@@ -183,13 +255,9 @@
                         <div class="card">
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
-                                    <a onclick="masInfo('cine')">
-                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="220px">
-                                    </a>
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="300px">
                                 @else
-                                   <a onclick="masInfo('cine')">
-                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="150px">
-                                   </a>
+                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="300px">
                                 @endif
                             </div>
                         </div>
@@ -224,7 +292,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <a onclick="masInfo('musica')"><img src="{{ asset($m['cover']) }}" width="100%" height="150px"></a>
+                                <img src="{{ asset($m['cover']) }}" width="100%" height="150px">
                             </div>
                         </div>
                     </div>
@@ -257,7 +325,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <a onclick="masInfo('lectura')"><img src="{{ asset($b['cover']) }}" width="100%" height="220px"></a>
+                                <img src="{{ asset($b['cover']) }}" width="100%" height="150px">
                             </div>
                         </div>
                     </div>
@@ -289,7 +357,7 @@
                 <div class="col s12 m12">
                     <div class="card">
                         <div class="card-image ">
-                            <a onclick="masInfo('radio')"><img src="{{ asset($r['logo']) }}" width="100%" height="150px"></a>
+                            <img src="{{ asset($r['logo']) }}" width="100%" height="150px">
                         </div>
                     </div>
                 </div>
@@ -310,7 +378,7 @@
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image ">
-                            <a onclick="masInfo('tv')"><img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px"></a>
+                            <img src="{{ asset($tvs['logo']) }}"  width="100%" height="150px">
                         </div>
                     </div>
                 </div>
@@ -329,21 +397,21 @@
     <div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>
 </div>
 <!--Fin parallax-->
-
+<br>
 <!-- tabs  -->
 <div class="row col" style="margin-bottom:-5px;">
 
     <div id="test1" class="col l6 m12 s12 center">
-        <img src="{{asset('https://leipel.com\sistem_images\leipel_laptop.jpg') }}" width="100%" title="Lapel" style="max-height: 370px; margin-left: -25px; height: 370px;" >
+
+        <img src="sistem_images\leipel_laptop.jpg" width="100%" title="Lapel" style="max-height: 370px; margin-left: -25px; height: 370px;" >
     </div>
 
     <div id="test2" class="col l6 m12 s12 center">
         <div class="col s12">
             <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
-                <li class="tab col s3 "><a href="#test02"><b>Viajes gratis</b></a></li>
-                <li class="tab col s3 "><a href="#test03"><b>Marcas relacionadas</b></a>
-                <li class="tab col s3 "><a href="#test04"><b>Proveedores</b></a></li>
+                <li class="tab col s4"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
+                <li class="tab col s4 "><a href="#test02"><b>Viajes gratis</b></a></li>
+                <li class="tab col s4 "><a href="#test03"><b>Marcas relacionadas</b></a></li>
             </ul>
 
             <div id="test01" class="col s12 center">
@@ -363,54 +431,22 @@
             </div>
 
             <div id="test02" class="col s12 center">
-                <div class="col s12 m6 l6 xl6 center" ><br><br>
-                    <h5>
-                        <p style="text-align: justify;">Los viajes, y tarjetas de consumo en supermercados, son uno de los tantos beneficios que podrás canjear gratuitamente con tus puntos Leipel.</p>
-                        <p></p>
-                    </h5>
-                </div>
-                <div class="col s12 m6 l6 xl6 center">
-                    <br><br><br>
-                    <div class="embed-container" style="margin-top: 10px;">
+                <br>
+                <div class="embed-container">
                     <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>
-                </div>
-                    <br>
-                </div>
+                </div>           <br>
             </div>
 
             <div id="test03" class="col s12 center">
-                <div class="col s12 m6 l6 xl6 center" ><br><br>
-                    <h5>
-                        <p style="text-align: justify;">Ayudamos a las fundaciones a recaudar fondos a travéz de la venta de sus contenidos. <br>Ayúdanos a ayudar.</p>
-                    </h5>
-                </div>
-                <div class="col s12 m6 l6 xl6 center">
-                    <br>
-                        <div class="img-container" style="">
-                       <img src="{{asset('https://leipel.com\sistem_images\fundaciones.jpg') }}" width="320" height="250" style="margin-left: -15px;">
-                        </div>
-                    <br>
+                <div class="col s12 center">
+                    <br><br>
+                    <div class="container s12 center"><br>
+                        <h5><p style="text-align:justify;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h5>
+                    </div>
+                    <br><br><br><br>
                 </div>
             </div>
         </div>
-
-        <div id="test04" class="col s12 center">
-                <div class="col s12 m6 l6 xl6 center" ><br><br>
-                    <h5>
-                        <p style="text-align: justify;">Buscamos proveedores de cine, música, lectura, radio y Tv. Nosotros los ayudaremos a llegar a más personas. </p>
-                        <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
-                    </h5>
-                </div>
-
-                <div class="col s12 m6 l6 xl6 center">
-                    <br><br><br><br>
-                    <div class="embed-container">
-                       <iframe width="729" height="410" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <br>
-                </div>
-            </div>
-
     </div>
 
     <div id="test3" class="col s12 center" style="display:none;">
@@ -477,9 +513,7 @@
                 <h5 class="white-text">Sobre</h5>
                 <ul>
                     <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
-                    <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    {{--<li><a class="white-text" href="#!">Beneficios adicionales</a></li>--}}
                     {{--<li><a class="white-text" href="#!">Contactos</a></li>--}}
                 </ul>
             </div>
@@ -561,6 +595,7 @@
                         @endif
                     </div>
                     <div class="input-field col s12">
+
                         <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
@@ -568,18 +603,17 @@
                             Olvide mi contraseña
                         </a>
                     </div>
-                   <!--<div class="input-field col s6">
+                    <div class="input-field col s6">
                         <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
                         </a>
-                    </div>-->
-                    <div class="input-field col s12 l12">
-                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
                 </div>
-
             </form>
         </div>
         {{--Modal inicio de sesion proveedor--}}
@@ -630,9 +664,6 @@
             <ul class="tabs">
                 <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
                 <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
-                {{--
-                <li class="tab col s4"><a href="#ofertante1"><i class="material-icons prefix">store</i><b> Ofertante</b></a></li>
-                --}}
             </ul>
         </div>
         {{--registro usuario--}}
@@ -697,12 +728,12 @@
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
-                    <!--<div class="input-field col s6">
+                    <div class="input-field col s6">
                         <a class="curvaBoton waves-effect waves-light btn social google red right" href="login/google">
                             <i class="fa fa-google"></i> Google</a><br><br>
-                    </div>-->
-                    <div class="input-field col l12 s12 m12">
-                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook center" href="login/facebook">
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="curvaBoton waves-effect waves-light btn blue darken-4 social facebook left" href="login/facebook">
                             <i class="fa fa-facebook"></i> Facebook</a><br>
                     </div>
                     <div class="col s12 center">Inicio de sesión con redes sociales</div>
@@ -752,7 +783,7 @@
                     <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
                         <i class="material-icons prefix blue-text">assignment</i>
                         <input type="text" id="description" name="description" required="required" class="autocomplete">
-                        <label for="description">Descripción</label>
+                        <label for="description-input14">Descripción</label>
                         @if ($errors->has('description'))
                             <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
@@ -762,7 +793,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
                         <input type="email" id="emailRP" name="email" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                        <label for="emailRP">Correo</label>
+                        <label for="autocomplete-input9">Correo</label>
                         <div id="mensajeCorreo" style="margin-top: 1%"></div>
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -802,59 +833,6 @@
                 </div>
             </form>
         </div>
-        {{--registro ofertante--}}
-        {{--
-        <div id="ofertante1" class="col s12 center">
-            <form class="form-horizontal" id="formRO">
-                {{ csrf_field() }}
-                @include('flash::message')
-                <div class="row">
-                    <div class="input-field col s12 {{ $errors->has('tlf') ? ' has-error' : '' }}">
-                        <i class="material-icons prefix blue-text">person</i>
-                        <input type="text" id="nombreOfertante" class="autocomplete" name="nombreOfertante"
-                               required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
-                        <label for="nombreOfertante">Nombre</label>
-                        <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
-                        @if ($errors->has('nombreOfertante'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('nombreOfertante') }}</strong>
-                           </span>
-                        @endif
-                    </div>
-
-                    <div class="input-field col s12 {{ $errors->has('description') ? ' has-error' : '' }}">
-                        <i class="material-icons prefix blue-text">assignment</i>
-                        <input type="text" id="rucOfertante" name="rucOfertante" required="required" class="autocomplete" onkeypress="return controltagNum(event)">
-                        <label for="rucOfertante">RUC</label>
-                        @if ($errors->has('rucOfertante'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('rucOfertante') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text">email</i>
-                        <input type="email" id="emailRO" name="emailRO" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                        <label for="emailRO">Correo</label>
-                        <div id="mensajeCorreoOfertante" style="margin-top: 1%"></div>
-                        @if ($errors->has('emailRO'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('emailRO') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="input-field col s12">
-                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRO" type="submit" >
-                            Enviar
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        --}}
     </div>
 
 </div>
@@ -867,11 +845,11 @@
 <script src="{{asset('plugins/materialize_index/js/materialize.js') }}"></script>
 <script src="{{asset('plugins/materialize_index/js/init.js') }}"></script>
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{asset('js/welcome.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@include('users.js')
 
 <script type="text/javascript">
+
+
     function masInfo(tipo) {
         console.log(tipo);
         var usuarioActivo = "{{Auth::guest()}}";
@@ -891,17 +869,16 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
+                    icon: "info",
                     buttons: {
-                        cancelar: "Cerrar",
+                        cancelar: "Cancelar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
-                            value: "iniciar",
+                            value: "iniciar"
                         },
                         registrar: {
                             text: "Registrate",
-                            value: "registrar",
-
+                            value: "registrar"
                         }
                     },
                     closeOnEsc: false,
@@ -931,9 +908,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
+                    icon: "info",
                     buttons: {
-                        cancelar: "Cerrar",
+                        cancelar: "Cancelar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -971,9 +948,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
+                    icon: "info",
                     buttons: {
-                        cancelar: "Cerrar",
+                        cancelar: "Cancelar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1011,9 +988,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
+                    icon: "info",
                     buttons: {
-                        cancelar: "Cerrar",
+                        cancelar: "Cancelar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1051,9 +1028,9 @@
                 swal({
                     title: "Ingrese al sistema",
                     text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
-                    icon: "warning",
+                    icon: "info",
                     buttons: {
-                        cancelar: "Cerrar",
+                        cancelar: "Cancelar",
                         iniciarSesion: {
                             text: "Iniciar sesión",
                             value: "iniciar"
@@ -1078,6 +1055,766 @@
             }
         }
     }
+
+
+    // Tabs
+    var elem = $('.tabs')
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    //or Without Jquery
+
+
+    //var elem = document.querySelector('.tabs');
+    var options = {}
+    var instance = M.Tabs.init(elem, options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, options);
+    })
+    //Modal
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, options);
+    });
+
+    // Or with jQuery
+    // Slider
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+        $('.modal').modal();
+        $('select').formSelect();
+        $('.parallax').parallax();
+        $('.materialboxed').materialbox();
+        $('.slider').slider({
+            indicators: true
+        });
+
+
+        /*==========  Featured Cars  ==========*/
+        $('#featured-cars').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                }
+            }
+        });
+        $('#featured').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured-cars-three').owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1200: {
+                    items: 3
+                }
+            }
+        });
+
+        $('#featured1').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured3').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+
+        $('#featured4').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        $('#featured5').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            rtl:false,
+            margin:10,
+            navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        });
+        //Mostarar contenidos seleccionados
+        $('#radio').css("background-color","#42a5f5");
+        $('#radios').show();
+        $('#cines').hide();
+        $('#Tvs').hide();
+        $('#libros').hide();
+        $('#musicas').hide();
+
+        $('#cine').click(function(){
+            console.log("pase por cine");
+            $('#libro').css("background-color","#2196F3");
+            $('#cine').css("background-color","#42a5f5");
+            $('#musica').css("background-color","#2196F3");
+            $('#tv').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#Tvs').hide();
+            $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').show();
+        });
+
+        $('#musica').click(function(){
+            console.log("pase por musica");
+            $('#libro').css("background-color","#2196F3");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#42a5f5");
+            $('#tv').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#Tvs').hide();
+            $('#libros').hide();
+            $('#cines').hide();
+            $('#musicas').show();
+        });
+
+        $('#libro').click(function(){
+            console.log("pase por libro");
+            $('#libro').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#tv').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#Tvs').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
+            $('#libros').show();
+        });
+
+        $('#radio').click(function(){
+
+            $('#radio').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#tv').css("background-color","#2196F3");
+            $('#Tvs').hide();
+            $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
+            console.log("paso por radio");
+            $('#radios').show();
+        });
+
+        $('#tv').click(function(){
+            console.log("pase por tv");
+            $('#tv').css("background-color","#42a5f5");
+            $('#cine').css("background-color","#2196F3");
+            $('#musica').css("background-color","#2196F3");
+            $('#libro').css("background-color","#2196F3");
+            $('#radio').css("background-color","#2196F3");
+            $('#radios').hide();
+            $('#libros').hide();
+            $('#musicas').hide();
+            $('#cines').hide();
+            $('#Tvs').show();
+        });
+
+        $("#formRP").on('submit',function(e){
+            var url = "{{ url('ApplysSubmit') }}";
+            e.preventDefault();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: $("#formRP").serialize(),
+                success: function (result) {
+                    console.log(result);
+                    swal("Su solicitud está siendo procesada","","success")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                },
+                error: function (result) {
+                    console.log(result);
+                    swal('Existe un Error en su Solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                }
+            });
+        });
+
+    });
+
+    function controltagNum(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[0-9]/;// -> solo numeros
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+
+    //---------------------Validacion registros----------------------------------
+    $("#emailRP").on('keyup change',function(){
+        var email_data = $("#emailRP").val();
+        $.ajax({
+            url: 'RegisterEmailSeller',
+            type: 'POST',
+            data:{
+                _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                if (result == 1)
+                {
+                    $('#mensajeCorreo').hide();
+                    $('#registroRP').attr('disabled',false);
+                    return true;
+                }
+                else
+                {
+                    $('#mensajeCorreo').show();
+                    $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                    $('#mensajeCorreo').css('font-size','60%');
+                    $('#mensajeCorreo').css('color','red');
+                    $('#registroRP').attr('disabled',true);
+                    console.log(result);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#tlf').keyup(function (evento) {
+            var telefono = $('#tlf').val();
+            numeroPalabras = telefono.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeTelefono').show();
+                $('#mensajeTelefono').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeTelefono').css('color', 'red');
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            if (numeroPalabras < 9) {
+                $('#mensajeTelefono').show();
+                $('#mensajeTelefono').text('Minimo 9 numeros');
+                $('#mensajeTelefono').css('color', 'red');
+                $('#mensajeTelefono').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
+                $('#mensajeTelefono').hide();
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                if (email.length!=0 || nameC.length !=0 || name.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#contact_name').keyup(function (evento) {
+            var nombreCotacto = $('#contact_name').val();
+            numeroPalabras = nombreCotacto.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            if (numeroPalabras < 3) {
+                $('#mensajeNombreContacto').show();
+                $('#mensajeNombreContacto').text('Minimo 3 caracteres');
+                $('#mensajeNombreContacto').css('color', 'red');
+                $('#mensajeNombreContacto').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+
+            } else {
+                $('#mensajeNombreContacto').hide();
+                var nameC = $('#com_name').val().trim();
+                var email = $('#emailRP').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length!=0 && nameC.length !=0 && tlf.length!=0){
+                    $('#registroRP').attr('disabled', false);
+                }
+            }
+        });
+    });
+
+    // funcion para mostrar el submenu de los modulos de libro y de musica
+    $(document).ready(function () {
+        $('#subMenuMusica').hide();
+        $('#subMenuLibro').hide();
+        $('#content_type').on('change', function () {
+            if (this.value == 'Musica') {
+                $('#subMenuLibro').hide();
+                $('#subMenuMusica').show();
+                $('#subMenuMusica').attr('required','required');
+            } else if (this.value == 'Libros') {
+                $('#subMenuMusica').hide();
+                $('#subMenuLibro').show();
+                $('#subMenuLibro').attr('required','required');
+            } else {
+                $('#subMenuMusica').hide();
+                $('#subMenuLibro').hide();
+            }
+        });
+    })
+    // funcion para mostrar el submenu de los modulos de libro y de musica
+    //---------------------------------------------------------------------------------------------------
+    // Función que nos va a contar el número de caracteres
+    $(document).ready(function () {
+        var cantidadMaxima = 191;
+        $('#com_name').keyup(function (evento) {
+            var nombreComercial = $('#com_name').val();
+            numeroPalabras = nombreComercial.length;
+            if (numeroPalabras > cantidadMaxima) {
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('La cantidad máxima de caracteres es de ' + cantidadMaxima);
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            } if (numeroPalabras < 3){
+                $('#mensajeNombreComercial').show();
+                $('#mensajeNombreComercial').text('Minimo 3 caracteres');
+                $('#mensajeNombreComercial').css('color', 'red');
+                $('#mensajeNombreComercial').css('font-size','60%');
+                $('#registroRP').attr('disabled', true);
+            }
+            else {
+                $('#mensajeNombreComercial').hide();
+                var email = $('#emailRP').val().trim();
+                var name = $('#contact_name').val().trim();
+                var tlf = $('#tlf').val();
+                if (email.length !=0 || name.length !=0 || tlf.length !=0){
+                    $('#registroRP').attr('disabled', false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
+
+        if (email.length==0 || name.length ==0 || nameC.length == 0 || tlf.length==0){
+            $('#registroRP').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var nameC = $('#com_name').val().trim();
+        var email = $('#emailRP').val().trim();
+        var name = $('#contact_name').val().trim();
+        var tlf = $('#tlf').val();
+
+        if (email.length !=0 && name.length  != 0 && nameC.length !=0 && tlf.length !=0){
+            $('#registroRP').attr('disabled',false);
+        }
+    });
+    $("#emailRU").on('keyup change',function(){
+        var email_data = $("#emailRU").val();
+        $.ajax({
+            url: 'EmailValidate',
+            type: 'POST',
+            data:{
+                _token: $('input[name=_token]').val(),
+                'email':email_data
+            },
+            success: function(result){
+                if (result == 1)
+                {
+                    $('#emailMenRU').hide();
+                    $('#registroRU').attr('disabled',false);
+                    return true;
+                }
+                else
+                {
+                    $('#emailMenRU').show();
+                    $('#emailMenRU').text('Este email ya se encuentra regitrado');
+                    $('#emailMenRU').css('font-size','60%');
+                    $('#emailMenRU').css('color','red');
+                    $('#registroRU').attr('disabled',true);
+                    console.log(result);
+                }
+            }
+        });
+    });
+
+    $(document).ready(function(){
+
+        $('#passwordRU').keyup(function(evento){
+            var password = $('#passwordRU').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('El campo no debe estar vacio');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            if (password.length < 5) {
+                $('#passwordMenRU').show();
+                $('#passwordMenRU').text('La contaseña debe tener 5 caracteres');
+                $('#passwordMenRU').css('color','red');
+                $('#passwordMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#email').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                console.log(email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo);
+                if ( email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo ){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password = $('#password_confirm').val().trim();
+
+            if (password.length==0) {
+                $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('El campo no debe estar vacio');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var password1 = $('#passwordRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+
+        $('#password_confirm').keyup(function(evento){
+            var password1 = $('#passwordRU').val();
+            var password = $('#password_confirm').val();
+
+            if (password != password1) {
+                $('#passwordCMenRU').show();
+                $('#passwordCMenRU').text('Ambas contraseña deben coincidir');
+                $('#passwordCMenRU').css('color','red');
+                $('#passwordCMenRU').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            } else {
+                $('#passwordCMenRU').hide();
+                var name = $('#name').val().trim();
+                var email = $('#emailRU').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0 && valCorreo){
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+    //---------VALIDACION PARA SOLO INTRODUCIR LETRAS---------------
+    function controltagLet(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla==8) return true; // para la tecla de retroseso
+        else if (tecla==0||tecla==9)  return true; //<-- PARA EL TABULADOR-> su keyCode es 9 pero en tecla se esta transformando a 0 asi que porsiacaso los dos
+        else if (tecla==13) return true;
+        patron =/[AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnÑñOoÓóPpQqRrSsTtUuÚúVvWwXxYyZz+\s]/;// -> solo letras
+        te = String.fromCharCode(tecla);
+        return patron.test(te);
+    }
+    //---------BLOQUEAR BOTON 1----------------------
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
+
+        if (email.length==0 || name.length ==0 || password.length == 0 || password1.length==0){
+            $('#registroRU').attr('disabled',true);
+        }
+    });
+    $(document).ready(function(){
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#password').val().trim();
+        var password1 = $('#password_confirm').val().trim();
+
+        if (email.length !=0 && name.length  != 0 && password1.length !=0 && password.length !=0){
+            $('#registroRU').attr('disabled',false);
+        }
+    });
+    $(document).ready(function(){
+        $('#name').keyup(function(evento){
+            var name = $('#name').val().trim();
+            console.log(name.length);
+            if (name.length==0) {
+                $('#nameMen').show();
+                $('#nameMen').text('Campo obligatorio');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }
+            if (name.length < 3) {
+                $('#nameMen').show();
+                $('#nameMen').text('Minimo 3 caracteres');
+                $('#nameMen').css('color','red');
+                $('#nameMen').css('font-size','60%');
+                $('#registroRU').attr('disabled',true);
+            }else {
+                $('#nameMen').hide();
+                var email = $('#email').val().trim();
+                var password = $('#password').val().trim();
+                var password1 = $('#password_confirm').val().trim();
+                var valCorreo = $('#emailMenRU').is(':hidden');
+                if (email.length !=0 && password.length  != 0 && password1.length !=0 && valCorreo) {
+                    $('#registroRU').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+
+    //---------------------------------------------------------------------------------------------------
+
+
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#email').keyup(function(evento){
+            var email = $('#email').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false){
+
+                $('#emailMen').show();
+                $('#emailMen').text('Formato email incorrecto');
+                $('#emailMen').css('color','red');
+                $('#emailMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+                $('#iniciar').css('background-color','')
+
+            }else{
+
+                $('#emailMen').hide();
+                $('#iniciar').attr('disabled',false);
+                return true;
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#password').keyup(function(evento){
+            var password = $('#password').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMen').show();
+                $('#passwordMen').text('El campo no debe estar vacio');
+                $('#passwordMen').css('color','red');
+                $('#passwordMen').css('font-size','60%');
+                $('#iniciar').attr('disabled',true);
+            } else {
+                $('#passwordMen').hide();
+                $('#iniciar').attr('disabled',false);
+            }
+            var email = $('#email').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciar').attr('disabled',false);
+            }
+        });
+    });
+    //------------------------------------------------------------------------------------------------------
+    //-------------------------------------VALICACIONES LOGIN PROMOTOR--------------------------------------
+    //---------BLOQUEAR BOTON 2----------------------
+    $(document).ready(function(){
+        var email = $('#emailP').val().trim();
+        var password = $('#passwordP').val().trim();
+
+        if (email.length==0 || password.length ==0){
+            $('#iniciarP').attr('disabled',true);
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val().trim();
+
+            if (email.length==0) {
+                $('#emailMenP').show();
+                $('#emailMenP').text('El campo no debe estar vacio');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+            }else {
+                $('#emailMenP').hide();
+            }
+            var password = $('#passwordP').val().trim();
+
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $(document).ready(function(){
+        $('#emailP').keyup(function(evento){
+            var email = $('#emailP').val();
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(email) == false){
+
+                $('#emailMenP').show();
+                $('#emailMenP').text('Formato email incorrecto');
+                $('#emailMenP').css('color','red');
+                $('#emailMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+                $('#iniciarP').css('background-color','')
+
+            }else{
+
+                return true;
+            }
+        });
+    });
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#passwordP').keyup(function(evento){
+            var password = $('#passwordP').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenP').show();
+                $('#passwordMenP').text('El campo no debe estar vacio');
+                $('#passwordMenP').css('color','red');
+                $('#passwordMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+            } else {
+                $('#emailMenP').hide();
+                $('#iniciarP').attr('disabled',false);
+            }
+            var email = $('#emailP').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
 </script>
 
 @if (count($errors) > 0)

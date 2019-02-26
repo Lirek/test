@@ -206,6 +206,13 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ShowMovies/{id}','ContentController@MovieList');
 //Agregada 24/08/2018
     Route::get('ShowTv','ContentController@Showtv');
+    
+//Agregada 23/02/2019
+    Route::get('PlayMovie/{id}','ContentController@PlayMovie');
+    Route::get('PlaySerie/{id}','ContentController@PlaySerie');
+    Route::get('PlayEpisode/{id}','ContentController@PlayEpisode');
+    
+    
     Route::get('PlayTv/{id}','ContentController@PlayTv');
     Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
     Route::post('SearchPlayTv','ContentController@ShowPlayTv');
