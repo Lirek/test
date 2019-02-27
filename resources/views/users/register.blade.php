@@ -334,139 +334,49 @@
 </div>
 <!-- Fin franja  -->
 
-<div class="row" id="cines">
+{{--pelicula--}}
+<div class="row" id="cines"> 
     <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                <div class="col s12 m8">
-                    <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo cineasta que puede vender sus contenidos aquí en Leipel</h4>
-                        <br><br>
-                    </div>
-                </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-            
-    </div>
-</div>
-
-<div class="row" id="musicas">
-    <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                    <div class="col s12 m8">
-                        <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo cantante o músico que puede vender sus contenidos aquí en Leipel</h4>
-                            <br><br>
-                        </div>
-                    </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-                </div>
-</div>
-
-<div class="row" id="libros">
-    <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                <div class="col s12 m8">
-                    <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo escritor que puede vender su contenido aquí en Leipel</h4>
-                        <br><br>
-                    </div>
-                </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-                </div>
-</div>
-
-<div class="row" id="radios">
-    <div class="col s12 m12">
-        <div id="featured" class="owl-carousel featured">
-                        <div class="col l12 s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiorevolucion-el telegrafo.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiowq.png" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiopuntorojo.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiomorena.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiologo_1537802029.jpeg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiologo_1537801936.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiologo_1538674288.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiologo_1537801554.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col s12 m12">
-                    <div class="card">
-                        <div class="card-image ">
-                            <img src="https://leipel.com/images/radio/radiologo_1537799660.jpg" width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
+        @if(count($movie)>0)
+            <div id="featured5" class="owl-carousel featured">
+                @foreach($movie as $m)
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-image ">
+                                @if($m['type']=='Pelicula')
+                                    <a onclick="masInfo('cine')">
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="220px">
+                                    </a>
+                                @else
+                                   <a onclick="masInfo('cine')">
+                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="220px">
+                                   </a>
+                                @endif
                             </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+        @if(count($movie)==0)
+            <div class="col s12 m2">
+            </div>
+            <div class="col s12 m8">
+                <div class="card center"><br>
+                    <h4 class="blue-text">Se el primero en subir tus películas o series a Leipel</h4>
+                    <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
+                    <br><br>
+                </div>
+            </div>
+            <div class="col s12 m2">
+            </div>
+            <br>
+        @endif
+
     </div>
 </div>
 
-<div class="row" id="Tvs">
-    <div class="col m12 s12">
-        <div id="featured1" class="owl-carousel featured">
-                    
-                <div class="col l12 s12">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="https://leipel.com/images/Tv/radiologo_1538174512.png"  width="100%" height="150px">
-                        </div>
-                    </div>
-                </div>
-                            </div>
-    </div>
-</div>
+<!-- Fin Contenido  -->
 
 <!-- Parallax  -->
 {{--<div class="parallax-container" style="width: 100%; ">--}}
