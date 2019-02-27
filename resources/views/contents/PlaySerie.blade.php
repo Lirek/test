@@ -2,43 +2,50 @@
 
 @section('css')
 
+<style >
+.header {
+    color: white;
+    font-weight: 150;
+}
+</style>
+
+
 @endsection
 
 @section('main')
 
 
-      
-      
-         @if($Series->count() != 0 )
-         
-         
+
+        @if($Series->count() != 0 )
+
+
             @foreach($Series as $s)
-            
+
             <div class="row">
               <div class="col s9">
-                
+
               </div>
               <div class="col s3">
-            
+
                 <div class="col s12 m4 offset-m1">
                   <br>
-                        <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons">OBTENER</i></a>
+                       <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons">OBTENER</i></a>
                         <br><br>
                     </div>
-              
+
             </div>
-            
-            
+
+
             <div class="row ">
               <div class="col s3">
-                <img src="movie/poster/{{$s->img_poster}}" width="100%" height="300px"> 
-              </div>
-              
+                <img src="movie/poster/{{$s->img_poster}}" width="100%" height="300px">
+             </div>
+
               <div class="col s9">
-                
+
                 <div class="row">
                   <div class="col s12 m10 offset-m1" style="color: black">
-              
+
                    <?php
                         $url = $s->trailer;
                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $satches);
@@ -49,10 +56,10 @@
                     <div class="embed-container">
                     <iframe  type="text/html" width="700" height="420"
                         src="https://www.youtube.com/embed/{{ $id }}"
-                        frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe> 
+                        frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
                     </div>
-                    
-                    
+
+
                         <div class="col m12 s12">
                           <br>
                                 <ul class="collection z-depth-1" style="color: black">
@@ -62,8 +69,8 @@
                                                 <i class="material-icons circle left">create</i>
                                                 <b class="left">Titulo original: </b>
                                             </div>
-                                            <div class="col s12 m7">
-                                                {{ $s->original_title }}
+                                           <div class="col s12 m7">
+                                               {{ $s->original_title }}
                                             </div>
                                         </div>
                                     </li>
@@ -71,10 +78,10 @@
                                         <div class="row">
                                             <div class="col s12 m5">
                                                 <i class="material-icons circle left">star</i>
-                                                <b class="left">Categoria: </b>
+                                               <b class="left">Categoria: </b>
                                             </div>
                                             <div class="col s12 m7">
-                                                
+
                                             </div>
                                         </div>
                                     </li>
@@ -87,7 +94,7 @@
                                             </div>
                                             <div class="col s12 m7">
                                                 {{ $s->saga->sag_name }}
-                                            </div>
+                                           </div>
                                         </div>
                                     </li>
                                     @else
@@ -96,17 +103,17 @@
                                             <div class="col s12 m5">
                                                 <i class="material-icons circle left">folder</i>
                                                 <b class="left">Saga: </b>
-                                            </div>
+                                           </div>
                                             <div class="col s12 m7">
                                                 No pertenece a una saga
                                             </div>
                                         </div>
                                     </li>
                                     @endif
-                                    <li class="collection-item" style="padding: 10px ">
+                                   <li class="collection-item" style="padding: 10px ">
                                         <div class="row">
                                             <div class="col s12 m5">
-                                                <i class="material-icons circle left">local_play</i>
+                                               <i class="material-icons circle left">local_play</i>
                                                 <b class="left">Costo: </b>
                                             </div>
                                             <div class="col s12 m7">
@@ -117,31 +124,30 @@
                                    <li class="collection-item" style="padding: 10px ">
                                         <div class="row">
                                             <div class="col s3 ">
-                                              <a class="btn btn-primary green curvaBoton  " href="#modal1">TRAILER</a>
-    
+                                              <a class="btn btn-primary green curvaBoton  " href="#modal0">TRAILER</a>
+
                                             </div>
                                             <div class="col s3 ">
-                                              <div class="btn blue curvaBoton">
-                                                <i>SINOPSIS</i>
-                                              </div>
+                                                  <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+
                                             </div>
                                             <div class="col s3 ">
-                                              
+
                                                 <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
 
                                             </div>
                                             <div class="col s3 ">
-                                          
-                                                 
-                                                   <a class="btn blue curvaBoton  " href="{{url('ShowSeries')}}">ATRÁS</a>
-                                            
+
+
+                                                   <a class="btn blue curvaBoton  " href="{{url('MySeries')}}">ATRÁS</a>
+
                                             </div>
-                                            
+
                                         </div>
-                                    </li> 
+                                    </li>
                                 </ul>
                                 <ul class="collapsible">
-                                  <li>
+                                 <li>
                                     <div class="collapsible-header">
                                       <i class="material-icons">movie</i>
                                       Episodios:
@@ -167,33 +173,44 @@
                                     @endif
                                   </li>
                                 </ul>
-                                
-                              </div> 
-                              
-                            
-                                
-                          
-                    
-                    
-                    
+
+                              </div>
+
+
+
+
+
+
+
                   </div>
                 </div>
-                
-              
-            
-                
+
+
+
+
               </div>
             </div>
-            
-            
-            
-            
+
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4 class="header blue" >SINOPSIS</h4>
+                <h6>  {{ $s->story }}</h6>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
+              </div>
+            </div>
+
+
+
             @endforeach
 
-         
+
          @endif
-      
-                          
+
+
 
 @endsection
 

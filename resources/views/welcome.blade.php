@@ -184,11 +184,11 @@
                             <div class="card-image ">
                                 @if($m['type']=='Pelicula')
                                     <a onclick="masInfo('cine')">
-                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="220px">
+                                    <img src="{{asset('movie/poster')}}/{{ ($m['img_poster']) }}" width="100%" height="300px">
                                     </a>
                                 @else
                                    <a onclick="masInfo('cine')">
-                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="220px">
+                                    <img src="{{asset($m['img_poster']) }}" width="100%" height="300px">
                                    </a>
                                 @endif
                             </div>
@@ -477,9 +477,7 @@
                 <h5 class="white-text">Sobre</h5>
                 <ul>
                     <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
-                    <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
-                    {{--<li><a class="white-text" href="#!">Beneficios adicionales</a></li>--}}
                     {{--<li><a class="white-text" href="#!">Contactos</a></li>--}}
                 </ul>
             </div>

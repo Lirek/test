@@ -2,6 +2,15 @@
 
 @section('css')
 
+<style >
+.header {
+    color: white;
+    font-weight: 150;
+}
+</style>
+
+
+
 @endsection
 
 @section('main')
@@ -112,34 +121,30 @@
                                             </div>
                                         </div>
                                     </li>
-                                   <li class="collection-item" style="padding: 10px ">
-                                        <div class="row">
-                                            <div class="col s3 ">
-                                              <a class="btn btn-primary green curvaBoton  " href="#modal1">TRAILER</a>
-    
-                                            </div>
-                                            <div class="col s3 ">
-                                              <div class="btn blue curvaBoton">
-                                                <i>SINOPSIS</i>
-                                              </div>
-                                            </div>
-                                          
-                                              
-                                              <div class="col s3 ">
-                                                
-                                                  <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
-  
-                                              </div>
-                                          
-                                              <div class="col s3 ">
-                                            
-                                                     <a class="btn blue curvaBoton  " href="{{url('ShowSeries')}}">ATRÁS</a>
-                                              
-                                              </div>
-                                        
-                                            
-                                        </div>
-                                    </li> 
+                                    <li class="collection-item" style="padding: 10px ">
+                                         <div class="row">
+                                             <div class="col s3 ">
+                                               <a class="btn btn-primary green curvaBoton  " href="#modal0">TRAILER</a>
+ 
+                                             </div>
+                                             <div class="col s3 ">
+                                                   <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+ 
+                                             </div>
+                                             <div class="col s3 ">
+ 
+                                                 <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
+ 
+                                             </div>
+                                             <div class="col s3 ">
+ 
+ 
+                                                    <a class="btn blue curvaBoton  " href="{{url('MySeries')}}">ATRÁS</a>
+ 
+                                             </div>
+ 
+                                         </div>
+                                     </li>
                                 </ul>
                               
                                 
@@ -157,6 +162,17 @@
               
             
                 
+              </div>
+            </div>
+            
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4 class="header blue" >SINOPSIS</h4>
+                <h6>  {{ $s->story }}</h6>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
               </div>
             </div>
             
