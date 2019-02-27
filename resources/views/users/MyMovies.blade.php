@@ -53,18 +53,20 @@
                         <div class="col s6 m3 ">
                             <div class="card">
 
-                                    <a href="{{url('ShowMyMovie/'.$Movie->id)}}">
+                                <!--    <a href="{{url('ShowMyMovie/'.$Movie->id)}}"> -->
+                                      
+                                      <a href="{{url('PlayMovie/'.$Movie->id)}}" >
 
                                         @if($Movie->img_poster)
                                             <div class="card-image">
                                             <img src="movie/poster/{{$Movie->img_poster}}" width="100%" height="300"style="">
-                                                <a href="{{url('ShowMyMovie/'.$Movie->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
+                                                <a href="{{url('PlayMovie/'.$Movie->id)}}"  class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
 
                                             </div>
                                         @else
                                             <div class="card-image grey lighten-2">
                                                 <img  width="100%" height="300" style="">
-                                                <a href="{{url('ShowMyMovie/'.$Movie->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">book</i></a>
+                                                <a href="{{url('PlayMovie/'.$Movie->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">book</i></a>
                                             </div>
 
                                         @endif

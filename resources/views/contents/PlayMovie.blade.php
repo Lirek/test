@@ -19,29 +19,29 @@
        @foreach($movie as $m)
         <div class="row">
           <div class="col s9">
-            
+
           </div>
           <div class="col s3">
-        
+
             <div class="col s12 m4 offset-m1">
               <br>
                     <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$m->id}}"onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')"><i class="material-icons">OBTENER</i></a>
                     <br><br>
                 </div>
-          </div>
-          
+         </div>
+
         </div>
-        
+
         <div class="row ">
           <div class="col s3">
-            <img src="movie/poster/{{$m->img_poster}}" width="100%" height="300px"> 
+            <img src="movie/poster/{{$m->img_poster}}" width="100%" height="300px">
           </div>
-          
+
           <div class="col s9">
-            
+
             <div class="row">
               <div class="col s12 m10 offset-m1" style="color: black">
-          
+
                <?php
                     $url = $m->trailer_url;
                     preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
@@ -52,10 +52,10 @@
                 <div class="embed-container">
                 <iframe  type="text/html" width="700" height="420"
                     src="https://www.youtube.com/embed/{{ $id }}"
-                    frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe> 
+                    frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
                 </div>
-                
-                
+
+
                     <div class="col m12 s12">
                       <br>
                             <ul class="collection z-depth-1" style="color: black">
@@ -104,8 +104,8 @@
                                             No pertenece a una saga
                                         </div>
                                     </div>
-                                </li>
-                                @endif
+                               </li>
+                               @endif
                                 <li class="collection-item" style="padding: 10px ">
                                     <div class="row">
                                         <div class="col s12 m5">
@@ -125,35 +125,35 @@
                                         </div>
                                         <div class="col s3 ">
                                               <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
-                                      
+
                                         </div>
                                         <div class="col s3 ">
-                                          
+
                                             <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$m->id}}"onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
-  
+
                                         </div>
                                         <div class="col s3 ">
-                                    
-                                               <a class="btn blue curvaBoton  " href="{{url('ShowMovies')}}">ATRÁS</a>
-                                        
+
+                                               <a class="btn blue curvaBoton  " href="{{url('MyMovies')}}">ATRÁS</a>
+
                                         </div>
-                                        
+
                                     </div>
-                                </li> 
+                                </li>
                             </ul>
-                          </div> 
-                
-                
-                
+                          </div>
+
+
+
               </div>
             </div>
-            
-          
-        
-            
+
+
+
+
           </div>
         </div>
-        
+
         <!-- Modal Structure -->
         <div id="modal1" class="modal bottom-sheet">
           <div class="modal-content">
@@ -166,15 +166,15 @@
         </div>
 
         @endforeach
-        
-        @endif
-        
-      
+
+       @endif
 
 
-     
 
-     
+
+
+
+
 @endsection
 
 
