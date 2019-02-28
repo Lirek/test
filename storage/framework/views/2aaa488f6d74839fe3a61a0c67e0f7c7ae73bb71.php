@@ -52,7 +52,7 @@
                 		<div class="col s12 m3">
 		                  <div class="card" style="height: 430px">
 		                    <div class="card-image">
-		                        <a href="#myModal-<?php echo e($Movies->id); ?>" class="modal-trigger">
+                            <a href="<?php echo e(url('PlayMovie/'.$Movies->id)); ?>" >
 		                      <img src="movie/poster/<?php echo e($Movies->img_poster); ?>" width="100%" height="300px">
 		                      </a>
 		                      <!-- <span class="card-title">Card Title</span> -->

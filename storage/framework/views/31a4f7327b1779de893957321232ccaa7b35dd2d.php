@@ -335,49 +335,169 @@
 </div>
 <!-- Fin franja  -->
 
-
-<div class="row" id="cines"> 
+<div class="row" id="cines">
     <div class="col s12 m12">
-        <?php if(count($movie)>0): ?>
-            <div id="featured5" class="owl-carousel featured">
-                <?php $__currentLoopData = $movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col s12 m12">
-                        <div class="card">
-                            <div class="card-image ">
-                                <?php if($m['type']=='Pelicula'): ?>
-                                    <a onclick="masInfo('cine')">
-                                    <img src="<?php echo e(asset('movie/poster')); ?>/<?php echo e(($m['img_poster'])); ?>" width="100%" height="220px">
-                                    </a>
-                                <?php else: ?>
-                                   <a onclick="masInfo('cine')">
-                                    <img src="<?php echo e(asset($m['img_poster'])); ?>" width="100%" height="220px">
-                                   </a>
-                                <?php endif; ?>
-                            </div>
+         <div id="featured5" class="owl-carousel featured">
+   
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771941.jpg" width="100%" height="150px">
+                        </a>   
+                        
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771497.jpg" width="100%" height="150px">
+                        </a>
+                        
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771294.jpg" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1548787650.png" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/Serie/Tu nueva identidad/seriecover_Tu nueva identidad1550268174.jpg" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1551369611.jpg" width="100%" height="150px">
+                        </a>
+
+                    </div>
+            </div>    
+    </div>
+
+<div class="row" id="musicas">
+    <div class="row" id="musicas">
+    <div class="col s12 m12">
+            <div id="featured4" class="owl-carousel featured">
+                    
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Johanna Carreño/albums/Mi vida musical/albumcover_Mi vida musical1548955770.jpg" width="100%" height="150px">
+                    </a>
+
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Johanna Carreño/albums/Especial de navidad/albumcover_Especial de navidad1548952383.jpg" width="100%" height="150px">
+                    </a>
+
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Andrés Gómez/albums/Mi corazón contigo/albumcover_Mi corazón contigo1548684019.jpeg" width="100%" height="150px">
+                    </a>
+                    
+            </div>
+    </div>
+</div>
+</div>
+
+<div class="row" id="libros">
+    <div class="col s12 m12">
+      
+            <div id="featured3" class="owl-carousel featured">
+                
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/images/bookcover/cover_1550263445.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/images/bookcover/cover_1547851686.JPG" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/22/independientes/20181550120445.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/21/independientes/cover_Aldeas1550095353.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/21/independientes/cover_Memoria Aldeas 20171548203868.jpg" width="100%" height="220px">
+            </a>
+                            
+            </div>
+     </div>
+</div>
+
+<div class="row" id="radios">
+    <div class="col s12 m12">
+        <div id="featured" class="owl-carousel featured">
+                        <div class="col l12 s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiorevolucion-el telegrafo.jpg" width="100%" height="150px">
                         </div>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-        <?php endif; ?>
-        <?php if(count($movie)==0): ?>
-            <div class="col s12 m2">
-            </div>
-            <div class="col s12 m8">
-                <div class="card center"><br>
-                    <h4 class="blue-text">Se el primero en subir tus películas o series a Leipel</h4>
-                    <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Como Proveedor</a>
-                    <br><br>
                 </div>
-            </div>
-            <div class="col s12 m2">
-            </div>
-            <br>
-        <?php endif; ?>
-
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiowq.png" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiopuntorojo.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiomorena.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537802029.jpeg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801936.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1538674288.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537801554.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                                    <div class="col s12 m12">
+                    <div class="card">
+                        <div class="card-image ">
+                            <img src="https://leipel.com/images/radio/radiologo_1537799660.jpg" width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                            </div>
     </div>
 </div>
 
-<!-- Fin Contenido  -->
+<div class="row" id="Tvs">
+    <div class="col m12 s12">
+        <div id="featured1" class="owl-carousel featured">
+                    
+                <div class="col l12 s12">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://leipel.com/images/Tv/radiologo_1538174512.png"  width="100%" height="150px">
+                        </div>
+                    </div>
+                </div>
+                            </div>
+    </div>
+</div>
 
 <!-- Parallax  -->
 
@@ -747,7 +867,6 @@
 
 
 <!--  Scripts-->
-<script src="<?php echo e(asset('js/welcome.js')); ?>"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="<?php echo e(asset('plugins/materialize_index/js/materialize.js')); ?>"></script>
 <script src="<?php echo e(asset('plugins/materialize_index/js/init.js')); ?>"></script>

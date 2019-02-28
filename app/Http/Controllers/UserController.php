@@ -133,6 +133,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+      $user = Auth::user();
+
+       if ($user == true) {
+        return redirect()->action('WelcomeController@welcome');
+        }
+    
+       else {
+        { 
         try 
         {
           $user= User::where('codigo_ref','=',$id)->firstOrFail();  
@@ -142,6 +150,10 @@ class UserController extends Controller
            return view('errors.unauthorized')->with('error','El Codigo Coincide Con Nuestros Registros');
         }
         return view('users.register')->with('user_code',$id);
+       }
+       
+       }
+
     }
 
     /**

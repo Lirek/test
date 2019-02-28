@@ -30,7 +30,14 @@
                                          <div class="col s9 right">
                                              <p style="text-align: justify;">Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link: </p>
                                              <div class="col s6 right" style="margin-right: 150px;"><p>
+                                             <?php 
+                                                $user = Auth::user();
+                                             ?>
+                                             <?php if($user == true): ?>
+                                             <h6><a href="<?php echo e(url('/')); ?>" style="font-size: 86%;"><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></a></h6>
+                                             <?php else: ?> 
                                              <h6><a href="<?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?>" style="font-size: 86%;"><?php echo e(url('/').'/register/'.Auth::user()->codigo_ref); ?></a></h6>
+                                             <?php endif; ?>
                                         </p></div>
                                          </div>
                                          
