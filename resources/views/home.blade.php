@@ -83,7 +83,7 @@
                                 <div class="card-image">
                                     @if($ci['type']=='Pelicula')
                                        @if($ci['adquirido'])
-                                       <a class="waves-effect waves-light " href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                       <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$ci['id']) }}">
                                        <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                        </a>
 
@@ -98,10 +98,10 @@
                                         @endif
                                     @else
                                         @if($ci['adquirido'])
-                                        <a class=" waves-effect waves-light " href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
+                                        <a class=" waves-effect waves-light " href="{{url('PlaySerie/'.$ci['id'])}}">
                                          <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                          </a>
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('PlaySerie/'.$ci['id'].'/'.'Serie')}}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
