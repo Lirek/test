@@ -17,44 +17,52 @@
        @if($movie->count() != 0 )
 
        @foreach($movie as $m)
-        <div class="row">
-          <div class="col s9">
-
-          </div>
-          <div class="col s3">
-
-            <div class="col s12 m4 offset-m1">
-              <br>
-                    <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$m->id}}"onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')"><i class="material-icons">OBTENER</i></a>
-                    <br><br>
-                </div>
-         </div>
-
-        </div>
-
+       
         <div class="row ">
           <div class="col s3">
-            <img src="movie/poster/{{$m->img_poster}}" width="100%" height="300px">
+            
+            <img src="../movie/poster/{{$m->img_poster}}" width="100%" height="300"style="">
           </div>
 
           <div class="col s9">
 
             <div class="row">
-              <div class="col s12 m10 offset-m1" style="color: black">
-
-               <?php
-                    $url = $m->trailer_url;
-                    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-                    $id = $matches[1];
-                    $width = '800px';
-                    $height = '450px';
-                ?>
-                <div class="embed-container">
-                <iframe  type="text/html" width="700" height="420"
-                    src="https://www.youtube.com/embed/{{ $id }}"
-                    frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+              
+              
+              <ul id="tabs-swipe-demo" class="tabs">
+                  <li class="tab col s3"><a class="active" href="#test-swipe-1">Trailer</a></li>
+                  <li class="tab col s3"><a href="#test-swipe-2">Pelicula</a></li>
+                  
+                </ul>
+                <div id="test-swipe-1" class="col s12 ">
+                  <div class="col s12 m10 offset-m1" style="color: black">
+    
+                   <?php
+                        $url = $m->trailer_url;
+                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                        $id = $matches[1];
+                        $width = '800px';
+                        $height = '450px';
+                    ?>
+                    <div class="embed-container">
+                    <iframe  type="text/html" width="700" height="420"
+                        src="https://www.youtube.com/embed/{{ $id }}"
+                        frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                    </div>
+                    
+                  </div>
+                
                 </div>
-
+                <div id="test-swipe-2" class="col s12">
+                  
+                  <div class="embed-container">
+        
+                      <video width="700" height="420" controls>
+                        <source src="../movie/film/{{$m->duration}}" type="video/mp4">
+                          <video>
+                  </div>
+                            
+                </div>
 
                     <div class="col m12 s12">
                       <br>
@@ -119,20 +127,13 @@
                                 </li>
                                <li class="collection-item" style="padding: 10px ">
                                     <div class="row">
-                                        <div class="col s3 ">
-                                          <a class="btn btn-primary green curvaBoton   modal-trigger " href="#modal0">TRAILER</a>
-
-                                        </div>
-                                        <div class="col s3 ">
+                                        
+                                        <div class="col s6 ">
                                               <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
 
                                         </div>
-                                        <div class="col s3 ">
-
-                                            <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$m->id}}"onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
-
-                                        </div>
-                                        <div class="col s3 ">
+                                  
+                                        <div class="col s6">
 
                                                <a class="btn blue curvaBoton  " href="{{url('MyMovies')}}">ATRÁS</a>
 
@@ -152,7 +153,6 @@
 
 
           </div>
-        </div>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal bottom-sheet">
