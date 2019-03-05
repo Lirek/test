@@ -336,51 +336,81 @@
 
 <div class="row" id="cines">
     <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                <div class="col s12 m8">
-                    <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo cineasta que puede vender sus contenidos aquí en Leipel</h4>
-                        <br><br>
+         <div id="featured5" class="owl-carousel featured">
+   
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771941.jpg" width="100%" height="150px">
+                        </a>   
+                        
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771497.jpg" width="100%" height="150px">
+                        </a>
+                        
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771294.jpg" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1548787650.png" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/Serie/Tu nueva identidad/seriecover_Tu nueva identidad1550268174.jpg" width="100%" height="150px">
+                        </a>
+
+                        <a onclick="masInfo('cine')">
+                        <img src="https://www.leipel.com/movie/poster/poster_1551369611.jpg" width="100%" height="150px">
+                        </a>
+
                     </div>
-                </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-            
+            </div>    
     </div>
-</div>
 
 <div class="row" id="musicas">
+    <div class="row" id="musicas">
     <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                    <div class="col s12 m8">
-                        <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo cantante o músico que puede vender sus contenidos aquí en Leipel</h4>
-                            <br><br>
-                        </div>
-                    </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-                </div>
+            <div id="featured4" class="owl-carousel featured">
+                    
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Johanna Carreño/albums/Mi vida musical/albumcover_Mi vida musical1548955770.jpg" width="100%" height="150px">
+                    </a>
+
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Johanna Carreño/albums/Especial de navidad/albumcover_Especial de navidad1548952383.jpg" width="100%" height="150px">
+                    </a>
+
+                    <a onclick="masInfo('musica')">
+                    <img src="https://www.leipel.com/Music/Andrés Gómez/albums/Mi corazón contigo/albumcover_Mi corazón contigo1548684019.jpeg" width="100%" height="150px">
+                    </a>
+                    
+            </div>
+    </div>
+</div>
 </div>
 
 <div class="row" id="libros">
     <div class="col s12 m12">
-                                    <div class="col s12 m2">
-                </div>
-                <div class="col s12 m8">
-                    <div class="card center"><br>
-                        <h4 class="blue-text">Cuéntale a un amigo escritor que puede vender su contenido aquí en Leipel</h4>
-                        <br><br>
-                    </div>
-                </div>
-                <div class="col s12 m2">
-                </div>
-                <br>
-                </div>
+      
+            <div id="featured3" class="owl-carousel featured">
+                
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/images/bookcover/cover_1550263445.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/images/bookcover/cover_1547851686.JPG" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/22/independientes/20181550120445.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/21/independientes/cover_Aldeas1550095353.jpg" width="100%" height="220px">
+            </a>
+            <a onclick="masInfo('lectura')">
+            <img src="https://www.leipel.com/megazine/21/independientes/cover_Memoria Aldeas 20171548203868.jpg" width="100%" height="220px">
+            </a>
+                            
+            </div>
+     </div>
 </div>
 
 <div class="row" id="radios">
