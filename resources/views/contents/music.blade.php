@@ -140,7 +140,7 @@
                                 {{--{{//nadie ha comprado la cancion}}--}}
                                 <div class="col s4">
                                   <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
-                                    <i class="material-icons">add_shopping_cart</i>
+                                    <i class="material-icons">beenhere</i>
                                   </a>
                                 </div>
                               @endif

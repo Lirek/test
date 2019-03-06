@@ -141,7 +141,7 @@
                                 
                                 <div class="col s4">
                                   <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('<?php echo $song->cost; ?>','<?php echo $song->song_name; ?>','<?php echo $song->id; ?>')">
-                                    <i class="material-icons">add_shopping_cart</i>
+                                    <i class="material-icons">beenhere</i>
                                   </a>
                                 </div>
                               <?php endif; ?>

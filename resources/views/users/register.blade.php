@@ -109,6 +109,20 @@
     .carousel .carousel-item {
         width:300px !important;
     }
+
+
+    /* Botones SweetAlert */
+    .swal-button {
+    background: #2196F3 !important;
+    }
+
+    .swal-button--cancelar {
+    background: red !important;
+    }
+
+    .swal-button--registrar {
+    background: green !important; 
+    }
 </style>
 
 
@@ -339,27 +353,27 @@
          <div id="featured5" class="owl-carousel featured">
    
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/movie/poster/poster_1550771941.jpg" width="100%" height="150px">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771941.jpg" width="100%" height="220px">
                         </a>   
                         
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/movie/poster/poster_1550771497.jpg" width="100%" height="150px">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771497.jpg" width="100%" height="220px">
                         </a>
                         
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/movie/poster/poster_1550771294.jpg" width="100%" height="150px">
+                        <img src="https://www.leipel.com/movie/poster/poster_1550771294.jpg" width="100%" height="220px">
                         </a>
 
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/movie/poster/poster_1548787650.png" width="100%" height="150px">
+                        <img src="https://www.leipel.com/movie/poster/poster_1548787650.png" width="100%" height="220px">
                         </a>
 
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/Serie/Tu nueva identidad/seriecover_Tu nueva identidad1550268174.jpg" width="100%" height="150px">
+                        <img src="https://www.leipel.com/Serie/Tu nueva identidad/seriecover_Tu nueva identidad1550268174.jpg" width="100%" height="220px">
                         </a>
 
                         <a onclick="masInfo('cine')">
-                        <img src="https://www.leipel.com/movie/poster/poster_1551369611.jpg" width="100%" height="150px">
+                        <img src="https://www.leipel.com/movie/poster/poster_1551369611.jpg" width="100%" height="220px">
                         </a>
 
                     </div>
@@ -385,7 +399,7 @@
                     
             </div>
     </div>
-</div>
+    </div>
 </div>
 
 <div class="row" id="libros">
@@ -869,6 +883,214 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{ asset('plugins/jquery/jquery-validation/lib/jquery.mockjax.js') }}"></script>
 <script src="{{ asset('plugins/jquery/jquery-validation/dist/jquery.validate.js') }}"></script>
+<script type="text/javascript">
+    function masInfo(tipo) {
+        console.log(tipo);
+        var usuarioActivo = "{{Auth::guest()}}";
+        console.log(usuarioActivo);
+        if (tipo=="radio") {
+            var ruta = "{{ url('/ShowRadio') }}";
+            var ruta_seller = "{{ url('/seller_home') }}";
+
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "warning",
+                    buttons: {
+                        cancelar: "Cerrar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar",
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar",
+
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                    .then((confirmacion) => {
+                        console.log(confirmacion);
+                        if(confirmacion=="registrar") {
+                            $('#modal2').modal();
+                            $('#modal2').modal('open');
+                        }else if(confirmacion=="iniciar") {
+                            $('#modal1').modal();
+                            $('#modal1').modal('open');}
+                    });
+            }
+        } else if (tipo=="tv") {
+            var ruta = "{{ url('/ShowTv') }}";
+            var ruta_seller = "{{ url('/seller_home') }}";
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "warning",
+                    buttons: {
+                        cancelar: "Cerrar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                    .then((confirmacion) => {
+                        console.log(confirmacion);
+                        if(confirmacion=="registrar") {
+                            $('#modal2').modal();
+                            $('#modal2').modal('open');
+                        }else if(confirmacion=="iniciar") {
+                            $('#modal1').modal();
+                            $('#modal1').modal('open');}
+                    });
+            }
+        } else if (tipo=="lectura") {
+            var ruta = "{{ url('/MyReads') }}";
+            var ruta_seller = "{{ url('/seller_home') }}";
+
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "warning",
+                    buttons: {
+                        cancelar: "Cerrar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                    .then((confirmacion) => {
+                        console.log(confirmacion);
+                        if(confirmacion=="registrar") {
+                            $('#modal2').modal();
+                            $('#modal2').modal('open');
+                        }else if(confirmacion=="iniciar") {
+                            $('#modal1').modal();
+                            $('#modal1').modal('open');}
+                    });
+            }
+        } else if (tipo=="musica") {
+            var ruta = "{{ url('/MyMusic') }}";
+            var ruta_seller = "{{ url('/seller_home') }}";
+
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "warning",
+                    buttons: {
+                        cancelar: "Cerrar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                    .then((confirmacion) => {
+                        console.log(confirmacion);
+                        if(confirmacion=="registrar") {
+                            $('#modal2').modal();
+                            $('#modal2').modal('open');
+                        }else if(confirmacion=="iniciar") {
+                            $('#modal1').modal();
+                            $('#modal1').modal('open');}
+                    });
+            }
+        } else if (tipo=="cine") {
+            var ruta = "{{ url('/MyMovies') }}";
+            var ruta_seller = "{{ url('/seller_home') }}";
+
+            if ("{{Auth::guard('web_seller')->user()}}" != ""){
+                location.href = ruta_seller;
+            }
+            else if ((usuarioActivo!=1) && ("{{Auth::guard('web_seller')->user()}}" == "")) {
+                console.log("usuario logueado");
+                location.href = ruta;
+            } else {
+                console.log("usuario invitado");
+                swal({
+                    title: "Ingrese al sistema",
+                    text: "Para poder ver el contenido es necesario estar registrado e iniciar sesión",
+                    icon: "warning",
+                    buttons: {
+                        cancelar: "Cerrar",
+                        iniciarSesion: {
+                            text: "Iniciar sesión",
+                            value: "iniciar"
+                        },
+                        registrar: {
+                            text: "Registrate",
+                            value: "registrar"
+                        }
+                    },
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                })
+                    .then((confirmacion) => {
+                        console.log(confirmacion);
+                        if(confirmacion=="registrar") {
+                            $('#modal2').modal();
+                            $('#modal2').modal('open');
+                        }else if(confirmacion=="iniciar") {
+                            $('#modal1').modal();
+                            $('#modal1').modal('open');}
+                    });
+            }
+        }
+    }
+</script>
 <script type="text/javascript">
 
      // Tabs
