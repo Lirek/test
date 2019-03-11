@@ -78,7 +78,7 @@ Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth','ActiveUser']], function() {
 
 //-----------------------Funciones del Home---------------------------
 
