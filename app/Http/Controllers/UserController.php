@@ -294,7 +294,7 @@ class UserController extends Controller
         Auth::logout();
 
         $add = DB::select('INSERT INTO users_closed SELECT * FROM users WHERE account_status="closed"');
-        $del = DB::delete('DELETE FROM users WHERE account_status="closed"'); 
+        
     
         Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
 

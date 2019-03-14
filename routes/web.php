@@ -83,7 +83,7 @@ Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth','ActiveUser']], function() {
 
 //-----------------------Funciones del Home---------------------------
 
