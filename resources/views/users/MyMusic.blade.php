@@ -191,6 +191,7 @@
            $('.play').attr('src','{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}');
          });
 
+
 $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
@@ -217,8 +218,8 @@ $(document).ready(function(){
                         
                         $('#Playlist').append(' <li class="collection-item" id="'+i+'"><div><a href="#!">'+song.song_name+'</a> <a href="#!" class="secondary-content" ><img class="img-play animated-gif" src="{{asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')}}" id="song_'+i+'" ></a></div></li>');
                         // console.log(song);
-                        playSong(0);
                         audio.pause();
+                        playSong(0);
                         
                     });
 
@@ -256,7 +257,6 @@ $(document).ready(function(){
                               // d.style.display='inline';
 
                         audio.play();
-                        
                         scheduleSong(id);
                           
                         }

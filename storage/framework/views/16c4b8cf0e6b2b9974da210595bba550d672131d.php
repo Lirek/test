@@ -103,6 +103,10 @@ const players = new Plyr('#player', {
          players.on('pause', event => {
            $('.play').attr('src','<?php echo e(asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')); ?>');
          });  
+
+         players.on('ended', event => {
+           $('.play').attr('src','<?php echo e(asset('plugins/materialize_adm/img/radio/ecualizadorfijo.png')); ?>');
+         });  
 $(document).ready(function(){
     $('.materialboxed').materialbox();
   });
@@ -112,6 +116,9 @@ $(document).ready(function(){
 <!--Album-->
 <!-- LECTURA DE JSON Y REPRODUCTOR DE LISTAS PARA EL PLAYER -->
 <script>
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
     $(document).ready(function(){
         var id = $('#id').val();
         console.log(id);
