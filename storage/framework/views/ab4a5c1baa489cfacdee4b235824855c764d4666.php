@@ -338,9 +338,9 @@
 				<div class="divider"></div>
 				<br>
 				<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-					<li class="tab" id="denegado"><a class="active" href="#test1">Compra de tickets (En efectivo)</a></li>
-					<li class="tab" id="revision"><a href="#test2">Compra de tickets (Con puntos)</a></li>
-					<li class="tab" id="revision"><a href="#test3">Puntos ganados/perdidos</a></li>
+					<li class="tab" id="denegado"><a class="active" href="#test1">• Compras (Tickets y Puntos En efectivo)</a></li>
+					<li class="tab" id="revision"><a href="#test2">• Compra (Tickets Con puntos)</a></li>
+					<li class="tab" id="revision"><a href="#test3">• Puntos ganados/perdidos</a></li>
 				</ul>
 				<div id="test1" class="col s12">
 					<?php if(count($Balance)!=0): ?>
