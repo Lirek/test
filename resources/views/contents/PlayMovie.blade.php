@@ -85,7 +85,6 @@
                                             <b class="left">Categoria: </b>
                                         </div>
                                         <div class="col s12 m7">
-                                            {{ $m->rating->r_name }}
                                         </div>
                                     </div>
                                 </li>

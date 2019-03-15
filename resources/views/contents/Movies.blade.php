@@ -53,11 +53,27 @@
                 		<div class="col s12 m3">
 		                  <div class="card" style="height: 430px">
 		                    <div class="card-image">
-                            <a href="{{url('PlayMovie/'.$Movies->id)}}" >
+                          <!--  <a href="{{url('PlayMovie/'.$Movies->id)}}" >
 		                      <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
-		                      </a>
+                        </a> -->
 		                      <!-- <span class="card-title">Card Title</span> -->
-		                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+		                    <!--  <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>-->
+                      
+                          @if($Movies['adquirido'])
+                          <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$Movies['id']) }}">
+                            <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
+                          </a>
+
+                           <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('PlayMovie/'.$Movies['id']) }}">
+                               <i class="small material-icons">movie</i>
+                           </a>
+                           @else
+                           <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
+                           
+                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog5('{!!$Movies['cost']!!}','{!!$Movies['title']!!}','{!!$Movies['id']!!}')">
+                               <i class="small material-icons">movie</i>
+                           </a>
+                           @endif
 		                    </div>
 		                    <div class="card-content">
 		                        <div class="col m12 s12">
@@ -90,6 +106,26 @@
 @endsection
 @section('js')
 <script type="text/javascript">
+
+
+/*function fnOpenNormalDialog5(cost,name,id) {
+
+   swal({
+            title: "¿Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?',
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback5(true,id);
+
+          } else {
+            callback5(false,id);
+          }
+        });
+    };/
            // Tabs
     var elem = $('.tabs')
     var options = {}
@@ -231,7 +267,7 @@ function callback(value,id) {
 </script> -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function fnOpenNormalDialog(cost,name,id) {
+function fnOpenNormalDialog5(cost,name,id) {
   
    swal({
             title: "¿Estas seguro?",
@@ -249,6 +285,7 @@ function fnOpenNormalDialog(cost,name,id) {
           }
         });
     };
+    
 
 function callback(value,id) {
     if (value) {

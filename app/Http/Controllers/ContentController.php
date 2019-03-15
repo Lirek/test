@@ -11,6 +11,7 @@ use Auth;//Agrega el facade de Auth para acceder al id
 
 
 use App\Megazines;
+use App\User;
 use App\Tags;
 use App\Albums;
 use App\Songs;
@@ -371,11 +372,22 @@ class ContentController extends Controller
     public function ShowMovies(){
         $Movies= Movie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
         $Series= Serie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+        
+        $user= User::find(Auth::user()->id);
+        
+      #  dd($user);
+        
+        $MovieAdd=user::contenidos_add($user, 'movies_id');
+        
+      #  dd($MovieAdd);
 
 
         $Cine = collect();
         foreach ($Movies as $movie) {
+          $adquirido=(in_array($movie->id, $MovieAdd)) ? true : false;
+
             $movie->type='movie';
+            $movie->adquirido = $adquirido; 
             $Cine->push($movie);
             $Cine->each(function($Cine){
                 $Cine->transaction;
@@ -467,9 +479,9 @@ class ContentController extends Controller
 
 
     public function PlayMovie($id){
-      $movie= Movie::where('id','=',$id)->get();
-
-      $movie= Movie::where('status','=','Aprobado')->paginate(8);
+      $movie= Movie::where('status','=','Aprobado')->where('id','=',$id)->orderBy('id', 'DESC')->get();
+    #  dd($movie);
+      //$movie= Movie::where('status','=','Aprobado')->paginate(8);
       return view('contents.PlayMovie')->with('movie',$movie);
     }
 
