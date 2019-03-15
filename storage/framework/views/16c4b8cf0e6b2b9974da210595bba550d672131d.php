@@ -116,9 +116,7 @@ $(document).ready(function(){
 <!--Album-->
 <!-- LECTURA DE JSON Y REPRODUCTOR DE LISTAS PARA EL PLAYER -->
 <script>
-  $(document).ready(function(){
-    $('.materialboxed').materialbox();
-  });
+  
     $(document).ready(function(){
         var id = $('#id').val();
         console.log(id);
