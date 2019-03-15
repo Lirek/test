@@ -87,7 +87,7 @@
                                        <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                        </a>
 
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('PlayMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @else
@@ -101,7 +101,7 @@
                                         <a class=" waves-effect waves-light " href="{{url('PlaySerie/'.$ci['id'])}}">
                                          <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                          </a>
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('PlaySerie/'.$ci['id'].'/'.'Serie')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('PlaySerie/'.$ci['id']) }}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
