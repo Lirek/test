@@ -27,10 +27,10 @@
 
                         <div class="row">
                                 @foreach($Radio as $radios)
-                                <div class="col s12 m3">
+                                 <div class="col s4 m2">
                                     <div class="card">
-                                        <div class="card-image" style="height: 200px;">
-                                            <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}" height="200px"></a>
+                                        <div class="card-image">
+                                            <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}"></a>
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ListenRadio/'.$radios->id)}}"><i class="material-icons">radio</i></a>
 
                                         </div>
