@@ -28,8 +28,8 @@
                                 <?php $__currentLoopData = $Radio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $radios): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                  <div class="col s4 m2">
                                     <div class="card">
-                                        <div class="card-image">
-                                            <a href="<?php echo e(url('ListenRadio/'.$radios->id)); ?>"><img src="<?php echo e(asset($radios->logo)); ?>"></a>
+                                        <div class="card-image" >
+                                            <a href="<?php echo e(url('ListenRadio/'.$radios->id)); ?>"><img src="<?php echo e(asset($radios->logo)); ?>" height="140px"></a>
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="<?php echo e(url('ListenRadio/'.$radios->id)); ?>"><i class="material-icons">radio</i></a>
 
                                         </div>

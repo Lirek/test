@@ -29,8 +29,8 @@
                                 @foreach($Radio as $radios)
                                  <div class="col s4 m2">
                                     <div class="card">
-                                        <div class="card-image">
-                                            <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}"></a>
+                                        <div class="card-image" >
+                                            <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}" height="140px"></a>
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ListenRadio/'.$radios->id)}}"><i class="material-icons">radio</i></a>
 
                                         </div>
