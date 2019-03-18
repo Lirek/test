@@ -59,16 +59,16 @@
                                   <p class="grey-text"><b>Autor:</b>  {{$lecturas->seller->name}}</p>
                                 </div>
                                 <div>
-                                  <small class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</small>
+                                  <p class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</p>
                                 </div>
                                 <div class="col m12 s12">
-                                <small class="grey-text">
+                                <div class="grey-text">
                                   @if($lecturas->books_file)
                                 <p>Libro</p>
                                  @else
                                 <p>Revista</p>
                                  @endif
-                               </small>
+                               </div>
                                 </div> 
                             </div>
                           </div>

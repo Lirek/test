@@ -86,16 +86,16 @@
                         <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->song_name}}</p>
                       @endif
                     </div>
-                    <small><b>Artistas: </b>
+                    <p><b>Artistas: </b>
                       {{$Album->autors->name}}
-                    </small>
-                    <br>
-                    <small><b>Costo: </b> {{$Album->cost}} tickets</small>
-                    <br>
+                    </p>
+                    
+                    <p><b>Costo: </b> {{$Album->cost}} tickets</p>
+                    
                     @if($Album->name_alb)
-                      <small>Álbum musical</small>
+                      <p>Álbum musical</p>
                     @else
-                      <small>Sencillo</small>
+                      <p>Sencillo</p>
                     @endif
                   </div>
                 </div>
