@@ -210,9 +210,9 @@
                                     <?php if(count($author)!=0): ?>
                                     <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                        <?php echo Form::select('author_id',$author,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?>
+                                        <?php echo Form::select('author_id',$author,null,['class'=>'form-control','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                                        <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                        <label for="autor" class="control-label">Nombre de autor</label>
                                         <a class="btn curvaBoton waves-effect waves-light green" href="<?php echo e(url('authors_books/create')); ?>">
                                             <i class="fa fa-user"></i>
                                             Agregar autor
@@ -237,8 +237,8 @@
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text valign-wrapper" >face</i>
                                         
-                                        <?php echo Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?> 
-                                        <label for="exampleInputFile" class="">Nombre de autor</label>  
+                                        <?php echo Form::select('author_id',$author,null,['class'=>'autocomplete','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un Autor')",'oninput'=>"setCustomValidity('')"]); ?> 
+                                        <label for="autor" class="">Nombre de autor</label>  
                                         
                                     </div>
                                     <?php else: ?>
@@ -358,9 +358,9 @@
                                     <i class="material-icons prefix blue-text valign-wrapper">star</i>
                                     
                                     
-                                    <?php echo Form::select('rating_id',$ratin,1,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+                                    <?php echo Form::select('rating_id',$ratin,1,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                                    <label for="exampleInputFile" class="control-label">Categoría</label>
+                                    <label for="rating" class="control-label">Categoría</label>
                                 </div>
                             </div>
                             
@@ -377,7 +377,7 @@
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        <label for="tags">Géneros</label>
+                                        <label for="genders">Géneros</label>
                                     <button type="button" class="btn curvaBoton waves-effect waves-light green modal-trigger" href="#modalgenero">
                                         Agregar género
                                     </button>
@@ -392,7 +392,7 @@
 
                                 <div class="file-field input-field">
                                     
-                                    <label for="exampleInputFile" class="control-label">Cargar el Libro</label>
+                                    <label for="libro" class="control-label">Cargar el Libro</label>
                                     <br><br>
                                         <div id="mensajeDocumento"></div>
                                         <div class="btn blue">
@@ -413,7 +413,7 @@
                                 <div class="input-field col s12">
                                     
                                     <i class="material-icons prefix blue-text valign-wrapper">room</i>
-                                    <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')">
+                                    <select  name="x12" id="paises" class="form-control" required="required" oninvalid="this.setCustomValidity('Seleccione un país')" oninput="setCustomValidity('')" id="paises">
                                         <option value="AF">Afganistán</option>
                                         <option value="AL">Albania</option>
                                         <option value="DE">Alemania</option>
@@ -672,9 +672,9 @@
                                  <div class="input-field col s12">
                                     
                                     <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                                    <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                                    <label for="año" class="control-label">Año de lanzamiento</label>
                                     <div id="mensajeFechaLanzamiento"></div>
-                                    <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]); ?>
+                                    <?php echo Form::number('release_year',@date('Y'),['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'onkeypress' => 'return controltagNum(event)','max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')",'id'=>'año']); ?>
 
                                     <div id="mensajeFechaLanzamiento"></div>
                                 </div>

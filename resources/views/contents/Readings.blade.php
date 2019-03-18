@@ -53,12 +53,23 @@
                             </div>
                             <div class="card-content">
                                 <div class="col m12">
-                                    <p class="grey-text truncate">{{ $lecturas->title }}</p>
+                                  <p class="grey-text truncate">{{ $lecturas->title }}</p>
                                 </div>
                                 <div class="">
-                                    {{--<small class="grey-text"><b>Autor: </b>{{--$Book->author->full_name--}}</small>--}}
+                                  <p class="grey-text"><b>Autor:</b>  {{$lecturas->seller->name}}</p>
                                 </div>
-                                    <small class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</small> 
+                                <div>
+                                  <small class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</small>
+                                </div>
+                                <div class="col m12 s12">
+                                <small class="grey-text">
+                                  @if($lecturas->books_file)
+                                <p>Libro</p>
+                                 @else
+                                <p>Revista</p>
+                                 @endif
+                               </small>
+                                </div> 
                             </div>
                           </div>
                         </div>

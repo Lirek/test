@@ -113,7 +113,7 @@
         <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Registrar revista  </h4>
         <br>
                     <!-- form start -->
-        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('megazine_save')); ?>" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('megazine_save')); ?>" enctype="multipart/form-data" id="revista">
                     <input type="hidden" name="id" value="<?php echo e(Auth::guard('web_seller')->user()->id); ?>">
                     <?php echo e(csrf_field()); ?>
 
@@ -164,9 +164,9 @@
                             <i class="material-icons prefix blue-text valign-wrapper">star</i>
                             
                             
-                            <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+                            <?php echo Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputselec','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                            <label for="exampleInputFile" class="control-label">Categoría</label>
+                            <label for="exampleInputselec" class="control-label">Categoría</label>
                         </div>
                         <div class="input-field col s12">
                             
@@ -179,7 +179,7 @@
                                         <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
-                                <label for="tags">Géneros</label>
+                                <label for="genders">Géneros</label>
                         </div>
 
                         <br>
@@ -189,7 +189,7 @@
                             <div class="col s12 m6">
                                 <div class="file-field input-field">
                                     
-                                    <label for="exampleInputFile" class="control-label">Cargar la revista</label>
+                                    <label for="revista" class="control-label">Cargar la revista</label>
                                     <br><br>
                                         <div id="mensajeDocumento"></div>
                                         <div class="btn blue">
@@ -1015,6 +1015,49 @@ function maxLengthCheck(object) {
         document.getElementById("conversion").value=conversion.toFixed(2);
     });
 
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#revista').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[name=pdf_file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            $('#guardarLibro').attr('disabled',true);
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "<?php echo e(URL::to('/my_megazine/')); ?>"+'/'+<?php echo Auth::guard('web_seller')->user()->id; ?>
+
+
+        }
+    });
+     
+    })();
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('seller.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

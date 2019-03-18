@@ -93,7 +93,7 @@
                     <small><b>Costo: </b> <?php echo e($Album->cost); ?> tickets</small>
                     <br>
                     <?php if($Album->name_alb): ?>
-                      <small>Álbum</small>
+                      <small>Álbum musical</small>
                     <?php else: ?>
                       <small>Sencillo</small>
                     <?php endif; ?>
