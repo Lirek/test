@@ -69,7 +69,13 @@
                                 <p class="grey-text"><b>Costo:</b> <?php echo e($Movies->cost); ?> tickets</p> 
                             </div>
                             <div class="col m12 s12">
-                                <p class="grey-text"><b>Cine</b><!--<?php echo e($Movies->type); ?>--></p>
+                                <small class="grey-text">
+                                   <?php if($Movies->title): ?>
+                                <p>Cine</p>
+                                 <?php else: ?>
+                                <p>Serie</p>
+                                 <?php endif; ?>
+                                </small>
                             </div>
                         </div>
                       </div>

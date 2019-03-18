@@ -70,7 +70,13 @@
                                 <p class="grey-text"><b>Costo:</b> {{$Movies->cost}} tickets</p> 
                             </div>
                             <div class="col m12 s12">
-                                <p class="grey-text"><b>Cine</b><!--{{$Movies->type}}--></p>
+                                <small class="grey-text">
+                                   @if($Movies->title)
+                                <p>Cine</p>
+                                 @else
+                                <p>Serie</p>
+                                 @endif
+                                </small>
                             </div>
                         </div>
                       </div>
