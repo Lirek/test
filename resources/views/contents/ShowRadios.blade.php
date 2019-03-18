@@ -27,7 +27,7 @@
 
                         <div class="row">
                                 @foreach($Radio as $radios)
-                                 <div class="col s4 m2">
+                                 <div class="col s6 m2">
                                     <div class="card">
                                         <div class="card-image" >
                                             <a href="{{url('ListenRadio/'.$radios->id)}}"><img src="{{asset($radios->logo)}}" height="140px"></a>

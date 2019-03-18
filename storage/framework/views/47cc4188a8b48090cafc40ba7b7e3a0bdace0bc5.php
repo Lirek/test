@@ -26,10 +26,10 @@
 
             <div class="row">
             <?php $__currentLoopData = $Tv; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col s6 m3">
+                    <div class="col s6 m2">
                         <div class="card">
                             <div class="card-image">
-                                <a href="<?php echo e(url('PlayTv/'.$tv->id)); ?>"><img src="<?php echo e(asset($tv->logo)); ?>" width="100%" height="170px"></a>
+                                <a href="<?php echo e(url('PlayTv/'.$tv->id)); ?>"><img src="http://www.leipel.com/images/Tv/radiologo_1538174512.png" width="140px" height="140px"></a>
                                 <a  href="<?php echo e(url('PlayTv/'.$tv->id)); ?>" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">live_tv</i></a>
                             </div>
                             <div class="card-content">
