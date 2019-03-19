@@ -93,7 +93,7 @@
                     <p><b>Costo: </b> {{$Album->cost}} tickets</p>
                     
                     @if($Album->name_alb)
-                      <p>Álbum musical</p>
+                      <p>Álbum</p>
                     @else
                       <p>Sencillo</p>
                     @endif
