@@ -52,12 +52,23 @@
                             </div>
                             <div class="card-content">
                                 <div class="col m12">
-                                    <p class="grey-text truncate"><?php echo e($lecturas->title); ?></p>
+                                  <p class="grey-text truncate"><?php echo e($lecturas->title); ?></p>
                                 </div>
                                 <div class="">
-                                    </small>--}}
+                                  <p class="grey-text"><b>Autor:</b>  <?php echo e($lecturas->seller->name); ?></p>
                                 </div>
-                                    <small class="grey-text"><b>Costo: </b> <?php echo e($lecturas->cost); ?> tickets</small> 
+                                <div>
+                                  <p class="grey-text"><b>Costo: </b> <?php echo e($lecturas->cost); ?> tickets</p>
+                                </div>
+                                <div class="col m12 s12">
+                                <div class="grey-text">
+                                  <?php if($lecturas->books_file): ?>
+                                <p>Libro</p>
+                                 <?php else: ?>
+                                <p>Revista</p>
+                                 <?php endif; ?>
+                               </div>
+                                </div> 
                             </div>
                           </div>
                         </div>

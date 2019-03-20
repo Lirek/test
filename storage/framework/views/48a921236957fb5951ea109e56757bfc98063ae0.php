@@ -85,17 +85,17 @@
                         <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;"><?php echo e($Album->song_name); ?></p>
                       <?php endif; ?>
                     </div>
-                    <small><b>Artistas: </b>
+                    <p><b>Artistas: </b>
                       <?php echo e($Album->autors->name); ?>
 
-                    </small>
-                    <br>
-                    <small><b>Costo: </b> <?php echo e($Album->cost); ?> tickets</small>
-                    <br>
+                    </p>
+                    
+                    <p><b>Costo: </b> <?php echo e($Album->cost); ?> tickets</p>
+                    
                     <?php if($Album->name_alb): ?>
-                      <small>Álbum</small>
+                      <p>Álbum musical</p>
                     <?php else: ?>
-                      <small>Sencillo</small>
+                      <p>Sencillo</p>
                     <?php endif; ?>
                   </div>
                 </div>
