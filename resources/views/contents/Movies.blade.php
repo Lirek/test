@@ -24,6 +24,8 @@
         width: 100%;
         height: 100%;
     }
+
+
   </style>
 @endsection
 
@@ -47,42 +49,39 @@
                     </form>
                   </div>
                 </div>
-                <div class="row">
+
+
+                <div class="row"> 
                   @if($Movie->count() != 0 )
                     @foreach($Movie as $Movies)
-                    <div class="col s12 m3">
-                      <div class="card" style="height: 450px;">
+                    <div class="col s12 m4 l3">
+                      <div class="card">
                         <div class="card-image">
                             <a href="{{url('PlayMovie/'.$Movies->id)}}" >
                           <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
                           </a>
                           <!-- <span class="card-title">Card Title</span> -->
                           <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
-                        </div>
-                        <div class="card-content">
+                        </div> 
+                        <div class="card-content" >
                             <div class="col m12 s12">
-                                <p class="grey-text">{{ $Movies->title }}</p>
-                            </div>
+                                <p class="grey-text truncate">{{ $Movies->title }}</p>
+                            </div> 
                             <div class="col m12 s12">
                               <p class="grey-text"><b>Autor:</b>  {{ $Movies->seller->name }}</p>
                             </div>
                             <div class="col m12 s12">
                                 <p class="grey-text"><b>Costo:</b> {{$Movies->cost}} tickets</p> 
                             </div>
-                            <div class="col m12 s12">
-                                <div class="grey-text">
-                                   @if($Movies->title)
-                                <p>Cine</p>
-                                 @else
-                                <p>Serie</p></b>
-                                 @endif
-                                </div>
-                            </div>
+                           @if($Movies->title)
+                                <p class="grey-text"><b>Cine</b></p>
+                           @else
+                                <p class="grey-text"><b>Serie</b></p>
+                           @endif
                         </div>
                       </div>
                     </div>
 
-    
                     @endforeach
                     <div class="col m12">
                     </div>

@@ -22,6 +22,8 @@
         width: 100%;
         height: 100%;
     }
+
+
   </style>
 <?php $__env->stopSection(); ?>
 
@@ -46,42 +48,39 @@
                     </form>
                   </div>
                 </div>
-                <div class="row">
+
+
+                <div class="row"> 
                   <?php if($Movie->count() != 0 ): ?>
                     <?php $__currentLoopData = $Movie; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Movies): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col s12 m3">
-                      <div class="card" style="height: 450px;">
+                    <div class="col s12 m4 l3">
+                      <div class="card">
                         <div class="card-image">
                             <a href="<?php echo e(url('PlayMovie/'.$Movies->id)); ?>" >
                           <img src="movie/poster/<?php echo e($Movies->img_poster); ?>" width="100%" height="300px">
                           </a>
                           <!-- <span class="card-title">Card Title</span> -->
                           <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.<?php echo e($Movies->id); ?>" onclick="fnOpenNormalDialog('<?php echo $Movies->cost; ?>','<?php echo $Movies->title; ?>','<?php echo $Movies->id; ?>')"><i class="material-icons">add_shopping_cart</i></a>
-                        </div>
-                        <div class="card-content">
+                        </div> 
+                        <div class="card-content" >
                             <div class="col m12 s12">
-                                <p class="grey-text"><?php echo e($Movies->title); ?></p>
-                            </div>
+                                <p class="grey-text truncate"><?php echo e($Movies->title); ?></p>
+                            </div> 
                             <div class="col m12 s12">
                               <p class="grey-text"><b>Autor:</b>  <?php echo e($Movies->seller->name); ?></p>
                             </div>
                             <div class="col m12 s12">
                                 <p class="grey-text"><b>Costo:</b> <?php echo e($Movies->cost); ?> tickets</p> 
                             </div>
-                            <div class="col m12 s12">
-                                <div class="grey-text">
-                                   <?php if($Movies->title): ?>
-                                <p>Cine</p>
-                                 <?php else: ?>
-                                <p>Serie</p></b>
-                                 <?php endif; ?>
-                                </div>
-                            </div>
+                           <?php if($Movies->title): ?>
+                                <p class="grey-text"><b>Cine</b></p>
+                           <?php else: ?>
+                                <p class="grey-text"><b>Serie</b></p>
+                           <?php endif; ?>
                         </div>
                       </div>
                     </div>
 
-    
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <div class="col m12">
                     </div>

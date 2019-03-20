@@ -36,11 +36,11 @@
         <div class="row">
           @if($Albums->count() != 0)
             @foreach($Albums as $Album)
-              <div class="col s12 m3">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image">
                     @if($Album->name_alb)
-                      <a href="#myModal-{{$Album->id}}" class="modal-trigger">
+                      <a href="#myModal-{{$Album->id}}" class="modal-trigger" >
                         <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
                       </a>
                     @else
@@ -79,11 +79,12 @@
                     @endif
                   </div>
                   <div class="card-content grey-text" style="padding: 24px 0px">
-                    <div class="col m12">
+                    <div class="col m12 s12">
                       @if($Album->name_alb)
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->name_alb}}</p>
+
+                        <p class="grey-text truncate">{{$Album->name_alb}}</p>
                       @else
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->song_name}}</p>
+                        <p class="grey-text truncate">{{$Album->song_name}}</p>
                       @endif
                     </div>
                     <p><b>Artistas: </b>
@@ -93,9 +94,9 @@
                     <p><b>Costo: </b> {{$Album->cost}} tickets</p>
                     
                     @if($Album->name_alb)
-                      <p>Álbum</p>
+                      <p><b>Álbum</b></p>
                     @else
-                      <p>Sencillo</p>
+                      <p><b>Sencillo</b></p>
                     @endif
                   </div>
                 </div>

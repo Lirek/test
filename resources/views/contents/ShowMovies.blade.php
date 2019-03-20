@@ -71,7 +71,7 @@
                         </div>
                         <div class="card-content">
                             <div class="col m12 s12">
-                                <p class="grey-text truncate">{{ $cine->title }}</p>
+                                <p class="grey-text">{{ $cine->title }}</p>
                             </div>
                             <div class="col m12 s12">
                                 <p class="grey-text"><b>Costo: </b> {{$cine->cost}} tickets</p> 

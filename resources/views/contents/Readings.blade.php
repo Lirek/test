@@ -11,6 +11,7 @@
       color: : white;
     }
 
+
 </style>
 @endsection
 
@@ -36,8 +37,8 @@
                 <div class="row">
                     @if($Lecturas->count() != 0 )
                         @foreach($Lecturas as $lecturas)
-                        <div class="col s12 m3">
-                          <div class="card" style="height: 430px">
+                        <div class="col s12 m4 l3">
+                          <div class="card" style="height:100%">
                             <div class="card-image">
                               @if($lecturas->books_file)
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
@@ -52,7 +53,7 @@
                               @endif
                             </div>
                             <div class="card-content">
-                                <div class="col m12">
+                                <div class="col m12 s12">
                                   <p class="grey-text truncate">{{ $lecturas->title }}</p>
                                 </div>
                                 <div class="">
@@ -64,9 +65,9 @@
                                 <div class="col m12 s12">
                                 <div class="grey-text">
                                   @if($lecturas->books_file)
-                                <p>Libro</p>
+                                <p><b>Libro</b></p>
                                  @else
-                                <p>Revista</p>
+                                <p><b>Revista</b></p>
                                  @endif
                                </div>
                                 </div> 

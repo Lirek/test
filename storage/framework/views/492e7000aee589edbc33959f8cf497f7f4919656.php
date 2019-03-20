@@ -9,6 +9,7 @@
       color: : white;
     }
 
+
 </style>
 <?php $__env->stopSection(); ?>
 
@@ -35,8 +36,8 @@
                 <div class="row">
                     <?php if($Lecturas->count() != 0 ): ?>
                         <?php $__currentLoopData = $Lecturas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lecturas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col s12 m3">
-                          <div class="card" style="height: 430px">
+                        <div class="col s12 m4 l3">
+                          <div class="card" style="height:100%">
                             <div class="card-image">
                               <?php if($lecturas->books_file): ?>
                               <a href="#myModal-<?php echo e($lecturas->id); ?>" class="modal-trigger">
@@ -51,7 +52,7 @@
                               <?php endif; ?>
                             </div>
                             <div class="card-content">
-                                <div class="col m12">
+                                <div class="col m12 s12">
                                   <p class="grey-text truncate"><?php echo e($lecturas->title); ?></p>
                                 </div>
                                 <div class="">
@@ -63,9 +64,9 @@
                                 <div class="col m12 s12">
                                 <div class="grey-text">
                                   <?php if($lecturas->books_file): ?>
-                                <p>Libro</p>
+                                <p><b>Libro</b></p>
                                  <?php else: ?>
-                                <p>Revista</p>
+                                <p><b>Revista</b></p>
                                  <?php endif; ?>
                                </div>
                                 </div> 
