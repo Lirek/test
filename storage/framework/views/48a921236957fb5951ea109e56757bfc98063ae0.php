@@ -86,10 +86,12 @@
                         <p class="grey-text truncate"><?php echo e($Album->song_name); ?></p>
                       <?php endif; ?>
                     </div>
-                    <p><b>Artistas: </b>
+                    <div class="col m12 s12">
+                    <p class="grey-text truncate"><b>Artistas: </b>
                       <?php echo e($Album->autors->name); ?>
 
                     </p>
+                    </div>
                     
                     <p><b>Costo: </b> <?php echo e($Album->cost); ?> tickets</p>
                     

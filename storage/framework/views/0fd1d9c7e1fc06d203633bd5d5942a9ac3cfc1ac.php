@@ -45,7 +45,7 @@
         <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <div class="card-panel curva">
             <h3 class="center">
-                Series registradas 
+                Series registradas !!
             </h3>
             <?php if($serie->count() != 0 ): ?>
             <div class="row">
