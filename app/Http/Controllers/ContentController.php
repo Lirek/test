@@ -375,7 +375,7 @@ class ContentController extends Controller
         
         $user= User::find(Auth::user()->id);
         
-      #  dd($user);
+        #dd($Movies);
         
         $MovieAdd=user::contenidos_add($user, 'movies_id');
         
@@ -480,9 +480,13 @@ class ContentController extends Controller
 
     public function PlayMovie($id){
       $movie= Movie::where('status','=','Aprobado')->where('id','=',$id)->orderBy('id', 'DESC')->get();
-    #  dd($movie);
-      //$movie= Movie::where('status','=','Aprobado')->paginate(8);
-      return view('contents.PlayMovie')->with('movie',$movie);
+      
+      $user= User::find(Auth::user()->id);
+      $MovieAdd=user::contenidos_add($user, 'movies_id');
+      
+      $adquirido=(in_array($id, $MovieAdd)) ? true : false;
+    
+      return view('contents.PlayMovie')->with('movie',$movie)->with('adquirido', $adquirido);
     }
 
 //--------------------------------------SERIES--------------------------------------------
