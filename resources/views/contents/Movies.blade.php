@@ -24,21 +24,23 @@
         width: 100%;
         height: 100%;
     }
+
+
   </style>
 @endsection
 
 @section('main')
 <div class="row">
-	<div class="col s12 m12">
-		<div class="card">
-			<div class="card-content white-text">
-				<h4 class="titelgeneral"><i class="material-icons small">movie</i> Peliculas</h4>
+  <div class="col s12 m12">
+    <div class="card">
+      <div class="card-content white-text">
+        <h4 class="titelgeneral"><i class="material-icons small">movie</i> Peliculas</h4>
 
-				<div class="row">
-                	<div class="input-field col s12 m6 offset-m3">
-                		<form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
-                			{{ csrf_field() }}
-                			<i class="material-icons prefix blue-text">search</i>
+        <div class="row">
+                  <div class="input-field col s12 m6 offset-m3">
+                    <form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
+                      {{ csrf_field() }}
+                      <i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
                             <label for="seach">Buscar Pelicula</label><br>
@@ -47,41 +49,38 @@
                     </form>
                   </div>
                 </div>
-                <div class="row">
+
+
+                <div class="row"> 
                   @if($Movie->count() != 0 )
                     @foreach($Movie as $Movies)
-                    <div class="col s12 m3">
-                      <div class="card" style="height: 450px;">
+                    <div class="col s12 m4 l3">
+                      <div class="card">
                         <div class="card-image">
                             <a href="{{url('PlayMovie/'.$Movies->id)}}" >
                           <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
                           </a>
                           <!-- <span class="card-title">Card Title</span> -->
                           <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
-                        </div>
-                        <div class="card-content">
+                        </div> 
+                        <div class="card-content" >
                             <div class="col m12 s12">
-                                <p class="grey-text">{{ $Movies->title }}</p>
-                            </div>
+                                <p class="grey-text truncate">{{ $Movies->title }}</p>
+                            </div> 
                             <div class="col m12 s12">
                               <p class="grey-text"><b>Autor:</b>  {{ $Movies->seller->name }}</p>
                             </div>
                             <div class="col m12 s12">
-                                <p class="grey-text"><b>Costo:</b> {{$Movies->cost}} tickets</p>
+                                <p class="grey-text"><b>Costo:</b> {{$Movies->cost}} tickets</p> 
                             </div>
-                            <div class="col m12 s12">
-                                <div class="grey-text">
-                                   @if($Movies->title)
-                                <p>Cine</p>
-                                 @else
-                                <p>Serie</p></b>
-                                 @endif
-                                </div>
-                            </div>
+                           @if($Movies->title)
+                                <p class="grey-text"><b>Cine</b></p>
+                           @else
+                                <p class="grey-text"><b>Serie</b></p>
+                           @endif
                         </div>
                       </div>
                     </div>
-
 
                     @endforeach
                     <div class="col m12">
@@ -212,7 +211,7 @@ function callback(value,id) {
                  
                     }
                     else
-                    {
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
                 
@@ -228,7 +227,7 @@ function callback(value,id) {
                       
                     swal('Cancion comprada con exito','','success');
 
-                    }
+                    }  
                 },
               error: function (result) 
                 {
@@ -243,7 +242,7 @@ function callback(value,id) {
 </script> -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function fnOpenNormalDialog5(cost,name,id) {
+function fnOpenNormalDialog(cost,name,id) {
   
    swal({
             title: "¿Estas seguro?",
@@ -261,7 +260,6 @@ function fnOpenNormalDialog5(cost,name,id) {
           }
         });
     };
-
 
 function callback(value,id) {
     if (value) {
@@ -296,7 +294,7 @@ function callback(value,id) {
                       swal('La pelicula ya forma parte de su colección','','error');
                     }
                     else
-                    {
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
                 
@@ -311,7 +309,7 @@ function callback(value,id) {
                     });
                       swal('Pelicula comprada con exito','','success');
                        console.log(result);
-                    }
+                    }  
                 },
               error: function (result) 
                 {
@@ -336,7 +334,7 @@ $(document).ready(function(){
       $('#seach').autocomplete({
         source: "SearchMovie",
         minLength: 2,
-        select: function(event, ui){
+        select: function(event, ui){    
           $('#seach').val(ui.item.value);
           var valor = ui.item.value;
           console.log(valor);

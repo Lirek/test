@@ -35,11 +35,11 @@
         <div class="row">
           <?php if($Albums->count() != 0): ?>
             <?php $__currentLoopData = $Albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Album): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <div class="col s12 m3">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image">
                     <?php if($Album->name_alb): ?>
-                      <a href="#myModal-<?php echo e($Album->id); ?>" class="modal-trigger">
+                      <a href="#myModal-<?php echo e($Album->id); ?>" class="modal-trigger" >
                         <img src="<?php echo e(asset($Album->cover)); ?>" width="100%" height="300px">
                       </a>
                     <?php else: ?>
@@ -78,11 +78,12 @@
                     <?php endif; ?>
                   </div>
                   <div class="card-content grey-text" style="padding: 24px 0px">
-                    <div class="col m12">
+                    <div class="col m12 s12">
                       <?php if($Album->name_alb): ?>
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;"><?php echo e($Album->name_alb); ?></p>
+
+                        <p class="grey-text truncate"><?php echo e($Album->name_alb); ?></p>
                       <?php else: ?>
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;"><?php echo e($Album->song_name); ?></p>
+                        <p class="grey-text truncate"><?php echo e($Album->song_name); ?></p>
                       <?php endif; ?>
                     </div>
                     <p><b>Artistas: </b>
@@ -93,9 +94,9 @@
                     <p><b>Costo: </b> <?php echo e($Album->cost); ?> tickets</p>
                     
                     <?php if($Album->name_alb): ?>
-                      <p>Álbum musical</p>
+                      <p><b>Álbum</b></p>
                     <?php else: ?>
-                      <p>Sencillo</p>
+                      <p><b>Sencillo</b></p>
                     <?php endif; ?>
                   </div>
                 </div>
