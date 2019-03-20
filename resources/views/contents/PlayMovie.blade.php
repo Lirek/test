@@ -7,6 +7,10 @@
     color: white;
     font-weight: 150;
 }
+
+#tabs-swipe-demo{
+  margin-bottom: 50px;
+}
 </style>
 
 
