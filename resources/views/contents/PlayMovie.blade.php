@@ -41,14 +41,18 @@
                 
 
                 <div id="test-swipe-1" class="col s12 ">
+<<<<<<< HEAD
                   <div class="col s12" style="color: black">
+=======
+                  <div class="col s1" style="color: black">
+>>>>>>> 51729a3b4a96f3de80b8c39ffaf9a451d0b2bfc6
     
                    <?php
                         $url = $m->trailer_url;
                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                         $id = $matches[1];
-                        $width = '800px';
-                        $height = '450px';
+                        $width = '1000px';
+                        $height = '600px';
                     ?>
                     <div class="embed-container">
                     <iframe  type="text/html" width="700" height="420"
