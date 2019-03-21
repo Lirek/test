@@ -100,6 +100,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('sponsor/{cod}','HomeController@sponsor');
     // agregada Alexis 15/01/2019
     Route::get('/Beneficios/{status}','HomeController@Beneficios');
+    Route::post('BuyBenefi','HomeController@BuyBenefi');
 
 
 //-------------------Funciones del Usuarios----------------------------------
