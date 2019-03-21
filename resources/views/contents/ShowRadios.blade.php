@@ -35,7 +35,7 @@
 
                                         </div>
                                         <div class="card-action ">
-                                            <b class="grey-text">{{$radios->name_r}}</b>
+                                            <b class="grey-text truncate">{{$radios->name_r}}</b>
                                         </div>
                                     </div>
                                 </div>

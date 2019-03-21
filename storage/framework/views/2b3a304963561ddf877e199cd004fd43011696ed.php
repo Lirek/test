@@ -34,7 +34,7 @@
 
                                         </div>
                                         <div class="card-action ">
-                                            <b class="grey-text"><?php echo e($radios->name_r); ?></b>
+                                            <b class="grey-text truncate"><?php echo e($radios->name_r); ?></b>
                                         </div>
                                     </div>
                                 </div>
