@@ -41,7 +41,7 @@
                 
 
                 <div id="test-swipe-1" class="col s12 ">
-                  <div class="col s12 m10 offset-m1" style="color: black">
+                  <div class="col s12" style="color: black">
     
                    <?php
                         $url = $m->trailer_url;
