@@ -132,7 +132,7 @@
                           <li>
                             <div class="collapsible-header">
                               <i class="material-icons blue-text">movie</i>
-                              Episodios(#):
+                              Episodios( {{$episode->episode_id }}):
                             </div>
                             @if($Series->Episode())
                                 @foreach($Series->Episode as $episode)
