@@ -326,7 +326,7 @@ class HomeController extends Controller
                 
         $user = User::find(Auth::user()->id);
 
-        if ($total > $user->credito) 
+        if ($total > $user->points) 
         {
             return response()->json(0);    
         } else {
@@ -339,7 +339,7 @@ class HomeController extends Controller
             $Productos->status= "Aprobado";
             $Productos->save();
 
-            $user->credito = $user->credito-$total;
+            $user->points = $user->points-$total;
             $user->save();
 
             return response()->json($Productos);

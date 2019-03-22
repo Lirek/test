@@ -4,3 +4,9 @@ Stack trace:
 [2019-03-20 14:10:05] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\Database\Schema\Grammars\MySqlGrammar.php:9
 Stack trace:
 #0 {main}  
+[2019-03-22 08:45:18] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\app\Providers\EventServiceProvider.php:8
+Stack trace:
+#0 {main}  
+[2019-03-22 08:45:57] production.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\www\Leipel\vendor\laravel\framework\src\Illuminate\View\Compilers\Concerns\CompilesComponents.php:5
+Stack trace:
+#0 {main}  
