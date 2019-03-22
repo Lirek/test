@@ -56,11 +56,11 @@
                                 <div class="col m12 s12">
                                   <p class="grey-text truncate">{{ $lecturas->title }}</p>
                                 </div>
-                                <div class="">
-                                  <p class="grey-text"><b>Autor:</b>  {{$lecturas->seller->name}}</p>
+                                <div class="col m12 s12">
+                                  <p class="grey-text truncate"><b>Autor: </b>{{$lecturas->seller->name}}</p>
                                 </div>
                                 <div>
-                                  <p class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</p>
+                                  <p class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets </p>
                                 </div>
                                 <div class="col m12 s12">
                                 <div class="grey-text">

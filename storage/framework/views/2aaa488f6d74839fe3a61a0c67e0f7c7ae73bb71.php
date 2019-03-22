@@ -67,7 +67,7 @@
                                 <p class="grey-text truncate"><?php echo e($Movies->title); ?></p>
                             </div> 
                             <div class="col m12 s12">
-                              <p class="grey-text"><b>Autor:</b>  <?php echo e($Movies->seller->name); ?></p>
+                              <p class="grey-text truncate"><b>Autor:</b>  <?php echo e($Movies->seller->name); ?></p>
                             </div>
                             <div class="col m12 s12">
                                 <p class="grey-text"><b>Costo:</b> <?php echo e($Movies->cost); ?> tickets</p> 

@@ -87,9 +87,11 @@
                         <p class="grey-text truncate">{{$Album->song_name}}</p>
                       @endif
                     </div>
-                    <p><b>Artistas: </b>
+                    <div class="col m12 s12">
+                    <p class="grey-text truncate"><b>Artistas: </b>
                       {{$Album->autors->name}}
                     </p>
+                    </div>
                     
                     <p><b>Costo: </b> {{$Album->cost}} tickets</p>
                     
