@@ -23,7 +23,7 @@
                 <img  src="{{asset($bene->imagen_prod)}}"  >
             </div>
             <div class="card-action">
-                <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Ver detalles</a>
+                <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
                 <a  href="#miModal-{!!$bene['id']!!}" id="botonModal" value="{!!$bene['id']!!}" class="waves-effect waves-light btn curvaBoton modal-trigger"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
                 <br>
             </div>
@@ -87,7 +87,7 @@
         var total= (Cantidad*cost);
         swal({
             title: "¿Está seguro?",
-            text: '¿Desea canjear '+name+' por un total de '+total+' tickets ?',
+            text: '¿Desea canjear '+name+' por un total de '+total+' puntos ?',
             icon: "warning",
             buttons:  ["Cancelar", "Adquirir"],
             dangerMode: true,

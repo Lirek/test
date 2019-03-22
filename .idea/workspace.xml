@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -211,44 +211,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="112" column="162" selection-start-line="112" selection-start-column="162" selection-end-line="112" selection-end-column="162" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="749" column="40" selection-start-line="749" selection-start-column="36" selection-end-line="749" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/WebsUser.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="165" column="197" selection-start-line="165" selection-start-column="197" selection-end-line="165" selection-end-column="197" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/users/SalesTickets.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -989,7 +952,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="600869000" />
+    <option name="totallyTimeSpent" value="600926000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1002,9 +965,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2646605" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2777778" />
       <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
       <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1016,9 +978,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.54320985" side_tool="true" weight="0.2738516" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.3757716" side_tool="true" weight="0.2738516" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32685512" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.45679012" visible="true" weight="0.2738516" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.6242284" weight="0.2738516" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3286219" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.4861111" weight="0.32685512" />
@@ -1026,8 +988,32 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.17283951" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.33410493" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35416666" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5277778" side_tool="true" weight="0.24168126" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4722222" weight="0.24168126" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.48688272" weight="0.32685512" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1358,20 +1344,8 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f42a655a-fe1b-4b09-87b7-501aaab72fff/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/account_balance">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/tags">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/account_balance" />
+    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/tags" />
     <entry file="file://$PROJECT_DIR$/public/js/welcome.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1379,13 +1353,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/songs">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/songs" />
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/SuperAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -1400,18 +1368,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="email='breiddypreteroti@gmail.com'" />
-            <filter text="email='breiddy'" />
-            <filter text="id=79" />
-            <filter text="email='breiddypreterto@gmail.com'" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/users" />
     <entry file="file://$PROJECT_DIR$/resources/views/users/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
