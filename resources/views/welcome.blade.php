@@ -54,6 +54,21 @@
                     </li>
                 @endif
 
+            @elseif(Auth::guard('bidder')->user())
+                @if (Auth::guard('bidder')->user()->logo)
+                    <li>
+                        <a href="{{ url('/bidder_home')}}" data-position="bottom"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('bidder')->user()->logo)}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}" data-position="bottom"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
+
             @elseif(Auth::user())
 
                 @if(Auth::user()->img_perf)
@@ -84,6 +99,20 @@
                         <a href="{{ url('/seller_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
                             <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img circle" width="40" height="40">
                             <b> Ingresar</b>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ url('/home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset('sistem_images/DefaultUser.png')}}" class="img circle" width="40" height="40">
+                        </a>
+                    </li>
+                @endif
+            @elseif(Auth::guard('bidder')->user())
+                @if (Auth::guard('bidder')->user()->logo)
+                    <li>
+                        <a href="{{ url('/bidder_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('bidder')->user()->logo)}}" class="img circle" width="40" height="40">
                         </a>
                     </li>
                 @else
@@ -522,11 +551,14 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s6">
-                        <a href="#usuario"><i class="material-icons prefix">face</i><b> Usuario</b></a>
+                    <li class="tab col s4">
+                        <a href="#usuario"><i class="tiny material-icons">face</i><b> Usuario</b></a>
                     </li>
-                    <li class="tab col s6">
-                        <a href="#proveedor"><i class="material-icons prefix">store</i><b> Proveedor</b></a>
+                    <li class="tab col s4">
+                        <a href="#proveedor"><i class="tiny material-icons">person</i><b> Proveedor</b></a>
+                    </li>
+                    <li class="tab col s4">
+                        <a href="#ofertante"><i class="tiny material-icons">shopping_basket</i><b> Ofertante</b></a>
                     </li>
 
                 </ul>
@@ -618,6 +650,51 @@
                 </div>
             </form>
         </div>
+
+        {{--Modal inicio de sesion ofertante--}}
+        <div id="ofertante" class="col s12 center">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/bidder_login') }}">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="text" id="emailO" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <label for="emailO">Correo</label>
+                        <div id="emailMenO" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block red-text" >
+                                <strong >{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                        @foreach (session('flash_notification', collect())->toArray() as $message)
+                            <span class="help-block" style="color: red;">
+                                <strong>{{ $message['message'] }}</strong>
+                            </span>
+                        @endforeach
+                        {{ session()->forget('flash_notification') }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input type="password" id="passwordO" class="autocomplete" name="password" required>
+                        <label for="passwordO">Contraseña</label>
+                        <div id="passwordMenO" style="margin-top: 1%"></div>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong class="text-red">{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciarO" type="submit" name="action">    Iniciar sesión
+                            <i class="material-icons right">send</i>
+                        </button><br>
+                        <!--
+                        <a class="blue-text" href="{{ url('') }}">Olvide mi contraseña </a>
+                        -->
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
 </div>
@@ -628,11 +705,9 @@
     <div class="modal-content center blue-text">
         <div class="row">
             <ul class="tabs">
-                <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
-                <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
-                {{--
+                <li class="tab col s4"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
+                <li class="tab col s4"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
                 <li class="tab col s4"><a href="#ofertante1"><i class="material-icons prefix">store</i><b> Ofertante</b></a></li>
-                --}}
             </ul>
         </div>
         {{--registro usuario--}}
@@ -803,7 +878,6 @@
             </form>
         </div>
         {{--registro ofertante--}}
-        {{--
         <div id="ofertante1" class="col s12 center">
             <form class="form-horizontal" id="formRO">
                 {{ csrf_field() }}
@@ -854,7 +928,6 @@
                 </div>
             </form>
         </div>
-        --}}
     </div>
 
 </div>
@@ -869,7 +942,6 @@
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{asset('js/welcome.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@include('users.js')
 
 <script type="text/javascript">
     function masInfo(tipo) {

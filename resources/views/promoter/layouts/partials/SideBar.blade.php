@@ -122,10 +122,33 @@
         </a>
       </li>
       <li>
-        <a href="{{url('Products')}}">
-          <i class="small material-icons">store</i>
-          Productos
-        </a>
+        <ul class= "collapsible collapsible-accordion">
+          <li>
+            <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
+              <i class="small material-icons">store</i>
+                Beneficios
+              <i class="material-icons right">expand_more</i>
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="{{url('Products')}}">
+                    <i class="small material-icons">shopping_basket</i>
+                    Productos
+                    <span class="new badge orange darken-1" data-badge-caption="" id="badgeProductos" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('Bidder')}}">
+                    <i class="small material-icons">group</i>
+                    Ofertantes
+                    <span class="new badge orange darken-1" data-badge-caption="" id="badgeOfertantes" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">

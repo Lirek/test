@@ -320,6 +320,14 @@
               $('#badgeSolicitudUsuario').show();
               $('#badgeSolicitudUsuario').text(result.solicitudesU);
             }
+            if (result.productos!=0) {
+              $('#badgeProductos').show();
+              $('#badgeProductos').text(result.productos);
+            }
+            if (result.ofertantes!=0) {
+              $('#badgeOfertantes').show();
+              $('#badgeOfertantes').text(result.ofertantes);
+            }
           },
           error: function (result) {
             swal('Existe un error al cargar los contenidos pendientes','','error')

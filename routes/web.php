@@ -77,12 +77,6 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
-//----------------------- Rutas para el usuario OFERTANTE -----------------------
-    Route::post('BidderSubmit','BidderController@store');
-    Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
-//----------------------- Rutas para el usuario OFERTANTE -----------------------
-
-
 Route::group(['middleware' => 'auth'], function() {
 
 //-----------------------Funciones del Home---------------------------
@@ -529,6 +523,14 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
             
         //------------------------------- Rutas para los productos-------------------------------
+
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+            Route::get('Bidder','BidderController@Bidder');
+            Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
+            Route::post('statusBidder/{id}','BidderController@statusBidder');
+            Route::post('addModuleBidder','BidderController@addModuleBidder');
+            Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
 
     });
 });
@@ -1120,4 +1122,20 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 */
 
+//----------------------- Rutas para el usuario OFERTANTE -----------------------
+Route::post('BidderSubmit','BidderController@store');
+Route::post('bidder_login','BidderAuth\LoginController@login');
 
+Route::group(['middleware' => 'bidder_guest'], function(){
+    Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
+    Route::get('bidderComplete/{id}/{token}','BidderController@bidderComplete');
+    Route::post('BidderCompleteRegister','BidderController@BidderCompleteRegister');
+
+});
+
+Route::group(['middleware' => 'bidder_auth'], function(){
+    Route::get('/bidder_home','BidderController@home');
+    Route::get('bidderLogout','BidderAuth\LoginController@logout');
+});
+
+//----------------------- Rutas para el usuario OFERTANTE -----------------------

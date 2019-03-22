@@ -25,6 +25,8 @@ use App\Movie;
 use App\Serie;
 use App\PaymentSeller;
 use App\Payments;
+use App\Products;
+use App\Bidder;
 
 class AdminContentController extends Controller
 {
@@ -213,13 +215,19 @@ class AdminContentController extends Controller
 
     $pagosUsuarios = Payments::where('status','En Revision')->count();
 
+    $productos = Products::where('status','En Revision')->count();
+
+    $ofertantes = Bidder::where('status','En Revision')->count();
+
     $pendientes = [
       'contenido' => $contenidoPendiente,
       'proveedores' => $proveedores,
       'pagosP' => $pagosProveedores,
       'solicitudesP' => $solicitudesProveedores,
       'solicitudesU' => $solicitudesUsuarios,
-      'pagosU' => $pagosUsuarios
+      'pagosU' => $pagosUsuarios,
+      'productos' => $productos,
+      'ofertantes' => $ofertantes
     ];
     return response()->json($pendientes);
     
