@@ -7,6 +7,10 @@
     color: white;
     font-weight: 150;
 }
+
+#tabs-swipe-demo{
+  margin-bottom: 50px;
+}
 </style>
 
 
@@ -34,15 +38,18 @@
                   <li class="tab col s3"><a href="#test-swipe-2">Pelicula</a></li>
                   
                 </ul>
+                
+
                 <div id="test-swipe-1" class="col s12 ">
-                  <div class="col s12 m10 offset-m1" style="color: black">
+                  <div class="col s12" style="color: black">
+
     
                    <?php
                         $url = $m->trailer_url;
                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                         $id = $matches[1];
-                        $width = '800px';
-                        $height = '450px';
+                        $width = '1000px';
+                        $height = '600px';
                     ?>
                     <div class="embed-container">
                     <iframe  type="text/html" width="700" height="420"
@@ -51,8 +58,92 @@
                     </div>
                     
                   </div>
+                  
+                  <div class="col m12 s12">
+                    <br>
+                          <ul class="collection z-depth-1" style="color: black">
+                              <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      <div class="col s12 m5">
+                                          <i class="material-icons circle left">create</i>
+                                          <b class="left">Titulo original: </b>
+                                      </div>
+                                      <div class="col s12 m7">
+                                          {{ $m->original_title }}
+                                      </div>
+                                  </div>
+                              </li>
+                              <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      <div class="col s12 m5">
+                                          <i class="material-icons circle left">star</i>
+                                          <b class="left">Categoria: </b>
+                                      </div>
+                                      <div class="col s12 m7">
+                                      </div>
+                                  </div>
+                              </li>
+                             @if($m->sagas!=null)
+                              <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      <div class="col s12 m5">
+                                          <i class="material-icons circle left">folder</i>
+                                          <b class="left">Saga: </b>
+                                      </div>
+                                      <div class="col s12 m7">
+                                          {{ $m->saga->sag_name }}
+                                      </div>
+                                  </div>
+                              </li>
+                              @else
+                              <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      <div class="col s12 m5">
+                                          <i class="material-icons circle left">folder</i>
+                                          <b class="left">Saga: </b>
+                                      </div>
+                                      <div class="col s12 m7">
+                                          No pertenece a una saga
+                                      </div>
+                                  </div>
+                             </li>
+                             @endif
+                              <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      <div class="col s12 m5">
+                                          <i class="material-icons circle left">local_play</i>
+                                          <b class="left">Costo: </b>
+                                      </div>
+                                      <div class="col s12 m7">
+                                          {{ $m->cost }} Tickets
+                                      </div>
+                                  </div>
+                              </li>
+                             <li class="collection-item" style="padding: 10px ">
+                                  <div class="row">
+                                      
+                                      <div class="col s6 ">
+                                            <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+
+                                      </div>
+                                
+                                      <div class="col s6">
+
+                                             <a class="btn blue curvaBoton  " href="{{url('MyMovies')}}">ATRÁS</a>
+
+                                      </div>
+
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
                 
                 </div>
+                
+                
+                
+                @if($adquirido )
+
                 <div id="test-swipe-2" class="col s12">
                   
                   <div class="embed-container">
@@ -63,94 +154,32 @@
                   </div>
                             
                 </div>
-
-                    <div class="col m12 s12">
-                      <br>
-                            <ul class="collection z-depth-1" style="color: black">
-                                <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        <div class="col s12 m5">
-                                            <i class="material-icons circle left">create</i>
-                                            <b class="left">Titulo original: </b>
-                                        </div>
-                                        <div class="col s12 m7">
-                                            {{ $m->original_title }}
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        <div class="col s12 m5">
-                                            <i class="material-icons circle left">star</i>
-                                            <b class="left">Categoria: </b>
-                                        </div>
-                                        <div class="col s12 m7">
-                                        </div>
-                                    </div>
-                                </li>
-                               @if($m->sagas!=null)
-                                <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        <div class="col s12 m5">
-                                            <i class="material-icons circle left">folder</i>
-                                            <b class="left">Saga: </b>
-                                        </div>
-                                        <div class="col s12 m7">
-                                            {{ $m->saga->sag_name }}
-                                        </div>
-                                    </div>
-                                </li>
-                                @else
-                                <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        <div class="col s12 m5">
-                                            <i class="material-icons circle left">folder</i>
-                                            <b class="left">Saga: </b>
-                                        </div>
-                                        <div class="col s12 m7">
-                                            No pertenece a una saga
-                                        </div>
-                                    </div>
-                               </li>
-                               @endif
-                                <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        <div class="col s12 m5">
-                                            <i class="material-icons circle left">local_play</i>
-                                            <b class="left">Costo: </b>
-                                        </div>
-                                        <div class="col s12 m7">
-                                            {{ $m->cost }} Tickets
-                                        </div>
-                                    </div>
-                                </li>
-                               <li class="collection-item" style="padding: 10px ">
-                                    <div class="row">
-                                        
-                                        <div class="col s6 ">
-                                              <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
-
-                                        </div>
-                                  
-                                        <div class="col s6">
-
-                                               <a class="btn blue curvaBoton  " href="{{url('MyMovies')}}">ATRÁS</a>
-
-                                        </div>
-
-                                    </div>
-                                </li>
-                            </ul>
-                          </div>
+                
+                @else
+                <div id="test-swipe-2" class="col s12">
+                  <div class="embed-container"  id="peliculaSinAdquirir" >
+                      <h5>Para poder visualizar la pelicula es necesario haberla adquirido previamente:</h5>
+                      <a class="btn btn-primary blue curvaBoton" href="#" id="modal-confir.{{$m->id}}" onclick="fnOpenNormalDialog('{!!$m->cost!!}','{!!$m->title!!}','{!!$m->id!!}')">Adquirir Pelicula</a>
+                  </div>
+                  
+                  <div class="embed-container" id="peliculaAdquirida"  hidden>
+        
+                      <video width="700" height="420" controls>
+                        <source src="../movie/film/{{$m->duration}}" type="video/mp4">
+                          <video>
+                  </div>
+                            
+                </div>
+                
+                
+                
+                
+                @endif
 
 
 
               </div>
             </div>
-
-
-
-
           </div>
 
         <!-- Modal Structure -->
@@ -256,7 +285,7 @@ function callback(value,id) {
             })
          $.ajax({
                     
-            url:'BuyMovie/'+id,
+            url:'../BuyMovie/'+id,
             type: 'POST',
             data: {
             _token: $('input[name=_token]').val()
@@ -276,7 +305,7 @@ function callback(value,id) {
                       swal('La pelicula ya forma parte de su colección','','error');
                     }
                     else
-                    {	
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
                 
@@ -289,9 +318,13 @@ function callback(value,id) {
                   
                       },
                     });
-                    	swal('Pelicula comprada con exito','','success');
-                  		 console.log(result);
-                  	}	 
+                      swal('Pelicula comprada con exito','','success');
+                      $('#peliculaAdquirida').show();
+                      $('#peliculaSinAdquirir').hide();
+
+                       console.log(result);
+                                 
+                    }  
                 },
               error: function (result) 
                 {
