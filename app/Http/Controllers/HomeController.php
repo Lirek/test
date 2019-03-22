@@ -38,6 +38,7 @@ use App\Mail\ApprovalNotification;
 use App\Events\AssingPointsEvents;
 
 use App\Products;
+use App\exchange_product;
 
 class HomeController extends Controller
 {
@@ -313,9 +314,36 @@ class HomeController extends Controller
         {
             $beneficio= 0;
         }
-
         return view('users.Beneficios')->with('beneficio',$beneficio);
+    }
 
+    public function BuyBenefi (Request $request)
+    {
+        $Benefi= Products::find($request->id);
+        $total = $Benefi->cost*$request->Cantidad;
+
+        // return response()->json($request->Cantidad);
+                
+        $user = User::find(Auth::user()->id);
+
+        if ($total > $user->credito) 
+        {
+            return response()->json(0);    
+        } else {
+
+            $Productos= new exchange_product;
+            $Productos->product_id=$Benefi->id; 
+            $Productos->user_id=$user->id;
+            $Productos->amount=$total;
+            $Productos->cost= $Benefi->cost;
+            $Productos->status= "Aprobado";
+            $Productos->save();
+
+            $user->credito = $user->credito-$total;
+            $user->save();
+
+            return response()->json($Productos);
+        }
     }
 
     public function SaleTickets(){
