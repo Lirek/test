@@ -131,7 +131,8 @@
                                     <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
                                         <i class="material-icons ">local_activity</i>&nbsp;Mi balance
                                     </a>
-                                    <p id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333; padding: 0px;" ></p>
+                                    <p id="Tickets" style="color: #ffffff; text-shadow: 0.1em 0.1em #333; padding: 0px;">
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
 	<div class="col s12 m12">
 		<div class="card">
 			<div class="card-content white-text">
-        <h4 class="titelgeneral"><i class="material-icons small">music_note</i> Música</h4>
+        <h4 class="titelgeneral"><i class="material-icons small">music_note</i> Música!</h4>
         <div class="row">
           <div class="input-field col s12 m6 offset-m3">
               <form method="POST"  id="SaveSong" action="<?php echo e(url('SearchProfileArtist')); ?>">
