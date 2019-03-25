@@ -48,6 +48,8 @@
        @foreach($movie as $m)
        
         <div class="row ">
+          
+          <br>
           <div class="col s12 m3">
             
             <img src="../movie/poster/{{$m->img_poster}}" width="100%" height="300"style="">
