@@ -8,6 +8,10 @@
     font-weight: 150;
 }
 
+#tabs-swipe-demo{
+  margin-bottom: 50px;
+}
+
 .embed-container{
   position: relative;
   padding-bottom: 56.25%;
@@ -47,11 +51,11 @@
             @foreach($Series as $s)
 
             <div class="row ">
-              <div class="col s3">
+              <div class="col s12 m3">
                 <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="300px">
              </div>
 
-              <div class="col s9">
+              <div class="col m8 s12">
 
                 <div class="row">
                   
@@ -61,14 +65,14 @@
                       
                     </ul>
                     <div id="test-swipe-1" class="col s12 ">
-                      <div class="col s12 m10 offset-m1" style="color: black">
+                      <div class="col s12 " style="color: black">
         
                        <?php
                             $url = $s->trailer;
                             preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                             $id = $matches[1];
-                            $width = '800px';
-                            $height = '450px';
+                            $width = '1000px';
+                            $height = '600px';
                         ?>
                         <div class="embed-container">
                         <iframe  type="text/html" width="700" height="420"
