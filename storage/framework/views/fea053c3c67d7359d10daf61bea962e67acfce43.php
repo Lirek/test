@@ -645,6 +645,7 @@ h5.breadcrumbs-header {
         });
     });
        
+        //Esta función
       /*  $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){

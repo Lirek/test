@@ -151,15 +151,16 @@
 
     </div>
 
-    <div id="test3" class="col s12 center">
+    <div id="test3" class="col s12 l12 center">
 
-        <div class="col s12 center">
-            <br><br>
-            <div class="container s12 center"><br><br><br><br>
-                 <h4><p style="text-align:;">Poco a poco sumamos la ayuda de todos, empresas públicas y privadas, pronto verás sus logos aquí.</p></h4>               
-            </div>
-            <br><br><br><br>
-        </div>
+       
+                <br>
+                <div class="col l12 s12 m12">
+                       <img src="<?php echo e(asset('https://leipel.com\sistem_images\fundaciones.jpg')); ?>" width="350px" height="300px;" style="">
+                        <h5>
+                        <p style="text-align: center;">Ayudamos a las fundaciones a recaudar fondos a travéz de la venta de sus contenidos. <br>Ayúdanos a ayudar.</p>
+                        </h5>
+                </div>
 
     </div>
 
