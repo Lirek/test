@@ -2,7 +2,7 @@
 @section('main')
 @include('flash::message')
 
-<link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -446,6 +446,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -480,6 +481,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -603,8 +605,7 @@ h5.breadcrumbs-header {
   });
 </script> 
 
-    <script type="text/javascript">
-
+<script type="text/javascript"> //ERROR AQUI
     // Or with jQuery
     // Slider
     $(document).ready(function(){
@@ -618,7 +619,8 @@ h5.breadcrumbs-header {
         });
     });
        
-        $(document).ready(function (e){
+        //Esta función
+      /*  $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){
                 var phone = $("#phone2").val();
@@ -636,8 +638,10 @@ h5.breadcrumbs-header {
                 $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
             });
 
-        })
+        })*/
+
     </script>
+
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------
