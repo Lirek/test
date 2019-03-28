@@ -48,12 +48,14 @@
        @foreach($movie as $m)
        
         <div class="row ">
-          <div class="col s3">
+          
+          <br>
+          <div class="col s12 m3">
             
             <img src="../movie/poster/{{$m->img_poster}}" width="100%" height="300"style="">
           </div>
 
-          <div class="col s9">
+          <div class="col m8 s12">
 
             <div class="row">
               
@@ -66,7 +68,7 @@
                 
 
                 <div id="test-swipe-1" class="col s12 ">
-                  <div class="col s12" style="color: black">
+                  <div class="col s12 " style="color: black">
 
     
                    <?php
