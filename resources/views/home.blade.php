@@ -109,7 +109,9 @@
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
-                                         <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                         <a class="waves-effect waves-light " href="{{ url('PlaySerie/'.$ci['id']) }}">
+                                            <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                        </a>
                                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog6('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>

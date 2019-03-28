@@ -407,7 +407,7 @@ class ContentController extends Controller
 
 
         //dd($Cine);
-        return view('contents.Movies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
+        return view('contents.ShowMovies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
     }
 
     public function seachMovie(){
@@ -538,7 +538,16 @@ class ContentController extends Controller
 
       $serie= Serie::where('status','=','Aprobado')->paginate(8);
 
-      return view('contents.PlaySerie')->with('Series',$serie);
+        $user= User::find(Auth::user()->id);
+        $SerieAdd=user::contenidos_add($user, 'series_id');
+        $adquirido=(in_array($id, $SerieAdd)) ? true : false;
+
+        $EpisodeAdd=user::episode_add($user);
+        
+       $adquiridoE=$EpisodeAdd;
+        //dd($adquiridoE);
+
+      return view('contents.PlaySerie')->with('Series',$serie)->with('adquirido',$adquirido)->with('adquiridoE',$adquiridoE);
     }
 
     public function PlayEpisode($id){

@@ -354,7 +354,7 @@ function callback(value,id) {
                     });
                         swal('Libro comprado con exito','','success');
                          console.log(result);
-                         location.reload(true)
+                         location.reload(true);
                     }    
                 },
               error: function (result) 

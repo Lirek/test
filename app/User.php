@@ -127,6 +127,24 @@ class User extends Authenticatable implements JWTSubject
 
     }
 
+    public static function episode_add($user){
+
+        $TranEpisode= Transactions::select('episodes_id')->where('user_id','=',$user->id)->where('episodes_id','<>',0)->get();
+        $episode_add=array();
+        // dd(count($TranEpisode));
+        if(count($TranEpisode)>0)
+        {
+            foreach ($TranEpisode->sortBy('episodes_id') as $Ts) {
+               $episode_add[]=$Ts->episodes_id;
+            }
+        }
+        else
+        {
+            $episode_add[]=null;
+        }
+        return $episode_add;
+
+    }
 
 
 }
