@@ -93,16 +93,24 @@
                             <li class="collection-item" style=" padding: 0px;" >
                                 <br>
                             <div class="row">
-                                <div class="col s4 m4 l4">
-                                    <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer</a> -->
-                                    <a  href="{{ asset($megazines->megazine_file) }}" class="btn curvaBoton waves-effect waves-light green" target="_blank">Leer revista</a>
-                                </div>
+                                @if($adquirido )
+                                    <div class="col s4 m4 l4">
+                                        <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer</a> -->
+                                        <a  href="{{ asset($megazines->megazine_file) }}" class="btn curvaBoton waves-effect waves-light green" target="_blank">Leer revista</a>
+                                    </div>
+                                @else
+                                    <div class=" col s4 m4 l4">
+                                        <a class="btn curvaBoton waves-effect waves-light green" href="#" id="buyBook" onclick="fnOpenNormalDialog('{!!$megazines->cost!!}','{!!$megazines->title!!}','{!!$megazines->id!!}')"><i class="material-icons left   ">add_shopping_cart</i>Adquirir</a>
+                                    </div>
+                                @endif
                                 <div class="col s4 m4 l4">
                                     <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Descripción</a>
                                 </div>
-                                <div class="col s4 m4 l4">
-                                    <a href="{{ url('MyMegazine')}}" class="btn center curvaBoton red ">Atrás</a>
-                                </div>
+                                @if($adquirido )
+                                    <a href="{{url('MyMegazine')}}" class="btn center curvaBoton red ">Atrás</a>
+                                @else
+                                    <a href="{{url('ReadingsBooks')}}" class="btn center curvaBoton red ">Atrás</a>
+                                @endif
                             </div>
                             </li>
                         </ul>
@@ -261,5 +269,87 @@
 //---------------------------------------------------------------------------------------------------
     </script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function fnOpenNormalDialog(cost,name,id) {
+  
+   swal({
+            title: "Estas seguro?",
+            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
+            icon: "warning",
+            buttons:  ["Cancelar", "Adquirir"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            callback(true,id);
+           
+          } else {
+            callback(false,id);
+          }
+        });
+    };
 
+function callback(value,id) {
+    if (value) {
+      swal({
+                title: 'Procesando..!',
+                text: 'Por favor espere..',
+                buttons: false,
+                closeOnEsc: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+         $.ajax({
+                    
+            url:'../BuyMagazines/'+id,
+            type: 'POST',
+            data: {
+            _token: $('input[name=_token]').val()
+             },
+                    
+             success: function (result) 
+                {
+
+
+                   if (result==0) 
+                    { 
+                       swal('No posee suficientes tickets, por favor recargue','','error');  
+                       console.log(result);
+                    }
+                    else if (result==1) 
+                    {
+                      swal('La revista ya forma parte de su colección','','error');
+                    }
+                    else
+                    {   
+                    var idUser={!!Auth::user()->id!!};
+                    $.ajax({ 
+                
+                      url     : '../MyTickets/'+idUser,
+                      type    : 'GET',
+                      dataType: "json",
+                      success: function (respuesta){
+                      console.log(respuesta);
+                        $('#Tickets').html(respuesta);
+                  
+                      },
+                    });
+                        swal('Revista comprada con exito','','success');
+                         console.log(result);
+                        location.reload(true)
+                    }    
+                },
+              error: function (result) 
+                {
+                      
+                }
+
+            });
+    } else {
+        return false;
+    }
+}
+</script>
 @endsection

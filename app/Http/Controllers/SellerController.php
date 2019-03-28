@@ -448,7 +448,7 @@ class SellerController extends Controller
         $seller->address = $request->direccion;
         $seller->save();
 
-        header("Refresh:0; url=/seller_edit");
+        header("Refresh:0; url=".asset('/seller_edit'));
         //return view('seller.edit')->with('seller',$seller);
 
         Flash::warning('Se ha modificado ' . $seller->name . ' de forma exitosa!')->important();

@@ -139,10 +139,12 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
 
     //Agregada 14/7/18
-    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
+    // Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
+    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
 
     //Agregada 15/7/18
-    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
+    // Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
+    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
 
     //Agregada 18/7/18
     Route::post('CompleteProfile','UserController@CompleteProfile');

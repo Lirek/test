@@ -212,7 +212,9 @@
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                            <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
@@ -226,7 +228,9 @@
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                            <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
