@@ -1121,4 +1121,14 @@ class UserController extends Controller
 
     }
 
+    public function ValidateEmail($encrypted)
+    {
+      $decrypted = Crypt::decryptString($encrypted);
+      $user= User::where('email','=',$decrypted)->firstOrFail();
+      $user->email_verification=TRUE;
+      $user->save();
+      Auth::login($user);
+      return redirect()->action('HomeController@index');
+    }
+
 }

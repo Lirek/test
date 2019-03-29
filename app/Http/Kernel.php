@@ -64,7 +64,7 @@ class Kernel extends HttpKernel
           'MyMovies' => \App\Http\Middleware\MyMovies::class,
           'MySeries' => \App\Http\Middleware\MySeries::class,
           'MySingles' => \App\Http\Middleware\MySingles::class,
-          
+
         //add custom middlewares here as key and value pair.
          'seller_auth' => \App\Http\Middleware\AuthenticateSeller::class,
          'seller_guest' => \App\Http\Middleware\RedirectIfSellerAuthenticated::class,
@@ -80,5 +80,6 @@ class Kernel extends HttpKernel
 
          //middleware de usuario activo
          'ActiveUser' => \App\Http\Middleware\ActiveUsers::class,
+         'VerifiedEmail' => \App\Http\Middleware\EmailVerified::class,
     ];
 }

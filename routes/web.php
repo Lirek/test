@@ -65,7 +65,7 @@ Route::post('SellerRegister','SellerController@CompleteRegistration');
 //---------------------------------------------------------------------
 
 Route::get('/login/{provider}', 'SocialAuthController@redirectToProvider');
-
+Route::get('/validate/{encrypted}','UserController@ValidateEmail');
 Route::get('/login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 Route::resource('users', 'UserController');
@@ -85,6 +85,9 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     Route::get('/home', 'HomeController@index');
     Route::get('ContentGraph', 'HomeController@DataContentGraph');
     Route::get('MyTickets/{id}', 'HomeController@MyTickets');
+
+Route::group(['middleware' => ['VerifiedEmail']], function() {
+
     //Agregada 17/08/18
     Route::get('SaleTickets','HomeController@SaleTickets');
     Route::post('BuyPlan','HomeController@BuyPlan');
@@ -164,14 +167,14 @@ Route::post('Invite','UserController@Invite');
      Route::get('MySeries','UserController@MySeries');
       Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
 
-    //Agregada 23/01/2019  
+    //Agregada 23/01/2019
     Route::get('DeleteAccount/{id}','UserController@closed');
 
     //Agregada 28/01/2019
     Route::post('ChangePassword/{id}','UserController@changepassword');
 
+});
 
-   
 
 //---------------------------------------------------------------------------
 
@@ -447,7 +450,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('SeriesDataTable/{status}','AdminController@SeriesDataTable');
                 Route::get('/sagaSerie/{id}','AdminController@sagaSerie');
                 Route::post('/admin_serie/{id}','AdminController@SerieStatus');
-                
+
 
             //-----------------------------------------------------------------------
                 Route::get('/viewRejection/{idModulo}/{modulo}','AdminController@viewRejection');
@@ -501,7 +504,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
          Route::get('ExternalClients','ExternalClientsController@ViewExternalClients');
-         
+
          Route::get('ExternalClientsDataTable','ExternalClientsController@ExternalClientsDataTable');
 
          Route::get('GetExternalClient/{id}','ExternalClientsController@GetExternalClient');
@@ -513,7 +516,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
 
          Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
-         
+
 
     });
 });
@@ -579,7 +582,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
      //Agregada 24/01/2019
-    
+
 
 
 
@@ -616,7 +619,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
 //Solo Productoras Logueadas pueden acceder a las siguientes rutas
 
 Route::group(['middleware' => 'seller_auth'], function () {
-    
+
     Route::get('seller_edit', 'SellerController@edit');
 
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
@@ -626,14 +629,14 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 
     Route::resource('sellers', 'SellerController');
-    
+
     Route::get('SellerBalance','SellerController@balance');
 
     //agregada 26-11-2018
     Route::get('BalanceSellerGraph','SellerController@DonutGraph');
 
     Route::get('SellerRequest','SellerController@Fondos');
-    
+
     Route::post('SellerFunds','SellerController@applicationFunds');
 
     //Agregada 11/12/2018
@@ -1087,7 +1090,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 
     Route::get('/seller_home','SellerController@homeSeller');
-    
+
 
 });
 
@@ -1100,5 +1103,3 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 */
-
-
