@@ -69,13 +69,6 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/MySeries.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MySeries.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -723,7 +716,7 @@
       <workItem from="1552917940033" duration="1669000" />
       <workItem from="1553720862206" duration="905000" />
       <workItem from="1553778663590" duration="1658000" />
-      <workItem from="1553809439096" duration="215000" />
+      <workItem from="1553809439096" duration="964000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -1026,11 +1019,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553779117078</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="cambios en cartelera( lectura)">
+      <created>1553809754104</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1553809754104</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="603714000" />
+    <option name="totallyTimeSpent" value="604463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

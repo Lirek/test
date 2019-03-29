@@ -40,15 +40,19 @@
                 <div class="card">
                   <div class="card-image">
                     @if($Album->name_alb)
-                      <a href="#myModal-{{$Album->id}}" class="modal-trigger" >
+                      <a href="{{ url('MyAlbums/'.$Album->id) }}" class="" >
                         <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
                       </a>
                     @else
                       <!-- <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px"> -->
                       @if($Album->cover == NULL)
+                      <a href="{{ url('MySingles/'.$Album->id) }}" class="" >
                         <img src="{{asset($Album->autors->photo)}}" width="100%" height="300px">
+                      </a>
                       @else
+                      <a href="{{ url('MySingles/'.$Album->id) }}" class="" >
                         <img src="{{asset($Album->cover)}}" width="100%" height="300px">
+                      </a>
                       @endif
                     @endif
                     <!-- <span class="card-title">Card Title</span> -->

@@ -153,21 +153,25 @@
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light  " href="{{ url('MyAlbums/'.$m['id']) }}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($m['adquirido'])
-                                        <a class="waves-effect waves-light " href="{{ url('MyMusic')}}">
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('MySingles/'.$m['id'])}}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
                                         </a>
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MySingles/'.$m['id'])}}">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('MySingles/'.$m['id'])}}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">music_note</i>
                                         </a>
