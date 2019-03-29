@@ -155,9 +155,11 @@
                                       </div>
                                 
                                       <div class="col s6">
-
+                                        @if($adquirido )
                                              <a class="btn blue curvaBoton  " href="{{url('MyMovies')}}">ATRÁS</a>
-
+                                        @else
+                                             <a class="btn blue curvaBoton  " href="{{url('ShowMovies')}}">ATRÁS</a>
+                                        @endif
                                       </div>
 
                                   </div>

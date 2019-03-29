@@ -1,11 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/Beneficios.blade.php" afterDir="false" />
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="cambios en cartelera( lectura)">
+      <change afterPath="$PROJECT_DIR$/public/Music/2/singles/2019-03-27/song_Letitbe1553719957.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/2/singles/Letitbe/singlecover_11553719957.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/Flor de fuego/albumcover_Flor de fuego1553723369.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/Let it be/albumcover_Let it be1553723393.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/Let it be/albumcover_Let it be1553723445.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/Let2/albumcover_Let21553723476.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/House of cards/episode_Pryeba1549474572.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Serie/House of cards/seriecover_House of cards1553723522.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/bookcover/cover_1553723501.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/factura/factura_1553525325.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1553722155.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1553722179.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1553722549.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1553722886.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/producer/logo/logo_1553722926.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/cover_car21550242427.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/cover_cars1550242373.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/megazine_car21550242427.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/megazine_cars1550242373.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/09578e7e482bd1c96822ce323d68a68946934d72.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0bea1c1ca451d70beb81bf634cfeef3690a1a219.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/0dfcf5426696023e7f1e00121862cec2a07bcdea.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1a7960cdd438a4fd8d2b9b75b6ec3ca3b5651b05.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1b154de17adb2a4c2f79835278235b0531185526.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/33fc4766e75943df5db2eb2c893f7de84ac36e2c.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/35427a7e4c2bd1706956a19cdd6909d3cd05255d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/3854600f2d5ecd3e81ec2a483e3597ca9c4c8f45.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5a852e241902c688f09e3badf129e9c6a0c557af.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/625dc3344691f8c209d26a659e988260b25d188d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/64c6f0da312d697c30a0231cef4a38f9cf233423.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/657a99ab3cf041eac88f8181b2fcc7c2a15a0578.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6650b7696a3b17468846a1bb8318ccf73f3b6fd8.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/66a91437a53faf810ad13211eab19ac3628e25d4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/69cdead71accf2b48d21d922e1f174469e4690c7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/75261ad3f11ea78a9ebbcbc5c711cd79cca7f39f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/83204ffe7978a8e8f459271f522e8c0dd45f315a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a8903778185abcf2a7eb6d82f272ed87afa91348.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/a9af0d57f512d724fbe2a2b7be7102007ea3b207.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/adeeb4df5e41cb1ab98131fcff8278dd79595f71.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b0c6b39309086d69a2f40b12476a684949da64cd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b49f79517130fca1aa1705fb31552553c1c8125d.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/b6bc5537e10cfd4bf7ace3547ed4b850b66f156a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bbf72d4aabe4d1403b56656b9bff4a3efcda7166.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/bf7455aa05298b0189dd1caa9cfea5a1448a741e.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c433eebecd0c8259a5a135b5feaaa890ae1a5e15.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c5e36334348276d1081aecd0bdf2fd980d349f77.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/c78d8051ec8d813b7f0ec1ffae23fb4c79e86839.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/cb2a4612978554ad8b85c8640fa96d021201f528.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d2a1dcdec34fd67f3b59ef594b863e182c9cc531.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d3337bebbe40ba751e144c659345a5b8abbdd7a0.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/d46c532c4ffc99d458400167034b1610048f4ad7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/dcc5b6c97f5a89925bc83c3d80b81ed38144b292.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/e7a88b60edb039413373e20ec6c38b97223b31f1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec06f18f96bf3ee9f43978fb0a92e68b9583979a.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ec1cd019a0174dc744a90d84de70cc325d5c4da6.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/MySeries.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/MySeries.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,17 +103,6 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="intire6_leipel_actual: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -257,7 +320,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="breiddy" />
       </map>
     </option>
   </component>
@@ -436,8 +499,8 @@
       <path value="$PROJECT_DIR$/vendor/arcanedev/log-viewer" />
       <path value="$PROJECT_DIR$/vendor/arcanedev/support" />
       <path value="$PROJECT_DIR$/vendor/rap2hpoutre/laravel-log-viewer" />
-      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -446,46 +509,49 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leipel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leipel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Default">
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -518,10 +584,12 @@
   <component name="RunManager">
     <configuration name="Leipel" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner directory="$PROJECT_DIR$" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.Leipel" />
+        <item itemvalue="PHPUnit.Leipel" />
+        <item itemvalue="PHPUnit.Leipel" />
         <item itemvalue="PHPUnit.Leipel" />
       </list>
     </recent_temporary>
@@ -653,6 +721,9 @@
       <workItem from="1552573275045" duration="6751000" />
       <workItem from="1552657579419" duration="4893000" />
       <workItem from="1552917940033" duration="1669000" />
+      <workItem from="1553720862206" duration="905000" />
+      <workItem from="1553778663590" duration="1658000" />
+      <workItem from="1553809439096" duration="215000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -948,11 +1019,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552674314738</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="cambios en cartelera( lectura)">
+      <created>1553779117078</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1553779117078</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="600926000" />
+    <option name="totallyTimeSpent" value="603714000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -966,53 +1044,53 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2777778" />
-      <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
-      <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.3757716" side_tool="true" weight="0.2738516" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32685512" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.6242284" weight="0.2738516" />
-      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3286219" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.4861111" weight="0.32685512" />
-      <window_info anchor="bottom" id="Database Console" order="14" weight="0.33568904" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.3757716" side_tool="true" weight="0.2738516" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3286219" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.6242284" weight="0.27227724" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32685512" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2912254" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" weight="0.33358547" />
+      <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.33410493" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="14" weight="0.33568904" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35416666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5277778" side_tool="true" weight="0.24168126" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4722222" weight="0.24168126" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.48688272" weight="0.32685512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.48688272" weight="0.32685512" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5277778" side_tool="true" weight="0.24168126" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4722222" weight="0.24168126" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1058,7 +1136,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Solucion al error del modal de compra" />
     <MESSAGE value="Cambios en revistas" />
     <MESSAGE value="Cambios pacheco" />
     <MESSAGE value="bmonterrey: Ajuste error balance &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
@@ -1083,31 +1160,10 @@
     <MESSAGE value="Merge branch 'alexis' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="Arreglo rutas js welcome" />
     <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
+    <MESSAGE value="cambios en cartelera( lectura)" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios en cartelera( lectura)" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/paso" />
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowTv.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/Megazines.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/plugins/materialize_adm/js/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1193,7 +1249,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="17">
           <caret line="88" column="70" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
         </state>
       </provider>
@@ -1299,13 +1355,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="313" lean-forward="true" selection-start-line="313" selection-end-line="313" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/views/74b1dc88ea3c0853502bfc85127aade5b98e77fc.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/promoter/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -1334,16 +1384,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="43" lean-forward="true" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f42a655a-fe1b-4b09-87b7-501aaab72fff/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f42a655a-fe1b-4b09-87b7-501aaab72fff/console.sql" />
     <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/account_balance" />
     <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/tags" />
     <entry file="file://$PROJECT_DIR$/public/js/welcome.js">
@@ -1358,13 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="17" column="33" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="267" column="40" selection-start-line="267" selection-start-column="35" selection-end-line="267" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1383,17 +1417,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="749" column="40" selection-start-line="749" selection-start-column="36" selection-end-line="749" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/WebsUser.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="165" column="197" selection-start-line="165" selection-start-column="197" selection-end-line="165" selection-end-column="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="158" selection-start-line="38" selection-start-column="158" selection-end-line="38" selection-end-column="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2601">
+          <caret line="153" column="28" selection-start-line="153" selection-start-column="28" selection-end-line="153" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23494">
+          <caret line="1382" column="7" selection-start-line="1382" selection-start-column="7" selection-end-line="1382" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/paso.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2227">
+          <caret line="131" column="52" selection-start-line="131" selection-start-column="52" selection-end-line="131" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>

@@ -883,15 +883,26 @@ class UserController extends Controller
       public function ShowMyReadBook($id)
     {
         $Book=Book::find($id);
-        event(new BookTraceEvent(Auth::user()->id,$id));
-            return view('users.show')->with('book',$Book);
+
+        $user= User::find(Auth::user()->id);
+        $BookAdd=user::contenidos_add($user, 'books_id');
+        $adquirido=(in_array($id, $BookAdd)) ? true : false;
+        if($adquirido){
+          event(new BookTraceEvent(Auth::user()->id,$id));
+        }
+            return view('users.show')->with('book',$Book)->with('adquirido',$adquirido);
     }
 
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
-        event(new MegazineTraceEvent(Auth::user()->id,$id));
-        return view('users.showMegazine')->with('megazines',$Megazine);
+        $user= User::find(Auth::user()->id);
+        $BookAdd=user::contenidos_add($user, 'megazines_id');
+        $adquirido=(in_array($id, $BookAdd)) ? true : false;
+        if($adquirido){
+          event(new MegazineTraceEvent(Auth::user()->id,$id));
+        }
+        return view('users.showMegazine')->with('megazines',$Megazine)->with('adquirido',$adquirido);
     }
 //----------------------------Peliculas-------------------------------------
     public function MyMovies()
