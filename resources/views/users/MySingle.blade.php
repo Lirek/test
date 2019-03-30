@@ -40,7 +40,35 @@
            text-align: left;
            font-size: 14px
        }
+       .collection .collection-item.avatar:not(.circle-clipper) > .circle, .collection .collection-item.avatar :not(.circle-clipper) > .circle {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            overflow: hidden;
+            left: 35px;
+            display: inline-block;
+            vertical-align: middle;
+        }
 
+        .aqua-gradient {
+            background: -webkit-linear-gradient(50deg,#2096ff, #11ff71)!important;
+            background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
+            background: linear-gradient(40deg,#2096ff, #9dffac)!important;
+        }
+        /*videos de youtube*/
+    .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .embed-container iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     </style>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.3.21/plyr.css">
 @endsection
@@ -48,76 +76,85 @@
 @section('main')  
 
 <div class="row">
-    <span class="grey-text"><h4 class="titelgeneral"><b><i class="material-icons small">audiotrack</i> {{$Albums->name_alb}}</b></h4></span>
+    <span class="grey-text"><h4 class="titelgeneral"><b><i class="material-icons small">audiotrack</i> {{$Songs->song_name}}</b></h4></span>
     <br>
 
         <div class="row">
           
               
             <div id="">
-                     <input type="hidden" name="id" id="id" value="{{$Albums->id}}">
+                     <input type="hidden" name="id" id="id" value="{{$Songs->id}}">
                     <div class="col s12 m4 offset-m1">
                       <br>
-                      <img src="{{asset($Albums->cover)}}" width="100%" height="300"style="">
+                      @if($Songs->cover)
+                        <img src="{{asset($Songs->cover)}}" width="100%" height="300"style="">
+                      @else
+                        <img src="{{asset($Songs->autors->photo)}}" width="100%" height="300"style="">
+                      @endif
                       @if($adquirido)
                         <audio id="player" class="player">
-                          <source src="" type="audio/mp3" id="play"> 
+                          <source src="{{asset($Songs->song_file)}}" type="audio/mp3" id="play"> 
                         </audio>
-                        <a href="{{ url('MyMusic') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
-                      @else
-                        <div class="card-content grey-text" >
-                          <div class="col m12 s12">
-                            <p class="grey-text truncate"><b>Artistas: </b>
-                              {{$Albums->autors->name}}
-                            </p>
-                          </div>
-                          <p><b>Costo: </b> {{$Albums->cost}} tickets</p>
-                        </div>
-                       <a class="btn curvaBoton waves-effect waves-light green" href="#" id="buyBook" onclick="fnOpenNormalDialog2('{!!$Albums->cost!!}','{!!$Albums->name_alb!!}','{!!$Albums->id!!}')"><i class="material-icons left   ">add_shopping_cart</i>Adquirir</a>
-                       <a href="{{ url('MusicContent') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                       @endif
                       
                     </div>
-                    @if($adquirido)
                     <div class="col m6 s12">
-                    <small>Canciones:</small>
-                    <ul class="collection z-depth-1" id="Playlist">
-                       
-                    </ul>
-                    @else
-                    <div class="col m6 s12">
-                    <small>Canciones:</small>
-                    <ul class="collection z-depth-1">
-                      @foreach($Albums->songs as $song)
-                        <li class="collection-item" id="">
-                          <div class="row">
-                            <div class="col s4">
-                                {{$song->song_name}}
-                            </div>
-                            <div class="col s4">
-                               {{$song->cost}} tickets
-                            </div>
-                             <div class="col s4">
-                              @if($song->transaction->count()!=0)
-                                @foreach($song->transaction as $t)
-                                  @if($t->user_id!=Auth::user()->id)
-                                    <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
-                                      <i class="material-icons">add_shopping_cart</i>
-                                    </a>
-                                  @endif
-                                @endforeach
-                                @else
-                                <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
-                                      <i class="material-icons">add_shopping_cart</i>
-                                    </a>
-                              @endif
-                            </div>
+                    <!-- <div class="card-content grey-text" >
+                          <div class="col m12 s12">
+                            <p class="grey-text truncate"><b>Artistas: </b>
+                              {{$Songs->autors->name}}
+                            </p>
                           </div>
+                          <p><b>Costo: </b> {{$Songs->cost}} tickets</p>
+                          @foreach($Songs->tags as $tag)
+                          <p><b>Género: </b> {{$tag->tags_name}}</p>
+                          @endforeach
+                    </div> -->
+                    <ul class="collection z-depth-1" >
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s12 m5 ">
+                                    <i class="material-icons circle left blue-text">person</i>
+                                    <b class="left grey-text truncate">Artista: </b>
+                                </div>
+                                <div class="col s12 m7 grey-text truncate">
+                                   {{$Songs->autors->name}}
+                                </div>
+                            </div>
                         </li>
-                      @endforeach
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s12 m5 ">
+                                    <i class="material-icons circle left blue-text">local_play</i>
+                                    <b class="left grey-text truncate">Costo: </b>
+                                </div>
+                                <div class="col s12 m7 grey-text truncate">
+                                   {{$Songs->cost}} tickets
+                                </div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s12 m5 ">
+                                    <i class="material-icons circle left blue-text">turned_in</i>
+                                    <b class="left grey-text truncate">Género: </b>
+                                </div>
+                                <div class="chip  aqua-gradient  white-text">
+                                    @foreach($Songs->tags as $tag)
+                                        {{$tag->tags_name}}</p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </li>
                     </ul>
-                  </div>
-                    @endif
+                       @if($adquirido)
+                        <a href="{{ url('MyMusic') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                       @else
+                         <a class="btn curvaBoton waves-effect waves-light green" href="#" id="buyBook" onclick="fnOpenNormalDialog('{!!$Songs->cost!!}','{!!$Songs->song_name!!}','{!!$Songs->id!!}')"><i class="material-icons left   ">add_shopping_cart</i>Adquirir</a>
+                         <a href="{{ url('MusicContent') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
+                       @endif
+                    </div>
+                   
                 </div>
                 
             </div>
@@ -363,87 +400,5 @@ function callback(value,id) {
     }
 }
 </script>
-<script>
-function fnOpenNormalDialog2(cost,name,id) {
 
-    
-    swal({
-            title: "Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
-            icon: "warning",
-            buttons:  ["Cancelar", "Adquirir"],
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            callback2(true,id);
-           
-          } else {
-            callback2(false,id);
-          }
-        });
-    };
-
-
-function callback2(value,id) {
-    if (value) {
-      swal({
-                title: 'Procesando..!',
-                text: 'Por favor espere..',
-                buttons: false,
-                closeOnEsc: false,
-                onOpen: () => {
-                    swal.showLoading()
-                }
-            })
-         $.ajax({
-                    
-            url:'../BuyAlbum/'+id,
-            type: 'POST',
-            data: {
-            _token: $('input[name=_token]').val()
-             },
-                    
-             success: function (result) 
-                {
-
-
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');
-                    }
-                    else if (result==1) 
-                    {
-                      swal('El album ya forma parte de su colección','','error');
-                    }
-                    else
-                    { 
-                    var idUser={!!Auth::user()->id!!};
-                    $.ajax({ 
-                
-                      url     : '../MyTickets/'+idUser,
-                      type    : 'GET',
-                      dataType: "json",
-                      success: function (respuesta){
-                      console.log(respuesta);
-                        $('#Tickets').html(respuesta);
-                  
-                      },
-                    });                      
-                      swal('Album comprado con exito','','success');
-                       console.log(result);
-                       window.setTimeout(function(){window.location.reload()}, 2000);
-                    }  
-                },
-              error: function (result) 
-                {
-                      
-                }
-
-            });
-    } else {
-        return false;
-    }
-}
-</script>
 @endsection

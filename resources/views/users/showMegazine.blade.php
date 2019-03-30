@@ -338,7 +338,7 @@ function callback(value,id) {
                     });
                         swal('Revista comprada con exito','','success');
                          console.log(result);
-                        location.reload(true)
+                       window.setTimeout(function(){window.location.reload()}, 1000);
                     }    
                 },
               error: function (result) 

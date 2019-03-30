@@ -67,7 +67,7 @@ class HomeController extends Controller
         $SeriesAdd=user::contenidos_add($user, 'Series_id');
 
         $musica = [];
-        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
+        $Songs = Songs::whereNull('album')->where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
         foreach ($Songs as $s) {
 
             if($s->cover == Null){

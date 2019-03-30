@@ -106,9 +106,9 @@
                                              <b class="left">Género: </b>
                                           </div>
                                           <div class="col s12 m7">
-
+                                          
                                              @foreach($s->tags_serie as $tag)
-
+                                             
                                              <div class="chip  aqua-gradient  white-text">
                                                 {{ $tag->tags_name}}
                                             </div>
@@ -196,16 +196,16 @@
                           </video>
                       </div>
                         <div class="col s12 m10 offset-m1" style="color: black">
-
+                          
                         <ul class="collapsible" >
                           <li>
                             <div class="collapsible-header">
                               <i class="material-icons">movie</i>
                               Episodios:
-                            </div>
+                            </div>  
                             @if($s->Episode())
                                 @foreach($s->Episode as $episode)
-
+                                
                                   @if($episode->status =='Aprobado')
                                     <div class="collapsible-body">
                                         <div class="row">
@@ -228,25 +228,25 @@
                                                   <div class="col s2">
                                                       <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="" onclick="fnOpenNormalDialog2('{!!$episode->cost!!}','{!!$episode->episode_name!!}','{!!$episode->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                                                   </div>
-                                                @endif
+                                                @endif 
                                             @endif
                                         </div>
                                     </div>
                                   @endif
-
+                                
                               @endforeach
-                            @endif
+                            @endif 
                           </li>
                         </ul>
-                    </div>
+                    </div> 
 
-
+               
                     </div>
 
 
                   </div>
                    </div>
-
+                           
 
                 </div>
 
@@ -254,7 +254,7 @@
 
 
               </div>
-
+              
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal bottom-sheet">
@@ -355,8 +355,8 @@ function callback(value,id) {
                     });
                     	swal('Serie comprada con exito','','success');
                   		 console.log(result);
-                       location.reload(true);
-                  	}
+                       window.setTimeout(function(){window.location.reload()}, 1000);
+                  	}	 
                 },
               error: function (result) 
                 {
@@ -441,8 +441,8 @@ function callback2(value,id) {
                     });
                       swal('Episodio comprado con exito','','success');
                        console.log(result);
-                       location.reload(true);
-                    }
+                       window.setTimeout(function(){window.location.reload()}, 1000);
+                    }  
                 },
               error: function (result) 
                 {

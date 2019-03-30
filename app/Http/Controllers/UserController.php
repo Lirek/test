@@ -659,8 +659,25 @@ class UserController extends Controller
         
         $Albums= Albums::find($id);
 
+        $user= User::find(Auth::user()->id);
+        $AlbumAdd=user::contenidos_add($user, 'album_id');
+        $adquirido=(in_array($id, $AlbumAdd)) ? true : false;
 
-        return view('users.MyAlbums')->with('Albums',$Albums);
+        return view('users.MyAlbums')->with('Albums',$Albums)->with('adquirido',$adquirido);
+        
+    }
+
+    public function MySingles($id)
+    {
+        
+        
+        $Song= Songs::find($id);
+        
+        $user= User::find(Auth::user()->id);
+        $SongAdd=user::contenidos_add($user, 'song_id');
+        $adquirido=(in_array($id, $SongAdd)) ? true : false;
+        
+        return view('users.MySingle')->with('Songs',$Song)->with('adquirido',$adquirido);
         
     }
 

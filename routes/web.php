@@ -132,6 +132,7 @@ Route::post('Invite','UserController@Invite');
 
     //Agregada12/7/18
     Route::get('MyAlbums/{id}','UserController@MyAlbums');
+    Route::get('MySingles/{id}','UserController@MySingles');
     Route::get('MySongsAlbums/{id}','UserController@SongAlbum');
     Route::get('SongsSingles','UserController@SongSingles');
 

@@ -61,7 +61,7 @@
                              <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialog('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                             @else
-                             <a href="#myModalSer-{{$cine->id}}" class="modal-trigger">
+                             <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
                             <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialogSer('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                             @endif
