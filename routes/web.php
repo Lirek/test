@@ -532,6 +532,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
         //------------------------------- Rutas para los ofertantes en backend -------------------------------
 
+        //------------------------------- Rutas para los pagos del ofertantes --------------------------------
+            Route::get('admin_bidder_payments','BidderController@paymentsBidder');
+            Route::get('infoPaymentsBidder/{status}','BidderController@infoPaymentsBidder');
+            Route::get('infoBidder/{idBidder}','BidderController@infoBidder');
+            Route::post('bidderPayments/{idPago}','BidderController@bidderPayments');
+        //------------------------------- Rutas para los pagos del ofertantes --------------------------------
+
     });
 });
 
@@ -1136,6 +1143,14 @@ Route::group(['middleware' => 'bidder_guest'], function(){
 Route::group(['middleware' => 'bidder_auth'], function(){
     Route::get('/bidder_home','BidderController@home');
     Route::get('bidderLogout','BidderAuth\LoginController@logout');
+    Route::get('allProducts','ProductController@products');
+    Route::post('productStore','ProductController@productStore');
+    Route::get('productDelete/{idProduct}','ProductController@productDelete');
+    Route::get('productInfo/{idProduct}','ProductController@productInfo');
+    Route::post('productUpdate','ProductController@productUpdate');
+    Route::get('retiro/{status?}','BidderController@retiro');
+    Route::post('retirar','BidderController@retirar');
+    Route::get('viewPayments/{status}','BidderController@viewPayments');
 });
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------

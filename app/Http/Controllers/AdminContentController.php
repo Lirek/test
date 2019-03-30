@@ -27,6 +27,7 @@ use App\PaymentSeller;
 use App\Payments;
 use App\Products;
 use App\Bidder;
+use App\PaymentsBidder;
 
 class AdminContentController extends Controller
 {
@@ -215,6 +216,8 @@ class AdminContentController extends Controller
 
     $pagosUsuarios = Payments::where('status','En Revision')->count();
 
+    $pagosBidder = PaymentsBidder::where('status','Por cobrar')->count();
+
     $productos = Products::where('status','En Revision')->count();
 
     $ofertantes = Bidder::where('status','En Revision')->count();
@@ -226,6 +229,7 @@ class AdminContentController extends Controller
       'solicitudesP' => $solicitudesProveedores,
       'solicitudesU' => $solicitudesUsuarios,
       'pagosU' => $pagosUsuarios,
+      'pagosB' => $pagosBidder,
       'productos' => $productos,
       'ofertantes' => $ofertantes
     ];

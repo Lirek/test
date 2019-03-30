@@ -19,6 +19,7 @@ class Bidder extends Authenticatable
     	'imagen_ruc',
     	'logo',
     	'points',
+        'pendding_points',
     	'status',
         'token',
     	'account_status'
@@ -94,5 +95,4 @@ class Bidder extends Authenticatable
         $modules = $bidder->roles()->detach($idModule);
         return $bidder;
     }
-
 }

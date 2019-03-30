@@ -29,6 +29,10 @@
 									<input type="number" class="validate" id="cost" name="cost" required="required" min="0">
 									<label for="cost">Costo</label>
 								</div>
+								<div class="input-field">
+									<input type="number" class="validate" id="amount" name="amount" required="required" min="1">
+									<label for="amount">Cantidad</label>
+								</div>
 								<div class="file-field input-field">
 									<div class="btn blue">
 										<span>seleccione<i class="material-icons right">picture_as_pdf</i></span>
@@ -154,6 +158,10 @@
 								<div class="input-field">
 									<input type="number" id="cost_u" name="cost" value="" required="required" min="0" placeholder="">
 									<label for="cost">Costo</label>
+								</div>
+								<div class="input-field">
+									<input type="number" id="amount_u" name="amount" value="" required="required" min="1" placeholder="">
+									<label for="amount">Cantidad</label>
 								</div>
 								<a class='btn-large blue' id='pdf_prod_u' href='' target='_blank'>
 									<i class='material-icons left'>picture_as_pdf</i>

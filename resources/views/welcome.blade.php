@@ -558,7 +558,7 @@
                         <a href="#proveedor"><i class="tiny material-icons">person</i><b> Proveedor</b></a>
                     </li>
                     <li class="tab col s4">
-                        <a href="#ofertante"><i class="tiny material-icons">shopping_basket</i><b> Ofertante</b></a>
+                        <a href="#aliado"><i class="tiny material-icons">shopping_basket</i><b> Aliado</b></a>
                     </li>
 
                 </ul>
@@ -651,8 +651,8 @@
             </form>
         </div>
 
-        {{--Modal inicio de sesion ofertante--}}
-        <div id="ofertante" class="col s12 center">
+        {{--Modal inicio de sesion aliado--}}
+        <div id="aliado" class="col s12 center">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/bidder_login') }}">
                 {{ csrf_field() }}
                 <div class="row">
@@ -707,7 +707,7 @@
             <ul class="tabs">
                 <li class="tab col s4"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
                 <li class="tab col s4"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
-                <li class="tab col s4"><a href="#ofertante1"><i class="material-icons prefix">store</i><b> Ofertante</b></a></li>
+                <li class="tab col s4"><a href="#aliado1"><i class="material-icons prefix">store</i><b> Aliado</b></a></li>
             </ul>
         </div>
         {{--registro usuario--}}
@@ -877,8 +877,8 @@
                 </div>
             </form>
         </div>
-        {{--registro ofertante--}}
-        <div id="ofertante1" class="col s12 center">
+        {{--registro aliado--}}
+        <div id="aliado1" class="col s12 center">
             <form class="form-horizontal" id="formRO">
                 {{ csrf_field() }}
                 @include('flash::message')

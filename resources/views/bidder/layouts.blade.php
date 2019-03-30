@@ -67,12 +67,21 @@
                     <div class="user-view">
                         <div class="container">
                             <a href="#">
-                                <img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil">
+                                @if(Auth::guard('bidder')->user()->logo!=null)
+                                    <img src="{{asset(Auth::guard('bidder')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil">
+                                @else
+                                    <img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil">
+                                @endif
                             </a><!-- logo user default -->
                         </div>
                         <div class="info-container">
-                            <div class="name ">
+                            <div class="name">
                                 <a class="white-text" href="#">{{Auth::guard('bidder')->user()->name}}</a>
+                            </div>
+                            <div class="name">
+                                <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
+                                    <i class="material-icons ">bubble_chart</i> Puntos ganados: {{Auth::guard('bidder')->user()->points}}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +95,18 @@
                 -->
                 <li><div class="divider"></div></li>
                 <li>
-                    <a href="{{ url('/bidderLogout') }}" class="waves-effect waves-yellow">
+                    <a href="{{url('retiro')}}" class="waves-effect waves-yellow">
+                        <i class="small material-icons">attach_money</i>
+                        Retiro de fondo
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('allProducts') }}" class="waves-effect waves-yellow">
+                        <i class="small material-icons">shopping_basket</i>Mis productos
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('bidderLogout') }}" class="waves-effect waves-yellow">
                         <i class="small material-icons">power_settings_new</i>Salir
                     </a>
                 </li>
@@ -109,6 +129,32 @@
                 </div>
             </div>
         </footer>
+
+        <div id="myModalTotal" class="modal modal-s">
+            <div class="modal-content">
+                <div class="amber">
+                    <br>
+                    <h4 class="center white-text"><i class="small material-icons">timeline</i> Mi Balance</h4>
+                    <br>
+                </div>
+                <br>
+                <blockquote class="center">
+                    <h5 class="grey-text"><b>Total de puntos ganados:</b> {{Auth::guard('bidder')->user()->points}}</h5>
+                    <h5 class="grey-text"><b>Total de puntos pendientes:</b> {{Auth::guard('bidder')->user()->pendding_points}}</h5>
+                    <h5>
+                        <a href="{{url('')}}">
+                            <i class="small material-icons">add_circle_outline</i>
+                            <br>
+                            Detalles
+                        </a>
+                    </h5>
+                </blockquote>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-amber btn-flat">Salir</a>
+            </div>
+        </div>
+
         <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
         <script src="{{asset('assets/js/jquery.js') }}"></script>
         <!--Import jQuery before materialize.js-->
@@ -117,11 +163,15 @@
 
         <script class="include" type="text/javascript" src="{{asset('assets/js/jquery.dcjqaccordion.2.7.js')}}"></script>
         <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+        {{--
         <script src="{{asset('assets/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
+        --}}
         <script src="{{asset('assets/js/jquery.sparkline.js')}}"></script>
 
         <!--common script for all pages-->
+        {{--
         <script src="{{asset('assets/js/common-scripts.js')}}"></script>
+        --}}
 
         <script type="text/javascript" src="{{asset('assets/js/gritter/js/jquery.gritter.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/gritter-conf.js')}}"></script>
