@@ -30,6 +30,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'ab9b68c5b1def6f80e89be13eb0a4be3' => __DIR__ . '/..' . '/spatie/laravel-fractal/src/helpers.php',
+        '1e298922c3e2134d42dcdb03e6d5f55a' => __DIR__ . '/..' . '/torann/geoip/src/helpers.php',
         '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
     );
 
@@ -57,6 +58,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'T' => 
         array (
             'Tymon\\JWTAuth\\' => 14,
+            'Torann\\GeoIP\\' => 13,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -181,6 +183,10 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Tymon\\JWTAuth\\' => 
         array (
             0 => __DIR__ . '/..' . '/tymon/jwt-auth/src',
+        ),
+        'Torann\\GeoIP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/torann/geoip/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -474,6 +480,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Events\\ContentAprovalEvent' => __DIR__ . '/../..' . '/app/Events/ContentAprovalEvent.php',
         'App\\Events\\ContentDenialEvent' => __DIR__ . '/../..' . '/app/Events/ContentDenialEvent.php',
         'App\\Events\\CreateCodeSocialUserEvent' => __DIR__ . '/../..' . '/app/Events/CreateCodeSocialUserEvent.php',
+        'App\\Events\\DeleteAccount' => __DIR__ . '/../..' . '/app/Events/DeleteAccount.php',
         'App\\Events\\EpisodeTraceEvent' => __DIR__ . '/../..' . '/app/Events/EpisodeTraceEvent.php',
         'App\\Events\\InviteEvent' => __DIR__ . '/../..' . '/app/Events/InviteEvent.php',
         'App\\Events\\MegazineTraceEvent' => __DIR__ . '/../..' . '/app/Events/MegazineTraceEvent.php',
@@ -485,6 +492,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Events\\PointsTraceEvent' => __DIR__ . '/../..' . '/app/Events/PointsTraceEvent.php',
         'App\\Events\\RadioTraceEvent' => __DIR__ . '/../..' . '/app/Events/RadioTraceEvent.php',
         'App\\Events\\SongTraceEvent' => __DIR__ . '/../..' . '/app/Events/SongTraceEvent.php',
+        'App\\Events\\TransactionToken' => __DIR__ . '/../..' . '/app/Events/TransactionToken.php',
         'App\\Events\\TransactionsId' => __DIR__ . '/../..' . '/app/Events/TransactionsId.php',
         'App\\Events\\TvTraceEvent' => __DIR__ . '/../..' . '/app/Events/TvTraceEvent.php',
         'App\\Events\\UserValidateEvent' => __DIR__ . '/../..' . '/app/Events/UserValidateEvent.php',
@@ -539,9 +547,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\WelcomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/WelcomeController.php',
         'App\\Http\\Controllers\\mp3File' => __DIR__ . '/../..' . '/app/Http/Controllers/mp3File.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\ActiveUsers' => __DIR__ . '/../..' . '/app/Http/Middleware/ActiveUsers.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\AuthenticatePromoter' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticatePromoter.php',
         'App\\Http\\Middleware\\AuthenticateSeller' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateSeller.php',
+        'App\\Http\\Middleware\\EmailVerified' => __DIR__ . '/../..' . '/app/Http/Middleware/EmailVerified.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\MyAlbums' => __DIR__ . '/../..' . '/app/Http/Middleware/MyAlbums.php',
         'App\\Http\\Middleware\\MyBooks' => __DIR__ . '/../..' . '/app/Http/Middleware/MyBooks.php',
@@ -567,6 +577,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Listeners\\AssingPoints' => __DIR__ . '/../..' . '/app/Listeners/AssingPoints.php',
         'App\\Listeners\\CreateCodeSocialUser' => __DIR__ . '/../..' . '/app/Listeners/CreateCodeSocialUser.php',
+        'App\\Listeners\\DeleteAccount' => __DIR__ . '/../..' . '/app/Listeners/DeleteAccount.php',
         'App\\Listeners\\RegisterAlbumTrace' => __DIR__ . '/../..' . '/app/Listeners/RegisterAlbumTrace.php',
         'App\\Listeners\\RegisterBookTrace' => __DIR__ . '/../..' . '/app/Listeners/RegisterBookTrace.php',
         'App\\Listeners\\RegisterEpisodeTrace' => __DIR__ . '/../..' . '/app/Listeners/RegisterEpisodeTrace.php',
@@ -585,6 +596,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Listeners\\SendPasswordPromoterEmail' => __DIR__ . '/../..' . '/app/Listeners/SendPasswordPromoterEmail.php',
         'App\\Listeners\\SendPaymentAprovalEmail' => __DIR__ . '/../..' . '/app/Listeners/SendPaymentAprovalEmail.php',
         'App\\Listeners\\SendPaymentDenialEmail' => __DIR__ . '/../..' . '/app/Listeners/SendPaymentDenialEmail.php',
+        'App\\Listeners\\SendTokenEmail' => __DIR__ . '/../..' . '/app/Listeners/SendTokenEmail.php',
         'App\\Listeners\\SendTransactionsId' => __DIR__ . '/../..' . '/app/Listeners/SendTransactionsId.php',
         'App\\Listeners\\SendUserValidateEmail' => __DIR__ . '/../..' . '/app/Listeners/SendUserValidateEmail.php',
         'App\\Listeners\\SendWelcomeEmail' => __DIR__ . '/../..' . '/app/Listeners/SendWelcomeEmail.php',
@@ -600,6 +612,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Mail\\PaymentDenial' => __DIR__ . '/../..' . '/app/Mail/PaymentDenial.php',
         'App\\Mail\\PromoterAssing' => __DIR__ . '/../..' . '/app/Mail/PromoterAssing.php',
         'App\\Mail\\PromoterPassword' => __DIR__ . '/../..' . '/app/Mail/PromoterPassword.php',
+        'App\\Mail\\SendTransactionToken' => __DIR__ . '/../..' . '/app/Mail/SendTransactionToken.php',
         'App\\Mail\\StatusApplys' => __DIR__ . '/../..' . '/app/Mail/StatusApplys.php',
         'App\\Mail\\StatusBooks' => __DIR__ . '/../..' . '/app/Mail/StatusBooks.php',
         'App\\Mail\\StatusMagazines' => __DIR__ . '/../..' . '/app/Mail/StatusMagazines.php',
@@ -4176,6 +4189,21 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Torann\\GeoIP\\Cache' => __DIR__ . '/..' . '/torann/geoip/src/Cache.php',
+        'Torann\\GeoIP\\Console\\Clear' => __DIR__ . '/..' . '/torann/geoip/src/Console/Clear.php',
+        'Torann\\GeoIP\\Console\\Update' => __DIR__ . '/..' . '/torann/geoip/src/Console/Update.php',
+        'Torann\\GeoIP\\Contracts\\ServiceInterface' => __DIR__ . '/..' . '/torann/geoip/src/Contracts/ServiceInterface.php',
+        'Torann\\GeoIP\\Facades\\GeoIP' => __DIR__ . '/..' . '/torann/geoip/src/Facades/GeoIP.php',
+        'Torann\\GeoIP\\GeoIP' => __DIR__ . '/..' . '/torann/geoip/src/GeoIP.php',
+        'Torann\\GeoIP\\GeoIPServiceProvider' => __DIR__ . '/..' . '/torann/geoip/src/GeoIPServiceProvider.php',
+        'Torann\\GeoIP\\Location' => __DIR__ . '/..' . '/torann/geoip/src/Location.php',
+        'Torann\\GeoIP\\Services\\AbstractService' => __DIR__ . '/..' . '/torann/geoip/src/Services/AbstractService.php',
+        'Torann\\GeoIP\\Services\\IPApi' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPApi.php',
+        'Torann\\GeoIP\\Services\\IPData' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPData.php',
+        'Torann\\GeoIP\\Services\\IPGeoLocation' => __DIR__ . '/..' . '/torann/geoip/src/Services/IPGeoLocation.php',
+        'Torann\\GeoIP\\Services\\MaxMindDatabase' => __DIR__ . '/..' . '/torann/geoip/src/Services/MaxMindDatabase.php',
+        'Torann\\GeoIP\\Services\\MaxMindWebService' => __DIR__ . '/..' . '/torann/geoip/src/Services/MaxMindWebService.php',
+        'Torann\\GeoIP\\Support\\HttpClient' => __DIR__ . '/..' . '/torann/geoip/src/Support/HttpClient.php',
         'TvTraceTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_30_182404_TvTraceTable.php',
         'Tymon\\JWTAuth\\Blacklist' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Blacklist.php',
         'Tymon\\JWTAuth\\Claims\\Audience' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Claims/Audience.php',

@@ -34,6 +34,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
              \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
 
         'api' => [
@@ -81,5 +82,6 @@ class Kernel extends HttpKernel
          //middleware de usuario activo
          'ActiveUser' => \App\Http\Middleware\ActiveUsers::class,
          'VerifiedEmail' => \App\Http\Middleware\EmailVerified::class,
+         'GeoLock' => \App\Http\Middleware\GeoLock::class,
     ];
 }

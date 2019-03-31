@@ -123,7 +123,7 @@ class WelcomeController extends Controller
                 Auth::logout();
             }
         }
-
+        
         return view('welcome')
             ->with('iRadios',$iRadios)
             ->with('iTvs',$iTvs)
@@ -140,26 +140,26 @@ class WelcomeController extends Controller
 
     public function email(Request $request){
         $email=User::where('email','=',$request->email)->first();
-        
+
 
         if($email){
-             return response()->json(false);  
+             return response()->json(false);
         }else{
             return response()->json(true);
         }
-    
+
     }
 
     public function emailSeller(Request $request){
         $email=Seller::where('email','=',$request->email)->first();
-      
+
 
         if($email){
-            return response()->json($email->email); 
+            return response()->json($email->email);
         }else{
-            return response()->json(1); 
+            return response()->json(1);
         }
-    
+
     }
 
     public function indexRadio() {
