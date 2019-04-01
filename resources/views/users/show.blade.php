@@ -120,7 +120,8 @@
 
                                        <a  href="{{ asset('book')}}/{{ $book->books_file }}#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
 
-                                        <a href="{{url('ReadBook')}}/{{$book->id}}" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>
+                                       <!-- <a href="{{url('ReadBook')}}/{{$book->id}}" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>-->
+
                                     </div>
                                     <div class="col s4 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
