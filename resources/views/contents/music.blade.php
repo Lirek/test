@@ -294,7 +294,9 @@ function callback(value,id) {
                     });
                       
                     swal('Cancion comprada con exito','','success');
-
+                    setTimeout(function(){
+                          location.href="{{('MySingles')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 
@@ -405,7 +407,9 @@ function callback2(value,id) {
                       },
                     });                      
                       swal('Album comprado con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('MyAlbums')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 

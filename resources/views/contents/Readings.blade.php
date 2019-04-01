@@ -402,7 +402,10 @@ function callback(value,id) {
                       },
                     });
                         swal('Libro comprado con exito','','success');
-                         console.log(result);
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadBook')}}/"+id;  
+                      },2000);
+                        
                     }    
                 },
               error: function (result) 
@@ -485,7 +488,9 @@ function callbackMeg(value,id) {
                       },
                     });
                       swal('Revista comprada con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('ShowMyReadMegazine')}}/"+id;  
+                      },2000);
                     }   
                 },
               error: function (result) 

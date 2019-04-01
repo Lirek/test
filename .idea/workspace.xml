@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="cambios en cartelera( lectura)">
+    <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="Redireccion en compras de contenido">
+      <change afterPath="$PROJECT_DIR$/public/Music/1/profileArtist/Caramelos de cianuro.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/2/singles/2019-03-27/song_Letitbe1553719957.mp3" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/2/singles/Letitbe/singlecover_11553719957.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/Music/Caramelos de cianuro/albums/Flor de fuego/albumcover_Flor de fuego1553723369.jpg" afterDir="false" />
@@ -21,6 +22,7 @@
       <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/cover_cars1550242373.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/megazine_car21550242427.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/megazine/1/independientes/megazine_cars1550242373.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/user/25/profile/userpicMauricio1553868376.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/09578e7e482bd1c96822ce323d68a68946934d72.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/0bea1c1ca451d70beb81bf634cfeef3690a1a219.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/0dfcf5426696023e7f1e00121862cec2a07bcdea.php" afterDir="false" />
@@ -28,13 +30,16 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/1b154de17adb2a4c2f79835278235b0531185526.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/1ffdd8c2687675289ff04a65ba6b8e63a5389836.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/28e61327635d3669b66e59bc075ee27f6d498afd.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/2fddad94ec732e230b7fc2fab6bc936cc47d0db5.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/33fc4766e75943df5db2eb2c893f7de84ac36e2c.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/3455f5022b47344aeec4b0cd3931a0d41916ed22.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/350ca9685fd36b687955ffd983a3049511217db1.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/35427a7e4c2bd1706956a19cdd6909d3cd05255d.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/3854600f2d5ecd3e81ec2a483e3597ca9c4c8f45.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/4290f66cb33bbd5d3ac7ef04c006b1ab0f6e7329.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/46b364fdd8a992e02cc4625981671d6685309e06.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/48e3e78f099685c2ab52168e07367911e9af02b4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/5a2aa726a9092c0387246249ac9a38721189ce19.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/5a852e241902c688f09e3badf129e9c6a0c557af.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/5ec197fa805bbb7a94c0546ac57a848d05cb6513.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/625dc3344691f8c209d26a659e988260b25d188d.php" afterDir="false" />
@@ -44,6 +49,7 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/66a91437a53faf810ad13211eab19ac3628e25d4.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/69af9b41244340e749c92dc89d05a3543e2c3d35.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/69cdead71accf2b48d21d922e1f174469e4690c7.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/views/6a8c85fce3f49577ae06f18d16e432c69976e891.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/75261ad3f11ea78a9ebbcbc5c711cd79cca7f39f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/83204ffe7978a8e8f459271f522e8c0dd45f315a.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/849024744de96dad1ec06ea2c351e6e8a3dc0ca1.php" afterDir="false" />
@@ -69,6 +75,10 @@
       <change afterPath="$PROJECT_DIR$/storage/framework/views/f2e0941861d69f85c77d9b2594dddf52b4d7587f.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/storage/framework/views/ff3fdadbca78241455cd9820f47d1e6c196f748f.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/Readings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/ShowMovies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/music.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/music.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -510,6 +520,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -534,17 +555,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -717,6 +727,8 @@
       <workItem from="1553720862206" duration="905000" />
       <workItem from="1553778663590" duration="1658000" />
       <workItem from="1553809439096" duration="964000" />
+      <workItem from="1553891213215" duration="800000" />
+      <workItem from="1554131438075" duration="305000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -1026,11 +1038,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553809754104</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="cambios en cartelera (Musica)">
+      <created>1553891467876</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1553891467876</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="604463000" />
+    <option name="totallyTimeSpent" value="605568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1051,7 +1070,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32685512" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.2912254" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.30030257" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.33358547" />
       <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
@@ -1136,8 +1155,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambios en revistas" />
-    <MESSAGE value="Cambios pacheco" />
     <MESSAGE value="bmonterrey: Ajuste error balance &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
@@ -1161,7 +1178,9 @@
     <MESSAGE value="Arreglo rutas js welcome" />
     <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="cambios en cartelera( lectura)" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios en cartelera( lectura)" />
+    <MESSAGE value="cambios en cartelera (Musica)" />
+    <MESSAGE value="Redireccion en compras de contenido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redireccion en compras de contenido" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/phrase.rnc">

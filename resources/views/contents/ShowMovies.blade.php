@@ -541,7 +541,9 @@ function callbackSer(value,id) {
                       },
                     });
                       swal('Serie comprada con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('PlaySerie')}}/"+id;  
+                      },2000);
                     }   
                 },
               error: function (result) 
@@ -625,7 +627,9 @@ function callback(value,id) {
                       },
                     });
                       swal('Pelicula comprada con exito','','success');
-                       console.log(result);
+                       setTimeout(function(){
+                          location.href="{{('PlayMovie')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 
