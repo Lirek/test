@@ -9,7 +9,7 @@
 }
 
 #tabs-swipe-demo{
-  margin-bottom: 50px;
+  margin-bottom: 12px;
 }
 
 .embed-container{

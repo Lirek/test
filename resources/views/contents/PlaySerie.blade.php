@@ -8,10 +8,6 @@
     font-weight: 150;
 }
 
-#tabs-swipe-demo{
-  margin-bottom: 50px;
-}
-
 .embed-container{
   position: relative;
   padding-bottom: 56.25%;
@@ -69,7 +65,7 @@
             <div class="row ">
               <br>
               <div class="col s12 m3">
-                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="300px">
+                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="520px">
              </div>
 
               <div class="col m8 s12">
