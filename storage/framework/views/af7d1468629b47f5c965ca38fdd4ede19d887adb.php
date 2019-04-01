@@ -216,9 +216,9 @@
                                         <?php if(count($author)!=0): ?>
                                         <div class=" input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">face</i>
-                                            <?php echo Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]); ?>
+                                            <?php echo Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]); ?>
 
-                                            <label for="exampleInputFile" class="control-label">Nombre de autor</label>
+                                            <label for="autor" class="control-label">Nombre de autor</label>
                                             <a href="<?php echo e(route('authors_books.create')); ?>" class="btn curvaBoton waves-effect waves-light green">
                                                 Agregar autor
                                             </a>
@@ -242,7 +242,7 @@
                                         <?php if(count($author)!=0): ?>
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix blue-text valign-wrapper" >face</i>
-                                            <?php echo Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]); ?>
+                                            <?php echo Form::select('author_id',$author,$book->author_id,['class'=>'form-control','id'=>'autor','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un autor')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                             <br>
                                         </div>
@@ -287,9 +287,9 @@
                                         <div class="input-field col s12">
                                         
                                          <i class="material-icons prefix blue-text valign-wrapper">book</i>
-                                        <?php echo Form::select('saga_id',$saga,$book->saga_id,['class'=>'form-control select-saga','placeholder'=>'Selecione saga del libro','id'=>'exampleInputFile']); ?>
+                                        <?php echo Form::select('saga_id',$saga,$book->saga_id,['class'=>'form-control select-saga','placeholder'=>'Selecione saga del libro','id'=>'saga']); ?>
 
-                                        <label for="exampleInputFile" class="control-label">Saga del libro</label>
+                                        <label for="saga" class="control-label">Saga del libro</label>
                                         <br>
                                         </div>
                                     </div>
@@ -313,14 +313,14 @@
                                 
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text">create</i>
-                                    <label for="exampleInputFile" class="control-label">Título</label>
+                                    <label for="titulo" class="control-label">Título</label>
                                     <?php if($book->status != 'Aprobado'): ?>
-                                        <?php echo Form::text('title',$book->title,['class'=>'form-control','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
+                                        <?php echo Form::text('title',$book->title,['class'=>'form-control','id'=>'titulo','placeholder'=>'Titulo del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                         <div id="mensajeTitulo"></div>
                                         <br>
                                     <?php else: ?>
-                                        <?php echo Form::text('title',$book->title,['class'=>'form-control','placeholder'=>'Titulo del libro',' readonly']); ?>
+                                        <?php echo Form::text('title',$book->title,['class'=>'form-control','id'=>'titulo','placeholder'=>'Titulo del libro',' readonly']); ?>
 
                                         <div id="mensajeTitulo"></div>
                                         <br>
@@ -349,7 +349,7 @@
                                 
                                 <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                                    <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                    <label for="precio" class="control-label">Costo en tickets</label>
                                     
                                     <?php if($book->status != 'Aprobado'): ?>
                                         <?php echo Form::number('cost',$book->cost,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999']); ?>
@@ -381,13 +381,13 @@
                                         
                                         
                                         <?php if($book->status != 'Aprobado'): ?>
-                                            <?php echo Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
+                                            <?php echo Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]); ?>
 
                                         <?php else: ?>
-                                            <?php echo Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]); ?>
+                                            <?php echo Form::select('rating_id',$rating,$book->rating_id,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]); ?>
 
                                         <?php endif; ?>
-                                        <label for="exampleInputFile" class="control-label">Categoría</label>
+                                        <label for="rating" class="control-label">Categoría</label>
                                     </div>
                                 </div>
                                 
@@ -397,7 +397,7 @@
                                    
                                         <?php if($book->status != 'Aprobado'): ?>
                                         <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
-                                        <select name="tags[]" multiple="true" class="form-control" required>
+                                        <select name="tags[]" multiple="true" class="form-control" required id="tags">
                                             <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($genders->id); ?>"
                                                     <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
@@ -413,7 +413,7 @@
                                         </select>
                                         <?php else: ?>
                                         <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
-                                        <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                                        <select name="tags[]" multiple="true" class="form-control" disabled="true" id="tags">
                                         <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $genders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($genders->id); ?>"
                                                 <?php $__currentLoopData = $s_tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
@@ -441,12 +441,12 @@
                                             Si no selecciona un libro, se mantendrá el actual
                                         </label>
                                         <div class="file-field input-field">
-                                            <label for="exampleInputFile" class="control-label">Cargar el libro</label>
+                                            <label for="pdf" class="control-label">Cargar el libro</label>
                                             <br><br>
                                             <div id="mensajeDocumento"></div>
                                             <div class="btn blue">
                                                  <span><i class="material-icons">picture_as_pdf</i></span>
-                                                <?php echo Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']); ?>
+                                                <?php echo Form::file('books_file',['class'=>'form-control','accept'=>'.pdf','control-label','id'=>'pdf','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione documento del libro')",'oninput'=>"setCustomValidity('')",'id'=>'libro']); ?>
 
                                             </div>
                                             <div class="file-path-wrapper">
@@ -708,7 +708,7 @@
                                         <option value="ZM">Zambia</option>
                                         <option value="ZW">Zimbabue</option>
                                     </select>
-                                    <label class="control-label">País</label><br>
+                                    <label for="paises" class="control-label">País</label><br>
                                     </div>
                                 <br>
                                 </div>
@@ -718,7 +718,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i> 
                                     
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     <?php echo Form::textarea('sinopsis',$book->sinopsis,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis del libro','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis del libro')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']); ?>
@@ -730,7 +730,7 @@
                                 <div class="input-field col s12">
                                     
                                     <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                                    <label for="exampleInputPassword1" class="control-label">Año de lanzamiento</label>
+                                    <label for="fechaLanzamiento" class="control-label">Año de lanzamiento</label>
                                     <div id="mensajeFechaLanzamiento"></div>
                                     <?php if($book->status != 'Aprobado'): ?>
                                         <?php echo Form::number('release_year',$book->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')",'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')",'oninput'=>"setCustomValidity('')"]); ?>

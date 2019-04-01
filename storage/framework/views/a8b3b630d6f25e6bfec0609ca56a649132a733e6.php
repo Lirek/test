@@ -177,7 +177,7 @@
                         </div>
                         <div class="name" data-toggle="dropdown" >
                             <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
-                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Ganados!!: <?php echo e(Auth::guard('web_seller')->user()->credito); ?>
+                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Ganados: <?php echo e(Auth::guard('web_seller')->user()->credito); ?>
 
                             </a>
                         </div>

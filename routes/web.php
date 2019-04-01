@@ -140,6 +140,9 @@ Route::post('Invite','UserController@Invite');
     //Agregada 14/7/18
     Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
 
+    //Agregada Alexis 28/03/2019
+    Route::get('ReadBook/{id}','UserController@ReadBook')->middleware('MyBooks');
+
     //Agregada 15/7/18
     Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
 
