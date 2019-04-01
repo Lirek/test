@@ -50,6 +50,22 @@
 
             @foreach($Series as $s)
 
+
+              <div class="row">
+                
+                <div class="col s3">
+                  
+                </div>
+                <div class="col s9">
+                  <ul id="tabs-swipe-demo" class="tabs">
+                      <li class="tab col s3"><a class="active" href="#test-swipe-1">Trailer</a></li>
+                      <li class="tab col s3"><a href="#test-swipe-2">Episodios</a></li>
+                      
+                    </ul>
+                </div>
+                
+                
+              </div>
             <div class="row ">
               <br>
               <div class="col s12 m3">
@@ -60,11 +76,7 @@
 
                 <div class="row">
                   
-                  <ul id="tabs-swipe-demo" class="tabs">
-                      <li class="tab col s3"><a class="active" href="#test-swipe-1">Trailer</a></li>
-                      <li class="tab col s3"><a href="#test-swipe-2">Episodios</a></li>
-                      
-                    </ul>
+                  
                     <div id="test-swipe-1" class="col s12 ">
                       <div class="col s12 " style="color: black">
         
@@ -198,6 +210,89 @@
                             @endif                    
           
                       </div>
+                      
+                      <div class="col m12 s12">
+                        <br>
+                              <ul class="collection z-depth-1" style="color: black">
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">create</i>
+                                              <b class="left">Titulo original: </b>
+                                          </div>
+                                         <div class="col s12 m7">
+                                             {{ $s->original_title }}
+                                          </div>
+                                      </div>
+                                  </li>
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">star</i>
+                                             <b class="left">Categoria: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+
+                                          </div>
+                                      </div>
+                                  </li>
+                                 @if($s->sagas!=null)
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">folder</i>
+                                              <b class="left">Saga: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+                                              {{ $s->saga->sag_name }}
+                                         </div>
+                                      </div>
+                                  </li>
+                                  @else
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">folder</i>
+                                              <b class="left">Saga: </b>
+                                         </div>
+                                          <div class="col s12 m7">
+                                              No pertenece a una saga
+                                          </div>
+                                      </div>
+                                  </li>
+                                  @endif
+                                 <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                             <i class="material-icons circle left">local_play</i>
+                                              <b class="left">Costo: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+                                              {{ $s->cost }} Tickets
+                                          </div>
+                                      </div>
+                                  </li>
+                                 <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                        
+                                          <div class="col s6 ">
+                                                <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+
+                                          </div>
+                                      
+                                          <div class="col s6 ">
+
+
+                                                 <a class="btn blue curvaBoton  " href="{{url('MySeries')}}">ATRÁS</a>
+
+                                          </div>
+
+                                      </div>
+                                  </li>
+                              </ul>
+                            
+
+                            </div>
                                 
                     </div>
 
