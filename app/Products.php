@@ -38,7 +38,6 @@ class Products extends Model
         $pathPdf = public_path()."/promociones/";
         $pdf->move($pathPdf,$namePDF);
         $pdf_prod = "/promociones/".$namePDF;
-
         if (array_key_exists('idBidder', $request->all())) {
             $product->bidder_id = $request->idBidder;
             $product->status = "En Revision";
@@ -111,7 +110,11 @@ class Products extends Model
     	$product = self::find($id);
     	File::delete(public_path().$product->imagen_prod);
     	File::delete(public_path().$product->pdf_prod);
-    	self::destroy($id);
+        $SubProducto = SubProducto::where('product_id',$id)->get();
+        if ($SubProducto!=null) {
+            SubProducto::where('product_id',$id)->delete();
+        }
+        self::destroy($id);
     	return $product;
     }
 

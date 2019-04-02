@@ -558,6 +558,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('bidderPayments/{idPago}','BidderController@bidderPayments');
         //------------------------------- Rutas para los pagos del ofertantes --------------------------------
 
+        //------------------------------- Rutas para las conversiones --------------------------------
+            Route::get('conversiones','ConversionesController@conversiones');
+            Route::post('conversion','ConversionesController@conversion');
+            Route::get('historialCosto/{tipo}','ConversionesController@historialCosto');
+        //------------------------------- Rutas para las conversiones --------------------------------
+
     });
 });
 

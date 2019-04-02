@@ -940,7 +940,6 @@
 <script src="{{asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{asset('js/welcome.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@include('users.js')
 <script type="text/javascript">
     function masInfo(tipo) {
         console.log(tipo);

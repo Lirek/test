@@ -70,7 +70,7 @@ class PaymentsBidder extends Model
     	}
     	$bidder->save();
     	$payment->save();
-    	//Mail::to($email)->send(new StatusPayments($payment->fecha_cita,$request->status,$message));
+    	Mail::to($email)->send(new StatusPayments($payment->fecha_cita,$request->status,$message));
     	return response()->json($payment);
     }
 

@@ -284,7 +284,7 @@
 									</div>
 								</div>
 								<div class="col s12">
-									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd">
+									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button_u" id="btnAdd">
 		                                <i class="material-icons"></i>Agregar otro
 		                            </a>
 								</div>
@@ -357,11 +357,19 @@
 			$('.tooltipped').tooltip();
 			$('.materialboxed').materialbox();
 			$('input.count').characterCounter();
+
 			var agregar = $('.add_button');
             var wrapper = $('.agregar');
             agregar.click(function(){ 
                 wrapper.append(agregarHTML());
             });
+
+            var agregar_u = $('.add_button_u');
+            var wrapper_u = $('.agregar_u');
+            agregar_u.click(function(){ 
+                wrapper_u.append(agregarHTML());
+            });
+
             $(document).on('click','.eliminar', function(){
                 var uno = $(this).parent('div');
                 var dos = $(uno).parent('div');

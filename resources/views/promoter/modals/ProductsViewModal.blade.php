@@ -179,7 +179,7 @@
 									</div>
 								</div>
 								<div class="col s12">
-									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd">
+									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button_u">
 		                                <i class="material-icons"></i>Agregar otro
 		                            </a>
 								</div>
