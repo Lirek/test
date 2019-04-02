@@ -47,7 +47,7 @@
                     return true;
                 } else {
                     $('#mensajeCorreoOfertante').show();
-                    $('#mensajeCorreoOfertante').text('Este email ya se encuentra regitrado');
+                    $('#mensajeCorreoOfertante').text('Este email ya se encuentra registrado');
                     $('#mensajeCorreoOfertante').css('font-size','120%');
                     $('#mensajeCorreoOfertante').css('color','red');
                     $('#registroRO').attr('disabled',true);

@@ -139,7 +139,7 @@
                 else
                 {
                     $('#mensajeCorreo').show();
-                    $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                    $('#mensajeCorreo').text('Este email ya se encuentra registrado');
                     $('#mensajeCorreo').css('font-size','60%');
                     $('#mensajeCorreo').css('color','red');
                     $('#registroRP').attr('disabled',true);
@@ -281,7 +281,7 @@
                 else
                 {
                     $('#emailMenRU').show();
-                    $('#emailMenRU').text('Este email ya se encuentra regitrado');
+                    $('#emailMenRU').text('Este email ya se encuentra registrado');
                     $('#emailMenRU').css('font-size','60%');
                     $('#emailMenRU').css('color','red');
                     $('#registroRU').attr('disabled',true);

@@ -118,9 +118,10 @@
                                     <div class="col s4 m4 l4">
                                         <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
 
-                                       <!--<a  href="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>-->
+                                       <a  href="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
 
-                                        <a href="<?php echo e(url('ReadBook')); ?>/<?php echo e($book->id); ?>" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>
+                                       <!-- <a href="<?php echo e(url('ReadBook')); ?>/<?php echo e($book->id); ?>" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>-->
+
                                     </div>
                                     <div class="col s4 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
