@@ -641,7 +641,11 @@ restaFechas = function(f1,f2)
                         swal('El album ya forma parte de su colección','','error');
                     } else {
                         swal('Album comprado con exito','','success');
-                        console.log(result);
+                        // console.log(result);
+                        
+                        setTimeout(function(){
+                          location.href="{{('MyAlbums')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -688,6 +692,9 @@ restaFechas = function(f1,f2)
                         swal('La canción ya forma parte de su colección','','error');
                     } else {
                         swal('Cancion comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('MySingles')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -735,6 +742,9 @@ restaFechas = function(f1,f2)
                         swal('El libro ya forma parte de su colección','','error');
                     } else {
                         swal('Libro comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadBook')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -799,6 +809,9 @@ restaFechas = function(f1,f2)
                             },
                         });
                         swal('Revista comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadMegazine')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -880,8 +893,11 @@ function callback5(value,id) {
                       },
                     });
                         swal('Pelicula comprada con exito','','success');
-                           console.log(result);
-                      }
+                        setTimeout(function(){
+                          location.href="{{('PlayMovie')}}/"+id;  
+                      },2000);
+                    }
+                      
                 },
               error: function (result) 
                 {
@@ -964,8 +980,11 @@ function callback6(value,id) {
                       },
                     });
                         swal('Serie comprada con exito','','success');
-                           console.log(result);
-                      }
+                        setTimeout(function(){
+                          location.href="{{('PlaySerie')}}/"+id;  
+                      },2000);
+                    
+                    }
                 },
               error: function (result)
                 {
