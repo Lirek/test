@@ -65,7 +65,7 @@
             <div class="row ">
               <br>
               <div class="col s12 m3">
-                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="520px">
+                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="350px">
              </div>
 
               <div class="col m8 s12">
