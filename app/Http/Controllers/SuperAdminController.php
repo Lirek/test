@@ -32,6 +32,7 @@ use App\RollBacksTransacctions;
 
 use App\Products;
 use App\Rejection;
+use App\Mail\StatusProducts;
 
 class SuperAdminController extends Controller
 {
@@ -347,12 +348,9 @@ class SuperAdminController extends Controller
       $rejection->reason = $request->reason;
       $rejection->save();
     }
-    /*
-    // cuando termine de hacer el registro, hago el envio de correo
     if ($producto->bidder_id!=0) {
-      $this->SendEmails($request->status,$producto->name,$producto->Bidder->email,$request->reason);
+      Mail::to($producto->Bidder->email)->send(new StatusProducts($producto,$request->reason));
     }
-    */
     return response()->json($producto);
   }
   //------------------------------- Productos-------------------------------

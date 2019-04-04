@@ -25,6 +25,10 @@ class Products extends Model
       return $this->hasMany('App\SubProducto','product_id');
     }
 
+    public function Bidder() {
+      return $this->belongsTo('App\Bidder', 'bidder_id');
+    }
+
     public static function store($request) {
         $product = new Products;
         $imagen = $request->file('imagen');
