@@ -757,4 +757,153 @@ $(document).ready(function(){
             $('#iniciarP').attr('disabled',false);
         }
     });
+
 });
+
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $(document).ready(function(){
+
+        $('#passwordP').keyup(function(evento){
+            var password = $('#passwordP').val().trim();
+
+            if (password.length==0) {
+                $('#passwordMenP').show();
+                $('#passwordMenP').text('El campo no debe estar vacio');
+                $('#passwordMenP').css('color','red');
+                $('#passwordMenP').css('font-size','60%');
+                $('#iniciarP').attr('disabled',true);
+            } else {
+                $('#emailMenP').hide();
+                $('#iniciarP').attr('disabled',false);
+            }
+            var email = $('#emailP').val().trim();
+            if (email.length !=0 && password.length !=0){
+                $('#iniciarP').attr('disabled',false);
+            }
+        });
+    });
+
+
+    //----------------------------------Para el usuario ofertante----------------------------------
+    $("#formRO").on('submit',function(e){
+        e.preventDefault();
+        var url = location.href+"BidderSubmit";
+        var gif = location.href+"sistem_images/loading.gif";
+        swal({
+            title: "Procesando la información",
+            text: "Espere mientras se procesa la información.",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        console.log($("#formRO").serialize(),url,gif);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: $("#formRO").serialize(),
+            success: function (result) {
+                console.log(result);
+                swal("Su solicitud está siendo procesada","Por favor espere su correo de confirmación","success")
+                .then((recarga) => {
+                    location.reload();
+                });
+            },
+            error: function (result) {
+                console.log(result);
+                swal('Existe un Error en su Solicitud','','error')
+                .then((recarga) => {
+                    location.reload();
+                });
+            }
+        });
+    });
+
+    $("#emailRO").on('keyup change',function(){
+        var email_data = $("#emailRO").val();
+        $.ajax({
+            url: location.href+"RegisterEmailBidder/"+email_data,
+            type: 'get',
+            dataType: "json",
+            success: function(result){
+                console.log(result);
+                if (result == 1) {
+                    $('#mensajeCorreoOfertante').hide();
+                    $('#registroRO').attr('disabled',false);
+                    return true;
+                } else {
+                    $('#mensajeCorreoOfertante').show();
+                    $('#mensajeCorreoOfertante').text('Este email ya se encuentra registrado');
+                    $('#mensajeCorreoOfertante').css('font-size','120%');
+                    $('#mensajeCorreoOfertante').css('color','red');
+                    $('#registroRO').attr('disabled',true);
+                }
+            }
+        });
+    });
+
+
+    $(document).ready(function(){
+        var email = $('#emailO').val().trim();
+        var password = $('#passwordO').val().trim();
+        if (email.length==0 || password.length ==0){
+            $('#iniciarO').attr('disabled',true);
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $('#emailO').keyup(function(evento){
+        var email = $('#emailO').val().trim();
+        if (email.length==0) {
+            $('#emailMenO').show();
+            $('#emailMenO').text('El campo no debe estar vacio');
+            $('#emailMenO').css('color','red');
+            $('#emailMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+            $('#iniciarO').css('background-color','')
+        } else {
+            $('#emailMenO').hide();
+        }
+        var password = $('#passwordO').val().trim();
+        if (email.length !=0 && password.length !=0){
+            $('#iniciarO').attr('disabled',false);
+        }
+    });
+
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $('#emailO').keyup(function(evento){
+        var email = $('#emailO').val();
+        var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+        if (caract.test(email) == false){
+            $('#emailMenO').show();
+            $('#emailMenO').text('Formato email incorrecto');
+            $('#emailMenO').css('color','red');
+            $('#emailMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+            $('#iniciarO').css('background-color','')
+        } else {
+            return true;
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $('#passwordO').keyup(function(evento){
+        var password = $('#passwordO').val().trim();
+        if (password.length==0) {
+            $('#passwordMenO').show();
+            $('#passwordMenO').text('El campo no debe estar vacio');
+            $('#passwordMenO').css('color','red');
+            $('#passwordMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+        } else {
+            $('#passwordMenO').hide();
+            $('#iniciarO').attr('disabled',false);
+        }
+        var email = $('#emailO').val().trim();
+        if (email.length !=0 && password.length !=0){
+            $('#iniciarO').attr('disabled',false);
+        }
+    });
+
+    //----------------------------------Para el usuario ofertante----------------------------------
+

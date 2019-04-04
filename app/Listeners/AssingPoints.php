@@ -55,16 +55,18 @@ class AssingPoints
           while (true)
           {
             if($i==$points){break;}
-            $pass = Referals::where('refered','=',$id)->first();
+            
+            $pass = Referals::where('refered','=',$id)->where('account_status','=','open')->first();
+            
             if ($pass!=NULL) {
               $id=$pass->user_id;
               $Refered->push(User::find($id));
-              
+             
             } else
             {
               break;
             }
-            $i++;
+             $i++;
           }
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 

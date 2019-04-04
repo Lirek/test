@@ -294,7 +294,7 @@ class UserController extends Controller
         Auth::logout();
 
         $add = DB::select('INSERT INTO users_closed SELECT * FROM users WHERE account_status="closed"');
-        $del = DB::delete('DELETE FROM users WHERE account_status="closed"'); 
+        
     
         Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
 
@@ -659,8 +659,25 @@ class UserController extends Controller
         
         $Albums= Albums::find($id);
 
+        $user= User::find(Auth::user()->id);
+        $AlbumAdd=user::contenidos_add($user, 'album_id');
+        $adquirido=(in_array($id, $AlbumAdd)) ? true : false;
 
-        return view('users.MyAlbums')->with('Albums',$Albums);
+        return view('users.MyAlbums')->with('Albums',$Albums)->with('adquirido',$adquirido);
+        
+    }
+
+    public function MySingles($id)
+    {
+        
+        
+        $Song= Songs::find($id);
+        
+        $user= User::find(Auth::user()->id);
+        $SongAdd=user::contenidos_add($user, 'song_id');
+        $adquirido=(in_array($id, $SongAdd)) ? true : false;
+        
+        return view('users.MySingle')->with('Songs',$Song)->with('adquirido',$adquirido);
         
     }
 
@@ -885,8 +902,14 @@ class UserController extends Controller
       public function ShowMyReadBook($id)
     {
         $Book=Book::find($id);
-        event(new BookTraceEvent(Auth::user()->id,$id));
-            return view('users.show')->with('book',$Book);
+
+        $user= User::find(Auth::user()->id);
+        $BookAdd=user::contenidos_add($user, 'books_id');
+        $adquirido=(in_array($id, $BookAdd)) ? true : false;
+        if($adquirido){
+          event(new BookTraceEvent(Auth::user()->id,$id));
+        }
+            return view('users.show')->with('book',$Book)->with('adquirido',$adquirido);
     }
 
     public function ReadBook($id)
@@ -900,8 +923,13 @@ class UserController extends Controller
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
-        event(new MegazineTraceEvent(Auth::user()->id,$id));
-        return view('users.showMegazine')->with('megazines',$Megazine);
+        $user= User::find(Auth::user()->id);
+        $BookAdd=user::contenidos_add($user, 'megazines_id');
+        $adquirido=(in_array($id, $BookAdd)) ? true : false;
+        if($adquirido){
+          event(new MegazineTraceEvent(Auth::user()->id,$id));
+        }
+        return view('users.showMegazine')->with('megazines',$Megazine)->with('adquirido',$adquirido);
     }
 //----------------------------Peliculas-------------------------------------
     public function MyMovies()

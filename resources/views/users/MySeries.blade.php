@@ -55,14 +55,15 @@
                             <div class="card">
 
                                         @if($Series->img_poster)
-                                         <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Serie')}}">
+                                         <a href="{{url('PlaySerie/'.$Series->id)}}">
                                             <div class="card-image">
                                             <img src="{{ asset($Series->img_poster) }}" width="100%" height="300"style="">
-                                                <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Serie')}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a>
-
+                                              <!--  <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Serie')}}" class="btn-floating halfway-fab waves-effect waves-light blue btn tooltipped " data-position="bottom" data-tooltip="Detalles"><i class="material-icons">movie</i></a> -->
+                                                  <a href="{{url('PlaySerie/'.$Series->id)}}">
                                             </div>
                                         @else
-                                           <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Cap')}}">
+                                           <!-- <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Cap')}}"> -->
+                                            <a href="{{url('PlaySerie/'.$Series->id)}}">
                                             <div class="card-image grey lighten-2">
                                                 <img  src="{{ asset($Series->Serie->img_poster) }}" width="100%" height="300" style="">
                                                 <a href="{{url('ShowMySerie/'.$Series->id.'/'.'Cap')}}" class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 btn tooltipped" data-position="top" data-tooltip="Detalles"><i class="material-icons">movie</i></a>

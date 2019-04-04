@@ -300,25 +300,52 @@
               $('#badgeContenido').show();
               $('#badgeContenido').text(result.contenido);
             }
-            if (result.proveedores!=0) {
-              $('#badgeProveedores').show();
-              $('#badgeProveedores').text(result.proveedores);
+
+            if (result.pagosU!=0 || result.solicitudesU!=0) {
+              $('#cliente').show();
+              $('#cliente').text(result.pagosU+result.solicitudesU);
+              if (result.pagosU!=0) {
+                $('#badgePagosU').show();
+                $('#badgePagosU').text(result.pagosU);
+              }
+              if (result.solicitudesU!=0) {
+                $('#badgeSolicitudUsuario').show();
+                $('#badgeSolicitudUsuario').text(result.solicitudesU);
+              }
             }
-            if (result.pagosP!=0) {
-              $('#badgePagos').show();
-              $('#badgePagos').text(result.pagosP);
+
+            if (result.pagosP!=0 || result.proveedores!=0 || result.solicitudesP!=0) {
+              $('#proveedor').show();
+              $('#proveedor').text(result.pagosP+result.proveedores+result.solicitudesP);
+              if (result.pagosP!=0) {
+                $('#badgePagos').show();
+                $('#badgePagos').text(result.pagosP);
+              }
+              if (result.proveedores!=0) {
+                $('#badgeProveedores').show();
+                $('#badgeProveedores').text(result.proveedores);
+              }
+              if (result.solicitudesP!=0) {
+                $('#badgeSolicitudProveedor').show();
+                $('#badgeSolicitudProveedor').text(result.solicitudesP);
+              }
             }
-            if (result.pagosU!=0) {
-              $('#badgePagosU').show();
-              $('#badgePagosU').text(result.pagosU);
-            }
-            if (result.solicitudesP!=0) {
-              $('#badgeSolicitudProveedor').show();
-              $('#badgeSolicitudProveedor').text(result.solicitudesP);
-            }
-            if (result.solicitudesU!=0) {
-              $('#badgeSolicitudUsuario').show();
-              $('#badgeSolicitudUsuario').text(result.solicitudesU);
+
+            if (result.productos!=0 || result.ofertantes!=0 || result.pagosB!=0) {
+              $('#beneficio').show();
+              $('#beneficio').text(result.productos+result.ofertantes+result.pagosB);
+              if (result.productos!=0) {
+                $('#badgeProductos').show();
+                $('#badgeProductos').text(result.productos);
+              }
+              if (result.ofertantes!=0) {
+                $('#badgeOfertantes').show();
+                $('#badgeOfertantes').text(result.ofertantes);
+              }
+              if (result.pagosB!=0) {
+                $('#badgePagosB').show();
+                $('#badgePagosB').text(result.pagosB);
+              }
             }
           },
           error: function (result) {

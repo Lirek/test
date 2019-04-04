@@ -57,11 +57,11 @@
 
 
                            @if($cine->type=='movie' )
-                             <a href="#myModalMov-{{$cine->id}}" class="modal-trigger">
+                             <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
                              <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialog('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                             @else
-                             <a href="#myModalSer-{{$cine->id}}" class="modal-trigger">
+                             <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
                             <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialogSer('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                             @endif
@@ -541,7 +541,9 @@ function callbackSer(value,id) {
                       },
                     });
                       swal('Serie comprada con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('PlaySerie')}}/"+id;  
+                      },2000);
                     }   
                 },
               error: function (result) 
@@ -625,7 +627,9 @@ function callback(value,id) {
                       },
                     });
                       swal('Pelicula comprada con exito','','success');
-                       console.log(result);
+                       setTimeout(function(){
+                          location.href="{{('PlayMovie')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 

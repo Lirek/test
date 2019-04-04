@@ -2,6 +2,15 @@
 
 @section('css')
 
+<style >
+.header {
+    color: white;
+    font-weight: 150;
+}
+</style>
+
+
+
 @endsection
 
 @section('main')
@@ -12,43 +21,33 @@
          
             @foreach($Episode as $s)
             
-            <div class="row">
-              <div class="col s9">
-                
-              </div>
-              <div class="col s3">
-                <div class="col s12 m4 offset-m1">
-                  <br>
-                        <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons">OBTENER</i></a>
-                        <br><br>
-                    </div>
-              </div>
-              
-            </div>
             
             
             <div class="row ">
               <div class="col s3">
-                <img src="movie/poster/{{$s->img_poster}}" width="100%" height="300px"> 
+                <img src="../movie/poster/{{$s->episode_file}}" width="100%" height="300px"> 
               </div>
               
               <div class="col s9">
                 
                 <div class="row">
-                  <div class="col s12 m10 offset-m1" style="color: black">
+                
+                    <ul id="tabs-swipe-demo" class="tabs">
+                        <!--<li class="tab col s3"><a class="active" href="#test-swipe-1">Trailer</a></li> -->
+                        <li class="tab col s3"><a href="#test-swipe-2">Episodio</a></li>
+                        
+                      </ul>
+                      
+                      <div id="test-swipe-2" class="col s12">
+                        
+                        <div class="embed-container">
               
-                   <?php
-                        $url = $s->trailer_url;
-                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $satches);
-                        $id = $satches[1];
-                        $width = '800px';
-                        $height = '450px';
-                    ?>
-                    <div class="embed-container">
-                    <iframe  type="text/html" width="700" height="420"
-                        src="https://www.youtube.com/embed/{{ $id }}"
-                        frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe> 
-                    </div>
+                            <video width="700" height="420" controls>
+                              <source src="../movie/film/{{$s->duration}}" type="video/mp4">
+                                <video>
+                        </div>
+                                  
+                      </div>
                     
                     
                         <div class="col m12 s12">
@@ -112,34 +111,23 @@
                                             </div>
                                         </div>
                                     </li>
-                                   <li class="collection-item" style="padding: 10px ">
-                                        <div class="row">
-                                            <div class="col s3 ">
-                                              <a class="btn btn-primary green curvaBoton  " href="#modal1">TRAILER</a>
-    
-                                            </div>
-                                            <div class="col s3 ">
-                                              <div class="btn blue curvaBoton">
-                                                <i>SINOPSIS</i>
-                                              </div>
-                                            </div>
-                                          
-                                              
-                                              <div class="col s3 ">
-                                                
-                                                  <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$s->id}}"onclick="fnOpenNormalDialog('{!!$s->cost!!}','{!!$s->title!!}','{!!$s->id!!}')"><i class="material-icons ">add_shopping_cart</i></a>
-  
-                                              </div>
-                                          
-                                              <div class="col s3 ">
+                                    <li class="collection-item" style="padding: 10px ">
+                                         <div class="row">
                                             
-                                                     <a class="btn blue curvaBoton  " href="{{url('ShowSeries')}}">ATRÁS</a>
-                                              
-                                              </div>
-                                        
+                                             <div class="col s6 ">
+                                                   <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+ 
+                                             </div>
                                             
-                                        </div>
-                                    </li> 
+                                             <div class="col s6 ">
+ 
+ 
+                                                    <a class="btn blue curvaBoton  " href="{{url('MySeries')}}">ATRÁS</a>
+ 
+                                             </div>
+ 
+                                         </div>
+                                     </li>
                                 </ul>
                               
                                 
@@ -157,6 +145,16 @@
               
             
                 
+              </div>
+            
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+              <div class="modal-content">
+                <h4 class="header blue" >SINOPSIS</h4>
+                <h6>  {{ $s->story }}</h6>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
               </div>
             </div>
             

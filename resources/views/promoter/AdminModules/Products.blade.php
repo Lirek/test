@@ -232,6 +232,7 @@
                         $("#name_u").val(info.name);
                         $("#description_u").val(info.description);
                         $("#cost_u").val(info.cost);
+                        $("#amount_u").val(info.amount);
                         $("#img_u").attr('src',info.imagen_prod);
                         $("#pdf_prod_u").attr('href',info.pdf_prod);
                         var wrapper = $('.agregar_u');

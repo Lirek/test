@@ -110,8 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" style="height: 100%; height: 100%;" alt="user background">
-                        </div>
+                            <img class="activator" src="{{asset('assets/img/foto_perfil_leipel.jpg')}}" style="height: 100%; height: 100%;" alt="user background">                        </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
 
@@ -313,10 +312,9 @@ h5.breadcrumbs-header {
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
                     <ul>
-                    <blockquote>
                     <i class="material-icons prefix blue-text">edit</i>    
-                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>    
-                    </blockquote>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>
+
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -375,10 +373,10 @@ h5.breadcrumbs-header {
                         </div>
                     </ul>
                     <ul>
-                            <blockquote>
+
                             <i class="material-icons prefix blue-text">delete_forever</i>
                             <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
-                            </blockquote>
+
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">

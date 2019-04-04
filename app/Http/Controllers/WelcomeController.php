@@ -15,9 +15,8 @@ use App\Serie;
 use App\Albums;
 use App\Songs;
 use App\Sagas;
-
 use App\User;
-
+use Auth;
 
 class WelcomeController extends Controller
 {
@@ -117,6 +116,14 @@ class WelcomeController extends Controller
         $iCines = 0;
         $iMusicas = 0;
         $iLecturas = 0;
+
+        if (Auth::check())
+        {
+            if (Auth::guard()->user()->account_status=='closed')
+            {
+                Auth::logout();
+            }
+        }
 
         return view('welcome')
             ->with('iRadios',$iRadios)

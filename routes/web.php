@@ -86,7 +86,7 @@ Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth','ActiveUser']], function() {
 
 //-----------------------Funciones del Home---------------------------
 
@@ -108,6 +108,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('sponsor/{cod}','HomeController@sponsor');
     // agregada Alexis 15/01/2019
     Route::get('/Beneficios/{status}','HomeController@Beneficios');
+    Route::post('BuyBenefi','HomeController@BuyBenefi');
 
 
 //-------------------Funciones del Usuarios----------------------------------
@@ -134,6 +135,7 @@ Route::post('Invite','UserController@Invite');
 
     //Agregada12/7/18
     Route::get('MyAlbums/{id}','UserController@MyAlbums');
+    Route::get('MySingles/{id}','UserController@MySingles');
     Route::get('MySongsAlbums/{id}','UserController@SongAlbum');
     Route::get('SongsSingles','UserController@SongSingles');
 
@@ -141,13 +143,15 @@ Route::post('Invite','UserController@Invite');
     Route::get('MyMegazine','UserController@ShowMyReadingsMegazines');
 
     //Agregada 14/7/18
-    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
+    // Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
+    Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
 
     //Agregada Alexis 28/03/2019
     Route::get('ReadBook/{id}','UserController@ReadBook')->middleware('MyBooks');
 
     //Agregada 15/7/18
-    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
+    // Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
+    Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine');
 
     //Agregada 18/7/18
     Route::post('CompleteProfile','UserController@CompleteProfile');
@@ -544,6 +548,21 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
             
         //------------------------------- Rutas para los productos-------------------------------
+
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+            Route::get('Bidder','BidderController@Bidder');
+            Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
+            Route::post('statusBidder/{id}','BidderController@statusBidder');
+            Route::post('addModuleBidder','BidderController@addModuleBidder');
+            Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+
+        //------------------------------- Rutas para los pagos del ofertantes --------------------------------
+            Route::get('admin_bidder_payments','BidderController@paymentsBidder');
+            Route::get('infoPaymentsBidder/{status}','BidderController@infoPaymentsBidder');
+            Route::get('infoBidder/{idBidder}','BidderController@infoBidder');
+            Route::post('bidderPayments/{idPago}','BidderController@bidderPayments');
+        //------------------------------- Rutas para los pagos del ofertantes --------------------------------
 
     });
 });
@@ -1135,4 +1154,28 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 */
 
+//----------------------- Rutas para el usuario OFERTANTE -----------------------
+Route::post('BidderSubmit','BidderController@store');
+Route::post('bidder_login','BidderAuth\LoginController@login');
 
+Route::group(['middleware' => 'bidder_guest'], function(){
+    Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
+    Route::get('bidderComplete/{id}/{token}','BidderController@bidderComplete');
+    Route::post('BidderCompleteRegister','BidderController@BidderCompleteRegister');
+
+});
+
+Route::group(['middleware' => 'bidder_auth'], function(){
+    Route::get('/bidder_home','BidderController@home');
+    Route::get('bidderLogout','BidderAuth\LoginController@logout');
+    Route::get('allProducts','ProductController@products');
+    Route::post('productStore','ProductController@productStore');
+    Route::get('productDelete/{idProduct}','ProductController@productDelete');
+    Route::get('productInfo/{idProduct}','ProductController@productInfo');
+    Route::post('productUpdate','ProductController@productUpdate');
+    Route::get('retiro/{status?}','BidderController@retiro');
+    Route::post('retirar','BidderController@retirar');
+    Route::get('viewPayments/{status}','BidderController@viewPayments');
+});
+
+//----------------------- Rutas para el usuario OFERTANTE -----------------------

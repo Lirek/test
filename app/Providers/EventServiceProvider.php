@@ -105,6 +105,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendTokenEmail',
         ],
 
+        'App\Events\StatusBidderEvent' => [
+            'App\Listeners\StatusBidderListen',
+        ],
+
 
     ];
 
