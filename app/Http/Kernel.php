@@ -73,6 +73,9 @@ class Kernel extends HttpKernel
          'promoter_auth' => \App\Http\Middleware\AuthenticatePromoter::class,
          'promoter_guest' => \App\Http\Middleware\RedirectIfPromoterAuthenticated::class,
 
+        'bidder_auth' => \App\Http\Middleware\AuthenticateBidder::class,
+        'bidder_guest' => \App\Http\Middleware\RedirectIfBidderAuthenticated::class,
+
          'Admin' => \App\Http\Middleware\AdminMiddleware::class,
          'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class,
          'Operator' => \App\Http\Middleware\OperatorMiddleware::class,

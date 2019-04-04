@@ -6,7 +6,7 @@ return [
      | Pattern and storage path settings
      |--------------------------------------------------------------------------
      |
-     | The env key for pattern and storage path with a default value
+     | The .env key for pattern and storage path with a default value
      |
      */
     'pattern' => env('LOGVIEWER_PATTERN', '*.log'),

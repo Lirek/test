@@ -49,45 +49,6 @@
       </div>
     </div>
   </div>
-          {{--
-          <div class="form-group">
-              <div class="col-md-4">
-                <label for="sel1">Módulos:</label>
-              </div>
-              <div class="col-md-8">
-                <select class="form-control" name="acces" id="sel1" required="required">
-                  <option value="">Seleccione el tipo contenido</option>
-                  <option value="Peliculas">Cine: Películas | Series</option>
-                  <option value="Musica">Música</option>
-                  <option value="Libros">Lectura: Libros | Revistas</option>
-                  <option value="Radios">Radio</option>
-                  <option value="TV">Televisora</option>
-                </select>
-                <div id="subMenuMusica">
-                  <br>
-                  <select name="sub_desired_musica" id="sub_desired1" class="form-control">
-                    <option value="Artista">Artista</option>
-                    <option value="Productora">Productora</option>
-                  </select>
-                </div>
-                <div id="subMenuLibro">
-                  <br>
-                  <select name="sub_desired_libros" id="sub_desired2" class="form-control">
-                    <option value="Escritor">Escritor</option>
-                    <option value="Editorial">Editorial</option>
-                  </select>
-                </div>
-                <br>
-              --}}
-                {{--
-                <select class="form-control" id="sel1" name="acces">
-                  @foreach($acces_modules as $acces) 
-                    <option value="{{$acces->id}}">{{$acces->name}}</option>
-                  @endforeach
-                </select>
-              </div>
-          </div>
-          --}}
 
   <div class="modal" id="myModal">
     <div class="modal-content">
@@ -129,26 +90,6 @@
       </div>
     </div>
   </div>
-          {{--
-            <div class="radio-inline">
-              <label for="option-1">
-                <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado">
-                <span>Aprobar</span>
-              </label>
-            </div>
-
-            <div class="radio-inline">
-              <label for="option-2">
-                <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Rechazado">
-                <span>Recharzar</span>
-              </label>
-            </div>
-
-            <div style="display:none" id="if_no">
-              <label for="razon">Explique la razón</label>
-              <textarea name="message" class="form-control" type="text"id="razon"></textarea>
-            </div>
-          --}}
 
   <div class="modal fade" id="logoView" role="dialog">
     <div class="modal-dialog">
@@ -179,7 +120,12 @@
         </div>
         <div class="col s5 offset-s1">
           <img class='materialboxed' src='' id="imgRucProveedor" width="200" height="200" alt='RUC proveedor'>
-          <label class="control-label" style="padding-right: 25%;">Imagen del RUC: </label>
+          <label id="labelImg" class="control-label" style="padding-right: 25%;">Imagen del RUC: </label>
+          <br>
+          <a class="waver-effect waves-light btn-large" id="pdfruc" href="" target="_blank">
+            <i class="material-icons left">picture_as_pdf</i>
+            Ver RUC
+          </a>
           <div id="mensajeImgRucProveedor"></div>
         </div>
         <hr>

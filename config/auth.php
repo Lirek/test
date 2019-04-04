@@ -56,6 +56,11 @@ return [
             'driver' => 'session',
             'provider'   => 'promoters',
         ],
+
+        'bidder' => [
+            'driver' => 'session',
+            'provider' => 'bidder'
+        ],
     ],
 
     /*
@@ -91,6 +96,11 @@ return [
              'driver' => 'eloquent',  //We are using eloquent model
              'model' => App\Promoters::class,
          ],
+
+        'bidder' => [
+            'driver' => 'eloquent',
+            'model' => App\Bidder::class
+        ]
     ],
 
     /*

@@ -103,4 +103,49 @@ class User extends Authenticatable implements JWTSubject
     public function pointLoser() {
         return $this->hasMany('App\PointsLoser', 'user_id');
     }
+
+
+    public static function songs_add($user){
+
+        $TranSingle= Transactions::select('song_id')->where('user_id','=',$user->id)->where('song_id','<>',0)->get();
+        $songs_add=array();
+        foreach ($TranSingle as $Ts) {
+           $songs_add[]=$Ts->song_id;
+        }
+        return $songs_add;
+
+    }
+
+    //retorna un array con los contenidos adquiridos por usuario.
+     public static function contenidos_add($user, $id_contenido){
+
+        $Transactions= Transactions::select($id_contenido)->where('user_id','=',$user->id)->where($id_contenido,'<>',0)->get();
+        $contenidos_add=array();
+        foreach ($Transactions as $Ts) {
+           $contenidos_add[]=$Ts->$id_contenido;
+        }
+        return $contenidos_add;
+
+    }
+
+    public static function episode_add($user){
+
+        $TranEpisode= Transactions::select('episodes_id')->where('user_id','=',$user->id)->where('episodes_id','<>',0)->get();
+        $episode_add=array();
+        // dd(count($TranEpisode));
+        if(count($TranEpisode)>0)
+        {
+            foreach ($TranEpisode->sortBy('episodes_id') as $Ts) {
+               $episode_add[]=$Ts->episodes_id;
+            }
+        }
+        else
+        {
+            $episode_add[]=null;
+        }
+        return $episode_add;
+
+    }
+
+
 }

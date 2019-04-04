@@ -1,6 +1,11 @@
-/etc
+etc/
 .vagrant
 .env
-/node_modules
+node_modules/
 .DS_Store
+<<<<<<< HEAD
+=======
+.idea/
+storage/
+>>>>>>> d83e7c5e724d2bb2c3108b387c0e1120cf2b798a
 vendor/

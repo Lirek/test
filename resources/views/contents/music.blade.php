@@ -36,15 +36,24 @@
         <div class="row">
           @if($Albums->count() != 0)
             @foreach($Albums as $Album)
-              <div class="col s12 m3">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image">
-                    @if($Album->cover)
-                      <a href="#myModal-{{$Album->id}}" class="modal-trigger">
+                    @if($Album->name_alb)
+                      <a href="{{ url('MyAlbums/'.$Album->id) }}" class="" >
                         <img src="{{ asset($Album->cover)}}" width="100%" height="300px">
                       </a>
                     @else
-                      <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px">
+                      <!-- <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px"> -->
+                      @if($Album->cover == NULL)
+                      <a href="{{ url('MySingles/'.$Album->id) }}" class="" >
+                        <img src="{{asset($Album->autors->photo)}}" width="100%" height="300px">
+                      </a>
+                      @else
+                      <a href="{{ url('MySingles/'.$Album->id) }}" class="" >
+                        <img src="{{asset($Album->cover)}}" width="100%" height="300px">
+                      </a>
+                      @endif
                     @endif
                     <!-- <span class="card-title">Card Title</span> -->
                     @if($Album->name_alb) <!-- Para los albumes -->
@@ -74,23 +83,26 @@
                     @endif
                   </div>
                   <div class="card-content grey-text" style="padding: 24px 0px">
-                    <div class="col m12">
+                    <div class="col m12 s12">
                       @if($Album->name_alb)
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->name_alb}}</p>
+
+                        <p class="grey-text truncate">{{$Album->name_alb}}</p>
                       @else
-                        <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$Album->song_name}}</p>
+                        <p class="grey-text truncate">{{$Album->song_name}}</p>
                       @endif
                     </div>
-                    <small><b>Artistas: </b>
+                    <div class="col m12 s12">
+                    <p class="grey-text truncate"><b>Artistas: </b>
                       {{$Album->autors->name}}
-                    </small>
-                    <br>
-                    <small><b>Costo: </b> {{$Album->cost}} tickets</small>
-                    <br>
+                    </p>
+                    </div>
+                    
+                    <p><b>Costo: </b> {{$Album->cost}} tickets</p>
+                    
                     @if($Album->name_alb)
-                      <small>Álbum</small>
+                      <p><b>Álbum</b></p>
                     @else
-                      <small>Sencillo</small>
+                      <p><b>Sencillo</b></p>
                     @endif
                   </div>
                 </div>
@@ -132,7 +144,7 @@
                                   @endif
                                 @endforeach
                               @else
-                                {{nadie ha comprado la cancion}}
+                                {{--{{//nadie ha comprado la cancion}}--}}
                                 <div class="col s4">
                                   <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" onclick="fnOpenNormalDialog('{!!$song->cost!!}','{!!$song->song_name!!}','{!!$song->id!!}')">
                                     <i class="material-icons">add_shopping_cart</i>
@@ -282,7 +294,9 @@ function callback(value,id) {
                     });
                       
                     swal('Cancion comprada con exito','','success');
-
+                    setTimeout(function(){
+                          location.href="{{('MySingles')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 
@@ -393,7 +407,9 @@ function callback2(value,id) {
                       },
                     });                      
                       swal('Album comprado con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('MyAlbums')}}/"+id;  
+                      },2000);
                     }  
                 },
               error: function (result) 

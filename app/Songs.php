@@ -19,6 +19,7 @@ class Songs extends Model
       'cost',
       'publish_date',
       'duration',
+      'cover',
       'status',
     ];
 

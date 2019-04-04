@@ -25,6 +25,9 @@ use App\Movie;
 use App\Serie;
 use App\PaymentSeller;
 use App\Payments;
+use App\Products;
+use App\Bidder;
+use App\PaymentsBidder;
 
 class AdminContentController extends Controller
 {
@@ -40,7 +43,7 @@ class AdminContentController extends Controller
     $radios = Radio::where('status','En Proceso')->count();
     $sagaBooks = Sagas::where('status','En Proceso')->where('type_saga','Libros')->count();
     $series = Serie::where('status','En Proceso')->count();
-    $singles = Songs::where('status','En Revision')->where('album',0)->count();
+    $singles = Songs::where('status','En Revision')->whereNull('album')->count();
     $tv = Tv::where('status','En Proceso')->count();
     return view('promoter.ContentModules.Content')
       ->with('megazines', $megazines)
@@ -55,6 +58,11 @@ class AdminContentController extends Controller
       ->with('publicationChain',$publicationChain)
       ->with('sagaBooks',$sagaBooks)
       ->with('series', $series);
+    }
+
+    public function Reporte()
+    {
+      return view('promoter.AdminModules.Report');
     }
 
   public function ContentAdminGraph() {
@@ -80,35 +88,58 @@ class AdminContentController extends Controller
   }
 
   public function DonutGraph() {
-    $PendingSongs = Songs::where('album',0)
-                        ->where('status','<>','Aprobado')
-                        ->count();
-    $PendingAlbums = Albums::where('status','<>','Aprobado')->get()->count(); 
-    $PendingMovies = Movie::where('status','<>','Aprobado')->get()->count();
-    $PendingMegazines = Megazines::where('status','<>','Aprobado')->get()->count();
-    $PendingBook = Book::where('status','<>','Aprobado')->get()->count();
-    $PendingRadio = Radio::where('status','<>','Aprobado')->get()->count();
-    $PendingTv = Tv::where('status','<>','Aprobado')->get()->count();
-    $PendingSeries = Serie::where('status','<>','Aprobado')->get()->count();
+    $PendingSongs = Songs::whereNull('album')->where('status','En Revision')->count();
+    $PendingAlbums = Albums::where('status','En Revision')->count();
+    $PendingMovies = Movie::where('status','En Proceso')->count();
+    $PendingMegazines = Megazines::where('status','En Revision')->count();
+    $PendingBook = Book::where('status','En Revision')->count();
+    $PendingRadio = Radio::where('status','En Proceso')->count();
+    $PendingTv = Tv::where('status','En Proceso')->count();
+    $PendingSeries = Serie::where('status','En Proceso')->count();
+    
+    $PendingBookAuthor = BookAuthor::where('status','En Revision')->count();
+    $PendingMusicAuthors = music_authors::where('status','En Proceso')->count();
+    $PendingPublicationChain = Sagas::where('status','En Proceso')->where('type_saga','Revistas')->count();
+    $PendingSagaBooks = Sagas::where('status','En Proceso')->where('type_saga','Libros')->count();
 
-    $AllPending = $PendingSeries+$PendingMovies+$PendingTv+$PendingRadio+$PendingBook+$PendingMegazines+$PendingAlbums+$PendingSongs;
+    $AllPending = $PendingSeries+$PendingMovies+$PendingTv+$PendingRadio+$PendingBook+$PendingMegazines+$PendingAlbums+$PendingSongs+$PendingBookAuthor+$PendingMusicAuthors+$PendingPublicationChain+$PendingSagaBooks;
 
-    $AprovedSongs = Songs::where('album',0)
-                        ->where('status','Aprobado')
-                        ->count();
-    $AprovedAlbums =  Albums::where('status','Aprobado')->get()->count();
-    $AprovedMovies = Movie::where('status','Aprobado')->get()->count();
-    $AprovedMegazines = Megazines::where('status','Aprobado')->get()->count();
-    $AprovedBook = Book::where('status','Aprobado')->get()->count();
-    $AprovedRadio = Radio::where('status','Aprobado')->get()->count();
-    $AprovedTv = Tv::where('status','Aprobado')->get()->count();
-    $AprovedSeries = Serie::where('status','Aprobado')->get()->count();
+    $AprovedSongs = Songs::whereNull('album')->where('status','Aprobado')->count();
+    $AprovedAlbums =  Albums::where('status','Aprobado')->count();
+    $AprovedMovies = Movie::where('status','Aprobado')->count();
+    $AprovedMegazines = Megazines::where('status','Aprobado')->count();
+    $AprovedBook = Book::where('status','Aprobado')->count();
+    $AprovedRadio = Radio::where('status','Aprobado')->count();
+    $AprovedTv = Tv::where('status','Aprobado')->count();
+    $AprovedSeries = Serie::where('status','Aprobado')->count();
 
-    $AllAproved = $AprovedSeries+$AprovedMovies+$AprovedTv+$AprovedRadio+$AprovedBook+$AprovedMegazines+$AprovedAlbums+$AprovedSongs;
+    $AprovedBookAuthor = BookAuthor::where('status','Aprobado')->count();
+    $AprovedMusicAuthors = music_authors::where('status','Aprobado')->count();
+    $AprovedPublicationChain = Sagas::where('status','Aprobado')->where('type_saga','Revistas')->count();
+    $AprovedSagaBooks = Sagas::where('status','Aprobado')->where('type_saga','Libros')->count();
+
+    $AllAproved = $AprovedSeries+$AprovedMovies+$AprovedTv+$AprovedRadio+$AprovedBook+$AprovedMegazines+$AprovedAlbums+$AprovedSongs+$AprovedBookAuthor+$AprovedMusicAuthors+$AprovedPublicationChain+$AprovedSagaBooks;
+
+    $RejectSongs = Songs::whereNull('album')->where('status','Denegado')->count();
+    $RejectAlbums =  Albums::where('status','Denegado')->count();
+    $RejectMovies = Movie::where('status','Denegado')->count();
+    $RejectMegazines = Megazines::where('status','Denegado')->count();
+    $RejectBook = Book::where('status','Denegado')->count();
+    $RejectRadio = Radio::where('status','Denegado')->count();
+    $RejectTv = Tv::where('status','Denegado')->count();
+    $RejectSeries = Serie::where('status','Denegado')->count();
+
+    $RejectBookAuthor = BookAuthor::where('status','Denegado')->count();
+    $RejectMusicAuthors = music_authors::where('status','Denegado')->count();
+    $RejectPublicationChain = Sagas::where('status','Denegado')->where('type_saga','Revistas')->count();
+    $RejectSagaBooks = Sagas::where('status','Denegado')->where('type_saga','Libros')->count();
+
+    $AllReject = $RejectSongs+$RejectAlbums+$RejectMovies+$RejectMegazines+$RejectBook+$RejectRadio+$RejectTv+$RejectSeries+$RejectBookAuthor+$RejectMusicAuthors+$RejectPublicationChain+$RejectSagaBooks;
 
     $Content=array(
+      $AllAproved,
       $AllPending,
-      $AllAproved
+      $AllReject
     );
     return Response()->json($Content);       
   }
@@ -168,7 +199,7 @@ class AdminContentController extends Controller
     $singles = Songs::where('status','En Revision')->whereNull('album')->count();
     $tags = Tags::where('status','En Proceso')->count();
     $tv = Tv::where('status','En Proceso')->count();
-    $contenidoPendiente = $albums+$books+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tags+$tv;
+    $contenidoPendiente = $albums+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tags+$tv;
 
     $proveedores = Seller::where('estatus','<>','Aprobado')->count();
 
@@ -185,13 +216,22 @@ class AdminContentController extends Controller
 
     $pagosUsuarios = Payments::where('status','En Revision')->count();
 
+    $pagosBidder = PaymentsBidder::where('status','Por cobrar')->count();
+
+    $productos = Products::where('status','En Revision')->count();
+
+    $ofertantes = Bidder::where('status','En Revision')->count();
+
     $pendientes = [
       'contenido' => $contenidoPendiente,
       'proveedores' => $proveedores,
       'pagosP' => $pagosProveedores,
       'solicitudesP' => $solicitudesProveedores,
       'solicitudesU' => $solicitudesUsuarios,
-      'pagosU' => $pagosUsuarios
+      'pagosU' => $pagosUsuarios,
+      'pagosB' => $pagosBidder,
+      'productos' => $productos,
+      'ofertantes' => $ofertantes
     ];
     return response()->json($pendientes);
     
