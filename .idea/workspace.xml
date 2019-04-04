@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,6 +90,7 @@
           <entry key="applys_sellers" value="1" />
           <entry key="css" value="4" />
           <entry key="env" value="1" />
+          <entry key="gitignore" value="1" />
           <entry key="js" value="3" />
           <entry key="paso" value="1" />
           <entry key="php" value="123" />
@@ -107,6 +106,7 @@
           <entry key="Blade" value="101" />
           <entry key="CSS" value="4" />
           <entry key="Database Element" value="7" />
+          <entry key="Git file" value="1" />
           <entry key="JavaScript" value="3" />
           <entry key="PHP" value="22" />
           <entry key="PLAIN_TEXT" value="2" />
@@ -118,6 +118,7 @@
         <counts>
           <entry key="cell" value="62" />
           <entry key="css" value="355" />
+          <entry key="gitignore" value="19" />
           <entry key="js" value="12" />
           <entry key="paso" value="1" />
           <entry key="php" value="6077" />
@@ -129,6 +130,7 @@
         <counts>
           <entry key="Blade" value="6034" />
           <entry key="CSS" value="355" />
+          <entry key="Git file" value="19" />
           <entry key="JavaScript" value="12" />
           <entry key="PHP" value="43" />
           <entry key="PLAIN_TEXT" value="559" />
@@ -167,7 +169,7 @@
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="2" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.40" value="4" />
+          <entry key="project.open.time.40" value="5" />
           <entry key="project.open.time.41" value="2" />
           <entry key="project.open.time.42" value="2" />
           <entry key="project.open.time.43" value="1" />
@@ -196,7 +198,7 @@
           <entry key="project.open.time.85" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="101" />
+          <entry key="project.opened" value="102" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -217,10 +219,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+            <state relative-caret-position="150">
+              <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -278,7 +280,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/book/show.blade.php" />
@@ -329,6 +330,7 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -465,23 +467,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="leipel" type="cbb8eebc:String" user="leipel" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="leipel" type="cbb8eebc:String" user="leipel" />
             </path>
           </expand>
           <select />
@@ -494,7 +496,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/.env" />
+    <property name="add_unversioned_files" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../cte" />
     <property name="nodejs_interpreter_path" value="node" />
@@ -659,6 +661,7 @@
       <workItem from="1554121647346" duration="1570000" />
       <workItem from="1554237437620" duration="2287000" />
       <workItem from="1554296034030" duration="1310000" />
+      <workItem from="1554382442156" duration="213000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -989,11 +992,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554241125949</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Merge branch 'kevin' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/contents/PlaySerie.blade.php">
+      <created>1554382590154</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1554382590155</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="612580000" />
+    <option name="totallyTimeSpent" value="612793000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1006,8 +1016,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.33179012" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.24382716" />
       <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
       <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1128,11 +1139,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'kevin' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/contents/PlaySerie.blade.php" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/users/MyLecture.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-285" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/contents/Readings.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102" />
@@ -1430,6 +1436,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
         </state>
       </provider>
     </entry>
