@@ -77,6 +77,9 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
+////Validación de correo siendo verificado
+//Route::post('RegisterApplysEmailSeller','WelcomeController@applyEmailSeller');
+
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
     Route::post('BidderSubmit','BidderController@store');
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');

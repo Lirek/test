@@ -154,7 +154,7 @@
 
 
         $("#formRP").on('submit',function(e){
-            var url = "{{ url('ApplysSubmit') }}";
+            var url = location.origin+"ApplysSubmit";
             e.preventDefault();
             var gif = "{{ asset('/sistem_images/loading.gif') }}";
             swal({

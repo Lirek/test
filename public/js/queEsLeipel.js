@@ -76,7 +76,7 @@
         
 
         $("#formRP").on('submit',function(e){
-            var url = "{{ url('ApplysSubmit') }}";
+            var url = location.origin+"ApplysSubmit";
             e.preventDefault();
             var gif = "{{ asset('/sistem_images/loading.gif') }}";
             swal({
@@ -121,33 +121,33 @@
 
     //---------------------Validacion registros----------------------------------
     $("#emailRP").on('keyup change',function(){
-        var email_data = $("#emailRP").val();
-        $.ajax({
-            url: 'RegisterEmailSeller',
-            type: 'POST',
-            data:{
-                _token: $('input[name=_token]').val(),
-                'email':email_data
-            },
-            success: function(result){
-                if (result == 1)
-                {
-                    $('#mensajeCorreo').hide();
-                    $('#registroRP').attr('disabled',false);
-                    return true;
-                }
-                else
-                {
-                    $('#mensajeCorreo').show();
-                    $('#mensajeCorreo').text('Este email ya se encuentra registrado');
-                    $('#mensajeCorreo').css('font-size','60%');
-                    $('#mensajeCorreo').css('color','red');
-                    $('#registroRP').attr('disabled',true);
-                    console.log(result);
-                }
+    var email_data = $("#emailRP").val();
+    $.ajax({
+        url: 'RegisterEmailSeller',
+        type: 'POST',
+        data:{
+            _token: $('input[name=_token]').val(),
+            'email':email_data
+        },
+        success: function(result){
+            if (result == 1)
+            {
+                $('#mensajeCorreo').hide();
+                $('#registroRP').attr('disabled',false);
+                return true;
             }
-        });
+            else
+            {
+                $('#mensajeCorreo').show();
+                $('#mensajeCorreo').text('Este email ya se encuentra regitrado');
+                $('#mensajeCorreo').css('font-size','60%');
+                $('#mensajeCorreo').css('color','red');
+                $('#registroRP').attr('disabled',true);
+                console.log(result);
+            }
+        }
     });
+});
 
     $(document).ready(function () {
         var cantidadMaxima = 191;

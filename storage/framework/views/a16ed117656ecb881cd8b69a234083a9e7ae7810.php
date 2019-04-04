@@ -576,7 +576,7 @@
     </div>
 
 </div>
-</div>
+
 <!--Fin modal inicio de registro-->
 
 

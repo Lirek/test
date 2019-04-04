@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Seller;
+use App\ApplysSellers;
 use App\Book;
 use App\Megazines;
 use App\Radio;
@@ -145,15 +146,29 @@ class WelcomeController extends Controller
 
     public function emailSeller(Request $request){
         $email=Seller::where('email','=',$request->email)->first();
-      
+        
 
         if($email){
             return response()->json($email->email); 
         }else{
             return response()->json(1); 
         }
+
     
     }
+
+    //Validación de correo siendo verificado
+    /*public function applyEmailSeller(Request $request){
+        $apply_email=ApplysSellers::where('email','=',$request->email)->first();
+      
+
+        if($apply_email){
+            return response()->json($apply_email->$apply_email); 
+        }else{
+            return response()->json(1); 
+        }
+    
+    }*/
 
     public function indexRadio() {
         //$radios = Radio::where('status','Aprobado')->take(5)->get();
