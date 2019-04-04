@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use File;
 use App\SubProducto;
+use App\exchange_product;
 
 class Products extends Model
 {
@@ -24,6 +25,10 @@ class Products extends Model
       return $this->hasMany('App\SubProducto','product_id');
     }
 
+    public function exchange_product() {
+      return $this->hasMany('App\exchange_product','product_id');
+    }
+    
     public static function store($request) {
         $product = new Products;
         $imagen = $request->file('imagen');

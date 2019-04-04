@@ -306,15 +306,21 @@ class HomeController extends Controller
                 }
             }
         }
-    }
+    }  
 
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
+
+        $mios = exchange_product::where('user_id',Auth::user()->id)->get();
+        $mios->each(function($mios){
+        $mios->Producto;
+    });
+
         if ($beneficio->count() == 0) 
         {
             $beneficio= 0;
         }
-        return view('users.Beneficios')->with('beneficio',$beneficio);
+        return view('users.Beneficios')->with('beneficio',$beneficio)->with('mios',$mios);
     }
 
     public function BuyBenefi (Request $request)
@@ -339,6 +345,8 @@ class HomeController extends Controller
             $Productos->status= "Aprobado";
             $Productos->save();
 
+            $Benefi->amount = $Benefi->amount-$request->Cantidad;
+            $Benefi->save();
             $user->points = $user->points-$total;
             $user->save();
 

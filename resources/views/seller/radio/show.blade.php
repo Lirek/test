@@ -67,7 +67,7 @@
                 <h4 class="titelgeneral"><i class="material-icons small">radio</i> {{ $radio->name_r }} </h4>
                 <div class="row">
                     <div class="col s12 m4">
-                        <img src="{{ asset($radio->logo) }}" width="100%" height="300" style="bor<der-radius: 10px" id="panel" class='materialboxed'>
+                        <img src="{{ asset($radio->logo) }}" width="100%" height="300" style="border-radius: 10px" id="panel" class='materialboxed'>
                         <br>
                         <a href="{{ url('/radios') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                         <a href="{{ route('radios.edit', $radio->id) }}" class="btn curvaBoton waves-effect waves-light green">Modificar</a>
