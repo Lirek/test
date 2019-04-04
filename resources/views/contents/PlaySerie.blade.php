@@ -59,13 +59,7 @@
                 <div class="col s3">
 
                 </div>
-                <div class="col s9">
-                  <ul id="tabs-swipe-demo" class="tabs">
-                      <li class="tab col s3"><a class="active" href="#test-swipe-1">Trailer</a></li>
-                      <li class="tab col s3"><a href="#test-swipe-2">Episodios</a></li>
 
-                    </ul>
-                </div>
 
 
               </div>
@@ -181,7 +175,7 @@
                                                 <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
 
                                           </div>
-                                      
+
                                           <div class="col s12 m4 ">
 
 
@@ -192,7 +186,7 @@
                                       </div>
                                   </li>
                               </ul>
-                            
+
 
                             </div>
                     

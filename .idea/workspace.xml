@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2db7c231-a178-4aab-91fd-390e92f00839" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,6 +30,17 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - intire6_leipel_actual@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="intire6_leipel_actual: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -78,11 +89,12 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="account_balance" value="1" />
+          <entry key="applys_sellers" value="1" />
           <entry key="css" value="4" />
           <entry key="env" value="1" />
           <entry key="js" value="3" />
           <entry key="paso" value="1" />
-          <entry key="php" value="121" />
+          <entry key="php" value="123" />
           <entry key="rnc" value="1" />
           <entry key="songs" value="1" />
           <entry key="sql" value="1" />
@@ -92,11 +104,11 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="100" />
+          <entry key="Blade" value="101" />
           <entry key="CSS" value="4" />
-          <entry key="Database Element" value="6" />
+          <entry key="Database Element" value="7" />
           <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="21" />
+          <entry key="PHP" value="22" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="RNG Compact" value="1" />
           <entry key="Scratch" value="1" />
@@ -126,7 +138,8 @@
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="89" />
+          <entry key="project.closed" value="92" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.105" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
@@ -180,9 +193,10 @@
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.81" value="1" />
           <entry key="project.open.time.84" value="1" />
+          <entry key="project.open.time.85" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="99" />
+          <entry key="project.opened" value="101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.rename.constructor" />
@@ -201,11 +215,20 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showmyreadbo</find>
       <find>sinosis</find>
       <find>sinop</find>
       <find>panel</find>
@@ -235,6 +258,7 @@
       <find>desc</find>
       <find>user</find>
       <find>inclu</find>
+      <find>BidderSubmit</find>
     </findStrings>
     <replaceStrings>
       <replace>$movie</replace>
@@ -254,7 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/assets/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/movie/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/seller/megazine_module/show_megazine.blade.php" />
@@ -301,10 +324,11 @@
         <option value="$PROJECT_DIR$/resources/views/promoter/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/public/js/welcome.js" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/users/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/WebsUser.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php" />
       </list>
     </option>
   </component>
@@ -458,28 +482,6 @@
             <path>
               <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Leipel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Leipel" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -655,6 +657,8 @@
       <workItem from="1553778663590" duration="1658000" />
       <workItem from="1553809439096" duration="964000" />
       <workItem from="1554121647346" duration="1570000" />
+      <workItem from="1554237437620" duration="2287000" />
+      <workItem from="1554296034030" duration="1310000" />
     </task>
     <task id="LOCAL-00002" summary="Bmonterrey: Mejoras vista incluir numero tickests en show_megazine &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log">
       <created>1541078138520</created>
@@ -971,11 +975,25 @@
       <option name="project" value="LOCAL" />
       <updated>1553980172560</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1554237896024</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1554237896024</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Merge branch 'kevin' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/contents/PlaySerie.blade.php">
+      <created>1554241125949</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1554241125949</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="607416000" />
+    <option name="totallyTimeSpent" value="612580000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -987,10 +1005,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.3148148" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.33179012" />
+      <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
+      <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.3757716" side_tool="true" weight="0.2738516" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32685512" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.6242284" weight="0.27031803" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3286219" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.4861111" weight="0.32685512" />
+      <window_info anchor="bottom" id="Database Console" order="14" weight="0.33568904" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.33333334" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49469966" visible="true" weight="0.32330248" />
       <window_info id="Structure" order="1" sideWeight="0.50530034" side_tool="true" weight="0.1550926" />
       <window_info id="npm" order="2" sideWeight="0.5017668" side_tool="true" weight="0.1550926" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1012,31 +1054,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.33358547" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35416666" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.3295082" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5277778" side_tool="true" weight="0.24168126" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4722222" weight="0.24168126" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TODO" order="13" sideWeight="0.48688272" weight="0.32685512" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="3" weight="0.33333334" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1082,8 +1100,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambios en revistas" />
-    <MESSAGE value="Cambios pacheco" />
     <MESSAGE value="bmonterrey: Ajuste error balance &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste vistas revistas, libros y redes en radio &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="bmonterrey: Ajuste libro revista &#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;storage/logs/laravel.log" />
@@ -1107,23 +1123,11 @@
     <MESSAGE value="Arreglo rutas js welcome" />
     <MESSAGE value="Merge branch 'Jesus' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;storage/logs/laravel.log" />
     <MESSAGE value="cambios en cartelera( lectura)" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios en cartelera( lectura)" />
+    <MESSAGE value="Merge branch 'mauricio' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Merge branch 'kevin' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/contents/PlaySerie.blade.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'kevin' of gitlab.com:castillo.brian/Leipel into breiddy&#10;&#10;# Conflicts:&#10;#&#9;resources/views/contents/PlaySerie.blade.php" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/phrase.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="384" column="16" selection-start-line="384" selection-start-column="16" selection-end-line="384" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contents/ShowRadios.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/MyLecture.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285" />
@@ -1394,13 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1412,6 +1409,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="942" selection-start-line="942" selection-end-line="942" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://f42a655a-fe1b-4b09-87b7-501aaab72fff/schema/intire6_leipel_actual/table/applys_sellers">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/contents/PlaySerie.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="92" column="55" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="55" />
         </state>
       </provider>
     </entry>
