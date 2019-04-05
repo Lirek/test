@@ -77,6 +77,9 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
+////Validación de correo siendo verificado
+//Route::post('RegisterApplysEmailSeller','WelcomeController@applyEmailSeller');
+
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
     Route::post('BidderSubmit','BidderController@store');
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
@@ -142,6 +145,9 @@ Route::post('Invite','UserController@Invite');
     //Agregada 14/7/18
     // Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
     Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
+
+    //Agregada Alexis 28/03/2019
+    Route::get('ReadBook/{id}','UserController@ReadBook')->middleware('MyBooks');
 
     //Agregada 15/7/18
     // Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');

@@ -186,7 +186,7 @@
                  else
                  {
                    $('#emailMen').show();
-                   $('#emailMen').text('Este email ya se encuentra regitrado');
+                   $('#emailMen').text('Este email ya se encuentra registrado');
                    $('#emailMen').css('color','red');
                    $('#enviar').attr('disabled',true);
                    console.log(result);
