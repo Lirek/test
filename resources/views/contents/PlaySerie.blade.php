@@ -53,6 +53,16 @@
 
             @foreach($Series as $s)
 
+
+              <div class="row">
+
+                <div class="col s3">
+
+                </div>
+
+
+
+              </div>
             <div class="row ">
               <div class="col s12 m3">
                 <img src="{{asset($s->img_poster)}}" width="100%" height="300px" style="border-radius: 10px" id="lecturaspanel">
@@ -106,9 +116,9 @@
                                              <b class="left">Género: </b>
                                           </div>
                                           <div class="col s12 m7">
-                                          
+
                                              @foreach($s->tags_serie as $tag)
-                                             
+
                                              <div class="chip  aqua-gradient  white-text">
                                                 {{ $tag->tags_name}}
                                             </div>
@@ -165,7 +175,7 @@
                                                 <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
 
                                           </div>
-                                      
+
                                           <div class="col s12 m4 ">
 
 
@@ -176,7 +186,7 @@
                                       </div>
                                   </li>
                               </ul>
-                            
+
 
                             </div>
                     
@@ -196,16 +206,16 @@
                           </video>
                       </div>
                         <div class="col s12 m10 offset-m1" style="color: black">
-                          
+
                         <ul class="collapsible" >
                           <li>
                             <div class="collapsible-header">
                               <i class="material-icons">movie</i>
                               Episodios:
-                            </div>  
+                            </div>
                             @if($s->Episode())
                                 @foreach($s->Episode as $episode)
-                                
+
                                   @if($episode->status =='Aprobado')
                                     <div class="collapsible-body">
                                         <div class="row">
@@ -228,33 +238,118 @@
                                                   <div class="col s2">
                                                       <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="" onclick="fnOpenNormalDialog2('{!!$episode->cost!!}','{!!$episode->episode_name!!}','{!!$episode->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                                                   </div>
-                                                @endif 
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
                                   @endif
-                                
-                              @endforeach
-                            @endif 
-                          </li>
-                        </ul>
-                    </div> 
+                                @endforeach
+                            @endif                    
+          
+                      </div>
 
-               
+                      <div class="col m12 s12">
+                        <br>
+                              <ul class="collection z-depth-1" style="color: black">
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">create</i>
+                                              <b class="left">Titulo original: </b>
+                                          </div>
+                                         <div class="col s12 m7">
+                                             {{ $s->original_title }}
+                                          </div>
+                                      </div>
+                                  </li>
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">star</i>
+                                             <b class="left">Categoria: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+
+                                          </div>
+                                      </div>
+                                  </li>
+                                 @if($s->sagas!=null)
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">folder</i>
+                                              <b class="left">Saga: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+                                              {{ $s->saga->sag_name }}
+                                         </div>
+                                      </div>
+                                  </li>
+                                  @else
+                                  <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                              <i class="material-icons circle left">folder</i>
+                                              <b class="left">Saga: </b>
+                                         </div>
+                                          <div class="col s12 m7">
+                                              No pertenece a una saga
+                                          </div>
+                                      </div>
+                                  </li>
+                                  @endif
+                                 <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+                                          <div class="col s12 m5">
+                                             <i class="material-icons circle left">local_play</i>
+                                              <b class="left">Costo: </b>
+                                          </div>
+                                          <div class="col s12 m7">
+                                              {{ $s->cost }} Tickets
+                                          </div>
+                                      </div>
+                                  </li>
+                                 <li class="collection-item" style="padding: 10px ">
+                                      <div class="row">
+
+                                          <div class="col s6 ">
+                                                <a class="btn btn-primary blue curvaBoton   modal-trigger " href="#modal1">Sinopsis</a>
+
+                                          </div>
+
+                                          <div class="col s6 ">
+
+
+                                                 <a class="btn blue curvaBoton  " href="{{url('MySeries')}}">ATRÁS</a>
+
+                                          </div>
+
+                                      </div>
+                                  </li>
+                              </ul>
+
+
+                            </div>
+
                     </div>
 
 
-                  </div>
-                   </div>
-                           
+                      
 
+
+
+
+
+
+
+                  </div>
                 </div>
 
 
 
 
               </div>
-              
+
 
             <!-- Modal Structure -->
             <div id="modal1" class="modal bottom-sheet">
@@ -356,7 +451,7 @@ function callback(value,id) {
                     	swal('Serie comprada con exito','','success');
                   		 console.log(result);
                        window.setTimeout(function(){window.location.reload()}, 1000);
-                  	}	 
+                  	}
                 },
               error: function (result) 
                 {
@@ -442,7 +537,7 @@ function callback2(value,id) {
                       swal('Episodio comprado con exito','','success');
                        console.log(result);
                        window.setTimeout(function(){window.location.reload()}, 1000);
-                    }  
+                    }
                 },
               error: function (result) 
                 {

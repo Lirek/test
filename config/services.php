@@ -43,8 +43,8 @@ return [
     ],
 
 //    'github' => [
-//        'client_id' => env('GITHUB_CLIENT_ID','53745a44e9e958b55ff1'),         // Your GitHub Client ID
-//        'client_secret' => env('GITHUB_CLIENT_SECRET','de7cf48f31962f31970d1779cd210e378dcd755f'), // Your GitHub Client Secret
+//        'client_id' => .env('GITHUB_CLIENT_ID','53745a44e9e958b55ff1'),         // Your GitHub Client ID
+//        'client_secret' => .env('GITHUB_CLIENT_SECRET','de7cf48f31962f31970d1779cd210e378dcd755f'), // Your GitHub Client Secret
 //        'redirect' => 'http://leipel.com.test/login/github/callback',
 //        'redirect' => 'http://localhost/test/public/login/github/callback',
 //    ],
