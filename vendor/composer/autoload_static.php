@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
+class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -460,6 +460,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\AllTags' => __DIR__ . '/../..' . '/app/AllTags.php',
         'App\\ApplysSellers' => __DIR__ . '/../..' . '/app/ApplysSellers.php',
         'App\\Bidder' => __DIR__ . '/../..' . '/app/Bidder.php',
+        'App\\BidderAccess' => __DIR__ . '/../..' . '/app/BidderAccess.php',
+        'App\\BidderRoles' => __DIR__ . '/../..' . '/app/BidderRoles.php',
         'App\\Book' => __DIR__ . '/../..' . '/app/Book.php',
         'App\\BookAuthor' => __DIR__ . '/../..' . '/app/BookAuthor.php',
         'App\\BookTags' => __DIR__ . '/../..' . '/app/BookTags.php',
@@ -486,6 +488,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Events\\PointsTraceEvent' => __DIR__ . '/../..' . '/app/Events/PointsTraceEvent.php',
         'App\\Events\\RadioTraceEvent' => __DIR__ . '/../..' . '/app/Events/RadioTraceEvent.php',
         'App\\Events\\SongTraceEvent' => __DIR__ . '/../..' . '/app/Events/SongTraceEvent.php',
+        'App\\Events\\StatusBidder' => __DIR__ . '/../..' . '/app/Events/StatusBidder.php',
+        'App\\Events\\StatusBidderEvent' => __DIR__ . '/../..' . '/app/Events/StatusBidderEvent.php',
         'App\\Events\\TransactionToken' => __DIR__ . '/../..' . '/app/Events/TransactionToken.php',
         'App\\Events\\TransactionsId' => __DIR__ . '/../..' . '/app/Events/TransactionsId.php',
         'App\\Events\\TvTraceEvent' => __DIR__ . '/../..' . '/app/Events/TvTraceEvent.php',
@@ -511,6 +515,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\BidderAuth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/BidderAuth/LoginController.php',
         'App\\Http\\Controllers\\BidderController' => __DIR__ . '/../..' . '/app/Http/Controllers/BidderController.php',
         'App\\Http\\Controllers\\BooksAuthorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksAuthorsController.php',
         'App\\Http\\Controllers\\BooksController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksController.php',
@@ -522,6 +527,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\MegazineController' => __DIR__ . '/../..' . '/app/Http/Controllers/MegazineController.php',
         'App\\Http\\Controllers\\MoviesController' => __DIR__ . '/../..' . '/app/Http/Controllers/MoviesController.php',
         'App\\Http\\Controllers\\MusicController' => __DIR__ . '/../..' . '/app/Http/Controllers/MusicController.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\PromoterAuth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/PromoterAuth/LoginController.php',
         'App\\Http\\Controllers\\PromoterController' => __DIR__ . '/../..' . '/app/Http/Controllers/PromoterController.php',
         'App\\Http\\Controllers\\RadiosController' => __DIR__ . '/../..' . '/app/Http/Controllers/RadiosController.php',
@@ -542,7 +548,9 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\WelcomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/WelcomeController.php',
         'App\\Http\\Controllers\\mp3File' => __DIR__ . '/../..' . '/app/Http/Controllers/mp3File.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\ActiveUsers' => __DIR__ . '/../..' . '/app/Http/Middleware/ActiveUsers.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
+        'App\\Http\\Middleware\\AuthenticateBidder' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateBidder.php',
         'App\\Http\\Middleware\\AuthenticatePromoter' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticatePromoter.php',
         'App\\Http\\Middleware\\AuthenticateSeller' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateSeller.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -555,6 +563,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Middleware\\MySingles' => __DIR__ . '/../..' . '/app/Http/Middleware/MySingles.php',
         'App\\Http\\Middleware\\OperatorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/OperatorMiddleware.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\RedirectIfBidderAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfBidderAuthenticated.php',
         'App\\Http\\Middleware\\RedirectIfPromoterAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfPromoterAuthenticated.php',
         'App\\Http\\Middleware\\RedirectIfSellerAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfSellerAuthenticated.php',
         'App\\Http\\Middleware\\SuperAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/SuperAdmin.php',
@@ -592,8 +601,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Listeners\\SendTransactionsId' => __DIR__ . '/../..' . '/app/Listeners/SendTransactionsId.php',
         'App\\Listeners\\SendUserValidateEmail' => __DIR__ . '/../..' . '/app/Listeners/SendUserValidateEmail.php',
         'App\\Listeners\\SendWelcomeEmail' => __DIR__ . '/../..' . '/app/Listeners/SendWelcomeEmail.php',
+        'App\\Listeners\\StatusBidder' => __DIR__ . '/../..' . '/app/Listeners/StatusBidder.php',
+        'App\\Listeners\\StatusBidderListen' => __DIR__ . '/../..' . '/app/Listeners/StatusBidderListen.php',
         'App\\LoginControl' => __DIR__ . '/../..' . '/app/LoginControl.php',
         'App\\Mail\\ApprovalNotification' => __DIR__ . '/../..' . '/app/Mail/ApprovalNotification.php',
+        'App\\Mail\\BidderChangeStatus' => __DIR__ . '/../..' . '/app/Mail/BidderChangeStatus.php',
         'App\\Mail\\BuyContent' => __DIR__ . '/../..' . '/app/Mail/BuyContent.php',
         'App\\Mail\\ContentAproval' => __DIR__ . '/../..' . '/app/Mail/ContentAproval.php',
         'App\\Mail\\ContentDenial' => __DIR__ . '/../..' . '/app/Mail/ContentDenial.php',
@@ -628,6 +640,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Notifications\\SellerResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/SellerResetPasswordNotification.php',
         'App\\PaymentSeller' => __DIR__ . '/../..' . '/app/PaymentSeller.php',
         'App\\Payments' => __DIR__ . '/../..' . '/app/Payments.php',
+        'App\\PaymentsBidder' => __DIR__ . '/../..' . '/app/PaymentsBidder.php',
         'App\\PointsAssings' => __DIR__ . '/../..' . '/app/PointsAssings.php',
         'App\\PointsLoser' => __DIR__ . '/../..' . '/app/PointsLoser.php',
         'App\\PointsSells' => __DIR__ . '/../..' . '/app/PointsSells.php',
@@ -679,6 +692,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Tv' => __DIR__ . '/../..' . '/app/Tv.php',
         'App\\TvTrace' => __DIR__ . '/../..' . '/app/TvTrace.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\exchange_product' => __DIR__ . '/../..' . '/app/exchange_product.php',
         'App\\music_authors' => __DIR__ . '/../..' . '/app/music_authors.php',
         'App\\seller_closed' => __DIR__ . '/../..' . '/app/seller_closed.php',
         'App\\user_closed' => __DIR__ . '/../..' . '/app/user_closed.php',
@@ -874,6 +888,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
+        'DeepCopy\\Filter\\ChainableFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/ChainableFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineCollectionFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineCollectionFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineEmptyCollectionFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineEmptyCollectionFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineProxyFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineProxyFilter.php',
@@ -890,7 +905,6 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'DeepCopy\\TypeFilter\\Date\\DateIntervalFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Date/DateIntervalFilter.php',
         'DeepCopy\\TypeFilter\\ReplaceFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ReplaceFilter.php',
         'DeepCopy\\TypeFilter\\ShallowCopyFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ShallowCopyFilter.php',
-        'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedList' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedList.php',
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
@@ -2953,6 +2967,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'Payments' => __DIR__ . '/../..' . '/database/migrations/2018_10_26_154638_Payments.php',
+        'PaymentsBidder' => __DIR__ . '/../..' . '/database/migrations/2019_03_25_104146_payments_bidder.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',
         'PhpParser\\BuilderFactory' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderFactory.php',
         'PhpParser\\BuilderHelpers' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderHelpers.php',
@@ -3008,6 +3023,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseAnd' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseAnd.php',
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseOr' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseOr.php',
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseXor' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseXor.php',
+        'PhpParser\\Node\\Expr\\AssignOp\\Coalesce' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Coalesce.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Concat' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Concat.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Div' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Div.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Minus' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Minus.php',
@@ -4172,8 +4188,10 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Symfony\\Polyfill\\Util\\Binary' => __DIR__ . '/..' . '/symfony/polyfill-util/Binary.php',
         'Symfony\\Polyfill\\Util\\BinaryNoFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryNoFuncOverload.php',
         'Symfony\\Polyfill\\Util\\BinaryOnFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryOnFuncOverload.php',
-        'Symfony\\Polyfill\\Util\\LegacyTestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/LegacyTestListener.php',
         'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV5' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV5.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV6' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV6.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV7' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV7.php',
         'Symfony\\Polyfill\\Util\\TestListenerTrait' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerTrait.php',
         'TagsSeeder' => __DIR__ . '/../..' . '/database/seeds/TagsSeeder.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
@@ -4350,11 +4368,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$classMap;
 
         }, null, ClassLoader::class);
     }
