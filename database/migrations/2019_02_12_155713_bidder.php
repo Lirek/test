@@ -22,7 +22,9 @@ class Bidder extends Migration
             $table->string('imagen_ruc')->nullable();
             $table->string('logo')->nullable();
             $table->integer('points')->nullable()->default(0);
-            $table->enum('status',['Aprobado','En Revision','Denegado'])->default("En Revision");
+            $table->integer('pendding_points')->nullable()->default(0);
+            $table->enum('status',['En Revision','Pre-Aprobado','Aprobado','Denegado'])->default("En Revision");
+            $table->string('token')->nullable();
             $table->enum('account_status',['open','closed'])->default("open");
             $table->rememberToken();
             $table->timestamps();

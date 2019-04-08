@@ -24,82 +24,75 @@
         width: 100%;
         height: 100%;
     }
+
+
   </style>
 @endsection
 
 @section('main')
 <div class="row">
-	<div class="col s12 m12">
-		<div class="card">
-			<div class="card-content white-text">
-				<h4 class="titelgeneral"><i class="material-icons small">movie</i> Peliculas</h4>
+  <div class="col s12 m12">
+    <div class="card">
+      <div class="card-content white-text">
+        <h4 class="titelgeneral"><i class="material-icons small">movie</i> Peliculas</h4>
 
-				<div class="row">
-                	<div class="input-field col s12 m6 offset-m3">
-                		<form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
-                			{{ csrf_field() }}
-                			<i class="material-icons prefix blue-text">search</i>
+        <div class="row">
+                  <div class="input-field col s12 m6 offset-m3">
+                    <form method="POST"  id="SaveSong" action="{{url('SearchMovieList')}}">
+                      {{ csrf_field() }}
+                      <i class="material-icons prefix blue-text">search</i>
                             <input type="text" id="seach" name="seach" class="validate">
                             <input type="hidden" name="type" id="type">
                             <label for="seach">Buscar Pelicula</label><br>
                             <br>
                             <button class="btn curvaBoton green" type="submit" name="buscar" id="buscar">Buscar...</button>
-                		</form>
-                	</div>
+                    </form>
+                  </div>
                 </div>
-                <div class="row">
-                	@if($Movie->count() != 0 )
-                		@foreach($Movie as $Movies)
-                		<div class="col s12 m3">
-		                  <div class="card" style="height: 430px">
-		                    <div class="card-image">
-                          <!--  <a href="{{url('PlayMovie/'.$Movies->id)}}" >
-		                      <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
-                        </a> -->
-		                      <!-- <span class="card-title">Card Title</span> -->
-		                    <!--  <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>-->
-                          @if($Movies['adquirido'])
-                          <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$Movies['id']) }}">
-                            <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
+
+
+                <div class="row"> 
+                  @if($Movie->count() != 0 )
+                    @foreach($Movie as $Movies)
+                    <div class="col s12 m4 l3">
+                      <div class="card">
+                        <div class="card-image">
+                            <a href="{{url('PlayMovie/'.$Movies->id)}}" >
+                          <img src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px">
                           </a>
-
-                           <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('PlayMovie/'.$Movies['id']) }}">
-                               <i class="small material-icons">movie</i>
-                           </a>
+                          <!-- <span class="card-title">Card Title</span> -->
+                          <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$Movies->id}}" onclick="fnOpenNormalDialog('{!!$Movies->cost!!}','{!!$Movies->title!!}','{!!$Movies->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                        </div> 
+                        <div class="card-content" >
+                            <div class="col m12 s12">
+                                <p class="grey-text truncate">{{ $Movies->title }}</p>
+                            </div> 
+                            <div class="col m12 s12">
+                              <p class="grey-text truncate"><b>Autor:</b>  {{ $Movies->seller->name }}</p>
+                            </div>
+                            <div class="col m12 s12">
+                                <p class="grey-text"><b>Costo:</b> {{$Movies->cost}} tickets</p> 
+                            </div>
+                           @if($Movies->title)
+                                <p class="grey-text"><b>Cine</b></p>
                            @else
-                           
-                           <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$Movies['id']) }}">
-                                  <img  src="movie/poster/{{$Movies->img_poster}}" width="100%" height="300px"> </a>
-                           
-                           
-                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog5('{!!$Movies['cost']!!}','{!!$Movies['title']!!}','{!!$Movies['id']!!}')">
-                               <i class="small material-icons">movie</i>
-                           </a>
+                                <p class="grey-text"><b>Serie</b></p>
                            @endif
-		                    </div>
-		                    <div class="card-content">
-		                        <div class="col m12 s12">
-		                            <p class="grey-text">{{ $Movies->title }}</p>
-		                        </div>
-		                        <div class="col m12 s12">
-		                            <p class="grey-text"><b>Costo: </b> {{$Movies->cost}} tickets</p> 
-		                        </div>
-		                    </div>
-		                  </div>
-		                </div>
+                        </div>
+                      </div>
+                    </div>
 
-		
-                		@endforeach
-                		<div class="col m12">
-                		</div>
-                	@else
-                	<div class="col m12">
-		            <blockquote >
-		                <i class="material-icons fixed-width large grey-text">movie</i><br><h5 class="grey-text">No hay peliculas disponibles</h5>
-		            </blockquote>
-		            <br>
-		            </div>
-                	@endif
+                    @endforeach
+                    <div class="col m12">
+                    </div>
+                  @else
+                  <div class="col m12">
+                <blockquote >
+                    <i class="material-icons fixed-width large grey-text">movie</i><br><h5 class="grey-text">No hay peliculas disponibles</h5>
+                </blockquote>
+                <br>
+                </div>
+                  @endif
                 </div>
             </div>
         </div>
@@ -108,26 +101,6 @@
 @endsection
 @section('js')
 <script type="text/javascript">
-
-
-/*function fnOpenNormalDialog5(cost,name,id) {
-
-   swal({
-            title: "¿Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?',
-            icon: "warning",
-            buttons:  ["Cancelar", "Adquirir"],
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            callback5(true,id);
-
-          } else {
-            callback5(false,id);
-          }
-        });
-    };/
            // Tabs
     var elem = $('.tabs')
     var options = {}
@@ -185,13 +158,13 @@ function fnOpenNormalDialog(cost,name,id) {
         height: 250,
         width: 400,
         position: {
-        	my: "center top",
-			at: "center top",
-			of: $("#principal"),
-			within: $("#principal")
+          my: "center top",
+      at: "center top",
+      of: $("#principal"),
+      within: $("#principal")
         },
         buttons: {
-            	"Si": function () {
+              "Si": function () {
                 $(this).dialog('close');
                 callback(true,id);
             },
@@ -238,7 +211,7 @@ function callback(value,id) {
                  
                     }
                     else
-                    {	
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
                 
@@ -254,7 +227,7 @@ function callback(value,id) {
                       
                     swal('Cancion comprada con exito','','success');
 
-                  	}	 
+                    }  
                 },
               error: function (result) 
                 {
@@ -269,7 +242,7 @@ function callback(value,id) {
 </script> -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function fnOpenNormalDialog5(cost,name,id) {
+function fnOpenNormalDialog(cost,name,id) {
   
    swal({
             title: "¿Estas seguro?",
@@ -287,7 +260,6 @@ function fnOpenNormalDialog5(cost,name,id) {
           }
         });
     };
-    
 
 function callback(value,id) {
     if (value) {
@@ -322,7 +294,7 @@ function callback(value,id) {
                       swal('La pelicula ya forma parte de su colección','','error');
                     }
                     else
-                    {	
+                    { 
                     var idUser={!!Auth::user()->id!!};
                     $.ajax({ 
                 
@@ -335,9 +307,9 @@ function callback(value,id) {
                   
                       },
                     });
-                    	swal('Pelicula comprada con exito','','success');
-                  		 console.log(result);
-                  	}	 
+                      swal('Pelicula comprada con exito','','success');
+                       console.log(result);
+                    }  
                 },
               error: function (result) 
                 {
@@ -355,24 +327,24 @@ function callback(value,id) {
 <script type="text/javascript">
 
 $(document).ready(function(){
-	$('#seach').keyup(function(evento){
-		$('#buscar').attr('disabled',true);
-	});
-	$('#buscar').attr('disabled',true);
+  $('#seach').keyup(function(evento){
+    $('#buscar').attr('disabled',true);
+  });
+  $('#buscar').attr('disabled',true);
       $('#seach').autocomplete({
-      	source: "SearchMovie",
-      	minLength: 2,
-      	select: function(event, ui){		
-      		$('#seach').val(ui.item.value);
-      		var valor = ui.item.value;
+        source: "SearchMovie",
+        minLength: 2,
+        select: function(event, ui){    
+          $('#seach').val(ui.item.value);
+          var valor = ui.item.value;
           console.log(valor);
-      		if (valor=='No se encuentra...'){
-      			$('#buscar').attr('disabled',true);
-      			swal('Pelicula no se encuentra regitrada','','error');
-      		}else{
-      			$('#buscar').attr('disabled',false);
-      		}
-      	}
+          if (valor=='No se encuentra...'){
+            $('#buscar').attr('disabled',true);
+            swal('Pelicula no se encuentra regitrada','','error');
+          }else{
+            $('#buscar').attr('disabled',false);
+          }
+        }
 
    });
   });
