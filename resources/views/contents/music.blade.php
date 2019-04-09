@@ -58,30 +58,30 @@
                     <!-- <span class="card-title">Card Title</span> -->
                     @if($Album->name_alb) <!-- Para los albumes -->
                       @if($Album->Transactions->count()!=0)
-                        @foreach($Album->Transactions as $t)
-                          @if($t->user_id!=Auth::user()->id)
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                        @foreach($Album->Transactions as $t) 
+                          @if($t->user_id==Auth::user()->id)
+                    <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('MyAlbums/'.$Album->id)}}"><i class="material-icons green">library_music</i></a>
                           @endif
                         @endforeach
                       @else
-                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">library_music</i></a>
                       @endif
                     @else <!-- Para los singles -->
                       @if($Album->transaction->count()!=0)
                         @foreach($Album->transaction as $t)
-                          @if($t->user_id!=Auth::user()->id)
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
-                              <i class="material-icons">add_shopping_cart</i>
+                          @if($t->user_id==Auth::user()->id)
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('MySingles/'.$Album->id)}}">
+                          <i class="material-icons green">music_note</i>
                             </a>
                           @endif
                         @endforeach
                       @else
-                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
-                          <i class="material-icons">add_shopping_cart</i>
+                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
+                          <i class="material-icons">music_note</i>
                         </a>
                       @endif
                     @endif
-                  </div>
+                  </div> 
                   <div class="card-content grey-text" style="padding: 24px 0px">
                     <div class="col m12 s12">
                       @if($Album->name_alb)

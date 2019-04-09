@@ -41,15 +41,33 @@
                           <div class="card" style="height:100%">
                             <div class="card-image">
                               @if($lecturas->books_file)
+                              @if($lecturas->transaction->count()!=0)
+                              @foreach($lecturas->transaction as $t) 
+                              @if($t->user_id==Auth::user()->id)
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
-                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ShowMyReadBook/'.$lecturas->id)}}" id="modal-confir.{{$lecturas->id}}" ><i class="material-icons green">book</i></a>
+                              @endif
+                              @endforeach
+                              @else
+                              <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
+                              <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300px"></a>
+                              <!-- <span class="card-title">Card Title</span> -->
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">book</i></a>
+                              @endif
+                              @else <!-- Revistas -->
+                              @if($lecturas->transaction->count()!=0)
+                              <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
+                              <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
+                              <!-- <span class="card-title">Card Title</span> -->
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ShowMyReadMegazine/'.$lecturas->id)}}"><i class="mdi mdi-book-open-variant green"></i></a>
                               @else
                               <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
-                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="mdi mdi-book-open-variant"></i></a>
+                              @endif
                               @endif
                             </div>
                             <div class="card-content">
@@ -91,15 +109,33 @@
                              <br>
 
                               @if($lecturas->books_file)
+                              @if($lecturas->transaction->count()!=0)
+                              @foreach($lecturas->transaction as $t) 
+                              @if($t->user_id==Auth::user()->id)
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
-                              <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300"  id="panel"></a>
+                              <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300"></a>
                               <!-- <span class="card-title">Card Title</span> -->
-                              <a  class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                              <a  class="btn halfway-fab waves-effect waves-light green curvaBoton" href="{{url('ShowMyReadBook/'.$lecturas->id)}}" id="modal-confir.{{$lecturas->id}}"><i class="material-icons green">book</i></a>
+                              @endif
+                              @endforeach
                               @else
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
-                              <img src="{{asset($lecturas->cover)}}" width="100%" height="300"  id="panel"></a>
+                              <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300"></a>
                               <!-- <span class="card-title">Card Title</span> -->
-                              <a  class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                              <a  class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                              @endif
+                              @else <!-- Revistas -->
+                              @if($lecturas->transaction->count()!=0)
+                              <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
+                              <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
+                              <!-- <span class="card-title">Card Title</span> -->
+                              <a class="btn halfway-fab waves-effect waves-light green curvaBoton" href="{{url('ShowMyReadMegazine/'.$lecturas->id)}}"><i class="mdi mdi-book-open-variant green"></i></a>
+                              @else
+                              <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
+                              <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
+                              <!-- <span class="card-title">Card Title</span> -->
+                              <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="mdi mdi-book-open-variant"></i></a>
+                              @endif
                               @endif
                               <br><br>
                                 </div>

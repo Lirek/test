@@ -54,20 +54,37 @@
                     <div class="col s12 m3">
                       <div class="card" style="height: 430px">
                         <div class="card-image">
-
-
                            @if($cine->type=='movie' )
-                             <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
+                              @if($cine->Transactions->count()!=0)
+                              @foreach($cine->Transactions as $t) 
+                              @if($t->user_id==Auth::user()->id)
+                              <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
                              <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
-                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialog('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
-                            @else
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('PlayMovie/'.$cine->id)}}" id="modal-confir.{{$cine->id}}"><i class="material-icons green">movie</i></a>
+                              @endif
+                              @endforeach
+                              @else
+                              <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
+                             <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
+                              <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialog('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">movie</i></a>
+                              @endif
+                            @else <!-- Series -->
+                            @if($cine->Transactions->count()!=0)
+                              @foreach($cine->Transactions as $t) 
+                              @if($t->user_id==Auth::user()->id)
                              <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
                             <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialogSer('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('PlaySerie/'.$cine->id)}}" id="modal-confir.{{$cine->id}}"><i class="material-icons mdi mdi-movie-roll green"></i></a>
                             @endif
-                                      
+                              @endforeach
+                              @else
+                              <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
+                            <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialogSer('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons mdi mdi-movie-roll"></i></a>
+                            @endif
+                            @endif                    
                           <!-- <span class="card-title">Card Title</span> -->
-                    
+      
                         </div>
                         <div class="card-content">
                             <div class="col m12 s12">
