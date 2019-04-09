@@ -151,7 +151,9 @@
             </h4>
           </div>
           <div class="card-action">
-            <a href="{{url('PendingPointsRoutine')}}" class="btn btn-primary">Revisar</a>
+            <button id="x" class="btn btn-primary">
+              Revisar
+            </button>
           </div>
         </div>
       </div>
@@ -160,8 +162,7 @@
 @section('js')
 <script type="text/javascript">
    $(document).on('click', '#x', function() {
-    var apply = $(this).attr('value1');
-    var promoter = $(this).attr('value2');
+    console.log('cc');
     var url = 'PendingPointsRoutine';
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
     swal({
@@ -184,7 +185,7 @@
           type:'get',
           dataType:"json",
           success: function(data) {
-            swal("Se han retirado un total de"+data['puntos']+" de "+data['usuarios']+,"","success")
+            swal("Se han retirado un total de "+data['puntos']+" puntos de "+data['usuarios']+" usuarios")
             .then((recarga) => {
               location.reload();
             });

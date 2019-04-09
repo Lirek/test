@@ -54,14 +54,19 @@ class AssingPoints
 
           while (true)
           {
-            $pass = Referals::where('refered','=',$id)->first();
+            if($i==$points){break;}
+            
+            $pass = Referals::where('refered','=',$id)->where('account_status','=','open')->first();
+            
             if ($pass!=NULL) {
               $id=$pass->user_id;
               $Refered->push(User::find($id));
+             
             } else
             {
               break;
             }
+             $i++;
           }
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
@@ -74,7 +79,7 @@ class AssingPoints
             ->where('status', '=','Aprobado')
             ->get();
 
-            if($key->points == $key->limit_points or $revenueMonth->count()<1)
+            if($key->points == $key->limit_points or $revenueMonth->count() >= 1)
             {
                 $key->pending_points = $key->pending_points + 1;
             }
@@ -111,8 +116,3 @@ class AssingPoints
 
     }
   }
-
-
-
-
-

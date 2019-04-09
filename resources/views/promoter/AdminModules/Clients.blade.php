@@ -331,8 +331,14 @@
           console.log(data);
           if (data.length!=0) {
             $.each(data,function(i,info) {
+              var nombre = "";
+              if (info.last_name!=null) {
+                nombre = info.name+" "+info.last_name;
+              } else {
+                nombre = info.name;
+              }
               var filas = "<tr><td>"+
-              info.name+" "+info.last_name+"</td><td>"+
+              nombre+"</td><td>"+
               info.email+"</td><td>"+
               info.level+"</td></tr>";
               $("#redes").append(filas);
