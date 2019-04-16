@@ -59,7 +59,7 @@
                     @if($Album->name_alb) <!-- Para los albumes -->
                       @if($Album->Transactions->count()!=0)
                         @foreach($Album->Transactions as $t) 
-                          @if($t->user_id == Auth::user()->id)
+                          @if('$t->[user_id]' != 'Auth::user()->id')
                     <a class="btn-floating halfway-fab waves-effect waves-light" href="{{url('MyAlbums/'.$Album->id)}}"><i class="material-icons green">library_music</i></a>
                           @endif
                         @endforeach
