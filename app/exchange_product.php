@@ -16,5 +16,8 @@ class exchange_product extends Model
 		'status',
     ];
 
+    public function Producto() {
+        return $this->belongsTo('App\Products','product_id');
+    }
 
 }
