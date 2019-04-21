@@ -121,6 +121,28 @@
     $(document).on('click','#botonModal', function() {
       var identi=$(this).attr("value");
       var idFormulario="#formProduct-"+identi;
+      var url="{{url('verifyBenefi')}}/"+identi;      
+              $.ajax({
+                  url,
+                  type: 'GET',
+                  dataType: "json",
+                  success: function (result) {
+                    console.log(result);
+                      if (result>0) {
+                          swal({
+                              title: "Usted ha comprado este producto " +result+ " veces ¿Desea comprarlo nuevamente?",
+                              text: "",
+                              icon: "warning",
+                              buttons:  ["Cancelar", "Comprar"],
+                              dangerMode: true,
+                          })
+                      }
+                  },
+                  error: function (result) {
+                      swal('Existe un error en su solicitud','','error');
+                      console.log(result);
+                  }
+              });
       $(idFormulario).on('submit', function(e){
         e.preventDefault();
         var name=$('#nameProduct-'+identi).val();
