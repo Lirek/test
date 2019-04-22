@@ -135,16 +135,22 @@
                                 <input id="name" type="text" class="form-control" name="name" value="" placeholder="">
                             </div>
    
-                            <div class=" input-field col m6">
+                            <div class="input-field col m6">
                                 <i class="material-icons prefix blue-text">email</i>
                                 <label for="email" id="labeEmail">Correo electrónico</label>
                                 <input id="email" type="email" class="form-control" name="email" value="" placeholder="">
                             </div>
+
+                            <div class="input-field col m6">
+                                <i class="material-icons prefix blue-text">phone</i>
+                                <label for="tlf" id="labeTlf">Teléfono</label>
+                                <input id="tlf" type="text" class="form-control" name="tlf" value="" placeholder="">
+                            </div>
                             
-                            <div class="input-field col m6 offset-m3">
+                            <div class="input-field col m6">
                                 <i class="material-icons prefix blue-text">edit</i>  
                                 <label for="ruc" class="">Registro Único de Contribuyente</label>
-                                <input id="ruc" type="number" class="form-control" name="ruc" placeholder="">
+                                <input id="ruc" type="number" class="form-control" name="ruc" placeholder="" required="required" autofocus>
                                 <div id="mensajeDoc" style="display: none;"></div>
                             </div>
 
@@ -331,8 +337,8 @@
             $('#name').val(bidder.name);
             $('#email').attr('readonly','readonly');
             $('#email').val(bidder.email);
-            $("#ruc").attr('readonly','readonly');
-            $("#ruc").val(bidder.ruc);
+            $('#tlf').attr('readonly','readonly');
+            $('#tlf').val(bidder.phone);
             $('#adj_logo').focus();
         }
     });

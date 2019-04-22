@@ -282,9 +282,8 @@
         			location.replace("{{url('retiro')}}");
         		});
 			}
-			if ({!!Auth::guard('bidder')->user()->points!!} != 0) {
-				$('#monto').val({!!Auth::guard('bidder')->user()->points!!});
-			} else {
+			$('#monto').val({!!Auth::guard('bidder')->user()->points!!});
+			if ({!!Auth::guard('bidder')->user()->points!!} == 0) {
 				$('#solicitar').attr('disabled',true);
 			}
 		});

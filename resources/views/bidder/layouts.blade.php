@@ -86,13 +86,11 @@
                         </div>
                     </div>
                 </li><!--End seccion de usuario -->
-                <!--
                 <li>
-                    <a href="" class="waves-effect waves-yellow">
+                    <a href="{{url('bidderPerfil')}}" class="waves-effect waves-yellow">
                         <i class="small material-icons">person</i>Mi Perfil
                     </a>
                 </li>
-                -->
                 <li><div class="divider"></div></li>
                 <li>
                     <a href="{{url('retiro')}}" class="waves-effect waves-yellow">

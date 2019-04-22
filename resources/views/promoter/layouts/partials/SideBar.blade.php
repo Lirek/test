@@ -155,6 +155,13 @@
                     <span class="new badge orange darken-1" data-badge-caption="" id="badgeOfertantes" style="display: none; background-color: #d9534f;"></span>
                   </a>
                 </li>
+                <li>
+                  <a href="{{url('ModulesBidder')}}">
+                    <i class="small material-icons">assignment</i>
+                    Categorías
+                    <span class="new badge orange darken-1" data-badge-caption="" id="" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
