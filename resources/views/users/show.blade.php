@@ -2,7 +2,7 @@
 @section('css')
     <style>
 
-       .pdf{
+        .pdf{
             position:relative;
         }
         .transparencia {
@@ -36,7 +36,6 @@
             background: -o-linear-gradient(50deg,#2096ff, #a1ffae)!important;
             background: linear-gradient(40deg,#2096ff, #9dffac)!important;
         }
-
 
     </style>
 @endsection
@@ -115,16 +114,12 @@
                             <li class="collection-item" style=" padding: 0px;" >
                                 <br>
                                 <div class="row">
-                                    <div class="col s4 m4 l4">
-                                        <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
-
-                                       <a  href="{{ asset('book')}}/{{ $book->books_file }}#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
-
-                                       <!-- <a href="{{url('ReadBook')}}/{{$book->id}}" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>-->
-
-                                    </div>
                                     @if($adquirido )
                                         <div class="col s4 m4 l4">
+                                             <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
+
+                                              <!--<a  href="{{ asset('book')}}/{{ $book->books_file }}#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>-->
+
                                             <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
                                              <a  href="{{ asset('book')}}/{{ $book->books_file }}" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
                                         </div>
@@ -146,11 +141,13 @@
                                     </div>
                                 </div>
                             </li>
+
                         </ul>
-                    </div>                                
-                </div>          
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
     <!--Modal-->
     <!-- /.modal  de sagas  -->
@@ -183,9 +180,7 @@
         </div>
     </div>
 @endsection
-
 @section('js')
-
 
     <script>
         //---------------------------------------------------------------------------------------------------

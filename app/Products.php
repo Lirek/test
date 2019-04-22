@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use File;
 use App\SubProducto;
+use App\exchange_product;
 
 class Products extends Model
 {
@@ -25,10 +26,10 @@ class Products extends Model
       return $this->hasMany('App\SubProducto','product_id');
     }
 
-    public function Bidder() {
-      return $this->belongsTo('App\Bidder', 'bidder_id');
+    public function exchange_product() {
+      return $this->hasMany('App\exchange_product','product_id');
     }
-
+    
     public static function store($request) {
         $product = new Products;
         $imagen = $request->file('imagen');
@@ -42,6 +43,7 @@ class Products extends Model
         $pathPdf = public_path()."/promociones/";
         $pdf->move($pathPdf,$namePDF);
         $pdf_prod = "/promociones/".$namePDF;
+
         if (array_key_exists('idBidder', $request->all())) {
             $product->bidder_id = $request->idBidder;
             $product->status = "En Revision";
@@ -114,11 +116,7 @@ class Products extends Model
     	$product = self::find($id);
     	File::delete(public_path().$product->imagen_prod);
     	File::delete(public_path().$product->pdf_prod);
-        $SubProducto = SubProducto::where('product_id',$id)->get();
-        if ($SubProducto!=null) {
-            SubProducto::where('product_id',$id)->delete();
-        }
-        self::destroy($id);
+    	self::destroy($id);
     	return $product;
     }
 
