@@ -24,7 +24,6 @@ class Product extends Migration
             $table->integer('amount');
             $table->enum('status',['Aprobado','En Revision','Denegado']);
             $table->timestamps();
-            $table->foreign('bidder_id')->references('id')->on('bidder');
         });
     }
 

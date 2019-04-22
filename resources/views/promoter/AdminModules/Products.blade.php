@@ -185,11 +185,20 @@
 		$(document).ready(function(){
 			$('input.count').characterCounter();
 			productos("En Revision");
+
             var agregar = $('.add_button');
             var wrapper = $('.agregar');
             agregar.click(function(){ 
+                console.log('agregar');
                 wrapper.append(agregarHTML());
             });
+
+            var agregar_u = $('.add_button_u');
+            var wrapper_u = $('.agregar_u');
+            agregar_u.click(function(){
+                wrapper_u.append(agregarHTML());
+            });
+
             $(document).on('click','.eliminar', function(){
                 var uno = $(this).parent('div');
                 var dos = $(uno).parent('div');

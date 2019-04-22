@@ -29,6 +29,10 @@ class Bidder extends Authenticatable
         return $this->belongsToMany('App\BidderRoles','bidding_access','bidding_id','modules_id');
     }
 
+    public function Bidder() {
+      return $this->hasMany('App\Bidder','bidder_id');
+    }
+
     public static function store($request) {
     	$bidder = new Bidder;
     	$bidder->name = $request->nombreOfertante;

@@ -1,6 +1,6 @@
 @extends('promoter.layouts.app')
 @section('main')
-	<span class="card-title grey-text"><h3>Ofertantes</h3></span>
+	<span class="card-title grey-text"><h3>Aliados</h3></span>
 	{{--
 	<a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar producto" href="#NewProduct">
         <i class="material-icons">add</i>

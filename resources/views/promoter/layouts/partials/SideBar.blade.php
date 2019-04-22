@@ -151,7 +151,7 @@
                 <li>
                   <a href="{{url('Bidder')}}">
                     <i class="small material-icons">group</i>
-                    Ofertantes
+                    Aliados
                     <span class="new badge orange darken-1" data-badge-caption="" id="badgeOfertantes" style="display: none; background-color: #d9534f;"></span>
                   </a>
                 </li>
@@ -159,6 +159,12 @@
             </div>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="{{url('conversiones')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">attach_money</i>
+          Conversiones
+        </a>
       </li>
       <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <style>
 
        .pdf{
@@ -39,22 +38,22 @@
 
 
     </style>
-@endsection
-@section('main')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main'); ?>
     <!-- Main content -->
     <div class="row">
 
         <div class="col s12 m12" >
-            @include('flash::message')
+            <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             <div class="card-panel curva" style="padding-bottom: 110px;">
                 <div class="row">
                     <div class="col s12 m12 ">
-                        <h4 class="titelgeneral"><i class="material-icons small">book</i> "{{ $book->title }}" ({{ $book->release_year }})</h4>
+                        <h4 class="titelgeneral"><i class="material-icons small">book</i> "<?php echo e($book->title); ?>" (<?php echo e($book->release_year); ?>)</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m4 ">
-                    <img src="{{ asset('images/bookcover/') }}/{{$book->cover}}" style="border-radius: 10px" id="lecturaspanel">
+                    <img src="<?php echo e(asset('images/bookcover/')); ?>/<?php echo e($book->cover); ?>" style="border-radius: 10px" id="lecturaspanel">
                     </div>
                     <div class="col s12 m8  ">
                         <ul class="collection z-depth-1" >
@@ -64,52 +63,53 @@
                                 <i class="material-icons circle left blue-text">create</i>
                                     <b class="left">Titulo original: </b>
                                 </p>
-                                <p ALIGN="justify">&nbsp; {{ $book->original_title }}</p>
+                                <p ALIGN="justify">&nbsp; <?php echo e($book->original_title); ?></p>
                             </li> -->
 
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;" >
                                 <p><i class="material-icons circle left blue-text">turned_in</i>
                                 <b class="left">Géneros:</b> </p>
-                            @foreach($book->tags_book as $t)
+                            <?php $__currentLoopData = $book->tags_book; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="chip  aqua-gradient  white-text">
-                                    {{ $t->tags_name}}
+                                    <?php echo e($t->tags_name); ?>
+
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </li>
 
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;">
                                     <p><i class="material-icons circle left blue-text">star</i>
                                     <b class="left">Categoria:&nbsp;&nbsp;</b></p>
-                                <p ALIGN="justify"> {{ $book->rating->r_name }}</p>
+                                <p ALIGN="justify"> <?php echo e($book->rating->r_name); ?></p>
 
                             </li>
 
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;">
                                         <p><i class="material-icons circle left blue-text">local_play</i>
                                             <b class="left">Costo:&nbsp;&nbsp;</b></p>
-                                <p ALIGN="justify">  {{ $book->cost }} Tickets</p>
+                                <p ALIGN="justify">  <?php echo e($book->cost); ?> Tickets</p>
                             </li>
 
 
-                        @if($book->saga!=null)
+                        <?php if($book->saga!=null): ?>
                             <li class="collection-item"  style="padding: 5px 35px 5px 35px;">
                                 <p><i class="material-icons circle left blue-text">folder</i>
                                 <b class="left">Saga:&nbsp;</b></p>
                                 <p ALIGN="justify">
-                                {{ $book->saga->sag_name }}</p>
+                                <?php echo e($book->saga->sag_name); ?></p>
                              </li>
-                            @else
+                            <?php else: ?>
                             <li class="collection-item" style="padding: 5px 35px 5px 35px;">
                                 <p><i class="material-icons circle left blue-text">folder</i>
                                 <b class="left">Saga:&nbsp;</b></p>
                                 <p ALIGN="justify">No pertenece a una saga</p>
                             </li>
-                            @endif
+                            <?php endif; ?>
 
                         <!--<li class="collection-item avatar">
-                                <img  src="{{-- asset('images/authorbook')-- }}/{{--$book->author->photo --}}"  alt="User Avatar"class="circle img-responsive">
+                                <img  src=""  alt="User Avatar"class="circle img-responsive">
                                 <span class="title"><b>Autor:</b></span>
-                                <p><a href="--{{--url('ProfileBookAuthor')}}/{{$book->id}}">{{ $book->author->full_name --}}</a></p>
+                                <p><a href="--</a></p>
                         </li>-->
 
                             <li class="collection-item" style=" padding: 0px;" >
@@ -118,31 +118,16 @@
                                     <div class="col s4 m4 l4">
                                         <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
 
-                                       <a  href="{{ asset('book')}}/{{ $book->books_file }}#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
+                                       <a  href="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
 
-                                       <!-- <a href="{{url('ReadBook')}}/{{$book->id}}" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>-->
+                                       <!-- <a href="<?php echo e(url('ReadBook')); ?>/<?php echo e($book->id); ?>" class="waves-effect waves-light btn curvaBoton">Leer Libro</a>-->
 
                                     </div>
-                                    @if($adquirido )
-                                        <div class="col s4 m4 l4">
-                                            <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
-                                             <a  href="{{ asset('book')}}/{{ $book->books_file }}" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
-                                        </div>
-                                    @else
-                                        <div class="col s4 m4 l4">
-                                            <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
-                                            <a class="btn curvaBoton waves-effect waves-light green" href="#" id="buyBook" onclick="fnOpenNormalDialog('{!!$book->cost!!}','{!!$book->title!!}','{!!$book->id!!}')"><i class="material-icons left   ">add_shopping_cart</i>Adquirir</a>
-                                        </div>
-                                    @endif
                                     <div class="col s4 m4 l4">
                                         <a class="waves-effect waves-light  center btn modal-trigger blue curvaBoton " href="#modal1">Sinopsis</a>
                                     </div>
                                     <div class="col s4 m4 l4">
-                                        @if($adquirido )
-                                            <a href="{{url('MyReads')}}" class="btn center curvaBoton red ">Atrás</a>
-                                        @else
-                                            <a href="{{url('ReadingsBooks')}}" class="btn center curvaBoton red ">Atrás</a>
-                                        @endif
+                                        <a href="<?php echo e(url('MyReads')); ?>" class="btn center curvaBoton red ">Atrás</a>
                                     </div>
                                 </div>
                             </li>
@@ -157,14 +142,14 @@
     <div id="modal-default" class="modal">
         <div class="modal-content modal-lg">
             <div class=" blue"><br>
-                <h4 class="center white-text" ><i class="small material-icons">book</i>"{{ $book->title }}"</h4>
+                <h4 class="center white-text" ><i class="small material-icons">book</i>"<?php echo e($book->title); ?>"</h4>
                 <br>
             </div>
             <br>
             <div class="pdf">
                 <div class="transparencia"></div>
                 <div class="bloqueo"></div>
-                <object data="{{ asset('book')}}/{{ $book->books_file }}" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
+                <object data="<?php echo e(asset('book')); ?>/<?php echo e($book->books_file); ?>" class="text-center" style="width:100%;height:800px;" type="application/pdf"></object>
             </div>
         </div>
         <div class="modal-footer">
@@ -176,15 +161,15 @@
     <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content" style="padding: 15px;">
             <h5><b>Sinopsis:</b></h5>
-            <p ALIGN="justify">{{ $book->sinopsis }}</p>
+            <p ALIGN="justify"><?php echo e($book->sinopsis); ?></p>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
 
     <script>
@@ -220,7 +205,7 @@
             ctx = canvas.getContext('2d');
         /**
          * Get page info from document, resize canvas accordingly, and render page.
-         * @param num Page number.
+         * @param  num Page number.
          */
         function renderPage(num) {
             pageRendering = true;
@@ -294,87 +279,6 @@
         // Para visualizar el PDF
         //---------------------------------------------------------------------------------------------------
     </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-function fnOpenNormalDialog(cost,name,id) {
-  
-   swal({
-            title: "¿Estas seguro?",
-            text: '¿Desea comprar '+name+' con un valor de '+cost+' tickets?', 
-            icon: "warning",
-            buttons:  ["Cancelar", "Adquirir"],
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            callback(true,id);
-           
-          } else {
-            callback(false,id);
-          }
-        });
-    };
 
-function callback(value,id) {
-    if (value) {
-      swal({
-                title: 'Procesando..!',
-                text: 'Por favor espere..',
-                buttons: false,
-                closeOnEsc: false,
-                onOpen: () => {
-                    swal.showLoading()
-                }
-            })
-         $.ajax({
-                    
-            url:'../BuyBook/'+id,
-            type: 'POST',
-            data: {
-            _token: $('input[name=_token]').val()
-             },
-                    
-             success: function (result) 
-                {
-
-
-                   if (result==0) 
-                    { 
-                       swal('No posee suficientes tickets, por favor recargue','','error');  
-                       console.log(result);
-                    }
-                    else if (result==1) 
-                    {
-                      swal('El libro ya forma parte de su colección','','error');
-                    }
-                    else
-                    {   
-                    var idUser={!!Auth::user()->id!!};
-                    $.ajax({ 
-                
-                      url     : '../MyTickets/'+idUser,
-                      type    : 'GET',
-                      dataType: "json",
-                      success: function (respuesta){
-                      console.log(respuesta);
-                        $('#Tickets').html(respuesta);
-                  
-                      },
-                    });
-                        swal('Libro comprado con exito','','success');
-                         console.log(result);
-                         window.setTimeout(function(){window.location.reload()}, 1000);
-                    }    
-                },
-              error: function (result) 
-                {
-                      
-                }
-
-            });
-    } else {
-        return false;
-    }
-}
-</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

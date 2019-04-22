@@ -360,6 +360,7 @@ class HomeController extends Controller
         }
     }
 
+
     public function SaleTickets(){
         $Balance = NULL;
         $BalancePuntos = NULL;

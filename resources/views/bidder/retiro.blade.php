@@ -172,7 +172,7 @@
 										<b class="left">Precio unitario: </b>
 									</div>
 									<div class="col s12 m7">
-										$0.1785 Ctvs <!-- automatizarlo -->
+										${{ $valorPunto }} Ctvs
 									</div>
 								</div>
 							</li>
@@ -227,7 +227,7 @@
                                     <img id="preview_img_doc" src="" name='ci'>
                                 </div>
                             </div>
-                             <div class="col m12">
+                            <div class="col m12">
                                 <button type="submit" class="btn curvaBoton waves-effect waves-light green" id="soli">
                                     Solicitar retiro
                                 </button>
@@ -326,7 +326,7 @@
 
         $("#solicitar").click(function(){
         	var tickets = $("#monto").val();
-        	var subtotal=tickets*0.1785;
+        	var subtotal=tickets*{!! $valorPunto !!};
         	var iva = subtotal*0.12;
         	var dolar = subtotal+iva;
         	$('#cant').val(tickets);

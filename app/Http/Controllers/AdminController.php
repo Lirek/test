@@ -809,13 +809,19 @@ public function BooksDataTable($status) {
     $message = $request->message;
     if ($request->status == 'Aprobado') {
       $serie->status = 1;
+      $status = 'Aprobado';
     } else {
+      $status = 'Denegado';
       $rejection = new Rejection;
       $rejection->module = "Series";
       $rejection->id_module = $id;
       $rejection->reason = $message;
       $rejection->save();
       $serie->status = 3;
+    }
+    foreach ($serie->Episode as $episodio) {
+      $episodio->status = $status;
+      $episodio->save();
     }
     $serie->save();
     Mail::to($email)->send(new StatusSerie($serie->title,$request->status,$message));

@@ -11,6 +11,7 @@ use App\Bidder;
 use App\Rejection;
 use App\BidderRoles;
 use App\PaymentsBidder;
+use App\Conversion;
 
 use App\Events\StatusBidderEvent;
 
@@ -99,10 +100,11 @@ class BidderController extends Controller
         $id = Auth::guard('bidder')->user()->id;
         $diferido = PaymentsBidder::where('bidder_id',$id)->where('status','Diferido')->orWhere('status','Por cobrar')->sum('points');
         $pagado = PaymentsBidder::where('bidder_id',$id)->where('status','Pagado')->sum('points');
+        $valorPunto = Conversion::valorPunto();
         if ($status) {
-            return view('bidder.retiro')->with('status',$status)->with('diferido',$diferido)->with('pagado',$pagado);
+            return view('bidder.retiro')->with('status',$status)->with('diferido',$diferido)->with('pagado',$pagado)->with('valorPunto',$valorPunto);
         } else {
-            return view('bidder.retiro')->with('status',0)->with('diferido',$diferido)->with('pagado',$pagado);
+            return view('bidder.retiro')->with('status',0)->with('diferido',$diferido)->with('pagado',$pagado)->with('valorPunto',$valorPunto);
         }
     }
 

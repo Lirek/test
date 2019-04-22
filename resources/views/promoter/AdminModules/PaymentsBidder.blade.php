@@ -144,8 +144,6 @@
 		            closeOnEsc: false,
 		            closeOnClickOutside: false
 		        });
-	            /*
-		        */
 		        console.log(url,status,message);
 		        $.ajax({
 					url: url,
@@ -161,8 +159,6 @@
 						.then((recarga) => {
 							location.reload();
 						});
-						/*
-						*/
 					},
 					error: function (result) {
 						swal('Existe un error en su solicitud','','error')
@@ -172,8 +168,6 @@
 						console.log(result);
 					}
 				}); 
-		        /*
-				*/
 			});
 		});
 		// modificar el estatus del pago
