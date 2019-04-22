@@ -11,6 +11,7 @@ use Auth;//Agrega el facade de Auth para acceder al id
 
 
 use App\Megazines;
+use App\User;
 use App\Tags;
 use App\Albums;
 use App\Songs;
@@ -28,6 +29,7 @@ use App\Serie;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+use App\Episode;
 
 class ContentController extends Controller
 {
@@ -271,7 +273,7 @@ class ContentController extends Controller
             $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
         foreach ($Artist as $key) {
             $Books = Book::where('status','=','Aprobado')->where('author_id','=',$key->id)->paginate(8);
-            return view('contents.Readings')->with('Books',$Books);
+            return view('contents.Readings')->with('Lecturas',$Books);
         }
         }elseif ($request->type=='megazines'){
         $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(8);
@@ -370,11 +372,22 @@ class ContentController extends Controller
     public function ShowMovies(){
         $Movies= Movie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
         $Series= Serie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+        
+        $user= User::find(Auth::user()->id);
+        
+        #dd($Movies);
+        
+        $MovieAdd=user::contenidos_add($user, 'movies_id');
+        
+      #  dd($MovieAdd);
 
 
         $Cine = collect();
         foreach ($Movies as $movie) {
+          $adquirido=(in_array($movie->id, $MovieAdd)) ? true : false;
+
             $movie->type='movie';
+            $movie->adquirido = $adquirido; 
             $Cine->push($movie);
             $Cine->each(function($Cine){
                 $Cine->transaction;
@@ -391,10 +404,10 @@ class ContentController extends Controller
         $perPage = 12;
         $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $Cine = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
-   
+
 
         //dd($Cine);
-        return view('contents.Movies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
+        return view('contents.ShowMovies')->with('Movie',$Movies)->with('Series',$Series)->with('Cine',$Cine);
     }
 
     public function seachMovie(){
@@ -430,15 +443,15 @@ class ContentController extends Controller
     }
 
     public function ShowMovieSeach(Request $request){
-      
+
         if ($request->type=='serie'){
                 $Series = Serie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
-              
+
                 $Cine = collect();
                 foreach ($Series as $series) {
                      $series->type='serie';
                      $Cine->push($series);
-                    
+
                 }
 
                 $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -463,6 +476,19 @@ class ContentController extends Controller
                 return view('contents.Movies')->with('Cine',$Cine);
         }
     }
+
+
+    public function PlayMovie($id){
+      $movie= Movie::where('status','=','Aprobado')->where('id','=',$id)->orderBy('id', 'DESC')->get();
+      
+      $user= User::find(Auth::user()->id);
+      $MovieAdd=user::contenidos_add($user, 'movies_id');
+      
+      $adquirido=(in_array($id, $MovieAdd)) ? true : false;
+    
+      return view('contents.PlayMovie')->with('movie',$movie)->with('adquirido', $adquirido);
+    }
+
 //--------------------------------------SERIES--------------------------------------------
     public function ShowSeries(){
         $Serie= Serie::where('status','=','Aprobado')->paginate(8);
@@ -504,5 +530,31 @@ class ContentController extends Controller
             $prueba=$this->SerieList($key->id);
         }
         return $prueba;
+    }
+
+
+    public function PlaySerie($id){
+      $serie= Serie::where('id','=',$id)->get();
+
+      $serie= Serie::where('status','=','Aprobado')->paginate(8);
+
+        $user= User::find(Auth::user()->id);
+        $SerieAdd=user::contenidos_add($user, 'series_id');
+        $adquirido=(in_array($id, $SerieAdd)) ? true : false;
+
+        $EpisodeAdd=user::episode_add($user);
+        
+       $adquiridoE=$EpisodeAdd;
+        //dd($adquiridoE);
+
+      return view('contents.PlaySerie')->with('Series',$serie)->with('adquirido',$adquirido)->with('adquiridoE',$adquiridoE);
+    }
+
+    public function PlayEpisode($id){
+      $episode= Episode::where('id','=',$id)->get();
+
+      $episode= Episode::where('status','=','Aprobado')->paginate(8);
+
+      return view('contents.PlayEpisode')->with('Episode',$episode);
     }
 }

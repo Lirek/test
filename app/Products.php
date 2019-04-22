@@ -18,6 +18,7 @@ class Products extends Model
 		'name',
 		'description',
 		'cost',
+        'amount',
 		'status'
     ];
 
@@ -43,13 +44,19 @@ class Products extends Model
         $pdf->move($pathPdf,$namePDF);
         $pdf_prod = "/promociones/".$namePDF;
 
-        $product->bidder_id = 0;
+        if (array_key_exists('idBidder', $request->all())) {
+            $product->bidder_id = $request->idBidder;
+            $product->status = "En Revision";
+        } else {
+            $product->bidder_id = 0;
+            $product->status = "Aprobado";
+        }
         $product->imagen_prod = $imagen_prod;
         $product->pdf_prod = $pdf_prod;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->cost = $request->cost;
-        $product->status = "Aprobado";
+        $product->amount = $request->amount;
         $product->save();
         if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
             foreach ($request->otroCost as $cost) {
@@ -92,6 +99,7 @@ class Products extends Model
     	$product->name = $request->name;
     	$product->description = $request->description;
     	$product->cost = $request->cost;
+        $product->amount = $request->amount;
     	$product->save();
         if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
             SubProducto::where('product_id',$request->idUpdate)->delete();
@@ -123,5 +131,10 @@ class Products extends Model
         $SubProducto = new SubProducto;
         $SubProducto->cost = $cost;
         return $SubProducto;
+    }
+
+    public static function myProducts($id) {
+        $product = self::where('bidder_id',$id)->get();
+        return $product;
     }
 }

@@ -52,7 +52,8 @@
                 		<div class="col s12 m3">
 		                  <div class="card" style="height: 430px">
 		                    <div class="card-image">
-		                        <a href="#myModal-{{$Series->id}}" class="modal-trigger">
+		                      <!--  <a href="#myModal-{{$Series->id}}" class="modal-trigger"> -->
+                              <a href="{{url('PlaySerie/'.$Series->id)}}" >
 		                      <img src="{{asset($Series->img_poster)}}" width="100%" height="300px">
 		                      </a>
 		                      <!-- <span class="card-title">Card Title</span> -->
@@ -69,157 +70,7 @@
 		                  </div>
 		                </div>
 
-		                <!--MODAL DETALLE DE Serie-->
-		                <div id="myModal-{{$Series->id}}" class="modal">
-						    <div class="modal-content">
-						     	<div class="blue"><br>
-						            <h4 class="center white-text" ><i class="small material-icons">movie</i> {{ $Series->title }}</h4>
-						            <br>
-						     	</div>
-						      	<div class="col s12 m4 offset-m1">
-						      		<br>
-			                    	<img src="{{asset($Series->img_poster)}}" width="100%" height="300"  id="panel">
-			                    	<a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Series->id}}" onclick="fnOpenNormalDialog('{!!$Series->cost!!}','{!!$Series->title!!}','{!!$Series->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
-			                    	<br><br>
-			                 	</div>
-						    </div>
-						    <div class="col m6 s12" style="color: black">
-                    <ul class="collection z-depth-1" >
-                        <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">turned_in</i>
-                                    <b class="left">Géneros: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    @foreach($Series->tags_serie as $t)
-                                        <span> {{ $t->tags_name }} </span>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">switch_video</i>
-                                    <b class="left">Transmisión: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    {{ $Series->status_series }}
-                                </div>
-                            </div>
-                        </li>
-                       @if($Series->saga_id!=null)
-                        <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">folder</i>
-                                    <b class="left">Saga: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    {{ $Series->saga->sag_name }}
-                                </div>
-                            </div>
-                        </li>
-                        @else
-                        <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">folder</i>
-                                    <b class="left">Saga: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    No pertenece a una saga
-                                </div>
-                            </div>
-                        </li>
-                        @endif
-                        <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">local_play</i>
-                                    <b class="left">Costo: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    {{ $Series->cost }} Tickets
-                                </div>
-                            </div>
-                        </li>
-                        <!-- <li class="collection-item" style="padding: 10px ">
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <i class="material-icons circle left">subscriptions</i>
-                                    <b class="left">Trailer: </b>
-                                </div>
-                                <div class="col s12 m7">
-                                    <a class="waves-effect waves-light btn modal-trigger blue curvaBoton" href="{{ $Series->trailer }}" target="_blank">Reproducir</a>
-                                </div>
-                            </div>
-                        </li> -->
-                    </ul>
-                </div>
-                <div class="col s12 m10 offset-m1">
-                  <?php
-                            $url = $Series->trailer;
-                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-                            $id = $matches[1];
-                            $width = '800px';
-                            $height = '450px';
-                        ?>
-                      <div class="embed-container">
-                        <iframe  type="text/html" width="560" height="315"
-                            src="https://www.youtube.com/embed/{{ $id }}"
-                            frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-                      </div>
-                </div>
-                      <div class="col s12 m12" style="color: black">
-                        <div class="card-panel">
-                          <b class="left">Historia: </b>
-                          
-                          <p> {{ $Series->story }}</p>
-                        </div>
-                      </div>
-
-                      <div class="col s12 m8 offset-m2" style="color: black">
-                        <ul class="collapsible">
-                          <li>
-                            <div class="collapsible-header">
-                              <i class="material-icons">movie</i>
-                              Episodios:
-                            </div>
-                            @if($Series->Episode())
-                                @foreach($Series->Episode as $episode)
-                                  @if($episode->status =='Aprobado')
-                                    <div class="collapsible-body">
-                                        <div class="row">
-                                            <div class="col s4">
-                                            <p><a href="{{ $episode->trailer_url }}" class="" target="_blank">{{ $episode->episode_name }}</a></p>
-                                            </div>
-                                            <div class="col s6">
-                                                {{ $episode->sinopsis }}
-                                            </div>
-                                            <div class="col s2">
-                                                <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$Series->id}}" onclick="fnOpenNormalDialog2('{!!$episode->cost!!}','{!!$episode->episode_name!!}','{!!$episode->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  @endif
-                                @endforeach
-                            @endif
-                          </li>
-                        </ul>
-                    </div>
-
-
-
-
-		                	<div class="col s12 m12">
-      							    <div class="modal-footer">
-      							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
-      							    </div>
-      							</div>
-						</div>
-
+		             
                 		@endforeach
                 		<div class="col m12">
                 		{{  $Serie->links() }}

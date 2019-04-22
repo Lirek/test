@@ -2,7 +2,7 @@
 @section('main')
 @include('flash::message')
 
-<link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -110,8 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{asset('plugins/img/estatica.jpg')}}" style="height: 100%; width: 850px; margin-left: -8px;" alt="user background">
-                        </div>
+                            <img class="activator" src="{{asset('assets/img/foto_perfil_leipel.jpg')}}" style="height: 100%; height: 100%;" alt="user background">                        </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
 
@@ -132,7 +131,8 @@ h5.breadcrumbs-header {
                             <div class="row">
                                 <div class="col s12">
                                     <div class="col s4">
-                                        <h5><i class="material-icons prefix blue-text">face</i>
+                              <h5 style="overflow:hidden;white-space:nowrap;text-overflow: ellipsis;">
+                                <i class="material-icons prefix blue-text">face</i>
                                         {{Auth::user()->name}}</h5>
                                     </div>
                                     <div class="col s4">
@@ -142,7 +142,10 @@ h5.breadcrumbs-header {
                                     </div>
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
-                                        <h5>{{Auth::user()->points}}</h5>
+                                        <h5> <?php if (Auth::user()->points == NULL)
+                                        Auth::user()->points = 0;
+                                        echo Auth::user()->points;
+                                        ?></h5>
                                         <label>todos mis puntos</label>
                                     </div>
                                 </div>
@@ -171,7 +174,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">face</i>
                                         {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="apellido">apellidos</label>
+                                        <label for="apellido">Apellidos</label>
                                     </div>
 
                                     <!--email-->
@@ -190,18 +193,18 @@ h5.breadcrumbs-header {
                                             {!! Form::text('ci',$user->num_doc,['class'=>'form-control', 'required'=>'required', 'id'=>'cedula','onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
                                         @endif
-                                        <label  for="cedula">Cedula</label>
+                                        <label  for="cedula">Cédula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
                             <div class="form-group ">
                                 @if($user->verify == 0 || $user->verify == 2)
                                 <div class="file-field input-field col s12">
-                                    <label for="img_doc" class="control-label">Cargar imagen de cedula</label>
+                                    <label for="img_doc" class="control-label">Cargar imagen de cédula</label>
                                     <br><br>
                                     <div id="mensajeDocumento"></div>
                                     <div class="btn blue">
-                                         <span>seleccione<i class="material-icons right">assignment_ind</i></span>
+                                         <span>seleccione<i class="material-icons right">chrome_reader_mode</i></span>
                                         {!! Form::file('img_doc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                     </div>
                                     <div class="file-path-wrapper">
@@ -213,7 +216,8 @@ h5.breadcrumbs-header {
                                     @if ($user->img_doc)
                                         <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
                                     @else
-                                    <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>
+                                   <a href="#"><i class="material-icons prefix grey-text" id="preview_img_doc" alt="Avatar"  style="font-size: 180px;">chrome_reader_mode</i></a>
+                                    <!--<a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>-->
                                 @endif
                                 </div>
                             </div>
@@ -223,8 +227,8 @@ h5.breadcrumbs-header {
                                     <div class="col m12 s12">
                                         <div class="input-field col s12">
                                          <i class="material-icons prefix blue-text valign-wrapper">wc</i>
-                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'sexo']) !!}
-                                        <label for="sexo" class="control-label">sexo</label>
+                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']) !!}
+                                        <label for="exampleInputFile" class="control-label">Sexo</label>
                                         <br>
                                         </div>
                                     </div>
@@ -250,7 +254,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">description</i>
                                         {!! Form::text('direccion',$user->direccion,['class'=>'form-control','id'=>'direccion']) !!}
                                         <div id="mensajeNombre"></div>
-                                        <label for="direccion">dirección</label>
+                                        <label for="direccion">Dirección</label>
                                     </div>
 
                         
@@ -259,7 +263,7 @@ h5.breadcrumbs-header {
                                         <i class="material-icons prefix blue-text">contact_phone</i>
                                             {!! Form::text('phone',$user->phone,['class'=>'form-control', 'required'=>'required','id'=>'telefono', 'onkeypress' => 'return controltagNum(event)', 'pattern' => '[0-9]+']) !!}
                                             <div id="mensajeRuc"></div>
-                                        <label  for="telefono">numero de telefono</label>
+                                        <label  for="telefono">Numero de teléfono</label>
                                     </div>
 
                                     <!--Estado de la cuenta-->
@@ -279,17 +283,11 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
-                                        <span class="collection-header center" style="color: white">Contactame</span>
+                                        <span class="collection-header center" style="color: white">Patrocinador</span>
                                       </li>
                                     </div>
-                                    @if ($user->img_doc)
-                                        <img id="preview_img_doc" src="{{asset($user->img_doc)}}" name='ci' alt="your image" width="180" height="180" />
-                                    @else
-                                        <a href="#"><i class="large material-icons" >chrome_reader_mode</i></a>
-                                    @endif
                                     <div class="card-content">
                                         <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
-
                                         @if ($mipatro != null)
                                             {{$mipatro->name}}
                                             <br>
@@ -300,6 +298,8 @@ h5.breadcrumbs-header {
                                             <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
                                         @endif
 
+                                        <!-- {{$user->email}} -->
+                                       <!-- {{$user->phone}} -->
                                     </div>
             {!! Form::close() !!}
                                 </div>
@@ -312,10 +312,9 @@ h5.breadcrumbs-header {
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
                     <ul>
-                    <blockquote>
                     <i class="material-icons prefix blue-text">edit</i>    
-                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>    
-                    </blockquote>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>
+
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -374,10 +373,10 @@ h5.breadcrumbs-header {
                         </div>
                     </ul>
                     <ul>
-                            <blockquote>
+
                             <i class="material-icons prefix blue-text">delete_forever</i>
                             <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
-                            </blockquote>
+
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -447,6 +446,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -481,6 +481,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -604,8 +605,7 @@ h5.breadcrumbs-header {
   });
 </script> 
 
-    <script type="text/javascript">
-
+<script type="text/javascript"> //ERROR AQUI
     // Or with jQuery
     // Slider
     $(document).ready(function(){
@@ -619,7 +619,8 @@ h5.breadcrumbs-header {
         });
     });
        
-        $(document).ready(function (e){
+        //Esta función
+      /*  $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){
                 var phone = $("#phone2").val();
@@ -637,8 +638,10 @@ h5.breadcrumbs-header {
                 $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
             });
 
-        })
+        })*/
+
     </script>
+
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------

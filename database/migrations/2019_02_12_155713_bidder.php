@@ -17,13 +17,16 @@ class Bidder extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('name');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('ruc');
-            $table->string('imagen_ruc');
-            $table->string('logo');
-            $table->integer('points');
-            $table->enum('status',['Aprobado','En Revision','Denegado']);
-            $table->enum('account_status',['open','closed']);
+            $table->string('imagen_ruc')->nullable();
+            $table->string('logo')->nullable();
+            $table->integer('points')->nullable()->default(0);
+            $table->integer('pendding_points')->nullable()->default(0);
+            $table->enum('status',['En Revision','Pre-Aprobado','Aprobado','Denegado'])->default("En Revision");
+            $table->string('token')->nullable();
+            $table->enum('account_status',['open','closed'])->default("open");
+            $table->rememberToken();
             $table->timestamps();
         });
     }

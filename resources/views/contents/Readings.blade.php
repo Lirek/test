@@ -11,6 +11,7 @@
       color: : white;
     }
 
+
 </style>
 @endsection
 
@@ -19,7 +20,7 @@
     <div class="col s12 m12">
         <div class="card">
             <div class="card-content white-text">
-                <h4 class="titelgeneral"><i class="material-icons small">book</i> Lecturas</h4>
+                <h4 class="titelgeneral"><i class="material-icons small">book</i> Lectura</h4>
                 <div class="row">
                     <div class="input-field col s12 m6 offset-m3">
                         <form method="POST"  id="SaveSong" action="{{url('SearchProfileAuthor')}}">
@@ -36,8 +37,8 @@
                 <div class="row">
                     @if($Lecturas->count() != 0 )
                         @foreach($Lecturas as $lecturas)
-                        <div class="col s12 m3">
-                          <div class="card" style="height: 430px">
+                        <div class="col s12 m4 l3">
+                          <div class="card" style="height:100%">
                             <div class="card-image">
                               @if($lecturas->books_file)
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
@@ -52,13 +53,24 @@
                               @endif
                             </div>
                             <div class="card-content">
-                                <div class="col m12">
-                                    <p class="grey-text truncate">{{ $lecturas->title }}</p>
+                                <div class="col m12 s12">
+                                  <p class="grey-text truncate">{{ $lecturas->title }}</p>
                                 </div>
-                                <div class="">
-                                    {{--<small class="grey-text"><b>Autor: </b>{{--$Book->author->full_name--}}</small>--}}
+                                <div class="col m12 s12">
+                                  <p class="grey-text truncate"><b>Autor: </b>{{$lecturas->seller->name}}</p>
                                 </div>
-                                    <small class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets</small> 
+                                <div>
+                                  <p class="grey-text"><b>Costo: </b> {{$lecturas->cost}} tickets </p>
+                                </div>
+                                <div class="col m12 s12">
+                                <div class="grey-text">
+                                  @if($lecturas->books_file)
+                                <p><b>Libro</b></p>
+                                 @else
+                                <p><b>Revista</b></p>
+                                 @endif
+                               </div>
+                                </div> 
                             </div>
                           </div>
                         </div>
@@ -390,7 +402,10 @@ function callback(value,id) {
                       },
                     });
                         swal('Libro comprado con exito','','success');
-                         console.log(result);
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadBook')}}/"+id;  
+                      },2000);
+                        
                     }    
                 },
               error: function (result) 
@@ -473,7 +488,9 @@ function callbackMeg(value,id) {
                       },
                     });
                       swal('Revista comprada con exito','','success');
-                       console.log(result);
+                      setTimeout(function(){
+                          location.href="{{('ShowMyReadMegazine')}}/"+id;  
+                      },2000);
                     }   
                 },
               error: function (result) 

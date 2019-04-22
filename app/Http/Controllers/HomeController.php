@@ -67,7 +67,7 @@ class HomeController extends Controller
         $SeriesAdd=user::contenidos_add($user, 'Series_id');
 
         $musica = [];
-        $Songs = Songs::whereNull('album')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
+        $Songs = Songs::whereNull('album')->where('status','=','Aprobado')->orderBy('updated_at','desc')->orderBy('created_at','desc')->take(8)->get();
         foreach ($Songs as $s) {
 
             if($s->cover == Null){
@@ -538,14 +538,14 @@ class HomeController extends Controller
         $Buy->status        = 2;
         $Buy->method        ='Payphone';
         $Buy->save();
-        $Buy = Payments::orderBy('id','desc')->get();
+        $Buy = Payments::orderBy('id','asc')->get();
         $clientTransactionId = $Buy->last()->id."|".date("Y-m-d H:i:s");
         return Response()->json($clientTransactionId);
     }
 
     public function TransactionCanceled($id,$reference) {
         $Buy = Payments::find($id);
-        $Buy->status    = 3;
+        $Buy->status    = "Denegado";
         $Buy->reference = $reference;
         $Buy->save();
         $respuesta = true;
@@ -671,6 +671,7 @@ class HomeController extends Controller
         $secuencial = rand(0,100000000);
         $Buy = Payments::find($idTickets);
         $paquete = TicketsPackage::find($Buy->package_id);
+        $ambiente = env('AMB_DATIL');
         $nombrePaquete = $paquete->name;
         $iva = 0.12;
         $costoPaquete = $Buy->cost;

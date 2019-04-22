@@ -13,7 +13,7 @@
                   <div class="col s6">
                     <label class="" for="option-1">
                         <input type="radio" id="option-1" class="flat-red with-gap  " onclick="javascript:yesnoCheck();" name="status" value="Pagado">
-                        <span class="mdl-radio__label">pagar</span>
+                        <span class="mdl-radio__label">Pagar</span>
                     </label>
                   </div>
                   <div class="col s6">

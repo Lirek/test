@@ -83,29 +83,35 @@
                                 <div class="card-image">
                                     @if($ci['type']=='Pelicula')
                                        @if($ci['adquirido'])
-                                       <a class="waves-effect waves-light " href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                       <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$ci['id']) }}">
                                        <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                        </a>
 
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('ShowMyMovie/'.$ci['id']) }}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('PlayMovie/'.$ci['id']) }}">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @else
-                                        <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('PlayMovie/'.$ci['id']) }}">
+                                            <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo" href="{{ url('PlayMovie/'.$ci['id']) }}">                                   
+                                               </a>
+                                        
+                                       
                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog5('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($ci['adquirido'])
-                                        <a class=" waves-effect waves-light " href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
+                                        <a class=" waves-effect waves-light " href="{{url('PlaySerie/'.$ci['id'])}}">
                                          <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
                                          </a>
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('ShowMySerie/'.$ci['id'].'/'.'Serie')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{url('PlaySerie/'.$ci['id']) }}">
                                             <i class="mdi mdi-movie-roll"></i>
                                         </a>
                                          @else
-                                         <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                         <a class="waves-effect waves-light " href="{{ url('PlaySerie/'.$ci['id']) }}">
+                                            <img  src="{{ asset($ci['img_poster']) }}" id="img_cartelera_largo">
+                                        </a>
                                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog6('{!!$ci['cost']!!}','{!!$ci['title']!!}','{!!$ci['id']!!}')">
                                             <i class="small material-icons">movie</i>
                                         </a>
@@ -147,21 +153,25 @@
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light  " href="{{ url('MyAlbums/'.$m['id']) }}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog1('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">library_music</i>
                                         </a>
                                         @endif
                                     @else
                                         @if($m['adquirido'])
-                                        <a class="waves-effect waves-light " href="{{ url('MyMusic')}}">
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('MySingles/'.$m['id'])}}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
                                         </a>
-                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MyMusic')}}">
+                                        <a class="btn-floating btn-small halfway-fab waves-effect waves-light green" href="{{ url('MySingles/'.$m['id'])}}">
                                             <i class="small material-icons">music_note</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('MySingles/'.$m['id'])}}">
+                                            <img src="{{ asset($m['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                          <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$m['id']}}" onclick="fnOpenNormalDialog2('{!!$m['cost']!!}','{!!$m['title']!!}','{!!$m['id']!!}')">
                                             <i class="small material-icons">music_note</i>
                                         </a>
@@ -208,7 +218,9 @@
                                             <i class="small material-icons">book</i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadBook/'.$le['id']) }}" >
+                                            <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog3('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="small material-icons">book</i>
                                         </a>
@@ -222,7 +234,9 @@
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
                                         @else
-                                        <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        <a class="waves-effect waves-light " href="{{ url('ShowMyReadMegazine/'.$le['id']) }}" >
+                                            <img src="{{ asset($le['cover']) }}" id="img_cartelera_largo">
+                                        </a>
                                         <a class="btn-floating btn-small halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$le['id']}}" onclick="fnOpenNormalDialog4('{!!$le['cost']!!}','{!!$le['title']!!}','{!!$le['id']!!}')">
                                             <i class="mdi mdi-book-open-variant"></i>
                                         </a>
@@ -627,7 +641,11 @@ restaFechas = function(f1,f2)
                         swal('El album ya forma parte de su colección','','error');
                     } else {
                         swal('Album comprado con exito','','success');
-                        console.log(result);
+                        // console.log(result);
+                        
+                        setTimeout(function(){
+                          location.href="{{('MyAlbums')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -674,6 +692,9 @@ restaFechas = function(f1,f2)
                         swal('La canción ya forma parte de su colección','','error');
                     } else {
                         swal('Cancion comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('MySingles')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -721,6 +742,9 @@ restaFechas = function(f1,f2)
                         swal('El libro ya forma parte de su colección','','error');
                     } else {
                         swal('Libro comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadBook')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -785,6 +809,9 @@ restaFechas = function(f1,f2)
                             },
                         });
                         swal('Revista comprada con exito','','success');
+                        setTimeout(function(){
+                          location.href="{{('ShowMyReadMegazine')}}/"+id;  
+                      },2000);
                     }
                 },
                 error: function (result) {
@@ -866,8 +893,11 @@ function callback5(value,id) {
                       },
                     });
                         swal('Pelicula comprada con exito','','success');
-                           console.log(result);
-                      }
+                        setTimeout(function(){
+                          location.href="{{('PlayMovie')}}/"+id;  
+                      },2000);
+                    }
+                      
                 },
               error: function (result) 
                 {
@@ -950,8 +980,11 @@ function callback6(value,id) {
                       },
                     });
                         swal('Serie comprada con exito','','success');
-                           console.log(result);
-                      }
+                        setTimeout(function(){
+                          location.href="{{('PlaySerie')}}/"+id;  
+                      },2000);
+                    
+                    }
                 },
               error: function (result)
                 {

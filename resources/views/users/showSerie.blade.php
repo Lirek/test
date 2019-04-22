@@ -132,7 +132,7 @@
                           <li>
                             <div class="collapsible-header">
                               <i class="material-icons blue-text">movie</i>
-                              Episodios:
+                              Episodios( {{$episode->episode_id }}):
                             </div>
                             @if($Series->Episode())
                                 @foreach($Series->Episode as $episode)
@@ -141,12 +141,13 @@
                                         <div class="row">
                                             <div class="col s12">
                                                 <div class="col s4">
-                                                <p><a href="{{ $episode->trailer_url }}" class="" target="_blank">{{ $episode->episode_name }}</a></p>
+                                                <p>{{ $episode->episode_name }}</p>
+                                                <!--<p><a href="{{ $episode->trailer_url }}" class="" target="_blank">{{ $episode->episode_name }}</a></p>-->
                                                 </div>
                                                 <div class="col s3">
                                                     <p>{{ $episode->sinopsis }}</p>
                                                 </div>
-                                                <div class="col s3" style="margin-left: 20px">
+                                                <div class="col s3" style="margin-left: 20px; margin-top: 20px;">
                                                     <a class="btn halfway-fab waves-effect waves-light blue curvaBoton modal-trigger" href="#modal-default-{{$episode->id}}" ><i class="material-icons">play_circle_outline</i></a>
                                                 </div>
                                             </div>
