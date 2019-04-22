@@ -4,14 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
+class ComposerStaticInitcb6239635ab40247d09bfd2aeefec491
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
@@ -467,6 +467,7 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'App\\BookTags' => __DIR__ . '/../..' . '/app/BookTags.php',
         'App\\BooksTrace' => __DIR__ . '/../..' . '/app/BooksTrace.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Conversion' => __DIR__ . '/../..' . '/app/Conversion.php',
         'App\\Episode' => __DIR__ . '/../..' . '/app/Episode.php',
         'App\\EpisodeTrace' => __DIR__ . '/../..' . '/app/EpisodeTrace.php',
         'App\\Events\\AdminLoggedIn' => __DIR__ . '/../..' . '/app/Events/AdminLoggedIn.php',
@@ -521,6 +522,7 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'App\\Http\\Controllers\\BooksController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksController.php',
         'App\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ConversionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConversionesController.php',
         'App\\Http\\Controllers\\ExternalClientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ExternalClientsController.php',
         'App\\Http\\Controllers\\ExternalOperationsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ExternalOperationsController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -622,6 +624,7 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'App\\Mail\\StatusMagazines' => __DIR__ . '/../..' . '/app/Mail/StatusMagazines.php',
         'App\\Mail\\StatusMovies' => __DIR__ . '/../..' . '/app/Mail/StatusMovies.php',
         'App\\Mail\\StatusPayments' => __DIR__ . '/../..' . '/app/Mail/StatusPayments.php',
+        'App\\Mail\\StatusProducts' => __DIR__ . '/../..' . '/app/Mail/StatusProducts.php',
         'App\\Mail\\StatusPublicationChain' => __DIR__ . '/../..' . '/app/Mail/StatusPublicationChain.php',
         'App\\Mail\\StatusSagas' => __DIR__ . '/../..' . '/app/Mail/StatusSagas.php',
         'App\\Mail\\StatusSeller' => __DIR__ . '/../..' . '/app/Mail/StatusSeller.php',
@@ -824,6 +827,8 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'Conversion' => __DIR__ . '/../..' . '/database/migrations/2019_03_30_172140_conversion.php',
+        'ConversionSeeder' => __DIR__ . '/../..' . '/database/seeds/ConversionSeeder.php',
         'CreateAccountBalanceTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_07_213002_create_account_balance_table.php',
         'CreateActorsMoviesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_08_164104_create_actors_movies_table.php',
         'CreateAlbumTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_07_214509_create_album_table.php',
@@ -888,7 +893,6 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
-        'DeepCopy\\Filter\\ChainableFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/ChainableFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineCollectionFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineCollectionFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineEmptyCollectionFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineEmptyCollectionFilter.php',
         'DeepCopy\\Filter\\Doctrine\\DoctrineProxyFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineProxyFilter.php',
@@ -905,6 +909,7 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
         'DeepCopy\\TypeFilter\\Date\\DateIntervalFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Date/DateIntervalFilter.php',
         'DeepCopy\\TypeFilter\\ReplaceFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ReplaceFilter.php',
         'DeepCopy\\TypeFilter\\ShallowCopyFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ShallowCopyFilter.php',
+        'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedList' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedList.php',
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
@@ -4368,11 +4373,11 @@ class ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitd12eabef3e19b574d56c9dd667a1a2ea::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcb6239635ab40247d09bfd2aeefec491::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcb6239635ab40247d09bfd2aeefec491::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitcb6239635ab40247d09bfd2aeefec491::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcb6239635ab40247d09bfd2aeefec491::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcb6239635ab40247d09bfd2aeefec491::$classMap;
 
         }, null, ClassLoader::class);
     }
