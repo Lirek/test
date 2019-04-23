@@ -61,5 +61,13 @@ class DeleteAccount
             $Assing->save();
         }
 
+        if ($User->credito!=0)
+        {
+          $balance= SistemBalance::find(1);
+          $balance->my_tickets= $balance->my_tickets + $User->my_tickets;
+          $balance->save();
+
+        }
+
     }
 }

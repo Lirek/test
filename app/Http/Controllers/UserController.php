@@ -185,7 +185,6 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
-        //$user->password = $request->password;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
