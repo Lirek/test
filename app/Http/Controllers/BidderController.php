@@ -144,4 +144,37 @@ class BidderController extends Controller
         $pagos = PaymentsBidder::payments($status);
         return response()->json($pagos);
     }
+
+    public function bidderPerfil() {
+        $bidder = Bidder::find(Auth::guard('bidder')->user()->id);
+        $total_products = $bidder->Products()->count();
+        $total_aproved = $bidder->Products()->where('status','Aprobado')->count();
+        $total_revision = $bidder->Products()->where('status','En Revision')->count();
+        return view('bidder.perfil')->with('bidder',$bidder)->with('total_products',$total_products)->with('total_aproved',$total_aproved)->with('total_revision',$total_revision);
+    }
+
+    public function perfilBidder(Request $request) {
+        Bidder::actualizar($request);
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function imagenPerfilBidder(Request $request) {
+        Bidder::actualizarImagenPerfil($request);
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function cambiarClaveBidder(Request $request) {
+        $cambio = Bidder::actualizarClave($request);
+        if ($cambio) { // true
+            # code...
+        } else {
+            # code...
+        }
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function DeleteAccountBidder() {
+        Bidder::deleteAccount();
+        return redirect()->action('WelcomeController@welcome');
+    }
 }

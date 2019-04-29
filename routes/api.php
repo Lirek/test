@@ -31,7 +31,7 @@ Route::get('login', function(){
     return view('test_login');
 });
 
-Route::group(['middleware' => ['jwt.auth']], function() {
+Route::group(['middleware' => ['jwt.auth','cors']], function() {
 
     Route::get('logout', 'ApiController\AuthController@logout');
 
