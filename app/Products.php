@@ -56,6 +56,7 @@ class Products extends Model
         $product->cost = $request->cost;
         $product->amount = $request->amount;
         $product->save();
+        /*
         if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
             foreach ($request->otroCost as $cost) {
                 $costs[] = self::saveCosts($cost);
@@ -63,7 +64,8 @@ class Products extends Model
             foreach ($costs as $cost) {
                 $product->SubProducto()->save($cost);
             }
-        } 
+        }
+        */
     }
 
     public static function whereStatus($estatus) {
@@ -76,6 +78,7 @@ class Products extends Model
 
     public static function toUpdateProducts($request) {
     	$product = self::find($request->idUpdate);
+        //dd($request->all());
     	if ($request->imagen!=null) {
     		File::delete(public_path().$product->imagen_prod);
     		$imagen = $request->file('imagen');
@@ -96,9 +99,10 @@ class Products extends Model
     	}
     	$product->name = $request->name;
     	$product->description = $request->description;
-    	$product->cost = $request->cost;
+    	$product->cost = $request->valor*$request->valorPunto;
         $product->amount = $request->amount;
     	$product->save();
+        /*
         if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
             SubProducto::where('product_id',$request->idUpdate)->delete();
             foreach ($request->otroCost as $cost) {
@@ -108,6 +112,7 @@ class Products extends Model
                 $product->SubProducto()->save($cost);
             }
         }
+        */
     }
 
     public static function deleteProducto($id) {

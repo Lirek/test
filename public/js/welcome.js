@@ -893,7 +893,7 @@
             $('#registroRO').attr('disabled',true);
         } else if(correoOfertante.length==0) {
             $('#mensajeTelefonoOfertante').show();
-            $('#mensajeTelefonoOfertante').text('El campono debe estar vacio');
+            $('#mensajeTelefonoOfertante').text('El campo no debe estar vacio');
             $('#mensajeTelefonoOfertante').css('color','red');
             $('#mensajeTelefonoOfertante').css('font-size','100%');
             $('#registroRO').attr('disabled',true);
@@ -926,7 +926,7 @@
                     $('#registroRO').attr('disabled',true);
                 } else if(categoriaOfertante.length==0) {
                     $('#mensajeOtraCatOfertante').show();
-                    $('#mensajeOtraCatOfertante').text('El campono debe estar vacio');
+                    $('#mensajeOtraCatOfertante').text('El campo no debe estar vacio');
                     $('#mensajeOtraCatOfertante').css('color','red');
                     $('#mensajeOtraCatOfertante').css('font-size','100%');
                     $('#registroRO').attr('disabled',true);
