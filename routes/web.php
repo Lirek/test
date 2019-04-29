@@ -109,6 +109,7 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     // agregada Alexis 15/01/2019
     Route::get('/Beneficios/{status}','HomeController@Beneficios');
     Route::post('BuyBenefi','HomeController@BuyBenefi');
+    Route::get('verifyBenefi/{id}','HomeController@verifyBenefi');
 
 
 //-------------------Funciones del Usuarios----------------------------------

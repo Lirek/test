@@ -311,7 +311,7 @@ class HomeController extends Controller
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
 
-        $mios = exchange_product::where('user_id',Auth::user()->id)->get();
+        $mios = exchange_product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         $mios->each(function($mios){
         $mios->Producto;
     });
@@ -323,12 +323,18 @@ class HomeController extends Controller
         return view('users.Beneficios')->with('beneficio',$beneficio)->with('mios',$mios);
     }
 
+    public function verifyBenefi ($id){
+        $verifica = exchange_product::where('user_id',Auth::user()->id)->where('product_id',$id)->count();
+
+        return response()->json($verifica);
+    }
+
     public function BuyBenefi (Request $request)
     {
         $Benefi= Products::find($request->id);
         $total = $Benefi->cost*$request->Cantidad;
 
-        // return response()->json($request->Cantidad);
+        // return response()->json($verifica);
                 
         $user = User::find(Auth::user()->id);
 
