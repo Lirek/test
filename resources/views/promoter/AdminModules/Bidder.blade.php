@@ -67,7 +67,7 @@
                                 "</span> ";
                             });
                         } else {
-                            var modulos = info.description;
+                            var modulos = info.description+" ";
                         }
                     	if (info.logo!=null) {
                     		var logo = 

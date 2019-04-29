@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Products;
+use App\Conversion;
 
 class ProductController extends Controller
 {
     public function products(){
     	$products = Products::myProducts(Auth::guard('bidder')->user()->id);
-    	return view('bidder.products')->with('products',$products);
+        $valorPunto = Conversion::valorPunto();
+    	return view('bidder.products')->with('products',$products)->with('valorPunto',$valorPunto);
     }
 
     public function productStore(Request $request) {
