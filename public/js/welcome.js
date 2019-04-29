@@ -1,4 +1,25 @@
-
+$('.loop').owlCarousel({
+    center: true,
+    items:2,
+    loop:true,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
+$('.nonloop').owlCarousel({
+    center: true,
+    items:2,
+    loop:false,
+    margin:10,
+    responsive:{
+        600:{
+            items:4
+        }
+    }
+});
 
 // Tabs
 var elem = $('.tabs')
@@ -22,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems, options);
 });
 
+
 // Or with jQuery
 // Slider
 $(document).ready(function(){
@@ -34,7 +56,7 @@ $(document).ready(function(){
         indicators: true
     });
 
-
+    
     /*==========  Featured Cars  ==========*/
     $('#featured-cars').owlCarousel({
         loop: true,
@@ -117,6 +139,7 @@ $(document).ready(function(){
 
     $('#featured3').owlCarousel({
         loop: true,
+        responsiveClass: true,
         nav: false,
         dots: false,
         autoplay: true,
