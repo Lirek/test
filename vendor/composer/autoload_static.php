@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
+class ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -465,6 +465,9 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\AlbumsTrace' => __DIR__ . '/../..' . '/app/AlbumsTrace.php',
         'App\\AllTags' => __DIR__ . '/../..' . '/app/AllTags.php',
         'App\\ApplysSellers' => __DIR__ . '/../..' . '/app/ApplysSellers.php',
+        'App\\Bidder' => __DIR__ . '/../..' . '/app/Bidder.php',
+        'App\\BidderAccess' => __DIR__ . '/../..' . '/app/BidderAccess.php',
+        'App\\BidderRoles' => __DIR__ . '/../..' . '/app/BidderRoles.php',
         'App\\Book' => __DIR__ . '/../..' . '/app/Book.php',
         'App\\BookAuthor' => __DIR__ . '/../..' . '/app/BookAuthor.php',
         'App\\BookTags' => __DIR__ . '/../..' . '/app/BookTags.php',
@@ -492,6 +495,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Events\\PointsTraceEvent' => __DIR__ . '/../..' . '/app/Events/PointsTraceEvent.php',
         'App\\Events\\RadioTraceEvent' => __DIR__ . '/../..' . '/app/Events/RadioTraceEvent.php',
         'App\\Events\\SongTraceEvent' => __DIR__ . '/../..' . '/app/Events/SongTraceEvent.php',
+        'App\\Events\\StatusBidder' => __DIR__ . '/../..' . '/app/Events/StatusBidder.php',
+        'App\\Events\\StatusBidderEvent' => __DIR__ . '/../..' . '/app/Events/StatusBidderEvent.php',
         'App\\Events\\TransactionToken' => __DIR__ . '/../..' . '/app/Events/TransactionToken.php',
         'App\\Events\\TransactionsId' => __DIR__ . '/../..' . '/app/Events/TransactionsId.php',
         'App\\Events\\TvTraceEvent' => __DIR__ . '/../..' . '/app/Events/TvTraceEvent.php',
@@ -517,6 +522,8 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\BidderAuth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/BidderAuth/LoginController.php',
+        'App\\Http\\Controllers\\BidderController' => __DIR__ . '/../..' . '/app/Http/Controllers/BidderController.php',
         'App\\Http\\Controllers\\BooksAuthorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksAuthorsController.php',
         'App\\Http\\Controllers\\BooksController' => __DIR__ . '/../..' . '/app/Http/Controllers/BooksController.php',
         'App\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContentController.php',
@@ -527,6 +534,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Controllers\\MegazineController' => __DIR__ . '/../..' . '/app/Http/Controllers/MegazineController.php',
         'App\\Http\\Controllers\\MoviesController' => __DIR__ . '/../..' . '/app/Http/Controllers/MoviesController.php',
         'App\\Http\\Controllers\\MusicController' => __DIR__ . '/../..' . '/app/Http/Controllers/MusicController.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\PromoterAuth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/PromoterAuth/LoginController.php',
         'App\\Http\\Controllers\\PromoterController' => __DIR__ . '/../..' . '/app/Http/Controllers/PromoterController.php',
         'App\\Http\\Controllers\\RadiosController' => __DIR__ . '/../..' . '/app/Http/Controllers/RadiosController.php',
@@ -549,10 +557,12 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\ActiveUsers' => __DIR__ . '/../..' . '/app/Http/Middleware/ActiveUsers.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
+        'App\\Http\\Middleware\\AuthenticateBidder' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateBidder.php',
         'App\\Http\\Middleware\\AuthenticatePromoter' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticatePromoter.php',
         'App\\Http\\Middleware\\AuthenticateSeller' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateSeller.php',
         'App\\Http\\Middleware\\EmailVerified' => __DIR__ . '/../..' . '/app/Http/Middleware/EmailVerified.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\GeoLock' => __DIR__ . '/../..' . '/app/Http/Middleware/GeoLock.php',
         'App\\Http\\Middleware\\MyAlbums' => __DIR__ . '/../..' . '/app/Http/Middleware/MyAlbums.php',
         'App\\Http\\Middleware\\MyBooks' => __DIR__ . '/../..' . '/app/Http/Middleware/MyBooks.php',
         'App\\Http\\Middleware\\MyContent' => __DIR__ . '/../..' . '/app/Http/Middleware/MyContent.php',
@@ -562,6 +572,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Http\\Middleware\\MySingles' => __DIR__ . '/../..' . '/app/Http/Middleware/MySingles.php',
         'App\\Http\\Middleware\\OperatorMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/OperatorMiddleware.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\RedirectIfBidderAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfBidderAuthenticated.php',
         'App\\Http\\Middleware\\RedirectIfPromoterAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfPromoterAuthenticated.php',
         'App\\Http\\Middleware\\RedirectIfSellerAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfSellerAuthenticated.php',
         'App\\Http\\Middleware\\SuperAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/SuperAdmin.php',
@@ -600,8 +611,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Listeners\\SendTransactionsId' => __DIR__ . '/../..' . '/app/Listeners/SendTransactionsId.php',
         'App\\Listeners\\SendUserValidateEmail' => __DIR__ . '/../..' . '/app/Listeners/SendUserValidateEmail.php',
         'App\\Listeners\\SendWelcomeEmail' => __DIR__ . '/../..' . '/app/Listeners/SendWelcomeEmail.php',
+        'App\\Listeners\\StatusBidder' => __DIR__ . '/../..' . '/app/Listeners/StatusBidder.php',
+        'App\\Listeners\\StatusBidderListen' => __DIR__ . '/../..' . '/app/Listeners/StatusBidderListen.php',
         'App\\LoginControl' => __DIR__ . '/../..' . '/app/LoginControl.php',
         'App\\Mail\\ApprovalNotification' => __DIR__ . '/../..' . '/app/Mail/ApprovalNotification.php',
+        'App\\Mail\\BidderChangeStatus' => __DIR__ . '/../..' . '/app/Mail/BidderChangeStatus.php',
         'App\\Mail\\BuyContent' => __DIR__ . '/../..' . '/app/Mail/BuyContent.php',
         'App\\Mail\\ContentAproval' => __DIR__ . '/../..' . '/app/Mail/ContentAproval.php',
         'App\\Mail\\ContentDenial' => __DIR__ . '/../..' . '/app/Mail/ContentDenial.php',
@@ -636,9 +650,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Notifications\\SellerResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/SellerResetPasswordNotification.php',
         'App\\PaymentSeller' => __DIR__ . '/../..' . '/app/PaymentSeller.php',
         'App\\Payments' => __DIR__ . '/../..' . '/app/Payments.php',
+        'App\\PaymentsBidder' => __DIR__ . '/../..' . '/app/PaymentsBidder.php',
         'App\\PointsAssings' => __DIR__ . '/../..' . '/app/PointsAssings.php',
         'App\\PointsLoser' => __DIR__ . '/../..' . '/app/PointsLoser.php',
         'App\\PointsSells' => __DIR__ . '/../..' . '/app/PointsSells.php',
+        'App\\Products' => __DIR__ . '/../..' . '/app/Products.php',
         'App\\Promoters' => __DIR__ . '/../..' . '/app/Promoters.php',
         'App\\PromotersRoles' => __DIR__ . '/../..' . '/app/PromotersRoles.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -665,6 +681,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Songs' => __DIR__ . '/../..' . '/app/Songs.php',
         'App\\SongsTags' => __DIR__ . '/../..' . '/app/SongsTags.php',
         'App\\SongsTrace' => __DIR__ . '/../..' . '/app/SongsTrace.php',
+        'App\\SubProducto' => __DIR__ . '/../..' . '/app/SubProducto.php',
         'App\\Tags' => __DIR__ . '/../..' . '/app/Tags.php',
         'App\\TicketsPackage' => __DIR__ . '/../..' . '/app/TicketsPackage.php',
         'App\\Transactions' => __DIR__ . '/../..' . '/app/Transactions.php',
@@ -685,6 +702,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'App\\Tv' => __DIR__ . '/../..' . '/app/Tv.php',
         'App\\TvTrace' => __DIR__ . '/../..' . '/app/TvTrace.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\exchange_product' => __DIR__ . '/../..' . '/app/exchange_product.php',
         'App\\music_authors' => __DIR__ . '/../..' . '/app/music_authors.php',
         'App\\seller_closed' => __DIR__ . '/../..' . '/app/seller_closed.php',
         'App\\user_closed' => __DIR__ . '/../..' . '/app/user_closed.php',
@@ -799,6 +817,9 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'BaconQrCode\\Renderer\\Text\\Html' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Html.php',
         'BaconQrCode\\Renderer\\Text\\Plain' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Plain.php',
         'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Writer.php',
+        'Bidder' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_155713_bidder.php',
+        'BiddingAccess' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_160016_bidding_access.php',
+        'BiddingModules' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_160003_bidding_modules.php',
         'BooksTraceTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_30_182101_BooksTraceTable.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -914,6 +935,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Dotenv\\Parser' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Parser.php',
         'Dotenv\\Validator' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Validator.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
+        'ExchangeProduct' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_155944_exchange_product.php',
         'ExternalClientsTable' => __DIR__ . '/../..' . '/database/migrations/2018_12_07_150624_ExternalClientsTable.php',
         'ExternalPointsPaymentTable' => __DIR__ . '/../..' . '/database/migrations/2018_12_07_151037_ExternalPointsPaymentTable.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
@@ -2955,6 +2977,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'Payments' => __DIR__ . '/../..' . '/database/migrations/2018_10_26_154638_Payments.php',
+        'PaymentsBidder' => __DIR__ . '/../..' . '/database/migrations/2019_03_25_104146_payments_bidder.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',
         'PhpParser\\BuilderFactory' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderFactory.php',
         'PhpParser\\BuilderHelpers' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderHelpers.php',
@@ -3173,6 +3196,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'PointsLoser' => __DIR__ . '/../..' . '/database/migrations/2018_12_19_112954_Points_Loser.php',
         'PointsSales' => __DIR__ . '/../..' . '/database/migrations/2018_09_20_021428_points_sales.php',
         'ProducersSeed' => __DIR__ . '/../..' . '/database/seeds/Producers.php',
+        'Product' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_155737_product.php',
         'PromoterModules' => __DIR__ . '/../..' . '/database/seeds/PromoterModules.php',
         'PromoterTask' => __DIR__ . '/../..' . '/database/seeds/PromoterTask.php',
         'Prophecy\\Argument' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument.php',
@@ -3575,6 +3599,7 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
         'Spatie\\Fractalistic\\Exceptions\\InvalidTransformation' => __DIR__ . '/..' . '/spatie/fractalistic/src/Exceptions/InvalidTransformation.php',
         'Spatie\\Fractalistic\\Exceptions\\NoTransformerSpecified' => __DIR__ . '/..' . '/spatie/fractalistic/src/Exceptions/NoTransformerSpecified.php',
         'Spatie\\Fractalistic\\Fractal' => __DIR__ . '/..' . '/spatie/fractalistic/src/Fractal.php',
+        'SubProduct' => __DIR__ . '/../..' . '/database/migrations/2019_02_12_155929_sub_product.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
@@ -4365,11 +4390,11 @@ class ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit34ea9fc362208fc92f2303e5d7b5bb88::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5db3ee451cfe0351d02ced4e953ae394::$classMap;
 
         }, null, ClassLoader::class);
     }
