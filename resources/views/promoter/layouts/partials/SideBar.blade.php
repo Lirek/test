@@ -18,7 +18,7 @@
       </div>
     </li>
     <li>
-      <a href="#" class="waves-effect waves-blue">
+      <a href="{{url('EditProfilePromoter')}}" class="waves-effect waves-blue">
         <i class="small material-icons">person</i>
         Mi Perfil
       </a>
