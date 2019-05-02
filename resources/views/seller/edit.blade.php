@@ -251,9 +251,9 @@
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
                     <ul>
-                    <blockquote>
+                    
                     <i class="material-icons prefix blue-text">edit</i>
-                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a></blockquote>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -311,10 +311,10 @@
                             </div>
                         </div>
                     </ul>
-                     <ul><blockquote>
+                     <ul>
                          <i class="material-icons prefix blue-text">delete_forever</i>
                          <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
-                         </blockquote>
+                        
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
