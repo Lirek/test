@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
+                <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
                     <div class="padding-4" style="padding: 4%"> 
                         <div class="col m4">
                             <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">check</i>
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="col s12 m4">
-                <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 150px">
+                <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
                     <div class="padding-4" style="padding: 4%"> 
                         <div class="col m4">
                             <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">priority_high</i>
@@ -145,7 +145,7 @@
 									<br><br>
 									<i class="large material-icons center">local_offer</i>
 									<h4 class="white-text">
-										{{$ticket->amount}} Tiquets
+										{{$ticket->amount}} Tickets
 									</h4>
 								</div>
 							</div>
@@ -334,9 +334,9 @@
 				<div class="divider"></div>
 				<br>
 				<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-					<li class="tab" id="denegado"><a class="active" href="#test1">Compra de tickets (En efectivo)</a></li>
-					<li class="tab" id="revision"><a href="#test2">Compra de tickets (Con puntos)</a></li>
-					<li class="tab" id="revision"><a href="#test3">Puntos ganados/perdidos</a></li>
+					<li class="tab" id="denegado"><a class="active" href="#test1">• Compras (Tickets y Puntos En efectivo)</a></li>
+					<li class="tab" id="revision"><a href="#test2">• Compra (Tickets Con puntos)</a></li>
+					<li class="tab" id="revision"><a href="#test3">• Puntos ganados/perdidos</a></li>
 				</ul>
 				<div id="test1" class="col s12">
 					@if(count($Balance)!=0)
@@ -1190,7 +1190,7 @@
 			});
 			setTimeout(function() {
 				callback(msn);
-			},2000);
+			},5000);
 		}
 
 		function comprar(id,cost,cantidadTickets) {
@@ -1370,8 +1370,10 @@
 																closeOnClickOutside: false
 															});
 															console.log("intento "+intento+": "+status);
-															console.log(transaction.transactionId);
-															transactionCanceled(transaction.transactionId,idTicketSales,function(cancelar) {
+															var idTicket = idTicketSales.split("|")[0];
+															console.log(transaction.transactionId,idTicket);
+															transactionCanceled(transaction.transactionId,idTicket,function(cancelar) {
+																console.log(cancelar);
 																swal({
 																	title: "¡Pago cancelado!",
 																	text: "Su pago fue cancelado.",
@@ -1401,7 +1403,10 @@
 													console.log("intento "+intento+" expiró el tiempo");
 													console.log(transaction.transactionId);
 													postReverse(transaction.transactionId).then(function(response) {
-														transactionCanceled(transaction.transactionId,idTicketSales,function(pendiente) {
+														var idTicket = idTicketSales.split("|")[0];
+														console.log(response,transaction.transactionId,idTicket);
+														transactionCanceled(transaction.transactionId,idTicket,function(pendiente) {
+															console.log(pendiente);
 															swal({
 																title: "¡Ha expirado el tiempo de espera!",
 																text: "No se pudo procesar el pago por exceder el límite del tiempo permitido.",

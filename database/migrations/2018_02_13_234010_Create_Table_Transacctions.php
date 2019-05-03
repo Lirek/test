@@ -36,7 +36,7 @@ class CreateTableTransacctions extends Migration
             $table->foreign('song_id')->references('id')->on('songs');
             $table->foreign('books_id')->references('id')->on('books');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('seller_id')->references('id')->on('seller');
+            $table->foreign('seller_id')->references('id')->on('sellers');
             });
     }
 

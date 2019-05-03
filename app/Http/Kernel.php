@@ -34,6 +34,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
              \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
 
         'api' => [
@@ -64,13 +65,16 @@ class Kernel extends HttpKernel
           'MyMovies' => \App\Http\Middleware\MyMovies::class,
           'MySeries' => \App\Http\Middleware\MySeries::class,
           'MySingles' => \App\Http\Middleware\MySingles::class,
-          
+
         //add custom middlewares here as key and value pair.
          'seller_auth' => \App\Http\Middleware\AuthenticateSeller::class,
          'seller_guest' => \App\Http\Middleware\RedirectIfSellerAuthenticated::class,
 
          'promoter_auth' => \App\Http\Middleware\AuthenticatePromoter::class,
          'promoter_guest' => \App\Http\Middleware\RedirectIfPromoterAuthenticated::class,
+
+        'bidder_auth' => \App\Http\Middleware\AuthenticateBidder::class,
+        'bidder_guest' => \App\Http\Middleware\RedirectIfBidderAuthenticated::class,
 
          'Admin' => \App\Http\Middleware\AdminMiddleware::class,
          'SuperAdmin' => \App\Http\Middleware\SuperAdmin::class,
@@ -80,5 +84,7 @@ class Kernel extends HttpKernel
 
          //middleware de usuario activo
          'ActiveUser' => \App\Http\Middleware\ActiveUsers::class,
+         'VerifiedEmail' => \App\Http\Middleware\EmailVerified::class,
+         'GeoLock' => \App\Http\Middleware\GeoLock::class,
     ];
 }

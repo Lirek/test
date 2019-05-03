@@ -62,7 +62,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="col m12">
-                                    <p class="">{{ $b->name_alb }}</p>
+                                    <p class="" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{ $b->name_alb }}</p>
                                 </div>
                                 <div class="col m12 ">
                                     <small><b>Estatus:</b> {{ $b->status }}</small>
@@ -86,22 +86,26 @@
                     <div class="col s12 m3">
                         <div class="card" style="height: 450px">
                             <div class="card-image">
-                                
-                              <img src="{{asset('plugins/img/DefaultMusic.png')}}" width="100%" height="300px">
-                            
+                                <a href="{{ url('/show_song/'.$song->id) }}">
+                                    @if($song->cover == NULL)  
+                                        <img src="{{asset($song->autors->photo)}}" width="100%" height="300px">
+                                    @else
+                                        <img src="{{asset($song->cover)}}" width="100%" height="300px">
+                                    @endif 
+                                </a>
                               <!-- <span class="card-title">Card Title</span> -->
                                 <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('/modify_single/'.$song->id) }}"><i class="material-icons">create</i></a>
                             </div>
                             <div class="card-content">
                                 <div class="col m12">
-                                    <p class="">{{$song->song_name}}</p>
+                                    <p class="" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto;">{{$song->song_name}}</p>
                                 </div>
                                 <div class="col m12 ">
                                     <small><b>Estatus:</b> {{ $song->status }}</small>
                                 </div>  
                                     <small><b>Artista:</b> {{$song->autors->name}}</small>
                                 <div class="">
-                                    <audio id="player" class="player{{$x}}">
+                                    <audio id="player" class="">
                                         <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play"> 
                                     </audio>
                                 </div>                          

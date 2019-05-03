@@ -28,10 +28,16 @@
 	</td>
  </tr>
 
+ <tr>
+  <td>
+  <p style="font-size: 14px">Por Favor Verifique su Direccion de Correo en el siguiente enlace:
+                              {{$url}}</p>
+  </td>
+ </tr>
   <tr align="left">
  	<img src="{{$message->embed(public_path().'/sistem_images/signature.png')}}">
   </tr>
-  
+
   <tr>
 	<td>
 	<p style="font-size: 10px">Este correo ha sido enviado acorde a los normas de mailing y porque muy seguramente usted se suscribió o alguien lo está invitando.</p>
@@ -42,8 +48,8 @@
 	<td align="center">
 		<img src="{{$message->embed(public_path().'/sistem_images/Leipel.png')}}" style="height: 80px; width: 80px">
 	</td>
- </tr>	
-	
+ </tr>
+
 </table>
 </body>
 </html>

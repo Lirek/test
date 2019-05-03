@@ -212,13 +212,13 @@
                                 {{--titulo de la revista--}}
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text">create</i>
-                                    <label for="exampleInputFile" class="control-label">Título</label>
+                                    <label for="titulo" class="control-label">Título</label>
                                     @if($i_megazine->status != 'Aprobado')
-                                        {!! Form::text('title',$i_megazine->title,['class'=>'form-control','placeholder'=>'Titulo de la revista','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
+                                        {!! Form::text('title',$i_megazine->title,['class'=>'form-control','id'=>'titulo','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                                         <div id="mensajeTitulo"></div>
                                         <br>
                                     @else
-                                        {!! Form::text('title',$i_megazine->title,['class'=>'form-control','placeholder'=>'Titulo de la revista',' readonly']) !!}
+                                        {!! Form::text('title',$i_megazine->title,['class'=>'form-control','id'=>'titulo',' readonly']) !!}
                                         <div id="mensajeTitulo"></div>
                                         <br>
                                     @endif
@@ -228,7 +228,7 @@
                                 {{--precio--}}
                                 <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                                    <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                    <label for="precio" class="control-label">Costo en tickets</label>
                                     
                                     @if($i_megazine->status != 'Aprobado')
                                         {!! Form::number('cost',$i_megazine->cost,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un costo en tickets')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999']) !!}
@@ -252,11 +252,11 @@
                                         {{--seleccion de rating--}}
                                         
                                         @if($i_megazine->status != 'Aprobado')
-                                            {!! Form::select('rating_id',$rating,$i_megazine->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                                            {!! Form::select('rating_id',$rating,$i_megazine->rating_id,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
                                         @else
-                                            {!! Form::select('rating_id',$rating,$i_megazine->rating_id,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]) !!}
+                                            {!! Form::select('rating_id',$rating,$i_megazine->rating_id,['class'=>'form-control','id'=>'rating','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')",'disabled'=>true ]) !!}
                                         @endif
-                                        <label for="exampleInputFile" class="control-label">Categoría</label>
+                                        <label for="rating" class="control-label">Categoría</label>
                                     </div>
                                 </div>
 
@@ -266,7 +266,7 @@
                                     {{--Categoria--}}
                                    
                                         @if($i_megazine->status != 'Aprobado')
-                                        <select name="tags[]" multiple="true" class="form-control" required>
+                                        <select name="tags[]" multiple="true" class="form-control" required id="tags">
                                             @foreach($tags as $genders)
                                                 <option value="{{$genders->id}}"
                                                     @foreach($s_tags as $s) 
@@ -280,7 +280,7 @@
                                             @endforeach
                                         </select>
                                         @else
-                                        <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                                        <select name="tags[]" multiple="true" class="form-control" disabled="true" id="tags">
                                         @foreach($tags as $genders)
                                             <option value="{{$genders->id}}"
                                                 @foreach($s_tags as $s) 
@@ -310,7 +310,7 @@
                                             Si no selecciona una revista, se mantendrá el actual
                                         </label>
                                         <div class="file-field input-field">
-                                            <label for="exampleInputFile" class="control-label">Cargar la revista</label>
+                                            <label for="revista" class="control-label">Cargar la revista</label>
                                             <br><br>
                                             <div id="mensajeDocumento"></div>
                                             <div class="btn blue">
@@ -327,7 +327,7 @@
                                 {{--selecione el pais--}}
                                 @if($i_megazine->status != 'Aprobado')
                                 <div class="col m6 s12">
-                                    <label for="pais" id="pais" class="control-label" style="color: green;">
+                                    <label for="paises" id="pais" class="control-label" style="color: green;">
                                         Si no selecciona un país, se mantendrá el actual
                                     </label>
                                     <br><br><br>
@@ -571,7 +571,7 @@
                                         <option value="ZM">Zambia</option>
                                         <option value="ZW">Zimbabue</option>
                                     </select>
-                                    <label class="control-label">País</label><br>
+                                    <label for="paises" class="control-label">País</label><br>
                                     </div>
                                 <br>
                                 </div>
@@ -581,7 +581,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i> 
                                     {{--sinopsis de la revista--}}
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     {!! Form::textarea('descripcion',$i_megazine->descripcion,['class'=>'form-control materialize-textarea','rows'=>'3','cols'=>'2','placeholder'=>'Sinopsis de la revista','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}

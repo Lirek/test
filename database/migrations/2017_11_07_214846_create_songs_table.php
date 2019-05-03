@@ -25,6 +25,7 @@ class CreateSongsTable extends Migration
     $table->string('duration')->nullable()->default(NULL);             
     $table->integer('cost')->nullable();
     $table->date('release_date')->nullable()->default(NULL);
+    $table->string('cover')->nullable();
     $table->enum('status',['Aprobado','En Revision','Denegado'])->default('En Revision');    
     $table->timestamps();
 

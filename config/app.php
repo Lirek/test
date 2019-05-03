@@ -21,11 +21,11 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services your application utilizes. Set this in your ".env" file.
+    | services your application utilizes. Set this in your "..env" file.
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    '.env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -200,7 +200,9 @@ return [
 
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-       
+
+       //Manejo de Ips
+       Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -268,9 +270,10 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
         //Json Fractal
-        'Fractal' => Spatie\Fractal\FractalFacade::class
+        'Fractal' => Spatie\Fractal\FractalFacade::class,
 
-
+        //ips Cuchi
+        'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
 
     ],
 

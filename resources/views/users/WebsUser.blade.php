@@ -163,7 +163,7 @@
               <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" >
           </div>
           <div class="card-action">
-              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Descargar</a>
+              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalle</a>
               <br>
           </div>
       </div>
@@ -182,7 +182,7 @@
                       <div class="input-field col m12 ">
                           <i class="material-icons prefix">vpn_key</i>
                           <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
-                          <label for="first_name">Código</label>
+                          <label for="codigo">Código</label>
                           <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
                           <div id="codigoMen"></div>
                       </div>

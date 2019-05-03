@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->date('fech_nac')->nullable();
             $table->string('password')->nullable()->default(NULL);
             $table->string('phone')->nullable()->default(NULL);
+            $table->boolean('email_verification')->default(FALSE);
             $table->rememberToken();
             $table->timestamps();
         });

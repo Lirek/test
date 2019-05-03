@@ -24,16 +24,24 @@
                                  </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
-                                         <div class="col s4"><br>
+                                         <div class="col s3"><br>
                                              <i class="material-icons blue circle prefix">reply</i>
                                              <h6 class="left"><b>Mi Enlace:</b></h6>
                                          </div>
-                                         <div class="col s8 left">
-                                             <p>Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link.</p>
-                                             <p>
+                                         <div class="col s9 right">
+                                             <p style="text-align: justify;">Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link: </p>
+                                             <div class="col s6 right" style="margin-right: 150px;"><p>
+                                             <?php 
+                                                $user = Auth::user();
+                                             ?>
+                                             @if($user == true)
+                                             <h6><a href="{{ url('/')}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
+                                             @else 
                                              <h6><a href="{{url('/').'/register/'.Auth::user()->codigo_ref}}" style="font-size: 86%;">{{url('/').'/register/'.Auth::user()->codigo_ref}}</a></h6>
-                                             </p>
+                                             @endif
+                                        </p></div>
                                          </div>
+                                         
                                      </div>
                                  </li>
                                  <li class="collection-item avatar">
@@ -78,7 +86,7 @@
                                                      <center>{{$referals1+$referals2+$referals3}}</center>
                                                  </a>
                                              </h4>
-                                             <h6>Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
+                                             <h6 style="text-align: justify;">Este es el total de referidos de tres generaciones de personas que llegaron a Leipel gracias a ti. Te lo agredecemos!</h6>
                                              </p>
                                          </div>
                                      </div>
@@ -127,7 +135,7 @@
                              Correo del la persona que desea invitar:
                              <div class="input-field inline">
                                  <input id="email" name="email" type="email" class="validate" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email invalido">
-                                 <label for="email_inline">Correo</label>
+                                 <label for="email">Correo</label>
                              </div>
                              <div id="emailMen"></div>
                      </div>

@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class PointsLoser extends Model
 {
     protected $table = 'points_loser';
+
     protected $fillable = [
-		'id',
+		    'id',
         'user_id',
         'points',
         'reason'
     ];
-    public function pointLoser() {
+
+    public function pointLoser()
+    {
     	return $this->belongsTo('App\User', 'user_id');
     }
 }
