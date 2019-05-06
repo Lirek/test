@@ -217,7 +217,7 @@
                         <div class="input-field col m6 s12">
                             {{--titulo de la serie--}}
                             <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                            <label for="exampleInputFile" class="control-label">Título</label>
+                            <label for="titulo" class="control-label">Título</label>
                             @if($serie->status != 'Aprobado')
                             {!! Form::text('title',$serie->title,['class'=>'form-control','placeholder'=>'Título de la Serie','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                             @else
@@ -229,14 +229,14 @@
                         <div class="input-field col m6 s12">
                             {{--Selecion tipo de publico de la serie--}}
                             <i class="material-icons prefix blue-text valign-wrapper">label</i>
-                            {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],$s,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una ppción')",'oninput'=>"setCustomValidity('')", 'id'=>'exampleInputFile']) !!}
-                            <label for="exampleInputFile" class="control-label">Estado de la serie</label>
+                            {!! Form::select('status_series',['1'=>'En Emisión', '2'=>'Finalizado'],$s,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Seleccione una ppción')",'oninput'=>"setCustomValidity('')", 'id'=>'status']) !!}
+                            <label for="status" class="control-label">Estado de la serie</label>
                             <br>
                         </div>
                         <div class="input-field col m6 s12">
                             {{--precio--}}
                             <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                            <label for="precio" class="control-label">Costo en tickets</label>
                             @if($serie->status != 'Aprobado')
                             {!! Form::number('cost',$serie->cost,['class'=>'form-control','placeholder'=>'Ingrese el costo en tickets', 'required'=>'required', 'id'=>'precio', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'oninput'=>"setCustomValidity('')", 'min'=>'0', 'oninput'=>"maxLengthCheck(this)"]) !!}
                             @else
@@ -249,7 +249,7 @@
                             {{--Categoria--}}
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
                             @if($serie->status != 'Aprobado')
-                            <select name="tags[]" multiple="true" class="form-control" required>
+                            <select name="tags[]" multiple="true" class="form-control" required id="tags">
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
                                         @foreach($s_tags as $s) 
@@ -263,7 +263,7 @@
                                 @endforeach
                             </select>
                             @else
-                            <select name="tags[]" multiple="true" class="form-control" disabled="true">
+                            <select name="tags[]" multiple="true" class="form-control" disabled="true" id="tags">
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
                                         @foreach($s_tags as $s) 
@@ -283,7 +283,7 @@
                         <div class="input-field col m6 s12">
                             {{--historia de la serie --}}
                             <i class="material-icons prefix blue-text valign-wrapper">movie</i> 
-                            <label for="exampleInputPassword1" class="control-label">Historia</label>
+                            <label for="historia" class="control-label">Historia</label>
                             <div id="cantidadHistoria"></div>
                             {!! Form::textarea('story',$serie->story,['class'=>'materialize-textarea','rows'=>'5','cols'=>'2','placeholder'=>'Historia de la serie','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una historia de la serie')", 'oninput'=>"setCustomValidity('')",'id'=>'historia']) !!}
                             <div id="mensajeHistoria"></div>
@@ -293,7 +293,7 @@
                        <div class="input-field col m6 s12">
                             {{--año de salida de la serie --}}
                             <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
-                            <label for="exampleInputPassword1" class="control-label">Año de Llanzamiento</label>
+                            <label for="fechaLanzamiento" class="control-label">Año de Llanzamiento</label>
                             @if($serie->status != 'Aprobado')
                             {!! Form::number('release_year',$serie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
                             @else
@@ -306,7 +306,7 @@
                             <div class="input-field col m6 s12">
                                 {{--link--}}
                                 <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
-                                <label for="exampleInputPassword1" class="control-label">Link del trailer</label>
+                                <label for="link" class="control-label">Link del trailer</label>
                                 @if($serie->status != 'Aprobado')
                                 {!! Form::url('trailer',$serie->trailer,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la serie')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
                                 @else
@@ -345,12 +345,12 @@
                                     <label for="exampleInputPassword1" class="control-label">Nombre de la saga</label>
                                 </div>
                                 <div class="input-field col m4 s12">
-                                    <label for="exampleInputPassword1" class="control-label">Antes</label>
+                                    <label for="antes" class="control-label">Antes</label>
                                     {!! Form::number('before',$serie->before,['class'=>'form-control','placeholder'=>'Número del capítulo que va antes','id'=>'antes','min'=>'0']) !!}
                                     <div id="mensajeAntes"></div>
                                 </div>
                                 <div class="input-field col m4 s12">
-                                    <label for="exampleInputPassword1" class="control-label">Después</label>
+                                    <label for="despues" class="control-label">Después</label>
                                     {!! Form::number('after',$serie->after,['class'=>'form-control','placeholder'=>'Número del capítulo que va después','id'=>'despues','min'=>'0']) !!}
                                     <div id="mensajeDespues"></div>
                                 </div>
@@ -368,7 +368,7 @@
                                         {!! Form::hidden('episodeId[]',$e->id) !!}
                                         <div class="input-field col m6 s12">
                                             <i class="material-icons prefix blue-text valign-wrapper">create</i>
-                                            <label for="nombre del episodio" class="control-label">Nombre del episodio</label>
+                                            <label for="episodio_name" class="control-label">Nombre del episodio</label>
                                             @if($e->status != 'Aprobado')
                                             <input type="text" value="{{ $e->episode_name }}" name="episodio_name[]" id="episodio_name" placeholder="Nombre del episodio" class="form-control" required="required" oninvalid="this.setCustomValidity('Nombre del episodio')" oninput="setCustomValidity('')">
                                             @else
@@ -379,7 +379,7 @@
                                         <div class="input-field col m6 s12">
                                             {{--precio--}}
                                             <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
-                                            <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                            <label for="precioEpisodio" class="control-label">Costo en tickets</label>
                                             @if($serie->status != 'Aprobado')
                                             <input type="number" value="{{ $e->cost }}" name="episodio_cost[]" id="precioEpisodio" class="form-control" placeholder="Ingrese el costo en tickets" min="0" required="required" oninvalid="this.setCustomValidity('Escriba el costo en tickets')" oninput="setCustomValidity('')" oninput="maxLengthCheck(this)">
                                             @else
@@ -390,7 +390,7 @@
                                         <div class="input-field col m6 s12">
                                             {{--link--}}
                                              <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
-                                            <label for="exampleInputPassword1" class="control-label">Trailer del episodio</label>
+                                            <label for="trailerEpisodio" class="control-label">Trailer del episodio</label>
                                             <input type="url" value="{{ $e->trailer_url }}" name="trailerEpisodio[]" id="trailerEpisodio" class="form-control" placeholder="Trailer del episodio" required="required" oninvalid="this.setCustomValidity('Link del trailer')" oninput="setCustomValidity('')">
                                             <br>
                                         </div>
@@ -398,7 +398,7 @@
                                        <div class="input-field col m6 s12">
                                             {{--sinopsis del episodio --}}
                                             <i class="material-icons prefix blue-text valign-wrapper">movie</i>
-                                            <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                            <label for="sinopsis" class="control-label">Sinopsis</label>
                                             <textarea name="sinopsis[]" id="sinopsis" cols="3" rows="5" class="materialize-textarea" placeholder="Sinopsis del episodio" required="required" oninvalid="this.setCustomValidity('Escriba una sinopsis')" oninput="setCustomValidity('')">{{ $e->sinopsis }}</textarea>
                                             <br>
                                         </div>
@@ -408,7 +408,7 @@
                                             </label>
                                             <br>
                                             <div class="file-field input-field col m12 s12">
-                                                <label for="nombre del episodio" class="control-label">Cargar epísodio</label>
+                                                <label for="episodio_file" class="control-label">Cargar epísodio</label>
                                                 <br><br>
                                                 <div class="btn blue">
                                                     <span><i class="material-icons">movie</i></span>
@@ -1061,5 +1061,42 @@ function maxLengthCheck(object) {
         });
     });
 //---------------------------------------------------------------------------------------------------
+ function ytVidId(url) {
+    var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+    return (url.match(p)) ? RegExp.$1 : false;
+}
+    $('#link').bind("change keyup input", function() {
+    var url = $(this).val();
+    if (ytVidId(url) !== false) {
+        // console.log('Si es youtube');
+          $('#mensajeLink').hide();
+            $('#modificarSerie').attr('disabled',false);
+        // $('#ytlInfo').addClass('fieldok');
+    } else {
+        // console.log('No es youtube');
+        $('#mensajeLink').show();
+            $('#mensajeLink').text('Ups, solo se aceptan enlaces provenientes del YouTube');
+            $('#mensajeLink').css('color','red');
+            $('#modificarSerie').attr('disabled',true);
+        // $('#ytlInfo').removeClass('fieldok');
+    }
+});
+
+$('#trailerEpisodio').bind("change keyup input", function() {
+    var url = $(this).val();
+    if (ytVidId(url) !== false) {
+        // console.log('Si es youtube');
+          $('#mensajeTrailerEpisodio').hide();
+            $('#modificarSerie').attr('disabled',false);
+        // $('#ytlInfo').addClass('fieldok');
+    } else {
+        // console.log('No es youtube');
+        $('#mensajeTrailerEpisodio').show();
+            $('#mensajeTrailerEpisodio').text('Ups, solo se aceptan enlaces provenientes del YouTube');
+            $('#mensajeTrailerEpisodio').css('color','red');
+            $('#modificarSerie').attr('disabled',true);
+        // $('#ytlInfo').removeClass('fieldok');
+    }
+});
     </script>
 @endsection

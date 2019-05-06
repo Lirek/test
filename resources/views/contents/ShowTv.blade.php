@@ -27,10 +27,10 @@
 
             <div class="row">
             @foreach($Tv as $tv)
-                    <div class="col s6 m3">
+                    <div class="col s6 m2">
                         <div class="card">
                             <div class="card-image">
-                                <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="170px"></a>
+                                <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="140px"></a>
                                 <a  href="{{url('PlayTv/'.$tv->id)}}" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">live_tv</i></a>
                             </div>
                             <div class="card-content">

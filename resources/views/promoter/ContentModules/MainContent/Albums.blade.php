@@ -173,18 +173,17 @@
 						$('#totalCanciones').show();
 						$('#totalCanciones').text('este album tiene: '+datos.length+' canciones.');
 
-						if (datos.song_file != 0) {
-							var archivo = "<audio controls='' src='"+datos.song_file+"'>"+
-							"<source src='"+datos.song_file+"' type='audio/mpeg'>"+
-                        "</audio>";
-						}
-						
 						$.each(datos, function(i,info){
+							if (info.song_file != 0) {
+								var archivo = 
+								"<audio controls='' src='{!!asset('"+info.song_file+"')!!}'>"+
+									"<source src='"+info.song_file+"' type='audio/mpeg'>"+
+								"</audio>";
+							}
 							var fila = "<tr><td>"+
 							info.song_name+"</td><td>"+
 							info.duration+"</td><td>"+
-							archivo+
-							"</td></tr>";
+							archivo+"</td></tr>";
 							$('#cancion').append(fila);
 						});
 					},

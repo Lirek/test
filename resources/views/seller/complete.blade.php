@@ -246,7 +246,7 @@
                             
                             <div class="input-field col m6 ">
                                 <i class="material-icons prefix blue-text">assignment</i>
-                                <label for="desc" class="" id="labeDesc">Breve descripción de la empresa</label>
+                                <label for="dcs" class="" id="labeDesc">Breve descripción de la empresa</label>
                                 <textarea name="dsc" id="dcs" class="form-control materialize-textarea" required="required"></textarea>
                             </div>
                             

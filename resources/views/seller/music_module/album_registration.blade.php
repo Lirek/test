@@ -592,12 +592,12 @@
     var percent = $('.percent');
     var status = $('#status');
  
-    $('#registroPelicula').ajaxForm({
+    $('#formulario').ajaxForm({
         
         beforeSend: function() {
             status.empty();
             var percentVal = '0%';
-            var posterValue = $('input[name=audio').fieldValue();
+            var posterValue = $('input[name=song_n').fieldValue();
             bar.width(percentVal)
             percent.html(percentVal);
         },

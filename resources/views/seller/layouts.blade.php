@@ -48,6 +48,10 @@
         border-bottom: 1px solid #29B6F6 !important;
         box-shadow: 0 1px 0 0 #29B6F6 !important
     }
+
+     .sidenav .user-view  {
+         background-image: url({{asset("/plugins/materialize_adm/img/user-background-verde.jpg")}});
+     }
         </style>
         @yield('css')
         <!--Let browser know website is optimized for mobile-->
@@ -92,7 +96,7 @@
 
                 <!--Menu superior navbar-->
                 <div class="navbar-fixed" >
-                    <nav class="blue">
+                    <nav class="green">
                         <div class="nav-wrapper">
 
                             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons ">menu</i></a>
@@ -155,7 +159,7 @@
             <ul id="slide-out" class="sidenav sidenav-fixed">
 
                 <li><!--Seccion de usuario -->
-                  <div class="user-view">
+                  <div class="user-view ">
                     <div class="container">
                                 @if(Auth::guard('web_seller')->user()->logo)
                                     <a href="#"><img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil" height="500" width="500"></a><!-- logo user -->
@@ -172,7 +176,7 @@
                         </div>
                         <div class="name" data-toggle="dropdown" >
                             <a class="modal-trigger white-text valign-wrapper" href="#myModalTotal">
-                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Disponibles: {{Auth::guard('web_seller')->user()->credito}}
+                             <i class="material-icons ">local_activity</i>&nbsp;Tickets Ganados: {{Auth::guard('web_seller')->user()->credito}}
                             </a>
                         </div>
                     </div>
@@ -180,9 +184,9 @@
             </div>
                 </li><!--End eccion de usuario -->
 
-                <li><a href="{{url('seller_edit')}}" class="waves-effect waves-blue"><i class="small material-icons">person</i>Mi Perfil</a></li>
+                <li><a href="{{url('seller_edit')}}" class="waves-effect waves-green"><i class="small material-icons">person</i>Mi Perfil</a></li>
                     <li><div class="divider"></div></li>
-                <li><a href="{{url('SellerRequest')}}" class="waves-effect waves-blue "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
+                <li><a href="{{url('SellerRequest')}}" class="waves-effect waves-green "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
 
 <!-- ////////////////////////////////////////////////////////////          Contenidos          ////////////////////////////////////////-->
 
@@ -197,7 +201,7 @@
                             <ul class= "collapsible collapsible-accordion" >
 
                                 <li>
-                                    <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
+                                    <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
 
                                     <div class="collapsible-body">
                                             <blockquote>Aún no posee módulos asignados.</blockquote>
@@ -211,7 +215,7 @@
                         <li><!-- LI CONTENIDOS GENERAL -->
                             <ul class= "collapsible collapsible-accordion" >
                                 <li> <!-- LI CONTENIDOS interno-->
-                                    <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
+                                    <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
                                     <div class="collapsible-body">
                                         <ul>
                                                     @foreach($modulos as $mod)
@@ -221,7 +225,7 @@
                                                             <ul class= "collapsible collapsible-accordion" >
                                                             <li>
 
-                                                            <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >music_note</i>Musica<i class="material-icons right">expand_more</i></a>
+                                                            <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >music_note</i>Musica<i class="material-icons right">expand_more</i></a>
 
                                                                 <div class="collapsible-body">
                                                                 <ul>
@@ -266,7 +270,7 @@
                                                                  <ul class= "collapsible collapsible-accordion" >
                                                                     <li>
 
-                                                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >movie</i>Películas<i class="material-icons right">expand_more</i></a>
+                                                                        <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >movie</i>Películas<i class="material-icons right">expand_more</i></a>
 
                                                                         <div class="collapsible-body">
                                                                             <ul>
@@ -285,13 +289,13 @@
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
 
-                                                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >import_contacts</i>Revistas<i class="material-icons right">expand_more</i></a>
+                                                                 <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >import_contacts</i>Revistas<i class="material-icons right">expand_more</i></a>
 
                                                                  <div class="collapsible-body">
                                                                         <ul>
                                                                             <li><a href="{{ url('/megazine_form') }}">Registrar revista</a></li>
                                                                             <li><a href="{{ url('/type') }}">Cadena de publicaciones</a></li>
-                                                                            <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}">Mis revistas</a></li>
+                                                                            <li><a href="{{ url('/my_megazine',Auth::guard('web_seller')->user()->id) }}"> Revistas registradas</a></li>
                                                                             <li><div class="divider"></div></li>
                                                                         </ul>
                                                                 </div>
@@ -305,7 +309,7 @@
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
 
-                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >local_movies</i>Series<i class="material-icons right">expand_more</i></a>
+                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >local_movies</i>Series<i class="material-icons right">expand_more</i></a>
 
                                                                 <div class="collapsible-body">
                                                                  <ul>
@@ -325,7 +329,7 @@
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
 
-                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >book</i>Libros<i class="material-icons right">expand_more</i></a>
+                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >book</i>Libros<i class="material-icons right">expand_more</i></a>
 
                                                                 <div class="collapsible-body">
                                                                 <ul>
@@ -365,7 +369,7 @@
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
 
-                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >radio</i>Radio<i class="material-icons right">expand_more</i></a>
+                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >radio</i>Radio<i class="material-icons right">expand_more</i></a>
 
                                                                         <div class="collapsible-body">
                                                                             <ul class="sub">
@@ -386,7 +390,7 @@
                                                                 <ul class= "collapsible collapsible-accordion" >
                                                                 <li>
 
-                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >live_tv</i>TV<i class="material-icons right">expand_more</i></a>
+                                                                <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >live_tv</i>TV<i class="material-icons right">expand_more</i></a>
 
                                                                  <div class="collapsible-body">
                                                                 <ul>
@@ -418,7 +422,7 @@
                                 <ul class= "collapsible collapsible-accordion" >
 
                                     <li>
-                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Cuenta en revisión<i class="material-icons right" >expand_more</i></a>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Cuenta en revisión<i class="material-icons right" >expand_more</i></a>
                                         <div class="collapsible-body">
                                             <blockquote> Su solicitud de cuenta como
                                                 productora está en proceso de
@@ -437,7 +441,7 @@
                                 <ul class= "collapsible collapsible-accordion" >
 
                                     <li>
-                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>En Proceso<i class="material-icons right" >expand_more</i></a>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>En Proceso<i class="material-icons right" >expand_more</i></a>
                                         <div class="collapsible-body">
                                             <blockquote>  Su solicitud de cuenta como
                                                 productora está en proceso
@@ -455,7 +459,7 @@
                                 <ul class= "collapsible collapsible-accordion" >
 
                                     <li>
-                                        <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class="small material-icons left" >apps</i>Cuenta Rechazada<i class="material-icons right" >expand_more</i></a>
+                                        <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Cuenta Rechazada<i class="material-icons right" >expand_more</i></a>
                                         <div class="collapsible-body">
                                             <blockquote>   Su solicitud de cuenta como
                                                 productora fue rechazada
@@ -479,7 +483,7 @@
                                 </form>
                             </li> -->
                             <li>
-                                <a href="{{ url('/seller_logout') }}" class="waves-effect waves-blue " onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
+                                <a href="{{ url('/seller_logout') }}" class="waves-effect waves-green" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="small material-icons">power_settings_new</i>Salir</a></a>
                                 <form id="logout-form" action="{{ url('/seller_logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
@@ -504,7 +508,7 @@
                 </section>
             </main> <!-- End main -->
 
-            <footer class="page-footer blue ">
+            <footer class="page-footer green  ">
                 <div class="footer-copyright">
                     <div class="container center">
                         Leipel &copy 2019. Todos los Derechos Reservados.
@@ -516,14 +520,14 @@
 
             <div id="myModalTotal" class="modal modal-s" >
                 <div class="modal-content">
-                <div class=" blue"><br>
+                <div class=" green"><br>
                    <h4 class="center white-text" ><i class="small material-icons">timeline</i> Mi Balance</h4>
                     <br>
                 </div>
                     <br>
                     <blockquote class="center">
-                    <h5 class="grey-text"><b>Total de tickets disponibles:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
-                    <h5 class="grey-text"><b>Total de tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets ganados:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                    <h5 class="grey-text"><b>Total de tickets pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                     <h5><a href="{{url('SellerBalance')}}" ><i class="small material-icons ">add_circle_outline</i> <br>Detalles</a></h5>
 
                     </blockquote>

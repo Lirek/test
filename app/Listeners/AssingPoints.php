@@ -59,7 +59,7 @@ class AssingPoints
             if ($pass!=NULL) {
               $id=$pass->user_id;
               $Refered->push(User::find($id));
-              
+
             } else
             {
               break;
@@ -83,13 +83,13 @@ class AssingPoints
             }
             else
             {
-              $key->points = $key->points + 1; 
+              $key->points = $key->points + 1;
             }
 
             $key->save();
             $Assing1 = new PointsAssings;
             $Assing1->amount = 1;
-            $Assing1->from = $UserR->id; 
+            $Assing1->from = $UserR->id;
             $Assing1->to =   $key->id;
             $Assing1->save();
           }
@@ -99,7 +99,7 @@ class AssingPoints
           $balance->points_solds = $balance->points_solds + $points;
 
           if ($total>0) {
-            $balance->my_points= $balance->my_points + $total; 
+            $balance->my_points= $balance->my_points + $total;
             $balance->save();
 
             $Assing = new PointsAssings;

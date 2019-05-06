@@ -91,19 +91,19 @@
                         <div class="col s12 m6" style="padding-top: 5%">
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text">create</i>
-                                <label for="autocomplete-input">Nombre de la radio</label>
+                                <label for="nombre">Nombre de la radio</label>
                                 {!!Form::text('name_r',$radio->name_r,['class'=>'form-control count','required'=>'required','id'=>'nombre','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"])!!}
                                 <div id="mensajeMaximoNombre"></div>
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text">volume_up</i>
-                                <label for="autocomplete-input">URL de la radio</label>
+                                <label for="url">URL de la radio</label>
                                 {!!Form::text('streaming',$radio->streaming,['class'=>'form-control count','required'=>'required','id'=>'url','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"])!!}
                                 <div id="mensajeMaximoUrl"></div>
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text">mail</i>
-                                <label for="autocomplete-input">Correo electrónico</label>
+                                <label for="email">Correo electrónico</label>
                                 {!!Form::email('email_c',$radio->email_c,['class'=>'form-control count','required'=>'required','id'=>'email','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"])!!}
                                 <div id="mensajeMaximoEmail"></div>
                             </div>
@@ -112,13 +112,13 @@
                             <h6 class="titelgeneral"><i class="material-icons small">share</i> Redes sociales</h6>
                             <div class="input-field">
                                 <i class="material-icons prefix mdi mdi-earth"></i>
-                                <label for="autocomplete-input">Página Web</label>
+                                <label for="web">Página Web</label>
                                 {!!Form::text('web',$radio->web,['class'=>'form-control','id'=>'web'])!!}
                                 <div id="mensajeMaximoWeb"></div>
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix red-text mdi mdi-youtube"></i>
-                                <label for="autocomplete-input">YouTube</label>
+                                <label for="youtube">YouTube</label>
                                 {!!Form::text('google',$radio->google,['class'=>'form-control','id'=>'youtube'])!!}
                                 <div id="mensajeMaximoYoutube"></div>
                             </div>
@@ -130,13 +130,13 @@
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text text-darken-4 mdi mdi-facebook"></i>
-                                <label for="autocomplete-input">Facebook</label>
+                                <label for="facebook">Facebook</label>
                                 {!!Form::text('facebook',$radio->facebook,['class'=>'form-control','id'=>'facebook'])!!}
                                 <div id="mensajeMaximoFacebook"></div>
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text text-darken-1 mdi mdi-twitter"></i>
-                                <label for="autocomplete-input">Twitter</label>
+                                <label for="twitter">Twitter</label>
                                 {!!Form::text('twitter',$radio->twitter,['class'=>'form-control','id'=>'twitter'])!!}
                                 <div id="mensajeMaximoTwitter"></div>
                             </div>

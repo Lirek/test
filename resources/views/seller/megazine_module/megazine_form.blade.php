@@ -114,7 +114,7 @@
         <h4 class="titelgeneral"><i class="mdi mdi-book-open-page-variant"></i>  Registrar revista  </h4>
         <br>
                     <!-- form start -->
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('megazine_save') }}" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('megazine_save') }}" enctype="multipart/form-data" id="revista">
                     <input type="hidden" name="id" value="{{Auth::guard('web_seller')->user()->id }}">
                     {{ csrf_field() }}
 
@@ -134,7 +134,7 @@
                             {{--titulo de la revista--}}
                             <div class="input-field col s12">
                                 <i class="material-icons prefix blue-text">create</i>    
-                                <label for="autocomplete-input" class="">Título</label>
+                                <label for="titulo" class="">Título</label>
                                 {!! Form::text('title',null,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
                                 <div id="mensajeTitulo"></div>
                                 <br>
@@ -143,7 +143,7 @@
                             {{--precio--}}
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix blue-text">local_play</i>
-                                <label for="exampleInputPassword1" class="control-label">Costo en tickets</label>
+                                <label for="precio" class="control-label">Costo en tickets</label>
                                 {!! Form::number('cost',null,['class'=>'form-control', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba el costo en tickets')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0', 'max'=>'999','oninput'=>"maxLengthCheck(this)"]) !!}
                                 <div id="mensajePrecio"></div>
                                 <br>
@@ -160,8 +160,8 @@
                             <i class="material-icons prefix blue-text valign-wrapper">star</i>
                             {{--seleccion de rating--}}
                             
-                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputFile','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                            <label for="exampleInputFile" class="control-label">Categoría</label>
+                            {!! Form::select('rating_id',$ratin,null,['class'=>'form-control','id'=>'exampleInputselec','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
+                            <label for="exampleInputselec" class="control-label">Categoría</label>
                         </div>
                         <div class="input-field col s12">
                             {{--Categoria--}}
@@ -174,7 +174,7 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <label for="tags">Géneros</label>
+                                <label for="genders">Géneros</label>
                         </div>
 
                         <br>
@@ -184,7 +184,7 @@
                             <div class="col s12 m6">
                                 <div class="file-field input-field">
                                     {{--archivo de la revista--}}
-                                    <label for="exampleInputFile" class="control-label">Cargar la revista</label>
+                                    <label for="revista" class="control-label">Cargar la revista</label>
                                     <br><br>
                                         <div id="mensajeDocumento"></div>
                                         <div class="btn blue">
@@ -450,7 +450,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix blue-text valign-wrapper">book</i>
                                     {{--sinopsis de la revista--}}
-                                    <label for="exampleInputPassword1" class="control-label">Sinopsis</label>
+                                    <label for="sinopsis" class="control-label">Sinopsis</label>
                                     <div id="cantidadPalabra"></div>
                                     <div id="mensajeNumeroPalabras"></div>
                                     {!! Form::textarea('descripcion',null,['class'=>'form-control materialize-textarea ','rows'=>'3','cols'=>'2','required'=>'required','oninvalid'=>"this.setCustomValidity('Escriba una sinopsis de la revista')",'oninput'=>"setCustomValidity('')",'id'=>'sinopsis']) !!}
@@ -1004,5 +1004,47 @@ function maxLengthCheck(object) {
         document.getElementById("conversion").value=conversion.toFixed(2);
     });
 
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+ 
+<script type="text/javascript">
+ 
+    
+ 
+    (function() {
+ 
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+ 
+    $('#revista').ajaxForm({
+        
+        beforeSend: function() {
+            status.empty();
+            var percentVal = '0%';
+            var posterValue = $('input[name=pdf_file]').fieldValue();
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            $('#guardarLibro').attr('disabled',true);
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        success: function() {
+            var percentVal = 'Completado..';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            status.html(xhr.responseText);
+            // alert('Uploaded Successfully');
+            window.location.href = "{{URL::to('/my_megazine/')}}"+'/'+{!!Auth::guard('web_seller')->user()->id!!}
+
+        }
+    });
+     
+    })();
 </script>
 @endsection

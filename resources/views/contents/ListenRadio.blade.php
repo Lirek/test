@@ -45,6 +45,7 @@
         <div class="row">
             @foreach($Rad as $radios)
 
+
                 <div class=" col s12 ">
                     <h4 class="titelgeneral center"><i class="material-icons small">radio</i> {{$radios->name_r}}</h4>
                 </div>
@@ -53,6 +54,7 @@
                     <div class="card">
                         <div class="card-image" style="height: 235px; margin: 0px; padding: 0px;">
                             <img src="{{asset($radios->logo)}}" height="235px">
+                            <?php $id_play=$radios->id ?>
                         </div>
                     </div>
                 </div>
@@ -118,6 +120,7 @@
 
     <div class="row">
         @foreach($Radio as $radios)
+            @if($radios->id <> $id_play)
             <div class="col s4 m2 ">
                 <div class="card">
                     <div class="card-image"  id="img_rad">
@@ -125,6 +128,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         @endforeach
     </div>
 
