@@ -91,7 +91,7 @@
 
                 @foreach($Tvs as $tv)
 
-                    <div class="col s6 m3">
+                    <div class="col s12 m3">
                         <div class="card">
                             <div class="card-image">
                                 <a href="{{url('PlayTv/'.$tv->id)}}"><img src="{{asset($tv->logo)}}" width="100%" height="170px"></a>

@@ -11,6 +11,7 @@ use App\Bidder;
 use App\Rejection;
 use App\BidderRoles;
 use App\PaymentsBidder;
+use App\Conversion;
 
 use App\Events\StatusBidderEvent;
 
@@ -99,10 +100,11 @@ class BidderController extends Controller
         $id = Auth::guard('bidder')->user()->id;
         $diferido = PaymentsBidder::where('bidder_id',$id)->where('status','Diferido')->orWhere('status','Por cobrar')->sum('points');
         $pagado = PaymentsBidder::where('bidder_id',$id)->where('status','Pagado')->sum('points');
+        $valorPunto = Conversion::valorPunto();
         if ($status) {
-            return view('bidder.retiro')->with('status',$status)->with('diferido',$diferido)->with('pagado',$pagado);
+            return view('bidder.retiro')->with('status',$status)->with('diferido',$diferido)->with('pagado',$pagado)->with('valorPunto',$valorPunto);
         } else {
-            return view('bidder.retiro')->with('status',0)->with('diferido',$diferido)->with('pagado',$pagado);
+            return view('bidder.retiro')->with('status',0)->with('diferido',$diferido)->with('pagado',$pagado)->with('valorPunto',$valorPunto);
         }
     }
 
@@ -141,5 +143,38 @@ class BidderController extends Controller
     public function viewPayments($status){
         $pagos = PaymentsBidder::payments($status);
         return response()->json($pagos);
+    }
+
+    public function bidderPerfil() {
+        $bidder = Bidder::find(Auth::guard('bidder')->user()->id);
+        $total_products = $bidder->Products()->count();
+        $total_aproved = $bidder->Products()->where('status','Aprobado')->count();
+        $total_revision = $bidder->Products()->where('status','En Revision')->count();
+        return view('bidder.perfil')->with('bidder',$bidder)->with('total_products',$total_products)->with('total_aproved',$total_aproved)->with('total_revision',$total_revision);
+    }
+
+    public function perfilBidder(Request $request) {
+        Bidder::actualizar($request);
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function imagenPerfilBidder(Request $request) {
+        Bidder::actualizarImagenPerfil($request);
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function cambiarClaveBidder(Request $request) {
+        $cambio = Bidder::actualizarClave($request);
+        if ($cambio) { // true
+            # code...
+        } else {
+            # code...
+        }
+        return redirect()->action('BidderController@bidderPerfil');
+    }
+
+    public function DeleteAccountBidder() {
+        Bidder::deleteAccount();
+        return redirect()->action('WelcomeController@welcome');
     }
 }

@@ -557,4 +557,6 @@ class ContentController extends Controller
 
       return view('contents.PlayEpisode')->with('Episode',$episode);
     }
+//-------------------------RUTAS DE CONTENIDO DESTACADO--------------------------------
+    
 }

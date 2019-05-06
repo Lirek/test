@@ -161,7 +161,7 @@
 										<i class="material-icons circle left">add_shopping_cart</i>
 										<b class="left">Cantidad: </b>
 									</div>
-									<div class="col s12 m7" id="tickets">
+									<div class="col s12 m7" id="puntos">
 									</div>
 								</div>
 							</li>
@@ -172,7 +172,7 @@
 										<b class="left">Precio unitario: </b>
 									</div>
 									<div class="col s12 m7">
-										$0.1785 Ctvs <!-- automatizarlo -->
+										{{ $valorPunto }}$
 									</div>
 								</div>
 							</li>
@@ -186,6 +186,7 @@
 									</div>
 								</div>
 							</li>
+							<!--
 							<li class="collection-item" style="padding: 10px">
 								<div class="row">
 									<div class="col s12 m5">
@@ -196,6 +197,7 @@
 									</div>
 								</div>
 							</li>
+							-->
 							<li class="collection-item" style="padding: 10px">
 								<div class="row">
 									<div class="col s12 m5">
@@ -212,7 +214,7 @@
                         <form class="form-horizontal" action="{{url('retirar')}}" method="post" enctype="multipart/form-data">
                         	{{ csrf_field() }}
                             <div class="file-field input-field col m6 offset-m3">
-                                <label for="file">Imagen de la factura</label>
+                                <label for="file">Adjunte su factura</label>
                                 <br><br>
                                 <div class="btn green">
                                     <span><i class="material-icons">archive</i></span>
@@ -227,7 +229,7 @@
                                     <img id="preview_img_doc" src="" name='ci'>
                                 </div>
                             </div>
-                             <div class="col m12">
+                            <div class="col m12">
                                 <button type="submit" class="btn curvaBoton waves-effect waves-light green" id="soli">
                                     Solicitar retiro
                                 </button>
@@ -282,9 +284,8 @@
         			location.replace("{{url('retiro')}}");
         		});
 			}
-			if ({!!Auth::guard('bidder')->user()->points!!} != 0) {
-				$('#monto').val({!!Auth::guard('bidder')->user()->points!!});
-			} else {
+			$('#monto').val({!!Auth::guard('bidder')->user()->points!!});
+			if ({!!Auth::guard('bidder')->user()->points!!} == 0) {
 				$('#solicitar').attr('disabled',true);
 			}
 		});
@@ -325,15 +326,16 @@
         }
 
         $("#solicitar").click(function(){
-        	var tickets = $("#monto").val();
-        	var subtotal=tickets*0.1785;
-        	var iva = subtotal*0.12;
-        	var dolar = subtotal+iva;
-        	$('#cant').val(tickets);
-        	$('#tickets').html(tickets);
+        	var puntos = $("#monto").val();
+        	var subtotal=puntos*{!! $valorPunto !!};
+        	//var iva = subtotal*0.12;
+        	//var dolar = subtotal+iva;
+        	var dolar = subtotal;
+        	$('#cant').val(puntos);
+        	$('#puntos').html(puntos);
         	$('#subtotal').html(subtotal.toFixed(4)+'$');
-        	$('#iva').html(iva.toFixed(4)+'$');
-        	$('#dolar').html(dolar.toFixed(2)+'$');
+        	//$('#iva').html(iva.toFixed(4)+'$');
+        	$('#dolar').html(dolar.toFixed(4)+'$');
 
         });
 
@@ -386,11 +388,16 @@
 				        } else {
 				        	var points = "Sin puntos";
 				        }
+				        if (info.status!="Diferido") {
+				        	var status = info.status;
+				        } else {
+				        	var status = "Listo para cobrar";
+				        }
         				var fila = '<tr><td>'+
 						points+"</td><td>"+
         				factura+"</td><td>"+
 						cita+"</td><td>"+
-						info.status+"</td></tr>";
+						status+"</td></tr>";
 						$("#payments").append(fila);
         			});
         			$('.materialboxed').materialbox();

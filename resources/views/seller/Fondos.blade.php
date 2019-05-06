@@ -113,50 +113,83 @@
         <div class="card-panel curva">
             <div class="row">
                 <div class="col s12 m3">
-                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
-                            <div class="col m4">
-                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
-                            </div>
-                            <div class="col m7">
+                          
+                          <div class="row">
+                            <div class="col m12">
                                 <h5 style="color: white"><b>Tickets disponible:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
                             </div>
+                          </div>
+                          <div class="row">
+                            <div class="col m12">
+                                <i class="material-icons background-round mt-5" style="color: white">local_activity</i>
+                            </div>
+                          </div>
+                        
+                            
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m3">
-                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
-                        <div class="padding-4" style="padding: 4%"> 
-                            <div class="col m4">
-                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">search</i>
-                            </div>
-                            <div class="col m7">
+                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 180px">
+                        <div class="padding-4" style="padding: 4%">
+                          
+                        
+                          <div class="row">
+                            <div class="col m12">
                                <h5 style="color: white"><b>Tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                             </div>
+                          </div>
+                          
+                            <div class="row">
+                              <div class="col m12">
+                                  <i class="material-icons background-round mt-5" style="margin-top: 1%; color: white">search</i>
+                              </div>
+                            </div> 
+                            
+                          
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m3">
-                    <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 150px">
+                    <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
-                            <div class="col m4">
-                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">monetization_on</i>
+                          
+                            <div class="row">
+                              <div class="col m12">
+                                 <h5 style="color: white"><b>Tickets Diferidos:</b> {{ $diferido}}</h5>
+                              </div>
                             </div>
-                            <div class="col m6">
-                               <h5 style="color: white"><b>Tickets Diferidos:</b> {{ $diferido}}</h5>
+                            
+                            <div class="row">
+                              <div class="col m12">
+                                  <i class="material-icons background-round mt-5" style=" color: white">monetization_on</i>
+                              </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m3">
-                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 150px">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
-                            <div class="col m4">
-                                <i class="material-icons background-round mt-5" style="margin-top: 50%; color: white">local_activity</i>
-                            </div>
-                            <div class="col m7">
+                          
+                          
+                          
+                          <div class="row">
+                            <div class="col m12">
                                 <h5 style="color: white"><b>Tickets Retirados:</b> {{ $pagado}}</h5>
                             </div>
+                          </div>
+                          <div class="row">
+                            <div class="col m12">
+                                <i class="material-icons background-round mt-5" style="color: white">local_activity</i>
+                            </div>
+                          </div>
+                            
+                            
                         </div>
                     </div>
                 </div>

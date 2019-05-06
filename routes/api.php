@@ -13,25 +13,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', 'ApiController\AuthController@register');
-
-Route::post('login', 'ApiController\AuthController@login');
-
-Route::post('ExternalPayment', 'ApiController\ExternalOperationsController@PointsPayment');
-
-Route::get('ExternalPaymentTest', 'ApiController\ExternalOperationsController@test');
-
-Route::post('recover', 'ApiController\AuthController@recover');
-
-Route::get('login/{provider}', 'ApiController\AuthController@redirectToProvider');
-
-Route::post('login/social', 'ApiController\AuthController@AuthSocialUser');
-
-Route::get('login', function(){
-    return view('test_login');
+Route::group(['middleware' => ['cors']], function() {
+    Route::post('register', 'ApiController\AuthController@register');
+    
+    Route::post('login', 'ApiController\AuthController@login');
+    
+    Route::post('ExternalPayment', 'ApiController\ExternalOperationsController@PointsPayment');
+    
+    Route::get('ExternalPaymentTest', 'ApiController\ExternalOperationsController@test');
+    
+    Route::post('recover', 'ApiController\AuthController@recover');
+    
+    Route::get('login/{provider}', 'ApiController\AuthController@redirectToProvider');
+    
+    Route::post('login/social', 'ApiController\AuthController@AuthSocialUser');
+    
+    Route::get('login', function(){
+        return view('test_login');
+    });
+    //Ruta prueba
+    Route::get('rutaApiPrueba','ApiController\ContentController@test');
 });
 
-Route::group(['middleware' => ['jwt.auth']], function() {
+Route::group(['middleware' => ['jwt.auth','cors']], function() {
 
     Route::get('logout', 'ApiController\AuthController@logout');
 

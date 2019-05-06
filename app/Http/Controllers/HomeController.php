@@ -306,15 +306,27 @@ class HomeController extends Controller
                 }
             }
         }
-    }
+    }  
 
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
+
+        $mios = exchange_product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $mios->each(function($mios){
+        $mios->Producto;
+    });
+
         if ($beneficio->count() == 0) 
         {
             $beneficio= 0;
         }
-        return view('users.Beneficios')->with('beneficio',$beneficio);
+        return view('users.Beneficios')->with('beneficio',$beneficio)->with('mios',$mios);
+    }
+
+    public function verifyBenefi ($id){
+        $verifica = exchange_product::where('user_id',Auth::user()->id)->where('product_id',$id)->count();
+
+        return response()->json($verifica);
     }
 
     public function BuyBenefi (Request $request)
@@ -322,7 +334,7 @@ class HomeController extends Controller
         $Benefi= Products::find($request->id);
         $total = $Benefi->cost*$request->Cantidad;
 
-        // return response()->json($request->Cantidad);
+        // return response()->json($verifica);
                 
         $user = User::find(Auth::user()->id);
 
@@ -339,12 +351,15 @@ class HomeController extends Controller
             $Productos->status= "Aprobado";
             $Productos->save();
 
+            $Benefi->amount = $Benefi->amount-$request->Cantidad;
+            $Benefi->save();
             $user->points = $user->points-$total;
             $user->save();
 
             return response()->json($Productos);
         }
     }
+
 
     public function SaleTickets(){
         $Balance = NULL;

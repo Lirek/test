@@ -35,7 +35,7 @@ class Movie extends Model
     public function tags_movie() {
       return $this->belongsToMany('App\Tags','movies_tags','movies_id','tags_id');
     }
-    public function transaction()
+    public function Transactions()
     {
         return $this->hasMany('App\Transactions','movies_id');
     }

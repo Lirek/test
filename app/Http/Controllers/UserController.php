@@ -845,6 +845,8 @@ class UserController extends Controller
 
         return view('users.MyReadings')->with('Books',$Books);
     }
+
+
     public function ShowMyReadingsMegazines()
     {
 
@@ -899,6 +901,14 @@ class UserController extends Controller
             return view('users.show')->with('book',$Book)->with('adquirido',$adquirido);
     }
 
+    public function ReadBook($id)
+    {
+        $Book=Book::find($id);
+        event(new BookTraceEvent(Auth::user()->id,$id));
+            return view('users.ReadBook')->with('book',$Book);
+    }
+
+   
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);

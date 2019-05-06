@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Seller;
+use App\ApplysSellers;
 use App\Book;
 use App\Megazines;
 use App\Radio;
@@ -16,6 +17,7 @@ use App\Songs;
 use App\Sagas;
 use App\User;
 use Auth;
+use App\BidderRoles;
 
 class WelcomeController extends Controller
 {
@@ -123,7 +125,9 @@ class WelcomeController extends Controller
                 Auth::logout();
             }
         }
-        
+
+        $modules = BidderRoles::all();
+
         return view('welcome')
             ->with('iRadios',$iRadios)
             ->with('iTvs',$iTvs)
@@ -135,7 +139,8 @@ class WelcomeController extends Controller
             ->with('tv',$tvs)
             ->with('radio',$radios)
             ->with('movie',$cine)
-            ->with('music',$musica);
+            ->with('music',$musica)
+            ->with('modules',$modules);
     }
 
     public function email(Request $request){
@@ -160,7 +165,21 @@ class WelcomeController extends Controller
             return response()->json(1);
         }
 
+
     }
+
+    //Validación de correo siendo verificado
+    /*public function applyEmailSeller(Request $request){
+        $apply_email=ApplysSellers::where('email','=',$request->email)->first();
+
+
+        if($apply_email){
+            return response()->json($apply_email->$apply_email);
+        }else{
+            return response()->json(1);
+        }
+
+    }*/
 
     public function indexRadio() {
         //$radios = Radio::where('status','Aprobado')->take(5)->get();

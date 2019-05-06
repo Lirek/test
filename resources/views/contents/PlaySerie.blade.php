@@ -65,7 +65,7 @@
               </div>
             <div class="row ">
               <div class="col s12 m3">
-                <img src="{{asset($s->img_poster)}}" width="100%" height="300px" style="border-radius: 10px" id="lecturaspanel">
+                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="350px">
              </div>
 
               <div class="col s12 m9">

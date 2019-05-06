@@ -116,6 +116,10 @@
                                 <div class="row">
                                     @if($adquirido )
                                         <div class="col s4 m4 l4">
+                                             <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
+
+                                              <!--<a  href="{{ asset('book')}}/{{ $book->books_file }}#toolbar=0" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>-->
+
                                             <!-- <a  href="#modal-default" class="btn curvaBoton waves-effect waves-light teal center modal-trigger">Leer libro</a> -->
                                              <a  href="{{ asset('book')}}/{{ $book->books_file }}" class="waves-effect waves-light btn curvaBoton" target="_blank">Leer libro</a>
                                         </div>

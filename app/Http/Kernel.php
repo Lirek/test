@@ -18,6 +18,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // Permisos para las apis
+        \Barryvdh\Cors\HandleCors::class,
     ];
 
     /**
@@ -40,6 +42,8 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            // Permisos para las apis
+            \Barryvdh\Cors\HandleCors::class,
         ],
     ];
 
@@ -86,5 +90,8 @@ class Kernel extends HttpKernel
          'ActiveUser' => \App\Http\Middleware\ActiveUsers::class,
          'VerifiedEmail' => \App\Http\Middleware\EmailVerified::class,
          'GeoLock' => \App\Http\Middleware\GeoLock::class,
+
+        // middleware para peticiones de las apis
+        'cors' => \Barryvdh\Cors\HandleCors::class,
     ];
 }
