@@ -267,13 +267,23 @@ Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
+
 });
 
 Route::group(['middleware' => 'promoter_auth'], function(){
 
+    
+
     Route::post('promoter_logout', 'PromoterAuth\LoginController@logout');
 
-    Route::get('/promoter_home','PromoterController@index');
+    Route::get('promoter_home','PromoterController@index');
+
+    //Agregada 02/05/2019
+    Route::get('EditProfilePromoter','PromoterController@edit');
+    //Agregada 02/05/2019
+    Route::post('UpdateProfilePromoter','PromoterController@update');
+    //Agregada 02/05/2019
+    Route::post('ChangePasswordPromoter/{id}','PromoterController@changepassword');
 
 
    Route::group(['middleware' => ['Admin']], function (){
