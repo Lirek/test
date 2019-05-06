@@ -36,7 +36,7 @@ class BackupDataBase extends Command
           config('database.connections.mysql.username'),
           config('database.connections.mysql.password'),
           config('database.connections.mysql.database'),
-          storage_path('backups/backup.sql')
+          storage_path('storage/db/backup.sql')
       ));
     }
 
@@ -52,7 +52,7 @@ class BackupDataBase extends Command
 
           $this->info('The backup has been proceed successfully.');
       } catch (ProcessFailedException $exception) {
-          $this->error('The backup process has been failed.');
+          $this->error($exception);
       }
     }
 }
