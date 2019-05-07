@@ -202,11 +202,9 @@
                     <i class="material-icons prefix blue-text">email</i>
                     <input type="email" id="email" name="email" class="autocomplete" value="{{ old('email') }}" required>
                     <label for="autocomplete-input">Correo</label>
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
+                    <span id ="validarCorreo" class="help-block" hidden >
+                        <strong>Ingrese una dirección de correo valida</strong>
+                    </span>
                 </div>
                 <div class="input-field col s12 center">
                     <button class="btn curvaBoton waves-effect waves-light green" onclick="sendEmailRecuperation()" >Enviar
@@ -1272,18 +1270,22 @@
                     _token: $('input[name=_token]').val(),
                 },
                 success: function (result) {
+                if(result == 1 ){
+                  M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!' , 
+                  displayLenght: 2000 ,
+                
+                }) ;
+              
+                }
+                else{
+                  $('#validarCorreo').show();
+                }
+              
                     
-                    M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!' , 
-                    displayLenght: 2500 ,
-                  
-                  }) ;
-    
-               
-                  
                 },
                 error: function (result) {
-                  
-                  alert("error");
+                  console.log(result);
+    
                 }
                 
                 
