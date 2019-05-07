@@ -201,8 +201,14 @@ return [
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
+
        //Manejo de Ips
        Torann\GeoIP\GeoIPServiceProvider::class,
+
+        // Permisos para las apis
+        Barryvdh\Cors\ServiceProvider::class,
+
+
 
     ],
 
