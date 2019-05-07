@@ -12,7 +12,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [ 
+    protected $listen = [
 
             'App\Events\AdminLoggedIn' => [
             'App\Listeners\SaveAdmin',
@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
         ],
             'App\Events\ContentDenialEvent' => [
             'App\Listeners\SendDenialEmail',
-        ],        
+        ],
             'App\Events\InviteEvent' => [
             'App\Listeners\SendInviteEmail',
         ],
@@ -48,7 +48,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\PaymentDenialEvent' => [
             'App\Listeners\SendPaymentDenialEmail',
         ],
-        
+
             'App\Events\UserValidateEvent' => [
             'App\Listeners\SendUserValidateEmail',
         ],
@@ -76,11 +76,11 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\BookTraceEvent' => [
             'App\Listeners\RegisterBookTrace',
         ],
-            
+
             'App\Events\EpisodeTraceEvent' => [
             'App\Listeners\RegisterEpisodeTrace',
         ],
-            
+
             'App\Events\RadioTraceEvent' => [
             'App\Listeners\RegisterRadioTrace',
         ],
@@ -105,8 +105,8 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendTokenEmail',
         ],
 
-        'App\Events\StatusBidderEvent' => [
-            'App\Listeners\StatusBidderListen',
+            'App\Events\DeleteAccount' => [
+            'App\Listeners\DeleteAccount',
         ],
 
 

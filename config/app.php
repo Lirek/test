@@ -201,9 +201,14 @@ return [
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
+
+       //Manejo de Ips
+       Torann\GeoIP\GeoIPServiceProvider::class,
+
         // Permisos para las apis
         Barryvdh\Cors\ServiceProvider::class,
-       
+
+
 
     ],
 
@@ -271,9 +276,10 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
         //Json Fractal
-        'Fractal' => Spatie\Fractal\FractalFacade::class
+        'Fractal' => Spatie\Fractal\FractalFacade::class,
 
-
+        //ips Cuchi
+        'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
 
     ],
 

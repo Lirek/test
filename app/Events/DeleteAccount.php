@@ -10,21 +10,15 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class WelcomeEmailEvent
+class DeleteAccount
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
-    public $url;
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct($user,$url)
+    public $user
+
+    public function __construct($user)
     {
-        $this->user = $user;
-        $this->url = $url;
+      $this->user= $user;
     }
 
     /**
