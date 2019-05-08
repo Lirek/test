@@ -7,11 +7,15 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Products;
+use App\image_product;
 
 class ProductController extends Controller
 {
     public function products(){
     	$products = Products::myProducts(Auth::guard('bidder')->user()->id);
+        $products->each(function($products){ 
+            $products->saveImg;
+        });
     	return view('bidder.products')->with('products',$products);
     }
 
@@ -21,8 +25,9 @@ class ProductController extends Controller
     }
 
     public function productDelete($idProduct) {
+        $adjunto = Products::deleteAdjunto($idProduct);
     	$product = Products::deleteProducto($idProduct);
-    	return response()->json($product);
+    	return response()->json([$adjunto,$product]);
     }
 
     public function productInfo($idProduct) {

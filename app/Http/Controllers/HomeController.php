@@ -39,6 +39,8 @@ use App\Events\AssingPointsEvents;
 
 use App\Products;
 use App\exchange_product;
+use App\Bidder;
+use App\image_product;
 
 class HomeController extends Controller
 {
@@ -310,17 +312,30 @@ class HomeController extends Controller
 
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
+        $usuario = User::find(Auth::user()->id);
 
-        $mios = exchange_product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $beneficio->each(function($beneficio){ 
+            $beneficio->saveImg;
+        });
+        $mios = exchange_product::where('user_id',Auth::user()->id)->where('status','Aprobado')->orderBy('updated_at','desc')->get();
         $mios->each(function($mios){
         $mios->Producto;
+        $mios->saveImg;
     });
+        $entregado = exchange_product::where('user_id',Auth::user()->id)->where('status','Entregado')->orderBy('updated_at','desc')->get();
+        $entregado->each(function($entregado){
+        $entregado->Producto;
+        $entregado->saveImg;
+    });
+        return view('users.Beneficios')->with('usuario',$usuario)->with('beneficio',$beneficio)->with('mios',$mios)->with('entregado',$entregado);
+    }
 
-        if ($beneficio->count() == 0) 
-        {
-            $beneficio= 0;
-        }
-        return view('users.Beneficios')->with('beneficio',$beneficio)->with('mios',$mios);
+    public function delivered($id)
+    {   
+        $deli= exchange_product::find($id);
+        $deli->status = "Entregado";
+        $deli->save();
+        return response()->json($deli);
     }
 
     public function verifyBenefi ($id){
@@ -356,6 +371,13 @@ class HomeController extends Controller
             $user->points = $user->points-$total;
             $user->save();
 
+            $pendiente = Bidder::find($Benefi->bidder_id);
+            if ($Benefi->bidder_id != 0 )
+            {
+                $pendiente->pendding_points = $pendiente->pendding_points+$total;
+                $pendiente->save();
+            }
+            
             return response()->json($Productos);
         }
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use File;
 use App\SubProducto;
 use App\exchange_product;
+use App\image_product;
 
 class Products extends Model
 {
@@ -29,14 +30,24 @@ class Products extends Model
     public function exchange_product() {
       return $this->hasMany('App\exchange_product','product_id');
     }
+
+    public function Bidder() {
+        return $this->belongsTo('App\Bidder','bidder_id');
+    }
     
+    public function saveImg() {
+        return $this->hasMany('App\image_product','product_id');
+    }
+
     public static function store($request) {
+        //dd($request->all());
         $product = new Products;
-        $imagen = $request->file('imagen');
-        $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
-        $pathImagen = public_path()."/promociones/";
-        $imagen->move($pathImagen,$nameImagen);
-        $imagen_prod = "/promociones/".$nameImagen;
+        // $imagen = $request->file('imagen');
+        // dd($imagen);
+        // $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
+        // $pathImagen = public_path()."/promociones/";
+        // $imagen->move($pathImagen,$nameImagen);
+        // $imagen_prod = "/promociones/".$nameImagen;
 
         $pdf = $request->file('pdf_prod');
         $namePDF = "promocionPdf_".time().".".$pdf->getClientOriginalExtension();
@@ -51,19 +62,28 @@ class Products extends Model
             $product->bidder_id = 0;
             $product->status = "Aprobado";
         }
-        $product->imagen_prod = $imagen_prod;
+        // $product->imagen_prod = $imagen_prod;
         $product->pdf_prod = $pdf_prod;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->cost = $request->cost;
         $product->amount = $request->amount;
         $product->save();
-        if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
-            foreach ($request->otroCost as $cost) {
-                $costs[] = self::saveCosts($cost);
+        // dd(array_key_exists("otraImagen", $request->all()), $request->otraImagen[0]!=null);
+        if (array_key_exists("otraImagen", $request->all()) && $request->otraImagen[0]!=null) {
+            foreach ($request->otraImagen as $adj) {
+                // dd($adj);
+                $nameImagen = "promocionImg_".rand().".".$adj->getClientOriginalExtension();
+                $pathImagen = public_path()."/promociones/";
+                $adj->move($pathImagen,$nameImagen);
+                $imagen_prod = "/promociones/".$nameImagen;
+                $adjuntos[] = self::saveAdjunto($imagen_prod);
             }
-            foreach ($costs as $cost) {
-                $product->SubProducto()->save($cost);
+            // dd($adjuntos);
+            foreach ($adjuntos as $adj) {
+                // dd($adj);
+                $product->saveImg()->save($adj);
+                // dd($product);
             }
         } 
     }
@@ -78,15 +98,15 @@ class Products extends Model
 
     public static function toUpdateProducts($request) {
     	$product = self::find($request->idUpdate);
-    	if ($request->imagen!=null) {
-    		File::delete(public_path().$product->imagen_prod);
-    		$imagen = $request->file('imagen');
-			$nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
-			$pathImagen = public_path()."/promociones/";
-			$imagen->move($pathImagen,$nameImagen);
-			$imagen_prod = "/promociones/".$nameImagen;
-			$product->imagen_prod = $imagen_prod;
-    	}
+   //  	if ($request->imagen!=null) {
+    		
+   //  		$imagen = $request->file('imagen');
+			// $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
+			// $pathImagen = public_path()."/promociones/";
+			// $imagen->move($pathImagen,$nameImagen);
+			// $imagen_prod = "/promociones/".$nameImagen;
+			// $product->imagen_prod = $imagen_prod;
+   //  	}
     	if ($request->pdf_prod!=null) {
 			File::delete(public_path().$product->pdf_prod);
 			$pdf = $request->file('pdf_prod');
@@ -101,20 +121,36 @@ class Products extends Model
     	$product->cost = $request->cost;
         $product->amount = $request->amount;
     	$product->save();
-        if (array_key_exists("otroCost", $request->all()) && $request->otroCost[0]!=null) {
-            SubProducto::where('product_id',$request->idUpdate)->delete();
-            foreach ($request->otroCost as $cost) {
-                $costs[] = self::saveCosts($cost);
+        if (array_key_exists("otraImagen", $request->all()) && $request->otraImagen[0]!=null) {
+            foreach ($request->otraImagen as $adj) {
+                // dd($adj);
+                File::delete(public_path().$product->imagen_prod);
+                $nameImagen = "promocionImg_".rand().".".$adj->getClientOriginalExtension();
+                $pathImagen = public_path()."/promociones/";
+                $adj->move($pathImagen,$nameImagen);
+                $imagen_prod = "/promociones/".$nameImagen;
+                $adjuntos[] = self::saveAdjunto($imagen_prod);
             }
-            foreach ($costs as $cost) {
-                $product->SubProducto()->save($cost);
+            // dd($adjuntos);
+            foreach ($adjuntos as $adj) {
+                // dd($adj);
+                $product->saveImg()->save($adj);
+                // dd($product);
             }
+        } 
+    }
+
+    public static function deleteAdjunto($id) {
+        $adjunto = image_product::where('product_id',$id)->get();
+        foreach ($adjunto as $adj) {
+                File::delete(public_path().$adj->imagen_prod);
+                image_product::destroy($adj->id);
         }
+        return $adjunto;
     }
 
     public static function deleteProducto($id) {
     	$product = self::find($id);
-    	File::delete(public_path().$product->imagen_prod);
     	File::delete(public_path().$product->pdf_prod);
     	self::destroy($id);
     	return $product;
@@ -127,10 +163,11 @@ class Products extends Model
     	return $product;
     }
 
-    public static function saveCosts($cost) {
-        $SubProducto = new SubProducto;
-        $SubProducto->cost = $cost;
-        return $SubProducto;
+    public static function saveAdjunto($adj) {
+        $imagenes = new image_product;
+        $imagenes->imagen_prod = $adj;
+        // dd($imagenes);
+        return $imagenes;
     }
 
     public static function myProducts($id) {
