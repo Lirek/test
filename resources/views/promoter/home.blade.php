@@ -406,10 +406,5 @@
       });
     });
 
-    document.getElementById("name_c").required = false
-    document.getElementById("ammount").required = false
-    document.getElementById("points_cost").required = false
-    document.getElementById("points").required = false
-    document.getElementById("cost").required = false
 </script>
 @endsection

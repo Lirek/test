@@ -266,6 +266,12 @@ Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
+//------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
+
+    Route::get('promoter_password/reset', 'PromoterAuth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('promoter_password/email', 'PromoterAuth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('promoter_password/reset/{token}', 'PromoterAuth\ResetPasswordController@showResetForm');
+    Route::post('promoter_password/reset', 'PromoterAuth\ResetPasswordController@reset');
 
 });
 
