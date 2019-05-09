@@ -129,9 +129,9 @@
         }
     </style>
     <style>
-        .progress { position:relative; width:100%; border: 1px solid #2bbbad; padding: 10px; border-radius: 6px; background-color: white }
-        .bar { background-color: #2bbbad; width:0%; height:10px; border-radius: 6px; }
-        .percent { position:absolute; display:inline-block; top:1px; left:48%; color: #7F98B2;}
+         .progress { position:relative; width:100%; height:15px; border: 1px solid #2bbbad; border-radius: 6px; background-color: white }
+        .bar { background-color: #2bbbad; width:0%; height:15px; border-radius: 6px; }
+        .percent { position:absolute; display:inline-block; top:-5px; left:48%; color: #7F98B2;}
 
     .default_color{background-color: #FFFFFF !important;}
 

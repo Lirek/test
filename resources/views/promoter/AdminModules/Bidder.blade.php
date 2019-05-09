@@ -1,11 +1,6 @@
 @extends('promoter.layouts.app')
 @section('main')
 	<span class="card-title grey-text"><h3>Aliados</h3></span>
-	{{--
-	<a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar producto" href="#NewProduct">
-        <i class="material-icons">add</i>
-    </a>
-	--}}
     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
         <li class="tab" id="EnRevision"><a class="active" href="#test1">En revisión</a></li>
         <li class="tab" id="preAprobado"><a class="active" href="#test1">Pre-Aprobados</a></li>
@@ -16,11 +11,12 @@
         <table class="responsive-table">
             <thead>
                 <tr>
-                    <th>Logo</th>
+                    <th id="ruc" style="display: none;">RUC</th>
+                    <th id="logo" style="display: none;">Logo</th>
                     <th>Nombre</th>
-                    <th>RUC</th>
                     <th>Correo</th>
-                    <th>Módulos</th>
+                    <th>Teléfono</th>
+                    <th>Categoría</th>
                     <th>Puntos</th>
                     <th>Opciones</th>
                 </tr>
@@ -36,6 +32,13 @@
 	<script>
 		function ofertante(estatus) {
 			$("#ofertante").empty();
+            if (estatus=="En Revision") {
+                $('#ruc').hide();
+                $('#logo').hide();
+            } else {
+                $('#ruc').show();
+                $('#logo').show();
+            }
             var gif = "{{ asset('/sistem_images/loading.gif') }}";
             swal({
             	title: "Procesando la información",
@@ -64,7 +67,7 @@
                                 "</span> ";
                             });
                         } else {
-                            var modulos = "El usuario no tiene módulos asignados ";
+                            var modulos = info.description+" ";
                         }
                     	if (info.logo!=null) {
                     		var logo = 
@@ -83,8 +86,8 @@
                     			"<img class='materialboxed' src='{!!asset('"+info.imagen_ruc+"')!!}' style='width:70px;height:70px;' alt=imagen_ruc><br>"+info.ruc;
 							}
                     	} else {
-                    		var ruc = "No tiene imagen RUC<br>"+info.ruc;
-                    	}
+                            var ruc = "No tiene información de RUC<br>";
+                        }
                     	var status = 
                 		"<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value='"+info.id+"' href='#cambiarEstatus' id='status'>Cambiar estatus</a><br>";
                 		if (estatus=="Denegado") {
@@ -95,14 +98,19 @@
                         "<a class='btn-floating green modal-trigger' href='#ModalModules' value='"+info.id+"' id='add_module'>"+
                             "<i class='material-icons right' style='cursor:pointer'>add</i>"+
                         "</a>";
-                        if (estatus=="Aprobado") {
+                        if (estatus!="Denegado") {
                             modulos = modulos + agregar;
                         }
-                    	var filas = "<tr><td>"+
-	                    logo+"</td><td>"+
+                        var filas = "<tr><td>";
+                        if (estatus!="En Revision") {
+                            filas = filas+
+                            ruc+"</td><td>"+
+                            logo+"</td><td>";
+                        }
+                        filas = filas+
 	                    info.name+"</td><td>"+
-	                    ruc+"</td><td>"+
 	                    info.email+"</td><td>"+
+                        info.phone+"</td><td>"+
                         modulos+"</td><td>"+
 	                    info.points+"</td><td>"+
 	                    status+"</td></tr>";
@@ -122,6 +130,7 @@
 
 		$(document).ready(function(){
 			ofertante("En Revision");
+            $('select').formSelect();
 		});
 
 		$(document).on('click', '#EnRevision', function() {
@@ -191,12 +200,22 @@
             console.log(url);
             $("#negaciones").empty();
             e.preventDefault();
+            var gif = "{{ asset('/sistem_images/loading.gif') }}";
+            swal({
+                title: "Procesando la información",
+                text: "Espere mientras se procesa la información.",
+                icon: gif,
+                buttons: false,
+                closeOnEsc: false,
+                closeOnClickOutside: false
+            });
             $.ajax({
                 url: url, 
                 type:'get', 
                 dataType:'json',
                 success: function(datos){
                     console.log(datos);
+                    swal.close();
                     $('#totalNegaciones').show();
                     $('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
                     $.each(datos, function(i,info){
@@ -217,7 +236,6 @@
         });
 
         $(document).on('click', '#add_module', function() {
-            $('select').formSelect();
             var idBidder = $(this).attr('value');
             $("#AddModules").on('submit', function(e){
                 $('#ModalModules').modal('close');
@@ -225,6 +243,15 @@
                 var url = "{{url('addModuleBidder/')}}";
                 console.log(url);
                 e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
                 $.ajax({
                     url: url,
                     type:'POST',
@@ -264,6 +291,15 @@
                 buttons: ["Cancelar", "Si"]
             }).then((confir) => {
                 if (confir) {
+                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    swal({
+                        title: "Procesando la información",
+                        text: "Espere mientras se procesa la información.",
+                        icon: gif,
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
                     $.ajax({
                         url: url,
                         type:'get',

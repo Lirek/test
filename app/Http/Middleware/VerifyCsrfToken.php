@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         'logout',
         'ExternalPayment',
-        'ProcessPayment'
+        'ProcessPayment',
+        'api/*'
     ];
 }

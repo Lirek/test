@@ -268,13 +268,23 @@ Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
+
 });
 
 Route::group(['middleware' => 'promoter_auth'], function(){
 
+    
+
     Route::post('promoter_logout', 'PromoterAuth\LoginController@logout');
 
-    Route::get('/promoter_home','PromoterController@index');
+    Route::get('promoter_home','PromoterController@index');
+
+    //Agregada 02/05/2019
+    Route::get('EditProfilePromoter','PromoterController@edit');
+    //Agregada 02/05/2019
+    Route::post('UpdateProfilePromoter','PromoterController@update');
+    //Agregada 02/05/2019
+    Route::post('ChangePasswordPromoter/{id}','PromoterController@changepassword');
 
 
    Route::group(['middleware' => ['Admin']], function (){
@@ -572,6 +582,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('historialCosto/{tipo}','ConversionesController@historialCosto');
         //------------------------------- Rutas para las conversiones --------------------------------
 
+        //------------------------------- Rutas para las categorias --------------------------------
+            Route::get('ModulesBidder','ModuleBidderController@ModulesBidder');
+            Route::post('addModule','ModuleBidderController@addModule');
+            Route::get('infoModule/{idModule}','ModuleBidderController@infoModule');
+            Route::post('updateModule','ModuleBidderController@updateModule');
+            Route::get('deleteModule/{idModule}','ModuleBidderController@deleteModule');
+        //------------------------------- Rutas para las categorias --------------------------------
     });
 });
 
@@ -1184,6 +1201,11 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     Route::get('retiro/{status?}','BidderController@retiro');
     Route::post('retirar','BidderController@retirar');
     Route::get('viewPayments/{status}','BidderController@viewPayments');
+    Route::get('bidderPerfil','BidderController@bidderPerfil');
+    Route::post('perfilBidder','BidderController@perfilBidder');
+    Route::post('imagenPerfilBidder','BidderController@imagenPerfilBidder');
+    Route::post('cambiarClaveBidder','BidderController@cambiarClaveBidder');
+    Route::get('DeleteAccountBidder','BidderController@DeleteAccountBidder');
 });
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------

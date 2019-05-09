@@ -17,6 +17,7 @@ use App\Songs;
 use App\Sagas;
 use App\User;
 use Auth;
+use App\BidderRoles;
 
 class WelcomeController extends Controller
 {
@@ -125,6 +126,8 @@ class WelcomeController extends Controller
             }
         }
 
+        $modules = BidderRoles::all();
+
         return view('welcome')
             ->with('iRadios',$iRadios)
             ->with('iTvs',$iTvs)
@@ -136,7 +139,8 @@ class WelcomeController extends Controller
             ->with('tv',$tvs)
             ->with('radio',$radios)
             ->with('movie',$cine)
-            ->with('music',$musica);
+            ->with('music',$musica)
+            ->with('modules',$modules);
     }
 
     public function email(Request $request){

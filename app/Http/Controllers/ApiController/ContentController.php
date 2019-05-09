@@ -518,4 +518,7 @@ class ContentController extends Controller
 
     }
 //-------------------------RUTAS DE CONTENIDO DESTACADO--------------------------------
+    public function test() {
+        return response()->json(['meta'=>['code'=>200],'data'=>['message'=>'Api con estructura de respuesta de prueba']],200);
+    }
 }

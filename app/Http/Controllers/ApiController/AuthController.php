@@ -23,38 +23,35 @@ use Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $credentials = $request->only('name', 'email', 'password');
+    public function register(Request $request) {
+        $credentials = $request->only('nombre', 'email', 'contraseña','repetir_contraseña');
 
         $rules = [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password'=>'required'
+            'nombre' => 'required|max:191',
+            'email' => 'required|email|max:191|unique:users',
+            'contraseña' => 'required|max:191',
+            'repetir_contraseña' => 'required|same:contraseña'
         ];
 
         $validator = Validator::make($credentials, $rules);
 
-        if($validator->fails())
-        {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()],400);
+        if($validator->fails()) {
+            //return response()->json(['success'=> false, 'error'=> $validator->messages()],400);
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages()],200);
         }
 
-        $name = $request->name;
-
+        $name = $request->nombre;
         $email = $request->email;
+        $password = $request->contraseña;
 
-        $password = $request->password;
-
-        //$user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
-         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
         event(new CreateCodeSocialUserEvent($user->id));
         event(new WelcomeEmailEvent($user));
-        return response()->json(['success'=> true, 'message'=> 'Muchas Gracias por ser parte de Nuestra Plataforma le Recordamos finalizar su registro para disfrutar de nuestra plataforma en su totalidad']);
+        //return response()->json(['success'=> true, 'message'=> 'Muchas Gracias por ser parte de Nuestra Plataforma le Recordamos finalizar su registro para disfrutar de nuestra plataforma en su totalidad']);
+        return response()->json(['meta'=>['code'=>200],'data'=>['message'=>'Muchas gracias por ser parte de nuestra plataforma, le recordamos finalizar su registro para disfrutar de la totalidad de nuestra plataforma']],200);
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $credentials = $request->only('email', 'password');
 
         $rules = [
@@ -62,27 +59,24 @@ class AuthController extends Controller
             'password' => 'required',
         ];
         $validator = Validator::make($credentials, $rules);
-        if($validator->fails())
-        {
-            return response()->json(['success'=> false, 'error'=> $validator->messages()], 401);
+        if($validator->fails()) {
+            //return response()->json(['success'=> false, 'error'=> $validator->messages()], 401);
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages()],200);
         }
 
-
-
         try {
-            // attempt to verify the credentials and create a token for the user
-
-            if (! $token = JWTAuth::attempt($credentials))
-
-            {
-                return response()->json(['success' => false, 'error' => 'No se encuentra registrado'], 404);
+            if (! $token = JWTAuth::attempt($credentials)) {
+                //return response()->json(['success' => false, 'error' => 'No se encuentra registrado'], 404);
+                return response()->json(['meta'=>['code'=>400],'data'=>'Credenciales incorrectas'],200);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['success' => false, 'error' => 'Error en sus datos por favor intente nuevamente'], 500);
+            //return response()->json(['success' => false, 'error' => 'Error en sus datos por favor intente nuevamente'], 500);
+            return response()->json(['meta'=>['code'=>500],'data'=>'Hemos encontrado un error, por favor intente nuevamente'],200);
         }
         // all good so return the token
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+        //return response()->json(['success' => true, 'data'=> [ 'token' => $token ]], 200);
+        return response()->json(['meta'=>['code'=>200],'data'=>['token'=>$token]],200);
     }
 
     public function logout(Request $request)
