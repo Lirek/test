@@ -386,7 +386,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
           Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
       //-----------------------------------------------------------------------------------------
-       });
 
       /* ------------------------------------------------------------------
       ---------------------------------------------------------------------
