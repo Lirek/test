@@ -21,6 +21,12 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
@@ -44,38 +50,32 @@
           <div class="col m8 s8 offset-m2 offset-s2 center">              
             <div class="row login">
               <img src="{{asset('sistem_images/Leipel.png')}}" width="200px" alt="" class="circle responsive-img">
-              <h4>Inicia sesión.</h4>
-              <form class="form-login" method="POST" action="{{ url('/promoter_login') }}">
+              <h4>Restablecer contraseña</h4>
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+              <form class="form-login" method="POST" action="{{ url('/promoter_password/email') }}">
                 {{ csrf_field() }}
                 <div class="row">
                    <div class="input-field col m12 s12">
-                    <i class="material-icons prefix">account_box</i>
+                    <i class="material-icons prefix">email</i>
                     <input id="icon_prefix" type="text" class="validate" name="email" value="{{ old('email') }}" required autofocus>
                       @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                       @endif
-                    <label for="icon_prefix">Email</label>
-                  </div>
+                    <label for="icon_prefix">Correo</label>
+                    <div class="row">
+                    <div class="input-field col s12 center">
+                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" >Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
                 </div>
-                <div class="row">
-                  <div class="input-field col m12 s12">
-                    <i class="material-icons prefix">enhanced_encryption</i>
-                    <input id="password" type="password" class="validate" name="password" required>
-                      @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                      @endif
-                    <label for="password">Contraseña</label>
                   </div>
-                  <a class="blue-text" href="{{ url('/promoter_password/reset') }}">
-                            Olvide mi contraseña
-                        </a>
-                </div>
-                <div class="row">
-                    <button class="btn curvaBoton waves-effect waves-light green" href="index.html" style="border-radius: 20px;" type="submit"><i class="fa fa-lock"></i> Ingresar</button>
                 </div>
               </form>
             </div>
