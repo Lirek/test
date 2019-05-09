@@ -112,6 +112,8 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     // agregada Alexis 15/01/2019
     Route::get('/Beneficios/{status}','HomeController@Beneficios');
     Route::post('BuyBenefi','HomeController@BuyBenefi');
+    Route::get('verifyBenefi/{id}','HomeController@verifyBenefi');
+    Route::get('delivered/{id}','HomeController@delivered');
 
 
 //-------------------Funciones del Usuarios----------------------------------
@@ -1314,6 +1316,11 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     Route::get('retiro/{status?}','BidderController@retiro');
     Route::post('retirar','BidderController@retirar');
     Route::get('viewPayments/{status}','BidderController@viewPayments');
+    Route::get('bidderPerfil','BidderController@bidderPerfil');
+    Route::post('perfilBidder','BidderController@perfilBidder');
+    Route::post('imagenPerfilBidder','BidderController@imagenPerfilBidder');
+    Route::post('cambiarClaveBidder','BidderController@cambiarClaveBidder');
+    Route::get('DeleteAccountBidder','BidderController@DeleteAccountBidder');
 });
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------

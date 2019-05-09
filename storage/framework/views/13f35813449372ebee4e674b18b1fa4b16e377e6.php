@@ -1,4 +1,3 @@
-@extends('bidder.layouts')
 <style>
 	#image-preview {
         width: 100%;
@@ -74,37 +73,39 @@
         text-align: center;
     }
 </style>
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<h4 class="titelgeneral"><i class="material-icons small">shopping_basket</i> Mis productos</h4>
 	<a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar producto" href="#NewProduct">
         <i class="material-icons">add</i>
     </a>
     <br>
-    @if($products->count()!=0)
-    	@foreach($products as $product)
+    <?php if($products->count()!=0): ?>
+    	<?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     		<div class="col s4">
     			<div class="card">
                     <div class="card-image">
                     <div class="slider">
                       <ul class="slides"> 
-    				@for ($i=0; $i < count($product->saveImg); $i++)
+    				<?php for($i=0; $i < count($product->saveImg); $i++): ?>
                           <li>
-                            <img src="{{ asset($product->saveImg[$i]->imagen_prod) }}"> <!-- random image -->
+                            <img src="<?php echo e(asset($product->saveImg[$i]->imagen_prod)); ?>"> <!-- random image -->
                           </li>                        
-                    @endfor
+                    <?php endfor; ?>
                     </ul>
                     </div>
                   </div>
     				<a class="btn-floating halfway-fab activator btn-small waves-effect waves-light green"><i class="material-icons">arrow_upward</i></a>
-    				<b>Nombre: </b>{{ $product->name }}
+    				<b>Nombre: </b><?php echo e($product->name); ?>
+
 					<br>
-					<b>Costo: </b>{{ $product->cost }}
+					<b>Costo: </b><?php echo e($product->cost); ?>
+
     				<div class="card-content">
     					<div class="card-action">
-    						<a class="btn-small waves-effect waves-light btn orange darken-3 modal-trigger curvaBoton" value="{{ $product->id }}" id="editProduct" href="#updateProduct">
+    						<a class="btn-small waves-effect waves-light btn orange darken-3 modal-trigger curvaBoton" value="<?php echo e($product->id); ?>" id="editProduct" href="#updateProduct">
 	                            <i class="material-icons left">edit</i> Editar
 	                        </a>
-	                        <a class="btn-small waves-effect waves-light btn red curvaBoton" value="{{ $product->id }}" id="deleteProduct">
+	                        <a class="btn-small waves-effect waves-light btn red curvaBoton" value="<?php echo e($product->id); ?>" id="deleteProduct">
 	                            <i class="material-icons left">delete</i> Eliminar
 	                        </a>
 	    				</div>
@@ -115,18 +116,23 @@
     					</span>
     					<div style="text-align: left">
     						<br>
-	    					<b>Nombre: </b>{{ $product->name }}
+	    					<b>Nombre: </b><?php echo e($product->name); ?>
+
 							<br>
-							<b>Descripción: </b>{{ $product->description }}
+							<b>Descripción: </b><?php echo e($product->description); ?>
+
 							<br>
-							<b>Costo: </b>{{ $product->cost }}
+							<b>Costo: </b><?php echo e($product->cost); ?>
+
 							<br>
-							<b>Cantidad: </b>{{ $product->amount }}
+							<b>Cantidad: </b><?php echo e($product->amount); ?>
+
 							<br>
-							<b>Estatus: </b> {{ $product->status }}
+							<b>Estatus: </b> <?php echo e($product->status); ?>
+
     					</div>
 						<br><br>
-    					<a href="{{asset($product->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton">
+    					<a href="<?php echo e(asset($product->pdf_prod)); ?>" target="_blank" class="waves-effect waves-light btn curvaBoton">
     						<i class="material-icons left">picture_as_pdf</i>
     						pdf
     					</a>
@@ -139,8 +145,8 @@
     				</div>
     			</div>
     		</div>
-    	@endforeach
-    @else
+    	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php else: ?>
     	<div class="col s12">
     		<br><br>
     		<blockquote>
@@ -149,7 +155,7 @@
     			<h5 class="blue-text text-darken-2">No posee productos</h5>
     		</blockquote>
     	</div>
-    @endif
+    <?php endif; ?>
     <!-- Nuevo producto -->
     <div class="modal fade" id="NewProduct">
 		<div class="modal-content">
@@ -158,9 +164,10 @@
 			</div>
 			<div style="margin-top: -15px">
 				<div class="text-center row">
-					<form method="POST" id="NewRadioForm" action="{{url('productStore')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-						{{ csrf_field() }}
-						<input type="hidden" name="idBidder" value="{{ Auth::guard('bidder')->user()->id }}">
+					<form method="POST" id="NewRadioForm" action="<?php echo e(url('productStore')); ?>" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
+						<?php echo e(csrf_field()); ?>
+
+						<input type="hidden" name="idBidder" value="<?php echo e(Auth::guard('bidder')->user()->id); ?>">
 						<div class="col s12">
 							<div class="col s6">
                                 <div id="otro">
@@ -236,8 +243,9 @@
 			</div>
 			<div style="margin-top: -15px">
 				<div class="text-center row">
-					<form method="POST" id="NewRadioForm" action="{{url('productUpdate')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
-						{{ csrf_field() }}
+					<form method="POST" id="NewRadioForm" action="<?php echo e(url('productUpdate')); ?>" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
+						<?php echo e(csrf_field()); ?>
+
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
 						<div class="col s12">
 							<div class="col s6">
@@ -307,9 +315,9 @@
 		</div>
 	</div>
 	<!-- Actualizar producto -->
-@endsection
-@section('js')
-	<script src="{{ asset('plugins/upload/jquery.uploadPreview.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+	<script src="<?php echo e(asset('plugins/upload/jquery.uploadPreview.js')); ?>"></script>
 	<script>
 
         $(document).ready(function(){
@@ -395,7 +403,7 @@
 
 		$(document).on('click', '#editProduct', function() {
 			var producto = $(this).attr("value");
-			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+			var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
             swal({
                 title: "Procesando la información",
                 text: "Espere mientras se procesa la información.",
@@ -405,7 +413,7 @@
                 closeOnClickOutside: false
             });
             $.ajax({
-                url : "{{url('productInfo/')}}/"+producto,
+                url : "<?php echo e(url('productInfo/')); ?>/"+producto,
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
@@ -446,7 +454,7 @@
                 buttons: ["Cancelar", "Si"]
             }).then((confir) => {
                 if (confir) {
-					var gif = "{{ asset('/sistem_images/loading.gif') }}";
+					var gif = "<?php echo e(asset('/sistem_images/loading.gif')); ?>";
 		            swal({
 		                title: "Procesando la información",
 		                text: "Espere mientras se procesa la información.",
@@ -456,7 +464,7 @@
 		                closeOnClickOutside: false
 		            });
 		            $.ajax({
-		                url : "{{url('productDelete/')}}/"+producto,
+		                url : "<?php echo e(url('productDelete/')); ?>/"+producto,
 		                type: "GET",
 		                dataType: "json",
 		                success: function(data) {
@@ -522,4 +530,5 @@
         });
         // para que se vean las imagenes en los formularios
 	</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('bidder.layouts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
