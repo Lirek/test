@@ -19,7 +19,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // Permisos para las apis
-        \Barryvdh\Cors\HandleCors::class, 
+        \Barryvdh\Cors\HandleCors::class,
     ];
 
     /**
@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
              \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
 
         'api' => [
@@ -68,7 +69,7 @@ class Kernel extends HttpKernel
           'MyMovies' => \App\Http\Middleware\MyMovies::class,
           'MySeries' => \App\Http\Middleware\MySeries::class,
           'MySingles' => \App\Http\Middleware\MySingles::class,
-          
+
         //add custom middlewares here as key and value pair.
          'seller_auth' => \App\Http\Middleware\AuthenticateSeller::class,
          'seller_guest' => \App\Http\Middleware\RedirectIfSellerAuthenticated::class,
@@ -87,7 +88,9 @@ class Kernel extends HttpKernel
 
          //middleware de usuario activo
          'ActiveUser' => \App\Http\Middleware\ActiveUsers::class,
-        
+         'VerifiedEmail' => \App\Http\Middleware\EmailVerified::class,
+         'GeoLock' => \App\Http\Middleware\GeoLock::class,
+
         // middleware para peticiones de las apis
         'cors' => \Barryvdh\Cors\HandleCors::class,
     ];

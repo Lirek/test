@@ -70,6 +70,9 @@
                       @endif
                     <label for="password">Contraseña</label>
                   </div>
+                  <a class="blue-text" href="{{ url('/promoter_password/reset') }}">
+                            Olvide mi contraseña
+                        </a>
                 </div>
                 <div class="row">
                     <button class="btn curvaBoton waves-effect waves-light green" href="index.html" style="border-radius: 20px;" type="submit"><i class="fa fa-lock"></i> Ingresar</button>

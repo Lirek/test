@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Events\WelcomeEmailEvent;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApprovalNotification;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -68,15 +69,15 @@ class RegisterController extends Controller
           $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
           $charactersLength = strlen($characters);
           $randomString = '';
-        
-              for ($i = 0; $i < 6; $i++) 
+
+              for ($i = 0; $i < 6; $i++)
                   {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
 
 
             $code=$randomString;
-            
+
             $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -85,12 +86,15 @@ class RegisterController extends Controller
             'credito'=> 0,
                 ]);
 
-            event(new WelcomeEmailEvent($user));
+            $encrypted_email = Crypt::encryptString($user->email);
+
+            $url= url('/').'/validate/'.$encrypted_email;
+            event(new WelcomeEmailEvent($user,$url));
 
             $emailAdmin = "bcastillo@leipel.com";
             $motivo = "Usuario pendiente por aprobar";
             Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
-            
+
         return $user;
     }
 }

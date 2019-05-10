@@ -1,5 +1,7 @@
 @extends('promoter.layouts.app')
   @section('main')
+  @include('flash::message')
+
 
     <span class="card-title grey-text"><h3>Contenido por aprobar</h3></span>
     <div class="row">
@@ -223,6 +225,8 @@
         </div>
       @endif
       --}}
+
+                
 @include('promoter.modals.HomeViewModal')           
 @endsection
 @section('js')

@@ -30,14 +30,25 @@ class ApplysController extends Controller
             $applys->sub_desired_m = $request->sub_desired_libros;
         }
         $applys->dsc = $request->description;
+
+       $emailRP=ApplysSellers::where('email','=',$request->email)->first();
         
-        $applys->save();
+        if($emailRP){
+             Flash('El correo asociado al registro de su cuenta ya esta siendo verificado para su aprobación')->error();
+             return response()->json(1); 
+        }else{
+
+            $applys->save();
 
         $emailAdmin = "bcastillo@leipel.com";
         $motivo = "Usuario proveedor pendiente por aprobar";
         Mail::to($emailAdmin)->send(new ApprovalNotification($motivo));
         
         return response()->json($request->all());
+
+        }
+        
+        
     
     }
 

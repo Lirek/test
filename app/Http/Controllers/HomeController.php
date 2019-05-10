@@ -39,6 +39,8 @@ use App\Events\AssingPointsEvents;
 
 use App\Products;
 use App\exchange_product;
+use App\Bidder;
+use App\image_product;
 
 class HomeController extends Controller
 {
@@ -306,15 +308,40 @@ class HomeController extends Controller
                 }
             }
         }
-    }
+    }  
 
     public function Beneficios($estatus){
         $beneficio = Products::whereStatus($estatus);
-        if ($beneficio->count() == 0) 
-        {
-            $beneficio= 0;
-        }
-        return view('users.Beneficios')->with('beneficio',$beneficio);
+        $usuario = User::find(Auth::user()->id);
+
+        $beneficio->each(function($beneficio){ 
+            $beneficio->saveImg;
+        });
+        $mios = exchange_product::where('user_id',Auth::user()->id)->where('status','Aprobado')->orderBy('updated_at','desc')->get();
+        $mios->each(function($mios){
+        $mios->Producto;
+        $mios->saveImg;
+    });
+        $entregado = exchange_product::where('user_id',Auth::user()->id)->where('status','Entregado')->orderBy('updated_at','desc')->get();
+        $entregado->each(function($entregado){
+        $entregado->Producto;
+        $entregado->saveImg;
+    });
+        return view('users.Beneficios')->with('usuario',$usuario)->with('beneficio',$beneficio)->with('mios',$mios)->with('entregado',$entregado);
+    }
+
+    public function delivered($id)
+    {   
+        $deli= exchange_product::find($id);
+        $deli->status = "Entregado";
+        $deli->save();
+        return response()->json($deli);
+    }
+
+    public function verifyBenefi ($id){
+        $verifica = exchange_product::where('user_id',Auth::user()->id)->where('product_id',$id)->count();
+
+        return response()->json($verifica);
     }
 
     public function BuyBenefi (Request $request)
@@ -322,7 +349,7 @@ class HomeController extends Controller
         $Benefi= Products::find($request->id);
         $total = $Benefi->cost*$request->Cantidad;
 
-        // return response()->json($request->Cantidad);
+        // return response()->json($verifica);
                 
         $user = User::find(Auth::user()->id);
 
@@ -339,12 +366,22 @@ class HomeController extends Controller
             $Productos->status= "Aprobado";
             $Productos->save();
 
+            $Benefi->amount = $Benefi->amount-$request->Cantidad;
+            $Benefi->save();
             $user->points = $user->points-$total;
             $user->save();
 
+            $pendiente = Bidder::find($Benefi->bidder_id);
+            if ($Benefi->bidder_id != 0 )
+            {
+                $pendiente->pendding_points = $pendiente->pendding_points+$total;
+                $pendiente->save();
+            }
+            
             return response()->json($Productos);
         }
     }
+
 
     public function SaleTickets(){
         $Balance = NULL;

@@ -19,6 +19,7 @@ class CreateTableTV extends Migration
     
     $table->increments('id');
     $table->integer('seller_id')->unsigned();
+    //$table->integer('province_id')->unsigned();
     $table->string('name_r')->nullable();
     $table->string('streaming')->nullable();
     $table->string('logo')->nullable();
@@ -30,7 +31,7 @@ class CreateTableTV extends Migration
     $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
     $table->timestamps();
     $table->foreign('seller_id')->references('id')->on('sellers');
-    
+    //$table->foreign('province_id')->references('id')->on('province');
     });
     }
 

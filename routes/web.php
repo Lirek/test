@@ -77,11 +77,17 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
+////Validación de correo siendo verificado
+//Route::post('RegisterApplysEmailSeller','WelcomeController@applyEmailSeller');
+
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
     Route::post('BidderSubmit','BidderController@store');
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
 
+          Route::get('/home', 'HomeController@index');
+          Route::get('ContentGraph', 'HomeController@DataContentGraph');
+          Route::get('MyTickets/{id}', 'HomeController@MyTickets');
 
 Route::group(['middleware' => ['auth','ActiveUser']], function() {
 
@@ -106,6 +112,8 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     // agregada Alexis 15/01/2019
     Route::get('/Beneficios/{status}','HomeController@Beneficios');
     Route::post('BuyBenefi','HomeController@BuyBenefi');
+    Route::get('verifyBenefi/{id}','HomeController@verifyBenefi');
+    Route::get('delivered/{id}','HomeController@delivered');
 
 
 //-------------------Funciones del Usuarios----------------------------------
@@ -122,6 +130,19 @@ Route::get('Read/{id}','UserController@SendRead');
 Route::get('MyReads','UserController@ShowMyReadings');
 Route::get('Read/{id}','UserController@SendRead');
 Route::post('Invite','UserController@Invite');
+
+  Route::post('BuySong/{id}','UserController@BuySingle');
+  Route::post('BuyAlbum/{id}','UserController@BuyAlbum');
+  Route::post('BuyBook/{id}','UserController@BuyBook');
+  Route::post('BuyMagazines/{id}','UserController@BuyMagazines');
+  Route::post('BuyMovie/{id}','UserController@BuyMovie');
+  Route::post('BuySerie/{id}','UserController@BuySerie');
+  Route::post('BuyEpisode/{id}','UserController@BuyEpisode');
+  Route::get('MyMusic','UserController@MyMusic');
+  Route::get('Read/{id}','UserController@SendRead');
+  Route::get('MyReads','UserController@ShowMyReadings');
+  Route::get('Read/{id}','UserController@SendRead');
+  Route::post('Invite','UserController@Invite');
 
 
     //Agregadas 4/7/18
@@ -142,6 +163,9 @@ Route::post('Invite','UserController@Invite');
     //Agregada 14/7/18
     // Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook')->middleware('MyBooks');
     Route::get('ShowMyReadBook/{id}','UserController@ShowMyReadBook');
+
+    //Agregada Alexis 28/03/2019
+    Route::get('ReadBook/{id}','UserController@ReadBook')->middleware('MyBooks');
 
     //Agregada 15/7/18
     // Route::get('ShowMyReadMegazine/{id}','UserController@ShowMyReadMegazine')->middleware('MyMegazine');
@@ -253,6 +277,8 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
 ---------------------------------------------------------------------
 */
 
+          //Agregadas 4/7/18
+          Route::get('EditProfile','UserController@edit');
 
 Route::group(['middleware' => 'promoter_guest'], function() {
 
@@ -260,13 +286,134 @@ Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
+//------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
+
+    Route::get('promoter_password/reset', 'PromoterAuth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('promoter_password/email', 'PromoterAuth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('promoter_password/reset/{token}', 'PromoterAuth\ResetPasswordController@showResetForm');
+    Route::post('promoter_password/reset', 'PromoterAuth\ResetPasswordController@reset');
+
 });
 
 Route::group(['middleware' => 'promoter_auth'], function(){
 
+    
+
     Route::post('promoter_logout', 'PromoterAuth\LoginController@logout');
 
-    Route::get('/promoter_home','PromoterController@index');
+    Route::get('promoter_home','PromoterController@index');
+
+    //Agregada 02/05/2019
+    Route::get('EditProfilePromoter','PromoterController@edit');
+    //Agregada 02/05/2019
+    Route::post('UpdateProfilePromoter','PromoterController@update');
+    //Agregada 02/05/2019
+    Route::post('ChangePasswordPromoter/{id}','PromoterController@changepassword');
+
+          //Agregada 31/7/2018
+          Route::get('/SearchArtist',array('as'=>'SearchArtist','uses'=>'ContentController@seachArtist'));
+
+          //Agregada 3/8/2018
+          Route::get('DownloadQr','UserController@qrDownload');
+
+           //Agregada 8/8/2018
+          Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
+          Route::get('/SearchMegazine',array('as'=>'SearchMegazine','uses'=>'ContentController@seachMegazines'));
+
+
+          //Agregada 8/8/2018
+          Route::get('MyBalance','UserController@balance');
+
+          //Agregada 10/12/2019
+           Route::get('MySeries','UserController@MySeries');
+            Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
+
+          //Agregada 23/01/2019
+          Route::get('DeleteAccount/{id}','UserController@closed');
+
+          //Agregada 28/01/2019
+          Route::post('ChangePassword/{id}','UserController@changepassword');
+
+      });
+
+
+      //---------------------------------------------------------------------------
+
+      //______________________Funiciones de Contenido______________________________
+
+      Route::get('MusicContent','ContentController@ShowMusic');
+      Route::get('AllSingles','ContentController@ShowAllSingles');
+      Route::get('AllAlbums','ContentController@ShowAllAlbum');
+      Route::get('ProfileMusicArtist/{id}','ContentController@ShowArtist');
+      Route::get('ReadingsBooks','ContentController@ShowReadingsBooks');
+      Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
+
+      //Agrega 3/8/2018
+          Route::post('SearchProfileArtist','ContentController@ShowProfileArtist');
+      //Agregada 09/8/2018
+          Route::post('SearchProfileAuthor','ContentController@ShowProfileAuthor');
+          Route::get('ProfileBookAuthor/{id}','ContentController@ShowAuthor');
+      //Agregada 16/8/18
+          Route::get('ShowRadio','ContentController@ShowRadio');
+          Route::get('ListenRadio/{id}','ContentController@ListenRadio');
+          Route::get('/SearchRadio',array('as'=>'SearchRadio','uses'=>'ContentController@seachRadio'));
+          Route::post('SearchListenRadio','ContentController@ShowListenRadio');
+      //Agregada 21/08/2018
+          Route::get('ShowMovies','ContentController@ShowMovies');
+          Route::get('/SearchMovie',array('as'=>'SearchMovie','uses'=>'ContentController@seachMovie'));
+          Route::post('SearchMovieList','ContentController@ShowMovieSeach');
+          Route::get('ShowMovies/{id}','ContentController@MovieList');
+      //Agregada 24/08/2018
+          Route::get('ShowTv','ContentController@Showtv');
+          Route::get('PlayTv/{id}','ContentController@PlayTv');
+          Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
+          Route::post('SearchPlayTv','ContentController@ShowPlayTv');
+      //Agregada 6/11/2018
+          Route::post('SearchProfileMegazine','ContentController@ShowProfileMegazine');
+      //Agregadas 6/12/2018
+          Route::get('ShowSeries','ContentController@ShowSeries');
+          Route::get('/SearchSerie',array('as'=>'SearchSerie','uses'=>'ContentController@seachSerie'));
+          Route::post('SearchSerieList','ContentController@ShowSerieSeach');
+      // Agregada 04-02-2019
+          Route::get('SerieList/{id}','ContentController@SerieList');
+      //---------------------------------------------------------------------------
+
+
+      //-------------------------Funiciones de Referidos---------------------------
+
+          Route::get('WebsUser','ReferalsController@ShowWebs');
+          Route::get('Referals','ReferalsController@ShowReferals');
+
+      //-----------------------Funciones de Pago Externo a la plataforma ------------------------
+          Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+          Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+      //-----------------------------------------------------------------------------------------
+
+      /* ------------------------------------------------------------------
+      ---------------------------------------------------------------------
+      ---------                                              --------------
+      ---------              RUTAS DE PROMOTORES             --------------
+      ---------                                              --------------
+      ---------                                              --------------
+      ---------                                              --------------
+      ---------------------------------------------------------------------
+      ---------------------------------------------------------------------
+      */
+
+
+      Route::group(['middleware' => 'promoter_guest'], function() {
+
+      Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
+
+      Route::post('promoter_login', 'PromoterAuth\LoginController@login');
+
+      });
+
+      Route::group(['middleware' => 'promoter_auth'], function(){
+
+          Route::post('promoter_logout', 'PromoterAuth\LoginController@logout');
+
+          Route::get('/promoter_home','PromoterController@index');
 
 
    Route::group(['middleware' => ['Admin']], function (){
@@ -543,13 +690,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             
         //------------------------------- Rutas para los productos-------------------------------
 
-        //------------------------------- Rutas para los ofertantes en backend -------------------------------
-            Route::get('Bidder','BidderController@Bidder');
-            Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
-            Route::post('statusBidder/{id}','BidderController@statusBidder');
-            Route::post('addModuleBidder','BidderController@addModuleBidder');
-            Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
-        //------------------------------- Rutas para los ofertantes en backend -------------------------------
 
         //------------------------------- Rutas para los pagos del ofertantes --------------------------------
             Route::get('admin_bidder_payments','BidderController@paymentsBidder');
@@ -564,13 +704,6 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('historialCosto/{tipo}','ConversionesController@historialCosto');
         //------------------------------- Rutas para las conversiones --------------------------------
 
-        //------------------------------- Rutas para las categorias --------------------------------
-            Route::get('ModulesBidder','ModuleBidderController@ModulesBidder');
-            Route::post('addModule','ModuleBidderController@addModule');
-            Route::get('infoModule/{idModule}','ModuleBidderController@infoModule');
-            Route::post('updateModule','ModuleBidderController@updateModule');
-            Route::get('deleteModule/{idModule}','ModuleBidderController@deleteModule');
-        //------------------------------- Rutas para las categorias --------------------------------
     });
 });
 

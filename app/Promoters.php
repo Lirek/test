@@ -6,6 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Model;
 
+//Notification for Seller
+use App\Notifications\PromoterResetPasswordNotification;
+
+
+
 
 class Promoters extends Authenticatable
 {
@@ -21,6 +26,12 @@ class Promoters extends Authenticatable
       'updated_at',
       'password',
     ];
+
+    //Send password reset notification
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PromoterResetPasswordNotification($token));
+    }
 
     public function Sales()
     {

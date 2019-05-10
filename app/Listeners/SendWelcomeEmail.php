@@ -28,7 +28,7 @@ class SendWelcomeEmail
      * @return void
      */
     public function handle(WelcomeEmailEvent $event)
-    {   
-        Mail::to($event->user->email)->send(new WelcomeEmail($event->user));
+    {
+        Mail::to($event->user->email)->send(new WelcomeEmail($event->user,$event->url));
     }
 }

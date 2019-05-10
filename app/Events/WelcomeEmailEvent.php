@@ -15,15 +15,16 @@ class WelcomeEmailEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
-
+    public $url;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user,$url)
     {
         $this->user = $user;
+        $this->url = $url;
     }
 
     /**

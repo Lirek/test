@@ -18,10 +18,12 @@ class WelcomeEmail extends Mailable
      */
 
     public $user;
+    public $url;
 
-    public function __construct($user)
+    public function __construct($user,$url)
     {
         $this->user= $user;
+        $this->url= $url;
     }
 
     /**
@@ -31,6 +33,7 @@ class WelcomeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mails.WelcomeMail')->subject('Bienvenido');
+        return $this->view('admin.mails.WelcomeMail')->with('url',$this->url)
+                                                     ->subject('Bienvenido');
     }
 }

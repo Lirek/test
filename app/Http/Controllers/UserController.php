@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
+
 use App\Events\InviteEvent;
 use App\Events\BuyContentEvent;
 use App\Events\NewContentNotice;
+use App\Events\DeleteAccount;
+
 use DB;
 use Illuminate\Support\Facades\Crypt;
 use Hash;
@@ -37,9 +40,9 @@ use App\Serie;
 use App\Episode;
 use App\TicketsPackage;
 
-use App\Events\BookTraceEvent; //Agrega el Evento 
-use App\Events\MegazineTraceEvent; //Agrega el Evento 
-use App\Events\MovieTraceEvent; //Agrega el Evento 
+use App\Events\BookTraceEvent; //Agrega el Evento
+use App\Events\MegazineTraceEvent; //Agrega el Evento
+use App\Events\MovieTraceEvent; //Agrega el Evento
 use App\Events\SongTraceEvent; //Agrega el Evento
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -77,23 +80,23 @@ class UserController extends Controller
     {
         $user = new User;
 
-        
-        if (User::where('email','=',$request->email)->count()==1) 
+
+        if (User::where('email','=',$request->email)->count()==1)
         {
           view('errors.unauthorized')->with('error','Ya se Encuentra Registrado');
         }
 
         $user->email = $request->email;
-        
+
         $user->name = $request->name;
-        
+
         $user->password = bcrypt($request->password);
-                 
+
                  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                  $charactersLength = strlen($characters);
                  $randomString = '';
-        
-                   for ($i = 0; $i < 6; $i++) 
+
+                   for ($i = 0; $i < 6; $i++)
                       {
                         $randomString .= $characters[rand(0, $charactersLength - 1)];
                       }
@@ -102,13 +105,13 @@ class UserController extends Controller
             $code=$randomString;
 
         $user->codigo_ref = $code;
-       
+
         $user->credito=0;
 
         $user->save();
 
         $referal_user = User::where('codigo_ref','=',$request->user_code)->first();
-      
+
         $refered = new Referals;
 
         $refered->user_id = $referal_user->id;
@@ -133,25 +136,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-      $user = Auth::user();
-
-       if ($user == true) {
-        return redirect()->action('WelcomeController@welcome');
-        }
-    
-       else {
-        { 
-        try 
+        try
         {
-          $user= User::where('codigo_ref','=',$id)->firstOrFail();  
-        } 
-        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption) 
+          $user= User::where('codigo_ref','=',$id)->firstOrFail();
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $exeption)
         {
            return view('errors.unauthorized')->with('error','El Codigo Coincide Con Nuestros Registros');
         }
         return view('users.register')->with('user_code',$id);
        }
-       
+
        }
 
     }
@@ -164,7 +159,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        
+
         $user = User::find(Auth::user()->id);
         $patro = Referals::where('refered',Auth::user()->id)->get();
         $mipatro = null;
@@ -190,7 +185,6 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->last_name = $request->last_name;
-        //$user->password = $request->password;
         $user->num_doc = $request->ci;
         $user->direccion = $request->direccion;
         $user->phone = $request->phone;
@@ -198,13 +192,13 @@ class UserController extends Controller
         if ($user->verify==2) {
             $user->verify = 0;
         }
-        
+
         if ($request->type != null){
             $user->type= $request->type;
         }
 
         $user->alias = $request->alias;
-        
+
         if ($request->hasFile('img_perf'))
         {
 
@@ -212,16 +206,16 @@ class UserController extends Controller
 
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
+
          $name = 'userpic'.$nombre.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
 
          $request->file('img_perf')->move($store_path,$name);
 
          $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
+
+         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;
         }
-        
+
         $user->fech_nac = date("Y-m-d", strtotime($request->fech_nac));
 
         if ($request->hasFile('img_doc'))
@@ -230,28 +224,28 @@ class UserController extends Controller
          $nombre = $this->sinAcento($request->name);
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
+
          $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
-         
-         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;             
+
+         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;
         }
-     
+
         //dd($request->all());
         $user->save();
 
         //return view('seller_edit');
         Flash('Se han modificado sus datos con exito!')->success();
         return redirect()->action('UserController@edit');
-     
-        
+
+
     }
 
    public function changepassword(Request $request, $id)
     {
         $user = User::find($id);
-        
+
         $user->password = $request->password;
         $oldpass = $request->oldpass;
         $newpass = $request->newpass;
@@ -259,8 +253,8 @@ class UserController extends Controller
         $pass_encrypt = ($request->password);
 
         if (password_verify($oldpass, $user->password))
-          { 
-        
+          {
+
         if ($newpass == $confnewpass) {
 
               $user->password = bcrypt($newpass);
@@ -268,18 +262,18 @@ class UserController extends Controller
               $user->save();
 
             Flash('Se ha modificado su contraseña con exito!')->success();
-            return redirect()->action('UserController@edit'); 
-                     
-        } 
-        
-        else 
-    
+            return redirect()->action('UserController@edit');
+
+        }
+
+        else
+
           Flash('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->success();
             return redirect()->action('UserController@edit');
 
           }
 
-        else 
+        else
 
           Flash('Ha ingresado su contraseña antigua incorrectamente, por favor intentelo de nuevo.')->success();
           return redirect()->action('UserController@edit');
@@ -290,12 +284,13 @@ class UserController extends Controller
         $user = User::find($id);
         $user->account_status = "closed";
         $user->save();
-          
+
         Auth::logout();
 
         $add = DB::select('INSERT INTO users_closed SELECT * FROM users WHERE account_status="closed"');
-        
-    
+
+        event( new DeleteAccount($user->id));
+
         Flash('Se ha cerrado su cuenta exitosamente, Esperamos volverlo a ver pronto!')->success();
 
         return redirect()->action('WelcomeController@welcome');
@@ -338,8 +333,8 @@ class UserController extends Controller
          $request->file('img_doc')->move($store_path,$name);
 
          $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name; 
+
+         $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;
 
         }
         $user->fech_nac = $request->dateN;
@@ -349,21 +344,21 @@ class UserController extends Controller
 
 
          $store_path = public_path().'/user/'.$user->id.'/profile/';
-         
+
          $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
 
          $request->file('img_perf')->move($store_path,$name);
 
          $real_path='/user/'.$user->id.'/profile/'.$name;
-         
-         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;             
+
+         $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;
         }
 
         $user->alias = $request->alias;
         $user->save();
 
         event( new NewContentNotice($user->name,'Usuario'));
-        
+
         Flash('Completo Sus Datos Con Exito')->success();
        return redirect()->action('HomeController@index');
     }
@@ -404,7 +399,7 @@ class UserController extends Controller
                     $accionM=Book::find($key->books_id);
                     $accion=$accionM->title;
                     //$accion='Compra de libro';
-                            
+
                 }
                 elseif($key->album_id != 0){
                     $accionM=Albums::find($key->album_id);
@@ -460,7 +455,7 @@ class UserController extends Controller
         }else{
             $Balance[]=0;
         }
-        
+
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
 
 
@@ -507,48 +502,48 @@ class UserController extends Controller
 
 
 //---------------------Iniicio de Compra, Muestra de Musica------------------
-    
+
 
     //Funcion que recive el single a comprar y lo registra en la tabla Transacciones
     public function BuySingle($id)
     {
         $Single= Songs::find($id);
-        
+
         $user = User::find(Auth::user()->id);
 
-        if ($Single->cost > $user->credito) 
+        if ($Single->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
-        
+
         $check = Transactions::where('song_id','=',$Single->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
 
-        
+
           $checkS = Transactions::where('album_id','=',$Single->album)->where('user_id','=',$user->id)->get();
           $checkS->isEmpty();
 
           if(count($checkS)>=1)
           {
-              return response()->json(2);   
+              return response()->json(2);
           }
-      
+
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$Single->seller_id; 
+            $Transaction->seller_id=$Single->seller_id;
             $Transaction->song_id=$Single->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $Single->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$Single->cost;
-            $user->save(); 
+            $user->save();
 
              $seller = Seller::find($Single->seller_id);
             $seller->credito=$seller->credito+$Single->cost;
@@ -563,10 +558,10 @@ class UserController extends Controller
 
             return response()->json($Transaction);
         }
-    
+
     }
 
-    //funcion que se encarga de buscar el contenido musical del usuario 
+    //funcion que se encarga de buscar el contenido musical del usuario
     public function MyMusic()
     {
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
@@ -574,25 +569,25 @@ class UserController extends Controller
 
         if($TransactionSingle->count() > 0)
             {
-            
-                foreach ($TransactionSingle as $key) 
+
+                foreach ($TransactionSingle as $key)
                     {
-                        $Single[] = $key->Songs;    
+                        $Single[] = $key->Songs;
                     }
             }
             else
              {
                 $Single = 0;
-                
+
              }
-        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get(); 
+        $TransactionAlbum= Transactions::where('user_id','=',Auth::user()->id)->where('album_id','<>',0)->get();
 
         if($TransactionAlbum->count() > 0)
             {
-            
-                foreach ($TransactionAlbum as $key) 
+
+                foreach ($TransactionAlbum as $key)
                     {
-                        $Albums[] = $key->Albums; 
+                        $Albums[] = $key->Albums;
                         $id=$key->Albums->id;
                     }
             }
@@ -602,33 +597,33 @@ class UserController extends Controller
              }
 
 
-        
+
         return view('users.MyMusic')->with('Singles',$Single)->with('Albums',$Albums);
-        
+
     }
 
     public function BuyAlbum($id,Request $request)
     {
         $Albums= Albums::find($id);
-        
+
         $user = User::find(Auth::user()->id);
 
-        if ($Albums->cost > $user->credito) 
+        if ($Albums->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
-        
+
         $check = Transactions::where('album_id','=',$Albums->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
         else
         {
             $TransactionAlbum= new Transactions;
-            $TransactionAlbum->seller_id=$Albums->seller_id; 
+            $TransactionAlbum->seller_id=$Albums->seller_id;
             $TransactionAlbum->Album_id=$Albums->id;
             $TransactionAlbum->user_id=$user->id;
             $TransactionAlbum->tickets= $Albums->cost*-1;
@@ -650,13 +645,13 @@ class UserController extends Controller
 
             return response()->json($TransactionAlbum);
         }
-    
+
     }
 
     public function MyAlbums($id)
     {
-        
-        
+
+
         $Albums= Albums::find($id);
 
         $user= User::find(Auth::user()->id);
@@ -664,32 +659,32 @@ class UserController extends Controller
         $adquirido=(in_array($id, $AlbumAdd)) ? true : false;
 
         return view('users.MyAlbums')->with('Albums',$Albums)->with('adquirido',$adquirido);
-        
+
     }
 
     public function MySingles($id)
     {
-        
-        
+
+
         $Song= Songs::find($id);
-        
+
         $user= User::find(Auth::user()->id);
         $SongAdd=user::contenidos_add($user, 'song_id');
         $adquirido=(in_array($id, $SongAdd)) ? true : false;
-        
+
         return view('users.MySingle')->with('Songs',$Song)->with('adquirido',$adquirido);
-        
+
     }
 
 
     public function SongAlbum($id)
     {
 
-        $Song= Songs::where('album','=',$id)->get(); 
-    
-            
+        $Song= Songs::where('album','=',$id)->get();
+
+
         return response()->json($Song);
-        
+
     }
 
     public function SongSingles()
@@ -697,37 +692,31 @@ class UserController extends Controller
         $TransactionSingle= Transactions::where('user_id','=',Auth::user()->id)->where('song_id','<>',0)->get();
         if($TransactionSingle->count()>0){
           foreach ($TransactionSingle as $key) {
-             $song=Songs::where('id','=',$key->song_id)->first();
-              $Song[] = array(
-                'cover'=>$song->cover,
-                'photo'=>$song->autors->photo,
-                'song_file'=>$song->song_file,
-                'song_name'=>$song->song_name
-            );  
+            $Song[]= Songs::where('id','=',$key->song_id)->first();
           }
-            
+
         }
-             
+
         return response()->json($Song);
-        
+
     }
 
 
     public function AddElementPlaylist($song_id)
     {
         $Songs= Songs::find($song_id);
-        
+
         $file= $Songs->song_file;
-        
+
         if($Songs->album==0 or $Songs->album==NULL)
         {
             $img= $Songs->autors->photo;
         }
         else
         {
-            $img=$Songs->album->cover;    
+            $img=$Songs->album->cover;
         }
-        
+
         $title=$Songs->song_name;
         $artist=$Songs->autors->name;
 
@@ -744,32 +733,32 @@ class UserController extends Controller
     {
         $megazine= Megazines::find($id);
         $user = User::find(Auth::user()->id);
-      
+
 
         $check = Transactions::where('megazines_id','=',$megazine->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
-        
-        if ($megazine->cost > $user->credito) 
+
+        if ($megazine->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
 
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$megazine->seller_id; 
+            $Transaction->seller_id=$megazine->seller_id;
             $Transaction->megazines_id=$megazine->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $megazine->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$megazine->cost;
-            $user->save(); 
+            $user->save();
 
             $seller = Seller::find($megazine->seller_id);
             $seller->credito=$seller->credito+$megazine->cost;
@@ -791,32 +780,32 @@ class UserController extends Controller
     {
         $book= Book::find($id);
         $user = User::find(Auth::user()->id);
-      
+
 
         $check = Transactions::where('books_id','=',$book->id)->where('user_id','=',$user->id)->get();
         $check->isEmpty();
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
-        
-        if ($book->cost > $user->credito) 
+
+        if ($book->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
 
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$book->seller_id; 
+            $Transaction->seller_id=$book->seller_id;
             $Transaction->books_id=$book->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $book->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$book->cost;
-            $user->save(); 
+            $user->save();
 
             $seller = Seller::find($book->seller_id);
             $seller->credito=$seller->credito+$book->cost;
@@ -840,41 +829,43 @@ class UserController extends Controller
         $MyBooks= Transactions::where('user_id','=',Auth::user()->id)->where('books_id','<>',0)->get();
 
 
-        if ($MyBooks->count() == 0) 
+        if ($MyBooks->count() == 0)
         {
             $Books=0;
         }
         else
         {
-            foreach ($MyBooks as $key) 
+            foreach ($MyBooks as $key)
             {
                 $Books[]= Book::find($key->books_id);
             }
         }
 
-        
+
 
         return view('users.MyReadings')->with('Books',$Books);
     }
+
+
     public function ShowMyReadingsMegazines()
     {
 
         $MyMegazines= Transactions::where('user_id','=',Auth::user()->id)->where('megazines_id','<>',0)->get();
 
 
-        if ($MyMegazines->count() == 0) 
+        if ($MyMegazines->count() == 0)
         {
             $Megazine= 0;
         }
         else
         {
-            foreach ($MyMegazines as $key) 
+            foreach ($MyMegazines as $key)
             {
-                $Megazine[]= Megazines::find($key->megazines_id);        
+                $Megazine[]= Megazines::find($key->megazines_id);
             }
         }
 
-        
+
 
         return view('users.MyMagazine')->with('Megazines', $Megazine);
     }
@@ -886,7 +877,7 @@ class UserController extends Controller
         $Book=Book::find($id);
         $Megazine= Megazines::find($id);
 
-        if ($Book->count() == 0) 
+        if ($Book->count() == 0)
         {
             return view('users.MyLecture')->with('book',$Megazine);
         }
@@ -910,6 +901,14 @@ class UserController extends Controller
             return view('users.show')->with('book',$Book)->with('adquirido',$adquirido);
     }
 
+    public function ReadBook($id)
+    {
+        $Book=Book::find($id);
+        event(new BookTraceEvent(Auth::user()->id,$id));
+            return view('users.ReadBook')->with('book',$Book);
+    }
+
+   
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
@@ -929,22 +928,22 @@ class UserController extends Controller
 
         if($TransactionMovies->count() > 0)
             {
-            
-                foreach ($TransactionMovies as $key) 
+
+                foreach ($TransactionMovies as $key)
                     {
-                        $Movies[] = $key->Movies;    
+                        $Movies[] = $key->Movies;
                     }
             }
             else
              {
                 $Movies = 0;
-                
+
              }
 
 
-        
+
        return view('users.MyMovies')->with('Movies',$Movies);
-        
+
     }
 
    public function ShowMyMovie($id)
@@ -954,15 +953,15 @@ class UserController extends Controller
 
             return view('users.showMovie')->with('Movies',$Movies);
     }
-    
+
     public function BuyMovie(Request $request,$id)
     {
         $movie= Movie::findOrfail($id);
         $user = User::find(Auth::user()->id);
 
-        if ($movie->cost > $user->credito) 
+        if ($movie->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
 
         $check = Transactions::where('movies_id','=',$movie->id)->where('user_id','=',$user->id)->get();
@@ -970,19 +969,19 @@ class UserController extends Controller
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$movie->seller_id; 
+            $Transaction->seller_id=$movie->seller_id;
             $Transaction->movies_id=$movie->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $movie->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$movie->cost;
-            $user->save(); 
+            $user->save();
 
             $seller = Seller::find($movie->seller_id);
             $seller->credito=$seller->credito+$movie->cost;
@@ -1005,9 +1004,9 @@ class UserController extends Controller
         $serie= Serie::find($id);
         $user = User::find(Auth::user()->id);
 
-        if ($serie->cost > $user->credito) 
+        if ($serie->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
 
         $check = Transactions::where('series_id','=',$serie->id)->where('user_id','=',$user->id)->get();
@@ -1015,19 +1014,19 @@ class UserController extends Controller
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$serie->seller_id; 
+            $Transaction->seller_id=$serie->seller_id;
             $Transaction->series_id=$serie->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $serie->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$serie->cost;
-            $user->save(); 
+            $user->save();
 
             $seller = Seller::find($serie->seller_id);
             $seller->credito=$seller->credito+$serie->cost;
@@ -1050,9 +1049,9 @@ class UserController extends Controller
         $serie= Episode::find($id);
         $user = User::find(Auth::user()->id);
 
-        if ($serie->cost > $user->credito) 
+        if ($serie->cost > $user->credito)
         {
-            return response()->json(0);    
+            return response()->json(0);
         }
 
         $check = Transactions::where('episodes_id','=',$serie->id)->where('user_id','=',$user->id)->get();
@@ -1060,7 +1059,7 @@ class UserController extends Controller
 
         if(count($check)>=1)
         {
-            return response()->json(1);   
+            return response()->json(1);
         }
 
         $checkS = Transactions::where('series_id','=',$serie->Serie->id)->where('user_id','=',$user->id)->get();
@@ -1068,20 +1067,20 @@ class UserController extends Controller
 
         if(count($checkS)>=1)
         {
-            return response()->json(2);   
+            return response()->json(2);
         }
 
         else
         {
             $Transaction= new Transactions;
-            $Transaction->seller_id=$serie->seller_id; 
+            $Transaction->seller_id=$serie->seller_id;
             $Transaction->episodes_id=$serie->id;
             $Transaction->user_id=$user->id;
             $Transaction->tickets= $serie->cost*-1;
             $Transaction->save();
 
             $user->credito= $user->credito-$serie->cost;
-            $user->save(); 
+            $user->save();
 
             $seller = Seller::find($serie->seller_id);
             $seller->credito=$seller->credito+$serie->cost;
@@ -1108,30 +1107,29 @@ class UserController extends Controller
 
         if($TransactionSeries->count() > 0)
             {
-            
-                foreach ($TransactionSeries as $key) 
+
+                foreach ($TransactionSeries as $key)
                     {
-                        $Series[] = $key->Series;    
+                        $Series[] = $key->Series;
                     }
             }
         if($TransactionEpisodes->count() > 0)
         {
-           foreach ($TransactionEpisodes as $key) 
+           foreach ($TransactionEpisodes as $key)
                     {
-                        $Series[] = $key->Episodes;    
-                    } 
-        }   
-
-        elseif ($TransactionSeries->count() == 0 && $TransactionEpisodes->count() == 0)
+                        $Series[] = $key->Episodes;
+                    }
+        }
+        elseif ($TransactionSeries->count()== 0 && $TransactionEpisodes ==0)
         {
             $Series = 0;
-                
+
         }
 
 
-        
+
        return view('users.MySeries')->with('Series',$Series);
-        
+
     }
 
     public function ShowMySerie($id,$type)
@@ -1151,7 +1149,7 @@ class UserController extends Controller
 
     public function Invite(Request $request)
     {
-        
+
         $url= url('/').'/register/'.Auth::user()->codigo_ref;
         event(new InviteEvent(Auth::user()->name,$request->email,$url));
         Flash('Se Ha Invitado con Exito')->success();
@@ -1164,12 +1162,22 @@ class UserController extends Controller
 //-----------------------------Mail-----------------------------------------
     public function SendMail($content,$cost)
     {
-        
+
         //$url= url('/').'/register/'.Auth::user()->codigo_ref;
         event(new BuyContentEvent(Auth::user()->email,$content,$cost));
         //Flash('Se Ha Invitado con Exito')->success();
         return true;
 
+    }
+
+    public function ValidateEmail($encrypted)
+    {
+      $decrypted = Crypt::decryptString($encrypted);
+      $user= User::where('email','=',$decrypted)->firstOrFail();
+      $user->email_verification=TRUE;
+      $user->save();
+      Auth::login($user);
+      return redirect()->action('HomeController@index');
     }
 
 }
