@@ -81,11 +81,11 @@
               <div class="input-field col s12">
               <select name="province_id" required>
               <option value="" disabled selected>Seleccionar Provincia</option>
-                @foreach($province as $name)
-                      @if($name->province_name)
-                        <option value="{{$name->id}}" id="province_id" name="province_name">{{$name->province_name}}</option>
-                      @endif
-                @endforeach
+                  @foreach($province as $name)
+                        @if($name->province_name)
+                          <option value="{{$name->id}}" id="province_id" name="province_name">{{$name->province_name}}</option>
+                       @endif
+                  @endforeach
               </select>
               </div>
               <div class="input-field col s12">
@@ -146,14 +146,14 @@
                 <label for="email_c">Twitter</label>
               </div>
               <div class="input-field col s12">
-              <select name="province_id" required>
-              <option value="" disabled selected>Seleccionar Provincia</option>
-                @foreach($province as $name)
+                <select name="province_id" required>
+                <option value="" disabled selected>Seleccionar Provincia</option>
+                  @foreach($province as $name)
                       @if($name->province_name)
-                        <option value="{{$name->id}}" id="province_id" name="province_name">{{$name->province_name}}</option>
+                          <option value="{{$name->id}}" id="province_id" name="province_name">{{$name->province_name}}</option>
                       @endif
                 @endforeach
-              </select>
+                </select>
               </div>
               <div class="col s6">
                 <label for="">Imagen actual:</label>

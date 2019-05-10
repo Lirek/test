@@ -59,11 +59,10 @@ use App\PaymentSeller;
 use App\Province;
 use App\PointsLoser;
 
-//--------------------------------------------------------
+//------------------------------------------------------------
 
 class AdminController extends Controller
 {
-	 
 
     public function SendEmails($status,$name,$seller,$reason)
     {

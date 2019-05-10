@@ -134,7 +134,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
             
-         //Select para Provincia
+         //Select Para Provincias
          $(document).ready(function(){
             $('select').formSelect();
         });
