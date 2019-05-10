@@ -53,6 +53,10 @@
 					swal.close();
 					console.log(data);
 					$.each(data,function(i,info) {
+
+
+						$('#todasCanciones').show();
+						$('#todasCanciones').attr( "value", info.id );
 						
 						if (info.cover!=0 ) {
 							var portada = 
@@ -169,21 +173,38 @@
 					type:'get', 
 					dataType:'json',
 					success: function(datos){
-						console.log(datos);
 						$('#totalCanciones').show();
 						$('#totalCanciones').text('este album tiene: '+datos.length+' canciones.');
 
 						$.each(datos, function(i,info){
+
 							if (info.song_file != 0) {
 								var archivo = 
 								"<audio controls='' src='{!!asset('"+info.song_file+"')!!}'>"+
 									"<source src='"+info.song_file+"' type='audio/mpeg'>"+
 								"</audio>";
 							}
+							if (info.status=="En Revision") {
+                            var opcion = "<button class='btn modal-trigger curvaBoton amber' value='"+info.id+"' value2='En Revision' href='#song' id='statusCa'>"+info.status+"</button>";
+
+                        	}
+
+                        	if (info.status=="Aprobado") {
+                            var opcion = "<button class='btn modal-trigger curvaBoton green' id='statusCa'>"+info.status+"</button>";
+
+                        	}
+
+                        	if (info.status=="Denegado") {
+                            var opcion = "<button class='btn modal-trigger curvaBoton red' id='statusCa'>"+info.status+"</button>";
+
+                        	}
+
 							var fila = "<tr><td>"+
 							info.song_name+"</td><td>"+
 							info.duration+"</td><td>"+
-							archivo+"</td></tr>";
+							archivo+"</td><td>"+
+							opcion+"</td></tr>";
+
 							$('#cancion').append(fila);
 						});
 					},
@@ -197,6 +218,86 @@
 			});
 		});
 		// Listar las canciones
+
+// Modificar el estatus todas las canciones
+  $(document).on('click','#todasCanciones', function(e) {
+      var id=$(this).attr("value");
+      var url="{{url('adminAllsong')}}/"+id;
+      swal({
+            title: "¿Está seguro?",
+            text: '¿Desea aprobar todas las canciones ?',
+            icon: "warning",
+            buttons:  ["Cancelar", "aprobar"],
+            dangerMode: true,
+        })
+      $.ajax({
+                  url,
+                  type: 'GET',
+                  dataType: "json",
+                  success: function (result) {
+                    console.log(result);
+                          swal('usted ha aprobado las canciones','','success')
+                          .then((recarga) => {
+                          location.reload();
+                        });
+                  },
+                  error: function (result) {
+                      swal('Existe un error en su solicitud','','error');
+                      console.log(result);
+                  }
+              });
+    });
+// Modificar el estatus por cancion
+
+
+
+// Modificar el estatus por cancion
+  $(document).on('click','#statusCa', function() {
+    var x = $(this).attr("value");
+    $("#FormStatusCa").on('submit', function(e){
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+      swal({
+        title: "Procesando la información",
+        text: "Espere mientras se procesa la información.",
+        icon: gif,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
+      });
+      var s = $("input[type='radio'][name=status]:checked").val();
+      var message = $('#razon').val();
+      var url = "{{url('/adminSong')}}/"+x;
+      console.log(url);
+      e.preventDefault(); 
+      console.log(s);
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+          _token: $('input[name=_token]').val(),
+          status: s,
+          message: message
+        }, 
+        success: function (result) {
+          console.log(result);
+          $('#myModal').toggle();
+          $('.modal-backdrop').remove();
+          swal("Se ha "+s+" con éxito","","success")
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+        error: function (result) {
+          console.log(result);
+          swal('Existe un error en su solicitud','','error')
+          .then((recarga) => {
+            location.reload();
+          });
+        },
+      });
+    });
+  });
+  // Modificar el estatus por cancion
 
 		// Listar las negaciones
 		$(document).on('click', '#denegado', function(e) {
