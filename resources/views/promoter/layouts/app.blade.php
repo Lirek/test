@@ -54,7 +54,8 @@
         }
 
         .sidenav .user-view  {
-         background-image: url('{{asset("/plugins/materialize_adm/img/images2.jpg")}}');
+         background-image: url('{{asset('assets/img/foto_perfil_backend.png')}}');
+         /*background-image: url('{{asset("/plugins/materialize_adm/img/images2.jpg")}}');*/
      }
     </style> 
   </head>

@@ -133,6 +133,11 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
+            
+         //Select para Provincia
+         $(document).ready(function(){
+            $('select').formSelect();
+        });
         // funcion para listas las televisoras registradas por los proveedores
         function tvs(status) {
             $("#tv").empty();

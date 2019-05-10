@@ -77,6 +77,16 @@
               <label for="email_c">Twitter</label>
             </div>
             <div class="input-field col s12">
+            <select name="province_id">
+               <option value="" disabled selected>Seleccionar Provincia</option>
+                @foreach($province as $name)
+                      @if($name->province_name)
+                        <option value="{{$name->id}}">{{$name->province_name}}</option>
+                      @endif
+                @endforeach
+            </select>
+            </div>
+            <div class="input-field col s12">
               <div id="image-preview" style="border:#bdc3c7 1px solid;">
                 <label for="image-upload" id="image-label">Logo de la tv</label>
                 <input type="file" name="logo" accept="image/*" id="image-upload" oninvalid="this.setCustomValidity('Ingrese un logo')" oninput="setCustomValidity('')" required="required">
@@ -171,6 +181,16 @@
             <div class="input-field col s6">
               <input id="twitter_u" pattern="http(s)?://(.*\.)?twitter\.com\/[A-z 0-9 _]+\/?" type="text" name="twitter_u" class="validate" oninvalid="this.setCustomValidity('Ingrese un twitter valido')" oninput="setCustomValidity('')" placeholder="">
               <label for="email_c">Twitter</label>
+            </div>
+            <div class="input-field col s12">
+            <select name="province_id" required>
+              <option value="" disabled selected>Seleccionar Provincia</option>
+                @foreach($province as $name)
+                      @if($name->province_name)
+                        <option value="{{$name->id}}" id="province_id" name="province_name">{{$name->province_name}}</option>
+                      @endif
+                @endforeach
+            </select>
             </div>
             <div class="col s6">
               <label for="">Imagen actual:</label>

@@ -196,7 +196,7 @@ h5.breadcrumbs-header {
 
                   <div class="input-field col s11 l11">
                       <i class="material-icons prefix blue-text">edit</i>
-                        <label for="oldpass">Introduzca su antigua contraseña</label>
+                        <label for="oldpass">Introduzca su contraseña actual</label>
                         {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                         <div id="oldpasscp" style="margin-top: 1%"></div>
                           @if ($errors->has('oldpass'))

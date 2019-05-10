@@ -56,7 +56,7 @@ use App\Movie;
 use App\Rating;
 use App\Rejection;
 use App\PaymentSeller;
-
+use App\Province;
 use App\PointsLoser;
 
 //--------------------------------------------------------
@@ -285,7 +285,8 @@ class AdminController extends Controller
 */   		
   
    		public function ShowRadios() {
-        return view('promoter.ContentModules.MainContent.Radio');
+        $province = Province::all();
+        return view('promoter.ContentModules.MainContent.Radio')->with('province', $province);
    		}
 
       public function RadioDataTable($status) {
@@ -377,6 +378,7 @@ class AdminController extends Controller
         $file->move($path, $name);
         $logo = '/images/radio/'.$name;
         $Radio->seller_id = 0;
+        $Radio->province_id = $request->province_id;
         $Radio->name_r = $request->name_r;
         $Radio->streaming = $request->streaming;
         $Radio->email_c = $request->email_c;
@@ -420,6 +422,7 @@ class AdminController extends Controller
         $Radio->instagram = $request->instagram_u;
         $Radio->facebook = $request->facebook_u;
         $Radio->twitter = $request->twitter_u;
+        $Radio->province_id = $request->province_id;
         $Radio->save();
         return redirect()->action('AdminController@ShowRadios');
       }
@@ -547,7 +550,11 @@ class AdminController extends Controller
 */ 		
    		
 	   	public function ShowTV() {
-    		return view('promoter.ContentModules.MainContent.Tv');
+
+       $province = Province::all();
+       $tags = Tags::where('status','=','Aprobado')->where('type_tags','=','Musica')->get();
+
+    		return view('promoter.ContentModules.MainContent.Tv')->with('province', $province);
    		}
 
       public function DataTableTv($status) {
@@ -568,6 +575,7 @@ class AdminController extends Controller
         $file->move($path, $name);
         $logos = '/images/Tv/'.$name;
         $Tv->seller_id = 0;
+        $Tv->province_id = $request->province_id;
         $Tv->name_r = $request->name_r;
         $Tv->streaming = $request->streaming;
         $Tv->email_c = $request->email_c;
@@ -616,6 +624,8 @@ class AdminController extends Controller
         $Tv->facebook = $request->facebook_u;
         
         $Tv->twitter = $request->twitter_u;
+
+        $Tv->province_id = $request->province_id;
         
         $Tv->save();
 
