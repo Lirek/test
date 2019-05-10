@@ -1270,23 +1270,32 @@
                     _token: $('input[name=_token]').val(),
                 },
                 success: function (result) {
-                if(result == 1 ){
-                  M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!' , 
-                  displayLenght: 2000 ,
-                
-                }) ;
-              
-                }
-                else{
-                  $('#validarCorreo').show();
-                }
-              
+                        
+
+                    if(result.error == "false"){
+                        
+                            
+                         M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!', displayLenght: 2000 
+            
+                  }) ;
+                            if( $('#validarCorreo').css('display') != 'none' ){
+                                
+                                  $('#validarCorreo').hide();
+
+                                }
+                        
+                    }else{
+                         $('#validarCorreo').show();
                     
-                },
-                error: function (result) {
-                  console.log(result);
-    
-                }
+                    }
+                    
+                  
+
+          
+            },
+            error: function (result) {
+                console.log(result);
+            }
                 
                 
                 
