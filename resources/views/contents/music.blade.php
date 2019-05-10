@@ -58,19 +58,19 @@
                     <!-- <span class="card-title">Card Title</span> -->
                     @if($Album->name_alb) <!-- Para los albumes -->
                       @if($Album->Transactions->count()!=0)
-                        @foreach($Album->Transactions as $t) 
-                          @if($t->user_id==Auth::user()->id)
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('MyAlbums/'.$Album->id)}}"><i class="material-icons green">library_music</i></a>
+                      
+                          @if($Album['Transactions'])
+                    <a class="btn-floating halfway-fab waves-effect waves-light" href="{{url('MyAlbums/'.$Album->id)}}"><i class="material-icons green">library_music</i></a>
                           @endif
-                        @endforeach
+                       
                       @else
-                        <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">library_music</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">library_music</i></a>
                       @endif
                     @else <!-- Para los singles -->
                       @if($Album->transaction->count()!=0)
                         @foreach($Album->transaction as $t)
-                          @if($t->user_id==Auth::user()->id)
-                      <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('MySingles/'.$Album->id)}}">
+                          @if($t->user_id == Auth::user()->id)
+                      <a class="btn-floating halfway-fab waves-effect waves-light" href="{{ url('MySingles/'.$Album->id)}}">
                           <i class="material-icons green">music_note</i>
                             </a>
                           @endif

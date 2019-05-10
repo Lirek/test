@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Auth;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StatusApplys;
 use App\Mail\PromoterAssing;
+use DB;
+use Illuminate\Support\Facades\Crypt;
+use Hash;
+use Laracasts\Flash\Flash;
 
 
 //-------------Modelos del sistema-----------------------
@@ -31,12 +36,14 @@ use App\music_authors;
 use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
+
 //-----------------------------------------------------
 
 class PromoterController extends Controller
 {
     public function index() {
-      $promoter = Auth::guard('Promoter')->user()->id;
+      $id = Auth::guard('Promoter')->user()->id;
+      $promoter = Promoters::find($id);
       $aplyss = ApplysSellers::where('status','En Proceso')->count();
       $sellers = Seller::where('estatus','En Proceso')->count();
       $user = Seller::all();
@@ -56,10 +63,13 @@ class PromoterController extends Controller
       $tv = Tv::where('status','En Proceso')->count();
       $contenidoPendiente = $albums+$books+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tv;
       return view('promoter.home')
+              ->with('id',$id)
+              ->with('promoter',$promoter)
               ->with('sellers',$sellers)
               ->with('aplyss',$aplyss)
               ->with('content_total',$contenidoPendiente)
               ->with('TicketsPackage',$TicketsPackage);
+
       /*
       foreach ($user as $key1) {
         if ($key1->has('sagas')) {
@@ -119,102 +129,162 @@ class PromoterController extends Controller
 
     public function ShowSellers()
     {
-    		$sellers= Seller::where('promoter_id','=',Auth::guard('Promoter')->user()->id)->paginate(10);
-    	
-    		$acces_modules=SellersRoles::all();
+        $sellers= Seller::where('promoter_id','=',Auth::guard('Promoter')->user()->id)->paginate(10);
+      
+        $acces_modules=SellersRoles::all();
 
-    		return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
+        return view('promoter.Sellers')->with('sellers',$sellers)->with('acces_modules',$acces_modules);
     }
 
     //AJAX DEL PANEL DE PROVEEDORES----------------------------------------------------------------------------
 
-    	public function DeleteModule($id_seller,$id_module)
-   		{
-   			$seller= Seller::find($id_seller);
+      public function DeleteModule($id_seller,$id_module)
+      {
+        $seller= Seller::find($id_seller);
  
-   			$data = $seller->roles()->detach($id_module);
+        $data = $seller->roles()->detach($id_module);
 
-   		return response()->json($data);
-   		
-   		}
+      return response()->json($data);
+      
+      }
 
-   		public function AddModule(Request $request,$id)
-   		{
-   			$seller= Seller::find($id);
-   			$data = $seller->roles()->attach($request->acces);
+      public function AddModule(Request $request,$id)
+      {
+        $seller= Seller::find($id);
+        $data = $seller->roles()->attach($request->acces);
 
-   		return response()->json($data);
-   		
-   		}
+      return response()->json($data);
+      
+      }
 
-   		public function UpadteStatusSeller(Request $request,$id)
-   		{
-   			$seller= Seller::find($id);
-   			$seller->estatus=$request->status;
-   			$seller->save();
-   			$data = $seller;
+      public function UpadteStatusSeller(Request $request,$id)
+      {
+        $seller= Seller::find($id);
+        $seller->estatus=$request->status;
+        $seller->save();
+        $data = $seller;
 
-   		return response()->json($data);
-   		
-   		}
+      return response()->json($data);
+      
+      }
+
+      public function edit()  
+    {
+        $id = Auth::guard('Promoter')->user()->id;
+        $promoter = Promoters::find($id);
+    
+        return view('promoter.edit')->with('promoter', $promoter);
+    }
+
+     public function update(Request $request)
+    {
+        $id = Auth::guard('Promoter')->user()->id;
+        $promoter = Promoters::find($id);
+
+        $promoter->name_c = $request->name_c;
+        $promoter->phone_S = $request->phone_s;
+
+        $promoter->save();
+
+        Flash('Se han modificado sus datos con exito!')->success();
+        return redirect()->action('PromoterController@edit');
+    }
+  
+      public function changepassword(Request $request, $id)
+    {
+        //$promoter = Auth::guard('Promoter')->user()->id;
+        $promoter = Promoters::find($id);
+
+        $promoter->password = $request->password;
+        $oldpass = $request->oldpass;
+        $newpass = $request->newpass;
+        $confnewpass = $request->confnewpass;
+        $pass_encrypt = ($request->password);
+
+        if (password_verify($oldpass, $promoter->password))
+          { 
+        
+        if ($newpass == $confnewpass) {
+
+              $promoter->password = bcrypt($newpass);
+
+              $promoter->save();
+
+            Flash::success('Se ha modificado su contraseña con exito!')->success();
+            return redirect()->action('PromoterController@edit'); 
+                     
+        } 
+        
+        else 
+    
+          Flash::success('Su nueva contraseña ingresada no coincide con la verificación, Por favor intentelo de nuevo.')->success();
+            return redirect()->action('PromoterController@edit');
+
+          }
+
+        else 
+
+          Flash::success('Ha ingresado su contraseña antigua incorrectamente, por favor intentelo de nuevo.')->success();
+          return redirect()->action('PromoterController@edit');
+    }
 
 
     //---------------------------------------------------------------------------------------------------------
 
-   	public function ShowContent()
-   	{
-   		
-   	}
-
-
-   	public function ShowApplys()
+    public function ShowContent()
     {
-    		$applys= ApplysSellers::where('promoter_id','=',Auth::guard('Promoter')->user()->id)->paginate(10);
-    		
-    		return view('promoter.Applys')->with('applys',$applys);
-   	}
+      
+    }
+
+
+    public function ShowApplys()
+    {
+        $applys= ApplysSellers::where('promoter_id','=',Auth::guard('Promoter')->user()->id)->paginate(10);
+        
+        return view('promoter.Applys')->with('applys',$applys);
+    }
 
 //--------AJAX DE SOLICITUDES DE CUENTA-------------------------------------------------
-		public function StatusApllys(Request $request, $id)
-		{
-			$applys= ApplysSellers::find($id);
-			$applys->status = $request->status;
-			
-			if ($request->status == 'Aprobado') 
-			{
-			
-				  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    			$charactersLength = strlen($characters);
-    			$randomString = '';
-    		
-    					for ($i = 0; $i < 10; $i++) 
-       						{
-        						$randomString .= $characters[rand(0, $charactersLength - 1)];
-   					 		  }
-	
-				$applys->token= $randomString;
-			
-				$current = Carbon::now();
-	
-				$applys->expires_at= $current->addDays(7);
-				
-				$applys->save();
-				
-				Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
+    public function StatusApllys(Request $request, $id)
+    {
+      $applys= ApplysSellers::find($id);
+      $applys->status = $request->status;
+      
+      if ($request->status == 'Aprobado') 
+      {
+      
+          $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          $charactersLength = strlen($characters);
+          $randomString = '';
+        
+              for ($i = 0; $i < 10; $i++) 
+                  {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                  }
+  
+        $applys->token= $randomString;
+      
+        $current = Carbon::now();
+  
+        $applys->expires_at= $current->addDays(7);
+        
+        $applys->save();
+        
+        Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
 
-				return response()->json($applys);	
-			}
+        return response()->json($applys); 
+      }
           else
           {
             Mail::to($applys->email_c)->send(new StatusApplys($applys,$request->message));
             $applys->save();  
           }
-			
-	
-			
-		
-			return response()->json($applys);
-		}
+      
+  
+      
+    
+      return response()->json($applys);
+    }
 //--------------------------------------------------------------------------------------
 
 }

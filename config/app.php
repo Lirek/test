@@ -200,6 +200,9 @@ return [
 
         //Visualizacion de Errores
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+
+        // Permisos para las apis
+        Barryvdh\Cors\ServiceProvider::class,
        
 
     ],

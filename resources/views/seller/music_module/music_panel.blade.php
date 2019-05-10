@@ -84,7 +84,7 @@
                     <h4 class="titelgeneral"><i class="mdi mdi-library-music"></i> Mis canciones</h4>
                     @foreach($singles as $song)
                     <div class="col s12 m3">
-                        <div class="card" style="height: 450px">
+                        <div class="card" style="height: 460px">
                             <div class="card-image">
                                 <a href="{{ url('/show_song/'.$song->id) }}">
                                     @if($song->cover == NULL)  
@@ -102,13 +102,20 @@
                                 </div>
                                 <div class="col m12 ">
                                     <small><b>Estatus:</b> {{ $song->status }}</small>
-                                </div>  
-                                    <small><b>Artista:</b> {{$song->autors->name}}</small>
-                                <div class="">
+                                </div>
+                                  <small><b>Artista:</b> {{$song->autors->name}}</small>
+                              <!--  <div class="col m12">
                                     <audio id="player" class="">
                                         <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play"> 
                                     </audio>
-                                </div>                          
+                                </div>   -->
+                                
+                                <div class="col-sm-4 col-sm-offset-4 embed-responsive ">
+                                      <audio controls class="embed-responsive-item" style="max-width: 250px ;max-height: 40px; width:100%">
+                                          <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play">
+                                </audio>
+                              </div>
+</div>                       
                             </div>
                         </div>
                     </div>
