@@ -408,14 +408,18 @@
                 $(".otroCost").removeAttr("required");
             }
         }
-
         function agregarHTML() {
             var nuevoHTML = 
             "<div class='col s12'>"+
                 "<div class='col s6'>"+
-                    "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                    "<div class='file-field input-field'>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0'>"+
+                        "</div>"+
+                        "<div class='file-path-wrapper'>"+
+                            "<input class='file-path validate' type='text'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+
@@ -432,8 +436,10 @@
             "<div class='col s12'>"+
                 "<div class='col s6'>"+
                     "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+

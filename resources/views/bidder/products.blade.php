@@ -130,12 +130,6 @@
     						<i class="material-icons left">picture_as_pdf</i>
     						pdf
     					</a>
-    					<!--
-    					<a href="" class="waves-effect waves-light btn curvaBoton">
-    						<i class="material-icons left">picture_as_pdf</i>
-    						detalles del producto
-    					</a>
-    					-->
     				</div>
     			</div>
     		</div>

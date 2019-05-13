@@ -113,6 +113,34 @@ class AdminController extends Controller
    			return response()->json($data);
    		}
 
+      public function SongStatus(Request $request,$id)
+      {
+        $songs = Songs::find($id);
+
+        if ($request->status == 'Aprobado') {
+            $songs->status = 'Aprobado';
+            $songs->save();
+        } else {
+            $songs->status = 3;
+            $songs->save();
+        }
+         
+        $songs->save();
+        return response()->json($songs);
+      }
+
+      public function AdminAllStatus($id)
+      {
+        $albumsCancion = Songs::where('album', $id)->get();
+
+          foreach ($albumsCancion as $todo) 
+          {
+            $todo->status = 'Aprobado';
+            $todo->save();
+          }
+
+        return response()->json($albumsCancion);
+      }
 
    		public function AlbumStatus(Request $request,$id)
    		{
@@ -120,11 +148,7 @@ class AdminController extends Controller
         $message = $request->message;
         
         if ($request->status == 'Aprobado') {
-          foreach ($albums->songs as $track) 
-          {
-            $track->status = 'Aprobado';
-            $track->save();
-          }
+
             $albums->status = 1;
         } else {
             $rejection = new Rejection;
