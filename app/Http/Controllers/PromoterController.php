@@ -187,9 +187,9 @@ class PromoterController extends Controller
        if ($request->img_perf <> null) {
             $file = $request->file('img_perf');
             $name = 'img_perf_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '/images/producer/img_perf';
+            $path = public_path() . '/images/promoter/img_perf';
             $file->move($path, $name);
-            $promoter->img_perf ='/images/producer/img_perf/'.$name;
+            $promoter->img_perf ='/images/promoter/img_perf/'.$name;
         }
 
         $promoter->save();

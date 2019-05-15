@@ -190,13 +190,11 @@ h5.breadcrumbs-header {
                                     </div>
 
                                 {!! Form::close() !!}   
-                                <div class="col s12 m6 l4">
+   <div class="col s12 m6 l4">
      <div id="profile-card" class="card">
-
         <div class="card-image waves-block pink darken-3" style="height: 65px; padding-top: 9px;">
           <span class="collection-header center" style="color: white; font-size:30px;">Opciones de cuenta</span>
          </div>
-
           <div class="card-content">
             <a class="modal-trigger btn btn-primary indigo" href="#changepass">CAMBIAR CONTRASEÑA</a>
             <div id="changepass" class="modal">
@@ -253,18 +251,14 @@ h5.breadcrumbs-header {
             </div>
         </div>
     </div>
-
-        </div> 
+</div>  <!--CAMBIAR CONTRASEÑA -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>      
-             
-     
-
+                
 @endsection
-
 
 @section('js')
 <!-- Confirmación cambio de contraseñas-->
