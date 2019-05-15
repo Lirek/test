@@ -138,26 +138,25 @@
         <h5 class="center">
             <b class="blue-text">Restablecer contraseña de usuario</b>
         </h5><br>
-        <!--<form > -->
-            {{ csrf_field() }}
-            <div class="row">
+
+         {{ csrf_field() }}
+                    <div class="row">
                 <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
                     <i class="material-icons prefix blue-text">email</i>
                     <input type="email" id="email" name="email" class="autocomplete" value="{{ old('email') }}" required>
                     <label for="autocomplete-input">Correo</label>
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                    
+                        <span id ="validarCorreo" class="help-block" hidden >
+                            <strong>Ingrese una dirección de correo valida</strong>
                         </span>
-                    @endif
+                  
                 </div>
                 <div class="input-field col s12 center">
-                    <button class="btn curvaBoton waves-effect waves-light green" onclick="enviar()" >Enviar
+                    <button class="btn curvaBoton waves-effect waves-light green" onclick="sendEmailRecuperation()" >Enviar
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </div>
-      <!--  </form> -->
         </div>
     </div>
 </div>
@@ -536,7 +535,7 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script >
-function enviar() {
+function sendEmailRecuperation() {
       
 
         $.ajax({
@@ -548,18 +547,31 @@ function enviar() {
                 _token: $('input[name=_token]').val(),
             },
             success: function (result) {
-                
-                M.toast({html: 'Se ha enviado el mensaje de recuperación!' , 
-                displayLenght: 2500 ,
-              
-              }) ;
+                        
 
-           
-              
+                    if(result.error == "false"){
+                        
+                            
+                         M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!', displayLenght: 2000 
+            
+                  }) ;
+                            if( $('#validarCorreo').css('display') != 'none' ){
+                                
+                                  $('#validarCorreo').hide();
+
+                                }
+                        
+                    }else{
+                         $('#validarCorreo').show();
+                    
+                    }
+                    
+                  
+
+          
             },
             error: function (result) {
-              
-              alert("error");
+                console.log(result);
             }
             
             
@@ -567,16 +579,7 @@ function enviar() {
         });
         
         
-      
-      
-    
-      
-        
-        
-      
-        
-        
-    
+            
 }
   
 </script>
