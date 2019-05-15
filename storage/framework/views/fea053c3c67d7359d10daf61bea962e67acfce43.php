@@ -1,14 +1,13 @@
 <?php $__env->startSection('main'); ?>
 <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-<link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/image-profile.js')); ?>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 
     <style>
 @media  only screen and (min-width: 993px) {
@@ -111,8 +110,7 @@ h5.breadcrumbs-header {
                 <div class="col s12">
                     <div id="profile-card" class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="http://demo.geekslabs.com/materialize/v2.1/layout03/images/user-bg.jpg" style="height: 100%; height: 100%;" alt="user background">
-                        </div>
+                            <img class="activator" src="<?php echo e(asset('assets/img/foto_perfil_leipel.jpg')); ?>" style="height: 100%; height: 100%;" alt="user background">                        </div>
                         <div class="card-content">
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
 
@@ -193,7 +191,7 @@ h5.breadcrumbs-header {
 
                                     <!--cedula-->
                                     <div class="input-field col s12">
-                                        <i class="material-icons prefix blue-text">chrome_reader_mode</i>
+                                        <i class="material-icons prefix blue-text">assignment_ind</i>
                                         <?php if($user->num_doc): ?>
                                             <?php echo Form::text('ci',$user->num_doc,['class'=>'form-control','readonly','id'=>'ci']); ?>
 
@@ -202,18 +200,18 @@ h5.breadcrumbs-header {
 
                                             <div id="mensajeRuc"></div>
                                         <?php endif; ?>
-                                        <label  for="cedula">Cedula</label>
+                                        <label  for="cedula">Cédula</label>
                                     </div>
 
                                     <!-- imagen de RUC-->
                             <div class="form-group ">
                                 <?php if($user->verify == 0 || $user->verify == 2): ?>
                                 <div class="file-field input-field col s12">
-                                    <label for="img_doc" class="control-label">Cargar imagen de cedula</label>
+                                    <label for="img_doc" class="control-label">Cargar imagen de cédula</label>
                                     <br><br>
                                     <div id="mensajeDocumento"></div>
                                     <div class="btn blue">
-                                         <span>seleccione<i class="material-icons right">assignment_ind</i></span>
+                                         <span>seleccione<i class="material-icons right">chrome_reader_mode</i></span>
                                         <?php echo Form::file('img_doc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]); ?>
 
                                     </div>
@@ -226,7 +224,8 @@ h5.breadcrumbs-header {
                                     <?php if($user->img_doc): ?>
                                         <img id="preview_img_doc" src="<?php echo e(asset($user->img_doc)); ?>" name='ci' alt="your image" width="180" height="180" />
                                     <?php else: ?>
-                                    <a href="#"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>
+                                   <a href="#"><i class="material-icons prefix grey-text" id="preview_img_doc" alt="Avatar"  style="font-size: 180px;">chrome_reader_mode</i></a>
+                                    <!--<a href="#"><img src="<?php echo e(asset('sistem_images/DefaultUser.png')); ?>" id="preview_img_doc" alt="Avatar" height="180" width="180"></a>-->
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -298,7 +297,7 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
-                                        <span class="collection-header center" style="color: white">Contactame</span>
+                                        <span class="collection-header center" style="color: white">Patrocinador</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -316,12 +315,8 @@ h5.breadcrumbs-header {
                                             <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
                                         <?php endif; ?>
 
-                                        <?php echo e($user->email); ?>
-
-                                        <br>
-                                        <br>
-                                        <?php echo e($user->phone); ?>
-
+                                        <!-- <?php echo e($user->email); ?> -->
+                                       <!-- <?php echo e($user->phone); ?> -->
                                     </div>
             <?php echo Form::close(); ?>
 
@@ -335,10 +330,9 @@ h5.breadcrumbs-header {
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 
                     <ul>
-                    <blockquote>
                     <i class="material-icons prefix blue-text">edit</i>    
-                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>    
-                    </blockquote>
+                    <a class="modal-trigger" href="#modal1">CAMBIAR CONTRASEÑA</a>
+
                         <div id="modal1" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -401,10 +395,10 @@ h5.breadcrumbs-header {
                         </div>
                     </ul>
                     <ul>
-                            <blockquote>
+
                             <i class="material-icons prefix blue-text">delete_forever</i>
                             <a class="modal-trigger" href="#modal2">ELIMINAR CUENTA</a>
-                            </blockquote>
+
                             <div id="modal2" class="modal">
                             <div class="modal-content">
                             <div style="text-align: center;">
@@ -475,6 +469,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -509,6 +504,7 @@ h5.breadcrumbs-header {
         });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -632,8 +628,7 @@ h5.breadcrumbs-header {
   });
 </script> 
 
-    <script type="text/javascript">
-
+<script type="text/javascript"> //ERROR AQUI
     // Or with jQuery
     // Slider
     $(document).ready(function(){
@@ -647,7 +642,8 @@ h5.breadcrumbs-header {
         });
     });
        
-        $(document).ready(function (e){
+        //Esta función
+      /*  $(document).ready(function (e){
 
             if ($("#phone2").val() !=''){
                 var phone = $("#phone2").val();
@@ -665,8 +661,10 @@ h5.breadcrumbs-header {
                 $("#phone2").val($("#phone_s").intlTelInput("getNumber"));
             });
 
-        })
+        })*/
+
     </script>
+
     <script type="text/javascript">
 
         //---------------------------------------------------------------------------------------------------

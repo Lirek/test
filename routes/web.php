@@ -286,7 +286,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
     //Agregada 02/05/2019
     Route::get('EditProfilePromoter','PromoterController@edit');
     //Agregada 02/05/2019
-    Route::post('UpdateProfilePromoter','PromoterController@update');
+    Route::post('UpdateProfilePromoter','PromoterController@update')->name('promoters.update');
     //Agregada 02/05/2019
     Route::post('ChangePasswordPromoter/{id}','PromoterController@changepassword');
 
