@@ -2,7 +2,11 @@
     <li>
       <div class="user-view blue">
         <div class="container">
-          <a href="{{url('EditProfile')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+           @if(Auth::guard('Promoter')->user()->img_perf)
+              <a href="#"><img src="{{asset(Auth::guard('Promoter')->user()->img_perf)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+            @else
+                <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+            @endif
         </div>
         <div class="info-container">
           <div class="name">
