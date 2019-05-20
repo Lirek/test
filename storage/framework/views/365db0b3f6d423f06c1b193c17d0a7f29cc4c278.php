@@ -222,7 +222,7 @@
                     <div class="card-image">
                     <div class="slider">
                       <ul class="slides">    
-                      <?php for($i=0; $i < count($entrega->Producto->saveImg); $i++): ?> 
+                        <?php for($i=0; $i < count($entrega->Producto->saveImg); $i++): ?> 
                           <li>
                             <img src="<?php echo e(asset($entrega->Producto->saveImg[$i]->imagen_prod)); ?>" height="100%" width="100%">
                           </li>

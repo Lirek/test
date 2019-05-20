@@ -9,13 +9,25 @@
 						{{ csrf_field() }}
 						<div class="col s12">
 							<div class="col s6">
-								<div class="input-field">
-									<div id="image-preview" style="border:#bdc3c7 1px solid;">
-										<label for="image-upload" id="image-label">Imagen del producto</label>
-										<input type="file" name="imagen" accept="image/*" id="image-upload" oninvalid="this.setCustomValidity('Ingrese una imagen')" oninput="setCustomValidity('')" required="required">
-									</div>
-								</div>
-							</div>
+                                <div id="otro">
+                                    <div class="agregar">
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>seleccione<i class="material-icons right">insert_photo</i></span>
+                                                <input type="file" accept="image/*" class="validate" id="otraImagen" name="otraImagen[]">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    <br>
+                                    <br>
+                                    </div>
+                                    <a class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd" style="margin-top: 25%;">
+                                        <i class="material-icons"></i>Agregar otra imagen
+                                    </a>
+                                </div>
+                            </div>
 							<div class="col s6">
 								<div class="input-field">
 									<input type="text" class="validate count" id="name" name="name" required="required" autofocus="autofocus" data-length="191">
@@ -42,34 +54,6 @@
 										<input class="file-path validate" type="text">
 									</div>
 								</div>
-								<label class="control-label"> ¿Tiene un sub-producto? </label>
-								<br>
-								<label>
-									<input type="radio" id="opt-1" onclick="check();" name="sub-producto" value="Aprobado" class="with-gap">
-									<span>Si</span>
-								</label>
-								<label>
-									<input type="radio" id="opt-2" onclick="check();" name="sub-producto" value="Denegado" class="with-gap" checked>
-									<span>No</span>
-								</label>
-								<br>
-								<div id="otro" style="display: none;">
-									<div class="col 12">
-										<div class="col s6">
-											<div class="input-field">
-												<input type="number" class="validate otroCost" id="otroCost" name="otroCost[]" min="0">
-												<label for="otroCost">Costo</label>
-											</div>
-										</div>
-										<div class="col s6">
-											<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd" style="margin-top: 25%;">
-				                                <i class="material-icons"></i>Agregar otro
-				                            </a>
-										</div>
-									</div>
-									<div class="agregar">
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="col s12">
@@ -82,6 +66,34 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="misFotos" class="modal">
+    <div class="modal-content center">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Fotos del producto</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                <div class="row">
+                  <table class="responsive-table" id="todasLasfotos">
+                    <thead>
+                      <tr>
+                        <th><i class="material-icons"></i>Foto</th>
+                      </tr>
+                    </thead>
+                    <tbody id="fotostabla">
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
+        </div>
+    </div>
+</div>
 
 	<div class="modal" id="cambiarEstatus">
 		<div class="modal-content">
@@ -137,16 +149,26 @@
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
 						<div class="col s12">
 							<div class="col s6">
-								<div class="input-field">
-									<div id="image-preview_u" style="border:#bdc3c7 1px solid;">
-										<label for="image-upload_u" id="image-label_u">Imagen del producto</label>
-										<input type="file" name="imagen" accept="image/*" id="image-upload_u" oninvalid="this.setCustomValidity('Ingrese una imagen')" oninput="setCustomValidity('')">
-									</div>
-								</div>
-							</div>
+                                <div id="otro">
+                                    <div class="agregar">
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>seleccione<i class="material-icons right">insert_photo</i></span>
+                                                <input type="file" accept="image/*" class="validate" id="otraImagen" name="otraImagen[]">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    <br>
+                                    <br>
+                                    </div>
+                                    <a class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd" style="margin-top: 25%;">
+                                        <i class="material-icons"></i>Agregar otra imagen
+                                    </a>
+                                </div>
+                            </div>
 							<div class="col s6">
-								<label for="">Imagen actual:</label>
-								<img src="" id="img_u" class="materialboxed">
 								<div class="input-field">
 									<input type="text" class="count" id="name_u" name="name" value="" required="required" autofocus="autofocus" data-length="191" placeholder="">
 									<label for="name">Nombre del producto</label>
@@ -177,13 +199,6 @@
 									<div class="file-path-wrapper">
 										<input class="file-path validate" type="text">
 									</div>
-								</div>
-								<div class="col s12">
-									<a href="javascript:void(0);" class="btn curvaBoton waves-effect waves-light green add_button_u">
-		                                <i class="material-icons"></i>Agregar otro
-		                            </a>
-								</div>
-								<div class="agregar_u">
 								</div>
 							</div>
 						</div>

@@ -390,10 +390,11 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/admin_songs/{id}','AdminController@AlbumSongs');
                 Route::post('/admin_album/{id}','AdminController@AlbumStatus');
 
+                Route::get('/adminAllsong/{id}','AdminController@AdminAllStatus');
+                Route::post('/adminSong/{id}','AdminController@SongStatus');
                 Route::get('/admin_single','AdminController@ShowSingles');
                 Route::get('SingleData/{status}','AdminController@SinglesDataTable');
                 Route::post('/admin_singles/{id}','AdminController@SingleStatus');
-
            //---------------------------------------------------------------------
 
            //---------------------------ETIQUETAS-----------------------------------
@@ -548,6 +549,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('updateProduct','SuperAdminController@updateProduct');
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
+            Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
             
         //------------------------------- Rutas para los productos-------------------------------
 

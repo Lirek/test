@@ -125,14 +125,14 @@
                 dataType: "json",
                 success: function (data) {
                     swal.close();
-                    console.log(data);
                     $.each(data,function(i,info) {
-                    	if (info.imagen_prod!=null) {
+
                     		var imagen_prod = 
-                    		"<img class='materialboxed' src='{!!asset('"+info.imagen_prod+"')!!}' style='width:70px;height:70px;' alt=imagen_prod>";
-                    	} else {
-                    		var imagen_prod = "No tiene imagen";
-                    	}
+                            "<a class='btn-large modal-trigger blue' value='"+info.id+"' href='#misFotos' id='fotos'>"+
+                                "<i class='material-icons left'>image</i>"+
+                                "Ver Foto"+
+                            "</a>"
+
                     	if (info.pdf_prod!=null) {
                     		var pdf_prod = 
                     		"<a class='btn-large blue' id='pdf_prod' href='{!!asset('"+info.pdf_prod+"')!!}' target='_blank'>"+
@@ -177,25 +177,58 @@
                     .then((recarga) => {
                         location.reload();
                     });
-                    console.log(data);
                 }
             });
 		}
 
-		$(document).ready(function(){
-			$('input.count').characterCounter();
-			productos("En Revision");
+    // Listar las fotos
+        $(document).on('click', '#fotos', function(e) {
+            var id = $(this).attr("value");
+            var url = "{!! url('fotosProductoBack') !!}/"+id;
+            $("#fotostabla").empty();
+                e.preventDefault();
+                $.ajax({
+                    url: url, 
+                    type:'get', 
+                    dataType:'json',
+                    success: function(datos){
+                        $.each(datos, function(i,info){
+
+                        if (info.imagen_prod ) {
+                            var portada = 
+                            "<img class='materialboxed' width='300' height='400' src='{!!asset('"+info.imagen_prod+"')!!}'";
+                        } 
+
+                        var filas = "<tr><td>"+
+                        portada+"</td></tr>";
+                        $("#fotostabla").append(filas);
+
+                        });
+                    },
+                    error: function (datos) {
+                    console.log(datos);
+                    swal('Existe un error en su solicitud','','error')
+                    .then((recarga) => {
+                        location.reload();
+                    });
+                }
+            });
+        });
+    // Listar las fotos
+
+        $(document).ready(function(){
+            $('input.count').characterCounter();
+            productos("En Revision");
 
             var agregar = $('.add_button');
             var wrapper = $('.agregar');
             agregar.click(function(){ 
-                console.log('agregar');
                 wrapper.append(agregarHTML());
             });
 
             var agregar_u = $('.add_button_u');
             var wrapper_u = $('.agregar_u');
-            agregar_u.click(function(){
+            agregar_u.click(function(){ 
                 wrapper_u.append(agregarHTML());
             });
 
@@ -204,7 +237,7 @@
                 var dos = $(uno).parent('div');
                 dos.remove();
             });
-		});
+        });
 		
 		$(document).on('click', '#EnRevision', function() {
 			productos("En Revision");
@@ -236,7 +269,6 @@
                 success: function(data) {
                     swal.close();
                     $.each(data,function(i,info) {
-                        console.log(data);
                         $("#idUpdate").val(producto);
                         $("#name_u").val(info.name);
                         $("#description_u").val(info.description);
@@ -307,7 +339,6 @@
 				var s = $("input[type='radio'][name=status]:checked").val();
                 var message = $('#razon').val();
                 var url = "{{url('statusProduct/')}}/"+producto;
-                console.log(url,s,message);
                 e.preventDefault();
                 var gif = "{{ asset('/sistem_images/loading.gif') }}";
                 swal({
@@ -327,14 +358,12 @@
                         reason: message
                     },
                     success: function (result) {
-                        console.log(result);
                         swal('Producto '+s+' con exito','','success')
                         .then((recarga) => {
                             location.reload();
                         });
                     },
                     error: function (result) {
-                        console.log(result);
                         swal('Existe un error en su solicitud','','error')
                         .then((recarga) => {
                             location.reload();
@@ -346,10 +375,8 @@
 
 		$(document).on('click', '#rejectProduct', function(e) {
             var producto = $(this).attr("value");
-            console.log(producto);
             var modulo = "Products";
             var url = "{!! url('viewRejection/"+producto+"/"+modulo+"') !!}";
-            console.log(url);
             $("#negaciones").empty();
             e.preventDefault();
             $.ajax({
@@ -357,7 +384,6 @@
                 type:'get', 
                 dataType:'json',
                 success: function(datos){
-                    console.log(datos);
                     $('#totalNegaciones').show();
                     $('#totalNegaciones').text('Tiene un total de rechazos de: '+datos.length);
                     $.each(datos, function(i,info){
@@ -368,7 +394,6 @@
                     });
                 },
                 error: function (datos) {
-                    console.log(datos);
                     swal('Existe un error en su solicitud','','error')
                     .then((recarga) => {
                         location.reload();
@@ -399,11 +424,9 @@
 
         function check() {
             if ($("#opt-1").is(':checked')) {
-                console.log("si");
                 $("#otro").show();
                 $(".otroCost").attr("required","required");
             } else {
-                console.log("no");
                 $("#otro").hide();
                 $(".otroCost").removeAttr("required");
             }
@@ -413,9 +436,14 @@
             var nuevoHTML = 
             "<div class='col s12'>"+
                 "<div class='col s6'>"+
-                    "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                    "<div class='file-field input-field'>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0'>"+
+                        "</div>"+
+                        "<div class='file-path-wrapper'>"+
+                            "<input class='file-path validate' type='text'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+
@@ -430,10 +458,14 @@
         function otrosHTML(id,cost) {
             var nuevoHTML = 
             "<div class='col s12'>"+
-                "<div class='col s6'>"+
-                    "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                "<div class='file-field input-field'>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0'>"+
+                        "</div>"+
+                        "<div class='file-path-wrapper'>"+
+                            "<input class='file-path validate' type='text'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+

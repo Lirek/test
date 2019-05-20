@@ -342,11 +342,13 @@
         function otrosHTML(id,cost) {
             var nuevoHTML = 
             "<div class='col s12'>"+
-                "<div class='col s6'>"+
-                    "<div class='input-field'>"+
+                "<div class='file-field input-field'>"+
                         "<div class='btn amber'>"+
                             "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
-                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0'>"+
+                        "</div>"+
+                        "<div class='file-path-wrapper'>"+
+                            "<input class='file-path validate' type='text'>"+
                         "</div>"+
                     "</div>"+
                 "</div>"+

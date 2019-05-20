@@ -335,8 +335,9 @@ class SuperAdminController extends Controller
   }
 
   public function deleteProduct($id){
+    $adjunto = Products::deleteAdjunto($id);
     $producto = Products::deleteProducto($id);
-    return response()->json($producto);
+    return response()->json([$adjunto,$producto]);
   }
 
   public function statusProduct(Request $request, $id) {
@@ -352,6 +353,11 @@ class SuperAdminController extends Controller
       Mail::to($producto->Bidder->email)->send(new StatusProducts($producto,$request->reason));
     }
     return response()->json($producto);
+  }
+
+  public function photos($idPhoto){
+      $foto = Products::myFotos($idPhoto);
+      return response()->json($foto);
   }
   //------------------------------- Productos-------------------------------
 }

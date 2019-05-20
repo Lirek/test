@@ -84,10 +84,10 @@ class AdminController extends Controller
 --------------------- FUNCIONES DE APROBAR ALBUM ----------------------
 ---------------------------------------------------------------
 */
-    	public function ShowAlbums()
-    	{	
-    		  return view('promoter.ContentModules.MainContent.Albums');
-   		}
+public function ShowAlbums()
+      { 
+          return view('promoter.ContentModules.MainContent.Albums');
+      }
 
       public function AlbumsDataTable($status)
       {    
@@ -106,25 +106,49 @@ class AdminController extends Controller
         return view('admin.AllAlbums')->with('albums',$albums);
       }
 
-   		public function AlbumSongs($id)
-   		{
-   			$albums= Albums::find($id);
-   			$data= $albums->songs()->get();
-   			return response()->json($data);
-   		}
+      public function AlbumSongs($id)
+      {
+        $albums= Albums::find($id);
+        $data= $albums->songs()->get();
+        return response()->json($data);
+      }
 
+      public function SongStatus(Request $request,$id)
+      {
+        $songs = Songs::find($id);
 
-   		public function AlbumStatus(Request $request,$id)
-   		{
-   			$albums = Albums::find($id);
+        if ($request->status == 'Aprobado') {
+            $songs->status = 'Aprobado';
+            $songs->save();
+        } else {
+            $songs->status = 3;
+            $songs->save();
+        }
+         
+        $songs->save();
+        return response()->json($songs);
+      }
+
+      public function AdminAllStatus($id)
+      {
+        $albumsCancion = Songs::where('album', $id)->get();
+
+          foreach ($albumsCancion as $todo) 
+          {
+            $todo->status = 'Aprobado';
+            $todo->save();
+          }
+
+        return response()->json($albumsCancion);
+      }
+
+      public function AlbumStatus(Request $request,$id)
+      {
+        $albums = Albums::find($id);
         $message = $request->message;
         
         if ($request->status == 'Aprobado') {
-          foreach ($albums->songs as $track) 
-          {
-            $track->status = 'Aprobado';
-            $track->save();
-          }
+
             $albums->status = 1;
         } else {
             $rejection = new Rejection;
@@ -137,8 +161,8 @@ class AdminController extends Controller
          
         $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$message);
         $albums->save();
-   			return response()->json($albums);
-   		}
+        return response()->json($albums);
+      }
 /*------------------------------------------------------------------------------------ ---------------------FUNCIONES DE SINGLE------------------------------
 -----------------------------------------------------------------------
 */
