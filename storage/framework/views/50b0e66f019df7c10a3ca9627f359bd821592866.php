@@ -184,11 +184,20 @@
 		$(document).ready(function(){
 			$('input.count').characterCounter();
 			productos("En Revision");
+
             var agregar = $('.add_button');
             var wrapper = $('.agregar');
             agregar.click(function(){ 
+                console.log('agregar');
                 wrapper.append(agregarHTML());
             });
+
+            var agregar_u = $('.add_button_u');
+            var wrapper_u = $('.agregar_u');
+            agregar_u.click(function(){
+                wrapper_u.append(agregarHTML());
+            });
+
             $(document).on('click','.eliminar', function(){
                 var uno = $(this).parent('div');
                 var dos = $(uno).parent('div');
@@ -231,6 +240,7 @@
                         $("#name_u").val(info.name);
                         $("#description_u").val(info.description);
                         $("#cost_u").val(info.cost);
+                        $("#amount_u").val(info.amount);
                         $("#img_u").attr('src',info.imagen_prod);
                         $("#pdf_prod_u").attr('href',info.pdf_prod);
                         var wrapper = $('.agregar_u');
@@ -397,14 +407,18 @@
                 $(".otroCost").removeAttr("required");
             }
         }
-
         function agregarHTML() {
             var nuevoHTML = 
             "<div class='col s12'>"+
                 "<div class='col s6'>"+
-                    "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                    "<div class='file-field input-field'>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0'>"+
+                        "</div>"+
+                        "<div class='file-path-wrapper'>"+
+                            "<input class='file-path validate' type='text'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+
@@ -421,8 +435,10 @@
             "<div class='col s12'>"+
                 "<div class='col s6'>"+
                     "<div class='input-field'>"+
-                        "<input type='number' class='validate otroCost' id='otroCost' name='otroCost[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
-                        "<label for='otroCost'>Costo</label>"+
+                        "<div class='btn blue'>"+
+                            "<span>seleccione<i class='material-icons right'>insert_photo</i></span>"+
+                            "<input type='file' accept='image/*' class='validate otraImagen' id='otraImagen' name='otraImagen[]' required='required' min='0' placeholder=' ' value='"+cost+"'>"+
+                        "</div>"+
                     "</div>"+
                 "</div>"+
                 "<div class='col s6'>"+

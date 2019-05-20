@@ -134,15 +134,11 @@
 <div class="row">
     <div class="col s12 m8 offset-m2">
         <div class="card-panel curva">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
+          
         <h5 class="center">
             <b class="blue-text">Restablecer contraseña de usuario</b>
         </h5><br>
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+        <!--<form > -->
             {{ csrf_field() }}
             <div class="row">
                 <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -156,12 +152,12 @@
                     @endif
                 </div>
                 <div class="input-field col s12 center">
-                    <button class="btn curvaBoton waves-effect waves-light green" type="submit" >Enviar
+                    <button class="btn curvaBoton waves-effect waves-light green" onclick="enviar()" >Enviar
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </div>
-        </form>
+      <!--  </form> -->
         </div>
     </div>
 </div>
@@ -539,8 +535,50 @@
 <script src="{{asset('js/email.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script type="text/javascript">
+<script >
+function enviar() {
+      
 
+        $.ajax({
+            url:"{{url('/password/email')}}", 
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                email : $('#email').val(),
+                _token: $('input[name=_token]').val(),
+            },
+            success: function (result) {
+                
+                M.toast({html: 'Se ha enviado el mensaje de recuperación!' , 
+                displayLenght: 2500 ,
+              
+              }) ;
+
+           
+              
+            },
+            error: function (result) {
+              
+              alert("error");
+            }
+            
+            
+            
+        });
+        
+        
+      
+      
+    
+      
+        
+        
+      
+        
+        
+    
+}
+  
 </script>
 
 @if (count($errors) > 0)

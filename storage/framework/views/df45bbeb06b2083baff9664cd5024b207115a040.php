@@ -41,6 +41,7 @@
           <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
             <i class="small material-icons">group</i>
             Cliente
+            <span class="new badge orange darken-1" data-badge-caption="" id="cliente" style="display: none; background-color: #d9534f;"></span>
             <i class="material-icons right">expand_more</i>
           </a>
           <div class="collapsible-body">
@@ -71,6 +72,7 @@
           <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
             <i class="small material-icons">assignment_ind</i>
             Proveedor
+            <span class="new badge orange darken-1" data-badge-caption="" id="proveedor" style="display: none; background-color: #d9534f;"></span>
             <i class="material-icons right">expand_more</i>
           </a>
           <div class="collapsible-body">
@@ -124,9 +126,46 @@
         </a>
       </li>
       <li>
-        <a href="<?php echo e(url('Products')); ?>">
-          <i class="small material-icons">store</i>
-          Productos
+        <ul class= "collapsible collapsible-accordion">
+          <li>
+            <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
+              <i class="small material-icons">store</i>
+                Beneficios
+                <span class="new badge orange darken-1" data-badge-caption="" id="beneficio" style="display: none; background-color: #d9534f;"></span>
+              <i class="material-icons right">expand_more</i>
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="<?php echo e(url('admin_bidder_payments')); ?>" class="waves-effect waves-blue">
+                    <i class="small material-icons">payment</i>
+                    Pagos
+                    <span class="new badge orange darken-1" data-badge-caption="" id="badgePagosB" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="<?php echo e(url('Products')); ?>">
+                    <i class="small material-icons">shopping_basket</i>
+                    Productos
+                    <span class="new badge orange darken-1" data-badge-caption="" id="badgeProductos" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="<?php echo e(url('Bidder')); ?>">
+                    <i class="small material-icons">group</i>
+                    Aliados
+                    <span class="new badge orange darken-1" data-badge-caption="" id="badgeOfertantes" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="<?php echo e(url('conversiones')); ?>" class="waves-effect waves-blue">
+          <i class="small material-icons">attach_money</i>
+          Conversiones
         </a>
       </li>
       <li>
