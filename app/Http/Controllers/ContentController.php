@@ -41,19 +41,32 @@ class ContentController extends Controller
         $Singles = Songs::where('album',null)->where('status','Aprobado')->get();
         $Album = Albums::where('status','Aprobado')->take(6)->get();
 
+        $user= User::find(Auth::user()->id);
+
+        $AlbumAdd=user::contenidos_add($user, 'album_id');
+        $SingleAdd=user::contenidos_add($user, 'song_id');
+
+        
         $Albums = collect();
-        foreach ($Singles as $single) {
-            $Albums->push($single);
-            $Albums->each(function($Albums){
-                $Albums->transaction;
-            });
-        }
         foreach ($Album as $album){
+            $adquirido=(in_array($album->id, $AlbumAdd)) ? true : false;
             $Albums->push($album);
+            $album->type='album';
+            $album->adquirido = $adquirido; 
             $Albums->each(function($Albums){
                 $Albums->Transactions;
             });
         }
+
+       
+         foreach ($Singles as $single) {
+            $adquirido=(in_array($single->id, $SingleAdd)) ? true : false;
+            $single->type='single';
+            $single->adquirido = $adquirido;
+            $Albums->push($single);
+        }
+
+        
         //dd($Albums);
 
         return view('contents.music')->with('MusicAuthors',$MusicAuthors)->with('Singles',$Singles)->with('Albums',$Albums->sortByDesc('created_at'));
@@ -83,20 +96,35 @@ class ContentController extends Controller
     public function ShowProfileArtist(Request $request)
     {
         $Art=music_authors::where('name','=',$request->seach)->first();
+        $Album = Albums::where('status','Aprobado')->take(6)->get();
+        $user= User::find(Auth::user()->id);
+        $AlbumAdd=user::contenidos_add($user, 'album_id');
+        $Singles = Songs::where('album',null)->where('status','Aprobado')->get();
+        $SingleAdd=user::contenidos_add($user, 'song_id');
         
         //$Artist=$Albums->merge($Song);
         if($Art)
         {
-           $Albums=Albums::where('seller_id','=',$Art->seller_id)->where('status','=','Aprobado')->get();
+            $Albums=Albums::where('seller_id','=',$Art->seller_id)->where('status','=','Aprobado')->get();
            $Song=Songs::where('seller_id','=',$Art->seller_id)->where('album','=',NULL)->where('status','=','Aprobado')->get();
            $Artist = collect();
             foreach ($Song as $single) {
-                $Artist->push($single);
+                $adquirido=(in_array($single->id, $SingleAdd)) ? true : false;
+            $single->type='single';
+            $single->adquirido = $adquirido;
+            $Artist->push($single);
             }
             foreach ($Albums as $album){
-                $Artist->push($album);
+                $adquirido=(in_array($album->id, $AlbumAdd)) ? true : false;
+            $Artist->push($album);
+            $album->type='album';
+            $album->adquirido = $adquirido; 
+            $Albums->each(function($Albums){
+                $Albums->Transactions;
+            });
             }
             return view('contents.music')->with('Albums',$Artist);
+
         }
         else
         {
@@ -105,15 +133,25 @@ class ContentController extends Controller
             $Song=Songs::where('song_name','=',$request->seach)->get();
             $Artist = collect();
             foreach ($Song as $single) {
-                $Artist->push($single);
+            $adquirido=(in_array($single->id, $SingleAdd)) ? true : false;
+            $single->type='single';
+            $single->adquirido = $adquirido;
+            $Artist->push($single);
             }
             foreach ($Albums as $album){
-                $Artist->push($album);
+            $adquirido=(in_array($album->id, $AlbumAdd)) ? true : false;
+            $Artist->push($album);
+            $album->type='album';
+            $album->adquirido = $adquirido; 
+            $Albums->each(function($Albums){
+                $Albums->Transactions;
+            });
             }
 
              return view('contents.music')->with('Albums',$Artist);
         }
     }
+
     public function seachArtist(){
         $query=Input::get('term');
         $Artist=music_authors::where('name','LIKE','%'.$query.'%')->get();
@@ -169,21 +207,31 @@ class ContentController extends Controller
     $Books= Book::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
     $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
 
+    $user= User::find(Auth::user()->id);
+
+    $BooksAdd=user::contenidos_add($user, 'books_id');
+    $MegazinesAdd=user::contenidos_add($user, 'megazines_id');
+        
         $Lecturas = collect();
         foreach ($Books as $books) {
+            $adquirido=(in_array($books->id, $BooksAdd)) ? true : false;
             $Lecturas->push($books);
+            $books->type='books';
+            $books->adquirido = $adquirido; 
             $Lecturas->each(function($Lecturas){
                 $Lecturas->transaction;
             });
         }
         foreach ($Megazines as $megazines){
+            $adquirido=(in_array($megazines->id, $MegazinesAdd)) ? true : false;
             $Lecturas->push($megazines);
+            $megazines->type='megazines';
+            $megazines->adquirido = $adquirido; 
             $Lecturas->each(function($Lecturas){
                 $Lecturas->Transactions;
             });
         }
-
-        //dd($Lecturas);
+        
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $col = new Collection($Lecturas);
         $perPage = 12;
@@ -263,20 +311,58 @@ class ContentController extends Controller
         return view('contents.AuthorProfile')->with('Author',$Author)->with('Books',$Books);
     }
 
-    public function ShowProfileAuthor(Request $request)
-    {
+    public function ShowProfileAuthor(Request $request) {
+
+    $Books=Book::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+    $user=User::find(Auth::user()->id);
+    $BooksAdd=user::contenidos_add($user, 'books_id');
+    $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+    $MegazinesAdd=user::contenidos_add($user, 'megazines_id');
+
         if ($request->type=='book'){
         $Books = Book::where('status','=','Aprobado')->where('title','=',$request->seach)->paginate(1);
+
+        $Lecturas = collect();
+        foreach ($Books as $books) {
+            $adquirido=(in_array($books->id, $BooksAdd)) ? true : false;
+            $Lecturas->push($books);
+            $books->type='books';
+            $books->adquirido = $adquirido; 
+            $Lecturas->each(function($Lecturas){
+                $Lecturas->transaction;
+            });
+        }
+
         return view('contents.Readings')->with('Lecturas',$Books);
         }
+
         elseif ($request->type=='author'){
             $Artist=BookAuthor::where('full_name','=',$request->seach)->get();
+
         foreach ($Artist as $key) {
             $Books = Book::where('status','=','Aprobado')->where('author_id','=',$key->id)->paginate(8);
+            foreach ($Books as $books) {
+                $adquirido=(in_array($books->id, $BooksAdd)) ? true : false;
+                $books->type='books';
+                $books->adquirido = $adquirido;
+            }
+
             return view('contents.Readings')->with('Lecturas',$Books);
         }
+
         }elseif ($request->type=='megazines'){
         $Megazines= Megazines::where('status','=','Aprobado')->orderBy('id', 'DESC')->where('title','=',$request->seach)->paginate(8);
+        $Lecturas = collect();
+        foreach ($Megazines as $megazines){
+            $adquirido=(in_array($megazines->id, $MegazinesAdd)) ? true : false;
+            $Lecturas->push($megazines);
+            $megazines->type='megazines';
+            $megazines->adquirido = $adquirido; 
+            $Lecturas->each(function($Lecturas){
+                $Lecturas->Transactions;
+            });
+        }
+
         return view('contents.Readings')->with('Lecturas',$Megazines);
         }
     }
@@ -379,6 +465,7 @@ class ContentController extends Controller
         
         $MovieAdd=user::contenidos_add($user, 'movies_id');
         
+        $SerieAdd=user::contenidos_add($user, 'series_id');
       #  dd($MovieAdd);
 
 
@@ -393,8 +480,12 @@ class ContentController extends Controller
                 $Cine->transaction;
             });
         }
+
         foreach ($Series as $serie){
+            $adquirido=(in_array($serie->id, $SerieAdd)) ? true : false;
+
             $serie->type='serie';
+            $serie->adquirido = $adquirido; 
             $Cine->push($serie);
         }
 
@@ -444,13 +535,21 @@ class ContentController extends Controller
 
     public function ShowMovieSeach(Request $request){
 
+        $Movies= Movie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+        $Series= Serie::where('status','=','Aprobado')->orderBy('id', 'DESC')->get();
+        $user= User::find(Auth::user()->id);
+        $MovieAdd=user::contenidos_add($user, 'movies_id');
+        $SerieAdd=user::contenidos_add($user, 'series_id');
+
         if ($request->type=='serie'){
                 $Series = Serie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
 
                 $Cine = collect();
-                foreach ($Series as $series) {
-                     $series->type='serie';
-                     $Cine->push($series);
+                foreach ($Series as $serie) {
+                $adquirido=(in_array($serie->id, $SerieAdd)) ? true : false;
+                $serie->type='serie';
+                $serie->adquirido = $adquirido; 
+                $Cine->push($serie);
 
                 }
 
@@ -462,12 +561,17 @@ class ContentController extends Controller
                 return view('contents.Movies')->with('Cine',$Cine);
         }
         elseif ($request->type=='movie'){
-                $Movies= Movie::where('status','=','Aprobado')->where('title','=',$request->seach)->orderBy('id', 'DESC')->get();
-                $Cine = collect();
-                foreach ($Movies as $movies) {
-                     $movies->type='movie';
-                     $Cine->push($movies);
-                }
+            $Cine = collect();
+            foreach ($Movies as $movie) {
+            $adquirido=(in_array($movie->id, $MovieAdd)) ? true : false;
+            $movie->type='movie';
+            $movie->adquirido = $adquirido; 
+            $Cine->push($movie);
+            $Cine->each(function($Cine){
+                $Cine->transaction;
+            });
+        }
+
                 $currentPage = LengthAwarePaginator::resolveCurrentPage();
                 $col = new Collection($Cine);
                 $perPage = 12;
