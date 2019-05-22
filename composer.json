@@ -8,6 +8,8 @@
         "php": ">=5.6.4",
         "acekyd/laravelmp3": "^1.0",
         "arcanedev/log-viewer": "4.3.*",
+        "barryvdh/laravel-cors": "^0.11.0",
+        "guzzlehttp/guzzle": "^6.3",
         "howtomakeaturn/pdfinfo": "1.*",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.4.*",
@@ -18,6 +20,7 @@
         "optimus/heimdal": "~1.0",
         "simplesoftwareio/simple-qrcode": "~2",
         "spatie/laravel-fractal": "4.0",
+        "torann/geoip": "^1.0",
         "tymon/jwt-auth": "^1.0.0-beta.3@dev",
         "wapmorgan/mp3info": "^0.0.2",
         "yajra/laravel-datatables-oracle": "~8.0"

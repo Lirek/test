@@ -184,6 +184,14 @@ class PromoterController extends Controller
         $promoter->name_c = $request->name_c;
         $promoter->phone_S = $request->phone_s;
 
+       if ($request->img_perf <> null) {
+            $file = $request->file('img_perf');
+            $name = 'img_perf_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '/images/promoter/img_perf';
+            $file->move($path, $name);
+            $promoter->img_perf ='/images/promoter/img_perf/'.$name;
+        }
+
         $promoter->save();
 
         Flash('Se han modificado sus datos con exito!')->success();

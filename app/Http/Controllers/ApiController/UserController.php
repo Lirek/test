@@ -60,16 +60,39 @@ use Carbon\Carbon; //
 use App\Mail\TransactionApproved; //
 use Illuminate\Support\Facades\Mail; //
 
+use QrCode;
+
 class UserController extends Controller
 {
     public function UserData() {
-        $user=auth()->user();
-
+        /*
         $Json = Fractal::create()
             ->item($user)
             ->transformWith(new UserTransformer)
             ->toArray();
         return Response::json($Json);
+        */
+        try {
+            $user = auth()->user();
+            $data = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'type_doc' => $user->type_doc,
+                'num_doc' => $user->num_doc,
+                'genere' => $user->type,
+                'alias' => $user->alias,
+                'img_perf' => $user->img_perf,
+                'tickets' => $user->credito,
+                'points' => $user->points,
+                'pending_points' => $user->pending_points,
+                'verify' => $user->verify
+            ];
+            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>401],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
     }
 
     public function WebsUser() {
