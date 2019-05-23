@@ -83,10 +83,10 @@ class AdminController extends Controller
 --------------------- FUNCIONES DE APROBAR ALBUM ----------------------
 ---------------------------------------------------------------
 */
-    	public function ShowAlbums()
-    	{	
-    		  return view('promoter.ContentModules.MainContent.Albums');
-   		}
+public function ShowAlbums()
+      { 
+          return view('promoter.ContentModules.MainContent.Albums');
+      }
 
       public function AlbumsDataTable($status)
       {    
@@ -105,12 +105,12 @@ class AdminController extends Controller
         return view('admin.AllAlbums')->with('albums',$albums);
       }
 
-   		public function AlbumSongs($id)
-   		{
-   			$albums= Albums::find($id);
-   			$data= $albums->songs()->get();
-   			return response()->json($data);
-   		}
+      public function AlbumSongs($id)
+      {
+        $albums= Albums::find($id);
+        $data= $albums->songs()->get();
+        return response()->json($data);
+      }
 
       public function SongStatus(Request $request,$id)
       {
@@ -141,9 +141,9 @@ class AdminController extends Controller
         return response()->json($albumsCancion);
       }
 
-   		public function AlbumStatus(Request $request,$id)
-   		{
-   			$albums = Albums::find($id);
+      public function AlbumStatus(Request $request,$id)
+      {
+        $albums = Albums::find($id);
         $message = $request->message;
         
         if ($request->status == 'Aprobado') {
@@ -160,8 +160,8 @@ class AdminController extends Controller
          
         $this->SendEmails($request->status,$albums->name_alb,$albums->Seller->email,$message);
         $albums->save();
-   			return response()->json($albums);
-   		}
+        return response()->json($albums);
+      }
 /*------------------------------------------------------------------------------------ ---------------------FUNCIONES DE SINGLE------------------------------
 -----------------------------------------------------------------------
 */

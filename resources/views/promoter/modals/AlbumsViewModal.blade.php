@@ -39,8 +39,9 @@
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
         </div>
-    </div>
 </div>
+</div>
+
 
 <div id="song" class="modal">
     <div class="modal-content center blue-text">
@@ -78,7 +79,6 @@
         </div>
   </div>
 </div>
-
 
 <div id="misCanciones" class="modal">
     <div class="modal-content center">
