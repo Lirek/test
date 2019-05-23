@@ -50,54 +50,59 @@
                 <div class="row">
                   @if($Cine->count() != 0 )
                     @foreach($Cine as $cine)
-
                     <div class="col s12 m3">
                       <div class="card" style="height: 430px">
                         <div class="card-image">
                            @if($cine->type=='movie' )
-                              @if($cine->Transactions->count()!=0)
-                              @foreach($cine->Transactions as $t) 
-                              @if($t->user_id==Auth::user()->id)
+                            @if($cine['adquirido'])
+                             <!-- Comprado -->
                               <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
                              <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('PlayMovie/'.$cine->id)}}" id="modal-confir.{{$cine->id}}"><i class="material-icons green">movie</i></a>
-                              @endif
-                              @endforeach
-                              @else
+                            @else
+                             <!-- Sin Comprar -->
                               <a href="{{url('PlayMovie/'.$cine->id)}}" class="">
                              <img src="movie/poster/{{$cine->img_poster}}" width="100%" height="300px"></a>
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialog('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons">movie</i></a>
-                              @endif
+                            @endif
+
                             @else <!-- Series -->
-                            @if($cine->Transactions->count()!=0)
-                              @foreach($cine->Transactions as $t) 
-                              @if($t->user_id==Auth::user()->id)
+                            @if($cine['adquirido'])
+                              <!-- Comprado -->
                              <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
                             <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('PlaySerie/'.$cine->id)}}" id="modal-confir.{{$cine->id}}"><i class="material-icons mdi mdi-movie-roll green"></i></a>
-                            @endif
-                              @endforeach
-                              @else
+                        @else
+                              <!-- Sin Comprar -->
                               <a href="{{url('PlaySerie/'.$cine->id)}}" class="">
                             <img src="{{asset($cine->img_poster)}}" width="100%" height="300px"></a>
                             <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$cine->id}}" onclick="fnOpenNormalDialogSer('{!!$cine->cost!!}','{!!$cine->title!!}','{!!$cine->id!!}')"><i class="material-icons mdi mdi-movie-roll"></i></a>
                             @endif
-                            @endif                    
+
+                         @endif                    
                           <!-- <span class="card-title">Card Title</span> -->
       
                         </div>
-                        <div class="card-content">
+                        <div class="card-content" >
                             <div class="col m12 s12">
-                                <p class="grey-text">{{ $cine->title }}</p>
+                                <p class="grey-text truncate">{{ $cine->title }}</p>
+                            </div> 
+                            <div class="col m12 s12">
+                              <p class="grey-text truncate"><b>Autor:</b>  {{ $cine->seller->name }}</p>
                             </div>
                             <div class="col m12 s12">
-                                <p class="grey-text"><b>Costo: </b> {{$cine->cost}} tickets</p> 
+                                <p class="grey-text"><b>Costo:</b> {{$cine->cost}} tickets</p> 
                             </div>
+                           @if($cine->type=='movie')
+                                <p class="grey-text"><b>Cine</b></p>
+                           @else
+                                <p class="grey-text"><b>Serie</b></p>
+                           @endif
                         </div>
                       </div>
                     </div>
 
-                    <!--MODAL DETALLES DE LIBRO-->
+                    <!--MODAL DETALLES DE PELICULA-->
 
     @if($cine->type=='movie' )
      <div id="myModalMov-{{$cine->id}}" class="modal">

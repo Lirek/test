@@ -40,14 +40,7 @@ class Products extends Model
     }
 
     public static function store($request) {
-        //dd($request->all());
         $product = new Products;
-        // $imagen = $request->file('imagen');
-        // dd($imagen);
-        // $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
-        // $pathImagen = public_path()."/promociones/";
-        // $imagen->move($pathImagen,$nameImagen);
-        // $imagen_prod = "/promociones/".$nameImagen;
 
         $pdf = $request->file('pdf_prod');
         $namePDF = "promocionPdf_".time().".".$pdf->getClientOriginalExtension();
@@ -62,28 +55,22 @@ class Products extends Model
             $product->bidder_id = 0;
             $product->status = "Aprobado";
         }
-        // $product->imagen_prod = $imagen_prod;
         $product->pdf_prod = $pdf_prod;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->cost = $request->cost;
         $product->amount = $request->amount;
         $product->save();
-        // dd(array_key_exists("otraImagen", $request->all()), $request->otraImagen[0]!=null);
         if (array_key_exists("otraImagen", $request->all()) && $request->otraImagen[0]!=null) {
             foreach ($request->otraImagen as $adj) {
-                // dd($adj);
                 $nameImagen = "promocionImg_".rand().".".$adj->getClientOriginalExtension();
                 $pathImagen = public_path()."/promociones/";
                 $adj->move($pathImagen,$nameImagen);
                 $imagen_prod = "/promociones/".$nameImagen;
                 $adjuntos[] = self::saveAdjunto($imagen_prod);
             }
-            // dd($adjuntos);
             foreach ($adjuntos as $adj) {
-                // dd($adj);
                 $product->saveImg()->save($adj);
-                // dd($product);
             }
         } 
     }
@@ -98,15 +85,7 @@ class Products extends Model
 
     public static function toUpdateProducts($request) {
     	$product = self::find($request->idUpdate);
-   //  	if ($request->imagen!=null) {
-    		
-   //  		$imagen = $request->file('imagen');
-			// $nameImagen = "promocionImg_".time().".".$imagen->getClientOriginalExtension();
-			// $pathImagen = public_path()."/promociones/";
-			// $imagen->move($pathImagen,$nameImagen);
-			// $imagen_prod = "/promociones/".$nameImagen;
-			// $product->imagen_prod = $imagen_prod;
-   //  	}
+
     	if ($request->pdf_prod!=null) {
 			File::delete(public_path().$product->pdf_prod);
 			$pdf = $request->file('pdf_prod');
@@ -123,7 +102,6 @@ class Products extends Model
     	$product->save();
         if (array_key_exists("otraImagen", $request->all()) && $request->otraImagen[0]!=null) {
             foreach ($request->otraImagen as $adj) {
-                // dd($adj);
                 File::delete(public_path().$product->imagen_prod);
                 $nameImagen = "promocionImg_".rand().".".$adj->getClientOriginalExtension();
                 $pathImagen = public_path()."/promociones/";
@@ -131,11 +109,8 @@ class Products extends Model
                 $imagen_prod = "/promociones/".$nameImagen;
                 $adjuntos[] = self::saveAdjunto($imagen_prod);
             }
-            // dd($adjuntos);
             foreach ($adjuntos as $adj) {
-                // dd($adj);
                 $product->saveImg()->save($adj);
-                // dd($product);
             }
         } 
     }
@@ -166,12 +141,16 @@ class Products extends Model
     public static function saveAdjunto($adj) {
         $imagenes = new image_product;
         $imagenes->imagen_prod = $adj;
-        // dd($imagenes);
         return $imagenes;
     }
 
     public static function myProducts($id) {
         $product = self::where('bidder_id',$id)->get();
         return $product;
+    }
+
+    public static function myFotos($id) {
+        $photo = image_product::where('product_id',$id)->get();
+        return $photo;
     }
 }

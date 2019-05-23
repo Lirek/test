@@ -7,7 +7,7 @@
 				<div class="text-center row">
 					<form method="POST" id="NewRadioForm" action="{{url('storeProducts')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
 						{{ csrf_field() }}
-<div class="col s12">
+						<div class="col s12">
 							<div class="col s6">
                                 <div id="otro">
                                     <div class="agregar">
@@ -28,7 +28,7 @@
                                     </a>
                                 </div>
                             </div>
-                                <div class="col s6">
+							<div class="col s6">
 								<div class="input-field">
 									<input type="text" class="validate count" id="name" name="name" required="required" autofocus="autofocus" data-length="191">
 									<label for="name">Nombre del producto</label>
@@ -38,11 +38,11 @@
 									<label for="description">Descripción</label>
 								</div>
 								<div class="input-field">
-									<input type="number" class="validate" id="cost" name="cost" required="required" min="0" onkeypress="return controltagNum(event)">
+									<input type="number" class="validate" id="cost" name="cost" required="required" min="0">
 									<label for="cost">Costo</label>
 								</div>
 								<div class="input-field">
-									<input type="number" class="validate" id="amount" name="amount" required="required" min="1" onkeypress="return controltagNum(event)">
+									<input type="number" class="validate" id="amount" name="amount" required="required" min="1">
 									<label for="amount">Cantidad</label>
 								</div>
 								<div class="file-field input-field">
@@ -54,11 +54,8 @@
 										<input class="file-path validate" type="text">
 									</div>
 								</div>
-								<br>
-								
-									</div>
-								</div>
 							</div>
+						</div>
 						<div class="col s12">
 							<button class="btn curvaBoton" type="submit" id="enviar">
 								Enviar
@@ -69,6 +66,34 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="misFotos" class="modal">
+    <div class="modal-content center">
+        <div class=" blue"><br>
+            <h4 class="center white-text" ><i class="small material-icons"></i>Fotos del producto</h4>
+            <br>
+        </div>
+        <br>
+        <div class="col s12">
+            <div id="" class="col s12 center">
+                <div class="row">
+                  <table class="responsive-table" id="todasLasfotos">
+                    <thead>
+                      <tr>
+                        <th><i class="material-icons"></i>Foto</th>
+                      </tr>
+                    </thead>
+                    <tbody id="fotostabla">
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
+        </div>
+    </div>
+</div>
 
 	<div class="modal" id="cambiarEstatus">
 		<div class="modal-content">
@@ -122,7 +147,7 @@
 					<form method="POST" id="NewRadioForm" action="{{url('updateProduct')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
 						{{ csrf_field() }}
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
-												<div class="col s12">
+						<div class="col s12">
 							<div class="col s6">
                                 <div id="otro">
                                     <div class="agregar">
@@ -149,15 +174,15 @@
 									<label for="name">Nombre del producto</label>
 								</div>
 								<div class="input-field">
-									<input type="text" class="count" id="description_u" name="description" value="" required="required" data-length="191" placeholder="">
+									<input type="text" class="count" id="description_u" name="description" value="" required="required"  data-length="191" placeholder="">
 									<label for="description">Descripción</label>
 								</div>
 								<div class="input-field">
-									<input type="number" id="cost_u" name="cost" value="" required="required" min="0" placeholder="" onkeypress="return controltagNum(event)">
+									<input type="number" id="cost_u" name="cost" value="" required="required" min="0" placeholder="">
 									<label for="cost">Costo</label>
 								</div>
 								<div class="input-field">
-									<input type="number" id="amount_u" name="amount" value="" required="required" min="1" placeholder="" onkeypress="return controltagNum(event)">
+									<input type="number" id="amount_u" name="amount" value="" required="required" min="1" placeholder="">
 									<label for="amount">Cantidad</label>
 								</div>
 								<a class='btn-large blue' id='pdf_prod_u' href='' target='_blank'>
@@ -175,8 +200,6 @@
 										<input class="file-path validate" type="text">
 									</div>
 								</div>
-								<div class="agregar_u">
-								</div>
 							</div>
 						</div>
 						<div class="col s12">
@@ -189,7 +212,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- Actualizar producto -->
 
 	<div id="reject" class="modal">
 		<div class="modal-content">
