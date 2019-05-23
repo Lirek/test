@@ -57,28 +57,24 @@
                     @endif
                     <!-- <span class="card-title">Card Title</span> -->
                     @if($Album->name_alb) <!-- Para los albumes -->
-                      @if($Album->Transactions->count()!=0)
-                      
-                          @if($Album['Transactions'])
+                          @if($Album['adquirido'])
+                    <!-- Comprado -->
                     <a class="btn-floating halfway-fab waves-effect waves-light" href="{{url('MyAlbums/'.$Album->id)}}"><i class="material-icons green">library_music</i></a>
-                          @endif
-                       
                       @else
+                    <!-- Sin Comprar -->
                     <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" onclick="fnOpenNormalDialog2('{!!$Album->cost!!}','{!!$Album->name_alb!!}','{!!$Album->id!!}')"><i class="material-icons">library_music</i></a>
                       @endif
                     @else <!-- Para los singles -->
-                      @if($Album->transaction->count()!=0)
-                        @foreach($Album->transaction as $t)
-                          @if($t->user_id == Auth::user()->id)
+                      @if($Album['adquirido'])
+                       <!-- Comprado -->
                       <a class="btn-floating halfway-fab waves-effect waves-light" href="{{ url('MySingles/'.$Album->id)}}">
                           <i class="material-icons green">music_note</i>
-                            </a>
-                          @endif
-                        @endforeach
+                      </a>
                       @else
+                       <!-- Sin Comprar -->
                       <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#"  onclick="fnOpenNormalDialog('{!!$Album->cost!!}','{!!$Album->song_name!!}','{!!$Album->id!!}')">
                           <i class="material-icons">music_note</i>
-                        </a>
+                      </a>
                       @endif
                     @endif
                   </div> 
