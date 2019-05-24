@@ -28,12 +28,14 @@
 	</td>
  </tr>
 
+@if($url!="")
  <tr>
   <td>
   <p style="font-size: 14px">Por Favor Verifique su Direccion de Correo en el siguiente enlace:
                               {{$url}}</p>
   </td>
  </tr>
+@endif
   <tr align="left">
  	<img src="{{$message->embed(public_path().'/sistem_images/signature.png')}}">
   </tr>

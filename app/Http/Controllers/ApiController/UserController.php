@@ -59,6 +59,7 @@ use Auth;
 use Carbon\Carbon; //
 use App\Mail\TransactionApproved; //
 use Illuminate\Support\Facades\Mail; //
+use Validator; //
 
 use QrCode;
 
@@ -76,22 +77,26 @@ class UserController extends Controller
             $user = auth()->user();
             $data = [
                 'id' => $user->id,
-                'name' => $user->name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'type_doc' => $user->type_doc,
+                'nombre' => $user->name,
+                'apellido' => $user->last_name,
+                'correo' => $user->email,
+                'fech_nac' => $user->fech_nac,
+                'tipo_doc' => $user->type_doc,
                 'num_doc' => $user->num_doc,
-                'genere' => $user->type,
+                'img_doc' => $user->img_doc,
+                'genero' => $user->type,
                 'alias' => $user->alias,
+                'telefono' => $user->phone,
+                'direccion' => $user->direccion,
                 'img_perf' => $user->img_perf,
                 'tickets' => $user->credito,
-                'points' => $user->points,
-                'pending_points' => $user->pending_points,
-                'verify' => $user->verify
+                'puntos' => $user->points,
+                'puntos_pendientes' => $user->pending_points,
+                'verificado' => $user->verify
             ];
             return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
         } catch (Exception $e) {
-            return response()->json(['meta'=>['code'=>401],'data'=>'Ha ocurrido un error: '.$e],200);
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
     }
 
@@ -148,28 +153,69 @@ class UserController extends Controller
         return Response::json(['status'=>'1','data'=>$WholeReferals], 200);
     }
 
-    public function UpdateData(Request $request)
-    {
-        $user = User::find(auth()->user()->id);
+    public function UpdateData(Request $request) {
+        $datos = $request->only(array_keys($request->all()));
 
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->num_doc = $request->ci;
-        $user->type= $request->type;
-        $user->alias = $request->alias;
-        $user->fech_nac = $request->fech_nac;
-        $user->direccion = $request->address;
-        $user->phone = $request->phone;
+        $rules = [
+            'nombre' => 'required|max:191',
+            'apellido' => 'required|max:191',
+            'type_doc' => 'required|max:191',
+            'num_doc' => 'required|max:191',
+            'type' => 'required|max:1',
+            'alias' => 'required|max:191',
+            'fech_nac' => 'required|date',
+            'direccion' => 'required|max:191',
+            'telefono' => 'required|max:191'
+        ];
 
-        $user->save();
+        $validator = Validator::make($datos, $rules);
 
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
+        }
+
+        try {
+            $user = User::find(auth()->user()->id);
+            $user->name = $request->nombre;
+            $user->last_name = $request->apellido;
+            $user->type_doc = $request->type_doc;
+            $user->num_doc = $request->num_doc;
+            if ($request->type != null){
+                $user->type = $request->type;
+            }
+            $user->alias = $request->alias;
+            $user->fech_nac = $request->fech_nac;
+            $user->direccion = $request->direccion;
+            $user->phone = $request->telefono;
+            if ($user->verify==2) {
+                $user->verify = 0;
+            }
+            $user->save();
+
+            $data = [
+                'nombre' => $user->name,
+                'apellido' => $user->last_name,
+                'type_doc' => $user->type_doc,
+                'num_doc' => $user->num_doc,
+                'genere' => $user->type,
+                'alias' => $user->alias,
+                'fech_nac' => $user->fech_nac,
+                'direccion' => $user->direccion,
+                'telefono' => $user->phone,
+                'verify' => $user->verify
+            ];
+            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
+
+        /*
         $Json = Fractal::create()
             ->item($user)
             ->transformWith(new UserTransformer)
             ->toArray();
-
-
         return Response::json($Json);
+        */
     }
 
     public function UploadDocument(Request $request)
@@ -238,126 +284,106 @@ class UserController extends Controller
             return Response::json(['status'=>'ERROR'], 402);
         }
     }
-
-    /*
-    // estas funciones estan en PaymentController
-    public function BuyDepositPackage(Request $request)
-    {
-        $Buy = new Payments;
-        $Buy->user_id=auth()->user()->id;
-        $Buy->package_id=$request->ticket_id;
-        $Buy->cost=$request->cost;
-        $Buy->value=$request->Cantidad;
-        $Buy->method='Deposito';
-        $Buy->status=2;
-        $Buy->reference=$request->references;
-        $Buy->save();
-
-        return Response::json(['status'=>'OK'], 201);
+    
+    public function valSponsor() {
+        $referals = Referals::where('refered',auth()->user()->id)->get();
+        if ($referals->count()!=0) {
+            return response()->json(['meta'=>['code'=>400],'data'=>true],200); // tiene patrocinador
+        } else {
+            $fechaRegistro = explode(" ", auth()->user()->created_at);
+            $diasRegistro = date_diff(date_create($fechaRegistro[0]),date_create(date("Y-m-d")));
+            return response()->json(['meta'=>['code'=>200],'data'=>$diasRegistro->days],200); // dias sin patrocinador
+        }
     }
 
-    public function UploadVoucher($id,Request $request)
-    {
-        $Buy = Payments::find($id);
-
-        if ($request->hasFile('voucher'))
-        {
-
-
-            $store_path = public_path().'/user/'.Auth::user()->id.'/ticketsDeposit/';
-
-            $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
-
-            $request->file('voucher')->move($store_path,$name);
-
-            $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
-
-            $Buy->voucher = $real_path='/user/'.Auth::user()->id.'/ticketsDeposit/'.$name;
-
-            $Buy->save();
-
-            return Response::json(['status'=>'OK'], 201);
-        }
-
-        return Response::json(['status'=>'Error de Archivo'], 204);
-    }
-    public function BuyPointsPackage(Request $request)
-    {
-
-        $user = User::find(auth()->user()->id);
-        $TicketsPackage= TicketsPackage::find($request->ticket_id);
-
-        if ($request->cost > $user->points)
-        {
-            return Response::json(['status'=>'Puntos insuficientes'], 201);;
-        }
-
-        else
-        {
-            $Buy = new Payments;
-            $Buy->user_id       = Auth::user()->id;
-            $Buy->package_id    =$request->ticket_id;
-            $Buy->cost          =$request->points;
-            $Buy->value         =$request->Cantidad;
-            $Buy->status        = 1;
-            $Buy->method        ='Puntos';
-            $Buy->save();
-
-
-            $ticket=$TicketsPackage->amount*$request->Cantidad;
-            $cost=$request->Cantidad*$request->points;
-
-            $user->credito = $ticket;
-            $user->point = $user->points - $cost;
-            $user->save();
-
-            $Condition=Carbon::now()->firstOfMonth()->toDateString();
-
-            $revenueMonth = Payments::where('user_id','=',$user->id)
-                ->where('created_at', '>=',$Condition)
-                ->where('status', '=','Aprobado')
-                ->get();
-
-            $balance=  SistemBalance::find(1);
-
-            $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
-
-            $balance->save();
-
-            if ($revenueMonth->count()<=1)
-            {
-                event(new AssingPointsEvents($user->id,$Buy->package_id));
+    public function whoSponsor($code) {
+        $validarPatrocinador = $this->validarPatrocinador($code);
+        $miCod = auth()->user()->codigo_ref;
+        if ($miCod==$code) { // ERROR: mi mismo codigo
+            return response()->json(['meta'=>['code'=>400],'data'=>1],200);
+        } else {
+            if ($validarPatrocinador==2) { // ERROR: codigo de alguien de mi red
+                return response()->json(['meta'=>['code'=>400],'data'=>$validarPatrocinador],200); 
+            } else {
+                $sponsor = User::where('codigo_ref',$code)->first();
+                if ($sponsor) {
+                    $datos = [
+                        'id' => $sponsor->id,
+                        'nombre' => $sponsor->name,
+                        'apellido' => $sponsor->last_name,
+                        'img_perf' => $sponsor->img_perf
+                    ];
+                    return response()->json(['meta'=>['code'=>200],'data'=>$datos],200);
+                } else { // ERROR: codigo no existe
+                    return response()->json(['meta'=>['code'=>400],'data'=>0],200); 
+                }
             }
-
-            event(new PayementAprovalEvent($user->email));
         }
-        return Response::json(['status'=>'OK'], 201);
     }
-    public function BuyPayphonePackage(Request $request)
-    {
+
+    public function validarPatrocinador($codigo) {
+        $ids = NULL;
+        $cods = NULL;
         $user = User::find(auth()->user()->id);
-
-        $Condition=Carbon::now()->firstOfMonth()->toDateString();
-
-        $revenueMonth = Payments::where('user_id','=',$user->id)
-            ->where('created_at', '>=',$Condition)
-            ->where('status', '=','Aprobado')
-            ->get();
-
-        $balance=  SistemBalance::find(1);
-
-        $balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
-
-        $balance->save();
-
-        if ($revenueMonth->count()<=1)
-        {
-            event(new AssingPointsEvents($user->id,$Buy->package_id));
+        $datos1 = $user->referals()->get();
+        if ($datos1->count()>0) {
+            foreach ($datos1 as $info) {
+                $ids[] = $info->refered;
+            }
         }
-
-        event(new PayementAprovalEvent($user->email));
-
-        return Response::json(['status'=>'OK'], 201);
+        if ($ids!=NULL) {
+            for ($i=0; $i < count($ids); $i++) { 
+                $user = User::find($ids[$i]);
+                $datos = $user->referals()->get();
+                if ($datos->count()>0) {
+                    foreach ($datos as $info) {
+                        $ids[] = $info->refered;
+                    }
+                }
+            }
+            $info = User::select('codigo_ref')->whereIn("id",$ids)->get();
+            foreach ($info as $key) {
+                $cods[] = $key->codigo_ref;
+            }
+        }
+        if ($cods===NULL) { // Se agrega sin problema porque esa persona no tiene red
+            $agregar = 3;
+        } else { // si tiene red hay que revisar que el codigo no pertenezca a alguien de dicha red
+            $busqueda = in_array($codigo, $cods);
+            if ($busqueda===true) { // el codigo ya lo tiene alguien de su red
+                $agregar = 2;
+            } else { // puede agregar ese codigo sin problema
+                $agregar = 3;
+            }
+        }
+        return $agregar;
     }
-    */
+
+    public function addSponsor(Request $request) {
+        $datos = $request->only(array_keys($request->all()));
+
+        $rules = [
+            'codigo' => 'required|max:191'
+        ];
+        $validator = Validator::make($datos, $rules);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
+        }
+        $user = User::where('codigo_ref',$request->codigo)->where('id','<>',auth()->user()->id)->first();
+
+        if ($user) {
+            try {
+                $referals = new Referals;
+                $referals->user_id = $user->id;
+                $referals->refered = auth()->user()->id;
+                $referals->my_code = $request->codigo;
+                $referals->save();
+                return response()->json(['meta'=>['code'=>201],'data'=>true],200);
+            } catch (Exception $e) {
+                return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+            }
+        } else {
+            return response()->json(['meta'=>['code'=>400],'data'=>false],200); // algun error con el codigo
+        }
+    }
 }

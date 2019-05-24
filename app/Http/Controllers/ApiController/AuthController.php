@@ -17,6 +17,7 @@ use Validator, DB, Hash, Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
 use App\Events\WelcomeEmailEvent;
+use Illuminate\Support\Facades\Crypt;
 
 use Auth;
 
@@ -45,8 +46,9 @@ class AuthController extends Controller
 
         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
         event(new CreateCodeSocialUserEvent($user->id));
-        event(new WelcomeEmailEvent($user));
-        return response()->json(['meta'=>['code'=>200],'data'=>['message'=>'Muchas gracias por ser parte de nuestra plataforma, le recordamos finalizar su registro para disfrutar de la totalidad de nuestra plataforma']],200);
+        $url = "";
+        event(new WelcomeEmailEvent($user,$url));
+        return response()->json(['meta'=>['code'=>201],'data'=>['message'=>'Muchas gracias por ser parte de nuestra plataforma, le recordamos finalizar su registro para disfrutar de la totalidad de nuestra plataforma']],200);
     }
 
     public function login(Request $request) {
@@ -63,7 +65,7 @@ class AuthController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['meta'=>['code'=>400],'data'=>'Credenciales incorrectas'],200);
+                return response()->json(['meta'=>['code'=>401],'data'=>'Credenciales incorrectas'],200);
             }
         } catch (JWTException $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Hemos encontrado un error, por favor intente nuevamente'],200);
@@ -110,7 +112,6 @@ class AuthController extends Controller
     }
 
     public function AuthSocialUser(Request $request) {
-
         $createUser = User::firstOrCreate([
             'email' => $request->email
         ], [
@@ -160,14 +161,15 @@ class AuthController extends Controller
             $code = $randomString;
             $user = User::find(auth()->user()->id);
             $user->last_name = $request->last_name;
-            $user->alias = $request->alias;
             $user->img_perf = '/user/'.auth()->user()->id.'/profile/'.$nameFile;
             $user->codigo_ref = $code;
             $user->save();
-            event(new WelcomeEmailEvent($createUser));
+            $encrypted_email = Crypt::encryptString($user->email);
+            $url = "";
+            event(new WelcomeEmailEvent($createUser,$url));
         }
         $token = JWTAuth::fromUser($createUser);
-        return response()->json(['status' => '1', 'data'=> [ 'token' => $token ]], 200);
+        return response()->json(['meta'=>['code'=>201],'data'=>['token'=>$token]],200);
     }
 
 }

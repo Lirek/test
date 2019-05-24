@@ -43,10 +43,13 @@ Route::group(['middleware' => ['cors']], function() {
 
         Route::get('user','ApiController\UserController@UserData');
         Route::get('Referals','ApiController\UserController@WebsUser');
-        Route::post('UpdateData', 'ApiController\UserController@UpdateData');
+        Route::post('updateData', 'ApiController\UserController@UpdateData');
         Route::post('UploadDocument', 'ApiController\UserController@UploadDocument');
         Route::post('UploadAvatar', 'ApiController\UserController@UploadAvatar');
         Route::get('MyContent','ApiController\UserController@MyContent');
+        Route::get('valSponsor','ApiController\UserController@valSponsor');
+        Route::get('whoSponsor/{code}','ApiController\UserController@whoSponsor');
+        Route::post('addSponsor', 'ApiController\UserController@addSponsor');
 
         //-------------------------------------------------------------------------
 
