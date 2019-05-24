@@ -1883,6 +1883,60 @@ public function BooksDataTable($status) {
     }
 //-------------------------------------------------------------
 
+ /* 
+  ---------------------------------------------------------------
+  --------------- FUNCIONES DE PROVINCIAS -----------------
+  ---------------------------------------------------------------
+*/
+
+ public function Provincias(){
+        $Provinces = Province::All();
+        return view('promoter.AdminModules.Provinces')->with('Provinces',$Provinces);
+    }
+
+    public function AddProvince(Request $request) {
+        $Provinces = Province::All();
+        $province = new Province;
+        $province->province_name = $request->province_name;
+        if (Province::where('province_name','=',$request->province_name)->count()==1) {
+
+        Flash('La provincia agregada ya existe.')->success();
+        return redirect()->action('AdminController@Provincias');
+
+        }
+
+        else
+
+        $province->save();
+        Flash('Nueva provincia agregada exitosamente')->success();
+        return redirect()->action('AdminController@Provincias');
+      }
+
+       public function DeleteProvince($id) {
+        $province = Province::destroy($id);
+        return response()->json($province); 
+        //return redirect()->action('AdminController@Provincias');
+      }
+
+      public function FindProvince($id) {
+        $province= Province::find($id);
+        return response()->json($province);
+      }
+
+      public function UpdateProvince(Request $request, $id) {
+        $province = Province::find($id);
+        $province->province_name = $request->province_name;
+        if (Province::where('province_name','=',$request->province_name)->count()==1) {
+
+        Flash('Error al modificar provincia, ya existe.')->success();
+        return response()->json($error);
+        }
+
+        else
+        $province->save();
+        return response()->json($province);
+      }
+
 
 }
  

@@ -165,6 +165,12 @@
         </ul>
       </li>
       <li>
+        <a href="{{url('Provincias')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">location_on</i>
+          Provincias
+        </a>
+      </li>
+      <li>
         <a href="{{url('conversiones')}}" class="waves-effect waves-blue">
           <i class="small material-icons">attach_money</i>
           Conversiones
