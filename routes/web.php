@@ -115,7 +115,6 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     Route::get('verifyBenefi/{id}','HomeController@verifyBenefi');
     Route::get('delivered/{id}','HomeController@delivered');
 
-
 //-------------------Funciones del Usuarios----------------------------------
 
 Route::post('BuySong/{id}','UserController@BuySingle');
@@ -466,6 +465,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('GetPackage/{id}','AdminController@GetPackage');
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
+
+            Route::get('Provincias','AdminController@Provincias');
+
+            Route::post('AddProvince','AdminController@AddProvince');
+
+            Route::get('DeleteProvince/{id}','AdminController@DeleteProvince');
+
+            Route::get('FindProvince/{id}','AdminController@FindProvince');
+
+            Route::post('UpdateProvince/{id}','AdminController@UpdateProvince');
+
 
         //_________________FIN de RUtas de Proveedores____________________________
 
