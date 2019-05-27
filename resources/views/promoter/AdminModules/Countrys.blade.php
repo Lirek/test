@@ -8,33 +8,31 @@
 @section('main')
 @include('flash::message')
 
-<span class="card-title grey-text"><h3>Provincias</h3></span>
+<span class="card-title grey-text"><h3>Países</h3></span>
 <div class="row">
     <div class="col s12">
       <div class="card">
-        <span class="card-title grey-text"><h4>Administrar Provincias</h4></span>
+        <span class="card-title grey-text"><h4>Administrar País</h4></span>
         <table class="responsive-table" id="">
 
           <thead>
             <tr>
               <th><i class="material-icons"></i>ID</th>
-              <th><i class="material-icons"></i>Provincia</th>
-              <th><i class="material-icons"></i>País</th>
+              <th><i class="material-icons"></i>Pais</th>
               <th><i class="material-icons"></i>Opciones</th>
             </tr>
           </thead>
 
           <tbody> 
-          	@foreach($Provinces as $provinces)
+          	@foreach($Pais as $pais)
               <tr>
-              	<td>{{$provinces->id}}</td>
-              	<td>{{$provinces->province_name}}</td>
-              	<td>{{$provinces->country->country_name}}</td> 
+              	<td>{{$pais->id}}</td>
+                <td>{{$pais->country_name}}</td>
                 <td>
-                  <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Provincia" value="{{$provinces->id}}" id="editProvince" href="#UpdateProvince">
+                  <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar País" value="{{$pais->id}}" id="editCountry" href="#UpdateCountry">
                     <i class="material-icons">edit</i>
                   </a>
-                  <a class="btn-small waves-effect waves-light btn tooltipped red" id="DeleteProvince" data-position="button" data-tooltip="Eliminar Provincia" value="{{$provinces->id}}" action="{{url('DeleteProvince')}}">
+                  <a class="btn-small waves-effect waves-light btn tooltipped red" id="DeleteCountry" data-position="button" data-tooltip="Eliminar País" value="{{$pais->id}}" action="{{url('DeleteCountry')}}">
                     <i class="material-icons">delete</i>
                   </a>
                 </td>
@@ -43,35 +41,26 @@
           </tbody>
         </table>
       </div>
-      <a id="tt3" class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar nueva provincia" href="#NewProvince"><i class="material-icons">add</i>
+      <a id="tt3" class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar País" href="#NewCountry"><i class="material-icons">add</i>
       </a>
     </div>
   </div>
 
-
-  <!-- MODALES PARA PROVINCIAS -->
-
-	<div class="modal" id="NewProvince">
+  <!-- MODALES PARA PAIS -->
+  <div class="modal" id="NewCountry">
     <div class="modal-content">
       <div class="col s12 pink darken-4 lighten-1 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Agregar Provincia</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Agregar País</h4>
       </div>
       <div class="text-center row">
-        <form method="POST" action="{{url('AddProvince')}}">
+        <form method="POST" action="{{url('AddCountry')}}">
           {{ csrf_field() }}
-          <div class="input-field col s6 l6 m6">
-    		<select name="country_id" required="required">
-      			<option value="" disabled selected>Selecciona un País</option>
-      			@foreach($Country as $country)        
-                        <option value="{{$country->id}}">{{$country->country_name}}</option>
-                @endforeach
-    		</select>
-    		<label>Seleccione País</label>
-  			</div>
-  			<div class="input-field col s6 l6 m6">
-              <input class="validate" type="text" name="province_name" id="province_name" required="required" pattern="[A-Za-z ]+">
-              <label for="province_name">Nombre de la Provincia</label>
+          <div class="col l12 m12">
+            <div class="input-field col s12 l12 m12">
+              <input class="validate" type="text" name="country_name" id="country_name" required="required" pattern="[A-Za-z ]+">
+              <label for="country_name">Nombre del País</label>
             </div>
+          </div>
           <div class="col s12">
             <button class="btn" type="submit">
               Enviar
@@ -82,30 +71,21 @@
     </div>
   </div>
 
-  <!-- Modificar Provincia -->
-  <div class="modal" id="UpdateProvince">
+  <!-- Modificar Pais -->
+  <div class="modal" id="UpdateCountry">
     <div class="modal-content">
       <div class="col s12 pink darken-4 lighten-1 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Modificar provincia</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Modificar Pais</h4>
       </div>
       <div class="text-center row">
-        <form method="POST" id="UpdateProvinceForm">
+        <form method="POST" id="UpdateCountryForm">
           {{ csrf_field() }}
           <input type="hidden" id="idUpdate">
           <div class="col l12 m12">
             <div class="input-field col s12">
-              <input class="validate" type="text" name="province_name" id="nameUpdate" placeholder="" required="required" pattern="[A-Za-z ]+">
-              <label for="name">Nombre de la Provincia</label>
+              <input class="validate" type="text" name="country_name" id="nameUpdate" placeholder="" pattern="[A-Za-z]+">
+              <label for="name">Editar País</label>
             </div>
-            <div class="input-field col s12">
-    		<select name="countryUpdate" id="countryUpdate" required="required">
-      			<option value="" disabled selected>Selecciona un País</option>
-      			@foreach($Country as $country)        
-                        <option value="{{$country->id}}">{{$country->country_name}}</option>
-                @endforeach
-    		</select>
-    		<label>Seleccione País</label>
-  			</div>
           </div>
           <div class="col s12">
             <button class="btn" type="submit">
@@ -116,25 +96,18 @@
       </div>
     </div>
   </div>
-
-  <!-- FIN MODALES PROVINCIAS -->
+  <!-- FIN MODALES PAÍS -->
 
 @endsection
 
 @section('js')
 <script>
-	//Select Para País
-         $(document).ready(function(){
-            $('select').formSelect();
-        });
-</script>
-<script>
-	// editar provincia
-  $(document).on('click', '#editProvince', function(e) {
-    var provinces = $(this).attr("value");
-    var url = "{{url('FindProvince/')}}/"+provinces;
+	// editar país
+  $(document).on('click', '#editCountry', function(e) {
+    var pais = $(this).attr("value");
+    var url = "{{url('FindCountry/')}}/"+pais;
     e.preventDefault();
-    console.log(provinces,url);
+    console.log(pais,url);
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
     swal({
       title: "Procesando la información",
@@ -159,11 +132,10 @@
     });
   });
   
-  $("#UpdateProvinceForm").on('submit', function(e){
-    var province = $("#idUpdate").val();
-    var province_name = $('#nameUpdate').val();
-    var country_id = $('#countryUpdate').val();
-    console.log(province_name);
+  $("#UpdateCountryForm").on('submit', function(e){
+    var pais = $("#idUpdate").val();
+    var country_name = $('#nameUpdate').val();
+    console.log(country_name);
     e.preventDefault();
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
     swal({
@@ -175,12 +147,11 @@
         closeOnClickOutside: false
     });
     $.ajax({
-      url : "{{url('UpdateProvince/')}}/"+province,
+      url : "{{url('UpdateCountry/')}}/"+pais,
       type: "post",
       data: {
         _token: $('input[name=_token]').val(),
-        province_name: province_name,
-        country_id: country_id,
+        country_name: country_name
       },
       success: function(data) {
         console.log(data);
@@ -198,13 +169,13 @@
     });
   });
  
-  // editar provincia
+  // editar país
 
-	 // eliminar provincia
-  $(document).on('click', '#DeleteProvince', function() {
-    var provinces = $(this).attr("value");
+  // eliminar pais
+  $(document).on('click', '#DeleteCountry', function() {
+    var pais = $(this).attr("value");
     swal({
-      title: "¿Desea eliminar la provincia?",
+      title: "¿Desea eliminar el País?",
       icon: "warning",
       dangerMode: true,
       buttons: ["Cancelar", "Si"]
@@ -219,7 +190,7 @@
           closeOnEsc: false,
           closeOnClickOutside: false
         });
-        var url = "{{url('DeleteProvince/')}}/"+provinces;
+        var url = "{{url('DeleteCountry/')}}/"+pais;
         $.ajax({
           url: url,
           type:'get',
@@ -242,6 +213,6 @@
       }
     });
   });
-  // eliminar provincia
+  // eliminar pais
 </script>
 @endsection

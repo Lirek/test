@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableLoginControl extends Migration
+class CreateCityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableLoginControl extends Migration
      */
     public function up()
     {
-        Schema::create('login_control', function (Blueprint $table) {
+        Schema::create('city', function (Blueprint $table) {
             $table->increments('id');
-            $table->ipAddress('ip_log');
-            $table->integer('id_login');
-            $table->timestamps();
+            $table->string('region_id');
+            $table->string('city_name');
+            $table->timestamps();           
+            $table->foreign('region_id')->references('id')->on('region');
         });
     }
 
@@ -28,7 +29,6 @@ class CreateTableLoginControl extends Migration
      */
     public function down()
     {
-       Schema::dropIfExists('login_control');
-        
+        Schema::dropIfExists('city');
     }
 }
