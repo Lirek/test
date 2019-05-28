@@ -63,6 +63,27 @@
                                          </div>
                                      </div>
                                  </li>
+                                 
+                                 <li class="collection-item avatar">
+                                     <div class="row">
+                                         <div class="col s5"><br>
+                                             <!-- <i class="material-icons blue circle prefix">email</i> -->
+                                             <i class="prefix fa fa-whatsapp blue circle prefix"></i>
+                                             <h6 class="left"><b>Invitar por Whatsapp:</b></h6>
+                                         </div>
+                                         <div class="col s7 left"><br>
+                                             <!-- <a href="#"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Compartir</a> -->
+                                             <div id="fb-root"></div>
+                                             <!-- Your share button code -->
+                                             <a href="whatsapp://send?text=http://localhost/Leipel/public/register/Djbjb5" data-action="share/whatsapp/share">
+
+                                                 <img border="0" src="images/whatsapp.png" width="50" height="50">
+                                               </a>
+                          
+
+                                         </div>
+                                     </div>
+                                 </li>
                                  <li class="collection-item avatar">
                                      <div class="row">
                                          <div class="col s4"><br>
