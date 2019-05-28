@@ -172,16 +172,36 @@
         </ul>
       </li>
       <li>
-        <a href="{{url('Provincias')}}" class="waves-effect waves-blue">
-          <i class="small material-icons">location_on</i>
-          Provincias
-        </a>
-      </li>
-      <li>
-        <a href="{{url('conversiones')}}" class="waves-effect waves-blue">
-          <i class="small material-icons">attach_money</i>
-          Conversiones
-        </a>
+        <ul class= "collapsible collapsible-accordion">
+          <li>
+            <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
+              <i class="small material-icons">location_on</i>
+                Localidad
+                <span class="new badge orange darken-1" data-badge-caption="" id="provincias" style="display: none; background-color: #d9534f;"></span>
+              <i class="material-icons right">expand_more</i>
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <a href="{{url('Pais')}}" class="waves-effect waves-blue"><i class="small material-icons">public</i>País
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('Provincias')}}" class="waves-effect waves-blue"><i class="small material-icons">assistant_photo</i>Provincias
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('Regiones')}}" class="waves-effect waves-blue"><i class="small material-icons">directions</i>Región
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('Ciudades')}}" class="waves-effect waves-blue"><i class="small material-icons">location_city</i>Ciudad
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>   
       </li>
       <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">

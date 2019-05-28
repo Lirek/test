@@ -4,20 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Province extends Model
+class Country extends Model
 {
     //Tabla en donde estan guardadas las multiples etiquetas usadas por el sistema
 
-     protected $table = 'province';
+     protected $table = 'country';
 
          protected $fillable = [
         'id', 
-        'province', 
+        'country_name', 
         ];
-
-    public function country()
-{
-     return $this->belongsTo(Country::class);
-}
 
 }
