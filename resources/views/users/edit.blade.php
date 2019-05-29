@@ -137,7 +137,7 @@ h5.breadcrumbs-header {
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->credito}}</h5>
-                                        <label>todos mis tickets</label>
+                                        <label>Todos mis tickets</label>
                                     </div>
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
@@ -145,7 +145,7 @@ h5.breadcrumbs-header {
                                         Auth::user()->points = 0;
                                         echo Auth::user()->points;
                                         ?></h5>
-                                        <label>todos mis puntos</label>
+                                        <label>Todos mis puntos</label>
                                     </div>
                                 </div>
                             </div>
@@ -893,7 +893,13 @@ h5.breadcrumbs-header {
                     $('#mensajeImgPerf').css('color','red');
                 }
             });
+            
+            
+            
+            
         });
+        
+
         // Validar formato de imagen de perfil y del documento
         //---------------------------------------------------------------------------------------------------
     </script>
