@@ -152,6 +152,7 @@
         console.log(data);
         swal.close();
         $('#idUpdate').val(data.id);
+        $("#nameUpdate").val(data.region_name);
       },
       error: function(data) {
         console.log(data);

@@ -15,9 +15,9 @@ class Province extends Model
         'province', 
         ];
 
-    public function country()
+    public function region()
 {
-     return $this->belongsTo(Country::class);
+     return $this->belongsTo(Region::class);
 }
 
 }

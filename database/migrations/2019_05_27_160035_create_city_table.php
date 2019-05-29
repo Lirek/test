@@ -15,10 +15,10 @@ class CreateCityTable extends Migration
     {
         Schema::create('city', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('region_id');
+            $table->string('province_id');
             $table->string('city_name');
             $table->timestamps();           
-            $table->foreign('region_id')->references('id')->on('region');
+            $table->foreign('province_id')->references('id')->on('province');
         });
     }
 
