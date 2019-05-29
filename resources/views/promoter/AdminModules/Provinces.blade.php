@@ -19,7 +19,7 @@
             <tr>
               <th><i class="material-icons"></i>ID</th>
               <th><i class="material-icons"></i>Provincia</th>
-              <th><i class="material-icons"></i>País</th>
+              <th><i class="material-icons"></i>Región</th>
               <th><i class="material-icons"></i>Opciones</th>
             </tr>
           </thead>
@@ -29,7 +29,7 @@
               <tr>
               	<td>{{$provinces->id}}</td>
               	<td>{{$provinces->province_name}}</td>
-              	<td>{{$provinces->country->country_name}}</td> 
+              	<td>{{$provinces->region->region_name}}</td> 
                 <td>
                   <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Provincia" value="{{$provinces->id}}" id="editProvince" href="#UpdateProvince">
                     <i class="material-icons">edit</i>
@@ -60,13 +60,13 @@
         <form method="POST" action="{{url('AddProvince')}}">
           {{ csrf_field() }}
           <div class="input-field col s6 l6 m6">
-    		<select name="country_id" required="required">
-      			<option value="" disabled selected>Selecciona un País</option>
-      			@foreach($Country as $country)        
-                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+    		<select name="region_id" required="required">
+      			<option value="" disabled selected>Selecciona una Región</option>
+      			@foreach($Region as $region)        
+                        <option value="{{$region->id}}">{{$region->region_name}}</option>
                 @endforeach
     		</select>
-    		<label>Seleccione País</label>
+    		<label>Seleccione Región</label>
   			</div>
   			<div class="input-field col s6 l6 m6">
               <input class="validate" type="text" name="province_name" id="province_name" required="required" pattern="[A-Za-z ]+">
@@ -93,18 +93,18 @@
           {{ csrf_field() }}
           <input type="hidden" id="idUpdate">
           <div class="col l12 m12">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
               <input class="validate" type="text" name="province_name" id="nameUpdate" placeholder="" required="required" pattern="[A-Za-z ]+">
-              <label for="name">Nombre de la Provincia</label>
+              <label for="name">Nombre de la Región</label>
             </div>
-            <div class="input-field col s12">
-    		<select name="countryUpdate" id="countryUpdate" required="required">
-      			<option value="" disabled selected>Selecciona un País</option>
-      			@foreach($Country as $country)        
-                        <option value="{{$country->id}}">{{$country->country_name}}</option>
+            <div class="input-field col s6">
+    		<select name="regionUpdate" id="regionUpdate" required="required">
+      			<option value="" disabled selected>Selecciona una Región</option>
+      			@foreach($Region as $region)        
+                        <option value="{{$region->id}}">{{$region->region_name}}</option>
                 @endforeach
     		</select>
-    		<label>Seleccione País</label>
+    		<label>Seleccione Región</label>
   			</div>
           </div>
           <div class="col s12">
@@ -152,6 +152,7 @@
         console.log(data);
         swal.close();
         $('#idUpdate').val(data.id);
+        $("#nameUpdate").val(data.province_name);
       },
       error: function(data) {
         console.log(data);
@@ -162,7 +163,7 @@
   $("#UpdateProvinceForm").on('submit', function(e){
     var province = $("#idUpdate").val();
     var province_name = $('#nameUpdate').val();
-    var country_id = $('#countryUpdate').val();
+    var region_id = $('#regionUpdate').val();
     console.log(province_name);
     e.preventDefault();
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
@@ -180,7 +181,7 @@
       data: {
         _token: $('input[name=_token]').val(),
         province_name: province_name,
-        country_id: country_id,
+        region_id: region_id,
       },
       success: function(data) {
         console.log(data);

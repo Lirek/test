@@ -187,11 +187,11 @@
                   </a>
                 </li>
                 <li>
-                  <a href="{{url('Provincias')}}" class="waves-effect waves-blue"><i class="small material-icons">assistant_photo</i>Provincias
+                  <a href="{{url('Regiones')}}" class="waves-effect waves-blue"><i class="small material-icons">pin_drop</i>Región
                   </a>
                 </li>
                 <li>
-                  <a href="{{url('Regiones')}}" class="waves-effect waves-blue"><i class="small material-icons">directions</i>Región
+                  <a href="{{url('Provincias')}}" class="waves-effect waves-blue"><i class="small material-icons">assistant_photo</i>Provincias
                   </a>
                 </li>
                 <li>

@@ -125,6 +125,7 @@
         console.log(data);
         swal.close();
         $('#idUpdate').val(data.id);
+        $("#nameUpdate").val(data.country_name);
       },
       error: function(data) {
         console.log(data);

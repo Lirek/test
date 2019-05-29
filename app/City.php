@@ -15,8 +15,8 @@ class City extends Model
         'city_name', 
         ];
 
-    public function region(){
-     return $this->belongsTo(Region::class);
+    public function province(){
+     return $this->belongsTo(Province::class);
 	}
 
 }

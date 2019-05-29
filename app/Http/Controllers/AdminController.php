@@ -1919,15 +1919,15 @@ public function BooksDataTable($status) {
 //PROVINCIAS
 
  public function Provincias(){
-        $Country = Country::All();
-        $Provinces = Province::with('country')->get();
-        return view('promoter.AdminModules.Provinces')->with('Provinces',$Provinces)->with('Country',$Country);
+        $Region = Region::All();
+        $Provinces = Province::with('region')->get();
+        return view('promoter.AdminModules.Provinces')->with('Provinces',$Provinces)->with('Region',$Region);
     }
 
     public function AddProvince(Request $request) {
         $Provinces = Province::All();
         $province = new Province;
-        $province->country_id = $request->country_id;
+        $province->region_id = $request->region_id;
         $province->province_name = $request->province_name;
         if (Province::where('province_name','=',$request->province_name)->count()==1) {
 
@@ -1956,16 +1956,16 @@ public function BooksDataTable($status) {
       public function UpdateProvince(Request $request, $id) {
         $province = Province::find($id);
         $province->province_name = $request->province_name;
-        $province->country_id = $request->country_id;
-        if (Province::where('province_name','=',$request->province_name)->count()==1) {
-        Flash('Error al modificar provincia, ya existe.')->success();
-        return response()->json($error);
-        }
+        $province->region_id = $request->region_id;
+        //if (Province::where('province_name','=',$request->province_name)->count()==1) {
+        //Flash('Error al modificar provincia, ya existe.')->success();
+        //return response()->json($error);
+        //}
 
-        else{ 
+        //else{ 
         $province->save();
         return response()->json($province);
-        }
+        //}
       }
 
 //PAISES
@@ -2000,14 +2000,14 @@ public function BooksDataTable($status) {
       public function UpdateCountry(Request $request, $id) {
         $pais = Country::find($id);
         $pais->country_name = $request->country_name;
-        if (Country::where('country_name','=',$request->country_name)->count()==1) {
-        Flash('Error al modificar país, ya existe.')->success();
-        return response()->json($error);
-        }   
-        else{ 
+        ////if (Country::where('country_name','=',$request->country_name)->count()==1) {
+        //Flash('Error al modificar país, ya existe.')->success();
+        //return response()->json($error);
+        //}   
+        //lse{ 
         $pais->save();
         return response()->json($pais);
-        }
+        //}
       }
 
       public function DeleteCountry($id) {
@@ -2052,15 +2052,15 @@ public function Region(){
         $region = Region::find($id);
         $region->region_name = $request->region_name;
         $region->country_id = $request->country_id;
-        if (Region::where('region_name','=',$request->region_name)->count()==1) {
-        Flash('Error al modificar región, ya existe.')->success();
-        return response()->json($error);
-        }
+        //if (Region::where('region_name','=',$request->region_name)->count()==1) {
+        //Flash('Error al modificar región, ya existe.')->success();
+        //return response()->json($error);
+        //}
 
-        else{ 
+        //else{ 
         $region->save();
-        return response()->json($region);
-        }
+        //return response()->json($region);
+        //}
       }
 
       public function DeleteRegion($id) {
@@ -2072,15 +2072,15 @@ public function Region(){
   
   //CUIDADES
       public function Ciudades(){
-        $Region = Region::All();
-        $City = City::with('region')->get();
-        return view('promoter.AdminModules.City')->with('City',$City)->with('Region',$Region);
+        $Province = Province::All();
+        $City = City::with('province')->get();
+        return view('promoter.AdminModules.City')->with('City',$City)->with('Province',$Province);
     }
 
     public function AddCity(Request $request) {
         $City = City::All();
         $city = new City;
-        $city->region_id = $request->region_id;
+        $city->province_id = $request->province_id;
         $city->city_name = $request->city_name;
         if (City::where('city_name','=',$request->city_name)->count()==1) {
 
@@ -2104,16 +2104,16 @@ public function Region(){
       public function UpdateCity(Request $request, $id) {
         $city = City::find($id);
         $city->city_name = $request->city_name;
-        $city->region_id = $request->region_id;
-        if (City::where('city_name','=',$request->city_name)->count()==1) {
-        Flash('Error al modificar Ciudad, ya existe.')->success();
-        return response()->json($error);
-        }
+        $city->province_id = $request->province_id;
+        //if (City::where('city_name','=',$request->city_name)->count()==1) {
+        //Flash('Error al modificar Ciudad, ya existe.')->success();
+        //return response()->json($error);
+        //}
 
-        else{ 
+        //else{ 
         $city->save();
         return response()->json($city);
-        }
+       // }
       }
 
          public function DeleteCity($id) {
