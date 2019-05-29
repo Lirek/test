@@ -93,7 +93,7 @@
                   <div class="form-group">
                     <h5 class="text-center" id="totalCanciones"></h5>
                   </div>
-                  <button class='btn curvaBoton green' value='' value2='En Revision' id='todasCanciones'>Aprobar todas</button>
+                  <button class='btn curvaBoton green' value='' id='todasCanciones'>Aprobar todas</button>
                   <table class="responsive-table" id="todasLasCanciones">
                     <thead>
                       <tr>

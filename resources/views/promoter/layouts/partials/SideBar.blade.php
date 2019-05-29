@@ -128,6 +128,12 @@
         </a>
       </li>
       <li>
+        <a href="{{url('ModulesLicense')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">announcement</i>
+          Modulos y permisos
+        </a>
+      </li>
+      <li>
         <ul class= "collapsible collapsible-accordion">
           <li>
             <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
