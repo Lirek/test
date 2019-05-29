@@ -40,6 +40,11 @@ class BidderController extends Controller
         return view("promoter.AdminModules.Bidder")->with('modules',$modules);
     }
 
+    public function ModulesBidder() {
+        $modules = BidderRoles::all();
+        return view("promoter.AdminModules.ModulesBidder")->with('modules',$modules);
+    }
+
     public function bidderByStatus($estatus) {
         $bidder = Bidder::bidderByStatus($estatus);
         $bidder->each(function($bidder){

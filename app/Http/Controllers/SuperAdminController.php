@@ -33,9 +33,53 @@ use App\RollBacksTransacctions;
 use App\Products;
 use App\Rejection;
 use App\Mail\StatusProducts;
+use App\module;
+use App\license;
+use App\Promoters;
 
 class SuperAdminController extends Controller
 {
+
+        public function Modules()
+        {
+          $promoter = Promoters::all();
+          $modulo = module::all();
+          return view('promoter.AdminModules.modulesLicensess')->with('promoter', $promoter)->with('modulo', $modulo);
+        }
+
+        public function newModule(Request $request) 
+        {
+          module::newModul($request);
+          return redirect()->action("SuperAdminController@Modules");
+        }
+
+        public function newNegado(Request $request) 
+        {
+          license::newNegado($request);
+          return redirect()->action("SuperAdminController@Modules");
+        }
+
+        public function statusModule(Request $request, $id) {
+          $module = module::statusModule($id,$request->status);
+          return response()->json($module);
+        }
+
+        public function dataUsuario($tipo) 
+        {
+          $usuario = license::whereUsuario($tipo);
+          $usuario->each(function ($usuario){
+            $usuario->license;
+          });
+          return response()->json($usuario);
+        }
+
+      public function DeleteModule($id) 
+      {
+        $delet= license::destroy($id);
+        return response()->json($delet);
+      }
+
+
    //------------------------Panel de finanzas--------------------
    
 	      public function ShowBusiness()

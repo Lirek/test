@@ -27,6 +27,10 @@ class Promoters extends Authenticatable
       'password',
     ];
 
+    public function license() {
+        return $this->belongsToMany('App\module','license','promoter_id','module_id');
+    }
+
     //Send password reset notification
     public function sendPasswordResetNotification($token)
     {
