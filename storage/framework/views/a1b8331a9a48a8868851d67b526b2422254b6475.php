@@ -150,7 +150,6 @@
 <!--Fin Menu-->
 
 <!-- SLIDER  -->
-
 <div class="slider">
     <ul class="slides">
         <li>
@@ -286,7 +285,7 @@
                     <div class="col s12 m12">
                         <div class="card">
                             <div class="card-image ">
-                                <a onclick="masInfo('lectura')"><img src="<?php echo e(asset($b['cover'])); ?>" width="100%" height="220px"></a>
+                                <a onclick="masInfo('lectura')"><img src="<?php echo e(asset($b['cover'])); ?>" width="100%" height="220px" ></a>
                             </div>
                         </div>
                     </div>
@@ -888,12 +887,11 @@
 
                 <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 <div class="row">
-                    <div class="input-field col s12 <?php echo e($errors->has('tlf') ? ' has-error' : ''); ?>">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">person</i>
-                        <input type="text" id="nombreOfertante" class="autocomplete" name="nombreOfertante"
-                               required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+                        <input type="text" id="nombreOfertante" class="autocomplete" name="nombreOfertante" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" data-length="190">
                         <label for="nombreOfertante">Nombre</label>
-                        <div id="mensajeNombreContacto" style="margin-top: 1%"></div>
+                        <div id="mensajeNombreOfertante" style="margin-top: 1%"></div>
                         <?php if($errors->has('nombreOfertante')): ?>
                             <span class="help-block">
                                 <strong><?php echo e($errors->first('nombreOfertante')); ?></strong>
@@ -901,20 +899,9 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="input-field col s12 <?php echo e($errors->has('description') ? ' has-error' : ''); ?>">
-                        <i class="material-icons prefix blue-text">assignment</i>
-                        <input type="text" id="rucOfertante" name="rucOfertante" required="required" class="autocomplete" onkeypress="return controltagNum(event)">
-                        <label for="rucOfertante">RUC</label>
-                        <?php if($errors->has('rucOfertante')): ?>
-                            <span class="help-block">
-                                <strong><?php echo e($errors->first('rucOfertante')); ?></strong>
-                            </span>
-                        <?php endif; ?>
-                    </div>
-
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text">email</i>
-                        <input type="email" id="emailRO" name="emailRO" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        <input type="email" id="emailRO" name="emailRO" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" data-length="190">
                         <label for="emailRO">Correo</label>
                         <div id="mensajeCorreoOfertante" style="margin-top: 1%"></div>
                         <?php if($errors->has('emailRO')): ?>
@@ -922,6 +909,37 @@
                                 <strong><?php echo e($errors->first('emailRO')); ?></strong>
                             </span>
                         <?php endif; ?>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">phone</i>
+                        <input type="text" id="tlfRO" name="tlfRO" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+" data-length="15">
+                        <label for="tlfRO">Teléfono</label>
+                        <div id="mensajeTelefonoOfertante" style="margin-top: 1%"></div>
+                        <?php if($errors->has('tlfRO')): ?>
+                            <span class="help-block">
+                                <strong><?php echo e($errors->first('tlf')); ?></strong>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="input-field col s10 offset-s1">
+                        <select name="categoria" id="categoria" class="autocomplete" required="required">
+                            <option value="">Seleccione una categoría</option>
+                            <?php $__currentLoopData = $modules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $module): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($module->id); ?>"><?php echo e($module->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <option value="otra">Otra...</option>
+                        </select>
+                        <label for="categoria">¿En cuál categoría se encuentra el producto que desea canjear?</label>
+                    </div>
+
+                    <div id="otraCat" class="col s12">
+                        <label for="otraCategoria">Dé una breve descripción de la categoria del producto que desea canjear</label>
+                        <div id="mensajeOtraCatOfertante" style="margin-top: 1%"></div>
+                        <div class="input-field col s10 offset-s1">
+                            <textarea name="otraCategoria" id="otraCategoria" class="materialize-textarea" data-length="190"></textarea>
+                        </div>
                     </div>
 
                     <div class="input-field col s12">

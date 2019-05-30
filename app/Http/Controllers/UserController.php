@@ -147,9 +147,7 @@ class UserController extends Controller
         return view('users.register')->with('user_code',$id);
        }
 
-       }
 
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -908,7 +906,7 @@ class UserController extends Controller
             return view('users.ReadBook')->with('book',$Book);
     }
 
-   
+
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
