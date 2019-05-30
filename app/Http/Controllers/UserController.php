@@ -234,7 +234,7 @@ class UserController extends Controller
 
          $request->file('img_doc')->move($store_path,$name);
          
-         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;             
+         $user->img_doc = 'user/'.$user->id.'/profile/'.$name;             
         }
      
         //dd($request->all());
