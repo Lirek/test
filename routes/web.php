@@ -1304,11 +1304,11 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 */
 
-//----------------------- Rutas para el usuario OFERTANTE -----------------------
-Route::post('BidderSubmit','BidderController@store');
-Route::post('bidder_login','BidderAuth\LoginController@login');
+    //----------------------- Rutas para el usuario OFERTANTE -----------------------
+    Route::post('BidderSubmit','BidderController@store');
+    Route::post('bidder_login','BidderAuth\LoginController@login');
 
-Route::group(['middleware' => 'bidder_guest'], function(){
+    Route::group(['middleware' => 'bidder_guest'], function(){
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
     Route::get('bidderComplete/{id}/{token}','BidderController@bidderComplete');
     Route::post('BidderCompleteRegister','BidderController@BidderCompleteRegister');
