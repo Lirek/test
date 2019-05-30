@@ -386,6 +386,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
              Route::get('DeleteCity/{id}','AdminController@DeleteCity');
 
 
+             Route::get('Parroquias','AdminController@Parroquias');
+
+             Route::post('AddParish','AdminController@AddParish');
+
+             Route::get('FindParish/{id}','AdminController@FindParish');
+
+             Route::post('UpdateParish/{id}','AdminController@UpdateParish');
+
+             Route::get('DeleteParish/{id}','AdminController@DeleteParish');
+
+
 
         //_________________FIN de RUtas de Proveedores____________________________
 

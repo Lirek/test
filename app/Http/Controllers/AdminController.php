@@ -60,6 +60,7 @@ use App\Province;
 use App\Country;
 use App\Region;
 use App\City;
+use App\Parish;
 use App\PointsLoser;
 
 //------------------------------------------------------------
@@ -2097,6 +2098,59 @@ public function Region(){
         return response()->json($city); 
         //return redirect()->action('AdminController@Provincias');
       }
+
+      //PARROQUIAS
+
+        public function Parroquias(){
+        $City = City::All();
+        $Parish = Parish::with('city')->get();
+        return view('promoter.AdminModules.Parish')->with('City',$City)->with('Parish',$Parish);
+    }
+
+    public function AddParish(Request $request) {
+        $Parish = Parish::All();
+        $parish = new Parish;
+        $parish->city_id = $request->city_id;
+        $parish->parish_name = $request->parish_name;
+        if (Parish::where('parish_name','=',$request->parish_name)->count()==1) {
+
+        Flash('La Parroquia agregada ya existe.')->success();
+        return redirect()->action('AdminController@Parroquias');
+        }
+
+        else { 
+        $parish->save();
+        Flash('Nueva Parroquia agregada exitosamente')->success();
+        return redirect()->action('AdminController@Parroquias');
+        }
+      }
+
+      public function FindParish($id) {
+        $parish = Parish::find($id);
+        return response()->json($parish);
+      }
+
+      public function UpdateParish(Request $request, $id) {
+        $parish = Parish::find($id);
+        $parish->parish_name = $request->parish_name;
+        $parish->city_id = $request->city_id;
+        //if (Parish::where('parish_name','=',$request->parish_name)->count()==1) {
+        //Flash('Error al modificar Parroquia, ya existe.')->success();
+        //return response()->json($error);
+        //}
+
+        //else{ 
+        $parish->save();
+        return response()->json($parish);
+       // }
+      }
+
+       public function DeleteParish($id) {
+        $parish = Parish::destroy($id);
+        return response()->json($parish); 
+        //return redirect()->action('AdminController@Provincias');
+      }
+
 
 }
  
