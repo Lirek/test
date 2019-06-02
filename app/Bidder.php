@@ -43,6 +43,10 @@ class Bidder extends Authenticatable
         return $this->hasMany('App\Products','bidder_id');
     }
 
+    public function PayementsCredentials() {
+        return $this->hasMany('App\ExternalClients','bidder_id');
+    }
+
     public static function store($request) {
     	$bidder = new Bidder;
     	$bidder->name = $request->nombreOfertante;
@@ -152,7 +156,7 @@ class Bidder extends Authenticatable
         $bidder->logo = $logo_bidder;
         $bidder->save();
     }
-    
+
     public static function actualizarClave($request) {
         $bidder = self::find(Auth::guard('bidder')->user()->id);
         if(password_verify($request->claveActual, $bidder->password)){

@@ -9,11 +9,13 @@ use App\Events\TransactionToken;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 
 use App\ExternalClients;
 use App\User;
 use App\ExternalPayments;
+use App\Bidder;
 
 use Auth;
 
@@ -79,7 +81,7 @@ class ExternalOperationsController extends Controller
 
     	if ($user->points > $Transaction->points)
     	{
-    	    
+
     	    if($request->token == $Transaction->token_s)
     	    {
     	        $now=Carbon::now();
@@ -178,5 +180,24 @@ class ExternalOperationsController extends Controller
                                                 ->with('external',$ExternalClient)
                                                 ->with('transaction',$Transaction->id);
         }
+    }
+
+    public function showPayments()
+    {
+      $Bidder = Bidder::find(Auth::guard('bidder')->user()->id);
+      $ExternalClients = $Bidder->PayementsCredentials()->first();
+      return view('bidder.PaymentsPanel')->with('client_secret_id', $ExternalClients->client_secret_id)
+                                         ->with('client_token', $ExternalClients->client_token)
+                                         ->with('callback_url', $ExternalClients->callback_url)
+                                         ->with('petition_url', $ExternalClients->petition_url)
+                                         ->with('url_host', $ExternalClients->url_host);
+    }
+
+    public function PaymentsDataTable()
+    {
+      $Bidder = Bidder::find(Auth::guard('bidder')->user()->id);
+      $ExternalClients = $Bidder->PayementsCredentials()->first();
+      $Payments =ExternalPayments::where('client_id', '=',$ExternalClients->id)->get();
+      return Datatables::of($Payments)->toJson();
     }
 }

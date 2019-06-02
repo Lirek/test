@@ -1318,6 +1318,11 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     Route::post('imagenPerfilBidder','BidderController@imagenPerfilBidder');
     Route::post('cambiarClaveBidder','BidderController@cambiarClaveBidder');
     Route::get('DeleteAccountBidder','BidderController@DeleteAccountBidder');
+    //-------------------------Monitoreo de Pagos-------------------------------
+      Route::get('leipelPayments','ExternalOperationsController@showPayments');
+      Route::get('PaymentsDataTable','ExternalOperationsController@PaymentsDataTable');
+      Route::post('PaymentButtonRequest','ExternalClientsController@CreatePaymentCredentials');      
+    //--------------------------------------------------------------------------
 });
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
