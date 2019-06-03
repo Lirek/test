@@ -4,29 +4,31 @@ namespace App\Http\Controllers\ApiController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use JWTAuth;
+use App\User;
+use App\Referals;
+use Auth;
+use Validator;
+use File;
+/*No se usasn*/
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use Spatie\Fractalistic\Fractal;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Log;
-
 use App\Events\PayementAprovalEvent;
 use App\Events\PaymentDenialEvent;
 use App\Events\AssingPointsEvents;
-
-use JWTAuth;
 use Response;
-
 use App\Megazines;
 use App\Tags;
 use App\ApplysSellers;
 use App\Songs;
 use App\Albums;
-use App\User;
-use App\Seller;
 use App\Radio;
+use App\Seller;
 use App\Sagas;
 use App\BookAuthor;
 use App\Book;
@@ -39,11 +41,9 @@ use App\Salesman;
 use App\PromotersRoles;
 use App\TicketsPackage;
 use App\Payments;
-use App\Referals;
 use App\PointsAssings;
 use App\SistemBalance;
 use App\Transactions;
-
 use App\Transformers\UserTransformer;
 use App\Transformers\AlbumsTransformer;
 use App\Transformers\SongsTransformer;
@@ -54,25 +54,15 @@ use App\Transformers\BooksTransformer;
 use App\Transformers\MegazinesTransformer;
 use App\Transformers\RadioTransformer;
 use App\Transformers\TvTransformer;
-
-use Auth;
-use Carbon\Carbon; //
-use App\Mail\TransactionApproved; //
-use Illuminate\Support\Facades\Mail; //
-use Validator; //
-
+use Carbon\Carbon;
+use App\Mail\TransactionApproved;
+use Illuminate\Support\Facades\Mail;
 use QrCode;
+/*No se usasn*/
 
 class UserController extends Controller
 {
     public function UserData() {
-        /*
-        $Json = Fractal::create()
-            ->item($user)
-            ->transformWith(new UserTransformer)
-            ->toArray();
-        return Response::json($Json);
-        */
         try {
             $user = auth()->user();
             $data = [
@@ -208,80 +198,70 @@ class UserController extends Controller
         } catch (Exception $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
-
-        /*
-        $Json = Fractal::create()
-            ->item($user)
-            ->transformWith(new UserTransformer)
-            ->toArray();
-        return Response::json($Json);
-        */
     }
 
-    public function UploadDocument(Request $request)
-    {
-        $user = User::find(auth()->user()->id);
+    public function UploadDocument(Request $request) {
 
-        if ($request->hasFile('img_doc'))
-        {
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            //'imagen_del_documento' => 'required|image|dimensions:max_width=500,max_height=500|size:1024'
+            'imagen_del_documento' => 'required|image'
+        ];
+        $validator = Validator::make($datos, $rules);
 
-
-            $store_path = public_path().'/user/'.$user->id.'/profile/';
-
-            $name = 'document'.$request->name.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
-
-            $request->file('img_doc')->move($store_path,$name);
-
-            $real_path='/user/'.$user->id.'/profile/'.$name;
-
-            $user->img_doc = $real_path='/user/'.$user->id.'/profile/'.$name;
-
-            $user->save();
-
-            $Json = Fractal::create()
-                ->item($user)
-                ->transformWith(new UserTransformer)
-                ->toArray();
-
-
-            return Response::json($Json);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
         }
-        else
-        {
 
-            return Response::json(['status'=>'Error'], 400);
+        try {
+            $user = User::find(auth()->user()->id);
+            if ($user->img_doc!=null) {
+                File::delete(public_path().$user->img_doc);
+            }
+            $nombre = $this->sinAcento($user->name);
+            $store_path = public_path().'/user/'.$user->id.'/profile/';
+            $name = 'document'.$nombre.time().'.'.$request->file('imagen_del_documento')->getClientOriginalExtension();
+            $request->file('imagen_del_documento')->move($store_path,$name);
+            $user->img_doc = '/user/'.$user->id.'/profile/'.$name;
+            $user->save();
+            $data = [
+                'img_doc' => $user->img_doc
+            ];
+            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
     }
 
-    public function UploadAvatar(Request $request)
-    {
-        $user = User::find(auth()->user()->id);
+    public function UploadAvatar(Request $request) {
 
-        if ($request->hasFile('img_perf'))
-        {
-            $store_path = public_path().'/user/'.$user->id.'/profile/';
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            //'img_perf' => 'required|image|dimensions:max_width=500,max_height=500|size:1024'
+            'imagen_de_perfil' => 'required|image'
+        ];
+        $validator = Validator::make($datos, $rules);
 
-            $name = 'userpic'.$request->name.time().'.'.$request->file('img_perf')->getClientOriginalExtension();
-
-            $request->file('img_perf')->move($store_path,$name);
-
-            $real_path='/user/'.$user->id.'/profile/'.$name;
-
-            $user->img_perf = $real_path='/user/'.$user->id.'/profile/'.$name;
-
-            $user->save();
-
-            $Json = Fractal::create()
-                ->item($user)
-                ->transformWith(new UserTransformer)
-                ->toArray();
-
-
-            return Response::json($Json);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
         }
-        else
-        {
-            return Response::json(['status'=>'ERROR'], 402);
+        try {
+            $user = User::find(auth()->user()->id);
+            if ($user->img_perf!=null) {
+                File::delete(public_path().$user->img_perf);
+            }
+            $nombre = $this->sinAcento($user->name);
+            $store_path = public_path().'/user/'.$user->id.'/profile/';
+            $name = 'userpic'.$nombre.time().'.'.$request->file('imagen_de_perfil')->getClientOriginalExtension();
+            $request->file('imagen_de_perfil')->move($store_path,$name);
+            $user->img_perf = '/user/'.$user->id.'/profile/'.$name;
+            $user->save();
+            $data = [
+                'img_perf' => $user->img_perf
+            ];
+            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
     }
     
@@ -385,5 +365,13 @@ class UserController extends Controller
         } else {
             return response()->json(['meta'=>['code'=>400],'data'=>false],200); // algun error con el codigo
         }
+    }
+
+    public function sinAcento($cadena) {
+        $originales =  'ÀÁÂÃÄÅÆàáâãäåæÈÉÊËèéêëÌÍÎÏìíîïÒÓÔÕÖØòóôõöðøÙÚÛÜùúûÇçÐýýÝßÞþÿŔŕÑñ';
+        $modificadas = 'AAAAAAAaaaaaaaEEEEeeeeIIIIiiiiOOOOOOoooooooUUUUuuuCcDyyYBbbyRrÑñ';
+        $cadena = utf8_decode($cadena);
+        $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+        return $cadena;
     }
 }

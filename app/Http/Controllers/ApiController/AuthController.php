@@ -73,6 +73,28 @@ class AuthController extends Controller
         return response()->json(['meta'=>['code'=>200],'data'=>['token'=>$token]],200);
     }
 
+    public function refresh(Request $request) {
+        $credentials = $request->only('email');
+
+        $rules = [
+            'email' => 'required|email'
+        ];
+        $validator = Validator::make($credentials, $rules);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages()],200);
+        }
+        try {
+            $user = User::firstOrCreate([
+                'email' => $request->email
+            ]);
+            auth()->login($user);
+            $token = JWTAuth::fromUser($user);
+            return response()->json(['meta'=>['code'=>200],'data'=>['token'=>$token]],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e->getMessage()],200);
+        }
+    }
+
     public function logout(Request $request)
     {
         /* Api sin uso, se elimina el token desde el app */
@@ -88,27 +110,6 @@ class AuthController extends Controller
 
             return response()->json(['success' => false, 'error' => 'Failed to logout, please try again.'], 500);
         }
-    }
-
-    public function recover(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-        if (!$user) {
-            $error_message = "Your email address was not found.";
-            return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
-        }
-        try {
-            Password::sendResetLink($request->only('email'), function (Message $message) {
-                $message->subject('Your Password Reset Link');
-            });
-        } catch (\Exception $e) {
-            //Return with error
-            $error_message = $e->getMessage();
-            return response()->json(['success' => false, 'error' => $error_message], 401);
-        }
-        return response()->json([
-            'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
-        ]);
     }
 
     public function AuthSocialUser(Request $request) {
@@ -170,6 +171,27 @@ class AuthController extends Controller
         }
         $token = JWTAuth::fromUser($createUser);
         return response()->json(['meta'=>['code'=>201],'data'=>['token'=>$token]],200);
+    }
+
+    public function recover(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $error_message = "Your email address was not found.";
+            return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
+        }
+        try {
+            Password::sendResetLink($request->only('email'), function (Message $message) {
+                $message->subject('Your Password Reset Link');
+            });
+        } catch (\Exception $e) {
+            //Return with error
+            $error_message = $e->getMessage();
+            return response()->json(['success' => false, 'error' => $error_message], 401);
+        }
+        return response()->json([
+            'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
+        ]);
     }
 
 }
