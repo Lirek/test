@@ -204,6 +204,11 @@
                   <a href="{{url('Ciudades')}}" class="waves-effect waves-blue"><i class="small material-icons">location_city</i>Ciudad
                   </a>
                 </li>
+                <!-- MODULO DE PARROQUIAS COMENTADO MOMENTANEAMENTE -->
+                <!--<li>
+                  <a href="{{url('Parroquias')}}" class="waves-effect waves-blue"><i class="small material-icons">directions</i>Parroquia
+                  </a>
+                </li>-->
               </ul>
             </div>
           </li>

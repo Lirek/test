@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Product extends Migration
+class CreateSellersmoduleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class Product extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table){
+        //
+            Schema::create('sellers_modules', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bidder_id')->unsigned()->default('0');
-            $table->string('imagen_prod');
-            $table->string('pdf_prod');
             $table->string('name');
-            $table->string('description');
-            $table->integer('cost');
-            $table->integer('amount');
-            $table->enum('status',['Aprobado','En Revision','Denegado']);
             $table->timestamps();
         });
     }
@@ -34,6 +28,7 @@ class Product extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product');
+       Schema::dropIfExists('sellers_modules');
+
     }
 }

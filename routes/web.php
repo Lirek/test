@@ -467,6 +467,63 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
 
+
+            Route::get('Provincias','AdminController@Provincias');
+
+            Route::post('AddProvince','AdminController@AddProvince');
+
+            Route::get('DeleteProvince/{id}','AdminController@DeleteProvince');
+
+            Route::get('FindProvince/{id}','AdminController@FindProvince');
+
+            Route::post('UpdateProvince/{id}','AdminController@UpdateProvince');
+
+
+            Route::get('Pais','AdminController@Pais');
+
+            Route::post('AddCountry','AdminController@AddCountry');
+
+            Route::get('FindCountry/{id}','AdminController@FindCountry');
+
+            Route::post('UpdateCountry/{id}','AdminController@UpdateCountry');
+
+            Route::get('DeleteCountry/{id}','AdminController@DeleteCountry');
+
+
+            Route::get('Regiones','AdminController@Region');
+
+            Route::post('AddRegion','AdminController@AddRegion');
+
+            Route::get('FindRegion/{id}','AdminController@FindRegion');
+
+            Route::post('UpdateRegion/{id}','AdminController@UpdateRegion');
+
+            Route::get('DeleteRegion/{id}','AdminController@DeleteRegion');
+
+
+             Route::get('Ciudades','AdminController@Ciudades');
+
+             Route::post('AddCity','AdminController@AddCity');
+
+             Route::get('FindCity/{id}','AdminController@FindCity');
+
+             Route::post('UpdateCity/{id}','AdminController@UpdateCity');
+
+             Route::get('DeleteCity/{id}','AdminController@DeleteCity');
+
+
+             Route::get('Parroquias','AdminController@Parroquias');
+
+             Route::post('AddParish','AdminController@AddParish');
+
+             Route::get('FindParish/{id}','AdminController@FindParish');
+
+             Route::post('UpdateParish/{id}','AdminController@UpdateParish');
+
+             Route::get('DeleteParish/{id}','AdminController@DeleteParish');
+
+
+
         //_________________FIN de RUtas de Proveedores____________________________
 
         //___________________RUTAS DE DE USUARIOS_______________________
