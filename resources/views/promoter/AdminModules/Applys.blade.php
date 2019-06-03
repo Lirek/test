@@ -16,13 +16,13 @@
         <tr>
           <th><i class="material-icons"></i>Nombre comercial</th>
           <th><i class="material-icons"></i>Nombre del contacto</th>
-          {{--<th><i class="material-icons"></i>Teléfono del contacto</th>--}}
+          <th><i class="material-icons"></i>Teléfono del contacto</th>
           <th><i class="material-icons"></i>Correo del contacto</th>
           <th><i class="material-icons"></i>Tipo contenido</th>
           <th><i class="material-icons"></i>Sub-contenido</th>
-          <th><i class="material-icons"></i>Vendedor</th>
-          <th><i class="material-icons"></i>Fecha de registro</th>
-          <th id="solicitud"><i class="material-icons"></i>Opciones</th>
+          <th><i class="material-icons"></i>Asignar</th>
+          <th><i class="material-icons"></i>Fecha</th>
+          <th id="solicitud"><i class="material-icons"></i>Pre-Aprobar</th>
         </tr>
       </thead>
       <tbody id="proveedores">
@@ -83,13 +83,15 @@
             var colorBoton = "btn-primary"; 
             var id = "statusApplys"; 
             var modal = "#myModal";
-            var texto = info.status;
+            //var texto = info.status;
+            var texto = "si/no";
           }
           else if (info.status=="En Proceso") { 
             var colorBoton = "btn-warning"; 
             var id = "statusApplys"; 
             var modal = "#myModal";
-            var texto = info.status;
+            //var texto = info.status;
+            var texto = "si/no";
           }
           else if (info.status=="Denegado") { 
             var colorBoton = "btn-danger"; 
@@ -101,7 +103,7 @@
           var filas = "<tr><td>"+
           info.name_c+"</td><td>"+
           info.contact_s+"</td><td>"+
-          //info.phone_s+"</td><td>"+
+          info.phone_s+"</td><td>"+
           info.email+"</td><td>"+
           info.desired_m+"</td><td>"+
           subTipo+"</td><td>"+
