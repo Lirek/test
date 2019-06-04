@@ -924,7 +924,7 @@
                             @endforeach
                             <option value="otra">Otra...</option>
                         </select>
-                        <label for="categoria">¿En cuál categoría se encuentra el producto que desea canjear?</label>
+                        <label for="categoria">Indique la categoría del producto que desea canjear</label>
                     </div>
 
                     <div id="otraCat" class="col s12">
