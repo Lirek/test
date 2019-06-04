@@ -1729,3 +1729,73 @@ Stack trace:
 #59 C:\wamp64\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #60 C:\wamp64\www\Leipel\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #61 {main}  
+[2019-06-04 13:25:54] production.ERROR: ReflectionException: Class Barryvdh\Cors\HandleCors does not exist in C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php:729
+Stack trace:
+#0 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(729): ReflectionClass->__construct('Barryvdh\\Cors\\H...')
+#1 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(608): Illuminate\Container\Container->build('Barryvdh\\Cors\\H...')
+#2 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(575): Illuminate\Container\Container->resolve('Barryvdh\\Cors\\H...')
+#3 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(728): Illuminate\Container\Container->make('Barryvdh\\Cors\\H...')
+#4 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(138): Illuminate\Foundation\Application->make('Barryvdh\\Cors\\H...')
+#5 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#6 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php(27): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#15 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode.php(46): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#16 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#17 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(151): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#20 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#21 C:\wamp\www\Leipel\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#22 {main}  
+[2019-06-04 13:25:55] production.ERROR: ReflectionException: Class Barryvdh\Cors\HandleCors does not exist in C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php:729
+Stack trace:
+#0 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(729): ReflectionClass->__construct('Barryvdh\\Cors\\H...')
+#1 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(608): Illuminate\Container\Container->build('Barryvdh\\Cors\\H...')
+#2 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(575): Illuminate\Container\Container->resolve('Barryvdh\\Cors\\H...')
+#3 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(728): Illuminate\Container\Container->make('Barryvdh\\Cors\\H...')
+#4 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(215): Illuminate\Foundation\Application->make('Barryvdh\\Cors\\H...')
+#5 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(189): Illuminate\Foundation\Http\Kernel->terminateMiddleware(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+#6 C:\wamp\www\Leipel\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+#7 {main}  
+[2019-06-04 13:26:05] production.ERROR: ReflectionException: Class Barryvdh\Cors\HandleCors does not exist in C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php:729
+Stack trace:
+#0 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(729): ReflectionClass->__construct('Barryvdh\\Cors\\H...')
+#1 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(608): Illuminate\Container\Container->build('Barryvdh\\Cors\\H...')
+#2 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(575): Illuminate\Container\Container->resolve('Barryvdh\\Cors\\H...')
+#3 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(728): Illuminate\Container\Container->make('Barryvdh\\Cors\\H...')
+#4 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(138): Illuminate\Foundation\Application->make('Barryvdh\\Cors\\H...')
+#5 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#6 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#7 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#10 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#12 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php(27): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#13 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#15 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode.php(46): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#16 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#17 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#19 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(151): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#20 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#21 C:\wamp\www\Leipel\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#22 {main}  
+[2019-06-04 13:26:05] production.ERROR: ReflectionException: Class Barryvdh\Cors\HandleCors does not exist in C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php:729
+Stack trace:
+#0 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(729): ReflectionClass->__construct('Barryvdh\\Cors\\H...')
+#1 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(608): Illuminate\Container\Container->build('Barryvdh\\Cors\\H...')
+#2 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Container\Container.php(575): Illuminate\Container\Container->resolve('Barryvdh\\Cors\\H...')
+#3 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(728): Illuminate\Container\Container->make('Barryvdh\\Cors\\H...')
+#4 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(215): Illuminate\Foundation\Application->make('Barryvdh\\Cors\\H...')
+#5 C:\wamp\www\Leipel\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(189): Illuminate\Foundation\Http\Kernel->terminateMiddleware(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+#6 C:\wamp\www\Leipel\public\index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
+#7 {main}  
