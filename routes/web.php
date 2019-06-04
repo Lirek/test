@@ -706,7 +706,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
         //------------------------------- Rutas para los modulos y permisos-------------------------------
             Route::post('newModule','SuperAdminController@newModule');
             Route::post('newNegado','SuperAdminController@newNegado');
-            Route::post('statusModule/{id}','SuperAdminController@statusModule');
+            // Route::post('statusModule/{id}','SuperAdminController@statusModule');
             Route::get('dataUsuario/{tipo}','SuperAdminController@dataUsuario');
             Route::get('/DeleteModule/{id}','SuperAdminController@DeleteModule');
 

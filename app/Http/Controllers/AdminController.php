@@ -58,6 +58,8 @@ use App\Rejection;
 use App\PaymentSeller;
 use App\Province;
 use App\PointsLoser;
+use App\module;
+use App\license;
 
 //------------------------------------------------------------
 
@@ -1145,7 +1147,15 @@ public function BooksDataTable($status) {
         event(new PasswordPromoter($promoter->email,$randomString));
         $promoter->save();
         $promoter->Roles()->attach($request->priority);
-        return response()->json($promoter);
+        $ultimo = Promoters::orderBy('id','asc')->get();
+        $modulos = module::all();
+        foreach ($modulos as $mo) {
+                $acceso = new license;
+                $acceso->promoter_id = $ultimo->last()->id;
+                $acceso->module_id = $mo->id;
+                $acceso->save();
+            }
+        return response()->json([$promoter,$acceso]);
    		}
 
       public function promoterUpdate($idPromoter) {
