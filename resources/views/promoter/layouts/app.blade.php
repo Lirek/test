@@ -300,6 +300,28 @@
             if (result.contenido!=0) {
               $('#badgeContenido').show();
               $('#badgeContenido').text(result.contenido);
+              
+                if(result.albums != 0){
+                  $('#badgeAlbums').show();
+                  $('#badgeAlbums').text(result.albums);
+
+                }
+                if(result.movies != 0) {
+                  $('#badgeMovies').show(); 
+                  $('#badgeMovies').text(result.movies);
+                }
+                if(result.series != 0) {
+                  $('#badgeSeries').show(); 
+                  $('#badgeSeries').text(result.series);
+                }
+                if (result.books != 0) {
+                  $('#badgeBooks').show(); 
+                  $('#badgeBooks').text(result.books);
+                }
+                if(result.tv != 0 ){
+                  $('#badgeTv').show(); 
+                  $('#badgeTv').text(result.tv);
+                }
             }
 
             if (result.pagosU!=0 || result.solicitudesU!=0) {

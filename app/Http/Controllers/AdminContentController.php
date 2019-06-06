@@ -231,7 +231,13 @@ class AdminContentController extends Controller
       'pagosU' => $pagosUsuarios,
       'pagosB' => $pagosBidder,
       'productos' => $productos,
-      'ofertantes' => $ofertantes
+      'ofertantes' => $ofertantes,
+      'albums' => $albums,
+      'movies' => $movies ,
+      'series' => $series , 
+      'books' => $books ,
+      'tv' => $tv 
+      
     ];
     return response()->json($pendientes);
     
