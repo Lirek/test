@@ -831,7 +831,7 @@ $(document).ready(function(){
             closeOnEsc: false,
             closeOnClickOutside: false
         });
-        console.log($("#formRO"));
+        console.log('Ruta : '+url);
         $.ajax({
             url: url,
             type: 'POST',

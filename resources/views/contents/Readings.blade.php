@@ -41,28 +41,32 @@
                           <div class="card" style="height:100%">
                             <div class="card-image">
                               @if($lecturas->books_file)
-                              @if($lecturas->transaction->count()!=0)
-                              @foreach($lecturas->transaction as $t) 
-                              @if($t->user_id==Auth::user()->id)
+
+
+                             @if($lecturas['adquirido'])
+                              <!-- Comprado -->
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ShowMyReadBook/'.$lecturas->id)}}" id="modal-confir.{{$lecturas->id}}" ><i class="material-icons green">book</i></a>
-                              @endif
-                              @endforeach
+                         
                               @else
+                               <!-- Sin Comprar -->
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">book</i></a>
                               @endif
-                              @else <!-- Revistas -->
-                              @if($lecturas->transaction->count()!=0)
+
+                             @else <!-- Revistas -->
+                             @if($lecturas['adquirido'])
+                              <!-- Comprado -->
                               <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
                               <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{url('ShowMyReadMegazine/'.$lecturas->id)}}"><i class="mdi mdi-book-open-variant green"></i></a>
                               @else
+                               <!-- Sin Comprar -->
                               <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
@@ -107,25 +111,22 @@
                                 </div>
                                 <div class="col s12 m4 offset-m1">
                              <br>
-
-                              @if($lecturas->books_file)
-                              @if($lecturas->transaction->count()!=0)
-                              @foreach($lecturas->transaction as $t) 
-                              @if($t->user_id==Auth::user()->id)
+                            @if($lecturas->books_file)
+                             @if($lecturas['adquirido'])
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300"></a>
                               <!-- <span class="card-title">Card Title</span> -->
                               <a  class="btn halfway-fab waves-effect waves-light green curvaBoton" href="{{url('ShowMyReadBook/'.$lecturas->id)}}" id="modal-confir.{{$lecturas->id}}"><i class="material-icons green">book</i></a>
-                              @endif
-                              @endforeach
+                          
                               @else
                               <a href="#myModal-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{ asset('/images/bookcover') }}/{{ $lecturas->cover }}" width="100%" height="300"></a>
                               <!-- <span class="card-title">Card Title</span> -->
                               <a  class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialog('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                               @endif
+
                               @else <!-- Revistas -->
-                              @if($lecturas->transaction->count()!=0)
+                              @if($lecturas['adquirido'])
                               <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
@@ -134,7 +135,7 @@
                               <a href="#myModalMeg-{{$lecturas->id}}" class="modal-trigger">
                               <img src="{{asset($lecturas->cover)}}" width="100%" height="300px"></a>
                               <!-- <span class="card-title">Card Title</span> -->
-                              <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="mdi mdi-book-open-variant"></i></a>
+                              <a class="btn halfway-fab waves-effect waves-light blue curvaBoton" href="#" id="modal-confir.{{$lecturas->id}}" onclick="fnOpenNormalDialogMeg('{!!$lecturas->cost!!}','{!!$lecturas->title!!}','{!!$lecturas->id!!}')"><i class="material-icons">add_shopping_cart</i></a>
                               @endif
                               @endif
                               <br><br>

@@ -1,4 +1,6 @@
 @extends('promoter.layouts.app')
+
+@section('css')
     <style>
         #image-preview {
             width: 100%;
@@ -76,6 +78,7 @@
 
         .curvaBoton{border-radius: 20px;}
     </style>
+    @endsection
 @section('main')
     <span class="card-title grey-text"><h3>Radios</h3></span>
     <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar radio" href="#NewRadio">
@@ -102,8 +105,10 @@
             </tbody>
         </table>
     </div>
-    @include('promoter.modals.RadioViewModal')
+
+@include('promoter.modals.RadioViewModal')
 @endsection
+
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>

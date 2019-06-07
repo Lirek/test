@@ -15,4 +15,9 @@ class Province extends Model
         'province', 
         ];
 
+    public function region()
+{
+     return $this->belongsTo(Region::class);
+}
+
 }

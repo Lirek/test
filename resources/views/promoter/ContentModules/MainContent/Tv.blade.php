@@ -1,4 +1,5 @@
 @extends('promoter.layouts.app')
+@section('css')
     <style>
         #image-preview {
             width: 100%;
@@ -76,6 +77,8 @@
 
         .curvaBoton{border-radius: 20px;}
     </style>
+@endsection
+
 @section('main')
     <span class="card-title grey-text"><h3>Televisoras</h3></span>
     <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar televisora" href="#NewTv">

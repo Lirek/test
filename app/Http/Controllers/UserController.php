@@ -124,7 +124,6 @@ class UserController extends Controller
 
         Auth::login($user);
 
-
         return redirect()->action('HomeController@index');
     }
 
@@ -147,9 +146,6 @@ class UserController extends Controller
         return view('users.register')->with('user_code',$id);
        }
 
-       }
-
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -228,8 +224,8 @@ class UserController extends Controller
          $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
-
-         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;
+         
+         $user->img_doc = 'user/'.$user->id.'/profile/'.$name;
         }
 
         //dd($request->all());

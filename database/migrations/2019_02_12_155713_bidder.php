@@ -18,12 +18,9 @@ class Bidder extends Migration
             $table->string('email');
             $table->string('name');
             $table->string('password')->nullable();
-            $table->string('ruc')->nullable();
+            $table->string('ruc');
             $table->string('imagen_ruc')->nullable();
             $table->string('logo')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('description')->nullable();
             $table->integer('points')->nullable()->default(0);
             $table->integer('pendding_points')->nullable()->default(0);
             $table->enum('status',['En Revision','Pre-Aprobado','Aprobado','Denegado'])->default("En Revision");
