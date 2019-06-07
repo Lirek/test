@@ -709,6 +709,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::group(['middleware' => ['SuperAdmin']], function (){
 
+         Route::get('ModulesLicense','SuperAdminController@Modules');         
+
          Route::get('Business','SuperAdminController@ShowBusiness');
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
