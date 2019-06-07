@@ -36,6 +36,8 @@ use App\music_authors;
 use App\SellersRoles;
 use App\Promoters;
 use App\LoginControl;
+use App\license;
+
 
 //-----------------------------------------------------
 
@@ -62,13 +64,19 @@ class PromoterController extends Controller
       $singles = Songs::where('status','En Revision')->whereNull('album')->count();
       $tv = Tv::where('status','En Proceso')->count();
       $contenidoPendiente = $albums+$books+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tv;
+
+      $permiso = Promoters::find($id);
+      $permiso->each(function ($permiso){
+            $permiso->license;
+          });
       return view('promoter.home')
               ->with('id',$id)
               ->with('promoter',$promoter)
               ->with('sellers',$sellers)
               ->with('aplyss',$aplyss)
               ->with('content_total',$contenidoPendiente)
-              ->with('TicketsPackage',$TicketsPackage);
+              ->with('TicketsPackage',$TicketsPackage)
+              ->with('permiso',$permiso);
 
       /*
       foreach ($user as $key1) {

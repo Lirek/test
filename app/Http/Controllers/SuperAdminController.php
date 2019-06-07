@@ -55,7 +55,16 @@ class SuperAdminController extends Controller
 
         public function newNegado(Request $request) 
         {
-          license::newNegado($request);
+          $usuario = license::where('promoter_id',$request->user)->where('module_id',$request->module)->count();
+          if ($usuario == 0)
+          {
+            license::newNegado($request);
+          } 
+          else
+          {
+            $usuario = 1;
+          }
+
           return redirect()->action("SuperAdminController@Modules");
         }
 
@@ -79,6 +88,8 @@ class SuperAdminController extends Controller
         return response()->json($delet);
       }
 
+
+   //------------------------Panel de finanzas--------------------
 
    //------------------------Panel de finanzas--------------------
    
