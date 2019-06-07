@@ -87,6 +87,8 @@
         }
     });
     return factura;
+
+
   }
   function setClient(status) {
     $("#clientes").empty();
@@ -122,8 +124,26 @@
             var genero = "Femenino";
           }
           if (info.img_doc!=null) {
-            var doc = "<img class='materialboxed' width='100' height='90' src='{!!asset('"+info.img_doc+"')!!}'";
-          } else {
+
+            var extensionesValidas = ".png, .gif, .jpeg, .jpg";
+            var pdfExtencion = ".pdf";
+            var pdf = "{{ asset('/sistem_images/pdf.png') }}";
+            var img = info.img_doc;
+            var extension = img.substring(img.lastIndexOf('.') + 1).toLowerCase();
+            var extensionValida = extensionesValidas.indexOf(extension);
+
+            if (extensionValida < 0) {
+
+               var doc = "<a class='btn red curvaBoton' href='{!!asset('"+info.img_doc+"')!!}' id='pdf' target='_blank'>Ver PDF</a>";
+
+            }
+
+            else{
+              var doc = "<img class='materialboxed' width='100' height='90' src='{!!asset('"+info.img_doc+"')!!}'";
+                }   
+          }
+
+           else {
             var doc = "No tiene documento registrado";
           }
           var fecha = moment(info.created_at).format('DD/MM/YYYY');

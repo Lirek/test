@@ -115,6 +115,7 @@ Route::group(['middleware' => ['auth','ActiveUser']], function() {
     Route::get('verifyBenefi/{id}','HomeController@verifyBenefi');
     Route::get('delivered/{id}','HomeController@delivered');
 
+
 //-------------------Funciones del Usuarios----------------------------------
 
 Route::post('BuySong/{id}','UserController@BuySingle');
@@ -466,6 +467,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
 
+
             Route::get('Provincias','AdminController@Provincias');
 
             Route::post('AddProvince','AdminController@AddProvince');
@@ -475,6 +477,51 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('FindProvince/{id}','AdminController@FindProvince');
 
             Route::post('UpdateProvince/{id}','AdminController@UpdateProvince');
+
+
+            Route::get('Pais','AdminController@Pais');
+
+            Route::post('AddCountry','AdminController@AddCountry');
+
+            Route::get('FindCountry/{id}','AdminController@FindCountry');
+
+            Route::post('UpdateCountry/{id}','AdminController@UpdateCountry');
+
+            Route::get('DeleteCountry/{id}','AdminController@DeleteCountry');
+
+
+            Route::get('Regiones','AdminController@Region');
+
+            Route::post('AddRegion','AdminController@AddRegion');
+
+            Route::get('FindRegion/{id}','AdminController@FindRegion');
+
+            Route::post('UpdateRegion/{id}','AdminController@UpdateRegion');
+
+            Route::get('DeleteRegion/{id}','AdminController@DeleteRegion');
+
+
+             Route::get('Ciudades','AdminController@Ciudades');
+
+             Route::post('AddCity','AdminController@AddCity');
+
+             Route::get('FindCity/{id}','AdminController@FindCity');
+
+             Route::post('UpdateCity/{id}','AdminController@UpdateCity');
+
+             Route::get('DeleteCity/{id}','AdminController@DeleteCity');
+
+
+             Route::get('Parroquias','AdminController@Parroquias');
+
+             Route::post('AddParish','AdminController@AddParish');
+
+             Route::get('FindParish/{id}','AdminController@FindParish');
+
+             Route::post('UpdateParish/{id}','AdminController@UpdateParish');
+
+             Route::get('DeleteParish/{id}','AdminController@DeleteParish');
+
 
 
         //_________________FIN de RUtas de Proveedores____________________________
@@ -544,6 +591,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('/admin_single','AdminController@ShowSingles');
                 Route::get('SingleData/{status}','AdminController@SinglesDataTable');
                 Route::post('/admin_singles/{id}','AdminController@SingleStatus');
+
            //---------------------------------------------------------------------
 
            //---------------------------ETIQUETAS-----------------------------------
@@ -698,10 +746,17 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('updateProduct','SuperAdminController@updateProduct');
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
-            Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
             
         //------------------------------- Rutas para los productos-------------------------------
 
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+            Route::get('Bidder','BidderController@Bidder');
+            Route::get('ModulesBidder','BidderController@ModulesBidder');
+            Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
+            Route::post('statusBidder/{id}','BidderController@statusBidder');
+            Route::post('addModuleBidder','BidderController@addModuleBidder');
+            Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
+            //------------------------------- Rutas para los ofertantes en backend -------------------------------
 
         //------------------------------- Rutas para los pagos del ofertantes --------------------------------
             Route::get('admin_bidder_payments','BidderController@paymentsBidder');
@@ -1306,11 +1361,11 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 */
 
-//----------------------- Rutas para el usuario OFERTANTE -----------------------
-Route::post('BidderSubmit','BidderController@store');
-Route::post('bidder_login','BidderAuth\LoginController@login');
+    //----------------------- Rutas para el usuario OFERTANTE -----------------------
+    Route::post('BidderSubmit','BidderController@store');
+    Route::post('bidder_login','BidderAuth\LoginController@login');
 
-Route::group(['middleware' => 'bidder_guest'], function(){
+    Route::group(['middleware' => 'bidder_guest'], function(){
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
     Route::get('bidderComplete/{id}/{token}','BidderController@bidderComplete');
     Route::post('BidderCompleteRegister','BidderController@BidderCompleteRegister');

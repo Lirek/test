@@ -17,7 +17,7 @@ class BiddingAccess extends Migration
             $table->integer('bidding_id')->unsigned()->default(0);
             $table->integer('modules_id')->unsigned()->default(0);
             $table->foreign('bidding_id')->references('id')->on('bidder');
-            $table->foreign('modules_id')->references('id')->on('bidding_modules')->onDelete('cascade');
+            $table->foreign('modules_id')->references('id')->on('bidding_modules');
             $table->primary(['bidding_id', 'modules_id']);
         });
     }

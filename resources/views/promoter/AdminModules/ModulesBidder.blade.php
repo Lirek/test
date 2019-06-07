@@ -33,7 +33,7 @@
         $("#AddModule").on('submit', function(e){
             $('#NewModule').modal('close');
             var categoria = $("#categoria").val();
-            var url = "{{url('addModule')}}";
+            var url = "{{url('addModuleBidder')}}";
             console.log(url);
             e.preventDefault();
             var gif = "{{ asset('/sistem_images/loading.gif') }}";

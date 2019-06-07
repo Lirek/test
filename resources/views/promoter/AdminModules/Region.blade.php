@@ -8,33 +8,33 @@
 @section('main')
 @include('flash::message')
 
-<span class="card-title grey-text"><h3>Provincias</h3></span>
+<span class="card-title grey-text"><h3>Regiones</h3></span>
 <div class="row">
     <div class="col s12">
       <div class="card">
-        <span class="card-title grey-text"><h4>Administrar Provincias</h4></span>
+        <span class="card-title grey-text"><h4>Administrar Regiones</h4></span>
         <table class="responsive-table" id="">
 
           <thead>
             <tr>
               <th><i class="material-icons"></i>ID</th>
-              <th><i class="material-icons"></i>Provincia</th>
               <th><i class="material-icons"></i>Región</th>
+              <th><i class="material-icons"></i>País</th>
               <th><i class="material-icons"></i>Opciones</th>
             </tr>
           </thead>
 
           <tbody> 
-          	@foreach($Provinces as $provinces)
+          	@foreach($Region as $region)
               <tr>
-              	<td>{{$provinces->id}}</td>
-              	<td>{{$provinces->province_name}}</td>
-              	<td>{{$provinces->region->region_name}}</td> 
+              	<td>{{$region->id}}</td>
+              	<td>{{$region->region_name}}</td>
+              	<td>{{$region->country->country_name}}</td> 
                 <td>
-                  <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Provincia" value="{{$provinces->id}}" id="editProvince" href="#UpdateProvince">
+                  <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Región" value="{{$region->id}}" id="editRegion" href="#UpdateRegion">
                     <i class="material-icons">edit</i>
                   </a>
-                  <a class="btn-small waves-effect waves-light btn tooltipped red" id="DeleteProvince" data-position="button" data-tooltip="Eliminar Provincia" value="{{$provinces->id}}" action="{{url('DeleteProvince')}}">
+                  <a class="btn-small waves-effect waves-light btn tooltipped red" id="DeleteRegion" data-position="button" data-tooltip="Eliminar Región" value="{{$region->id}}" action="{{url('DeleteRegion')}}">
                     <i class="material-icons">delete</i>
                   </a>
                 </td>
@@ -43,35 +43,34 @@
           </tbody>
         </table>
       </div>
-      <a id="tt3" class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar nueva provincia" href="#NewProvince"><i class="material-icons">add</i>
+      <a id="tt3" class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar nueva región" href="#NewRegion"><i class="material-icons">add</i>
       </a>
     </div>
   </div>
 
+  <!-- MODALES PARA REGIÓN -->
 
-  <!-- MODALES PARA PROVINCIAS -->
-
-	<div class="modal" id="NewProvince">
+	<div class="modal" id="NewRegion">
     <div class="modal-content">
       <div class="col s12 pink darken-4 lighten-1 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Agregar Provincia</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Agregar Región</h4>
       </div>
       <div class="text-center row">
-        <form method="POST" action="{{url('AddProvince')}}">
+        <form method="POST" action="{{url('AddRegion')}}">
           {{ csrf_field() }}
           <div class="input-field col s6 l6 m6">
-    		<select name="region_id" required="required">
-      			<option value="" disabled selected>Selecciona una Región</option>
-      			@foreach($Region as $region)        
-                        <option value="{{$region->id}}">{{$region->region_name}}</option>
+              <input class="validate" type="text" name="region_name" id="region_name" required="required" pattern="[A-Za-z ]+">
+              <label for="region_name">Nombre de la Región</label>
+            </div>
+          <div class="input-field col s6 l6 m6">
+    		<select name="country_id" required="required">
+      			<option value="" disabled selected>Seleccione el País</option>
+      			@foreach($Country as $country)        
+                        <option value="{{$country->id}}">{{$country->country_name}}</option>
                 @endforeach
     		</select>
-    		<label>Seleccione Región</label>
+    		<label>Seleccione el País</label>
   			</div>
-  			<div class="input-field col s6 l6 m6">
-              <input class="validate" type="text" name="province_name" id="province_name" required="required" pattern="[A-Za-z ]+">
-              <label for="province_name">Nombre de la Provincia</label>
-            </div>
           <div class="col s12">
             <button class="btn" type="submit">
               Enviar
@@ -82,29 +81,29 @@
     </div>
   </div>
 
-  <!-- Modificar Provincia -->
-  <div class="modal" id="UpdateProvince">
+   <!-- Modificar Región -->
+  <div class="modal" id="UpdateRegion">
     <div class="modal-content">
       <div class="col s12 pink darken-4 lighten-1 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Modificar provincia</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Modificar Región</h4>
       </div>
       <div class="text-center row">
-        <form method="POST" id="UpdateProvinceForm">
+        <form method="POST" id="UpdateRegionForm">
           {{ csrf_field() }}
           <input type="hidden" id="idUpdate">
           <div class="col l12 m12">
-            <div class="input-field col s6">
-              <input class="validate" type="text" name="province_name" id="nameUpdate" placeholder="" required="required" pattern="[A-Za-z ]+">
-              <label for="name">Nombre de la Región</label>
+            <div class="input-field col s6">     	
+              <input class="validate" type="text" name="region_name" id="nameUpdate" placeholder="Ingrese Nombre de la Región" required="required" pattern="[A-Za-z ]+">
+              <label for="name">Nombre de la Región</label>              
             </div>
             <div class="input-field col s6">
-    		<select name="regionUpdate" id="regionUpdate" required="required">
-      			<option value="" disabled selected>Selecciona una Región</option>
-      			@foreach($Region as $region)        
-                        <option value="{{$region->id}}">{{$region->region_name}}</option>
+    		<select name="countryUpdate" id="countryUpdate" required="required">
+    			<option value="" disabled selected>Seleccione País</option>
+      			@foreach($Country as $country)        
+                        <option value="{{$country->id}}">{{$country->country_name}}</option>
                 @endforeach
     		</select>
-    		<label>Seleccione Región</label>
+    		<label>Seleccione País</label>
   			</div>
           </div>
           <div class="col s12">
@@ -117,9 +116,9 @@
     </div>
   </div>
 
-  <!-- FIN MODALES PROVINCIAS -->
 
 @endsection
+
 
 @section('js')
 <script>
@@ -128,13 +127,14 @@
             $('select').formSelect();
         });
 </script>
+
 <script>
-	// editar provincia
-  $(document).on('click', '#editProvince', function(e) {
-    var provinces = $(this).attr("value");
-    var url = "{{url('FindProvince/')}}/"+provinces;
+	// editar región
+  $(document).on('click', '#editRegion', function(e) {
+    var region = $(this).attr("value");
+    var url = "{{url('FindRegion/')}}/"+region;
     e.preventDefault();
-    console.log(provinces,url);
+    console.log(region,url);
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
     swal({
       title: "Procesando la información",
@@ -152,7 +152,7 @@
         console.log(data);
         swal.close();
         $('#idUpdate').val(data.id);
-        $("#nameUpdate").val(data.province_name);
+        $("#nameUpdate").val(data.region_name);
       },
       error: function(data) {
         console.log(data);
@@ -160,11 +160,11 @@
     });
   });
   
-  $("#UpdateProvinceForm").on('submit', function(e){
-    var province = $("#idUpdate").val();
-    var province_name = $('#nameUpdate').val();
-    var region_id = $('#regionUpdate').val();
-    console.log(province_name);
+  $("#UpdateRegionForm").on('submit', function(e){
+    var region = $("#idUpdate").val();
+    var region_name = $('#nameUpdate').val();
+    var country_id = $('#countryUpdate').val();
+    console.log(region_name);
     e.preventDefault();
     var gif = "{{ asset('/sistem_images/loading.gif') }}";
     swal({
@@ -176,12 +176,12 @@
         closeOnClickOutside: false
     });
     $.ajax({
-      url : "{{url('UpdateProvince/')}}/"+province,
+      url : "{{url('UpdateRegion/')}}/"+region,
       type: "post",
       data: {
         _token: $('input[name=_token]').val(),
-        province_name: province_name,
-        region_id: region_id,
+        region_name: region_name,
+        country_id: country_id,
       },
       success: function(data) {
         console.log(data);
@@ -199,13 +199,13 @@
     });
   });
  
-  // editar provincia
+  // editar región
 
-	 // eliminar provincia
-  $(document).on('click', '#DeleteProvince', function() {
-    var provinces = $(this).attr("value");
+   // eliminar región
+  $(document).on('click', '#DeleteRegion', function() {
+    var region = $(this).attr("value");
     swal({
-      title: "¿Desea eliminar la provincia?",
+      title: "¿Desea eliminar la Región?",
       icon: "warning",
       dangerMode: true,
       buttons: ["Cancelar", "Si"]
@@ -220,7 +220,7 @@
           closeOnEsc: false,
           closeOnClickOutside: false
         });
-        var url = "{{url('DeleteProvince/')}}/"+provinces;
+        var url = "{{url('DeleteRegion/')}}/"+region;
         $.ajax({
           url: url,
           type:'get',
@@ -243,6 +243,6 @@
       }
     });
   });
-  // eliminar provincia
+  // eliminar región
 </script>
 @endsection

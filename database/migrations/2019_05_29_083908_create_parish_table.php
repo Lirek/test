@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvinceTable extends Migration
+class CreateParishTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateProvinceTable extends Migration
      */
     public function up()
     {
-        Schema::create('province', function (Blueprint $table) {
+        Schema::create('parish', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('region_id');
-            $table->string('province_name');
+            $table->string('city_id');
+            $table->string('parish_name');
             $table->timestamps();           
-            $table->foreign('region_id')->references('id')->on('region');
+            $table->foreign('city_id')->references('id')->on('city');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateProvinceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('province');
+        Schema::dropIfExists('parish');
     }
 }

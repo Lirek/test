@@ -54,10 +54,6 @@
 					console.log(data);
 					$.each(data,function(i,info) {
 
-
-						$('#todasCanciones').show();
-						$('#todasCanciones').attr( "value", info.id );
-						
 						if (info.cover!=0 ) {
 							var portada = 
 							"<img class='materialboxed' width='150' height='120' src='{!!asset('"+info.cover+"')!!}'";
@@ -96,7 +92,6 @@
 					.then((recarga) => {
 						location.reload();
 					});
-					console.log(data);
 				}
 			});
 		}
@@ -129,9 +124,7 @@
       var s = $("input[type='radio'][name=status]:checked").val();
       var message = $('#razon').val();
       var url = "{{url('/admin_album')}}/"+x;
-      console.log(url);
       e.preventDefault(); 
-      console.log(s);
       $.ajax({
         url: url,
         type: 'POST',
@@ -141,7 +134,6 @@
           message: message
         }, 
         success: function (result) {
-          console.log(result);
           $('#myModal').toggle();
           $('.modal-backdrop').remove();
           swal("Se ha "+s+" con éxito","","success")
@@ -150,7 +142,6 @@
           });
         },
         error: function (result) {
-          console.log(result);
           swal('Existe un error en su solicitud','','error')
           .then((recarga) => {
             location.reload();
@@ -165,7 +156,6 @@
 		$(document).on('click', '#Canciones', function(e) {
 			var id = $(this).attr("value");
 			var url = "{{url('/admin_songs')}}/"+id;
-			console.log(url);
 			$("#cancion").empty();
 				e.preventDefault();
 				$.ajax({
@@ -177,6 +167,7 @@
 						$('#totalCanciones').text('este album tiene: '+datos.length+' canciones.');
 
 						$.each(datos, function(i,info){
+							console.log(info.album);
 
 							if (info.song_file != 0) {
 								var archivo = 
@@ -199,6 +190,10 @@
 
                         	}
 
+                        	$('#todasCanciones').show();
+							$('#todasCanciones').attr( "value", info.album );
+						
+
 							var fila = "<tr><td>"+
 							info.song_name+"</td><td>"+
 							info.duration+"</td><td>"+
@@ -209,7 +204,6 @@
 						});
 					},
 					error: function (datos) {
-					console.log(datos);
 					swal('Existe un error en su solicitud','','error')
 					.then((recarga) => {
 						location.reload();
@@ -247,8 +241,7 @@
                   }
               });
     });
-// Modificar el estatus por cancion
-
+// Modificar el estatus todas las canciones
 
 
 // Modificar el estatus por cancion

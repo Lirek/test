@@ -17,6 +17,7 @@ use Validator, DB, Hash, Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
 use App\Events\WelcomeEmailEvent;
+use Illuminate\Support\Facades\Crypt;
 
 use Auth;
 
@@ -45,8 +46,9 @@ class AuthController extends Controller
 
         $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
         event(new CreateCodeSocialUserEvent($user->id));
-        event(new WelcomeEmailEvent($user));
-        return response()->json(['meta'=>['code'=>200],'data'=>['message'=>'Muchas gracias por ser parte de nuestra plataforma, le recordamos finalizar su registro para disfrutar de la totalidad de nuestra plataforma']],200);
+        $url = "";
+        event(new WelcomeEmailEvent($user,$url));
+        return response()->json(['meta'=>['code'=>201],'data'=>['message'=>'Muchas gracias por ser parte de nuestra plataforma, le recordamos finalizar su registro para disfrutar de la totalidad de nuestra plataforma']],200);
     }
 
     public function login(Request $request) {
@@ -63,12 +65,34 @@ class AuthController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['meta'=>['code'=>400],'data'=>'Credenciales incorrectas'],200);
+                return response()->json(['meta'=>['code'=>401],'data'=>'Credenciales incorrectas'],200);
             }
         } catch (JWTException $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Hemos encontrado un error, por favor intente nuevamente'],200);
         }
         return response()->json(['meta'=>['code'=>200],'data'=>['token'=>$token]],200);
+    }
+
+    public function refresh(Request $request) {
+        $credentials = $request->only('email');
+
+        $rules = [
+            'email' => 'required|email'
+        ];
+        $validator = Validator::make($credentials, $rules);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages()],200);
+        }
+        try {
+            $user = User::firstOrCreate([
+                'email' => $request->email
+            ]);
+            auth()->login($user);
+            $token = JWTAuth::fromUser($user);
+            return response()->json(['meta'=>['code'=>200],'data'=>['token'=>$token]],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e->getMessage()],200);
+        }
     }
 
     public function logout(Request $request)
@@ -88,29 +112,7 @@ class AuthController extends Controller
         }
     }
 
-    public function recover(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-        if (!$user) {
-            $error_message = "Your email address was not found.";
-            return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
-        }
-        try {
-            Password::sendResetLink($request->only('email'), function (Message $message) {
-                $message->subject('Your Password Reset Link');
-            });
-        } catch (\Exception $e) {
-            //Return with error
-            $error_message = $e->getMessage();
-            return response()->json(['success' => false, 'error' => $error_message], 401);
-        }
-        return response()->json([
-            'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
-        ]);
-    }
-
     public function AuthSocialUser(Request $request) {
-
         $createUser = User::firstOrCreate([
             'email' => $request->email
         ], [
@@ -160,14 +162,36 @@ class AuthController extends Controller
             $code = $randomString;
             $user = User::find(auth()->user()->id);
             $user->last_name = $request->last_name;
-            $user->alias = $request->alias;
             $user->img_perf = '/user/'.auth()->user()->id.'/profile/'.$nameFile;
             $user->codigo_ref = $code;
             $user->save();
-            event(new WelcomeEmailEvent($createUser));
+            $encrypted_email = Crypt::encryptString($user->email);
+            $url = "";
+            event(new WelcomeEmailEvent($createUser,$url));
         }
         $token = JWTAuth::fromUser($createUser);
-        return response()->json(['status' => '1', 'data'=> [ 'token' => $token ]], 200);
+        return response()->json(['meta'=>['code'=>201],'data'=>['token'=>$token]],200);
+    }
+
+    public function recover(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $error_message = "Your email address was not found.";
+            return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
+        }
+        try {
+            Password::sendResetLink($request->only('email'), function (Message $message) {
+                $message->subject('Your Password Reset Link');
+            });
+        } catch (\Exception $e) {
+            //Return with error
+            $error_message = $e->getMessage();
+            return response()->json(['success' => false, 'error' => $error_message], 401);
+        }
+        return response()->json([
+            'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
+        ]);
     }
 
 }

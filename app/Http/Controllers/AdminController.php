@@ -57,6 +57,10 @@ use App\Rating;
 use App\Rejection;
 use App\PaymentSeller;
 use App\Province;
+use App\Country;
+use App\Region;
+use App\City;
+use App\Parish;
 use App\PointsLoser;
 
 //------------------------------------------------------------
@@ -1909,31 +1913,34 @@ public function BooksDataTable($status) {
 
  /* 
   ---------------------------------------------------------------
-  --------------- FUNCIONES DE PROVINCIAS -----------------
+  --------------- FUNCIONES DE LOCALIDAD -----------------
   ---------------------------------------------------------------
 */
 
+//PROVINCIAS
+
  public function Provincias(){
-        $Provinces = Province::All();
-        return view('promoter.AdminModules.Provinces')->with('Provinces',$Provinces);
+        $Region = Region::All();
+        $Provinces = Province::with('region')->get();
+        return view('promoter.AdminModules.Provinces')->with('Provinces',$Provinces)->with('Region',$Region);
     }
 
     public function AddProvince(Request $request) {
         $Provinces = Province::All();
         $province = new Province;
+        $province->region_id = $request->region_id;
         $province->province_name = $request->province_name;
         if (Province::where('province_name','=',$request->province_name)->count()==1) {
 
         Flash('La provincia agregada ya existe.')->success();
         return redirect()->action('AdminController@Provincias');
-
         }
 
-        else
-
+        else { 
         $province->save();
         Flash('Nueva provincia agregada exitosamente')->success();
         return redirect()->action('AdminController@Provincias');
+        }
       }
 
        public function DeleteProvince($id) {
@@ -1950,15 +1957,222 @@ public function BooksDataTable($status) {
       public function UpdateProvince(Request $request, $id) {
         $province = Province::find($id);
         $province->province_name = $request->province_name;
-        if (Province::where('province_name','=',$request->province_name)->count()==1) {
+        $province->region_id = $request->region_id;
+        //if (Province::where('province_name','=',$request->province_name)->count()==1) {
+        //Flash('Error al modificar provincia, ya existe.')->success();
+        //return response()->json($error);
+        //}
 
-        Flash('Error al modificar provincia, ya existe.')->success();
-        return response()->json($error);
-        }
-
-        else
+        //else{ 
         $province->save();
         return response()->json($province);
+        //}
+      }
+
+//PAISES
+
+      public function Pais(){
+        $Pais = Country::All();
+        return view('promoter.AdminModules.Countrys')->with('Pais',$Pais);
+    }
+
+    public function AddCountry(Request $request) {
+        $Pais = Country::All();
+        $country = new Country;
+        $country->country_name = $request->country_name;
+        if (Country::where('country_name','=',$request->country_name)->count()==1) {
+
+        Flash('El País ingresado ya esta registrado.')->success();
+        return redirect()->action('AdminController@Pais');
+        }
+
+        else { 
+        $country->save();
+        Flash('Nuevo País agregado exitosamente')->success();
+        return redirect()->action('AdminController@Pais');
+        }
+      }
+
+      public function FindCountry($id) {
+        $pais= Country::find($id);
+        return response()->json($pais);
+      }
+
+      public function UpdateCountry(Request $request, $id) {
+        $pais = Country::find($id);
+        $pais->country_name = $request->country_name;
+        ////if (Country::where('country_name','=',$request->country_name)->count()==1) {
+        //Flash('Error al modificar país, ya existe.')->success();
+        //return response()->json($error);
+        //}   
+        //lse{ 
+        $pais->save();
+        return response()->json($pais);
+        //}
+      }
+
+      public function DeleteCountry($id) {
+        $pais = Country::destroy($id);
+        return response()->json($pais); 
+        //return redirect()->action('AdminController@Provincias');
+      }
+
+//REGIONES
+
+
+public function Region(){
+        $Country = Country::All();
+        $Region = Region::with('country')->get();
+        return view('promoter.AdminModules.Region')->with('Country',$Country)->with('Region',$Region);
+    }
+
+       public function AddRegion(Request $request) {
+        $Region = Region::All();
+        $region = new Region;
+        $region->country_id = $request->country_id;
+        $region->region_name = $request->region_name;
+        if (Region::where('region_name','=',$request->region_name)->count()==1) {
+
+        Flash('La Región agregada ya existe.')->success();
+        return redirect()->action('AdminController@Region');
+        }
+
+        else { 
+        $region->save();
+        Flash('Nueva Región agregada exitosamente')->success();
+        return redirect()->action('AdminController@Region');
+        }
+      }
+
+      public function FindRegion($id) {
+        $region = Region::find($id);
+        return response()->json($region);
+      }
+
+      public function UpdateRegion(Request $request, $id) {
+        $region = Region::find($id);
+        $region->region_name = $request->region_name;
+        $region->country_id = $request->country_id;
+        //if (Region::where('region_name','=',$request->region_name)->count()==1) {
+        //Flash('Error al modificar región, ya existe.')->success();
+        //return response()->json($error);
+        //}
+
+        //else{ 
+        $region->save();
+        //return response()->json($region);
+        //}
+      }
+
+      public function DeleteRegion($id) {
+        $region = Region::destroy($id);
+        return response()->json($region); 
+        //return redirect()->action('AdminController@Provincias');
+      }
+
+  
+  //CUIDADES
+      public function Ciudades(){
+        $Province = Province::All();
+        $City = City::with('province')->get();
+        return view('promoter.AdminModules.City')->with('City',$City)->with('Province',$Province);
+    }
+
+    public function AddCity(Request $request) {
+        $City = City::All();
+        $city = new City;
+        $city->province_id = $request->province_id;
+        $city->city_name = $request->city_name;
+        if (City::where('city_name','=',$request->city_name)->count()==1) {
+
+        Flash('La ciudad agregada ya existe.')->success();
+        return redirect()->action('AdminController@Ciudades');
+        }
+
+        else { 
+        $city->save();
+        Flash('Nueva Ciudad agregada exitosamente')->success();
+        return redirect()->action('AdminController@Ciudades');
+        }
+      }
+
+
+      public function FindCity($id) {
+        $city = City::find($id);
+        return response()->json($city);
+      }
+
+      public function UpdateCity(Request $request, $id) {
+        $city = City::find($id);
+        $city->city_name = $request->city_name;
+        $city->province_id = $request->province_id;
+        //if (City::where('city_name','=',$request->city_name)->count()==1) {
+        //Flash('Error al modificar Ciudad, ya existe.')->success();
+        //return response()->json($error);
+        //}
+
+        //else{ 
+        $city->save();
+        return response()->json($city);
+       // }
+      }
+
+         public function DeleteCity($id) {
+        $city = City::destroy($id);
+        return response()->json($city); 
+        //return redirect()->action('AdminController@Provincias');
+      }
+
+      //PARROQUIAS
+
+        public function Parroquias(){
+        $City = City::All();
+        $Parish = Parish::with('city')->get();
+        return view('promoter.AdminModules.Parish')->with('City',$City)->with('Parish',$Parish);
+    }
+
+    public function AddParish(Request $request) {
+        $Parish = Parish::All();
+        $parish = new Parish;
+        $parish->city_id = $request->city_id;
+        $parish->parish_name = $request->parish_name;
+        if (Parish::where('parish_name','=',$request->parish_name)->count()==1) {
+
+        Flash('La Parroquia agregada ya existe.')->success();
+        return redirect()->action('AdminController@Parroquias');
+        }
+
+        else { 
+        $parish->save();
+        Flash('Nueva Parroquia agregada exitosamente')->success();
+        return redirect()->action('AdminController@Parroquias');
+        }
+      }
+
+      public function FindParish($id) {
+        $parish = Parish::find($id);
+        return response()->json($parish);
+      }
+
+      public function UpdateParish(Request $request, $id) {
+        $parish = Parish::find($id);
+        $parish->parish_name = $request->parish_name;
+        $parish->city_id = $request->city_id;
+        //if (Parish::where('parish_name','=',$request->parish_name)->count()==1) {
+        //Flash('Error al modificar Parroquia, ya existe.')->success();
+        //return response()->json($error);
+        //}
+
+        //else{ 
+        $parish->save();
+        return response()->json($parish);
+       // }
+      }
+
+       public function DeleteParish($id) {
+        $parish = Parish::destroy($id);
+        return response()->json($parish); 
+        //return redirect()->action('AdminController@Provincias');
       }
 
 

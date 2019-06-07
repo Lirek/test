@@ -16,6 +16,7 @@ class Product extends Migration
         Schema::create('product', function (Blueprint $table){
             $table->increments('id');
             $table->integer('bidder_id')->unsigned()->default('0');
+            $table->string('imagen_prod');
             $table->string('pdf_prod');
             $table->string('name');
             $table->string('description');
