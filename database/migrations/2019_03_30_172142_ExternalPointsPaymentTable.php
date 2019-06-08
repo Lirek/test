@@ -20,8 +20,9 @@ class ExternalPointsPaymentTable extends Migration
             $table->integer('client_id')->nullable()->default(NULL);
             $table->integer('ammount')->nullable()->default(NULL);
             $table->string('user_id')->nullable()->default(NULL);
+            $table->integer('transaction_id')->nullable()->default(NULL);
             $table->enum('status',['Aprobado','En Proceso','Denegado'])->default('En Proceso');
-            $table->timestamps(); 
+            $table->timestamps();
             $table->foreign('client_id')->references('id')->on('external_client');
             $table->foreign('user_id')->references('id')->on('user');
 

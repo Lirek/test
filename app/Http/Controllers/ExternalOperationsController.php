@@ -87,9 +87,14 @@ class ExternalOperationsController extends Controller
     	        $now=Carbon::now();
                 $diff = $now->diffInMinutes($Transaction->created_at);
 
-        	    if($diff<40)
+        	    if($diff<10)
         	    {
-            	    $Transaction->status='Aprobado';
+                  $Bidder = Bidder::where('client_token','=',$token)->first();
+                  $Bidder = $Bidder->points + $Transaction->points;
+                  $user->points = $user->points - $Transaction->points;
+                  $user->save();
+                  $Bidder->save();
+                  $Transaction->status='Aprobado';
             		  $Transaction->save();
 
             		$response = $client->post('https://webhook.site/dce6c47a-7b78-49c8-918c-fa1c3a244827',
@@ -118,7 +123,7 @@ class ExternalOperationsController extends Controller
         		                                     ]
         		                                  ]
         		                                  );
-        		      //return view('');
+        		      return view('users.ExternalPaymentResult')->->with('msg', 'Error de Transaccion');
         	    }
 
         	}
@@ -145,7 +150,8 @@ class ExternalOperationsController extends Controller
         		                                  ]
         		                                  );
 
-    		//return view('');
+                                              return view('users.ExternalPaymentResult')->->with('msg', 'Saldo Insuficiente');
+
     	}
 
     }
