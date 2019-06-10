@@ -92,31 +92,45 @@ class UserController extends Controller
 
     public function WebsUser() {
         $user= User::find(auth()->user()->id);
-        $x= $user->Referals()->get();
+        //$x= $user->Referals()->get();
         $referals1 = [];
         $referals2= [];
         $referals3= [];
-        $WholeReferals = collect(new User);
+        //$WholeReferals = collect(new User);
+        $WholeReferals = [];
+        $total = 0;
 
         if ($user->Referals()->get()->isEmpty()) {
-            return Response::json(['status'=>'1','message'=>'No tiene referidos','data'=>[]], 200);
+            return response()->json(['meta'=>['code'=>200],'data'=>$WholeReferals], 200);
         }
         foreach ($user->Referals()->get() as $key) {
             $referals1[]=$key->refered;
-            $WholeReferals->prepend(User::find($key->refered));
+            $user = User::find($key->refered);
+            $data[] = [
+                'id' => $user->id,
+                'nombre' => $user->name,
+                'apellido' => $user->last_name,
+                'correo' => $user->email,
+                'telefono' => $user->phone,
+                'img_perf' => $user->img_perf
+            ];
+            $total=$total+1;
+            //$WholeReferals->prepend(User::find($key->refered));
         }
 
         if (count($referals1)>0) {
-
             foreach ($referals1 as $key2) {
                 $joker = User::find($key2);
                 foreach($joker->Referals()->get() as $key2) {
                     $referals2[]=$key2->refered;
-                    $WholeReferals->prepend(User::find($key2->refered));
+                    /*
+                    //$WholeReferals->prepend(User::find($key2->refered));
+                    */
+                    $total=$total+1;
                 }
             }
         } else {
-            $referals2=0;
+            $referals2 = 0;
         }
 
         if (count($referals2)>0) {
@@ -124,23 +138,28 @@ class UserController extends Controller
                 $joker = User::find($key3);
                 foreach($joker->Referals()->get() as $key3) {
                     $referals3[]=$key3->refered;
-                    $WholeReferals->prepend(User::find($key3->refered));
+                    /*
+                    //$WholeReferals->prepend(User::find($key3->refered));
+                    */
+                    $total=$total+1;
                 }
             }
-        } else {
-            $referals3=0;
         }
-
-
-
+        $dataTotal[] = [
+            'total_referidos' => $total
+        ];
+        $data = array_merge($data,$dataTotal);
+        /*
         $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
 
             if (in_array($item->id, $referals1)) { return $item->level=1;}
             if (in_array($item->id, $referals2)) { return $item->level=2;}
             if (in_array($item->id, $referals3)) { return $item->level=3;}
         });
-        //return Datatables::of($WholeReferals)->toJson();
-        return Response::json(['status'=>'1','data'=>$WholeReferals], 200);
+        return Datatables::of($WholeReferals)->toJson();
+        //return Response::json(['status'=>'1','data'=>$WholeReferals], 200);
+        */
+        return response()->json(['meta'=>['code'=>200],'data'=>$data], 200);
     }
 
     public function UpdateData(Request $request) {
@@ -365,6 +384,18 @@ class UserController extends Controller
         } else {
             return response()->json(['meta'=>['code'=>400],'data'=>false],200); // algun error con el codigo
         }
+    }
+
+    public function invite() {
+        $codido = auth()->user()->codigo_ref;
+        $enlace = url('/').'/register/'.$codido;
+        $codeqr = QrCode::format('svg')->generate($enlace);
+        $data = [
+            'codigo' => $codido,
+            'enlace' => $enlace,
+            'codeQr' => $codeqr
+        ];
+        return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
     }
 
     public function sinAcento($cadena) {
