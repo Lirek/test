@@ -402,6 +402,9 @@ h5.breadcrumbs-header {
             @if($user->verify != 1 )
             <div class="card-panel red" style="padding:4px ">  <i class=" small material-icons" style="color:white">cancel</i>
             <h6 style="color:white; margin-top:0.2rem"> Usuario no verificado</h6> </div>
+            @else
+            <div class="card-panel blue" style="padding:4px ">  <i class=" small material-icons" style="color:white">check</i>
+            <h6 style="color:white; margin-top:0.2rem"> Usuario verificado</h6> </div>
             @endif  
             <!-- CLOSE ACCOUNT -->   
                         </div>
