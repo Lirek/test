@@ -100,6 +100,7 @@ h5.breadcrumbs-header {
       </div>
 
     </div>
+
         <!--inicio contenido-->
     {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
     {{ Form::token() }}
@@ -210,6 +211,7 @@ h5.breadcrumbs-header {
                                         <input class="file-path validate" type="text">
                                     </div>
                                 </div>    
+
                                 @endif
                                 <div  class="col m4">
                                     @if ($user->img_doc)
@@ -275,7 +277,7 @@ h5.breadcrumbs-header {
 
                                     <div class="input-field col s12">
                                               {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']) !!}
-                                          </div>
+                                          </div>    
                                         </ul>
                                     </div>
 
@@ -391,9 +393,16 @@ h5.breadcrumbs-header {
                             </div>
                             </div>
                     </ul>
-                    </div>    
+                    
+                    </div>  
+                  
                 </div>
+              
             </div>
+            @if($user->verify != 1 )
+            <div class="card-panel red" style="padding:4px ">  <i class=" small material-icons" style="color:white">cancel</i>
+            <h6 style="color:white; margin-top:0.2rem"> Usuario no verificado</h6> </div>
+            @endif  
             <!-- CLOSE ACCOUNT -->   
                         </div>
                     </div>
