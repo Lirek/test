@@ -116,7 +116,7 @@ $(document).ready(function() {
       ajax: '{!! url('PaymentsDataTable') !!}',
         columns: [
             {data: 'transaction_id', name: 'transaction_id'},
-            {data: 'user_id', name: 'user_id'},
+            {data: 'email', name: 'email'},
             {data: 'ammount', name: 'ammount'},
             {data: 'created_at', name: 'created_at'},
             {data: 'status', name: 'status'}
