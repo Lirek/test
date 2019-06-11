@@ -55,18 +55,16 @@ class AssingPoints
           while (true)
           {
             if($i==$points){break;}
-            
-            $pass = Referals::where('refered','=',$id)->where('account_status','=','open')->first();
-            
+            $pass = Referals::where('refered','=',$id)->first();
             if ($pass!=NULL) {
               $id=$pass->user_id;
               $Refered->push(User::find($id));
-             
+
             } else
             {
               break;
             }
-             $i++;
+            $i++;
           }
             $Condition=Carbon::now()->firstOfMonth()->toDateString();
 
@@ -85,13 +83,13 @@ class AssingPoints
             }
             else
             {
-              $key->points = $key->points + 1; 
+              $key->points = $key->points + 1;
             }
 
             $key->save();
             $Assing1 = new PointsAssings;
             $Assing1->amount = 1;
-            $Assing1->from = $UserR->id; 
+            $Assing1->from = $UserR->id;
             $Assing1->to =   $key->id;
             $Assing1->save();
           }
@@ -101,7 +99,7 @@ class AssingPoints
           $balance->points_solds = $balance->points_solds + $points;
 
           if ($total>0) {
-            $balance->my_points= $balance->my_points + $total; 
+            $balance->my_points= $balance->my_points + $total;
             $balance->save();
 
             $Assing = new PointsAssings;
