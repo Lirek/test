@@ -39,7 +39,7 @@
   <body>
   <div class="had-container">
        <div class="parallax-container logueo">
-        <div class="parallax"><img src="{{asset('sistem_images/promoter_assing.png')}}"></div>
+        <div class="parallax"><img style="width:100%; height:100% "src="{{asset('sistem_images/promoter_assing-2.jpg')}}"></div>
         <div class="row"><br>
           <div class="col m8 s8 offset-m2 offset-s2 center">              
             <div class="row login">
