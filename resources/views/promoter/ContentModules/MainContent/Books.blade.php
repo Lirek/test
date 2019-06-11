@@ -89,7 +89,7 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Proceso") {
-                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
+                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="StatusPU">'+info.status+'</button>'

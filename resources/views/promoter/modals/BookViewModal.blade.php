@@ -1,6 +1,6 @@
  <div id="Modal" class="modal">
     <div class="modal-content center blue-text">
-        <div class=" blue"><br>
+        <div class="pink darken-3"><br>
             <h4 class="center white-text" ><i class="small material-icons"></i>Modifique el estatus</h4>
             <br>
         </div>
@@ -44,7 +44,7 @@
 
 <div id="negado" class="modal">
     <div class="modal-content center">
-        <div class=" blue"><br>
+        <div class="pink darken-3"><br>
             <h4 class="center white-text" ><i class="small material-icons"></i>Historial de negaciones</h4>
             <br>
         </div>

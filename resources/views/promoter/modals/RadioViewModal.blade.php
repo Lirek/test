@@ -1,6 +1,6 @@
   <div class="modal" id="myModal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus de la radio</h4>
       </div>
       <br>
@@ -42,7 +42,7 @@
 
   <div class="modal fade" id="NewRadio">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Agregue una radio</h4>
       </div>
       <div style="margin-top: -15px">
@@ -108,7 +108,7 @@
 
   <div class="modal" id="updateRadio">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modifique la radio</h4>
       </div>
       <div style="margin-top: -15px">
@@ -179,7 +179,7 @@
   
   <div id="reject" class="modal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
       </div>
       <br>
