@@ -211,7 +211,7 @@
                             redes = "No tiene enlaces registrados";
                         }
                         var status = 
-                        "<a class='waves-effect waves-light btn modal-trigger curvaBoton' value='"+info.id+"' href='#myModal' id='status'>Cambiar</a>";
+                        "<a class='waves-effect waves-light btn modal-trigger curvaBoton' value='"+info.id+"' href='#myModal' id='status'>Modificar</a>";
                         if (info.status=="Denegado") {
                             status = status+"<br>"+
                             "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectPayments'>Ver negaciones</a>";
@@ -303,7 +303,7 @@
                             redes = "No tiene enlaces registrados";
                         }
                         var status = 
-                        "<a class='waves-effect waves-light btn modal-trigger curvaBoton' value='"+info.id+"' href='#myModalBackend' id='statusBackend'>Cambiar</a><br>";
+                        "<a class='waves-effect waves-light btn modal-trigger curvaBoton' value='"+info.id+"' href='#myModalBackend' id='statusBackend'>Modificar</a><br>";
                         var edit = 
                         "<a class='btn-small waves-effect waves-light btn orange darken-3 modal-trigger curvaBoton' value='"+info.id+"' id='editTv' href='#updateTv'>"+
                             "<i class='material-icons'>edit</i>"+
