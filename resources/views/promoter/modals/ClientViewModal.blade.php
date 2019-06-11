@@ -1,6 +1,6 @@
   <div class="modal" id="myModal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12  pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modificar estado al proveedor</h4>
       </div>
       <br>
@@ -68,7 +68,7 @@
 
   <div class="modal" id="ModalUser">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 10px">Detalles del usuario</h4>
       </div>
       <div class="row">
@@ -136,7 +136,7 @@
 
   <div class="modal" id="webModal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 10px">Redes</h4>
       </div>
       <table class="table table-bordered table-striped table-condensed" id="WebsTable">
@@ -196,7 +196,7 @@
 
   <div id="reject" class="modal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
       </div>
       <br>
