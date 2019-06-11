@@ -89,7 +89,7 @@ class ExternalOperationsController extends Controller
 
         	    if($diff<10)
         	    {
-                  $Bidder = Bidder::where('client_token','=',$token)->first();
+                  $Bidder = Bidder::find($Transaction->Client()->id);
                   $Bidder = $Bidder->points + $Transaction->points;
                   $user->points = $user->points - $Transaction->points;
                   $user->save();
@@ -123,7 +123,7 @@ class ExternalOperationsController extends Controller
         		                                     ]
         		                                  ]
         		                                  );
-        		      return view('users.ExternalPaymentResult')->->with('msg', 'Error de Transaccion');
+        		      return view('users.ExternalPaymentResult')->with('msg', 'Error de Transaccion');
         	    }
 
         	}
@@ -150,7 +150,7 @@ class ExternalOperationsController extends Controller
         		                                  ]
         		                                  );
 
-                                              return view('users.ExternalPaymentResult')->->with('msg', 'Saldo Insuficiente');
+                                              return view('users.ExternalPaymentResult')->with('msg', 'Saldo Insuficiente');
 
     	}
 
@@ -204,6 +204,10 @@ class ExternalOperationsController extends Controller
       $Bidder = Bidder::find(Auth::guard('bidder')->user()->id);
       $ExternalClients = $Bidder->PayementsCredentials()->first();
       $Payments =ExternalPayments::where('client_id', '=',$ExternalClients->id)->get();
-      return Datatables::of($Payments)->toJson();
+      return Datatables::of($Payments)
+                          ->addColumn('email',function($Payments){
+                            return $Payments->Client()->email;
+                          })
+                            ->toJson();
     }
 }

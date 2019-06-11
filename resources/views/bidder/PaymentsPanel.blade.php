@@ -34,12 +34,11 @@
   <table id="example" class="mdl-data-table" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Estatus</th>
             </tr>
         </thead>
         <tbody>
@@ -111,6 +110,17 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      responsive: true,
+      ajax: '{!! url('PaymentsDataTable') !!}',
+        columns: [
+            {data: 'transaction_id', name: 'transaction_id'},
+            {data: 'user_id', name: 'user_id'},
+            {data: 'ammount', name: 'ammount'},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'status', name: 'status'}
+        ]
       "language": {
                     "sProcessing":     "Procesando...",
                     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -135,7 +145,7 @@ $(document).ready(function() {
                         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                     }
                 }
-      
+
     });
 
     $( "#formR" ).on( 'submit', function(e)
