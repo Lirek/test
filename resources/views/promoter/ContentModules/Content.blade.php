@@ -90,7 +90,7 @@
       	<div class="col s12 m6 l3">
 	        <div class="card pink darken-3 darken-3 hoverable">
 	          <div class="card-content white-text">
-	            <span class="card-title">Peliculas</span>
+	            <span class="card-title">Películas</span>
 	            <i class="material-icons" >live_tv</i>
 	            <h6>Pendientes por aprobar:</h6>
 	            <h4>
@@ -114,7 +114,7 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('admin_autors')}}" class="btn btn-primary indigo">Revisar autores</a>
+	            <a href="{{url('admin_autors')}}" class="btn btn-primary indigo">Revisar </a>
 	          </div>
 	        </div>
       	</div>			
@@ -130,7 +130,7 @@
 	            </h4>
 	          </div>
 	          <div class="card-action">
-	            <a href="{{url('admin_musician')}}" class="btn btn-primary indigo">Revisar musicos</a>
+	            <a href="{{url('admin_musician')}}" class="btn btn-primary indigo">Revisar </a>
 	          </div>
 	        </div>
       	</div>

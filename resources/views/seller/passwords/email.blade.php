@@ -246,7 +246,7 @@
             <div class="col l3 s12">
                 <h5 class="white-text">Sobre</h5>
                 <ul>
-                    <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
+                  <!--  <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li> -->
                     <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
                     <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
                     <li><a class="white-text" href="#!">Beneficios adicionales</a></li>

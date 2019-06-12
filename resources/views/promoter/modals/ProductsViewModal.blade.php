@@ -1,6 +1,6 @@
 	<div class="modal fade" id="NewProduct">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Agregue un producto</h4>
 			</div>
 			<div style="margin-top: -15px">
@@ -97,7 +97,7 @@
 
 	<div class="modal" id="cambiarEstatus">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Modifique el estatus del producto</h4>
 			</div>
 			<br>
@@ -139,7 +139,7 @@
 
 	<div class="modal fade" id="updateProduct">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Modifique un producto</h4>
 			</div>
 			<div style="margin-top: -15px">
@@ -215,7 +215,7 @@
 
 	<div id="reject" class="modal">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
 			</div>
 			<br>

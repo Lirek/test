@@ -145,11 +145,98 @@
     @if(Auth::guard('Promoter')->user()->priority == 1)
     <li><div class="divider"></div></li>
     <li>
-      <a href="{{url('AdminContent')}}" class="waves-effect waves-blue">
-        <i class="small material-icons">view_carousel</i>
-        Contenido
-        <span class="new badge orange darken-1 curvaBoton" data-badge-caption="" id="badgeContenido" style="display: none;"></span>
-      </a>
+      
+      <!--<ul class= "collapsible collapsible-accordion">
+        <li>
+          <a href="javascript:;" class="waves-effect waves-blue">
+            <i class="small material-icons">view_carousel</i>
+            Contenido
+            <span class="new badge orange darken-1 curvaBoton" data-badge-caption="" id="badgeContenido" style="display: none;"></span>
+              <i class="material-icons right">expand_more</i>
+          </a>
+          
+          <div class="collapsible-body">
+            <ul>
+              <li>
+                <a href="{{url('admin_clients')}}" class="waves-effect waves-blue">
+                  <i class="small material-icons">group_add</i>
+                  Solicitudes
+                  <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudUsuario" style="display: none; background-color: #d9534f;"></span>
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </li>
+
+    </ul> -->
+    
+    <ul class= "collapsible collapsible-accordion">
+      <li>
+        <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
+          <i class="small material-icons">view_carousel</i>
+          Contenido
+          <span class="new badge orange darken-1" data-badge-caption="" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
+          <i class="material-icons right">expand_more</i>
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+              <a  href="{{url('/admin_albums')}}" class="waves-effect waves-blue">
+                <i class="material-icons small">music_note</i> 
+                Álbumes
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeAlbums" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+            <li>
+              <a href="{{url('/admin_movies')}}" class="waves-effect waves-blue">
+                <i class="material-icons" >live_tv</i>
+                Películas
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeMovies" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+            <li>
+              <a href="{{url('/admin_series')}}" class="waves-effect waves-blue">
+                <i class=" material-icons" >local_movies</i>
+                Series 
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeSeries" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+            <li>
+              <a href="{{url('/admin_books')}}" class="waves-effect waves-blue">
+                <i class="small material-icons" >book</i>
+                Libros
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeBooks" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+        
+            <li>
+              <a href="{{url('/admin_tv')}}" class="waves-effect waves-blue">
+                <i class="small material-icons" >live_tv</i>
+                Tv 
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeTv" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+            <li>
+              <a href="{{url('AdminContent')}}" class="waves-effect waves-blue">
+                <i class="small material-icons">view_carousel</i>
+                Ver todos  
+                <span class="new badge orange darken-1" data-badge-caption="" id="badgeRadio" style="display: none; background-color: #d9534f;"></span>
+
+              </a>
+            </li>
+          
+          
+          
+          </ul>
+        </div>
+      </li>
+    </ul>
     </li>
     <li>
       <ul class= "collapsible collapsible-accordion">

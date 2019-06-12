@@ -100,6 +100,7 @@ h5.breadcrumbs-header {
       </div>
 
     </div>
+
         <!--inicio contenido-->
     {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
     {{ Form::token() }}
@@ -137,7 +138,7 @@ h5.breadcrumbs-header {
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{Auth::user()->credito}}</h5>
-                                        <label>todos mis tickets</label>
+                                        <label>Todos mis tickets</label>
                                     </div>
                                     <div class="col s4">
                                         <i class="mdi-action-perm-identity cyan-text text-darken-2"></i>
@@ -145,7 +146,7 @@ h5.breadcrumbs-header {
                                         Auth::user()->points = 0;
                                         echo Auth::user()->points;
                                         ?></h5>
-                                        <label>todos mis puntos</label>
+                                        <label>Todos mis puntos</label>
                                     </div>
                                 </div>
                             </div>
@@ -210,6 +211,7 @@ h5.breadcrumbs-header {
                                         <input class="file-path validate" type="text">
                                     </div>
                                 </div>    
+
                                 @endif
                                 <div  class="col m4">
                                     @if ($user->img_doc)
@@ -275,7 +277,7 @@ h5.breadcrumbs-header {
 
                                     <div class="input-field col s12">
                                               {!! Form::submit('Actualizar', ['class' => 'btn btn-primary green curvaBoton active','id'=>'Editar']) !!}
-                                          </div>
+                                          </div>    
                                         </ul>
                                     </div>
 
@@ -395,9 +397,19 @@ h5.breadcrumbs-header {
                             </div>
                             </div>
                     </ul>
-                    </div>    
+                    
+                    </div>  
+                  
                 </div>
+              
             </div>
+            @if($user->verify != 1 )
+            <div class="card-panel red" style="padding:4px ">  <i class=" small material-icons" style="color:white">cancel</i>
+            <h6 style="color:white; margin-top:0.2rem"> Usuario no verificado</h6> </div>
+            @else
+            <div class="card-panel blue" style="padding:4px ">  <i class=" small material-icons" style="color:white">check</i>
+            <h6 style="color:white; margin-top:0.2rem"> Usuario verificado</h6> </div>
+            @endif  
             <!-- CLOSE ACCOUNT -->   
                         </div>
                     </div>
@@ -897,7 +909,13 @@ h5.breadcrumbs-header {
                     $('#mensajeImgPerf').css('color','red');
                 }
             });
+            
+            
+            
+            
         });
+        
+
         // Validar formato de imagen de perfil y del documento
         //---------------------------------------------------------------------------------------------------
     </script>

@@ -1,6 +1,6 @@
   <div id="myModal" class="modal">
     <div class="modal-content center blue-text">
-      <div class=" blue"><br>
+      <div class= "pink darken-3"><br>
         <h4 class="center white-text" ><i class="small material-icons"></i>Pago del Aliado</h4>
         <br>
       </div>
@@ -44,7 +44,7 @@
 
   <div id="ModalBidder" class="modal">
     <div class="modal-content center blue-text">
-      <div class=" blue"><br>
+      <div class= "pink darken-3"><br>
         <h4 class="center white-text" ><i class="small material-icons"></i>Detalles del usuario aliado</h4>
         <br>
       </div>
@@ -87,7 +87,7 @@
 
 <div id="negado" class="modal">
     <div class="modal-content center">
-        <div class=" blue"><br>
+        <div class= "pink darken-3"><br>
             <h4 class="center white-text" ><i class="small material-icons"></i>Historial de negaciones</h4>
             <br>
         </div>
