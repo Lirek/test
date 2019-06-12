@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
-
+use Auth;
 use App\ExternalClients;
 
 class ExternalClientsController extends Controller
@@ -31,57 +31,84 @@ class ExternalClientsController extends Controller
 
     public function SaveExternalClients(Request $request)
     {
-		$ExternalClients= new ExternalClients;
-		$ExternalClients->client_name = $request->client_name;
-		$ExternalClients->petition_url = $request->petition_url;
-		$ExternalClients->admin_email = $request->admin_email;
-		$ExternalClients->url_host = $request->url_host;
-		$ExternalClients->callback_url = $request->callback_url;
+  		$ExternalClients= new ExternalClients;
+  		$ExternalClients->client_name = $request->client_name;
+  		$ExternalClients->petition_url = $request->petition_url;
+  		$ExternalClients->admin_email = $request->admin_email;
+  		$ExternalClients->url_host = $request->url_host;
+  		$ExternalClients->callback_url = $request->callback_url;
 
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                 $charactersLength = strlen($characters);
-                 $randomString1 = '';
-                 $randomString2 = '';
-        
-                   for ($i = 0; $i < 20; $i++) 
-                      {
-                        $randomString1 .= $characters[rand(0, $charactersLength - 1)];
+  		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                   $charactersLength = strlen($characters);
+                   $randomString1 = '';
+                   $randomString2 = '';
 
-                        $randomString2 .= $characters[rand(0, $charactersLength - 1)];
-                      }
+                     for ($i = 0; $i < 20; $i++)
+                        {
+                          $randomString1 .= $characters[rand(0, $charactersLength - 1)];
 
-		$ExternalClients->client_token = $randomString1;
-		$ExternalClients->client_secret_id = $randomString2;
+                          $randomString2 .= $characters[rand(0, $charactersLength - 1)];
+                        }
 
-		$ExternalClients->save();
+  		$ExternalClients->client_token = $randomString1;
+  		$ExternalClients->client_secret_id = $randomString2;
 
-		return response()->json($ExternalClients);
+  		$ExternalClients->save();
+
+  		return response()->json($ExternalClients);
     }
 
     public function UpdateExternalClient($id, Request $request)
     {
-		$ExternalClients= ExternalClients::find($id);
-		$ExternalClients->client_name = $request->client_name_u;
-		$ExternalClients->petition_url = $request->petition_url_u;
-		$ExternalClients->admin_email = $request->admin_email_u;
-		$ExternalClients->url_host = $request->url_host_u;
-		$ExternalClients->callback_url = $request->callback_url_u;
+		    $ExternalClients= ExternalClients::find($id);
+		      $ExternalClients->client_name = $request->client_name_u;
+		        $ExternalClients->petition_url = $request->petition_url_u;
+		          $ExternalClients->admin_email = $request->admin_email_u;
+		            $ExternalClients->url_host = $request->url_host_u;
+		              $ExternalClients->callback_url = $request->callback_url_u;
 
-		$ExternalClients->save();
+		                $ExternalClients->save();
 
-		return redirect()->action('ExternalClientsController@ViewExternalClients');    	
+		                  return redirect()->action('ExternalClientsController@ViewExternalClients');
     }
 
     public function GetExternalClient($id)
     {
-		$ExternalClient= ExternalClients::find($id);
-    	return response()->json($ExternalClient);	
+		    $ExternalClient= ExternalClients::find($id);
+    	return response()->json($ExternalClient);
     }
 
     public function DeleteExternalClient($id,Request $request)
     {
-		$ExternalClient= ExternalClients::destroy($id);
-		return redirect()->action('ExternalClientsController@ViewExternalClients');    	
-    		
+		    $ExternalClient= ExternalClients::destroy($id);
+		      return redirect()->action('ExternalClientsController@ViewExternalClients');
+
+    }
+
+    public function CreatePaymentCredentials(Request $request)
+    {
+      $ExternalClients= new ExternalClients;
+      $ExternalClients->bidder_id = Auth::guard('bidder')->user()->id;
+      $ExternalClients->petition_url = $request->petition_url;
+      $ExternalClients->url_host = $request->url_host;
+      $ExternalClients->callback_url = $request->callback_url;
+
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                   $charactersLength = strlen($characters);
+                   $randomString1 = '';
+                   $randomString2 = '';
+
+                     for ($i = 0; $i < 20; $i++)
+                        {
+                          $randomString1 .= $characters[rand(0, $charactersLength - 1)];
+
+                          $randomString2 .= $characters[rand(0, $charactersLength - 1)];
+                        }
+
+      $ExternalClients->client_token = $randomString1;
+      $ExternalClients->client_secret_id = $randomString2;
+
+      $ExternalClients->save();
+      return response()->json($ExternalClients);
     }
 }

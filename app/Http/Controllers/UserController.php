@@ -83,7 +83,7 @@ class UserController extends Controller
 
         if (User::where('email','=',$request->email)->count()==1)
         {
-          view('errors.unauthorized')->with('error','Ya se Encuentra Registrado');
+          return view('errors.unauthorized')->with('error','Ya se Encuentra Registrado');
         }
 
         $user->email = $request->email;
@@ -124,6 +124,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
+
         return redirect()->action('HomeController@index');
     }
 
@@ -145,6 +146,7 @@ class UserController extends Controller
         }
         return view('users.register')->with('user_code',$id);
        }
+
 
 
     /**
@@ -224,8 +226,8 @@ class UserController extends Controller
          $name = 'document'.$nombre.time().'.'.$request->file('img_doc')->getClientOriginalExtension();
 
          $request->file('img_doc')->move($store_path,$name);
-         
-         $user->img_doc = 'user/'.$user->id.'/profile/'.$name;
+
+         $user->img_doc = '/user/'.$user->id.'/profile/'.$name;
         }
 
         //dd($request->all());
@@ -904,7 +906,7 @@ class UserController extends Controller
             return view('users.ReadBook')->with('book',$Book);
     }
 
-   
+
       public function ShowMyReadMegazine($id)
     {
         $Megazine= Megazines::find($id);
