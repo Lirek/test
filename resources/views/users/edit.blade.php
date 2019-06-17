@@ -284,7 +284,9 @@ h5.breadcrumbs-header {
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
-                                        <span class="collection-header center" style="color: white">Patrocinador</span>
+                                      <span class="collection-header center" style="color: white;">
+                                          <font size="5">Patrocinador</font>
+                                      </span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -307,7 +309,9 @@ h5.breadcrumbs-header {
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
-                            <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
+                        <span class="collection-header center" style="color:white;">
+                            <font size="5">Opciones de cuenta</font>
+                        </span>
                     </div>
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>

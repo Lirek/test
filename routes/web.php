@@ -709,6 +709,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::group(['middleware' => ['SuperAdmin']], function (){
 
+         Route::get('ModulesLicense','SuperAdminController@Modules');         
+
          Route::get('Business','SuperAdminController@ShowBusiness');
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
@@ -746,6 +748,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('updateProduct','SuperAdminController@updateProduct');
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
+            Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
             
         //------------------------------- Rutas para los productos-------------------------------
 
@@ -756,7 +759,21 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('statusBidder/{id}','BidderController@statusBidder');
             Route::post('addModuleBidder','BidderController@addModuleBidder');
             Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
-            //------------------------------- Rutas para los ofertantes en backend -------------------------------
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+        
+        //------------------------------- Rutas para los modulos y permisos-------------------------------
+            Route::post('newModule','SuperAdminController@newModule');
+            Route::post('newNegado','SuperAdminController@newNegado');
+            // Route::post('statusModule/{id}','SuperAdminController@statusModule');
+            Route::get('dataUsuario/{tipo}','SuperAdminController@dataUsuario');
+            Route::get('/DeleteModule/{id}','SuperAdminController@DeleteModule');
+
+
+            
+        //------------------------------- Rutas para los modulos y permisos-------------------------------
+
+
+
 
         //------------------------------- Rutas para los pagos del ofertantes --------------------------------
             Route::get('admin_bidder_payments','BidderController@paymentsBidder');

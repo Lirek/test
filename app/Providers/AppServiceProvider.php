@@ -42,6 +42,25 @@ class AppServiceProvider extends ServiceProvider
                     }                         
                 });
 
+            view()->composer('promoter.layouts.partials.SideBar',function($view)
+                {
+                    $id=Auth::guard('Promoter')->user()->id;
+                    $permiso=\App\Promoters::find($id);
+                    $acces=$permiso->license->count();
+                    if ($acces == 0) 
+                    {
+                        $view->with('permiso',FALSE);   
+                    }
+                    else
+                    {
+                      $permiso->each(function ($permiso){
+                        $permiso->license;
+                      });   
+
+                        $view->with('permiso',$permiso);
+                    }                         
+                });
+
            
 
 

@@ -44,14 +44,15 @@ Route::group(['middleware' => ['cors']], function() {
         //----------------RUTAS DE USUARIO------------------------------------------
 
         Route::get('user','ApiController\UserController@UserData');
-        Route::get('Referals','ApiController\UserController@WebsUser');
-        Route::post('updateData', 'ApiController\UserController@UpdateData');
-        Route::post('uploadDocument', 'ApiController\UserController@UploadDocument');
-        Route::post('uploadAvatar', 'ApiController\UserController@UploadAvatar');
+        Route::get('referals','ApiController\UserController@WebsUser');
+        Route::post('updateData','ApiController\UserController@UpdateData');
+        Route::post('uploadDocument','ApiController\UserController@UploadDocument');
+        Route::post('uploadAvatar','ApiController\UserController@UploadAvatar');
         Route::get('MyContent','ApiController\UserController@MyContent');
         Route::get('valSponsor','ApiController\UserController@valSponsor');
         Route::get('whoSponsor/{code}','ApiController\UserController@whoSponsor');
-        Route::post('addSponsor', 'ApiController\UserController@addSponsor');
+        Route::post('addSponsor','ApiController\UserController@addSponsor');
+        Route::get('invite','ApiController\UserController@invite');
 
         //-------------------------------------------------------------------------
 
@@ -100,4 +101,3 @@ Route::group(['middleware' => ['cors']], function() {
     });
     /*----------------------------RUTAS PARA USUARIOS LOGUEADOS----------------------------*/
 });
-//});
