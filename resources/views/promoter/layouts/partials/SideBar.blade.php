@@ -59,7 +59,7 @@
       <li>
         <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
           <i class="small material-icons">view_carousel</i>
-          Contenido
+          Contenidos
           <span class="new badge orange darken-1" data-badge-caption="" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
           <i class="material-icons right">expand_more</i>
         </a>
@@ -129,7 +129,7 @@
         <li>
           <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
             <i class="small material-icons">group</i>
-            Cliente
+            Usuarios
             <span class="new badge orange darken-1" data-badge-caption="" id="cliente" style="display: none; background-color: #d9534f;"></span>
             <i class="material-icons right">expand_more</i>
           </a>
@@ -145,7 +145,7 @@
               <li>
                 <a href="{{url('admin_clients')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group_add</i>
-                  Solicitudes
+                  Verificación C.I
                   <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudUsuario" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
@@ -176,14 +176,14 @@
               <li>
                 <a href="{{url('admin_applys')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group_add</i>
-                  Solicitudes
+                  Nuevas Cuentas
                   <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
               <li>
                 <a href="{{url('admin_sellers')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group</i>
-                  Proveedores
+                  Nuevos Contenidos
                   <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
@@ -327,7 +327,7 @@
         <li class="mt">
           <a href="{{url('AdminContent')}}">
             <i class="fas fa-suitcase"></i>
-            <span>Contenido</span>
+            <span>Contenidos</span>
             <span class="badge" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
           </a>
         </li>

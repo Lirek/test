@@ -484,7 +484,13 @@ public function ShowAlbums()
   */
 
   public function ShowMegazine() {
-    return view('promoter.ContentModules.MainContent.Megazine');
+    
+    $megazines = Megazines::where('status','En Revision')->count();
+    $publicationChain = Sagas::where('status','En Proceso')->where('type_saga','Revistas')->count();
+
+    return view('promoter.ContentModules.MainContent.Megazine')
+    ->with('megazines',$megazines)
+    ->with('publicationChain' , $publicationChain);
   }
 
   public function MegazineDataTable($status) {

@@ -5,12 +5,12 @@
   </style>
 @endsection
 @section('main')
-  <span class="card-title grey-text"><h3>Clientes</h3></span>
+  <span class="card-title grey-text"><h3>Usuarios</h3></span>
   <div id="test1" class="col s12">
     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-      <li class="tab" id="pendientes"><a class="active" href="#clientesPendientes">Clientes pendientes</a></li>
-      <li class="tab" id="negados"><a href="#clientesNegados">Clientes negados</a></li>
-      <li class="tab" id="aprobados"><a href="#clientesAprobados">Clientes aprobados</a></li>
+      <li class="tab" id="pendientes"><a class="active" href="#clientesPendientes">Usuarios pendientes</a></li>
+      <li class="tab" id="negados"><a href="#clientesNegados">Usuarios negados</a></li>
+      <li class="tab" id="aprobados"><a href="#clientesAprobados">Usuarios aprobados</a></li>
     </ul>
     <div id="test1" class="col s12">
       <table class="responsive-table">
