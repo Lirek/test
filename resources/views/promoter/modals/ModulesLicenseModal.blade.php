@@ -25,21 +25,14 @@
     <div class="modal" id="NewPermiso">
     <div class="modal-content">
       <div class="col s12 purple lighten-2 text-center">
-        <h4 class="white-text" style="padding: 25px 0px">Quitar permiso a usuario</h4>
+        <h4 class="white-text" style="padding: 25px 0px">Agregar permiso a usuario</h4>
       </div>
       <div style="margin-top: -15px">
         <form method="POST" id="" action="{{url('newNegado')}}">
           {{ csrf_field() }}
             <div class="col s12">
             <div class="input-field col s6">
-              <select name="user" required>
-              <option value="" disabled selected>Seleccione el usuario</option>
-                  @foreach($promoter as $pro)
-                    @if($pro->priority == 2 OR $pro->priority == 3)
-                    <option value="{{$pro->id}}" id="user" name="user">{{$pro->email}}</option>
-                    @endif
-                  @endforeach
-              </select>
+              <h6 class="correoUsuario"></h6>
             </div>
             <div class="input-field col s6">
               <select name="module" required>
