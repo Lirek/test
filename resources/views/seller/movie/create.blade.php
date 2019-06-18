@@ -197,6 +197,19 @@
                             <div id="list"></div>
                         </div>
                     </div>
+                    {{--tiene saga--}}
+                    <label class="control-label"> ¿Pertenece a una saga? </label>
+                            <br>
+                            <div class="">
+                                <label for="option-1">
+                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
+                                    <span class="mdl-radio__label">Si</span>
+                                </label>
+                                <label for="option-2">
+                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
+                                    <span class="mdl-radio__label">No</span>
+                                </label>
+                            </div>
                     {{--titulo de la pelicula--}}
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
@@ -530,18 +543,7 @@
                     </div>
                 </div>
                 <div class="col s12 m12">
-                    <label class="control-label"> ¿Pertenece a una saga? </label>
-                            <br>
-                            <div class="">
-                                <label for="option-1">
-                                    <input type="radio" id="option-1" onclick="javascript:yesnoCheck();" name="status" value="Aprobado" class="flat-red with-gap">
-                                    <span class="mdl-radio__label">Si</span>
-                                </label>
-                                <label for="option-2">
-                                    <input type="radio" id="option-2" onclick="javascript:yesnoCheck();" name="status" value="Denegado" class="flat-red with-gap">
-                                    <span class="mdl-radio__label">No</span>
-                                </label>
-                            </div>
+                    
                             <br>
                     <div class="" style="display:none" id="if_si">
                         <div class="input-field col s12">

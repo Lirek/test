@@ -54,7 +54,51 @@
          $(document).ready(function(){
             $('select').formSelect();
         });
-	
+	$(document).on('click', '#informacion', function() {
+            var correo = $(this).attr('correo');
+            var user = $(this).attr('idUsuario');
+            $('.correoUsuario').show();
+			$('.correoUsuario').text('usuario: '+correo);
+			$("#inforpermiso").on('submit', function(e){
+                $('#NewPermiso').modal('close');
+                var modules = $("#module").val();
+                var url = "{{url('newNegado/')}}";
+                e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+                $.ajax({
+                    url: url,
+                    type:'POST',
+                    data:{
+                        _token: $('input[name=_token]').val(),
+                        modules: modules,
+                        user: user
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        swal("Permiso concedido con éxito","","success")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    },
+                    error: function (result) {
+                        console.log(result);
+                        swal("Error en su solicitud, por favor recargue la pagina","","error")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+
 	function listadoUsuarios(tipo) {
 			$("#Usuario").empty();
 			var parametros = tipo;
@@ -75,8 +119,7 @@
 				success: function (data) {
 					swal.close();
 					$.each(data,function(i,info) {
-						$('.correoUsuario').show();
-						$('.correoUsuario').text('usuario: '+info.email);
+						
 
 						if(info.license.length!=0) {
 						var modulos = "";
@@ -91,7 +134,7 @@
 					          	modulos = "El usuario no tiene módulos habilitado ";
 					        }
 
-					        var Ajustes = "<a class='btn modal-trigger green' data-tooltip='Agregar permiso' href='#NewPermiso'>"+
+					        var Ajustes = "<a class='btn modal-trigger green' data-tooltip='Agregar permiso' correo='"+info.email+"' idUsuario='"+info.id+"' id=informacion href='#NewPermiso'>"+
         						"<i class='material-icons'>enhanced_encryption</i>Activar módulo para usuario"+
     						"</a>";
 

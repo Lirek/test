@@ -149,7 +149,7 @@
           var fecha = moment(info.created_at).format('DD/MM/YYYY');
           var redes = "<a class='btn green curvaBoton modal-trigger' value="+info.id+" href='#webModal' id='webs'>Ver redes</a>";
           var estatus = "<a class='btn light-blue lighten-1 curvaBoton modal-trigger' value="+info.id+" href='#myModal' id='Status'>Cambiar estatus</a>";
-          var masInfo = "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalUser' id='user'>Más información</a>"
+          var masInfo = "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalUser' id='user'>Más datos</a>"
           var opciones = estatus+"<br>"+masInfo;
           if (info.verify==2) {
             opciones = opciones + "<br>"+

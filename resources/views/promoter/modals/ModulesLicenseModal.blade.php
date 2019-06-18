@@ -28,14 +28,14 @@
         <h4 class="white-text" style="padding: 25px 0px">Agregar permiso a usuario</h4>
       </div>
       <div style="margin-top: -15px">
-        <form method="POST" id="" action="{{url('newNegado')}}">
+        <form method="POST" id="inforpermiso">
           {{ csrf_field() }}
             <div class="col s12">
             <div class="input-field col s6">
               <h6 class="correoUsuario"></h6>
             </div>
             <div class="input-field col s6">
-              <select name="module" required>
+              <select name="module" id="module" required>
               <option value="" disabled selected>Seleccione el modulo</option>
                   @foreach($modulo as $modul)
                     <option value="{{$modul->id}}" id="modul" name="modul">{{$modul->name}}</option>
