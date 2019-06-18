@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\Serie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Fractal\Manager;
@@ -57,6 +58,94 @@ use App\AlbumsTrace;
 
 class ContentController extends Controller
 {
+
+    public function billboard() {
+        $singles = Songs::latest()->whereNull('album')->where('status','Aprobado')->take(3)->get();
+        $albums = Albums::latest()->where('status','Aprobado')->take(3)->get();
+        $movies = Movie::latest()->where('status','Aprobado')->take(3)->get();
+        $series = Serie::latest()->where('status','Aprobado')->take(3)->get();
+        $megazines = Megazines::latest()->where('status','Aprobado')->take(3)->get();
+        $books = Book::latest()->where('status','Aprobado')->take(3)->get();
+        $radios = Radio::latest()->where('status','Aprobado')->take(6)->get();
+        $tvs = Tv::latest()->where('status','Aprobado')->take(6)->get();
+        $music = [];
+        foreach ($albums as $a) {
+            $music[] = [
+                'id' => $a->id,
+                'title' => $a->name_alb,
+                'cover' => $a->cover,
+                'type' => 'Album'
+            ];
+        }
+        foreach ($singles as $s) {
+            $music[] = [
+                'id' => $s->id,
+                'title' => $s->song_name,
+                'cover' => null,
+                'type' => 'Single'
+            ];
+        }
+        $movie = [];
+        foreach ($movies as $m) {
+            $movie[] = [
+                'id' => $m->id,
+                'title' => $m->title,
+                'cover' => '/movie/poster/'.$m->img_poster,
+                'type' => 'Movie',
+            ];
+        }
+        foreach ($series as $s) {
+            $movie[] = [
+                'id' => $s->id,
+                'title' => $s->title,
+                'cover' => $s->img_poster,
+                'type' => 'Serie',
+            ];
+        }
+        $reading = [];
+        foreach ($books as $b) {
+            $reading[] = [
+                'id' => $b->id,
+                'title' => $b->title,
+                'cover' => "/images/bookcover/".$b->cover,
+                'type' => 'Book',
+            ];
+        }
+        foreach ($megazines as $m) {
+            $reading[] = [
+                'id' => $m->id,
+                'title' => $m->title,
+                'cover' => $m->cover,
+                'type' => 'Magazine',
+            ];
+        }
+        $radio = [];
+        foreach ($radios as $r) {
+            $radio[] = [
+                'id' => $r->id,
+                'title' => $r->name_r,
+                'cover' => $r->logo,
+                'type' => 'Radio'
+            ];
+        }
+        $tv = [];
+        foreach ($tvs as $t) {
+            $tv[] = [
+                'id' => $t->id,
+                'title' => $t->name_r,
+                'cover' => $t->logo,
+                'type' => 'Tv'
+            ];
+        }
+        $data = [
+            'music' => $music,
+            'movies' => $movie,
+            'reading' => $reading,
+            'radios' => $radio,
+            'tvs' => $tv
+        ];
+        return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+    }
    
     
 //---------------TODO EL CONTENIDO APROBADO---------------------------------------------------

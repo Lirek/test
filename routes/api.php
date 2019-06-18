@@ -53,6 +53,7 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('whoSponsor/{code}','ApiController\UserController@whoSponsor');
         Route::post('addSponsor','ApiController\UserController@addSponsor');
         Route::get('invite','ApiController\UserController@invite');
+        Route::post('invite','ApiController\UserController@inviteByEmail');
 
         //-------------------------------------------------------------------------
 
@@ -68,6 +69,8 @@ Route::group(['middleware' => ['cors']], function() {
         //--------------------------------------------------------------------------
 
         //---------------Rutas de Contenido---------------------------------------
+
+        Route::get('billboard','ApiController\ContentController@billboard');
 
         Route::get('Singles','ApiController\ContentController@AllAprovedSingles');
         Route::get('Albums','ApiController\ContentController@AllAprovedAlbums');
