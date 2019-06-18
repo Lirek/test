@@ -2,9 +2,7 @@
 	@section('main')
 
 <div class="row">
-		<div class="row mt">
-			<h2><i class="fa fa-angle-right"></i>Contenido principal</h2>
-		</div>
+		
 
 		<div class="col s12 m6 l3">
 	        <div class="card pink darken-3 darken-3 hoverable">
