@@ -55,7 +55,7 @@ class SuperAdminController extends Controller
 
         public function newNegado(Request $request) 
         {
-          $usuario = license::where('promoter_id',$request->user)->where('module_id',$request->module)->count();
+          $usuario = license::where('promoter_id',$request->user)->where('module_id',$request->modules)->count();
           if ($usuario == 0)
           {
             license::newNegado($request);
@@ -64,7 +64,7 @@ class SuperAdminController extends Controller
           {
             $usuario = 1;
           }
-
+          return response()->json($usuario);
           return redirect()->action("SuperAdminController@Modules");
         }
 
@@ -82,10 +82,11 @@ class SuperAdminController extends Controller
           return response()->json($usuario);
         }
 
-      public function DeleteModule($id) 
+      public function DeleteModule($idUsuario, $id) 
       {
-        $delet= license::destroy($id);
-        return response()->json($delet);
+        $borrar = license::where('promoter_id',$idUsuario)->where('module_id',$id)->first();
+        $delet= license::destroy($borrar->id);
+        return response()->json($borrar);
       }
 
 

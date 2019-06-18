@@ -33,7 +33,7 @@ class license extends Model
     public static function newNegado($request) {
         $module = new license;
         $module->promoter_id = $request->user;
-        $module->module_id = $request->module;
+        $module->module_id = $request->modules;
         $module->save();
         return $module;
     }

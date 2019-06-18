@@ -5,13 +5,13 @@
 
 <div class="row">
   <div class="col s12 m12">
-    <div class="col s12 m8">
+    <div class="col s4 m4">
+      <iframe width="250" height="170" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="col s8 m8">
     <h5 ALIGN="justify" >Leipel agradece con su árbol de beneficios a cualquier usuario que nos traiga más amigos que también compren tickets.
     Gana y acumula puntos para cambiarlos por los siguientes beneficios:</h5>
     <span style="padding-left: 40%">(Aplica al momento sólo en territorio ecuatoriano)</span>
-    </div>
-    <div class="col s12 m4">
-      <iframe width="250" height="170" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </div>

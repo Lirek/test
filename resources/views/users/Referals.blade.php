@@ -13,11 +13,11 @@
                             <ul class="collection">
                                 <li class="collection-item avatar">
                                     <div class="row">
-                                        <div class="col s4"><br>
+                                        <div class="col s5"><br>
                                             <i class="material-icons blue circle prefix">code</i>
                                             <h6 class="left"><b>Mi Código:</b></h6>
                                         </div>
-                                        <div class="col s8 left">
+                                        <div class="col s7 left">
                                             <h4 class="grey-text">{{Auth::user()->codigo_ref}}</h4>
                                         </div>
                                     </div>
@@ -76,29 +76,29 @@
                                             <div id="fb-root"></div>
                                             <!-- Your share button code -->
                                             <a href="https://wa.me/?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share">
-                                                <img border="0" src="images/whatsapp.png" width="50" height="50">
+                                                <img border="0" src="images/whatsapp.jpg" width="50" height="50">
                                             </a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="collection-item avatar">
                                     <div class="row">
-                                        <div class="col s4"><br>
+                                        <div class="col s5"><br>
                                             <i class="material-icons blue circle prefix">email</i>
                                             <h6 class="left"><b>Invitar por correo:</b></h6>
                                         </div>
-                                        <div class="col s8 left"><br>
+                                        <div class="col s7 left"><br>
                                             <a href="#myModal"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Enviar</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="collection-item avatar">
                                     <div class="row">
-                                        <div class="col s4"><br><br>
+                                        <div class="col s5"><br><br>
                                             <i class="material-icons blue circle prefix">people</i>
                                             <h6 class="left"><b>Total referidos:</b></h6>
                                         </div>
-                                        <div class="col s8 left">
+                                        <div class="col s7 left">
                                             <p>
                                             <h4 ><a href="#" class="blue-text">
                                                     <center>{{$referals1+$referals2+$referals3}}</center>
@@ -127,7 +127,7 @@
                             <br>
                             <div class="col s12 m12">
                                 <iframe width="250" height="170" src="https://www.youtube.com/embed/l0kYlGgFu94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <h6><b> INVITAR AMIGOS A LEIPEL</b></h6>
+                                <h6><b> INVITA AMIGOS A LEIPEL</b></h6>
                             </div>
                         </div>
                     </div>

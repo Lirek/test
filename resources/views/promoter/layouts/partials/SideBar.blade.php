@@ -74,7 +74,7 @@
               <li>
                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
                   <i class="small material-icons">assignment_ind</i>
-                  Proveedor
+                  Sección Proveedor
                   <span class="new badge orange darken-1" data-badge-caption="" id="proveedor" style="display: none; background-color: #d9534f;"></span>
                   <i class="material-icons right">expand_more</i>
                 </a>
@@ -90,7 +90,7 @@
                     <li>
                       <a href="{{url('admin_applys')}}" class="waves-effect waves-blue">
                         <i class="small material-icons">group_add</i>
-                        Solicitudes
+                        Nuevas solicitudes
                         <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
                       </a>
                     </li>
@@ -273,7 +273,7 @@
         <li>
           <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
             <i class="small material-icons">assignment_ind</i>
-            Proveedor
+            Sección Proveedor
             <span class="new badge orange darken-1" data-badge-caption="" id="proveedor" style="display: none; background-color: #d9534f;"></span>
             <i class="material-icons right">expand_more</i>
           </a>
@@ -289,7 +289,7 @@
               <li>
                 <a href="{{url('admin_applys')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group_add</i>
-                  Solicitudes
+                  Nuevas solicitudes
                   <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>

@@ -112,13 +112,13 @@
         @include('flash::message')
         <div class="card-panel curva">
             <div class="row">
-                <div class="col s12 m3">
-                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 180px">
+                <div class="col s12 m4">
+                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
                           
                           <div class="row">
                             <div class="col m12">
-                                <h5 style="color: white"><b>Tickets disponible:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
+                                <h5 style="color: white"><b>Tickets ganados:</b> {{Auth::guard('web_seller')->user()->credito}}</h5>
                             </div>
                           </div>
                           <div class="row">
@@ -132,14 +132,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m4">
                     <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%">
                           
                         
                           <div class="row">
                             <div class="col m12">
-                               <h5 style="color: white"><b>Tickets Pendientes:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
+                               <h5 style="color: white"><b>Tickets por cobrar:</b> {{Auth::guard('web_seller')->user()->credito_pendiente}}</h5>
                             </div>
                           </div>
                           
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m3">
+                {{-- <div class="col s12 m3">
                     <div class="card gradient-45deg-red-pink gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
                           
@@ -171,16 +171,16 @@
                             
                         </div>
                     </div>
-                </div>
-                <div class="col s12 m3">
-                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow" style="height: 180px">
+                </div> --}}
+                <div class="col s12 m4">
+                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 180px">
                         <div class="padding-4" style="padding: 4%"> 
                           
                           
                           
                           <div class="row">
                             <div class="col m12">
-                                <h5 style="color: white"><b>Tickets Retirados:</b> {{ $pagado}}</h5>
+                                <h5 style="color: white"><b>Tickets cobrados:</b> {{ $pagado}}</h5>
                             </div>
                           </div>
                           <div class="row">

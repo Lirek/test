@@ -89,13 +89,13 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Proceso") {
-                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button>"
+                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='statusPU'>"+info.status+"</button><button class='btn modal-trigger curvaBoton yellow accent-4' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="StatusPU">'+info.status+'</button>'
                         }
                         if (info.status=="Denegado") {
-                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="StatusPU">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
+                            var opcion = '<button class="btn curvaBoton yellow accent-4" value='+info.id+' id="StatusPU">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegado">ver negaciones</button>'
                         }
 
                         var filas = "<tr><td>"+
@@ -253,13 +253,13 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Revision") {
-                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('book/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegadoRE'>ver negaciones</button>"
+                            var opcion = "<a class='btn curvaBoton' target='_blank' href='{!! asset('book/') !!}/{!! '"+info.books_file+"' !!}' href='#file' id='file_b'>Ver libro</a> <button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#Modal' id='status'>"+info.status+"</button><button class='btn modal-trigger curvaBoton yellow accent-4' value='"+info.id+"' value2='En Revision' href='#negado' id='denegadoRE'>ver negaciones</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="Status">'+info.status+'</button>'
                         }
                         if (info.status=="Denegado") {
-                            var opcion = '<button class="btn curvaBoton red" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegadoRE">ver negaciones</button>'
+                            var opcion = '<button class="btn curvaBoton yellow accent-4" value='+info.id+' id="Status">'+info.status+'</button><button class="btn modal-trigger curvaBoton" value='+info.id+' value2="En Revision" href="#negado" id="denegadoRE">ver negaciones</button>'
                         }
 
                         var filas = "<tr><td>"+

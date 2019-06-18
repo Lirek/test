@@ -186,7 +186,7 @@
 
                 <li><a href="{{url('seller_edit')}}" class="waves-effect waves-green"><i class="small material-icons">person</i>Mi Perfil</a></li>
                     <li><div class="divider"></div></li>
-                <li><a href="{{url('SellerRequest')}}" class="waves-effect waves-green "><i class="small material-icons">attach_money</i>Retiro de fondo</a></li>
+                <li><a href="{{url('SellerRequest')}}" class="waves-effect waves-green "><i class="small material-icons">attach_money</i>Mis ventas</a></li>
 
 <!-- ////////////////////////////////////////////////////////////          Contenidos          ////////////////////////////////////////-->
 
@@ -201,7 +201,7 @@
                             <ul class= "collapsible collapsible-accordion" >
 
                                 <li>
-                                    <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
+                                    <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Mis contenidos<i class="material-icons right" >expand_more</i></a>
 
                                     <div class="collapsible-body">
                                             <blockquote>Aún no posee módulos asignados.</blockquote>

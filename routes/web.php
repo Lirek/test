@@ -241,13 +241,13 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('ShowMovies/{id}','ContentController@MovieList');
 //Agregada 24/08/2018
     Route::get('ShowTv','ContentController@Showtv');
-
+    
 //Agregada 23/02/2019
     Route::get('PlayMovie/{id}','ContentController@PlayMovie');
     Route::get('PlaySerie/{id}','ContentController@PlaySerie');
     Route::get('PlayEpisode/{id}','ContentController@PlayEpisode');
-
-
+    
+    
     Route::get('PlayTv/{id}','ContentController@PlayTv');
     Route::get('/SearchTv',array('as'=>'SearchTv','uses'=>'ContentController@seachTv'));
     Route::post('SearchPlayTv','ContentController@ShowPlayTv');
@@ -267,7 +267,10 @@ Route::get('ReadingsMegazines','ContentController@ShowReadingsMegazines');
     Route::get('WebsUser','ReferalsController@ShowWebs');
     Route::get('Referals','ReferalsController@ShowReferals');
 
-
+//-----------------------Funciones de Pago Externo a la plataforma ------------------------
+    Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+    Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+//-----------------------------------------------------------------------------------------
  });
 
 /* ------------------------------------------------------------------
@@ -310,7 +313,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
     //Agregada 02/05/2019
     Route::get('EditProfilePromoter','PromoterController@edit');
     //Agregada 02/05/2019
-    Route::post('UpdateProfilePromoter','PromoterController@update');
+    Route::post('UpdateProfilePromoter','PromoterController@update')->name('promoters.update');
     //Agregada 02/05/2019
     Route::post('ChangePasswordPromoter/{id}','PromoterController@changepassword');
 
@@ -331,6 +334,12 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           //Agregada 10/12/2019
            Route::get('MySeries','UserController@MySeries');
             Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
+
+          //Agregada 23/01/2019
+          Route::get('DeleteAccount/{id}','UserController@closed');
+
+          //Agregada 28/01/2019
+          Route::post('ChangePassword/{id}','UserController@changepassword');
 
       });
 
@@ -382,7 +391,10 @@ Route::group(['middleware' => 'promoter_auth'], function(){
           Route::get('WebsUser','ReferalsController@ShowWebs');
           Route::get('Referals','ReferalsController@ShowReferals');
 
-
+      //-----------------------Funciones de Pago Externo a la plataforma ------------------------
+          Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+          Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+      //-----------------------------------------------------------------------------------------
 
       /* ------------------------------------------------------------------
       ---------------------------------------------------------------------
@@ -461,6 +473,63 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('GetPackage/{id}','AdminController@GetPackage');
 
             Route::get('DeletePackage/{id}','AdminController@DeletePackage');
+
+
+            Route::get('Provincias','AdminController@Provincias');
+
+            Route::post('AddProvince','AdminController@AddProvince');
+
+            Route::get('DeleteProvince/{id}','AdminController@DeleteProvince');
+
+            Route::get('FindProvince/{id}','AdminController@FindProvince');
+
+            Route::post('UpdateProvince/{id}','AdminController@UpdateProvince');
+
+
+            Route::get('Pais','AdminController@Pais');
+
+            Route::post('AddCountry','AdminController@AddCountry');
+
+            Route::get('FindCountry/{id}','AdminController@FindCountry');
+
+            Route::post('UpdateCountry/{id}','AdminController@UpdateCountry');
+
+            Route::get('DeleteCountry/{id}','AdminController@DeleteCountry');
+
+
+            Route::get('Regiones','AdminController@Region');
+
+            Route::post('AddRegion','AdminController@AddRegion');
+
+            Route::get('FindRegion/{id}','AdminController@FindRegion');
+
+            Route::post('UpdateRegion/{id}','AdminController@UpdateRegion');
+
+            Route::get('DeleteRegion/{id}','AdminController@DeleteRegion');
+
+
+             Route::get('Ciudades','AdminController@Ciudades');
+
+             Route::post('AddCity','AdminController@AddCity');
+
+             Route::get('FindCity/{id}','AdminController@FindCity');
+
+             Route::post('UpdateCity/{id}','AdminController@UpdateCity');
+
+             Route::get('DeleteCity/{id}','AdminController@DeleteCity');
+
+
+             Route::get('Parroquias','AdminController@Parroquias');
+
+             Route::post('AddParish','AdminController@AddParish');
+
+             Route::get('FindParish/{id}','AdminController@FindParish');
+
+             Route::post('UpdateParish/{id}','AdminController@UpdateParish');
+
+             Route::get('DeleteParish/{id}','AdminController@DeleteParish');
+
+
 
         //_________________FIN de RUtas de Proveedores____________________________
 
@@ -647,6 +716,8 @@ Route::group(['middleware' => 'promoter_auth'], function(){
 
     Route::group(['middleware' => ['SuperAdmin']], function (){
 
+         Route::get('ModulesLicense','SuperAdminController@Modules');         
+
          Route::get('Business','SuperAdminController@ShowBusiness');
 
          Route::get('PointsDetails','SuperAdminController@ShowPointsDetails');
@@ -663,7 +734,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::get('UnReferedUserDataTable','SuperAdminController@UnReferedUserDataTable');
 
          Route::get('ExternalClients','ExternalClientsController@ViewExternalClients');
-
+         
          Route::get('ExternalClientsDataTable','ExternalClientsController@ExternalClientsDataTable');
 
          Route::get('GetExternalClient/{id}','ExternalClientsController@GetExternalClient');
@@ -675,7 +746,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
          Route::post('DeleteExternalClient/{id}','ExternalClientsController@DeleteExternalClient');
 
          Route::get('PendingPointsRoutine','SuperAdminController@PendingPointsToLeipel');
-
+        
         //------------------------------- Rutas para los productos-------------------------------
             Route::get('Products','SuperAdminController@Products');
             Route::post('storeProducts','SuperAdminController@storeProducts');
@@ -684,8 +755,31 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('updateProduct','SuperAdminController@updateProduct');
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
-
+            Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
+            
         //------------------------------- Rutas para los productos-------------------------------
+
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+            Route::get('Bidder','BidderController@Bidder');
+            Route::get('ModulesBidder','BidderController@ModulesBidder');
+            Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
+            Route::post('statusBidder/{id}','BidderController@statusBidder');
+            Route::post('addModuleBidder','BidderController@addModuleBidder');
+            Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
+        //------------------------------- Rutas para los ofertantes en backend -------------------------------
+        
+        //------------------------------- Rutas para los modulos y permisos-------------------------------
+            Route::post('newModule','SuperAdminController@newModule');
+            Route::post('newNegado','SuperAdminController@newNegado');
+            // Route::post('statusModule/{id}','SuperAdminController@statusModule');
+            Route::get('dataUsuario/{tipo}','SuperAdminController@dataUsuario');
+            Route::get('DeleteModule/{idUsuario}/{id}','SuperAdminController@DeleteModule');
+
+
+            
+        //------------------------------- Rutas para los modulos y permisos-------------------------------
+
+
 
 
         //------------------------------- Rutas para los pagos del ofertantes --------------------------------
@@ -765,18 +859,18 @@ Route::group(['middleware' => 'seller_guest'], function () {
     Route::get('getDataSeller/{id}/{token}', 'SellerController@getDataSeller');
 
      //Agregada 24/01/2019
+    
 
 
 
-
-//------------------RUTAS DE OLVIDO SU CONTRASE脩A-------------------
+//------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
 
     Route::get('seller_password/reset', 'SellerAuth\ForgotPasswordController@showLinkRequestForm');
     Route::post('seller_password/email', 'SellerAuth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('seller_password/reset/{token}', 'SellerAuth\ResetPasswordController@showResetForm');
     Route::post('seller_password/reset', 'SellerAuth\ResetPasswordController@reset');
 
-//-------------FIN DE LAS RUTAS DE OLVIDO SU CONTRASE脩A-------------
+//-------------FIN DE LAS RUTAS DE OLVIDO SU CONTRASEÑA-------------
 
 });
 
@@ -802,7 +896,7 @@ Route::group(['middleware' => 'seller_guest'], function () {
 //Solo Productoras Logueadas pueden acceder a las siguientes rutas
 
 Route::group(['middleware' => 'seller_auth'], function () {
-
+    
     Route::get('seller_edit', 'SellerController@edit');
 
     Route::post('seller_logout', 'SellerAuth\LoginController@logout');
@@ -812,14 +906,14 @@ Route::group(['middleware' => 'seller_auth'], function () {
     Route::post('/seller_complete', 'SellerController@CompleteRegistration');
 
     Route::resource('sellers', 'SellerController');
-
+    
     Route::get('SellerBalance','SellerController@balance');
 
     //agregada 26-11-2018
     Route::get('BalanceSellerGraph','SellerController@DonutGraph');
 
     Route::get('SellerRequest','SellerController@Fondos');
-
+    
     Route::post('SellerFunds','SellerController@applicationFunds');
 
     //Agregada 11/12/2018
@@ -1277,7 +1371,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
 
     Route::get('/seller_home','SellerController@homeSeller');
-
+    
 
 });
 
@@ -1291,11 +1385,11 @@ Route::group(['middleware' => 'seller_auth'], function () {
 --------------------------------------------------------------------
 */
 
-//----------------------- Rutas para el usuario OFERTANTE -----------------------
-Route::post('BidderSubmit','BidderController@store');
-Route::post('bidder_login','BidderAuth\LoginController@login');
+    //----------------------- Rutas para el usuario OFERTANTE -----------------------
+    Route::post('BidderSubmit','BidderController@store');
+    Route::post('bidder_login','BidderAuth\LoginController@login');
 
-Route::group(['middleware' => 'bidder_guest'], function(){
+    Route::group(['middleware' => 'bidder_guest'], function(){
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
     Route::get('bidderComplete/{id}/{token}','BidderController@bidderComplete');
     Route::post('BidderCompleteRegister','BidderController@BidderCompleteRegister');
@@ -1321,7 +1415,7 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     //-------------------------Monitoreo de Pagos-------------------------------
       Route::get('leipelPayments','ExternalOperationsController@showPayments');
       Route::get('PaymentsDataTable','ExternalOperationsController@PaymentsDataTable');
-      Route::post('PaymentButtonRequest','ExternalClientsController@CreatePaymentCredentials');      
+      Route::post('PaymentButtonRequest','ExternalClientsController@CreatePaymentCredentials');
     //--------------------------------------------------------------------------
 });
 
