@@ -10,12 +10,11 @@ class ExternalClients extends Model
 
     protected $fillable= [
 							'id',
-							'client_name',
 							'url_host',
 							'petition_url',
-							'admin_email',
 							'callback_url',
 							'client_token',
-							'client_secret_id'
+							'client_secret_id',
+              'bidder_id'
     					 ];
 }

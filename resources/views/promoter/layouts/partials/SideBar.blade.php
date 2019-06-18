@@ -289,7 +289,7 @@
               <li>
                 <a href="{{url('admin_applys')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group_add</i>
-                  Nuevas Cuentas
+                  Solicitudes
                   <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
@@ -424,7 +424,7 @@
         <li class="mt">
           <a href="{{url('AdminContent')}}">
             <i class="fas fa-suitcase"></i>
-            <span>Contenidos</span>
+            <span>Contenido</span>
             <span class="badge" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
           </a>
         </li>

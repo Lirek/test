@@ -82,10 +82,11 @@ class SuperAdminController extends Controller
           return response()->json($usuario);
         }
 
-      public function DeleteModule($id) 
+      public function DeleteModule($idUsuario, $id) 
       {
-        $delet= license::destroy($id);
-        return response()->json($delet);
+        $borrar = license::where('promoter_id',$idUsuario)->where('module_id',$id)->first();
+        $delet= license::destroy($borrar->id);
+        return response()->json($borrar);
       }
 
 

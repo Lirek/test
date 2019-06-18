@@ -65,7 +65,7 @@
           <div class="input-field col s6 l6 m6">
     		<select name="country_id" required="required">
       			<option value="" disabled selected>Seleccione el País</option>
-      			@foreach($Country as $country)        
+      			    @foreach($Country as $country)        
                         <option value="{{$country->id}}">{{$country->country_name}}</option>
                 @endforeach
     		</select>
@@ -97,9 +97,10 @@
               <label for="name">Nombre de la Región</label>              
             </div>
             <div class="input-field col s6">
-    		<select name="countryUpdate" id="countryUpdate" required="required">
-    			<option value="" disabled selected>Seleccione País</option>
-      			@foreach($Country as $country)        
+              <!--{!! Form::select('id', $Country, null, ['class' => 'form-control']) !!}-->
+    		<select name="countryUpdate" id="countryUpdate" name="country_name" id="nameUpdateCountry" required="required">
+    			<option value="" disabled selected>Seleccione el País</option>
+                @foreach($Country as $country)        
                         <option value="{{$country->id}}">{{$country->country_name}}</option>
                 @endforeach
     		</select>

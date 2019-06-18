@@ -24,6 +24,7 @@
                     <th>Nombre</th>
                     <th>correo</th>
                     <th>Módulos visibles</th>
+                    <th>Ajustes</th>
                 </tr>
             </thead>
             <tbody id="Usuario">
@@ -56,7 +57,51 @@
          $(document).ready(function(){
             $('select').formSelect();
         });
-	
+	$(document).on('click', '#informacion', function() {
+            var correo = $(this).attr('correo');
+            var user = $(this).attr('idUsuario');
+            $('.correoUsuario').show();
+			$('.correoUsuario').text('usuario: '+correo);
+			$("#inforpermiso").on('submit', function(e){
+                $('#NewPermiso').modal('close');
+                var modules = $("#module").val();
+                var url = "{{url('newNegado/')}}";
+                e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+                $.ajax({
+                    url: url,
+                    type:'POST',
+                    data:{
+                        _token: $('input[name=_token]').val(),
+                        modules: modules,
+                        user: user
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        swal("Permiso concedido con éxito","","success")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    },
+                    error: function (result) {
+                        console.log(result);
+                        swal("Error en su solicitud, por favor recargue la pagina","","error")
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+
 	function listadoUsuarios(tipo) {
 			$("#Usuario").empty();
 			var parametros = tipo;
@@ -125,6 +170,7 @@
 		      type:'get',
 		      dataType:"json",
 		      success: function(data) {
+		      	console.log(data);
 		        swal("Se ha retirado el permiso del módulo con éxito","","success")
 		        .then((recarga) => {
 		          location.reload();

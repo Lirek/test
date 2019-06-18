@@ -2037,8 +2037,9 @@ public function BooksDataTable($status) {
 
 
 public function Region(){
-        $Country = Country::All();
+        //$Country = Country::All();
         $Region = Region::with('country')->get();
+        $Country = Country::All(['id', 'country_name']);
         return view('promoter.AdminModules.Region')->with('Country',$Country)->with('Region',$Region);
     }
 

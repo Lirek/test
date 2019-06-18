@@ -59,6 +59,9 @@ Auth::routes();
 
 //Route::post('login', 'Auth\LoginController@login');
 
+//-----------------------Funciones de Pago Externo a la plataforma ------------------------
+Route::post('ExternalPayment','ExternalOperationsController@ShowPaymentForm');
+//-----------------------------------------------------------------------------------------
 
 Route::get('/register/{user_code}','UserController@show');
 Route::post('SellerRegister','SellerController@CompleteRegistration');
@@ -77,7 +80,7 @@ Route::post('EmailValidate','ReferalsController@email');
 Route::post('RegisterEmail','WelcomeController@email');
 Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 
-////Validación de correo siendo verificado
+////Validaci贸n de correo siendo verificado
 //Route::post('RegisterApplysEmailSeller','WelcomeController@applyEmailSeller');
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
@@ -90,6 +93,10 @@ Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
           Route::get('MyTickets/{id}', 'HomeController@MyTickets');
 
 Route::group(['middleware' => ['auth','ActiveUser']], function() {
+
+//-----------------------Funciones de Pago Externo a la plataforma ------------------------
+    Route::post('ProcessPayment','ExternalOperationsController@ProcessPayment');
+//-----------------------------------------------------------------------------------------
 
 //-----------------------Funciones del Home---------------------------
 
@@ -197,14 +204,14 @@ Route::post('Invite','UserController@Invite');
      Route::get('MySeries','UserController@MySeries');
       Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
 
-    //Agregada 23/01/2019  
+    //Agregada 23/01/2019
     Route::get('DeleteAccount/{id}','UserController@closed');
 
     //Agregada 28/01/2019
     Route::post('ChangePassword/{id}','UserController@changepassword');
 
 
-   
+
 
 //---------------------------------------------------------------------------
 
@@ -286,7 +293,7 @@ Route::get('promoter_login', 'PromoterAuth\LoginController@showLoginForm');
 
 Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
-//------------------RUTAS DE OLVIDO SU CONTRASEÑA-------------------
+//------------------RUTAS DE OLVIDO SU CONTRASE脩A-------------------
 
     Route::get('promoter_password/reset', 'PromoterAuth\ForgotPasswordController@showLinkRequestForm');
     Route::post('promoter_password/email', 'PromoterAuth\ForgotPasswordController@sendResetLinkEmail');
@@ -297,7 +304,7 @@ Route::post('promoter_login', 'PromoterAuth\LoginController@login');
 
 Route::group(['middleware' => 'promoter_auth'], function(){
 
-    
+
 
     Route::post('promoter_logout', 'PromoterAuth\LoginController@logout');
 
@@ -671,7 +678,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
                 Route::get('SeriesDataTable/{status}','AdminController@SeriesDataTable');
                 Route::get('/sagaSerie/{id}','AdminController@sagaSerie');
                 Route::post('/admin_serie/{id}','AdminController@SerieStatus');
-                
+
 
             //-----------------------------------------------------------------------
                 Route::get('/viewRejection/{idModulo}/{modulo}','AdminController@viewRejection');
@@ -1405,6 +1412,11 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     Route::post('imagenPerfilBidder','BidderController@imagenPerfilBidder');
     Route::post('cambiarClaveBidder','BidderController@cambiarClaveBidder');
     Route::get('DeleteAccountBidder','BidderController@DeleteAccountBidder');
+    //-------------------------Monitoreo de Pagos-------------------------------
+      Route::get('leipelPayments','ExternalOperationsController@showPayments');
+      Route::get('PaymentsDataTable','ExternalOperationsController@PaymentsDataTable');
+      Route::post('PaymentButtonRequest','ExternalClientsController@CreatePaymentCredentials');
+    //--------------------------------------------------------------------------
 });
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
