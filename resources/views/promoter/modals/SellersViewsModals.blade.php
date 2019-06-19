@@ -1,6 +1,6 @@
   <div class="modal" id="ModalModules">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Asignar módulos al proveedor</h4>
       </div>
       <br>
@@ -52,7 +52,7 @@
 
   <div class="modal" id="myModal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus de la productora</h4>
       </div>
       <br>
@@ -110,7 +110,7 @@
   
   <div class="modal" id="ModalSeller">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 10px">Detalles del proveedor</h4>
       </div>
       <div class="row">

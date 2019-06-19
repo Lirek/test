@@ -1,6 +1,6 @@
   <div class="modal" id="myModal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modifique el estatus del autor literario</h4>
       </div>
       <br>
@@ -42,7 +42,7 @@
 
   <div id="reject" class="modal">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Historial de negaciones</h4>
       </div>
       <br>

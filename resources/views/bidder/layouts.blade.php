@@ -14,6 +14,8 @@
         <link href="{{ asset('plugins/materialize_adm/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <!--https://materialdesignicons.com/-->
         <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
         <style>
             .default_color{background-color: #FFFFFF !important;}
             .img{margin-top: 7px;}
@@ -104,6 +106,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('leipelPayments') }}" class="waves-effect waves-yellow">
+                        <i class="small material-icons">screen_share</i>Pagos de Usuario
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('bidderLogout') }}" class="waves-effect waves-yellow">
                         <i class="small material-icons">power_settings_new</i>Salir
                     </a>
@@ -181,7 +188,7 @@
         <script src="{{ asset('plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 if ((screen.width <= 768)) {

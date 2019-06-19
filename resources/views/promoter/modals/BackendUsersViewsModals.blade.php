@@ -1,6 +1,6 @@
   <div class="modal" id="NewUser">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Crear nuevo usuario de Backend</h4>
       </div>
       <div class="text-center row">
@@ -44,7 +44,7 @@
 
   <div class="modal" id="updateUser">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3  text-center">
         <h4 class="white-text" style="padding: 25px 0px">Actualizar usuario de Backend</h4>
       </div>
       <div class="text-center row">
@@ -91,7 +91,7 @@
 
   <div class="modal" id="NewSalesman">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Registrar vendedor</h4>
       </div>
       <div class="text-center row">
@@ -129,7 +129,7 @@
 
   <div class="modal" id="USalesman">
     <div class="modal-content">
-      <div class="col s12 light-blue lighten-1 text-center">
+      <div class="col s12 pink darken-3 text-center">
         <h4 class="white-text" style="padding: 25px 0px">Modificar vendedor</h4>
       </div>
       <div class="text-center row">

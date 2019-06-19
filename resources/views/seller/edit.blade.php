@@ -89,7 +89,7 @@
       </div>
 
     </div>
-    <!--inicio contenido-->
+    <!--inicio Contenido-->
     {!! Form::open(['route'=>['sellers.update',$seller],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
     {{ Form::token() }}
     <div class="container">
@@ -121,16 +121,16 @@
                                      <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{$content_for_aprove}}</h5>
-                                        <label>contenido en revisión</label>
+                                        <label>Contenido en revisión</label>
                                     </div>
                                     <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{$total_content}}</h5>
-                                        <label>contenido total</label>
+                                        <label>Contenido total</label>
                                     </div>
                                     <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i><h5>{{$total_aproved}}</h5>
-                                        <label>contenido aprovado</label>
+                                        <label>Contenido aprovado</label>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                             <div class="col s12 m6 l4">
                                 <div id="profile-card" class="card">
                                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
-                                        <span class="collection-header center" style="color: white ">Sobre mi</span>
+                                        <span class="collection-header center" style="color: white ">Sobre mí</span>
                                       </li>
                                     </div>
                                     <div class="card-content">
@@ -244,9 +244,11 @@
                                 </div>
             <!-- CLOSE ACCOUNT -->
             <div id="profile-card" class="card">
-                    <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
-                            <span class="collection-header center" style="color:white;">Opciones de cuenta</span>
-                    </div>
+                     <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
+                             <span class="collection-header center" style="color:white;">
+                                 <font size="5">Opciones de cuenta</font>
+                             </span>
+                     </div>
                 <div class="card-content">
                     <p><i class="mdi-communication-email cyan-text text-darken-2"></i></p>
                     <div style="text-align: left;"> 

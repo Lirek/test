@@ -22,26 +22,6 @@
 <body>
 <!--HEADER START-->
 <div class="main-navigation">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url('/') }}"><img src="{{asset('plugins/img/Logo-Leipel.png')}}"
-                                                                   width="150" height="50" alt=""></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{{ url('/') }}">Inicio</a></li>
-                    <li><a href="{{ url('/register')}}">Registrarse</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -49,8 +29,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Iniciar sesión</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/loginPayment') }}">
                             {{ csrf_field() }}
+
+                            <input name="x1" value="{{ $payment }}" hidden>
+                            <input name="x2" value="{{ $external }}" hidden>
+                            <input name="x3" value="{{ $transaction }}" hidden>
+                            <input name="x4" value="{{ $points }}" hidden>
+                            <input name="x5" value="{{ $token }}" hidden>
+
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">Correo </label>
@@ -109,17 +96,6 @@
                             <i class="fa fa-facebook"></i>
                             Iniciar sesion con Facebook
                         </a>
-
-                        <a href="login/twitter" class="btn btn-twitter">
-                            <i class="fa fa-twitter"></i>
-                            Iniciar sesion con Twitter
-                        </a>
-
-                        <a href="login/google" class="btn btn-google">
-                            <i class="fa fa-google-plus"></i>
-                            Iniciar sesion con Google
-                        </a>
-
 
                     </div>
                     {{--fin de footer--}}

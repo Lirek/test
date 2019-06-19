@@ -13,17 +13,18 @@ class ExternalClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('external_client', function (Blueprint $table) 
+        Schema::create('external_client', function (Blueprint $table)
         {
-    
+
             $table->increments('id');
-            $table->string('client_name')->nullable()->default(NULL);
             $table->string('url_host')->nullable()->default(NULL);
             $table->string('petition_url')->nullable()->default(NULL);
-            $table->string('admin_email')->unique()->nullable()->default(NULL);
             $table->string('callback_url')->nullable()->default(NULL);
+            $table->string('client_token')->nullable()->default(NULL);
+            $table->string('client_secret_id')->nullable()->default(NULL);
+            $table->integer('bidder_id')->unsigned();
             $table->timestamps();
-    
+            $table->foreign('bidder_id')->references('id')->on('bidder');
         });
     }
 

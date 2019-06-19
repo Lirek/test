@@ -13,7 +13,8 @@ class ExternalPayments extends Model
 							'client_id',
 							'ammount',
 							'user_id',
-                            'token_s',
+              'token_s',
+              'transaction_id',
 							'status'
     					 ];
 

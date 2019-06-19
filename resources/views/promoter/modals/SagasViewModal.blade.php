@@ -1,6 +1,6 @@
 <div id="ModalSaga" class="modal">
     <div class="modal-content center blue-text">
-        <div class=" blue"><br>
+        <div class="pink darken-3"><br>
             <h4 class="center white-text" ><i class="small material-icons"></i>Detalles de la saga</h4>
             <br>
         </div>

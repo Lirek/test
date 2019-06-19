@@ -486,7 +486,13 @@ public function ShowAlbums()
   */
 
   public function ShowMegazine() {
-    return view('promoter.ContentModules.MainContent.Megazine');
+    
+    $megazines = Megazines::where('status','En Revision')->count();
+    $publicationChain = Sagas::where('status','En Proceso')->where('type_saga','Revistas')->count();
+
+    return view('promoter.ContentModules.MainContent.Megazine')
+    ->with('megazines',$megazines)
+    ->with('publicationChain' , $publicationChain);
   }
 
   public function MegazineDataTable($status) {
@@ -2031,8 +2037,9 @@ public function BooksDataTable($status) {
 
 
 public function Region(){
-        $Country = Country::All();
+        //$Country = Country::All();
         $Region = Region::with('country')->get();
+        $Country = Country::All(['id', 'country_name']);
         return view('promoter.AdminModules.Region')->with('Country',$Country)->with('Region',$Region);
     }
 

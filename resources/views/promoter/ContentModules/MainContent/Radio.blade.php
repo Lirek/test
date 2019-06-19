@@ -97,6 +97,7 @@
                     <th>Logo</th>
                     <th>Streaming</th>
                     <th>Proveedor</th>
+                    <th>Fecha de registro</th>
                     <th>Redes sociales</th>
                     <th>Estatus</th>
                 </tr>
@@ -208,6 +209,7 @@
                         logo+"</td><td>"+
                         streaming+"</td><td>"+
                         proveedor+"</td><td>"+
+            						moment(info.created_at).format('DD/MM/YYYY h:mm:ss a')+"</td><td>"+
                         redes+"</td><td>"+
                         status+edit+eliminar+"</td></tr>";
                         $("#radios").append(filas);

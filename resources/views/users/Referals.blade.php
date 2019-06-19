@@ -55,10 +55,15 @@
                                             <!-- <a href="#"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Compartir</a> -->
                                             <div id="fb-root"></div>
                                             <!-- Your share button code -->
-                                            <div class="fb-share-button"
+                                          <!--  <div class="fb-share-button"
                                                  data-href="{{url('/').'/register/'.Auth::user()->codigo_ref}}"
                                                  data-layout="button" data-size="large" data-mobile-iframe="true">
-                                            </div>
+                                            </div> -->
+                                            
+                                            <a  href="https://www.facebook.com/sharer/sharer.php?app_id={{url('/').'/register/'.Auth::user()->codigo_ref}}" 
+                                              onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')">
+                                              <img border="0" src="{{asset('sistem_images/facebook.png')}}" width="50" height="50">
+                                            </a>
 
                                         </div>
                                     </div>
@@ -78,6 +83,9 @@
                                             <a href="https://wa.me/?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share">
                                                 <img border="0" src="images/whatsapp.jpg" width="50" height="50">
                                             </a>
+                                          
+                                            
+
                                         </div>
                                     </div>
                                 </li>

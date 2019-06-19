@@ -3,8 +3,13 @@
     <span class="card-title grey-text"><h3>Revistas y publicaciones periódicas</h3></span>
     
     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-        <li class="tab" id="televisoras"><a class="active" href="#test1">Revistas</a></li>
-        <li class="tab" id="televisorasSistema"><a href="#test2">Publicaciones periódicas</a></li>
+        <li class="tab" id="televisoras"><a class="active" href="#test1">Revistas 
+          @if($megazines != 0 )<span class="new badge red" data-badge-caption="Nueva">
+          {{$megazines}}</span> 
+          @endif
+        </a></li>
+        <li class="tab" id="televisorasSistema"><a href="#test2">Publicaciones periódicas @if($publicationChain != 0 )<span class="new badge red" data-badge-caption="Nueva">{{$publicationChain}}</span> 
+        @endif</a></li>
     </ul>
     <div id="test1" class="col s12">
         <ul class="tabs tabs-fixed-width tab-demo z-depth-1" style="cursor: pointer;">
@@ -88,7 +93,7 @@
                             var portada = "No aplica ";
                         }
                         if (info.status=="En Proceso") {
-                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='statusPU'>"+info.status+"</button><button class='btn modal-trigger curvaBoton red' value='"+info.id+"' value2='En Revision' href='#negado' id='denegado'>ver negaciones</button>"
+                            var opcion = "<button class='btn modal-trigger curvaBoton green' value='"+info.id+"' value2='En Revision' href='#myModal' id='statusPU'>"+info.status+"</button>"
                         }
                         if (info.status=="Aprobado") {
                             var opcion = '<button class="btn curvaBoton green" value='+info.id+' id="StatusPU">'+info.status+'</button>'

@@ -1,7 +1,7 @@
 
 	<div class="modal" id="NewModule">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Agregar nueva categoría</h4>
 			</div>
 			<br>
@@ -35,7 +35,7 @@
 
 	<div class="modal" id="updateModule">
 		<div class="modal-content">
-			<div class="col s12 light-blue lighten-1 text-center">
+			<div class="col s12 pink darken-3 text-center">
 				<h4 class="white-text" style="padding: 25px 0px">Actualizar categoría</h4>
 			</div>
 			<br>

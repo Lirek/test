@@ -1,6 +1,6 @@
   <div id="asignar" class="modal modal-s">
     <div class="modal-content">
-      <div class=" blue">
+      <div class=" pink darken-3">
         <br>
         <h4 class="center white-text" >Ingrese el código</h4>
         <br>
