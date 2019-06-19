@@ -2,11 +2,18 @@
   @section('main')
   @include('flash::message')
 
+<style media="screen">
+  
+.my-flex{
+
+min-height: 360px;
+}
+</style>
 
     <span class="card-title grey-text"><h3>Contenidos por aprobar</h3></span>
     <div class="row">
-      <div class="col s12 m6 l3">
-        <div class="card pink darken-3 darken-3 hoverable">
+      <div class="col s12 m6 l3 ">
+        <div class="card pink darken-3 darken-3 hoverable my-flex" >
           <div class="card-content white-text">
             <span class="card-title">Contenidos por aprobar</span>
             <i class="large material-icons">view_carousel</i>
@@ -21,7 +28,7 @@
       </div>
 
       <div class="col s12 m6 l3">
-        <div class="card pink darken-3 darken-3 hoverable">
+        <div class="card pink darken-3 darken-3 hoverable my-flex">
           <div class="card-content white-text">
             <span class="card-title">Proveedores por validar</span>
             <i class="large material-icons">group</i>
@@ -36,7 +43,7 @@
       </div>
 
       <div class="col s12 m6 l3">
-        <div class="card pink darken-3 darken-3 hoverable">
+        <div class="card pink darken-3 darken-3 hoverable my-flex">
           <div class="card-content white-text">
             <span class="card-title">Solicitudes de proveedores</span>
             <i class="large material-icons">group_add</i>
@@ -50,22 +57,7 @@
         </div>
       </div>
     @if(Auth::guard('Promoter')->user()->priority == 1)
-      <div class="row">
-        <div class="col s12 m6 l3">
-          <div class="card pink darken-3 darken-3 hoverable">
-            <div class="card-content white-text">
-              <span class="card-title">Errores</span>
-              <i class="large material-icons">error</i>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="card-action">
-              <a href="{{ route('log-viewer::dashboard') }}" target="_blank" class="btn btn-primary indigo">Ver errores</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
       <span class="card-title grey-text"><h3>Paquetes de tickets</h3></span>
       <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Nuevo paquete de tickets" href="#NewPack">

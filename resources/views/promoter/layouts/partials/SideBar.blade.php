@@ -2,7 +2,11 @@
     <li>
       <div class="user-view blue">
         <div class="container">
-          <a href="{{url('EditProfile')}}"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+           @if(Auth::guard('Promoter')->user()->img_perf)
+              <a href="#"><img src="{{asset(Auth::guard('Promoter')->user()->img_perf)}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+            @else
+                <a href="#"><img src="{{asset('sistem_images/DefaultUser.png')}}" alt="Avatar" class=" z-depth-3 responsive-img circle logo-container img-perfil"></a>
+            @endif
         </div>
         <div class="info-container">
           <div class="name">
@@ -18,131 +22,11 @@
       </div>
     </li>
     <li>
-      <a href="#" class="waves-effect waves-blue">
+      <a href="{{url('EditProfilePromoter')}}" class="waves-effect waves-blue">
         <i class="small material-icons">person</i>
         Mi Perfil
       </a>
     </li>
-    @if(Auth::guard('Promoter')->user()->priority == 2 || Auth::guard('Promoter')->user()->priority == 3)
-      @if($permiso!=false)
-        @foreach($permiso->license as $pro)
-          @if($pro->name == 'contenido')
-          <li><div class="divider"></div></li>
-          <li>
-            <a href="{{url('AdminContent')}}" class="waves-effect waves-blue">
-              <i class="small material-icons">view_carousel</i>
-              Contenido
-              <span class="new badge orange darken-1 curvaBoton" data-badge-caption="" id="badgeContenido" style="display: none;"></span>
-            </a>
-          </li>
-          @endif
-          @if($pro->name == 'cliente')
-          <li>
-            <ul class= "collapsible collapsible-accordion">
-              <li>
-                <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
-                  <i class="small material-icons">group</i>
-                  Cliente
-                  <span class="new badge orange darken-1" data-badge-caption="" id="cliente" style="display: none; background-color: #d9534f;"></span>
-                  <i class="material-icons right">expand_more</i>
-                </a>
-                <div class="collapsible-body">
-                  <ul>
-                    <li>
-                      <a href="{{url('admin_clients_payments')}}" class="waves-effect waves-blue">
-                        <i class="small material-icons">payment</i>
-                        Pagos
-                        <span class="new badge orange darken-1" data-badge-caption="" id="badgePagosU" style="display: none; background-color: #d9534f;"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{url('admin_clients')}}" class="waves-effect waves-blue">
-                        <i class="small material-icons">group_add</i>
-                        Solicitudes
-                        <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudUsuario" style="display: none; background-color: #d9534f;"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </li>
-          @endif
-          @if($pro->name == 'proveedores')
-          <li>
-            <ul class= "collapsible collapsible-accordion">
-              <li>
-                <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
-                  <i class="small material-icons">assignment_ind</i>
-                  Proveedor
-                  <span class="new badge orange darken-1" data-badge-caption="" id="proveedor" style="display: none; background-color: #d9534f;"></span>
-                  <i class="material-icons right">expand_more</i>
-                </a>
-                <div class="collapsible-body">
-                  <ul>
-                    <li>
-                      <a href="{{url('admin_sellers_payments')}}" class="waves-effect waves-blue">
-                        <i class="small material-icons">payment</i>
-                        Pagos
-                        <span class="new badge orange darken-1" data-badge-caption="" id="badgePagos" style="display: none; background-color: #d9534f;"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{url('admin_applys')}}" class="waves-effect waves-blue">
-                        <i class="small material-icons">group_add</i>
-                        Solicitudes
-                        <span class="new badge orange darken-1" data-badge-caption="" id="badgeSolicitudProveedor" style="display: none; background-color: #d9534f;"></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{url('admin_sellers')}}" class="waves-effect waves-blue">
-                        <i class="small material-icons">group</i>
-                        Proveedores
-                        <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </li>
-          @endif
-          @if($pro->name == 'reportes')
-          <li>
-            <a href="{{url('AdminReport')}}" class="waves-effect waves-blue">
-              <i class="small material-icons">equalizer</i>
-              Reportes
-              <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
-            </a>
-          </li>
-          @endif
-          @if($pro->name == 'usuariosBackend')
-          @if(Auth::guard('Promoter')->user()->priority == 2)
-            <li>
-              <a href="{{url('BackendUsers')}}" class="waves-effect waves-blue">
-                <i class="small material-icons">account_circle</i>
-                Usuarios BackEnd
-              </a>
-            </li>
-          @endif
-        @endif
-      @endforeach
-    @else
-      <li>
-        <ul class= "collapsible collapsible-accordion" >
-
-            <li>
-                <a href="javascript:;" class="collapsible-header waves-effect waves-green"><i class="small material-icons left" >apps</i>Mi contenido<i class="material-icons right" >expand_more</i></a>
-
-                <div class="collapsible-body">
-                        <blockquote>Aún no posee módulos asignados.</blockquote>
-                </div>
-            </li>
-        </ul>
-      </li>
-    @endif
-  @endif
-    @if(Auth::guard('Promoter')->user()->priority == 1)
     <li><div class="divider"></div></li>
     <li>
       
@@ -238,6 +122,8 @@
       </li>
     </ul>
     </li>
+
+
     <li>
       <ul class= "collapsible collapsible-accordion">
         <li>
@@ -268,6 +154,7 @@
         </li>
       </ul>
     </li>
+
     <li>
       <ul class= "collapsible collapsible-accordion">
         <li>
@@ -312,6 +199,21 @@
         <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
       </a>
     </li>
+    @if(Auth::guard('Promoter')->user()->priority == 1 OR Auth::guard('Promoter')->user()->priority == 2)
+      <li>
+        <a href="{{url('BackendUsers')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">account_circle</i>
+          Usuarios BackEnd
+        </a>
+      </li>
+    @endif
+    @if(Auth::guard('Promoter')->user()->priority == 1)
+      <li>
+        <a href="{{url('Business')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">account_balance</i>
+          Negocios y otros
+        </a>
+      </li>
       <li>
         <a href="{{url('ModulesLicense')}}" class="waves-effect waves-blue">
           <i class="small material-icons">announcement</i>
@@ -350,16 +252,17 @@
                     <span class="new badge orange darken-1" data-badge-caption="" id="badgeOfertantes" style="display: none; background-color: #d9534f;"></span>
                   </a>
                 </li>
+                <li>
+                  <a href="{{url('ModulesBidder')}}">
+                    <i class="small material-icons">assignment</i>
+                    Categorías
+                    <span class="new badge orange darken-1" data-badge-caption="" id="" style="display: none; background-color: #d9534f;"></span>
+                  </a>
+                </li>
               </ul>
             </div>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="{{url('BackendUsers')}}" class="waves-effect waves-blue">
-          <i class="small material-icons">account_circle</i>
-          Usuarios BackEnd
-        </a>
       </li>
       <li>
         <ul class= "collapsible collapsible-accordion">
@@ -396,7 +299,7 @@
               </ul>
             </div>
           </li>
-        </ul>
+        </ul>   
       </li>
       <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">
