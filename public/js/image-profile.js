@@ -14,16 +14,17 @@
 	});
 
 	$avatarInput.on('change', function () {
+    $Editar.click();
     swal({
       title: "Cargando la imagen",
       text: "Espere mientras se carga la imagen.",
-      timer: 3000,
+      timer: 6000,
       icon: gif,
       buttons: false,
       closeOnEsc: false,
       closeOnClickOutside: false
     }).then((recarga) => {
-      $Editar.click();
+      
     });
     
     
