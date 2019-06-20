@@ -93,7 +93,7 @@ class BidderController extends Controller
     }
 
     public function addModulePermi(Request $request) {
-        $bidder = BidderAccess::addModul($request);
+        $bidder = BidderAccess::addModule($request);
         return response()->json($bidder);
     }
 

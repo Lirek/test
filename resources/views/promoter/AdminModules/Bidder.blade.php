@@ -289,7 +289,7 @@
                 $('#ModalModules').modal('close');
                 var modules = $("#sel1").val();
                 console.log(modules);
-                var url = "{{url('addModuleBidder/')}}";
+                var url = "{{url('addModulePermi/')}}";
                 console.log(url);
                 e.preventDefault();
                 var gif = "{{ asset('/sistem_images/loading.gif') }}";
