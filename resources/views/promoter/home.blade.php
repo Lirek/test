@@ -5,10 +5,10 @@
 
     <span class="card-title grey-text"><h3>Contenidos por aprobar</h3></span>
     <div class="row">
-      <div class="col s12 m6 l3">
+      <div class="col s12 m4 l3">
         <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
-            <span class="card-title">Contenidos por aprobar</span>
+            <span class="card-title">Aprobaciones</span>
             <i class="large material-icons">view_carousel</i>
             <h4>
               <p>{{$content_total}}</p>
@@ -20,10 +20,10 @@
         </div>
       </div>
 
-      <div class="col s12 m6 l3">
+      <div class="col s12 m4 l3">
         <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
-            <span class="card-title">Proveedores por validar</span>
+            <span class="card-title">Pre-aprobados por validar</span>
             <i class="large material-icons">group</i>
             <h4>
               <p>{{$sellers}}</p>
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="col s12 m6 l3">
+      <div class="col s12 m4 l3">
         <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Solicitudes de proveedores</span>

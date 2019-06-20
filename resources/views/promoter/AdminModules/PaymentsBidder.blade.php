@@ -1,12 +1,12 @@
 @extends('promoter.layouts.app')
 @section('main')
 	<div class="row">
-		<span class="card-title grey-text"><h3>Pagos de Aliados</h3></span>
+		<span class="card-title grey-text"><h3>Pagos a Aliados</h3></span>
 		<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-			<li class="tab" id="porCobrar"><a class="active" href="#test1">Pagos por cobrar</a></li>
-			<li class="tab" id="Diferido"><a href="#test2">Pagos diferidos</a></li>
-			<li class="tab" id="pagado"><a href="#test3">Pagos pagados</a></li>
-			<li class="tab" id="Rechazado"><a href="#test4">Pagos rechazados</a></li>
+			<li class="tab" id="porCobrar"><a class="active" href="#test1">Recibidos</a></li>
+			<li class="tab" id="Diferido"><a href="#test2">En proceso</a></li>
+			<li class="tab" id="pagado"><a href="#test3">Pagados</a></li>
+			<li class="tab" id="Rechazado"><a href="#test4">Rechazados</a></li>
 		</ul>
 		<table class="responsive-table">
 			<thead>

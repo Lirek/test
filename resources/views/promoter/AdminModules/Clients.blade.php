@@ -5,7 +5,7 @@
   </style>
 @endsection
 @section('main')
-  <span class="card-title grey-text"><h3>Usuarios</h3></span>
+  <span class="card-title grey-text"><h3>Verificación C.I</h3></span>
   <div id="test1" class="col s12">
     <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
       <li class="tab" id="pendientes"><a class="active" href="#clientesPendientes">Usuarios pendientes</a></li>
@@ -19,9 +19,9 @@
             <th><i class="material-icons"></i>Nombre</th>
             <th><i class="material-icons"></i>RUC</th>
             <th><i class="material-icons"></i>Imagen del Documento</th>
-            <th><i class="material-icons"></i>Género</th>
+            <th><i class="material-icons"></i>Sexo</th>
             <th><i class="material-icons"></i>Fecha de registro</th>
-            <th><i class="material-icons"></i>Redes</th>
+            <th><i class="material-icons"></i>Fecha de nacimiento</th>
             <th><i class="material-icons"></i>Opciones</th>
           </tr>
         </thead>
@@ -147,7 +147,7 @@
             var doc = "No tiene documento registrado";
           }
           var fecha = moment(info.created_at).format('DD/MM/YYYY');
-          var redes = "<a class='btn green curvaBoton modal-trigger' value="+info.id+" href='#webModal' id='webs'>Ver redes</a>";
+          var naci = moment(info.fech_nac).format('DD/MM/YYYY');
           var estatus = "<a class='btn light-blue lighten-1 curvaBoton modal-trigger' value="+info.id+" href='#myModal' id='Status'>Cambiar estatus</a>";
           var masInfo = "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#ModalUser' id='user'>Más datos</a>"
           var opciones = estatus+"<br>"+masInfo;
@@ -161,7 +161,7 @@
           doc+"</td><td>"+
           genero+"</td><td>"+
           fecha+"</td><td>"+
-          redes+"</td><td>"+
+          naci+"</td><td>"+
           opciones+"</td></tr>";
           $("#clientes").append(filas);
         });

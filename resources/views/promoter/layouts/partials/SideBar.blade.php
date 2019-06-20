@@ -56,14 +56,13 @@
     </ul> -->
     
     <ul class= "collapsible collapsible-accordion">
-      <li>
-        <a href="javascript:;" class="collapsible-header waves-effect waves-blue">
-          <i class="small material-icons">view_carousel</i>
-          Contenidos
-          <span class="new badge orange darken-1" data-badge-caption="" id="badgeContenido" style="display: none; background-color: #d9534f;"></span>
-          <i class="material-icons right">expand_more</i>
-        </a>
-        <div class="collapsible-body">
+    <li>
+      <a href="{{url('AdminContent')}}" class="waves-effect waves-blue">
+        <i class="small material-icons">view_carousel</i>
+        Contenido
+        <span class="new badge orange darken-1 curvaBoton" data-badge-caption="" id="badgeContenido" style="display: none;"></span>
+      </a>
+        <!-- <div class="collapsible-body">
           <ul>
             <li>
               <a  href="{{url('/admin_albums')}}" class="waves-effect waves-blue">
@@ -118,7 +117,7 @@
           
           
           </ul>
-        </div>
+        </div> -->
       </li>
     </ul>
     </li>

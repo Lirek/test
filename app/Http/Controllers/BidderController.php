@@ -10,6 +10,7 @@ use Auth;
 use App\Bidder;
 use App\Rejection;
 use App\BidderRoles;
+use App\BidderAccess;
 use App\PaymentsBidder;
 use App\Conversion;
 
@@ -91,8 +92,13 @@ class BidderController extends Controller
         );
     }
 
+    public function addModulePermi(Request $request) {
+        $bidder = BidderAccess::addModul($request);
+        return response()->json($bidder);
+    }
+
     public function addModuleBidder(Request $request) {
-        $bidder = Bidder::addModule($request);
+        $bidder = Bidder::addModul($request);
         return response()->json($bidder);
     }
 

@@ -11,4 +11,12 @@ class BidderAccess extends Model
     	'bidding_id',
     	'modules_id'
 	];
+
+    public static function addModule($request) {
+        $bidder = new BidderAccess;
+        $bidder->bidding_id = $request->idBidder;
+        $bidder->modules_id = $request->access;
+        $bidder->save();
+        return $bidder;
+    }
 }

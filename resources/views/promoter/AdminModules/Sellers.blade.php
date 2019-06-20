@@ -5,7 +5,7 @@
   </style>
 @endsection
 @section('main')
-  <span class="card-title grey-text"><h3>Proveedores Registrados</h3></span>
+  <span class="card-title grey-text"><h3>Nuevos Contenidos</h3></span>
 
   <table class="responsive-table">
     <thead>
@@ -16,6 +16,7 @@
         <th><i class="material-icons"></i>Módulos</th>
         <th><i class="material-icons"></i>Estatus</th>
         <th><i class="material-icons"></i>Fecha de registro</th>
+        <th><i class="material-icons"></i>Número de telefono</th>
         <th><i class="material-icons"></i>Opciones</th>
       </tr>
     </thead>
@@ -65,7 +66,7 @@ $(document).ready(function (e){
     dataType: "json",
     success: function (data) {
       swal.close();
-      console.log(data);
+      
       $.each(data,function(i,info) {
         // para colocar el logo 
         if (info.logo!=null) {
@@ -112,6 +113,7 @@ $(document).ready(function (e){
         modulos+"</td><td>"+
         info.estatus+"</td><td>"+
         fecha+"</td><td>"+
+        info.tlf+"</td><td>"+
         opciones+"</td></tr>";
         $("#proveedores").append(filas);
         // llenar la tabla
@@ -123,7 +125,6 @@ $(document).ready(function (e){
       .then((recarga) => {
         location.reload();
       });
-      console.log(data);
     }
   });
 
@@ -157,9 +158,7 @@ $(document).ready(function (e){
       if (modules=="Libros") {
         submodulo = $('#sub_desired2').val();
       }
-      console.log(modules,submodulo);
       var url = "{{url('admin_add_module/')}}/"+x;
-      console.log(x,url,modules,submodulo);
       //var name = $( "#sel1 option:selected" ).text();
       //var row = $("#modules_td"+x);
       //var add = '<span class="mdl-chip mdl-chip--deletable" id="m_'+modules+'_'+x+'">  <span class="mdl-chip__text" //id="modules">'+name+'</span> <button type="button" class="mdl-chip__action" value1="'+modules+'" value2="'+x+'" //name="module" id="x"> <i class="material-icons">cancel</i> </button></span>';
@@ -173,7 +172,6 @@ $(document).ready(function (e){
           submodulo: submodulo
         },
         success: function (result) {
-          console.log(result);
           swal("Acceso concedido con éxito","","success")
           .then((recarga) => {
             location.reload();
@@ -184,7 +182,6 @@ $(document).ready(function (e){
         },
         error: function (result) {
           //alert('Error en Su solicitud Por Favor Recargue la Pagina');
-          console.log(result);
           swal("Error en su solicitud, por favor recargue la pagina","","error")
           .then((recarga) => {
             location.reload();
@@ -204,7 +201,6 @@ $(document).ready(function (e){
     var seller = $(this).attr('value2');
     var parametros = seller+"/"+modules;
     var url = "{{url('delete_mod/')}}"+"/"+parametros;
-    console.log(modules,seller,url);
     $.ajax({
       url: url,
       type:'get',
@@ -232,7 +228,6 @@ $(document).ready(function (e){
   // Modificar el estatus de un proveedor
   $(document).on('click','#ModifySellers', function() {
     var x = $(this).attr("value");
-    console.log(x);
     $("#FormStatusSeller").on('submit', function(e){
       var gif = "{{ asset('/sistem_images/loading.gif') }}";
       swal({
@@ -247,7 +242,6 @@ $(document).ready(function (e){
       var message = $('#razon').val();
       var url = "{{url('AproveOrDenialSeller/')}}/"+x;
       e.preventDefault(); 
-      console.log(s,message,url);
       $.ajax({
         url: url,
         type: 'POST',
@@ -257,7 +251,6 @@ $(document).ready(function (e){
           message: message
         }, 
         success: function (result) {
-          console.log(result);
           $('#myModal').toggle();
           $('.modal-backdrop').remove();
           swal("Se ha "+s+" con éxito","","success")
@@ -266,7 +259,6 @@ $(document).ready(function (e){
           });
         },
         error: function (result) {
-          console.log(result);
           swal('Existe un error en su solicitud','','error')
           .then((recarga) => {
             location.reload();
@@ -280,14 +272,12 @@ $(document).ready(function (e){
   // mostrar informacion del proveedor
   $(document).on('click', '#seller', function() {
     var idSeller = $(this).attr('value');
-    console.log(idSeller);
     var url = "{{ url('/infoSeller/') }}/"+idSeller;
     $.ajax({
       url: url,
       type: 'get',
       dataType: 'json', 
       success: function (result) {
-        console.log(result);
         if (result.logo!=null) {
           var logoProveedor = "{{ asset('/') }}/"+result.logo;
           $("#logoProveedor").attr('src',logoProveedor);
@@ -327,7 +317,6 @@ $(document).ready(function (e){
         }
       },
       error: function (result) {
-        console.log(result);
         swal('Existe un error en su solicitud','','error')
         .then((recarga) => {
           location.reload();

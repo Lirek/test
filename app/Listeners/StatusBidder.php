@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\StatusBidder;
+use App\Events\StatusBidderEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
@@ -25,7 +25,7 @@ class StatusBidder
      * @param  StatusBidder  $event
      * @return void
      */
-    public function handle(StatusBidder $event) {
+    public function handle(StatusBidderEvent $event) {
         Mail::to($event->bidder->email)->send(new BidderChangeStatus($event));
     }
 }
