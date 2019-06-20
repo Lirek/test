@@ -199,7 +199,7 @@ class AdminContentController extends Controller
     $singles = Songs::where('status','En Revision')->whereNull('album')->count();
     $tags = Tags::where('status','En Proceso')->count();
     $tv = Tv::where('status','En Proceso')->count();
-    $contenidoPendiente = $books+$albums+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tags+$tv;
+    $contenidoPendiente = $books+$albums+$bookAuthor+$megazines+$movies+$musicAuthors+$publicationChain+$sagaBooks+$radios+$series+$singles+$tv;
 
     $proveedores = Seller::where('estatus','<>','Aprobado')->count();
 
