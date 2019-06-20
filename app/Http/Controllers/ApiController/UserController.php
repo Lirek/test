@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\Events\InviteEvent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Routing\Route;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
@@ -145,10 +148,12 @@ class UserController extends Controller
                 }
             }
         }
-        $dataTotal[] = [
-            'total_referidos' => $total
+        
+        $data = [
+            'referals' => $data,
+            'total_referals' => $total,
+            'total_referals_first_generation' => count($referals1)
         ];
-        $data = array_merge($data,$dataTotal);
         /*
         $WholeReferals->map(function ($item) use($referals1,$referals2,$referals3){
 
@@ -389,13 +394,34 @@ class UserController extends Controller
     public function invite() {
         $codido = auth()->user()->codigo_ref;
         $enlace = url('/').'/register/'.$codido;
-        $codeqr = QrCode::format('svg')->generate($enlace);
         $data = [
             'codigo' => $codido,
-            'enlace' => $enlace,
-            'codeQr' => $codeqr
+            'enlace' => $enlace
         ];
         return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+    }
+
+    public function inviteByEmail(Request $request) {
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            'correo' => 'required|email'
+        ];
+        $validator = Validator::make($datos, $rules);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
+        }
+        try {
+            $user = User::where('email',$request->correo)->get();
+            if ($user->count()!=0) {
+                return response()->json(['meta'=>['code'=>202],'data'=>false],200);
+            } else {
+                $url = url('/').'/register/'.auth()->user()->codigo_ref;
+                event(new InviteEvent(auth()->user()->name,$request->correo,$url));
+                return response()->json(['meta'=>['code'=>200],'data'=>true],200);
+            }
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
     }
 
     public function sinAcento($cadena) {
