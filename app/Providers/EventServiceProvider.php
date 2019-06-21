@@ -109,6 +109,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\DeleteAccount',
         ],
 
+            'App\Events\StatusBidderEvent' => [
+            'App\Listeners\StatusBidder',
+        ],
+
 
     ];
 

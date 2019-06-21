@@ -90,6 +90,11 @@
                         }
                     	var status = 
                 		"<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value='"+info.id+"' href='#cambiarEstatus' id='status'>Cambiar estatus</a><br>";
+
+                        if (estatus=="Pre-Aprobado") {
+                           var status = 
+                            "<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value2='"+info.id+"' href='#cambiarEstatus2' id='status2'>Cambiar estatus</a><br>";
+                        }
                 		if (estatus=="Denegado") {
                     		status = status+
                             "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectProduct'>Ver negaciones</a><br>";
@@ -192,6 +197,49 @@
 			});
 		});
 
+        $(document).on('click', '#status2', function() {
+            var ofertante = $(this).attr("value2");
+            $("#formStatus2").on('submit', function(e) {
+                var s = $("input[type='radio'][name=status2]:checked").val();
+                var message = $('#razon').val();
+                var url = "{{url('statusBidder/')}}/"+ofertante;
+                console.log(url,s);
+                e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: {
+                        _token: $('input[name=_token]').val(),
+                        status: s,
+                        reason: message
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        swal('Ofertante '+s+' con exito','','success')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    },
+                    error: function (result) {
+                        console.log(result);
+                        swal('Existe un error en su solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+
 		$(document).on('click', '#rejectProduct', function(e) {
             var ofertante = $(this).attr("value");
             console.log(ofertante);
@@ -240,7 +288,8 @@
             $("#AddModules").on('submit', function(e){
                 $('#ModalModules').modal('close');
                 var modules = $("#sel1").val();
-                var url = "{{url('addModuleBidder/')}}";
+                console.log(modules);
+                var url = "{{url('addModulePermi/')}}";
                 console.log(url);
                 e.preventDefault();
                 var gif = "{{ asset('/sistem_images/loading.gif') }}";

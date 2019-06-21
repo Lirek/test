@@ -3,7 +3,7 @@
   @include('flash::message')
 
 <style media="screen">
-  
+
 .my-flex{
 
 min-height: 360px;
@@ -27,7 +27,7 @@ min-height: 360px;
         </div>
       </div>
 
-      <div class="col s12 m6 l3">
+      <div class="col s12 m6 l3 ">
         <div class="card pink darken-3 darken-3 hoverable my-flex">
           <div class="card-content white-text">
             <span class="card-title">Pre-aprobados por validar</span>

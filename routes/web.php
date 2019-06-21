@@ -84,6 +84,11 @@ Route::post('RegisterEmailSeller','WelcomeController@emailSeller');
 //Route::post('RegisterApplysEmailSeller','WelcomeController@applyEmailSeller');
 
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
+    Route::get('Bidder','BidderController@Bidder');
+    Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
+    Route::post('statusBidder/{id}','BidderController@statusBidder');
+    Route::post('addModuleBidder','BidderController@addModuleBidder');
+    Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
     Route::post('BidderSubmit','BidderController@store');
     Route::get('RegisterEmailBidder/{email}','BidderController@valEmailBidder');
 //----------------------- Rutas para el usuario OFERTANTE -----------------------
@@ -764,8 +769,13 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('ModulesBidder','BidderController@ModulesBidder');
             Route::get('bidderByStatus/{status}','BidderController@bidderByStatus');
             Route::post('statusBidder/{id}','BidderController@statusBidder');
+            Route::post('addModulePermi','BidderController@addModulePermi');
             Route::post('addModuleBidder','BidderController@addModuleBidder');
             Route::get('deleteModuleBidder/{idBidder}/{idModule}','BidderController@deleteModuleBidder');
+            Route::get('infoModule/{idModule}','ModuleBidderController@infoModule');
+            Route::post('updateModule','ModuleBidderController@updateModule');
+            Route::get('deleteModule/{idModule}','ModuleBidderController@deleteModule');
+
         //------------------------------- Rutas para los ofertantes en backend -------------------------------
         
         //------------------------------- Rutas para los modulos y permisos-------------------------------

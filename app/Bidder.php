@@ -109,7 +109,7 @@ class Bidder extends Authenticatable
         return $bidder;
     }
 
-    public static function addModule($request) {
+    public static function addModul($request) {
         $bidder = new BidderRoles;
         $bidder->name = $request->categoria;
         $bidder->save();
