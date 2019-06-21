@@ -290,7 +290,7 @@
             <img src="https://leipel.com/plugins/materialize_index/img/piñas.jpg" width="100%;" height="100%"> <!-- random image -->
             <div class="caption left-align break-word">
                 <h3 ><b> Leipel es una red <br>social de entretenimiento</b></h3>
-                <a class=" curvaBoton green waves-effect waves-light btn-small modal-trigger" href="#modal2"><i class="material-icons left">send</i>Registrate Gratis</a>
+              
             </div>
         </li>
         <li>
@@ -517,6 +517,134 @@
 {{--<div class="parallax"><img src="{{asset('plugins/materialize_index/img/parallax.jpg') }}"></div>--}}
 {{--</div>--}}
 <!--Fin parallax-->
+
+<!-- Fin Contenido  -->
+<br>
+<!-- Parallax  -->
+<div class="parallax-container" style="width: 100%; ">
+    <div class="parallax"><img src="{{asset('https://leipel.com/plugins/materialize_index/img/parallax.jpg') }}"></div>
+</div>
+<!--Fin parallax-->
+
+<!-- tabs  -->
+<div class="row col" style="margin-bottom:-5px;">
+
+    <div id="test1" class="col l6 m12 s12 center">
+        <img src="{{asset('https://leipel.com\sistem_images\leipel_laptop.jpg') }}" width="100%" title="Lapel" style="max-height: 370px; margin-left: -25px; height: 370px;" >
+    </div>
+
+    <div id="test2" class="col l6 m12 s12 center">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test01"><b>¿Qué es Leipel?</b></a></li>
+                <li class="tab col s3 "><a href="#test02"><b>Viajes gratis</b></a></li>
+                <li class="tab col s3 "><a href="#test03"><b>Marcas relacionadas</b></a>
+                <li class="tab col s3 "><a href="#test04"><b>Proveedores</b></a></li>
+            </ul>
+
+            <div id="test01" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Somos una red social de entretenimiento que abarca cine, música, lectura, radio y Tv.</p>
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br><br>
+                    <div class="embed-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <div id="test02" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Los viajes, y tarjetas de consumo en supermercados, son uno de los tantos beneficios que podrás canjear gratuitamente con tus puntos Leipel.</p>
+                        <p></p>
+                    </h5>
+                </div>
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br>
+                    <div class="embed-container" style="margin-top: 10px;">
+                    <iframe src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen"></iframe>
+                </div>
+                    <br>
+                </div>
+            </div>
+
+            <div id="test03" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Ayudamos a las fundaciones a recaudar fondos a travéz de la venta de sus contenidos. <br>Ayúdanos a ayudar.</p>
+                    </h5>
+                </div>
+                <div class="col s12 m6 l6 xl6 center">
+                    <br>
+                        <div class="img-container" style="">
+                       <img src="{{asset('https://leipel.com\sistem_images\fundaciones.jpg') }}" width="320" height="250" style="margin-left: -15px;">
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div id="test04" class="col s12 center">
+                <div class="col s12 m6 l6 xl6 center" ><br><br>
+                    <h5>
+                        <p style="text-align: justify;">Buscamos proveedores de cine, música, lectura, radio y Tv. Nosotros los ayudaremos a llegar a más personas. </p>
+                      
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6 xl6 center">
+                    <br><br><br><br>
+                    <div class="embed-container">
+                       <iframe width="729" height="410" src="https://www.youtube.com/embed/W0_ypgr4zD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+    </div>
+
+    <div id="test3" class="col s12 center" style="display:none;">
+        <div class="col s12 m6 l6 xl6 center"><br><br><br><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/viajes.svg" width="20%" height="20%" title="youtube"><br>
+            <h5> Viaja gratis con leipel.</h5>
+
+        </div>
+        <div class="col s12 m6 l6 xl6 center" >
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div><br>
+        </div>
+    </div>
+    <div id="test4" class="col s12 center" style="display:none;">
+        <div class="col s12 m6 l6 xl6 center">
+            <br><br>
+            <div class="embed-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iNijEmO4uG4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <br>
+        </div>
+        <div class="col s12 m6 l6 xl6 center" ><br><br><br><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/nota.svg" width="20%" height="20%" title="youtube"><br>
+            <h5> Registro gratuito.</h5>
+        </div>
+    </div>
+    <div id="test5" class="col s12 center" style="display:none;">
+        <div class="col s12 m6 l12 xl12 center"><br><br>
+            <img src="https://leipel.com/plugins/materialize_index/img/youtube.png" width="5%" height="5%" title="youtube"><br>
+            <h5> Marcas relacionadas.</h5>
+
+        </div>
+    </div>
+</div>
+
+<!-- Fin tabs  -->
 
 {{--Pie de pagina--}}
 <footer class="page-footer blue">

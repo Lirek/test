@@ -15,7 +15,7 @@ min-height: 360px;
       <div class="col s12 m6 l3 ">
         <div class="card pink darken-3 darken-3 hoverable my-flex" >
           <div class="card-content white-text">
-            <span class="card-title">Contenidos por aprobar</span>
+            <span class="card-title">Aprobaciones</span>
             <i class="large material-icons">view_carousel</i>
             <h4>
               <p>{{$content_total}}</p>
@@ -30,7 +30,7 @@ min-height: 360px;
       <div class="col s12 m6 l3">
         <div class="card pink darken-3 darken-3 hoverable my-flex">
           <div class="card-content white-text">
-            <span class="card-title">Proveedores por validar</span>
+            <span class="card-title">Pre-aprobados por validar</span>
             <i class="large material-icons">group</i>
             <h4>
               <p>{{$sellers}}</p>
