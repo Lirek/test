@@ -16,6 +16,7 @@ class BiddingAccess extends Migration
         Schema::create('bidding_access', function (Blueprint $table){
             $table->integer('bidding_id')->unsigned()->default(0);
             $table->integer('modules_id')->unsigned()->default(0);
+            $table->timestamps();
             $table->foreign('bidding_id')->references('id')->on('bidder');
             $table->foreign('modules_id')->references('id')->on('bidding_modules');
             $table->primary(['bidding_id', 'modules_id']);

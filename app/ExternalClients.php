@@ -15,6 +15,6 @@ class ExternalClients extends Model
 							'callback_url',
 							'client_token',
 							'client_secret_id',
-              'bidder_id'
+              				'bidder_id'
     					 ];
 }

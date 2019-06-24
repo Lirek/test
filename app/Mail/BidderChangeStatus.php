@@ -32,7 +32,7 @@ class BidderChangeStatus extends Mailable
     public function build() {
         if ($this->bidder->bidder->status=="Pre-Aprobado") {
             return $this->view('admin.mails.BidderAproved')->subject('Usuario pre-aprobado')->with('name',$this->bidder->bidder->name)->with('url',$this->url);
-        } else {
+        } elseif ($this->bidder->bidder->status=="Denegado"){
             return $this->view('admin.mails.BidderDenied')->subject('Usuario denegado')->with('name',$this->bidder->bidder->name)->with('reason',$this->bidder->reason);
         }
     }

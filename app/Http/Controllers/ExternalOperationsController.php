@@ -192,6 +192,7 @@ class ExternalOperationsController extends Controller
     {
       $Bidder = Bidder::find(Auth::guard('bidder')->user()->id);
       $ExternalClients = $Bidder->PayementsCredentials()->first();
+      dd($ExternalClients);
       return view('bidder.PaymentsPanel')->with('client_secret_id', $ExternalClients->client_secret_id)
                                          ->with('client_token', $ExternalClients->client_token)
                                          ->with('callback_url', $ExternalClients->callback_url)
