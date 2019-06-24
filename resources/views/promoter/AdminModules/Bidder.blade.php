@@ -95,8 +95,12 @@
                            var status = 
                             "<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' value2='"+info.id+"' href='#cambiarEstatus2' id='status2'>Cambiar estatus</a><br>";
                         }
+                        if (estatus=="Aprobado") {
+                           var status = 
+                            "<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' valueAprobar='"+info.id+"' href='#cambiarEstatusAprobar' id='statusAprobar'>Cambiar estatus</a><br>";
+                        }
                 		if (estatus=="Denegado") {
-                    		status = status+
+                    		status = "<a class='waves-effect waves-light btn modal-trigger curvaBoton blue' valueDenegar='"+info.id+"' href='#cambiarEstatusDenegar' id='statusDenegar'>Cambiar estatus</a><br>"+
                             "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectProduct'>Ver negaciones</a><br>";
                     	}
                         agregar = 
@@ -201,6 +205,92 @@
             var ofertante = $(this).attr("value2");
             $("#formStatus2").on('submit', function(e) {
                 var s = $("input[type='radio'][name=status2]:checked").val();
+                var message = $('#razon').val();
+                var url = "{{url('statusBidder/')}}/"+ofertante;
+                console.log(url,s);
+                e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: {
+                        _token: $('input[name=_token]').val(),
+                        status: s,
+                        reason: message
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        swal('Ofertante '+s+' con exito','','success')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    },
+                    error: function (result) {
+                        console.log(result);
+                        swal('Existe un error en su solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+
+        $(document).on('click', '#statusAprobar', function() {
+            var ofertante = $(this).attr("valueAprobar");
+            $("#formStatusAprobar").on('submit', function(e) {
+                var s = $("input[type='radio'][name=statusAprobar]:checked").val();
+                var message = $('#razon').val();
+                var url = "{{url('statusBidder/')}}/"+ofertante;
+                console.log(url,s);
+                e.preventDefault();
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "Procesando la información",
+                    text: "Espere mientras se procesa la información.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: {
+                        _token: $('input[name=_token]').val(),
+                        status: s,
+                        reason: message
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        swal('Ofertante '+s+' con exito','','success')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    },
+                    error: function (result) {
+                        console.log(result);
+                        swal('Existe un error en su solicitud','','error')
+                        .then((recarga) => {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+
+        $(document).on('click', '#statusDenegar', function() {
+            var ofertante = $(this).attr("valueDenegar");
+            $("#formStatusDenegar").on('submit', function(e) {
+                var s = $("input[type='radio'][name=statusDenegar]:checked").val();
                 var message = $('#razon').val();
                 var url = "{{url('statusBidder/')}}/"+ofertante;
                 console.log(url,s);
