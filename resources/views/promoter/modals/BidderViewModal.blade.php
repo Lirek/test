@@ -40,9 +40,15 @@
 		</div>
 	</div>
 
+<<<<<<< HEAD
+		<div class="modal" id="cambiarEstatus2">
+		<div class="modal-content">
+			<div class="col s12 light-blue lighten-1 text-center">
+=======
 	<div class="modal" id="cambiarEstatus2">
 		<div class="modal-content">
 			<div class="col s12 pink darken-3 text-center">
+>>>>>>> 1e3ac7ba3965e0703e85c39074f33e58983e0d47
 				<h4 class="white-text" style="padding: 25px 0px">Modifique el estatus del ofertante</h4>
 			</div>
 			<br>
@@ -81,7 +87,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<div class="modal" id="cambiarEstatusAprobar">
 		<div class="modal-content">
 			<div class="col s12 pink darken-3 text-center">

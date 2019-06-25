@@ -1,6 +1,9 @@
 @extends('promoter.layouts.app')
 @section('main')
 <span class="card-title grey-text"><h3>Módulos y permisos</h3></span>
+    <a class="btn modal-trigger green" data-tooltip="Agregar permiso" href="#NewPermiso">
+        <i class="material-icons">enhanced_encryption</i>Activar módulo para usuario
+    </a>
     <a class="btn modal-trigger green" data-tooltip="Agregar modulo" href="#NewModulo">
         <i class="material-icons">find_in_page</i>Agregar Módulo
     </a>
@@ -119,30 +122,23 @@
 				success: function (data) {
 					swal.close();
 					$.each(data,function(i,info) {
-						
-
 						if(info.license.length!=0) {
 						var modulos = "";
 						$.each(info.license,function(i,infoModul){
 								modulos = modulos+
 								"<span class='new badge grey darken-1' data-badge-caption='"+infoModul.name+"' style='padding:0px 3px; font-size: 16px;'>"+
-					            "<i class='material-icons right' value1='"+infoModul.id+"' value2='"+info.id+"' name='module' id='x' style='cursor:pointer'>cancel"+
+					            "<i class='material-icons right' value1='"+infoModul.id+"' name='module' id='x' style='cursor:pointer'>cancel"+
 					            "</i>"+
 					            "</span> ";
 							}); 
 							} else {
-					          	modulos = "El usuario no tiene módulos habilitado ";
+					          	modulos = "El usuario no tiene módulos inhabilitado ";
 					        }
-
-					        var Ajustes = "<a class='btn modal-trigger green' data-tooltip='Agregar permiso' correo='"+info.email+"' idUsuario='"+info.id+"' id=informacion href='#NewPermiso'>"+
-        						"<i class='material-icons'>enhanced_encryption</i>Activar módulo para usuario"+
-    						"</a>";
 
 						var filas = "<tr><td>"+
 						info.name_c+"</td><td>"+
 						info.email+"</td><td>"+
-						modulos+"</td><td>"+
-						Ajustes+"</td></tr>";
+						modulos+"</td></tr>";
 						$("#Usuario").append(filas);
 					})
 				},
@@ -168,8 +164,7 @@
 		  $(document).on('click', '#x', function() {
 		    
 		    var modules = $(this).attr('value1');
-		    var usuario = $(this).attr('value2');
-		    var url = "{{url('DeleteModule/')}}"+"/"+usuario+"/"+modules;
+		    var url = "{{url('DeleteModule/')}}"+"/"+modules;
 		    $.ajax({
 		      url: url,
 		      type:'get',

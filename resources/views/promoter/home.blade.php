@@ -2,11 +2,18 @@
   @section('main')
   @include('flash::message')
 
+<style media="screen">
+
+.my-flex{
+
+min-height: 360px;
+}
+</style>
 
     <span class="card-title grey-text"><h3>Contenidos por aprobar</h3></span>
     <div class="row">
-      <div class="col s12 m4 l3">
-        <div class="card pink darken-3 darken-3 hoverable">
+      <div class="col s12 m6 l3 ">
+        <div class="card pink darken-3 darken-3 hoverable my-flex" >
           <div class="card-content white-text">
             <span class="card-title">Aprobaciones</span>
             <i class="large material-icons">view_carousel</i>
@@ -20,8 +27,8 @@
         </div>
       </div>
 
-      <div class="col s12 m4 l3">
-        <div class="card pink darken-3 darken-3 hoverable">
+      <div class="col s12 m6 l3 ">
+        <div class="card pink darken-3 darken-3 hoverable my-flex">
           <div class="card-content white-text">
             <span class="card-title">Pre-aprobados por validar</span>
             <i class="large material-icons">group</i>
@@ -35,7 +42,7 @@
         </div>
       </div>
 
-      <div class="col s12 m4 l3">
+      <div class="col s12 m6 l3">
         <div class="card pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Solicitudes de proveedores</span>
