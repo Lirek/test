@@ -125,6 +125,7 @@
                 dataType: "json",
                 success: function (data) {
                     swal.close();
+                    console.log(data);
                     $.each(data,function(i,info) {
 
                     		var imagen_prod = 
@@ -155,7 +156,9 @@
                             	"<i class='material-icons'>delete</i>"+
                         	"</a><br>";
                         	status = status+edit+eliminar;
-                    	}
+                    	} else {
+                            var bidder_id = info.bidder.name;
+                        }
                     	if (estatus=="Denegado") {
                     		status = status+
                             "<a class='btn light-blue lighten-1 modal-trigger curvaBoton' value="+info.id+" href='#reject' id='rejectProduct'>Ver negaciones</a><br>";

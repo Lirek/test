@@ -17,20 +17,13 @@
 	<tr>
 		<td>
 			<p style="font-size: 14px;" align="justify">
-				Hola {{$name}} , le damos la más cordial bienvenida a LEIPEL, para avanzar al siguiente paso de su registro seleccione el botón "CONTINUAR REGISTRO" o haga <a href="{{$url}}">(Click aquí)</a>.
+				Hola {{$name}} , le damos la más cordial bienvenida como USUARIO ALIADO a LEIPEL, para avanzar al siguiente paso de su registro seleccione el botón "CONTINUAR REGISTRO" o haga <a href="{{$url}}">(Click aquí)</a>.
 			</p>
 		</td>
 	</tr>
 	<tr>
 		<td align="center">
 			<a href="{{$url}}"><button>CONTINUAR REGISTRO</button></a>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<p style="font-size: 14px;" align="justify">
-				Muchas gracias por su desear ingresar al Equipo Leipel, estamos aquí para apoyarlos.
-			</p>
 		</td>
 	</tr>
 	<tr align="center">
