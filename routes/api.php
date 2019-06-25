@@ -77,7 +77,7 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthors');
         Route::get('Books','ApiController\ContentController@AllAprovedBooks');
         Route::get('Megazines','ApiController\ContentController@AllAprovedMegazines');
-        Route::get('Radios','ApiController\ContentController@AllAprovedRadios');
+        Route::get('radio','ApiController\ContentController@AllAprovedRadios');
         Route::get('Tvs','ApiController\ContentController@AllAprovedTvs');
 
         //---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('Album/{id}','ApiController\ContentController@Album');
         Route::get('Book/{id}','ApiController\ContentController@Book');
         Route::get('MusicAuthor/{id}','ApiController\ContentController@MusicAuthor');
-        Route::get('Radio/{id}','ApiController\ContentController@Radio');
+        Route::get('radio/{id}','ApiController\ContentController@Radio');
         Route::get('Tv/{id}','ApiController\ContentController@Tv');
 
         //-------------------------------------------------------------------------------
