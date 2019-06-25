@@ -215,6 +215,7 @@ class ContentController extends Controller
 
     public function AllAprovedRadios()
     {
+        /*
       $Radio = Radio::where('status','=','Aprobado')->get();
 
       
@@ -228,7 +229,19 @@ class ContentController extends Controller
                            ->transformWith(new RadioTransformer)                
                            ->toArray();          
 
-        return Response::json($Json);                 
+        return Response::json($Json);
+        */
+        $radios = Radio::where('status','Aprobado')->get();
+        $radio = [];
+        foreach ($radios as $r) {
+            $radio[] = [
+                'id' => $r->id,
+                'title' => $r->name_r,
+                'cover' => $r->logo,
+                'type' => 'Radio'
+            ];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$radio],200);
     }
 
     public function AllAprovedTvs()
@@ -397,6 +410,7 @@ class ContentController extends Controller
 
     public function Radio($id)
     {
+        /*
         $Radio= Radio::findOrFail($id);
 
                     if ($Radio == NULL) { 
@@ -409,6 +423,23 @@ class ContentController extends Controller
                            ->toArray();          
 
         return Response::json($Json);
+        */
+        $radio = Radio::where('id',$id)->where('status','Aprobado')->get();
+        if ($radio->count()!=0) {
+            event(new RadioTraceEvent(auth()->user()->id,$id));
+            foreach ($radio as $r){
+                $radio = [
+                    'id' => $r->id,
+                    'title' => $r->name_r,
+                    'cover' => $r->logo,
+                    'streaming' => $r->streaming,
+                    'type' => 'Radio'
+                ];
+            }
+        } else {
+            $radio = [];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$radio],200);
     }
 
     public function Tv($id)
