@@ -62,8 +62,8 @@
                   {{ csrf_field() }}
                   <div class="input-field col s6 offset-s3">
                     {{ $errors->has('codigo') ? ' has-error' : '' }}
-                    <input type="number" class="validate" min="1" max="{!!$bene['amount']!!}" name="Cantidad" id="Cantidad-{!!$bene['id']!!}" required="required" onkeypress="return controltagNum(event)">
-                    <label for="">Cantidad de productos:</label>
+                    <input type="number" class="validate" min="1" max="{!!$bene['amount']!!}" placeholder="1" name="Cantidad" id="Cantidad-{!!$bene['id']!!}" required="required" onkeypress="return controltagNum(event)">
+                    <label for="">¿Cuántas unidades desea?</label>
                   </div>
                   <br>
                   <input type="hidden" name="" id="nameProduct-{!!$bene['id']!!}" value="{!!$bene['name']!!}">
@@ -148,13 +148,14 @@
                   
                   <div class="input-field col s6 offset-s3">
                     {{ $errors->has('codigo') ? ' has-error' : '' }}
-                    <input type="number" class="validate" min="1" max="{!!$bene['amount']!!}" name="Cantidad" id="Cantidad-{!!$bene['id']!!}" required="required" onkeypress="return controltagNum(event)">
-                    <label for="">Cantidad de productos:</label>
+                    <input type="number" class="validate" min="1" max="{!!$bene['amount']!!}" value="1" name="Cantidad" id="Cantidad-{!!$bene['id']!!}" required="required" onkeypress="return controltagNum(event)">
+                    <label for="">¿Cuántas unidades desea?</label>
                   </div>
                   <br>
                   <input type="hidden" name="" id="nameProduct-{!!$bene['id']!!}" value="{!!$bene['name']!!}">
                   <input type="hidden" name="" id="costProduct-{!!$bene['id']!!}" value="{!!$bene['cost']!!}">
                   <input type="hidden" name="" id="idProduct-{!!$bene['id']!!}" value="{!!$bene['id']!!}">
+                  <input type="hidden" name="" id="dispon-{!!$bene['id']!!}" value="{!!$usuario['points']!!}">
                   <div class="col s12">
                     <button class="btn btn-primary curvaBoton" type="submit">
                       Enviar
@@ -195,7 +196,7 @@
                     <div class="card-action">
                         <span>Total de compra: {{$produc->amount}} puntos.</span><br><br>
                         <a  href="{{asset($produc->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
-                        <a id="entrega" value="{!!$produc['id']!!}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Liberar</a>
+                        <a id="entrega" value="{!!$produc['id']!!}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Recibido</a>
                         <br>
                     </div>
                 </div>
@@ -259,12 +260,12 @@
       var url="{{url('delivered')}}/"+id;
       swal({
             title: "¿Está seguro?",
-            text: '¿Desea liberar el producto ?',
-            icon: "warning",
-            buttons:  ["Cancelar", "liberar"],
-            dangerMode: true,
+            text: 'Esta opción RECIBIDO sirve para saber que usted ya canjeó el beneficio y que debemos de pagarle a la empresa para que se lo puedan entregar.  \n  \n  Por favor, lea los DETALLES del beneficio para que sepa cuándo ponerle ACEPTAR a esta opción. \n  \n En esencia, debería poner ACEPTAR tanto si ya tiene un comprobante de que le van a entrega el beneficio por parte de la empresa aliada, o si lo está recibiendo es sus manos en este momento.  \n  \n Esperamos lo disfrute.',
+            buttons:  ["Cancelar", "Recibido"],
         })
-      $.ajax({
+      .then((Recibido) => {
+            if (Recibido) {
+              $.ajax({
                   url,
                   type: 'GET',
                   dataType: "json",
@@ -280,6 +281,8 @@
                       console.log(result);
                   }
               });
+            }
+        });
     });
 
     $(document).on('click','#botonModal', function() {
@@ -306,16 +309,16 @@
         var name=$('#nameProduct-'+identi).val();
         var cost=$('#costProduct-'+identi).val();
         var Cantidad=$('#Cantidad-'+identi).val();
+        var dispon=$('#dispon-'+identi).val();
         var total= (Cantidad*cost);
         swal({
             title: "¿Está seguro?",
-            text: '¿Desea canjear '+name+' por un total de '+total+' puntos ?',
-            icon: "warning",
-            buttons:  ["Cancelar", "Adquirir"],
-            dangerMode: true,
+            text: 'Esta por adquirir '+Cantidad+' Unidad(es) de '+name+ '. Se descontarán '+total+' de '+dispon+' puntos que tiene acumulado.',
+            buttons:  ["Cancelar", "Aceptar"],
+            dangerMode: false,
         })
-        .then((Adquirir) => {
-            if (Adquirir) {
+        .then((Aceptar) => {
+            if (Aceptar) {
               id=$('#idProduct-'+identi).val();
               var url="{{url('/BuyBenefi')}}";      
               $.ajax({
