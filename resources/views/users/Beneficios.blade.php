@@ -25,8 +25,9 @@
     </div>
     <div id="listaBeneficios" class="col s12 center">
       <ul class="tabs">
-          <li class="tab col s6"><a class="active" href="#test01">Productos disponibles</a></li>
-          <li class="tab col s6"><a href="#test02">Productos adquiridos</a></li>
+          <li class="tab col s4"><a class="active" href="#test01">Productos disponibles</a></li>
+          <li class="tab col s4"><a href="#test02">Productos en proceso de canje</a></li>
+            <li class="tab col s4"><a href="#test03">Productos recibidos</a></li>
       </ul>
       <div id="test01" class="col s12 center">
         @if($beneficio != "")
@@ -92,10 +93,13 @@
         <div id="test02" class="col s12 center">
           <div class="col s12">
               <br><br>
-              <blockquote >
-                  <i class="material-icons fixed-width large grey-text">flight_land</i><br><h5 blue-text text-darken-2>Usted todavia no ha adquirido ningun producto.</h5>
-              </blockquote>
+            
+                  <i class="material-icons fixed-width large grey-text">flight_land</i><br><h5 blue-text text-darken-2>Actualmente no tiene productos en proceso de canje .</h5>
           </div>
+        </div>
+        
+        <div class="test03" class="col s12 center">
+          
         </div>
     </div>
     @else
@@ -336,7 +340,7 @@
                           location.reload();
                         });
                       } else {
-                          swal('Usted a comprado el producto '+name+' con exito proximamente lo contactaremos','','success')
+                          swal('Su compra se ha realizado con éxito. Dirijase a la sección de productos adquiridos para revisar cómo retirar su beneficio ','','success')
                           .then((recarga) => {
                           location.reload();
                         });

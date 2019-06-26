@@ -57,22 +57,7 @@ min-height: 360px;
         </div>
       </div>
     @if(Auth::guard('Promoter')->user()->priority == 1)
-      <div class="row">
-        <div class="col s12 m6 l3">
-          <div class="card pink darken-3 darken-3 hoverable">
-            <div class="card-content white-text">
-              <span class="card-title">Errores</span>
-              <i class="large material-icons">error</i>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="card-action">
-              <a href="{{ route('log-viewer::dashboard') }}" target="_blank" class="btn btn-primary indigo">Ver errores</a>
-            </div>
-          </div>
-        </div>
-      </div>
+  
     </div>
       <span class="card-title grey-text"><h3>Paquetes de tickets</h3></span>
       <a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Nuevo paquete de tickets" href="#NewPack">
