@@ -29,7 +29,7 @@
               <tr>
               	<td>{{$provinces->id}}</td>
               	<td>{{$provinces->province_name}}</td>
-              	<td>{{$provinces->region->region_name}}</td> 
+              	<td>{{$provinces->region_name}}</td>
                 <td>
                   <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Provincia" value="{{$provinces->id}}" id="editProvince" href="#UpdateProvince">
                     <i class="material-icons">edit</i>

@@ -29,7 +29,7 @@
               <tr>
               	<td>{{$city->id}}</td>
               	<td>{{$city->city_name}}</td>
-              	<td>{{$city->province->province_name}}</td> 
+              	<td>{{$city->province_name}}</td> 
                 <td>
                   <a class="btn-small waves-effect waves-light btn tooltipped orange darken-3 modal-trigger" data-position="button" data-tooltip="Modificar Ciudad" value="{{$city->id}}" id="editCity" href="#UpdateCity">
                     <i class="material-icons">edit</i>
