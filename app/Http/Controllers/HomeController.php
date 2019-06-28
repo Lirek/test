@@ -41,6 +41,7 @@ use App\Products;
 use App\exchange_product;
 use App\Bidder;
 use App\image_product;
+use App\Conversion;
 
 class HomeController extends Controller
 {
@@ -311,6 +312,7 @@ class HomeController extends Controller
     }  
 
     public function Beneficios($estatus){
+        $costo = Conversion::where('tipo','punto')->where('hasta',null)->first();
         $beneficio = Products::whereStatus($estatus);
         $usuario = User::find(Auth::user()->id);
 
@@ -327,7 +329,7 @@ class HomeController extends Controller
         $entregado->Producto;
         $entregado->saveImg;
     });
-        return view('users.Beneficios')->with('usuario',$usuario)->with('beneficio',$beneficio)->with('mios',$mios)->with('entregado',$entregado);
+        return view('users.Beneficios')->with('usuario',$usuario)->with('beneficio',$beneficio)->with('mios',$mios)->with('entregado',$entregado)->with('costo',$costo);
     }
 
     public function delivered($id)
@@ -353,7 +355,7 @@ class HomeController extends Controller
                 
         $user = User::find(Auth::user()->id);
 
-        if ($total > $user->points) 
+        if ($request->total > $user->points) 
         {
             return response()->json(0);    
         } else {
@@ -361,20 +363,20 @@ class HomeController extends Controller
             $Productos= new exchange_product;
             $Productos->product_id=$Benefi->id; 
             $Productos->user_id=$user->id;
-            $Productos->amount=$total;
+            $Productos->amount=$request->total;
             $Productos->cost= $Benefi->cost;
             $Productos->status= "Aprobado";
             $Productos->save();
 
             $Benefi->amount = $Benefi->amount-$request->Cantidad;
             $Benefi->save();
-            $user->points = $user->points-$total;
+            $user->points = $user->points-$request->total;
             $user->save();
 
             $pendiente = Bidder::find($Benefi->bidder_id);
             if ($Benefi->bidder_id != 0 )
             {
-                $pendiente->pendding_points = $pendiente->pendding_points+$total;
+                $pendiente->pendding_points = $pendiente->pendding_points+$request->total;
                 $pendiente->save();
             }
             

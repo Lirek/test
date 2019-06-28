@@ -98,7 +98,7 @@
     				<a class="btn-floating halfway-fab activator btn-small waves-effect waves-light green"><i class="material-icons">arrow_upward</i></a>
     				<b>Nombre: </b>{{ $product->name }}
 					<br>
-					<b>Costo: </b>{{ $product->cost }}
+					<b>Costo: </b> {{ $product->cost*$costo->costo }} <small> Puntos.</small>
     				<div class="card-content">
     					<div class="card-action">
     						<a class="btn-small waves-effect waves-light btn orange darken-3 modal-trigger curvaBoton" value="{{ $product->id }}" id="editProduct" href="#updateProduct">
@@ -279,7 +279,7 @@
 								<small>Si no cambia el PDF se mantendrá el anterior</small>
 								<div class="file-field input-field">
 									<div class="btn amber">
-										<span>seleccione<i class="material-icons right">picture_as_pdf</i></span>
+										<span>Cambiar PDF<i class="material-icons right">picture_as_pdf</i></span>
 										<input type="file" accept=".pdf" name="pdf_prod" id="pdf_prod" class="validate">
 									</div>
 									<div class="file-path-wrapper">

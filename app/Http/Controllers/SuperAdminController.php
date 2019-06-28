@@ -371,6 +371,7 @@ class SuperAdminController extends Controller
     $productos = Products::whereStatus($estatus);
     $productos->each(function($productos){
       $productos->SubProducto;
+      $productos->Bidder;
     });
     return response()->json($productos);
   }
