@@ -1,20 +1,34 @@
 @extends('layouts.app')
 @section('css')
+
+<style media="screen">
+ iframe{
+  position: relative;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+}
+</style>
+
+
 @endsection
 @section('main')
 
-<div class="row">
-  <div class="col s12 m12">
-    <div class="col s4 m4">
-      <iframe width="250" height="170" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <div class="col s8 m8">
-    <h5 ALIGN="justify" >Leipel agradece con su árbol de beneficios a cualquier usuario que nos traiga más amigos que también compren tickets.
-    Gana y acumula puntos para cambiarlos por los siguientes beneficios:</h5>
-    <span style="padding-left: 40%">(Aplica al momento sólo en territorio ecuatoriano)</span>
-    </div>
+  <div class="row" >
+      <div class="col s12 m3">
+        <iframe width="150" height="150" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="col 12 m9">
+      <h5 ALIGN="justify" >Leipel agradece con su árbol de beneficios a cualquier usuario que nos traiga más amigos que también compren tickets.
+      Gana y acumula puntos para cambiarlos por los siguientes beneficios:</h5>
+      <span style="padding-left: 40%">(Aplica al momento sólo en territorio ecuatoriano)</span>
+      </div>
+    
   </div>
-</div>
+
+
   @if($usuario->verify == 0 || $usuario->verify == 2)
     <div class="col s6 offset-s3">
         <br><br>
@@ -32,7 +46,7 @@
       <div id="test01" class="col s12 center">
         @if($beneficio != "")
           @foreach($beneficio as $bene)
-          <div  class="col m4 s6 ">
+          <div  class="col m4 s12 ">
             <div class="card">
               <div class="slider">
                 <ul class="slides">    
@@ -210,9 +224,9 @@
         @else
           <div class="col s12">
               <br><br>
-              <blockquote >
-                  <i class="material-icons fixed-width large grey-text">flight_land</i><br><h5 blue-text text-darken-2>Usted todavia no ha adquirido ningun producto.</h5>
-              </blockquote>
+              
+                <br><h5 blue-text text-darken-2>Usted aún no tiene productos en proceso de canje.</h5>
+              
           </div>
         </div><!--End div row -->
         @endif
@@ -244,9 +258,9 @@
         @else
           <div class="col s12">
               <br><br>
-              <blockquote >
+      
                   <i class="material-icons fixed-width large grey-text">sentiment_dissatisfied</i><br><h5 blue-text text-darken-2>Usted todavia no ha retirado ningun producto.</h5>
-              </blockquote>
+              
           </div>
         @endif
       </div>
