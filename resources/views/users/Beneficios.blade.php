@@ -123,7 +123,7 @@
                   </div>
                 </div>
                   <div class="card-action">
-                      <span>Costo del producto: {{$bene->cost}} </span><br>
+                      <span>Costo del producto: {{$bene->cost*$costo->costo}} </span><br>
                       <small>Productos disponible: {{$bene->amount}} </small><br><br>
                       <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
                       @if($bene->amount > 0)
@@ -156,6 +156,7 @@
                   <input type="hidden" name="" id="costProduct-{!!$bene['id']!!}" value="{!!$bene['cost']!!}">
                   <input type="hidden" name="" id="idProduct-{!!$bene['id']!!}" value="{!!$bene['id']!!}">
                   <input type="hidden" name="" id="dispon-{!!$bene['id']!!}" value="{!!$usuario['points']!!}">
+                  <input type="hidden" name="" id="costoP-{!!$bene['id']!!}" value="{!!$costo['costo']!!}">
                   <div class="col s12">
                     <button class="btn btn-primary curvaBoton" type="submit">
                       Enviar
@@ -270,7 +271,6 @@
                   type: 'GET',
                   dataType: "json",
                   success: function (result) {
-                    console.log(result);
                           swal('usted ha liberado el producto','','success')
                           .then((recarga) => {
                           location.reload();
@@ -278,7 +278,6 @@
                   },
                   error: function (result) {
                       swal('Existe un error en su solicitud','','error');
-                      console.log(result);
                   }
               });
             }
@@ -294,23 +293,24 @@
                   type: 'GET',
                   dataType: "json",
                   success: function (result) {
-                    console.log(result);
                       if (result>0) {
                           swal('usted ha comprado este producto ' +result+ ' veces ¿Desea comprarlo nuevamente?', '', "warning");
                       }
                   },
                   error: function (result) {
                       swal('Existe un error en su solicitud','','error');
-                      console.log(result);
                   }
               });
+
       $(idFormulario).on('submit', function(e){
         e.preventDefault();
         var name=$('#nameProduct-'+identi).val();
         var cost=$('#costProduct-'+identi).val();
         var Cantidad=$('#Cantidad-'+identi).val();
         var dispon=$('#dispon-'+identi).val();
-        var total= (Cantidad*cost);
+        var costoPunto=$('#costoP-'+identi).val();
+        var costoProducto=(costoPunto*cost);
+        var total= (Cantidad*costoProducto);
         swal({
             title: "¿Está seguro?",
             text: 'Esta por adquirir '+Cantidad+' Unidad(es) de '+name+ '. Se descontarán '+total+' de '+dispon+' puntos que tiene acumulado.',
@@ -328,7 +328,7 @@
                       _token: $('input[name=_token]').val(),
                       Cantidad: Cantidad,
                       nombre: name,
-                      costo: cost,
+                      total: total,
                       id: id
                   },
                   success: function (result) {
@@ -346,8 +346,8 @@
                       }
                   },
                   error: function (result) {
+                    console.log(result);
                       swal('Existe un error en su solicitud','','error');
-                      console.log(result);
                   }
               });
             }
