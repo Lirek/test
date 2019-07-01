@@ -60,62 +60,95 @@ class ContentController extends Controller
 {
 
     public function billboard() {
+        $user = User::find(auth()->user()->id);
+
         $singles = Songs::latest()->whereNull('album')->where('status','Aprobado')->take(3)->get();
+        $singlesAdd = User::contenidos_add($user,'song_id');
+
         $albums = Albums::latest()->where('status','Aprobado')->take(3)->get();
+        $albumsAdd = User::contenidos_add($user,'album_id');
+
         $movies = Movie::latest()->where('status','Aprobado')->take(3)->get();
+        $moviesAdd = User::contenidos_add($user,'movies_id');
+
         $series = Serie::latest()->where('status','Aprobado')->take(3)->get();
+        $seriesAdd = User::contenidos_add($user,'series_id');
+
         $megazines = Megazines::latest()->where('status','Aprobado')->take(3)->get();
+        $megazinesAdd = User::contenidos_add($user,'megazines_id');
+
         $books = Book::latest()->where('status','Aprobado')->take(3)->get();
+        $booksAdd = User::contenidos_add($user,'books_id');
+
         $radios = Radio::latest()->where('status','Aprobado')->take(6)->get();
         $tvs = Tv::latest()->where('status','Aprobado')->take(6)->get();
+
         $music = [];
         foreach ($albums as $a) {
+            $add = (in_array($a->id,$albumsAdd)) ? true : false;
             $music[] = [
                 'id' => $a->id,
                 'title' => $a->name_alb,
                 'cover' => $a->cover,
+                'acquired' => $add,
                 'type' => 'Album'
             ];
         }
         foreach ($singles as $s) {
+            if ($s->cover!=null) {
+                $cover = $s->cover;
+            } else {
+                $author = music_authors::find($s->autors_id);
+                $cover = $author->photo;
+            }
+            $add = (in_array($s->id,$singlesAdd)) ? true : false;
             $music[] = [
                 'id' => $s->id,
                 'title' => $s->song_name,
-                'cover' => null,
+                'cover' => $cover,
+                'acquired' => $add,
                 'type' => 'Single'
             ];
         }
         $movie = [];
         foreach ($movies as $m) {
+            $add = (in_array($m->id,$moviesAdd)) ? true : false;
             $movie[] = [
                 'id' => $m->id,
                 'title' => $m->title,
                 'cover' => '/movie/poster/'.$m->img_poster,
+                'acquired' => $add,
                 'type' => 'Movie',
             ];
         }
         foreach ($series as $s) {
+            $add = (in_array($s->id,$seriesAdd)) ? true : false;
             $movie[] = [
                 'id' => $s->id,
                 'title' => $s->title,
                 'cover' => $s->img_poster,
+                'acquired' => $add,
                 'type' => 'Serie',
             ];
         }
         $reading = [];
         foreach ($books as $b) {
+            $add = (in_array($b->id,$booksAdd)) ? true : false;
             $reading[] = [
                 'id' => $b->id,
                 'title' => $b->title,
                 'cover' => "/images/bookcover/".$b->cover,
+                'acquired' => $add,
                 'type' => 'Book',
             ];
         }
         foreach ($megazines as $m) {
+            $add = (in_array($m->id,$megazinesAdd)) ? true : false;
             $reading[] = [
                 'id' => $m->id,
                 'title' => $m->title,
                 'cover' => $m->cover,
+                'acquired' => $add,
                 'type' => 'Magazine',
             ];
         }
@@ -433,6 +466,10 @@ class ContentController extends Controller
                     'title' => $r->name_r,
                     'cover' => $r->logo,
                     'streaming' => $r->streaming,
+                    'youtube' => $r->google,
+                    'instagram' => $r->instagram,
+                    'facebook' => $r->facebook,
+                    'twitter' => $r->twitter,
                     'type' => 'Radio'
                 ];
             }
