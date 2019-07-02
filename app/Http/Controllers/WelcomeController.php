@@ -29,7 +29,10 @@ class WelcomeController extends Controller
 
     public function leipel()
     {
-        return view('queEsLeipel');
+      $modules = BidderRoles::all();
+      
+
+        return view('queEsLeipel')->with('modules', $modules);
     }
 
     public function welcome() {
