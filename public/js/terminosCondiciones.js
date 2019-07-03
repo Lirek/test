@@ -654,3 +654,254 @@
             }
         });
     });
+    
+    
+    
+    //----------------------------------Para el usuario ofertante----------------------------------
+
+    $(document).ready(function(){
+        $('input#nombreOfertante, input#emailRO, input#tlfRO, textarea#otraCategoria').characterCounter();
+        $('#otraCat').hide();
+        var email = $('#emailO').val().trim();
+        var password = $('#passwordO').val().trim();
+        if (email.length==0 || password.length ==0){
+            $('#iniciarO').attr('disabled',true);
+        }
+    });
+
+    $("#formRO").on('submit',function(e){
+        e.preventDefault();
+        var url = "BidderSubmit";
+        var gif = "sistem_images/loading.gif";
+        swal({
+            title: "Procesando la información",
+            text: "Espere mientras se procesa la información.",
+            icon: gif,
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false
+        });
+        console.log('Ruta : '+url);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: $("#formRO").serialize(),
+            success: function (result) {
+                console.log(result);
+                swal("Su solicitud está siendo procesada","Por favor espere su correo de confirmación","success")
+                .then((recarga) => {
+                    location.reload();
+                });
+            },
+            error: function (result) {
+                console.log(result);
+                swal('Existe un Error en su Solicitud','','error')
+                .then((recarga) => {
+                    location.reload();
+                });
+            }
+        });
+    });
+
+    $("#emailRO").on('keyup change',function(){
+        var email_data = $("#emailRO").val();
+        $.ajax({
+            url: "RegisterEmailBidder/"+email_data,
+            type: 'get',
+            dataType: "json",
+            success: function(result){
+                console.log(result);
+                if (result == 1) {
+                    var correoOfertante = $('#emailRO').val().trim();
+                    var limite = $('#emailRO').attr('data-length');
+
+                    if (correoOfertante.length>=limite) {
+                        $('#mensajeCorreoOfertante').show();
+                        $('#mensajeCorreoOfertante').text('No debe exceder el limite de caracteres permitidos');
+                        $('#mensajeCorreoOfertante').css('color','red');
+                        $('#mensajeCorreoOfertante').css('font-size','100%');
+                        $('#registroRO').attr('disabled',true);
+                    } else if(correoOfertante.length==0) {
+                        $('#mensajeCorreoOfertante').show();
+                        $('#mensajeCorreoOfertante').text('El campo no debe estar vacio');
+                        $('#mensajeCorreoOfertante').css('color','red');
+                        $('#mensajeCorreoOfertante').css('font-size','100%');
+                        $('#registroRO').attr('disabled',true);
+                    } else {
+                        $('#mensajeCorreoOfertante').hide();
+                    }
+                    return true;
+                } else {
+                    $('#mensajeCorreoOfertante').show();
+                    $('#mensajeCorreoOfertante').text('Este email ya se encuentra registrado');
+                    $('#mensajeCorreoOfertante').css('font-size','100%');
+                    $('#mensajeCorreoOfertante').css('color','red');
+                    $('#registroRO').attr('disabled',true);
+                }
+                var valNombreOfertante = $('#mensajeNombreOfertante').is(':hidden');
+                var valCorreoOfertante = $('#mensajeCorreoOfertante').is(':hidden');
+                var valTelefonoOfertante = $('#mensajeTelefonoOfertante').is(':hidden');
+                var valCategoriaOfertante = $('#mensajeOtraCatOfertante').is(':hidden');
+                if (valNombreOfertante && valCorreoOfertante && valTelefonoOfertante && valCategoriaOfertante) {
+                    $('#registroRO').attr('disabled',false);
+                }
+            }
+        });
+    });
+
+    $('#nombreOfertante').keyup(function(e){
+        var nombreOfertante = $('#nombreOfertante').val().trim();
+        var limite = $('#nombreOfertante').attr('data-length');
+
+        if (nombreOfertante.length>=limite) {
+            $('#mensajeNombreOfertante').show();
+            $('#mensajeNombreOfertante').text('No debe exceder del limite de caracteres permitidos');
+            $('#mensajeNombreOfertante').css('color','red');
+            $('#mensajeNombreOfertante').css('font-size','100%');
+            $('#registroRO').attr('disabled',true);
+        } else if(nombreOfertante.length==0){
+            $('#mensajeNombreOfertante').show();
+            $('#mensajeNombreOfertante').text('El campo no debe estar vacio');
+            $('#mensajeNombreOfertante').css('color','red');
+            $('#mensajeNombreOfertante').css('font-size','100%');
+            $('#registroRO').attr('disabled',true);
+        } else {
+            $('#mensajeNombreOfertante').hide();
+        }
+
+        var valNombreOfertante = $('#mensajeNombreOfertante').is(':hidden');
+        var valCorreoOfertante = $('#mensajeCorreoOfertante').is(':hidden');
+        var valTelefonoOfertante = $('#mensajeTelefonoOfertante').is(':hidden');
+        var valCategoriaOfertante = $('#mensajeOtraCatOfertante').is(':hidden');
+        if (valNombreOfertante && valCorreoOfertante && valTelefonoOfertante && valCategoriaOfertante) {
+            $('#registroRO').attr('disabled',false);
+        }
+    });
+
+    $('#tlfRO').keyup(function(e){
+        var correoOfertante = $('#tlfRO').val().trim();
+        var limite = $('#tlfRO').attr('data-length');
+
+        if (correoOfertante.length>=limite) {
+            $('#mensajeTelefonoOfertante').show();
+            $('#mensajeTelefonoOfertante').text('No debe exceder el limite de caracteres permitidos');
+            $('#mensajeTelefonoOfertante').css('color','red');
+            $('#mensajeTelefonoOfertante').css('font-size','100%');
+            $('#registroRO').attr('disabled',true);
+        } else if(correoOfertante.length==0) {
+            $('#mensajeTelefonoOfertante').show();
+            $('#mensajeTelefonoOfertante').text('El campo no debe estar vacio');
+            $('#mensajeTelefonoOfertante').css('color','red');
+            $('#mensajeTelefonoOfertante').css('font-size','100%');
+            $('#registroRO').attr('disabled',true);
+        } else {
+            $('#mensajeTelefonoOfertante').hide();
+        }
+
+        var valNombreOfertante = $('#mensajeNombreOfertante').is(':hidden');
+        var valCorreoOfertante = $('#mensajeCorreoOfertante').is(':hidden');
+        var valTelefonoOfertante = $('#mensajeTelefonoOfertante').is(':hidden');
+        var valCategoriaOfertante = $('#mensajeOtraCatOfertante').is(':hidden');
+        if (valNombreOfertante && valCorreoOfertante && valTelefonoOfertante && valCategoriaOfertante) {
+            $('#registroRO').attr('disabled',false);
+        }
+    });
+
+    $('#categoria').on('change', function () {
+        if (this.value == 'otra') {
+            $('#otraCat').show();
+            $('#otraCategoria').attr('required','required');
+            $('#otraCategoria').keyup(function(e){
+                var categoriaOfertante = $('#otraCategoria').val();
+                var limite = $('#otraCategoria').attr('data-length');
+
+                if (categoriaOfertante.length>=limite) {
+                    $('#mensajeOtraCatOfertante').show();
+                    $('#mensajeOtraCatOfertante').text('No debe exceder el limite de caracteres permitidos');
+                    $('#mensajeOtraCatOfertante').css('color','red');
+                    $('#mensajeOtraCatOfertante').css('font-size','100%');
+                    $('#registroRO').attr('disabled',true);
+                } else if(categoriaOfertante.length==0) {
+                    $('#mensajeOtraCatOfertante').show();
+                    $('#mensajeOtraCatOfertante').text('El campo no debe estar vacio');
+                    $('#mensajeOtraCatOfertante').css('color','red');
+                    $('#mensajeOtraCatOfertante').css('font-size','100%');
+                    $('#registroRO').attr('disabled',true);
+                } else {
+                    $('#mensajeOtraCatOfertante').hide();
+                }
+
+                var valNombreOfertante = $('#mensajeNombreOfertante').is(':hidden');
+                var valCorreoOfertante = $('#mensajeCorreoOfertante').is(':hidden');
+                var valTelefonoOfertante = $('#mensajeTelefonoOfertante').is(':hidden');
+                var valCategoriaOfertante = $('#mensajeOtraCatOfertante').is(':hidden');
+                console.log(valNombreOfertante, valCorreoOfertante, valTelefonoOfertante, valCategoriaOfertante);
+                if (valNombreOfertante && valCorreoOfertante && valTelefonoOfertante && valCategoriaOfertante) {
+                    $('#registroRO').attr('disabled',false);
+                }
+            });
+        } else {
+            $('#mensajeOtraCatOfertante').hide();
+            $('#otraCat').hide();
+            $('#otraCategoria').removeAttr('required');
+            $('#registroRO').attr('disabled',false);
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO EMAIL NO ESTE VACIO---------------
+    $('#emailO').keyup(function(evento){
+        var email = $('#emailO').val().trim();
+        if (email.length==0) {
+            $('#emailMenO').show();
+            $('#emailMenO').text('El campo no debe estar vacio');
+            $('#emailMenO').css('color','red');
+            $('#emailMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+            $('#iniciarO').css('background-color','')
+        } else {
+            $('#emailMenO').hide();
+        }
+        var password = $('#passwordO').val().trim();
+        if (email.length !=0 && password.length !=0){
+            $('#iniciarO').attr('disabled',false);
+        }
+    });
+
+    //---------VALIDACION DE FORMATO DE CORREO-----------------------------------
+    $('#emailO').keyup(function(evento){
+        var email = $('#emailO').val();
+        var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+        if (caract.test(email) == false){
+            $('#emailMenO').show();
+            $('#emailMenO').text('Formato email incorrecto');
+            $('#emailMenO').css('color','red');
+            $('#emailMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+            $('#iniciarO').css('background-color','')
+        } else {
+            return true;
+        }
+    });
+
+    //---------VALIDACION PARA QUE EL CAMPO PASSWORD NO ESTE VACIO---------------
+    $('#passwordO').keyup(function(evento){
+        var password = $('#passwordO').val().trim();
+        if (password.length==0) {
+            $('#passwordMenO').show();
+            $('#passwordMenO').text('El campo no debe estar vacio');
+            $('#passwordMenO').css('color','red');
+            $('#passwordMenO').css('font-size','60%');
+            $('#iniciarO').attr('disabled',true);
+        } else {
+            $('#passwordMenO').hide();
+            $('#iniciarO').attr('disabled',false);
+        }
+        var email = $('#emailO').val().trim();
+        if (email.length !=0 && password.length !=0){
+            $('#iniciarO').attr('disabled',false);
+        }
+    });
+
+    //----------------------------------Para el usuario ofertante----------------------------------
+
+    

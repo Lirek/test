@@ -117,7 +117,7 @@ $(document).ready(function(){
     });
 
     $('#featured1').owlCarousel({
-        loop: true,
+        loop: false,
         nav: false,
         dots: false,
         autoplay: true,

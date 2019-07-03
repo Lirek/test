@@ -429,12 +429,17 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s6">
+                    <li class="tab col s4">
                         <a href="#usuario"><i class="material-icons prefix">face</i><b> Usuario</b></a>
                     </li>
-                    <li class="tab col s6">
+                    <li class="tab col s4">
                         <a href="#proveedor"><i class="material-icons prefix">store</i><b> Proveedor</b></a>
                     </li>
+                    
+                    <li class="tab col s4">
+
+                      <a href="#aliado"><i class="material-icons prefix">store</i><b> Aliado</b></a>
+                      </li>
 
                 </ul>
             </div>
@@ -525,6 +530,56 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                 </div>
             </form>
         </div>
+        
+        {{--Modal inicio de sesion aliado--}}
+        <div id="aliado" class="col s12 center">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/bidder_login') }}">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="text" id="emailO" name="email" class="autocomplete" value="{{ old('email') }}" required autofocus>
+                        <label for="emailO">Correo</label>
+                        <div id="emailMenO" style="margin-top: 1%"></div>
+                        @if ($errors->has('email'))
+                            <span class="help-block red-text" >
+                                <strong >{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                        @foreach (session('flash_notification', collect())->toArray() as $message)
+                            <span class="help-block" style="color: red;">
+                                <strong>{{ $message['message'] }}</strong>
+                            </span>
+                        @endforeach
+                        {{ session()->forget('flash_notification') }}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">vpn_key</i>
+                        <input type="password" id="passwordO" class="autocomplete" name="password" required>
+                        <label for="passwordO">Contraseña</label>
+                        <div id="passwordMenO" style="margin-top: 1%"></div>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong class="text-red">{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciarO" type="submit" name="action">    Iniciar sesión
+                            <i class="material-icons right">send</i>
+                        </button><br>
+                        
+                        <a class="blue-text" href="{{ url('') }}">Olvidé mi contraseña </a>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        
+        
+        
+        
     </div>
 
 </div>
@@ -535,8 +590,10 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
     <div class="modal-content center blue-text">
         <div class="row">
             <ul class="tabs">
-                <li class="tab col s6"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
-                <li class="tab col s6"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
+                <li class="tab col s4"><a href="#usuario1" class="active"><i class="material-icons prefix">face</i><b> Usuario</b></a></li>
+                <li class="tab col s4"><a href="#proveedor1"><i class="material-icons prefix">store</i><b> Proveedor</b></a></li>
+                <li class="tab col s4"><a href="#aliado1"><i class="material-icons prefix">store</i><b> Aliado</b></a></li>
+
             </ul>
         </div>
         {{--registro usuario--}}
@@ -700,6 +757,76 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                     </div>
                     <div class="input-field col s12">
                         <button class="btn waves-effect waves-light curvaBoton green" id="registroRP" type="submit" >Enviar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        {{--registro aliado--}}
+        <div id="aliado1" class="col s12 center">
+            <form class="form-horizontal" id="formRO">
+                {{ csrf_field() }}
+                @include('flash::message')
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">person</i>
+                        <input type="text" id="nombreOfertante" class="autocomplete" name="nombreOfertante" required="required" onkeypress="return controltagLet(event)" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" data-length="190">
+                        <label for="nombreOfertante">Nombre</label>
+                        <div id="mensajeNombreOfertante" style="margin-top: 1%"></div>
+                        @if ($errors->has('nombreOfertante'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('nombreOfertante') }}</strong>
+                           </span>
+                        @endif
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">email</i>
+                        <input type="email" id="emailRO" name="emailRO" required="required" class="autocomplete" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" data-length="190">
+                        <label for="emailRO">Correo</label>
+                        <div id="mensajeCorreoOfertante" style="margin-top: 1%"></div>
+                        @if ($errors->has('emailRO'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('emailRO') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text">phone</i>
+                        <input type="text" id="tlfRO" name="tlfRO" required="required" class="autocomplete" onkeypress="return controltagNum(event)" pattern="[0-9]+" data-length="15">
+                        <label for="tlfRO">Teléfono</label>
+                        <div id="mensajeTelefonoOfertante" style="margin-top: 1%"></div>
+                        @if ($errors->has('tlfRO'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('tlf') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    
+                    <div class="input-field col s10 offset-s1">
+                        <select name="categoria" id="categoria" class="autocomplete" required="required">
+                            <option value="">Seleccione una categoría</option>
+                            @foreach($modules as $module)
+                                <option value="{{ $module->id }}">{{ $module->name }}</option>
+                            @endforeach
+                            <option value="otra">Otra...</option>
+                        </select>
+                        <label for="categoria">Indique la categoría del producto que desea canjear</label>
+                    </div>
+                    <div id="otraCat" class="col s12">
+                        <label for="otraCategoria">Dé una breve descripción de la categoria del producto que desea canjear</label>
+                        <div id="mensajeOtraCatOfertante" style="margin-top: 1%"></div>
+                        <div class="input-field col s10 offset-s1">
+                            <textarea name="otraCategoria" id="otraCategoria" class="materialize-textarea" data-length="190"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRO" type="submit" >
+                            Enviar
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
