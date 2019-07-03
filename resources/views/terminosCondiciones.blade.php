@@ -385,9 +385,9 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                 <ul>
                     <li><a class="white-text" href="{{route('queEsLeipel')}}">¿Qué es Leipel?</a></li>
                     <li><a class="white-text" href="{{route('terminosCondiciones')}}">Términos y Condiciones</a></li>
-                    <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
+                  <!--  <li><a class="white-text modal-trigger" href="#modal2">Regístrate</a></li>
                     <li><a class="white-text" href="#!">Beneficios adicionales</a></li>
-                    <li><a class="white-text" href="#!">Contactos</a></li>
+                    <li><a class="white-text" href="#!">Contactos</a></li> -->
                 </ul>
             </div>
             <div class="col l3 s12">

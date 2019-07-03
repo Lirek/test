@@ -39,6 +39,15 @@
         width: 100%;
         height: 100%;
     }
+    
+    .picture{
+      height: 600px;
+    }
+    
+    .picture img{
+        max-height: 100%;
+        max-width: 100%;
+    }
 </style>
 
 
@@ -59,24 +68,32 @@
                 <div class="col s3">
 
                 </div>
-
-
-
-              </div>
-            <div class="row ">
-              <div class="col s12 m3">
-                <img src="../movie/poster/{{$s->img_poster}}" width="100%" height="350px">
-             </div>
-
-              <div class="col s12 m9">
-
-                <div class="row">
-                  
+                <div class="col s9">
                   <ul id="tabs-swipe-demo" class="tabs">
                       <li class="tab col s12 m3"><a class="active" href="#test-swipe-1">Trailer</a></li>
                       <li class="tab col s12 m3"><a href="#test-swipe-2">Episodios</a></li>
                       
                     </ul>
+                </div>
+
+
+              </div>
+              
+              
+            <div class="row ">
+              <div class="col s12 m3 ">
+                <div class="picture">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzgyqT7XozhUSZh5TncTcu3KagZ1aWp5QqQMEhLpOkmG0r1ascA" width="100%" >
+  
+                </div>
+                
+              </div>
+
+              <div class="col s12 m8">
+
+                <div class="row">
+                  
+                
                     <div id="test-swipe-1" class="col s12 ">
                       <div class="col s12 " style="color: black">
         
@@ -84,8 +101,8 @@
                             $url = $s->trailer;
                             preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                             $id = $matches[1];
-                            $width = '800px';
-                            $height = '450px';
+                            $width = '1000px';
+                            $height = '600px';
                         ?>
                         <div class="embed-container">
                         <iframe  type="text/html" width="700" height="420"
