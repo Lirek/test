@@ -105,11 +105,11 @@
     <div class="nav-wrapper container"><a id="logo-container" href="{{ url('/') }}" class="brand-logo"><img class= "img"src="https://leipel.com/plugins/img/Logo-Leipel.png" width="120px;" height="50px;" title="Logo de Leipel"></a>
         <ul class="right hide-on-med-and-down">
             <li><a class="blue-text" href="{{route('queEsLeipel')}}"><b>¿Qué es leipel?</b></a></li>
-            @if(Auth::guard('web_seller')->user())
-                @if (Auth::guard('web_seller')->user()->logo)
+            @if(Auth::guard('bidder')->user())
+                @if (Auth::guard('bidder')->user()->logo)
                     <li>
-                        <a href="{{ url('/seller_home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}"  class="img circle" width="40" height="40">
+                        <a href="{{ url('/bidder_home')}}" data-position="bottom" data-position="bottom" class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('bidder')->user()->logo)}}"  class="img circle" width="40" height="40">
                         </a>
                     </li>
                 @else
@@ -144,11 +144,11 @@
 
         <ul id="nav-mobile" class="sidenav">
             <li><a class="blue-text" href="#"><b>¿Qué es Leipel<leipelsad></leipelsad>?</b></a></li>
-            @if(Auth::guard('web_seller')->user())
-                @if (Auth::guard('web_seller')->user()->logo)
+            @if(Auth::guard('bidder')->user())
+                @if (Auth::guard('bidder')->user()->logo)
                     <li>
-                        <a href="{{ url('/seller_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
-                            <img src="{{asset(Auth::guard('web_seller')->user()->logo)}}" class="img circle" width="40" height="40">
+                        <a href="{{ url('/bidder_home')}}" data-position="right"  class="tooltipped" data-tooltip="Ingresar">
+                            <img src="{{asset(Auth::guard('bidder')->user()->logo)}}" class="img circle" width="40" height="40">
                             <b> Ingresar</b>
                         </a>
                     </li>
@@ -193,7 +193,7 @@
         <div class="card-panel curva">
             
         <h5 class="center">
-            <b class="blue-text">Restablecer contraseña de proveedor</b>
+            <b class="blue-text">Restablecer contraseña de Aliado</b>
         </h5><br>
         <!--<form class="form-horizontal" role="form" method="POST" action="{{ url('/seller_password/email') }}">-->
             {{ csrf_field() }}
@@ -431,7 +431,7 @@
                             <i class="material-icons right">send</i>
                         </button><br>
                         
-                        <a class="blue-text" href="{{ url('bidder_password/reset') }}">Olvidé mi contraseña </a>
+                        <a class="blue-text" href="{{ url('') }}">Olvidé mi contraseña </a>
                         
                     </div>
                 </div>
@@ -1644,7 +1644,7 @@
           
     
             $.ajax({
-                url:"{{url('/seller_password/email')}}", 
+                url:"{{url('/bidder_password/email')}}", 
                 dataType: 'json',
                 type: 'POST',
                 data: {

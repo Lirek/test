@@ -569,7 +569,7 @@ HE LEIDO TODO, HE VISTO LAS FORMAS DE ´PAGOS, ME HAS DICHO QUE LOS RUBROS LLEGA
                             <i class="material-icons right">send</i>
                         </button><br>
                         
-                        <a class="blue-text" href="{{ url('') }}">Olvidé mi contraseña </a>
+                        <a class="blue-text" href="{{ url('bidder_password/reset') }}">Olvidé mi contraseña </a>
                         
                     </div>
                 </div>

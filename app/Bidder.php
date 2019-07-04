@@ -175,4 +175,9 @@ class Bidder extends Authenticatable
         $bidder->save();
         Auth::guard('bidder')->logout();
     }
+    
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new BidderResetPasswordNotification($token));
+    }
 }
