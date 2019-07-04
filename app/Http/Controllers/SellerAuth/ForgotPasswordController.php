@@ -4,6 +4,8 @@ namespace App\Http\Controllers\SellerAuth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\BidderRoles;
+
 
 //Trait
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -19,7 +21,10 @@ class ForgotPasswordController extends Controller
     //Shows form to request password reset
     public function showLinkRequestForm()
     {
-        return view('seller.passwords.email');
+      
+      $modules = BidderRoles::all();
+
+        return view('seller.passwords.email')->with('modules',$modules);
     }
 
     //Password Broker for Seller Model

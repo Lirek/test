@@ -81,7 +81,7 @@
                                             <div id="fb-root"></div>
                                             <!-- Your share button code -->
                                             <a href="https://wa.me/?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share">
-                                                <img border="0" src="images/whatsapp.jpg" width="50" height="50">
+                                                <img border="0" src="{{asset('sistem_images/WhatsApp.png')}}" width="50" height="50">
                                             </a>
                                           
                                             

@@ -24,12 +24,18 @@ class WelcomeController extends Controller
 
         public function terminosYcondiciones()
     {
-        return view('terminosCondiciones');
+      
+      $modules = BidderRoles::all();
+
+        return view('terminosCondiciones')->with('modules',$modules);
     }
 
     public function leipel()
     {
-        return view('queEsLeipel');
+      $modules = BidderRoles::all();
+      
+
+        return view('queEsLeipel')->with('modules', $modules);
     }
 
     public function welcome() {
