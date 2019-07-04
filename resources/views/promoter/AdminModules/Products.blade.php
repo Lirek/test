@@ -1,4 +1,6 @@
 @extends('promoter.layouts.app')
+@section('css')
+
 	<style>
 		#image-preview {
             width: 100%;
@@ -75,13 +77,17 @@
         }
 
     	.curvaBoton{border-radius: 20px;}
+			
+			
     </style>
+		
+		@endsection
 @section('main')
 	<span class="card-title grey-text"><h3>Productos</h3></span>
 	<a class="btn-floating btn-large waves-effect waves-light btn tooltipped modal-trigger green" data-position="right" data-tooltip="Agregar producto" href="#NewProduct">
         <i class="material-icons">add</i>
     </a>
-    <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+    <ul class="tabs tabs-fixed-width tab-demo z-depth-1  ">
         <li class="tab" id="EnRevision"><a class="active" href="#test1">En revisión</a></li>
         <li class="tab" id="aprobados"><a href="#test2">Aprobados</a></li>
         <li class="tab" id="denegados"><a href="#test2">Denegados</a></li>
