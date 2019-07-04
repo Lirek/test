@@ -35,14 +35,23 @@ class Conversion extends Model
     }
 
     public static function ajuste($request) {
-    	$info = self::where('tipo',$request->tipo)->where('hasta',null)->get();
-    	$conversion = self::find($info[0]->id);
-    	$conversion->hasta = date('Y-m-d');
-    	$conversion->save();
-    	$conversion = new Conversion;
-    	$conversion->tipo = $request->tipo;
-    	$conversion->costo = $request->costo;
-    	$conversion->desde = date('Y-m-d');
+        $cantidad = self::where('tipo',$request->tipo)->count();
+        if ($cantidad != 0) {
+            $info = self::where('tipo',$request->tipo)->where('hasta',null)->get();
+            $conversion = self::find($info[0]->id);
+            $conversion->hasta = date('Y-m-d');
+            $conversion->save();
+            $conversion = new Conversion;
+            $conversion->tipo = $request->tipo;
+            $conversion->costo = $request->costo;
+            $conversion->desde = date('Y-m-d');
+        } else {
+            $conversion = new Conversion;
+            $conversion->tipo = $request->tipo;
+            $conversion->costo = $request->costo;
+            $conversion->desde = date('Y-m-d');
+        }
+        
     	$conversion->save();
     	return $conversion;
     }

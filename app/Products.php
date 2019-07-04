@@ -99,6 +99,7 @@ class Products extends Model
     	$product->description = $request->description;
     	$product->cost = $request->cost;
         $product->amount = $request->amount;
+        $product->status = "En Revision";
     	$product->save();
         if (array_key_exists("otraImagen", $request->all()) && $request->otraImagen[0]!=null) {
             foreach ($request->otraImagen as $adj) {

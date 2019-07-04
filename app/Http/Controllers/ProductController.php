@@ -8,15 +8,17 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Products;
 use App\image_product;
+use App\Conversion;
 
 class ProductController extends Controller
 {
     public function products(){
+        $costo = Conversion::where('tipo','punto')->where('hasta',null)->first();
     	$products = Products::myProducts(Auth::guard('bidder')->user()->id);
         $products->each(function($products){ 
             $products->saveImg;
         });
-    	return view('bidder.products')->with('products',$products);
+    	return view('bidder.products')->with('products',$products)->with('costo',$costo);
     }
 
     public function productStore(Request $request) {
