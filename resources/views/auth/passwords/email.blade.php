@@ -658,46 +658,67 @@
 <script >
 function sendEmailRecuperation() {
       
+  var gif = "{{ asset('/sistem_images/loading.gif') }}";
 
-        $.ajax({
-            url:"{{url('/password/email')}}", 
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                email : $('#email').val(),
-                _token: $('input[name=_token]').val(),
-            },
-            success: function (result) {
-                        
 
-                    if(result.error == "false"){
+  swal({
+    title: "Enviando correo de recuperación",
+    text: "Espere mientras se lo enviamos.",
+    icon: gif,
+    buttons: false,
+    closeOnEsc: false,
+    closeOnClickOutside: false,
+    onOpen: () => {
+      swal.showLoading();
+    }
+    });
+  
+    $.ajax({
+        url:"{{url('/password/email')}}", 
+        dataType: 'json',
+        type: 'POST',
+        data: {
+            email : $('#email').val(),
+            _token: $('input[name=_token]').val(),
+        },
+        success: function (result) {
+                    
+
+                if(result.error == "false"){
+                    swal.close();
                         
+                     M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!', displayLenght: 2000 
+              }) ;
+              
+                        if( $('#validarCorreo').css('display') != 'none' ){
                             
-                         M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!', displayLenght: 2000 
-            
-                  }) ;
-                            if( $('#validarCorreo').css('display') != 'none' ){
-                                
-                                  $('#validarCorreo').hide();
+                              $('#validarCorreo').hide();
 
-                                }
-                        
-                    }else{
-                         $('#validarCorreo').show();
+                            }
+                          
                     
-                    }
-                    
-                  
+                }else{
+                  swal.close();
+                     $('#validarCorreo').show();
+                     
+                     
 
-          
-            },
-            error: function (result) {
-                console.log(result);
-            }
-            
-            
-            
-        });
+                
+                }
+                
+              
+
+      
+        },
+        error: function (result) {
+            console.log(result);
+        }
+        
+        
+        
+    });
+
+      
         
         
             
