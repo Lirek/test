@@ -72,25 +72,26 @@ Route::group(['middleware' => ['cors']], function() {
 
         Route::get('billboard','ApiController\ContentController@billboard');
 
-        Route::get('Singles','ApiController\ContentController@AllAprovedSingles');
-        Route::get('Albums','ApiController\ContentController@AllAprovedAlbums');
+        Route::get('singles','ApiController\ContentController@AllAprovedSingles');
+        Route::get('albums','ApiController\ContentController@AllAprovedAlbums');
         Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthors');
-        Route::get('Books','ApiController\ContentController@AllAprovedBooks');
-        Route::get('Megazines','ApiController\ContentController@AllAprovedMegazines');
+        Route::get('reading','ApiController\ContentController@reading');
         Route::get('radio','ApiController\ContentController@AllAprovedRadios');
-        Route::get('Tvs','ApiController\ContentController@AllAprovedTvs');
+        Route::get('tvs','ApiController\ContentController@AllAprovedTvs');
+        Route::get('movies','ApiController\ContentController@AllAprovedMovies');
+        Route::get('series','ApiController\ContentController@AllAprovedSeries');
 
         //---------------------------------------------------------------------------
 
         //---------------Rutas de Contenido Especifico----------------------------------
 
         Route::get('Single/{id}','ApiController\ContentController@Single');
-        Route::get('Megazine/{id}','ApiController\ContentController@Megazine');
-        Route::get('Album/{id}','ApiController\ContentController@Album');
-        Route::get('Book/{id}','ApiController\ContentController@Book');
+        Route::get('megazine/{id}','ApiController\ContentController@Megazine');
+        Route::get('album/{id}','ApiController\ContentController@Album');
+        Route::get('book/{id}','ApiController\ContentController@Book');
         Route::get('MusicAuthor/{id}','ApiController\ContentController@MusicAuthor');
         Route::get('radio/{id}','ApiController\ContentController@Radio');
-        Route::get('Tv/{id}','ApiController\ContentController@Tv');
+        Route::get('tv/{id}','ApiController\ContentController@Tv');
 
         //-------------------------------------------------------------------------------
 
