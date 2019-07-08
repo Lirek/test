@@ -144,7 +144,7 @@
                 <div class="input-field col s12  {{ $errors->has('email') ? ' has-error' : '' }}">
                     <i class="material-icons prefix blue-text">email</i>
                     <input type="email" id="email" name="email" class="autocomplete" value="{{ old('email') }}" required>
-                    <label for="autocomplete-input">Correo</label>
+                    <label for="email">Correo</label>
                     
                         <span id ="validarCorreo" class="help-block" hidden >
                             <strong>Ingrese una dirección de correo valida</strong>
