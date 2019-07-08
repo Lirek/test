@@ -2,26 +2,12 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\Events\AlbumTraceEvent;
+use App\Events\BookTraceEvent;
+use App\Events\MegazineTraceEvent;
 use App\Serie;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use Spatie\Fractalistic\Fractal;
-
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-
-use App\Transformers\AlbumsTransformer;
-use App\Transformers\SongsTransformer;
-use App\Transformers\MusicAuthorTransformer;
-use App\Transformers\SellerTransformer;
-use App\Transformers\TagsTransformer;
-use App\Transformers\BooksTransformer;
-use App\Transformers\MegazinesTransformer;
-use App\Transformers\RadioTransformer;
-use App\Transformers\TvTransformer;
 use App\Transformers\MovieTransformer;
 use App\Transformers\EpisodeTransformer;
 
@@ -32,12 +18,9 @@ use Auth;
 use Response;
 
 use App\Megazines;
-use App\Tags;
-use App\ApplysSellers;
 use App\Albums;
 use App\Songs;
 use App\User;
-use App\Seller;
 use App\Radio;
 use App\Sagas;
 use App\BookAuthor;
@@ -182,88 +165,9 @@ class ContentController extends Controller
    
     
 //---------------TODO EL CONTENIDO APROBADO---------------------------------------------------
-    public function AllAprovedSingles()
-    {
-      
-        $Songs=Songs::whereNull('album')
-                      ->with('Seller')
-                      ->with('autors')
-                                    ->where('status','=','Aprobado')
-                                    ->get();
-      
-       if ($Songs->isEmpty()) { 
-                return Response::json(['status'=>'Esta Vacio'], 204);
-                  }
-                    $Json = Fractal::create()
-                           ->collection($Songs)
-                           ->transformWith(new SongsTransformer)                  
-                           ->parseIncludes(['autors','Seller','Tags'])
-                           ->toArray();          
-
-       return Response::json($Json);
-    }
-
-    public function AllAprovedAlbums()
-    {
-      $Albums = Albums::where('status','=','Aprobado')
-                                                        ->with('Seller')
-                                                        ->with('Autors')
-                                                        ->with('tags_music')  
-                                ->get();
-
-      if ($Albums->isEmpty()) { 
-                return Response::json(['status'=>'Esta Vacio'], 200);
-                  }
-
-
-      $Json = Fractal::create()
-                           ->collection($Albums)
-                           ->transformWith(new AlbumsTransformer)                  
-                           ->parseIncludes(['songs','Autors','Seller','tags_music'])
-                           ->toArray();
-
-        return Response::json($Json);
-    }
-
-    public function AllAprovedMusicAuthors()
-    {
-      $MusicAuthors = music_authors::where('status','=','Aprobado')
-                                                                    ->with('Seller')
-                                                                    ->with('songs')
-                                                                    ->with('albums')
-                                                                    ->get();
-
-      if ($MusicAuthors->isEmpty()) { 
-                return Response::json(['status'=>'Esta Vacio'], 204);
-                  }
-
-      $Json = Fractal::create()
-                           ->collection($MusicAuthors)
-                           ->transformWith(new MusicAuthorTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
-                           ->toArray();          
-
-        return Response::json($Json);                 
-    }
 
     public function AllAprovedRadios()
     {
-        /*
-      $Radio = Radio::where('status','=','Aprobado')->get();
-
-      
-      if ($Radio->isEmpty()) 
-      { 
-          return Response::json(['status'=>'Esta Vacio'], 204);
-      }
-
-      $Json = Fractal::create()
-                           ->collection($Radio)
-                           ->transformWith(new RadioTransformer)                
-                           ->toArray();          
-
-        return Response::json($Json);
-        */
         $radios = Radio::where('status','Aprobado')->get();
         $radio = [];
         foreach ($radios as $r) {
@@ -279,184 +183,270 @@ class ContentController extends Controller
 
     public function AllAprovedTvs()
     {
-      $Tvs = Tv::where('status','=','Aprobado')->get();
-
-      if ($Tvs->isEmpty()) 
-      { 
-        return Response::json(['status'=>'Esta Vacio'], 204);
-      }
-
-      $Json = Fractal::create()
-                           ->collection($Tvs)
-                           ->transformWith(new TvTransformer)                
-                           ->toArray();          
-
-        return Response::json($Json);                 
+        $tvs = Tv::where('status','Aprobado')->get();
+        $tv = [];
+        foreach ($tvs as $t) {
+            $tv[] = [
+                'id' => $t->id,
+                'title' => $t->name_r,
+                'cover' => $t->logo,
+                'type' => 'Tv'
+            ];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$tv],200);
     }
 
-    public function AllAprovedBooks()
+    public function reading()
     {
-      $Books= Book::where('status','=','Aprobado')
-                            ->with('author')
-                            ->with('seller')
-                            ->get();
+        $books = Book::where('status','Aprobado')->get();
+        $booksAdd = User::contenidos_add(auth()->user(),'books_id');
 
-            if ($Books->isEmpty()) { 
-                return Response::json(['status'=>'Esta Vacio'], 204);
-                  }
+        $megazines = Megazines::where('status','Aprobado')->get();
+        $megazinesAdd = User::contenidos_add(auth()->user(),'megazines_id');
 
-      $Json = Fractal::create()
-                           ->collection($Books)
-                           ->transformWith(new BooksTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
-                           ->toArray();          
-
-        return Response::json($Json);
+        $reading = [];
+        foreach ($megazines as $m) {
+            $add = (in_array($m->id,$megazinesAdd)) ? true : false;
+            $reading[] = [
+                'id' => $m->id,
+                'title' => $m->title,
+                'cover' => $m->cover,
+                'acquired' => $add,
+                'type' => 'Magazine',
+            ];
+        }
+        foreach ($books as $b) {
+            $add = (in_array($b->id,$booksAdd)) ? true : false;
+            $reading[] = [
+                'id' => $b->id,
+                'title' => $b->title,
+                'cover' => "/images/bookcover/".$b->cover,
+                'acquired' => $add,
+                'type' => 'Book',
+            ];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$reading],200);
     }
 
-    public function AllAprovedMegazines()
+    public function AllAprovedSingles()
     {
-      $Megazines= Megazines::where('status','=','Aprobado')
-                                                            ->with('Seller')
-                                                            ->with('sagas')
-                                                            ->with('tags_megazines')
-                                                            ->with('Rating')
-                                                            ->get();
+        $singles = Songs::whereNull('album')->where('status','Aprobado')->get();
+        $singlesAdd = User::contenidos_add(auth()->user(),'song_id');
+        $single = [];
+        foreach ($singles as $s) {
+            if ($s->cover!=null) {
+                $cover = $s->cover;
+            } else {
+                $author = music_authors::find($s->autors_id);
+                $cover = $author->photo;
+            }
+            $add = (in_array($s->id,$singlesAdd)) ? true : false;
+            $single[] = [
+                'id' => $s->id,
+                'title' => $s->song_name,
+                'cover' => $cover,
+                'acquired' => $add,
+                'type' => 'Single'
+            ];
+        }
+        //return response()->json(['meta'=>['code'=>200],'data'=>$single],200);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+    }
 
-      if ($Megazines->isEmpty()) { 
-                return Response::json(['status'=>'Esta Vacio'], 204);
-                  }
+    public function AllAprovedAlbums()
+    {
+        $albums = Albums::where('status','Aprobado')->get();
+        $albumsAdd = User::contenidos_add(auth()->user(),'album_id');
+        $music = [];
+        foreach ($albums as $a) {
+            $add = (in_array($a->id,$albumsAdd)) ? true : false;
+            $music[] = [
+                'id' => $a->id,
+                'title' => $a->name_alb,
+                'cover' => $a->cover,
+                'author' => $a->seller->name,
+                'acquired' => $add,
+                'type' => 'Album'
+            ];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$music],200);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+    }
 
-      $Json = Fractal::create()
-                           ->collection($Megazines)
-                           ->transformWith(new MegazinesTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
-                           ->toArray();          
+    public function AllAprovedMusicAuthors()
+    {
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+    }
 
-        return Response::json($Json);
+    public function AllAprovedMovies()
+    {
+        $movies = Movie::where('status','Aprobado')->get();
+        $moviesAdd = User::contenidos_add(auth()->user(),'movies_id');
+        $movie = [];
+        foreach ($movies as $m) {
+            $add = (in_array($m->id,$moviesAdd)) ? true : false;
+            $movie[] = [
+                'id' => $m->id,
+                'title' => $m->title,
+                'cover' => '/movie/poster/'.$m->img_poster,
+                'acquired' => $add,
+                'type' => 'Movie',
+            ];
+        }
+        //return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+    }
+
+    public function AllAprovedSeries()
+    {
+        $series = Serie::where('status','Aprobado')->get();
+        $seriesAdd = User::contenidos_add(auth()->user(),'series_id');
+        $movie = [];
+        foreach ($series as $s) {
+            $add = (in_array($s->id,$seriesAdd)) ? true : false;
+            $movie[] = [
+                'id' => $s->id,
+                'title' => $s->title,
+                'cover' => $s->img_poster,
+                'acquired' => $add,
+                'type' => 'Serie',
+            ];
+        }
+        //return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
     }
 //-----------------------------------------------------------------------------------------
 
 //---------------------Contenido Individual------------------------------------------------
     public function Single($id)
     {
-        $Songs=Songs::findOrFail($id)
-                                      ->with('Seller')
-                                      ->with('autors')
-                                      ->get();
-            
-            if ($Songs==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-                    $Json = Fractal::create()
-                           ->collection($Songs)
-                           ->transformWith(new SongsTransformer)                  
-                           ->parseIncludes(['autors','Seller','tags'])
-                           ->toArray();          
-
-            return Response::json($Json);
-    }
-
-    public function Megazine($id)
-    {
-        $Megazines= Megazines::findOrFail($id)
-                                                            ->with('Seller')
-                                                            ->with('sagas')
-                                                            ->with('tags_megazines')
-                                                            ->with('Rating')
-                                                            ->get();
-
-        if ($Megazines==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-            $Json = Fractal::create()
-                           ->item($Megazines)
-                           ->transformWith(new MegazinesTransformer)                
-                           ->parseIncludes(['Seller','Sagas','Rating','Tags'])
-                           ->toArray();
-
-        return Response::json($Json);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
     }
 
     public function Album($id)
     {
-        $Albums = Albums::findOrFail($id)
-                                                        ->with('Seller')
-                                                        ->with('Autors')
-                                                        ->with('tags_music')    
-                                                        ->get();
+        $album = Albums::where('id',$id)->where('status','Aprobado')->get();
+        if ($album->count()!=0) {
+            event(new AlbumTraceEvent(auth()->user()->id, $id));
+            $singlesAdd = User::contenidos_add(auth()->user(),'song_id');
+            $songs = [];
+            foreach ($album as $a) {
+                /*
+                $category = [];
+                foreach ($a->tags_music() as $cat) {
+                    $category[] = [
+                        'name' => $cat->tags_name
+                    ];
+                }
+                */
+                foreach ($a->songs as $song) {
+                    $add = (in_array($song->id,$singlesAdd)) ? true : false;
+                    $songs[] = [
+                        'id' => $song->id,
+                        'song_name' => $song->song_name,
+                        'song_file' => $song->song_file,
+                        'cost' => $song->cost,
+                        'acquired' => $add
+                    ];
+                }
+                $album = [
+                    'id' => $a->id,
+                    'author' => $a->seller->name,
+                    'title' => $a->name_alb,
+                    'cover' => $a->cover,
+                    'cost' => $a->cost,
+                    'songs' => $songs
+                ];
+            }
+        } else {
+            $album = [];
+        }
+        //return response()->json(['meta'=>['code'=>200],'data'=>$album],200);
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+    }
 
-        if ($Albums==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-
-        $Json = Fractal::create()
-                           ->item($Albums)
-                           ->transformWith(new AlbumsTransformer)                  
-                           ->parseIncludes(['songs','Autors','Seller','tags_music'])
-                           ->toArray();
-
-        return Response::json($Json);
+    public function Megazine($id)
+    {
+        $megazines = Megazines::where('id',$id)->where('status','Aprobado')->get();
+        if ($megazines->count()!=0) {
+            event(new MegazineTraceEvent(auth()->user()->id,$id));
+            $megazinesAdd = User::contenidos_add(auth()->user(), 'megazines_id');
+            foreach ($megazines as $m) {
+                $add = (in_array($m->id, $megazinesAdd)) ? true : false;
+                if ($m->saga_id != null) {
+                    $chain = $m->sagas->sag_name;
+                } else {
+                    $chain = 'Independiente';
+                }
+                $category = [];
+                foreach ($m->tags_megazines as $cat) {
+                    $category[] = [
+                        'name' => $cat->tags_name
+                    ];
+                }
+                $reading[] = [
+                    'id' => $m->id,
+                    'title' => $m->title,
+                    'cover' => $m->cover,
+                    'megazine_file' => $m->megazine_file,
+                    'author' => $m->Seller->name,
+                    'category' => $m->Rating->r_name,
+                    'chain_publication' => $chain,
+                    'category' => $category,
+                    'acquired' => $add,
+                    'type' => 'Magazine',
+                ];
+            }
+        } else {
+            $reading = [];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$reading],200);
     }
 
     public function Book($id)
     {
-        $Books= Book::findOrFail($id)
-                                                    ->with('author')
-                                                    ->with('seller')
-                                                    ->get();
-
-                    if ($Books==NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-            $Json = Fractal::create()
-                           ->item($Books)
-                           ->transformWith(new BooksTransformer)                
-                           ->parseIncludes(['Seller','Saga','Rating','Author'])
-                           ->toArray();          
-
-        return Response::json($Json);
-    }
-
-    public function MusicAuthor($id)
-    {
-        $MusicAuthor = music_authors::findOrFail($id)                     ->with('Seller')
-                                                                    ->with('songs')
-                                                                    ->with('albums')
-                                                                    ->get();
-
-        if ($MusicAuthor == NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-        $Json = Fractal::create()
-                           ->item($MusicAuthor)
-                           ->transformWith(new MusicAuthorTransformer)                
-                           ->parseIncludes(['Albums','Seller','Singles'])
-                           ->toArray();          
-
-        return Response::json($Json);                                   
+        $book = Book::where('id',$id)->where('status','Aprobado')->get();
+        if ($book->count()!=0) {
+            event(new BookTraceEvent(auth()->user()->id,$id));
+            $booksAdd = User::contenidos_add(auth()->user(),'books_id');
+            foreach ($book as $b){
+                $add = (in_array($b->id,$booksAdd)) ? true : false;
+                if ($b->saga_id!=null) {
+                    $saga = [
+                        'name' => $b->saga->sag_name,
+                        'before' => $b->before,
+                        'after' => $b->after
+                    ];
+                } else {
+                    $saga = [];
+                }
+                foreach ($b->tags_book as $cat) {
+                    $category[] = [
+                        'name' => $cat->tags_name
+                    ];
+                }
+                $book = [
+                    'id' => $b->id,
+                    'title' => $b->title,
+                    'author' => $b->seller->name, // seller o author?
+                    'category' => $category,
+                    'sinopsis' => $b->sinopsis,
+                    'cover' => "/images/bookcover/".$b->cover,
+                    'book_file' => "/book/".$b->books_file,
+                    'saga' => $saga,
+                    'release_year' => $b->release_year,
+                    'cost' => $b->cost,
+                    'acquired' => $add,
+                ];
+            }
+        } else {
+            $book = [];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$book],200);
     }
 
     public function Radio($id)
     {
-        /*
-        $Radio= Radio::findOrFail($id);
-
-                    if ($Radio == NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-            $Json = Fractal::create()
-                           ->item($Radio)
-                           ->transformWith(new RadioTransformer)                
-                           ->toArray();          
-
-        return Response::json($Json);
-        */
         $radio = Radio::where('id',$id)->where('status','Aprobado')->get();
         if ($radio->count()!=0) {
             event(new RadioTraceEvent(auth()->user()->id,$id));
@@ -470,6 +460,7 @@ class ContentController extends Controller
                     'instagram' => $r->instagram,
                     'facebook' => $r->facebook,
                     'twitter' => $r->twitter,
+                    'web' => $r->web,
                     'type' => 'Radio'
                 ];
             }
@@ -481,18 +472,32 @@ class ContentController extends Controller
 
     public function Tv($id)
     {
-        $Tv= Tv::findOrFail($id);
+        $tv = Tv::where('id',$id)->where('status','Aprobado')->get();
+        if ($tv->count()!=0) {
+            event(new TvTraceEvent(auth()->user()->id,$id));
+            foreach ($tv as $t) {
+                $tv = [
+                    'id' => $t->id,
+                    'title' => $t->name_r,
+                    'cover' => $t->logo,
+                    'streaming' => $t->streaming,
+                    'youtube' => $t->google,
+                    'instagram' => $t->instagram,
+                    'facebook' => $t->facebook,
+                    'twitter' => $t->twitter,
+                    'web' => $t->web,
+                    'type' => 'Tv'
+                ];
+            }
+        } else {
+            $tv = [];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$tv],200);
+    }
 
-                    if ($Tv == NULL) { 
-                                return Response::json(['status'=>'Esta Vacio'], 204);
-                                    }
-
-            $Json = Fractal::create()
-                           ->item($Tv)
-                           ->transformWith(new TvTransformer)                
-                           ->toArray();          
-
-        return Response::json($Json);
+    public function MusicAuthor($id)
+    {
+        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
     }
 //-----------------------------------------------------------------------------------------
 
@@ -672,7 +677,6 @@ class ContentController extends Controller
       }
 
       return Response::json($contenidoDestacado);
-
     }
 //-------------------------RUTAS DE CONTENIDO DESTACADO--------------------------------
     public function test() {

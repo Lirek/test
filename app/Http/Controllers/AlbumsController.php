@@ -363,7 +363,7 @@ class AlbumsController extends Controller
   public function SongConfig(SingleRequest $request)
   {
 
-
+    // dd($request->all());
     $store_path = public_path().'/Music/'.$request->artist.'/singles/'.$ldate = date('Y-m-d');
     $song = $request->file('audio');
 

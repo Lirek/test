@@ -23,10 +23,10 @@ class AlbumTraceEvent
     public $album_id;
     public $user_id;
 
-    public function __construct($album_id,$user_id)
+    public function __construct($user_id,$album_id)
     {
-        $this->album_id;
-        $this->user_id;
+        $this->album_id = $album_id;
+        $this->user_id = $user_id;
     }
 
     /**
