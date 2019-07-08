@@ -1641,7 +1641,20 @@
     
     <script >
     function sendEmailRecuperation() {
-          
+      var gif = "{{ asset('/sistem_images/loading.gif') }}";
+    
+    
+      swal({
+        title: "Enviando correo de recuperación",
+        text: "Espere mientras se lo enviamos.",
+        icon: gif,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+        onOpen: () => {
+          swal.showLoading();
+        }
+        });
     
             $.ajax({
                 url:"{{url('/bidder_password/email')}}", 
@@ -1656,7 +1669,7 @@
 
                     if(result.error == "false"){
                         
-                            
+                            swal.close();
                          M.toast({html: 'Se ha enviado el mensaje de recuperación a su correo electronico!', displayLenght: 2000 
             
                   }) ;
@@ -1667,6 +1680,8 @@
                                 }
                         
                     }else{
+                      
+                      swal.close();
                          $('#validarCorreo').show();
                     
                     }
