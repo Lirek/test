@@ -82,7 +82,7 @@
     <br>
     @if($products->count()!=0)
     	@foreach($products as $product)
-    		<div class="col s4">
+    		<div class="col s3">
     			<div class="card">
                     <div class="card-image">
                     <div class="slider">
@@ -98,7 +98,7 @@
     				<a class="btn-floating halfway-fab activator btn-small waves-effect waves-light green"><i class="material-icons">arrow_upward</i></a>
     				<b>Nombre: </b>{{ $product->name }}
 					<br>
-					<b>Costo: </b> {{ $product->cost*$costo->costo }} <small> Puntos.</small>
+					<b>Costo: </b> {{ceil($product->cost*$costo->costo)}} <small> Puntos.</small>
     				<div class="card-content">
     					<div class="card-action">
     						<a class="btn-small waves-effect waves-light btn orange darken-3 modal-trigger curvaBoton" value="{{ $product->id }}" id="editProduct" href="#updateProduct">
@@ -119,7 +119,7 @@
 							<br>
 							<b>Descripción: </b>{{ $product->description }}
 							<br>
-							<b>Costo: </b>{{ $product->cost }}
+							<b>Costo: </b>{{ceil($product->cost*$costo->costo)}}
 							<br>
 							<b>Cantidad: </b>{{ $product->amount }}
 							<br>
@@ -233,8 +233,16 @@
 					<form method="POST" id="NewRadioForm" action="{{url('productUpdate')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
 						{{ csrf_field() }}
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
-						<div class="col s12">
-							<div class="col s6">
+						<div class="col s6">
+                            <table class="responsive-table" id="todasLasfotos">
+                                <thead>
+                                  <tr>
+                                    <th><i class="material-icons"></i>Foto</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="fotostabla">
+                                </tbody>
+                            </table>
                                 <div id="otro">
                                     <div class="agregar">
                                         <div class="file-field input-field">
@@ -389,6 +397,46 @@
             });
 		});
 
+        $(document).on('click', '#rejectProduct', function() {
+            var id = $(this).attr("value");
+            console.log(id);
+            swal({
+                title: "¿Desea realmente eliminar el producto?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: ["Cancelar", "Si"]
+            }).then((confir) => {
+                if (confir) {
+                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    swal({
+                        title: "Procesando la información",
+                        text: "Espere mientras se procesa la información.",
+                        icon: gif,
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
+                    $.ajax({
+                        url : "{{url('deleteProduct/')}}/"+producto,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            swal('Eliminado exitosamente','','success')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        },
+                        error: function(data) {
+                            swal('Existe un error en su solicitud','','error')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
 		$(document).on('click', '#editProduct', function() {
 			var producto = $(this).attr("value");
 			var gif = "{{ asset('/sistem_images/loading.gif') }}";
@@ -422,6 +470,20 @@
                                 wrapper.append(otrosHTML(info.id,info.cost));
                             });
                         }
+                            $.each(info.save_img, function(i,info){
+                                console.log(info);
+                                var boton = "<a class='btn light-blue lighten-1 curvaBoton' value="+info.id+" href='#reject' id='rejectProduct'>Eliminar</a>";
+
+                                if (info.imagen_prod ) {
+                                    var portada = 
+                                    "<img class='materialboxed' width='300' height='400' src='{!!asset('"+info.imagen_prod+"')!!}'<br>"+boton;
+                                } 
+
+                                var filas = "<tr><td>"+
+                                portada+"</td></tr>";
+                                $("#fotostabla").append(filas);
+
+                            });
                     });
                 },
                 error: function(data) {
@@ -433,10 +495,10 @@
             });
 		});
 
-		$(document).on('click', '#deleteProduct', function() {
-			var producto = $(this).attr("value");
+		$(document).on('click', '#rejectProduct', function() {
+			var id = $(this).attr("value");
 			swal({
-                title: "¿Desea realmente eliminar el producto?",
+                title: "¿Desea realmente eliminar esta imagen?",
                 icon: "warning",
                 dangerMode: true,
                 buttons: ["Cancelar", "Si"]
@@ -452,7 +514,7 @@
 		                closeOnClickOutside: false
 		            });
 		            $.ajax({
-		                url : "{{url('productDelete/')}}/"+producto,
+		                url : "{{url('deletePicture/')}}/"+id,
 		                type: "GET",
 		                dataType: "json",
 		                success: function(data) {

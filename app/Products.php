@@ -125,6 +125,13 @@ class Products extends Model
         return $adjunto;
     }
 
+    public static function deleteoneAdjunto($id) {
+        $adjunto = image_product::find($id);
+        File::delete(public_path().$adjunto->imagen_prod);
+        image_product::destroy($adjunto->id);
+        return $adjunto;
+    }
+
     public static function deleteProducto($id) {
     	$product = self::find($id);
     	File::delete(public_path().$product->pdf_prod);

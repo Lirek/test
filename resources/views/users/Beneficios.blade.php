@@ -10,6 +10,12 @@
   height: 100%;
   
 }
+
+#img_formato{
+    height: 100%;
+    width: 100%
+}
+
 </style>
 
 
@@ -58,8 +64,8 @@
                 </ul>
               </div>
               <div class="card-action">
-                  <span>Costo del producto: {{$bene->cost}} </span><br>
-                  <small>Productos disponible: {{$bene->amount}} </small><br><br>
+                  <span>Costo: {{ceil($bene->cost*$costo->costo)}} </span><br>
+                  <small>Stock: {{$bene->amount}} </small><br><br>
                   <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
                   <a class="waves-effect waves-light btn curvaBoton modal-trigger disabled"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
                   <br>
@@ -127,25 +133,28 @@
       <div id="test01" class="col s12 center">
         @if($beneficio != "")
           @foreach($beneficio as $bene)
-           <div  class="col m4 s6 ">
+           <div  class="col m3 s12 ">
               <div class="card">
                 <div class="card-image">
                   <div class="slider">
                     <ul class="slides">    
                       @for ($i=0; $i < count($bene->saveImg); $i++) 
                         <li>
-                          <img src="{{ asset($bene->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
+                          <img src="{{ asset($bene->saveImg[$i]->imagen_prod) }}" style="height: 100%; width: 100%">
                         </li>
                       @endfor
                     </ul>
                   </div>
+                  <a class="btn-floating halfway-fab waves-effect waves-light blue darken-1" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
                 </div>
-                  <div class="card-action">
-                      <span>Costo del producto: {{$bene->cost*$costo->costo}} </span><br>
-                      <small>Productos disponible: {{$bene->amount}} </small><br><br>
-                      <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
+                  <div class="card-action s12">
+                      <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}}</small>
+                      <b><small>Stock: {{$bene->amount}} </small></b>
+                      <br>
+                      <br>
                       @if($bene->amount > 0)
-                      <a  href="#miModal-{!!$bene['id']!!}" id="botonModal" value="{!!$bene['id']!!}" class="waves-effect waves-light btn curvaBoton modal-trigger"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
+                      <a  href="#miModal-{!!$bene['id']!!}" id="botonModal" value="{!!$bene['id']!!}" class="waves-effect  waves-light btn curvaBoton modal-trigger blue darken-1" ><i class="material-icons left">assignment_turned_in</i>Canjear</a>
                       @else
                       <a class="waves-effect waves-light btn curvaBoton modal-trigger disabled"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
                       @endif
