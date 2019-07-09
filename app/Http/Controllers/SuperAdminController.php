@@ -89,6 +89,11 @@ class SuperAdminController extends Controller
         return response()->json($borrar);
       }
 
+      public function deletePicture($idPicture) {
+        $adjunto = Products::deleteoneAdjunto($idPicture);
+        return response()->json($adjunto);
+    }
+
 
    //------------------------Panel de finanzas--------------------
 
@@ -382,6 +387,7 @@ class SuperAdminController extends Controller
       $producto->imagen_prod = asset($producto->imagen_prod);
       $producto->pdf_prod = asset($producto->pdf_prod);
       $producto->SubProducto;
+      $producto->saveImg;
     });
     return response()->json($producto);
   }

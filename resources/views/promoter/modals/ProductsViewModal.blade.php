@@ -149,6 +149,15 @@
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
 						<div class="col s12">
 							<div class="col s6">
+								<table class="responsive-table" id="todasLasfotos">
+	                                <thead>
+	                                  <tr>
+	                                    <th><i class="material-icons"></i>Foto</th>
+	                                  </tr>
+	                                </thead>
+	                                <tbody id="fotostabla">
+	                                </tbody>
+	                            </table>
                                 <div id="otro">
                                     <div class="agregar">
                                         <div class="file-field input-field">

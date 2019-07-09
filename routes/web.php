@@ -757,6 +757,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::post('storeProducts','SuperAdminController@storeProducts');
             Route::get('dataProducts/{status}','SuperAdminController@dataProducts');
             Route::get('infoProduct/{id}','SuperAdminController@infoProduct');
+            Route::get('PictureDelete/{id}','SuperAdminController@deletePicture');
             Route::post('updateProduct','SuperAdminController@updateProduct');
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
@@ -1423,6 +1424,7 @@ Route::group(['middleware' => 'bidder_auth'], function(){
     Route::post('productStore','ProductController@productStore');
     Route::get('productDelete/{idProduct}','ProductController@productDelete');
     Route::get('productInfo/{idProduct}','ProductController@productInfo');
+    Route::get('deletePicture/{id}','ProductController@deletePicture');
     Route::post('productUpdate','ProductController@productUpdate');
     Route::get('retiro/{status?}','BidderController@retiro');
     Route::post('retirar','BidderController@retirar');

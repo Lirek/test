@@ -109,6 +109,92 @@
             </tbody>
         </table>
     </div>
+
+    <div class="modal fade" id="updateProduct">
+        <div class="modal-content">
+            <div class="col s12 pink darken-3 text-center">
+                <h4 class="white-text" style="padding: 25px 0px">Modifique un producto</h4>
+            </div>
+            <div style="margin-top: -15px">
+                <div class="text-center row">
+                    <form method="POST" id="NewRadioForm" action="{{url('updateProduct')}}" enctype="multipart/form-data" class="form-horizontal style-form" role="form">
+                        {{ csrf_field() }}
+                        <input type="hidden" id="idUpdate" value="" name="idUpdate">
+                        <div class="col s12">
+                            <div class="col s6">
+                                <table class="responsive-table" id="todasLasfotos">
+                                    <thead>
+                                      <tr>
+                                        <th><i class="material-icons"></i>Foto</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="fotostabla">
+                                    </tbody>
+                                </table>
+                                <div id="otro">
+                                    <div class="agregar">
+                                        <div class="file-field input-field">
+                                            <div class="btn blue">
+                                                <span>seleccione<i class="material-icons right">insert_photo</i></span>
+                                                <input type="file" accept="image/*" class="validate" id="otraImagen" name="otraImagen[]">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text">
+                                            </div>
+                                        </div>
+                                    <br>
+                                    <br>
+                                    </div>
+                                    <a class="btn curvaBoton waves-effect waves-light green add_button" id="btnAdd" style="margin-top: 25%;">
+                                        <i class="material-icons"></i>Agregar otra imagen
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input type="text" class="count" id="name_u" name="name" value="" required="required" autofocus="autofocus" data-length="191" placeholder="">
+                                    <label for="name">Nombre del producto</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" class="count" id="description_u" name="description" value="" required="required"  data-length="191" placeholder="">
+                                    <label for="description">Descripción</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="number" id="cost_u" name="cost" value="" required="required" min="0" placeholder="">
+                                    <label for="cost">Costo</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="number" id="amount_u" name="amount" value="" required="required" min="1" placeholder="">
+                                    <label for="amount">Cantidad</label>
+                                </div>
+                                <a class='btn-large blue' id='pdf_prod_u' href='' target='_blank'>
+                                    <i class='material-icons left'>picture_as_pdf</i>
+                                    Ver PDF
+                                </a>
+                                <br>
+                                <small>Si no cambia el PDF se mantendrá el anterior</small>
+                                <div class="file-field input-field">
+                                    <div class="btn blue">
+                                        <span>seleccione<i class="material-icons right">picture_as_pdf</i></span>
+                                        <input type="file" accept=".pdf" name="pdf_prod" id="pdf_prod" class="validate">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <button class="btn curvaBoton" type="submit" id="enviar">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @include('promoter.modals.ProductsViewModal')
 @endsection
 @section('js')
@@ -278,6 +364,7 @@
                 success: function(data) {
                     swal.close();
                     $.each(data,function(i,info) {
+                        console.log(data);
                         $("#idUpdate").val(producto);
                         $("#name_u").val(info.name);
                         $("#description_u").val(info.description);
@@ -292,6 +379,20 @@
                                 wrapper.append(otrosHTML(info.id,info.cost));
                             });
                         }
+                            $.each(info.save_img, function(i,info){
+                                console.log(info);
+                                var boton = "<a class='btn light-blue lighten-1 curvaBoton' value="+info.id+" href='#reject' id='rejectPicture'>Eliminar</a>";
+
+                                if (info.imagen_prod ) {
+                                    var portada = 
+                                    "<img class='materialboxed' width='300' height='400' src='{!!asset('"+info.imagen_prod+"')!!}'<br>"+boton;
+                                } 
+
+                                var filas = "<tr><td>"+
+                                portada+"</td></tr>";
+                                $("#fotostabla").append(filas);
+
+                            });
                     });
                 },
                 error: function(data) {
@@ -301,7 +402,47 @@
                     });
                 }
             });
-		});
+        });
+
+        $(document).on('click', '#rejectPicture', function() {
+            var id = $(this).attr("value");
+            swal({
+                title: "¿Desea realmente eliminar esta imagen?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: ["Cancelar", "Si"]
+            }).then((confir) => {
+                if (confir) {
+                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    swal({
+                        title: "Procesando la información",
+                        text: "Espere mientras se procesa la información.",
+                        icon: gif,
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
+                    $.ajax({
+                        url : "{{url('PictureDelete/')}}/"+id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+                            swal('Eliminado exitosamente','','success')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        },
+                        error: function(data) {
+                            swal('Existe un error en su solicitud','','error')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        }
+                    });
+                }
+            });
+        });
 
 		$(document).on('click', '#deleteProduct', function() {
 			var producto = $(this).attr("value");

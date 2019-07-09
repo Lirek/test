@@ -32,12 +32,18 @@ class ProductController extends Controller
     	return response()->json([$adjunto,$product]);
     }
 
+    public function deletePicture($idPicture) {
+        $adjunto = Products::deleteoneAdjunto($idPicture);
+        return response()->json($adjunto);
+    }
+
     public function productInfo($idProduct) {
     	$product = Products::findProducto($idProduct);
     	$product->each(function($product){
     		$product->imagen_prod = asset($product->imagen_prod);
     		$product->pdf_prod = asset($product->pdf_prod);
     		$product->SubProducto;
+            $product->saveImg;
     	});
     	return response()->json($product);
     }

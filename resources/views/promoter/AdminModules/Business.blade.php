@@ -4,7 +4,7 @@
     <span class="card-title grey-text"><h3>Balance de la Plataforma</h3></span>
     <div class="row">
       <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+        <div class="card  pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Tickets Vendidos</span>
             <i class="large material-icons">confirmation_number</i>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+        <div class="card  pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Puntos Asignados</span>
             <i class="large material-icons">cached</i>
@@ -34,7 +34,7 @@
       </div>
 
       <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+        <div class="card  pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Puntos de Leipel</span>
             <img src="{{asset('sistem_images/Leipel Logo-02.png')}}" width="128px">
@@ -142,7 +142,7 @@
 
 <div class="row">
       <div class="col s12 m6 l4">
-        <div class="card light-blue darken-3 hoverable">
+        <div class="card  pink darken-3 darken-3 hoverable">
           <div class="card-content white-text">
             <span class="card-title">Rutina De Puntos Pendientes</span>
             <i class="large material-icons">confirmation_number</i>
