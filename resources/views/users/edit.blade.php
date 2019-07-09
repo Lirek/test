@@ -297,7 +297,19 @@
                                         <br>
                                         {{$mipatro->phone}}
                                     @else
-                                        <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
+                                    <div class="card-content">
+                                      <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
+                                      
+                                      <div class="" id="referir">
+                                          <i class="material-icons blue-text medium">person_add</i>
+                                          <h6 class="blue-text">Agregar código de patrocinador</h6>
+                                          <br>
+                                          <a   href="#myModalRefe" class="modal-trigger waves-effect waves-light btn curvaBoton">Agregar<i class="material-icons left">add</i></a>
+                                      </div>
+                                        
+                                    </div>
+                                        
+                                        
                                 @endif
 
                                 <!-- {{$user->email}} -->
@@ -305,6 +317,12 @@
                                 </div>
                                 {!! Form::close() !!}
                             </div>
+                          
+                            
+                            
+                            
+                            
+                            
                             <!-- CLOSE ACCOUNT -->
                             <div id="profile-card" class="card">
                                 <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
@@ -419,6 +437,35 @@
     </div>
     </div>
     </div>
+    
+    <!--MODAL ToTal-->
+    <div id="myModalRefe" class="modal modal-s" >
+        <div class="modal-content">
+            <div class=" blue"><br>
+                <h4 class="center white-text" >Ingrese el código</h4>
+                <br>
+            </div>
+            <br>
+            <div class="row">
+                <form class="col m6 offset-m3"  method="POST" action="{{url('Referals')}}" id="patrocinador" >{{ csrf_field() }}
+                        <div class="input-field col m12 ">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
+                            <label for="codigo">Código</label>
+                            <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
+                            <div id="codigoMen"></div>
+                        </div>
+                        <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Enviar
+                            <i class="material-icons right">send</i>
+                        </button>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+    </div>
+    <!--FIN DEL MODAL-->
 
 
 @endsection
@@ -459,6 +506,39 @@
                 }
             });
         });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var f1 = document.getElementById('id').value;
+            var f = new Date();
+            var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
+
+            var tiempo=restaFechas(f1,f2);
+            if (tiempo > 7){
+                document.getElementById('referir').style.display='none';
+                document.getElementById('cantidad').classList.remove('m3');
+                document.getElementById('cantidad').classList.add('m5');
+                document.getElementById('puntos').classList.remove('m3');
+                document.getElementById('puntos').classList.add('m5');
+            }else{
+                var total=6-tiempo;
+                console.log(tiempo);
+                document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
+            }
+
+        });
+        restaFechas = function(f1,f2)
+        {
+            var aFecha1 = f1.split('-');
+            var dFecha= aFecha1[2].split(' ');
+            var aFecha2 = f2.split('/');
+            var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,dFecha[0]);
+            var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+            var dif = fFecha2 - fFecha1;
+            var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+            return dias;
+        }
     </script>
 
     <script type="text/javascript">
