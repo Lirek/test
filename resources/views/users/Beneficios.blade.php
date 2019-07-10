@@ -78,7 +78,7 @@
                 </div>     
                   <div class="card-content s12">
                       <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
-                      <small>Costo: {{ceil($bene->cost*$costo->costo)}}</small>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
                       <b><small>Stock: {{$bene->amount}} </small></b>
                       <br>
                       <br>
@@ -170,7 +170,7 @@
                 </div>
                   <div class="card-content s12">
                       <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
-                      <small>Costo: {{ceil($bene->cost*$costo->costo)}}</small>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
                       <b><small>Stock: {{$bene->amount}} </small></b>
                       <br>
                       <br>
@@ -290,7 +290,7 @@
           <div class="col s12">
               <br><br>
       
-                  <i class="material-icons fixed-width large grey-text">sentiment_dissatisfied</i><br><h5 blue-text text-darken-2>Usted todavia no ha retirado ningun producto.</h5>
+                  <br><h5 blue-text text-darken-2>Usted todavia no ha retirado ningun producto.</h5>
               
           </div>
         @endif
