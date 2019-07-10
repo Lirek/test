@@ -12,10 +12,18 @@
 }
 
 #img_formato{
-    height: 100%;
-    width: 100%
+    height: 60%;
+    width: 100%;
+    position: absolute;
+    z-index:-1;
 }
 
+#boton {
+        float: right;
+        position: relative;
+        z-index:5;
+        }
+ 
 </style>
 
 
@@ -52,26 +60,37 @@
       <div id="test01" class="col s12 center">
         @if($beneficio != "")
           @foreach($beneficio as $bene)
-          <div  class="col m4 s12 ">
-            <div class="card">
-              <div class="slider">
-                <ul class="slides">    
-                  @for ($i=0; $i < count($bene->saveImg); $i++) 
-                    <li>
-                      <img src="{{ asset($bene->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
-                    </li>
-                  @endfor
-                </ul>
-              </div>
-              <div class="card-action">
-                  <span>Costo: {{ceil($bene->cost*$costo->costo)}} </span><br>
-                  <small>Stock: {{$bene->amount}} </small><br><br>
-                  <a  href="{{asset($bene->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
-                  <a class="waves-effect waves-light btn curvaBoton modal-trigger disabled"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
-                  <br>
+           <div  class="col m3 s12 ">
+              <div class="card medium">
+                <div class="card-image">
+                  <div class="slider">
+                    <ul class="slides">    
+                      @for ($i=0; $i < count($bene->saveImg); $i++) 
+                        <li>
+                          <img id="img_formato" src="{{ asset($bene->saveImg[$i]->imagen_prod) }}">
+                        </li>
+                      @endfor
+                    </ul>
+                  </div>
+                  <div class="card-action s12">
+                  <a class="btn-floating blue darken-1" id="boton" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
+                </div>
+                </div>     
+                  <div class="card-content s12">
+                      <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}}</small>
+                      <b><small>Stock: {{$bene->amount}} </small></b>
+                      <br>
+                      <br>
+                      @if($bene->amount > 0)
+                      <a  href="#miModal-{!!$bene['id']!!}" id="botonModal" value="{!!$bene['id']!!}" class="waves-effect  waves-light btn curvaBoton modal-trigger blue darken-1" ><i class="material-icons left">assignment_turned_in</i>Canjear</a>
+                      @else
+                      <a class="waves-effect waves-light btn curvaBoton modal-trigger disabled"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
+                      @endif
+                      <br>
+                  </div>
               </div>
             </div>
-          </div>
           <div class="modal" id="miModal-{!!$bene['id']!!}">
             <div class="modal-content">
               <div class="col s12 light-blue lighten-1 text-center">
@@ -134,20 +153,22 @@
         @if($beneficio != "")
           @foreach($beneficio as $bene)
            <div  class="col m3 s12 ">
-              <div class="card">
+              <div class="card medium">
                 <div class="card-image">
                   <div class="slider">
                     <ul class="slides">    
                       @for ($i=0; $i < count($bene->saveImg); $i++) 
                         <li>
-                          <img src="{{ asset($bene->saveImg[$i]->imagen_prod) }}" style="height: 100%; width: 100%">
+                          <img id="img_formato" src="{{ asset($bene->saveImg[$i]->imagen_prod) }}">
                         </li>
                       @endfor
                     </ul>
                   </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light blue darken-1" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
-                </div>
                   <div class="card-action s12">
+                  <a class="btn-floating blue darken-1" id="boton" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
+                </div>
+                </div>
+                  <div class="card-content s12">
                       <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
                       <small>Costo: {{ceil($bene->cost*$costo->costo)}}</small>
                       <b><small>Stock: {{$bene->amount}} </small></b>
@@ -208,22 +229,24 @@
       <div id="test02" class="col s12 center">
         @if($mios->count()!=0)
           @foreach($mios as $produc)
-           <div  class="col m4 s6 ">
-                <div class="card">
+           <div  class="col m3 s12 ">
+                <div class="card medium">
                   <div class="card-image">
                     <div class="slider">
                       <ul class="slides">    
                        @for ($i=0; $i < count($produc->Producto->saveImg); $i++) 
                           <li>
-                            <img src="{{ asset($produc->Producto->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
+                            <img id="img_formato" src="{{ asset($produc->Producto->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
                           </li>
                         @endfor 
                       </ul>
                     </div>
+                    <div class="card-action s12">
+                  <a class="btn-floating blue darken-1" id="boton" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
+                </div>
                   </div>
-                    <div class="card-action">
+                    <div class="card-content">
                         <span>Total de compra: {{$produc->amount}} puntos.</span><br><br>
-                        <a  href="{{asset($produc->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
                         <a id="entrega" value="{!!$produc['id']!!}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Recibido</a>
                         <br>
                     </div>
@@ -243,23 +266,22 @@
       <div id="test03" class="col s12 center">
         @if($entregado->count()!=0)
           @foreach($entregado as $entrega)
-           <div  class="col m4 s6 ">
-                <div class="card">
+           <div  class="col m3 s12 ">
+                <div class="card medium">
                     <div class="card-image">
                     <div class="slider">
                       <ul class="slides">    
                         @for ($i=0; $i < count($entrega->Producto->saveImg); $i++) 
                           <li>
-                            <img src="{{ asset($entrega->Producto->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
+                            <img id="img_formato" src="{{ asset($entrega->Producto->saveImg[$i]->imagen_prod) }}" height="100%" width="100%">
                           </li>
                         @endfor
                       </ul>
                     </div>
                   </div>
-                    <div class="card-action">
+                    <div class="card-content">
                         <span>Total de compra: {{$entrega->amount}} puntos.</span><br><br>
                         <a  href="{{asset($entrega->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
-                        <br>
                     </div>
                 </div>
             </div>
