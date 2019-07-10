@@ -883,6 +883,16 @@ Route::group(['middleware' => 'seller_guest'], function () {
 
 //-------------FIN DE LAS RUTAS DE OLVIDO SU CONTRASEÑA-------------
 
+
+//------------------RUTAS DE OLVIDO SU CONTRASEÑA BIDDER-------------------
+
+    Route::get('bidder_password/reset', 'BidderAuth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('bidder_password/email', 'BidderAuth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('bidder_password/reset/{token}', 'BidderAuth\ResetPasswordController@showResetForm');
+    Route::post('bidder_password/reset', 'BidderAuth\ResetPasswordController@reset');
+
+//-------------FIN DE LAS RUTAS DE OLVIDO SU CONTRASEÑA BIDDER-------------
+
 });
 
 

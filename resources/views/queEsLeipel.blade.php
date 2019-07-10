@@ -357,7 +357,7 @@
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="{{ url('/password/reset') }}">
-                            Olvide mi contraseña
+                            Olvidé mi contraseña
                         </a>
                     </div>
                     <!--<div class="input-field col s6">
@@ -404,7 +404,7 @@
                         <button class="btn waves-effect curvaBoton waves-light green" id="iniciarP" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
-                        <a class="blue-text" href="#">Olvide mi contraseña </a>
+                        <a class="blue-text" href="{{ url('seller_password/reset') }}">Olvidé mi contraseña </a>
                     </div>
                 </div>
             </form>
@@ -448,7 +448,7 @@
                             <i class="material-icons right">send</i>
                         </button><br>
                         
-                        <a class="blue-text" href="{{ url('') }}">Olvidé mi contraseña </a>
+                        <a class="blue-text" href="{{ url('bidder_password/reset') }}">Olvidé mi contraseña </a>
                         
                     </div>
                 </div>
