@@ -75,8 +75,9 @@
           
             <div class="col s12 m3 ">
               <div class="picture">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzgyqT7XozhUSZh5TncTcu3KagZ1aWp5QqQMEhLpOkmG0r1ascA" width="100%" >
+                <img   src="../movie/poster/{{$m->img_poster}}" width="100%" height="450px" >
 
+            
               </div>
               
             </div>
