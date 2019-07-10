@@ -72,24 +72,22 @@ Route::group(['middleware' => ['cors']], function() {
 
         Route::get('billboard','ApiController\ContentController@billboard');
 
-        Route::get('singles','ApiController\ContentController@AllAprovedSingles');
-        Route::get('albums','ApiController\ContentController@AllAprovedAlbums');
-        Route::get('MusicAuthors','ApiController\ContentController@AllAprovedMusicAuthors');
+        Route::get('music','ApiController\ContentController@music');
         Route::get('reading','ApiController\ContentController@reading');
+        Route::get('movie','ApiController\ContentController@movies');
         Route::get('radio','ApiController\ContentController@AllAprovedRadios');
         Route::get('tvs','ApiController\ContentController@AllAprovedTvs');
-        Route::get('movies','ApiController\ContentController@AllAprovedMovies');
-        Route::get('series','ApiController\ContentController@AllAprovedSeries');
 
         //---------------------------------------------------------------------------
 
         //---------------Rutas de Contenido Especifico----------------------------------
 
-        Route::get('Single/{id}','ApiController\ContentController@Single');
-        Route::get('megazine/{id}','ApiController\ContentController@Megazine');
+        Route::get('single/{id}','ApiController\ContentController@Single');
         Route::get('album/{id}','ApiController\ContentController@Album');
+        Route::get('megazine/{id}','ApiController\ContentController@Megazine');
         Route::get('book/{id}','ApiController\ContentController@Book');
-        Route::get('MusicAuthor/{id}','ApiController\ContentController@MusicAuthor');
+        Route::get('movie/{id}','ApiController\ContentController@movie');
+        Route::get('serie/{id}','ApiController\ContentController@serie');
         Route::get('radio/{id}','ApiController\ContentController@Radio');
         Route::get('tv/{id}','ApiController\ContentController@Tv');
 

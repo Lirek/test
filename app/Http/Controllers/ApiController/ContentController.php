@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\Http\Controllers\Controller;
+
 use App\Events\AlbumTraceEvent;
 use App\Events\BookTraceEvent;
 use App\Events\MegazineTraceEvent;
-use App\Serie;
-use App\Http\Controllers\Controller;
-use JWTAuth;
-use App\Transformers\MovieTransformer;
-use App\Transformers\EpisodeTransformer;
-
+use App\Events\MovieTraceEvent;
+use App\Events\SongTraceEvent;
 use App\Events\TvTraceEvent;
 use App\Events\RadioTraceEvent;
-use Auth;
 
-use Response;
-
+use App\Serie;
 use App\Megazines;
 use App\Albums;
 use App\Songs;
 use App\User;
 use App\Radio;
-use App\Sagas;
-use App\BookAuthor;
 use App\Book;
 use App\Tv;
-use App\music_authors;
 use App\Movie;
-use App\Series;
+use App\music_authors;
+use App\Episode;
+
 use App\RadiosTrace;
 use App\TvTrace;
 use App\MoviesTrace;
@@ -36,7 +31,6 @@ use App\MegazineTrace;
 use App\BooksTrace;
 use App\SongsTrace;
 use App\EpisodeTrace;
-use App\Episode;
 use App\AlbumsTrace;
 
 class ContentController extends Controller
@@ -211,6 +205,7 @@ class ContentController extends Controller
                 'id' => $m->id,
                 'title' => $m->title,
                 'cover' => $m->cover,
+                'cost' => $m->cost,
                 'acquired' => $add,
                 'type' => 'Magazine',
             ];
@@ -221,6 +216,7 @@ class ContentController extends Controller
                 'id' => $b->id,
                 'title' => $b->title,
                 'cover' => "/images/bookcover/".$b->cover,
+                'cost' => $b->cost,
                 'acquired' => $add,
                 'type' => 'Book',
             ];
@@ -228,35 +224,14 @@ class ContentController extends Controller
         return response()->json(['meta'=>['code'=>200],'data'=>$reading],200);
     }
 
-    public function AllAprovedSingles()
+    public function music()
     {
         $singles = Songs::whereNull('album')->where('status','Aprobado')->get();
         $singlesAdd = User::contenidos_add(auth()->user(),'song_id');
-        $single = [];
-        foreach ($singles as $s) {
-            if ($s->cover!=null) {
-                $cover = $s->cover;
-            } else {
-                $author = music_authors::find($s->autors_id);
-                $cover = $author->photo;
-            }
-            $add = (in_array($s->id,$singlesAdd)) ? true : false;
-            $single[] = [
-                'id' => $s->id,
-                'title' => $s->song_name,
-                'cover' => $cover,
-                'acquired' => $add,
-                'type' => 'Single'
-            ];
-        }
-        //return response()->json(['meta'=>['code'=>200],'data'=>$single],200);
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
-    }
 
-    public function AllAprovedAlbums()
-    {
         $albums = Albums::where('status','Aprobado')->get();
         $albumsAdd = User::contenidos_add(auth()->user(),'album_id');
+
         $music = [];
         foreach ($albums as $a) {
             $add = (in_array($a->id,$albumsAdd)) ? true : false;
@@ -265,80 +240,114 @@ class ContentController extends Controller
                 'title' => $a->name_alb,
                 'cover' => $a->cover,
                 'author' => $a->seller->name,
+                'cost' => $a->cost,
                 'acquired' => $add,
                 'type' => 'Album'
             ];
         }
+        foreach ($singles as $s) {
+            if ($s->cover!=null) {
+                $cover = $s->cover;
+            } else {
+                $cover = $s->autors->photo;
+            }
+            $add = (in_array($s->id,$singlesAdd)) ? true : false;
+            $music[] = [
+                'id' => $s->id,
+                'title' => $s->song_name,
+                'cover' => $cover,
+                'author' => $s->autors->name,
+                'cost' => $s->cost,
+                'acquired' => $add,
+                'type' => 'Single'
+            ];
+        }
         return response()->json(['meta'=>['code'=>200],'data'=>$music],200);
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
     }
 
-    public function AllAprovedMusicAuthors()
-    {
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
-    }
-
-    public function AllAprovedMovies()
+    public function movies()
     {
         $movies = Movie::where('status','Aprobado')->get();
         $moviesAdd = User::contenidos_add(auth()->user(),'movies_id');
+
+        $series = Serie::where('status','Aprobado')->get();
+        $seriesAdd = User::contenidos_add(auth()->user(),'series_id');
         $movie = [];
         foreach ($movies as $m) {
             $add = (in_array($m->id,$moviesAdd)) ? true : false;
             $movie[] = [
                 'id' => $m->id,
                 'title' => $m->title,
+                'author' => $m->seller->name,
                 'cover' => '/movie/poster/'.$m->img_poster,
+                'cost' => $m->cost,
                 'acquired' => $add,
                 'type' => 'Movie',
             ];
         }
-        //return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
-    }
-
-    public function AllAprovedSeries()
-    {
-        $series = Serie::where('status','Aprobado')->get();
-        $seriesAdd = User::contenidos_add(auth()->user(),'series_id');
-        $movie = [];
         foreach ($series as $s) {
             $add = (in_array($s->id,$seriesAdd)) ? true : false;
             $movie[] = [
                 'id' => $s->id,
                 'title' => $s->title,
+                'author' => $m->seller->name,
                 'cover' => $s->img_poster,
+                'cost' => $s->cost,
                 'acquired' => $add,
                 'type' => 'Serie',
             ];
         }
-        //return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+        return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
     }
+
 //-----------------------------------------------------------------------------------------
 
 //---------------------Contenido Individual------------------------------------------------
     public function Single($id)
     {
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+        $single = Songs::where('id',$id)->whereNull('album')->where('status','Aprobado')->get();
+        $songs = [];
+        if ($single->count()!=0) {
+            event(new SongTraceEvent(auth()->user()->id,$id));
+            $singlesAdd = User::contenidos_add(auth()->user(),'song_id');
+            foreach ($single as $s) {
+                $add = (in_array($s->id,$singlesAdd)) ? true : false;
+                if ($s->cover!=null) {
+                    $cover = $s->cover;
+                } else {
+                    $cover = $s->autors->photo;
+                }
+                $categoria = [];
+                foreach ($s->tags as $tags) {
+                    $categoria[] = [
+                        'name' => $tags->tags_name
+                    ];
+                }
+                $songs = [
+                    'id' => $s->id,
+                    'song_name' => $s->song_name,
+                    'song_file' => $s->song_file,
+                    'cover' => $cover,
+                    'author' => $s->autors->name,
+                    'cost' => $s->cost,
+                    'acquired' => $add,
+                    'category' => $categoria
+                ];
+            }
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$songs],200);
     }
 
     public function Album($id)
     {
         $album = Albums::where('id',$id)->where('status','Aprobado')->get();
+        $albums = [];
         if ($album->count()!=0) {
             event(new AlbumTraceEvent(auth()->user()->id, $id));
             $singlesAdd = User::contenidos_add(auth()->user(),'song_id');
+            $albumsAdd = User::contenidos_add(auth()->user(),'album_id');
             $songs = [];
             foreach ($album as $a) {
-                /*
-                $category = [];
-                foreach ($a->tags_music() as $cat) {
-                    $category[] = [
-                        'name' => $cat->tags_name
-                    ];
-                }
-                */
                 foreach ($a->songs as $song) {
                     $add = (in_array($song->id,$singlesAdd)) ? true : false;
                     $songs[] = [
@@ -349,20 +358,19 @@ class ContentController extends Controller
                         'acquired' => $add
                     ];
                 }
-                $album = [
+                $add = (in_array($a->id,$albumsAdd)) ? true : false;
+                $albums = [
                     'id' => $a->id,
-                    'author' => $a->seller->name,
                     'title' => $a->name_alb,
                     'cover' => $a->cover,
+                    'author' => $a->seller->name,
                     'cost' => $a->cost,
+                    'acquired' => $add,
                     'songs' => $songs
                 ];
             }
-        } else {
-            $album = [];
         }
-        //return response()->json(['meta'=>['code'=>200],'data'=>$album],200);
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+        return response()->json(['meta'=>['code'=>200],'data'=>$albums],200);
     }
 
     public function Megazine($id)
@@ -384,7 +392,7 @@ class ContentController extends Controller
                         'name' => $cat->tags_name
                     ];
                 }
-                $reading[] = [
+                $reading = [
                     'id' => $m->id,
                     'title' => $m->title,
                     'cover' => $m->cover,
@@ -393,8 +401,8 @@ class ContentController extends Controller
                     'category' => $m->Rating->r_name,
                     'chain_publication' => $chain,
                     'category' => $category,
-                    'acquired' => $add,
-                    'type' => 'Magazine',
+                    'cost' => $m->cost,
+                    'acquired' => $add
                 ];
             }
         } else {
@@ -460,8 +468,7 @@ class ContentController extends Controller
                     'instagram' => $r->instagram,
                     'facebook' => $r->facebook,
                     'twitter' => $r->twitter,
-                    'web' => $r->web,
-                    'type' => 'Radio'
+                    'web' => $r->web
                 ];
             }
         } else {
@@ -485,8 +492,7 @@ class ContentController extends Controller
                     'instagram' => $t->instagram,
                     'facebook' => $t->facebook,
                     'twitter' => $t->twitter,
-                    'web' => $t->web,
-                    'type' => 'Tv'
+                    'web' => $t->web
                 ];
             }
         } else {
@@ -495,10 +501,93 @@ class ContentController extends Controller
         return response()->json(['meta'=>['code'=>200],'data'=>$tv],200);
     }
 
-    public function MusicAuthor($id)
+    public function movie($id)
     {
-        return response()->json(['meta'=>['code'=>404],'data'=>'Not Found'],200);
+        $movies = Movie::where('id',$id)->where('status','Aprobado')->get();
+        $movie = [];
+        if ($movies->count()!=0) {
+            event(new MovieTraceEvent(auth()->user()->id,$id));
+            $moviesAdd = User::contenidos_add(auth()->user(),'movies_id');
+            foreach ($movies as $m) {
+                $add = (in_array($m->id,$moviesAdd)) ? true : false;
+                if ($m->saga_id!=null) {
+                    $saga = $m->saga->sag_name;
+                } else {
+                    $saga = "No pertenece a una saga";
+                }
+                $movie = [
+                    'id' => $m->id,
+                    'title' => $m->title,
+                    'cover' => '/movie/poster/'.$m->img_poster,
+                    'trailer' => $m->trailer_url,
+                    'file' => $m->duration,
+                    'sinopsis' => $m->based_on,
+                    'saga' => $saga,
+                    'category' => $m->rating->r_name,
+                    'cost' => $m->cost,
+                    'acquired' => $add
+                ];
+            }
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$movie],200);
     }
+
+    public function serie($id)
+    {
+        $series = Serie::where('id',$id)->where('status','Aprobado')->get();
+        $serie = [];
+        if ($series->count()!=0) {
+            // crear el evento
+            //event(new SeriesTraceEvent(auth()->user()->id,$id));
+            $seriesAdd = User::contenidos_add(auth()->user(),'series_id');
+            $episodes = [];
+            foreach ($series as $s) {
+                if ($s->Episode()) {
+                    foreach ($s->Episode as $episode) {
+                        if($episode->status =='Aprobado') {
+                            $episodeAdd = User::contenidos_add(auth()->user(),'episodes_id');
+                            $add = (in_array($s->id,$episodeAdd)) ? true : false;
+                            $episodes[] = [
+                                'id' => $episode->id,
+                                'title' => $episode->episode_name,
+                                'trailer' => $episode->trailer_url,
+                                'file' => $episode->episode_file,
+                                'sinopsis' => $episode->sinopsis,
+                                'cost' => $episode->cost,
+                                'acquired' => $add
+                            ];
+                        }
+                    }
+                }
+                if ($s->saga_id!=null) {
+                    $saga = $s->saga->sag_name;
+                } else {
+                    $saga = "No pertenece a una saga";
+                }
+                $categoria = [];
+                foreach ($s->tags_serie as $tags) {
+                    $categoria [] = [
+                        'name' => $tags->tags_name
+                    ];
+                }
+                $add = (in_array($s->id,$seriesAdd)) ? true : false;
+                $serie = [
+                    'id' => $s->id,
+                    'title' => $s->title,
+                    'cover' => $s->img_poster,
+                    'trailer' => $s->trailer,
+                    'sinopsis' => $s->story,
+                    'cost' => $s->cost,
+                    'saga' => $saga,
+                    'acquired' => $add,
+                    'category' => $categoria,
+                    'episode' => $episodes
+                ];
+            }
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$serie],200);
+    }
+
 //-----------------------------------------------------------------------------------------
 
 //---------------------Trace de Contenidos------------------------------------------------
