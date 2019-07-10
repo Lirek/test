@@ -83,7 +83,7 @@
 
 
                                             <a href="whatsapp://send?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-text="{{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share" class="miestilo" style="border: none; margin: 10px 0; font-size: 16px;">
-                                                <img border="0" src="{{asset('sistem_images/WhatsApp.png')}}" width="50" height="50"> Compartir
+                                                <img border="0" src="{{asset('sistem_images/WhatsApp.png')}}" width="50" height="50">
                                             </a>
 
 
