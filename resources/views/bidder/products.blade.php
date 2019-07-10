@@ -73,6 +73,14 @@
         margin: auto;
         text-align: center;
     }
+
+    #img_formato {
+        height: 60%;
+        width: 100%;
+        position: absolute;
+        z-index:-1;
+    }
+
 </style>
 @section('content')
 	<h4 class="titelgeneral"><i class="material-icons small">shopping_basket</i> Mis productos</h4>
@@ -82,18 +90,18 @@
     <br>
     @if($products->count()!=0)
     	@foreach($products as $product)
-    		<div class="col s3">
-    			<div class="card">
-                    <div class="card-image">
-                    <div class="slider">
-                      <ul class="slides"> 
-    				@for ($i=0; $i < count($product->saveImg); $i++)
-                          <li>
-                            <img src="{{ asset($product->saveImg[$i]->imagen_prod) }}"> <!-- random image -->
-                          </li>                        
-                    @endfor
+    		<div  class="col m3 s12 ">
+              <div class="card medium">
+                <div class="card-image">
+                  <div class="slider">
+                    <ul class="slides">    
+                      @for ($i=0; $i < count($product->saveImg); $i++) 
+                        <li>
+                          <img id="img_formato" src="{{ asset($product->saveImg[$i]->imagen_prod) }}">
+                        </li>
+                      @endfor
                     </ul>
-                    </div>
+                  </div>
                   </div>
     				<a class="btn-floating halfway-fab activator btn-small waves-effect waves-light green"><i class="material-icons">arrow_upward</i></a>
     				<b>Nombre: </b>{{ $product->name }}
