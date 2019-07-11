@@ -29,7 +29,7 @@
                                             <h6 class="left"><b>Mi Enlace:</b></h6>
                                         </div>
                                         <div class="col s9 right">
-                                            <p style="text-align: justify;">Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link: </p>
+                                            <p style="text-align: justify;">Te invito a Leipel y disfruta de Cine , Música , Lectura , Radio y Tv. <br><br> Usa mi link para hacerte una cuenta GRATIS y consigue tu link dentro de tu cuenta para que puedas ganar PREMIOS por invitar a más amigos.</p>
                                             <div class="col s6 right" style="margin-right: 150px;"><p>
                                                 <?php
                                                 $user = Auth::user();

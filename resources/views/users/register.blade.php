@@ -9,7 +9,7 @@
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Leipel" />
-  <meta property="og:description"   content=" Hola a todos, los invito a unirse también a Leipel, una nueva red social de cine, música, lectura, radio y tv. Usa mi link para poder registrarte GRATIS" />
+  <meta property="og:description"   content=" Te invito a Leipel y disfruta de Cine, Música, Lectura , Radio y Tv. Usa mi link para hacerte una cuenta GRATIS y consigue tu link dentro de tu cuenta para que puedas ganar PREMIOS por invitar a más amigos. " />
   <meta property="og:image"         content="https://sistema1.skytec-sa.com/plugins/img/Leipel.png" />
     <title>{{ config('app.name', 'Leipel') }}</title>
 
