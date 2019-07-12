@@ -23,6 +23,13 @@
         position: relative;
         z-index:5;
         }
+
+#truncate {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
  
 </style>
 
@@ -53,11 +60,10 @@
     </div>
     <div id="listaBeneficios" class="col s12 center">
       <ul class="tabs">
-          <li class="tab col s4"><a class="active" href="#test01">Productos disponibles</a></li>
-          <li class="tab col s4"><a href="#test02">Productos en proceso de canje</a></li>
-            <li class="tab col s4"><a href="#test03">Productos recibidos</a></li>
+          <li class="tab col s6"><a class="active" href="#test001">Productos disponibles</a></li>
+          <li class="tab col s6"><a href="#test002">Productos en proceso de canje</a></li>
       </ul>
-      <div id="test01" class="col s12 center">
+      <div id="test001" class="col s12 center">
         @if($beneficio != "")
           @foreach($beneficio as $bene)
            <div  class="col m3 s12 ">
@@ -77,48 +83,16 @@
                 </div>
                 </div>     
                   <div class="card-content s12">
-                      <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
+                      <b><h6 id="truncate" class="truncate" >{{$bene->name}}</h6></b>
                       <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
                       <b><small>Stock: {{$bene->amount}} </small></b>
                       <br>
                       <br>
-                      @if($bene->amount > 0)
-                      <a  href="#miModal-{!!$bene['id']!!}" id="botonModal" value="{!!$bene['id']!!}" class="waves-effect  waves-light btn curvaBoton modal-trigger blue darken-1" ><i class="material-icons left">assignment_turned_in</i>Canjear</a>
-                      @else
                       <a class="waves-effect waves-light btn curvaBoton modal-trigger disabled"><i class="material-icons left">assignment_turned_in</i>Canjear</a>
-                      @endif
                       <br>
                   </div>
               </div>
             </div>
-          <div class="modal" id="miModal-{!!$bene['id']!!}">
-            <div class="modal-content">
-              <div class="col s12 light-blue lighten-1 text-center">
-                <h4 class="white-text" style="padding: 25px 0px">Cantidad de productos a canjear</h4>
-              </div>
-              <br>
-              <div style="margin-top: 15%; margin-bottom: 15%">
-                <form id="formProduct-{!!$bene['id']!!}">
-                  {{ csrf_field() }}
-                  <div class="input-field col s6 offset-s3">
-                    {{ $errors->has('codigo') ? ' has-error' : '' }}
-                    <input type="number" class="validate" min="1" max="{!!$bene['amount']!!}" placeholder="1" name="Cantidad" id="Cantidad-{!!$bene['id']!!}" required="required" onkeypress="return controltagNum(event)">
-                    <label for="">¿Cuántas unidades desea?</label>
-                  </div>
-                  <br>
-                  <input type="hidden" name="" id="nameProduct-{!!$bene['id']!!}" value="{!!$bene['name']!!}">
-                  <input type="hidden" name="" id="costProduct-{!!$bene['id']!!}" value="{!!$bene['cost']!!}">
-                  <input type="hidden" name="" id="idProduct-{!!$bene['id']!!}" value="{!!$bene['id']!!}">
-                  <div class="col s12">
-                    <button class="btn btn-primary curvaBoton" type="submit">
-                      Enviar
-                    </button>
-                    <br><br><br>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
           @endforeach
         @else
           <div class="col s12">
@@ -129,16 +103,11 @@
           </div>
         @endif
       </div>
-        <div id="test02" class="col s12 center">
+        <div id="test002" class="col s12 center">
           <div class="col s12">
-              <br><br>
-            
-                  <i class="material-icons fixed-width large grey-text">flight_land</i><br><h5 blue-text text-darken-2>Actualmente no tiene productos en proceso de canje .</h5>
+              <br><br> 
+              <i class="material-icons fixed-width large grey-text">flight_land</i><br><h5 blue-text text-darken-2>Actualmente no tiene productos en proceso de canje .</h5>
           </div>
-        </div>
-        
-        <div class="test03" class="col s12 center">
-          
         </div>
     </div>
     @else
@@ -169,7 +138,7 @@
                 </div>
                 </div>
                   <div class="card-content s12">
-                      <font FACE="TIMES NEW ROMAN"><b><h6 >{{$bene->name}}</h6></b></font>
+                      <b ><h6 id="truncate" class="truncate" >{{$bene->name}}</h6></b>
                       <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
                       <b><small>Stock: {{$bene->amount}} </small></b>
                       <br>
@@ -204,7 +173,7 @@
                   <input type="hidden" name="" id="costProduct-{!!$bene['id']!!}" value="{!!$bene['cost']!!}">
                   <input type="hidden" name="" id="idProduct-{!!$bene['id']!!}" value="{!!$bene['id']!!}">
                   <input type="hidden" name="" id="dispon-{!!$bene['id']!!}" value="{!!$usuario['points']!!}">
-                  <input type="hidden" name="" id="costoP-{!!$bene['id']!!}" value="{!!$costo['costo']!!}">
+                  <input type="hidden" name="" id="costoP-{!!$bene['id']!!}" value="{!!ceil($costo['costo'])!!}">
                   <div class="col s12">
                     <button class="btn btn-primary curvaBoton" type="submit">
                       Enviar
@@ -289,9 +258,7 @@
         @else
           <div class="col s12">
               <br><br>
-      
-                  <br><h5 blue-text text-darken-2>Usted todavia no ha retirado ningun producto.</h5>
-              
+              <br><h5 blue-text text-darken-2>Usted todavia no ha retirado ningun producto.</h5>
           </div>
         @endif
       </div>
