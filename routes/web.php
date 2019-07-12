@@ -762,6 +762,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
             Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
+
+            Route::get('desProducts','SuperAdminController@desProducts');
+            Route::get('ajuste/{id}','SuperAdminController@ajuste');
             
         //------------------------------- Rutas para los productos-------------------------------
 

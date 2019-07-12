@@ -307,6 +307,12 @@
         </a>
       </li>
       <li>
+        <a href="{{url('desProducts')}}" class="waves-effect waves-blue">
+          <i class="small material-icons">grade</i>
+          Producto destacado
+        </a>
+      </li>
+      <li>
         <a href="{{route('log-viewer::dashboard')}}" class="waves-effect waves-blue" target="_blank">
           <i class="small material-icons">error</i>
           Errores

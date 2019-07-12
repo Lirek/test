@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Referals;
 use App\User;
+use App\Products;
+use App\image_product;
 
 
 class ReferalsController extends Controller
@@ -25,8 +27,12 @@ class ReferalsController extends Controller
              $id[]= $key->refered;
 
          }
-    
-         
+        
+        $beneficio= Products::where('tipo',1)->get();
+        $beneficio->each(function($beneficio){ 
+            $beneficio->saveImg;
+        });
+                
         $refered=User::find($id)->sortByDesc('id');
         
         }
@@ -48,7 +54,7 @@ class ReferalsController extends Controller
             }
         }
     
-    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered);
+    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered)->with('beneficio',$beneficio);
     }
 
     public function ShowReferals()
