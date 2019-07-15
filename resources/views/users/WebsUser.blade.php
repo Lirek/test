@@ -179,7 +179,7 @@
       </div>
   @endif
 
-
+@if ($beneficio != null)
 @foreach( $beneficio as $bene)
 <div class="col m5 s12"><h6 class="left-align grey-text">Beneficio destacado</h6></div>
   <div  class="col m5 s12 ">
@@ -199,6 +199,7 @@
       </div>
   </div>
 @endforeach
+@endif
   <!--MODAL ToTal-->
   <div id="myModalRefe" class="modal modal-s" >
       <div class="modal-content">
