@@ -60,9 +60,9 @@
                                                  data-layout="button" data-size="large" data-mobile-iframe="true">
                                             </div> -->
                                             
-                                            <a  href="https://www.facebook.com/sharer/sharer.php?app_id={{url('/').'/register/'.Auth::user()->codigo_ref}}" 
+                                            <a class="fb-share-button" href="https://www.facebook.com/sharer/sharer.php?app_id={{url('/').'/register/'.Auth::user()->codigo_ref}}" 
                                               onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')">
-                                              <img border="0" src="{{asset('sistem_images/facebook.png')}}" data-mobile-iframe="true" width="50" height="50">
+                                              <img border="0" src="{{asset('sistem_images/facebook.png')}}" width="50" height="50">
                                             </a>
 
                                         </div>

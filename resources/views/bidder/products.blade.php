@@ -405,11 +405,11 @@
             });
 		});
 
-        $(document).on('click', '#rejectProduct', function() {
+        $(document).on('click', '#deleteProduct', function() {
             var id = $(this).attr("value");
-            console.log(id);
+            var url = "{{url('productDelete/')}}/"+id;
             swal({
-                title: "¿Desea realmente eliminar el producto?",
+                title: "¿Desea realmente eliminar este producto?",
                 icon: "warning",
                 dangerMode: true,
                 buttons: ["Cancelar", "Si"]
@@ -425,16 +425,18 @@
                         closeOnClickOutside: false
                     });
                     $.ajax({
-                        url : "{{url('deleteProduct/')}}/"+producto,
+                        url : url,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
+                            console.log(data);
                             swal('Eliminado exitosamente','','success')
                             .then((recarga) => {
                                 location.reload();
                             });
                         },
                         error: function(data) {
+                            console.log(data);
                             swal('Existe un error en su solicitud','','error')
                             .then((recarga) => {
                                 location.reload();
@@ -448,6 +450,7 @@
 		$(document).on('click', '#editProduct', function() {
 			var producto = $(this).attr("value");
 			var gif = "{{ asset('/sistem_images/loading.gif') }}";
+
             swal({
                 title: "Procesando la información",
                 text: "Espere mientras se procesa la información.",
@@ -461,6 +464,7 @@
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
+                    $("#fotostabla").empty();
                     swal.close();
                     $.each(data,function(i,info) {
                         console.log(data);
@@ -480,7 +484,7 @@
                         }
                             $.each(info.save_img, function(i,info){
                                 console.log(info);
-                                var boton = "<a class='btn light-blue lighten-1 curvaBoton' value="+info.id+" href='#reject' id='rejectProduct'>Eliminar</a>";
+                                var boton = "<a class='btn light-blue lighten-1 curvaBoton' value="+info.id+" href='#reject' id='rejectPhoto'>Eliminar</a>";
 
                                 if (info.imagen_prod ) {
                                     var portada = 
@@ -490,7 +494,6 @@
                                 var filas = "<tr><td>"+
                                 portada+"</td></tr>";
                                 $("#fotostabla").append(filas);
-
                             });
                     });
                 },
@@ -503,7 +506,7 @@
             });
 		});
 
-		$(document).on('click', '#rejectProduct', function() {
+		$(document).on('click', '#rejectPhoto', function() {
 			var id = $(this).attr("value");
 			swal({
                 title: "¿Desea realmente eliminar esta imagen?",
