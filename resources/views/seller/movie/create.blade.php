@@ -898,7 +898,7 @@ function maxLengthCheck(object) {
         },
         complete: function(xhr) {
             status.html(xhr.responseText);
-            // alert('Uploaded Successfully');
+             alert('Uploaded Successfully');
             window.location.href = "{{URL::to('movies')}}"
 
         }

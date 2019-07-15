@@ -174,7 +174,7 @@
                         <div class="card-content white-text center-align">
                             <p class="card-title">
                                 <i class="material-icons">group add</i>
-                                {{$movie->transaction->count()}}
+                                {{$movie->Transactions->count()}}
                             </p>
                             <p>
                                 N° de compras
