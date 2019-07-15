@@ -115,7 +115,7 @@
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
 
 
-                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput', 'accept'=>'image/*']) !!}
+                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput']) !!}
 
                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
 
@@ -204,7 +204,7 @@
                                             <div id="mensajeDocumento"></div>
                                             <div class="btn blue">
                                                 <span>seleccione<i class="material-icons right">chrome_reader_mode</i></span>
-                                                {!! Form::file('img_doc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
+                                                {!! Form::file('img_doc',['class'=>'form-control','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text">
