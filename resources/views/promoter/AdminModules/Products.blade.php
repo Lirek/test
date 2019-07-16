@@ -280,7 +280,7 @@
         $(document).on('click', '#fotos', function(e) {
             var id = $(this).attr("value");
             var url = "{!! url('fotosProductoBack') !!}/"+id;
-            $("#fotostabla").empty();
+            $("#fotosproducto").empty();
                 e.preventDefault();
                 $.ajax({
                     url: url, 
@@ -296,7 +296,7 @@
 
                         var filas = "<tr><td>"+
                         portada+"</td></tr>";
-                        $("#fotostabla").append(filas);
+                        $("#fotosproducto").append(filas);
 
                         });
                     },
