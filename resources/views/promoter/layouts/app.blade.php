@@ -336,7 +336,7 @@
                 $('#badgeSolicitudUsuario').text(result.solicitudesU);
               }
             }
-
+            console.log(result.pagosP!=0 || result.proveedores!=0 || result.solicitudesP!=0);
             if (result.pagosP!=0 || result.proveedores!=0 || result.solicitudesP!=0) {
               $('#proveedor').show();
               $('#proveedor').text(result.pagosP+result.proveedores+result.solicitudesP);
@@ -345,8 +345,8 @@
                 $('#badgePagos').text(result.pagosP);
               }
               if (result.proveedores!=0) {
-                $('#badgeProveedores').show();
-                $('#badgeProveedores').text(result.proveedores);
+                $('#badgeProveedoresP').show();
+                $('#badgeProveedoresP').text(result.proveedores);
               }
               if (result.solicitudesP!=0) {
                 $('#badgeSolicitudProveedor').show();

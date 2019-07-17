@@ -537,8 +537,6 @@ class ContentController extends Controller
         $series = Serie::where('id',$id)->where('status','Aprobado')->get();
         $serie = [];
         if ($series->count()!=0) {
-            // crear el evento
-            //event(new SeriesTraceEvent(auth()->user()->id,$id));
             $seriesAdd = User::contenidos_add(auth()->user(),'series_id');
             $episodes = [];
             foreach ($series as $s) {
