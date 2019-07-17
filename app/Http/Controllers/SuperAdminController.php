@@ -373,6 +373,9 @@ class SuperAdminController extends Controller
   }
 
   public static function ajuste($id) {
+      $actualP = Products::where('tipo', 1)->count();
+
+      if ($actualP != 0) {
       $actual = Products::where('tipo', 1)->get();
       $productoViejo = Products::find($actual[0]->id);
       $productoViejo->tipo = 0;
@@ -383,6 +386,13 @@ class SuperAdminController extends Controller
       $productoNuevo->save();
 
       return response()->json([$productoViejo,$productoNuevo]);
+      }
+      else {
+      $productoNuevo = Products::find($id);
+      $productoNuevo->tipo = 1;
+      $productoNuevo->save();
+      return response()->json($productoNuevo);
+      }
     }
 
   public function storeProducts(Request $request) {
