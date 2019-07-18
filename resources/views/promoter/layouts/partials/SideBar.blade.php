@@ -182,8 +182,8 @@
               <li>
                 <a href="{{url('admin_sellers')}}" class="waves-effect waves-blue">
                   <i class="small material-icons">group</i>
-                  Nuevos Contenidos
-                  <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedores" style="display: none; background-color: #d9534f;"></span>
+                  Proveedores
+                  <span class="new badge orange darken-1" data-badge-caption="" id="badgeProveedoresP" style="display: none; background-color: #d9534f;"></span>
                 </a>
               </li>
             </ul>

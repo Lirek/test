@@ -75,8 +75,9 @@
           
             <div class="col s12 m3 ">
               <div class="picture">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzgyqT7XozhUSZh5TncTcu3KagZ1aWp5QqQMEhLpOkmG0r1ascA" width="100%" >
+                <img   src="../movie/poster/{{$m->img_poster}}" width="100%" height="450px" >
 
+            
               </div>
               
             </div>
@@ -89,11 +90,19 @@
   
       
                      <?php
-                          $url = $m->trailer_url;
-                          preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-                          $id = $matches[1];
-                          $width = '1000px';
-                          $height = '600px';
+                            if(!isset($m->trailer_url)){
+                              
+                              
+                            
+                            $url = $m->trailer_url;
+                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                            $id = $matches[1];
+                            $width = '1000px';
+                            $height = '600px';
+                            
+                            
+                          
+                        
                       ?>
                       <div class="embed-container">
                       <iframe  type="text/html" width="700" height="420"
@@ -101,7 +110,10 @@
                           frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
                       </div>
                       
+                    <?php } ?>
+                      
                     </div>
+                
                     
                     <div class="col m12 s12">
                       <br>

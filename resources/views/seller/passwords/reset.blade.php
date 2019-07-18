@@ -216,7 +216,7 @@
                 <div class="input-field col s12  {{ $errors->has('password') ? ' has-error' : '' }}">
                     <i class="material-icons prefix blue-text">vpn_key</i>
                     <input id="password-valid" type="password" class="form-control" name="password" required>
-                    <label for="autocomplete-input">Contraseña</label>
+                    <label for="password-valid">Contraseña</label>
                     @if ($errors->has('password'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password') }}</strong>
@@ -226,7 +226,7 @@
                 <div class="input-field col s12  {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                     <i class="material-icons prefix blue-text">vpn_key</i>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                    <label for="autocomplete-input">Confirmar Contraseña</label>
+                    <label for="password-valid">Confirmar Contraseña</label>
                     @if ($errors->has('password_confirmation'))
                         <span class="help-block">
                             <strong>{{ $errors->first('password_confirmation') }}</strong>

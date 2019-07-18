@@ -27,6 +27,9 @@ class BackupDataBase extends Command
      *
      * @return void
      */
+    protected $process;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -36,7 +39,7 @@ class BackupDataBase extends Command
           config('database.connections.mysql.username'),
           config('database.connections.mysql.password'),
           config('database.connections.mysql.database'),
-          storage_path('storage/db/backup.sql')
+          storage_path('backups/backup.sql')
       ));
     }
 

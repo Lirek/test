@@ -2,14 +2,13 @@
 @section('main')
     @include('flash::message')
 
-    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    
     <style>
         @media only screen and (min-width: 993px) {
             .container {
@@ -100,6 +99,7 @@
         </div>
 
     </div>
+    <input type="hidden" name="id" id="id" value="{{Auth::user()->created_at}}">
 
     <!--inicio contenido-->
     {!! Form::open(['route'=>['users.update',$user],'method'=>'PUT', 'files'=>true,'class'=>'form-horizontal','id'=>'edit']) !!}
@@ -227,11 +227,12 @@
                                 <div class="col m12 s12">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix blue-text valign-wrapper">wc</i>
-                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Selecione su sexo','id'=>'exampleInputFile']) !!}
+                                        {!! Form::select('type',['M'=>'Hombre', 'F'=>'Mujer'],$user->type,['class'=>'form-control select-saga','placeholder'=>'Seleccione su sexo','id'=>'exampleInputFile']) !!}
                                         <label for="exampleInputFile" class="control-label">Sexo</label>
                                         <br>
                                     </div>
                                 </div>
+                            
 
                                 <!--alias-->
                                 <div class="input-field col s12 ">
@@ -297,7 +298,18 @@
                                         <br>
                                         {{$mipatro->phone}}
                                     @else
-                                        <h6><i class="material-icons Medium">mood_bad</i> Usted no tiene patrocinador asociado</h6>
+                                    
+                                          <div  id="referir">
+                                            
+                                                  <i class="material-icons blue-text medium">person_add</i>
+                                                  <h6 class="blue-text">Agregar código de patrocinador</h6>
+                                                  <br>
+                                                  <a   href="#myModalRefe" class="modal-trigger waves-effect waves-light btn curvaBoton">Agregar<i class="material-icons left">add</i></a>
+                                        
+                                    
+                                          </div>
+                                        
+                                        
                                 @endif
 
                                 <!-- {{$user->email}} -->
@@ -305,6 +317,12 @@
                                 </div>
                                 {!! Form::close() !!}
                             </div>
+                          
+                            
+                            
+                            
+                            
+                            
                             <!-- CLOSE ACCOUNT -->
                             <div id="profile-card" class="card">
                                 <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px">
@@ -335,7 +353,7 @@
                                                             <div class="input-field col s12 l11">
                                                                 <i class="material-icons prefix blue-text">edit</i>
                                                                 <label for="oldpass">Introduzca su antigua contraseña</label>
-                                                                {!! Form::password('oldpass',['class'=>'form-control','required'=>'required','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
+                                                                {!! Form::password('oldpass',['class'=>'form-control','name'=>'oldpass','id'=>'oldpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena()" style="margin-left: 5px;">remove_red_eye</i>
                                                                 <div id="oldpasscp" style="margin-top: 1%"></div>
                                                                 @if ($errors->has('oldpass'))
                                                                     <span class="help-block">
@@ -346,7 +364,7 @@
                                                             <div class="input-field col s12 l11">
                                                                 <i class="material-icons prefix blue-text">edit</i>
                                                                 <label for="newpass">Introduzca su nueva contraseña</label>
-                                                                {!! Form::password('newpass',['class'=>'form-control','required'=>'required','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
+                                                                {!! Form::password('newpass',['class'=>'form-control','name'=>'newpass','id'=>'newpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena2()" style="margin-left: 5px;">remove_red_eye</i>
                                                                 <div id="newpasscp" style="margin-top: 1%"></div>
                                                                 @if ($errors->has('newpass'))
                                                                     <span class="help-block">
@@ -357,7 +375,7 @@
                                                             <div class="input-field col s12 l11">
                                                                 <i class="material-icons prefix blue-text">edit</i>
                                                                 <label for="confnewpass">Confirme su nueva contraseña</label>
-                                                                {!! Form::password('confnewpass',['class'=>'form-control','required'=>'required','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
+                                                                {!! Form::password('confnewpass',['class'=>'form-control','name'=>'confnewpass','id'=>'confnewpass','method'=>'POST', 'type'=>'password']) !!}<i class="material-icons prefix blue-text" onclick="mostrarContrasena3()" style="margin-left: 5px;">remove_red_eye</i>
                                                                 <div id="confnewpasscp" style="margin-top: 1%"></div>
                                                                 @if ($errors->has('confnewpass'))
                                                                     <span class="help-block">
@@ -400,7 +418,7 @@
                                     </div>
 
                                 </div>
-
+                                  {!! Form::close() !!}
                             </div>
                             @if($user->verify != 1 )
                                 <div class="card-panel red" style="padding:4px ">  <i class=" small material-icons" style="color:white">cancel</i>
@@ -411,6 +429,7 @@
                         @endif
                         <!-- CLOSE ACCOUNT -->
                         </div>
+                    
                     </div>
                 </div>
             </div>
@@ -419,12 +438,185 @@
     </div>
     </div>
     </div>
+  
+    <!--MODAL ToTal-->
+    <div id="myModalRefe" class="modal modal-s" >
+        <div class="modal-content">
+            <div class=" blue"><br>
+                <h4 class="center white-text" >Ingrese el código</h4>
+                <br>
+            </div>
+            <br>
+            <div class="row">
+                <form class="col m6 offset-m3"  method="POST" action="{{url('Referals')}}" id="patrocinador" >{{ csrf_field() }} 
+                  <div class="input-field col m12 ">
+                      <i class="material-icons prefix">vpn_key</i>
+                      <input id="codigo" type="text" class="validate" name="codigo" value="{{ old('codigo') }}" required="required" type="text">
+                      <label for="codigo">Código</label>
+                      <div> {{ $errors->has('codigo') ? ' has-error' : '' }} </div>
+                      <div id="codigoMen"></div>
+                  </div>
+                        
+                        <button  id='ingresar' class="btn waves-effect waves-light curvaBoton" type="submit" name="action">Enviar
+                            <i class="material-icons right">send</i>
+                        </button>
+                      
+              </form> 
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salir</a>
+        </div>
+    </div>
+    <!--FIN DEL MODAL-->
+
+
+ <link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> 
+ 
+ <script>
+     $(function() {
+         $('#fecha').datepicker({
+             format: 'dd-mm-yyyy',
+             yearRange: 50,
+             changeMonth: true,
+             changeYear: true,
+             firstDay: 1,
+             i18n: {
+                 months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                 monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                 weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                 weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+                 weekdaysAbbrev: ['D','L','M','M','J','V','S'],
+
+             }
+         });
+     });
+ </script>
+
+
 
 
 @endsection
 
 
 @section('js')
+
+
+<script type="text/javascript">
+    document.querySelector('#patrocinador').addEventListener('submit', function(e) {
+        var form = this;
+        $('#codigoMen').hide();
+        e.preventDefault(); // <--- prevent form from submitting
+        var cod=$('#codigo').val();
+
+        $.ajax({
+            url:'sponsor/'+cod,
+            type: 'get',
+            dataType: "json",
+            beforeSend: function() {
+                var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                swal({
+                    title: "¡Listo! Estamos validando su información...",
+                    text: "Espere un momento por favor, mientras validamos el código de patrocinador.",
+                    icon: gif,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                });
+            },
+            success: function (result) {
+                console.log(result);
+                if(result == 2) {
+                    swal({
+                        title: "Ingrese otro código por favor",
+                        text: "El código que introdujo le pertecene a algún miembro de su propia red, por favor ingrese otro.",
+                        icon: 'info',
+                        buttons: {
+                            accept: 'Aceptar'
+                        }
+                    });
+                } else {
+                    if(result == 1) {
+                        swal({
+                            title: "Ingrese otro código por favor",
+                            text: "Disculpe, no puede ingresar su propio código",
+                            icon: 'info',
+                            buttons: {
+                                accept: 'Aceptar'
+                            },
+                            closeOnEsc: false,
+                            closeOnClickOutside: false
+                        });
+                        $('#patrocinador')[0].reset();
+                    } else if (result.id != undefined) {
+                        if (result.last_name != undefined) {
+                            var nombre = result.name+" "+result.last_name;
+                        } else {
+                            var nombre = result.name;
+                        }
+                        swal({
+                            text: "¿Esta ingresando como patrocinador a "+nombre+"?",
+                            icon: 'info',
+                            buttons: {
+                                accept: 'Aceptar',
+                                cancel: 'Cancelar'
+                            },
+                            dangerMode: true,
+                            closeOnEsc: false,
+                            closeOnClickOutside: false
+                        }).then(function(isConfirm) {
+                            if (isConfirm) {
+                                form.submit();
+                            } else {
+                                $('#patrocinador')[0].reset();
+                            }
+                        });
+                    }
+                    else if(result == 0) {
+                        swal.close();
+                        $('#codigoMen').show();
+                        $('#codigoMen').text('El código es incorrecto.');
+                        $('#codigoMen').css('color','red');
+                    }
+                }
+            }
+        });
+      
+   });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var f1 = document.getElementById('id').value;
+        var f = new Date();
+        var f2=f.getDate() + "/" +(f.getMonth()+1 )+ "/" + f.getFullYear();
+
+        var tiempo=restaFechas(f1,f2);
+        if (tiempo > 7){
+          
+            document.getElementById('cantidad').classList.remove('m3');
+            document.getElementById('cantidad').classList.add('m5');
+            document.getElementById('puntos').classList.remove('m3');
+            document.getElementById('puntos').classList.add('m5');
+        }else{
+            var total=6-tiempo;
+            console.log(tiempo);
+            document.getElementById('mensaje').innerHTML='Usted cuenta con '+total +' dias para agregar un patrocinador';
+        }
+
+    });
+    restaFechas = function(f1,f2)
+    {
+        var aFecha1 = f1.split('-');
+        var dFecha= aFecha1[2].split(' ');
+        var aFecha2 = f2.split('/');
+        var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,dFecha[0]);
+        var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+        var dif = fFecha2 - fFecha1;
+        var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+        return dias;
+    }
+</script>
     <!-- Confirmación cambio de contraseñas-->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -460,7 +652,7 @@
             });
         });
     </script>
-
+    
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -585,26 +777,15 @@
         }
     </script>
 
-    <script>
-        $(function() {
-            $('#fecha').datepicker({
-                format: 'dd-mm-yyyy',
-                yearRange: 50,
-                changeMonth: true,
-                changeYear: true,
-                firstDay: 1,
-                i18n: {
-                    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-                    weekdaysAbbrev: ['D','L','M','M','J','V','S'],
 
-                }
-            });
-        });
-    </script>
 
+
+    <!-- this is my JS via cdn -->
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        
+        
+          
     <script type="text/javascript">
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -918,8 +1099,4 @@
         // Validar formato de imagen de perfil y del documento
         //---------------------------------------------------------------------------------------------------
     </script>
-
-
-
-
 @endsection
