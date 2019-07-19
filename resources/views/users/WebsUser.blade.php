@@ -2,7 +2,7 @@
 @section('css')
     <style>
         ul.collection {
-            max-height: 450px;
+            max-height: 550px;
             overflow: scroll;
             list-style-type: none; /* not sure if you need this. Hides bullet list dots */
         }
@@ -195,6 +195,11 @@
                 @endfor
               </ul>
             </div>
+            <div class="card-content s12">
+                      <b><h6 id="truncate" class="truncate" >{{$bene->name}}</h6></b>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
+                      <b><small>Stock: {{$bene->amount}} </small></b>
+                  </div>
         </div>
       </div>
   </div>

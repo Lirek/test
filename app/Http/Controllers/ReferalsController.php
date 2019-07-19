@@ -8,12 +8,13 @@ use App\Referals;
 use App\User;
 use App\Products;
 use App\image_product;
-
+use App\Conversion;
 
 class ReferalsController extends Controller
 {
     public function ShowWebs()
     {	
+        $costo = Conversion::where('tipo','punto')->where('hasta',null)->first();
     	$user= User::find(Auth::user()->id);
     	$referals1=$user->referals()->count();
     	$referals2=0;
@@ -54,7 +55,7 @@ class ReferalsController extends Controller
             $beneficio->saveImg;
         });
                
-    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered)->with('beneficio',$beneficio);
+    	return view('users.WebsUser')->with('referals1',$referals1)->with('referals2',$referals2)->with('referals3',$referals3)->with('refered',$refered)->with('beneficio',$beneficio)->with('costo',$costo);
     }
 
     public function ShowReferals()
