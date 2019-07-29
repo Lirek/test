@@ -40,9 +40,8 @@ Route::group(['middleware' => ['cors']], function() {
     Route::group(['middleware' => ['jwt.auth']], function() {
 
         //Route::get('logout', 'ApiController\AuthController@logout');
-
-        //----------------RUTAS DE USUARIO------------------------------------------
-
+        //-----------------------------------------------------------------------------------
+        //-------------------------RUTAS DE USUARIO------------------------------------------
         Route::get('user','ApiController\UserController@UserData');
         Route::get('referals','ApiController\UserController@WebsUser');
         Route::post('updateData','ApiController\UserController@UpdateData');
@@ -54,34 +53,31 @@ Route::group(['middleware' => ['cors']], function() {
         Route::post('addSponsor','ApiController\UserController@addSponsor');
         Route::get('invite','ApiController\UserController@invite');
         Route::post('invite','ApiController\UserController@inviteByEmail');
-
+        //-------------------------RUTAS DE USUARIO------------------------------------------
         //-------------------------------------------------------------------------
 
+        //-------------------------------------------------------------------------
         //-------------------------RUTAS DE PAQUETES--------------------------------
         Route::get('Packages','ApiController\PackageController@ShowPackages');
-
+        //-----------------------------------------------------------------------------------
         //---------------------------COMPRAS DE PAQUETES--------------------------------------
         Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
         Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
         Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+        //---------------------------COMPRAS DE PAQUETES--------------------------------------
         //-----------------------------------------------------------------------------------
 
         //--------------------------------------------------------------------------
-
         //---------------Rutas de Contenido---------------------------------------
-
         Route::get('billboard','ApiController\ContentController@billboard');
-
+        //--------------------------------------------------------------------------
         Route::get('music','ApiController\ContentController@music');
         Route::get('reading','ApiController\ContentController@reading');
         Route::get('movie','ApiController\ContentController@movies');
         Route::get('radio','ApiController\ContentController@AllAprovedRadios');
         Route::get('tvs','ApiController\ContentController@AllAprovedTvs');
-
         //---------------------------------------------------------------------------
-
         //---------------Rutas de Contenido Especifico----------------------------------
-
         Route::get('single/{id}','ApiController\ContentController@Single');
         Route::get('album/{id}','ApiController\ContentController@Album');
         Route::get('megazine/{id}','ApiController\ContentController@Megazine');
@@ -90,14 +86,15 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('serie/{id}','ApiController\ContentController@serie');
         Route::get('radio/{id}','ApiController\ContentController@Radio');
         Route::get('tv/{id}','ApiController\ContentController@Tv');
-
+        //---------------Rutas de Contenido Especifico----------------------------------
         //-------------------------------------------------------------------------------
 
-        //---------------Rutas de Contenido Especifico----------------------------------
-
-        Route::post('RadioTrace/{id}','ApiController\ContentController@RadioTrace');
-        Route::post('TvTrace/{id}','ApiController\ContentController@TvTrace');
-
+        //--------------------------Rutas de Beneficios----------------------------------
+        Route::get('benefit','ApiController\BenefitController@index');
+        Route::post('benefit','ApiController\BenefitController@buy');
+        Route::get('confirmBuy/{id}','ApiController\BenefitController@confirm');
+        Route::get('delivered/{id}','ApiController\BenefitController@delivered');
+        //--------------------------Rutas de Beneficios----------------------------------
         //-------------------------------------------------------------------------------
 
     });
