@@ -183,11 +183,12 @@ class BenefitController extends Controller
                 $buy->each(function ($buy){
                     $buy->Producto;
                 });
-
-                $bidder = Bidder::find($buy[0]->Producto->bidder_id);
-                $bidder->pendding_points = $bidder->pendding_points - $buy[0]->amount;
-                $bidder->points = $bidder->points + $buy[0]->amount;
-                $bidder->save();
+                if ($buy[0]->Producto->bidder_id!=0) {
+                    $bidder = Bidder::find($buy[0]->Producto->bidder_id);
+                    $bidder->pendding_points = $bidder->pendding_points - $buy[0]->amount;
+                    $bidder->points = $bidder->points + $buy[0]->amount;
+                    $bidder->save();
+                }
                 return response()->json(['meta'=>['code'=>200],'data'=>1],200);
             } else {
                 return response()->json(['meta'=>['code'=>200],'data'=>0],200);
