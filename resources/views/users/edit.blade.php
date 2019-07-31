@@ -115,7 +115,7 @@
                             <div id="image-preview" alt="avatar" class="img circle left activator btn-move-up waves-effect waves-light darken-2">
 
 
-                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput', 'accept'=>'image/*']) !!}
+                                {!! Form::file('img_perf',['class'=>'form-control-file', 'control-label', 'id'=>'avatarInput']) !!}
 
                                 {!! Form::hidden('img_posterOld',$user->img_perf)!!}
 
@@ -164,7 +164,11 @@
                                 <!--nombre-->
                                 <div class="input-field col s12 ">
                                     <i class="material-icons prefix blue-text">face</i>
+                                    @if($user->verify == 1)
+                                    {!! Form::text('name',$user->name,['class'=>'form-control', 'readonly' ,'id'=>'nombre']) !!}
+                                    @else
                                     {!! Form::text('name',$user->name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'nombre']) !!}
+                                    @endif
                                     <div id="mensajeNombre"></div>
                                     <label for="nombre">Nombre</label>
                                 </div>
@@ -172,7 +176,11 @@
                                 <!--apellido-->
                                 <div class="input-field col s12 ">
                                     <i class="material-icons prefix blue-text">face</i>
+                                    @if($user->verify == 1)
+                                    {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'readonly' ,'id'=>'apellido']) !!}
+                                    @else
                                     {!! Form::text('last_name',$user->last_name,['class'=>'form-control', 'onkeypress' => 'return controltagLet(event)', 'pattern' => '[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+','id'=>'apellido']) !!}
+                                    @endif
                                     <div id="mensajeNombre"></div>
                                     <label for="apellido">Apellidos</label>
                                 </div>
@@ -204,7 +212,7 @@
                                             <div id="mensajeDocumento"></div>
                                             <div class="btn blue">
                                                 <span>seleccione<i class="material-icons right">chrome_reader_mode</i></span>
-                                                {!! Form::file('img_doc',['class'=>'form-control','accept'=>'.img*','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
+                                                {!! Form::file('img_doc',['class'=>'form-control','id'=>'img_doc','control-label','placeholder'=>'cargar libro','oninvalid'=>"this.setCustomValidity('Seleccione imagen del RUC')"]) !!}
                                             </div>
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" type="text">
@@ -244,10 +252,16 @@
 
                                 <!--fecha de nacimiento-->
                                 <div class="input-field col s12 ">
+                                    @if($user->verify == 1)
+                                    <i class="material-icons prefix blue-text">today</i>
+                                    <input type="text" readonly="true" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}">
+                                    <label>Fecha de nacimiento</label>
+                                    @else
                                     <i class="material-icons prefix blue-text">today</i>
                                     <input type="text" name="fech_nac" value="{!! date('d-m-Y', strtotime($user->fech_nac)) !!}" class="datepicker" id="fecha">
                                     <label for="pickdate">Fecha de nacimiento</label>
                                     <div id="mensajeNombre"></div>
+                                    @endif
                                 </div>
 
                                 <!--direccion-->
@@ -422,7 +436,8 @@
                             </div>
                             @if($user->verify != 1 )
                                 <div class="card-panel red" style="padding:4px ">  <i class=" small material-icons" style="color:white">cancel</i>
-                                    <h6 style="color:white; margin-top:0.2rem"> Usuario no verificado</h6> </div>
+                                    <h6 style="color:white; margin-top:0.2rem"> Verifica tu cuenta </h6> 
+                                    <span style="color:white; margin-top:0.2rem">(Es necesario para facturacion y canje de premios)</span> </div>
                             @else
                                 <div class="card-panel blue" style="padding:4px ">  <i class=" small material-icons" style="color:white">check</i>
                                     <h6 style="color:white; margin-top:0.2rem"> Usuario verificado</h6> </div>

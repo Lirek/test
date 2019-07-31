@@ -23,6 +23,7 @@ class Product extends Migration
             $table->integer('cost');
             $table->integer('amount');
             $table->enum('status',['Aprobado','En Revision','Denegado']);
+            $table->integer('tipo');->default('0');
             $table->timestamps();
         });
     }

@@ -97,7 +97,7 @@
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix blue-text">volume_up</i>
-                                <label for="url">URL de la radio</label>
+                                <label for="url">URL/IP del streaming directo de la señal de radio</label>
                                 {!!Form::text('streaming',$radio->streaming,['class'=>'form-control count','required'=>'required','id'=>'url','data-length'=>'191','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"])!!}
                                 <div id="mensajeMaximoUrl"></div>
                             </div>

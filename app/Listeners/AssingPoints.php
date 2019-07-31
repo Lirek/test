@@ -77,7 +77,7 @@ class AssingPoints
             ->where('status', '=','Aprobado')
             ->get();
 
-            if($key->points == $key->limit_points or $revenueMonth->count() >= 1)
+            if($key->points == $key->limit_points or $revenueMonth->count() > 0)
             {
                 $key->pending_points = $key->pending_points + 1;
             }

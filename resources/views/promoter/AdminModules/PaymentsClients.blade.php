@@ -102,7 +102,7 @@
 						nombre+"</td><td>"+
 						info.tickets.name+"</td><td>"+
 						info.value+"</td><td>"+
-						info.cost+"</td><td>"+
+						info.cost+" $"+"</td><td>"+
 						voucher+"</td><td>"+
 						reference+"</td><td>"+
 						factura+"</td><td>"+

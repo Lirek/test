@@ -67,7 +67,7 @@
 		</div>
 	</div>
 
-	<div id="misFotos" class="modal">
+<div id="misFotos" class="modal">
     <div class="modal-content center">
         <div class=" blue"><br>
             <h4 class="center white-text" ><i class="small material-icons"></i>Fotos del producto</h4>
@@ -75,20 +75,16 @@
         </div>
         <br>
         <div class="col s12">
-            <div id="" class="col s12 center">
-                <div class="row">
-                  <table class="responsive-table" id="todasLasfotos">
-                    <thead>
-                      <tr>
-                        <th><i class="material-icons"></i>Foto</th>
-                      </tr>
-                    </thead>
-                    <tbody id="fotostabla">
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
+	        <table class="responsive-table">
+	            <thead>
+	                <tr>
+	                    <th>fotos</th>
+	                </tr>
+	            </thead>
+	            <tbody id="fotosproducto">
+	            </tbody>
+	        </table>
+    	</div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" data-dismiss="modal">Salir</a>
         </div>
@@ -149,7 +145,7 @@
 						<input type="hidden" id="idUpdate" value="" name="idUpdate">
 						<div class="col s12">
 							<div class="col s6">
-								<table class="responsive-table" id="todasLasfotos">
+								<table class="responsive-table">
 	                                <thead>
 	                                  <tr>
 	                                    <th><i class="material-icons"></i>Foto</th>

@@ -67,7 +67,7 @@
                             <small><b>Estatus:</b> {{ $m->status }}</small>
                         </div>
                         
-                            <small><b>N° de compras</b> {{$m->transaction->count()}}</small> 
+                            <small><b>N° de compras</b> {{$m->Transactions->count()}}</small> 
                     </div>
                   </div>
                 </div>

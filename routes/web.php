@@ -331,11 +331,7 @@ Route::group(['middleware' => 'promoter_auth'], function(){
            //Agregada 8/8/2018
           Route::get('/SearchAuthor',array('as'=>'SearchAuthor','uses'=>'ContentController@seachAuthor'));
           Route::get('/SearchMegazine',array('as'=>'SearchMegazine','uses'=>'ContentController@seachMegazines'));
-
-
-          //Agregada 8/8/2018
-          Route::get('MyBalance','UserController@balance');
-
+          
           //Agregada 10/12/2019
            Route::get('MySeries','UserController@MySeries');
             Route::get('ShowMySerie/{id}/{type}','UserController@ShowMySerie');
@@ -762,6 +758,9 @@ Route::group(['middleware' => 'promoter_auth'], function(){
             Route::get('deleteProduct/{id}','SuperAdminController@deleteProduct');
             Route::post('statusProduct/{id}','SuperAdminController@statusProduct');
             Route::get('fotosProductoBack/{id}','SuperAdminController@photos');
+
+            Route::get('desProducts','SuperAdminController@desProducts');
+            Route::get('ajuste/{id}','SuperAdminController@ajuste');
             
         //------------------------------- Rutas para los productos-------------------------------
 
@@ -1024,6 +1023,7 @@ Route::group(['middleware' => 'seller_auth'], function () {
 
     /*--------------Panel de "Mi Contenido Musical"---------------- */
     Route::get('/my_music_panel/{id}', 'MusicController@ShowMusicPanel');
+    Route::get('deleteMusic/{id}','MusicController@deleteMusic');
     /*--------------------------------------------------------------*/
 
     /*----------------------Agregar Tags--------------------------- */

@@ -2,7 +2,7 @@
 @section('css')
     <style>
         ul.collection {
-            max-height: 450px;
+            max-height: 550px;
             overflow: scroll;
             list-style-type: none; /* not sure if you need this. Hides bullet list dots */
         }
@@ -11,6 +11,28 @@
             background-color: white; /* should be the same as the background color behind the list */
             position: fixed;
         }
+
+        #img_formato{
+            height: 100%;
+            width: 100%;
+        }
+
+        #boton {
+                float: right;
+                position: relative;
+                z-index:5;
+                margin-top: 340px;
+                margin-right: 30px;
+               
+                }
+
+        #truncate {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+ 
     </style>
 @endsection
 @section('main')
@@ -157,18 +179,32 @@
       </div>
   @endif
 
+@if ($beneficio != null)
+@foreach( $beneficio as $bene)
+<div class="col m5 s12"><h6 class="left-align grey-text">Beneficio destacado</h6></div>
   <div  class="col m5 s12 ">
       <div class="card">
-          <div class="card-image">
-              <img  src="{{asset('promociones/PromocionGalapagosImg.jpg')}}" >
-          </div>
-          <div class="card-action">
-              <a  href="{{asset('promociones/PromocionGalapagosInfo.pdf')}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalle</a>
-              <br>
-          </div>
+        <div class="card-image">
+          <a class="btn-floating blue darken-1" id="boton" href="{{asset($bene->pdf_prod)}}" target="_blank" ><i class="material-icons left">info_outline</i></a>
+          <div class="slider">
+              <ul class="slides">    
+                @for ($i=0; $i < count($bene->saveImg); $i++) 
+                  <li>
+                    <img id="img_formato" src="{{ asset($bene->saveImg[$i]->imagen_prod) }}">
+                  </li>
+                @endfor
+              </ul>
+            </div>
+            <div class="card-content s12">
+                      <b><h6 id="truncate" class="truncate" >{{$bene->name}}</h6></b>
+                      <small>Costo: {{ceil($bene->cost*$costo->costo)}} puntos.</small>
+                      <b><small>Stock: {{$bene->amount}} </small></b>
+                  </div>
+        </div>
       </div>
   </div>
-
+@endforeach
+@endif
   <!--MODAL ToTal-->
   <div id="myModalRefe" class="modal modal-s" >
       <div class="modal-content">
@@ -205,6 +241,11 @@
 
 
     <script type="text/javascript">
+
+      $(document).ready(function(){
+        $('.slider').slider();
+      });
+
         document.querySelector('#patrocinador').addEventListener('submit', function(e) {
             var form = this;
             $('#codigoMen').hide();

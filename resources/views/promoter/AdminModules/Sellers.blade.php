@@ -5,7 +5,7 @@
   </style>
 @endsection
 @section('main')
-  <span class="card-title grey-text"><h3>Nuevos Contenidos</h3></span>
+  <span class="card-title grey-text"><h3>Proveedores registrados</h3></span>
 
   <table class="responsive-table">
     <thead>
