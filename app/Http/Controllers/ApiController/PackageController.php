@@ -16,17 +16,19 @@ use App\TicketsPackage;
 class PackageController extends Controller
 {
     public function ShowPackages() {
-    	$Tickets=TicketsPackage::all();
-      if ($Tickets->isEmpty()) { 
-        return Response::json(['status'=>'1','message'=>'No hay paquetes','data'=>[]], 200);
-      }
-      /*
-      $Json = Fractal::create()
-                           ->collection($Tickets)
-                           ->transformWith(new PackageTransformer)                
-                           ->toArray();          
-      */
-      //return Response::json($Json);
-      return Response::json(['status'=>'1','message'=>'Lista de paquetes','data'=>$Tickets], 200);
+    	$Tickets = TicketsPackage::all();
+    	if ($Tickets->isEmpty()) {
+            return response()->json(['meta'=>['code'=>201],'data'=>[]],200);
+    	}
+    	foreach ($Tickets as $t) {
+    	    $data[] = [
+    	        'id' => $t->id,
+                'amount' => $t->amount,
+                'cost' => $t->cost,
+                'points_cost' => $t->points_cost,
+                'name' => $t->name
+            ];
+        }
+        return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
     }
 }

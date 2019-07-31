@@ -58,13 +58,24 @@ Route::group(['middleware' => ['cors']], function() {
 
         //-------------------------------------------------------------------------
         //-------------------------RUTAS DE PAQUETES--------------------------------
-        Route::get('Packages','ApiController\PackageController@ShowPackages');
+        Route::get('packages','ApiController\PackageController@ShowPackages');
         //-----------------------------------------------------------------------------------
         //---------------------------COMPRAS DE PAQUETES--------------------------------------
         Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
         Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
         Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+
+        //Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
+        Route::post('BuyDepositPackageDocument/{idPayment}','ApiController\PaymentController@BuyDepositPackageDocument');
+        //Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
+        //Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+        Route::get('BuyPayphone/{id}/{cost}/{value}','ApiController\PaymentController@BuyPayphone');
+        Route::get('factura/{id}/{medio}','ApiController\PaymentController@factura');
+        Route::get('TransactionApproved/{id}/{reference}/{ticket}/{idFactura}','ApiController\PaymentController@TransactionApproved');
+        Route::get('TransactionCanceled/{id}/{reference}','ApiController\PaymentController@TransactionCanceled');
         //---------------------------COMPRAS DE PAQUETES--------------------------------------
+        //-----------------------------------------------------------------------------------
+        //-------------------------RUTAS DE PAQUETES--------------------------------
         //-----------------------------------------------------------------------------------
 
         //--------------------------------------------------------------------------
