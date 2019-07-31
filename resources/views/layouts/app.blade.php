@@ -262,7 +262,7 @@
 
                     <li><a href="{{url('Beneficios')}}/Aprobado" class="waves-effect waves-blue"><i class="small material-icons">flight_takeoff</i>Beneficios</a></li>
 
-                    <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Tickets</a></li>
+                    <li><a href="{{url('SaleTickets')}}" class="waves-effect waves-blue"><i class="small material-icons">monetization_on</i>Tickets y puntos</a></li>
 
                                         <!--<li>
                                         <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

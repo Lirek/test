@@ -173,7 +173,7 @@
                   <input type="hidden" name="" id="costProduct-{!!$bene['id']!!}" value="{!!$bene['cost']!!}">
                   <input type="hidden" name="" id="idProduct-{!!$bene['id']!!}" value="{!!$bene['id']!!}">
                   <input type="hidden" name="" id="dispon-{!!$bene['id']!!}" value="{!!$usuario['points']!!}">
-                  <input type="hidden" name="" id="costoP-{!!$bene['id']!!}" value="{!!ceil($costo['costo'])!!}">
+                  <input type="hidden" name="" id="costoP-{!!$bene['id']!!}" value="{!!($costo['costo'])!!}">
                   <div class="col s12">
                     <button class="btn btn-primary curvaBoton" type="submit">
                       Enviar
@@ -250,7 +250,7 @@
                   </div>
                     <div class="card-content">
                         <span>Total de compra: {{$entrega->amount}} puntos.</span><br><br>
-                        <a  href="{{asset($entrega->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
+                        <a  href="{{asset($entrega->Producto->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
                     </div>
                 </div>
             </div>
@@ -325,7 +325,7 @@
         var Cantidad=$('#Cantidad-'+identi).val();
         var dispon=$('#dispon-'+identi).val();
         var costoPunto=$('#costoP-'+identi).val();
-        var costoProducto=(costoPunto*cost);
+        var costoProducto=Math.ceil(costoPunto*cost);
         var total= (Cantidad*costoProducto);
         swal({
             title: "¿Está seguro?",

@@ -79,8 +79,8 @@
             </div>
             @endif
             @if($singles->count() != 0 )
-            <div class="card-panel curva">
-                <div class="row ">
+            <div class="row">
+            <div class=" col s12 card-panel curva">
                     <h4 class="titelgeneral"><i class="mdi mdi-library-music"></i> Mis canciones</h4>
                     @foreach($singles as $song)
                     <div class="col s12 m3">
@@ -94,7 +94,9 @@
                                     @endif 
                                 </a>
                               <!-- <span class="card-title">Card Title</span> -->
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue" href="{{ url('/modify_single/'.$song->id) }}"><i class="material-icons">create</i></a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light blue" style="margin-right: 45px" href="{{ url('/modify_single/'.$song->id) }}"><i class="material-icons">create</i></a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red" id="deleteMusic" value="{!!$song['id']!!}"><i class="material-icons">delete</i></a>
+
                             </div>
                             <div class="card-content">
                                 <div class="col m12">
@@ -103,20 +105,18 @@
                                 <div class="col m12 ">
                                     <small><b>Estatus:</b> {{ $song->status }}</small>
                                 </div>
-                                  <small><b>Artista:</b> {{$song->autors->name}}</small>
+                                    <small><b>Artista:</b> {{$song->autors->name}}</small>
                               <!--  <div class="col m12">
                                     <audio id="player" class="">
                                         <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play"> 
                                     </audio>
                                 </div>   -->
-                                
                                 <div class="col-sm-4 col-sm-offset-4 embed-responsive ">
-                                      <audio controls class="embed-responsive-item" style="max-width: 250px ;max-height: 40px; width:100%">
-                                          <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play">
-                                </audio>
+                                    <audio controls class="embed-responsive-item" style="max-width: 250px ;max-height: 40px; width:100%">
+                                        <source src="{{asset($song->song_file)}}" type="audio/mp3" id="play">
+                                    </audio>
                               </div>
-</div>                       
-                            </div>
+                            </div>                       
                         </div>
                     </div>
                     @endforeach
@@ -135,6 +135,7 @@
 </div>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.plyr.io/3.3.21/plyr.js"></script>
 <script type="text/javascript">
   const players = Array.from(document.querySelectorAll('#player')).map(p => new Plyr(p));
@@ -184,5 +185,44 @@
     });
 
   });
+
+  $(document).on('click', '#deleteMusic', function() {
+            var id = $(this).attr("value");
+            swal({
+                title: "¿Desea realmente eliminar esta canción?",
+                icon: "warning",
+                dangerMode: true,
+                buttons: ["Cancelar", "Si"]
+            }).then((confir) => {
+                if (confir) {
+                    var gif = "{{ asset('/sistem_images/loading.gif') }}";
+                    swal({
+                        title: "Procesando la información",
+                        text: "Espere mientras se procesa la información.",
+                        icon: gif,
+                        buttons: false,
+                        closeOnEsc: false,
+                        closeOnClickOutside: false
+                    });
+                    $.ajax({
+                        url : "{{url('deleteMusic/')}}/"+id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            swal('Eliminado exitosamente','','success')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        },
+                        error: function(data) {
+                            swal('Existe un error en su solicitud','','error')
+                            .then((recarga) => {
+                                location.reload();
+                            });
+                        }
+                    });
+                }
+            });
+        });
 </script>
 @endsection

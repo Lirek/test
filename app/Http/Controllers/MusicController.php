@@ -8,7 +8,7 @@ use App\music_authors;
 use App\Tags;
 use App\Albums;
 use App\Songs;
-
+use File;
 
 class MusicController extends Controller
 {
@@ -25,5 +25,12 @@ class MusicController extends Controller
     public function ShowMusicOfMyPanel($id) {
     	$singles = Songs::where('seller_id','=',$id)->where('album','=',NULL)->get();
     	return response()->json($singles);
+    }
+
+    public static function deleteMusic($id) {
+        $cancion = Songs::find($id);
+        File::delete(public_path().$cancion->song_file);
+        $cancion = Songs::destroy($id);
+        return response()->json($cancion);
     }
 }
