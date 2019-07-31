@@ -29,7 +29,7 @@
                                             <h6 class="left"><b>Mi Enlace:</b></h6>
                                         </div>
                                         <div class="col s9 right">
-                                            <p style="text-align: justify;">Hola,Te invito a disfrutar juntos las maravillas de Leipel: Cine, música, lectura, radio, Tv y VIAJES GRATIS. Regístrate gratuitamente con el siguiente link: </p>
+                                            <p style="text-align: justify;">Te invito a Leipel y disfruta de Cine , Música , Lectura , Radio y Tv. <br><br> Usa mi link para hacerte una cuenta GRATIS y consigue tu link dentro de tu cuenta para que puedas ganar PREMIOS por invitar a más amigos.</p>
                                             <div class="col s6 right" style="margin-right: 150px;"><p>
                                                 <?php
                                                 $user = Auth::user();
@@ -60,7 +60,7 @@
                                                  data-layout="button" data-size="large" data-mobile-iframe="true">
                                             </div>
                                             
-                                            <!-- <a class="fb-share-button" href="https://www.facebook.com/sharer/sharer.php?app_id={{url('/').'/register/'.Auth::user()->codigo_ref}}"
+                                            <!-- <a class="fb-share-button" href="https://www.facebook.com/sharer/sharer.php?app_id={{url('/').'/register/'.Auth::user()->codigo_ref}}" 
                                               onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')">
                                               <img border="0" src="{{asset('sistem_images/facebook.png')}}" width="50" height="50">
                                             </a> -->
@@ -85,8 +85,6 @@
                                             <a href="whatsapp://send?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-text="{{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share" class="miestilo" style="border: none; margin: 10px 0; font-size: 16px;">
                                                 <img border="0" src="{{asset('sistem_images/WhatsApp.png')}}" width="50" height="50">
                                             </a>
-
-
                                         </div>
                                     </div>
                                 </li>

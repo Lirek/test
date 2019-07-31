@@ -195,7 +195,7 @@
 								</div>
 								<div class="input-field">
 									<input type="number" class="validate" id="cost" name="cost" required="required" min="0" onkeypress="return controltagNum(event)">
-									<label for="cost">Costo</label>
+									<label for="cost">Costo $</label>
 								</div>
 								<div class="input-field">
 									<input type="number" class="validate" id="amount" name="amount" required="required" min="1" onkeypress="return controltagNum(event)">
@@ -281,7 +281,7 @@
 								</div>
 								<div class="input-field">
 									<input type="number" id="cost_u" name="cost" value="" required="required" min="0" placeholder="" onkeypress="return controltagNum(event)">
-									<label for="cost">Costo</label>
+									<label for="cost">Costo $</label>
 								</div>
 								<div class="input-field">
 									<input type="number" id="amount_u" name="amount" value="" required="required" min="1" placeholder="" onkeypress="return controltagNum(event)">

@@ -253,7 +253,7 @@
 <div id="myModalRequest" class="modal">
     <div class="modal-content">
         <div class=" blue"><br>
-            <h4 class="center white-text" ><i class="small material-icons">local_activity</i> Datos para facturación por cobro de tickets</h4>
+            <h4 class="center white-text" ><i class="small material-icons">local_activity</i> Datos facturación cobro de tickets</h4>
             <br>
         </div>
         <br>

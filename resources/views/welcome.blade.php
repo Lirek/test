@@ -590,7 +590,7 @@
                         @endif
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciar" type="submit" name="action">Iniciar sesión
+                        <button class="btn curvaBoton waves-effect waves-light blue" id="iniciar" type="submit" name="action">Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         <a class="blue-text" href="{{ url('/password/reset') }}">
@@ -682,7 +682,7 @@
                         @endif
                     </div>
                     <div class="input-field col s12">
-                        <button class="btn curvaBoton waves-effect waves-light green" id="iniciarO" type="submit" name="action">    Iniciar sesión
+                        <button class="btn curvaBoton waves-effect waves-light amber" id="iniciarO" type="submit" name="action">    Iniciar sesión
                             <i class="material-icons right">send</i>
                         </button><br>
                         
@@ -765,7 +765,7 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRU" type="submit" name="action">Registrarse
+                        <button class="btn curvaBoton waves-effect waves-light blue" id="registroRU" type="submit" name="action">Registrarse
                             <i class="material-icons right">send</i>
                         </button><br>
                     </div>
@@ -936,7 +936,7 @@
                     </div>
 
                     <div class="input-field col s12">
-                        <button class="btn curvaBoton waves-effect waves-light green" id="registroRO" type="submit" >
+                        <button class="btn curvaBoton waves-effect waves-light amber" id="registroRO" type="submit" >
                             Enviar
                             <i class="material-icons right">send</i>
                         </button>
