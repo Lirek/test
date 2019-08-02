@@ -987,9 +987,9 @@ function maxLengthCheck(object) {
                 var tamaño = this.files[0].size;
                 var tamañoKb = parseInt(tamaño/1024);
                 var mensajeEpisodio = "#mensajeEpisodio";
-                if (tamañoKb>2048) {
+                if (tamañoKb>300000) {
                     $(mensajeEpisodio).show();
-                    $(mensajeEpisodio).text('Uno de los episodio es demasiado grande, el tamaño máximo permitido es de 2.048 KiloBytes');
+                    $(mensajeEpisodio).text('Uno de los episodio es demasiado grande, el tamaño máximo permitido es de 300 MegaBytes');
                     $(mensajeEpisodio).css('color','red');
                     $('#btnAdd').attr('disabled',true);
                     $('#modificarSerie').attr('disabled',true);
