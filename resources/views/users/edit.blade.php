@@ -299,7 +299,7 @@
                             <div id="profile-card" class="card">
                                 <div class="card-image waves-block blue" style="height: 65px; padding-top: 9px;">
                                       <span class="collection-header center" style="color: white;">
-                                          <font size="5">Patrocinador</font>
+                                          <font size="5">Persona que me invitó</font>
                                       </span>
                                     </li>
                                 </div>

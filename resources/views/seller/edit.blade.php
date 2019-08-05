@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i><h5>{{$total_aproved}}</h5>
-                                        <label>Contenido aprovado</label>
+                                        <label>Contenido aprobado</label>
                                     </div>
                                 </div>
                             </div>
