@@ -42,8 +42,7 @@
         <iframe width="150" height="150" src="https://www.youtube.com/embed/NgnsW2M3X1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="col 12 m9">
-      <h5 ALIGN="justify" >Leipel agradece con su árbol de beneficios a cualquier usuario que nos traiga más amigos que también compren tickets.
-      Gana y acumula puntos para cambiarlos por los siguientes beneficios:</h5>
+      <h5 ALIGN="justify" >Leipel agradece a sus usuarios por invitar a mas amigos que a su vez también compren tickets y así ganar y acumular puntos para ser canjeados por la siguiente gama de beneficios:</h5>
       <span style="padding-left: 40%">(Aplica al momento sólo en territorio ecuatoriano)</span>
       </div>
     
@@ -60,8 +59,8 @@
     </div>
     <div id="listaBeneficios" class="col s12 center">
       <ul class="tabs">
-          <li class="tab col s6"><a class="active" href="#test001">Productos disponibles</a></li>
-          <li class="tab col s6"><a href="#test002">Productos en proceso de canje</a></li>
+          <li class="tab col s6"><a class="active" href="#test001">Beneficios disponibles</a></li>
+          <li class="tab col s6"><a href="#test002">Beneficios en proceso</a></li>
       </ul>
       <div id="test001" class="col s12 center">
         @if($beneficio != "")
@@ -113,9 +112,9 @@
     @else
    <div id="listaBeneficios" class="col s12 center">
       <ul class="tabs">
-          <li class="tab col s4"><a class="active" href="#test01">Productos disponibles</a></li>
-          <li class="tab col s4"><a href="#test02">Productos adquiridos</a></li>
-          <li class="tab col s4"><a href="#test03">Productos entregados</a></li>
+          <li class="tab col s4"><a class="active" href="#test01">Beneficios disponibles</a></li>
+          <li class="tab col s4"><a href="#test02">Beneficios en proceso</a></li>
+          <li class="tab col s4"><a href="#test03">Beneficios recibidos</a></li>
       </ul>
 
       <div id="test01" class="col s12 center">
@@ -215,8 +214,8 @@
                 </div>
                   </div>
                     <div class="card-content">
-                        <span>Total de compra: {{$produc->amount}} puntos.</span><br><br>
-                        <a id="entrega" value="{!!$produc['id']!!}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Recibido</a>
+                        <span>Valor de compra: {{$produc->amount}} puntos.</span><br><br>
+                        <a id="entrega" value="{!!$produc['id']!!}" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">assignment_turned_in</i>Liberar</a>
                         <br>
                     </div>
                 </div>
@@ -248,9 +247,10 @@
                       </ul>
                     </div>
                   </div>
-                    <div class="card-content">
-                        <span>Total de compra: {{$entrega->amount}} puntos.</span><br><br>
-                        <a  href="{{asset($entrega->Producto->pdf_prod)}}" target="_blank" class="waves-effect waves-light btn curvaBoton"><i class="material-icons left">picture_as_pdf</i>Detalles</a>
+                    <div class="card-content ">
+                        <br>
+                        <span>Valor de compra: </span>
+                        <h6>{{$entrega->amount}} puntos.</h6>
                     </div>
                 </div>
             </div>
@@ -276,8 +276,8 @@
       var id=$(this).attr("value");
       var url="{{url('delivered')}}/"+id;
       swal({
-            title: "¿Está seguro?",
-            text: 'Esta opción RECIBIDO sirve para saber que usted ya canjeó el beneficio y que debemos de pagarle a la empresa para que se lo puedan entregar.  \n  \n  Por favor, lea los DETALLES del beneficio para que sepa cuándo ponerle ACEPTAR a esta opción. \n  \n En esencia, debería poner ACEPTAR tanto si ya tiene un comprobante de que le van a entrega el beneficio por parte de la empresa aliada, o si lo está recibiendo es sus manos en este momento.  \n  \n Esperamos lo disfrute.',
+            title: "¿DESEA LIBERAR EL PAGO?",
+            text: 'ESTA OPCIÓN DE LIBERAR PAGO NOS INDICA QUE EN ESTE MOMENTO usted se encuentra en las instalaciones de la empresa aliada responsable del canje y que ESTÁ RECIBIENDO EN SUS MANOS EL BENEFICIO, así como el recibo correspondiente que indica que Leipel paga dicho beneficio y que es para usted.  \n  \n SI NO ESTÁ RECIBIENDO EL RECIBO Y EL BENEFICIO, NO LIBERE EL PAGO.',
             buttons:  ["Cancelar", "Recibido"],
         })
       .then((Recibido) => {
@@ -287,7 +287,7 @@
                   type: 'GET',
                   dataType: "json",
                   success: function (result) {
-                          swal('usted ha liberado el producto','','success')
+                          swal('LIBERACIÓN DEL PAGO EXITOSA.  \n  \n Si no es molestia, tómese una foto recibiendo su beneficio y etiquétenos en las redes sociales.  \n  \n  Muchas gracias.','','success')
                           .then((recarga) => {
                           location.reload();
                         });
@@ -355,7 +355,7 @@
                           location.reload();
                         });
                       } else {
-                          swal('Su compra se ha realizado con éxito. Dirijase a la sección de productos adquiridos para revisar cómo retirar su beneficio ','','success')
+                          swal('Su compra se ha realizado con éxito. Diríjase a la sección de productos adquiridos para revisar cómo retirar su beneficio ','','success')
                           .then((recarga) => {
                           location.reload();
                         });

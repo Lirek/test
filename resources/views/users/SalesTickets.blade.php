@@ -290,6 +290,14 @@
 											<div class="col s12" id="totalP-{{$ticket->id}}"></div>
 											<div id="mensajeValidacionPuntos-{{$ticket->id}}" class="col s12" align="center" style="margin-top: 2%; color: red;"></div>
 										</div>
+
+										<div class="col s12">
+											<br>
+											<button class="btn curvaBoton waves-effect waves-light green" id="ingresar-{{$ticket->id}}" type="submit">
+												Comprar
+												{{--<i class="material-icons right">send</i>--}}
+											</button>
+										</div>
 										<div class="col s12">
 											<div id="mensajeTerminosCondiciones-{{$ticket->id}}" align="center" style="margin-top: 2%; color: red;">
 											</div>
@@ -300,12 +308,6 @@
 												</label>
 												<a href="{{route('terminosCondiciones')}}" target="_blank">Términos</a> y <a href="{{route('terminosCondiciones')}}" target="_blank">Condiciones</a>.
 											</p>
-										</div>
-										<div class="col s12">
-											<button class="btn curvaBoton waves-effect waves-light green" id="ingresar-{{$ticket->id}}" type="submit">
-												Comprar
-												{{--<i class="material-icons right">send</i>--}}
-											</button>
 										</div>
 										<div class="col s12">
 											<a class="btn curvaBoton waves-effect waves-light green" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
@@ -569,7 +571,7 @@
 		function esperarAprobacion() {
 			swal({
 				title: "Verificando su información",
-				text: "Disculpe pero en estos momentos nos encontramos verificando su información, en breves momentos terminaremos con la verificación.",
+				text: "En estos momentos nos encontramos verificando su información, este proceso puede durar un promedio de 48 horas desde que recibimos su información. \n  \n  Gracias por su comprensión.",
 				icon: "warning",
 				buttons: {
 					accept: {
