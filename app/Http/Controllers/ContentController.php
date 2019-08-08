@@ -222,7 +222,8 @@ class ContentController extends Controller
                 $Lecturas->transaction;
             });
         }
-        foreach ($Megazines as $megazines){
+
+            foreach ($Megazines as $megazines){
             $adquirido=(in_array($megazines->id, $MegazinesAdd)) ? true : false;
             $Lecturas->push($megazines);
             $megazines->type='megazines';
@@ -231,7 +232,7 @@ class ContentController extends Controller
                 $Lecturas->Transactions;
             });
         }
-        
+
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $col = new Collection($Lecturas);
         $perPage = 12;

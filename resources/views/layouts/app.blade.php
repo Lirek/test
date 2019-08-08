@@ -251,7 +251,7 @@
                                 <a href="javascript:;" class="collapsible-header waves-effect waves-blue"><i class=" material-icons left" >group_add</i>Invitar amigos<i class="material-icons right">expand_more</i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li><a  href="{{url('WebsUser')}}" class="waves-effect waves-blue"><i class="small material-icons">people</i>Mis referidos</a></li>
+                                        <li><a  href="{{url('WebsUser')}}" class="waves-effect waves-blue"><i class="small material-icons">people</i>Mis invitados</a></li>
                                         <li><a  href="{{url('Referals')}}" class="waves-effect waves-blue"><i class="small material-icons">person_add</i>Invitar</a></li>
                                         <li><div class="divider"></div></li>
                                     </ul>

@@ -181,7 +181,7 @@
     <div class="col s12 m12">
         @include('flash::message')
         <div class="card-panel curva">
-            <h4 class="titelgeneral"><i class="mdi mdi-filmstrip"></i> Editar película  </h4>
+            <h4 class="titelgeneral"><i class="mdi mdi-filmstrip"></i> Guardar cambios </h4>
             <br>
             <div class="row">
                 {!! Form::open(['route'=>['movies.update',$movie], 'method'=>'PUT','files' => 'true' ]) !!}
@@ -195,9 +195,7 @@
                          </label>
                         <div id="image-preview" style="border:#bdc3c7 1px solid ;" class="">
                             <label for="image-upload" id="image-label"> Portada de la pelicula </label>
-                                @if($movie->status != 'Aprobado')
                                     {!! Form::file('img_poster',['class'=>'form-control-file', 'control-label', 'id'=>'image-upload', 'accept'=>'image/*']) !!}
-                                @endif
                                 {!! Form::hidden('img_posterOld',$movie->img_poster)!!}
                             <div id="list">
                                 <img style="width:100%; height:100%; border-top:50%;" src="{{asset('movie/poster')}}/{{$movie->img_poster}}">
@@ -209,11 +207,7 @@
                         {{--titulo de la pelicula--}}
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
                         <label for="titulo" class="control-label">Título</label>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::text('title',$movie->title,['class'=>'form-control','required'=>'required','id'=>'titulo','oninvalid'=>"this.setCustomValidity('Seleccione un título')",'oninput'=>"setCustomValidity('')"]) !!}
-                        @else
-                            {!! Form::text('title',$movie->title,['class'=>'form-control', 'id'=>'titulo','readonly']) !!}
-                        @endif
                         <div id="mensajeTitulo"></div>
                         <br>
                     </div>
@@ -221,22 +215,14 @@
                         {{--titulo original de la pelicula--}}
                         <i class="material-icons prefix blue-text valign-wrapper">create</i>
                         <label for="titulOriginal" class="control-label">Título original </label>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::text('original_title',$movie->original_title,['class'=>'form-control','placeholder'=>'Titulo original','id'=>'titulOriginal','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione el título original')",'oninput'=>"setCustomValidity('')"]) !!}
-                        @else
-                            {!! Form::text('original_title',$movie->original_title,['class'=>'form-control', 'id'=>'titulOriginal','readonly']) !!}
-                        @endif
                         <br>
                     </div>
                     <div class="input-field col s12 m3">
                         {{--precio--}}
                         <i class="material-icons prefix blue-text valign-wrapper">local_play</i>
                         <label for="precio" class="control-label">Costo en tickets</label>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Escriba un Precio')", 'oninput'=>"setCustomValidity('')", 'id'=>'precio', 'min'=>'0' ,'max'=>'999' ,'oninput'=>"maxLengthCheck(this)"]) !!}
-                        @else
-                            {!! Form::number('cost',$movie->cost,['class'=>'form-control','placeholder'=>'Costo en tickets', 'required'=>'required','readonly', 'id'=>'precio', 'min'=>'0']) !!}
-                        @endif
                         <div class="" id="mensajePrecio"></div>
                         <!-- <label for="exampleInputPassword1" class="control-label">Costo en dolares</label>
                         {!! Form::text('cost',null,['class'=>'form-control','placeholder'=>'0.00', 'id'=>'conversion']) !!} -->
@@ -251,7 +237,6 @@
                     <div class="input-field col s12 m6">
                         {{--Categoria--}}
                             <i class="material-icons prefix blue-text valign-wrapper">turned_in</i>
-                            @if($movie->status != 'Aprobado')
                             <select name="tags[]" multiple="true" class="form-control" required id="tags">
                                 @foreach($tags as $genders)
                                     <option value="{{$genders->id}}"
@@ -265,28 +250,12 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @else
-                            <select name="tags[]" multiple="true" class="form-control" disabled="true">
-                                @foreach($tags as $genders)
-                                    <option value="{{$genders->id}}"
-                                        @foreach($s_tags as $s) 
-                                            @if($s->id == $genders->id) 
-                                                selected 
-                                            @endif 
-                                        @endforeach
-                                        >
-                                        {{$genders->tags_name}}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @endif
                             <label for="tags"> Generos </label>
                             <br>
                     </div>
                 </div>
                 <div class="col m12 s12">
                     <div class="col m6 s12">
-                        @if($movie->status != 'Aprobado')
                         <label for="cargaPelicula" id="mensajePelicula" class="control-label" style="color: green;">
                             Si no selecciona una película, se mantendrá la actual
                         </label>
@@ -308,18 +277,11 @@
                                 <br>
                                 {!! Form::hidden('durationOld',$movie->duration) !!}
                         </div>
-                        @else
-                            {!! Form::hidden('durationOld',$movie->duration) !!}         
-                        @endif
                     </div>
                     <br><br><br>
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix blue-text valign-wrapper">star</i>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','required'=>'required','oninvalid'=>"this.setCustomValidity('Seleccione una categoría')",'oninput'=>"setCustomValidity('')"]) !!}
-                        @else
-                            {!! Form::select('rating_id',$ratin,$movie->rating_id,['class'=>'form-control select-author','placeholder'=>'Selecione una opción','id'=>'categoria','disabled'=>true ]) !!}
-                        @endif
                         <label for="categoria" class="control-label">Categoría</label>
                             <br>
                     </div>
@@ -328,11 +290,7 @@
                         {{--año de salida de la pelicula --}}
                          <i class="material-icons prefix blue-text valign-wrapper">access_time</i>
                         <label for="fechaLanzamiento" class="control-label">Año de lanzamiento</label>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'onkeypress' => 'return controltagNum(event)','oninput'=>"setCustomValidity('')", 'oninvalid'=>"this.setCustomValidity('Seleccione el año de lanzamiento')"]) !!}
-                        @else
-                            {!! Form::number('release_year',$movie->release_year,['class'=>'form-control','placeholder'=>'Año de lanzamiento', 'id'=>'fechaLanzamiento', 'min'=>'0', 'max'=>"@date('Y')", 'readonly']) !!}
-                        @endif
                         <div id="mensajeFechaLanzamiento"></div>
                         <br>    
                     </div>
@@ -587,11 +545,7 @@
                         {{--link--}}
                         <i class="material-icons prefix blue-text valign-wrapper">subscriptions</i>
                         <label for="link" class="control-label">Link del trailer</label>
-                        @if($movie->status != 'Aprobado')
                             {!! Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'oninvalid'=>"this.setCustomValidity('Ingrese el link del trailer de la película')", 'oninput'=>"setCustomValidity('')", 'id'=>'link']) !!}
-                        @else
-                            {!! Form::url('trailer_url',$movie->trailer_url,['class'=>'form-control','placeholder'=>'Link del trailer', 'required'=>'required', 'readonly', 'id'=>'link']) !!}
-                        @endif
                             <div id="mensajeLink"></div>
                             <br>
                     </div>
@@ -643,7 +597,7 @@
                 <div class="col m12 s12">
                     <a href="{{ url('/movies') }}" class="btn curvaBoton waves-effect waves-light red">Atrás</a>
                      <!-- {!! Form::submit('Editar película', ['class' => 'btn curvaBoton waves-effect waves-light green','id'=>'guardarCambios']) !!} -->
-                    <button type="submit" id="guardarCambios" class="btn curvaBoton waves-effect waves-light green">Editar película</button>
+                    <button type="submit" id="guardarCambios" class="btn curvaBoton waves-effect waves-light green">Guardar cambios</button>
                                 
                 </div>
                 {!! Form::close() !!}
