@@ -23,7 +23,7 @@ class BenefitController extends Controller
          * */
         $valPunto = Conversion::where('tipo','punto')->where('hasta',null)->first();
         $beneficios = Products::whereStatus("Aprobado");
-
+        $todosBeneficios = [];
         foreach ($beneficios as $beneficio) {
             $img = [];
             if ($beneficio->saveImg()) {

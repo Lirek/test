@@ -43,6 +43,7 @@ Route::group(['middleware' => ['cors']], function() {
         //-----------------------------------------------------------------------------------
         //-------------------------RUTAS DE USUARIO------------------------------------------
         Route::get('user','ApiController\UserController@UserData');
+        Route::get('verifyUser','ApiController\UserController@verifyStatusUser');
         Route::get('referals','ApiController\UserController@WebsUser');
         Route::post('updateData','ApiController\UserController@UpdateData');
         Route::post('uploadDocument','ApiController\UserController@UploadDocument');
@@ -61,12 +62,14 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('packages','ApiController\PackageController@ShowPackages');
         //-----------------------------------------------------------------------------------
         //---------------------------COMPRAS DE PAQUETES--------------------------------------
-        Route::post('BuyDepositPackage','ApiController\PackageController@BuyDepositPackage');
-        Route::post('BuyPointsPackage','ApiController\PackageController@BuyPointsPackage');
+        Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
+        Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
+        Route::post('BuyDepositPackageDocument','ApiController\PaymentController@BuyDepositPackageDocument');
+
         Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
+        //Route::post('encode','ApiController\PackageController@encode');
 
         //Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
-        Route::post('BuyDepositPackageDocument/{idPayment}','ApiController\PaymentController@BuyDepositPackageDocument');
         //Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
         //Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
         Route::get('BuyPayphone/{id}/{cost}/{value}','ApiController\PaymentController@BuyPayphone');

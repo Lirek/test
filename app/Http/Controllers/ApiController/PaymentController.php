@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiController;
 
+use App\PointsLoser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 /*
@@ -12,113 +13,153 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Yajra\Datatables\Datatables;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Log;
+use JWTAuth;
+use App\PointsAssings;
 */
 
 use App\Events\AssingPointsEvents;
-
-//use JWTAuth;
+use App\Events\PayementAprovalEvent;
 use Response;
-
 use App\User;
 use App\TicketsPackage;
 use App\Payments;
-//use App\PointsAssings;
 use App\SistemBalance;
-
-use Carbon\Carbon; //
-use App\Mail\TransactionApproved; //
-use Illuminate\Support\Facades\Mail; //
+use Carbon\Carbon;
+use App\Mail\TransactionApproved;
+use Illuminate\Support\Facades\Mail;
+use Validator;
+use File;
 
 class PaymentController extends Controller {
 
     public function BuyDepositPackage(Request $request) {
-        $Buy = new Payments;
-        $Buy->user_id = auth()->user()->id;
-        $Buy->package_id = $request->ticket_id;
-        $Buy->cost = $request->cost;
-        $Buy->value = $request->cantidad;
-        $Buy->method = 'Depósito';
-        $Buy->status = 2;
-        $Buy->reference = $request->references;
-        $Buy->save();
-        $Buy = Payments::all();
-        $idPayment = $Buy->last()->id;
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            'ticket_id' => 'required',
+            'costo' => 'required',
+            'cantidad' => 'required',
+            'referencia' => 'required',
+        ];
+        $validator = Validator::make($datos, $rules);
 
-        return Response::json([
-            'status'=>'1',
-            'data' => [
-                "idPayment"=>$idPayment
-            ],
-            'message'=>'Información registrada exitosamente'
-        ],200);
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
+        }
+        try {
+            $Buy = new Payments;
+            $Buy->user_id = auth()->user()->id;
+            $Buy->package_id = $request->ticket_id;
+            $Buy->cost = $request->costo;
+            $Buy->value = $request->cantidad;
+            $Buy->method = 'Depósito';
+            $Buy->status = 2;
+            $Buy->reference = $request->referencia;
+            $Buy->save();
+            $data = [
+                "idPayment" => $Buy->id
+            ];
+            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
     }
 
-    public function BuyDepositPackageDocument(Request $request, $idPayment) {
-        if ($request->hasFile('voucher')) {
-            $store_path = public_path().'/user/'.auth()->user()->id.'/ticketsDeposit/';
-            $name = 'deposit'.$request->name.time().'.'.$request->file('voucher')->getClientOriginalExtension();
-            $request->file('voucher')->move($store_path,$name);
-            $real_path ='/user/'.auth()->user()->id.'/ticketsDeposit/'.$name;
+    public function BuyDepositPackageDocument(Request $request) {
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            'imagen_del_documento' => 'required'
+        ];
+        $validator = Validator::make($datos, $rules);
+
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
         }
-        $Buy = Payments::find($idPayment);
-        $Buy->voucher = $real_path;
-        $Buy->save();
-        return Response::json([
-            'status'=>'1',
-            'data' => [
-                "idPayment"=>$idPayment
-            ],
-            'message'=>'Pago registrado exitosamente'
-        ],200);
+        try {
+            $store_path = public_path().'/user/'.auth()->user()->id.'/ticketsDeposit/';
+            $image = $request->imagen_del_documento;
+            $image = explode(',',$image);
+            if (count($image)==2) {
+                $image = $image[1];
+            } else {
+                $image = $image[0];
+            }
+            $name = 'deposit'.time().'.png';
+            File::put($store_path.'/'.$name, base64_decode($image));
+            $real_path ='/user/'.auth()->user()->id.'/ticketsDeposit/'.$name;
+
+            $Buy = Payments::find($request->idPayment);
+            $Buy->voucher = $real_path;
+            $Buy->save();
+            return response()->json(['meta'=>['code'=>201],'data'=>true],201);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
     }
     
     public function BuyPointsPackage(Request $request) {
-        $user = User::find(auth()->user()->id);
-        //$user = User::find(1);
-        $TicketsPackage= TicketsPackage::find($request->ticket_id);
+        $datos = $request->only(array_keys($request->all()));
+        $rules = [
+            'ticket_id' => 'required',
+            'costo' => 'required',
+            'cantidad' => 'required',
+            'puntos' => 'required',
+        ];
+        $validator = Validator::make($datos, $rules);
 
-        if ($request->cost > $user->points) {
-            return Response::json(['status'=>'Puntos insuficientes',201]);;
-        } else {
-            $Buy = new Payments;
-            $Buy->user_id       = auth()->user()->id;
-            //$Buy->user_id       = 1;
-            $Buy->package_id    =$request->ticket_id;
-            $Buy->cost          =$request->points;
-            $Buy->value         =$request->Cantidad;
-            $Buy->status        = 1;
-            $Buy->method        ='Puntos';
-            $Buy->save();
-
-            $ticket=$TicketsPackage->amount*$request->Cantidad;
-            $cost=$request->Cantidad*$request->points;
-
-            $user->credito = $ticket;
-            $user->points = $user->points - $cost;
-            $user->save();
-
-            $Condition=Carbon::now()->firstOfMonth()->toDateString();
-
-            $revenueMonth = Payments::where('user_id','=',$user->id)
-                ->where('created_at', '>=',$Condition)
-                ->where('status', '=','Aprobado')
-                ->get();
-
-            $balance=  SistemBalance::find(1);
-            $TicketsPackage = TicketsPackage::find($request->ticket_id); //
-            //$balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
-            $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount; //
-
-            $balance->save();
-
-            if ($revenueMonth->count()<=1) {
-                event(new AssingPointsEvents($user->id,$Buy->package_id));
-            }
-
-            //event(new PayementAprovalEvent($user->email));
-            Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));//
+        if($validator->fails()) {
+            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
         }
-        return Response::json(['status'=>'OK',201]);
+        try {
+            if ($request->costo > auth()->user()->points) {
+                return response()->json(['meta'=>['code'=>202],'data'=>1],202);
+            } else {
+                $firstPay = Payments::where('user_id',auth()->user()->id)->where('status','Aprobado')->get();
+
+                $Buy = new Payments;
+                $Buy->user_id       = auth()->user()->id;
+                $Buy->package_id    = $request->ticket_id;
+                $Buy->cost          = $request->puntos;
+                $Buy->value         = $request->cantidad;
+                $Buy->status        = 1;
+                $Buy->method        = 'Puntos';
+                $Buy->save();
+
+                $TicketsPackage = TicketsPackage::find($request->ticket_id);
+
+                $ticket = $TicketsPackage->amount*$request->cantidad;
+                $cost = $request->cantidad*$request->puntos;
+
+                $user = User::find(auth()->user()->id);
+                $user->credito = $user->credito + $ticket;
+                $user->points = $user->points - $cost;
+                $user->save();
+
+                $this->valPuntos($firstPay);
+
+                $Condition = Carbon::now()->firstOfMonth()->toDateString();
+
+                $revenueMonth = Payments::where('user_id',$user->id)
+                    ->where('created_at', '>=',$Condition)
+                    ->where('status','Aprobado')
+                    ->get();
+
+                $balance=  SistemBalance::find(1);
+                $TicketsPackage = TicketsPackage::find($request->ticket_id);
+                //$balance->tickets_solds = $balance->tickets_solds + $deposit->Tickets->amount;
+                $balance->tickets_solds = $balance->tickets_solds + $TicketsPackage->amount;
+                $balance->save();
+
+                if ($revenueMonth->count()<=1) {
+                    event(new AssingPointsEvents($user->id,$Buy->package_id));
+                }
+
+                event(new PayementAprovalEvent($user->email));
+                Mail::to($user->email,$user->name." ".$user->last_name)->send(new TransactionApproved($user));//
+            }
+            return response()->json(['meta'=>['code'=>200],'data'=>true],200);
+        } catch (Exception $e) {
+            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
+        }
     }
 
     public function BuyPayphone($id,$cost,$value) {
@@ -292,5 +333,59 @@ class PaymentController extends Controller {
         $Buy->save();
         $respuesta = true;
         return Response::json(['status'=>'OK','cancel'=>$respuesta,201]);
+    }
+
+    public function valPuntos($firstPay) {
+        $user = User::find(auth()->user()->id);
+        if ($firstPay->count()==0) { // nunca a hecho pagos (apartando el que acaba de hacer)
+            if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+                if ($user->points + $user->pending_points > $user->limit_points) {
+                    $todosPuntos = $user->points + $user->pending_points;
+                    $restoPuntos = $todosPuntos - $user->limit_points;
+                    $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+                    $pointsLoser = new PointsLoser;
+                    $pointsLoser->user_id = auth()->user()->id;
+                    $pointsLoser->points = $restoPuntos;
+                    $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                    $pointsLoser->save();
+                } else {
+                    $user->points = $user->points + $user->pending_points;
+                }
+                $user->pending_points = 0;
+            }
+        } else { // ya ha hecho pagos
+            $firstDay = Carbon::now()->firstOfMonth()->subMonth(1)->toDateString();
+            $lastDay = Carbon::now()->lastOfMonth()->subMonth(1)->toDateString();
+            // pago el mes pasado?
+            $paymentsMonthPass = Payments::where('user_id',auth()->user()->id)
+                ->whereBetween('created_at',[$firstDay,$lastDay])
+                ->where('status','Aprobado')
+                ->get();
+            if ($paymentsMonthPass->count()==0) { // no pagó
+                $pointsLoser = new PointsLoser;
+                $pointsLoser->user_id = auth()->user()->id;
+                $pointsLoser->points = $user->pending_points;
+                $pointsLoser->reason = "No recargó el mes pasado";
+                $pointsLoser->save();
+                $user->pending_points = 0;
+            } else { // si pagó el mes pasado
+                if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
+                    if ($user->points + $user->pending_points > $user->limit_points) {
+                        $todosPuntos = $user->points + $user->pending_points;
+                        $restoPuntos = $todosPuntos - $user->limit_points;
+                        $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+                        $pointsLoser = new PointsLoser;
+                        $pointsLoser->user_id = auth()->user()->id;
+                        $pointsLoser->points = $restoPuntos;
+                        $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                        $pointsLoser->save();
+                    } else {
+                        $user->points = $user->points + $user->pending_points;
+                    }
+                    $user->pending_points = 0;
+                }
+            }
+        }
+        $user->save();
     }
 }
