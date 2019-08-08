@@ -31,4 +31,10 @@ class PackageController extends Controller
         }
         return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
     }
+
+    public function encode(Request $request) {
+        $imagenData = file_get_contents($request->img);
+        $data = base64_encode($imagenData);
+        return $data;
+    }
 }

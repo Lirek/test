@@ -6,62 +6,13 @@ use App\Events\InviteEvent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\Resource;
-use Illuminate\Routing\Route;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use App\User;
 use App\Referals;
 use Auth;
 use Validator;
 use File;
-/*No se usasn*/
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use Spatie\Fractalistic\Fractal;
-use Yajra\Datatables\Datatables;
-use Illuminate\Support\Facades\Log;
-use App\Events\PayementAprovalEvent;
-use App\Events\PaymentDenialEvent;
-use App\Events\AssingPointsEvents;
-use Response;
-use App\Megazines;
-use App\Tags;
-use App\ApplysSellers;
-use App\Songs;
-use App\Albums;
-use App\Radio;
-use App\Seller;
-use App\Sagas;
-use App\BookAuthor;
-use App\Book;
-use App\Tv;
-use App\music_authors;
-use App\SellersRoles;
-use App\Promoters;
-use App\LoginControl;
-use App\Salesman;
-use App\PromotersRoles;
-use App\TicketsPackage;
-use App\Payments;
-use App\PointsAssings;
-use App\SistemBalance;
-use App\Transactions;
-use App\Transformers\UserTransformer;
-use App\Transformers\AlbumsTransformer;
-use App\Transformers\SongsTransformer;
-use App\Transformers\MusicAuthorTransformer;
-use App\Transformers\SellerTransformer;
-use App\Transformers\TagsTransformer;
-use App\Transformers\BooksTransformer;
-use App\Transformers\MegazinesTransformer;
-use App\Transformers\RadioTransformer;
-use App\Transformers\TvTransformer;
-use Carbon\Carbon;
-use App\Mail\TransactionApproved;
-use Illuminate\Support\Facades\Mail;
-use QrCode;
-/*No se usasn*/
+
 
 class UserController extends Controller
 {
@@ -167,6 +118,14 @@ class UserController extends Controller
         return response()->json(['meta'=>['code'=>200],'data'=>$data], 200);
     }
 
+    public function verifyStatusUser() {
+        if (auth()->user()->verify==1) {
+            return response()->json(['meta'=>['code'=>200],'data'=>true], 200);
+        } else {
+            return response()->json(['meta'=>['code'=>200],'data'=>false], 200);
+        }
+    }
+
     public function UpdateData(Request $request) {
         $datos = $request->only(array_keys($request->all()));
 
@@ -258,11 +217,9 @@ class UserController extends Controller
     }
 
     public function UploadAvatar(Request $request) {
-
         $datos = $request->only(array_keys($request->all()));
         $rules = [
-            //'img_perf' => 'required|image|dimensions:max_width=500,max_height=500|size:1024'
-            'imagen_de_perfil' => 'required|image'
+            'imagen_de_perfil' => 'required'
         ];
         $validator = Validator::make($datos, $rules);
 
@@ -276,17 +233,24 @@ class UserController extends Controller
             }
             $nombre = $this->sinAcento($user->name);
             $store_path = public_path().'/user/'.$user->id.'/profile/';
-            $name = 'userpic'.$nombre.time().'.'.$request->file('imagen_de_perfil')->getClientOriginalExtension();
-            $request->file('imagen_de_perfil')->move($store_path,$name);
+            $image = $request->imagen_de_perfil;
+            $image = explode(',',$image);
+            if (count($image)==2) {
+                $image = $image[1];
+            } else {
+                $image = $image[0];
+            }
+            $name = 'userpic'.$nombre.time().'.png';
+            File::put($store_path.'/'.$name, base64_decode($image));
             $user->img_perf = '/user/'.$user->id.'/profile/'.$name;
             $user->save();
-            $data = [
-                'img_perf' => $user->img_perf
-            ];
-            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+
+            return response()->json(['meta'=>['code'=>200],'data'=>'Imagen actualizada'],200);
         } catch (Exception $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
+
+        return response()->json(['meta'=>['code'=>200],'data'=>$request->imagen_de_perfil],200);
     }
     
     public function valSponsor() {
