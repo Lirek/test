@@ -62,9 +62,9 @@ Route::group(['middleware' => ['cors']], function() {
         Route::get('packages','ApiController\PackageController@ShowPackages');
         //-----------------------------------------------------------------------------------
         //---------------------------COMPRAS DE PAQUETES--------------------------------------
-        Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
-        Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
-        Route::post('BuyDepositPackageDocument','ApiController\PaymentController@BuyDepositPackageDocument');
+        Route::post('buyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
+        Route::post('buyPointsPackage','ApiController\PaymentController@BuyPointsPackage');
+        Route::post('buyDepositPackageDocument','ApiController\PaymentController@BuyDepositPackageDocument');
 
         Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
         //Route::post('encode','ApiController\PackageController@encode');
