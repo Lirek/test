@@ -301,14 +301,6 @@
 										<div class="col s12">
 											<div id="mensajeTerminosCondiciones-{{$ticket->id}}" align="center" style="margin-top: 2%; color: red;">
 											</div>
-											<p>
-												<label>
-													<input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-{{$ticket->id}}">
-													<span onclick="terminosCondiciones({!!$ticket->id!!})">Al comprar estas aceptando nuestros</span>
-												</label>
-												<a href="{{route('terminosCondiciones')}}" target="_blank">Términos</a> y <a href="{{route('terminosCondiciones')}}" target="_blank">Condiciones</a>.
-											</p>
-										</div>
 										<div class="col s12">
 											<a class="btn curvaBoton waves-effect waves-light green" id="ingresarPayPhone-{{$ticket->id}}" onclick="comprar({!!$ticket->id!!},{!!$ticket->cost!!},{!!$ticket->amount!!})">
 												Comprar
@@ -319,6 +311,16 @@
 												Comprar
 											</a>
 										</div>
+											<p>
+												<label>
+													<input type="checkbox" name="checkTerminosCondiciones" checked="checked" required="required" id="terminosCondiciones-{{$ticket->id}}">
+													<span onclick="terminosCondiciones({!!$ticket->id!!})">Al comprar estas aceptando nuestros</span>
+												</label>
+												<a href="{{route('terminosCondiciones')}}" target="_blank">Términos</a> y <a href="{{route('terminosCondiciones')}}" target="_blank">Condiciones</a>.
+											</p>
+										</div>
+										
+										
 									</form>
 								</div>
 							</div>
@@ -336,8 +338,8 @@
 				<div class="divider"></div>
 				<br>
 				<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-					<li class="tab" id="denegado"><a class="active" href="#test1">• Compras (Tickets y Puntos En efectivo)</a></li>
-					<li class="tab" id="revision"><a href="#test2">• Compra (Tickets Con puntos)</a></li>
+					<li class="tab" id="denegado"><a class="active" href="#test1">• Compras (Tickets y Puntos)</a></li>
+					<li class="tab" id="revision"><a href="#test2">• Beneficios</a></li>
 					<li class="tab" id="revision"><a href="#test3">• Puntos ganados/perdidos</a></li>
 				</ul>
 				<div id="test1" class="col s12">
@@ -381,7 +383,7 @@
 													@endif
 												</td>
 											@else
-												<td>No Aplica</td>
+												<td>No disponible</td>
 											@endif
 										@endif
 									</tr>
@@ -393,7 +395,6 @@
 					@endif
 				</div>
 				<div id="test2" class="col s12">
-					@if(count($BalancePuntos)!=0)
 						<table class="highlight centered responsive-table" id="tablePuntos" style="width:100%">
 							<thead>
 								<tr>
@@ -404,26 +405,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($BalancePuntos as $balance)
 									<tr class="letters">
-										<td>{{$balance['Date']}}</td>
-										<td>{{$balance['Transaction']}}</td>
-										@if($balance['Type']==1)
-											<td></td>
-											<td>{{$balance['Cant']}}</td>
+										<td></td>
+										<td></td>
+										
 											<td></td>
 											<td></td>
-										@else
-											<td>{{$balance['Cant']}}</td>
 											<td></td>
-										@endif
+											<td></td>
+										
 									</tr>
-								@endforeach
 							</tbody>
 						</table>
-					@else
-						<h4 class="titelgeneral">No tiene pagos</h4>
-					@endif
+					
 				</div>
 				<div id="test3" class="col s12">
 					@if($pointsLoser->count()!=0)

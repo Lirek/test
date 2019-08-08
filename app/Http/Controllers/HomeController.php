@@ -436,7 +436,7 @@ class HomeController extends Controller
 
             $Balance[]=0;
         }*/
-        $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->where('method','<>','Puntos')->get();
+        $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->get();
         if ($Payment->count() != 0) {
             foreach ($Payment as $key) {
                 $Balance[]=array(
@@ -453,29 +453,29 @@ class HomeController extends Controller
         }/*else{
             $Balance[]=0;
         }*/
-        $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->where('method','Puntos')->get();
+        // $Payment=Payments::where('user_id',Auth::user()->id)->where('status','Aprobado')->where('method','Puntos')->get();
         //dd($Payment->count() != 0);
-        if ($Payment->count() != 0) {
-            foreach ($Payment as $key) {
-                $BalancePuntos[]=array(
-                    'id_payments' => $key->id,
-                    'Id' => $key->user_id,
-                    'Date' => $key->created_at->format('d/m/Y'),
-                    'Cant' => $this->tickets($key->package_id)*$key->value,
-                    'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
-                    'Type' => 2,
-                    'Method'=>$key->method,
-                    'Factura' => $key->factura_id
-                );
-            }
-        }/*else{
-            $Balance[]=0;
-        }*/
+        // if ($Payment->count() != 0) {
+        //     foreach ($Payment as $key) {
+        //         $BalancePuntos[]=array(
+        //             'id_payments' => $key->id,
+        //             'Id' => $key->user_id,
+        //             'Date' => $key->created_at->format('d/m/Y'),
+        //             'Cant' => $this->tickets($key->package_id)*$key->value,
+        //             'Transaction' => 'Compra de tickets: '.$this->packTicket($key->package_id),
+        //             'Type' => 2,
+        //             'Method'=>$key->method,
+        //             'Factura' => $key->factura_id
+        //         );
+        //     }
+        // }else{
+        //     $Balance[]=0;
+        // }
         $pointsLoser = PointsLoser::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         $ordenBalance=collect($Balance)->sortBy('Date')->reverse()->toArray();
         $ordenBalancePuntos=collect($BalancePuntos)->sortBy('Date')->reverse()->toArray();
         
-        return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance)->with('BalancePuntos',$ordenBalancePuntos)->with('pointsLoser',$pointsLoser);
+        return view('users.SalesTickets')->with('package',$package)->with('Balance',$ordenBalance)->with('pointsLoser',$pointsLoser);
     }
 
     public function BuyPlan(Request $request){
