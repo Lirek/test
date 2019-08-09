@@ -1590,7 +1590,7 @@ public function BooksDataTable($status) {
           if ($revenueMonth->count()<=1) {
             event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
-          event(new PayementAprovalEvent($user->email));
+          event(new PayementAprovalEvent($user->email)); // DESCOMENTAR CUANDO TERMINE LAS PRUEBAS
           return response()->json($user);
         } else {
           $user = User::find($deposit->user_id);
@@ -1613,17 +1613,22 @@ public function BooksDataTable($status) {
         $paquete = TicketsPackage::find($Buy->package_id);
         $ambiente = env('AMB_DATIL');
         $user = User::find($idUser);
-        $nombrePaquete = $paquete->name;
         $iva = 0.12;
-        $costoPaquete = $Buy->cost;
-        $cantidadPaquetes = $Buy->value;
-        $valor = ($costoPaquete*$iva)*$cantidadPaquetes;
-        $base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
-        $total = $costoPaquete*$cantidadPaquetes;
+        $costoPaquete = $paquete->cost; // 10
+        $cantidadPaquetes = $Buy->value; // 1
+        //$valor = ($costoPaquete*$iva)*$cantidadPaquetes;
+        //$base_imponible =  ($costoPaquete*$cantidadPaquetes)-$valor;
+
+        $precio_unitario = round($costoPaquete/1.12,2); // 10/1.12 = 8.93
+        $precio_total_sin_impuesto = $precio_unitario*$cantidadPaquetes; // 8.93*1 = 8.93
+        $base_imponible = round(($costoPaquete*$cantidadPaquetes)/1.12,2); // 10*1/1.12 = 8.93
+        $valor = round(($precio_unitario*$iva)*$cantidadPaquetes,2); // 8.93*0.12*1 = 1.07
+
+        $total = $costoPaquete*$cantidadPaquetes; // 10*1
         $data = [
         "ambiente" => $ambiente, // 1: prueba; 2: produccion
         "tipo_emision" => 1, // normal
-        "secuencial" => $secuencial, // Id de tickets_sales
+        "secuencial" => $secuencial,
         "fecha_emision" => date("c"), //"2018-08-27T22:02:41Z", //Z
         "emisor" => [
             "ruc" => "0992897171001",
@@ -1641,34 +1646,35 @@ public function BooksDataTable($status) {
         "moneda" =>"USD",
         "totales" => [
             "impuestos" => [[
-                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
-                "valor" => $valor, //1.2, // 12% del precio del paquete
+                "base_imponible" => $base_imponible, // SUBTOTAL IVA 12%
+                "valor" => $valor, // VALOR IVA 12%
                 "codigo" => "2", // IVA
                 "codigo_porcentaje" => "2" // 12%
             ]],
-            "total_sin_impuestos" => $base_imponible, // 8.8,
-            "importe_total" => $total, // 10.0, // precio del paquete de tickets
+            "total_sin_impuestos" => $precio_total_sin_impuesto, // SUBTOTAL SIN IMPUESTOS
+            "importe_total" => $total, // VALOR TOTAL
             "propina" => 0.0,
             "descuento" => 0.0
         ],
         "comprador" => [ // datos del usuario
             "email" => $user->email,
             "identificacion" => $user->num_doc,
-            "tipo_identificacion" => "04", // 04: RUC; 05: Cedula
+            "tipo_identificacion" => "05", // 04: RUC; 05: Cedula
             "razon_social" => $user->name." ".$user->last_name,
             "direccion" => $user->direccion
         ],
         "items" => [[
-            "cantidad" => $cantidadPaquetes, // 1.0, // cantidad de paquetes comprados
-            "precio_unitario" => $costoPaquete, // 10.0, // precio del paquete de tickets
-            "descripcion" => "Compra de Paquete de Tickets Leipel. ".$nombrePaquete, // "Compra de Paquete de Tickets Leipel", // nombre del paquete
-            "precio_total_sin_impuestos" => $total, // 10.0, // cantidad*precio_unitario //cambiado
+            "descripcion" => "Paquete de 20 Tickets Leipel", // "Compra de Paquete de Tickets Leipel", // nombre del paquete
+            "codigo_principal" => "P20 - P20",
+            "cantidad" => $cantidadPaquetes, // 1.0
+            "precio_unitario" => $precio_unitario, // 8.93
+            "precio_total_sin_impuestos" => $precio_total_sin_impuesto, // TOTAL
             "impuestos" => [[
-                "base_imponible" => $base_imponible, // 8.8, // precio base sin el %
-                "valor" => $valor, // 1.2, // 12% del precio del paquete
-                "tarifa" => 12.0, // 12%
+                "base_imponible" => $base_imponible, // 8.93
                 "codigo" => "2", // IVA
-                "codigo_porcentaje" => "2" // 12%
+                "codigo_porcentaje" => "2", // 12%
+                "valor" => $valor, // 1.07,
+                "tarifa" => 12.0, // 12%
                 ]],
             "descuento" => 0.0
             ]],
