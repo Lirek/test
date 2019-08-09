@@ -80,14 +80,10 @@
                                             <!-- <a href="#"  class="waves-effect green curvaBoton waves-light btn-small modal-trigger"><i class="material-icons right">send</i>Compartir</a> -->
                                             <div id="fb-root"></div>
                                             <!-- Your share button code -->
-                                            <a href="https://wa.me/?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share">
+                                            <a href="whatsapp://send?text={{url('/').'/register/'.Auth::user()->codigo_ref}}" data-text="{{url('/').'/register/'.Auth::user()->codigo_ref}}" data-action="share/whatsapp/share" class="miestilo" style="border: none; margin: 10px 0; font-size: 16px;">
                                                 <img border="0" src="{{asset('sistem_images/WhatsApp.png')}}" width="50" height="50">
                                             </a>
-<<<<<<<<< Temporary merge branch 1
 
-
-=========
->>>>>>>>> Temporary merge branch 2
                                         </div>
                                     </div>
                                 </li>
