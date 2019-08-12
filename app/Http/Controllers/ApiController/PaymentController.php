@@ -67,7 +67,8 @@ class PaymentController extends Controller {
     public function BuyDepositPackageDocument(Request $request) {
         $datos = $request->only(array_keys($request->all()));
         $rules = [
-            'imagen_del_documento' => 'required'
+            'imagen_del_documento' => 'required',
+            'idPayment' => 'required'
         ];
         $validator = Validator::make($datos, $rules);
 
@@ -101,8 +102,7 @@ class PaymentController extends Controller {
         $rules = [
             'ticket_id' => 'required',
             'costo' => 'required',
-            'cantidad' => 'required',
-            'puntos' => 'required',
+            'cantidad' => 'required'
         ];
         $validator = Validator::make($datos, $rules);
 
@@ -118,7 +118,7 @@ class PaymentController extends Controller {
                 $Buy = new Payments;
                 $Buy->user_id       = auth()->user()->id;
                 $Buy->package_id    = $request->ticket_id;
-                $Buy->cost          = $request->puntos;
+                $Buy->cost          = $request->costo;
                 $Buy->value         = $request->cantidad;
                 $Buy->status        = 1;
                 $Buy->method        = 'Puntos';
