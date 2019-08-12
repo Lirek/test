@@ -13,67 +13,7 @@
 	</style>
 @section('content')
 	<!--<h4 class="titelgeneral"><i class="material-icons small">attach_money</i> Retiro</h4>-->
-	<div class="row">
-		<div class="col s12">
-			<div class="card-panel curva">
-				<div class="row">
-					<div class="col s12 m3">
-	                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
-	                        <div class="padding-4" style="padding: 4%">
-	                            <div class="col s12">
-	                               <h5 style="color: white"><b>Puntos disponibles:</b> {{Auth::guard('bidder')->user()->points}}</h5>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col s12 m3">
-	                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
-	                        <div class="padding-4" style="padding: 4%">
-	                            <div class="col s12">
-	                               <h5 style="color: white"><b>Puntos pendientes:</b> {{Auth::guard('bidder')->user()->pendding_points}}</h5>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col s12 m3">
-	                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
-	                        <div class="padding-4" style="padding: 4%">
-	                            <div class="col s12">
-	                               <h5 style="color: white"><b>Puntos por canjear:</b> {{$diferido}}</h5>
-	                            </div>
-	                            <a href="#statusPoints" value="Por canjear" class="modal-trigger white-text status">Ver detalles</a>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col s12 m3">
-	                    <div class="card gradient-45deg-green-teal gradient-shadow" style="height: 150px">
-	                        <div class="padding-4" style="padding: 4%">
-	                            <div class="col s12">
-	                               <h5 style="color: white"><b>Puntos retirados:</b> {{$pagado}}</h5>
-	                            </div>
-	                            <a href="#statusPoints" value="Pagado" class="modal-trigger white-text status">Ver detalles</a>
-	                        </div>
-	                    </div>
-	                </div>
-					<div class="col s12 m6">
-						<br>
-						<div class="card" style="height: 320px">
-							<br>
-							<h4 class="titelgeneral"> Solicitar retiro de puntos</h4>
-							<br> 
-							<div class="input-field col s12 m8 offset-m2">
-								<i class="material-icons prefix valign-wrapper">local_activity</i>
-								<label for="monto">Cantidad de puntos a retirar:</label>
-								<input type="number" min="1" max="{{Auth::guard('bidder')->user()->points}}" id="monto" required="required" value="{{ old('Cantidad') }}" onkeypress="return controltagNum(event)">
-								<div id="mensajeMonto"></div>
-								<a href="#myModalRequest" class="btn curvaBoton waves-effect waves-light green modal-trigger" id="solicitar"> Retirar </a>
-							</div>
-                    	</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- /.modal  de Fondos  -->
 	<div id="myModalRequest" class="modal">
 		<div class="modal-content">

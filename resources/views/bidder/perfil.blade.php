@@ -108,7 +108,7 @@
                                     <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
                                         <h5>{{$total_aproved}}</h5>
-                                        <label>Productos aprovados</label>
+                                        <label>Productos aprobados</label>
                                     </div>
                                      <div class="col s3">
                                         <i class=" mdi-action-perm-identity cyan-text text-darken-2"></i>
