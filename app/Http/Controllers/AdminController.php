@@ -1570,7 +1570,7 @@ public function BooksDataTable($status) {
 
       public function DepositStatus($id,Request $request) {
         $deposit = Payments::find($id);
-        $firstPay = Payments::where('user_id',$deposit->user_id)->where('status','Aprobado')->get();
+        
         if ($request->status_p == 'Aprobado') {
           $user = User::find($deposit->user_id);
           $tickets = $deposit->value*$deposit->Tickets->amount;
@@ -1578,7 +1578,7 @@ public function BooksDataTable($status) {
           $user->save();
           $deposit->status = 'Aprobado';
           $deposit->save();
-          $this->valPuntos($firstPay,$deposit->user_id);
+          $this->valPuntos($deposit->user_id);
           $Condition=Carbon::now()->firstOfMonth()->toDateString();
           $revenueMonth = Payments::where('user_id','=',$deposit->user_id)
             ->where('created_at', '>=',$Condition)
@@ -1700,59 +1700,64 @@ public function BooksDataTable($status) {
         return Response()->json($respuesta);
       }
 
-      public function valPuntos($firstPay,$user_id) {
-        $user = User::find($user_id);
-        if ($firstPay->count()==0) { // nunca a hecho pagos (apartando el que acaba de hacer)
-          if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
-            if ($user->points + $user->pending_points > $user->limit_points) {
-              $todosPuntos = $user->points + $user->pending_points;
-              $restoPuntos = $todosPuntos - $user->limit_points;
-              $user->points = $user->points + ( $user->pending_points - $restoPuntos );
-              $pointsLoser = new PointsLoser;
-              $pointsLoser->user_id = $user_id;
-              $pointsLoser->points = $restoPuntos;
-              $pointsLoser->reason = "Excedió el límite de puntos permitidos";
-              $pointsLoser->save();
-            } else {
-              $user->points = $user->points + $user->pending_points;
-            }
-            $user->pending_points = 0;
-          }
-        } else { // ya ha hecho pagos
-          $firstDay = Carbon::now()->firstOfMonth()->subMonth(1)->toDateString();
-          $lastDay = Carbon::now()->lastOfMonth()->subMonth(1)->toDateString();
-          // pago el mes pasado?
-          $paymentsMonthPass = Payments::where('user_id',$user_id)
-            ->whereBetween('created_at',[$firstDay,$lastDay])
-            ->where('status','Aprobado')
-            ->get();
-          if ($paymentsMonthPass->count()==0) { // no pagó
-            $pointsLoser = new PointsLoser;
-            $pointsLoser->user_id = $user_id;
-            $pointsLoser->points = $user->pending_points;
-            $pointsLoser->reason = "No recargó el mes pasado";
-            $pointsLoser->save();
-            $user->pending_points = 0;
-          } else { // si pagó el mes pasado
-            if ($user->pending_points != 0 && $user->points <= $user->limit_points) {
-              if ($user->points + $user->pending_points > $user->limit_points) {
-                $todosPuntos = $user->points + $user->pending_points;
-                $restoPuntos = $todosPuntos - $user->limit_points;
-                $user->points = $user->points + ( $user->pending_points - $restoPuntos );
+        public function valPuntos($user_id)
+      {
+          $User=User::find($user_id);
+          $revenueMonth = Payments::where('user_id','=', $User->id)->whereMonth('created_at', '=', Carbon::now()->subMonth()->month)->where('status', 'Aprobado')->get();
+      
+          if ($revenueMonth->isEmpty())
+          {
+            if ($User->pending_points!=0)
+            {
+              $balance3 = SistemBalance::find(1);
+              $balance3->my_points += $User->pending_points;
+              $balance3->save();
+      
+              $Assing3 = new PointsAssings;
+              $Assing3->amount = $User->pending_points;
+              $Assing3->from =  $User->id;
+              $Assing3->to =  0;
+              $Assing3->save();
+      
+              if(($User->pending_points + $User->points)>=$User->limit_points)
+              {
                 $pointsLoser = new PointsLoser;
-                $pointsLoser->user_id = $user_id;
-                $pointsLoser->points = $restoPuntos;
-                $pointsLoser->reason = "Excedió el límite de puntos permitidos";
+                $pointsLoser->user_id = $User->id;
+                $pointsLoser->points = $User->pending_points;
+                $pointsLoser->reason = "No recargó el mes pasado";
                 $pointsLoser->save();
-              } else {
-                $user->points = $user->points + $user->pending_points;
               }
-              $user->pending_points = 0;
+              else
+              {
+                $pointsLoser = new PointsLoser;
+                $pointsLoser->user_id = $User->id;
+                $pointsLoser->points = $User->pending_points;
+                $pointsLoser->reason = "Supero el Maximo de Puntos Permitido";
+                $pointsLoser->save();
+              }
+      
+      
+              $User->pending_points = 0;
+              $User->save();
+      
             }
+      
           }
-        }
-        $user->save();
-      }
+          elseif($User->pending_points!=0)
+          {
+            $User->points += $User->pending_points;
+            $User->pending_points = 0;
+            $User->save();
+            
+            $Assing3 = new PointsAssings;
+            $Assing3->amount = $User->pending_points;
+            $Assing3->from =  $User->id;
+            $Assing3->to =  $User->id;
+            $Assing3->save();
+          }
+      
+       }
+
 
       public function setFactura($idTicketSales,$idFactura) {
         $ticketSale = Payments::find($idTicketSales);
