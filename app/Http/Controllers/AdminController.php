@@ -1590,7 +1590,7 @@ public function BooksDataTable($status) {
           if ($revenueMonth->count()<=1) {
             event(new AssingPointsEvents($user->id,$deposit->package_id));
           }
-          event(new PayementAprovalEvent($user->email)); // DESCOMENTAR CUANDO TERMINE LAS PRUEBAS
+          event(new PayementAprovalEvent($user->email));
           return response()->json($user);
         } else {
           $user = User::find($deposit->user_id);
@@ -1684,7 +1684,7 @@ public function BooksDataTable($status) {
             ]]
         ];
         $urlEmision = "https://link.datil.co/invoices/issue";
-        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: DTleipel8892");
+        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: InforMeret356");
         $datapost   = json_encode($data);
         $ch         = curl_init();
         curl_setopt($ch,CURLOPT_URL,$urlEmision);

@@ -67,7 +67,7 @@ Route::group(['middleware' => ['cors']], function() {
         Route::post('buyDepositPackageDocument','ApiController\PaymentController@BuyDepositPackageDocument');
 
         Route::post('BuyPayphone','ApiController\PackageController@BuyPayphonePackage');
-        //Route::post('encode','ApiController\PackageController@encode');
+        Route::post('encode','ApiController\PackageController@encode');
 
         //Route::post('BuyDepositPackage','ApiController\PaymentController@BuyDepositPackage');
         //Route::post('BuyPointsPackage','ApiController\PaymentController@BuyPointsPackage');

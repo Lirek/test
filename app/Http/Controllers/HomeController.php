@@ -769,7 +769,7 @@ class HomeController extends Controller
             ]]
         ];
         $urlEmision = "https://link.datil.co/invoices/issue";
-        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: DTleipel8892");
+        $headers    = array("Content-Type: application/json", "X-Key: e884359eb97147fa8a1fd77ffe6e308b", "X-Password: InforMeret356");
         $datapost   = json_encode($data);
         $ch         = curl_init();
         curl_setopt($ch,CURLOPT_URL,$urlEmision);

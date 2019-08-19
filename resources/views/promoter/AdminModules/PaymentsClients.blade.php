@@ -197,7 +197,7 @@
 			var idPayments = $(this).attr("value");
 			console.log(idPayments);
 			var modulo = "Payments User";
-			var url = "{!! url('viewRejection/"+idPayments+"/"+modulo+"') !!}";
+			var url = "{!! url('viewRejection/') !!}/"+idPayments+"/"+modulo;
 			console.log(url);
 			$("#negaciones").empty();
 			e.preventDefault();
@@ -245,7 +245,7 @@
 			});
 			setTimeout(function() {
 				callback(msn);
-			},5000);
+			},10000); //10segs de espera
 		}
 		function getDatil(idTicketSales,medio,idUser) {
 			return new Promise(function(resolve,reject) {
@@ -278,7 +278,7 @@
 				closeOnClickOutside: false
 			});
 			var intento = 0;
-			var maxIntento = 10; // 30seg de espera // 10
+			var maxIntento = 3; // 30seg de espera // 10
 			if (medio=="Payphone") {
 				var medio = "dinero_electronico_ec";
 			} else {
@@ -311,8 +311,8 @@
 						.then((recarga) => {
 							location.reload();
 						});
-						intento++;
 					} else {
+						intento++;
 						console.log('intento: '+intento);
 						getDatilAgain(id_payments,medio,idUser,callback);
 					}

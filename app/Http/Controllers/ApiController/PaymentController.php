@@ -39,36 +39,7 @@ class PaymentController extends Controller {
             'costo' => 'required',
             'cantidad' => 'required',
             'referencia' => 'required',
-        ];
-        $validator = Validator::make($datos, $rules);
-
-        if($validator->fails()) {
-            return response()->json(['meta'=>['code'=>400],'data'=>$validator->messages(),'original'=>$request->all()],200);
-        }
-        try {
-            $Buy = new Payments;
-            $Buy->user_id = auth()->user()->id;
-            $Buy->package_id = $request->ticket_id;
-            $Buy->cost = $request->costo;
-            $Buy->value = $request->cantidad;
-            $Buy->method = 'Depósito';
-            $Buy->status = 2;
-            $Buy->reference = $request->referencia;
-            $Buy->save();
-            $data = [
-                "idPayment" => $Buy->id
-            ];
-            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
-        } catch (Exception $e) {
-            return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
-        }
-    }
-
-    public function BuyDepositPackageDocument(Request $request) {
-        $datos = $request->only(array_keys($request->all()));
-        $rules = [
             'imagen_del_documento' => 'required',
-            'idPayment' => 'required'
         ];
         $validator = Validator::make($datos, $rules);
 
@@ -88,15 +59,22 @@ class PaymentController extends Controller {
             File::put($store_path.'/'.$name, base64_decode($image));
             $real_path ='/user/'.auth()->user()->id.'/ticketsDeposit/'.$name;
 
-            $Buy = Payments::find($request->idPayment);
+            $Buy = new Payments;
+            $Buy->user_id = auth()->user()->id;
+            $Buy->package_id = $request->ticket_id;
+            $Buy->cost = $request->costo;
+            $Buy->value = $request->cantidad;
+            $Buy->method = 'Depósito';
+            $Buy->status = 2;
+            $Buy->reference = $request->referencia;
             $Buy->voucher = $real_path;
             $Buy->save();
-            return response()->json(['meta'=>['code'=>201],'data'=>true],201);
+            return response()->json(['meta'=>['code'=>200],'data'=>'Pago registrado, en proceso de validación'],200);
         } catch (Exception $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }
     }
-    
+
     public function BuyPointsPackage(Request $request) {
         $datos = $request->only(array_keys($request->all()));
         $rules = [
@@ -127,7 +105,7 @@ class PaymentController extends Controller {
                 $TicketsPackage = TicketsPackage::find($request->ticket_id);
 
                 $ticket = $TicketsPackage->amount*$request->cantidad;
-                $cost = $request->cantidad*$request->puntos;
+                $cost = $request->cantidad*$request->costo;
 
                 $user = User::find(auth()->user()->id);
                 $user->credito = $user->credito + $ticket;
