@@ -187,8 +187,7 @@ class UserController extends Controller
 
         $datos = $request->only(array_keys($request->all()));
         $rules = [
-            //'imagen_del_documento' => 'required|image|dimensions:max_width=500,max_height=500|size:1024'
-            'imagen_del_documento' => 'required|image'
+            'imagen_del_documento' => 'required'
         ];
         $validator = Validator::make($datos, $rules);
 
@@ -203,14 +202,19 @@ class UserController extends Controller
             }
             $nombre = $this->sinAcento($user->name);
             $store_path = public_path().'/user/'.$user->id.'/profile/';
-            $name = 'document'.$nombre.time().'.'.$request->file('imagen_del_documento')->getClientOriginalExtension();
-            $request->file('imagen_del_documento')->move($store_path,$name);
+            $image = $request->imagen_del_documento;
+            $image = explode(',',$image);
+            if (count($image)==2) {
+                $image = $image[1];
+            } else {
+                $image = $image[0];
+            }
+            $name = 'document'.$nombre.time().'.png';
+            File::put($store_path.'/'.$name, base64_decode($image));
             $user->img_doc = '/user/'.$user->id.'/profile/'.$name;
             $user->save();
-            $data = [
-                'img_doc' => $user->img_doc
-            ];
-            return response()->json(['meta'=>['code'=>200],'data'=>$data],200);
+
+            return response()->json(['meta'=>['code'=>200],'data'=>'Documento actualizado'],200);
         } catch (Exception $e) {
             return response()->json(['meta'=>['code'=>500],'data'=>'Ha ocurrido un error: '.$e],200);
         }

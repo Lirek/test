@@ -1054,7 +1054,7 @@
 		function getUserPayPhone(numberPhone,countryPrefix) {
 			return new Promise(function(resolve, reject) {
 				var TOKEN = "q8jIk_bqgpYLlYzB2G4REjao6S-JXJXqhV0MwhD8Mc7MJ2-u_OglDLHFCPON6XJ90kTHUaVw2kunvL6u4J2D7Y9L47OGDD7SYpYcknPrPq4jHO13JKVTFuJFoO5PoDIapk851dJp6YS_D2PfR3_Fh_eL5t8IyeWt9q6yzewSkpNN-VLyrJPbzApKcdqdjh7ca3HeEGHYlIFxaNQ8Qmy7nZ5ZqlxmEmiSYqt-7HdWUxzX2CPJnSITnEuwMPrp174opTpYtE4AKABOLAlwJRwh4CzzPaElqDA-mTDH14yVDNNz4blIo4FY2vrjdgczX2iJs3Mxhg";
-				var headers    = "Bearer "+TOKEN;
+				var headers = "Bearer "+TOKEN;
 				var url = "https://pay.payphonetodoesposible.com/api/Users/"+numberPhone+"/region/"+countryPrefix;
 				var req = new XMLHttpRequest();
 				req.open('GET', url);
@@ -1101,6 +1101,8 @@
 				var req = new XMLHttpRequest();
 				req.open('GET', url);
 				req.setRequestHeader("Authorization",headers);
+                req.setRequestHeader("access-control-allow-origin", "*");
+                req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 				req.onload = function() {
 					if (req.status == 200) {
 						resolve(req.response);
@@ -1120,25 +1122,28 @@
 				var url = "https://pay.payphonetodoesposible.com/api/Sale";
 				var TOKEN = "q8jIk_bqgpYLlYzB2G4REjao6S-JXJXqhV0MwhD8Mc7MJ2-u_OglDLHFCPON6XJ90kTHUaVw2kunvL6u4J2D7Y9L47OGDD7SYpYcknPrPq4jHO13JKVTFuJFoO5PoDIapk851dJp6YS_D2PfR3_Fh_eL5t8IyeWt9q6yzewSkpNN-VLyrJPbzApKcdqdjh7ca3HeEGHYlIFxaNQ8Qmy7nZ5ZqlxmEmiSYqt-7HdWUxzX2CPJnSITnEuwMPrp174opTpYtE4AKABOLAlwJRwh4CzzPaElqDA-mTDH14yVDNNz4blIo4FY2vrjdgczX2iJs3Mxhg";
 				var headers = "Bearer "+TOKEN;
+				// 982042816
 				var totalInt = (total*100); // Para transformarlo de decimales a enteros
 				var data = { phoneNumber: numberPhone, countryCode: countryPrefix, amount: totalInt, amountWithTax: 0, amountWithoutTax: 0, tax: 0, service : totalInt, tip: 0, clientTransactionId: id };
 				var datos = JSON.stringify(data);
 				var req = new XMLHttpRequest();
 				req.open('POST',url,true);
-				req.setRequestHeader("Authorization",headers);
+                req.setRequestHeader("Authorization",headers);
+                req.setRequestHeader("access-control-allow-origin", "*");
 				req.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-				req.onload = function() {
-					if (req.status == 200) {
-						resolve(req.response);
-					}
+                req.onload = function() {
+                    if (req.status == 200) {
+                        resolve(req.response);
+                    }
 					else {
-						resolve(req.response);
-					}
-				};
-				req.onerror = function() {
-					reject(Error("Network Error"));
-				};
-				req.send(datos);
+                        resolve(req.response);
+                    }
+                };
+                req.onerror = function() {
+                    reject(Error("Network Error"));
+                };
+                console.log(datos);
+                req.send(datos);
 			});
 		}
 
@@ -1177,7 +1182,7 @@
 			});
 			setTimeout(function() {
 				callback(msn);
-			},1000);
+			},2000); // valor original = 1000
 		}
 
 		function getDatilAgain(idTicketSales,medio,callback) {
@@ -1190,7 +1195,7 @@
 			});
 			setTimeout(function() {
 				callback(msn);
-			},5000);
+			},10000); // 10segs de espera
 		}
 
 		function comprar(id,cost,cantidadTickets) {
@@ -1296,6 +1301,7 @@
 											closeOnEsc: false,
 											closeOnClickOutside: false
 										});
+										console.log("HASTA AQUI POSIBLE ERRROR",numberPhone,countryPrefix,total,idTicketSales);
 										postSalePayPhone(numberPhone,countryPrefix,total,idTicketSales).then(function(response) {
 											var intento = 0;
 											var maxIntento = 90; // 1min y 1/2 de espera
